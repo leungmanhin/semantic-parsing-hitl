@@ -109,21 +109,21 @@
 ;;   A: (And (Agent $e0 $x0) (Member $e0 begin) (Ongoing $e1) (Theme $e0 $e1))
 ;;   B: (And (Agent $e0 $x0) (Member $e1 begin) (Ongoing $e0) (Theme $e1 $e0))
 ;;   alignment: $e0=$e1 $e1=$e0 $x0=$x0 (holds in 5 of 5 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e0 begin) (Ongoing $e1) (Theme $e0 $e1)) (MnAgent_Agent_Begin_Ongoing_ThemeEv_1 $e0 $e1 $x0))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e0 begin) (Ongoing $e1) (Theme $e0 $e1)) (MnAgent_Agent_Begin_Ongoing_ThemeEv $e0 $e1 $x0))
 
 ;; [genuine]  p202333 ~ p202335   records 5 / 5 / 5 (4 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0223   Jaccard: 1.00   e.g. tierB-000485 tierB-001052 tierB-001138
 ;;   A: (And (Agent $e0 $x0) (Member $e0 begin) (Ongoing $e1) (Theme $e0 $e1))
 ;;   B: (And (Agent $e0 $x0) (Member $e1 begin) (Past $e1) (Theme $e1 $e0))
 ;;   alignment: $e0=$e1 $e1=$e0 $x0=$x0 (holds in 5 of 5 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e0 begin) (Ongoing $e1) (Past $e0) (Theme $e0 $e1)) (MnAgent_Agent_Begin_Ongoing_Past_ThemeEv_1 $e0 $e1 $x0))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e0 begin) (Ongoing $e1) (Past $e0) (Theme $e0 $e1)) (MnAgent_Agent_Begin_Ongoing_Past_ThemeEv $e0 $e1 $x0))
 
 ;; [genuine]  p202333 ~ p202559   records 5 / 5 / 5 (4 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0223   Jaccard: 1.00   e.g. tierB-000485 tierB-001052 tierB-001138
 ;;   A: (And (Agent $e0 $x0) (Member $e0 begin) (Ongoing $e1) (Theme $e0 $e1))
 ;;   B: (And (Agent $e0 $x0) (Member $e1 begin) (Theme $e1 $e0))
 ;;   alignment: $e0=$e1 $e1=$e0 $x0=$x0 (holds in 5 of 5 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e0 begin) (Ongoing $e1) (Theme $e0 $e1)) (MnAgent_Agent_Begin_Ongoing_ThemeEv_1 $e0 $e1 $x0))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e0 begin) (Ongoing $e1) (Theme $e0 $e1)) (MnAgent_Agent_Begin_Ongoing_ThemeEv $e0 $e1 $x0))
 
 ;; [genuine]  p202333 ~ p202724   records 5 / 5 / 5 (4 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0223   Jaccard: 1.00   e.g. tierB-000485 tierB-001052 tierB-001138
@@ -151,56 +151,56 @@
 ;;   A: (And (Agent $e0 $x0) (Member $e1 begin) (Ongoing $e0) (Theme $e1 $e0))
 ;;   B: (And (Agent $e0 $x0) (Member $e0 begin) (Past $e0) (Theme $e0 $e1))
 ;;   alignment: $e0=$e1 $e1=$e0 $x0=$x0 (holds in 5 of 5 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e1 begin) (Ongoing $e0) (Past $e1) (Theme $e1 $e0)) (MnAgent_Agent_Begin_Ongoing_Past_ThemeEv_2 $e0 $e1 $x0))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e0 begin) (Ongoing $e1) (Past $e0) (Theme $e0 $e1)) (MnAgent_Agent_Begin_Ongoing_Past_ThemeEv $e0 $e1 $x0))
 
 ;; [genuine]  p202334 ~ p202758   records 5 / 5 / 5 (4 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0223   Jaccard: 1.00   e.g. tierB-000485 tierB-001052 tierB-001138
 ;;   A: (And (Agent $e0 $x0) (Member $e1 begin) (Ongoing $e0) (Theme $e1 $e0))
 ;;   B: (And (Agent $e0 $x0) (Member $e0 begin) (Past $e0))
 ;;   alignment: $e1=$e0 $x0=$x0 (holds in 5 of 5 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e1 begin) (Ongoing $e0) (Past $e1) (Theme $e1 $e0)) (MnAgent_Agent_Begin_Ongoing_Past_ThemeEv_2 $e0 $e1 $x0))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e0 begin) (Ongoing $e1) (Past $e0) (Theme $e0 $e1)) (MnAgent_Agent_Begin_Ongoing_Past_ThemeEv $e0 $e1 $x0))
 
 ;; [genuine]  p202334 ~ p202759   records 5 / 5 / 5 (4 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0223   Jaccard: 1.00   e.g. tierB-000485 tierB-001052 tierB-001138
 ;;   A: (And (Agent $e0 $x0) (Member $e1 begin) (Ongoing $e0) (Theme $e1 $e0))
 ;;   B: (And (Agent $e0 $x0) (Member $e0 begin) (Theme $e0 $e1))
 ;;   alignment: $e0=$e1 $e1=$e0 $x0=$x0 (holds in 5 of 5 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e1 begin) (Ongoing $e0) (Theme $e1 $e0)) (MnAgent_Agent_Begin_Ongoing_ThemeEv_2 $e0 $e1 $x0))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e0 begin) (Ongoing $e1) (Theme $e0 $e1)) (MnAgent_Agent_Begin_Ongoing_ThemeEv $e0 $e1 $x0))
 
 ;; [genuine]  p202334 ~ p202851   records 5 / 5 / 5 (4 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0223   Jaccard: 1.00   e.g. tierB-000485 tierB-001052 tierB-001138
 ;;   A: (And (Agent $e0 $x0) (Member $e1 begin) (Ongoing $e0) (Theme $e1 $e0))
 ;;   B: (And (Agent $e0 $x0) (Member $e0 begin))
 ;;   alignment: $e1=$e0 $x0=$x0 (holds in 5 of 5 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e1 begin) (Ongoing $e0) (Theme $e1 $e0)) (MnAgent_Agent_Begin_Ongoing_ThemeEv_2 $e0 $e1 $x0))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e0 begin) (Ongoing $e1) (Theme $e0 $e1)) (MnAgent_Agent_Begin_Ongoing_ThemeEv $e0 $e1 $x0))
 
 ;; [genuine]  p202335 ~ p202724   records 5 / 5 / 5 (4 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0223   Jaccard: 1.00   e.g. tierB-000485 tierB-001052 tierB-001138
 ;;   A: (And (Agent $e0 $x0) (Member $e1 begin) (Past $e1) (Theme $e1 $e0))
 ;;   B: (And (Agent $e0 $x0) (Member $e0 begin) (Past $e0) (Theme $e0 $e1))
 ;;   alignment: $e0=$e1 $e1=$e0 $x0=$x0 (holds in 5 of 5 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e1 begin) (Past $e1) (Theme $e1 $e0)) (MnAgent_Agent_Begin_Past_ThemeEv $e0 $e1 $x0))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e0 begin) (Past $e0) (Theme $e0 $e1)) (MnAgent_Agent_Begin_Past_ThemeEv $e0 $e1 $x0))
 
 ;; [genuine]  p202335 ~ p202758   records 5 / 5 / 5 (4 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0223   Jaccard: 1.00   e.g. tierB-000485 tierB-001052 tierB-001138
 ;;   A: (And (Agent $e0 $x0) (Member $e1 begin) (Past $e1) (Theme $e1 $e0))
 ;;   B: (And (Agent $e0 $x0) (Member $e0 begin) (Past $e0))
 ;;   alignment: $e1=$e0 $x0=$x0 (holds in 5 of 5 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e1 begin) (Past $e1) (Theme $e1 $e0)) (MnAgent_Agent_Begin_Past_ThemeEv $e0 $e1 $x0))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e0 begin) (Past $e0) (Theme $e0 $e1)) (MnAgent_Agent_Begin_Past_ThemeEv $e0 $e1 $x0))
 
 ;; [genuine]  p202335 ~ p202759   records 5 / 5 / 5 (4 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0223   Jaccard: 1.00   e.g. tierB-000485 tierB-001052 tierB-001138
 ;;   A: (And (Agent $e0 $x0) (Member $e1 begin) (Past $e1) (Theme $e1 $e0))
 ;;   B: (And (Agent $e0 $x0) (Member $e0 begin) (Theme $e0 $e1))
 ;;   alignment: $e0=$e1 $e1=$e0 $x0=$x0 (holds in 5 of 5 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e1 begin) (Past $e1) (Theme $e1 $e0)) (MnAgent_Agent_Begin_Past_ThemeEv $e0 $e1 $x0))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e0 begin) (Past $e0) (Theme $e0 $e1)) (MnAgent_Agent_Begin_Past_ThemeEv $e0 $e1 $x0))
 
 ;; [genuine]  p202335 ~ p202851   records 5 / 5 / 5 (4 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0223   Jaccard: 1.00   e.g. tierB-000485 tierB-001052 tierB-001138
 ;;   A: (And (Agent $e0 $x0) (Member $e1 begin) (Past $e1) (Theme $e1 $e0))
 ;;   B: (And (Agent $e0 $x0) (Member $e0 begin))
 ;;   alignment: $e1=$e0 $x0=$x0 (holds in 5 of 5 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e1 begin) (Past $e1) (Theme $e1 $e0)) (MnAgent_Agent_Begin_Past_ThemeEv $e0 $e1 $x0))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e0 begin) (Past $e0) (Theme $e0 $e1)) (MnAgent_Agent_Begin_Past_ThemeEv $e0 $e1 $x0))
 
 ;; [genuine]  p202339 ~ p202726   records 5 / 5 / 5 (4 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0223   Jaccard: 1.00   e.g. tierB-001582 tierC-000001 tierC-000158
@@ -214,35 +214,35 @@
 ;;   A: (And (Agent $e0 $x0) (Member $e1 begin) (Theme $e1 $e0))
 ;;   B: (And (Agent $e0 $x0) (Member $e0 begin) (Past $e0) (Theme $e0 $e1))
 ;;   alignment: $e0=$e1 $e1=$e0 $x0=$x0 (holds in 5 of 5 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e1 begin) (Past $e1) (Theme $e1 $e0)) (MnAgent_Agent_Begin_Past_ThemeEv $e0 $e1 $x0))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e0 begin) (Past $e0) (Theme $e0 $e1)) (MnAgent_Agent_Begin_Past_ThemeEv $e0 $e1 $x0))
 
 ;; [genuine]  p202559 ~ p202758   records 5 / 5 / 5 (4 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0223   Jaccard: 1.00   e.g. tierB-000485 tierB-001052 tierB-001138
 ;;   A: (And (Agent $e0 $x0) (Member $e1 begin) (Theme $e1 $e0))
 ;;   B: (And (Agent $e0 $x0) (Member $e0 begin) (Past $e0))
 ;;   alignment: $e1=$e0 $x0=$x0 (holds in 5 of 5 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e1 begin) (Past $e1) (Theme $e1 $e0)) (MnAgent_Agent_Begin_Past_ThemeEv $e0 $e1 $x0))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e0 begin) (Past $e0) (Theme $e0 $e1)) (MnAgent_Agent_Begin_Past_ThemeEv $e0 $e1 $x0))
 
 ;; [genuine]  p202559 ~ p202759   records 5 / 5 / 5 (4 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0223   Jaccard: 1.00   e.g. tierB-000485 tierB-001052 tierB-001138
 ;;   A: (And (Agent $e0 $x0) (Member $e1 begin) (Theme $e1 $e0))
 ;;   B: (And (Agent $e0 $x0) (Member $e0 begin) (Theme $e0 $e1))
 ;;   alignment: $e0=$e1 $e1=$e0 $x0=$x0 (holds in 5 of 5 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e1 begin) (Theme $e1 $e0)) (MnAgent_Agent_Begin_ThemeEv $e0 $e1 $x0))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e0 begin) (Theme $e0 $e1)) (MnAgent_Agent_Begin_ThemeEv $e0 $e1 $x0))
 
 ;; [genuine]  p202559 ~ p202851   records 5 / 5 / 5 (4 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0223   Jaccard: 1.00   e.g. tierB-000485 tierB-001052 tierB-001138
 ;;   A: (And (Agent $e0 $x0) (Member $e1 begin) (Theme $e1 $e0))
 ;;   B: (And (Agent $e0 $x0) (Member $e0 begin))
 ;;   alignment: $e1=$e0 $x0=$x0 (holds in 5 of 5 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e1 begin) (Theme $e1 $e0)) (MnAgent_Agent_Begin_ThemeEv $e0 $e1 $x0))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e0 begin) (Theme $e0 $e1)) (MnAgent_Agent_Begin_ThemeEv $e0 $e1 $x0))
 
 ;; [genuine]  p202564 ~ p202765   records 5 / 5 / 5 (4 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0223   Jaccard: 1.00   e.g. tierB-000258 tierB-001035 tierB-001867
 ;;   A: (And (Agent $e0 $x0) (Past $e1) (To $e1 $e0))
 ;;   B: (And (Agent $e0 $x0) (Past $e0) (To $e0 $e1))
 ;;   alignment: $e0=$e1 $e1=$e0 $x0=$x0 (holds in 5 of 5 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Past $e1) (To $e1 $e0)) (MnAgent_Agent_Past_ToEv $e0 $e1 $x0))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Past $e0) (To $e0 $e1)) (MnAgent_Agent_Past_ToEv $e0 $e1 $x0))
 
 ;; [genuine]  p202758 ~ p202759   records 5 / 5 / 5 (4 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0223   Jaccard: 1.00   e.g. tierB-000485 tierB-001052 tierB-001138
@@ -536,14 +536,14 @@
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 $x1=$x1 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty $e0 $x0 $x1))
 
 ;; [genuine]  p203048 ~ p203050   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 $x1=$x1 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty $e0 $x0 $x1))
 
 ;; [genuine]  p203048 ~ p203070   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -571,140 +571,140 @@
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 $x1=$x1 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203048 ~ p203075   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 $x1=$x1 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203048 ~ p203076   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 $x1=$x1 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty $e0 $x0 $x1))
 
 ;; [genuine]  p203048 ~ p203077   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 $x1=$x1 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty $e0 $x0 $x1))
 
 ;; [genuine]  p203048 ~ p203092   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Member free_soil_party party) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203048 ~ p203093   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Member republican_party party) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203048 ~ p203094   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty $e0 $x0 $x1))
 
 ;; [genuine]  p203048 ~ p203095   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty $e0 $x0 $x1))
 
 ;; [genuine]  p203048 ~ p203119   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Theme $e0 $x1))
 ;;   B: (And (Member free_soil_party party) (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203048 ~ p203120   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Theme $e0 $x1))
 ;;   B: (And (Member republican_party party) (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203048 ~ p203722   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 $x1=$x1 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty $e0 $x0 $x1))
 
 ;; [genuine]  p203048 ~ p203723   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 $x1=$x1 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty $e0 $x0 $x1))
 
 ;; [genuine]  p203048 ~ p203734   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Member free_soil_party party) (Possession $x0 free_soil_party))
 ;;   alignment: $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203048 ~ p203735   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Member republican_party party) (Possession $x0 republican_party))
 ;;   alignment: $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203048 ~ p203763   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Theme $e0 $x1))
 ;;   B: (And (Member free_soil_party party) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203048 ~ p203764   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Theme $e0 $x1))
 ;;   B: (And (Member republican_party party) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203048 ~ p203768   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Theme $e0 $x1))
 ;;   B: (And (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty $e0 $x0 $x1))
 
 ;; [genuine]  p203048 ~ p203769   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Theme $e0 $x1))
 ;;   B: (And (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty $e0 $x0 $x1))
 
 ;; [genuine]  p203048 ~ p203992   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Theme $e0 $x1))
 ;;   B: (And (Member free_soil_party party) (Possession $x0 free_soil_party))
 ;;   alignment: $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203048 ~ p203993   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Theme $e0 $x1))
 ;;   B: (And (Member republican_party party) (Possession $x0 republican_party))
 ;;   alignment: $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203048 ~ p204176   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -725,56 +725,56 @@
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty $e0 $x0 $x1))
 
 ;; [genuine]  p203048 ~ p204304   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty $e0 $x0 $x1))
 
 ;; [genuine]  p203048 ~ p204500   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 free_soil_party))
 ;;   alignment: $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty $e0 $x0 $x1))
 
 ;; [genuine]  p203048 ~ p204501   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 republican_party))
 ;;   alignment: $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty $e0 $x0 $x1))
 
 ;; [genuine]  p203048 ~ p204559   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Theme $e0 $x1))
 ;;   B: (And (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty $e0 $x0 $x1))
 
 ;; [genuine]  p203048 ~ p204560   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Theme $e0 $x1))
 ;;   B: (And (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty $e0 $x0 $x1))
 
 ;; [genuine]  p203048 ~ p204781   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Theme $e0 $x1))
 ;;   B: (Possession $x0 free_soil_party)
 ;;   alignment: $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty $e0 $x0 $x1))
 
 ;; [genuine]  p203048 ~ p204782   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Theme $e0 $x1))
 ;;   B: (Possession $x0 republican_party)
 ;;   alignment: $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty $e0 $x0 $x1))
 
 ;; [genuine]  p203049 ~ p203050   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -809,7 +809,7 @@
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 $x1=$x1 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203049 ~ p203075   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -823,21 +823,21 @@
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 $x1=$x1 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty $e0 $x0 $x1))
 
 ;; [genuine]  p203049 ~ p203077   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty_ThemeOfPossessionRepublicanParty_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203049 ~ p203092   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Member free_soil_party party) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203049 ~ p203093   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -851,7 +851,7 @@
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty $e0 $x0 $x1))
 
 ;; [genuine]  p203049 ~ p203095   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -865,7 +865,7 @@
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (Member free_soil_party party) (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203049 ~ p203120   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -886,7 +886,7 @@
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Member free_soil_party party) (Possession $x0 free_soil_party))
 ;;   alignment: $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203049 ~ p203735   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -900,14 +900,14 @@
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Past $e0) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty $e0 $x0 $x1))
 
 ;; [genuine]  p203049 ~ p203763   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (Member free_soil_party party) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203049 ~ p203764   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -921,21 +921,21 @@
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty $e0 $x0 $x1))
 
 ;; [genuine]  p203049 ~ p203769   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty_ThemeOfPossessionRepublicanParty_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203049 ~ p203992   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (Member free_soil_party party) (Possession $x0 free_soil_party))
 ;;   alignment: $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203049 ~ p203993   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -949,7 +949,7 @@
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (Member free_soil_party party)
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203049 ~ p204177   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -970,7 +970,7 @@
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 republican_party))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (GroupOf $x2 view) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1)) (MnAgent_GroupOfView_GroupOfView_PossessionFreeSoilParty_PossessionRepublicanParty_Theme $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (GroupOf $x2 view) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1)) (MnAgent_GroupOfView_GroupOfView_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_1 $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203049 ~ p204560   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -1019,49 +1019,49 @@
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 $x1=$x1 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203050 ~ p203076   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty_ThemeOfPossessionFreeSoilParty_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty_ThemeOfPossessionFreeSoilParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203050 ~ p203077   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 $x1=$x1 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty $e0 $x0 $x1))
 
 ;; [genuine]  p203050 ~ p203092   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Member free_soil_party party) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (GroupOf $x2 view) (Member free_soil_party party) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_GroupOfView_GroupOfView_FreeSoilPartyParty_PossessionRepublicanParty_PossessionFreeSoilParty_Theme_Theme $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (GroupOf $x2 view) (Member free_soil_party party) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_GroupOfView_GroupOfView_FreeSoilPartyParty_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203050 ~ p203093   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Member republican_party party) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203050 ~ p203094   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (GroupOf $x2 view) (Past $e0) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_GroupOfView_GroupOfView_Past_PossessionRepublicanParty_PossessionFreeSoilParty_Theme_Theme $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (GroupOf $x2 view) (Past $e0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_GroupOfView_GroupOfView_Past_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203050 ~ p203095   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty $e0 $x0 $x1))
 
 ;; [genuine]  p203050 ~ p203119   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -1075,7 +1075,7 @@
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (Member republican_party party) (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203050 ~ p203722   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -1089,21 +1089,21 @@
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Member free_soil_party party) (Possession $x0 free_soil_party))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (GroupOf $x2 view) (Member free_soil_party party) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1)) (MnAgent_GroupOfView_GroupOfView_FreeSoilPartyParty_PossessionRepublicanParty_PossessionFreeSoilParty_Theme $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (GroupOf $x2 view) (Member free_soil_party party) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x2)) (MnAgent_GroupOfView_GroupOfView_FreeSoilPartyParty_PossessionFreeSoilParty_PossessionRepublicanParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203050 ~ p203735   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Member republican_party party) (Possession $x0 republican_party))
 ;;   alignment: $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203050 ~ p203736   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Past $e0) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty $e0 $x0 $x1))
 
 ;; [genuine]  p203050 ~ p203763   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -1117,21 +1117,21 @@
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (Member republican_party party) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203050 ~ p203768   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty_ThemeOfPossessionFreeSoilParty_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty_ThemeOfPossessionFreeSoilParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203050 ~ p203769   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty $e0 $x0 $x1))
 
 ;; [genuine]  p203050 ~ p203992   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -1145,7 +1145,7 @@
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (Member republican_party party) (Possession $x0 republican_party))
 ;;   alignment: $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203050 ~ p204176   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -1159,21 +1159,21 @@
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (Member republican_party party)
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203050 ~ p204303   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (GroupOf $x2 view) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_GroupOfView_GroupOfView_PossessionRepublicanParty_PossessionFreeSoilParty_Theme_Theme $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (GroupOf $x2 view) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_GroupOfView_GroupOfView_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203050 ~ p204500   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 free_soil_party))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (GroupOf $x2 view) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1)) (MnAgent_GroupOfView_GroupOfView_PossessionRepublicanParty_PossessionFreeSoilParty_Theme $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (GroupOf $x2 view) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x2)) (MnAgent_GroupOfView_GroupOfView_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_2 $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203050 ~ p204559   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -1236,7 +1236,7 @@
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Member $x0 company))
 ;;   B: (And (Agent $e0 $x0) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1))
 ;;   alignment: $x0=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Member $x0 company) (Member $x1 hotel) (Past $e1) (Patient $e1 $x1)) (MnAgent_Agent_LocationKazakhstan_Build_Company_Hotel_Past_Patient_1 $e0 $e1 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Member $x0 company) (Member $x1 hotel) (Past $e1) (Patient $e1 $x1)) (MnAgent_Agent_LocationKazakhstan_Build_Company_Hotel_Past_Patient_2 $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203053 ~ p203107   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
@@ -1376,7 +1376,7 @@
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $x0 company) (Past $e0))
 ;;   B: (And (Agent $e0 $x0) (Member $e0 build) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   alignment: $x0=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 kazakhstan) (Member $e1 build) (Member $x0 company) (Member $x1 hotel) (Past $e0) (Patient $e1 $x1)) (MnAgent_Agent_LocationKazakhstan_Build_Company_Hotel_Past_Patient_2 $e0 $e1 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 kazakhstan) (Member $e1 build) (Member $x0 company) (Member $x1 hotel) (Past $e0) (Patient $e1 $x1)) (MnAgent_Agent_LocationKazakhstan_Build_Company_Hotel_Past_Patient_3 $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203054 ~ p203069   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
@@ -1530,28 +1530,28 @@
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $x0 company) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Member $e0 build) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   alignment: $x0=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 kazakhstan) (Member $e1 build) (Member $x0 company) (Member $x2 hotel) (Patient $e0 $x1) (Patient $e1 $x2)) (MnAgent_Agent_LocationKazakhstan_Build_Company_Hotel_Patient_Patient_1 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 kazakhstan) (Member $e1 build) (Member $x0 company) (Member $x1 hotel) (Patient $e0 $x2) (Patient $e1 $x1)) (MnAgent_Agent_LocationKazakhstan_Build_Company_Hotel_Patient_Patient_2 $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p203055 ~ p203069   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $x0 company) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Member $x0 company) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   alignment: $x0=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 kazakhstan) (Member $x0 company) (Member $x2 hotel) (Patient $e0 $x1) (Patient $e1 $x2)) (MnAgent_Agent_LocationKazakhstan_Company_Hotel_Patient_Patient_1 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 kazakhstan) (Member $x0 company) (Member $x1 hotel) (Patient $e0 $x2) (Patient $e1 $x1)) (MnAgent_Agent_LocationKazakhstan_Company_Hotel_Patient_Patient $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p203055 ~ p203073   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $x0 company) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1))
 ;;   alignment: $x0=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 kazakhstan) (Member $x0 company) (Member $x2 hotel) (Past $e1) (Patient $e0 $x1) (Patient $e1 $x2)) (MnAgent_Agent_LocationKazakhstan_Company_Hotel_Past_Patient_Patient_1 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 kazakhstan) (Member $x0 company) (Member $x1 hotel) (Past $e1) (Patient $e0 $x2) (Patient $e1 $x1)) (MnAgent_Agent_LocationKazakhstan_Company_Hotel_Past_Patient_Patient_2 $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p203055 ~ p203107   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $x0 company) (Patient $e0 $x1))
 ;;   B: (And (Member $e0 build) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e1 build) (Member $x0 company) (Member $x2 hotel) (Past $e1) (Patient $e0 $x1) (Patient $e1 $x2)) (MnAgent_LocationKazakhstan_Build_Company_Hotel_Past_Patient_Patient_1 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e1 build) (Member $x0 company) (Member $x1 hotel) (Past $e1) (Patient $e0 $x2) (Patient $e1 $x1)) (MnAgent_LocationKazakhstan_Build_Company_Hotel_Past_Patient_Patient_1 $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p203055 ~ p203716   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
@@ -1565,21 +1565,21 @@
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $x0 company) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   alignment: $x0=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 kazakhstan) (Member $x0 company) (Member $x2 hotel) (Patient $e0 $x1) (Patient $e1 $x2)) (MnAgent_Agent_LocationKazakhstan_Company_Hotel_Patient_Patient_1 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 kazakhstan) (Member $x0 company) (Member $x1 hotel) (Patient $e0 $x2) (Patient $e1 $x1)) (MnAgent_Agent_LocationKazakhstan_Company_Hotel_Patient_Patient $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p203055 ~ p203746   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $x0 company) (Patient $e0 $x1))
 ;;   B: (And (Member $e0 build) (Member $x0 hotel) (Patient $e0 $x0))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e1 build) (Member $x0 company) (Member $x2 hotel) (Patient $e0 $x1) (Patient $e1 $x2)) (MnAgent_LocationKazakhstan_Build_Company_Hotel_Patient_Patient_1 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e1 build) (Member $x0 company) (Member $x1 hotel) (Patient $e0 $x2) (Patient $e1 $x1)) (MnAgent_LocationKazakhstan_Build_Company_Hotel_Patient_Patient_1 $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p203055 ~ p203756   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $x0 company) (Patient $e0 $x1))
 ;;   B: (And (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $x0 company) (Member $x2 hotel) (Past $e1) (Patient $e0 $x1) (Patient $e1 $x2)) (MnAgent_LocationKazakhstan_Company_Hotel_Past_Patient_Patient_1 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $x0 company) (Member $x1 hotel) (Past $e1) (Patient $e0 $x2) (Patient $e1 $x1)) (MnAgent_LocationKazakhstan_Company_Hotel_Past_Patient_Patient_1 $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p203055 ~ p204218   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
@@ -1663,14 +1663,14 @@
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $x0 company) (Patient $e0 $x1))
 ;;   B: (And (Member $x0 hotel) (Patient $e0 $x0))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $x0 company) (Member $x2 hotel) (Patient $e0 $x1) (Patient $e1 $x2)) (MnAgent_LocationKazakhstan_Company_Hotel_Patient_Patient_1 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $x0 company) (Member $x1 hotel) (Patient $e0 $x2) (Patient $e1 $x1)) (MnAgent_LocationKazakhstan_Company_Hotel_Patient_Patient_1 $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p203056 ~ p204216   records 4 / 4 / 4 (3 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierB-000942 tierB-001933 tierC-000025
 ;;   A: (And (Agent $e0 $x0) (Location $e1 $x1) (Ongoing $e1) (Theme $e0 $e1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 $x1) (Ongoing $e0) (Theme $e1 $e0))
 ;;   alignment: $e0=$e1 $e1=$e0 $x0=$x0 $x1=$x1 (holds in 4 of 4 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e1 $x1) (Ongoing $e1) (Theme $e0 $e1)) (MnAgent_Agent_Location_Ongoing_ThemeEv $e0 $e1 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 $x1) (Ongoing $e0) (Theme $e1 $e0)) (MnAgent_Agent_Location_Ongoing_ThemeEv $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203063 ~ p203064   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
@@ -1684,28 +1684,28 @@
 ;;   A: (And (Agent $e0 $x0) (Member $e0 build) (Member $x0 company) (Past $e0))
 ;;   B: (And (Agent $e0 $x0) (Member $e0 build) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $e0 build) (Member $x0 company) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgentOfCompany_Build_Past_PatientOfHotel_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 build) (Member $x0 company) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgentOfCompany_Build_Past_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p203063 ~ p203069   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $e0 build) (Member $x0 company) (Past $e0))
 ;;   B: (And (Agent $e0 $x0) (Member $x0 company) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $e0 build) (Member $x0 company) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgentOfCompany_Build_Past_PatientOfHotel_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 build) (Member $x0 company) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgentOfCompany_Build_Past_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p203063 ~ p203073   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $e0 build) (Member $x0 company) (Past $e0))
 ;;   B: (And (Agent $e0 $x0) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $e0 build) (Member $x0 company) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgentOfCompany_Build_Past_PatientOfHotel_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 build) (Member $x0 company) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgentOfCompany_Build_Past_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p203063 ~ p203107   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $e0 build) (Member $x0 company) (Past $e0))
 ;;   B: (And (Member $e0 build) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $e0 build) (Member $x0 company) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgentOfCompany_Build_Past_PatientOfHotel_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 build) (Member $x0 company) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgentOfCompany_Build_Past_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p203063 ~ p203714   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
@@ -1719,21 +1719,21 @@
 ;;   A: (And (Agent $e0 $x0) (Member $e0 build) (Member $x0 company) (Past $e0))
 ;;   B: (And (Agent $e0 $x0) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $e0 build) (Member $x0 company) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgentOfCompany_Build_Past_PatientOfHotel_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 build) (Member $x0 company) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgentOfCompany_Build_Past_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p203063 ~ p203746   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $e0 build) (Member $x0 company) (Past $e0))
 ;;   B: (And (Member $e0 build) (Member $x0 hotel) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $e0 build) (Member $x0 company) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgentOfCompany_Build_Past_PatientOfHotel_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 build) (Member $x0 company) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgentOfCompany_Build_Past_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p203063 ~ p203756   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $e0 build) (Member $x0 company) (Past $e0))
 ;;   B: (And (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $e0 build) (Member $x0 company) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgentOfCompany_Build_Past_PatientOfHotel_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 build) (Member $x0 company) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgentOfCompany_Build_Past_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p203063 ~ p204218   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
@@ -1838,7 +1838,7 @@
 ;;   A: (And (Agent $e0 $x0) (Member $e0 build) (Member $x0 company) (Past $e0))
 ;;   B: (And (Member $x0 hotel) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $e0 build) (Member $x0 company) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgentOfCompany_Build_Past_PatientOfHotel_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 build) (Member $x0 company) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgentOfCompany_Build_Past_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p203063 ~ p204705   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
@@ -1866,14 +1866,14 @@
 ;;   A: (And (Agent $e0 $x0) (Member $e0 build) (Member $x0 company) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 $x1=$x1 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $e0 build) (Member $x0 company) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgentOfCompany_Build_Past_PatientOfHotel_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 build) (Member $x0 company) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgentOfCompany_Build_Past_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p203064 ~ p203107   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $e0 build) (Member $x0 company) (Patient $e0 $x1))
 ;;   B: (And (Member $e0 build) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $e0 build) (Member $x0 company) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgentOfCompany_Build_Past_PatientOfHotel_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 build) (Member $x0 company) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgentOfCompany_Build_Past_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p203064 ~ p203714   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
@@ -1901,7 +1901,7 @@
 ;;   A: (And (Agent $e0 $x0) (Member $e0 build) (Member $x0 company) (Patient $e0 $x1))
 ;;   B: (And (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $e0 build) (Member $x0 company) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgentOfCompany_Build_Past_PatientOfHotel_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 build) (Member $x0 company) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgentOfCompany_Build_Past_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p203064 ~ p204218   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
@@ -2027,21 +2027,21 @@
 ;;   A: (And (Agent $e0 $x0) (Member $e0 build) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 $x1=$x1 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $e0 build) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgent_Build_Past_PatientOfHotel_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 build) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgent_Build_Past_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p203065 ~ p203107   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $e0 build) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Member $e0 build) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $e0 build) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgent_Build_Past_PatientOfHotel_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 build) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgent_Build_Past_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p203065 ~ p203714   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $e0 build) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $x0 company))
 ;;   alignment: $x0=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e1 kazakhstan) (Member $e0 build) (Member $x0 company) (Member $x1 hotel) (Patient $e0 $x1)) (MnAgent_Agent_LocationKazakhstan_Build_Company_Hotel_Patient_2 $e0 $e1 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 kazakhstan) (Member $e1 build) (Member $x0 company) (Member $x1 hotel) (Patient $e1 $x1)) (MnAgent_Agent_LocationKazakhstan_Build_Company_Hotel_Patient_2 $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203065 ~ p203716   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
@@ -2055,133 +2055,133 @@
 ;;   A: (And (Agent $e0 $x0) (Member $e0 build) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $e0 build) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgent_Build_Past_PatientOfHotel_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 build) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgent_Build_Past_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p203065 ~ p204218   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $e0 build) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0))
 ;;   alignment: $x0=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e1 kazakhstan) (Member $e0 build) (Member $e1 build) (Member $x1 hotel) (Past $e1) (Patient $e0 $x1)) (MnAgent_Agent_LocationKazakhstan_Build_Build_Hotel_Past_Patient $e0 $e1 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Member $e1 build) (Member $x1 hotel) (Past $e0) (Patient $e1 $x1)) (MnAgent_Agent_LocationKazakhstan_Build_Build_Hotel_Past_Patient $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203065 ~ p204219   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $e0 build) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x1))
 ;;   alignment: $x0=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e1 kazakhstan) (Member $e0 build) (Member $e1 build) (Member $x1 hotel) (Patient $e0 $x1) (Patient $e1 $x2)) (MnAgent_Agent_LocationKazakhstan_Build_Build_Hotel_Patient_Patient $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Member $e1 build) (Member $x1 hotel) (Patient $e0 $x2) (Patient $e1 $x1)) (MnAgent_Agent_LocationKazakhstan_Build_Build_Hotel_Patient_Patient $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p203065 ~ p204220   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $e0 build) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x1))
 ;;   alignment: $x0=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e1 kazakhstan) (Member $e0 build) (Member $x1 hotel) (Past $e1) (Patient $e0 $x1) (Patient $e1 $x2)) (MnAgent_Agent_LocationKazakhstan_Build_Hotel_Past_Patient_Patient_1 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 kazakhstan) (Member $e1 build) (Member $x1 hotel) (Past $e0) (Patient $e0 $x2) (Patient $e1 $x1)) (MnAgent_Agent_LocationKazakhstan_Build_Hotel_Past_Patient_Patient_2 $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p203065 ~ p204224   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $e0 build) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x0))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e1 kazakhstan) (Member $e0 build) (Member $e1 build) (Member $x1 hotel) (Past $e1) (Patient $e0 $x1) (Patient $e1 $x2)) (MnAgent_LocationKazakhstan_Build_Build_Hotel_Past_Patient_Patient_1 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e1 kazakhstan) (Member $e0 build) (Member $e1 build) (Member $x1 hotel) (Past $e1) (Patient $e0 $x1) (Patient $e1 $x2)) (MnAgent_LocationKazakhstan_Build_Build_Hotel_Past_Patient_Patient_2 $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p203065 ~ p204279   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $e0 build) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build))
 ;;   alignment: $x0=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e1 kazakhstan) (Member $e0 build) (Member $e1 build) (Member $x1 hotel) (Patient $e0 $x1)) (MnAgent_Agent_LocationKazakhstan_Build_Build_Hotel_Patient $e0 $e1 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Member $e1 build) (Member $x1 hotel) (Patient $e1 $x1)) (MnAgent_Agent_LocationKazakhstan_Build_Build_Hotel_Patient $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203065 ~ p204280   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $e0 build) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0))
 ;;   alignment: $x0=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e1 kazakhstan) (Member $e0 build) (Member $x1 hotel) (Past $e1) (Patient $e0 $x1)) (MnAgent_Agent_LocationKazakhstan_Build_Hotel_Past_Patient_1 $e0 $e1 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 kazakhstan) (Member $e1 build) (Member $x1 hotel) (Past $e0) (Patient $e1 $x1)) (MnAgent_Agent_LocationKazakhstan_Build_Hotel_Past_Patient_3 $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203065 ~ p204281   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $e0 build) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Patient $e0 $x1))
 ;;   alignment: $x0=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e1 kazakhstan) (Member $e0 build) (Member $x1 hotel) (Patient $e0 $x1) (Patient $e1 $x2)) (MnAgent_Agent_LocationKazakhstan_Build_Hotel_Patient_Patient_1 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 kazakhstan) (Member $e1 build) (Member $x1 hotel) (Patient $e0 $x2) (Patient $e1 $x1)) (MnAgent_Agent_LocationKazakhstan_Build_Hotel_Patient_Patient_2 $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p203065 ~ p204308   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $e0 build) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 kazakhstan) (Member $e0 build) (Past $e0))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e1 kazakhstan) (Member $e0 build) (Member $e1 build) (Member $x1 hotel) (Past $e1) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Build_Hotel_Past_Patient_1 $e0 $e1 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e1 kazakhstan) (Member $e0 build) (Member $e1 build) (Member $x1 hotel) (Past $e1) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Build_Hotel_Past_Patient_3 $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203065 ~ p204309   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $e0 build) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x0))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e1 kazakhstan) (Member $e0 build) (Member $e1 build) (Member $x1 hotel) (Patient $e0 $x1) (Patient $e1 $x2)) (MnAgent_LocationKazakhstan_Build_Build_Hotel_Patient_Patient_1 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e1 kazakhstan) (Member $e0 build) (Member $e1 build) (Member $x1 hotel) (Patient $e0 $x1) (Patient $e1 $x2)) (MnAgent_LocationKazakhstan_Build_Build_Hotel_Patient_Patient_2 $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p203065 ~ p204310   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $e0 build) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x0))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e1 kazakhstan) (Member $e0 build) (Member $x1 hotel) (Past $e1) (Patient $e0 $x1) (Patient $e1 $x2)) (MnAgent_LocationKazakhstan_Build_Hotel_Past_Patient_Patient_1 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e1 kazakhstan) (Member $e0 build) (Member $x1 hotel) (Past $e1) (Patient $e0 $x1) (Patient $e1 $x2)) (MnAgent_LocationKazakhstan_Build_Hotel_Past_Patient_Patient_4 $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p203065 ~ p204460   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $e0 build) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan))
 ;;   alignment: $x0=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e1 kazakhstan) (Member $e0 build) (Member $x1 hotel) (Patient $e0 $x1)) (MnAgent_Agent_LocationKazakhstan_Build_Hotel_Patient_1 $e0 $e1 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 kazakhstan) (Member $e1 build) (Member $x1 hotel) (Patient $e1 $x1)) (MnAgent_Agent_LocationKazakhstan_Build_Hotel_Patient_2 $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203065 ~ p204512   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $e0 build) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 kazakhstan) (Member $e0 build))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e1 kazakhstan) (Member $e0 build) (Member $e1 build) (Member $x1 hotel) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Build_Hotel_Patient_1 $e0 $e1 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e1 kazakhstan) (Member $e0 build) (Member $e1 build) (Member $x1 hotel) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Build_Hotel_Patient_2 $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203065 ~ p204513   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $e0 build) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 kazakhstan) (Past $e0))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e1 kazakhstan) (Member $e0 build) (Member $x1 hotel) (Past $e1) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Hotel_Past_Patient_2 $e0 $e1 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e1 kazakhstan) (Member $e0 build) (Member $x1 hotel) (Past $e1) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Hotel_Past_Patient_5 $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203065 ~ p204514   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $e0 build) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 kazakhstan) (Patient $e0 $x0))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e1 kazakhstan) (Member $e0 build) (Member $x1 hotel) (Patient $e0 $x1) (Patient $e1 $x2)) (MnAgent_LocationKazakhstan_Build_Hotel_Patient_Patient_2 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e1 kazakhstan) (Member $e0 build) (Member $x1 hotel) (Patient $e0 $x1) (Patient $e1 $x2)) (MnAgent_LocationKazakhstan_Build_Hotel_Patient_Patient_3 $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p203065 ~ p204705   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $e0 build) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (Location $e0 kazakhstan)
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e1 kazakhstan) (Member $e0 build) (Member $x1 hotel) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Hotel_Patient_2 $e0 $e1 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e1 kazakhstan) (Member $e0 build) (Member $x1 hotel) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Hotel_Patient_3 $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203066 ~ p203067   records 4 / 4 / 4 (4 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierB-000738 tierB-000942 tierB-001169
 ;;   A: (And (Agent $e0 $x0) (Member $e0 start) (Ongoing $e1) (Theme $e0 $e1))
 ;;   B: (And (Agent $e0 $x0) (Member $e1 start) (Ongoing $e0) (Theme $e1 $e0))
 ;;   alignment: $e0=$e1 $e1=$e0 $x0=$x0 (holds in 4 of 4 records)
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e0 start) (Ongoing $e1) (Theme $e0 $e1)) (MnAgent_Agent_Start_Ongoing_ThemeEv_1 $e0 $e1 $x0))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e0 start) (Ongoing $e1) (Theme $e0 $e1)) (MnAgent_Agent_Start_Ongoing_ThemeEv $e0 $e1 $x0))
 
 ;; [genuine]  p203066 ~ p203068   records 4 / 4 / 4 (4 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierB-000738 tierB-000942 tierB-001169
 ;;   A: (And (Agent $e0 $x0) (Member $e0 start) (Ongoing $e1) (Theme $e0 $e1))
 ;;   B: (And (Agent $e0 $x0) (Member $e1 start) (Past $e1) (Theme $e1 $e0))
 ;;   alignment: $e0=$e1 $e1=$e0 $x0=$x0 (holds in 4 of 4 records)
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e0 start) (Ongoing $e1) (Past $e0) (Theme $e0 $e1)) (MnAgent_Agent_Start_Ongoing_Past_ThemeEv_1 $e0 $e1 $x0))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e0 start) (Ongoing $e1) (Past $e0) (Theme $e0 $e1)) (MnAgent_Agent_Start_Ongoing_Past_ThemeEv $e0 $e1 $x0))
 
 ;; [genuine]  p203066 ~ p203717   records 4 / 4 / 4 (4 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierB-000738 tierB-000942 tierB-001169
 ;;   A: (And (Agent $e0 $x0) (Member $e0 start) (Ongoing $e1) (Theme $e0 $e1))
 ;;   B: (And (Agent $e0 $x0) (Member $e1 start) (Theme $e1 $e0))
 ;;   alignment: $e0=$e1 $e1=$e0 $x0=$x0 (holds in 4 of 4 records)
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e0 start) (Ongoing $e1) (Theme $e0 $e1)) (MnAgent_Agent_Start_Ongoing_ThemeEv_1 $e0 $e1 $x0))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e0 start) (Ongoing $e1) (Theme $e0 $e1)) (MnAgent_Agent_Start_Ongoing_ThemeEv $e0 $e1 $x0))
 
 ;; [genuine]  p203066 ~ p204222   records 4 / 4 / 4 (4 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierB-000738 tierB-000942 tierB-001169
@@ -2209,56 +2209,56 @@
 ;;   A: (And (Agent $e0 $x0) (Member $e1 start) (Ongoing $e0) (Theme $e1 $e0))
 ;;   B: (And (Agent $e0 $x0) (Member $e0 start) (Past $e0) (Theme $e0 $e1))
 ;;   alignment: $e0=$e1 $e1=$e0 $x0=$x0 (holds in 4 of 4 records)
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e1 start) (Ongoing $e0) (Past $e1) (Theme $e1 $e0)) (MnAgent_Agent_Start_Ongoing_Past_ThemeEv_2 $e0 $e1 $x0))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e0 start) (Ongoing $e1) (Past $e0) (Theme $e0 $e1)) (MnAgent_Agent_Start_Ongoing_Past_ThemeEv $e0 $e1 $x0))
 
 ;; [genuine]  p203067 ~ p204287   records 4 / 4 / 4 (4 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierB-000738 tierB-000942 tierB-001169
 ;;   A: (And (Agent $e0 $x0) (Member $e1 start) (Ongoing $e0) (Theme $e1 $e0))
 ;;   B: (And (Agent $e0 $x0) (Member $e0 start) (Past $e0))
 ;;   alignment: $e1=$e0 $x0=$x0 (holds in 4 of 4 records)
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e1 start) (Ongoing $e0) (Past $e1) (Theme $e1 $e0)) (MnAgent_Agent_Start_Ongoing_Past_ThemeEv_2 $e0 $e1 $x0))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e0 start) (Ongoing $e1) (Past $e0) (Theme $e0 $e1)) (MnAgent_Agent_Start_Ongoing_Past_ThemeEv $e0 $e1 $x0))
 
 ;; [genuine]  p203067 ~ p204288   records 4 / 4 / 4 (4 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierB-000738 tierB-000942 tierB-001169
 ;;   A: (And (Agent $e0 $x0) (Member $e1 start) (Ongoing $e0) (Theme $e1 $e0))
 ;;   B: (And (Agent $e0 $x0) (Member $e0 start) (Theme $e0 $e1))
 ;;   alignment: $e0=$e1 $e1=$e0 $x0=$x0 (holds in 4 of 4 records)
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e1 start) (Ongoing $e0) (Theme $e1 $e0)) (MnAgent_Agent_Start_Ongoing_ThemeEv_2 $e0 $e1 $x0))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e0 start) (Ongoing $e1) (Theme $e0 $e1)) (MnAgent_Agent_Start_Ongoing_ThemeEv $e0 $e1 $x0))
 
 ;; [genuine]  p203067 ~ p204470   records 4 / 4 / 4 (4 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierB-000738 tierB-000942 tierB-001169
 ;;   A: (And (Agent $e0 $x0) (Member $e1 start) (Ongoing $e0) (Theme $e1 $e0))
 ;;   B: (And (Agent $e0 $x0) (Member $e0 start))
 ;;   alignment: $e1=$e0 $x0=$x0 (holds in 4 of 4 records)
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e1 start) (Ongoing $e0) (Theme $e1 $e0)) (MnAgent_Agent_Start_Ongoing_ThemeEv_2 $e0 $e1 $x0))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e0 start) (Ongoing $e1) (Theme $e0 $e1)) (MnAgent_Agent_Start_Ongoing_ThemeEv $e0 $e1 $x0))
 
 ;; [genuine]  p203068 ~ p204222   records 4 / 4 / 4 (4 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierB-000738 tierB-000942 tierB-001169
 ;;   A: (And (Agent $e0 $x0) (Member $e1 start) (Past $e1) (Theme $e1 $e0))
 ;;   B: (And (Agent $e0 $x0) (Member $e0 start) (Past $e0) (Theme $e0 $e1))
 ;;   alignment: $e0=$e1 $e1=$e0 $x0=$x0 (holds in 4 of 4 records)
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e1 start) (Past $e1) (Theme $e1 $e0)) (MnAgent_Agent_Start_Past_ThemeEv $e0 $e1 $x0))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e0 start) (Past $e0) (Theme $e0 $e1)) (MnAgent_Agent_Start_Past_ThemeEv $e0 $e1 $x0))
 
 ;; [genuine]  p203068 ~ p204287   records 4 / 4 / 4 (4 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierB-000738 tierB-000942 tierB-001169
 ;;   A: (And (Agent $e0 $x0) (Member $e1 start) (Past $e1) (Theme $e1 $e0))
 ;;   B: (And (Agent $e0 $x0) (Member $e0 start) (Past $e0))
 ;;   alignment: $e1=$e0 $x0=$x0 (holds in 4 of 4 records)
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e1 start) (Past $e1) (Theme $e1 $e0)) (MnAgent_Agent_Start_Past_ThemeEv $e0 $e1 $x0))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e0 start) (Past $e0) (Theme $e0 $e1)) (MnAgent_Agent_Start_Past_ThemeEv $e0 $e1 $x0))
 
 ;; [genuine]  p203068 ~ p204288   records 4 / 4 / 4 (4 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierB-000738 tierB-000942 tierB-001169
 ;;   A: (And (Agent $e0 $x0) (Member $e1 start) (Past $e1) (Theme $e1 $e0))
 ;;   B: (And (Agent $e0 $x0) (Member $e0 start) (Theme $e0 $e1))
 ;;   alignment: $e0=$e1 $e1=$e0 $x0=$x0 (holds in 4 of 4 records)
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e1 start) (Past $e1) (Theme $e1 $e0)) (MnAgent_Agent_Start_Past_ThemeEv $e0 $e1 $x0))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e0 start) (Past $e0) (Theme $e0 $e1)) (MnAgent_Agent_Start_Past_ThemeEv $e0 $e1 $x0))
 
 ;; [genuine]  p203068 ~ p204470   records 4 / 4 / 4 (4 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierB-000738 tierB-000942 tierB-001169
 ;;   A: (And (Agent $e0 $x0) (Member $e1 start) (Past $e1) (Theme $e1 $e0))
 ;;   B: (And (Agent $e0 $x0) (Member $e0 start))
 ;;   alignment: $e1=$e0 $x0=$x0 (holds in 4 of 4 records)
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e1 start) (Past $e1) (Theme $e1 $e0)) (MnAgent_Agent_Start_Past_ThemeEv $e0 $e1 $x0))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e0 start) (Past $e0) (Theme $e0 $e1)) (MnAgent_Agent_Start_Past_ThemeEv $e0 $e1 $x0))
 
 ;; [genuine]  p203069 ~ p203073   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
@@ -2272,14 +2272,14 @@
 ;;   A: (And (Agent $e0 $x0) (Member $x0 company) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Member $e0 build) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $e0 build) (Member $x0 company) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgentOfCompany_Build_Past_PatientOfHotel_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 build) (Member $x0 company) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgentOfCompany_Build_Past_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p203069 ~ p203714   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $x0 company) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $x0 company))
 ;;   alignment: $x0=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e1 kazakhstan) (Member $x0 company) (Member $x1 hotel) (Patient $e0 $x1)) (MnAgent_Agent_LocationKazakhstan_Company_Hotel_Patient_2 $e0 $e1 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 kazakhstan) (Member $x0 company) (Member $x1 hotel) (Patient $e1 $x1)) (MnAgent_Agent_LocationKazakhstan_Company_Hotel_Patient $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203069 ~ p203716   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
@@ -2307,21 +2307,21 @@
 ;;   A: (And (Agent $e0 $x0) (Member $x0 company) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0))
 ;;   alignment: $x0=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e1 kazakhstan) (Member $e1 build) (Member $x0 company) (Member $x1 hotel) (Past $e1) (Patient $e0 $x1)) (MnAgent_Agent_LocationKazakhstan_Build_Company_Hotel_Past_Patient_3 $e0 $e1 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Member $x0 company) (Member $x1 hotel) (Past $e0) (Patient $e1 $x1)) (MnAgent_Agent_LocationKazakhstan_Build_Company_Hotel_Past_Patient_1 $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203069 ~ p204219   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $x0 company) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x1))
 ;;   alignment: $x0=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e1 kazakhstan) (Member $e1 build) (Member $x0 company) (Member $x1 hotel) (Patient $e0 $x1) (Patient $e1 $x2)) (MnAgent_Agent_LocationKazakhstan_Build_Company_Hotel_Patient_Patient_2 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Member $x0 company) (Member $x1 hotel) (Patient $e0 $x2) (Patient $e1 $x1)) (MnAgent_Agent_LocationKazakhstan_Build_Company_Hotel_Patient_Patient_1 $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p203069 ~ p204220   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $x0 company) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x1))
 ;;   alignment: $x0=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e1 kazakhstan) (Member $x0 company) (Member $x1 hotel) (Past $e1) (Patient $e0 $x1) (Patient $e1 $x2)) (MnAgent_Agent_LocationKazakhstan_Company_Hotel_Past_Patient_Patient_2 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 kazakhstan) (Member $x0 company) (Member $x1 hotel) (Past $e0) (Patient $e0 $x2) (Patient $e1 $x1)) (MnAgent_Agent_LocationKazakhstan_Company_Hotel_Past_Patient_Patient_1 $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p203069 ~ p204224   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
@@ -2335,28 +2335,28 @@
 ;;   A: (And (Agent $e0 $x0) (Member $x0 company) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build))
 ;;   alignment: $x0=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e1 kazakhstan) (Member $e1 build) (Member $x0 company) (Member $x1 hotel) (Patient $e0 $x1)) (MnAgent_Agent_LocationKazakhstan_Build_Company_Hotel_Patient_3 $e0 $e1 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Member $x0 company) (Member $x1 hotel) (Patient $e1 $x1)) (MnAgent_Agent_LocationKazakhstan_Build_Company_Hotel_Patient_1 $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203069 ~ p204280   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $x0 company) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0))
 ;;   alignment: $x0=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e1 kazakhstan) (Member $x0 company) (Member $x1 hotel) (Past $e1) (Patient $e0 $x1)) (MnAgent_Agent_LocationKazakhstan_Company_Hotel_Past_Patient_3 $e0 $e1 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 kazakhstan) (Member $x0 company) (Member $x1 hotel) (Past $e0) (Patient $e1 $x1)) (MnAgent_Agent_LocationKazakhstan_Company_Hotel_Past_Patient_1 $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203069 ~ p204281   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $x0 company) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Patient $e0 $x1))
 ;;   alignment: $x0=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e1 kazakhstan) (Member $x0 company) (Member $x1 hotel) (Patient $e0 $x1) (Patient $e1 $x2)) (MnAgent_Agent_LocationKazakhstan_Company_Hotel_Patient_Patient_2 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 kazakhstan) (Member $x0 company) (Member $x1 hotel) (Patient $e0 $x2) (Patient $e1 $x1)) (MnAgent_Agent_LocationKazakhstan_Company_Hotel_Patient_Patient $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p203069 ~ p204308   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $x0 company) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 kazakhstan) (Member $e0 build) (Past $e0))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e1 kazakhstan) (Member $e1 build) (Member $x0 company) (Member $x1 hotel) (Past $e1) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Company_Hotel_Past_Patient_3 $e0 $e1 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e1 kazakhstan) (Member $e1 build) (Member $x0 company) (Member $x1 hotel) (Past $e1) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Company_Hotel_Past_Patient_4 $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203069 ~ p204309   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
@@ -2377,7 +2377,7 @@
 ;;   A: (And (Agent $e0 $x0) (Member $x0 company) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan))
 ;;   alignment: $x0=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e1 kazakhstan) (Member $x0 company) (Member $x1 hotel) (Patient $e0 $x1)) (MnAgent_Agent_LocationKazakhstan_Company_Hotel_Patient_2 $e0 $e1 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 kazakhstan) (Member $x0 company) (Member $x1 hotel) (Patient $e1 $x1)) (MnAgent_Agent_LocationKazakhstan_Company_Hotel_Patient $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203069 ~ p204512   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
@@ -2706,7 +2706,7 @@
 ;;   A: (And (Agent $e0 $x0) (Member $x0 thing) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Member republican_party party) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x2 view) (Member $x0 thing) (Member republican_party party) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgentOfThing_ThemeOfPossessionFreeSoilParty_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member $x0 thing) (Member republican_party party) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgentOfThing_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty_ThemeOfPossessionFreeSoilParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203071 ~ p203094   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -2720,7 +2720,7 @@
 ;;   A: (And (Agent $e0 $x0) (Member $x0 thing) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x2 view) (Member $x0 thing) (Past $e0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgentOfThing_Past_ThemeOfPossessionFreeSoilParty_ThemeOfGroupOfView-PossessionRepublicanParty $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member $x0 thing) (Past $e0) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgentOfThing_Past_ThemeOfGroupOfView-PossessionRepublicanParty_ThemeOfPossessionFreeSoilParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203071 ~ p203119   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -2762,7 +2762,7 @@
 ;;   A: (And (Agent $e0 $x0) (Member $x0 thing) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Member republican_party party) (Possession $x0 republican_party))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x2 view) (Member $x0 thing) (Member republican_party party) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1)) (MnAgent_GroupOfView_Thing_RepublicanPartyParty_PossessionFreeSoilParty_PossessionRepublicanParty_Theme $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member $x0 thing) (Member republican_party party) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x2)) (MnAgent_GroupOfView_Thing_RepublicanPartyParty_PossessionRepublicanParty_PossessionFreeSoilParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203071 ~ p203736   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -2839,7 +2839,7 @@
 ;;   A: (And (Agent $e0 $x0) (Member $x0 thing) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x2 view) (Member $x0 thing) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgentOfThing_ThemeOfPossessionFreeSoilParty_ThemeOfGroupOfView-PossessionRepublicanParty $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member $x0 thing) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgentOfThing_ThemeOfGroupOfView-PossessionRepublicanParty_ThemeOfPossessionFreeSoilParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203071 ~ p204500   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -2853,7 +2853,7 @@
 ;;   A: (And (Agent $e0 $x0) (Member $x0 thing) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 republican_party))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x2 view) (Member $x0 thing) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1)) (MnAgent_GroupOfView_Thing_PossessionFreeSoilParty_PossessionRepublicanParty_Theme $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member $x0 thing) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x2)) (MnAgent_GroupOfView_Thing_PossessionRepublicanParty_PossessionFreeSoilParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203071 ~ p204502   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -2881,14 +2881,14 @@
 ;;   A: (And (Agent $e0 $x0) (Member $x0 thing) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (Possession $x0 republican_party)
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $x0 thing) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1)) (MnAgent_Thing_PossessionFreeSoilParty_PossessionRepublicanParty_Theme $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member $x0 thing) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1)) (MnAgent_Thing_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_1 $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203072 ~ p203074   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Member $x0 thing) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $x0 thing) (Member free_soil_party party) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgentOfThing_ThemeOfPossessionRepublicanParty_ThemeOfPossessionFreeSoilPartyOfParty $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member $x0 thing) (Member free_soil_party party) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgentOfThing_ThemeOfPossessionFreeSoilPartyOfParty_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203072 ~ p203075   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -2902,7 +2902,7 @@
 ;;   A: (And (Agent $e0 $x0) (Member $x0 thing) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $x0 thing) (Past $e0) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgentOfThing_Past_ThemeOfPossessionRepublicanParty_ThemeOfPossessionFreeSoilParty $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member $x0 thing) (Past $e0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgentOfThing_Past_ThemeOfPossessionFreeSoilParty_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203072 ~ p203077   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -2916,7 +2916,7 @@
 ;;   A: (And (Agent $e0 $x0) (Member $x0 thing) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Member free_soil_party party) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x2 view) (Member $x0 thing) (Member free_soil_party party) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgentOfThing_ThemeOfPossessionRepublicanParty_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member $x0 thing) (Member free_soil_party party) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgentOfThing_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203072 ~ p203093   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -2930,7 +2930,7 @@
 ;;   A: (And (Agent $e0 $x0) (Member $x0 thing) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x2 view) (Member $x0 thing) (Past $e0) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgentOfThing_Past_ThemeOfPossessionRepublicanParty_ThemeOfGroupOfView-PossessionFreeSoilParty $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member $x0 thing) (Past $e0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgentOfThing_Past_ThemeOfGroupOfView-PossessionFreeSoilParty_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203072 ~ p203095   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -2944,7 +2944,7 @@
 ;;   A: (And (Agent $e0 $x0) (Member $x0 thing) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (Member free_soil_party party) (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $x0 thing) (Member free_soil_party party) (Past $e0) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgentOfThing_Past_ThemeOfPossessionRepublicanParty_ThemeOfPossessionFreeSoilPartyOfParty $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member $x0 thing) (Member free_soil_party party) (Past $e0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgentOfThing_Past_ThemeOfPossessionFreeSoilPartyOfParty_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203072 ~ p203120   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -2965,14 +2965,14 @@
 ;;   A: (And (Agent $e0 $x0) (Member $x0 thing) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $x0 thing) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgentOfThing_ThemeOfPossessionRepublicanParty_ThemeOfPossessionFreeSoilParty $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member $x0 thing) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgentOfThing_ThemeOfPossessionFreeSoilParty_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203072 ~ p203734   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Member $x0 thing) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Member free_soil_party party) (Possession $x0 free_soil_party))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x2 view) (Member $x0 thing) (Member free_soil_party party) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1)) (MnAgent_GroupOfView_Thing_FreeSoilPartyParty_PossessionRepublicanParty_PossessionFreeSoilParty_Theme $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member $x0 thing) (Member free_soil_party party) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x2)) (MnAgent_GroupOfView_Thing_FreeSoilPartyParty_PossessionFreeSoilParty_PossessionRepublicanParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203072 ~ p203735   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -2993,7 +2993,7 @@
 ;;   A: (And (Agent $e0 $x0) (Member $x0 thing) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (Member free_soil_party party) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $x0 thing) (Member free_soil_party party) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgentOfThing_ThemeOfPossessionRepublicanParty_ThemeOfPossessionFreeSoilPartyOfParty $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member $x0 thing) (Member free_soil_party party) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgentOfThing_ThemeOfPossessionFreeSoilPartyOfParty_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203072 ~ p203764   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -3007,7 +3007,7 @@
 ;;   A: (And (Agent $e0 $x0) (Member $x0 thing) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $x0 thing) (Past $e0) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgentOfThing_Past_ThemeOfPossessionRepublicanParty_ThemeOfPossessionFreeSoilParty $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member $x0 thing) (Past $e0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgentOfThing_Past_ThemeOfPossessionFreeSoilParty_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203072 ~ p203769   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -3021,7 +3021,7 @@
 ;;   A: (And (Agent $e0 $x0) (Member $x0 thing) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (Member free_soil_party party) (Possession $x0 free_soil_party))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $x0 thing) (Member free_soil_party party) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1)) (MnAgent_Thing_FreeSoilPartyParty_PossessionRepublicanParty_PossessionFreeSoilParty_Theme $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member $x0 thing) (Member free_soil_party party) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x2)) (MnAgent_Thing_FreeSoilPartyParty_PossessionFreeSoilParty_PossessionRepublicanParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203072 ~ p203993   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -3049,7 +3049,7 @@
 ;;   A: (And (Agent $e0 $x0) (Member $x0 thing) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x2 view) (Member $x0 thing) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgentOfThing_ThemeOfPossessionRepublicanParty_ThemeOfGroupOfView-PossessionFreeSoilParty $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member $x0 thing) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgentOfThing_ThemeOfGroupOfView-PossessionFreeSoilParty_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203072 ~ p204304   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -3063,7 +3063,7 @@
 ;;   A: (And (Agent $e0 $x0) (Member $x0 thing) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 free_soil_party))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x2 view) (Member $x0 thing) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1)) (MnAgent_GroupOfView_Thing_PossessionRepublicanParty_PossessionFreeSoilParty_Theme $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member $x0 thing) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x2)) (MnAgent_GroupOfView_Thing_PossessionFreeSoilParty_PossessionRepublicanParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203072 ~ p204501   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -3084,7 +3084,7 @@
 ;;   A: (And (Agent $e0 $x0) (Member $x0 thing) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $x0 thing) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgentOfThing_ThemeOfPossessionRepublicanParty_ThemeOfPossessionFreeSoilParty $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member $x0 thing) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgentOfThing_ThemeOfPossessionFreeSoilParty_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203072 ~ p204701   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -3098,140 +3098,140 @@
 ;;   A: (And (Agent $e0 $x0) (Member $x0 thing) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (Possession $x0 free_soil_party)
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $x0 thing) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1)) (MnAgent_Thing_PossessionRepublicanParty_PossessionFreeSoilParty_Theme $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member $x0 thing) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x2)) (MnAgent_Thing_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_2 $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203073 ~ p203107   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1))
 ;;   B: (And (Member $e0 build) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $e0 build) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgent_Build_Past_PatientOfHotel_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 build) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgent_Build_Past_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p203073 ~ p203714   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $x0 company))
 ;;   alignment: $x0=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e1 kazakhstan) (Member $x0 company) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgent_Agent_LocationKazakhstan_Company_Hotel_Past_Patient_2 $e0 $e1 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 kazakhstan) (Member $x0 company) (Member $x1 hotel) (Past $e1) (Patient $e1 $x1)) (MnAgent_Agent_LocationKazakhstan_Company_Hotel_Past_Patient_2 $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203073 ~ p203716   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Member $e0 build) (Member $x0 company))
 ;;   alignment: $e0=$e0 $x0=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $e0 build) (Member $x0 company) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgentOfCompany_Build_Past_PatientOfHotel_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 build) (Member $x0 company) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgentOfCompany_Build_Past_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p203073 ~ p203746   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1))
 ;;   B: (And (Member $e0 build) (Member $x0 hotel) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $e0 build) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgent_Build_Past_PatientOfHotel_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 build) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgent_Build_Past_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p203073 ~ p204218   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0))
 ;;   alignment: $x0=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e1 kazakhstan) (Member $e1 build) (Member $x1 hotel) (Past $e0) (Past $e1) (Patient $e0 $x1)) (MnAgent_Agent_LocationKazakhstan_Build_Hotel_Past_Past_Patient $e0 $e1 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Member $x1 hotel) (Past $e0) (Past $e1) (Patient $e1 $x1)) (MnAgent_Agent_LocationKazakhstan_Build_Hotel_Past_Past_Patient $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203073 ~ p204219   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x1))
 ;;   alignment: $x0=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e1 kazakhstan) (Member $e1 build) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1) (Patient $e1 $x2)) (MnAgent_Agent_LocationKazakhstan_Build_Hotel_Past_Patient_Patient_2 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Member $x1 hotel) (Past $e1) (Patient $e0 $x2) (Patient $e1 $x1)) (MnAgent_Agent_LocationKazakhstan_Build_Hotel_Past_Patient_Patient_1 $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p203073 ~ p204220   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x1))
 ;;   alignment: $x0=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e1 kazakhstan) (Member $x1 hotel) (Past $e0) (Past $e1) (Patient $e0 $x1) (Patient $e1 $x2)) (MnAgent_Agent_LocationKazakhstan_Hotel_Past_Past_Patient_Patient $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 kazakhstan) (Member $x1 hotel) (Past $e0) (Past $e1) (Patient $e0 $x2) (Patient $e1 $x1)) (MnAgent_Agent_LocationKazakhstan_Hotel_Past_Past_Patient_Patient $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p203073 ~ p204224   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x0))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e1 kazakhstan) (Member $e1 build) (Member $x1 hotel) (Past $e0) (Past $e1) (Patient $e0 $x1) (Patient $e1 $x2)) (MnAgent_LocationKazakhstan_Build_Hotel_Past_Past_Patient_Patient_1 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e1 kazakhstan) (Member $e1 build) (Member $x1 hotel) (Past $e0) (Past $e1) (Patient $e0 $x1) (Patient $e1 $x2)) (MnAgent_LocationKazakhstan_Build_Hotel_Past_Past_Patient_Patient_2 $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p203073 ~ p204279   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build))
 ;;   alignment: $x0=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e1 kazakhstan) (Member $e1 build) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgent_Agent_LocationKazakhstan_Build_Hotel_Past_Patient_2 $e0 $e1 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Member $x1 hotel) (Past $e1) (Patient $e1 $x1)) (MnAgent_Agent_LocationKazakhstan_Build_Hotel_Past_Patient_2 $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203073 ~ p204280   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0))
 ;;   alignment: $x0=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e1 kazakhstan) (Member $x1 hotel) (Past $e0) (Past $e1) (Patient $e0 $x1)) (MnAgent_Agent_LocationKazakhstan_Hotel_Past_Past_Patient $e0 $e1 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 kazakhstan) (Member $x1 hotel) (Past $e0) (Past $e1) (Patient $e1 $x1)) (MnAgent_Agent_LocationKazakhstan_Hotel_Past_Past_Patient $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203073 ~ p204281   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Patient $e0 $x1))
 ;;   alignment: $x0=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e1 kazakhstan) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1) (Patient $e1 $x2)) (MnAgent_Agent_LocationKazakhstan_Hotel_Past_Patient_Patient_1 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 kazakhstan) (Member $x1 hotel) (Past $e1) (Patient $e0 $x2) (Patient $e1 $x1)) (MnAgent_Agent_LocationKazakhstan_Hotel_Past_Patient_Patient_2 $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p203073 ~ p204308   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 kazakhstan) (Member $e0 build) (Past $e0))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e1 kazakhstan) (Member $e1 build) (Member $x1 hotel) (Past $e0) (Past $e1) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Hotel_Past_Past_Patient_1 $e0 $e1 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e1 kazakhstan) (Member $e1 build) (Member $x1 hotel) (Past $e0) (Past $e1) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Hotel_Past_Past_Patient_3 $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203073 ~ p204309   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x0))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e1 kazakhstan) (Member $e1 build) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1) (Patient $e1 $x2)) (MnAgent_LocationKazakhstan_Build_Hotel_Past_Patient_Patient_2 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e1 kazakhstan) (Member $e1 build) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1) (Patient $e1 $x2)) (MnAgent_LocationKazakhstan_Build_Hotel_Past_Patient_Patient_5 $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p203073 ~ p204310   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x0))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e1 kazakhstan) (Member $x1 hotel) (Past $e0) (Past $e1) (Patient $e0 $x1) (Patient $e1 $x2)) (MnAgent_LocationKazakhstan_Hotel_Past_Past_Patient_Patient_1 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e1 kazakhstan) (Member $x1 hotel) (Past $e0) (Past $e1) (Patient $e0 $x1) (Patient $e1 $x2)) (MnAgent_LocationKazakhstan_Hotel_Past_Past_Patient_Patient_2 $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p203073 ~ p204460   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan))
 ;;   alignment: $x0=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e1 kazakhstan) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgent_Agent_LocationKazakhstan_Hotel_Past_Patient_1 $e0 $e1 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 kazakhstan) (Member $x1 hotel) (Past $e1) (Patient $e1 $x1)) (MnAgent_Agent_LocationKazakhstan_Hotel_Past_Patient_2 $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203073 ~ p204512   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 kazakhstan) (Member $e0 build))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e1 kazakhstan) (Member $e1 build) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Hotel_Past_Patient_3 $e0 $e1 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e1 kazakhstan) (Member $e1 build) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Hotel_Past_Patient_6 $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203073 ~ p204513   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 kazakhstan) (Past $e0))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e1 kazakhstan) (Member $x1 hotel) (Past $e0) (Past $e1) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Hotel_Past_Past_Patient_1 $e0 $e1 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e1 kazakhstan) (Member $x1 hotel) (Past $e0) (Past $e1) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Hotel_Past_Past_Patient_2 $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203073 ~ p204514   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 kazakhstan) (Patient $e0 $x0))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e1 kazakhstan) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1) (Patient $e1 $x2)) (MnAgent_LocationKazakhstan_Hotel_Past_Patient_Patient_2 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e1 kazakhstan) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1) (Patient $e1 $x2)) (MnAgent_LocationKazakhstan_Hotel_Past_Patient_Patient_3 $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p203073 ~ p204705   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1))
 ;;   B: (Location $e0 kazakhstan)
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e1 kazakhstan) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Hotel_Past_Patient_2 $e0 $e1 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e1 kazakhstan) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Hotel_Past_Patient_3 $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203074 ~ p203075   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -3245,49 +3245,49 @@
 ;;   A: (And (Agent $e0 $x0) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 $x1=$x1 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member free_soil_party party) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfPossessionFreeSoilPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Member free_soil_party party) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfPossessionFreeSoilPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203074 ~ p203077   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member free_soil_party party) (Past $e0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionFreeSoilPartyOfParty_ThemeOfPossessionRepublicanParty_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member free_soil_party party) (Past $e0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionFreeSoilPartyOfParty_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203074 ~ p203092   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Member free_soil_party party) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203074 ~ p203093   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Member republican_party party) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x2 view) (Member free_soil_party party) (Member republican_party party) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_GroupOfView_FreeSoilPartyParty_RepublicanPartyParty_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_Theme $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Member republican_party party) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_GroupOfView_FreeSoilPartyParty_RepublicanPartyParty_PossessionRepublicanParty_PossessionFreeSoilParty_Theme_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203074 ~ p203094   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203074 ~ p203095   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x2 view) (Member free_soil_party party) (Past $e0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionFreeSoilPartyOfParty_ThemeOfGroupOfView-PossessionRepublicanParty $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Past $e0) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty_ThemeOfPossessionFreeSoilPartyOfParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203074 ~ p203119   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (Member free_soil_party party) (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member free_soil_party party) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfPossessionFreeSoilPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Member free_soil_party party) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfPossessionFreeSoilPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203074 ~ p203120   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -3301,7 +3301,7 @@
 ;;   A: (And (Agent $e0 $x0) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (GroupOf $x1 view) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 $x1=$x1 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203074 ~ p203723   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -3315,21 +3315,21 @@
 ;;   A: (And (Agent $e0 $x0) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Member free_soil_party party) (Possession $x0 free_soil_party))
 ;;   alignment: $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203074 ~ p203735   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Member republican_party party) (Possession $x0 republican_party))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x2 view) (Member free_soil_party party) (Member republican_party party) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1)) (MnAgent_GroupOfView_FreeSoilPartyParty_RepublicanPartyParty_PossessionFreeSoilParty_PossessionRepublicanParty_Theme $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Member republican_party party) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x2)) (MnAgent_GroupOfView_FreeSoilPartyParty_RepublicanPartyParty_PossessionRepublicanParty_PossessionFreeSoilParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203074 ~ p203736   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Past $e0) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203074 ~ p203764   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -3343,21 +3343,21 @@
 ;;   A: (And (Agent $e0 $x0) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member free_soil_party party) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfPossessionFreeSoilPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Member free_soil_party party) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfPossessionFreeSoilPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203074 ~ p203769   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member free_soil_party party) (Past $e0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionFreeSoilPartyOfParty_ThemeOfPossessionRepublicanParty_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member free_soil_party party) (Past $e0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionFreeSoilPartyOfParty_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203074 ~ p203993   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (Member republican_party party) (Possession $x0 republican_party))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member free_soil_party party) (Member republican_party party) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1)) (MnAgent_FreeSoilPartyParty_RepublicanPartyParty_PossessionFreeSoilParty_PossessionRepublicanParty_Theme $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member free_soil_party party) (Member republican_party party) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1)) (MnAgent_FreeSoilPartyParty_RepublicanPartyParty_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_1 $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203074 ~ p204177   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -3371,35 +3371,35 @@
 ;;   A: (And (Agent $e0 $x0) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203074 ~ p204304   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x2 view) (Member free_soil_party party) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfPossessionFreeSoilPartyOfParty_ThemeOfGroupOfView-PossessionRepublicanParty $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfGroupOfView-PossessionRepublicanParty_ThemeOfPossessionFreeSoilPartyOfParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203074 ~ p204500   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 free_soil_party))
 ;;   alignment: $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203074 ~ p204501   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 republican_party))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x2 view) (Member free_soil_party party) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1)) (MnAgent_GroupOfView_FreeSoilPartyParty_PossessionFreeSoilParty_PossessionRepublicanParty_Theme $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x2)) (MnAgent_GroupOfView_FreeSoilPartyParty_PossessionRepublicanParty_PossessionFreeSoilParty_Theme_2 $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203074 ~ p204502   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203074 ~ p204560   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -3413,133 +3413,133 @@
 ;;   A: (And (Agent $e0 $x0) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (GroupOf $x0 view)
 ;;   alignment: $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203074 ~ p204782   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (Possession $x0 republican_party)
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member free_soil_party party) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1)) (MnAgent_FreeSoilPartyParty_PossessionFreeSoilParty_PossessionRepublicanParty_Theme $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member free_soil_party party) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1)) (MnAgent_FreeSoilPartyParty_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_1 $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203075 ~ p203076   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member republican_party party) (Past $e0) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionRepublicanPartyOfParty_ThemeOfPossessionFreeSoilParty_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member republican_party party) (Past $e0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionFreeSoilParty_ThemeOfPossessionRepublicanPartyOfParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203075 ~ p203077   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 $x1=$x1 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member republican_party party) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfPossessionRepublicanPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Member republican_party party) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfPossessionRepublicanPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203075 ~ p203092   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Member free_soil_party party) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x2 view) (Member free_soil_party party) (Member republican_party party) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_GroupOfView_FreeSoilPartyParty_RepublicanPartyParty_PossessionRepublicanParty_PossessionFreeSoilParty_Theme_Theme $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Member republican_party party) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_GroupOfView_FreeSoilPartyParty_RepublicanPartyParty_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203075 ~ p203093   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Member republican_party party) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203075 ~ p203094   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x2 view) (Member republican_party party) (Past $e0) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionRepublicanPartyOfParty_ThemeOfGroupOfView-PossessionFreeSoilParty $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Past $e0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty_ThemeOfPossessionRepublicanPartyOfParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203075 ~ p203095   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203075 ~ p203119   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (Member free_soil_party party) (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member free_soil_party party) (Member republican_party party) (Past $e0) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_FreeSoilPartyParty_RepublicanPartyParty_Past_PossessionRepublicanParty_PossessionFreeSoilParty_Theme_Theme $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member free_soil_party party) (Member republican_party party) (Past $e0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_FreeSoilPartyParty_RepublicanPartyParty_Past_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203075 ~ p203120   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (Member republican_party party) (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member republican_party party) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfPossessionRepublicanPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Member republican_party party) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfPossessionRepublicanPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203075 ~ p203713   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (GroupOf $x1 view) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 $x1=$x1 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203075 ~ p203722   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member republican_party party) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfPossessionRepublicanPartyOfParty_ThemeOfPossessionFreeSoilParty $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member republican_party party) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfPossessionFreeSoilParty_ThemeOfPossessionRepublicanPartyOfParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203075 ~ p203734   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Member free_soil_party party) (Possession $x0 free_soil_party))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x2 view) (Member free_soil_party party) (Member republican_party party) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1)) (MnAgent_GroupOfView_FreeSoilPartyParty_RepublicanPartyParty_PossessionRepublicanParty_PossessionFreeSoilParty_Theme $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Member republican_party party) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x2)) (MnAgent_GroupOfView_FreeSoilPartyParty_RepublicanPartyParty_PossessionFreeSoilParty_PossessionRepublicanParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203075 ~ p203735   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Member republican_party party) (Possession $x0 republican_party))
 ;;   alignment: $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203075 ~ p203736   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Past $e0) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203075 ~ p203763   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (Member free_soil_party party) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member free_soil_party party) (Member republican_party party) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_FreeSoilPartyParty_RepublicanPartyParty_PossessionRepublicanParty_PossessionFreeSoilParty_Theme_Theme $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member free_soil_party party) (Member republican_party party) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_FreeSoilPartyParty_RepublicanPartyParty_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203075 ~ p203768   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member republican_party party) (Past $e0) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionRepublicanPartyOfParty_ThemeOfPossessionFreeSoilParty_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member republican_party party) (Past $e0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionFreeSoilParty_ThemeOfPossessionRepublicanPartyOfParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203075 ~ p203769   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member republican_party party) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfPossessionRepublicanPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Member republican_party party) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfPossessionRepublicanPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203075 ~ p203992   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (Member free_soil_party party) (Possession $x0 free_soil_party))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member free_soil_party party) (Member republican_party party) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1)) (MnAgent_FreeSoilPartyParty_RepublicanPartyParty_PossessionRepublicanParty_PossessionFreeSoilParty_Theme $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member free_soil_party party) (Member republican_party party) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x2)) (MnAgent_FreeSoilPartyParty_RepublicanPartyParty_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_2 $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203075 ~ p204176   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -3553,98 +3553,98 @@
 ;;   A: (And (Agent $e0 $x0) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x2 view) (Member republican_party party) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfPossessionRepublicanPartyOfParty_ThemeOfGroupOfView-PossessionFreeSoilParty $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfGroupOfView-PossessionFreeSoilParty_ThemeOfPossessionRepublicanPartyOfParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203075 ~ p204304   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203075 ~ p204500   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 free_soil_party))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x2 view) (Member republican_party party) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1)) (MnAgent_GroupOfView_RepublicanPartyParty_PossessionRepublicanParty_PossessionFreeSoilParty_Theme $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x2)) (MnAgent_GroupOfView_RepublicanPartyParty_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_2 $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203075 ~ p204501   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 republican_party))
 ;;   alignment: $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203075 ~ p204502   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203075 ~ p204559   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member republican_party party) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfPossessionRepublicanPartyOfParty_ThemeOfPossessionFreeSoilParty $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member republican_party party) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfPossessionFreeSoilParty_ThemeOfPossessionRepublicanPartyOfParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203075 ~ p204701   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (GroupOf $x0 view)
 ;;   alignment: $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203075 ~ p204781   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (Possession $x0 free_soil_party)
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member republican_party party) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1)) (MnAgent_RepublicanPartyParty_PossessionRepublicanParty_PossessionFreeSoilParty_Theme $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member republican_party party) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x2)) (MnAgent_RepublicanPartyParty_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_2 $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203076 ~ p203077   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionFreeSoilParty_ThemeOfPossessionRepublicanParty_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionFreeSoilParty_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203076 ~ p203092   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Member free_soil_party party) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203076 ~ p203093   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Member republican_party party) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x2 view) (Member republican_party party) (Past $e0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionFreeSoilParty_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Past $e0) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty_ThemeOfPossessionFreeSoilParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203076 ~ p203094   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty $e0 $x0 $x1))
 
 ;; [genuine]  p203076 ~ p203095   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x2 view) (Past $e0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionFreeSoilParty_ThemeOfGroupOfView-PossessionRepublicanParty $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty_ThemeOfPossessionFreeSoilParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203076 ~ p203119   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (Member free_soil_party party) (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member free_soil_party party) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfPossessionFreeSoilPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Member free_soil_party party) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfPossessionFreeSoilPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203076 ~ p203120   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -3658,42 +3658,42 @@
 ;;   A: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (GroupOf $x1 view) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 $x1=$x1 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty $e0 $x0 $x1))
 
 ;; [genuine]  p203076 ~ p203723   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionFreeSoilParty_ThemeOfPossessionRepublicanParty_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionFreeSoilParty_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203076 ~ p203734   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Member free_soil_party party) (Possession $x0 free_soil_party))
 ;;   alignment: $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203076 ~ p203735   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Member republican_party party) (Possession $x0 republican_party))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x2 view) (Member republican_party party) (Past $e0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1)) (MnAgent_GroupOfView_RepublicanPartyParty_Past_PossessionFreeSoilParty_PossessionRepublicanParty_Theme $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Past $e0) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x2)) (MnAgent_GroupOfView_RepublicanPartyParty_Past_PossessionRepublicanParty_PossessionFreeSoilParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203076 ~ p203736   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Past $e0) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty $e0 $x0 $x1))
 
 ;; [genuine]  p203076 ~ p203763   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (Member free_soil_party party) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member free_soil_party party) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfPossessionFreeSoilPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Member free_soil_party party) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfPossessionFreeSoilPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203076 ~ p203764   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -3707,14 +3707,14 @@
 ;;   A: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionFreeSoilParty_ThemeOfPossessionRepublicanParty_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionFreeSoilParty_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203076 ~ p203992   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (Member free_soil_party party) (Possession $x0 free_soil_party))
 ;;   alignment: $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member free_soil_party party) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfPossessionFreeSoilPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Member free_soil_party party) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfPossessionFreeSoilPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203076 ~ p203993   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -3728,7 +3728,7 @@
 ;;   A: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (Member free_soil_party party)
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member free_soil_party party) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfPossessionFreeSoilPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Member free_soil_party party) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfPossessionFreeSoilPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203076 ~ p204177   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -3742,168 +3742,168 @@
 ;;   A: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty $e0 $x0 $x1))
 
 ;; [genuine]  p203076 ~ p204304   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x2 view) (Past $e0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionFreeSoilParty_ThemeOfGroupOfView-PossessionRepublicanParty $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty_ThemeOfPossessionFreeSoilParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203076 ~ p204500   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 free_soil_party))
 ;;   alignment: $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty $e0 $x0 $x1))
 
 ;; [genuine]  p203076 ~ p204501   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 republican_party))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x2 view) (Past $e0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1)) (MnAgent_GroupOfView_Past_PossessionFreeSoilParty_PossessionRepublicanParty_Theme $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x2)) (MnAgent_GroupOfView_Past_PossessionRepublicanParty_PossessionFreeSoilParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203076 ~ p204502   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty $e0 $x0 $x1))
 
 ;; [genuine]  p203076 ~ p204560   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionFreeSoilParty_ThemeOfPossessionRepublicanParty_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionFreeSoilParty_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203076 ~ p204701   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (GroupOf $x0 view)
 ;;   alignment: $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty $e0 $x0 $x1))
 
 ;; [genuine]  p203076 ~ p204782   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (Possession $x0 republican_party)
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1)) (MnAgent_Past_PossessionFreeSoilParty_PossessionRepublicanParty_Theme $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1)) (MnAgent_Past_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_1 $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203077 ~ p203092   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Member free_soil_party party) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x2 view) (Member free_soil_party party) (Past $e0) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionRepublicanParty_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Past $e0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203077 ~ p203093   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Member republican_party party) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203077 ~ p203094   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x2 view) (Past $e0) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionRepublicanParty_ThemeOfGroupOfView-PossessionFreeSoilParty $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203077 ~ p203095   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty $e0 $x0 $x1))
 
 ;; [genuine]  p203077 ~ p203119   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (Member free_soil_party party) (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member free_soil_party party) (Past $e0) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionRepublicanParty_ThemeOfPossessionFreeSoilPartyOfParty $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member free_soil_party party) (Past $e0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionFreeSoilPartyOfParty_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203077 ~ p203120   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (Member republican_party party) (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member republican_party party) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfPossessionRepublicanPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Member republican_party party) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfPossessionRepublicanPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203077 ~ p203713   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (GroupOf $x1 view) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 $x1=$x1 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty $e0 $x0 $x1))
 
 ;; [genuine]  p203077 ~ p203722   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Past $e0) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionRepublicanParty_ThemeOfPossessionFreeSoilParty $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionFreeSoilParty_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203077 ~ p203734   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Member free_soil_party party) (Possession $x0 free_soil_party))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x2 view) (Member free_soil_party party) (Past $e0) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1)) (MnAgent_GroupOfView_FreeSoilPartyParty_Past_PossessionRepublicanParty_PossessionFreeSoilParty_Theme $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Past $e0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x2)) (MnAgent_GroupOfView_FreeSoilPartyParty_Past_PossessionFreeSoilParty_PossessionRepublicanParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203077 ~ p203735   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Member republican_party party) (Possession $x0 republican_party))
 ;;   alignment: $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203077 ~ p203736   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Past $e0) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty $e0 $x0 $x1))
 
 ;; [genuine]  p203077 ~ p203763   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (Member free_soil_party party) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member free_soil_party party) (Past $e0) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionRepublicanParty_ThemeOfPossessionFreeSoilPartyOfParty $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member free_soil_party party) (Past $e0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionFreeSoilPartyOfParty_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203077 ~ p203764   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (Member republican_party party) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member republican_party party) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfPossessionRepublicanPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Member republican_party party) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfPossessionRepublicanPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203077 ~ p203768   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Past $e0) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionRepublicanParty_ThemeOfPossessionFreeSoilParty $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionFreeSoilParty_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203077 ~ p203992   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (Member free_soil_party party) (Possession $x0 free_soil_party))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member free_soil_party party) (Past $e0) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1)) (MnAgent_FreeSoilPartyParty_Past_PossessionRepublicanParty_PossessionFreeSoilParty_Theme $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member free_soil_party party) (Past $e0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x2)) (MnAgent_FreeSoilPartyParty_Past_PossessionFreeSoilParty_PossessionRepublicanParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203077 ~ p203993   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (Member republican_party party) (Possession $x0 republican_party))
 ;;   alignment: $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member republican_party party) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfPossessionRepublicanPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Member republican_party party) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfPossessionRepublicanPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203077 ~ p204176   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -3917,63 +3917,63 @@
 ;;   A: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (Member republican_party party)
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member republican_party party) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfPossessionRepublicanPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Member republican_party party) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfPossessionRepublicanPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203077 ~ p204303   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x2 view) (Past $e0) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionRepublicanParty_ThemeOfGroupOfView-PossessionFreeSoilParty $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203077 ~ p204304   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty $e0 $x0 $x1))
 
 ;; [genuine]  p203077 ~ p204500   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 free_soil_party))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x2 view) (Past $e0) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1)) (MnAgent_GroupOfView_Past_PossessionRepublicanParty_PossessionFreeSoilParty_Theme $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x2)) (MnAgent_GroupOfView_Past_PossessionFreeSoilParty_PossessionRepublicanParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203077 ~ p204501   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 republican_party))
 ;;   alignment: $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty $e0 $x0 $x1))
 
 ;; [genuine]  p203077 ~ p204502   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty $e0 $x0 $x1))
 
 ;; [genuine]  p203077 ~ p204559   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Past $e0) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionRepublicanParty_ThemeOfPossessionFreeSoilParty $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionFreeSoilParty_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203077 ~ p204701   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (GroupOf $x0 view)
 ;;   alignment: $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty $e0 $x0 $x1))
 
 ;; [genuine]  p203077 ~ p204781   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (Possession $x0 free_soil_party)
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Past $e0) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_PossessionRepublicanParty_PossessionFreeSoilParty_Theme $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x2)) (MnAgent_Past_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_2 $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203079 ~ p203080   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000181 tierC-000182 tierC-000239
@@ -4239,28 +4239,28 @@
 ;;   A: (And (GroupOf $x0 view) (Member free_soil_party party) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (GroupOf $x1 view) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x1 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (GroupOf $x0 view) (Member free_soil_party party) (Possession $x0 free_soil_party) (Theme $e0 $x0)) (MnAgent_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty_2 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203092 ~ p203722   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (GroupOf $x0 view) (Member free_soil_party party) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x1 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (GroupOf $x0 view) (Member free_soil_party party) (Possession $x0 free_soil_party) (Theme $e0 $x0)) (MnAgent_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty_2 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203092 ~ p203723   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (GroupOf $x0 view) (Member free_soil_party party) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (GroupOf $x0 view) (Member free_soil_party party) (Possession $x0 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x0) (Theme $e0 $x2)) (MnAgent_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203092 ~ p203735   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (GroupOf $x0 view) (Member free_soil_party party) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   B: (And (GroupOf $x0 view) (Member republican_party party) (Possession $x0 republican_party))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (GroupOf $x0 view) (GroupOf $x1 view) (Member free_soil_party party) (Member republican_party party) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0)) (MnGroupOfView_GroupOfView_FreeSoilPartyParty_RepublicanPartyParty_PossessionFreeSoilParty_PossessionRepublicanParty_Theme $e0 $x0 $x1))
+(Implication (And (GroupOf $x0 view) (GroupOf $x1 view) (Member free_soil_party party) (Member republican_party party) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0)) (MnGroupOfView_GroupOfView_FreeSoilPartyParty_RepublicanPartyParty_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_1 $e0 $x0 $x1))
 
 ;; [genuine]  p203092 ~ p203736   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -4337,7 +4337,7 @@
 ;;   A: (And (GroupOf $x0 view) (Member republican_party party) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   B: (And (GroupOf $x0 view) (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (GroupOf $x0 view) (GroupOf $x1 view) (Member republican_party party) (Past $e0) (Possession $x0 republican_party) (Possession $x1 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnGroupOfView_GroupOfView_RepublicanPartyParty_Past_PossessionRepublicanParty_PossessionFreeSoilParty_Theme_Theme $e0 $x0 $x1))
+(Implication (And (GroupOf $x0 view) (GroupOf $x1 view) (Member republican_party party) (Past $e0) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnGroupOfView_GroupOfView_RepublicanPartyParty_Past_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_Theme $e0 $x0 $x1))
 
 ;; [genuine]  p203093 ~ p203095   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -4365,28 +4365,28 @@
 ;;   A: (And (GroupOf $x0 view) (Member republican_party party) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (GroupOf $x1 view) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x1 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (GroupOf $x0 view) (Member republican_party party) (Possession $x0 republican_party) (Theme $e0 $x0)) (MnAgent_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty_2 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203093 ~ p203722   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (GroupOf $x0 view) (Member republican_party party) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (GroupOf $x0 view) (Member republican_party party) (Possession $x0 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x2)) (MnAgent_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty_ThemeOfPossessionFreeSoilParty $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty_ThemeOfPossessionFreeSoilParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203093 ~ p203723   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (GroupOf $x0 view) (Member republican_party party) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x1 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (GroupOf $x0 view) (Member republican_party party) (Possession $x0 republican_party) (Theme $e0 $x0)) (MnAgent_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty_2 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203093 ~ p203734   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (GroupOf $x0 view) (Member republican_party party) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   B: (And (GroupOf $x0 view) (Member free_soil_party party) (Possession $x0 free_soil_party))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (GroupOf $x0 view) (GroupOf $x1 view) (Member free_soil_party party) (Member republican_party party) (Possession $x0 republican_party) (Possession $x1 free_soil_party) (Theme $e0 $x0)) (MnGroupOfView_GroupOfView_FreeSoilPartyParty_RepublicanPartyParty_PossessionRepublicanParty_PossessionFreeSoilParty_Theme $e0 $x0 $x1))
+(Implication (And (GroupOf $x0 view) (GroupOf $x1 view) (Member free_soil_party party) (Member republican_party party) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnGroupOfView_GroupOfView_FreeSoilPartyParty_RepublicanPartyParty_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_2 $e0 $x0 $x1))
 
 ;; [genuine]  p203093 ~ p203736   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -4435,14 +4435,14 @@
 ;;   A: (And (GroupOf $x0 view) (Member republican_party party) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (GroupOf $x0 view) (GroupOf $x1 view) (Member republican_party party) (Possession $x0 republican_party) (Possession $x1 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnGroupOfView_GroupOfView_RepublicanPartyParty_PossessionRepublicanParty_PossessionFreeSoilParty_Theme_Theme $e0 $x0 $x1))
+(Implication (And (GroupOf $x0 view) (GroupOf $x1 view) (Member republican_party party) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnGroupOfView_GroupOfView_RepublicanPartyParty_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_Theme $e0 $x0 $x1))
 
 ;; [genuine]  p203093 ~ p204500   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (GroupOf $x0 view) (Member republican_party party) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 free_soil_party))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (GroupOf $x0 view) (GroupOf $x1 view) (Member republican_party party) (Possession $x0 republican_party) (Possession $x1 free_soil_party) (Theme $e0 $x0)) (MnGroupOfView_GroupOfView_RepublicanPartyParty_PossessionRepublicanParty_PossessionFreeSoilParty_Theme_1 $e0 $x0 $x1))
+(Implication (And (GroupOf $x0 view) (GroupOf $x1 view) (Member republican_party party) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnGroupOfView_GroupOfView_RepublicanPartyParty_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_2 $e0 $x0 $x1))
 
 ;; [genuine]  p203093 ~ p204559   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -4484,21 +4484,21 @@
 ;;   A: (And (GroupOf $x0 view) (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (GroupOf $x1 view) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x1 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (GroupOf $x0 view) (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty_2 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty $e0 $x0 $x1))
 
 ;; [genuine]  p203094 ~ p203722   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (GroupOf $x0 view) (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x1 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (GroupOf $x0 view) (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty_2 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty $e0 $x0 $x1))
 
 ;; [genuine]  p203094 ~ p203723   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (GroupOf $x0 view) (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (GroupOf $x0 view) (Past $e0) (Possession $x0 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x0) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty_ThemeOfPossessionRepublicanParty_2 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203094 ~ p203734   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -4547,7 +4547,7 @@
 ;;   A: (And (GroupOf $x0 view) (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   B: (And (Member republican_party party) (Possession $x0 republican_party))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (GroupOf $x0 view) (Member republican_party party) (Past $e0) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0)) (MnGroupOfView_RepublicanPartyParty_Past_PossessionFreeSoilParty_PossessionRepublicanParty_Theme $e0 $x0 $x1))
+(Implication (And (GroupOf $x0 view) (Member republican_party party) (Past $e0) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0)) (MnGroupOfView_RepublicanPartyParty_Past_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_1 $e0 $x0 $x1))
 
 ;; [genuine]  p203094 ~ p204176   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -4575,7 +4575,7 @@
 ;;   A: (And (GroupOf $x0 view) (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 republican_party))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (GroupOf $x0 view) (GroupOf $x1 view) (Past $e0) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0)) (MnGroupOfView_GroupOfView_Past_PossessionFreeSoilParty_PossessionRepublicanParty_Theme $e0 $x0 $x1))
+(Implication (And (GroupOf $x0 view) (GroupOf $x1 view) (Past $e0) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0)) (MnGroupOfView_GroupOfView_Past_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_1 $e0 $x0 $x1))
 
 ;; [genuine]  p203094 ~ p204560   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -4610,28 +4610,28 @@
 ;;   A: (And (GroupOf $x0 view) (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (GroupOf $x1 view) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x1 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (GroupOf $x0 view) (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty_2 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty $e0 $x0 $x1))
 
 ;; [genuine]  p203095 ~ p203722   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (GroupOf $x0 view) (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (GroupOf $x0 view) (Past $e0) (Possession $x0 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty_ThemeOfPossessionFreeSoilParty_2 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty_ThemeOfPossessionFreeSoilParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203095 ~ p203723   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (GroupOf $x0 view) (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x1 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (GroupOf $x0 view) (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty_2 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty $e0 $x0 $x1))
 
 ;; [genuine]  p203095 ~ p203734   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (GroupOf $x0 view) (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   B: (And (GroupOf $x0 view) (Member free_soil_party party) (Possession $x0 free_soil_party))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (GroupOf $x0 view) (GroupOf $x1 view) (Member free_soil_party party) (Past $e0) (Possession $x0 republican_party) (Possession $x1 free_soil_party) (Theme $e0 $x0)) (MnGroupOfView_GroupOfView_FreeSoilPartyParty_Past_PossessionRepublicanParty_PossessionFreeSoilParty_Theme $e0 $x0 $x1))
+(Implication (And (GroupOf $x0 view) (GroupOf $x1 view) (Member free_soil_party party) (Past $e0) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnGroupOfView_GroupOfView_FreeSoilPartyParty_Past_PossessionFreeSoilParty_PossessionRepublicanParty_Theme $e0 $x0 $x1))
 
 ;; [genuine]  p203095 ~ p203735   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -4666,7 +4666,7 @@
 ;;   A: (And (GroupOf $x0 view) (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   B: (And (Member free_soil_party party) (Possession $x0 free_soil_party))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (GroupOf $x0 view) (Member free_soil_party party) (Past $e0) (Possession $x0 republican_party) (Possession $x1 free_soil_party) (Theme $e0 $x0)) (MnGroupOfView_FreeSoilPartyParty_Past_PossessionRepublicanParty_PossessionFreeSoilParty_Theme $e0 $x0 $x1))
+(Implication (And (GroupOf $x0 view) (Member free_soil_party party) (Past $e0) (Possession $x0 republican_party) (Possession $x1 free_soil_party) (Theme $e0 $x0)) (MnGroupOfView_FreeSoilPartyParty_Past_PossessionRepublicanParty_PossessionFreeSoilParty_Theme_1 $e0 $x0 $x1))
 
 ;; [genuine]  p203095 ~ p203993   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -4694,14 +4694,14 @@
 ;;   A: (And (GroupOf $x0 view) (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (GroupOf $x0 view) (GroupOf $x1 view) (Past $e0) (Possession $x0 republican_party) (Possession $x1 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnGroupOfView_GroupOfView_Past_PossessionRepublicanParty_PossessionFreeSoilParty_Theme_Theme $e0 $x0 $x1))
+(Implication (And (GroupOf $x0 view) (GroupOf $x1 view) (Past $e0) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnGroupOfView_GroupOfView_Past_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_Theme $e0 $x0 $x1))
 
 ;; [genuine]  p203095 ~ p204500   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (GroupOf $x0 view) (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 free_soil_party))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (GroupOf $x0 view) (GroupOf $x1 view) (Past $e0) (Possession $x0 republican_party) (Possession $x1 free_soil_party) (Theme $e0 $x0)) (MnGroupOfView_GroupOfView_Past_PossessionRepublicanParty_PossessionFreeSoilParty_Theme $e0 $x0 $x1))
+(Implication (And (GroupOf $x0 view) (GroupOf $x1 view) (Past $e0) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnGroupOfView_GroupOfView_Past_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_2 $e0 $x0 $x1))
 
 ;; [genuine]  p203095 ~ p204559   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -4722,126 +4722,126 @@
 ;;   A: (And (Member $e0 build) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $x0 company))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e1 $x1) (Location $e1 kazakhstan) (Member $e0 build) (Member $x0 hotel) (Member $x1 company) (Past $e0) (Patient $e0 $x0)) (MnAgent_LocationKazakhstan_Build_Hotel_Company_Past_Patient $e0 $e1 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e1 build) (Member $x0 company) (Member $x1 hotel) (Past $e1) (Patient $e1 $x1)) (MnAgent_LocationKazakhstan_Build_Company_Hotel_Past_Patient_3 $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203107 ~ p203716   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Member $e0 build) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Member $e0 build) (Member $x0 company))
 ;;   alignment: $e0=$e0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (Member $e0 build) (Member $x0 hotel) (Member $x1 company) (Past $e0) (Patient $e0 $x0)) (MnAgentOfCompany_Build_Past_PatientOfHotel_2 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 build) (Member $x0 company) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgentOfCompany_Build_Past_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p203107 ~ p203720   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Member $e0 build) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x1 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (Member $e0 build) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0)) (MnAgent_Build_Past_PatientOfHotel_2 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 build) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgent_Build_Past_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p203107 ~ p204218   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Member $e0 build) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e1 $x1) (Location $e1 kazakhstan) (Member $e0 build) (Member $e1 build) (Member $x0 hotel) (Past $e0) (Past $e1) (Patient $e0 $x0)) (MnAgent_LocationKazakhstan_Build_Build_Hotel_Past_Past_Patient $e0 $e1 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Member $e1 build) (Member $x1 hotel) (Past $e0) (Past $e1) (Patient $e1 $x1)) (MnAgent_LocationKazakhstan_Build_Build_Hotel_Past_Past_Patient $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203107 ~ p204219   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Member $e0 build) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x1))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e1 $x1) (Location $e1 kazakhstan) (Member $e0 build) (Member $e1 build) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0) (Patient $e1 $x2)) (MnAgent_LocationKazakhstan_Build_Build_Hotel_Past_Patient_Patient_2 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Member $e1 build) (Member $x1 hotel) (Past $e1) (Patient $e0 $x2) (Patient $e1 $x1)) (MnAgent_LocationKazakhstan_Build_Build_Hotel_Past_Patient_Patient_1 $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p203107 ~ p204220   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Member $e0 build) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x1))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e1 $x1) (Location $e1 kazakhstan) (Member $e0 build) (Member $x0 hotel) (Past $e0) (Past $e1) (Patient $e0 $x0) (Patient $e1 $x2)) (MnAgent_LocationKazakhstan_Build_Hotel_Past_Past_Patient_Patient_2 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e1 build) (Member $x1 hotel) (Past $e0) (Past $e1) (Patient $e0 $x2) (Patient $e1 $x1)) (MnAgent_LocationKazakhstan_Build_Hotel_Past_Past_Patient_Patient_1 $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p203107 ~ p204224   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Member $e0 build) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
 ;;   B: (And (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x0))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Location $e1 kazakhstan) (Member $e0 build) (Member $e1 build) (Member $x0 hotel) (Past $e0) (Past $e1) (Patient $e0 $x0) (Patient $e1 $x1)) (MnLocationKazakhstan_Build_Build_Hotel_Past_Past_Patient_Patient $e0 $e1 $x0 $x1))
+(Implication (And (Location $e0 kazakhstan) (Member $e0 build) (Member $e1 build) (Member $x0 hotel) (Past $e0) (Past $e1) (Patient $e0 $x1) (Patient $e1 $x0)) (MnLocationKazakhstan_Build_Build_Hotel_Past_Past_Patient_Patient $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203107 ~ p204279   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Member $e0 build) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e1 $x1) (Location $e1 kazakhstan) (Member $e0 build) (Member $e1 build) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0)) (MnAgent_LocationKazakhstan_Build_Build_Hotel_Past_Patient_2 $e0 $e1 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Member $e1 build) (Member $x1 hotel) (Past $e1) (Patient $e1 $x1)) (MnAgent_LocationKazakhstan_Build_Build_Hotel_Past_Patient_2 $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203107 ~ p204280   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Member $e0 build) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e1 $x1) (Location $e1 kazakhstan) (Member $e0 build) (Member $x0 hotel) (Past $e0) (Past $e1) (Patient $e0 $x0)) (MnAgent_LocationKazakhstan_Build_Hotel_Past_Past_Patient_2 $e0 $e1 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e1 build) (Member $x1 hotel) (Past $e0) (Past $e1) (Patient $e1 $x1)) (MnAgent_LocationKazakhstan_Build_Hotel_Past_Past_Patient_2 $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203107 ~ p204281   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Member $e0 build) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Patient $e0 $x1))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e1 $x1) (Location $e1 kazakhstan) (Member $e0 build) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0) (Patient $e1 $x2)) (MnAgent_LocationKazakhstan_Build_Hotel_Past_Patient_Patient_4 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e1 build) (Member $x1 hotel) (Past $e1) (Patient $e0 $x2) (Patient $e1 $x1)) (MnAgent_LocationKazakhstan_Build_Hotel_Past_Patient_Patient_3 $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p203107 ~ p204308   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Member $e0 build) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
 ;;   B: (And (Location $e0 kazakhstan) (Member $e0 build) (Past $e0))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Location $e1 kazakhstan) (Member $e0 build) (Member $e1 build) (Member $x0 hotel) (Past $e0) (Past $e1) (Patient $e0 $x0)) (MnLocationKazakhstan_Build_Build_Hotel_Past_Past_Patient $e0 $e1 $x0))
+(Implication (And (Location $e0 kazakhstan) (Member $e0 build) (Member $e1 build) (Member $x0 hotel) (Past $e0) (Past $e1) (Patient $e1 $x0)) (MnLocationKazakhstan_Build_Build_Hotel_Past_Past_Patient $e0 $e1 $x0))
 
 ;; [genuine]  p203107 ~ p204309   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Member $e0 build) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
 ;;   B: (And (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x0))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Location $e1 kazakhstan) (Member $e0 build) (Member $e1 build) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0) (Patient $e1 $x1)) (MnLocationKazakhstan_Build_Build_Hotel_Past_Patient_Patient_1 $e0 $e1 $x0 $x1))
+(Implication (And (Location $e0 kazakhstan) (Member $e0 build) (Member $e1 build) (Member $x0 hotel) (Past $e1) (Patient $e0 $x1) (Patient $e1 $x0)) (MnLocationKazakhstan_Build_Build_Hotel_Past_Patient_Patient_2 $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203107 ~ p204310   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Member $e0 build) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
 ;;   B: (And (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x0))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Location $e1 kazakhstan) (Member $e0 build) (Member $x0 hotel) (Past $e0) (Past $e1) (Patient $e0 $x0) (Patient $e1 $x1)) (MnLocationKazakhstan_Build_Hotel_Past_Past_Patient_Patient_1 $e0 $e1 $x0 $x1))
+(Implication (And (Location $e0 kazakhstan) (Member $e1 build) (Member $x0 hotel) (Past $e0) (Past $e1) (Patient $e0 $x1) (Patient $e1 $x0)) (MnLocationKazakhstan_Build_Hotel_Past_Past_Patient_Patient_2 $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203107 ~ p204460   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Member $e0 build) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e1 $x1) (Location $e1 kazakhstan) (Member $e0 build) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0)) (MnAgent_LocationKazakhstan_Build_Hotel_Past_Patient_5 $e0 $e1 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e1 build) (Member $x1 hotel) (Past $e1) (Patient $e1 $x1)) (MnAgent_LocationKazakhstan_Build_Hotel_Past_Patient_4 $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203107 ~ p204512   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Member $e0 build) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
 ;;   B: (And (Location $e0 kazakhstan) (Member $e0 build))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Location $e1 kazakhstan) (Member $e0 build) (Member $e1 build) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0)) (MnLocationKazakhstan_Build_Build_Hotel_Past_Patient_1 $e0 $e1 $x0))
+(Implication (And (Location $e0 kazakhstan) (Member $e0 build) (Member $e1 build) (Member $x0 hotel) (Past $e1) (Patient $e1 $x0)) (MnLocationKazakhstan_Build_Build_Hotel_Past_Patient_2 $e0 $e1 $x0))
 
 ;; [genuine]  p203107 ~ p204513   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Member $e0 build) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
 ;;   B: (And (Location $e0 kazakhstan) (Past $e0))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Location $e1 kazakhstan) (Member $e0 build) (Member $x0 hotel) (Past $e0) (Past $e1) (Patient $e0 $x0)) (MnLocationKazakhstan_Build_Hotel_Past_Past_Patient_1 $e0 $e1 $x0))
+(Implication (And (Location $e0 kazakhstan) (Member $e1 build) (Member $x0 hotel) (Past $e0) (Past $e1) (Patient $e1 $x0)) (MnLocationKazakhstan_Build_Hotel_Past_Past_Patient_2 $e0 $e1 $x0))
 
 ;; [genuine]  p203107 ~ p204514   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Member $e0 build) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
 ;;   B: (And (Location $e0 kazakhstan) (Patient $e0 $x0))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Location $e1 kazakhstan) (Member $e0 build) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0) (Patient $e1 $x1)) (MnLocationKazakhstan_Build_Hotel_Past_Patient_Patient_2 $e0 $e1 $x0 $x1))
+(Implication (And (Location $e0 kazakhstan) (Member $e1 build) (Member $x0 hotel) (Past $e1) (Patient $e0 $x1) (Patient $e1 $x0)) (MnLocationKazakhstan_Build_Hotel_Past_Patient_Patient_4 $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203107 ~ p204705   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Member $e0 build) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
 ;;   B: (Location $e0 kazakhstan)
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Location $e1 kazakhstan) (Member $e0 build) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0)) (MnLocationKazakhstan_Build_Hotel_Past_Patient_2 $e0 $e1 $x0))
+(Implication (And (Location $e0 kazakhstan) (Member $e1 build) (Member $x0 hotel) (Past $e1) (Patient $e1 $x0)) (MnLocationKazakhstan_Build_Hotel_Past_Patient_4 $e0 $e1 $x0))
 
 ;; [genuine]  p203113 ~ p203730   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000277 tierC-000278 tierC-000301
@@ -4890,21 +4890,21 @@
 ;;   A: (And (Member free_soil_party party) (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (GroupOf $x1 view) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x1 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (GroupOf $x0 view) (Member free_soil_party party) (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty_2 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203119 ~ p203722   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Member free_soil_party party) (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x1 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (Member free_soil_party party) (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0)) (MnAgent_Past_ThemeOfPossessionFreeSoilPartyOfParty_2 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Member free_soil_party party) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfPossessionFreeSoilPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203119 ~ p203723   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Member free_soil_party party) (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (Member free_soil_party party) (Past $e0) (Possession $x0 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x0) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionFreeSoilPartyOfParty_ThemeOfPossessionRepublicanParty_2 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member free_soil_party party) (Past $e0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionFreeSoilPartyOfParty_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203119 ~ p203734   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -4918,7 +4918,7 @@
 ;;   A: (And (Member free_soil_party party) (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   B: (And (GroupOf $x0 view) (Member republican_party party) (Possession $x0 republican_party))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (GroupOf $x1 view) (Member free_soil_party party) (Member republican_party party) (Past $e0) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0)) (MnGroupOfView_FreeSoilPartyParty_RepublicanPartyParty_Past_PossessionFreeSoilParty_PossessionRepublicanParty_Theme $e0 $x0 $x1))
+(Implication (And (GroupOf $x0 view) (Member free_soil_party party) (Member republican_party party) (Past $e0) (Possession $x0 republican_party) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnGroupOfView_FreeSoilPartyParty_RepublicanPartyParty_Past_PossessionRepublicanParty_PossessionFreeSoilParty_Theme $e0 $x0 $x1))
 
 ;; [genuine]  p203119 ~ p203736   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -4946,7 +4946,7 @@
 ;;   A: (And (Member free_soil_party party) (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   B: (And (Member republican_party party) (Possession $x0 republican_party))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Member free_soil_party party) (Member republican_party party) (Past $e0) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0)) (MnFreeSoilPartyParty_RepublicanPartyParty_Past_PossessionFreeSoilParty_PossessionRepublicanParty_Theme $e0 $x0 $x1))
+(Implication (And (Member free_soil_party party) (Member republican_party party) (Past $e0) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0)) (MnFreeSoilPartyParty_RepublicanPartyParty_Past_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_1 $e0 $x0 $x1))
 
 ;; [genuine]  p203119 ~ p204177   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -4967,7 +4967,7 @@
 ;;   A: (And (Member free_soil_party party) (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (GroupOf $x1 view) (Member free_soil_party party) (Past $e0) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnPast_ThemeOfPossessionFreeSoilPartyOfParty_ThemeOfGroupOfView-PossessionRepublicanParty $e0 $x0 $x1))
+(Implication (And (GroupOf $x0 view) (Member free_soil_party party) (Past $e0) (Possession $x0 republican_party) (Possession $x1 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnPast_ThemeOfGroupOfView-PossessionRepublicanParty_ThemeOfPossessionFreeSoilPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203119 ~ p204500   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -4981,7 +4981,7 @@
 ;;   A: (And (Member free_soil_party party) (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 republican_party))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (GroupOf $x1 view) (Member free_soil_party party) (Past $e0) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0)) (MnGroupOfView_FreeSoilPartyParty_Past_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_2 $e0 $x0 $x1))
+(Implication (And (GroupOf $x0 view) (Member free_soil_party party) (Past $e0) (Possession $x0 republican_party) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnGroupOfView_FreeSoilPartyParty_Past_PossessionRepublicanParty_PossessionFreeSoilParty_Theme_2 $e0 $x0 $x1))
 
 ;; [genuine]  p203119 ~ p204502   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -5009,35 +5009,35 @@
 ;;   A: (And (Member free_soil_party party) (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   B: (Possession $x0 republican_party)
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Member free_soil_party party) (Past $e0) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0)) (MnFreeSoilPartyParty_Past_PossessionFreeSoilParty_PossessionRepublicanParty_Theme $e0 $x0 $x1))
+(Implication (And (Member free_soil_party party) (Past $e0) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0)) (MnFreeSoilPartyParty_Past_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_1 $e0 $x0 $x1))
 
 ;; [genuine]  p203120 ~ p203713   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Member republican_party party) (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (GroupOf $x1 view) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x1 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (GroupOf $x0 view) (Member republican_party party) (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty_2 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203120 ~ p203722   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Member republican_party party) (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (Member republican_party party) (Past $e0) (Possession $x0 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionRepublicanPartyOfParty_ThemeOfPossessionFreeSoilParty_2 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member republican_party party) (Past $e0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionFreeSoilParty_ThemeOfPossessionRepublicanPartyOfParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203120 ~ p203723   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Member republican_party party) (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x1 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (Member republican_party party) (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0)) (MnAgent_Past_ThemeOfPossessionRepublicanPartyOfParty_2 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Member republican_party party) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfPossessionRepublicanPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203120 ~ p203734   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Member republican_party party) (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   B: (And (GroupOf $x0 view) (Member free_soil_party party) (Possession $x0 free_soil_party))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (GroupOf $x1 view) (Member free_soil_party party) (Member republican_party party) (Past $e0) (Possession $x0 republican_party) (Possession $x1 free_soil_party) (Theme $e0 $x0)) (MnGroupOfView_FreeSoilPartyParty_RepublicanPartyParty_Past_PossessionRepublicanParty_PossessionFreeSoilParty_Theme $e0 $x0 $x1))
+(Implication (And (GroupOf $x0 view) (Member free_soil_party party) (Member republican_party party) (Past $e0) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnGroupOfView_FreeSoilPartyParty_RepublicanPartyParty_Past_PossessionFreeSoilParty_PossessionRepublicanParty_Theme $e0 $x0 $x1))
 
 ;; [genuine]  p203120 ~ p203735   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -5058,21 +5058,21 @@
 ;;   A: (And (Member republican_party party) (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   B: (And (Member free_soil_party party) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Member free_soil_party party) (Member republican_party party) (Past $e0) (Possession $x0 republican_party) (Possession $x1 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnFreeSoilPartyParty_RepublicanPartyParty_Past_PossessionRepublicanParty_PossessionFreeSoilParty_Theme_Theme $e0 $x0 $x1))
+(Implication (And (Member free_soil_party party) (Member republican_party party) (Past $e0) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnFreeSoilPartyParty_RepublicanPartyParty_Past_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_Theme $e0 $x0 $x1))
 
 ;; [genuine]  p203120 ~ p203768   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Member republican_party party) (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   B: (And (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Member republican_party party) (Past $e0) (Possession $x0 republican_party) (Possession $x1 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnPast_ThemeOfPossessionRepublicanPartyOfParty_ThemeOfPossessionFreeSoilParty $e0 $x0 $x1))
+(Implication (And (Member republican_party party) (Past $e0) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnPast_ThemeOfPossessionFreeSoilParty_ThemeOfPossessionRepublicanPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203120 ~ p203992   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Member republican_party party) (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   B: (And (Member free_soil_party party) (Possession $x0 free_soil_party))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Member free_soil_party party) (Member republican_party party) (Past $e0) (Possession $x0 republican_party) (Possession $x1 free_soil_party) (Theme $e0 $x0)) (MnFreeSoilPartyParty_RepublicanPartyParty_Past_PossessionRepublicanParty_PossessionFreeSoilParty_Theme $e0 $x0 $x1))
+(Implication (And (Member free_soil_party party) (Member republican_party party) (Past $e0) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnFreeSoilPartyParty_RepublicanPartyParty_Past_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_2 $e0 $x0 $x1))
 
 ;; [genuine]  p203120 ~ p204176   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -5086,7 +5086,7 @@
 ;;   A: (And (Member republican_party party) (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (GroupOf $x1 view) (Member republican_party party) (Past $e0) (Possession $x0 republican_party) (Possession $x1 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnPast_ThemeOfPossessionRepublicanPartyOfParty_ThemeOfGroupOfView-PossessionFreeSoilParty $e0 $x0 $x1))
+(Implication (And (GroupOf $x0 view) (Member republican_party party) (Past $e0) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnPast_ThemeOfGroupOfView-PossessionFreeSoilParty_ThemeOfPossessionRepublicanPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203120 ~ p204304   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -5100,7 +5100,7 @@
 ;;   A: (And (Member republican_party party) (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 free_soil_party))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (GroupOf $x1 view) (Member republican_party party) (Past $e0) (Possession $x0 republican_party) (Possession $x1 free_soil_party) (Theme $e0 $x0)) (MnGroupOfView_RepublicanPartyParty_Past_PossessionRepublicanParty_PossessionFreeSoilParty_Theme_2 $e0 $x0 $x1))
+(Implication (And (GroupOf $x0 view) (Member republican_party party) (Past $e0) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnGroupOfView_RepublicanPartyParty_Past_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_2 $e0 $x0 $x1))
 
 ;; [genuine]  p203120 ~ p204501   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -5121,7 +5121,7 @@
 ;;   A: (And (Member republican_party party) (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   B: (And (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Member republican_party party) (Past $e0) (Possession $x0 republican_party) (Possession $x1 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnPast_ThemeOfPossessionRepublicanPartyOfParty_ThemeOfPossessionFreeSoilParty $e0 $x0 $x1))
+(Implication (And (Member republican_party party) (Past $e0) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnPast_ThemeOfPossessionFreeSoilParty_ThemeOfPossessionRepublicanPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203120 ~ p204701   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -5135,7 +5135,7 @@
 ;;   A: (And (Member republican_party party) (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   B: (Possession $x0 free_soil_party)
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Member republican_party party) (Past $e0) (Possession $x0 republican_party) (Possession $x1 free_soil_party) (Theme $e0 $x0)) (MnRepublicanPartyParty_Past_PossessionRepublicanParty_PossessionFreeSoilParty_Theme $e0 $x0 $x1))
+(Implication (And (Member republican_party party) (Past $e0) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnRepublicanPartyParty_Past_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_2 $e0 $x0 $x1))
 
 ;; [genuine]  p203710 ~ p204278   records 4 / 4 / 4 (3 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierB-000688 tierC-000001 tierC-000121
@@ -5163,14 +5163,14 @@
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Member free_soil_party party) (Possession $x0 free_soil_party))
 ;;   alignment: $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203713 ~ p203735   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Member republican_party party) (Possession $x0 republican_party))
 ;;   alignment: $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203713 ~ p203736   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -5184,42 +5184,42 @@
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Theme $e0 $x1))
 ;;   B: (And (Member free_soil_party party) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203713 ~ p203764   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Theme $e0 $x1))
 ;;   B: (And (Member republican_party party) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203713 ~ p203768   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Theme $e0 $x1))
 ;;   B: (And (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty $e0 $x0 $x1))
 
 ;; [genuine]  p203713 ~ p203769   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Theme $e0 $x1))
 ;;   B: (And (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty $e0 $x0 $x1))
 
 ;; [genuine]  p203713 ~ p203992   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Theme $e0 $x1))
 ;;   B: (And (Member free_soil_party party) (Possession $x0 free_soil_party))
 ;;   alignment: $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203713 ~ p203993   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Theme $e0 $x1))
 ;;   B: (And (Member republican_party party) (Possession $x0 republican_party))
 ;;   alignment: $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203713 ~ p204176   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -5303,7 +5303,7 @@
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $x0 company))
 ;;   B: (And (Agent $e0 $x0) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   alignment: $x0=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 kazakhstan) (Member $x0 company) (Member $x1 hotel) (Patient $e1 $x1)) (MnAgent_Agent_LocationKazakhstan_Company_Hotel_Patient_1 $e0 $e1 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 kazakhstan) (Member $x0 company) (Member $x1 hotel) (Patient $e1 $x1)) (MnAgent_Agent_LocationKazakhstan_Company_Hotel_Patient $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203714 ~ p203746   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
@@ -5436,7 +5436,7 @@
 ;;   A: (And (Agent $e0 $x0) (Member $e0 build) (Member $x0 company))
 ;;   B: (And (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $e0 build) (Member $x0 company) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgentOfCompany_Build_Past_PatientOfHotel_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 build) (Member $x0 company) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgentOfCompany_Build_Past_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p203716 ~ p204218   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
@@ -5555,28 +5555,28 @@
 ;;   A: (And (Agent $e0 $x0) (Member $e1 start) (Theme $e1 $e0))
 ;;   B: (And (Agent $e0 $x0) (Member $e0 start) (Past $e0) (Theme $e0 $e1))
 ;;   alignment: $e0=$e1 $e1=$e0 $x0=$x0 (holds in 4 of 4 records)
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e1 start) (Past $e1) (Theme $e1 $e0)) (MnAgent_Agent_Start_Past_ThemeEv $e0 $e1 $x0))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e0 start) (Past $e0) (Theme $e0 $e1)) (MnAgent_Agent_Start_Past_ThemeEv $e0 $e1 $x0))
 
 ;; [genuine]  p203717 ~ p204287   records 4 / 4 / 4 (4 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierB-000738 tierB-000942 tierB-001169
 ;;   A: (And (Agent $e0 $x0) (Member $e1 start) (Theme $e1 $e0))
 ;;   B: (And (Agent $e0 $x0) (Member $e0 start) (Past $e0))
 ;;   alignment: $e1=$e0 $x0=$x0 (holds in 4 of 4 records)
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e1 start) (Past $e1) (Theme $e1 $e0)) (MnAgent_Agent_Start_Past_ThemeEv $e0 $e1 $x0))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e0 start) (Past $e0) (Theme $e0 $e1)) (MnAgent_Agent_Start_Past_ThemeEv $e0 $e1 $x0))
 
 ;; [genuine]  p203717 ~ p204288   records 4 / 4 / 4 (4 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierB-000738 tierB-000942 tierB-001169
 ;;   A: (And (Agent $e0 $x0) (Member $e1 start) (Theme $e1 $e0))
 ;;   B: (And (Agent $e0 $x0) (Member $e0 start) (Theme $e0 $e1))
 ;;   alignment: $e0=$e1 $e1=$e0 $x0=$x0 (holds in 4 of 4 records)
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e1 start) (Theme $e1 $e0)) (MnAgent_Agent_Start_ThemeEv $e0 $e1 $x0))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e0 start) (Theme $e0 $e1)) (MnAgent_Agent_Start_ThemeEv $e0 $e1 $x0))
 
 ;; [genuine]  p203717 ~ p204470   records 4 / 4 / 4 (4 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierB-000738 tierB-000942 tierB-001169
 ;;   A: (And (Agent $e0 $x0) (Member $e1 start) (Theme $e1 $e0))
 ;;   B: (And (Agent $e0 $x0) (Member $e0 start))
 ;;   alignment: $e1=$e0 $x0=$x0 (holds in 4 of 4 records)
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e1 start) (Theme $e1 $e0)) (MnAgent_Agent_Start_ThemeEv $e0 $e1 $x0))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e0 start) (Theme $e0 $e1)) (MnAgent_Agent_Start_ThemeEv $e0 $e1 $x0))
 
 ;; [genuine]  p203720 ~ p203746   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
@@ -5597,91 +5597,91 @@
 ;;   A: (And (Agent $e0 $x0) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0))
 ;;   alignment: $x0=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e1 kazakhstan) (Member $e1 build) (Member $x1 hotel) (Past $e1) (Patient $e0 $x1)) (MnAgent_Agent_LocationKazakhstan_Build_Hotel_Past_Patient_3 $e0 $e1 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Member $x1 hotel) (Past $e0) (Patient $e1 $x1)) (MnAgent_Agent_LocationKazakhstan_Build_Hotel_Past_Patient_1 $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203720 ~ p204219   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x1))
 ;;   alignment: $x0=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e1 kazakhstan) (Member $e1 build) (Member $x1 hotel) (Patient $e0 $x1) (Patient $e1 $x2)) (MnAgent_Agent_LocationKazakhstan_Build_Hotel_Patient_Patient_2 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Member $x1 hotel) (Patient $e0 $x2) (Patient $e1 $x1)) (MnAgent_Agent_LocationKazakhstan_Build_Hotel_Patient_Patient_1 $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p203720 ~ p204220   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x1))
 ;;   alignment: $x0=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e1 kazakhstan) (Member $x1 hotel) (Past $e1) (Patient $e0 $x1) (Patient $e1 $x2)) (MnAgent_Agent_LocationKazakhstan_Hotel_Past_Patient_Patient_2 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 kazakhstan) (Member $x1 hotel) (Past $e0) (Patient $e0 $x2) (Patient $e1 $x1)) (MnAgent_Agent_LocationKazakhstan_Hotel_Past_Patient_Patient_1 $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p203720 ~ p204224   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x0))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e1 kazakhstan) (Member $e1 build) (Member $x1 hotel) (Past $e1) (Patient $e0 $x1) (Patient $e1 $x2)) (MnAgent_LocationKazakhstan_Build_Hotel_Past_Patient_Patient_3 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e1 kazakhstan) (Member $e1 build) (Member $x1 hotel) (Past $e1) (Patient $e0 $x1) (Patient $e1 $x2)) (MnAgent_LocationKazakhstan_Build_Hotel_Past_Patient_Patient_6 $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p203720 ~ p204279   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build))
 ;;   alignment: $x0=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e1 kazakhstan) (Member $e1 build) (Member $x1 hotel) (Patient $e0 $x1)) (MnAgent_Agent_LocationKazakhstan_Build_Hotel_Patient_2 $e0 $e1 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Member $x1 hotel) (Patient $e1 $x1)) (MnAgent_Agent_LocationKazakhstan_Build_Hotel_Patient_1 $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203720 ~ p204280   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0))
 ;;   alignment: $x0=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e1 kazakhstan) (Member $x1 hotel) (Past $e1) (Patient $e0 $x1)) (MnAgent_Agent_LocationKazakhstan_Hotel_Past_Patient_2 $e0 $e1 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 kazakhstan) (Member $x1 hotel) (Past $e0) (Patient $e1 $x1)) (MnAgent_Agent_LocationKazakhstan_Hotel_Past_Patient_1 $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203720 ~ p204281   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Patient $e0 $x1))
 ;;   alignment: $x0=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e1 kazakhstan) (Member $x1 hotel) (Patient $e0 $x1) (Patient $e1 $x2)) (MnAgent_Agent_LocationKazakhstan_Hotel_Patient_Patient $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 kazakhstan) (Member $x1 hotel) (Patient $e0 $x2) (Patient $e1 $x1)) (MnAgent_Agent_LocationKazakhstan_Hotel_Patient_Patient $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p203720 ~ p204308   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 kazakhstan) (Member $e0 build) (Past $e0))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e1 kazakhstan) (Member $e1 build) (Member $x1 hotel) (Past $e1) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Hotel_Past_Patient_4 $e0 $e1 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e1 kazakhstan) (Member $e1 build) (Member $x1 hotel) (Past $e1) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Hotel_Past_Patient_7 $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203720 ~ p204309   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x0))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e1 kazakhstan) (Member $e1 build) (Member $x1 hotel) (Patient $e0 $x1) (Patient $e1 $x2)) (MnAgent_LocationKazakhstan_Build_Hotel_Patient_Patient_3 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e1 kazakhstan) (Member $e1 build) (Member $x1 hotel) (Patient $e0 $x1) (Patient $e1 $x2)) (MnAgent_LocationKazakhstan_Build_Hotel_Patient_Patient_4 $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p203720 ~ p204310   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x0))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e1 kazakhstan) (Member $x1 hotel) (Past $e1) (Patient $e0 $x1) (Patient $e1 $x2)) (MnAgent_LocationKazakhstan_Hotel_Past_Patient_Patient_3 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e1 kazakhstan) (Member $x1 hotel) (Past $e1) (Patient $e0 $x1) (Patient $e1 $x2)) (MnAgent_LocationKazakhstan_Hotel_Past_Patient_Patient_4 $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p203720 ~ p204460   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan))
 ;;   alignment: $x0=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e1 kazakhstan) (Member $x1 hotel) (Patient $e0 $x1)) (MnAgent_Agent_LocationKazakhstan_Hotel_Patient $e0 $e1 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 kazakhstan) (Member $x1 hotel) (Patient $e1 $x1)) (MnAgent_Agent_LocationKazakhstan_Hotel_Patient $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203720 ~ p204512   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 kazakhstan) (Member $e0 build))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e1 kazakhstan) (Member $e1 build) (Member $x1 hotel) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Hotel_Patient_3 $e0 $e1 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e1 kazakhstan) (Member $e1 build) (Member $x1 hotel) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Hotel_Patient_4 $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203720 ~ p204513   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 kazakhstan) (Past $e0))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e1 kazakhstan) (Member $x1 hotel) (Past $e1) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Hotel_Past_Patient_3 $e0 $e1 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e1 kazakhstan) (Member $x1 hotel) (Past $e1) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Hotel_Past_Patient_4 $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203720 ~ p204514   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
@@ -5702,28 +5702,28 @@
 ;;   A: (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfPossessionFreeSoilParty_ThemeOfPossessionRepublicanParty_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfPossessionFreeSoilParty_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203722 ~ p203734   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Member free_soil_party party) (Possession $x0 free_soil_party))
 ;;   alignment: $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionFreeSoilPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203722 ~ p203735   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Member republican_party party) (Possession $x0 republican_party))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x2 view) (Member republican_party party) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1)) (MnAgent_GroupOfView_RepublicanPartyParty_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_2 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x2)) (MnAgent_GroupOfView_RepublicanPartyParty_PossessionRepublicanParty_PossessionFreeSoilParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203722 ~ p203736   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Past $e0) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty $e0 $x0 $x1))
 
 ;; [genuine]  p203722 ~ p203763   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -5751,7 +5751,7 @@
 ;;   A: (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionFreeSoilParty_ThemeOfPossessionRepublicanParty_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionFreeSoilParty_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203722 ~ p203992   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -5765,7 +5765,7 @@
 ;;   A: (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (Member republican_party party) (Possession $x0 republican_party))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member republican_party party) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1)) (MnAgent_RepublicanPartyParty_PossessionFreeSoilParty_PossessionRepublicanParty_Theme $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member republican_party party) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1)) (MnAgent_RepublicanPartyParty_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_1 $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203722 ~ p204176   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -5793,7 +5793,7 @@
 ;;   A: (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x2 view) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfPossessionFreeSoilParty_ThemeOfGroupOfView-PossessionRepublicanParty $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfGroupOfView-PossessionRepublicanParty_ThemeOfPossessionFreeSoilParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203722 ~ p204500   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -5807,7 +5807,7 @@
 ;;   A: (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 republican_party))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x2 view) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1)) (MnAgent_GroupOfView_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_2 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x2)) (MnAgent_GroupOfView_PossessionRepublicanParty_PossessionFreeSoilParty_Theme_2 $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203722 ~ p204502   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -5821,7 +5821,7 @@
 ;;   A: (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (And (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfPossessionFreeSoilParty_ThemeOfPossessionRepublicanParty_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfPossessionFreeSoilParty_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203722 ~ p204701   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -5835,35 +5835,35 @@
 ;;   A: (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 ;;   B: (Possession $x0 republican_party)
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1)) (MnAgent_PossessionFreeSoilParty_PossessionRepublicanParty_Theme $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1)) (MnAgent_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_1 $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203723 ~ p203734   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Member free_soil_party party) (Possession $x0 free_soil_party))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x2 view) (Member free_soil_party party) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1)) (MnAgent_GroupOfView_FreeSoilPartyParty_PossessionRepublicanParty_PossessionFreeSoilParty_Theme_2 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member free_soil_party party) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x2)) (MnAgent_GroupOfView_FreeSoilPartyParty_PossessionFreeSoilParty_PossessionRepublicanParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203723 ~ p203735   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Member republican_party party) (Possession $x0 republican_party))
 ;;   alignment: $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionRepublicanPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203723 ~ p203736   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Past $e0) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty $e0 $x0 $x1))
 
 ;; [genuine]  p203723 ~ p203763   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Agent $e0 $x0) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (Member free_soil_party party) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member free_soil_party party) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfPossessionRepublicanParty_ThemeOfPossessionFreeSoilPartyOfParty $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member free_soil_party party) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfPossessionFreeSoilPartyOfParty_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203723 ~ p203764   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -5877,7 +5877,7 @@
 ;;   A: (And (Agent $e0 $x0) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Past $e0) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionRepublicanParty_ThemeOfPossessionFreeSoilParty $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionFreeSoilParty_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203723 ~ p203769   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -5891,7 +5891,7 @@
 ;;   A: (And (Agent $e0 $x0) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (Member free_soil_party party) (Possession $x0 free_soil_party))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member free_soil_party party) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1)) (MnAgent_FreeSoilPartyParty_PossessionRepublicanParty_PossessionFreeSoilParty_Theme $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member free_soil_party party) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x2)) (MnAgent_FreeSoilPartyParty_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_2 $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203723 ~ p203993   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -5919,7 +5919,7 @@
 ;;   A: (And (Agent $e0 $x0) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x2 view) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfPossessionRepublicanParty_ThemeOfGroupOfView-PossessionFreeSoilParty $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfGroupOfView-PossessionFreeSoilParty_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203723 ~ p204304   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -5933,7 +5933,7 @@
 ;;   A: (And (Agent $e0 $x0) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 free_soil_party))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x2 view) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1)) (MnAgent_GroupOfView_PossessionRepublicanParty_PossessionFreeSoilParty_Theme_2 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x2)) (MnAgent_GroupOfView_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_2 $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203723 ~ p204501   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -5954,7 +5954,7 @@
 ;;   A: (And (Agent $e0 $x0) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (And (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfPossessionRepublicanParty_ThemeOfPossessionFreeSoilParty $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfPossessionFreeSoilParty_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203723 ~ p204701   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -5968,7 +5968,7 @@
 ;;   A: (And (Agent $e0 $x0) (Possession $x1 republican_party) (Theme $e0 $x1))
 ;;   B: (Possession $x0 free_soil_party)
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1)) (MnAgent_PossessionRepublicanParty_PossessionFreeSoilParty_Theme $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x2)) (MnAgent_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_2 $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p203725 ~ p203731   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000181 tierC-000182 tierC-000239
@@ -6017,7 +6017,7 @@
 ;;   A: (And (Experiencer $e0 $x0) (Member $x0 bad) (Result $e1 $e0))
 ;;   B: (And (Member $e0 bad) (Patient $e1 $x0) (Result $e1 $e0))
 ;;   alignment: $e0=$e0 $e1=$e1 $x0=$x0 (holds in 4 of 4 records)   1 of the shared records duplicate another
-(Implication (And (Experiencer $e0 $x0) (Member $e0 bad) (Member $x0 bad) (Patient $e1 $x0) (Result $e1 $e0)) (MnExperiencer_Bad_Bad_Patient_ResultEv_1 $e0 $e1 $x0))
+(Implication (And (Experiencer $e0 $x0) (Member $e0 bad) (Member $x0 bad) (Patient $e1 $x0) (Result $e1 $e0)) (MnExperiencer_Bad_Bad_Patient_ResultEv $e0 $e1 $x0))
 
 ;; [genuine]  p203729 ~ p203753   records 4 / 4 / 4 (3 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierB-000748 tierB-001594 tierC-000241
@@ -6192,7 +6192,7 @@
 ;;   A: (And (GroupOf $x0 view) (Member free_soil_party party) (Possession $x0 free_soil_party))
 ;;   B: (And (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (GroupOf $x0 view) (Member free_soil_party party) (Past $e0) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnGroupOfView_FreeSoilPartyParty_Past_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_1 $e0 $x0 $x1))
+(Implication (And (GroupOf $x0 view) (Member free_soil_party party) (Past $e0) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnGroupOfView_FreeSoilPartyParty_Past_PossessionFreeSoilParty_PossessionRepublicanParty_Theme $e0 $x0 $x1))
 
 ;; [genuine]  p203734 ~ p203993   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -6255,7 +6255,7 @@
 ;;   A: (And (GroupOf $x0 view) (Member free_soil_party party) (Possession $x0 free_soil_party))
 ;;   B: (Possession $x0 republican_party)
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (GroupOf $x0 view) (Member free_soil_party party) (Possession $x0 free_soil_party) (Possession $x1 republican_party)) (MnGroupOfView_FreeSoilPartyParty_PossessionFreeSoilParty_PossessionRepublicanParty_1 $x0 $x1))
+(Implication (And (GroupOf $x0 view) (Member free_soil_party party) (Possession $x0 free_soil_party) (Possession $x1 republican_party)) (MnGroupOfView_FreeSoilPartyParty_PossessionFreeSoilParty_PossessionRepublicanParty $x0 $x1))
 
 ;; [genuine]  p203735 ~ p203736   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -6283,7 +6283,7 @@
 ;;   A: (And (GroupOf $x0 view) (Member republican_party party) (Possession $x0 republican_party))
 ;;   B: (And (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (GroupOf $x0 view) (Member republican_party party) (Past $e0) (Possession $x0 republican_party) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnGroupOfView_RepublicanPartyParty_Past_PossessionRepublicanParty_PossessionFreeSoilParty_Theme_1 $e0 $x0 $x1))
+(Implication (And (GroupOf $x0 view) (Member republican_party party) (Past $e0) (Possession $x0 republican_party) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnGroupOfView_RepublicanPartyParty_Past_PossessionRepublicanParty_PossessionFreeSoilParty_Theme $e0 $x0 $x1))
 
 ;; [genuine]  p203735 ~ p203769   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -6311,7 +6311,7 @@
 ;;   A: (And (GroupOf $x0 view) (Member republican_party party) (Possession $x0 republican_party))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (GroupOf $x0 view) (GroupOf $x1 view) (Member republican_party party) (Possession $x0 republican_party) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnGroupOfView_GroupOfView_RepublicanPartyParty_PossessionRepublicanParty_PossessionFreeSoilParty_Theme_2 $e0 $x0 $x1))
+(Implication (And (GroupOf $x0 view) (GroupOf $x1 view) (Member republican_party party) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0)) (MnGroupOfView_GroupOfView_RepublicanPartyParty_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_1 $e0 $x0 $x1))
 
 ;; [genuine]  p203735 ~ p204304   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -6325,7 +6325,7 @@
 ;;   A: (And (GroupOf $x0 view) (Member republican_party party) (Possession $x0 republican_party))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 free_soil_party))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (GroupOf $x0 view) (GroupOf $x1 view) (Member republican_party party) (Possession $x0 republican_party) (Possession $x1 free_soil_party)) (MnGroupOfView_GroupOfView_RepublicanPartyParty_PossessionRepublicanParty_PossessionFreeSoilParty $x0 $x1))
+(Implication (And (GroupOf $x0 view) (GroupOf $x1 view) (Member republican_party party) (Possession $x0 free_soil_party) (Possession $x1 republican_party)) (MnGroupOfView_GroupOfView_RepublicanPartyParty_PossessionFreeSoilParty_PossessionRepublicanParty $x0 $x1))
 
 ;; [genuine]  p203735 ~ p204502   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -6353,7 +6353,7 @@
 ;;   A: (And (GroupOf $x0 view) (Member republican_party party) (Possession $x0 republican_party))
 ;;   B: (Possession $x0 free_soil_party)
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (GroupOf $x0 view) (Member republican_party party) (Possession $x0 republican_party) (Possession $x1 free_soil_party)) (MnGroupOfView_RepublicanPartyParty_PossessionRepublicanParty_PossessionFreeSoilParty_1 $x0 $x1))
+(Implication (And (GroupOf $x0 view) (Member republican_party party) (Possession $x0 republican_party) (Possession $x1 free_soil_party)) (MnGroupOfView_RepublicanPartyParty_PossessionRepublicanParty_PossessionFreeSoilParty $x0 $x1))
 
 ;; [genuine]  p203736 ~ p203763   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -6479,7 +6479,7 @@
 ;;   A: (And (Member $e0 bad) (Patient $e1 $x0) (Result $e1 $e0))
 ;;   B: (And (Member $x0 bad) (Patient $e0 $x0) (Result $e0 $e1))
 ;;   alignment: $e0=$e1 $e1=$e0 $x0=$x0 (holds in 4 of 4 records)   1 of the shared records duplicate another
-(Implication (And (Member $e0 bad) (Member $x0 bad) (Patient $e1 $x0) (Result $e1 $e0)) (MnBad_Bad_Patient_ResultEv_1 $e0 $e1 $x0))
+(Implication (And (Member $e0 bad) (Member $x0 bad) (Patient $e1 $x0) (Result $e1 $e0)) (MnBad_Bad_Patient_ResultEv $e0 $e1 $x0))
 
 ;; [genuine]  p203744 ~ p204295   records 4 / 4 / 4 (3 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierB-000748 tierB-001594 tierC-000241
@@ -6500,7 +6500,7 @@
 ;;   A: (And (Member $e0 bad) (Patient $e1 $x0) (Result $e1 $e0))
 ;;   B: (And (Experiencer $e0 $x0) (Member $x0 bad))
 ;;   alignment: $e0=$e0 $x0=$x0 (holds in 4 of 4 records)   1 of the shared records duplicate another
-(Implication (And (Experiencer $e0 $x0) (Member $e0 bad) (Member $x0 bad) (Patient $e1 $x0) (Result $e1 $e0)) (MnExperiencer_Bad_Bad_Patient_ResultEv_1 $e0 $e1 $x0))
+(Implication (And (Experiencer $e0 $x0) (Member $e0 bad) (Member $x0 bad) (Patient $e1 $x0) (Result $e1 $e0)) (MnExperiencer_Bad_Bad_Patient_ResultEv $e0 $e1 $x0))
 
 ;; [genuine]  p203746 ~ p203756   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
@@ -6514,105 +6514,105 @@
 ;;   A: (And (Member $e0 build) (Member $x0 hotel) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e1 $x1) (Location $e1 kazakhstan) (Member $e0 build) (Member $e1 build) (Member $x0 hotel) (Past $e1) (Patient $e0 $x0)) (MnAgent_LocationKazakhstan_Build_Build_Hotel_Past_Patient_3 $e0 $e1 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Member $e1 build) (Member $x1 hotel) (Past $e0) (Patient $e1 $x1)) (MnAgent_LocationKazakhstan_Build_Build_Hotel_Past_Patient_1 $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203746 ~ p204219   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Member $e0 build) (Member $x0 hotel) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x1))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e1 $x1) (Location $e1 kazakhstan) (Member $e0 build) (Member $e1 build) (Member $x0 hotel) (Patient $e0 $x0) (Patient $e1 $x2)) (MnAgent_LocationKazakhstan_Build_Build_Hotel_Patient_Patient_2 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Member $e1 build) (Member $x1 hotel) (Patient $e0 $x2) (Patient $e1 $x1)) (MnAgent_LocationKazakhstan_Build_Build_Hotel_Patient_Patient_1 $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p203746 ~ p204220   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Member $e0 build) (Member $x0 hotel) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x1))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e1 $x1) (Location $e1 kazakhstan) (Member $e0 build) (Member $x0 hotel) (Past $e1) (Patient $e0 $x0) (Patient $e1 $x2)) (MnAgent_LocationKazakhstan_Build_Hotel_Past_Patient_Patient_5 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e1 build) (Member $x1 hotel) (Past $e0) (Patient $e0 $x2) (Patient $e1 $x1)) (MnAgent_LocationKazakhstan_Build_Hotel_Past_Patient_Patient_2 $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p203746 ~ p204224   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Member $e0 build) (Member $x0 hotel) (Patient $e0 $x0))
 ;;   B: (And (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x0))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Location $e1 kazakhstan) (Member $e0 build) (Member $e1 build) (Member $x0 hotel) (Past $e1) (Patient $e0 $x0) (Patient $e1 $x1)) (MnLocationKazakhstan_Build_Build_Hotel_Past_Patient_Patient_2 $e0 $e1 $x0 $x1))
+(Implication (And (Location $e0 kazakhstan) (Member $e0 build) (Member $e1 build) (Member $x0 hotel) (Past $e0) (Patient $e0 $x1) (Patient $e1 $x0)) (MnLocationKazakhstan_Build_Build_Hotel_Past_Patient_Patient_1 $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203746 ~ p204279   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Member $e0 build) (Member $x0 hotel) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e1 $x1) (Location $e1 kazakhstan) (Member $e0 build) (Member $e1 build) (Member $x0 hotel) (Patient $e0 $x0)) (MnAgent_LocationKazakhstan_Build_Build_Hotel_Patient_2 $e0 $e1 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Member $e1 build) (Member $x1 hotel) (Patient $e1 $x1)) (MnAgent_LocationKazakhstan_Build_Build_Hotel_Patient_1 $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203746 ~ p204280   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Member $e0 build) (Member $x0 hotel) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e1 $x1) (Location $e1 kazakhstan) (Member $e0 build) (Member $x0 hotel) (Past $e1) (Patient $e0 $x0)) (MnAgent_LocationKazakhstan_Build_Hotel_Past_Patient_6 $e0 $e1 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e1 build) (Member $x1 hotel) (Past $e0) (Patient $e1 $x1)) (MnAgent_LocationKazakhstan_Build_Hotel_Past_Patient_3 $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203746 ~ p204281   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Member $e0 build) (Member $x0 hotel) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Patient $e0 $x1))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e1 $x1) (Location $e1 kazakhstan) (Member $e0 build) (Member $x0 hotel) (Patient $e0 $x0) (Patient $e1 $x2)) (MnAgent_LocationKazakhstan_Build_Hotel_Patient_Patient_4 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e1 build) (Member $x1 hotel) (Patient $e0 $x2) (Patient $e1 $x1)) (MnAgent_LocationKazakhstan_Build_Hotel_Patient_Patient_2 $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p203746 ~ p204308   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Member $e0 build) (Member $x0 hotel) (Patient $e0 $x0))
 ;;   B: (And (Location $e0 kazakhstan) (Member $e0 build) (Past $e0))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Location $e1 kazakhstan) (Member $e0 build) (Member $e1 build) (Member $x0 hotel) (Past $e1) (Patient $e0 $x0)) (MnLocationKazakhstan_Build_Build_Hotel_Past_Patient_2 $e0 $e1 $x0))
+(Implication (And (Location $e0 kazakhstan) (Member $e0 build) (Member $e1 build) (Member $x0 hotel) (Past $e0) (Patient $e1 $x0)) (MnLocationKazakhstan_Build_Build_Hotel_Past_Patient_1 $e0 $e1 $x0))
 
 ;; [genuine]  p203746 ~ p204309   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Member $e0 build) (Member $x0 hotel) (Patient $e0 $x0))
 ;;   B: (And (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x0))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Location $e1 kazakhstan) (Member $e0 build) (Member $e1 build) (Member $x0 hotel) (Patient $e0 $x0) (Patient $e1 $x1)) (MnLocationKazakhstan_Build_Build_Hotel_Patient_Patient $e0 $e1 $x0 $x1))
+(Implication (And (Location $e0 kazakhstan) (Member $e0 build) (Member $e1 build) (Member $x0 hotel) (Patient $e0 $x1) (Patient $e1 $x0)) (MnLocationKazakhstan_Build_Build_Hotel_Patient_Patient $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203746 ~ p204310   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Member $e0 build) (Member $x0 hotel) (Patient $e0 $x0))
 ;;   B: (And (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x0))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Location $e1 kazakhstan) (Member $e0 build) (Member $x0 hotel) (Past $e1) (Patient $e0 $x0) (Patient $e1 $x1)) (MnLocationKazakhstan_Build_Hotel_Past_Patient_Patient_3 $e0 $e1 $x0 $x1))
+(Implication (And (Location $e0 kazakhstan) (Member $e1 build) (Member $x0 hotel) (Past $e0) (Patient $e0 $x1) (Patient $e1 $x0)) (MnLocationKazakhstan_Build_Hotel_Past_Patient_Patient_3 $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203746 ~ p204460   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Member $e0 build) (Member $x0 hotel) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e1 $x1) (Location $e1 kazakhstan) (Member $e0 build) (Member $x0 hotel) (Patient $e0 $x0)) (MnAgent_LocationKazakhstan_Build_Hotel_Patient_4 $e0 $e1 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e1 build) (Member $x1 hotel) (Patient $e1 $x1)) (MnAgent_LocationKazakhstan_Build_Hotel_Patient_2 $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203746 ~ p204512   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Member $e0 build) (Member $x0 hotel) (Patient $e0 $x0))
 ;;   B: (And (Location $e0 kazakhstan) (Member $e0 build))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Location $e1 kazakhstan) (Member $e0 build) (Member $e1 build) (Member $x0 hotel) (Patient $e0 $x0)) (MnLocationKazakhstan_Build_Build_Hotel_Patient $e0 $e1 $x0))
+(Implication (And (Location $e0 kazakhstan) (Member $e0 build) (Member $e1 build) (Member $x0 hotel) (Patient $e1 $x0)) (MnLocationKazakhstan_Build_Build_Hotel_Patient $e0 $e1 $x0))
 
 ;; [genuine]  p203746 ~ p204513   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Member $e0 build) (Member $x0 hotel) (Patient $e0 $x0))
 ;;   B: (And (Location $e0 kazakhstan) (Past $e0))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Location $e1 kazakhstan) (Member $e0 build) (Member $x0 hotel) (Past $e1) (Patient $e0 $x0)) (MnLocationKazakhstan_Build_Hotel_Past_Patient_3 $e0 $e1 $x0))
+(Implication (And (Location $e0 kazakhstan) (Member $e1 build) (Member $x0 hotel) (Past $e0) (Patient $e1 $x0)) (MnLocationKazakhstan_Build_Hotel_Past_Patient_3 $e0 $e1 $x0))
 
 ;; [genuine]  p203746 ~ p204514   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Member $e0 build) (Member $x0 hotel) (Patient $e0 $x0))
 ;;   B: (And (Location $e0 kazakhstan) (Patient $e0 $x0))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Location $e1 kazakhstan) (Member $e0 build) (Member $x0 hotel) (Patient $e0 $x0) (Patient $e1 $x1)) (MnLocationKazakhstan_Build_Hotel_Patient_Patient_2 $e0 $e1 $x0 $x1))
+(Implication (And (Location $e0 kazakhstan) (Member $e1 build) (Member $x0 hotel) (Patient $e0 $x1) (Patient $e1 $x0)) (MnLocationKazakhstan_Build_Hotel_Patient_Patient_2 $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203746 ~ p204705   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Member $e0 build) (Member $x0 hotel) (Patient $e0 $x0))
 ;;   B: (Location $e0 kazakhstan)
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Location $e1 kazakhstan) (Member $e0 build) (Member $x0 hotel) (Patient $e0 $x0)) (MnLocationKazakhstan_Build_Hotel_Patient_2 $e0 $e1 $x0))
+(Implication (And (Location $e0 kazakhstan) (Member $e1 build) (Member $x0 hotel) (Patient $e1 $x0)) (MnLocationKazakhstan_Build_Hotel_Patient_2 $e0 $e1 $x0))
 
 ;; [genuine]  p203751 ~ p203754   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000277 tierC-000278 tierC-000301
@@ -6654,28 +6654,28 @@
 ;;   A: (And (Member $x0 bad) (Patient $e0 $x0) (Result $e0 $e1))
 ;;   B: (And (Experiencer $e0 $x0) (Member $e0 bad) (Result $e1 $e0))
 ;;   alignment: $e0=$e1 $e1=$e0 $x0=$x0 (holds in 4 of 4 records)   1 of the shared records duplicate another
-(Implication (And (Experiencer $e1 $x0) (Member $e1 bad) (Member $x0 bad) (Patient $e0 $x0) (Result $e0 $e1)) (MnExperiencer_Bad_Bad_Patient_ResultEv_2 $e0 $e1 $x0))
+(Implication (And (Experiencer $e0 $x0) (Member $e0 bad) (Member $x0 bad) (Patient $e1 $x0) (Result $e1 $e0)) (MnExperiencer_Bad_Bad_Patient_ResultEv $e0 $e1 $x0))
 
 ;; [genuine]  p203753 ~ p204491   records 4 / 4 / 4 (3 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierB-000748 tierB-001594 tierC-000241
 ;;   A: (And (Member $x0 bad) (Patient $e0 $x0) (Result $e0 $e1))
 ;;   B: (And (Experiencer $e0 $x0) (Member $e0 bad))
 ;;   alignment: $e1=$e0 $x0=$x0 (holds in 4 of 4 records)   1 of the shared records duplicate another
-(Implication (And (Experiencer $e1 $x0) (Member $e1 bad) (Member $x0 bad) (Patient $e0 $x0) (Result $e0 $e1)) (MnExperiencer_Bad_Bad_Patient_ResultEv_2 $e0 $e1 $x0))
+(Implication (And (Experiencer $e0 $x0) (Member $e0 bad) (Member $x0 bad) (Patient $e1 $x0) (Result $e1 $e0)) (MnExperiencer_Bad_Bad_Patient_ResultEv $e0 $e1 $x0))
 
 ;; [genuine]  p203753 ~ p204493   records 4 / 4 / 4 (3 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierB-000748 tierB-001594 tierC-000241
 ;;   A: (And (Member $x0 bad) (Patient $e0 $x0) (Result $e0 $e1))
 ;;   B: (And (Experiencer $e0 $x0) (Member $x0 bad))
 ;;   alignment: $e1=$e0 $x0=$x0 (holds in 4 of 4 records)   1 of the shared records duplicate another
-(Implication (And (Experiencer $e1 $x0) (Member $x0 bad) (Patient $e0 $x0) (Result $e0 $e1)) (MnExperiencer_Bad_Patient_ResultEv_3 $e0 $e1 $x0))
+(Implication (And (Experiencer $e0 $x0) (Member $x0 bad) (Patient $e1 $x0) (Result $e1 $e0)) (MnExperiencer_Bad_Patient_ResultEv_2 $e0 $e1 $x0))
 
 ;; [genuine]  p203753 ~ p204518   records 4 / 4 / 4 (3 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierB-000748 tierB-001594 tierC-000241
 ;;   A: (And (Member $x0 bad) (Patient $e0 $x0) (Result $e0 $e1))
 ;;   B: (And (Member $e0 bad) (Result $e1 $e0))
 ;;   alignment: $e0=$e1 $e1=$e0 (holds in 4 of 4 records)   1 of the shared records duplicate another
-(Implication (And (Member $e1 bad) (Member $x0 bad) (Patient $e0 $x0) (Result $e0 $e1)) (MnBad_Bad_Patient_ResultEv_2 $e0 $e1 $x0))
+(Implication (And (Member $e0 bad) (Member $x0 bad) (Patient $e1 $x0) (Result $e1 $e0)) (MnBad_Bad_Patient_ResultEv $e0 $e1 $x0))
 
 ;; [genuine]  p203754 ~ p204223   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000277 tierC-000278 tierC-000301
@@ -6710,105 +6710,105 @@
 ;;   A: (And (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e1 $x1) (Location $e1 kazakhstan) (Member $e1 build) (Member $x0 hotel) (Past $e0) (Past $e1) (Patient $e0 $x0)) (MnAgent_LocationKazakhstan_Build_Hotel_Past_Past_Patient_3 $e0 $e1 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Member $x1 hotel) (Past $e0) (Past $e1) (Patient $e1 $x1)) (MnAgent_LocationKazakhstan_Build_Hotel_Past_Past_Patient_1 $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203756 ~ p204219   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x1))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e1 $x1) (Location $e1 kazakhstan) (Member $e1 build) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0) (Patient $e1 $x2)) (MnAgent_LocationKazakhstan_Build_Hotel_Past_Patient_Patient_6 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Member $x1 hotel) (Past $e1) (Patient $e0 $x2) (Patient $e1 $x1)) (MnAgent_LocationKazakhstan_Build_Hotel_Past_Patient_Patient_1 $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p203756 ~ p204220   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x1))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e1 $x1) (Location $e1 kazakhstan) (Member $x0 hotel) (Past $e0) (Past $e1) (Patient $e0 $x0) (Patient $e1 $x2)) (MnAgent_LocationKazakhstan_Hotel_Past_Past_Patient_Patient_2 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $x1 hotel) (Past $e0) (Past $e1) (Patient $e0 $x2) (Patient $e1 $x1)) (MnAgent_LocationKazakhstan_Hotel_Past_Past_Patient_Patient_1 $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p203756 ~ p204224   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
 ;;   B: (And (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x0))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Location $e1 kazakhstan) (Member $e1 build) (Member $x0 hotel) (Past $e0) (Past $e1) (Patient $e0 $x0) (Patient $e1 $x1)) (MnLocationKazakhstan_Build_Hotel_Past_Past_Patient_Patient_2 $e0 $e1 $x0 $x1))
+(Implication (And (Location $e0 kazakhstan) (Member $e0 build) (Member $x0 hotel) (Past $e0) (Past $e1) (Patient $e0 $x1) (Patient $e1 $x0)) (MnLocationKazakhstan_Build_Hotel_Past_Past_Patient_Patient_1 $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203756 ~ p204279   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e1 $x1) (Location $e1 kazakhstan) (Member $e1 build) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0)) (MnAgent_LocationKazakhstan_Build_Hotel_Past_Patient_7 $e0 $e1 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Member $x1 hotel) (Past $e1) (Patient $e1 $x1)) (MnAgent_LocationKazakhstan_Build_Hotel_Past_Patient_2 $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203756 ~ p204280   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e1 $x1) (Location $e1 kazakhstan) (Member $x0 hotel) (Past $e0) (Past $e1) (Patient $e0 $x0)) (MnAgent_LocationKazakhstan_Hotel_Past_Past_Patient_2 $e0 $e1 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $x1 hotel) (Past $e0) (Past $e1) (Patient $e1 $x1)) (MnAgent_LocationKazakhstan_Hotel_Past_Past_Patient_1 $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203756 ~ p204281   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Patient $e0 $x1))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e1 $x1) (Location $e1 kazakhstan) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0) (Patient $e1 $x2)) (MnAgent_LocationKazakhstan_Hotel_Past_Patient_Patient_4 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $x1 hotel) (Past $e1) (Patient $e0 $x2) (Patient $e1 $x1)) (MnAgent_LocationKazakhstan_Hotel_Past_Patient_Patient_2 $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p203756 ~ p204308   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
 ;;   B: (And (Location $e0 kazakhstan) (Member $e0 build) (Past $e0))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Location $e1 kazakhstan) (Member $e1 build) (Member $x0 hotel) (Past $e0) (Past $e1) (Patient $e0 $x0)) (MnLocationKazakhstan_Build_Hotel_Past_Past_Patient_2 $e0 $e1 $x0))
+(Implication (And (Location $e0 kazakhstan) (Member $e0 build) (Member $x0 hotel) (Past $e0) (Past $e1) (Patient $e1 $x0)) (MnLocationKazakhstan_Build_Hotel_Past_Past_Patient_1 $e0 $e1 $x0))
 
 ;; [genuine]  p203756 ~ p204309   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
 ;;   B: (And (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x0))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Location $e1 kazakhstan) (Member $e1 build) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0) (Patient $e1 $x1)) (MnLocationKazakhstan_Build_Hotel_Past_Patient_Patient_4 $e0 $e1 $x0 $x1))
+(Implication (And (Location $e0 kazakhstan) (Member $e0 build) (Member $x0 hotel) (Past $e1) (Patient $e0 $x1) (Patient $e1 $x0)) (MnLocationKazakhstan_Build_Hotel_Past_Patient_Patient_2 $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203756 ~ p204310   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
 ;;   B: (And (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x0))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Location $e1 kazakhstan) (Member $x0 hotel) (Past $e0) (Past $e1) (Patient $e0 $x0) (Patient $e1 $x1)) (MnLocationKazakhstan_Hotel_Past_Past_Patient_Patient $e0 $e1 $x0 $x1))
+(Implication (And (Location $e0 kazakhstan) (Member $x0 hotel) (Past $e0) (Past $e1) (Patient $e0 $x1) (Patient $e1 $x0)) (MnLocationKazakhstan_Hotel_Past_Past_Patient_Patient $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203756 ~ p204460   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e1 $x1) (Location $e1 kazakhstan) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0)) (MnAgent_LocationKazakhstan_Hotel_Past_Patient_4 $e0 $e1 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $x1 hotel) (Past $e1) (Patient $e1 $x1)) (MnAgent_LocationKazakhstan_Hotel_Past_Patient_2 $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203756 ~ p204512   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
 ;;   B: (And (Location $e0 kazakhstan) (Member $e0 build))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Location $e1 kazakhstan) (Member $e1 build) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0)) (MnLocationKazakhstan_Build_Hotel_Past_Patient_4 $e0 $e1 $x0))
+(Implication (And (Location $e0 kazakhstan) (Member $e0 build) (Member $x0 hotel) (Past $e1) (Patient $e1 $x0)) (MnLocationKazakhstan_Build_Hotel_Past_Patient_2 $e0 $e1 $x0))
 
 ;; [genuine]  p203756 ~ p204513   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
 ;;   B: (And (Location $e0 kazakhstan) (Past $e0))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Location $e1 kazakhstan) (Member $x0 hotel) (Past $e0) (Past $e1) (Patient $e0 $x0)) (MnLocationKazakhstan_Hotel_Past_Past_Patient $e0 $e1 $x0))
+(Implication (And (Location $e0 kazakhstan) (Member $x0 hotel) (Past $e0) (Past $e1) (Patient $e1 $x0)) (MnLocationKazakhstan_Hotel_Past_Past_Patient $e0 $e1 $x0))
 
 ;; [genuine]  p203756 ~ p204514   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
 ;;   B: (And (Location $e0 kazakhstan) (Patient $e0 $x0))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Location $e1 kazakhstan) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0) (Patient $e1 $x1)) (MnLocationKazakhstan_Hotel_Past_Patient_Patient_2 $e0 $e1 $x0 $x1))
+(Implication (And (Location $e0 kazakhstan) (Member $x0 hotel) (Past $e1) (Patient $e0 $x1) (Patient $e1 $x0)) (MnLocationKazakhstan_Hotel_Past_Patient_Patient_2 $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p203756 ~ p204705   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
 ;;   B: (Location $e0 kazakhstan)
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Location $e1 kazakhstan) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0)) (MnLocationKazakhstan_Hotel_Past_Patient_2 $e0 $e1 $x0))
+(Implication (And (Location $e0 kazakhstan) (Member $x0 hotel) (Past $e1) (Patient $e1 $x0)) (MnLocationKazakhstan_Hotel_Past_Patient_2 $e0 $e1 $x0))
 
 ;; [genuine]  p203763 ~ p203764   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -6836,7 +6836,7 @@
 ;;   A: (And (Member free_soil_party party) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   B: (And (Member republican_party party) (Possession $x0 republican_party))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Member free_soil_party party) (Member republican_party party) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0)) (MnFreeSoilPartyParty_RepublicanPartyParty_PossessionFreeSoilParty_PossessionRepublicanParty_Theme $e0 $x0 $x1))
+(Implication (And (Member free_soil_party party) (Member republican_party party) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0)) (MnFreeSoilPartyParty_RepublicanPartyParty_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_1 $e0 $x0 $x1))
 
 ;; [genuine]  p203763 ~ p204177   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -6857,7 +6857,7 @@
 ;;   A: (And (Member free_soil_party party) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (GroupOf $x1 view) (Member free_soil_party party) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnThemeOfPossessionFreeSoilPartyOfParty_ThemeOfGroupOfView-PossessionRepublicanParty $e0 $x0 $x1))
+(Implication (And (GroupOf $x0 view) (Member free_soil_party party) (Possession $x0 republican_party) (Possession $x1 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnThemeOfGroupOfView-PossessionRepublicanParty_ThemeOfPossessionFreeSoilPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203763 ~ p204500   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -6871,7 +6871,7 @@
 ;;   A: (And (Member free_soil_party party) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 republican_party))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (GroupOf $x1 view) (Member free_soil_party party) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0)) (MnGroupOfView_FreeSoilPartyParty_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_3 $e0 $x0 $x1))
+(Implication (And (GroupOf $x0 view) (Member free_soil_party party) (Possession $x0 republican_party) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnGroupOfView_FreeSoilPartyParty_PossessionRepublicanParty_PossessionFreeSoilParty_Theme_2 $e0 $x0 $x1))
 
 ;; [genuine]  p203763 ~ p204502   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -6906,7 +6906,7 @@
 ;;   A: (And (Member republican_party party) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   B: (And (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Member republican_party party) (Past $e0) (Possession $x0 republican_party) (Possession $x1 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnPast_ThemeOfPossessionRepublicanPartyOfParty_ThemeOfPossessionFreeSoilParty $e0 $x0 $x1))
+(Implication (And (Member republican_party party) (Past $e0) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnPast_ThemeOfPossessionFreeSoilParty_ThemeOfPossessionRepublicanPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203764 ~ p203769   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -6920,7 +6920,7 @@
 ;;   A: (And (Member republican_party party) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   B: (And (Member free_soil_party party) (Possession $x0 free_soil_party))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Member free_soil_party party) (Member republican_party party) (Possession $x0 republican_party) (Possession $x1 free_soil_party) (Theme $e0 $x0)) (MnFreeSoilPartyParty_RepublicanPartyParty_PossessionRepublicanParty_PossessionFreeSoilParty_Theme $e0 $x0 $x1))
+(Implication (And (Member free_soil_party party) (Member republican_party party) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnFreeSoilPartyParty_RepublicanPartyParty_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_2 $e0 $x0 $x1))
 
 ;; [genuine]  p203764 ~ p204176   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -6934,7 +6934,7 @@
 ;;   A: (And (Member republican_party party) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (GroupOf $x1 view) (Member republican_party party) (Possession $x0 republican_party) (Possession $x1 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnThemeOfPossessionRepublicanPartyOfParty_ThemeOfGroupOfView-PossessionFreeSoilParty $e0 $x0 $x1))
+(Implication (And (GroupOf $x0 view) (Member republican_party party) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnThemeOfGroupOfView-PossessionFreeSoilParty_ThemeOfPossessionRepublicanPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203764 ~ p204304   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -6948,7 +6948,7 @@
 ;;   A: (And (Member republican_party party) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 free_soil_party))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (GroupOf $x1 view) (Member republican_party party) (Possession $x0 republican_party) (Possession $x1 free_soil_party) (Theme $e0 $x0)) (MnGroupOfView_RepublicanPartyParty_PossessionRepublicanParty_PossessionFreeSoilParty_Theme_3 $e0 $x0 $x1))
+(Implication (And (GroupOf $x0 view) (Member republican_party party) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnGroupOfView_RepublicanPartyParty_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_2 $e0 $x0 $x1))
 
 ;; [genuine]  p203764 ~ p204501   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -6969,7 +6969,7 @@
 ;;   A: (And (Member republican_party party) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   B: (And (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Member republican_party party) (Possession $x0 republican_party) (Possession $x1 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnThemeOfPossessionRepublicanPartyOfParty_ThemeOfPossessionFreeSoilParty $e0 $x0 $x1))
+(Implication (And (Member republican_party party) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnThemeOfPossessionFreeSoilParty_ThemeOfPossessionRepublicanPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p203764 ~ p204701   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -6983,7 +6983,7 @@
 ;;   A: (And (Member republican_party party) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   B: (Possession $x0 free_soil_party)
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Member republican_party party) (Possession $x0 republican_party) (Possession $x1 free_soil_party) (Theme $e0 $x0)) (MnRepublicanPartyParty_PossessionRepublicanParty_PossessionFreeSoilParty_Theme_1 $e0 $x0 $x1))
+(Implication (And (Member republican_party party) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnRepublicanPartyParty_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_2 $e0 $x0 $x1))
 
 ;; [genuine]  p203768 ~ p203769   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -7004,7 +7004,7 @@
 ;;   A: (And (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   B: (And (Member republican_party party) (Possession $x0 republican_party))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Member republican_party party) (Past $e0) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0)) (MnRepublicanPartyParty_Past_PossessionFreeSoilParty_PossessionRepublicanParty_Theme $e0 $x0 $x1))
+(Implication (And (Member republican_party party) (Past $e0) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0)) (MnRepublicanPartyParty_Past_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_1 $e0 $x0 $x1))
 
 ;; [genuine]  p203768 ~ p204176   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -7032,7 +7032,7 @@
 ;;   A: (And (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (GroupOf $x1 view) (Past $e0) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnPast_ThemeOfPossessionFreeSoilParty_ThemeOfGroupOfView-PossessionRepublicanParty $e0 $x0 $x1))
+(Implication (And (GroupOf $x0 view) (Past $e0) (Possession $x0 republican_party) (Possession $x1 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnPast_ThemeOfGroupOfView-PossessionRepublicanParty_ThemeOfPossessionFreeSoilParty $e0 $x0 $x1))
 
 ;; [genuine]  p203768 ~ p204500   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -7046,7 +7046,7 @@
 ;;   A: (And (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 republican_party))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (GroupOf $x1 view) (Past $e0) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0)) (MnGroupOfView_Past_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_2 $e0 $x0 $x1))
+(Implication (And (GroupOf $x0 view) (Past $e0) (Possession $x0 republican_party) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnGroupOfView_Past_PossessionRepublicanParty_PossessionFreeSoilParty_Theme_2 $e0 $x0 $x1))
 
 ;; [genuine]  p203768 ~ p204502   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -7074,14 +7074,14 @@
 ;;   A: (And (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   B: (Possession $x0 republican_party)
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Past $e0) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0)) (MnPast_PossessionFreeSoilParty_PossessionRepublicanParty_Theme $e0 $x0 $x1))
+(Implication (And (Past $e0) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0)) (MnPast_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_1 $e0 $x0 $x1))
 
 ;; [genuine]  p203769 ~ p203992   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   A: (And (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   B: (And (Member free_soil_party party) (Possession $x0 free_soil_party))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Member free_soil_party party) (Past $e0) (Possession $x0 republican_party) (Possession $x1 free_soil_party) (Theme $e0 $x0)) (MnFreeSoilPartyParty_Past_PossessionRepublicanParty_PossessionFreeSoilParty_Theme $e0 $x0 $x1))
+(Implication (And (Member free_soil_party party) (Past $e0) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnFreeSoilPartyParty_Past_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_2 $e0 $x0 $x1))
 
 ;; [genuine]  p203769 ~ p203993   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -7109,7 +7109,7 @@
 ;;   A: (And (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (GroupOf $x1 view) (Past $e0) (Possession $x0 republican_party) (Possession $x1 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnPast_ThemeOfPossessionRepublicanParty_ThemeOfGroupOfView-PossessionFreeSoilParty $e0 $x0 $x1))
+(Implication (And (GroupOf $x0 view) (Past $e0) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnPast_ThemeOfGroupOfView-PossessionFreeSoilParty_ThemeOfPossessionRepublicanParty $e0 $x0 $x1))
 
 ;; [genuine]  p203769 ~ p204304   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -7123,7 +7123,7 @@
 ;;   A: (And (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 free_soil_party))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (GroupOf $x1 view) (Past $e0) (Possession $x0 republican_party) (Possession $x1 free_soil_party) (Theme $e0 $x0)) (MnGroupOfView_Past_PossessionRepublicanParty_PossessionFreeSoilParty_Theme_2 $e0 $x0 $x1))
+(Implication (And (GroupOf $x0 view) (Past $e0) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnGroupOfView_Past_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_2 $e0 $x0 $x1))
 
 ;; [genuine]  p203769 ~ p204501   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -7144,7 +7144,7 @@
 ;;   A: (And (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   B: (And (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Past $e0) (Possession $x0 republican_party) (Possession $x1 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnPast_ThemeOfPossessionRepublicanParty_ThemeOfPossessionFreeSoilParty $e0 $x0 $x1))
+(Implication (And (Past $e0) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnPast_ThemeOfPossessionFreeSoilParty_ThemeOfPossessionRepublicanParty $e0 $x0 $x1))
 
 ;; [genuine]  p203769 ~ p204701   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -7158,7 +7158,7 @@
 ;;   A: (And (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   B: (Possession $x0 free_soil_party)
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Past $e0) (Possession $x0 republican_party) (Possession $x1 free_soil_party) (Theme $e0 $x0)) (MnPast_PossessionRepublicanParty_PossessionFreeSoilParty_Theme $e0 $x0 $x1))
+(Implication (And (Past $e0) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnPast_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_2 $e0 $x0 $x1))
 
 ;; [genuine]  p203992 ~ p203993   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -7186,7 +7186,7 @@
 ;;   A: (And (Member free_soil_party party) (Possession $x0 free_soil_party))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (GroupOf $x1 view) (Member free_soil_party party) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnGroupOfView_FreeSoilPartyParty_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_4 $e0 $x0 $x1))
+(Implication (And (GroupOf $x0 view) (Member free_soil_party party) (Possession $x0 republican_party) (Possession $x1 free_soil_party) (Theme $e0 $x0)) (MnGroupOfView_FreeSoilPartyParty_PossessionRepublicanParty_PossessionFreeSoilParty_Theme_1 $e0 $x0 $x1))
 
 ;; [genuine]  p203992 ~ p204500   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -7200,7 +7200,7 @@
 ;;   A: (And (Member free_soil_party party) (Possession $x0 free_soil_party))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 republican_party))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (GroupOf $x1 view) (Member free_soil_party party) (Possession $x0 free_soil_party) (Possession $x1 republican_party)) (MnGroupOfView_FreeSoilPartyParty_PossessionFreeSoilParty_PossessionRepublicanParty_2 $x0 $x1))
+(Implication (And (GroupOf $x0 view) (Member free_soil_party party) (Possession $x0 republican_party) (Possession $x1 free_soil_party)) (MnGroupOfView_FreeSoilPartyParty_PossessionRepublicanParty_PossessionFreeSoilParty $x0 $x1))
 
 ;; [genuine]  p203992 ~ p204502   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -7249,7 +7249,7 @@
 ;;   A: (And (Member republican_party party) (Possession $x0 republican_party))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (GroupOf $x1 view) (Member republican_party party) (Possession $x0 republican_party) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnGroupOfView_RepublicanPartyParty_PossessionRepublicanParty_PossessionFreeSoilParty_Theme_4 $e0 $x0 $x1))
+(Implication (And (GroupOf $x0 view) (Member republican_party party) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0)) (MnGroupOfView_RepublicanPartyParty_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_1 $e0 $x0 $x1))
 
 ;; [genuine]  p203993 ~ p204304   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -7263,7 +7263,7 @@
 ;;   A: (And (Member republican_party party) (Possession $x0 republican_party))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 free_soil_party))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (GroupOf $x1 view) (Member republican_party party) (Possession $x0 republican_party) (Possession $x1 free_soil_party)) (MnGroupOfView_RepublicanPartyParty_PossessionRepublicanParty_PossessionFreeSoilParty_2 $x0 $x1))
+(Implication (And (GroupOf $x0 view) (Member republican_party party) (Possession $x0 free_soil_party) (Possession $x1 republican_party)) (MnGroupOfView_RepublicanPartyParty_PossessionFreeSoilParty_PossessionRepublicanParty $x0 $x1))
 
 ;; [genuine]  p203993 ~ p204501   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -7284,7 +7284,7 @@
 ;;   A: (And (Member republican_party party) (Possession $x0 republican_party))
 ;;   B: (And (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Member republican_party party) (Possession $x0 republican_party) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnRepublicanPartyParty_PossessionRepublicanParty_PossessionFreeSoilParty_Theme_2 $e0 $x0 $x1))
+(Implication (And (Member republican_party party) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0)) (MnRepublicanPartyParty_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_1 $e0 $x0 $x1))
 
 ;; [genuine]  p203993 ~ p204560   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -7305,7 +7305,7 @@
 ;;   A: (And (Member republican_party party) (Possession $x0 republican_party))
 ;;   B: (Possession $x0 free_soil_party)
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Member republican_party party) (Possession $x0 republican_party) (Possession $x1 free_soil_party)) (MnRepublicanPartyParty_PossessionRepublicanParty_PossessionFreeSoilParty $x0 $x1))
+(Implication (And (Member republican_party party) (Possession $x0 free_soil_party) (Possession $x1 republican_party)) (MnRepublicanPartyParty_PossessionFreeSoilParty_PossessionRepublicanParty $x0 $x1))
 
 ;; [genuine]  p204174 ~ p204175   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000031 tierC-000032 tierC-000081
@@ -7466,49 +7466,49 @@
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p204218 ~ p204220   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p204218 ~ p204224   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0))
 ;;   B: (And (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p204218 ~ p204281   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Patient $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p204218 ~ p204309   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0))
 ;;   B: (And (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p204218 ~ p204310   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0))
 ;;   B: (And (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p204218 ~ p204514   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0))
 ;;   B: (And (Location $e0 kazakhstan) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p204218 ~ p204548   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
@@ -7522,91 +7522,91 @@
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 $x1=$x1 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p204219 ~ p204224   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p204219 ~ p204280   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0))
 ;;   alignment: $e0=$e0 $x0=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p204219 ~ p204308   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 kazakhstan) (Member $e0 build) (Past $e0))
 ;;   alignment: $e0=$e0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p204219 ~ p204310   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p204219 ~ p204513   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 kazakhstan) (Past $e0))
 ;;   alignment: $e0=$e0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p204219 ~ p204548   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x1))
 ;;   B: (And (Member $x0 hotel) (Patient $e0 $x0))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Member $x2 hotel) (Patient $e0 $x1) (Patient $e1 $x2)) (MnAgent_LocationKazakhstan_Build_Hotel_Patient_Patient_1 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Member $x1 hotel) (Patient $e0 $x2) (Patient $e1 $x1)) (MnAgent_LocationKazakhstan_Build_Hotel_Patient_Patient_1 $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p204220 ~ p204224   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p204220 ~ p204279   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build))
 ;;   alignment: $e0=$e0 $x0=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p204220 ~ p204308   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 kazakhstan) (Member $e0 build) (Past $e0))
 ;;   alignment: $e0=$e0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p204220 ~ p204309   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p204220 ~ p204512   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 kazakhstan) (Member $e0 build))
 ;;   alignment: $e0=$e0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p204220 ~ p204548   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x1))
 ;;   B: (And (Member $x0 hotel) (Patient $e0 $x0))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $x2 hotel) (Past $e0) (Patient $e0 $x1) (Patient $e1 $x2)) (MnAgent_LocationKazakhstan_Hotel_Past_Patient_Patient_1 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $x1 hotel) (Past $e0) (Patient $e0 $x2) (Patient $e1 $x1)) (MnAgent_LocationKazakhstan_Hotel_Past_Patient_Patient_1 $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p204223 ~ p204546   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000277 tierC-000278 tierC-000301
@@ -7627,35 +7627,35 @@
 ;;   A: (And (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build))
 ;;   alignment: $e0=$e0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x0)) (MnAgent_LocationKazakhstan_Build_Past_Patient_2 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p204224 ~ p204280   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0))
 ;;   alignment: $e0=$e0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x0)) (MnAgent_LocationKazakhstan_Build_Past_Patient_2 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p204224 ~ p204281   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Patient $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x1 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x0)) (MnAgent_LocationKazakhstan_Build_Past_Patient_2 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p204224 ~ p204460   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan))
 ;;   alignment: $e0=$e0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x0)) (MnAgent_LocationKazakhstan_Build_Past_Patient_2 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p204224 ~ p204548   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x0))
 ;;   B: (And (Member $x0 hotel) (Patient $e0 $x0))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Location $e0 kazakhstan) (Member $e0 build) (Member $x1 hotel) (Past $e0) (Patient $e0 $x0) (Patient $e1 $x1)) (MnLocationKazakhstan_Build_Hotel_Past_Patient_Patient_1 $e0 $e1 $x0 $x1))
+(Implication (And (Location $e0 kazakhstan) (Member $e0 build) (Member $x0 hotel) (Past $e0) (Patient $e0 $x1) (Patient $e1 $x0)) (MnLocationKazakhstan_Build_Hotel_Past_Patient_Patient_1 $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p204279 ~ p204280   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
@@ -7669,7 +7669,7 @@
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Patient $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p204279 ~ p204308   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
@@ -7683,14 +7683,14 @@
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build))
 ;;   B: (And (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p204279 ~ p204310   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build))
 ;;   B: (And (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p204279 ~ p204513   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
@@ -7704,7 +7704,7 @@
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build))
 ;;   B: (And (Location $e0 kazakhstan) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p204279 ~ p204548   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
@@ -7718,7 +7718,7 @@
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Patient $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p204280 ~ p204308   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
@@ -7732,14 +7732,14 @@
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0))
 ;;   B: (And (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p204280 ~ p204310   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0))
 ;;   B: (And (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p204280 ~ p204512   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
@@ -7753,7 +7753,7 @@
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0))
 ;;   B: (And (Location $e0 kazakhstan) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p204280 ~ p204548   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
@@ -7767,42 +7767,42 @@
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 kazakhstan) (Member $e0 build) (Past $e0))
 ;;   alignment: $e0=$e0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p204281 ~ p204309   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p204281 ~ p204310   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p204281 ~ p204512   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 kazakhstan) (Member $e0 build))
 ;;   alignment: $e0=$e0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p204281 ~ p204513   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 kazakhstan) (Past $e0))
 ;;   alignment: $e0=$e0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p204281 ~ p204548   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Patient $e0 $x1))
 ;;   B: (And (Member $x0 hotel) (Patient $e0 $x0))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $x2 hotel) (Patient $e0 $x1) (Patient $e1 $x2)) (MnAgent_LocationKazakhstan_Hotel_Patient_Patient_1 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $x1 hotel) (Patient $e0 $x2) (Patient $e1 $x1)) (MnAgent_LocationKazakhstan_Hotel_Patient_Patient_1 $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p204284 ~ p204285   records 4 / 4 / 4 (3 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierB-001197 tierB-001399 tierC-000353
@@ -7900,7 +7900,7 @@
 ;;   A: (And (GroupOf $x0 view) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 republican_party))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (GroupOf $x0 view) (GroupOf $x1 view) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0)) (MnGroupOfView_GroupOfView_PossessionFreeSoilParty_PossessionRepublicanParty_Theme $e0 $x0 $x1))
+(Implication (And (GroupOf $x0 view) (GroupOf $x1 view) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0)) (MnGroupOfView_GroupOfView_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_1 $e0 $x0 $x1))
 
 ;; [genuine]  p204303 ~ p204560   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -7921,7 +7921,7 @@
 ;;   A: (And (GroupOf $x0 view) (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 free_soil_party))
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (GroupOf $x0 view) (GroupOf $x1 view) (Possession $x0 republican_party) (Possession $x1 free_soil_party) (Theme $e0 $x0)) (MnGroupOfView_GroupOfView_PossessionRepublicanParty_PossessionFreeSoilParty_Theme $e0 $x0 $x1))
+(Implication (And (GroupOf $x0 view) (GroupOf $x1 view) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnGroupOfView_GroupOfView_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_2 $e0 $x0 $x1))
 
 ;; [genuine]  p204304 ~ p204559   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -7991,7 +7991,7 @@
 ;;   A: (And (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan))
 ;;   alignment: $e0=$e0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x0)) (MnAgent_LocationKazakhstan_Build_Patient_2 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p204309 ~ p204513   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
@@ -8005,14 +8005,14 @@
 ;;   A: (And (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x0))
 ;;   B: (And (Member $x0 hotel) (Patient $e0 $x0))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Location $e0 kazakhstan) (Member $e0 build) (Member $x1 hotel) (Patient $e0 $x0) (Patient $e1 $x1)) (MnLocationKazakhstan_Build_Hotel_Patient_Patient_1 $e0 $e1 $x0 $x1))
+(Implication (And (Location $e0 kazakhstan) (Member $e0 build) (Member $x0 hotel) (Patient $e0 $x1) (Patient $e1 $x0)) (MnLocationKazakhstan_Build_Hotel_Patient_Patient_1 $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p204310 ~ p204460   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan))
 ;;   alignment: $e0=$e0 (holds in 4 of 4 records)   2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x0)) (MnAgent_LocationKazakhstan_Past_Patient_2 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p204310 ~ p204512   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
@@ -8026,7 +8026,7 @@
 ;;   A: (And (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x0))
 ;;   B: (And (Member $x0 hotel) (Patient $e0 $x0))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Location $e0 kazakhstan) (Member $x1 hotel) (Past $e0) (Patient $e0 $x0) (Patient $e1 $x1)) (MnLocationKazakhstan_Hotel_Past_Patient_Patient_1 $e0 $e1 $x0 $x1))
+(Implication (And (Location $e0 kazakhstan) (Member $x0 hotel) (Past $e0) (Patient $e0 $x1) (Patient $e1 $x0)) (MnLocationKazakhstan_Hotel_Past_Patient_Patient_1 $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p204460 ~ p204512   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
@@ -8278,7 +8278,7 @@
 ;;   A: (And (Location $e0 kazakhstan) (Patient $e0 $x0))
 ;;   B: (And (Member $x0 hotel) (Patient $e0 $x0))
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Location $e0 kazakhstan) (Member $x1 hotel) (Patient $e0 $x0) (Patient $e1 $x1)) (MnLocationKazakhstan_Hotel_Patient_Patient $e0 $e1 $x0 $x1))
+(Implication (And (Location $e0 kazakhstan) (Member $x0 hotel) (Patient $e0 $x1) (Patient $e1 $x0)) (MnLocationKazakhstan_Hotel_Patient_Patient $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p204517 ~ p204685   records 4 / 4 / 4 (3 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000050 tierC-000128 tierC-000259
@@ -8299,7 +8299,7 @@
 ;;   A: (And (Member $x0 hotel) (Patient $e0 $x0))
 ;;   B: (Location $e0 kazakhstan)
 ;;   alignment: — (holds in 4 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Location $e1 kazakhstan) (Member $x0 hotel) (Patient $e0 $x0)) (MnLocationKazakhstan_Hotel_Patient $e0 $e1 $x0))
+(Implication (And (Location $e0 kazakhstan) (Member $x0 hotel) (Patient $e1 $x0)) (MnLocationKazakhstan_Hotel_Patient $e0 $e1 $x0))
 
 ;; [genuine]  p204559 ~ p204560   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -8320,7 +8320,7 @@
 ;;   A: (And (Possession $x0 free_soil_party) (Theme $e0 $x0))
 ;;   B: (Possession $x0 republican_party)
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0)) (MnPossessionFreeSoilParty_PossessionRepublicanParty_Theme $e0 $x0 $x1))
+(Implication (And (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0)) (MnPossessionFreeSoilParty_PossessionRepublicanParty_Theme_1 $e0 $x0 $x1))
 
 ;; [genuine]  p204560 ~ p204701   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -8334,7 +8334,7 @@
 ;;   A: (And (Possession $x0 republican_party) (Theme $e0 $x0))
 ;;   B: (Possession $x0 free_soil_party)
 ;;   alignment: — (holds in 3 of 4 records)   no shared skolem: co-occurrence conjunction; 2 of the shared records duplicate another
-(Implication (And (Possession $x0 republican_party) (Possession $x1 free_soil_party) (Theme $e0 $x0)) (MnPossessionRepublicanParty_PossessionFreeSoilParty_Theme $e0 $x0 $x1))
+(Implication (And (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnPossessionFreeSoilParty_PossessionRepublicanParty_Theme_2 $e0 $x0 $x1))
 
 ;; [genuine]  p204701 ~ p204781   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000355
@@ -8369,14 +8369,14 @@
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   alignment: $e0=$e0 $x0=$x0 $x1=$x2 $x2=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfGroupOfView_ThemeOfPossessionFreeSoilParty_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfGroupOfView_ThemeOfPossessionFreeSoilParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204824 ~ p204847   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (Agent $e0 $x0) (Possession $x1 republican_party) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   alignment: $e0=$e0 $x0=$x0 $x1=$x2 $x2=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfGroupOfView_ThemeOfPossessionRepublicanParty_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfGroupOfView_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204824 ~ p204875   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
@@ -8390,28 +8390,28 @@
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x1=$x1 $x2=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (GroupOf $x2 view) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_GroupOfView_GroupOfView_PossessionFreeSoilParty_Theme_Theme_2 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (GroupOf $x2 view) (Possession $x1 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_GroupOfView_GroupOfView_PossessionFreeSoilParty_Theme_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204824 ~ p204877   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 republican_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x1=$x1 $x2=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (GroupOf $x2 view) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_GroupOfView_GroupOfView_PossessionRepublicanParty_Theme_Theme_2 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (GroupOf $x2 view) (Possession $x1 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_GroupOfView_GroupOfView_PossessionRepublicanParty_Theme_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204824 ~ p204878   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (GroupOf $x0 view) (Possession $x1 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x1=$x1 $x2=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (GroupOf $x2 view) (Possession $x1 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_GroupOfView_GroupOfView_PossessionFreeSoilParty_Theme_Theme_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (GroupOf $x2 view) (Possession $x1 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_GroupOfView_GroupOfView_PossessionFreeSoilParty_Theme_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204824 ~ p204879   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (GroupOf $x0 view) (Possession $x1 republican_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x1=$x1 $x2=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (GroupOf $x2 view) (Possession $x1 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_GroupOfView_GroupOfView_PossessionRepublicanParty_Theme_Theme_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (GroupOf $x2 view) (Possession $x1 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_GroupOfView_GroupOfView_PossessionRepublicanParty_Theme_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204824 ~ p204905   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
@@ -8432,14 +8432,14 @@
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x1=$x1 $x2=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfGroupOfView_ThemeOfPossessionFreeSoilParty_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfGroupOfView_ThemeOfPossessionFreeSoilParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204824 ~ p204912   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x1=$x1 $x2=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfGroupOfView_ThemeOfPossessionRepublicanParty_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfGroupOfView_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204824 ~ p204913   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
@@ -8453,28 +8453,28 @@
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (Possession $x0 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x1=$x1 $x2=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfGroupOfView_ThemeOfPossessionFreeSoilParty_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfGroupOfView_ThemeOfPossessionFreeSoilParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204824 ~ p206055   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (Possession $x0 republican_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x1=$x1 $x2=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfGroupOfView_ThemeOfPossessionRepublicanParty_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfGroupOfView_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204824 ~ p206657   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (Agent $e0 $x0) (Past $e0) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   alignment: $e0=$e0 $x0=$x0 $x1=$x2 $x2=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfGroupOfView_Theme_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfGroupOfView_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204824 ~ p206865   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (Past $e0) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x1=$x1 $x2=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfGroupOfView_Theme_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfGroupOfView_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204827 ~ p204833   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-000942 tierC-000025 tierC-000026
@@ -8488,14 +8488,14 @@
 ;;   A: (And (Agent $e0 $x0) (Location $e0 $x1) (Past $e1) (Theme $e1 $e0))
 ;;   B: (And (Agent $e0 $x0) (Location $e1 $x1) (Patient $e1 $x2) (Theme $e0 $e1))
 ;;   alignment: $e0=$e1 $e1=$e0 $x0=$x0 $x1=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 $x1) (Past $e1) (Patient $e0 $x2) (Theme $e1 $e0)) (MnAgent_Agent_Location_Past_Patient_ThemeEv_1 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 $x1) (Past $e1) (Patient $e0 $x2) (Theme $e1 $e0)) (MnAgent_Agent_Location_Past_Patient_ThemeEv $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p204827 ~ p204840   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-000942 tierC-000025 tierC-000026
 ;;   A: (And (Agent $e0 $x0) (Location $e0 $x1) (Past $e1) (Theme $e1 $e0))
 ;;   B: (And (Agent $e0 $x0) (Ongoing $e1) (Patient $e1 $x1) (Theme $e0 $e1))
 ;;   alignment: $e0=$e1 $e1=$e0 $x0=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 $x1) (Ongoing $e0) (Past $e1) (Patient $e0 $x2) (Theme $e1 $e0)) (MnAgent_Agent_Location_Ongoing_Past_Patient_ThemeEv_1 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 $x1) (Ongoing $e0) (Past $e1) (Patient $e0 $x2) (Theme $e1 $e0)) (MnAgent_Agent_Location_Ongoing_Past_Patient_ThemeEv $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p204827 ~ p204882   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-000942 tierC-000025 tierC-000026
@@ -8509,42 +8509,42 @@
 ;;   A: (And (Agent $e0 $x0) (Location $e0 $x1) (Past $e1) (Theme $e1 $e0))
 ;;   B: (And (Location $e0 $x0) (Past $e1) (Patient $e0 $x1) (Theme $e1 $e0))
 ;;   alignment: $e0=$e0 $e1=$e1 $x1=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 $x1) (Past $e1) (Patient $e0 $x2) (Theme $e1 $e0)) (MnPast_ThemeEvOfAgent-Location-Patient_1 $e1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e0 $x1) (Past $e1) (Patient $e0 $x2) (Theme $e1 $e0)) (MnPast_ThemeEvOfAgent-Location-Patient $e1 $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204827 ~ p206646   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-000942 tierC-000025 tierC-000026
 ;;   A: (And (Agent $e0 $x0) (Location $e0 $x1) (Past $e1) (Theme $e1 $e0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 $x1) (Ongoing $e0) (Patient $e0 $x2))
 ;;   alignment: $e0=$e0 $x0=$x0 $x1=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 $x1) (Ongoing $e0) (Past $e1) (Patient $e0 $x2) (Theme $e1 $e0)) (MnPast_ThemeEvOfAgent-Location-Ongoing-Patient_1 $e1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e0 $x1) (Ongoing $e0) (Past $e1) (Patient $e0 $x2) (Theme $e1 $e0)) (MnPast_ThemeEvOfAgent-Location-Ongoing-Patient $e1 $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204827 ~ p206647   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-000942 tierC-000025 tierC-000026
 ;;   A: (And (Agent $e0 $x0) (Location $e0 $x1) (Past $e1) (Theme $e1 $e0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 $x1) (Patient $e0 $x2) (Theme $e1 $e0))
 ;;   alignment: $e0=$e0 $e1=$e1 $x0=$x0 $x1=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 $x1) (Past $e1) (Patient $e0 $x2) (Theme $e1 $e0)) (MnPast_ThemeEvOfAgent-Location-Patient_1 $e1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e0 $x1) (Past $e1) (Patient $e0 $x2) (Theme $e1 $e0)) (MnPast_ThemeEvOfAgent-Location-Patient $e1 $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204827 ~ p206656   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-000942 tierC-000025 tierC-000026
 ;;   A: (And (Agent $e0 $x0) (Location $e0 $x1) (Past $e1) (Theme $e1 $e0))
 ;;   B: (And (Agent $e0 $x0) (Ongoing $e0) (Patient $e0 $x1) (Theme $e1 $e0))
 ;;   alignment: $e0=$e0 $e1=$e1 $x0=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 $x1) (Ongoing $e0) (Past $e1) (Patient $e0 $x2) (Theme $e1 $e0)) (MnPast_ThemeEvOfAgent-Location-Ongoing-Patient_1 $e1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e0 $x1) (Ongoing $e0) (Past $e1) (Patient $e0 $x2) (Theme $e1 $e0)) (MnPast_ThemeEvOfAgent-Location-Ongoing-Patient $e1 $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204827 ~ p206659   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-000942 tierC-000025 tierC-000026
 ;;   A: (And (Agent $e0 $x0) (Location $e0 $x1) (Past $e1) (Theme $e1 $e0))
 ;;   B: (And (Location $e0 $x0) (Ongoing $e0) (Patient $e0 $x1) (Theme $e1 $e0))
 ;;   alignment: $e0=$e0 $e1=$e1 $x1=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 $x1) (Ongoing $e0) (Past $e1) (Patient $e0 $x2) (Theme $e1 $e0)) (MnPast_ThemeEvOfAgent-Location-Ongoing-Patient_1 $e1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e0 $x1) (Ongoing $e0) (Past $e1) (Patient $e0 $x2) (Theme $e1 $e0)) (MnPast_ThemeEvOfAgent-Location-Ongoing-Patient $e1 $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204827 ~ p206832   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-000942 tierC-000025 tierC-000026
 ;;   A: (And (Agent $e0 $x0) (Location $e0 $x1) (Past $e1) (Theme $e1 $e0))
 ;;   B: (And (Location $e0 $x0) (Patient $e0 $x1) (Theme $e1 $e0))
 ;;   alignment: $e0=$e0 $e1=$e1 $x1=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 $x1) (Past $e1) (Patient $e0 $x2) (Theme $e1 $e0)) (MnPast_ThemeEvOfAgent-Location-Patient_1 $e1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e0 $x1) (Past $e1) (Patient $e0 $x2) (Theme $e1 $e0)) (MnPast_ThemeEvOfAgent-Location-Patient $e1 $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204829 ~ p204830   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
@@ -8565,14 +8565,14 @@
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Member $x0 company))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Member $x0 company) (Member $x1 hotel) (Patient $e0 $x1)) (MnAgentOfCompany_LocationEskisehir_Build_PatientOfHotel_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Member $x0 company) (Member $x1 hotel) (Patient $e0 $x1)) (MnAgentOfCompany_LocationEskisehir_Build_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p204829 ~ p204889   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Member $x0 company))
 ;;   B: (And (Location $e0 eskisehir) (Member $e0 build) (Member $x0 hotel) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Member $x0 company) (Member $x1 hotel) (Patient $e0 $x1)) (MnAgentOfCompany_LocationEskisehir_Build_PatientOfHotel_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Member $x0 company) (Member $x1 hotel) (Patient $e0 $x1)) (MnAgentOfCompany_LocationEskisehir_Build_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p204829 ~ p204890   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
@@ -8586,7 +8586,7 @@
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Member $x0 company))
 ;;   B: (And (Location $e0 eskisehir) (Member $x0 hotel) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Member $x0 company) (Member $x1 hotel) (Patient $e0 $x1)) (MnAgentOfCompany_LocationEskisehir_Build_PatientOfHotel_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Member $x0 company) (Member $x1 hotel) (Patient $e0 $x1)) (MnAgentOfCompany_LocationEskisehir_Build_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p204829 ~ p206648   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
@@ -8677,7 +8677,7 @@
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x0 company) (Past $e0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x0 company) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgentOfCompany_LocationEskisehir_Past_PatientOfHotel_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x0 company) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgentOfCompany_LocationEskisehir_Past_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p204830 ~ p204889   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
@@ -8691,14 +8691,14 @@
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x0 company) (Past $e0))
 ;;   B: (And (Location $e0 eskisehir) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x0 company) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgentOfCompany_LocationEskisehir_Past_PatientOfHotel_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x0 company) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgentOfCompany_LocationEskisehir_Past_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p204830 ~ p206037   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x0 company) (Past $e0))
 ;;   B: (And (Location $e0 eskisehir) (Member $x0 hotel) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x0 company) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgentOfCompany_LocationEskisehir_Past_PatientOfHotel_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x0 company) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgentOfCompany_LocationEskisehir_Past_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p204830 ~ p206648   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
@@ -8789,14 +8789,14 @@
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x0 company) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 eskisehir) (Member $e0 build) (Member $x0 hotel) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Member $x0 company) (Member $x1 hotel) (Patient $e0 $x1)) (MnAgentOfCompany_LocationEskisehir_Build_PatientOfHotel_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Member $x0 company) (Member $x1 hotel) (Patient $e0 $x1)) (MnAgentOfCompany_LocationEskisehir_Build_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p204831 ~ p204890   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x0 company) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 eskisehir) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x0 company) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgentOfCompany_LocationEskisehir_Past_PatientOfHotel_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x0 company) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgentOfCompany_LocationEskisehir_Past_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p204831 ~ p206037   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
@@ -8887,14 +8887,14 @@
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 eskisehir) (Member $e0 build) (Member $x0 hotel) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Member $x1 hotel) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_PatientOfHotel_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Member $x1 hotel) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p204832 ~ p204890   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 eskisehir) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Past_PatientOfHotel_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Past_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p204832 ~ p205990   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
@@ -8908,77 +8908,77 @@
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0))
 ;;   alignment: $e0=$e0 $x0=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_PatientOfHotel_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p204832 ~ p206649   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Patient $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 $x1=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Member $x1 hotel) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_PatientOfHotel_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Member $x1 hotel) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p204832 ~ p206650   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0) (Patient $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 $x1=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Past_PatientOfHotel_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Past_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p204832 ~ p206660   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_PatientOfHotel_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p204832 ~ p206796   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build))
 ;;   alignment: $e0=$e0 $x0=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Member $x1 hotel) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_PatientOfHotel_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Member $x1 hotel) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p204832 ~ p206797   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0))
 ;;   alignment: $e0=$e0 $x0=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Past_PatientOfHotel_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Past_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p204832 ~ p206833   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 eskisehir) (Member $e0 build) (Past $e0))
 ;;   alignment: $e0=$e0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_PatientOfHotel_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p204832 ~ p206834   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 eskisehir) (Member $e0 build) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Member $x1 hotel) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_PatientOfHotel_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Member $x1 hotel) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p204832 ~ p206835   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 eskisehir) (Past $e0) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Past_PatientOfHotel_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Past_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p204832 ~ p207241   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 eskisehir) (Member $e0 build))
 ;;   alignment: $e0=$e0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Member $x1 hotel) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_PatientOfHotel_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Member $x1 hotel) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p204832 ~ p207242   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 eskisehir) (Past $e0))
 ;;   alignment: $e0=$e0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Past_PatientOfHotel_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Past_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p204833 ~ p204834   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-000942 tierC-000025 tierC-000026
@@ -8992,7 +8992,7 @@
 ;;   A: (And (Agent $e0 $x0) (Location $e1 $x1) (Past $e0) (Theme $e0 $e1))
 ;;   B: (And (Agent $e0 $x0) (Ongoing $e1) (Patient $e1 $x1) (Theme $e0 $e1))
 ;;   alignment: $e0=$e0 $e1=$e1 $x0=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e1 $x1) (Ongoing $e1) (Past $e0) (Patient $e1 $x2) (Theme $e0 $e1)) (MnAgent_Past_ThemeEvOfLocation-Ongoing-Patient_1 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e1 $x1) (Ongoing $e1) (Past $e0) (Patient $e1 $x2) (Theme $e0 $e1)) (MnAgent_Past_ThemeEvOfLocation-Ongoing-Patient $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p204833 ~ p204882   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-000942 tierC-000025 tierC-000026
@@ -9013,28 +9013,28 @@
 ;;   A: (And (Agent $e0 $x0) (Location $e1 $x1) (Past $e0) (Theme $e0 $e1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 $x1) (Ongoing $e0) (Patient $e0 $x2))
 ;;   alignment: $e1=$e0 $x0=$x0 $x1=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e1 $x1) (Ongoing $e1) (Past $e0) (Patient $e1 $x2) (Theme $e0 $e1)) (MnAgent_Agent_Location_Ongoing_Past_Patient_ThemeEv_2 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 $x1) (Ongoing $e0) (Past $e1) (Patient $e0 $x2) (Theme $e1 $e0)) (MnAgent_Agent_Location_Ongoing_Past_Patient_ThemeEv $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p204833 ~ p206647   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-000942 tierC-000025 tierC-000026
 ;;   A: (And (Agent $e0 $x0) (Location $e1 $x1) (Past $e0) (Theme $e0 $e1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 $x1) (Patient $e0 $x2) (Theme $e1 $e0))
 ;;   alignment: $e0=$e1 $e1=$e0 $x0=$x0 $x1=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e1 $x1) (Past $e0) (Patient $e1 $x2) (Theme $e0 $e1)) (MnAgent_Agent_Location_Past_Patient_ThemeEv_2 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 $x1) (Past $e1) (Patient $e0 $x2) (Theme $e1 $e0)) (MnAgent_Agent_Location_Past_Patient_ThemeEv $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p204833 ~ p206656   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-000942 tierC-000025 tierC-000026
 ;;   A: (And (Agent $e0 $x0) (Location $e1 $x1) (Past $e0) (Theme $e0 $e1))
 ;;   B: (And (Agent $e0 $x0) (Ongoing $e0) (Patient $e0 $x1) (Theme $e1 $e0))
 ;;   alignment: $e0=$e1 $e1=$e0 $x0=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e1 $x1) (Ongoing $e1) (Past $e0) (Patient $e1 $x2) (Theme $e0 $e1)) (MnAgent_Agent_Location_Ongoing_Past_Patient_ThemeEv_2 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 $x1) (Ongoing $e0) (Past $e1) (Patient $e0 $x2) (Theme $e1 $e0)) (MnAgent_Agent_Location_Ongoing_Past_Patient_ThemeEv $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p204833 ~ p206659   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-000942 tierC-000025 tierC-000026
 ;;   A: (And (Agent $e0 $x0) (Location $e1 $x1) (Past $e0) (Theme $e0 $e1))
 ;;   B: (And (Location $e0 $x0) (Ongoing $e0) (Patient $e0 $x1) (Theme $e1 $e0))
 ;;   alignment: $e0=$e1 $e1=$e0 $x1=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e1 $x1) (Ongoing $e1) (Past $e0) (Patient $e1 $x2) (Theme $e0 $e1)) (MnAgent_Past_ThemeEvOfLocation-Ongoing-Patient_1 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e1 $x1) (Ongoing $e1) (Past $e0) (Patient $e1 $x2) (Theme $e0 $e1)) (MnAgent_Past_ThemeEvOfLocation-Ongoing-Patient $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p204833 ~ p206832   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-000942 tierC-000025 tierC-000026
@@ -9048,14 +9048,14 @@
 ;;   A: (And (Agent $e0 $x0) (Location $e1 $x1) (Patient $e1 $x2) (Theme $e0 $e1))
 ;;   B: (And (Agent $e0 $x0) (Ongoing $e1) (Patient $e1 $x1) (Theme $e0 $e1))
 ;;   alignment: $e0=$e0 $e1=$e1 $x0=$x0 $x2=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e1 $x1) (Ongoing $e1) (Patient $e1 $x2) (Theme $e0 $e1)) (MnAgent_ThemeEvOfLocation-Ongoing-Patient_1 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e1 $x1) (Ongoing $e1) (Patient $e1 $x2) (Theme $e0 $e1)) (MnAgent_ThemeEvOfLocation-Ongoing-Patient $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p204834 ~ p204882   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-000942 tierC-000025 tierC-000026
 ;;   A: (And (Agent $e0 $x0) (Location $e1 $x1) (Patient $e1 $x2) (Theme $e0 $e1))
 ;;   B: (And (Location $e0 $x0) (Ongoing $e0) (Past $e1) (Theme $e1 $e0))
 ;;   alignment: $e0=$e1 $e1=$e0 $x1=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e1 $x1) (Ongoing $e1) (Past $e0) (Patient $e1 $x2) (Theme $e0 $e1)) (MnAgent_Past_ThemeEvOfLocation-Ongoing-Patient_1 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e1 $x1) (Ongoing $e1) (Past $e0) (Patient $e1 $x2) (Theme $e0 $e1)) (MnAgent_Past_ThemeEvOfLocation-Ongoing-Patient $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p204834 ~ p204883   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-000942 tierC-000025 tierC-000026
@@ -9076,28 +9076,28 @@
 ;;   A: (And (Agent $e0 $x0) (Location $e1 $x1) (Patient $e1 $x2) (Theme $e0 $e1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 $x1) (Ongoing $e0) (Patient $e0 $x2))
 ;;   alignment: $e1=$e0 $x0=$x0 $x1=$x1 $x2=$x2 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e1 $x1) (Ongoing $e1) (Patient $e1 $x2) (Theme $e0 $e1)) (MnAgent_Agent_Location_Ongoing_Patient_ThemeEv_1 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 $x1) (Ongoing $e0) (Patient $e0 $x2) (Theme $e1 $e0)) (MnAgent_Agent_Location_Ongoing_Patient_ThemeEv $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p204834 ~ p206647   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-000942 tierC-000025 tierC-000026
 ;;   A: (And (Agent $e0 $x0) (Location $e1 $x1) (Patient $e1 $x2) (Theme $e0 $e1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 $x1) (Patient $e0 $x2) (Theme $e1 $e0))
 ;;   alignment: $e0=$e1 $e1=$e0 $x0=$x0 $x1=$x1 $x2=$x2 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e1 $x1) (Patient $e1 $x2) (Theme $e0 $e1)) (MnAgent_Agent_Location_Patient_ThemeEv $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 $x1) (Patient $e0 $x2) (Theme $e1 $e0)) (MnAgent_Agent_Location_Patient_ThemeEv $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p204834 ~ p206656   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-000942 tierC-000025 tierC-000026
 ;;   A: (And (Agent $e0 $x0) (Location $e1 $x1) (Patient $e1 $x2) (Theme $e0 $e1))
 ;;   B: (And (Agent $e0 $x0) (Ongoing $e0) (Patient $e0 $x1) (Theme $e1 $e0))
 ;;   alignment: $e0=$e1 $e1=$e0 $x0=$x0 $x2=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e1 $x1) (Ongoing $e1) (Patient $e1 $x2) (Theme $e0 $e1)) (MnAgent_Agent_Location_Ongoing_Patient_ThemeEv_1 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 $x1) (Ongoing $e0) (Patient $e0 $x2) (Theme $e1 $e0)) (MnAgent_Agent_Location_Ongoing_Patient_ThemeEv $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p204834 ~ p206659   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-000942 tierC-000025 tierC-000026
 ;;   A: (And (Agent $e0 $x0) (Location $e1 $x1) (Patient $e1 $x2) (Theme $e0 $e1))
 ;;   B: (And (Location $e0 $x0) (Ongoing $e0) (Patient $e0 $x1) (Theme $e1 $e0))
 ;;   alignment: $e0=$e1 $e1=$e0 $x1=$x0 $x2=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e1 $x1) (Ongoing $e1) (Patient $e1 $x2) (Theme $e0 $e1)) (MnAgent_ThemeEvOfLocation-Ongoing-Patient_1 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e1 $x1) (Ongoing $e1) (Patient $e1 $x2) (Theme $e0 $e1)) (MnAgent_ThemeEvOfLocation-Ongoing-Patient $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p204836 ~ p204837   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-001962 tierC-000089 tierC-000090
@@ -9139,105 +9139,105 @@
 ;;   A: (And (Agent $e0 $x0) (Member $x0 thing) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   alignment: $e0=$e0 $x0=$x0 $x1=$x2 $x2=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $x0 thing) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgentOfThing_Theme_ThemeOfPossessionFreeSoilParty $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member $x0 thing) (Possession $x1 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgentOfThing_ThemeOfPossessionFreeSoilParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204838 ~ p204847   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Agent $e0 $x0) (Member $x0 thing) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (Agent $e0 $x0) (Possession $x1 republican_party) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   alignment: $e0=$e0 $x0=$x0 $x1=$x2 $x2=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $x0 thing) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgentOfThing_Theme_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member $x0 thing) (Possession $x1 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgentOfThing_ThemeOfPossessionRepublicanParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204838 ~ p204875   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Agent $e0 $x0) (Member $x0 thing) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (GroupOf $x0 view) (Past $e0) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x1=$x1 $x2=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x2 view) (Member $x0 thing) (Past $e0) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgentOfThing_Past_Theme_ThemeOfGroupOfView $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member $x0 thing) (Past $e0) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgentOfThing_Past_ThemeOfGroupOfView_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204838 ~ p204876   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Agent $e0 $x0) (Member $x0 thing) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x1=$x1 $x2=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x2 view) (Member $x0 thing) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgentOfThing_Theme_ThemeOfGroupOfView-PossessionFreeSoilParty $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member $x0 thing) (Possession $x1 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgentOfThing_ThemeOfGroupOfView-PossessionFreeSoilParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204838 ~ p204877   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Agent $e0 $x0) (Member $x0 thing) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 republican_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x1=$x1 $x2=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x2 view) (Member $x0 thing) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgentOfThing_Theme_ThemeOfGroupOfView-PossessionRepublicanParty $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member $x0 thing) (Possession $x1 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgentOfThing_ThemeOfGroupOfView-PossessionRepublicanParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204838 ~ p204878   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Agent $e0 $x0) (Member $x0 thing) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (GroupOf $x0 view) (Possession $x1 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x1=$x1 $x2=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x2 view) (Member $x0 thing) (Possession $x1 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgentOfThing_ThemeOfPossessionFreeSoilParty_ThemeOfGroupOfView $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member $x0 thing) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgentOfThing_ThemeOfGroupOfView_ThemeOfPossessionFreeSoilParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204838 ~ p204879   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Agent $e0 $x0) (Member $x0 thing) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (GroupOf $x0 view) (Possession $x1 republican_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x1=$x1 $x2=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x2 view) (Member $x0 thing) (Possession $x1 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgentOfThing_ThemeOfPossessionRepublicanParty_ThemeOfGroupOfView $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member $x0 thing) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgentOfThing_ThemeOfGroupOfView_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204838 ~ p204905   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Agent $e0 $x0) (Member $x0 thing) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (Member free_soil_party party) (Possession $x0 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x1=$x1 $x2=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $x0 thing) (Member free_soil_party party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgentOfThing_Theme_ThemeOfPossessionFreeSoilPartyOfParty $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member $x0 thing) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgentOfThing_ThemeOfPossessionFreeSoilPartyOfParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204838 ~ p204906   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Agent $e0 $x0) (Member $x0 thing) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (Member republican_party party) (Possession $x0 republican_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x1=$x1 $x2=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $x0 thing) (Member republican_party party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgentOfThing_Theme_ThemeOfPossessionRepublicanPartyOfParty $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member $x0 thing) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgentOfThing_ThemeOfPossessionRepublicanPartyOfParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204838 ~ p204911   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Agent $e0 $x0) (Member $x0 thing) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x1=$x1 $x2=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $x0 thing) (Past $e0) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgentOfThing_Past_Theme_ThemeOfPossessionFreeSoilParty $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member $x0 thing) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgentOfThing_Past_ThemeOfPossessionFreeSoilParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204838 ~ p204912   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Agent $e0 $x0) (Member $x0 thing) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x1=$x1 $x2=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $x0 thing) (Past $e0) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgentOfThing_Past_Theme_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member $x0 thing) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgentOfThing_Past_ThemeOfPossessionRepublicanParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204838 ~ p204913   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Agent $e0 $x0) (Member $x0 thing) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x1=$x1 $x2=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $x0 thing) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgentOfThing_ThemeOfPossessionRepublicanParty_ThemeOfPossessionFreeSoilParty $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member $x0 thing) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgentOfThing_ThemeOfPossessionFreeSoilParty_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204838 ~ p206028   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Agent $e0 $x0) (Member $x0 thing) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (GroupOf $x0 view) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x1=$x1 $x2=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x2 view) (Member $x0 thing) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgentOfThing_Theme_ThemeOfGroupOfView $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Member $x0 thing) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgentOfThing_ThemeOfGroupOfView_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204838 ~ p206054   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Agent $e0 $x0) (Member $x0 thing) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (Possession $x0 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x1=$x1 $x2=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $x0 thing) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgentOfThing_Theme_ThemeOfPossessionFreeSoilParty $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member $x0 thing) (Possession $x1 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgentOfThing_ThemeOfPossessionFreeSoilParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204838 ~ p206055   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Agent $e0 $x0) (Member $x0 thing) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (Possession $x0 republican_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x1=$x1 $x2=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $x0 thing) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgentOfThing_Theme_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member $x0 thing) (Possession $x1 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgentOfThing_ThemeOfPossessionRepublicanParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204838 ~ p206657   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
@@ -9258,112 +9258,112 @@
 ;;   A: (And (Agent $e0 $x0) (Ongoing $e1) (Patient $e1 $x1) (Theme $e0 $e1))
 ;;   B: (And (Location $e0 $x0) (Ongoing $e0) (Past $e1) (Theme $e1 $e0))
 ;;   alignment: $e0=$e1 $e1=$e0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e1 $x2) (Ongoing $e1) (Past $e0) (Patient $e1 $x1) (Theme $e0 $e1)) (MnAgent_Past_ThemeEvOfLocation-Ongoing-Patient_2 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e1 $x1) (Ongoing $e1) (Past $e0) (Patient $e1 $x2) (Theme $e0 $e1)) (MnAgent_Past_ThemeEvOfLocation-Ongoing-Patient $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p204840 ~ p204883   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-000942 tierC-000025 tierC-000026
 ;;   A: (And (Agent $e0 $x0) (Ongoing $e1) (Patient $e1 $x1) (Theme $e0 $e1))
 ;;   B: (And (Location $e0 $x0) (Past $e1) (Patient $e0 $x1) (Theme $e1 $e0))
 ;;   alignment: $e0=$e1 $e1=$e0 $x1=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e1 $x2) (Ongoing $e1) (Past $e0) (Patient $e1 $x1) (Theme $e0 $e1)) (MnAgent_Past_ThemeEvOfLocation-Ongoing-Patient_2 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e1 $x1) (Ongoing $e1) (Past $e0) (Patient $e1 $x2) (Theme $e0 $e1)) (MnAgent_Past_ThemeEvOfLocation-Ongoing-Patient $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p204840 ~ p206035   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-000942 tierC-000025 tierC-000026
 ;;   A: (And (Agent $e0 $x0) (Ongoing $e1) (Patient $e1 $x1) (Theme $e0 $e1))
 ;;   B: (And (Location $e0 $x0) (Past $e1) (Theme $e1 $e0))
 ;;   alignment: $e0=$e1 $e1=$e0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e1 $x2) (Ongoing $e1) (Past $e0) (Patient $e1 $x1) (Theme $e0 $e1)) (MnAgent_Past_ThemeEvOfLocation-Ongoing-Patient_2 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e1 $x1) (Ongoing $e1) (Past $e0) (Patient $e1 $x2) (Theme $e0 $e1)) (MnAgent_Past_ThemeEvOfLocation-Ongoing-Patient $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p204840 ~ p206646   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-000942 tierC-000025 tierC-000026
 ;;   A: (And (Agent $e0 $x0) (Ongoing $e1) (Patient $e1 $x1) (Theme $e0 $e1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 $x1) (Ongoing $e0) (Patient $e0 $x2))
 ;;   alignment: $e1=$e0 $x0=$x0 $x1=$x2 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e1 $x2) (Ongoing $e1) (Patient $e1 $x1) (Theme $e0 $e1)) (MnAgent_Agent_Location_Ongoing_Patient_ThemeEv_2 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 $x1) (Ongoing $e0) (Patient $e0 $x2) (Theme $e1 $e0)) (MnAgent_Agent_Location_Ongoing_Patient_ThemeEv $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p204840 ~ p206647   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-000942 tierC-000025 tierC-000026
 ;;   A: (And (Agent $e0 $x0) (Ongoing $e1) (Patient $e1 $x1) (Theme $e0 $e1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 $x1) (Patient $e0 $x2) (Theme $e1 $e0))
 ;;   alignment: $e0=$e1 $e1=$e0 $x0=$x0 $x1=$x2 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e1 $x2) (Ongoing $e1) (Patient $e1 $x1) (Theme $e0 $e1)) (MnAgent_Agent_Location_Ongoing_Patient_ThemeEv_2 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Location $e0 $x1) (Ongoing $e0) (Patient $e0 $x2) (Theme $e1 $e0)) (MnAgent_Agent_Location_Ongoing_Patient_ThemeEv $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p204840 ~ p206656   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-000942 tierC-000025 tierC-000026
 ;;   A: (And (Agent $e0 $x0) (Ongoing $e1) (Patient $e1 $x1) (Theme $e0 $e1))
 ;;   B: (And (Agent $e0 $x0) (Ongoing $e0) (Patient $e0 $x1) (Theme $e1 $e0))
 ;;   alignment: $e0=$e1 $e1=$e0 $x0=$x0 $x1=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Ongoing $e1) (Patient $e1 $x1) (Theme $e0 $e1)) (MnAgent_Agent_Ongoing_Patient_ThemeEv $e0 $e1 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Ongoing $e0) (Patient $e0 $x1) (Theme $e1 $e0)) (MnAgent_Agent_Ongoing_Patient_ThemeEv $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p204840 ~ p206659   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-000942 tierC-000025 tierC-000026
 ;;   A: (And (Agent $e0 $x0) (Ongoing $e1) (Patient $e1 $x1) (Theme $e0 $e1))
 ;;   B: (And (Location $e0 $x0) (Ongoing $e0) (Patient $e0 $x1) (Theme $e1 $e0))
 ;;   alignment: $e0=$e1 $e1=$e0 $x1=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e1 $x2) (Ongoing $e1) (Patient $e1 $x1) (Theme $e0 $e1)) (MnAgent_ThemeEvOfLocation-Ongoing-Patient_2 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e1 $x1) (Ongoing $e1) (Patient $e1 $x2) (Theme $e0 $e1)) (MnAgent_ThemeEvOfLocation-Ongoing-Patient $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p204840 ~ p206832   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-000942 tierC-000025 tierC-000026
 ;;   A: (And (Agent $e0 $x0) (Ongoing $e1) (Patient $e1 $x1) (Theme $e0 $e1))
 ;;   B: (And (Location $e0 $x0) (Patient $e0 $x1) (Theme $e1 $e0))
 ;;   alignment: $e0=$e1 $e1=$e0 $x1=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e1 $x2) (Ongoing $e1) (Patient $e1 $x1) (Theme $e0 $e1)) (MnAgent_ThemeEvOfLocation-Ongoing-Patient_2 $e0 $e1 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e1 $x1) (Ongoing $e1) (Patient $e1 $x2) (Theme $e0 $e1)) (MnAgent_ThemeEvOfLocation-Ongoing-Patient $e0 $e1 $x0 $x1 $x2))
 
 ;; [genuine]  p204843 ~ p204845   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-000258 tierC-000123 tierC-000124
 ;;   A: (And (Agent $e0 $x0) (Past $e0) (Theme $e1 $x1) (To $e0 $e1))
 ;;   B: (And (Agent $e0 $x0) (Past $e1) (Theme $e0 $x1) (To $e1 $e0))
 ;;   alignment: $e0=$e1 $e1=$e0 $x0=$x0 $x1=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Past $e0) (Theme $e1 $x1) (To $e0 $e1)) (MnAgent_Agent_Past_Theme_ToEv_1 $e0 $e1 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Past $e0) (Theme $e1 $x1) (To $e0 $e1)) (MnAgent_Agent_Past_Theme_ToEv $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p204843 ~ p206822   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-000258 tierC-000123 tierC-000124
 ;;   A: (And (Agent $e0 $x0) (Past $e0) (Theme $e1 $x1) (To $e0 $e1))
 ;;   B: (And (Agent $e0 $x0) (Theme $e0 $x1) (To $e1 $e0))
 ;;   alignment: $e0=$e1 $e1=$e0 $x0=$x0 $x1=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Past $e0) (Theme $e1 $x1) (To $e0 $e1)) (MnAgent_Agent_Past_Theme_ToEv_1 $e0 $e1 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Past $e0) (Theme $e1 $x1) (To $e0 $e1)) (MnAgent_Agent_Past_Theme_ToEv $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p204845 ~ p206004   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-000258 tierC-000123 tierC-000124
 ;;   A: (And (Agent $e0 $x0) (Past $e1) (Theme $e0 $x1) (To $e1 $e0))
 ;;   B: (And (Agent $e0 $x0) (Theme $e1 $x1) (To $e0 $e1))
 ;;   alignment: $e0=$e1 $e1=$e0 $x0=$x0 $x1=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Past $e1) (Theme $e0 $x1) (To $e1 $e0)) (MnAgent_Agent_Past_Theme_ToEv_2 $e0 $e1 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Past $e0) (Theme $e1 $x1) (To $e0 $e1)) (MnAgent_Agent_Past_Theme_ToEv $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p204846 ~ p204847   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (Agent $e0 $x0) (Possession $x1 republican_party) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   alignment: $e0=$e0 $x0=$x0 $x1=$x2 $x2=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfPossessionFreeSoilParty_ThemeOfPossessionRepublicanParty_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfPossessionFreeSoilParty_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204846 ~ p204875   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (GroupOf $x0 view) (Past $e0) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x1=$x1 $x2=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x2 view) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionFreeSoilParty_ThemeOfGroupOfView $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfGroupOfView_ThemeOfPossessionFreeSoilParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204846 ~ p204876   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x1=$x0 $x2=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x1 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfGroupOfView-PossessionFreeSoilParty_Theme_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x1 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfGroupOfView-PossessionFreeSoilParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204846 ~ p204877   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 republican_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x1=$x1 $x2=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x2 view) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfPossessionFreeSoilParty_ThemeOfGroupOfView-PossessionRepublicanParty $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfGroupOfView-PossessionRepublicanParty_ThemeOfPossessionFreeSoilParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204846 ~ p204878   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (GroupOf $x0 view) (Possession $x1 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x1=$x1 $x2=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x2 view) (Possession $x1 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfPossessionFreeSoilParty_ThemeOfGroupOfView $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfGroupOfView_ThemeOfPossessionFreeSoilParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204846 ~ p204879   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
@@ -9377,7 +9377,7 @@
 ;;   A: (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (Member free_soil_party party) (Possession $x0 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x1=$x0 $x2=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfPossessionFreeSoilPartyOfParty_Theme_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfPossessionFreeSoilPartyOfParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204846 ~ p204906   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
@@ -9391,70 +9391,70 @@
 ;;   A: (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x1=$x0 $x2=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionFreeSoilParty_Theme_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionFreeSoilParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204846 ~ p204912   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x1=$x1 $x2=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionFreeSoilParty_ThemeOfPossessionRepublicanParty_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionFreeSoilParty_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204846 ~ p204913   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x1=$x0 $x2=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfPossessionFreeSoilParty_ThemeOfPossessionRepublicanParty_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfPossessionFreeSoilParty_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204846 ~ p206028   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (GroupOf $x0 view) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x1=$x1 $x2=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x2 view) (Possession $x1 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfPossessionFreeSoilParty_ThemeOfGroupOfView $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfGroupOfView_ThemeOfPossessionFreeSoilParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204846 ~ p206055   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (Possession $x0 republican_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x1=$x1 $x2=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfPossessionFreeSoilParty_ThemeOfPossessionRepublicanParty_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfPossessionFreeSoilParty_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204846 ~ p206657   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (Agent $e0 $x0) (Past $e0) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   alignment: $e0=$e0 $x0=$x0 $x1=$x2 $x2=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionFreeSoilParty_Theme_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionFreeSoilParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204846 ~ p206865   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (Past $e0) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x1=$x1 $x2=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionFreeSoilParty_Theme_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionFreeSoilParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204847 ~ p204875   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Agent $e0 $x0) (Possession $x1 republican_party) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (GroupOf $x0 view) (Past $e0) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x1=$x1 $x2=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x2 view) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionRepublicanParty_ThemeOfGroupOfView $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfGroupOfView_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204847 ~ p204876   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Agent $e0 $x0) (Possession $x1 republican_party) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x1=$x1 $x2=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x2 view) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfPossessionRepublicanParty_ThemeOfGroupOfView-PossessionFreeSoilParty $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfGroupOfView-PossessionFreeSoilParty_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204847 ~ p204877   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Agent $e0 $x0) (Possession $x1 republican_party) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 republican_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x1=$x0 $x2=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x1 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfGroupOfView-PossessionRepublicanParty_Theme_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x1 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfGroupOfView-PossessionRepublicanParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204847 ~ p204878   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
@@ -9468,70 +9468,70 @@
 ;;   A: (And (Agent $e0 $x0) (Possession $x1 republican_party) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (GroupOf $x0 view) (Possession $x1 republican_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x1=$x1 $x2=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x2 view) (Possession $x1 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfPossessionRepublicanParty_ThemeOfGroupOfView $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfGroupOfView_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204847 ~ p204905   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Agent $e0 $x0) (Possession $x1 republican_party) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (Member free_soil_party party) (Possession $x0 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x1=$x1 $x2=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member free_soil_party party) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfPossessionRepublicanParty_ThemeOfPossessionFreeSoilPartyOfParty $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member free_soil_party party) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfPossessionFreeSoilPartyOfParty_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204847 ~ p204906   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Agent $e0 $x0) (Possession $x1 republican_party) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (Member republican_party party) (Possession $x0 republican_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x1=$x0 $x2=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfPossessionRepublicanPartyOfParty_Theme_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfPossessionRepublicanPartyOfParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204847 ~ p204911   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Agent $e0 $x0) (Possession $x1 republican_party) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x1=$x1 $x2=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Past $e0) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionRepublicanParty_ThemeOfPossessionFreeSoilParty $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionFreeSoilParty_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204847 ~ p204912   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Agent $e0 $x0) (Possession $x1 republican_party) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x1=$x0 $x2=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionRepublicanParty_Theme_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionRepublicanParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204847 ~ p204913   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Agent $e0 $x0) (Possession $x1 republican_party) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x1=$x1 $x2=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfPossessionRepublicanParty_ThemeOfPossessionFreeSoilParty $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfPossessionFreeSoilParty_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204847 ~ p206028   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Agent $e0 $x0) (Possession $x1 republican_party) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (GroupOf $x0 view) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x1=$x1 $x2=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x2 view) (Possession $x1 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfPossessionRepublicanParty_ThemeOfGroupOfView $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfGroupOfView_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204847 ~ p206054   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Agent $e0 $x0) (Possession $x1 republican_party) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (Possession $x0 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x1=$x1 $x2=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Possession $x1 republican_party) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfPossessionRepublicanParty_ThemeOfPossessionFreeSoilParty $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfPossessionFreeSoilParty_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204847 ~ p206657   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Agent $e0 $x0) (Possession $x1 republican_party) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (Agent $e0 $x0) (Past $e0) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   alignment: $e0=$e0 $x0=$x0 $x1=$x2 $x2=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionRepublicanParty_Theme_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionRepublicanParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204847 ~ p206865   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Agent $e0 $x0) (Possession $x1 republican_party) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (Past $e0) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x1=$x1 $x2=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionRepublicanParty_Theme_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionRepublicanParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204852 ~ p204859   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-001594 tierC-000241 tierC-000242
@@ -9692,28 +9692,28 @@
 ;;   A: (And (GroupOf $x0 view) (Past $e0) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x1 $x1=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (GroupOf $x0 view) (GroupOf $x1 view) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnGroupOfView_GroupOfView_Past_PossessionFreeSoilParty_Theme_Theme_2 $e0 $x0 $x1))
+(Implication (And (GroupOf $x0 view) (GroupOf $x1 view) (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnGroupOfView_GroupOfView_Past_PossessionFreeSoilParty_Theme_Theme $e0 $x0 $x1))
 
 ;; [genuine]  p204875 ~ p204877   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (GroupOf $x0 view) (Past $e0) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Possession $x0 republican_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x1 $x1=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (GroupOf $x0 view) (GroupOf $x1 view) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnGroupOfView_GroupOfView_Past_PossessionRepublicanParty_Theme_Theme_2 $e0 $x0 $x1))
+(Implication (And (GroupOf $x0 view) (GroupOf $x1 view) (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnGroupOfView_GroupOfView_Past_PossessionRepublicanParty_Theme_Theme $e0 $x0 $x1))
 
 ;; [genuine]  p204875 ~ p204878   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (GroupOf $x0 view) (Past $e0) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Possession $x1 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x1 $x1=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (GroupOf $x0 view) (GroupOf $x1 view) (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnGroupOfView_GroupOfView_Past_PossessionFreeSoilParty_Theme_Theme_1 $e0 $x0 $x1))
+(Implication (And (GroupOf $x0 view) (GroupOf $x1 view) (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnGroupOfView_GroupOfView_Past_PossessionFreeSoilParty_Theme_Theme $e0 $x0 $x1))
 
 ;; [genuine]  p204875 ~ p204879   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (GroupOf $x0 view) (Past $e0) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Possession $x1 republican_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x1 $x1=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (GroupOf $x0 view) (GroupOf $x1 view) (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnGroupOfView_GroupOfView_Past_PossessionRepublicanParty_Theme_Theme_1 $e0 $x0 $x1))
+(Implication (And (GroupOf $x0 view) (GroupOf $x1 view) (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnGroupOfView_GroupOfView_Past_PossessionRepublicanParty_Theme_Theme $e0 $x0 $x1))
 
 ;; [genuine]  p204875 ~ p204905   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
@@ -9769,14 +9769,14 @@
 ;;   A: (And (GroupOf $x0 view) (Past $e0) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Past $e0) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   alignment: $e0=$e0 $x0=$x2 $x1=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x2) (GroupOf $x0 view) (Past $e0) (Theme $e0 $x0) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView_Theme_2 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfGroupOfView_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204875 ~ p206821   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (GroupOf $x0 view) (Past $e0) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   alignment: $e0=$e0 $x0=$x2 $x1=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x2) (GroupOf $x0 view) (Past $e0) (Theme $e0 $x0) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView_Theme_2 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfGroupOfView_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204876 ~ p204877   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
@@ -9790,7 +9790,7 @@
 ;;   A: (And (GroupOf $x0 view) (Possession $x0 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Possession $x1 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x1 $x1=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (GroupOf $x0 view) (GroupOf $x1 view) (Possession $x0 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnGroupOfView_GroupOfView_PossessionFreeSoilParty_Theme_Theme_1 $e0 $x0 $x1))
+(Implication (And (GroupOf $x0 view) (GroupOf $x1 view) (Possession $x0 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnGroupOfView_GroupOfView_PossessionFreeSoilParty_Theme_Theme $e0 $x0 $x1))
 
 ;; [genuine]  p204876 ~ p204879   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
@@ -9846,14 +9846,14 @@
 ;;   A: (And (GroupOf $x0 view) (Possession $x0 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Past $e0) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   alignment: $e0=$e0 $x0=$x2 $x1=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x2) (GroupOf $x0 view) (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty_Theme $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfGroupOfView-PossessionFreeSoilParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204876 ~ p206821   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (GroupOf $x0 view) (Possession $x0 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   alignment: $e0=$e0 $x0=$x2 $x1=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x2) (GroupOf $x0 view) (Possession $x0 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionFreeSoilParty_Theme_2 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x1 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfGroupOfView-PossessionFreeSoilParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204876 ~ p206865   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
@@ -9874,7 +9874,7 @@
 ;;   A: (And (GroupOf $x0 view) (Possession $x0 republican_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Possession $x1 republican_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x1 $x1=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (GroupOf $x0 view) (GroupOf $x1 view) (Possession $x0 republican_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnGroupOfView_GroupOfView_PossessionRepublicanParty_Theme_Theme_1 $e0 $x0 $x1))
+(Implication (And (GroupOf $x0 view) (GroupOf $x1 view) (Possession $x0 republican_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnGroupOfView_GroupOfView_PossessionRepublicanParty_Theme_Theme $e0 $x0 $x1))
 
 ;; [genuine]  p204877 ~ p204905   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
@@ -9923,14 +9923,14 @@
 ;;   A: (And (GroupOf $x0 view) (Possession $x0 republican_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Past $e0) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   alignment: $e0=$e0 $x0=$x2 $x1=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x2) (GroupOf $x0 view) (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty_Theme $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfGroupOfView-PossessionRepublicanParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204877 ~ p206821   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (GroupOf $x0 view) (Possession $x0 republican_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   alignment: $e0=$e0 $x0=$x2 $x1=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x2) (GroupOf $x0 view) (Possession $x0 republican_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView-PossessionRepublicanParty_Theme_2 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x1 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfGroupOfView-PossessionRepublicanParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204877 ~ p206865   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
@@ -9944,7 +9944,7 @@
 ;;   A: (And (GroupOf $x0 view) (Possession $x1 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Possession $x1 republican_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x1 $x1=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (GroupOf $x0 view) (GroupOf $x1 view) (Possession $x0 republican_party) (Possession $x1 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnGroupOfView_GroupOfView_PossessionRepublicanParty_PossessionFreeSoilParty_Theme_Theme $e0 $x0 $x1))
+(Implication (And (GroupOf $x0 view) (GroupOf $x1 view) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnGroupOfView_GroupOfView_PossessionFreeSoilParty_PossessionRepublicanParty_Theme_Theme $e0 $x0 $x1))
 
 ;; [genuine]  p204878 ~ p204905   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
@@ -9993,14 +9993,14 @@
 ;;   A: (And (GroupOf $x0 view) (Possession $x1 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Past $e0) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   alignment: $e0=$e0 $x0=$x2 $x1=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x2) (GroupOf $x0 view) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView_ThemeOfPossessionFreeSoilParty_2 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfGroupOfView_ThemeOfPossessionFreeSoilParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204878 ~ p206821   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (GroupOf $x0 view) (Possession $x1 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   alignment: $e0=$e0 $x0=$x2 $x1=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x2) (GroupOf $x0 view) (Possession $x1 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView_ThemeOfPossessionFreeSoilParty_2 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x2 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfGroupOfView_ThemeOfPossessionFreeSoilParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204878 ~ p206865   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
@@ -10056,14 +10056,14 @@
 ;;   A: (And (GroupOf $x0 view) (Possession $x1 republican_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Past $e0) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   alignment: $e0=$e0 $x0=$x2 $x1=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x2) (GroupOf $x0 view) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView_ThemeOfPossessionRepublicanParty_2 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfGroupOfView_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204879 ~ p206821   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (GroupOf $x0 view) (Possession $x1 republican_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   alignment: $e0=$e0 $x0=$x2 $x1=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x2) (GroupOf $x0 view) (Possession $x1 republican_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView_ThemeOfPossessionRepublicanParty_2 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfGroupOfView_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204879 ~ p206865   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
@@ -10084,21 +10084,21 @@
 ;;   A: (And (Location $e0 $x0) (Ongoing $e0) (Past $e1) (Theme $e1 $e0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 $x1) (Ongoing $e0) (Patient $e0 $x2))
 ;;   alignment: $e0=$e0 $x0=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (Location $e0 $x0) (Ongoing $e0) (Past $e1) (Patient $e0 $x2) (Theme $e1 $e0)) (MnPast_ThemeEvOfAgent-Location-Ongoing-Patient_2 $e1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e0 $x1) (Ongoing $e0) (Past $e1) (Patient $e0 $x2) (Theme $e1 $e0)) (MnPast_ThemeEvOfAgent-Location-Ongoing-Patient $e1 $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204882 ~ p206647   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-000942 tierC-000025 tierC-000026
 ;;   A: (And (Location $e0 $x0) (Ongoing $e0) (Past $e1) (Theme $e1 $e0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 $x1) (Patient $e0 $x2) (Theme $e1 $e0))
 ;;   alignment: $e0=$e0 $e1=$e1 $x0=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (Location $e0 $x0) (Ongoing $e0) (Past $e1) (Patient $e0 $x2) (Theme $e1 $e0)) (MnPast_ThemeEvOfAgent-Location-Ongoing-Patient_2 $e1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e0 $x1) (Ongoing $e0) (Past $e1) (Patient $e0 $x2) (Theme $e1 $e0)) (MnPast_ThemeEvOfAgent-Location-Ongoing-Patient $e1 $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204882 ~ p206656   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-000942 tierC-000025 tierC-000026
 ;;   A: (And (Location $e0 $x0) (Ongoing $e0) (Past $e1) (Theme $e1 $e0))
 ;;   B: (And (Agent $e0 $x0) (Ongoing $e0) (Patient $e0 $x1) (Theme $e1 $e0))
 ;;   alignment: $e0=$e0 $e1=$e1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (Location $e0 $x0) (Ongoing $e0) (Past $e1) (Patient $e0 $x2) (Theme $e1 $e0)) (MnPast_ThemeEvOfAgent-Location-Ongoing-Patient_2 $e1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e0 $x1) (Ongoing $e0) (Past $e1) (Patient $e0 $x2) (Theme $e1 $e0)) (MnPast_ThemeEvOfAgent-Location-Ongoing-Patient $e1 $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204882 ~ p206659   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-000942 tierC-000025 tierC-000026
@@ -10119,21 +10119,21 @@
 ;;   A: (And (Location $e0 $x0) (Past $e1) (Patient $e0 $x1) (Theme $e1 $e0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 $x1) (Ongoing $e0) (Patient $e0 $x2))
 ;;   alignment: $e0=$e0 $x0=$x1 $x1=$x2 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x2) (Location $e0 $x0) (Ongoing $e0) (Past $e1) (Patient $e0 $x1) (Theme $e1 $e0)) (MnPast_ThemeEvOfAgent-Location-Ongoing-Patient_3 $e1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e0 $x1) (Ongoing $e0) (Past $e1) (Patient $e0 $x2) (Theme $e1 $e0)) (MnPast_ThemeEvOfAgent-Location-Ongoing-Patient $e1 $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204883 ~ p206647   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-000942 tierC-000025 tierC-000026
 ;;   A: (And (Location $e0 $x0) (Past $e1) (Patient $e0 $x1) (Theme $e1 $e0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 $x1) (Patient $e0 $x2) (Theme $e1 $e0))
 ;;   alignment: $e0=$e0 $e1=$e1 $x0=$x1 $x1=$x2 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x2) (Location $e0 $x0) (Past $e1) (Patient $e0 $x1) (Theme $e1 $e0)) (MnPast_ThemeEvOfAgent-Location-Patient_3 $e1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e0 $x1) (Past $e1) (Patient $e0 $x2) (Theme $e1 $e0)) (MnPast_ThemeEvOfAgent-Location-Patient $e1 $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204883 ~ p206656   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-000942 tierC-000025 tierC-000026
 ;;   A: (And (Location $e0 $x0) (Past $e1) (Patient $e0 $x1) (Theme $e1 $e0))
 ;;   B: (And (Agent $e0 $x0) (Ongoing $e0) (Patient $e0 $x1) (Theme $e1 $e0))
 ;;   alignment: $e0=$e0 $e1=$e1 $x1=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x2) (Location $e0 $x0) (Ongoing $e0) (Past $e1) (Patient $e0 $x1) (Theme $e1 $e0)) (MnPast_ThemeEvOfAgent-Location-Ongoing-Patient_3 $e1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e0 $x1) (Ongoing $e0) (Past $e1) (Patient $e0 $x2) (Theme $e1 $e0)) (MnPast_ThemeEvOfAgent-Location-Ongoing-Patient $e1 $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204883 ~ p206659   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-000942 tierC-000025 tierC-000026
@@ -10154,28 +10154,28 @@
 ;;   A: (And (Location $e0 eskisehir) (Member $e0 build) (Member $x0 hotel) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x0 company))
 ;;   alignment: $e0=$e0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (Location $e0 eskisehir) (Member $e0 build) (Member $x0 hotel) (Member $x1 company) (Patient $e0 $x0)) (MnAgentOfCompany_LocationEskisehir_Build_PatientOfHotel_2 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Member $x0 company) (Member $x1 hotel) (Patient $e0 $x1)) (MnAgentOfCompany_LocationEskisehir_Build_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p204889 ~ p206648   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Location $e0 eskisehir) (Member $e0 build) (Member $x0 hotel) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0))
 ;;   alignment: $e0=$e0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (Location $e0 eskisehir) (Member $e0 build) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0)) (MnAgent_LocationEskisehir_Build_Past_PatientOfHotel_2 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p204889 ~ p206649   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Location $e0 eskisehir) (Member $e0 build) (Member $x0 hotel) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Patient $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (Location $e0 eskisehir) (Member $e0 build) (Member $x0 hotel) (Patient $e0 $x0)) (MnAgent_LocationEskisehir_Build_PatientOfHotel_2 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Member $x1 hotel) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p204889 ~ p206650   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Location $e0 eskisehir) (Member $e0 build) (Member $x0 hotel) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0) (Patient $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (Location $e0 eskisehir) (Member $e0 build) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0)) (MnAgent_LocationEskisehir_Build_Past_PatientOfHotel_2 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p204889 ~ p206660   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
@@ -10189,21 +10189,21 @@
 ;;   A: (And (Location $e0 eskisehir) (Member $e0 build) (Member $x0 hotel) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build))
 ;;   alignment: $e0=$e0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (Location $e0 eskisehir) (Member $e0 build) (Member $x0 hotel) (Patient $e0 $x0)) (MnAgent_LocationEskisehir_Build_PatientOfHotel_2 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Member $x1 hotel) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p204889 ~ p206797   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Location $e0 eskisehir) (Member $e0 build) (Member $x0 hotel) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0))
 ;;   alignment: $e0=$e0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (Location $e0 eskisehir) (Member $e0 build) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0)) (MnAgent_LocationEskisehir_Build_Past_PatientOfHotel_2 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p204889 ~ p206798   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Location $e0 eskisehir) (Member $e0 build) (Member $x0 hotel) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Patient $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (Location $e0 eskisehir) (Member $e0 build) (Member $x0 hotel) (Patient $e0 $x0)) (MnAgent_LocationEskisehir_Build_PatientOfHotel_2 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Member $x1 hotel) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p204889 ~ p206833   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
@@ -10224,7 +10224,7 @@
 ;;   A: (And (Location $e0 eskisehir) (Member $e0 build) (Member $x0 hotel) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 eskisehir))
 ;;   alignment: $e0=$e0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (Location $e0 eskisehir) (Member $e0 build) (Member $x0 hotel) (Patient $e0 $x0)) (MnAgent_LocationEskisehir_Build_PatientOfHotel_2 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Member $x1 hotel) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p204889 ~ p207242   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
@@ -10238,28 +10238,28 @@
 ;;   A: (And (Location $e0 eskisehir) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x0 company))
 ;;   alignment: $e0=$e0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (Location $e0 eskisehir) (Member $x0 hotel) (Member $x1 company) (Past $e0) (Patient $e0 $x0)) (MnAgentOfCompany_LocationEskisehir_Past_PatientOfHotel_2 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x0 company) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgentOfCompany_LocationEskisehir_Past_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p204890 ~ p206648   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Location $e0 eskisehir) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0))
 ;;   alignment: $e0=$e0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (Location $e0 eskisehir) (Member $e0 build) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0)) (MnAgent_LocationEskisehir_Build_Past_PatientOfHotel_2 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p204890 ~ p206649   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Location $e0 eskisehir) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Patient $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (Location $e0 eskisehir) (Member $e0 build) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0)) (MnAgent_LocationEskisehir_Build_Past_PatientOfHotel_2 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p204890 ~ p206650   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Location $e0 eskisehir) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0) (Patient $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (Location $e0 eskisehir) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0)) (MnAgent_LocationEskisehir_Past_PatientOfHotel_2 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Past_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p204890 ~ p206660   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
@@ -10273,21 +10273,21 @@
 ;;   A: (And (Location $e0 eskisehir) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build))
 ;;   alignment: $e0=$e0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (Location $e0 eskisehir) (Member $e0 build) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0)) (MnAgent_LocationEskisehir_Build_Past_PatientOfHotel_2 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p204890 ~ p206797   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Location $e0 eskisehir) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0))
 ;;   alignment: $e0=$e0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (Location $e0 eskisehir) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0)) (MnAgent_LocationEskisehir_Past_PatientOfHotel_2 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Past_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p204890 ~ p206798   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Location $e0 eskisehir) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Patient $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (Location $e0 eskisehir) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0)) (MnAgent_LocationEskisehir_Past_PatientOfHotel_2 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Past_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p204890 ~ p206833   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
@@ -10308,7 +10308,7 @@
 ;;   A: (And (Location $e0 eskisehir) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 eskisehir))
 ;;   alignment: $e0=$e0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (Location $e0 eskisehir) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0)) (MnAgent_LocationEskisehir_Past_PatientOfHotel_2 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Past_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p204890 ~ p207241   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
@@ -10322,14 +10322,14 @@
 ;;   A: (And (Member $e0 bad) (Past $e1) (Patient $e1 $x0) (Result $e1 $e0))
 ;;   B: (And (Member $x0 bad) (Past $e0) (Patient $e0 $x0) (Result $e0 $e1))
 ;;   alignment: $e0=$e1 $e1=$e0 $x0=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Member $e0 bad) (Member $x0 bad) (Past $e1) (Patient $e1 $x0) (Result $e1 $e0)) (MnBad_Bad_Past_Patient_ResultEv_1 $e0 $e1 $x0))
+(Implication (And (Member $e0 bad) (Member $x0 bad) (Past $e1) (Patient $e1 $x0) (Result $e1 $e0)) (MnBad_Bad_Past_Patient_ResultEv $e0 $e1 $x0))
 
 ;; [genuine]  p204893 ~ p206043   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-001594 tierC-000241 tierC-000242
 ;;   A: (And (Member $e0 bad) (Past $e1) (Patient $e1 $x0) (Result $e1 $e0))
 ;;   B: (And (Member $x0 bad) (Past $e0) (Patient $e0 $x0))
 ;;   alignment: $e1=$e0 $x0=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Member $e0 bad) (Member $x0 bad) (Past $e1) (Patient $e1 $x0) (Result $e1 $e0)) (MnBad_Bad_Past_Patient_ResultEv_1 $e0 $e1 $x0))
+(Implication (And (Member $e0 bad) (Member $x0 bad) (Past $e1) (Patient $e1 $x0) (Result $e1 $e0)) (MnBad_Bad_Past_Patient_ResultEv $e0 $e1 $x0))
 
 ;; [genuine]  p204895 ~ p204896   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-001394 tierC-000025 tierC-000026
@@ -10343,7 +10343,7 @@
 ;;   A: (And (Member $x0 bad) (Past $e0) (Patient $e0 $x0) (Result $e0 $e1))
 ;;   B: (And (Member $e0 bad) (Past $e1) (Result $e1 $e0))
 ;;   alignment: $e0=$e1 $e1=$e0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Member $e1 bad) (Member $x0 bad) (Past $e0) (Patient $e0 $x0) (Result $e0 $e1)) (MnBad_Bad_Past_Patient_ResultEv_2 $e0 $e1 $x0))
+(Implication (And (Member $e0 bad) (Member $x0 bad) (Past $e1) (Patient $e1 $x0) (Result $e1 $e0)) (MnBad_Bad_Past_Patient_ResultEv $e0 $e1 $x0))
 
 ;; [genuine]  p204905 ~ p204906   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
@@ -10378,7 +10378,7 @@
 ;;   A: (And (Member free_soil_party party) (Possession $x0 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x1 $x1=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (GroupOf $x1 view) (Member free_soil_party party) (Possession $x0 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnThemeOfPossessionFreeSoilPartyOfParty_ThemeOfGroupOfView $e0 $x0 $x1))
+(Implication (And (GroupOf $x0 view) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnThemeOfGroupOfView_ThemeOfPossessionFreeSoilPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p204905 ~ p206055   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
@@ -10392,14 +10392,14 @@
 ;;   A: (And (Member free_soil_party party) (Possession $x0 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Past $e0) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   alignment: $e0=$e0 $x0=$x2 $x1=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x2) (Member free_soil_party party) (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfPossessionFreeSoilPartyOfParty_Theme $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member free_soil_party party) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionFreeSoilPartyOfParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204905 ~ p206821   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Member free_soil_party party) (Possession $x0 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   alignment: $e0=$e0 $x0=$x2 $x1=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x2) (Member free_soil_party party) (Possession $x0 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnAgent_ThemeOfPossessionFreeSoilPartyOfParty_Theme_2 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member free_soil_party party) (Possession $x1 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfPossessionFreeSoilPartyOfParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204905 ~ p206865   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
@@ -10413,7 +10413,7 @@
 ;;   A: (And (Member republican_party party) (Possession $x0 republican_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   B: (And (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x1 $x1=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Member republican_party party) (Past $e0) (Possession $x0 republican_party) (Possession $x1 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnPast_ThemeOfPossessionRepublicanPartyOfParty_ThemeOfPossessionFreeSoilParty $e0 $x0 $x1))
+(Implication (And (Member republican_party party) (Past $e0) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnPast_ThemeOfPossessionFreeSoilParty_ThemeOfPossessionRepublicanPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p204906 ~ p204912   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
@@ -10427,35 +10427,35 @@
 ;;   A: (And (Member republican_party party) (Possession $x0 republican_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   B: (And (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x1 $x1=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Member republican_party party) (Possession $x0 republican_party) (Possession $x1 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnThemeOfPossessionRepublicanPartyOfParty_ThemeOfPossessionFreeSoilParty $e0 $x0 $x1))
+(Implication (And (Member republican_party party) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnThemeOfPossessionFreeSoilParty_ThemeOfPossessionRepublicanPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p204906 ~ p206028   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Member republican_party party) (Possession $x0 republican_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x1 $x1=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (GroupOf $x1 view) (Member republican_party party) (Possession $x0 republican_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnThemeOfPossessionRepublicanPartyOfParty_ThemeOfGroupOfView $e0 $x0 $x1))
+(Implication (And (GroupOf $x0 view) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnThemeOfGroupOfView_ThemeOfPossessionRepublicanPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p204906 ~ p206054   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Member republican_party party) (Possession $x0 republican_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   B: (And (Possession $x0 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x1 $x1=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Member republican_party party) (Possession $x0 republican_party) (Possession $x1 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnThemeOfPossessionRepublicanPartyOfParty_ThemeOfPossessionFreeSoilParty $e0 $x0 $x1))
+(Implication (And (Member republican_party party) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnThemeOfPossessionFreeSoilParty_ThemeOfPossessionRepublicanPartyOfParty $e0 $x0 $x1))
 
 ;; [genuine]  p204906 ~ p206657   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Member republican_party party) (Possession $x0 republican_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Past $e0) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   alignment: $e0=$e0 $x0=$x2 $x1=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x2) (Member republican_party party) (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfPossessionRepublicanPartyOfParty_Theme $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member republican_party party) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionRepublicanPartyOfParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204906 ~ p206821   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Member republican_party party) (Possession $x0 republican_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   alignment: $e0=$e0 $x0=$x2 $x1=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x2) (Member republican_party party) (Possession $x0 republican_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnAgent_ThemeOfPossessionRepublicanPartyOfParty_Theme_2 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member republican_party party) (Possession $x1 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfPossessionRepublicanPartyOfParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204906 ~ p206865   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
@@ -10483,7 +10483,7 @@
 ;;   A: (And (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x1 $x1=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (GroupOf $x1 view) (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnPast_ThemeOfPossessionFreeSoilParty_ThemeOfGroupOfView $e0 $x0 $x1))
+(Implication (And (GroupOf $x0 view) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnPast_ThemeOfGroupOfView_ThemeOfPossessionFreeSoilParty $e0 $x0 $x1))
 
 ;; [genuine]  p204911 ~ p206055   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
@@ -10497,70 +10497,70 @@
 ;;   A: (And (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Past $e0) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   alignment: $e0=$e0 $x0=$x2 $x1=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x2) (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfPossessionFreeSoilParty_Theme_2 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionFreeSoilParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204911 ~ p206821   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   alignment: $e0=$e0 $x0=$x2 $x1=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x2) (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfPossessionFreeSoilParty_Theme_2 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionFreeSoilParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204912 ~ p204913   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   B: (And (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x1 $x1=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Past $e0) (Possession $x0 republican_party) (Possession $x1 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnPast_ThemeOfPossessionRepublicanParty_ThemeOfPossessionFreeSoilParty $e0 $x0 $x1))
+(Implication (And (Past $e0) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnPast_ThemeOfPossessionFreeSoilParty_ThemeOfPossessionRepublicanParty $e0 $x0 $x1))
 
 ;; [genuine]  p204912 ~ p206028   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x1 $x1=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (GroupOf $x1 view) (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnPast_ThemeOfPossessionRepublicanParty_ThemeOfGroupOfView $e0 $x0 $x1))
+(Implication (And (GroupOf $x0 view) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnPast_ThemeOfGroupOfView_ThemeOfPossessionRepublicanParty $e0 $x0 $x1))
 
 ;; [genuine]  p204912 ~ p206054   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   B: (And (Possession $x0 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x1 $x1=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Past $e0) (Possession $x0 republican_party) (Possession $x1 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnPast_ThemeOfPossessionRepublicanParty_ThemeOfPossessionFreeSoilParty $e0 $x0 $x1))
+(Implication (And (Past $e0) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnPast_ThemeOfPossessionFreeSoilParty_ThemeOfPossessionRepublicanParty $e0 $x0 $x1))
 
 ;; [genuine]  p204912 ~ p206657   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Past $e0) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   alignment: $e0=$e0 $x0=$x2 $x1=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x2) (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfPossessionRepublicanParty_Theme_2 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionRepublicanParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204912 ~ p206821   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   alignment: $e0=$e0 $x0=$x2 $x1=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x2) (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfPossessionRepublicanParty_Theme_2 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionRepublicanParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204913 ~ p206028   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x1 $x1=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (GroupOf $x1 view) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnThemeOfPossessionFreeSoilParty_ThemeOfGroupOfView-PossessionRepublicanParty $e0 $x0 $x1))
+(Implication (And (GroupOf $x0 view) (Possession $x0 republican_party) (Possession $x1 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnThemeOfGroupOfView-PossessionRepublicanParty_ThemeOfPossessionFreeSoilParty $e0 $x0 $x1))
 
 ;; [genuine]  p204913 ~ p206657   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Past $e0) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   alignment: $e0=$e0 $x0=$x2 $x1=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x2) (Past $e0) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfPossessionFreeSoilParty_ThemeOfPossessionRepublicanParty_2 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionFreeSoilParty_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204913 ~ p206821   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   alignment: $e0=$e0 $x0=$x2 $x1=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x2) (Possession $x0 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnAgent_ThemeOfPossessionFreeSoilParty_ThemeOfPossessionRepublicanParty_2 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Possession $x2 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfPossessionFreeSoilParty_ThemeOfPossessionRepublicanParty $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p204913 ~ p206865   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
@@ -10700,14 +10700,14 @@
 ;;   A: (And (Agent $e0 $x0) (Member $e1 try) (Theme $e1 $e0))
 ;;   B: (And (Agent $e0 $x0) (Member $e0 try) (Theme $e0 $e1))
 ;;   alignment: $e0=$e1 $e1=$e0 $x0=$x0 (holds in 3 of 3 records)
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e1 try) (Theme $e1 $e0)) (MnAgent_Agent_Try_ThemeEv $e0 $e1 $x0))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Member $e0 try) (Theme $e0 $e1)) (MnAgent_Agent_Try_ThemeEv $e0 $e1 $x0))
 
 ;; [genuine]  p206004 ~ p206822   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-000258 tierC-000123 tierC-000124
 ;;   A: (And (Agent $e0 $x0) (Theme $e1 $x1) (To $e0 $e1))
 ;;   B: (And (Agent $e0 $x0) (Theme $e0 $x1) (To $e1 $e0))
 ;;   alignment: $e0=$e1 $e1=$e0 $x0=$x0 $x1=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Theme $e1 $x1) (To $e0 $e1)) (MnAgent_Agent_Theme_ToEv $e0 $e1 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Theme $e0 $x1) (To $e1 $e0)) (MnAgent_Agent_Theme_ToEv $e0 $e1 $x0 $x1))
 
 ;; [genuine]  p206008 ~ p206823   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-000412 tierC-000001 tierC-000002
@@ -10826,14 +10826,14 @@
 ;;   A: (And (GroupOf $x0 view) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Past $e0) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   alignment: $e0=$e0 $x0=$x2 $x1=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x2) (GroupOf $x0 view) (Past $e0) (Theme $e0 $x0) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfView_Theme_2 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Past $e0) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfGroupOfView_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p206028 ~ p206821   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (GroupOf $x0 view) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   alignment: $e0=$e0 $x0=$x2 $x1=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x2) (GroupOf $x0 view) (Theme $e0 $x0) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfView_Theme_2 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfGroupOfView_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p206028 ~ p206865   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
@@ -10847,21 +10847,21 @@
 ;;   A: (And (Location $e0 $x0) (Past $e1) (Theme $e1 $e0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 $x1) (Ongoing $e0) (Patient $e0 $x2))
 ;;   alignment: $e0=$e0 $x0=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (Location $e0 $x0) (Ongoing $e0) (Past $e1) (Patient $e0 $x2) (Theme $e1 $e0)) (MnPast_ThemeEvOfAgent-Location-Ongoing-Patient_2 $e1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e0 $x1) (Ongoing $e0) (Past $e1) (Patient $e0 $x2) (Theme $e1 $e0)) (MnPast_ThemeEvOfAgent-Location-Ongoing-Patient $e1 $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p206035 ~ p206647   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-000942 tierC-000025 tierC-000026
 ;;   A: (And (Location $e0 $x0) (Past $e1) (Theme $e1 $e0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 $x1) (Patient $e0 $x2) (Theme $e1 $e0))
 ;;   alignment: $e0=$e0 $e1=$e1 $x0=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (Location $e0 $x0) (Past $e1) (Patient $e0 $x2) (Theme $e1 $e0)) (MnPast_ThemeEvOfAgent-Location-Patient_2 $e1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e0 $x1) (Past $e1) (Patient $e0 $x2) (Theme $e1 $e0)) (MnPast_ThemeEvOfAgent-Location-Patient $e1 $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p206035 ~ p206656   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-000942 tierC-000025 tierC-000026
 ;;   A: (And (Location $e0 $x0) (Past $e1) (Theme $e1 $e0))
 ;;   B: (And (Agent $e0 $x0) (Ongoing $e0) (Patient $e0 $x1) (Theme $e1 $e0))
 ;;   alignment: $e0=$e0 $e1=$e1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (Location $e0 $x0) (Ongoing $e0) (Past $e1) (Patient $e0 $x2) (Theme $e1 $e0)) (MnPast_ThemeEvOfAgent-Location-Ongoing-Patient_2 $e1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e0 $x1) (Ongoing $e0) (Past $e1) (Patient $e0 $x2) (Theme $e1 $e0)) (MnPast_ThemeEvOfAgent-Location-Ongoing-Patient $e1 $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p206035 ~ p206659   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-000942 tierC-000025 tierC-000026
@@ -10882,21 +10882,21 @@
 ;;   A: (And (Location $e0 eskisehir) (Member $x0 hotel) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0))
 ;;   alignment: $e0=$e0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (Location $e0 eskisehir) (Member $e0 build) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0)) (MnAgent_LocationEskisehir_Build_Past_PatientOfHotel_2 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p206037 ~ p206649   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Location $e0 eskisehir) (Member $x0 hotel) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Patient $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (Location $e0 eskisehir) (Member $e0 build) (Member $x0 hotel) (Patient $e0 $x0)) (MnAgent_LocationEskisehir_Build_PatientOfHotel_2 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Member $x1 hotel) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p206037 ~ p206650   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Location $e0 eskisehir) (Member $x0 hotel) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0) (Patient $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (Location $e0 eskisehir) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0)) (MnAgent_LocationEskisehir_Past_PatientOfHotel_2 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Past_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p206037 ~ p206660   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
@@ -10910,21 +10910,21 @@
 ;;   A: (And (Location $e0 eskisehir) (Member $x0 hotel) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build))
 ;;   alignment: $e0=$e0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (Location $e0 eskisehir) (Member $e0 build) (Member $x0 hotel) (Patient $e0 $x0)) (MnAgent_LocationEskisehir_Build_PatientOfHotel_2 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Member $x1 hotel) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p206037 ~ p206797   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Location $e0 eskisehir) (Member $x0 hotel) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0))
 ;;   alignment: $e0=$e0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (Location $e0 eskisehir) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0)) (MnAgent_LocationEskisehir_Past_PatientOfHotel_2 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Past_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p206037 ~ p206798   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Location $e0 eskisehir) (Member $x0 hotel) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Patient $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (Location $e0 eskisehir) (Member $x0 hotel) (Patient $e0 $x0)) (MnAgent_LocationEskisehir_PatientOfHotel_2 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x1 hotel) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p206037 ~ p206833   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
@@ -10952,7 +10952,7 @@
 ;;   A: (And (Location $e0 eskisehir) (Member $x0 hotel) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 eskisehir))
 ;;   alignment: $e0=$e0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (Location $e0 eskisehir) (Member $x0 hotel) (Patient $e0 $x0)) (MnAgent_LocationEskisehir_PatientOfHotel_2 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x1 hotel) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_PatientOfHotel $e0 $x0 $x1))
 
 ;; [genuine]  p206037 ~ p207241   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
@@ -10973,7 +10973,7 @@
 ;;   A: (And (Member $e0 bad) (Past $e1) (Result $e1 $e0))
 ;;   B: (And (Member $x0 bad) (Past $e0) (Patient $e0 $x0))
 ;;   alignment: $e1=$e0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Member $e0 bad) (Member $x0 bad) (Past $e1) (Patient $e1 $x0) (Result $e1 $e0)) (MnBad_Bad_Past_Patient_ResultEv_1 $e0 $e1 $x0))
+(Implication (And (Member $e0 bad) (Member $x0 bad) (Past $e1) (Patient $e1 $x0) (Result $e1 $e0)) (MnBad_Bad_Past_Patient_ResultEv $e0 $e1 $x0))
 
 ;; [genuine]  p206042 ~ p206856   records 3 / 3 / 3 (3 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-000030 tierB-001515 tierB-001873
@@ -10994,14 +10994,14 @@
 ;;   A: (And (Possession $x0 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Past $e0) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   alignment: $e0=$e0 $x0=$x2 $x1=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x2) (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfPossessionFreeSoilParty_Theme_2 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionFreeSoilParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p206054 ~ p206821   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Possession $x0 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   alignment: $e0=$e0 $x0=$x2 $x1=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x2) (Possession $x0 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnAgent_ThemeOfPossessionFreeSoilParty_Theme_2 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfPossessionFreeSoilParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p206054 ~ p206865   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
@@ -11015,14 +11015,14 @@
 ;;   A: (And (Possession $x0 republican_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Past $e0) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   alignment: $e0=$e0 $x0=$x2 $x1=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x2) (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfPossessionRepublicanParty_Theme_2 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_Past_ThemeOfPossessionRepublicanParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p206055 ~ p206821   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Possession $x0 republican_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   alignment: $e0=$e0 $x0=$x2 $x1=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x2) (Possession $x0 republican_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnAgent_ThemeOfPossessionRepublicanParty_Theme_2 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Possession $x1 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfPossessionRepublicanParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p206055 ~ p206865   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
@@ -11057,210 +11057,210 @@
 ;;   A: (And (Agent $e0 $x0) (Location $e0 $x1) (Ongoing $e0) (Patient $e0 $x2))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 $x1) (Patient $e0 $x2) (Theme $e1 $e0))
 ;;   alignment: $e0=$e0 $x0=$x0 $x1=$x1 $x2=$x2 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 $x1) (Ongoing $e0) (Patient $e0 $x2) (Theme $e1 $e0)) (MnThemeEvOfAgent-Location-Ongoing-Patient_1 $e1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e0 $x1) (Ongoing $e0) (Patient $e0 $x2) (Theme $e1 $e0)) (MnThemeEvOfAgent-Location-Ongoing-Patient $e1 $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p206646 ~ p206656   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-000942 tierC-000025 tierC-000026
 ;;   A: (And (Agent $e0 $x0) (Location $e0 $x1) (Ongoing $e0) (Patient $e0 $x2))
 ;;   B: (And (Agent $e0 $x0) (Ongoing $e0) (Patient $e0 $x1) (Theme $e1 $e0))
 ;;   alignment: $e0=$e0 $x0=$x0 $x2=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 $x1) (Ongoing $e0) (Patient $e0 $x2) (Theme $e1 $e0)) (MnThemeEvOfAgent-Location-Ongoing-Patient_1 $e1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e0 $x1) (Ongoing $e0) (Patient $e0 $x2) (Theme $e1 $e0)) (MnThemeEvOfAgent-Location-Ongoing-Patient $e1 $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p206646 ~ p206659   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-000942 tierC-000025 tierC-000026
 ;;   A: (And (Agent $e0 $x0) (Location $e0 $x1) (Ongoing $e0) (Patient $e0 $x2))
 ;;   B: (And (Location $e0 $x0) (Ongoing $e0) (Patient $e0 $x1) (Theme $e1 $e0))
 ;;   alignment: $e0=$e0 $x1=$x0 $x2=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 $x1) (Ongoing $e0) (Patient $e0 $x2) (Theme $e1 $e0)) (MnThemeEvOfAgent-Location-Ongoing-Patient_1 $e1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e0 $x1) (Ongoing $e0) (Patient $e0 $x2) (Theme $e1 $e0)) (MnThemeEvOfAgent-Location-Ongoing-Patient $e1 $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p206646 ~ p206832   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-000942 tierC-000025 tierC-000026
 ;;   A: (And (Agent $e0 $x0) (Location $e0 $x1) (Ongoing $e0) (Patient $e0 $x2))
 ;;   B: (And (Location $e0 $x0) (Patient $e0 $x1) (Theme $e1 $e0))
 ;;   alignment: $e0=$e0 $x1=$x0 $x2=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 $x1) (Ongoing $e0) (Patient $e0 $x2) (Theme $e1 $e0)) (MnThemeEvOfAgent-Location-Ongoing-Patient_1 $e1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e0 $x1) (Ongoing $e0) (Patient $e0 $x2) (Theme $e1 $e0)) (MnThemeEvOfAgent-Location-Ongoing-Patient $e1 $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p206647 ~ p206656   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-000942 tierC-000025 tierC-000026
 ;;   A: (And (Agent $e0 $x0) (Location $e0 $x1) (Patient $e0 $x2) (Theme $e1 $e0))
 ;;   B: (And (Agent $e0 $x0) (Ongoing $e0) (Patient $e0 $x1) (Theme $e1 $e0))
 ;;   alignment: $e0=$e0 $e1=$e1 $x0=$x0 $x2=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 $x1) (Ongoing $e0) (Patient $e0 $x2) (Theme $e1 $e0)) (MnThemeEvOfAgent-Location-Ongoing-Patient_1 $e1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e0 $x1) (Ongoing $e0) (Patient $e0 $x2) (Theme $e1 $e0)) (MnThemeEvOfAgent-Location-Ongoing-Patient $e1 $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p206647 ~ p206659   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-000942 tierC-000025 tierC-000026
 ;;   A: (And (Agent $e0 $x0) (Location $e0 $x1) (Patient $e0 $x2) (Theme $e1 $e0))
 ;;   B: (And (Location $e0 $x0) (Ongoing $e0) (Patient $e0 $x1) (Theme $e1 $e0))
 ;;   alignment: $e0=$e0 $e1=$e1 $x1=$x0 $x2=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 $x1) (Ongoing $e0) (Patient $e0 $x2) (Theme $e1 $e0)) (MnThemeEvOfAgent-Location-Ongoing-Patient_1 $e1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e0 $x1) (Ongoing $e0) (Patient $e0 $x2) (Theme $e1 $e0)) (MnThemeEvOfAgent-Location-Ongoing-Patient $e1 $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p206648 ~ p206649   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Patient $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p206648 ~ p206650   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0) (Patient $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p206648 ~ p206660   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0))
 ;;   B: (And (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p206648 ~ p206798   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Patient $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p206648 ~ p206834   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0))
 ;;   B: (And (Location $e0 eskisehir) (Member $e0 build) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p206648 ~ p206835   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0))
 ;;   B: (And (Location $e0 eskisehir) (Past $e0) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p206648 ~ p207243   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0))
 ;;   B: (And (Location $e0 eskisehir) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p206649 ~ p206650   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0) (Patient $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 $x1=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p206649 ~ p206660   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p206649 ~ p206797   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0))
 ;;   alignment: $e0=$e0 $x0=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p206649 ~ p206833   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 eskisehir) (Member $e0 build) (Past $e0))
 ;;   alignment: $e0=$e0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p206649 ~ p206835   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 eskisehir) (Past $e0) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p206649 ~ p207242   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 eskisehir) (Past $e0))
 ;;   alignment: $e0=$e0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p206650 ~ p206660   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p206650 ~ p206796   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build))
 ;;   alignment: $e0=$e0 $x0=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p206650 ~ p206833   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 eskisehir) (Member $e0 build) (Past $e0))
 ;;   alignment: $e0=$e0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p206650 ~ p206834   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 eskisehir) (Member $e0 build) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p206650 ~ p207241   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 eskisehir) (Member $e0 build))
 ;;   alignment: $e0=$e0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p206656 ~ p206659   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-000942 tierC-000025 tierC-000026
 ;;   A: (And (Agent $e0 $x0) (Ongoing $e0) (Patient $e0 $x1) (Theme $e1 $e0))
 ;;   B: (And (Location $e0 $x0) (Ongoing $e0) (Patient $e0 $x1) (Theme $e1 $e0))
 ;;   alignment: $e0=$e0 $e1=$e1 $x1=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 $x2) (Ongoing $e0) (Patient $e0 $x1) (Theme $e1 $e0)) (MnThemeEvOfAgent-Location-Ongoing-Patient_2 $e1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e0 $x1) (Ongoing $e0) (Patient $e0 $x2) (Theme $e1 $e0)) (MnThemeEvOfAgent-Location-Ongoing-Patient $e1 $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p206656 ~ p206832   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-000942 tierC-000025 tierC-000026
 ;;   A: (And (Agent $e0 $x0) (Ongoing $e0) (Patient $e0 $x1) (Theme $e1 $e0))
 ;;   B: (And (Location $e0 $x0) (Patient $e0 $x1) (Theme $e1 $e0))
 ;;   alignment: $e0=$e0 $e1=$e1 $x1=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 $x2) (Ongoing $e0) (Patient $e0 $x1) (Theme $e1 $e0)) (MnThemeEvOfAgent-Location-Ongoing-Patient_2 $e1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e0 $x1) (Ongoing $e0) (Patient $e0 $x2) (Theme $e1 $e0)) (MnThemeEvOfAgent-Location-Ongoing-Patient $e1 $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p206660 ~ p206796   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build))
 ;;   alignment: $e0=$e0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x0)) (MnAgent_LocationEskisehir_Build_Past_Patient_2 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p206660 ~ p206797   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0))
 ;;   alignment: $e0=$e0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x0)) (MnAgent_LocationEskisehir_Build_Past_Patient_2 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p206660 ~ p206798   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Patient $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x1 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x0)) (MnAgent_LocationEskisehir_Build_Past_Patient_2 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p206660 ~ p207158   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 eskisehir))
 ;;   alignment: $e0=$e0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x0)) (MnAgent_LocationEskisehir_Build_Past_Patient_2 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p206793 ~ p206828   records 3 / 3 / 3 (3 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-000387 tierB-001534 tierB-001963
@@ -11281,7 +11281,7 @@
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Patient $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p206796 ~ p206833   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
@@ -11295,14 +11295,14 @@
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build))
 ;;   B: (And (Location $e0 eskisehir) (Member $e0 build) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p206796 ~ p206835   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build))
 ;;   B: (And (Location $e0 eskisehir) (Past $e0) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p206796 ~ p207242   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
@@ -11316,14 +11316,14 @@
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build))
 ;;   B: (And (Location $e0 eskisehir) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p206797 ~ p206798   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Patient $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p206797 ~ p206833   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
@@ -11337,14 +11337,14 @@
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0))
 ;;   B: (And (Location $e0 eskisehir) (Member $e0 build) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p206797 ~ p206835   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0))
 ;;   B: (And (Location $e0 eskisehir) (Past $e0) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p206797 ~ p207241   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
@@ -11358,70 +11358,70 @@
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0))
 ;;   B: (And (Location $e0 eskisehir) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p206798 ~ p206833   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 eskisehir) (Member $e0 build) (Past $e0))
 ;;   alignment: $e0=$e0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p206798 ~ p206834   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 eskisehir) (Member $e0 build) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p206798 ~ p206835   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 eskisehir) (Past $e0) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p206798 ~ p207241   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 eskisehir) (Member $e0 build))
 ;;   alignment: $e0=$e0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p206798 ~ p207242   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 eskisehir) (Past $e0))
 ;;   alignment: $e0=$e0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p206799 ~ p206800   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000257 tierC-000353 tierC-000354
 ;;   A: (And (Agent $e0 $x0) (Manner $e0 directly) (Past $e0))
 ;;   B: (And (Agent $e0 $x0) (Manner $e0 directly) (Patient $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Manner $e0 directly) (Past $e0) (Patient $e0 $x1)) (MnAgent_MannerDirectly_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Manner $e0 directly) (Past $e0) (Patient $e0 $x1)) (MnAgent_MannerDirectly_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p206799 ~ p206836   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000257 tierC-000353 tierC-000354
 ;;   A: (And (Agent $e0 $x0) (Manner $e0 directly) (Past $e0))
 ;;   B: (And (Manner $e0 directly) (Past $e0) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Manner $e0 directly) (Past $e0) (Patient $e0 $x1)) (MnAgent_MannerDirectly_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Manner $e0 directly) (Past $e0) (Patient $e0 $x1)) (MnAgent_MannerDirectly_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p206799 ~ p207246   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000257 tierC-000353 tierC-000354
 ;;   A: (And (Agent $e0 $x0) (Manner $e0 directly) (Past $e0))
 ;;   B: (And (Manner $e0 directly) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Manner $e0 directly) (Past $e0) (Patient $e0 $x1)) (MnAgent_MannerDirectly_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Manner $e0 directly) (Past $e0) (Patient $e0 $x1)) (MnAgent_MannerDirectly_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p206800 ~ p206836   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000257 tierC-000353 tierC-000354
 ;;   A: (And (Agent $e0 $x0) (Manner $e0 directly) (Patient $e0 $x1))
 ;;   B: (And (Manner $e0 directly) (Past $e0) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Manner $e0 directly) (Past $e0) (Patient $e0 $x1)) (MnAgent_MannerDirectly_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Manner $e0 directly) (Past $e0) (Patient $e0 $x1)) (MnAgent_MannerDirectly_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p206801 ~ p206802   records 3 / 3 / 3 (3 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-000852 tierB-001342 tierB-001990
@@ -11435,35 +11435,35 @@
 ;;   A: (And (Agent $e0 $x0) (Member $e0 spend) (Past $e0))
 ;;   B: (And (Agent $e0 $x0) (Member $e0 spend) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $e0 spend) (Past $e0) (Theme $e0 $x1)) (MnAgent_Spend_Past_Theme_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 spend) (Past $e0) (Theme $e0 $x1)) (MnAgent_Spend_Past_Theme $e0 $x0 $x1))
 
 ;; [genuine]  p206810 ~ p206853   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-001146 tierC-000047 tierC-000048
 ;;   A: (And (Agent $e0 $x0) (Member $e0 spend) (Past $e0))
 ;;   B: (And (Member $e0 spend) (Past $e0) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $e0 spend) (Past $e0) (Theme $e0 $x1)) (MnAgent_Spend_Past_Theme_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 spend) (Past $e0) (Theme $e0 $x1)) (MnAgent_Spend_Past_Theme $e0 $x0 $x1))
 
 ;; [genuine]  p206810 ~ p207297   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-001146 tierC-000047 tierC-000048
 ;;   A: (And (Agent $e0 $x0) (Member $e0 spend) (Past $e0))
 ;;   B: (And (Member $e0 spend) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $e0 spend) (Past $e0) (Theme $e0 $x1)) (MnAgent_Spend_Past_Theme_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 spend) (Past $e0) (Theme $e0 $x1)) (MnAgent_Spend_Past_Theme $e0 $x0 $x1))
 
 ;; [genuine]  p206811 ~ p206853   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-001146 tierC-000047 tierC-000048
 ;;   A: (And (Agent $e0 $x0) (Member $e0 spend) (Theme $e0 $x1))
 ;;   B: (And (Member $e0 spend) (Past $e0) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $e0 spend) (Past $e0) (Theme $e0 $x1)) (MnAgent_Spend_Past_Theme_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 spend) (Past $e0) (Theme $e0 $x1)) (MnAgent_Spend_Past_Theme $e0 $x0 $x1))
 
 ;; [genuine]  p206811 ~ p207296   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-001146 tierC-000047 tierC-000048
 ;;   A: (And (Agent $e0 $x0) (Member $e0 spend) (Theme $e0 $x1))
 ;;   B: (And (Member $e0 spend) (Past $e0))
 ;;   alignment: $e0=$e0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $e0 spend) (Past $e0) (Theme $e0 $x1)) (MnAgent_Spend_Past_Theme_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 spend) (Past $e0) (Theme $e0 $x1)) (MnAgent_Spend_Past_Theme $e0 $x0 $x1))
 
 ;; [genuine]  p206817 ~ p206818   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-001962 tierC-000089 tierC-000090
@@ -11519,7 +11519,7 @@
 ;;   A: (And (Location $e0 eskisehir) (Member $e0 build) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 eskisehir))
 ;;   alignment: $e0=$e0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (Location $e0 eskisehir) (Member $e0 build) (Patient $e0 $x0)) (MnAgent_LocationEskisehir_Build_Patient_2 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p206834 ~ p207242   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
@@ -11533,7 +11533,7 @@
 ;;   A: (And (Location $e0 eskisehir) (Past $e0) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 eskisehir))
 ;;   alignment: $e0=$e0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (Location $e0 eskisehir) (Past $e0) (Patient $e0 $x0)) (MnAgent_LocationEskisehir_Past_Patient_2 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p206835 ~ p207241   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
@@ -11547,7 +11547,7 @@
 ;;   A: (And (Manner $e0 directly) (Past $e0) (Patient $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Manner $e0 directly))
 ;;   alignment: $e0=$e0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (Manner $e0 directly) (Past $e0) (Patient $e0 $x0)) (MnAgent_MannerDirectly_Past_Patient_2 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Manner $e0 directly) (Past $e0) (Patient $e0 $x1)) (MnAgent_MannerDirectly_Past_Patient $e0 $x0 $x1))
 
 ;; [genuine]  p206848 ~ p206863   records 3 / 3 / 3 (3 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-000370 tierB-000748 tierB-001658
@@ -11561,7 +11561,7 @@
 ;;   A: (And (Member $e0 spend) (Past $e0) (Theme $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Member $e0 spend))
 ;;   alignment: $e0=$e0 (holds in 3 of 3 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (Member $e0 spend) (Past $e0) (Theme $e0 $x0)) (MnAgent_Spend_Past_Theme_2 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 spend) (Past $e0) (Theme $e0 $x1)) (MnAgent_Spend_Past_Theme $e0 $x0 $x1))
 
 ;; [genuine]  p207154 ~ p207224   records 3 / 3 / 3 (3 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-000575 tierB-001086 tierB-001743
@@ -11736,7 +11736,7 @@
 ;;   A: (And (Agent $e0 $x0) (Ongoing $e1) (Theme $e0 $e1))
 ;;   B: (And (Agent $e0 $x0) (Ongoing $e0) (Theme $e1 $e0))
 ;;   alignment: $e0=$e1 $e1=$e0 $x0=$x0 (holds in 10 of 10 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Ongoing $e1) (Theme $e0 $e1)) (MnAgent_Agent_Ongoing_ThemeEv $e0 $e1 $x0))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Ongoing $e0) (Theme $e1 $e0)) (MnAgent_Agent_Ongoing_ThemeEv $e0 $e1 $x0))
 
 ;; [genuine]  p201043 ~ p201103   records 10 / 9 / 9 (8 distinct)   gate: PASS
 ;;   NMI: 0.864   MI: 0.0349   Jaccard: 0.90   e.g. tierB-000485 tierB-000738 tierB-000942
@@ -13668,7 +13668,7 @@
 ;;   A: (And (Member $x0 bad) (Patient $e0 $x0) (Result $e0 $e1))
 ;;   B: (Member $e0 bad)
 ;;   alignment: $e1=$e0 (holds in 4 of 4 records)   B is part of A: the rule is A's own pack; 1 of the shared records duplicate another
-(Implication (And (Member $e1 bad) (Member $x0 bad) (Patient $e0 $x0) (Result $e0 $e1)) (MnBad_Bad_Patient_ResultEv_2 $e0 $e1 $x0))
+(Implication (And (Member $e0 bad) (Member $x0 bad) (Patient $e1 $x0) (Result $e1 $e0)) (MnBad_Bad_Patient_ResultEv $e0 $e1 $x0))
 
 ;; [part-of]  p203754 ~ p204546   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000277 tierC-000278 tierC-000301
@@ -13906,98 +13906,98 @@
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build))
 ;;   alignment: $e0=$e0 $x0=$x0 (holds in 4 of 4 records)   B is part of A: the rule is A's own pack; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Patient $e0 $x0 $x1))
 
 ;; [part-of]  p204219 ~ p204281   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Patient $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 $x1=$x1 (holds in 4 of 4 records)   B is part of A: the rule is A's own pack; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Patient $e0 $x0 $x1))
 
 ;; [part-of]  p204219 ~ p204309   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   B is part of A: the rule is A's own pack; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Patient $e0 $x0 $x1))
 
 ;; [part-of]  p204219 ~ p204460   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan))
 ;;   alignment: $e0=$e0 $x0=$x0 (holds in 4 of 4 records)   B is part of A: the rule is A's own pack; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Patient $e0 $x0 $x1))
 
 ;; [part-of]  p204219 ~ p204512   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 kazakhstan) (Member $e0 build))
 ;;   alignment: $e0=$e0 (holds in 4 of 4 records)   B is part of A: the rule is A's own pack; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Patient $e0 $x0 $x1))
 
 ;; [part-of]  p204219 ~ p204514   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 kazakhstan) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   B is part of A: the rule is A's own pack; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Patient $e0 $x0 $x1))
 
 ;; [part-of]  p204219 ~ p204705   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x1))
 ;;   B: (Location $e0 kazakhstan)
 ;;   alignment: $e0=$e0 (holds in 4 of 4 records)   B is part of A: the rule is A's own pack; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Patient $e0 $x0 $x1))
 
 ;; [part-of]  p204220 ~ p204280   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0))
 ;;   alignment: $e0=$e0 $x0=$x0 (holds in 4 of 4 records)   B is part of A: the rule is A's own pack; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Past_Patient $e0 $x0 $x1))
 
 ;; [part-of]  p204220 ~ p204281   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Patient $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 $x1=$x1 (holds in 4 of 4 records)   B is part of A: the rule is A's own pack; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Past_Patient $e0 $x0 $x1))
 
 ;; [part-of]  p204220 ~ p204310   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   B is part of A: the rule is A's own pack; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Past_Patient $e0 $x0 $x1))
 
 ;; [part-of]  p204220 ~ p204460   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 kazakhstan))
 ;;   alignment: $e0=$e0 $x0=$x0 (holds in 4 of 4 records)   B is part of A: the rule is A's own pack; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Past_Patient $e0 $x0 $x1))
 
 ;; [part-of]  p204220 ~ p204513   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 kazakhstan) (Past $e0))
 ;;   alignment: $e0=$e0 (holds in 4 of 4 records)   B is part of A: the rule is A's own pack; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Past_Patient $e0 $x0 $x1))
 
 ;; [part-of]  p204220 ~ p204514   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 kazakhstan) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 4 of 4 records)   B is part of A: the rule is A's own pack; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Past_Patient $e0 $x0 $x1))
 
 ;; [part-of]  p204220 ~ p204705   records 4 / 4 / 4 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierC-000045 tierC-000046 tierC-000291
 ;;   A: (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x1))
 ;;   B: (Location $e0 kazakhstan)
 ;;   alignment: $e0=$e0 (holds in 4 of 4 records)   B is part of A: the rule is A's own pack; 2 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Past_Patient $e0 $x0 $x1))
 
 ;; [part-of]  p204221 ~ p204284   records 4 / 4 / 4 (3 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0184   Jaccard: 1.00   e.g. tierB-001197 tierB-001399 tierC-000353
@@ -14753,14 +14753,14 @@
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (Agent $e0 $x0) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   alignment: $e0=$e0 $x0=$x0 $x1=$x2 $x2=$x1 (holds in 3 of 3 records)   B is part of A: the rule is A's own pack; 1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfGroupOfView_Theme_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfGroupOfView_Theme $e0 $x0 $x1 $x2))
 
 ;; [part-of]  p204824 ~ p207344   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Agent $e0 $x0) (GroupOf $x1 view) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x1=$x1 $x2=$x0 (holds in 3 of 3 records)   B is part of A: the rule is A's own pack; 1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfGroupOfView_Theme_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfGroupOfView_Theme $e0 $x0 $x1 $x2))
 
 ;; [part-of]  p204827 ~ p206035   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-000942 tierC-000025 tierC-000026
@@ -14879,35 +14879,35 @@
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 eskisehir) (Member $x0 hotel) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 3 of 3 records)   B is part of A: the rule is A's own pack; 1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x1 hotel) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_PatientOfHotel_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x1 hotel) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_PatientOfHotel $e0 $x0 $x1))
 
 ;; [part-of]  p204832 ~ p206798   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Patient $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 $x1=$x1 (holds in 3 of 3 records)   B is part of A: the rule is A's own pack; 1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x1 hotel) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_PatientOfHotel_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x1 hotel) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_PatientOfHotel $e0 $x0 $x1))
 
 ;; [part-of]  p204832 ~ p207158   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 eskisehir))
 ;;   alignment: $e0=$e0 $x0=$x0 (holds in 3 of 3 records)   B is part of A: the rule is A's own pack; 1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x1 hotel) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_PatientOfHotel_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x1 hotel) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_PatientOfHotel $e0 $x0 $x1))
 
 ;; [part-of]  p204832 ~ p207243   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 eskisehir) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 3 of 3 records)   B is part of A: the rule is A's own pack; 1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x1 hotel) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_PatientOfHotel_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x1 hotel) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_PatientOfHotel $e0 $x0 $x1))
 
 ;; [part-of]  p204832 ~ p207614   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x1 hotel) (Patient $e0 $x1))
 ;;   B: (Location $e0 eskisehir)
 ;;   alignment: $e0=$e0 (holds in 3 of 3 records)   B is part of A: the rule is A's own pack; 1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x1 hotel) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_PatientOfHotel_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x1 hotel) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_PatientOfHotel $e0 $x0 $x1))
 
 ;; [part-of]  p204833 ~ p206035   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-000942 tierC-000025 tierC-000026
@@ -14984,42 +14984,42 @@
 ;;   A: (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (Possession $x0 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x1=$x0 $x2=$x1 (holds in 3 of 3 records)   B is part of A: the rule is A's own pack; 1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfPossessionFreeSoilParty_Theme_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfPossessionFreeSoilParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [part-of]  p204846 ~ p206821   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (Agent $e0 $x0) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   alignment: $e0=$e0 $x0=$x0 $x1=$x2 $x2=$x1 (holds in 3 of 3 records)   B is part of A: the rule is A's own pack; 1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfPossessionFreeSoilParty_Theme_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfPossessionFreeSoilParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [part-of]  p204846 ~ p207344   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x1=$x1 $x2=$x0 (holds in 3 of 3 records)   B is part of A: the rule is A's own pack; 1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfPossessionFreeSoilParty_Theme_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfPossessionFreeSoilParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [part-of]  p204847 ~ p206055   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Agent $e0 $x0) (Possession $x1 republican_party) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (Possession $x0 republican_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x1=$x0 $x2=$x1 (holds in 3 of 3 records)   B is part of A: the rule is A's own pack; 1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Possession $x1 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfPossessionRepublicanParty_Theme_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Possession $x1 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfPossessionRepublicanParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [part-of]  p204847 ~ p206821   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Agent $e0 $x0) (Possession $x1 republican_party) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (Agent $e0 $x0) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   alignment: $e0=$e0 $x0=$x0 $x1=$x2 $x2=$x1 (holds in 3 of 3 records)   B is part of A: the rule is A's own pack; 1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Possession $x1 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfPossessionRepublicanParty_Theme_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Possession $x1 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfPossessionRepublicanParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [part-of]  p204847 ~ p207344   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   A: (And (Agent $e0 $x0) (Possession $x1 republican_party) (Theme $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x1=$x1 $x2=$x0 (holds in 3 of 3 records)   B is part of A: the rule is A's own pack; 1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Possession $x1 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfPossessionRepublicanParty_Theme_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Possession $x1 republican_party) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfPossessionRepublicanParty_Theme $e0 $x0 $x1 $x2))
 
 ;; [part-of]  p204848 ~ p206008   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-000412 tierC-000001 tierC-000002
@@ -15180,7 +15180,7 @@
 ;;   A: (And (GroupOf $x0 view) (Possession $x0 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x1 $x1=$x0 (holds in 3 of 3 records)   B is part of A: the rule is A's own pack; 1 of the shared records duplicate another
-(Implication (And (GroupOf $x0 view) (GroupOf $x1 view) (Possession $x0 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnGroupOfView_GroupOfView_PossessionFreeSoilParty_Theme_Theme_1 $e0 $x0 $x1))
+(Implication (And (GroupOf $x0 view) (GroupOf $x1 view) (Possession $x0 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnGroupOfView_GroupOfView_PossessionFreeSoilParty_Theme_Theme $e0 $x0 $x1))
 
 ;; [part-of]  p204876 ~ p206054   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
@@ -15201,7 +15201,7 @@
 ;;   A: (And (GroupOf $x0 view) (Possession $x0 republican_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x1 $x1=$x0 (holds in 3 of 3 records)   B is part of A: the rule is A's own pack; 1 of the shared records duplicate another
-(Implication (And (GroupOf $x0 view) (GroupOf $x1 view) (Possession $x0 republican_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnGroupOfView_GroupOfView_PossessionRepublicanParty_Theme_Theme_1 $e0 $x0 $x1))
+(Implication (And (GroupOf $x0 view) (GroupOf $x1 view) (Possession $x0 republican_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnGroupOfView_GroupOfView_PossessionRepublicanParty_Theme_Theme $e0 $x0 $x1))
 
 ;; [part-of]  p204877 ~ p206055   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
@@ -15222,7 +15222,7 @@
 ;;   A: (And (GroupOf $x0 view) (Possession $x1 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x1 $x1=$x0 (holds in 3 of 3 records)   B is part of A: the rule is A's own pack; 1 of the shared records duplicate another
-(Implication (And (GroupOf $x0 view) (GroupOf $x1 view) (Possession $x1 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnGroupOfView_GroupOfView_PossessionFreeSoilParty_Theme_Theme_2 $e0 $x0 $x1))
+(Implication (And (GroupOf $x0 view) (GroupOf $x1 view) (Possession $x0 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnGroupOfView_GroupOfView_PossessionFreeSoilParty_Theme_Theme $e0 $x0 $x1))
 
 ;; [part-of]  p204878 ~ p206054   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
@@ -15243,7 +15243,7 @@
 ;;   A: (And (GroupOf $x0 view) (Possession $x1 republican_party) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   B: (And (GroupOf $x0 view) (Theme $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x1 $x1=$x0 (holds in 3 of 3 records)   B is part of A: the rule is A's own pack; 1 of the shared records duplicate another
-(Implication (And (GroupOf $x0 view) (GroupOf $x1 view) (Possession $x1 republican_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnGroupOfView_GroupOfView_PossessionRepublicanParty_Theme_Theme_2 $e0 $x0 $x1))
+(Implication (And (GroupOf $x0 view) (GroupOf $x1 view) (Possession $x0 republican_party) (Theme $e0 $x0) (Theme $e0 $x1)) (MnGroupOfView_GroupOfView_PossessionRepublicanParty_Theme_Theme $e0 $x0 $x1))
 
 ;; [part-of]  p204879 ~ p206055   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000159 tierC-000160 tierC-000356
@@ -15796,133 +15796,133 @@
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build))
 ;;   alignment: $e0=$e0 $x0=$x0 (holds in 3 of 3 records)   B is part of A: the rule is A's own pack; 1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Patient $e0 $x0 $x1))
 
 ;; [part-of]  p206649 ~ p206798   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Patient $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 $x1=$x1 (holds in 3 of 3 records)   B is part of A: the rule is A's own pack; 1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Patient $e0 $x0 $x1))
 
 ;; [part-of]  p206649 ~ p206834   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 eskisehir) (Member $e0 build) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 3 of 3 records)   B is part of A: the rule is A's own pack; 1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Patient $e0 $x0 $x1))
 
 ;; [part-of]  p206649 ~ p207158   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 eskisehir))
 ;;   alignment: $e0=$e0 $x0=$x0 (holds in 3 of 3 records)   B is part of A: the rule is A's own pack; 1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Patient $e0 $x0 $x1))
 
 ;; [part-of]  p206649 ~ p207241   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 eskisehir) (Member $e0 build))
 ;;   alignment: $e0=$e0 (holds in 3 of 3 records)   B is part of A: the rule is A's own pack; 1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Patient $e0 $x0 $x1))
 
 ;; [part-of]  p206649 ~ p207243   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 eskisehir) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 3 of 3 records)   B is part of A: the rule is A's own pack; 1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Patient $e0 $x0 $x1))
 
 ;; [part-of]  p206649 ~ p207614   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Patient $e0 $x1))
 ;;   B: (Location $e0 eskisehir)
 ;;   alignment: $e0=$e0 (holds in 3 of 3 records)   B is part of A: the rule is A's own pack; 1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Patient $e0 $x0 $x1))
 
 ;; [part-of]  p206650 ~ p206797   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0))
 ;;   alignment: $e0=$e0 $x0=$x0 (holds in 3 of 3 records)   B is part of A: the rule is A's own pack; 1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Past_Patient $e0 $x0 $x1))
 
 ;; [part-of]  p206650 ~ p206798   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Patient $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 $x1=$x1 (holds in 3 of 3 records)   B is part of A: the rule is A's own pack; 1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Past_Patient $e0 $x0 $x1))
 
 ;; [part-of]  p206650 ~ p206835   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 eskisehir) (Past $e0) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 3 of 3 records)   B is part of A: the rule is A's own pack; 1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Past_Patient $e0 $x0 $x1))
 
 ;; [part-of]  p206650 ~ p207158   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Location $e0 eskisehir))
 ;;   alignment: $e0=$e0 $x0=$x0 (holds in 3 of 3 records)   B is part of A: the rule is A's own pack; 1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Past_Patient $e0 $x0 $x1))
 
 ;; [part-of]  p206650 ~ p207242   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 eskisehir) (Past $e0))
 ;;   alignment: $e0=$e0 (holds in 3 of 3 records)   B is part of A: the rule is A's own pack; 1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Past_Patient $e0 $x0 $x1))
 
 ;; [part-of]  p206650 ~ p207243   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0) (Patient $e0 $x1))
 ;;   B: (And (Location $e0 eskisehir) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 3 of 3 records)   B is part of A: the rule is A's own pack; 1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Past_Patient $e0 $x0 $x1))
 
 ;; [part-of]  p206650 ~ p207614   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   A: (And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0) (Patient $e0 $x1))
 ;;   B: (Location $e0 eskisehir)
 ;;   alignment: $e0=$e0 (holds in 3 of 3 records)   B is part of A: the rule is A's own pack; 1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Past_Patient $e0 $x0 $x1))
 
 ;; [part-of]  p206651 ~ p206799   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000257 tierC-000353 tierC-000354
 ;;   A: (And (Agent $e0 $x0) (Manner $e0 directly) (Past $e0) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Manner $e0 directly) (Past $e0))
 ;;   alignment: $e0=$e0 $x0=$x0 (holds in 3 of 3 records)   B is part of A: the rule is A's own pack; 1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Manner $e0 directly) (Past $e0) (Patient $e0 $x1)) (MnAgent_MannerDirectly_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Manner $e0 directly) (Past $e0) (Patient $e0 $x1)) (MnAgent_MannerDirectly_Past_Patient $e0 $x0 $x1))
 
 ;; [part-of]  p206651 ~ p206800   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000257 tierC-000353 tierC-000354
 ;;   A: (And (Agent $e0 $x0) (Manner $e0 directly) (Past $e0) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Manner $e0 directly) (Patient $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 $x1=$x1 (holds in 3 of 3 records)   B is part of A: the rule is A's own pack; 1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Manner $e0 directly) (Past $e0) (Patient $e0 $x1)) (MnAgent_MannerDirectly_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Manner $e0 directly) (Past $e0) (Patient $e0 $x1)) (MnAgent_MannerDirectly_Past_Patient $e0 $x0 $x1))
 
 ;; [part-of]  p206651 ~ p206836   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000257 tierC-000353 tierC-000354
 ;;   A: (And (Agent $e0 $x0) (Manner $e0 directly) (Past $e0) (Patient $e0 $x1))
 ;;   B: (And (Manner $e0 directly) (Past $e0) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 3 of 3 records)   B is part of A: the rule is A's own pack; 1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Manner $e0 directly) (Past $e0) (Patient $e0 $x1)) (MnAgent_MannerDirectly_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Manner $e0 directly) (Past $e0) (Patient $e0 $x1)) (MnAgent_MannerDirectly_Past_Patient $e0 $x0 $x1))
 
 ;; [part-of]  p206651 ~ p207159   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000257 tierC-000353 tierC-000354
 ;;   A: (And (Agent $e0 $x0) (Manner $e0 directly) (Past $e0) (Patient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Manner $e0 directly))
 ;;   alignment: $e0=$e0 $x0=$x0 (holds in 3 of 3 records)   B is part of A: the rule is A's own pack; 1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Manner $e0 directly) (Past $e0) (Patient $e0 $x1)) (MnAgent_MannerDirectly_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Manner $e0 directly) (Past $e0) (Patient $e0 $x1)) (MnAgent_MannerDirectly_Past_Patient $e0 $x0 $x1))
 
 ;; [part-of]  p206651 ~ p207246   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierC-000257 tierC-000353 tierC-000354
 ;;   A: (And (Agent $e0 $x0) (Manner $e0 directly) (Past $e0) (Patient $e0 $x1))
 ;;   B: (And (Manner $e0 directly) (Patient $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 3 of 3 records)   B is part of A: the rule is A's own pack; 1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Manner $e0 directly) (Past $e0) (Patient $e0 $x1)) (MnAgent_MannerDirectly_Past_Patient_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Manner $e0 directly) (Past $e0) (Patient $e0 $x1)) (MnAgent_MannerDirectly_Past_Patient $e0 $x0 $x1))
 
 ;; [part-of]  p206652 ~ p206801   records 3 / 3 / 3 (3 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-000852 tierB-001342 tierB-001990
@@ -15950,42 +15950,42 @@
 ;;   A: (And (Agent $e0 $x0) (Member $e0 spend) (Past $e0) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Member $e0 spend) (Past $e0))
 ;;   alignment: $e0=$e0 $x0=$x0 (holds in 3 of 3 records)   B is part of A: the rule is A's own pack; 1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $e0 spend) (Past $e0) (Theme $e0 $x1)) (MnAgent_Spend_Past_Theme_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 spend) (Past $e0) (Theme $e0 $x1)) (MnAgent_Spend_Past_Theme $e0 $x0 $x1))
 
 ;; [part-of]  p206653 ~ p206811   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-001146 tierC-000047 tierC-000048
 ;;   A: (And (Agent $e0 $x0) (Member $e0 spend) (Past $e0) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Member $e0 spend) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 $x1=$x1 (holds in 3 of 3 records)   B is part of A: the rule is A's own pack; 1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $e0 spend) (Past $e0) (Theme $e0 $x1)) (MnAgent_Spend_Past_Theme_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 spend) (Past $e0) (Theme $e0 $x1)) (MnAgent_Spend_Past_Theme $e0 $x0 $x1))
 
 ;; [part-of]  p206653 ~ p206853   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-001146 tierC-000047 tierC-000048
 ;;   A: (And (Agent $e0 $x0) (Member $e0 spend) (Past $e0) (Theme $e0 $x1))
 ;;   B: (And (Member $e0 spend) (Past $e0) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 3 of 3 records)   B is part of A: the rule is A's own pack; 1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $e0 spend) (Past $e0) (Theme $e0 $x1)) (MnAgent_Spend_Past_Theme_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 spend) (Past $e0) (Theme $e0 $x1)) (MnAgent_Spend_Past_Theme $e0 $x0 $x1))
 
 ;; [part-of]  p206653 ~ p207170   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-001146 tierC-000047 tierC-000048
 ;;   A: (And (Agent $e0 $x0) (Member $e0 spend) (Past $e0) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Member $e0 spend))
 ;;   alignment: $e0=$e0 $x0=$x0 (holds in 3 of 3 records)   B is part of A: the rule is A's own pack; 1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $e0 spend) (Past $e0) (Theme $e0 $x1)) (MnAgent_Spend_Past_Theme_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 spend) (Past $e0) (Theme $e0 $x1)) (MnAgent_Spend_Past_Theme $e0 $x0 $x1))
 
 ;; [part-of]  p206653 ~ p207296   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-001146 tierC-000047 tierC-000048
 ;;   A: (And (Agent $e0 $x0) (Member $e0 spend) (Past $e0) (Theme $e0 $x1))
 ;;   B: (And (Member $e0 spend) (Past $e0))
 ;;   alignment: $e0=$e0 (holds in 3 of 3 records)   B is part of A: the rule is A's own pack; 1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $e0 spend) (Past $e0) (Theme $e0 $x1)) (MnAgent_Spend_Past_Theme_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 spend) (Past $e0) (Theme $e0 $x1)) (MnAgent_Spend_Past_Theme $e0 $x0 $x1))
 
 ;; [part-of]  p206653 ~ p207297   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-001146 tierC-000047 tierC-000048
 ;;   A: (And (Agent $e0 $x0) (Member $e0 spend) (Past $e0) (Theme $e0 $x1))
 ;;   B: (And (Member $e0 spend) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 3 of 3 records)   B is part of A: the rule is A's own pack; 1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $e0 spend) (Past $e0) (Theme $e0 $x1)) (MnAgent_Spend_Past_Theme_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 spend) (Past $e0) (Theme $e0 $x1)) (MnAgent_Spend_Past_Theme $e0 $x0 $x1))
 
 ;; [part-of]  p206654 ~ p206817   records 3 / 3 / 3 (2 distinct)   gate: PASS
 ;;   NMI: 1.000   MI: 0.0144   Jaccard: 1.00   e.g. tierB-001962 tierC-000089 tierC-000090
@@ -17091,7 +17091,7 @@
 ;;   A: (And (Member $e0 become) (Result $e0 $e1))
 ;;   B: (And (Experiencer $e0 $x0) (Member $e1 become) (Result $e1 $e0))
 ;;   alignment: $e0=$e1 $e1=$e0 (holds in 7 of 7 records)   B is part of A: the rule is A's own pack; 1 of the shared records duplicate another
-(Implication (And (Experiencer $e1 $x0) (Member $e0 become) (Result $e0 $e1)) (MnBecome_ResultEvOfExperiencer $e0 $e1 $x0))
+(Implication (And (Experiencer $e0 $x0) (Member $e1 become) (Result $e1 $e0)) (MnBecome_ResultEvOfExperiencer $e1 $e0 $x0))
 
 ;; [part-of]  p201489 ~ p201771   records 8 / 7 / 7 (6 distinct)   gate: PASS
 ;;   NMI: 0.836   MI: 0.0279   Jaccard: 0.88   e.g. tierB-001582 tierB-001817 tierC-000001

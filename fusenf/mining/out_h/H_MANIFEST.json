@@ -598,7 +598,8 @@
      }
     }
    },
-   "history": "2026-09-08 first build gated on NMI (cap 10%, then no cap); 2026-09-09 owner: raw MI + ceiling = faithful, NMI = addition; family label 'construction' renamed 'distinct'; label rule = real support < 3 or mostly duplicates; 2026-09-09 (later): kinds + families dropped from the rendering (owner: confusing) → uniform pair records with variable alignment through the shared records and the Implication each pair would become"
+   "history": "2026-09-08 first build gated on NMI (cap 10%, then no cap); 2026-09-09 owner: raw MI + ceiling = faithful, NMI = addition; family label 'construction' renamed 'distinct'; label rule = real support < 3 or mostly duplicates; 2026-09-09 (later): kinds + families dropped from the rendering (owner: confusing) → uniform pair records with variable alignment through the shared records and the Implication each pair would become",
+   "merged_feature_canonicalisation": "merged feature CANONICALISED 2026-09-24 (owner): merge() now puts the aligned conjunction into the miner's canonical pattern form (canonical_pattern_text: per-stream minimal renaming) before naming, so one construction reached from several pairs is one merged feature and one rule; verdicts / MI / Jaccard unchanged, only merged_atoms / meta_name / implication changed; out_h and out_ecmp re-run for both gates (byte-identical re-runs): faithful distinct rules H 73 -> 68, item-E 60 -> 57 (suffixed names 14 / 17 -> 0); NMI addition distinct rules H 1,046 -> 931, item-E 3,242 -> 2,959 (the remaining suffixes there are different features sharing a flat name, not renumbering duplicates)"
   },
   "4.3.5_autoencoder": {
    "script": "mining/ae_faithful.py",

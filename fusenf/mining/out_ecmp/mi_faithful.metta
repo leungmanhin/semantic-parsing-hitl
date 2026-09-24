@@ -39,42 +39,42 @@
 ;;   A: (And (Agent $e0 $x0) (Member $e0 give) (Recipient $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Member $e0 give) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 (holds in 12 of 12 records)   6 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $e0 give) (Recipient $e0 $x1) (Theme $e0 $x2)) (MnAgent_Give_Recipient_Theme_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member $e0 give) (Recipient $e0 $x1) (Theme $e0 $x2)) (MnAgent_Give_Recipient_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p200329 ~ p200332   records 12 / 12 / 12 (6 distinct)   gate: PASS
 ;;   MI: 0.1168   Jaccard: 1.00   e.g. tierA-000208 tierA-000213 tierA-000218
 ;;   A: (And (Agent $e0 $x0) (Member $e0 give) (Recipient $e0 $x1))
 ;;   B: (And (Member $e0 give) (Recipient $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 12 of 12 records)   6 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $e0 give) (Recipient $e0 $x1) (Theme $e0 $x2)) (MnAgent_Give_Recipient_Theme_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member $e0 give) (Recipient $e0 $x1) (Theme $e0 $x2)) (MnAgent_Give_Recipient_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p200329 ~ p200341   records 12 / 12 / 12 (6 distinct)   gate: PASS
 ;;   MI: 0.1168   Jaccard: 1.00   e.g. tierA-000208 tierA-000213 tierA-000218
 ;;   A: (And (Agent $e0 $x0) (Member $e0 give) (Recipient $e0 $x1))
 ;;   B: (And (Member $e0 give) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 12 of 12 records)   6 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $e0 give) (Recipient $e0 $x1) (Theme $e0 $x2)) (MnAgent_Give_Recipient_Theme_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member $e0 give) (Recipient $e0 $x1) (Theme $e0 $x2)) (MnAgent_Give_Recipient_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p200330 ~ p200332   records 12 / 12 / 12 (6 distinct)   gate: PASS
 ;;   MI: 0.1168   Jaccard: 1.00   e.g. tierA-000208 tierA-000213 tierA-000218
 ;;   A: (And (Agent $e0 $x0) (Member $e0 give) (Theme $e0 $x1))
 ;;   B: (And (Member $e0 give) (Recipient $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x1=$x1 (holds in 12 of 12 records)   6 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $e0 give) (Recipient $e0 $x2) (Theme $e0 $x1)) (MnAgent_Give_Recipient_Theme_2 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member $e0 give) (Recipient $e0 $x1) (Theme $e0 $x2)) (MnAgent_Give_Recipient_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p200330 ~ p200340   records 12 / 12 / 12 (6 distinct)   gate: PASS
 ;;   MI: 0.1168   Jaccard: 1.00   e.g. tierA-000208 tierA-000213 tierA-000218
 ;;   A: (And (Agent $e0 $x0) (Member $e0 give) (Theme $e0 $x1))
 ;;   B: (And (Member $e0 give) (Recipient $e0 $x0))
 ;;   alignment: $e0=$e0 (holds in 12 of 12 records)   6 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $e0 give) (Recipient $e0 $x2) (Theme $e0 $x1)) (MnAgent_Give_Recipient_Theme_2 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member $e0 give) (Recipient $e0 $x1) (Theme $e0 $x2)) (MnAgent_Give_Recipient_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p200332 ~ p200338   records 12 / 12 / 12 (6 distinct)   gate: PASS
 ;;   MI: 0.1168   Jaccard: 1.00   e.g. tierA-000208 tierA-000213 tierA-000218
 ;;   A: (And (Member $e0 give) (Recipient $e0 $x0) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Member $e0 give))
 ;;   alignment: $e0=$e0 (holds in 12 of 12 records)   6 of the shared records duplicate another
-(Implication (And (Agent $e0 $x2) (Member $e0 give) (Recipient $e0 $x0) (Theme $e0 $x1)) (MnAgent_Give_Recipient_Theme_3 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member $e0 give) (Recipient $e0 $x1) (Theme $e0 $x2)) (MnAgent_Give_Recipient_Theme $e0 $x0 $x1 $x2))
 
 ;; [genuine]  p200338 ~ p200340   records 12 / 12 / 12 (6 distinct)   gate: PASS
 ;;   MI: 0.1168   Jaccard: 1.00   e.g. tierA-000208 tierA-000213 tierA-000218
@@ -123,7 +123,7 @@
 ;;   A: (And (Member $e0 lend) (Theme $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Member $e0 lend))
 ;;   alignment: $e0=$e0 (holds in 9 of 9 records)   6 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (Member $e0 lend) (Theme $e0 $x0)) (MnAgent_Lend_Theme_2 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 lend) (Theme $e0 $x1)) (MnAgent_Lend_Theme $e0 $x0 $x1))
 
 ;; [genuine]  p200675 ~ p200685   records 8 / 8 / 8 (3 distinct)   gate: PASS
 ;;   MI: 0.0841   Jaccard: 1.00   e.g. tierA-000099 tierA-000101 tierA-000104
@@ -151,7 +151,7 @@
 ;;   A: (And (Inheritance pottery_studio studio) (Member $x0 pottery_studio))
 ;;   B: (Member $x0 kiln)
 ;;   alignment: — (holds in 7 of 7 records)   no shared skolem: co-occurrence conjunction; 6 of the shared records duplicate another
-(Implication (And (Inheritance pottery_studio studio) (Member $x0 pottery_studio) (Member $x1 kiln)) (MnInheritancePotteryStudioStudio_PotteryStudio_Kiln $x0 $x1))
+(Implication (And (Inheritance pottery_studio studio) (Member $x0 kiln) (Member $x1 pottery_studio)) (MnInheritancePotteryStudioStudio_Kiln_PotteryStudio $x0 $x1))
 
 ;; [genuine]  p200801 ~ p200856   records 7 / 7 / 7 (1 distinct)   gate: PASS
 ;;   MI: 0.0754   Jaccard: 1.00   e.g. tierA-000022 tierA-000023 tierA-000024
@@ -193,49 +193,49 @@
 ;;   A: (And (Agent $e0 $x0) (Member $e0 give) (Recipient $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (Agent $e0 $x0) (Member $e0 give) (Recipient $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 $x1=$x1 (holds in 12 of 12 records)   B is part of A: the rule is A's own pack; 6 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $e0 give) (Recipient $e0 $x1) (Theme $e0 $x2)) (MnAgent_Give_Recipient_Theme_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member $e0 give) (Recipient $e0 $x1) (Theme $e0 $x2)) (MnAgent_Give_Recipient_Theme $e0 $x0 $x1 $x2))
 
 ;; [part-of]  p200326 ~ p200330   records 12 / 12 / 12 (6 distinct)   gate: PASS
 ;;   MI: 0.1168   Jaccard: 1.00   e.g. tierA-000208 tierA-000213 tierA-000218
 ;;   A: (And (Agent $e0 $x0) (Member $e0 give) (Recipient $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (Agent $e0 $x0) (Member $e0 give) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x0 $x2=$x1 (holds in 12 of 12 records)   B is part of A: the rule is A's own pack; 6 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $e0 give) (Recipient $e0 $x1) (Theme $e0 $x2)) (MnAgent_Give_Recipient_Theme_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member $e0 give) (Recipient $e0 $x1) (Theme $e0 $x2)) (MnAgent_Give_Recipient_Theme $e0 $x0 $x1 $x2))
 
 ;; [part-of]  p200326 ~ p200332   records 12 / 12 / 12 (6 distinct)   gate: PASS
 ;;   MI: 0.1168   Jaccard: 1.00   e.g. tierA-000208 tierA-000213 tierA-000218
 ;;   A: (And (Agent $e0 $x0) (Member $e0 give) (Recipient $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (Member $e0 give) (Recipient $e0 $x0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x1=$x0 $x2=$x1 (holds in 12 of 12 records)   B is part of A: the rule is A's own pack; 6 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $e0 give) (Recipient $e0 $x1) (Theme $e0 $x2)) (MnAgent_Give_Recipient_Theme_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member $e0 give) (Recipient $e0 $x1) (Theme $e0 $x2)) (MnAgent_Give_Recipient_Theme $e0 $x0 $x1 $x2))
 
 ;; [part-of]  p200326 ~ p200338   records 12 / 12 / 12 (6 distinct)   gate: PASS
 ;;   MI: 0.1168   Jaccard: 1.00   e.g. tierA-000208 tierA-000213 tierA-000218
 ;;   A: (And (Agent $e0 $x0) (Member $e0 give) (Recipient $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (Agent $e0 $x0) (Member $e0 give))
 ;;   alignment: $e0=$e0 $x0=$x0 (holds in 12 of 12 records)   B is part of A: the rule is A's own pack; 6 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $e0 give) (Recipient $e0 $x1) (Theme $e0 $x2)) (MnAgent_Give_Recipient_Theme_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member $e0 give) (Recipient $e0 $x1) (Theme $e0 $x2)) (MnAgent_Give_Recipient_Theme $e0 $x0 $x1 $x2))
 
 ;; [part-of]  p200326 ~ p200340   records 12 / 12 / 12 (6 distinct)   gate: PASS
 ;;   MI: 0.1168   Jaccard: 1.00   e.g. tierA-000208 tierA-000213 tierA-000218
 ;;   A: (And (Agent $e0 $x0) (Member $e0 give) (Recipient $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (Member $e0 give) (Recipient $e0 $x0))
 ;;   alignment: $e0=$e0 $x1=$x0 (holds in 12 of 12 records)   B is part of A: the rule is A's own pack; 6 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $e0 give) (Recipient $e0 $x1) (Theme $e0 $x2)) (MnAgent_Give_Recipient_Theme_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member $e0 give) (Recipient $e0 $x1) (Theme $e0 $x2)) (MnAgent_Give_Recipient_Theme $e0 $x0 $x1 $x2))
 
 ;; [part-of]  p200326 ~ p200341   records 12 / 12 / 12 (6 distinct)   gate: PASS
 ;;   MI: 0.1168   Jaccard: 1.00   e.g. tierA-000208 tierA-000213 tierA-000218
 ;;   A: (And (Agent $e0 $x0) (Member $e0 give) (Recipient $e0 $x1) (Theme $e0 $x2))
 ;;   B: (And (Member $e0 give) (Theme $e0 $x0))
 ;;   alignment: $e0=$e0 $x2=$x0 (holds in 12 of 12 records)   B is part of A: the rule is A's own pack; 6 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $e0 give) (Recipient $e0 $x1) (Theme $e0 $x2)) (MnAgent_Give_Recipient_Theme_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member $e0 give) (Recipient $e0 $x1) (Theme $e0 $x2)) (MnAgent_Give_Recipient_Theme $e0 $x0 $x1 $x2))
 
 ;; [part-of]  p200326 ~ p200352   records 12 / 12 / 12 (6 distinct)   gate: PASS
 ;;   MI: 0.1168   Jaccard: 1.00   e.g. tierA-000208 tierA-000213 tierA-000218
 ;;   A: (And (Agent $e0 $x0) (Member $e0 give) (Recipient $e0 $x1) (Theme $e0 $x2))
 ;;   B: (Member $e0 give)
 ;;   alignment: $e0=$e0 (holds in 12 of 12 records)   B is part of A: the rule is A's own pack; 6 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $e0 give) (Recipient $e0 $x1) (Theme $e0 $x2)) (MnAgent_Give_Recipient_Theme_1 $e0 $x0 $x1 $x2))
+(Implication (And (Agent $e0 $x0) (Member $e0 give) (Recipient $e0 $x1) (Theme $e0 $x2)) (MnAgent_Give_Recipient_Theme $e0 $x0 $x1 $x2))
 
 ;; [part-of]  p200329 ~ p200338   records 12 / 12 / 12 (6 distinct)   gate: PASS
 ;;   MI: 0.1168   Jaccard: 1.00   e.g. tierA-000208 tierA-000213 tierA-000218
@@ -431,7 +431,7 @@
 ;;   A: (And (Agent $e0 $x0) (Member $e0 lend) (Theme $e0 $x1))
 ;;   B: (And (Agent $e0 $x0) (Member $e0 lend))
 ;;   alignment: $e0=$e0 $x0=$x0 (holds in 9 of 9 records)   B is part of A: the rule is A's own pack; 6 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $e0 lend) (Theme $e0 $x1)) (MnAgent_Lend_Theme_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 lend) (Theme $e0 $x1)) (MnAgent_Lend_Theme $e0 $x0 $x1))
 
 ;; [part-of]  p200558 ~ p200574   records 9 / 9 / 9 (4 distinct)   gate: PASS
 ;;   MI: 0.0926   Jaccard: 1.00   e.g. tierA-000143 tierA-000145 tierA-000148
@@ -459,14 +459,14 @@
 ;;   A: (And (Member $e0 lend) (Theme $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Member $e0 lend) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x1 (holds in 9 of 9 records)   B is part of A: the rule is A's own pack; 6 of the shared records duplicate another
-(Implication (And (Agent $e0 $x1) (Member $e0 lend) (Theme $e0 $x0)) (MnAgent_Lend_Theme_2 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 lend) (Theme $e0 $x1)) (MnAgent_Lend_Theme $e0 $x0 $x1))
 
 ;; [part-of]  p200501 ~ p200551   records 10 / 9 / 9 (3 distinct)   gate: PASS
 ;;   MI: 0.0864   Jaccard: 0.90   e.g. tierA-000296 tierA-000298 tierA-000299
 ;;   A: (Member $e0 lend)
 ;;   B: (And (Agent $e0 $x0) (Member $e0 lend) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 (holds in 9 of 9 records)   B is part of A: the rule is A's own pack; 6 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Member $e0 lend) (Theme $e0 $x1)) (MnAgent_Lend_Theme_1 $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 lend) (Theme $e0 $x1)) (MnAgent_Lend_Theme $e0 $x0 $x1))
 
 ;; [part-of]  p200501 ~ p200559   records 10 / 9 / 9 (3 distinct)   gate: PASS
 ;;   MI: 0.0864   Jaccard: 0.90   e.g. tierA-000296 tierA-000298 tierA-000299
@@ -641,7 +641,7 @@
 ;;   A: (Source $e0 $x0)
 ;;   B: (And (Agent $e0 $x0) (Source $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x1 (holds in 9 of 9 records)   B is part of A: the rule is A's own pack
-(Implication (And (Agent $e0 $x1) (Source $e0 $x0)) (MnAgent_Source $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Source $e0 $x1)) (MnAgent_Source $e0 $x0 $x1))
 
 ;; [part-of]  p200561 ~ p200665   records 9 / 8 / 8 (8 distinct)   gate: PASS
 ;;   MI: 0.0781   Jaccard: 0.89   e.g. tierA-000262 tierA-000272 tierA-000277

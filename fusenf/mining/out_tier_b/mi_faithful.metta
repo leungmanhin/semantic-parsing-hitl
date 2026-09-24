@@ -53,28 +53,28 @@
 ;;   A: (And (Experiencer $e0 $x0) (Past $e1) (Result $e1 $e0))
 ;;   B: (And (Past $e0) (Patient $e0 $x0) (Result $e0 $e1))
 ;;   alignment: $e0=$e1 $e1=$e0 $x0=$x0 (holds in 12 of 12 records)
-(Implication (And (Experiencer $e0 $x0) (Past $e1) (Patient $e1 $x0) (Result $e1 $e0)) (MnExperiencer_Past_Patient_ResultEv_1 $e0 $e1 $x0))
+(Implication (And (Experiencer $e0 $x0) (Past $e1) (Patient $e1 $x0) (Result $e1 $e0)) (MnExperiencer_Past_Patient_ResultEv $e0 $e1 $x0))
 
 ;; [genuine]  p200322 ~ p200611   records 22 / 12 / 12 (12 distinct)   gate: PASS
 ;;   MI: 0.0428   Jaccard: 0.55   e.g. tierB-000199 tierB-000265 tierB-000465
 ;;   A: (And (Ongoing $e0) (Theme $e1 $e0))
 ;;   B: (And (Member $e0 start) (Theme $e0 $e1))
 ;;   alignment: $e0=$e1 $e1=$e0 (holds in 12 of 12 records)
-(Implication (And (Member $e1 start) (Ongoing $e0) (Theme $e1 $e0)) (MnStart_ThemeEvOfOngoing_2 $e1 $e0))
+(Implication (And (Member $e0 start) (Ongoing $e1) (Theme $e0 $e1)) (MnStart_ThemeEvOfOngoing $e0 $e1))
 
 ;; [genuine]  p200283 ~ p200601   records 23 / 12 / 12 (12 distinct)   gate: PASS
 ;;   MI: 0.0423   Jaccard: 0.52   e.g. tierB-000362 tierB-000392 tierB-000425
 ;;   A: (And (Experiencer $e0 $x0) (Result $e1 $e0))
 ;;   B: (And (Past $e0) (Patient $e0 $x0) (Result $e0 $e1))
 ;;   alignment: $e0=$e1 $e1=$e0 $x0=$x0 (holds in 12 of 12 records)
-(Implication (And (Experiencer $e0 $x0) (Past $e1) (Patient $e1 $x0) (Result $e1 $e0)) (MnExperiencer_Past_Patient_ResultEv_1 $e0 $e1 $x0))
+(Implication (And (Experiencer $e0 $x0) (Past $e1) (Patient $e1 $x0) (Result $e1 $e0)) (MnExperiencer_Past_Patient_ResultEv $e0 $e1 $x0))
 
 ;; [genuine]  p200423 ~ p200436   records 16 / 16 / 12 (12 distinct)   gate: PASS
 ;;   MI: 0.0407   Jaccard: 0.60   e.g. tierB-000470 tierB-000485 tierB-000738
 ;;   A: (And (Agent $e0 $x0) (Past $e1) (Theme $e1 $e0))
 ;;   B: (And (Agent $e0 $x0) (Past $e0) (Theme $e0 $e1))
 ;;   alignment: $e0=$e1 $e1=$e0 $x0=$x0 (holds in 10 of 12 records)
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Past $e1) (Theme $e1 $e0)) (MnAgent_Agent_Past_ThemeEv_2 $e0 $e1 $x0))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Past $e0) (Theme $e0 $e1)) (MnAgent_Agent_Past_ThemeEv $e0 $e1 $x0))
 
 ;; [genuine]  p200256 ~ p200343   records 24 / 20 / 14 (14 distinct)   gate: PASS
 ;;   MI: 0.0404   Jaccard: 0.47   e.g. tierB-000470 tierB-000485 tierB-000738
@@ -88,7 +88,7 @@
 ;;   A: (And (Patient $e0 $x0) (Result $e0 $e1))
 ;;   B: (And (Experiencer $e0 $x0) (Past $e1) (Result $e1 $e0))
 ;;   alignment: $e0=$e1 $e1=$e0 $x0=$x0 (holds in 12 of 12 records)
-(Implication (And (Experiencer $e1 $x0) (Past $e0) (Patient $e0 $x0) (Result $e0 $e1)) (MnExperiencer_Past_Patient_ResultEv_2 $e0 $e1 $x0))
+(Implication (And (Experiencer $e0 $x0) (Past $e1) (Patient $e1 $x0) (Result $e1 $e0)) (MnExperiencer_Past_Patient_ResultEv $e0 $e1 $x0))
 
 ;; [genuine]  p200584 ~ p200834   records 12 / 9 / 9 (9 distinct)   gate: PASS
 ;;   MI: 0.0375   Jaccard: 0.75   e.g. tierB-000199 tierB-000265 tierB-000534
@@ -102,28 +102,28 @@
 ;;   A: (And (Agent $e0 $x0) (Theme $e1 $e0))
 ;;   B: (And (Agent $e0 $x0) (Past $e0) (Theme $e0 $e1))
 ;;   alignment: $e0=$e1 $e1=$e0 $x0=$x0 (holds in 10 of 12 records)
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Past $e1) (Theme $e1 $e0)) (MnAgent_Agent_Past_ThemeEv_2 $e0 $e1 $x0))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Past $e0) (Theme $e0 $e1)) (MnAgent_Agent_Past_ThemeEv $e0 $e1 $x0))
 
 ;; [genuine]  p200800 ~ p200938   records 9 / 8 / 8 (8 distinct)   gate: PASS
 ;;   MI: 0.0361   Jaccard: 0.89   e.g. tierB-000485 tierB-000738 tierB-000942
 ;;   A: (And (Agent $e0 $x0) (Ongoing $e1) (Theme $e0 $e1))
 ;;   B: (And (Agent $e0 $x0) (Ongoing $e0) (Theme $e1 $e0))
 ;;   alignment: $e0=$e1 $e1=$e0 $x0=$x0 (holds in 8 of 8 records)
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Ongoing $e1) (Theme $e0 $e1)) (MnAgent_Agent_Ongoing_ThemeEv $e0 $e1 $x0))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Ongoing $e0) (Theme $e1 $e0)) (MnAgent_Agent_Ongoing_ThemeEv $e0 $e1 $x0))
 
 ;; [genuine]  p200256 ~ p200423   records 24 / 16 / 12 (12 distinct)   gate: PASS
 ;;   MI: 0.0351   Jaccard: 0.43   e.g. tierB-000470 tierB-000485 tierB-000738
 ;;   A: (And (Agent $e0 $x0) (Theme $e0 $e1))
 ;;   B: (And (Agent $e0 $x0) (Past $e1) (Theme $e1 $e0))
 ;;   alignment: $e0=$e1 $e1=$e0 $x0=$x0 (holds in 10 of 12 records)
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Past $e0) (Theme $e0 $e1)) (MnAgent_Agent_Past_ThemeEv_1 $e0 $e1 $x0))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Past $e0) (Theme $e0 $e1)) (MnAgent_Agent_Past_ThemeEv $e0 $e1 $x0))
 
 ;; [genuine]  p200283 ~ p200286   records 23 / 23 / 13 (13 distinct)   gate: PASS
 ;;   MI: 0.0345   Jaccard: 0.39   e.g. tierB-000362 tierB-000392 tierB-000425
 ;;   A: (And (Experiencer $e0 $x0) (Result $e1 $e0))
 ;;   B: (And (Past $e0) (Result $e0 $e1))
 ;;   alignment: $e0=$e1 $e1=$e0 (holds in 13 of 13 records)
-(Implication (And (Experiencer $e0 $x0) (Past $e1) (Result $e1 $e0)) (MnPast_ResultEvOfExperiencer_1 $e1 $e0 $x0))
+(Implication (And (Experiencer $e0 $x0) (Past $e1) (Result $e1 $e0)) (MnPast_ResultEvOfExperiencer $e1 $e0 $x0))
 
 ;; [genuine]  p201003 ~ p201004   records 7 / 7 / 7 (7 distinct)   gate: PASS
 ;;   MI: 0.0343   Jaccard: 1.00   e.g. tierB-000485 tierB-000738 tierB-000942
@@ -207,7 +207,7 @@
 ;;   A: (And (Member $e0 start) (Ongoing $e1) (Theme $e0 $e1))
 ;;   B: (And (Member $e0 start) (Theme $e0 $e1))
 ;;   alignment: $e0=$e0 $e1=$e1 (holds in 12 of 12 records)   B is part of A: the rule is A's own pack
-(Implication (And (Member $e0 start) (Ongoing $e1) (Theme $e0 $e1)) (MnStart_ThemeEvOfOngoing_1 $e0 $e1))
+(Implication (And (Member $e0 start) (Ongoing $e1) (Theme $e0 $e1)) (MnStart_ThemeEvOfOngoing $e0 $e1))
 
 ;; [part-of]  p200362 ~ p200499   records 19 / 14 / 14 (14 distinct)   gate: PASS
 ;;   MI: 0.0534   Jaccard: 0.74   e.g. tierB-000043 tierB-000192 tierB-000199
@@ -235,21 +235,21 @@
 ;;   A: (And (Experiencer $e0 $x0) (Result $e1 $e0))
 ;;   B: (And (Experiencer $e0 $x0) (Past $e1) (Result $e1 $e0))
 ;;   alignment: $e0=$e0 $e1=$e1 $x0=$x0 (holds in 13 of 13 records)   B is part of A: the rule is A's own pack
-(Implication (And (Experiencer $e0 $x0) (Past $e1) (Result $e1 $e0)) (MnPast_ResultEvOfExperiencer_1 $e1 $e0 $x0))
+(Implication (And (Experiencer $e0 $x0) (Past $e1) (Result $e1 $e0)) (MnPast_ResultEvOfExperiencer $e1 $e0 $x0))
 
 ;; [part-of]  p200286 ~ p200530   records 23 / 13 / 13 (13 distinct)   gate: PASS
 ;;   MI: 0.0461   Jaccard: 0.57   e.g. tierB-000362 tierB-000392 tierB-000425
 ;;   A: (And (Past $e0) (Result $e0 $e1))
 ;;   B: (And (Experiencer $e0 $x0) (Past $e1) (Result $e1 $e0))
 ;;   alignment: $e0=$e1 $e1=$e0 (holds in 13 of 13 records)   B is part of A: the rule is A's own pack
-(Implication (And (Experiencer $e1 $x0) (Past $e0) (Result $e0 $e1)) (MnPast_ResultEvOfExperiencer_2 $e0 $e1 $x0))
+(Implication (And (Experiencer $e0 $x0) (Past $e1) (Result $e1 $e0)) (MnPast_ResultEvOfExperiencer $e1 $e0 $x0))
 
 ;; [part-of]  p200362 ~ p200584   records 19 / 12 / 12 (12 distinct)   gate: PASS
 ;;   MI: 0.0448   Jaccard: 0.63   e.g. tierB-000199 tierB-000265 tierB-000465
 ;;   A: (Member $e0 start)
 ;;   B: (And (Member $e0 start) (Ongoing $e1) (Theme $e0 $e1))
 ;;   alignment: $e0=$e0 (holds in 12 of 12 records)   B is part of A: the rule is A's own pack
-(Implication (And (Member $e0 start) (Ongoing $e1) (Theme $e0 $e1)) (MnStart_ThemeEvOfOngoing_1 $e0 $e1))
+(Implication (And (Member $e0 start) (Ongoing $e1) (Theme $e0 $e1)) (MnStart_ThemeEvOfOngoing $e0 $e1))
 
 ;; [part-of]  p200362 ~ p200611   records 19 / 12 / 12 (12 distinct)   gate: PASS
 ;;   MI: 0.0448   Jaccard: 0.63   e.g. tierB-000199 tierB-000265 tierB-000465
@@ -270,7 +270,7 @@
 ;;   A: (And (Ongoing $e0) (Theme $e1 $e0))
 ;;   B: (And (Member $e0 start) (Ongoing $e1) (Theme $e0 $e1))
 ;;   alignment: $e0=$e1 $e1=$e0 (holds in 12 of 12 records)   B is part of A: the rule is A's own pack
-(Implication (And (Member $e1 start) (Ongoing $e0) (Theme $e1 $e0)) (MnStart_ThemeEvOfOngoing_2 $e1 $e0))
+(Implication (And (Member $e0 start) (Ongoing $e1) (Theme $e0 $e1)) (MnStart_ThemeEvOfOngoing $e0 $e1))
 
 ;; [part-of]  p200323 ~ p200601   records 22 / 12 / 12 (12 distinct)   gate: PASS
 ;;   MI: 0.0428   Jaccard: 0.55   e.g. tierB-000362 tierB-000392 tierB-000425
@@ -375,7 +375,7 @@
 ;;   A: (And (Ongoing $e0) (Theme $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Ongoing $e0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x1 (holds in 9 of 9 records)   B is part of A: the rule is A's own pack
-(Implication (And (Agent $e0 $x1) (Ongoing $e0) (Theme $e0 $x0)) (MnAgent_Ongoing_Theme $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Ongoing $e0) (Theme $e0 $x1)) (MnAgent_Ongoing_Theme $e0 $x0 $x1))
 
 ;; [part-of]  p200505 ~ p200848   records 14 / 9 / 9 (9 distinct)   gate: PASS
 ;;   MI: 0.0357   Jaccard: 0.64   e.g. tierB-000222 tierB-000392 tierB-000444
@@ -389,7 +389,7 @@
 ;;   A: (Recipient $e0 $x0)
 ;;   B: (And (Agent $e0 $x0) (Recipient $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x1 (holds in 9 of 9 records)   B is part of A: the rule is A's own pack
-(Implication (And (Agent $e0 $x1) (Recipient $e0 $x0)) (MnAgent_Recipient $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Recipient $e0 $x1)) (MnAgent_Recipient $e0 $x0 $x1))
 
 ;; [part-of]  p200508 ~ p200853   records 14 / 9 / 9 (9 distinct)   gate: PASS
 ;;   MI: 0.0357   Jaccard: 0.64   e.g. tierB-000150 tierB-000769 tierB-000775

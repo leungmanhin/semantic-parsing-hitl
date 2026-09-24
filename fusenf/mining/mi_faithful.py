@@ -72,7 +72,7 @@ import numpy as np
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-from frequent_patterns2 import RE_NUM, RE_SKOLEM, RE_STR  # noqa: E402
+from frequent_patterns2 import RE_NUM, RE_SKOLEM, RE_STR, canonical_pattern_text  # noqa: E402
 from patterns2_faithful import camel, contains, meta_name, parse_atom, tree_info, variables  # noqa: E402
 
 RE_VAR = re.compile(r"\$[exf]\d+")
@@ -168,7 +168,10 @@ def align(ua, ub, shared_recs):
 
 def merge(ua, ub, mapping):
     """A's atoms plus B's atoms with B's variables renamed into A's namespace (aligned ones by
-    the mapping, the rest fresh); returns the sorted, de-duplicated atom list."""
+    the mapping, the rest fresh), then put into the miner's canonical pattern form (per-stream
+    minimal renaming, the same numbering every §4.3.1 unit carries), so that one construction reached
+    from two pairs is one merged feature (2026-09-24: before this, the possession frame surfaced as
+    MnHolder_Have_Theme_1 and _2 under two variable numberings)."""
     ren = {vb: va for va, vb in mapping.items()}
     used = collections.defaultdict(set)
     for v in variables(ua["atoms"]) + list(ren.values()):
@@ -183,7 +186,7 @@ def merge(ua, ub, mapping):
     atoms = set(ua["atoms"])
     for a in ub["atoms"]:
         atoms.add(RE_VAR.sub(lambda m: ren[m.group(0)], a))
-    return sorted(atoms)
+    return list(canonical_pattern_text(sorted(atoms), set()))
 
 
 def flat_name(atoms):

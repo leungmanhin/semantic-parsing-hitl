@@ -46,14 +46,14 @@
 ;;   A: (And (Experiencer $e0 $x0) (Past $e1) (Result $e1 $e0))
 ;;   B: (And (Past $e0) (Patient $e0 $x0) (Result $e0 $e1))
 ;;   alignment: $e0=$e1 $e1=$e0 $x0=$x0 (holds in 16 of 16 records)   1 of the shared records duplicate another
-(Implication (And (Experiencer $e0 $x0) (Past $e1) (Patient $e1 $x0) (Result $e1 $e0)) (MnExperiencer_Past_Patient_ResultEv_1 $e0 $e1 $x0))
+(Implication (And (Experiencer $e0 $x0) (Past $e1) (Patient $e1 $x0) (Result $e1 $e0)) (MnExperiencer_Past_Patient_ResultEv $e0 $e1 $x0))
 
 ;; [genuine]  p200323 ~ p200517   records 27 / 17 / 16 (15 distinct)   gate: PASS
 ;;   MI: 0.0460   Jaccard: 0.57   e.g. tierB-000362 tierB-000392 tierB-000425
 ;;   A: (And (Patient $e0 $x0) (Result $e0 $e1))
 ;;   B: (And (Experiencer $e0 $x0) (Past $e1) (Result $e1 $e0))
 ;;   alignment: $e0=$e1 $e1=$e0 $x0=$x0 (holds in 16 of 16 records)   1 of the shared records duplicate another
-(Implication (And (Experiencer $e1 $x0) (Past $e0) (Patient $e0 $x0) (Result $e0 $e1)) (MnExperiencer_Past_Patient_ResultEv_2 $e0 $e1 $x0))
+(Implication (And (Experiencer $e0 $x0) (Past $e1) (Patient $e1 $x0) (Result $e1 $e0)) (MnExperiencer_Past_Patient_ResultEv $e0 $e1 $x0))
 
 ;; [genuine]  p200844 ~ p200935   records 12 / 11 / 11 (7 distinct)   gate: PASS
 ;;   MI: 0.0416   Jaccard: 0.92   e.g. tierB-000412 tierB-000688 tierB-001302
@@ -67,7 +67,7 @@
 ;;   A: (And (Agent $e0 $x0) (Past $e0) (Theme $e0 $e1))
 ;;   B: (And (Agent $e0 $x0) (Past $e1) (Theme $e1 $e0))
 ;;   alignment: $e0=$e1 $e1=$e0 $x0=$x0 (holds in 12 of 14 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Past $e0) (Theme $e0 $e1)) (MnAgent_Agent_Past_ThemeEv_1 $e0 $e1 $x0))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Past $e0) (Theme $e0 $e1)) (MnAgent_Agent_Past_ThemeEv $e0 $e1 $x0))
 
 ;; [genuine]  p200320 ~ p200379   records 27 / 24 / 16 (15 distinct)   gate: PASS
 ;;   MI: 0.0388   Jaccard: 0.46   e.g. tierB-000470 tierB-000485 tierB-000738
@@ -81,7 +81,7 @@
 ;;   A: (And (Agent $e0 $x0) (Ongoing $e1) (Theme $e0 $e1))
 ;;   B: (And (Agent $e0 $x0) (Ongoing $e0) (Theme $e1 $e0))
 ;;   alignment: $e0=$e1 $e1=$e0 $x0=$x0 (holds in 10 of 10 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Ongoing $e1) (Theme $e0 $e1)) (MnAgent_Agent_Ongoing_ThemeEv $e0 $e1 $x0))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Ongoing $e0) (Theme $e1 $e0)) (MnAgent_Agent_Ongoing_ThemeEv $e0 $e1 $x0))
 
 ;; [genuine]  p200322 ~ p200323   records 27 / 27 / 16 (15 distinct)   gate: PASS
 ;;   MI: 0.0370   Jaccard: 0.42   e.g. tierB-000362 tierB-000392 tierB-000425
@@ -95,7 +95,7 @@
 ;;   A: (And (Agent $e0 $x0) (Ongoing $e0) (Past $e1) (Theme $e1 $e0))
 ;;   B: (And (Agent $e0 $x0) (Ongoing $e1) (Past $e0) (Theme $e0 $e1))
 ;;   alignment: $e0=$e1 $e1=$e0 $x0=$x0 (holds in 9 of 9 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Ongoing $e0) (Past $e1) (Theme $e1 $e0)) (MnAgent_Agent_Ongoing_Past_ThemeEv_1 $e0 $e1 $x0))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Ongoing $e0) (Past $e1) (Theme $e1 $e0)) (MnAgent_Agent_Ongoing_Past_ThemeEv $e0 $e1 $x0))
 
 ;; [genuine]  p201168 ~ p201222   records 9 / 9 / 9 (8 distinct)   gate: PASS
 ;;   MI: 0.0369   Jaccard: 1.00   e.g. tierB-000075 tierB-000173 tierB-000240
@@ -109,28 +109,28 @@
 ;;   A: (And (Ongoing $e0) (Theme $e1 $e0))
 ;;   B: (And (Member $e0 start) (Theme $e0 $e1))
 ;;   alignment: $e0=$e1 $e1=$e0 (holds in 12 of 12 records)
-(Implication (And (Member $e1 start) (Ongoing $e0) (Theme $e1 $e0)) (MnStart_ThemeEvOfOngoing_2 $e1 $e0))
+(Implication (And (Member $e0 start) (Ongoing $e1) (Theme $e0 $e1)) (MnStart_ThemeEvOfOngoing $e0 $e1))
 
 ;; [genuine]  p200379 ~ p200463   records 24 / 19 / 14 (13 distinct)   gate: PASS
 ;;   MI: 0.0365   Jaccard: 0.48   e.g. tierB-000470 tierB-000485 tierB-000738
 ;;   A: (And (Agent $e0 $x0) (Theme $e1 $e0))
 ;;   B: (And (Agent $e0 $x0) (Past $e0) (Theme $e0 $e1))
 ;;   alignment: $e0=$e1 $e1=$e0 $x0=$x0 (holds in 12 of 14 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Past $e1) (Theme $e1 $e0)) (MnAgent_Agent_Past_ThemeEv_2 $e0 $e1 $x0))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Past $e0) (Theme $e0 $e1)) (MnAgent_Agent_Past_ThemeEv $e0 $e1 $x0))
 
 ;; [genuine]  p200320 ~ p200480   records 27 / 18 / 14 (13 distinct)   gate: PASS
 ;;   MI: 0.0358   Jaccard: 0.45   e.g. tierB-000470 tierB-000485 tierB-000738
 ;;   A: (And (Agent $e0 $x0) (Theme $e0 $e1))
 ;;   B: (And (Agent $e0 $x0) (Past $e1) (Theme $e1 $e0))
 ;;   alignment: $e0=$e1 $e1=$e0 $x0=$x0 (holds in 12 of 14 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Past $e0) (Theme $e0 $e1)) (MnAgent_Agent_Past_ThemeEv_1 $e0 $e1 $x0))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Past $e0) (Theme $e0 $e1)) (MnAgent_Agent_Past_ThemeEv $e0 $e1 $x0))
 
 ;; [genuine]  p201043 ~ p201103   records 10 / 9 / 9 (8 distinct)   gate: PASS
 ;;   MI: 0.0349   Jaccard: 0.90   e.g. tierB-000485 tierB-000738 tierB-000942
 ;;   A: (And (Agent $e0 $x0) (Ongoing $e0) (Theme $e1 $e0))
 ;;   B: (And (Agent $e0 $x0) (Ongoing $e1) (Past $e0) (Theme $e0 $e1))
 ;;   alignment: $e0=$e1 $e1=$e0 $x0=$x0 (holds in 9 of 9 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Ongoing $e0) (Past $e1) (Theme $e1 $e0)) (MnAgent_Agent_Ongoing_Past_ThemeEv_1 $e0 $e1 $x0))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Ongoing $e0) (Past $e1) (Theme $e1 $e0)) (MnAgent_Agent_Ongoing_Past_ThemeEv $e0 $e1 $x0))
 
 ;; [genuine]  p201068 ~ p201168   records 10 / 9 / 9 (8 distinct)   gate: PASS
 ;;   MI: 0.0349   Jaccard: 0.90   e.g. tierB-000075 tierB-000173 tierB-000240
@@ -151,7 +151,7 @@
 ;;   A: (And (Agent $e0 $x0) (Ongoing $e1) (Theme $e0 $e1))
 ;;   B: (And (Agent $e0 $x0) (Ongoing $e0) (Past $e1) (Theme $e1 $e0))
 ;;   alignment: $e0=$e1 $e1=$e0 $x0=$x0 (holds in 9 of 9 records)   1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Ongoing $e1) (Past $e0) (Theme $e0 $e1)) (MnAgent_Agent_Ongoing_Past_ThemeEv_2 $e0 $e1 $x0))
+(Implication (And (Agent $e0 $x0) (Agent $e1 $x0) (Ongoing $e0) (Past $e1) (Theme $e1 $e0)) (MnAgent_Agent_Ongoing_Past_ThemeEv $e0 $e1 $x0))
 
 ;; [genuine]  p201433 ~ p201434   records 8 / 8 / 8 (3 distinct)   gate: PASS
 ;;   MI: 0.0334   Jaccard: 1.00   e.g. tierC-000317 tierC-000318 tierC-000319
@@ -284,7 +284,7 @@
 ;;   A: (And (Past $e0) (Result $e0 $e1))
 ;;   B: (And (Experiencer $e0 $x0) (Past $e1) (Result $e1 $e0))
 ;;   alignment: $e0=$e1 $e1=$e0 (holds in 17 of 17 records)   B is part of A: the rule is A's own pack; 1 of the shared records duplicate another
-(Implication (And (Experiencer $e1 $x0) (Past $e0) (Result $e0 $e1)) (MnPast_ResultEvOfExperiencer $e0 $e1 $x0))
+(Implication (And (Experiencer $e0 $x0) (Past $e1) (Result $e1 $e0)) (MnPast_ResultEvOfExperiencer $e1 $e0 $x0))
 
 ;; [part-of]  p200728 ~ p200737   records 13 / 13 / 13 (8 distinct)   gate: PASS
 ;;   MI: 0.0503   Jaccard: 1.00   e.g. tierB-000063 tierB-000932 tierB-001867
@@ -319,7 +319,7 @@
 ;;   A: (And (Member $e0 start) (Ongoing $e1) (Theme $e0 $e1))
 ;;   B: (And (Member $e0 start) (Theme $e0 $e1))
 ;;   alignment: $e0=$e0 $e1=$e1 (holds in 12 of 12 records)   B is part of A: the rule is A's own pack
-(Implication (And (Member $e0 start) (Ongoing $e1) (Theme $e0 $e1)) (MnStart_ThemeEvOfOngoing_1 $e0 $e1))
+(Implication (And (Member $e0 start) (Ongoing $e1) (Theme $e0 $e1)) (MnStart_ThemeEvOfOngoing $e0 $e1))
 
 ;; [part-of]  p200422 ~ p200652   records 21 / 14 / 14 (14 distinct)   gate: PASS
 ;;   MI: 0.0451   Jaccard: 0.67   e.g. tierB-000043 tierB-000192 tierB-000199
@@ -389,7 +389,7 @@
 ;;   A: (Member $e0 start)
 ;;   B: (And (Member $e0 start) (Ongoing $e1) (Theme $e0 $e1))
 ;;   alignment: $e0=$e0 (holds in 12 of 12 records)   B is part of A: the rule is A's own pack
-(Implication (And (Member $e0 start) (Ongoing $e1) (Theme $e0 $e1)) (MnStart_ThemeEvOfOngoing_1 $e0 $e1))
+(Implication (And (Member $e0 start) (Ongoing $e1) (Theme $e0 $e1)) (MnStart_ThemeEvOfOngoing $e0 $e1))
 
 ;; [part-of]  p200422 ~ p200847   records 21 / 12 / 12 (12 distinct)   gate: PASS
 ;;   MI: 0.0380   Jaccard: 0.57   e.g. tierB-000199 tierB-000265 tierB-000465
@@ -480,7 +480,7 @@
 ;;   A: (And (Ongoing $e0) (Theme $e1 $e0))
 ;;   B: (And (Member $e0 start) (Ongoing $e1) (Theme $e0 $e1))
 ;;   alignment: $e0=$e1 $e1=$e0 (holds in 12 of 12 records)   B is part of A: the rule is A's own pack
-(Implication (And (Member $e1 start) (Ongoing $e0) (Theme $e1 $e0)) (MnStart_ThemeEvOfOngoing_2 $e1 $e0))
+(Implication (And (Member $e0 start) (Ongoing $e1) (Theme $e0 $e1)) (MnStart_ThemeEvOfOngoing $e0 $e1))
 
 ;; [part-of]  p200493 ~ p200925   records 18 / 11 / 11 (10 distinct)   gate: PASS
 ;;   MI: 0.0362   Jaccard: 0.61   e.g. tierB-000034 tierB-000291 tierB-000383
@@ -550,7 +550,7 @@
 ;;   A: (And (Ongoing $e0) (Theme $e1 $e0))
 ;;   B: (And (Agent $e0 $x0) (Ongoing $e1) (Theme $e0 $e1))
 ;;   alignment: $e0=$e1 $e1=$e0 (holds in 11 of 11 records)   B is part of A: the rule is A's own pack; 1 of the shared records duplicate another
-(Implication (And (Agent $e1 $x0) (Ongoing $e0) (Theme $e1 $e0)) (MnAgent_ThemeEvOfOngoing_2 $e1 $e0 $x0))
+(Implication (And (Agent $e0 $x0) (Ongoing $e1) (Theme $e0 $e1)) (MnAgent_ThemeEvOfOngoing $e0 $e1 $x0))
 
 ;; [part-of]  p200546 ~ p201065   records 17 / 10 / 10 (10 distinct)   gate: PASS
 ;;   MI: 0.0331   Jaccard: 0.59   e.g. tierB-000222 tierB-000392 tierB-000444
@@ -613,7 +613,7 @@
 ;;   A: (And (Agent $e0 $x0) (Theme $e0 $e1))
 ;;   B: (And (Agent $e0 $x0) (Ongoing $e1) (Theme $e0 $e1))
 ;;   alignment: $e0=$e0 $e1=$e1 $x0=$x0 (holds in 11 of 11 records)   B is part of A: the rule is A's own pack; 1 of the shared records duplicate another
-(Implication (And (Agent $e0 $x0) (Ongoing $e1) (Theme $e0 $e1)) (MnAgent_ThemeEvOfOngoing_1 $e0 $e1 $x0))
+(Implication (And (Agent $e0 $x0) (Ongoing $e1) (Theme $e0 $e1)) (MnAgent_ThemeEvOfOngoing $e0 $e1 $x0))
 
 ;; [part-of]  p200728 ~ p201223   records 13 / 9 / 9 (6 distinct)   gate: PASS
 ;;   MI: 0.0319   Jaccard: 0.69   e.g. tierB-000063 tierB-000932 tierC-000045
@@ -683,7 +683,7 @@
 ;;   A: (And (Ongoing $e0) (Theme $e0 $x0))
 ;;   B: (And (Agent $e0 $x0) (Ongoing $e0) (Theme $e0 $x1))
 ;;   alignment: $e0=$e0 $x0=$x1 (holds in 9 of 9 records)   B is part of A: the rule is A's own pack
-(Implication (And (Agent $e0 $x1) (Ongoing $e0) (Theme $e0 $x0)) (MnAgent_Ongoing_Theme $e0 $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Ongoing $e0) (Theme $e0 $x1)) (MnAgent_Ongoing_Theme $e0 $x0 $x1))
 
 ;; [part-of]  p201086 ~ p201485   records 10 / 8 / 8 (5 distinct)   gate: PASS
 ;;   MI: 0.0303   Jaccard: 0.80   e.g. tierB-000579 tierB-000706 tierC-000243
@@ -718,7 +718,7 @@
 ;;   A: (And (Patient $e0 $x0) (Theme $e1 $e0))
 ;;   B: (And (Past $e0) (Patient $e1 $x0) (Theme $e0 $e1))
 ;;   alignment: $e0=$e1 $e1=$e0 $x0=$x0 (holds in 9 of 9 records)   B is part of A: the rule is A's own pack; 1 of the shared records duplicate another
-(Implication (And (Past $e1) (Patient $e0 $x0) (Theme $e1 $e0)) (MnPast_ThemeEvOfPatient $e1 $e0 $x0))
+(Implication (And (Past $e0) (Patient $e1 $x0) (Theme $e0 $e1)) (MnPast_ThemeEvOfPatient $e0 $e1 $x0))
 
 ;; [part-of]  p200582 ~ p201225   records 16 / 9 / 9 (8 distinct)   gate: PASS
 ;;   MI: 0.0300   Jaccard: 0.56   e.g. tierB-000265 tierB-000930 tierB-000942
