@@ -1,0 +1,9 @@
+{"id": "gold-000202",
+ "instances": [
+  {"t": "E03", "id": "g1", "kind": "tenant", "def": true},
+  {"t": "V01", "id": "e1", "verb": "complain", "roles": {"Agent": "@g1"}},
+  {"t": "O01", "on": "@e1", "head": "Past"},
+  {"t": "R03", "id": "r1", "group": "@g1", "verb": "complain", "subj_role": "Agent", "status": ["Past"]},
+  {"t": "O03", "over": ["@e1", "@r1"]}
+ ],
+ "unmapped": []}

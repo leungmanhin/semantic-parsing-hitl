@@ -1,0 +1,1352 @@
+# Template parser — instruction set T26 (generated from the registry; never edited by hand)
+
+registry starter26 v1 · registry sha256 2a82fb4c5fe0a4aa
+
+You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
+INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
+templates defined below. You do NOT write logic atoms. A program renders your records into logic
+deterministically: it builds the symbols, numbers the witnesses, sets the truth values, and
+nests negation, tense and sealed content. Your job is recognition: which templates apply, and
+what fills their slots.
+
+Apply ONLY the templates in this document. They cover part of English on purpose. When a clause,
+phrase or word contributes meaning that no template here covers, do not stretch a template to
+fit it and do not drop it silently: report it under `unmapped` (see *Unmapped spans*) and still
+parse everything else.
+
+State only what the text states. World knowledge picks the reading; it never adds content. Every
+instance and every slot value must be traceable to words in the TEXT: point at the words that
+put it there; if you cannot, leave it out. No unstated kind, property, possessor, location,
+part-whole or causal link, however obvious.
+
+A stated restriction, hedge or qualifier is never silently dropped, because omitting it widens
+the claim. Carry it with a template, or leave the WHOLE claim out and report the whole clause as
+unmapped. An unencodable qualifier never becomes an unqualified statement.
+
+## Output
+
+For each item write ONE JSON object and nothing else:
+
+    {"id": "<the item id>",
+     "instances": [ <instance>, ... ],
+     "unmapped":  [ <unmapped span>, ... ]}
+
+`instances` is a list of records `{"t": "<template id>", ...slots}`. Give entities first, in
+order of first mention, then predications in text order, then operators, times, rules and links.
+Use exactly the slot names defined for each template; omit an optional slot that does not apply
+(never write null for it).
+
+`unmapped` is a list (empty when everything is covered).
+
+Strict JSON: double-quoted keys and strings, no comments, no trailing commas, no prose, no code
+fences.
+
+## Identifiers and fillers
+
+- An instance that other records refer to carries an `id`: a short lowercase label you choose,
+  unique within the item. Suggested prefixes: `n` named individual, `x` witness, `g` group, `e`
+  event, `s` state, `c` copular predication, `r` rule, `d` comparison, `m` measure (n1, x1, g1,
+  e1 …).
+- A slot that points to another instance holds `"@<id>"`, for example `"Agent": "@n1"`.
+- A slot that holds a kind, property, verb, scale or unit holds the bare LEMMA, for example
+  `"kind": "book"`.
+- A participant slot holds either one: `"@x1"` for a specific referent, or a bare lemma for a
+  non-specific or kind-level filler ("pays tax", "cooked dinner" gives `"Patient": "dinner"`).
+  Reserve the bare lemma for a non-specific filler; a specific definite or indefinite thing is
+  always an instance.
+- ONE instance per referent. Every later mention of the same person, thing, group or event (a
+  repeated name, a pronoun, an anaphoric definite such as "a sluice … the sluice", a reflexive)
+  reuses the SAME id. Never create a second instance for something already introduced. Resolve
+  each pronoun to the most salient compatible antecedent; an event anaphor ("That surprised
+  everyone") is the event's id.
+- A TEXT of several sentences is parsed together: instances are shared across its sentences.
+
+## Lemmas and symbols
+
+- Lemmatize every kind, property and verb to its dictionary base form: verbs to the base (ran,
+  running → run), nouns to the singular (ravens, mice → raven, mouse), adjectives to the base
+  (taller → tall). All lemmas are lowercase snake_case.
+- Inflection only, never derivation: a word derived into another part of speech is a different
+  word and keeps its own form (`coastal` is not `coast`, `tidal` is not `tide`). A participle
+  used as a modifier is an adjective, not the verb ("a laminated worktop" has the property
+  `laminated`); the same participle in "the worktop was laminated" is a verb. Decide by the
+  word's function here, not its shape. A manner adverb in -ly keeps its surface form
+  (`brightly`, never `bright`).
+- A phrasal or particle verb is ONE symbol joining the lemmatized verb and its particle
+  (`go_out`, `break_down`, `bring_in`, `switch_on`). Never swap in a single-word synonym, never
+  split off or drop the particle.
+- A fixed multi-word idiom is one surface symbol keeping every word (`spill_the_beans`), used
+  only when the literal reading is incoherent for these participants; take the literal reading
+  whenever it is available.
+- Names: you give the surface string; the program derives the symbol.
+
+## Unmapped spans
+
+An unmapped span is a record:
+
+    {"span": "<the words, verbatim>", "code": "<code>", "construction": "<one sentence naming the construction>"}
+
+Use it for every clause, phrase or word whose contribution no template here covers. `span` is
+copied verbatim from the TEXT. `construction` names the grammatical construction in one plain
+sentence (what it is, not how you would encode it). Use the most specific code that applies,
+otherwise G00.
+
+Decide what to keep by ENTAILMENT. When the sentence still entails the rest without the unmapped
+part, keep the instances the templates license and report just that part: an added time, date
+bound, duration, place, manner, amount or tag leaves the event itself true ("was demolished
+before 1960" still says it was demolished). When the rest would NOT follow without the unmapped
+part, leave the whole claim out and report the whole clause: a condition ("brittle when cold"),
+a hedge or approximator ("almost full"), a comparison class ("tall for a gymnast"), a proportion
+or partitive ("12.5% of the applicants"), a modal on a kind.
+
+Codes:
+
+- G00: anything no template here covers and no other code names
+- G01: a comparative with no stated standard (attributive or elided: 'a sturdier bracket',
+  'prices ended lower')
+- G02: an adverb with no slot: sequence (initially, eventually, finally), scope or domain
+  (nationally, locally), degree on a verb (sharply, slightly)
+- G03: a post-nominal tag on a name (a party or district tag, a ticker, a bracketed code)
+- G06: a connective at the start of the text with no first clause to relate ('But the vote
+  stood.')
+- G17: a disjunction in which at least one alternative is a denial ('Bob or Alice did not come')
+
+## Roles
+
+Roles are the keys of the `roles` slot of V01, R01 and R03. Decide each participant's role by
+these tests.
+
+- `Agent`: The subject of a TRANSITIVE verb, even when inanimate, non-volitional or stative
+  ("the storm broke the mast", "the manifest lists two pallets", "the tank holds forty litres").
+  For an INTRANSITIVE subject: a motion, volitional or self-propelled subject (run, arrive,
+  leave, march, proceed, sail, gather: an animate, or a vessel or vehicle moving under its own
+  power). Only two verb classes move a transitive subject off Agent: possession (Holder) and
+  STATIVE psych or perception (Experiencer). When an intransitive subject's role is unclear:
+  Agent.
+- `Patient`: A direct object the action creates, destroys, consumes or physically changes (cook,
+  build, write, break, cut, burn, eat, clean, fix, water, repaint; applying a substance or
+  treatment changes the object). An occurrence object whose happening or timing the verb changes
+  (cancel, call off, postpone, delay, reschedule a flight, vote, hearing). An informational
+  artifact the verb brings into existence or reworks (compile, splice, redact, abridge). An
+  INTRANSITIVE subject that undergoes a change of state (collapse, sink, melt, shatter, snap,
+  freeze, break, spread, stall, weaken, falter, buckle, sag, fade; expire, lapse). A
+  non-volitional natural process or force (rain fell, the reservoir drained, smoke rose, the
+  tide receded).
+- `Theme`: A direct object acquired, transferred, moved, possessed, perceived or evaluated with
+  NO change to it (buy, sell, rent, give, send, carry, read, watch, grade, score, review,
+  measure, choose, keep, use, replace, swap, move, inspect). An INTRANSITIVE subject in
+  un-powered relocation (cargo, documents, institutions, drifting or dropped things: arrive,
+  move, depart, drift, dip). One test decides Patient versus Theme: does the object itself
+  change? A verb takes the same role in a statement and in its question. When the test is
+  unclear: Theme.
+- `Recipient`: The goal of a transfer (indirect object, "to"), including the addressee of
+  communication (talk, speak, write, mutter to): a message is a transfer, never a spatial Goal.
+- `Experiencer`: The subject of a stative predication: a psych or perception STATE (know,
+  believe, fear, want, like, see, hear: verbs that resist the progressive), or a stative
+  intransitive. A mental verb that accepts the progressive is an event whose subject is an Agent
+  (discover, notice, realise, learn, check, examine). The holder of a V05 attitude is given in
+  `holder`.
+- `Stimulus`: The object of a psych or perception state ("fears the dog", "admires the view").
+- `Holder`: The subject of a possession or relational state ONLY (own, have, lack). A bare
+  property is never Holder.
+- `CoAgent`: An animate co-participant named by a comitative phrase ("with John", "together
+  with", "along with", "accompanied by"). Split a with-phrase by one test: a participant in the
+  action is CoAgent, the means it is performed by is Instrument.
+- `Instrument`: The means ("with a knife"), and a "via / by way of" route or channel: a tool,
+  substance or conduit, never a person.
+- `Location`: Where the event happens ("in / at / on …").
+- `Source`: Where it comes from ("from …", "off …").
+- `Goal`: Where it goes ("to / into / onto …"), when not a recipient.
+- `Beneficiary`: "for" a party the event is done for the benefit of, including acting in
+  someone's place ("deputized for the reeve"). When "for" names the ground, prize or exchange
+  ("commended for the salvage") it is an oblique with the preposition for.
+- `Manner`: A how-adverb of manner proper; the filler is the surface adverb (brightly).
+- `Duration`: A vague duration adverb (briefly, momentarily); the filler is the surface adverb.
+
+Location, Source, Goal, Instrument, Beneficiary and Manner apply when the phrase answers where,
+whence, whither, how or for whom. When it instead names what the activity is about or directed
+at, it is an oblique (see V01).
+
+An adverb of sequence (initially, eventually, finally), scope or domain (nationally, locally) or
+degree on a verb (sharply, slightly) has no slot: report it unmapped with code G02. A
+mis-slotted Manner states a manner the sentence does not state.
+
+## Templates
+
+### E01 — Named individual
+
+When: A proper noun: a person, place, organization, work, vessel, treaty or named event. The
+name is exactly its capitalized run of words, keeping internal lowercase particles (of, van,
+de).
+
+- `name` is the surface string as it should be recorded.
+- A kinship or courtesy title (Dr Okoro, Uncle Bertrand) stays in `name` and is also given in
+  `title`, so the symbol is built from the name alone.
+- An occupational or office premodifier ("chief engineer Priya Rao", "prosecutor Iris Vale") is
+  NOT part of the name: it is the person's kind, stated by a C01 instance.
+- `kind` only when a kind word is stated inside the name or right beside it ("the Kestrel River"
+  gives river; "the Brindle estuary" gives the name Brindle and the kind estuary). Knowing what
+  the entity is licenses nothing: "the Mallards" gets no team, "Aldenport" no city.
+- A capitalized PLURAL label used as a name ("the Wrens beat the visitors") is a name with no
+  kind and no group.
+- A capitalized common noun that is the referent's only label ("the Assembly", "the
+  Directorate") is NOT a name: use E02 with that kind. It becomes a name only when the
+  capitalized run exceeds the bare class word ("the Grand Assembly").
+- A capitalized modifier belongs to the name ("Upper Calderwick" is one name). An adjacent
+  lowercase word is never part of the name.
+- An age appositive, a party or district tag, a ticker or bracketed code after a name is not
+  part of the name: report it unmapped (G03 for tags and codes, G00 for an age).
+
+Slots:
+
+- `t` (required): "E01"
+- `id` (required; a label): your label for this individual.
+- `name` (required; a string): the surface name, courtesy title included.
+- `title` (optional; a string): the kinship or courtesy title inside `name`, if any.
+- `kind` (optional; a lemma): the kind word stated inside or beside the name, if any.
+
+Example. TEXT: Ilse Varga admired the Quillon Aqueduct.
+
+Records:
+
+    {"id": "ex-E01", "instances": [
+      {"t": "E01", "id": "n1", "name": "Ilse Varga"},
+      {"t": "E01", "id": "n2", "name": "Quillon Aqueduct", "kind": "aqueduct"},
+      {"t": "V01", "id": "e1", "verb": "admire", "roles": {"Experiencer": "@n1", "Stimulus": "@n2"}},
+      {"t": "O01", "on": "@e1", "head": "Past"}
+    ], "unmapped": []}
+
+The program renders these records as:
+
+    (Name ilse_varga "Ilse Varga")   (STV 1.0 0.99)
+    (Name quillon_aqueduct "Quillon Aqueduct")   (STV 1.0 0.99)
+    (Member quillon_aqueduct aqueduct)   (STV 1.0 0.99)
+    (Member sk_admire_1 admire)   (STV 1.0 0.99)
+    (Experiencer sk_admire_1 ilse_varga)   (STV 1.0 0.99)
+    (Stimulus sk_admire_1 quillon_aqueduct)   (STV 1.0 0.99)
+    (Past sk_admire_1)   (STV 1.0 0.99)
+
+### E02 — Witness (a specific thing)
+
+When: A singular noun phrase that picks out one specific thing: an indefinite ("a book", "some
+report", "there is a raven"), a definite or demonstrative description ("the report", "this
+car"), or a pronoun or demonstrative with no antecedent.
+
+- `def` is false for an indefinite, true for a definite or demonstrative description and for a
+  pronoun. Definiteness changes nothing else: the definite is encoded the same way and only its
+  coreference differs.
+- A pronoun with no antecedent is classed by what it means, never by grammatical gender: he, she
+  and singular they give the kind `person` (not man or woman); it gives the salient kind if the
+  text supplies one, otherwise `thing`.
+- An incidental descriptive modifier (colour, size, damage, mood: "a dented pail") goes in
+  `props`, one lemma each. A classifying modifier that names a genuine subtype belongs in the
+  kind (see E05).
+- One-anaphora ("a red car … a blue one") is a new witness of the antecedent's kind.
+- An event-denoting noun (the show, the storm, the lecture) is an ordinary witness.
+- A non-specific or generic object ("pays tax", "speaks French") is NOT a witness: it is a bare
+  lemma in the slot.
+- A deictic time (yesterday, tonight) is never a witness (see T02).
+
+Slots:
+
+- `t` (required): "E02"
+- `id` (required; a label): your label for this thing.
+- `kind` (required; a lemma): the kind word, lemmatized.
+- `def` (required; true / false): true for a definite, demonstrative or pronoun; false for an
+  indefinite.
+- `props` (optional; a list; each entry a lemma): incidental descriptive properties stated in
+  the noun phrase.
+
+Example. TEXT: A grey bittern watched the slipway.
+
+Records:
+
+    {"id": "ex-E02", "instances": [
+      {"t": "E02", "id": "x1", "kind": "bittern", "def": false, "props": ["grey"]},
+      {"t": "E02", "id": "x2", "kind": "slipway", "def": true},
+      {"t": "V01", "id": "e1", "verb": "watch", "roles": {"Agent": "@x1", "Theme": "@x2"}},
+      {"t": "O01", "on": "@e1", "head": "Past"}
+    ], "unmapped": []}
+
+The program renders these records as:
+
+    (Member sk_bittern_1 bittern)   (STV 1.0 0.99)
+    (Member sk_bittern_1 grey)   (STV 1.0 0.99)
+    (Member sk_slipway_1 slipway)   (STV 1.0 0.99)
+    (Member sk_watch_1 watch)   (STV 1.0 0.99)
+    (Agent sk_watch_1 sk_bittern_1)   (STV 1.0 0.99)
+    (Theme sk_watch_1 sk_slipway_1)   (STV 1.0 0.99)
+    (Past sk_watch_1)   (STV 1.0 0.99)
+
+### E03 — Group (a plural taken as one participant)
+
+When: A plural referred to as a set: a definite, demonstrative or possessed plural ("the views",
+"these functions", "its habitats"); a collective noun ("the committee", "a crew"); a counted
+plural ("three students", "both dogs"); a bare plural in an episodic clause; a plural pronoun
+with no antecedent.
+
+- `kind` is the member kind ("the students" gives student). A collective noun goes in
+  `collective` and already names the kind of thing the group is, so it takes no `kind` unless
+  the member kind is stated too ("a flock of birds" gives collective flock and kind bird).
+- A bare plural is decided by its clause. In a specific occurrence (past, dated or one-off:
+  "rescuers reached the ridge") it is a set that took part: a group with `def` false. In a
+  generic clause (habitual present, characteristic claim) it is a kind, not a group (see C02 and
+  R01).
+- A bare-plural OBJECT in an episodic clause is a group when the set takes part in the
+  occurrence ("crates were stacked with melons"); it stays a bare lemma when non-specific or
+  kind-level ("grows wheat").
+- Named members of the group go in `members`.
+- A count on the group is a separate N01 instance.
+- A plural pronoun with no antecedent is a group of the salient kind if the text supplies one,
+  otherwise of kind `thing`; `person` needs discourse evidence, never the pronoun alone.
+- A property or action of the MEMBERS is never stated of the group itself: use R03. Only a
+  property of the collection as such (its size) is stated of the group.
+- A singular collective noun is ONE participant and never distributes ("the committee approved
+  the plan" is one event with the committee as its Agent, no R03).
+
+Slots:
+
+- `t` (required): "E03"
+- `id` (required; a label): your label for this group.
+- `kind` (optional; a lemma): the member kind, when stated.
+- `collective` (optional; a lemma): the collective noun, when the group is named by one.
+- `def` (required; true / false): true for a definite, demonstrative, possessed plural or
+  pronoun; false for an indefinite, counted or bare plural.
+- `members` (optional; a list; each entry "@id" of a E01 / E02 instance): named or introduced
+  members.
+
+Example. TEXT: The troupe hired the pickers.
+
+Records:
+
+    {"id": "ex-E03", "instances": [
+      {"t": "E03", "id": "g1", "collective": "troupe", "def": true},
+      {"t": "E03", "id": "g2", "kind": "picker", "def": true},
+      {"t": "V01", "id": "e1", "verb": "hire", "roles": {"Agent": "@g1", "Theme": "@g2"}},
+      {"t": "O01", "on": "@e1", "head": "Past"}
+    ], "unmapped": []}
+
+The program renders these records as:
+
+    (Member sk_troupe_1 troupe)   (STV 1.0 0.99)
+    (GroupOf sk_group_1 picker)   (STV 1.0 0.99)
+    (Member sk_hire_1 hire)   (STV 1.0 0.99)
+    (Agent sk_hire_1 sk_troupe_1)   (STV 1.0 0.99)
+    (Theme sk_hire_1 sk_group_1)   (STV 1.0 0.99)
+    (Past sk_hire_1)   (STV 1.0 0.99)
+
+### E04 — Bare kind (a non-specific filler)
+
+When: A bare plural or mass noun used generically, or a non-specific object ("pays tax", "speaks
+French", "cooked dinner"). It has no record of its own: write the bare lemma in the slot.
+
+- Never use a bare lemma for a specific individual; never create a witness for a non-specific
+  filler.
+
+No record of its own.
+
+### E05 — Compound kind
+
+When: A modifier + head noun that names a genuine subtype, used as a kind. Prefer a single
+lemma; fuse only when the modifier CLASSIFIES the head: a classifying noun (light_switch,
+delivery_van), a term of art (blast_furnace), a nationality or origin adjective
+(breton_tapestry), a role title (senior_contractor), a material adjective (wooden_bridge).
+
+- Never fuse incidental description (colour, size, damage, mood): "a dented pail" is the kind
+  pail with the property dented (E02 `props`).
+- `compound` is the fused symbol, `head` its head noun. A solid or hyphenated spelling
+  decomposes the same way ("stormcloud" has head cloud).
+- `mod` only when the modifier is an ADJECTIVE that can be predicated of the thing (senior,
+  east, upper, wooden; test: "the contractor is senior"). A NOUN modifier is never given,
+  whatever it names (fire_exit, tow_truck, delivery_van, night_shift, steel_beam). The line is
+  part of speech, not meaning.
+- A relational or rank adjective that fails the predication test ("assistant secretary") gives
+  no `mod`.
+- When the compound is NOT a kind of its head ("a hot dog is not a dog") there is no E05
+  instance: just use the symbol as the kind.
+- One E05 per compound symbol per item. Use the compound symbol as the `kind` wherever the thing
+  is typed.
+- A proper name is never a compound. A phrasal verb or an idiom is a single symbol with no E05.
+  A possessor + part pair ("car engine", "table leg") is not a compound and has no template
+  here: report it unmapped.
+
+Slots:
+
+- `t` (required): "E05"
+- `compound` (required; a lemma): the fused symbol, modifier_head.
+- `head` (required; a lemma): the head noun.
+- `mod` (optional; a lemma): the modifier, only when it is a predicable adjective.
+
+Example. TEXT: A foundry rigger inspected the earthen rampart.
+
+Records:
+
+    {"id": "ex-E05", "instances": [
+      {"t": "E05", "compound": "foundry_rigger", "head": "rigger"},
+      {"t": "E05", "compound": "earthen_rampart", "head": "rampart", "mod": "earthen"},
+      {"t": "E02", "id": "x1", "kind": "foundry_rigger", "def": false},
+      {"t": "E02", "id": "x2", "kind": "earthen_rampart", "def": true},
+      {"t": "V01", "id": "e1", "verb": "inspect", "roles": {"Agent": "@x1", "Theme": "@x2"}},
+      {"t": "O01", "on": "@e1", "head": "Past"}
+    ], "unmapped": []}
+
+The program renders these records as:
+
+    (Inheritance foundry_rigger rigger)   (STV 1.0 0.99)
+    (Inheritance earthen_rampart rampart)   (STV 1.0 0.99)
+    (Inheritance earthen_rampart earthen)   (STV 1.0 0.99)
+    (Member sk_foundry_rigger_1 foundry_rigger)   (STV 1.0 0.99)
+    (Member sk_earthen_rampart_1 earthen_rampart)   (STV 1.0 0.99)
+    (Member sk_inspect_1 inspect)   (STV 1.0 0.99)
+    (Agent sk_inspect_1 sk_foundry_rigger_1)   (STV 1.0 0.99)
+    (Theme sk_inspect_1 sk_earthen_rampart_1)   (STV 1.0 0.99)
+    (Past sk_inspect_1)   (STV 1.0 0.99)
+
+### E08 — Possession link
+
+When: A possessor marked by 's or a possessive pronoun ("Tom's phone", "her sister"), a
+possessive of-phrase, a relational noun ("sister of", "capital of"), or a proper noun
+premodifying a common noun ("a Northgate spokesman").
+
+- The possessed thing is its own instance with its own kind; E08 links it to the possessor. The
+  link covers ownership, kinship and looser association alike; it never means an acquiring
+  event.
+- The possessor resolves by coreference ("her sister" points to the antecedent's id).
+- NOT when the possessed is a part or component of the possessor ("the car's engine"): no
+  template here, report it unmapped.
+- NOT a partitive ("three of the students"), a measure ("a cup of water"), an about-phrase ("a
+  photo of Mary"), a nominalization's object ("the destruction of the city") or an event noun's
+  subject ("Marta's objection"): report these unmapped.
+
+Slots:
+
+- `t` (required): "E08"
+- `possessed` (required; "@id" of a E01 / E02 / E03 instance): the thing possessed.
+- `possessor` (required; "@id" of a E01 / E02 / E03 instance): the possessor.
+
+Example. TEXT: Evander borrowed his godson's sextant.
+
+Records:
+
+    {"id": "ex-E08", "instances": [
+      {"t": "E01", "id": "n1", "name": "Evander"},
+      {"t": "E02", "id": "x1", "kind": "godson", "def": true},
+      {"t": "E08", "possessed": "@x1", "possessor": "@n1"},
+      {"t": "E02", "id": "x2", "kind": "sextant", "def": true},
+      {"t": "E08", "possessed": "@x2", "possessor": "@x1"},
+      {"t": "V01", "id": "e1", "verb": "borrow", "roles": {"Agent": "@n1", "Theme": "@x2"}},
+      {"t": "O01", "on": "@e1", "head": "Past"}
+    ], "unmapped": []}
+
+The program renders these records as:
+
+    (Name evander "Evander")   (STV 1.0 0.99)
+    (Member sk_godson_1 godson)   (STV 1.0 0.99)
+    (Possession sk_godson_1 evander)   (STV 1.0 0.99)
+    (Member sk_sextant_1 sextant)   (STV 1.0 0.99)
+    (Possession sk_sextant_1 sk_godson_1)   (STV 1.0 0.99)
+    (Member sk_borrow_1 borrow)   (STV 1.0 0.99)
+    (Agent sk_borrow_1 evander)   (STV 1.0 0.99)
+    (Theme sk_borrow_1 sk_sextant_1)   (STV 1.0 0.99)
+    (Past sk_borrow_1)   (STV 1.0 0.99)
+
+### C01 — Individual is a kind / has a property
+
+When: A copular clause about an INDIVIDUAL (a named individual or a witness): "X is a/an N", "X
+is ADJ", and copula-like "looked / seemed ADJ" used as plain description.
+
+- One C01 per stated kind or property ("Bob is tall and kind" gives two).
+- An occupational or office premodifier on a name ("prosecutor Iris Vale") is a C01 on that
+  individual.
+- A lexical antonym is a positive property ("unhappy", "closed"); only an explicit not, n't, no
+  or never is negation (O03).
+- A plural subject never takes C01: a group's members take R03, a kind takes C02.
+- Tense or modality on the clause is an O01 on this instance ("Alice was happy").
+- "There is a black raven" is an E02 witness with `props`, not a C01.
+- When the state must carry a time or be the endpoint of a connective, use V02 instead of C01,
+  never both.
+
+Slots:
+
+- `t` (required): "C01"
+- `id` (required; a label): your label for this predication.
+- `subj` (required; "@id" of a E01 / E02 / E03 instance): the individual.
+- `pred` (required; a lemma): the kind or property.
+
+Example. TEXT: Ysolde was a cartographer.
+
+Records:
+
+    {"id": "ex-C01", "instances": [
+      {"t": "E01", "id": "n1", "name": "Ysolde"},
+      {"t": "C01", "id": "c1", "subj": "@n1", "pred": "cartographer"},
+      {"t": "O01", "on": "@c1", "head": "Past"}
+    ], "unmapped": []}
+
+The program renders these records as:
+
+    (Name ysolde "Ysolde")   (STV 1.0 0.99)
+    (Past (Member ysolde cartographer))   (STV 1.0 0.99)
+
+### C02 — Kind is a kind / has a property
+
+When: A copular clause about a KIND: a bare plural or mass generic ("Apples are sweet"), a
+quantified kind ("every / all / most / many / few / no N is P"), or a definitional indefinite
+singular ("A dog is a mammal").
+
+- `qword` is the quantifier or frequency word actually present, lowercase (all, every, each,
+  most, a lot of, many, few, no, none; always, usually, normally, generally, often, sometimes,
+  rarely, seldom, hardly ever). Omit it for a bare generic: its absence is what marks the bare
+  generic.
+- `dial`: could a counterexample exist, even in principle? `definitional` when none is
+  conceivable (taxonomy, definition: "dogs are mammals"); `empirical` when exceptions are
+  possible ("all swans are white"). When unsure, empirical.
+- `striking` true only for a generic that holds of a minority of the kind ("politicians are
+  corrupt").
+- "no" and "none" are quantifier words (`qword`); plain "not" is an O03 over this instance.
+- NOT a property no single instance can hold (extinct, widespread, common, rare, endangered,
+  numerous): report it unmapped.
+- NOT a property that holds only under a condition or in a place ("brittle when cold", "steep in
+  the capital"): report the whole clause unmapped; never strip the restriction.
+- NOT a modal generic ("Ns can / must / may V"): report it unmapped.
+- NOT a definite plural ("the trellises are wooden": E03 and R03) and NOT a partitive ("most of
+  the apples": unmapped).
+- "not all / not every N" and "neither A nor B" have no template here: report them unmapped.
+
+Slots:
+
+- `t` (required): "C02"
+- `id` (required; a label): your label for this predication.
+- `subj` (required; a lemma): the subject kind.
+- `pred` (required; a lemma): the predicated kind or property.
+- `qword` (optional; a string): the explicit quantifier or frequency word, lowercase.
+- `dial` (required; one of: definitional, empirical): definitional or empirical.
+- `striking` (optional; true / false): true for a minority generic.
+
+Example. TEXT: Most dredgers are slow. Granite is a rock.
+
+Records:
+
+    {"id": "ex-C02", "instances": [
+      {"t": "C02", "id": "c1", "subj": "dredger", "pred": "slow", "qword": "most", "dial": "empirical"},
+      {"t": "C02", "id": "c2", "subj": "granite", "pred": "rock", "dial": "definitional"}
+    ], "unmapped": []}
+
+The program renders these records as:
+
+    (Inheritance dredger slow)   (STV 0.9 0.9)
+    (QuantifierPhrase dredger slow "most")   (STV 1.0 0.99)
+    (Inheritance granite rock)   (STV 1.0 0.99)
+
+### C03 — Quantifier word record
+
+When: An explicit quantifier or frequency word on a kind claim or a rule. It has no record of
+its own: it is the `qword` slot of C02, R01 or R03, and the program records the word.
+
+- Give `qword` only when the word is actually there. One per explicit quantifier phrase.
+
+No record of its own.
+
+### C14 — Where a thing is
+
+When: A thing's position or containment, with no happening: "X is a village in Y", "there was a
+ledger on the workbench", "is located / situated in", and bare postural verbs (lie, sit, stand,
+hang, lean, perch, rest) that merely state a position.
+
+- `prep` is the preposition actually used, lowercase, multi-word if need be ("next to", "across
+  the lane from"). Never a synonym.
+- An EVENT's place is the `Location` role of V01, never C14, and never both for one fact. An
+  event that creates or positions a thing ("erected a granary in Thornmere") locates the event
+  only.
+- A second "in <Place>" stacked directly on a place ("in Thornmere in Calderwick") positions the
+  first place in the second: a C14 on the place.
+- Entity-attached "from" is origin ("wool from Calderwick"): `prep` from.
+- Tense on the clause is an O01 on this instance.
+- A postural verb with progressive morphology, a manner adverb or a time ("was lying across the
+  threshold") is an event: V01 with the postural verb, the subject as Experiencer.
+- A framing or domain phrase ("in fluid mechanics", "under maritime law") is not a place: report
+  it unmapped.
+
+Slots:
+
+- `t` (required): "C14"
+- `id` (required; a label): your label for this predication.
+- `entity` (required; "@id" of a E01 / E02 / E03 instance): the thing positioned.
+- `prep` (required; a string): the preposition actually used.
+- `place` (required; "@id" of a E01 / E02 / E03 instance, or a bare lemma): the place or
+  reference object.
+
+Example. TEXT: Hollin is a hamlet in Marrowdale. The gazetteer was under the lectern.
+
+Records:
+
+    {"id": "ex-C14", "instances": [
+      {"t": "E01", "id": "n1", "name": "Hollin"},
+      {"t": "E01", "id": "n2", "name": "Marrowdale"},
+      {"t": "E02", "id": "x1", "kind": "gazetteer", "def": true},
+      {"t": "E02", "id": "x2", "kind": "lectern", "def": true},
+      {"t": "C01", "id": "c1", "subj": "@n1", "pred": "hamlet"},
+      {"t": "C14", "id": "c2", "entity": "@n1", "prep": "in", "place": "@n2"},
+      {"t": "C14", "id": "c3", "entity": "@x1", "prep": "under", "place": "@x2"},
+      {"t": "O01", "on": "@c3", "head": "Past"}
+    ], "unmapped": []}
+
+The program renders these records as:
+
+    (Name hollin "Hollin")   (STV 1.0 0.99)
+    (Name marrowdale "Marrowdale")   (STV 1.0 0.99)
+    (Member sk_gazetteer_1 gazetteer)   (STV 1.0 0.99)
+    (Member sk_lectern_1 lectern)   (STV 1.0 0.99)
+    (Member hollin hamlet)   (STV 1.0 0.99)
+    (LocatedIn hollin marrowdale)   (STV 1.0 0.99)
+    (Past (Under sk_gazetteer_1 sk_lectern_1))   (STV 1.0 0.99)
+
+### V01 — Event (verbal clause)
+
+When: Any verbal clause, action or state ("Bob cooks", "Alice owns a dog", "the manifest lists
+two pallets"), that is not copular and not a bare position clause (C14).
+
+- `verb` is the lemma; a phrasal verb is one symbol.
+- `roles` gives one entry per participant, by the role tests in *Roles*. A role with several
+  fillers holds a list.
+- A passive carries exactly the roles its active would: a by-phrase takes the role the active
+  subject would have had, and an agentless passive simply has no such entry. A voice alternation
+  must give the same roles.
+- An expletive or weather "it" is not a participant ("it will rain" has no roles).
+- `obliques` holds each prepositional phrase that names what the activity is about or directed
+  at ("work on the mural", "depend on the pump", "look at the gauge", "argue about the lease"),
+  and the object of a prepositional verb ("clamped down on the vendors", "referred to the memo",
+  "dealt with the appeal"): the preposition actually used, and its object. Decide by the
+  question the phrase answers, never by which named role is closest.
+- A participial post-modifier on a noun ("a skiff moored at the jetty", "the rules concerning
+  the levy") is a reduced relative clause: a V01 of its own with the noun in its role and no
+  tense.
+- Tense, aspect and modality are O01 instances; times are T01 / T02; negation is O03.
+- A verb whose object is another clause or verb phrase (a control verb: try, want, decide to V;
+  a causative: make, have, let X V; a perception report: saw X leave; an aspectual verb: began,
+  stopped V-ing; a factive verb with a that-clause: knows, realizes that P) has no template here
+  unless it is a non-factive attitude (V05): report the whole clause unmapped.
+
+Slots:
+
+- `t` (required): "V01"
+- `id` (required; a label): your label for this event.
+- `verb` (required; a lemma): the verb lemma.
+- `roles` (optional; an object {"<Role>": filler}; a filler is "@id" or a bare lemma, or a list
+  of them when the role has several fillers): participants by role.
+- `obliques` (optional; a list of {"prep": "<preposition>", "obj": filler}): preposition-named
+  participants.
+
+Example. TEXT: The bursar relied on the inventory.
+
+Records:
+
+    {"id": "ex-V01", "instances": [
+      {"t": "E02", "id": "x1", "kind": "bursar", "def": true},
+      {"t": "E02", "id": "x2", "kind": "inventory", "def": true},
+      {"t": "V01", "id": "e1", "verb": "rely", "roles": {"Agent": "@x1"},
+       "obliques": [{"prep": "on", "obj": "@x2"}]},
+      {"t": "O01", "on": "@e1", "head": "Past"}
+    ], "unmapped": []}
+
+The program renders these records as:
+
+    (Member sk_bursar_1 bursar)   (STV 1.0 0.99)
+    (Member sk_inventory_1 inventory)   (STV 1.0 0.99)
+    (Member sk_rely_1 rely)   (STV 1.0 0.99)
+    (Agent sk_rely_1 sk_bursar_1)   (STV 1.0 0.99)
+    (On sk_rely_1 sk_inventory_1)   (STV 1.0 0.99)
+    (Past sk_rely_1)   (STV 1.0 0.99)
+
+### V02 — State as an eventuality
+
+When: A copular or adjectival state that must be anchored as an eventuality, for exactly two
+reasons here: it carries a time (T01, T02, T08), or it is an endpoint of a connective (L01).
+
+- `trigger` says which reason applies: `time` or `connective`.
+- The program also states the plain copular fact from this record. Do NOT add a C01 for the same
+  state.
+- Any other copular clause is a plain C01.
+- The subject is an individual or a witness; tense is an O01 on this instance.
+
+Slots:
+
+- `t` (required): "V02"
+- `id` (required; a label): your label for this state.
+- `prop` (required; a lemma): the property.
+- `subj` (required; "@id" of a E01 / E02 / E03 instance): the bearer of the state.
+- `trigger` (required; one of: time, connective): why the state is anchored.
+
+Example. TEXT: The strap tore because it was threadbare.
+
+Records:
+
+    {"id": "ex-V02", "instances": [
+      {"t": "E02", "id": "x1", "kind": "strap", "def": true},
+      {"t": "V01", "id": "e1", "verb": "tear", "roles": {"Patient": "@x1"}},
+      {"t": "O01", "on": "@e1", "head": "Past"},
+      {"t": "V02", "id": "s1", "prop": "threadbare", "subj": "@x1", "trigger": "connective"},
+      {"t": "O01", "on": "@s1", "head": "Past"},
+      {"t": "L01", "connective": "because", "main": "@e1", "sub": "@s1"}
+    ], "unmapped": []}
+
+The program renders these records as:
+
+    (Member sk_strap_1 strap)   (STV 1.0 0.99)
+    (Member sk_tear_1 tear)   (STV 1.0 0.99)
+    (Patient sk_tear_1 sk_strap_1)   (STV 1.0 0.99)
+    (Past sk_tear_1)   (STV 1.0 0.99)
+    (Member sk_threadbare_1 threadbare)   (STV 1.0 0.99)
+    (Experiencer sk_threadbare_1 sk_strap_1)   (STV 1.0 0.99)
+    (Past sk_threadbare_1)   (STV 1.0 0.99)
+    (Past (Member sk_strap_1 threadbare))   (STV 1.0 0.99)
+    (Because sk_tear_1 sk_threadbare_1)   (STV 1.0 0.99)
+
+### V05 — Attitude with a sealed that-clause (non-factive)
+
+When: A NON-FACTIVE verb of thought or speech with a finite that-clause, with or without "that"
+(believe, think, suppose, imagine, doubt, suspect, hope, fear, expect, assume, claim, say,
+announce, report, confirm), and a direct quotation of a statement.
+
+- `content` lists the predications that make up the reported proposition. Parse them as usual
+  (events, copular predications, their tense and times). The program seals them: they are
+  recorded as what is claimed, never stated as fact.
+- A definite or named referent mentioned inside the complement exists whatever is believed about
+  it: its E01 or E02 instance is given as usual (`def` true). An indefinite introduced inside
+  the complement ("believes a unicorn escaped") is `def` false and stays inside.
+- Negation of the attitude ("does not believe") is an O03 over THIS instance; the content stays
+  as it is. Negation inside the complement ("said the count did not tally") is an O03 over the
+  content predication, given as usual.
+- Tense inside the complement is surface-mechanical: a past-tense verb keeps Past; "would V"
+  inside the complement is Future on the complement event.
+- `say`, `report`, `announce` and `claim` stay non-factive however credible the source.
+- NOT a factive verb (know, realize, discover, learn, notice, remember, regret); NOT an attitude
+  verb with an entity object ("fears the dog" is a plain V01 with Experiencer and Stimulus); NOT
+  a control verb with a to-infinitive; NOT an embedded question (whether / who …); NOT
+  "according to X"; NOT the impersonal "is said / considered to be". Report those clauses
+  unmapped.
+
+Slots:
+
+- `t` (required): "V05"
+- `id` (required; a label): your label for the attitude event.
+- `verb` (required; a lemma): the attitude verb lemma.
+- `holder` (required; "@id" of a E01 / E02 / E03 instance): who holds the attitude.
+- `content` (required; a list; each entry "@id" of a C01 / C02 / C14 / D01 / M01 / V01 / V02 /
+  V05 instance): the predications of the reported proposition.
+
+Example. TEXT: Corvin suspects that the dredger sank.
+
+Records:
+
+    {"id": "ex-V05", "instances": [
+      {"t": "E01", "id": "n1", "name": "Corvin"},
+      {"t": "E02", "id": "x1", "kind": "dredger", "def": true},
+      {"t": "V01", "id": "e1", "verb": "sink", "roles": {"Patient": "@x1"}},
+      {"t": "O01", "on": "@e1", "head": "Past"},
+      {"t": "V05", "id": "e2", "verb": "suspect", "holder": "@n1", "content": ["@e1"]}
+    ], "unmapped": []}
+
+The program renders these records as:
+
+    (Name corvin "Corvin")   (STV 1.0 0.99)
+    (Member sk_dredger_1 dredger)   (STV 1.0 0.99)
+    (Member sk_suspect_1 suspect)   (STV 1.0 0.99)
+    (Experiencer sk_suspect_1 corvin)   (STV 1.0 0.99)
+    (Theme sk_suspect_1 (And (Member sk_sink_1 sink) (Patient sk_sink_1 sk_dredger_1) (Past sk_sink_1)))   (STV 1.0 0.99)
+
+### V17 — Coordination
+
+When: Coordinated clauses, verb phrases or noun phrases ("and").
+
+- `clausal`: coordinated clauses or verb phrases are separate predications, each parsed as if
+  written alone; a shared subject carries over ("Bob sang and danced" gives two events).
+- `distributive` (the default for coordinated noun phrases): replicate the whole predication
+  once per conjunct, one event or one copular predication each; a shared object reuses one
+  instance ("Bob and Alice ate the cake" gives two events and one cake).
+- `collective`: ONE event with several fillers in the same role, only when the predicate is
+  reciprocal or aggregate (meet, gather, assemble, collide) or marked by bare "together",
+  "jointly" or "between them". A comitative phrase ("with John", "together with John") makes
+  John a CoAgent instead.
+- List in `instances` the predications this coordination produced.
+
+Slots:
+
+- `t` (required): "V17"
+- `mode` (required; one of: clausal, distributive, collective): which coordination.
+- `instances` (required; a list; each entry "@id" of a C01 / C02 / C14 / D01 / M01 / V01 / V02 /
+  V05 / R01 / R03 instance): the predications it produced.
+
+Example. TEXT: The sledge and the handcart collided.
+
+Records:
+
+    {"id": "ex-V17", "instances": [
+      {"t": "E02", "id": "x1", "kind": "sledge", "def": true},
+      {"t": "E02", "id": "x2", "kind": "handcart", "def": true},
+      {"t": "V01", "id": "e1", "verb": "collide", "roles": {"Agent": ["@x1", "@x2"]}},
+      {"t": "O01", "on": "@e1", "head": "Past"},
+      {"t": "V17", "mode": "collective", "instances": ["@e1"]}
+    ], "unmapped": []}
+
+The program renders these records as:
+
+    (Member sk_sledge_1 sledge)   (STV 1.0 0.99)
+    (Member sk_handcart_1 handcart)   (STV 1.0 0.99)
+    (Member sk_collide_1 collide)   (STV 1.0 0.99)
+    (Agent sk_collide_1 sk_sledge_1)   (STV 1.0 0.99)
+    (Agent sk_collide_1 sk_handcart_1)   (STV 1.0 0.99)
+    (Past sk_collide_1)   (STV 1.0 0.99)
+
+### O01 — Tense, aspect, modality
+
+When: A tense, aspect or modal marking on a finite clause. A predication with no O01 is generic,
+habitual or dispositional, not a specific occurrence.
+
+- `Past`, `Future`: on finite clauses only. An infinitive, participle or gerund never carries
+  tense of its own. The perfect ("has V-ed") is Past.
+- `Ongoing` needs an explicit marker: progressive morphology ("is / was V-ing") or a
+  continuative perfect ("has lived there since 2019"). A bare simple present gets NO O01. Never
+  choose between Ongoing, Past and nothing by feel: read the marker off the clause.
+- Do not infer Future from a time adjunct alone; "will" and "shall" are the markers here.
+- `Can`: a specific subject's ability ("can", "able to").
+- `Might`, `Probably`, `Must`: epistemic. A bare epistemic modal is the clause's ONLY O01: add
+  no tense beside it, unless the clause marks tense independently ("might have cleared" adds
+  Past; "will" adds Future).
+- `Obligated`, `Permitted`: deontic, on a specific act ("must / required"; "may / allowed"). The
+  weaker "should / ought" is Obligated with `word` set to "should". A prohibition ("must not",
+  "may not", "shall not", "forbidden to") is Permitted plus an O03 over the event: the denial of
+  permission, never a negated obligation.
+- The same surface word takes the operator of its sense: "must" is Must or Obligated, "may" is
+  Might or Permitted, "can" is Can or Permitted, "could" is Can or Permitted together with Past
+  (past narrative), or Might with no tense (speculation).
+- "would": inside a that-complement it is Future on the complement event; "would not V" in a
+  past narrative is an O03 over the event together with Past; any other "would" (an unrealized
+  eventuality) has no template here: report the clause unmapped.
+- Stack several O01 on one instance when the clause has several markings ("was cooking": Past
+  and Ongoing).
+
+Slots:
+
+- `t` (required): "O01"
+- `on` (required; "@id" of a C01 / C14 / D01 / M01 / V01 / V02 / V05 instance): the predication
+  marked.
+- `head` (required; one of: Past, Future, Ongoing, Can, Might, Probably, Must, Obligated,
+  Permitted): the operator.
+- `word` (optional; one of: should): "should" for the weaker should / ought obligation.
+
+Example. TEXT: The stoker was sweeping the gangway.
+
+Records:
+
+    {"id": "ex-O01", "instances": [
+      {"t": "E02", "id": "x1", "kind": "stoker", "def": true},
+      {"t": "E02", "id": "x2", "kind": "gangway", "def": true},
+      {"t": "V01", "id": "e1", "verb": "sweep", "roles": {"Agent": "@x1", "Patient": "@x2"}},
+      {"t": "O01", "on": "@e1", "head": "Past"},
+      {"t": "O01", "on": "@e1", "head": "Ongoing"}
+    ], "unmapped": []}
+
+The program renders these records as:
+
+    (Member sk_stoker_1 stoker)   (STV 1.0 0.99)
+    (Member sk_gangway_1 gangway)   (STV 1.0 0.99)
+    (Member sk_sweep_1 sweep)   (STV 1.0 0.99)
+    (Agent sk_sweep_1 sk_stoker_1)   (STV 1.0 0.99)
+    (Patient sk_sweep_1 sk_gangway_1)   (STV 1.0 0.99)
+    (Past sk_sweep_1)   (STV 1.0 0.99)
+    (Ongoing sk_sweep_1)   (STV 1.0 0.99)
+
+### O03 — Negation
+
+When: An explicit "not", "n't", "never" or "no" denying a predication.
+
+- `over` lists what is denied. For a verbal clause: its event. For a copular clause: its copular
+  predication; when the predicate has several parts ("is not a legal dwelling") list ALL of them
+  together, because the sentence denies the whole predicate and licenses neither half alone.
+- Negation does not re-decide the subject. Parse every participant exactly as the positive
+  sentence would: an indefinite or definite singular is a witness under negation just as without
+  it. A generic denial needs the same surface signal a positive generic needs (a bare plural or
+  an explicit quantifier): then the denial is an O03 over the R01 rule.
+- A negated plural or group keeps both of its predications: list the group event AND its R03
+  rule in `over`.
+- "not … or" means neither: give one denied predication per alternative, each with its own O03.
+  When instead at least one alternative is a denial ("Bob or Alice did not come"), report the
+  clause unmapped with code G17.
+- "not because X, but because Y": the event is NOT denied; give the L01 to X with `denied` true
+  and the L01 to Y as usual.
+- "no longer", "not anymore", "used to" (a state that held and has ceased), "not all / not
+  every", "neither … nor" and "not yet / still not" have no template here: report them unmapped.
+- A lexical antonym (unhappy, closed) is never negation.
+
+Slots:
+
+- `t` (required): "O03"
+- `over` (required; a list; each entry "@id" of a C01 / C02 / C14 / D01 / M01 / V01 / V02 / V05
+  / R01 / R03 instance): the predications denied together.
+
+Example. TEXT: A drover did not sign the waybill.
+
+Records:
+
+    {"id": "ex-O03", "instances": [
+      {"t": "E02", "id": "x1", "kind": "drover", "def": false},
+      {"t": "E02", "id": "x2", "kind": "waybill", "def": true},
+      {"t": "V01", "id": "e1", "verb": "sign", "roles": {"Agent": "@x1", "Theme": "@x2"}},
+      {"t": "O01", "on": "@e1", "head": "Past"},
+      {"t": "O03", "over": ["@e1"]}
+    ], "unmapped": []}
+
+The program renders these records as:
+
+    (Member sk_waybill_1 waybill)   (STV 1.0 0.99)
+    (And (Member sk_sign_1 sign) (Agent sk_sign_1 sk_drover_1) (Theme sk_sign_1 sk_waybill_1) (Past sk_sign_1) (Member sk_drover_1 drover))   (STV 0.0 0.99)
+
+### R01 — Generic or universal over a kind (verbal)
+
+When: A non-modal VERBAL generic or universal over a kind: a bare-plural subject with a habitual
+or characteristic predicate ("birds fly"), or an explicit quantifier on a kind ("every heron
+wades", "most birds migrate", "all the students passed" when the plural names the kind).
+
+- `kind` is the subject kind, `verb` the verb lemma, `subj_role` the role the subject takes by
+  the role tests.
+- `qword` is the quantifier or frequency word actually present (as in C02); omit it for a bare
+  generic. `dial` as in C02 (empirical unless a counterexample is inconceivable).
+- Other participants go in `roles` / `obliques`: a bare lemma for a kind-level filler, or `@id`
+  for a specific referent ("foxes rarely cross the causeway"). An INDEFINITE under the
+  quantifier ("every student read a book") is a dependent existential with no template here:
+  report the clause unmapped.
+- `status` lists the clause's own tense or aspect markers, if any.
+- `restrict` lists adjectives restricting the subject kind ("stray dogs chase cyclists"
+  restricts dog by stray).
+- `striking` true for a rare event that befalls only a minority of the kind ("planes crash").
+- A denial ("owls don't migrate") is an O03 over this rule; "no / none" is a `qword`.
+- "None of the Ns V-ed" over a plural that names its kind ("none of the tenants complained") is
+  THIS rule with `qword` none and the clause's tense in `status`: the negative twin of "all the
+  Ns V-ed". It is never a group with a denial, and never unmapped.
+- NOT a bare relational generic whose subject AND object are both bare kinds ("bees pollinate
+  flowers"); NOT a modal generic ("Ns can / must / may V"); NOT "whenever / every time"; NOT a
+  copular generic (C02). Report the first three unmapped.
+- A bare plural in an episodic clause is a group (E03), not a rule.
+
+Slots:
+
+- `t` (required): "R01"
+- `id` (required; a label): your label for this rule.
+- `kind` (required; a lemma): the subject kind.
+- `verb` (required; a lemma): the verb lemma.
+- `subj_role` (required; one of: Agent, Patient, Theme, Recipient, Experiencer, Stimulus,
+  Holder, CoAgent, Instrument, Location, Source, Goal, Beneficiary, Manner, Duration): the
+  subject's role.
+- `roles` (optional; an object {"<Role>": filler}; a filler is "@id" or a bare lemma, or a list
+  of them when the role has several fillers): other participants.
+- `obliques` (optional; a list of {"prep": "<preposition>", "obj": filler}): preposition-named
+  participants.
+- `qword` (optional; a string): the explicit quantifier or frequency word, lowercase.
+- `dial` (required; one of: definitional, empirical): definitional or empirical.
+- `striking` (optional; true / false): true for a minority generic.
+- `status` (optional; a list; each entry one of: Past, Future, Ongoing, Can, Might, Probably,
+  Must, Obligated, Permitted): tense / aspect markers of the clause.
+- `restrict` (optional; a list; each entry a lemma): adjectives restricting the subject kind.
+
+Example. TEXT: Stoats often raid the hatchery.
+
+Records:
+
+    {"id": "ex-R01", "instances": [
+      {"t": "E02", "id": "x1", "kind": "hatchery", "def": true},
+      {"t": "R01", "id": "r1", "kind": "stoat", "verb": "raid", "subj_role": "Agent",
+       "roles": {"Theme": "@x1"}, "qword": "often", "dial": "empirical"}
+    ], "unmapped": []}
+
+The program renders these records as:
+
+    (Member sk_hatchery_1 hatchery)   (STV 1.0 0.99)
+    (Implication (Member $x stoat) (And (Member (sk_raid $x) raid) (Agent (sk_raid $x) $x) (Theme (sk_raid $x) sk_hatchery_1)))   (STV 0.8 0.9)
+    (QuantifierPhrase stoat raid "often")   (STV 1.0 0.99)
+
+### R03 — Distribution over a group
+
+When: A predicate that holds of EACH member of a specific group: a definite or counted plural
+with a distributive predicate ("the dogs barked", "both dogs barked"), an explicit universal
+over a group ("each of the jurors", "every member of the committee"), or a copular predicate on
+a definite plural ("the divers are tired").
+
+- `group` is the E03 group. Give `verb` and `subj_role` for a verbal predicate, or `prop` for a
+  copular one.
+- A counted or definite plural with a distributive verbal predicate keeps its group event too:
+  also give a V01 with the group as the filler. An explicit universal ("all the", "each of the",
+  "every member of") gives the rule alone, with its `qword`.
+- R03 ranges over a SPECIFIC group: a collective noun ("every member of the committee", "none of
+  the committee members") or a counted or definite plural. An explicit universal or "none of
+  the" over a plural that names its kind ("all the students", "none of the tenants") ranges over
+  the kind instead: that is R01.
+- A copular predicate on a plural gives the rule alone: no V01, no C01.
+- `status` lists the clause's tense or aspect markers.
+- A collective predicate (gather, meet, assemble: the group as one unit) does NOT distribute:
+  V01 with the group only. A singular collective noun never distributes.
+- A denial keeps both: O03 over the group event and this rule.
+
+Slots:
+
+- `t` (required): "R03"
+- `id` (required; a label): your label for this rule.
+- `group` (required; "@id" of a E03 instance): the group distributed over.
+- `verb` (optional; a lemma): the verb lemma (verbal predicate).
+- `subj_role` (optional; one of: Agent, Patient, Theme, Recipient, Experiencer, Stimulus,
+  Holder, CoAgent, Instrument, Location, Source, Goal, Beneficiary, Manner, Duration): the
+  member's role (verbal predicate).
+- `prop` (optional; a lemma): the property (copular predicate).
+- `roles` (optional; an object {"<Role>": filler}; a filler is "@id" or a bare lemma, or a list
+  of them when the role has several fillers): other participants.
+- `obliques` (optional; a list of {"prep": "<preposition>", "obj": filler}): preposition-named
+  participants.
+- `qword` (optional; a string): the explicit universal word (all, each, every) or none,
+  lowercase.
+- `status` (optional; a list; each entry one of: Past, Future, Ongoing, Can, Might, Probably,
+  Must, Obligated, Permitted): tense / aspect markers of the clause.
+
+Example. TEXT: Four stokers sneezed.
+
+Records:
+
+    {"id": "ex-R03", "instances": [
+      {"t": "E03", "id": "g1", "kind": "stoker", "def": false},
+      {"t": "N01", "group": "@g1", "n": 4},
+      {"t": "V01", "id": "e1", "verb": "sneeze", "roles": {"Agent": "@g1"}},
+      {"t": "O01", "on": "@e1", "head": "Past"},
+      {"t": "R03", "id": "r1", "group": "@g1", "verb": "sneeze", "subj_role": "Agent", "status": ["Past"]}
+    ], "unmapped": []}
+
+The program renders these records as:
+
+    (GroupOf sk_group_1 stoker)   (STV 1.0 0.99)
+    (Cardinality sk_group_1 4)   (STV 1.0 0.99)
+    (Member sk_sneeze_1 sneeze)   (STV 1.0 0.99)
+    (Agent sk_sneeze_1 sk_group_1)   (STV 1.0 0.99)
+    (Past sk_sneeze_1)   (STV 1.0 0.99)
+    (Implication (PartOf $x sk_group_1) (And (Member (sk_sneeze $x) sneeze) (Agent (sk_sneeze $x) $x) (Past (sk_sneeze $x))))   (STV 1.0 0.9)
+
+### N01 — Exact count
+
+When: An exact number on a plural: a numeral, or a fixed-value word ("both" and "a pair" and "a
+couple" are 2, "a dozen" is 12, "exactly three" is 3).
+
+- The count rides on the group.
+- A bound ("more than three", "at least five"), a vague count ("several", "a few", "dozens") and
+  a partitive ("three of the students") have no template here: report them unmapped.
+
+Slots:
+
+- `t` (required): "N01"
+- `group` (required; "@id" of a E03 instance): the counted group.
+- `n` (required; an integer): the number.
+
+### D01 — Comparative
+
+When: "X is ADJ-er / more ADJ / less ADJ than Y": an ordering on a scale with a STATED standard.
+
+- `scale` is the lemmatized adjective actually used. An antonym keeps the surface adjective
+  ("shorter" gives short); never re-express it on the opposite pole.
+- `x` is the subject, `y` the standard, in surface order. For "less ADJ than" set `less` true;
+  the program swaps the pair.
+- A comparative never states the positive: no C01 for the adjective.
+- Tense on the clause is an O01 on this instance.
+- A comparative with no stated standard ("a sturdier bracket", "prices ended lower") is unmapped
+  with code G01.
+- A measured gap ("3 cm taller"), a ratio ("twice as tall"), a superlative, an equative ("as
+  tall as"), an adverbial comparative ("swims faster than") and a degree word ("very", "too",
+  "almost") have no template here: report them unmapped.
+
+Slots:
+
+- `t` (required): "D01"
+- `id` (required; a label): your label for this comparison.
+- `scale` (required; a lemma): the adjective lemma.
+- `x` (required; "@id" of a E01 / E02 / E03 instance, or a bare lemma): the thing compared.
+- `y` (required; "@id" of a E01 / E02 / E03 instance, or a bare lemma): the standard.
+- `less` (optional; true / false): true for "less ADJ than".
+
+Example. TEXT: The gangway is wider than the hatchway.
+
+Records:
+
+    {"id": "ex-D01", "instances": [
+      {"t": "E02", "id": "x1", "kind": "gangway", "def": true},
+      {"t": "E02", "id": "x2", "kind": "hatchway", "def": true},
+      {"t": "D01", "id": "d1", "scale": "wide", "x": "@x1", "y": "@x2"}
+    ], "unmapped": []}
+
+The program renders these records as:
+
+    (Member sk_gangway_1 gangway)   (STV 1.0 0.99)
+    (Member sk_hatchway_1 hatchway)   (STV 1.0 0.99)
+    (More wide sk_gangway_1 sk_hatchway_1)   (STV 1.0 0.99)
+
+### M01 — Measure
+
+When: An exact number with a unit on a dimension of a thing ("6 feet tall", "weighs 5
+kilograms", "costs 20 dollars").
+
+- `scale` is the surface dimension: the gradable adjective if one is stated ("6 feet tall" gives
+  tall, "30 years old" gives old), otherwise the dimension noun ("weighs" gives weight, "costs"
+  gives price). Record what is said; when no word supplies the dimension use `unspecified`.
+- `n` is the number, `unit` the lemmatized singular unit (foot, meter, kilogram, year, dollar,
+  percent). A rate is a compound unit (`cent_per_share`). When no word supplies the unit use
+  `unspecified`.
+- A measure never states the positive ("6 feet tall" is not tall). Tense is an O01 on this
+  instance.
+- A bound ("at least 3 m"), an approximation ("about 6 feet"), a change ("fell 8 percent", "rose
+  to 46 dollars") and a duration ("for six hours") have no template here: report them unmapped.
+
+Slots:
+
+- `t` (required): "M01"
+- `id` (required; a label): your label for this measure.
+- `entity` (required; "@id" of a E01 / E02 / E03 instance): the thing measured.
+- `scale` (required; a lemma): the dimension.
+- `n` (required; a number): the magnitude.
+- `unit` (required; a lemma): the unit, lemmatized singular.
+
+Example. TEXT: The pylon is 9 meters tall.
+
+Records:
+
+    {"id": "ex-M01", "instances": [
+      {"t": "E02", "id": "x1", "kind": "pylon", "def": true},
+      {"t": "M01", "id": "m1", "entity": "@x1", "scale": "tall", "n": 9, "unit": "meter"}
+    ], "unmapped": []}
+
+The program renders these records as:
+
+    (Member sk_pylon_1 pylon)   (STV 1.0 0.99)
+    (Measure sk_pylon_1 tall 9 meter)   (STV 1.0 0.99)
+
+### T01 — Calendar or clock time
+
+When: A calendar or clock expression locating an event: a year, month, day of the month,
+weekday, hour or minute.
+
+- `terms` holds one entry per granularity actually stated, with keys Year, Month, Day, Weekday,
+  Hour, Minute. Month and weekday names are lowercase (june, monday); hours are 24-hour ("3 pm"
+  is 15).
+- "next / last Tuesday" is just the weekday: the clause's tense carries the direction.
+- A copular clause with a time needs its state anchored first (V02 with trigger `time`).
+- A day-part ("in the morning"), an approximate time ("around 3 pm"), a bound ("before 1900",
+  "by 5 pm"), an interval ("from 8 to 1", "since 2019", "until"), a frequency ("every Monday",
+  "twice a week") and an anaphoric time ("that evening", "the following day") have no template
+  here: report them unmapped.
+
+Slots:
+
+- `t` (required): "T01"
+- `on` (required; "@id" of a V01 / V02 / V05 instance): the event or state located.
+- `terms` (required; an object with keys from Year, Month, Day, Weekday, Hour, Minute): one
+  entry per stated granularity.
+
+Example. TEXT: The bursar resigned on 3 May 2019.
+
+Records:
+
+    {"id": "ex-T01", "instances": [
+      {"t": "E02", "id": "x1", "kind": "bursar", "def": true},
+      {"t": "V01", "id": "e1", "verb": "resign", "roles": {"Agent": "@x1"}},
+      {"t": "O01", "on": "@e1", "head": "Past"},
+      {"t": "T01", "on": "@e1", "terms": {"Year": 2019, "Month": "may", "Day": 3}}
+    ], "unmapped": []}
+
+The program renders these records as:
+
+    (Member sk_bursar_1 bursar)   (STV 1.0 0.99)
+    (Member sk_resign_1 resign)   (STV 1.0 0.99)
+    (Agent sk_resign_1 sk_bursar_1)   (STV 1.0 0.99)
+    (Past sk_resign_1)   (STV 1.0 0.99)
+    (Time sk_resign_1 (Year 2019))   (STV 1.0 0.99)
+    (Time sk_resign_1 (Month may))   (STV 1.0 0.99)
+    (Time sk_resign_1 (Day 3))   (STV 1.0 0.99)
+
+### T02 — Deictic time
+
+When: A speech-anchored time word: yesterday, today, tomorrow, tonight, this_morning, last_week,
+next_month, last_spring, next_summer and the like.
+
+- `const` is the deictic as one lowercase snake_case symbol. It is a constant, never a witness.
+
+Slots:
+
+- `t` (required): "T02"
+- `on` (required; "@id" of a V01 / V02 / V05 instance): the event or state located.
+- `const` (required; a lemma): the deictic constant.
+
+Example. TEXT: The saddler returned yesterday.
+
+Records:
+
+    {"id": "ex-T02", "instances": [
+      {"t": "E02", "id": "x1", "kind": "saddler", "def": true},
+      {"t": "V01", "id": "e1", "verb": "return", "roles": {"Agent": "@x1"}},
+      {"t": "O01", "on": "@e1", "head": "Past"},
+      {"t": "T02", "on": "@e1", "const": "yesterday"}
+    ], "unmapped": []}
+
+The program renders these records as:
+
+    (Member sk_saddler_1 saddler)   (STV 1.0 0.99)
+    (Member sk_return_1 return)   (STV 1.0 0.99)
+    (Agent sk_return_1 sk_saddler_1)   (STV 1.0 0.99)
+    (Past sk_return_1)   (STV 1.0 0.99)
+    (Time sk_return_1 yesterday)   (STV 1.0 0.99)
+
+### T08 — Order of two eventualities
+
+When: "before" or "after" relating two eventualities (clauses or event nouns), with or without a
+measured gap ("ten minutes before the show"), and "N units ago / from now".
+
+- `earlier` and `later` say which comes first. "After" simply puts its clause in `earlier`.
+- A measured gap goes in `gap` (number and lemmatized unit).
+- "N units ago" has `later` set to the constant `now`; "N units from now" has `earlier` set to
+  `now`.
+- An event noun used only as the anchor ("after the outage", "before the inspection") is an E02
+  witness with no tense of its own.
+- "before / after" + a DATE is a bound, not an order, and has no template here: report it
+  unmapped. "when", "while", "during", "until" and "by the time" have no template here either.
+
+Slots:
+
+- `t` (required): "T08"
+- `earlier` (required; "@id" of a V01 / V02 / V05 / E02 instance, or a bare lemma, or the
+  constant "now"): the eventuality that comes first.
+- `later` (required; "@id" of a V01 / V02 / V05 / E02 instance, or a bare lemma, or the constant
+  "now"): the eventuality that comes second.
+- `gap` (optional; {"n": <number>, "unit": "<unit lemma>"}): the measured gap, if stated.
+
+Example. TEXT: The pickers left after the choir arrived.
+
+Records:
+
+    {"id": "ex-T08", "instances": [
+      {"t": "E03", "id": "g1", "kind": "picker", "def": true},
+      {"t": "E03", "id": "g2", "collective": "choir", "def": true},
+      {"t": "V01", "id": "e1", "verb": "leave", "roles": {"Agent": "@g1"}},
+      {"t": "O01", "on": "@e1", "head": "Past"},
+      {"t": "R03", "id": "r1", "group": "@g1", "verb": "leave", "subj_role": "Agent", "status": ["Past"]},
+      {"t": "V01", "id": "e2", "verb": "arrive", "roles": {"Agent": "@g2"}},
+      {"t": "O01", "on": "@e2", "head": "Past"},
+      {"t": "T08", "earlier": "@e2", "later": "@e1"}
+    ], "unmapped": []}
+
+The program renders these records as:
+
+    (GroupOf sk_group_1 picker)   (STV 1.0 0.99)
+    (Member sk_choir_1 choir)   (STV 1.0 0.99)
+    (Member sk_leave_1 leave)   (STV 1.0 0.99)
+    (Agent sk_leave_1 sk_group_1)   (STV 1.0 0.99)
+    (Past sk_leave_1)   (STV 1.0 0.99)
+    (Member sk_arrive_1 arrive)   (STV 1.0 0.99)
+    (Agent sk_arrive_1 sk_choir_1)   (STV 1.0 0.99)
+    (Past sk_arrive_1)   (STV 1.0 0.99)
+    (Implication (PartOf $x sk_group_1) (And (Member (sk_leave $x) leave) (Agent (sk_leave $x) $x) (Past (sk_leave $x))))   (STV 1.0 0.9)
+    (Before sk_arrive_1 sk_leave_1)   (STV 1.0 0.99)
+
+### L01 — Connective between two clauses
+
+When: An explicit NON-temporal connective relating two clauses: causal (because, since, so, as a
+result, therefore, consequently, thus), concessive (although, even though, despite) or
+adversative (but, yet).
+
+- `connective` is the surface connective, lowercase, all its words ("as a result", "even
+  though"). Never normalize it to another word.
+- `main` is the main clause's event or state, `sub` the subordinate one. For a coordinating
+  connective (so, but, therefore) the first clause is `main`. A fronted subordinate ("Because X,
+  Y") still has Y as `main`.
+- Both endpoints are eventualities: a verbal clause is its V01 (or V05); a copular clause must
+  be anchored as V02 with trigger `connective`.
+- Negation inside a clause stays inside that clause (an O03 over that event); it never moves the
+  link. Set `denied` true only for "not because X, but because Y", on the link to X.
+- Only for an explicit connective: bare juxtaposition states no relation.
+- A temporal connective (after, before, when, while, until, as soon as) is never an L01. A
+  connective at the start of the text with no first clause is unmapped with code G06. A "but /
+  except / unless" that introduces an exception to a generic, a purpose "to / in order to", and
+  "if" have no template here: report them unmapped.
+
+Slots:
+
+- `t` (required): "L01"
+- `connective` (required; a string): the surface connective, lowercase.
+- `main` (required; "@id" of a V01 / V02 / V05 instance): the main clause's eventuality.
+- `sub` (required; "@id" of a V01 / V02 / V05 instance): the subordinate clause's eventuality.
+- `denied` (optional; true / false): true only for "not because X, but …".
+
+Example. TEXT: The turbine stalled, so the troupe waited.
+
+Records:
+
+    {"id": "ex-L01", "instances": [
+      {"t": "E02", "id": "x1", "kind": "turbine", "def": true},
+      {"t": "E03", "id": "g1", "collective": "troupe", "def": true},
+      {"t": "V01", "id": "e1", "verb": "stall", "roles": {"Patient": "@x1"}},
+      {"t": "O01", "on": "@e1", "head": "Past"},
+      {"t": "V01", "id": "e2", "verb": "wait", "roles": {"Agent": "@g1"}},
+      {"t": "O01", "on": "@e2", "head": "Past"},
+      {"t": "L01", "connective": "so", "main": "@e1", "sub": "@e2"}
+    ], "unmapped": []}
+
+The program renders these records as:
+
+    (Member sk_turbine_1 turbine)   (STV 1.0 0.99)
+    (Member sk_troupe_1 troupe)   (STV 1.0 0.99)
+    (Member sk_stall_1 stall)   (STV 1.0 0.99)
+    (Patient sk_stall_1 sk_turbine_1)   (STV 1.0 0.99)
+    (Past sk_stall_1)   (STV 1.0 0.99)
+    (Member sk_wait_1 wait)   (STV 1.0 0.99)
+    (Agent sk_wait_1 sk_troupe_1)   (STV 1.0 0.99)
+    (Past sk_wait_1)   (STV 1.0 0.99)
+    (So sk_stall_1 sk_wait_1)   (STV 1.0 0.99)
+
+### J01 — Disjunction inside a clause
+
+When: "or" over ONE constituent of a clause: the subject, an object or another participant ("Bob
+or Alice will come", "ordered tea or coffee"), or a property ("the vase is red or blue"). At
+least one alternative holds and the text does not say which.
+
+- For a participant: `event` is the clause's event, `role` the role the alternatives share,
+  `alts` the alternatives (`@id` or bare lemma). Do NOT also list them in the event's `roles`.
+- For a property: `subj` is the individual and `props` the alternative properties. No C01.
+- An alternative that is an indefinite ("a salad or a sandwich") is an E02 with `def` false, as
+  usual.
+- Every "or" is inclusive here. An exclusivity cue ("but not both", "either … or" over
+  contradictory states) has no template here: report the clause unmapped.
+- "or" between two independent clauses that share nothing, and "or" in a condition, have no
+  template here: report them unmapped.
+
+Slots:
+
+- `t` (required): "J01"
+- `event` (optional; "@id" of a V01 instance): the clause's event (participant disjunction).
+- `role` (optional; one of: Agent, Patient, Theme, Recipient, Experiencer, Stimulus, Holder,
+  CoAgent, Instrument, Location, Source, Goal, Beneficiary, Manner, Duration): the role the
+  alternatives share.
+- `alts` (optional; a list; each entry "@id" of a E01 / E02 / E03 instance, or a bare lemma):
+  the alternatives.
+- `subj` (optional; "@id" of a E01 / E02 / E03 instance): the individual (property disjunction).
+- `props` (optional; a list; each entry a lemma): the alternative properties.
+
+Example. TEXT: The bursar filed the waybill or the requisition.
+
+Records:
+
+    {"id": "ex-J01", "instances": [
+      {"t": "E02", "id": "x1", "kind": "bursar", "def": true},
+      {"t": "E02", "id": "x2", "kind": "waybill", "def": true},
+      {"t": "E02", "id": "x3", "kind": "requisition", "def": true},
+      {"t": "V01", "id": "e1", "verb": "file", "roles": {"Agent": "@x1"}},
+      {"t": "O01", "on": "@e1", "head": "Past"},
+      {"t": "J01", "event": "@e1", "role": "Theme", "alts": ["@x2", "@x3"]}
+    ], "unmapped": []}
+
+The program renders these records as:
+
+    (Member sk_bursar_1 bursar)   (STV 1.0 0.99)
+    (Member sk_waybill_1 waybill)   (STV 1.0 0.99)
+    (Member sk_requisition_1 requisition)   (STV 1.0 0.99)
+    (And (Member sk_file_1 file) (Agent sk_file_1 sk_bursar_1) (Or (Theme sk_file_1 sk_waybill_1) (Theme sk_file_1 sk_requisition_1)) (Past sk_file_1))   (STV 1.0 0.99)

@@ -1,0 +1,2 @@
+(: none_tenants_complained (Implication (Member $x tenant) (And (Member (sk_complain $x) complain) (Agent (sk_complain $x) $x) (Past (sk_complain $x)))) (STV 0.0 0.9))
+(: tenants_q (QuantifierPhrase tenant complain "none") (STV 1.0 0.99))

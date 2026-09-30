@@ -1,0 +1,3 @@
+(: panel_type (Member sk_panel_1 panel) (STV 1.0 0.99))
+(: panel_abstained (Implication (PartOf $x sk_panel_1) (And (Member (sk_abstain $x) abstain) (Agent (sk_abstain $x) $x) (Past (sk_abstain $x)))) (STV 1.0 0.9))
+(: panel_q (QuantifierPhrase panel abstain "every") (STV 1.0 0.99))

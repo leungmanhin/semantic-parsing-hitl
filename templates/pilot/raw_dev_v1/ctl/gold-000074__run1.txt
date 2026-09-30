@@ -1,0 +1,7 @@
+(: applicants_group (GroupOf sk_applicants_1 applicant) (STV 1.0 0.99))
+(: withdrawers_group (GroupOf sk_group_1 applicant) (STV 1.0 0.99))
+(: withdrawers_subset (SubsetOf sk_group_1 sk_applicants_1) (STV 1.0 0.99))
+(: withdrawers_proportion (ProportionOf sk_group_1 sk_applicants_1 (Fraction 12.5 100)) (STV 1.0 0.99))
+(: withdraw_event (Member sk_withdraw_1 withdraw) (STV 1.0 0.99))
+(: withdraw_agent (Agent sk_withdraw_1 sk_group_1) (STV 1.0 0.99))
+(: withdraw_past (Past sk_withdraw_1) (STV 1.0 0.99))
