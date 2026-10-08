@@ -19,7 +19,7 @@ Run from ``templates/``::
 Rendering rules (deterministic, no dates of our own):
 
 * heads are grouped by kind in a fixed order, alphabetical within a kind;
-* each block is ``head`` / ``kind`` / ``arity`` / ``type-def`` (+ ``status`` when proposed);
+* each block is ``head`` / ``kind`` / ``arity`` / ``type-def`` / ``gloss`` (+ ``status`` when proposed);
 * ``arity`` is a number, ``a | b`` for alternatives, or ``2+ (variadic)``;
 * ``type-def`` is the first declaration the ``.metta`` file carries for the head, with a count
   of the others (a union argument type ``A|B`` expands to one declaration per alternative, a
@@ -157,6 +157,8 @@ def render_md(src: dict) -> str:
             lines.append(f"kind: {kind}")
             lines.append(f"arity: {arity_text(e)}")
             lines.append(f"type-def: {type_def_line(name, e)}")
+            if e.get("gloss"):
+                lines.append(f"gloss: {e['gloss']}")
             if e.get("status") == "proposed":
                 lines.append("status: proposed")
             lines.append("")
