@@ -1,0 +1,1325 @@
+{
+  "meta": {
+    "schema": "atom-type-substrates/1",
+    "role": "source of the atom-kind substrate rendered by templates/tmpl/gen_substrate.py; hand-maintained; NOT an attestation record",
+    "migrated_from": "fusenf/specs/vocabulary.json (fusenf-vocabulary/1, revised 2026-08-29, prompt 2ed18b93) — attestation fields dropped; deprecated heads dropped; arg types renamed kind->class, individual->instance; field class->kind",
+    "sorts": [
+      "Atom",
+      "Class",
+      "Entity",
+      "Event",
+      "Instance",
+      "Number",
+      "Proposition",
+      "String"
+    ],
+    "sorts_note": "Declared sort list (PeTTa convention, capitalized): Atom = unchecked position; Proposition = a statement-forming expression; Instance with sub-sorts Entity and Event (a symbol carries both its sub-sort and Instance); Class; Number; String. Migration mapping from the ad-hoc names: term, assertion -> Proposition; property, verb-lemma, unit -> Class; symbol, reading-tag -> String; var, uncertain -> Atom. A union such as Event|Proposition expands to one declaration per alternative. `out` = the output type of the head's type declaration, set as each kind is reviewed."
+  },
+  "heads": {
+    ":": {
+      "kind": "engine",
+      "arity": 3,
+      "arg_types": [
+        "String",
+        "Proposition",
+        "Proposition"
+      ],
+      "opaque": false,
+      "gloss": "Statement wrapper: proof-name, logical content, truth value."
+    },
+    "AccordingTo": {
+      "kind": "operator",
+      "arity": 2,
+      "arg_types": [
+        "Proposition",
+        "Proposition"
+      ],
+      "opaque": true,
+      "gloss": "Evidential attribution: seals P and names its source (\"according to X, P\")."
+    },
+    "Again": {
+      "kind": "status",
+      "arity": 1,
+      "arg_types": [
+        "Event|Proposition"
+      ],
+      "opaque": true,
+      "gloss": "Repetitive/restitutive presupposition: a prior same-type event happened."
+    },
+    "Agent": {
+      "kind": "role",
+      "arity": 2,
+      "arg_types": [
+        "Event",
+        "Instance"
+      ],
+      "opaque": false,
+      "gloss": "Volitional doer / subject of an action."
+    },
+    "Already": {
+      "kind": "status",
+      "arity": 1,
+      "arg_types": [
+        "Event|Proposition"
+      ],
+      "opaque": true,
+      "gloss": "The eventuality happened earlier than expected."
+    },
+    "Also": {
+      "kind": "operator",
+      "arity": 2,
+      "arg_types": [
+        "Instance",
+        "Event"
+      ],
+      "opaque": true,
+      "gloss": "Additive focus particle ('also / too / as well')."
+    },
+    "Although": {
+      "kind": "discourse",
+      "arity": 2,
+      "arg_types": [
+        "Event",
+        "Event"
+      ],
+      "opaque": true,
+      "gloss": "Concessive connective 'although'."
+    },
+    "AmongMost": {
+      "kind": "operator",
+      "arity": 3,
+      "arg_types": [
+        "Class",
+        "Instance",
+        "Class"
+      ],
+      "opaque": false,
+      "gloss": "Top-stratum membership: one of the ADJ-est members of a class."
+    },
+    "And": {
+      "kind": "core-link",
+      "arity": 2,
+      "variadic": true,
+      "arg_types": [
+        "Proposition"
+      ],
+      "out": "Proposition",
+      "opaque": false,
+      "gloss": "Conjunction bundle; one fact, one truth value."
+    },
+    "AsAResult": {
+      "kind": "discourse",
+      "arity": 2,
+      "arg_types": [
+        "Event",
+        "Event"
+      ],
+      "opaque": true,
+      "gloss": "Causal connective 'as a result'."
+    },
+    "Because": {
+      "kind": "discourse",
+      "arity": 2,
+      "arg_types": [
+        "Event",
+        "Event"
+      ],
+      "opaque": true,
+      "gloss": "Causal connective 'because'."
+    },
+    "Before": {
+      "kind": "operator",
+      "arity": 2,
+      "arg_types": [
+        "Event",
+        "Event"
+      ],
+      "opaque": false,
+      "gloss": "Canonical ordering: the first eventuality precedes the second."
+    },
+    "BeforeBy": {
+      "kind": "operator",
+      "arity": 4,
+      "arg_types": [
+        "Event",
+        "Event",
+        "Number",
+        "Class"
+      ],
+      "opaque": false,
+      "gloss": "Measured temporal gap between two eventualities."
+    },
+    "Beneficiary": {
+      "kind": "role",
+      "arity": 2,
+      "arg_types": [
+        "Event",
+        "Instance"
+      ],
+      "opaque": false,
+      "gloss": "'for …' oblique."
+    },
+    "But": {
+      "kind": "discourse",
+      "arity": 2,
+      "arg_types": [
+        "Event",
+        "Event"
+      ],
+      "opaque": true,
+      "gloss": "Adversative connective 'but'."
+    },
+    "Can": {
+      "kind": "status",
+      "arity": 1,
+      "arg_types": [
+        "Event|Proposition"
+      ],
+      "opaque": false,
+      "gloss": "A specific subject's capability on this event."
+    },
+    "Cardinality": {
+      "kind": "operator",
+      "arity": 2,
+      "arg_types": [
+        "Instance",
+        "Number"
+      ],
+      "opaque": false,
+      "gloss": "Exact size of a group (a point value, native integer)."
+    },
+    "CardinalityAtLeast": {
+      "kind": "operator",
+      "arity": 2,
+      "arg_types": [
+        "Instance",
+        "Number"
+      ],
+      "opaque": false,
+      "gloss": "Lower bound on a group's size."
+    },
+    "CardinalityAtMost": {
+      "kind": "operator",
+      "arity": 2,
+      "arg_types": [
+        "Instance",
+        "Number"
+      ],
+      "opaque": false,
+      "gloss": "Upper bound on a group's size."
+    },
+    "CardinalityPhrase": {
+      "kind": "surface-record",
+      "arity": 2,
+      "arg_types": [
+        "Instance",
+        "String"
+      ],
+      "opaque": false,
+      "gloss": "Records a vague count phrase on a group ('several', 'dozens')."
+    },
+    "Cleft": {
+      "kind": "operator",
+      "arity": 2,
+      "arg_types": [
+        "Instance",
+        "Event"
+      ],
+      "opaque": true,
+      "gloss": "It-cleft / pseudo-cleft focus marker."
+    },
+    "CoAgent": {
+      "kind": "role",
+      "arity": 2,
+      "arg_types": [
+        "Event",
+        "Instance"
+      ],
+      "opaque": false,
+      "gloss": "Animate co-participant named by a comitative phrase ('with John')."
+    },
+    "Compute": {
+      "kind": "engine",
+      "arity": 4,
+      "arg_types": [
+        "String",
+        "Proposition",
+        "String",
+        "Atom"
+      ],
+      "opaque": false,
+      "gloss": "Hard-numeric arithmetic/comparison test on bound integers."
+    },
+    "ConditionalProperty": {
+      "kind": "operator",
+      "arity": 3,
+      "arg_types": [
+        "Class",
+        "Class",
+        "Class"
+      ],
+      "opaque": false,
+      "gloss": "A kind has a property only under a stated condition."
+    },
+    "Consequently": {
+      "kind": "discourse",
+      "arity": 2,
+      "arg_types": [
+        "Event",
+        "Event"
+      ],
+      "opaque": true,
+      "gloss": "Causal connective 'consequently'."
+    },
+    "Coref": {
+      "kind": "core-link",
+      "arity": 2,
+      "arg_types": [
+        "Instance",
+        "Instance"
+      ],
+      "out": "Proposition",
+      "opaque": true,
+      "gloss": "Hypothesis that two mentions denote one entity; STV = probability of identity. Base of the resolved-entity view. A mention sort is pending.",
+      "status": "proposed"
+    },
+    "Counterfactual": {
+      "kind": "operator",
+      "arity": 2,
+      "arg_types": [
+        "Proposition",
+        "Proposition"
+      ],
+      "opaque": true,
+      "gloss": "Sealed subjunctive conditional: antecedent and consequent, neither asserted."
+    },
+    "Day": {
+      "kind": "operator",
+      "arity": 1,
+      "arg_types": [
+        "Number"
+      ],
+      "opaque": false,
+      "gloss": "Day-of-month term."
+    },
+    "Degree": {
+      "kind": "operator",
+      "arity": 3,
+      "arg_types": [
+        "Instance",
+        "Class",
+        "String"
+      ],
+      "opaque": false,
+      "gloss": "Intensity level of a property on an entity."
+    },
+    "Despite": {
+      "kind": "discourse",
+      "arity": 2,
+      "arg_types": [
+        "Event",
+        "Event"
+      ],
+      "opaque": true,
+      "gloss": "Concessive connective 'despite'."
+    },
+    "Directive": {
+      "kind": "operator",
+      "arity": 1,
+      "arg_types": [
+        "Proposition"
+      ],
+      "opaque": true,
+      "gloss": "Seals a positive imperative's commanded eventuality."
+    },
+    "Duration": {
+      "kind": "operator",
+      "arity": 2,
+      "arg_types": [
+        "Event",
+        "String"
+      ],
+      "opaque": false,
+      "gloss": "Licensed duration-adverb slot: the surface adverb lemma on an eventuality."
+    },
+    "During": {
+      "kind": "operator",
+      "arity": 2,
+      "arg_types": [
+        "Event",
+        "Event"
+      ],
+      "opaque": false,
+      "gloss": "The inner eventuality is nested inside the outer one."
+    },
+    "End": {
+      "kind": "operator",
+      "arity": 2,
+      "arg_types": [
+        "Event",
+        "Proposition"
+      ],
+      "opaque": false,
+      "gloss": "Interval end point of an eventuality."
+    },
+    "Equivalence": {
+      "kind": "core-link",
+      "arity": 2,
+      "arg_types": [
+        "Proposition",
+        "Proposition"
+      ],
+      "out": "Proposition",
+      "opaque": false,
+      "gloss": "Symmetric equivalence of two propositions; strength = P(P and Q | P or Q). The reversible-packaging link; lowers to the engine's BiImplication.",
+      "status": "proposed"
+    },
+    "Even": {
+      "kind": "operator",
+      "arity": 2,
+      "arg_types": [
+        "Instance",
+        "Event"
+      ],
+      "opaque": true,
+      "gloss": "Scalar focus particle ('even')."
+    },
+    "EvenThough": {
+      "kind": "discourse",
+      "arity": 2,
+      "arg_types": [
+        "Event",
+        "Event"
+      ],
+      "opaque": true,
+      "gloss": "Concessive connective 'even though'."
+    },
+    "Every": {
+      "kind": "operator",
+      "arity": 3,
+      "arg_types": [
+        "Event",
+        "Number",
+        "Class"
+      ],
+      "opaque": false,
+      "gloss": "Periodic recurrence: the event happens every n units."
+    },
+    "Experiencer": {
+      "kind": "role",
+      "arity": 2,
+      "arg_types": [
+        "Event",
+        "Instance"
+      ],
+      "opaque": false,
+      "gloss": "Subject of a stative predication — psych state or predicate-adjective state."
+    },
+    "FoldAll": {
+      "kind": "engine",
+      "arity": 6,
+      "arg_types": [
+        "Proposition",
+        "Atom",
+        "Number",
+        "String",
+        "String",
+        "Atom"
+      ],
+      "opaque": false,
+      "gloss": "Aggregate fold across all pattern matches (e.g. sum of cardinalities)."
+    },
+    "Forbid": {
+      "kind": "operator",
+      "arity": 1,
+      "arg_types": [
+        "Proposition"
+      ],
+      "opaque": true,
+      "gloss": "Seals a negative imperative's forbidden eventuality."
+    },
+    "Fraction": {
+      "kind": "operator",
+      "arity": 2,
+      "arg_types": [
+        "Number",
+        "Number"
+      ],
+      "opaque": false,
+      "gloss": "Exact fraction / percentage term, numerator over denominator."
+    },
+    "Future": {
+      "kind": "status",
+      "arity": 1,
+      "arg_types": [
+        "Event|Proposition"
+      ],
+      "opaque": false,
+      "gloss": "Future tense on an eventuality."
+    },
+    "Goal": {
+      "kind": "role",
+      "arity": 2,
+      "arg_types": [
+        "Event",
+        "Instance"
+      ],
+      "opaque": false,
+      "gloss": "Non-recipient destination / 'to …' oblique."
+    },
+    "GreaterThan": {
+      "kind": "engine",
+      "arity": 2,
+      "arg_types": [
+        "Number",
+        "Number"
+      ],
+      "opaque": false,
+      "gloss": "Graded P(value > N) over a distribution magnitude."
+    },
+    "GroupOf": {
+      "kind": "operator",
+      "arity": 2,
+      "arg_types": [
+        "Instance",
+        "Class"
+      ],
+      "opaque": false,
+      "gloss": "The members of this group individual are of that kind."
+    },
+    "Holder": {
+      "kind": "role",
+      "arity": 2,
+      "arg_types": [
+        "Event",
+        "Instance"
+      ],
+      "opaque": false,
+      "gloss": "Subject of a possession/relational state only (own, have, lack)."
+    },
+    "Hour": {
+      "kind": "operator",
+      "arity": 1,
+      "arg_types": [
+        "Number"
+      ],
+      "opaque": false,
+      "gloss": "Clock hour term, 24-hour."
+    },
+    "Implication": {
+      "kind": "core-link",
+      "arity": 2,
+      "arg_types": [
+        "Proposition",
+        "Proposition"
+      ],
+      "out": "Proposition",
+      "opaque": false,
+      "gloss": "Inference rule: a Premises term implies a Conclusions term."
+    },
+    "InOrderTo": {
+      "kind": "discourse",
+      "arity": 2,
+      "arg_types": [
+        "Event",
+        "Event"
+      ],
+      "opaque": true,
+      "gloss": "Purpose connective 'in order to'."
+    },
+    "Inheritance": {
+      "kind": "core-link",
+      "arity": 2,
+      "arg_types": [
+        "Class",
+        "Class"
+      ],
+      "out": "Proposition",
+      "opaque": false,
+      "gloss": "A class/property is a subclass of another class/property."
+    },
+    "Instrument": {
+      "kind": "role",
+      "arity": 2,
+      "arg_types": [
+        "Event",
+        "Instance"
+      ],
+      "opaque": false,
+      "gloss": "The means an action is performed by ('with a knife')."
+    },
+    "Interpretation": {
+      "kind": "meta",
+      "arity": 2,
+      "arg_types": [
+        "String",
+        "Proposition"
+      ],
+      "opaque": true,
+      "gloss": "Transport wrapper marking a statement as belonging to one reading of a multi-reading parse: (Interpretation rN (: name expr stv)). Dissolved by the canonicalizer's split-before-canonicalize; never a KB atom (engine marginalization = deferred #48 half)."
+    },
+    "KindProperty": {
+      "kind": "operator",
+      "arity": 2,
+      "arg_types": [
+        "Class",
+        "Class"
+      ],
+      "opaque": true,
+      "gloss": "Non-distributing property of a kind/population as a whole."
+    },
+    "LocatedIn": {
+      "kind": "operator",
+      "arity": 2,
+      "arg_types": [
+        "Instance",
+        "Instance"
+      ],
+      "opaque": false,
+      "gloss": "Static location of an entity ('X is in Y') — as against the event oblique Location."
+    },
+    "Location": {
+      "kind": "role",
+      "arity": 2,
+      "arg_types": [
+        "Event",
+        "Instance"
+      ],
+      "opaque": false,
+      "gloss": "Where the eventuality holds ('in/at/on …')."
+    },
+    "Manner": {
+      "kind": "role",
+      "arity": 2,
+      "arg_types": [
+        "Event",
+        "Atom"
+      ],
+      "opaque": false,
+      "gloss": "Adverbial manner of the eventuality."
+    },
+    "Measure": {
+      "kind": "operator",
+      "arity": 4,
+      "arg_types": [
+        "Instance",
+        "Class",
+        "Number",
+        "Class"
+      ],
+      "opaque": false,
+      "gloss": "Puts a magnitude and unit on an entity's dimension."
+    },
+    "MeasureAtLeast": {
+      "kind": "operator",
+      "arity": 4,
+      "arg_types": [
+        "Instance",
+        "Class",
+        "Number",
+        "Class"
+      ],
+      "opaque": false,
+      "gloss": "Lower-bounded measure."
+    },
+    "MeasureAtMost": {
+      "kind": "operator",
+      "arity": 4,
+      "arg_types": [
+        "Instance",
+        "Class",
+        "Number",
+        "Class"
+      ],
+      "opaque": false,
+      "gloss": "Upper-bounded measure."
+    },
+    "MeasureBy": {
+      "kind": "operator",
+      "arity": 4,
+      "arg_types": [
+        "Event",
+        "Class",
+        "Number",
+        "Class"
+      ],
+      "opaque": false,
+      "gloss": "Delta of a scalar-change eventuality: how much the dimension changed."
+    },
+    "MeasureFrom": {
+      "kind": "operator",
+      "arity": 4,
+      "arg_types": [
+        "Event",
+        "Class",
+        "Number",
+        "Class"
+      ],
+      "opaque": false,
+      "gloss": "Start value of a scalar change (\"from X\")."
+    },
+    "MeasureTo": {
+      "kind": "operator",
+      "arity": 4,
+      "arg_types": [
+        "Event",
+        "Class",
+        "Number",
+        "Class"
+      ],
+      "opaque": false,
+      "gloss": "End value of a scalar change (\"to Y\", \"rose to 6.1%\")."
+    },
+    "Member": {
+      "kind": "core-link",
+      "arity": 2,
+      "arg_types": [
+        "Instance",
+        "Class"
+      ],
+      "out": "Proposition",
+      "opaque": false,
+      "gloss": "An individual belongs to a class or holds a property."
+    },
+    "Might": {
+      "kind": "status",
+      "arity": 1,
+      "arg_types": [
+        "Event|Proposition"
+      ],
+      "opaque": false,
+      "gloss": "Epistemic possibility ('might / may')."
+    },
+    "Minute": {
+      "kind": "operator",
+      "arity": 1,
+      "arg_types": [
+        "Number"
+      ],
+      "opaque": false,
+      "gloss": "Clock minute term."
+    },
+    "Month": {
+      "kind": "operator",
+      "arity": 1,
+      "arg_types": [
+        "String"
+      ],
+      "opaque": false,
+      "gloss": "Calendar month term (lowercase month-name lemma)."
+    },
+    "MonthNumber": {
+      "kind": "operator",
+      "arity": 2,
+      "arg_types": [
+        "String",
+        "Number"
+      ],
+      "opaque": false,
+      "gloss": "Seeded lexicon fact giving a month name its ordinal number."
+    },
+    "More": {
+      "kind": "operator",
+      "arity": 3,
+      "arg_types": [
+        "Class",
+        "Instance",
+        "Instance"
+      ],
+      "opaque": false,
+      "gloss": "X exceeds Y on a scale (reified comparative ordering)."
+    },
+    "MoreBy": {
+      "kind": "operator",
+      "arity": 5,
+      "arg_types": [
+        "Class",
+        "Instance",
+        "Instance",
+        "Number",
+        "Class"
+      ],
+      "opaque": false,
+      "gloss": "Comparative with a measured gap: X exceeds Y by n units."
+    },
+    "Most": {
+      "kind": "operator",
+      "arity": 3,
+      "arg_types": [
+        "Class",
+        "Instance",
+        "Class"
+      ],
+      "opaque": false,
+      "gloss": "Superlative: X is the most ADJ member of a class."
+    },
+    "Must": {
+      "kind": "status",
+      "arity": 1,
+      "arg_types": [
+        "Event|Proposition"
+      ],
+      "opaque": false,
+      "gloss": "Epistemic necessity ('must'-inference)."
+    },
+    "Name": {
+      "kind": "surface-record",
+      "arity": 2,
+      "arg_types": [
+        "Instance",
+        "String"
+      ],
+      "opaque": false,
+      "gloss": "Records a named individual's surface name string."
+    },
+    "Obligated": {
+      "kind": "status",
+      "arity": 1,
+      "arg_types": [
+        "Event|Proposition"
+      ],
+      "opaque": false,
+      "gloss": "Deontic obligation on a specific act."
+    },
+    "Ongoing": {
+      "kind": "status",
+      "arity": 1,
+      "arg_types": [
+        "Event|Proposition"
+      ],
+      "opaque": false,
+      "gloss": "Progressive / continuative aspect."
+    },
+    "Only": {
+      "kind": "operator",
+      "arity": 2,
+      "arg_types": [
+        "Instance",
+        "Event"
+      ],
+      "opaque": true,
+      "gloss": "Exclusive focus particle ('only / just / solely')."
+    },
+    "Or": {
+      "kind": "core-link",
+      "arity": 2,
+      "variadic": true,
+      "arg_types": [
+        "Proposition"
+      ],
+      "out": "Proposition",
+      "opaque": true,
+      "gloss": "Inclusive disjunction: at least one disjunct holds, unspecified which."
+    },
+    "Ordinal": {
+      "kind": "operator",
+      "arity": 3,
+      "arg_types": [
+        "Instance",
+        "Number",
+        "Class"
+      ],
+      "opaque": true,
+      "gloss": "The entity's rank n on an ordering scale."
+    },
+    "PartOf": {
+      "kind": "operator",
+      "arity": 2,
+      "arg_types": [
+        "Instance",
+        "Instance"
+      ],
+      "opaque": false,
+      "gloss": "Part/component (or named member) of a whole."
+    },
+    "ParticleFromNormal": {
+      "kind": "operator",
+      "arity": 2,
+      "arg_types": [
+        "Number",
+        "Number"
+      ],
+      "opaque": false,
+      "gloss": "Approximate magnitude as a normal distribution: mean and sigma."
+    },
+    "Past": {
+      "kind": "status",
+      "arity": 1,
+      "arg_types": [
+        "Event|Proposition"
+      ],
+      "opaque": false,
+      "gloss": "Past tense on an eventuality."
+    },
+    "Patient": {
+      "kind": "role",
+      "arity": 2,
+      "arg_types": [
+        "Event",
+        "Instance"
+      ],
+      "opaque": false,
+      "gloss": "Object the action creates, destroys, consumes or physically changes."
+    },
+    "Permitted": {
+      "kind": "status",
+      "arity": 1,
+      "arg_types": [
+        "Event|Proposition"
+      ],
+      "opaque": false,
+      "gloss": "Deontic permission on a specific act."
+    },
+    "Possession": {
+      "kind": "operator",
+      "arity": 2,
+      "arg_types": [
+        "Instance",
+        "Instance"
+      ],
+      "opaque": true,
+      "gloss": "Possessed-to-possessor link (ownership, kinship, loose association)."
+    },
+    "Probably": {
+      "kind": "status",
+      "arity": 1,
+      "arg_types": [
+        "Event|Proposition"
+      ],
+      "opaque": false,
+      "gloss": "Epistemic probability ('probably')."
+    },
+    "ProportionOf": {
+      "kind": "operator",
+      "arity": 3,
+      "arg_types": [
+        "Instance",
+        "Instance",
+        "String"
+      ],
+      "opaque": false,
+      "gloss": "The portion's proportion of a definite whole."
+    },
+    "PurposeOf": {
+      "kind": "operator",
+      "arity": 2,
+      "arg_types": [
+        "Event",
+        "Event"
+      ],
+      "opaque": false,
+      "gloss": "Canonical ask-relation: purpose/goal of a focus event."
+    },
+    "QuantifierPhrase": {
+      "kind": "surface-record",
+      "arity": 3,
+      "arg_types": [
+        "Class",
+        "Class",
+        "String"
+      ],
+      "opaque": false,
+      "gloss": "Records the surface quantifier word beside the strength it set."
+    },
+    "Quarter": {
+      "kind": "operator",
+      "arity": 2,
+      "arg_types": [
+        "Number",
+        "Number"
+      ],
+      "opaque": false,
+      "gloss": "Calendar/fiscal quarter term: (Quarter q year)."
+    },
+    "Question": {
+      "kind": "operator",
+      "arity": 2,
+      "arg_types": [
+        "String",
+        "Proposition"
+      ],
+      "opaque": true,
+      "gloss": "Seals an embedded constituent (wh-) question with its wh-word."
+    },
+    "ReasonFor": {
+      "kind": "operator",
+      "arity": 2,
+      "arg_types": [
+        "Event",
+        "Event"
+      ],
+      "opaque": false,
+      "gloss": "Canonical ask-relation: reason for a focus event."
+    },
+    "Recipient": {
+      "kind": "role",
+      "arity": 2,
+      "arg_types": [
+        "Event",
+        "Instance"
+      ],
+      "opaque": false,
+      "gloss": "Goal of a transfer (indirect object / 'to')."
+    },
+    "RestOf": {
+      "kind": "operator",
+      "arity": 2,
+      "arg_types": [
+        "Instance",
+        "Instance"
+      ],
+      "opaque": true,
+      "gloss": "Flags a portion as the remainder of a definite whole."
+    },
+    "Result": {
+      "kind": "operator",
+      "arity": 2,
+      "arg_types": [
+        "Event",
+        "Event"
+      ],
+      "opaque": false,
+      "gloss": "Links an event to the reified result state it caused."
+    },
+    "STV": {
+      "kind": "engine",
+      "arity": 2,
+      "arg_types": [
+        "Number",
+        "Number"
+      ],
+      "opaque": false,
+      "gloss": "Truth value: strength and confidence, both in [0,1]."
+    },
+    "SameDegree": {
+      "kind": "operator",
+      "arity": 3,
+      "arg_types": [
+        "Class",
+        "Instance",
+        "Instance"
+      ],
+      "opaque": false,
+      "gloss": "Equative: X is as ADJ as Y."
+    },
+    "ScaleOpposite": {
+      "kind": "operator",
+      "arity": 2,
+      "arg_types": [
+        "Class",
+        "Class"
+      ],
+      "opaque": false,
+      "gloss": "Links the two poles of one gradable dimension."
+    },
+    "Similarity": {
+      "kind": "core-link",
+      "arity": 2,
+      "arg_types": [
+        "Class",
+        "Class"
+      ],
+      "out": "Proposition",
+      "opaque": true,
+      "gloss": "Symmetric, non-transitive similarity between two classes; the approximate-abstraction link. Never chained into equivalence classes.",
+      "status": "proposed"
+    },
+    "Since": {
+      "kind": "discourse",
+      "arity": 2,
+      "arg_types": [
+        "Event",
+        "Event"
+      ],
+      "opaque": true,
+      "gloss": "Causal connective 'since'."
+    },
+    "So": {
+      "kind": "discourse",
+      "arity": 2,
+      "arg_types": [
+        "Event",
+        "Event"
+      ],
+      "opaque": true,
+      "gloss": "Causal connective 'so'."
+    },
+    "SoAsTo": {
+      "kind": "discourse",
+      "arity": 2,
+      "arg_types": [
+        "Event",
+        "Event"
+      ],
+      "opaque": true,
+      "gloss": "Purpose connective 'so as to'."
+    },
+    "Source": {
+      "kind": "role",
+      "arity": 2,
+      "arg_types": [
+        "Event",
+        "Instance"
+      ],
+      "opaque": false,
+      "gloss": "Origin / 'from …' oblique."
+    },
+    "Start": {
+      "kind": "operator",
+      "arity": 2,
+      "arg_types": [
+        "Event",
+        "Proposition"
+      ],
+      "opaque": false,
+      "gloss": "Interval start point of an eventuality."
+    },
+    "Still": {
+      "kind": "status",
+      "arity": 1,
+      "arg_types": [
+        "Event|Proposition"
+      ],
+      "opaque": true,
+      "gloss": "Continuative: the eventuality still holds (positive counterpart of cessation)."
+    },
+    "Stimulus": {
+      "kind": "role",
+      "arity": 2,
+      "arg_types": [
+        "Event",
+        "Instance"
+      ],
+      "opaque": false,
+      "gloss": "Object of a psych/perception state."
+    },
+    "SubsetOf": {
+      "kind": "operator",
+      "arity": 2,
+      "arg_types": [
+        "Instance",
+        "Instance"
+      ],
+      "opaque": false,
+      "gloss": "A quantified subset group of a definite superset group."
+    },
+    "Symmetric": {
+      "kind": "operator",
+      "arity": 1,
+      "arg_types": [
+        "String"
+      ],
+      "opaque": true,
+      "gloss": "Tags a relation head as mutual by meaning."
+    },
+    "Theme": {
+      "kind": "role",
+      "arity": 2,
+      "arg_types": [
+        "Event",
+        "Instance"
+      ],
+      "opaque": false,
+      "gloss": "Object acquired, transferred, moved, possessed, perceived or evaluated unchanged."
+    },
+    "Therefore": {
+      "kind": "discourse",
+      "arity": 2,
+      "arg_types": [
+        "Event",
+        "Event"
+      ],
+      "opaque": true,
+      "gloss": "Causal connective 'therefore'."
+    },
+    "Thus": {
+      "kind": "discourse",
+      "arity": 2,
+      "arg_types": [
+        "Event",
+        "Event"
+      ],
+      "opaque": true,
+      "gloss": "Causal connective 'thus'."
+    },
+    "Time": {
+      "kind": "role",
+      "arity": 2,
+      "arg_types": [
+        "Event",
+        "Proposition"
+      ],
+      "opaque": false,
+      "gloss": "Locates an eventuality at a time point or recurrence slot."
+    },
+    "TimeAtLeast": {
+      "kind": "operator",
+      "arity": 2,
+      "arg_types": [
+        "Event",
+        "Proposition"
+      ],
+      "opaque": false,
+      "gloss": "Lower-bounded (earliest) time of an eventuality."
+    },
+    "TimeAtMost": {
+      "kind": "operator",
+      "arity": 2,
+      "arg_types": [
+        "Event",
+        "Proposition"
+      ],
+      "opaque": false,
+      "gloss": "Upper-bounded (latest) time of an eventuality."
+    },
+    "TimesAs": {
+      "kind": "operator",
+      "arity": 4,
+      "arg_types": [
+        "Class",
+        "Instance",
+        "Instance",
+        "Number"
+      ],
+      "opaque": false,
+      "gloss": "Multiplicative comparative: X is <factor> times as ADJ as Y."
+    },
+    "TimesPer": {
+      "kind": "operator",
+      "arity": 3,
+      "arg_types": [
+        "Event",
+        "Number",
+        "Class"
+      ],
+      "opaque": false,
+      "gloss": "Rate recurrence: n times per unit."
+    },
+    "To": {
+      "kind": "discourse",
+      "arity": 2,
+      "arg_types": [
+        "Event",
+        "Event"
+      ],
+      "opaque": true,
+      "gloss": "Purpose infinitive connective 'to'."
+    },
+    "Weekday": {
+      "kind": "operator",
+      "arity": 1,
+      "arg_types": [
+        "String"
+      ],
+      "opaque": false,
+      "gloss": "Weekday term (lowercase weekday-name lemma)."
+    },
+    "WeekdayNumber": {
+      "kind": "operator",
+      "arity": 2,
+      "arg_types": [
+        "String",
+        "Number"
+      ],
+      "opaque": false,
+      "gloss": "Seeded lexicon fact giving a weekday name its number (monday=1)."
+    },
+    "Whether": {
+      "kind": "operator",
+      "arity": 1,
+      "arg_types": [
+        "Proposition"
+      ],
+      "opaque": true,
+      "gloss": "Seals an embedded polar question under the matrix verb's Theme."
+    },
+    "WithinLast": {
+      "kind": "operator",
+      "arity": 3,
+      "arg_types": [
+        "Event",
+        "Number",
+        "Class"
+      ],
+      "opaque": false,
+      "gloss": "Backward window: the eventuality falls within the last n units."
+    },
+    "Xor": {
+      "kind": "core-link",
+      "arity": 2,
+      "arg_types": [
+        "Proposition",
+        "Proposition"
+      ],
+      "out": "Proposition",
+      "opaque": true,
+      "gloss": "Exclusive disjunction: exactly one of two disjuncts holds."
+    },
+    "Year": {
+      "kind": "operator",
+      "arity": 1,
+      "arg_types": [
+        "Number"
+      ],
+      "opaque": false,
+      "gloss": "Calendar year term."
+    },
+    "Yet": {
+      "kind": "status",
+      "arity": [
+        1,
+        2
+      ],
+      "arg_types": [
+        "Event"
+      ],
+      "opaque": true,
+      "gloss": "NPI 'yet': expected but not yet — under negation or a question."
+    },
+    "can": {
+      "kind": "property-constructor",
+      "arity": 1,
+      "arg_types": [
+        "Class"
+      ],
+      "opaque": false,
+      "gloss": "Builds the reified capability property term from a verb lemma."
+    },
+    "forKind": {
+      "kind": "operator",
+      "arity": 1,
+      "arg_types": [
+        "Class"
+      ],
+      "opaque": false,
+      "gloss": "Comparison-class marker: ADJ relative to the norm for a kind."
+    },
+    "obligated": {
+      "kind": "property-constructor",
+      "arity": 1,
+      "arg_types": [
+        "Class"
+      ],
+      "opaque": false,
+      "gloss": "Builds the reified obligation property term from an action."
+    },
+    "permitted": {
+      "kind": "property-constructor",
+      "arity": 1,
+      "arg_types": [
+        "Class"
+      ],
+      "opaque": false,
+      "gloss": "Builds the reified permission property term from an action."
+    }
+  },
+  "open_class": {
+    "policy": "Lexical relation heads the prompt licenses generically rather than enumerating: kind-level relations, symmetric/reciprocal relations, nominalization relations. They cannot be checked by name — the validator checks position and arity only. Never frozen: these are the primary consolidation targets. Obliques are ALSO open class: prompt.txt attaches an oblique under a head named after its own preposition/adverb, so the head set cannot be enumerated in advance. `oblique_prepositions` lists the English prepositions that may therefore appear as an arity-2 head; an UpperCamelCase head that is NOT one of them is still flagged.",
+    "positions": [
+      "head of a kind-level relation atom, e.g. (Carry mosquito malaria)",
+      "head of a symmetric relation atom accompanied by (Symmetric <head>)",
+      "head of a nominalization kind-relation, e.g. (Build dam_builder dam)",
+      "skolem-function head (sk_<verb>) in a scope construction, e.g. (sk_y $x)"
+    ]
+  }
+}

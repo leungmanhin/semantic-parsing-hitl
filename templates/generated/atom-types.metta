@@ -1,0 +1,35 @@
+;; Atom-type substrate — PeTTa type declarations.
+;; Generated from templates/atom-type-substrates.json by templates/tmpl/gen_substrate.py;
+;; do not edit by hand. Load before (get-type <atom>); a well-typed atom answers with
+;; its head's out type. Per-record symbol declarations ((: e1 Event) (: e1 Instance) ...)
+;; come from the emitter, not from this file.
+
+(: Class Type)
+(: Entity Type)
+(: Event Type)
+(: Instance Type)
+(: Proposition Type)
+
+(: And (-> Proposition Proposition Proposition))
+(: And (-> Proposition Proposition Proposition Proposition))
+(: And (-> Proposition Proposition Proposition Proposition Proposition))
+(: And (-> Proposition Proposition Proposition Proposition Proposition Proposition))
+(: And (-> Proposition Proposition Proposition Proposition Proposition Proposition Proposition))
+(: And (-> Proposition Proposition Proposition Proposition Proposition Proposition Proposition Proposition))
+(: And (-> Proposition Proposition Proposition Proposition Proposition Proposition Proposition Proposition Proposition))
+(: And (-> Proposition Proposition Proposition Proposition Proposition Proposition Proposition Proposition Proposition Proposition))
+(: Coref (-> Instance Instance Proposition))
+(: Equivalence (-> Proposition Proposition Proposition))
+(: Implication (-> Proposition Proposition Proposition))
+(: Inheritance (-> Class Class Proposition))
+(: Member (-> Instance Class Proposition))
+(: Or (-> Proposition Proposition Proposition))
+(: Or (-> Proposition Proposition Proposition Proposition))
+(: Or (-> Proposition Proposition Proposition Proposition Proposition))
+(: Or (-> Proposition Proposition Proposition Proposition Proposition Proposition))
+(: Or (-> Proposition Proposition Proposition Proposition Proposition Proposition Proposition))
+(: Or (-> Proposition Proposition Proposition Proposition Proposition Proposition Proposition Proposition))
+(: Or (-> Proposition Proposition Proposition Proposition Proposition Proposition Proposition Proposition Proposition))
+(: Or (-> Proposition Proposition Proposition Proposition Proposition Proposition Proposition Proposition Proposition Proposition))
+(: Similarity (-> Class Class Proposition))
+(: Xor (-> Proposition Proposition Proposition))

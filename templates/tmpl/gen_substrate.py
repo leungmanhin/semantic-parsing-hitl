@@ -1,10 +1,16 @@
-"""Generate ``templates/ATOM-KIND-SUBSTRATES.md`` from ``fusenf/specs/vocabulary.json``.
+"""Generate the atom-type substrate artifacts from ``templates/atom-type-substrates.json``.
 
-The atom-kind substrate (FUSE-NF Next Steps §3.1) is the alphabet of atom kinds the parser
-may emit, each with its class, arity and argument types.  ``vocabulary.json`` already
-attests every head; this script only renders it in a reviewable form.  Nothing is decided
-here: the output is a function of the input, so review comments go to the vocabulary (or
-to this renderer), never to the generated file.
+Outputs:
+
+* ``templates/ATOM-TYPE-SUBSTRATES.md`` — the reviewable rendering, one block per head;
+* ``templates/generated/atom-types.metta`` — PeTTa type declarations for every head whose
+  ``out`` type is set (``(: Head (-> In … Out))``), plus the sort declarations.  This is the
+  file a type checker loads before asking ``(get-type <atom>)``; a well-typed atom answers
+  with its head's ``out`` type, anything else is a finding.
+
+The JSON is the hand-maintained source (migrated once from ``fusenf/specs/vocabulary.json``,
+which stays an attestation record until retired); this script only renders it.  Review
+comments go to the JSON or to this renderer, never to the generated files.
 
 Run from ``templates/``::
 
@@ -12,24 +18,29 @@ Run from ``templates/``::
 
 Rendering rules (deterministic, no dates of our own):
 
-* one block per head, grouped by class in a fixed order, heads alphabetical within a class;
-* the S-expression shows one ``<arg_type>`` placeholder per declared position; a position
-  the vocabulary attests but does not type is shown as ``<?>``; a variadic head ends in
-  ``...``;
-* ``arity`` lists every attested arity, ``|``-separated.
+* heads are grouped by kind in a fixed order, alphabetical within a kind;
+* each block is ``head`` / ``kind`` / ``arity`` / ``type-def`` (+ ``status`` when proposed);
+* ``arity`` is a number, ``a | b`` for alternatives, or ``2+ (variadic)``;
+* ``type-def`` is the first declaration the ``.metta`` file carries for the head, with a count
+  of the others (a union argument type ``A|B`` expands to one declaration per alternative, a
+  variadic head to one per arity from the minimum up to :data:`VARIADIC_MAX`).  A head whose
+  ``out`` is not yet set shows a provisional ``(: Head (-> … ?))`` and is absent from the
+  ``.metta`` file; a position the head takes but the JSON does not type is ``%Undefined%``.
 """
 from __future__ import annotations
 
+import itertools
 import json
 import os
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.abspath(os.path.join(HERE, os.pardir, os.pardir))
-VOCAB_PATH = os.path.join(REPO, "fusenf", "specs", "vocabulary.json")
-OUT_PATH = os.path.join(REPO, "templates", "ATOM-KIND-SUBSTRATES.md")
+SRC_PATH = os.path.join(REPO, "templates", "atom-type-substrates.json")
+OUT_MD = os.path.join(REPO, "templates", "ATOM-TYPE-SUBSTRATES.md")
+OUT_METTA = os.path.join(REPO, "templates", "generated", "atom-types.metta")
 
-CLASS_ORDER = [
+KIND_ORDER = [
     "core-link",
     "role",
     "status",
@@ -41,130 +52,171 @@ CLASS_ORDER = [
     "engine",
 ]
 
+#: PeTTa types are fixed-arity, so a variadic head gets one declaration per arity up to this.
+VARIADIC_MAX = 9
 
-def sexpr(head: str, entry: dict) -> str:
-    """Render the head with one placeholder per argument position."""
-    arg_types = list(entry.get("arg_types") or [])
-    arities = sorted(entry.get("arities") or [])
-    variadic = bool(entry.get("variadic"))
-    if arg_types == ["atom-list"]:
-        return f"({head} <atom> <atom> ...)"
-    parts = [f"<{t}>" for t in arg_types]
-    widest = max(arities) if arities else len(parts)
-    while len(parts) < widest:
-        parts.append("<?>")
-    if variadic:
-        parts.append("...")
-    return f"({head}{''.join(' ' + p for p in parts)})"
+#: Type shown for a position the head takes but the JSON does not type (PeTTa's "unknown").
+UNTYPED = "%Undefined%"
+
+#: Marker for an output type not yet reviewed (never emitted to the .metta file).
+PENDING_OUT = "?"
 
 
-#: A variadic head (a connective) takes at least this many arguments; attested arities below it
-#: are reported in the notes section rather than in the head's own block.
-VARIADIC_MIN = 2
+def arities_of(entry: dict) -> list[int]:
+    a = entry.get("arity")
+    if isinstance(a, list):
+        return sorted(int(x) for x in a)
+    return [int(a)] if a is not None else []
 
 
 def arity_text(entry: dict) -> str:
-    arities = sorted(entry.get("arities") or [])
+    arities = arities_of(entry)
     if entry.get("variadic"):
-        return f"{VARIADIC_MIN}+ (variadic)"
+        return f"{arities[0] if arities else 2}+ (variadic)"
     return " | ".join(str(a) for a in arities) if arities else "?"
 
 
-def arg_types_text(entry: dict) -> str:
+def type_defs(head: str, entry: dict, out: str) -> list[str]:
+    """Every ``(: head (-> … out))`` form the entry describes, in a fixed order."""
     arg_types = list(entry.get("arg_types") or [])
-    if entry.get("variadic") and arg_types == ["atom-list"]:
-        return "[atom, atom, ...]"
-    return f"[{', '.join(arg_types)}]"
+    arities = arities_of(entry)
+    forms: list[str] = []
+    if entry.get("variadic"):
+        one = arg_types[0] if arg_types else "Atom"
+        lo = arities[0] if arities else 2
+        for n in range(lo, VARIADIC_MAX + 1):
+            forms.append(f"(: {head} (-> {' '.join([one] * n)} {out}))")
+        return forms
+    widest = max(arities) if arities else len(arg_types)
+    for n in arities or [len(arg_types)]:
+        slots = (arg_types + [UNTYPED] * widest)[:n]
+        alternatives = [s.split("|") for s in slots]
+        for combo in itertools.product(*alternatives):
+            forms.append(f"(: {head} (-> {' '.join(combo)} {out}))")
+    return forms
 
 
-def render(vocab: dict) -> str:
-    ops = vocab["operators"]
-    meta = vocab.get("meta", {})
-    classes = sorted({e.get("class", "?") for e in ops.values()}, key=lambda c: (CLASS_ORDER.index(c) if c in CLASS_ORDER else len(CLASS_ORDER), c))
+def declarations(head: str, entry: dict) -> list[str]:
+    """The declarations emitted to the .metta file: only heads with an ``out`` type."""
+    out = entry.get("out")
+    return type_defs(head, entry, out) if out else []
+
+
+def type_def_line(head: str, entry: dict) -> str:
+    out = entry.get("out")
+    forms = type_defs(head, entry, out or PENDING_OUT)
+    shown = forms[0]
+    if len(forms) > 1:
+        shown += f"  ; and {len(forms) - 1} more (per arity / per union alternative)"
+    if not out:
+        shown += "  ; out type pending review"
+    return shown
+
+
+def render_md(src: dict) -> str:
+    heads = src["heads"]
+    meta = src.get("meta", {})
+    kinds = sorted(
+        {e.get("kind", "?") for e in heads.values()},
+        key=lambda k: (KIND_ORDER.index(k) if k in KIND_ORDER else len(KIND_ORDER), k),
+    )
+    proposed = sorted(n for n, e in heads.items() if e.get("status") == "proposed")
+    typed = sum(1 for e in heads.values() if e.get("out"))
 
     lines: list[str] = []
-    lines.append("# Atom-kind substrates")
+    lines.append("# Atom-type substrates")
     lines.append("")
     lines.append(
-        "Generated from `fusenf/specs/vocabulary.json` "
-        f"(schema `{meta.get('schema', '?')}`, revised {meta.get('revised', meta.get('generated', '?'))}, "
-        f"prompt `{str(meta.get('prompt_sha256', ''))[:8]}…`) by `templates/tmpl/gen_substrate.py`. "
+        f"Generated from `templates/atom-type-substrates.json` (schema `{meta.get('schema', '?')}`) "
+        "by `templates/tmpl/gen_substrate.py`, together with `templates/generated/atom-types.metta`. "
         "Do not edit by hand; regenerate with `cd templates && python -m tmpl.gen_substrate`."
     )
     lines.append("")
     lines.append(
-        f"{len(ops)} heads in {len(classes)} classes. Placeholders are the vocabulary's `arg_types`; "
-        "`<?>` marks an attested position the vocabulary does not type; `...` marks a variadic head."
+        f"{len(heads)} heads in {len(kinds)} kinds ({len(proposed)} proposed; {typed} with a reviewed "
+        "type declaration so far). `type-def` is the PeTTa declaration emitted for the head; "
+        f"`{PENDING_OUT}` as the output type means the head is not yet reviewed and is absent from the "
+        f"`.metta` file; `{UNTYPED}` marks a position the head takes but the JSON does not type."
     )
     lines.append("")
-
-    for cls in classes:
-        heads = sorted(n for n, e in ops.items() if e.get("class", "?") == cls)
-        lines.append(f"## {cls} ({len(heads)})")
+    sorts = meta.get("sorts")
+    if sorts:
+        lines.append(f"Sorts: {', '.join(sorts)}.")
+        if meta.get("sorts_note"):
+            lines.append("")
+            lines.append(meta["sorts_note"])
         lines.append("")
-        for head in heads:
-            e = ops[head]
-            lines.append(sexpr(head, e))
-            lines.append(f"class: {cls}")
+
+    for kind in kinds:
+        names = sorted(n for n, e in heads.items() if e.get("kind", "?") == kind)
+        lines.append(f"## {kind} ({len(names)})")
+        lines.append("")
+        for name in names:
+            e = heads[name]
+            lines.append(f"head: {name}")
+            lines.append(f"kind: {kind}")
             lines.append(f"arity: {arity_text(e)}")
-            lines.append(f"arg_types: {arg_types_text(e)}")
+            lines.append(f"type-def: {type_def_line(name, e)}")
+            if e.get("status") == "proposed":
+                lines.append("status: proposed")
             lines.append("")
             lines.append("")
 
-    oc = vocab.get("open_class") or {}
-    lines.append("## open-class heads (not enumerable)")
-    lines.append("")
-    lines.append(
-        "Heads the prompt licenses generically; the validator checks position and arity only. "
-        "Attested positions:"
-    )
-    lines.append("")
-    for pos in oc.get("positions") or []:
-        lines.append(f"- {pos}")
-    attested = oc.get("attested_heads") or {}
-    n_attested = len(attested)
-    n_sk = len(oc.get("skolem_function_heads") or [])
-    n_prep = len(oc.get("oblique_prepositions") or [])
-    lines.append("")
-    lines.append(
-        f"Attested so far: {n_attested} relation heads, {n_sk} skolem-function heads, "
-        f"{n_prep} oblique prepositions (listed in `vocabulary.json`)."
-    )
-    lines.append("")
-
-    dbu = (vocab.get("declared_but_unattested") or {}).get("heads") or []
-    dep = list((vocab.get("deprecated_operators") or {}).keys())
-    lines.append("## notes")
-    lines.append("")
-    if dbu:
+    oc = src.get("open_class") or {}
+    if oc:
+        lines.append("## open-class heads (not enumerable)")
+        lines.append("")
         lines.append(
-            "- Declared in prompt.txt but exercised by no golden, e2e case or seeded rule "
-            f"(listed above all the same): {', '.join(sorted(dbu))}."
+            "Heads the prompt licenses generically; the validator checks position and arity only. "
+            "Licensed positions:"
         )
-    if dep:
-        lines.append(f"- Deprecated heads, not listed: {', '.join(sorted(dep))}.")
-    for head in sorted(ops):
-        e = ops[head]
-        if not e.get("variadic"):
-            continue
-        attested = ((e.get("attested") or {}).get("arities") or {})
-        low = {int(a): n for a, n in attested.items() if int(a) < VARIADIC_MIN}
-        if low:
-            where = ", ".join(f"arity {a} ×{n}" for a, n in sorted(low.items()))
-            lines.append(
-                f"- `{head}` is declared {VARIADIC_MIN}+ but also attested below that ({where}) — to review."
-            )
+        lines.append("")
+        for pos in oc.get("positions") or []:
+            lines.append(f"- {pos}")
+        lines.append("")
+
+    if proposed:
+        lines.append("## notes")
+        lines.append("")
+        lines.append(f"- Proposed, not yet emitted by any template: {', '.join(proposed)}.")
+        lines.append("")
+    return "\n".join(lines)
+
+
+def render_metta(src: dict) -> str:
+    heads = src["heads"]
+    meta = src.get("meta", {})
+    lines: list[str] = []
+    lines.append(";; Atom-type substrate — PeTTa type declarations.")
+    lines.append(";; Generated from templates/atom-type-substrates.json by templates/tmpl/gen_substrate.py;")
+    lines.append(";; do not edit by hand. Load before (get-type <atom>); a well-typed atom answers with")
+    lines.append(";; its head's out type. Per-record symbol declarations ((: e1 Event) (: e1 Instance) ...)")
+    lines.append(";; come from the emitter, not from this file.")
+    lines.append("")
+    for sort in meta.get("sorts") or []:
+        if sort in ("Atom", "Number", "String"):
+            continue  # PeTTa built-ins
+        lines.append(f"(: {sort} Type)")
+    lines.append("")
+    for name in sorted(heads):
+        lines.extend(declarations(name, heads[name]))
     lines.append("")
     return "\n".join(lines)
 
 
 def main(argv: list[str] | None = None) -> int:
-    with open(VOCAB_PATH, encoding="utf-8") as fh:
-        vocab = json.load(fh)
-    text = render(vocab)
-    with open(OUT_PATH, "w", encoding="utf-8") as fh:
-        fh.write(text)
-    print(f"wrote {os.path.relpath(OUT_PATH, REPO)} ({len(vocab['operators'])} heads)")
+    with open(SRC_PATH, encoding="utf-8") as fh:
+        src = json.load(fh)
+    os.makedirs(os.path.dirname(OUT_METTA), exist_ok=True)
+    with open(OUT_MD, "w", encoding="utf-8") as fh:
+        fh.write(render_md(src))
+    with open(OUT_METTA, "w", encoding="utf-8") as fh:
+        fh.write(render_metta(src))
+    n_decl = sum(len(declarations(n, e)) for n, e in src["heads"].items())
+    print(
+        f"wrote {os.path.relpath(OUT_MD, REPO)} ({len(src['heads'])} heads) and "
+        f"{os.path.relpath(OUT_METTA, REPO)} ({n_decl} declarations)"
+    )
     return 0
 
 
