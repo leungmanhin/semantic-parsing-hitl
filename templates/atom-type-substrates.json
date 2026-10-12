@@ -6,14 +6,16 @@
     "sorts": [
       "Atom",
       "Class",
+      "Context",
       "Entity",
       "Event",
       "Instance",
       "Number",
       "Proposition",
+      "Statement",
       "String"
     ],
-    "sorts_note": "Declared sort list (PeTTa convention, capitalized): Atom = unchecked position; Proposition = a statement-forming expression; Instance with sub-sorts Entity and Event (a symbol carries both its sub-sort and Instance); Class; Number; String. Migration mapping from the ad-hoc names: term, assertion -> Proposition; property, verb-lemma, unit -> Class; symbol, reading-tag -> String; var, uncertain -> Atom. A union such as Event|Proposition expands to one declaration per alternative. `out` = the output type of the head's type declaration, set as each kind is reviewed."
+    "sorts_note": "Declared sort list (PeTTa convention, capitalized): Atom = unchecked position; Proposition = a statement-forming expression; Instance with sub-sorts Entity and Event (a symbol carries both its sub-sort and Instance); Class; Number; String. Migration mapping from the ad-hoc names: term, assertion -> Proposition; property, verb-lemma, unit -> Class; symbol, reading-tag -> String; var, uncertain -> Atom. A union such as Event|Proposition expands to one declaration per alternative. `out` = the output type of the head's type declaration, set as each kind is reviewed. Proposed sorts Statement (a statement id = the proof name, reified) and Context (a scope reified), both sub-sorts of Instance by dual declaration; they belong to the flat context VIEW of scope unless that form becomes canonical."
   },
   "heads": {
     ":": {
@@ -28,21 +30,23 @@
       "gloss": "Statement wrapper: proof-name, logical content, truth value."
     },
     "AccordingTo": {
-      "kind": "operator",
+      "kind": "scope",
       "arity": 2,
       "arg_types": [
         "Proposition",
-        "Proposition"
+        "Instance"
       ],
+      "out": "Proposition",
       "opaque": true,
       "gloss": "Evidential attribution: seals P and names its source (\"according to X, P\")."
     },
     "Again": {
-      "kind": "status",
+      "kind": "particle",
       "arity": 1,
       "arg_types": [
         "Event|Proposition"
       ],
+      "out": "Proposition",
       "opaque": true,
       "gloss": "Repetitive/restitutive presupposition: a prior same-type event happened."
     },
@@ -58,16 +62,17 @@
       "gloss": "Volitional doer / subject of an action."
     },
     "Already": {
-      "kind": "status",
+      "kind": "particle",
       "arity": 1,
       "arg_types": [
         "Event|Proposition"
       ],
+      "out": "Proposition",
       "opaque": true,
       "gloss": "The eventuality happened earlier than expected."
     },
     "Also": {
-      "kind": "operator",
+      "kind": "particle",
       "arity": 2,
       "arg_types": [
         "Instance",
@@ -87,7 +92,7 @@
       "gloss": "Concessive connective 'although'."
     },
     "AmongMost": {
-      "kind": "operator",
+      "kind": "measure",
       "arity": 3,
       "arg_types": [
         "Class",
@@ -129,7 +134,7 @@
       "gloss": "Causal connective 'because'."
     },
     "Before": {
-      "kind": "operator",
+      "kind": "temporal",
       "arity": 2,
       "arg_types": [
         "Event",
@@ -139,7 +144,7 @@
       "gloss": "Canonical ordering: the first eventuality precedes the second."
     },
     "BeforeBy": {
-      "kind": "operator",
+      "kind": "temporal",
       "arity": 4,
       "arg_types": [
         "Event",
@@ -172,16 +177,17 @@
       "gloss": "Adversative connective 'but'."
     },
     "Can": {
-      "kind": "status",
+      "kind": "scope",
       "arity": 1,
       "arg_types": [
         "Event|Proposition"
       ],
+      "out": "Proposition",
       "opaque": false,
-      "gloss": "A specific subject's capability on this event."
+      "gloss": "A specific subject's capability on this event. Target form: operator over the sealed clause (-> Proposition Proposition); the tag form (-> Event Proposition) is legacy, kept only until the re-parse."
     },
     "Cardinality": {
-      "kind": "operator",
+      "kind": "measure",
       "arity": 2,
       "arg_types": [
         "Instance",
@@ -191,7 +197,7 @@
       "gloss": "Exact size of a group (a point value, native integer)."
     },
     "CardinalityAtLeast": {
-      "kind": "operator",
+      "kind": "measure",
       "arity": 2,
       "arg_types": [
         "Instance",
@@ -201,7 +207,7 @@
       "gloss": "Lower bound on a group's size."
     },
     "CardinalityAtMost": {
-      "kind": "operator",
+      "kind": "measure",
       "arity": 2,
       "arg_types": [
         "Instance",
@@ -221,7 +227,7 @@
       "gloss": "Records a vague count phrase on a group ('several', 'dozens')."
     },
     "Cleft": {
-      "kind": "operator",
+      "kind": "particle",
       "arity": 2,
       "arg_types": [
         "Instance",
@@ -254,7 +260,7 @@
       "gloss": "Hard-numeric arithmetic/comparison test on bound integers."
     },
     "ConditionalProperty": {
-      "kind": "operator",
+      "kind": "relation",
       "arity": 3,
       "arg_types": [
         "Class",
@@ -287,17 +293,18 @@
       "status": "proposed"
     },
     "Counterfactual": {
-      "kind": "operator",
+      "kind": "scope",
       "arity": 2,
       "arg_types": [
         "Proposition",
         "Proposition"
       ],
+      "out": "Proposition",
       "opaque": true,
       "gloss": "Sealed subjunctive conditional: antecedent and consequent, neither asserted."
     },
     "Day": {
-      "kind": "operator",
+      "kind": "temporal",
       "arity": 1,
       "arg_types": [
         "Number"
@@ -306,7 +313,7 @@
       "gloss": "Day-of-month term."
     },
     "Degree": {
-      "kind": "operator",
+      "kind": "measure",
       "arity": 3,
       "arg_types": [
         "Instance",
@@ -327,16 +334,17 @@
       "gloss": "Concessive connective 'despite'."
     },
     "Directive": {
-      "kind": "operator",
+      "kind": "scope",
       "arity": 1,
       "arg_types": [
         "Proposition"
       ],
+      "out": "Proposition",
       "opaque": true,
       "gloss": "Seals a positive imperative's commanded eventuality."
     },
     "Duration": {
-      "kind": "operator",
+      "kind": "temporal",
       "arity": 2,
       "arg_types": [
         "Event",
@@ -346,7 +354,7 @@
       "gloss": "Licensed duration-adverb slot: the surface adverb lemma on an eventuality."
     },
     "During": {
-      "kind": "operator",
+      "kind": "temporal",
       "arity": 2,
       "arg_types": [
         "Event",
@@ -356,7 +364,7 @@
       "gloss": "The inner eventuality is nested inside the outer one."
     },
     "End": {
-      "kind": "operator",
+      "kind": "temporal",
       "arity": 2,
       "arg_types": [
         "Event",
@@ -378,7 +386,7 @@
       "status": "proposed"
     },
     "Even": {
-      "kind": "operator",
+      "kind": "particle",
       "arity": 2,
       "arg_types": [
         "Instance",
@@ -398,7 +406,7 @@
       "gloss": "Concessive connective 'even though'."
     },
     "Every": {
-      "kind": "operator",
+      "kind": "temporal",
       "arity": 3,
       "arg_types": [
         "Event",
@@ -434,16 +442,17 @@
       "gloss": "Aggregate fold across all pattern matches (e.g. sum of cardinalities)."
     },
     "Forbid": {
-      "kind": "operator",
+      "kind": "scope",
       "arity": 1,
       "arg_types": [
         "Proposition"
       ],
+      "out": "Proposition",
       "opaque": true,
       "gloss": "Seals a negative imperative's forbidden eventuality."
     },
     "Fraction": {
-      "kind": "operator",
+      "kind": "measure",
       "arity": 2,
       "arg_types": [
         "Number",
@@ -453,11 +462,12 @@
       "gloss": "Exact fraction / percentage term, numerator over denominator."
     },
     "Future": {
-      "kind": "status",
+      "kind": "temporal",
       "arity": 1,
       "arg_types": [
         "Event|Proposition"
       ],
+      "out": "Proposition",
       "opaque": false,
       "gloss": "Future tense on an eventuality."
     },
@@ -483,7 +493,7 @@
       "gloss": "Graded P(value > N) over a distribution magnitude."
     },
     "GroupOf": {
-      "kind": "operator",
+      "kind": "relation",
       "arity": 2,
       "arg_types": [
         "Instance",
@@ -504,7 +514,7 @@
       "gloss": "Subject of a possession/relational state only (own, have, lack)."
     },
     "Hour": {
-      "kind": "operator",
+      "kind": "temporal",
       "arity": 1,
       "arg_types": [
         "Number"
@@ -522,6 +532,18 @@
       "out": "Proposition",
       "opaque": false,
       "gloss": "Inference rule: a Premises term implies a Conclusions term."
+    },
+    "InContext": {
+      "kind": "core-link",
+      "arity": 2,
+      "arg_types": [
+        "Statement",
+        "Context"
+      ],
+      "out": "Proposition",
+      "opaque": true,
+      "gloss": "Membership of a statement in a scope context: the flat (unnested) form of scope, where a scope operator becomes a predicate of the context — (Might c1) (InContext f1 c1). Structural link, not a status; absent from the canonical operator form, present in the generated flat view.",
+      "status": "proposed"
     },
     "InOrderTo": {
       "kind": "discourse",
@@ -566,7 +588,7 @@
       "gloss": "Transport wrapper marking a statement as belonging to one reading of a multi-reading parse: (Interpretation rN (: name expr stv)). Dissolved by the canonicalizer's split-before-canonicalize; never a KB atom (engine marginalization = deferred #48 half)."
     },
     "KindProperty": {
-      "kind": "operator",
+      "kind": "relation",
       "arity": 2,
       "arg_types": [
         "Class",
@@ -576,7 +598,7 @@
       "gloss": "Non-distributing property of a kind/population as a whole."
     },
     "LocatedIn": {
-      "kind": "operator",
+      "kind": "relation",
       "arity": 2,
       "arg_types": [
         "Instance",
@@ -608,7 +630,7 @@
       "gloss": "Adverbial manner of the eventuality."
     },
     "Measure": {
-      "kind": "operator",
+      "kind": "measure",
       "arity": 4,
       "arg_types": [
         "Instance",
@@ -620,7 +642,7 @@
       "gloss": "Puts a magnitude and unit on an entity's dimension."
     },
     "MeasureAtLeast": {
-      "kind": "operator",
+      "kind": "measure",
       "arity": 4,
       "arg_types": [
         "Instance",
@@ -632,7 +654,7 @@
       "gloss": "Lower-bounded measure."
     },
     "MeasureAtMost": {
-      "kind": "operator",
+      "kind": "measure",
       "arity": 4,
       "arg_types": [
         "Instance",
@@ -644,7 +666,7 @@
       "gloss": "Upper-bounded measure."
     },
     "MeasureBy": {
-      "kind": "operator",
+      "kind": "measure",
       "arity": 4,
       "arg_types": [
         "Event",
@@ -656,7 +678,7 @@
       "gloss": "Delta of a scalar-change eventuality: how much the dimension changed."
     },
     "MeasureFrom": {
-      "kind": "operator",
+      "kind": "measure",
       "arity": 4,
       "arg_types": [
         "Event",
@@ -668,7 +690,7 @@
       "gloss": "Start value of a scalar change (\"from X\")."
     },
     "MeasureTo": {
-      "kind": "operator",
+      "kind": "measure",
       "arity": 4,
       "arg_types": [
         "Event",
@@ -691,16 +713,17 @@
       "gloss": "An individual belongs to a class or holds a property."
     },
     "Might": {
-      "kind": "status",
+      "kind": "scope",
       "arity": 1,
       "arg_types": [
         "Event|Proposition"
       ],
+      "out": "Proposition",
       "opaque": false,
-      "gloss": "Epistemic possibility ('might / may')."
+      "gloss": "Epistemic possibility ('might / may'). Target form: operator over the sealed clause (-> Proposition Proposition); the tag form (-> Event Proposition) is legacy, kept only until the re-parse."
     },
     "Minute": {
-      "kind": "operator",
+      "kind": "temporal",
       "arity": 1,
       "arg_types": [
         "Number"
@@ -709,7 +732,7 @@
       "gloss": "Clock minute term."
     },
     "Month": {
-      "kind": "operator",
+      "kind": "temporal",
       "arity": 1,
       "arg_types": [
         "String"
@@ -718,7 +741,7 @@
       "gloss": "Calendar month term (lowercase month-name lemma)."
     },
     "MonthNumber": {
-      "kind": "operator",
+      "kind": "lexicon",
       "arity": 2,
       "arg_types": [
         "String",
@@ -728,7 +751,7 @@
       "gloss": "Seeded lexicon fact giving a month name its ordinal number."
     },
     "More": {
-      "kind": "operator",
+      "kind": "measure",
       "arity": 3,
       "arg_types": [
         "Class",
@@ -739,7 +762,7 @@
       "gloss": "X exceeds Y on a scale (reified comparative ordering)."
     },
     "MoreBy": {
-      "kind": "operator",
+      "kind": "measure",
       "arity": 5,
       "arg_types": [
         "Class",
@@ -752,7 +775,7 @@
       "gloss": "Comparative with a measured gap: X exceeds Y by n units."
     },
     "Most": {
-      "kind": "operator",
+      "kind": "measure",
       "arity": 3,
       "arg_types": [
         "Class",
@@ -763,13 +786,14 @@
       "gloss": "Superlative: X is the most ADJ member of a class."
     },
     "Must": {
-      "kind": "status",
+      "kind": "scope",
       "arity": 1,
       "arg_types": [
         "Event|Proposition"
       ],
+      "out": "Proposition",
       "opaque": false,
-      "gloss": "Epistemic necessity ('must'-inference)."
+      "gloss": "Epistemic necessity ('must'-inference). Target form: operator over the sealed clause (-> Proposition Proposition); the tag form (-> Event Proposition) is legacy, kept only until the re-parse."
     },
     "Name": {
       "kind": "surface-record",
@@ -781,26 +805,39 @@
       "opaque": false,
       "gloss": "Records a named individual's surface name string."
     },
+    "Not": {
+      "kind": "scope",
+      "arity": 1,
+      "arg_types": [
+        "Proposition"
+      ],
+      "out": "Proposition",
+      "opaque": true,
+      "gloss": "Explicit negation over a proposition. The top-level form lowers natively (the engine canonicalizes (Not X) to X at strength 1-s); nested forms (under a modal, a particle or a seal) are the lowering's work.",
+      "status": "proposed"
+    },
     "Obligated": {
-      "kind": "status",
+      "kind": "scope",
       "arity": 1,
       "arg_types": [
         "Event|Proposition"
       ],
+      "out": "Proposition",
       "opaque": false,
-      "gloss": "Deontic obligation on a specific act."
+      "gloss": "Deontic obligation on a specific act. Target form: operator over the sealed clause (-> Proposition Proposition); the tag form (-> Event Proposition) is legacy, kept only until the re-parse."
     },
     "Ongoing": {
-      "kind": "status",
+      "kind": "temporal",
       "arity": 1,
       "arg_types": [
         "Event|Proposition"
       ],
+      "out": "Proposition",
       "opaque": false,
       "gloss": "Progressive / continuative aspect."
     },
     "Only": {
-      "kind": "operator",
+      "kind": "particle",
       "arity": 2,
       "arg_types": [
         "Instance",
@@ -821,7 +858,7 @@
       "gloss": "Inclusive disjunction: at least one disjunct holds, unspecified which."
     },
     "Ordinal": {
-      "kind": "operator",
+      "kind": "measure",
       "arity": 3,
       "arg_types": [
         "Instance",
@@ -832,7 +869,7 @@
       "gloss": "The entity's rank n on an ordering scale."
     },
     "PartOf": {
-      "kind": "operator",
+      "kind": "relation",
       "arity": 2,
       "arg_types": [
         "Instance",
@@ -842,7 +879,7 @@
       "gloss": "Part/component (or named member) of a whole."
     },
     "ParticleFromNormal": {
-      "kind": "operator",
+      "kind": "engine",
       "arity": 2,
       "arg_types": [
         "Number",
@@ -852,11 +889,12 @@
       "gloss": "Approximate magnitude as a normal distribution: mean and sigma."
     },
     "Past": {
-      "kind": "status",
+      "kind": "temporal",
       "arity": 1,
       "arg_types": [
         "Event|Proposition"
       ],
+      "out": "Proposition",
       "opaque": false,
       "gloss": "Past tense on an eventuality."
     },
@@ -872,16 +910,17 @@
       "gloss": "Object the action creates, destroys, consumes or physically changes."
     },
     "Permitted": {
-      "kind": "status",
+      "kind": "scope",
       "arity": 1,
       "arg_types": [
         "Event|Proposition"
       ],
+      "out": "Proposition",
       "opaque": false,
-      "gloss": "Deontic permission on a specific act."
+      "gloss": "Deontic permission on a specific act. Target form: operator over the sealed clause (-> Proposition Proposition); the tag form (-> Event Proposition) is legacy, kept only until the re-parse."
     },
     "Possession": {
-      "kind": "operator",
+      "kind": "relation",
       "arity": 2,
       "arg_types": [
         "Instance",
@@ -891,16 +930,17 @@
       "gloss": "Possessed-to-possessor link (ownership, kinship, loose association)."
     },
     "Probably": {
-      "kind": "status",
+      "kind": "scope",
       "arity": 1,
       "arg_types": [
         "Event|Proposition"
       ],
+      "out": "Proposition",
       "opaque": false,
-      "gloss": "Epistemic probability ('probably')."
+      "gloss": "Epistemic probability ('probably'). Target form: operator over the sealed clause (-> Proposition Proposition); the tag form (-> Event Proposition) is legacy, kept only until the re-parse."
     },
     "ProportionOf": {
-      "kind": "operator",
+      "kind": "relation",
       "arity": 3,
       "arg_types": [
         "Instance",
@@ -911,7 +951,7 @@
       "gloss": "The portion's proportion of a definite whole."
     },
     "PurposeOf": {
-      "kind": "operator",
+      "kind": "relation",
       "arity": 2,
       "arg_types": [
         "Event",
@@ -932,7 +972,7 @@
       "gloss": "Records the surface quantifier word beside the strength it set."
     },
     "Quarter": {
-      "kind": "operator",
+      "kind": "temporal",
       "arity": 2,
       "arg_types": [
         "Number",
@@ -942,17 +982,18 @@
       "gloss": "Calendar/fiscal quarter term: (Quarter q year)."
     },
     "Question": {
-      "kind": "operator",
+      "kind": "scope",
       "arity": 2,
       "arg_types": [
         "String",
         "Proposition"
       ],
+      "out": "Proposition",
       "opaque": true,
       "gloss": "Seals an embedded constituent (wh-) question with its wh-word."
     },
     "ReasonFor": {
-      "kind": "operator",
+      "kind": "relation",
       "arity": 2,
       "arg_types": [
         "Event",
@@ -973,7 +1014,7 @@
       "gloss": "Goal of a transfer (indirect object / 'to')."
     },
     "RestOf": {
-      "kind": "operator",
+      "kind": "relation",
       "arity": 2,
       "arg_types": [
         "Instance",
@@ -983,7 +1024,7 @@
       "gloss": "Flags a portion as the remainder of a definite whole."
     },
     "Result": {
-      "kind": "operator",
+      "kind": "relation",
       "arity": 2,
       "arg_types": [
         "Event",
@@ -1003,7 +1044,7 @@
       "gloss": "Truth value: strength and confidence, both in [0,1]."
     },
     "SameDegree": {
-      "kind": "operator",
+      "kind": "measure",
       "arity": 3,
       "arg_types": [
         "Class",
@@ -1014,7 +1055,7 @@
       "gloss": "Equative: X is as ADJ as Y."
     },
     "ScaleOpposite": {
-      "kind": "operator",
+      "kind": "lexicon",
       "arity": 2,
       "arg_types": [
         "Class",
@@ -1077,7 +1118,7 @@
       "gloss": "Origin / 'from …' oblique."
     },
     "Start": {
-      "kind": "operator",
+      "kind": "temporal",
       "arity": 2,
       "arg_types": [
         "Event",
@@ -1087,11 +1128,12 @@
       "gloss": "Interval start point of an eventuality."
     },
     "Still": {
-      "kind": "status",
+      "kind": "particle",
       "arity": 1,
       "arg_types": [
         "Event|Proposition"
       ],
+      "out": "Proposition",
       "opaque": true,
       "gloss": "Continuative: the eventuality still holds (positive counterpart of cessation)."
     },
@@ -1107,7 +1149,7 @@
       "gloss": "Object of a psych/perception state."
     },
     "SubsetOf": {
-      "kind": "operator",
+      "kind": "relation",
       "arity": 2,
       "arg_types": [
         "Instance",
@@ -1117,7 +1159,7 @@
       "gloss": "A quantified subset group of a definite superset group."
     },
     "Symmetric": {
-      "kind": "operator",
+      "kind": "lexicon",
       "arity": 1,
       "arg_types": [
         "String"
@@ -1168,7 +1210,7 @@
       "gloss": "Locates an eventuality at a time point or recurrence slot."
     },
     "TimeAtLeast": {
-      "kind": "operator",
+      "kind": "temporal",
       "arity": 2,
       "arg_types": [
         "Event",
@@ -1178,7 +1220,7 @@
       "gloss": "Lower-bounded (earliest) time of an eventuality."
     },
     "TimeAtMost": {
-      "kind": "operator",
+      "kind": "temporal",
       "arity": 2,
       "arg_types": [
         "Event",
@@ -1188,7 +1230,7 @@
       "gloss": "Upper-bounded (latest) time of an eventuality."
     },
     "TimesAs": {
-      "kind": "operator",
+      "kind": "measure",
       "arity": 4,
       "arg_types": [
         "Class",
@@ -1200,7 +1242,7 @@
       "gloss": "Multiplicative comparative: X is <factor> times as ADJ as Y."
     },
     "TimesPer": {
-      "kind": "operator",
+      "kind": "temporal",
       "arity": 3,
       "arg_types": [
         "Event",
@@ -1221,7 +1263,7 @@
       "gloss": "Purpose infinitive connective 'to'."
     },
     "Weekday": {
-      "kind": "operator",
+      "kind": "temporal",
       "arity": 1,
       "arg_types": [
         "String"
@@ -1230,7 +1272,7 @@
       "gloss": "Weekday term (lowercase weekday-name lemma)."
     },
     "WeekdayNumber": {
-      "kind": "operator",
+      "kind": "lexicon",
       "arity": 2,
       "arg_types": [
         "String",
@@ -1240,16 +1282,17 @@
       "gloss": "Seeded lexicon fact giving a weekday name its number (monday=1)."
     },
     "Whether": {
-      "kind": "operator",
+      "kind": "scope",
       "arity": 1,
       "arg_types": [
         "Proposition"
       ],
+      "out": "Proposition",
       "opaque": true,
       "gloss": "Seals an embedded polar question under the matrix verb's Theme."
     },
     "WithinLast": {
-      "kind": "operator",
+      "kind": "temporal",
       "arity": 3,
       "arg_types": [
         "Event",
@@ -1271,7 +1314,7 @@
       "gloss": "Exclusive disjunction: exactly one of two disjuncts holds."
     },
     "Year": {
-      "kind": "operator",
+      "kind": "temporal",
       "arity": 1,
       "arg_types": [
         "Number"
@@ -1280,16 +1323,18 @@
       "gloss": "Calendar year term."
     },
     "Yet": {
-      "kind": "status",
+      "kind": "particle",
       "arity": [
         1,
         2
       ],
       "arg_types": [
-        "Event"
+        "Event|Proposition",
+        "Proposition"
       ],
+      "out": "Proposition",
       "opaque": true,
-      "gloss": "NPI 'yet': expected but not yet — under negation or a question."
+      "gloss": "NPI 'yet': expected but not yet — under negation or a question. HEAD COLLISION: arity 1 = the aspectual particle (tag on an event or operator over a proposition); arity 2 = an unrelated adversative connective 'X, yet Y' — to be split into its own head under discourse."
     },
     "can": {
       "kind": "property-constructor",
@@ -1301,7 +1346,7 @@
       "gloss": "Builds the reified capability property term from a verb lemma."
     },
     "forKind": {
-      "kind": "operator",
+      "kind": "measure",
       "arity": 1,
       "arg_types": [
         "Class"
