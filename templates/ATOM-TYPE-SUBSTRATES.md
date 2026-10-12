@@ -2,11 +2,13 @@
 
 Generated from `templates/atom-type-substrates.json` (schema `atom-type-substrates/1`) by `templates/tmpl/gen_substrate.py`, together with `templates/generated/atom-types.metta`. Do not edit by hand; regenerate with `cd templates && python -m tmpl.gen_substrate`.
 
-129 heads in 13 kinds (5 proposed; 45 with a reviewed type declaration so far). `type-def` is the PeTTa declaration emitted for the head; `?` as the output type means the head is not yet reviewed and is absent from the `.metta` file; `%Undefined%` marks a position the head takes but the JSON does not type.
+129 heads in 13 kinds (7 proposed; 129 with a reviewed type declaration so far). `type-def` is the PeTTa declaration emitted for the head; `?` as the output type means the head is not yet reviewed and is absent from the `.metta` file; `%Undefined%` marks a position the head takes but the JSON does not type.
 
-Sorts: Atom, Class, Context, Entity, Event, Instance, Number, Proposition, Statement, String.
+Every atom is carried as a statement (: <proof-name> <atom> <tv>), tv = (STV strength confidence) or another engine truth value. The carrier is not an atom kind: ':' is never type-declared (it is also PeTTa's type-declaration head) and the truth value is declared by the engine, not by this substrate.
 
-Declared sort list (PeTTa convention, capitalized): Atom = unchecked position; Proposition = a statement-forming expression; Instance with sub-sorts Entity and Event (a symbol carries both its sub-sort and Instance); Class; Number; String. Migration mapping from the ad-hoc names: term, assertion -> Proposition; property, verb-lemma, unit -> Class; symbol, reading-tag -> String; var, uncertain -> Atom. A union such as Event|Proposition expands to one declaration per alternative. `out` = the output type of the head's type declaration, set as each kind is reviewed. Proposed sorts Statement (a statement id = the proof name, reified) and Context (a scope reified), both sub-sorts of Instance by dual declaration; they belong to the flat context VIEW of scope unless that form becomes canonical.
+Sorts: Atom, Class, Context, Distribution, Entity, Event, Instance, Level, Number, Proposition, Statement, String, TimeTerm.
+
+Declared sort list (PeTTa convention, capitalized): Atom = unchecked position; Proposition = a statement-forming expression; Instance with sub-sorts Entity and Event (a symbol carries both its sub-sort and Instance); Class; Number; String. Migration mapping from the ad-hoc names: term, assertion -> Proposition; property, verb-lemma, unit -> Class; symbol, reading-tag -> String; var, uncertain -> Atom. A union such as Event|Proposition expands to one declaration per alternative. `out` = the output type of the head's type declaration, set as each kind is reviewed. Proposed sorts Statement (a statement id = the proof name, reified) and Context (a scope reified), both sub-sorts of Instance by dual declaration; they belong to the flat context VIEW of scope unless that form becomes canonical. TimeTerm = a reified time instant or period (not named Time: that is the role head) (sub-sort of Instance by dual declaration; time predicates Day / Hour / Month / … describe it). Distribution = an engine value (ParticleFromNormal …) allowed where an approximate number is. Level = a degree / proportion level: a symbol from a closed label set (very, excessive, most, half — declared Level by the emitter) or a term standing in for one ((forKind class), (Fraction n d)).
 
 ## core-link (10)
 
@@ -187,8 +189,8 @@ gloss: Object acquired, transferred, moved, possessed, perceived or evaluated un
 head: Time
 kind: role
 arity: 2
-type-def: (: Time (-> Event Instance Proposition))
-gloss: Locates an eventuality at a time point or recurrence slot.
+type-def: (: Time (-> Event TimeTerm Proposition))
+gloss: Locates an eventuality at a time point or recurrence slot. Filler = a time instance (deictic constants such as yesterday / now are declared Time by the emitter).
 
 
 ## scope (13)
@@ -225,7 +227,8 @@ head: Forbid
 kind: scope
 arity: 1
 type-def: (: Forbid (-> Proposition Proposition))
-gloss: Seals a negative imperative's forbidden eventuality.
+gloss: Seals a negative imperative's forbidden eventuality. RETIRE: under explicit scope a negative imperative is (Directive (Not P)), parallel to (Obligated (Not P)); declaration kept only until the re-parse.
+status: retire
 
 
 head: Might
@@ -268,7 +271,8 @@ head: Probably
 kind: scope
 arity: 1
 type-def: (: Probably (-> Event Proposition))  ; and 1 more (per arity / per union alternative)
-gloss: Epistemic probability ('probably'). Target form: operator over the sealed clause (-> Proposition Proposition); the tag form (-> Event Proposition) is legacy, kept only until the re-parse.
+gloss: Epistemic probability ('probably'). Target form: operator over the sealed clause (-> Proposition Proposition); the tag form (-> Event Proposition) is legacy, kept only until the re-parse. RETIRE: the likelihood becomes the clause statement's STV strength (band per word, in the template), and the surface word is kept by a LikelihoodPhrase surface record; declaration kept only until the re-parse.
+status: retire
 
 
 head: Question
@@ -304,29 +308,37 @@ gloss: The eventuality happened earlier than expected.
 head: Also
 kind: particle
 arity: 2
-type-def: (: Also (-> Instance Event ?))  ; out type pending review
-gloss: Additive focus particle ('also / too / as well').
+type-def: (: Also (-> Instance Event Proposition))  ; and 1 more (per arity / per union alternative)
+gloss: Additive focus particle ('also / too / as well'). Filler as for Only; also the carrier of either / neither (ruling 2026-09-29); the additive presupposition is recorded, never asserted.
 
 
 head: Cleft
 kind: particle
 arity: 2
-type-def: (: Cleft (-> Instance Event ?))  ; out type pending review
-gloss: It-cleft / pseudo-cleft focus marker.
+type-def: (: Cleft (-> Instance Event Proposition))  ; and 1 more (per arity / per union alternative)
+gloss: It-cleft / pseudo-cleft focus marker. Filler = the clefted phrase; the backgrounded clause is the asserted prejacent.
 
 
 head: Even
 kind: particle
 arity: 2
-type-def: (: Even (-> Instance Event ?))  ; out type pending review
-gloss: Scalar focus particle ('even').
+type-def: (: Even (-> Instance Event Proposition))  ; and 1 more (per arity / per union alternative)
+gloss: Scalar focus particle ('even'). Filler as for Only; the scalar presupposition is recorded, never asserted.
 
 
 head: Only
 kind: particle
 arity: 2
-type-def: (: Only (-> Instance Event ?))  ; out type pending review
-gloss: Exclusive focus particle ('only / just / solely').
+type-def: (: Only (-> Instance Event Proposition))  ; and 1 more (per arity / per union alternative)
+gloss: Exclusive focus particle ('only / just / solely'). Filler = the focused constituent: an instance (subject / object focus) or a class lemma (VP / predicate focus); the prejacent is asserted normally; no exclusion rule is emitted (closure-gated).
+
+
+head: Pending
+kind: particle
+arity: 1
+type-def: (: Pending (-> Event Proposition))  ; and 1 more (per arity / per union alternative)
+gloss: NPI 'yet' particle: expected but not yet (under negation or a question); the expectation is recorded, never asserted — its own positive atom outside any denial. Renamed from the arity-1 sense of Yet (owner 2026-10-12) to free Yet for the adversative connective.
+status: proposed
 
 
 head: Still
@@ -336,61 +348,55 @@ type-def: (: Still (-> Event Proposition))  ; and 1 more (per arity / per union 
 gloss: Continuative: the eventuality still holds (positive counterpart of cessation).
 
 
-head: Yet
-kind: particle
-arity: 1 | 2
-type-def: (: Yet (-> Event Proposition))  ; and 3 more (per arity / per union alternative)
-gloss: NPI 'yet': expected but not yet — under negation or a question. HEAD COLLISION: arity 1 = the aspectual particle (tag on an event or operator over a proposition); arity 2 = an unrelated adversative connective 'X, yet Y' — to be split into its own head under discourse.
-
-
 ## temporal (21)
 
 head: Before
 kind: temporal
 arity: 2
-type-def: (: Before (-> Event Event ?))  ; out type pending review
+type-def: (: Before (-> Event Event Proposition))
 gloss: Canonical ordering: the first eventuality precedes the second.
 
 
 head: BeforeBy
 kind: temporal
 arity: 4
-type-def: (: BeforeBy (-> Event Event Number Class ?))  ; out type pending review
-gloss: Measured temporal gap between two eventualities.
+type-def: (: BeforeBy (-> Event Event Number Class Proposition))  ; and 1 more (per arity / per union alternative)
+gloss: Measured temporal gap: the first eventuality precedes the second (an eventuality or a time such as now) by n units.
 
 
 head: Day
 kind: temporal
-arity: 1
-type-def: (: Day (-> Number ?))  ; out type pending review
-gloss: Day-of-month term.
+arity: 2
+type-def: (: Day (-> TimeTerm Number Proposition))
+legacy: (: Day (-> Number TimeTerm))  ; kept until the re-parse
+gloss: Day-of-month of a time instance: (Day t 6). Legacy constructor form (Day 6) kept until the re-parse.
 
 
 head: Duration
 kind: temporal
 arity: 2
-type-def: (: Duration (-> Event String ?))  ; out type pending review
-gloss: Licensed duration-adverb slot: the surface adverb lemma on an eventuality.
+type-def: (: Duration (-> Event String Proposition))
+gloss: Licensed duration-adverb slot: the surface adverb lemma on an eventuality. A surface-record-like slot (vague extent); the measured form is (Measure e duration n unit).
 
 
 head: During
 kind: temporal
 arity: 2
-type-def: (: During (-> Event Event ?))  ; out type pending review
+type-def: (: During (-> Event Event Proposition))
 gloss: The inner eventuality is nested inside the outer one.
 
 
 head: End
 kind: temporal
 arity: 2
-type-def: (: End (-> Event Proposition ?))  ; out type pending review
-gloss: Interval end point of an eventuality.
+type-def: (: End (-> Event TimeTerm Proposition))
+gloss: Interval end point of an eventuality: (End e t), t a time instance.
 
 
 head: Every
 kind: temporal
 arity: 3
-type-def: (: Every (-> Event Number Class ?))  ; out type pending review
+type-def: (: Every (-> Event Number Class Proposition))
 gloss: Periodic recurrence: the event happens every n units.
 
 
@@ -403,23 +409,26 @@ gloss: Future tense on an eventuality.
 
 head: Hour
 kind: temporal
-arity: 1
-type-def: (: Hour (-> Number ?))  ; out type pending review
-gloss: Clock hour term, 24-hour.
+arity: 2
+type-def: (: Hour (-> TimeTerm Number Proposition))  ; and 1 more (per arity / per union alternative)
+legacy: (: Hour (-> Number TimeTerm)) · (: Hour (-> Distribution TimeTerm))  ; kept until the re-parse
+gloss: Clock hour (24-hour) of a time instance: (Hour t 15); an approximate hour may be a distribution. Legacy constructor form (Hour 15) kept until the re-parse.
 
 
 head: Minute
 kind: temporal
-arity: 1
-type-def: (: Minute (-> Number ?))  ; out type pending review
-gloss: Clock minute term.
+arity: 2
+type-def: (: Minute (-> TimeTerm Number Proposition))
+legacy: (: Minute (-> Number TimeTerm))  ; kept until the re-parse
+gloss: Clock minute of a time instance: (Minute t 30). Legacy constructor form kept until the re-parse.
 
 
 head: Month
 kind: temporal
-arity: 1
-type-def: (: Month (-> String ?))  ; out type pending review
-gloss: Calendar month term (lowercase month-name lemma).
+arity: 2
+type-def: (: Month (-> TimeTerm Class Proposition))
+legacy: (: Month (-> Class TimeTerm))  ; kept until the re-parse
+gloss: Calendar month of a time instance, the month name as a class of time periods: (Month t july). Legacy constructor form (Month july) kept until the re-parse.
 
 
 head: Ongoing
@@ -439,57 +448,60 @@ gloss: Past tense on an eventuality.
 head: Quarter
 kind: temporal
 arity: 2
-type-def: (: Quarter (-> Number Number ?))  ; out type pending review
-gloss: Calendar/fiscal quarter term: (Quarter q year).
+type-def: (: Quarter (-> TimeTerm Number Proposition))
+legacy: (: Quarter (-> Number Number TimeTerm))  ; kept until the re-parse
+gloss: Calendar / fiscal quarter of a time instance: (Quarter t 3) beside (Year t 2003). Legacy constructor form (Quarter 3 2003) kept until the re-parse.
 
 
 head: Start
 kind: temporal
 arity: 2
-type-def: (: Start (-> Event Proposition ?))  ; out type pending review
-gloss: Interval start point of an eventuality.
+type-def: (: Start (-> Event TimeTerm Proposition))
+gloss: Interval start point of an eventuality: (Start e t) with the time instance t described by Day / Hour / Year … atoms.
 
 
 head: TimeAtLeast
 kind: temporal
 arity: 2
-type-def: (: TimeAtLeast (-> Event Proposition ?))  ; out type pending review
-gloss: Lower-bounded (earliest) time of an eventuality.
+type-def: (: TimeAtLeast (-> Event TimeTerm Proposition))
+gloss: Lower-bounded (earliest) time of an eventuality: (TimeAtLeast e t), t a time instance.
 
 
 head: TimeAtMost
 kind: temporal
 arity: 2
-type-def: (: TimeAtMost (-> Event Proposition ?))  ; out type pending review
-gloss: Upper-bounded (latest) time of an eventuality.
+type-def: (: TimeAtMost (-> Event TimeTerm Proposition))
+gloss: Upper-bounded (latest) time of an eventuality: (TimeAtMost e t), t a time instance.
 
 
 head: TimesPer
 kind: temporal
 arity: 3
-type-def: (: TimesPer (-> Event Number Class ?))  ; out type pending review
+type-def: (: TimesPer (-> Event Number Class Proposition))
 gloss: Rate recurrence: n times per unit.
 
 
 head: Weekday
 kind: temporal
-arity: 1
-type-def: (: Weekday (-> String ?))  ; out type pending review
-gloss: Weekday term (lowercase weekday-name lemma).
+arity: 2
+type-def: (: Weekday (-> TimeTerm Class Proposition))
+legacy: (: Weekday (-> Class TimeTerm))  ; kept until the re-parse
+gloss: Weekday of a time instance, the weekday name as a class: (Weekday t tuesday). Legacy constructor form kept until the re-parse.
 
 
 head: WithinLast
 kind: temporal
 arity: 3
-type-def: (: WithinLast (-> Event Number Class ?))  ; out type pending review
+type-def: (: WithinLast (-> Event Number Class Proposition))
 gloss: Backward window: the eventuality falls within the last n units.
 
 
 head: Year
 kind: temporal
-arity: 1
-type-def: (: Year (-> Number ?))  ; out type pending review
-gloss: Calendar year term.
+arity: 2
+type-def: (: Year (-> TimeTerm Number Proposition))
+legacy: (: Year (-> Number TimeTerm))  ; kept until the re-parse
+gloss: Calendar year of a time instance: (Year t 2026). Legacy constructor form (Year 2026) kept until the re-parse.
 
 
 ## relation (12)
@@ -497,85 +509,85 @@ gloss: Calendar year term.
 head: ConditionalProperty
 kind: relation
 arity: 3
-type-def: (: ConditionalProperty (-> Class Class Class ?))  ; out type pending review
-gloss: A kind has a property only under a stated condition.
+type-def: (: ConditionalProperty (-> Class Class Class Proposition))
+gloss: A kind has a property only under a stated condition. Order: (ConditionalProperty kind property condition).
 
 
 head: GroupOf
 kind: relation
 arity: 2
-type-def: (: GroupOf (-> Instance Class ?))  ; out type pending review
+type-def: (: GroupOf (-> Entity Class Proposition))
 gloss: The members of this group individual are of that kind.
 
 
 head: KindProperty
 kind: relation
 arity: 2
-type-def: (: KindProperty (-> Class Class ?))  ; out type pending review
-gloss: Non-distributing property of a kind/population as a whole.
+type-def: (: KindProperty (-> Class Class Proposition))
+gloss: Non-distributing property of a kind/population as a whole. Order: (KindProperty kind property).
 
 
 head: LocatedIn
 kind: relation
 arity: 2
-type-def: (: LocatedIn (-> Instance Instance ?))  ; out type pending review
-gloss: Static location of an entity ('X is in Y') — as against the event oblique Location.
+type-def: (: LocatedIn (-> Entity Entity Proposition))
+gloss: Static location of an entity ('X is in Y') — as against the event oblique Location. Order: (LocatedIn entity place); the location of an EVENT is the role Location.
 
 
 head: PartOf
 kind: relation
 arity: 2
-type-def: (: PartOf (-> Instance Instance ?))  ; out type pending review
-gloss: Part/component (or named member) of a whole.
+type-def: (: PartOf (-> Instance Instance Proposition))
+gloss: Part/component (or named member) of a whole. Order: (PartOf part whole); eventualities may have parts.
 
 
 head: Possession
 kind: relation
 arity: 2
-type-def: (: Possession (-> Instance Instance ?))  ; out type pending review
-gloss: Possessed-to-possessor link (ownership, kinship, loose association).
+type-def: (: Possession (-> Entity Entity Proposition))
+gloss: Possessed-to-possessor link (ownership, kinship, loose association). Order: (Possession possessed possessor). The possessive construction (NP-internal); the verb "own / have" is an event with Holder and Theme, and their relation is a background rule, never a parser collapse.
 
 
 head: ProportionOf
 kind: relation
 arity: 3
-type-def: (: ProportionOf (-> Instance Instance String ?))  ; out type pending review
-gloss: The portion's proportion of a definite whole.
+type-def: (: ProportionOf (-> Entity Entity Level Proposition))
+gloss: The portion's proportion of a definite whole. Order: (ProportionOf portion whole level); the level is a symbol from a closed label set (most, half, …), declared String-sorted by the emitter. The level is a Level label (most, half) or a (Fraction n d) term.
 
 
 head: PurposeOf
 kind: relation
 arity: 2
-type-def: (: PurposeOf (-> Event Event ?))  ; out type pending review
-gloss: Canonical ask-relation: purpose/goal of a focus event.
+type-def: (: PurposeOf (-> Event Event Proposition))
+gloss: Canonical ask-relation: purpose/goal of a focus event. Order: (PurposeOf goal-eventuality focus-event). Observation when the text states it; derived by a seeded bridge from InOrderTo / To otherwise — the origin field tells which.
 
 
 head: ReasonFor
 kind: relation
 arity: 2
-type-def: (: ReasonFor (-> Event Event ?))  ; out type pending review
-gloss: Canonical ask-relation: reason for a focus event.
+type-def: (: ReasonFor (-> Event Event Proposition))
+gloss: Canonical ask-relation: reason for a focus event. Order: (ReasonFor reason-eventuality focus-event). Observation when the text states it; derived by a seeded bridge from Because / Since otherwise — the origin field tells which.
 
 
 head: RestOf
 kind: relation
 arity: 2
-type-def: (: RestOf (-> Instance Instance ?))  ; out type pending review
-gloss: Flags a portion as the remainder of a definite whole.
+type-def: (: RestOf (-> Entity Entity Proposition))
+gloss: Flags a portion as the remainder of a definite whole. Order: (RestOf remainder whole).
 
 
 head: Result
 kind: relation
 arity: 2
-type-def: (: Result (-> Event Event ?))  ; out type pending review
-gloss: Links an event to the reified result state it caused.
+type-def: (: Result (-> Event Event Proposition))
+gloss: Links an event to the reified result state it caused. Order: (Result event result-state); the result state is an eventuality.
 
 
 head: SubsetOf
 kind: relation
 arity: 2
-type-def: (: SubsetOf (-> Instance Instance ?))  ; out type pending review
-gloss: A quantified subset group of a definite superset group.
+type-def: (: SubsetOf (-> Entity Entity Proposition))
+gloss: A quantified subset group of a definite superset group. Order: (SubsetOf subset-group superset-group); both are group individuals.
 
 
 ## measure (19)
@@ -583,134 +595,134 @@ gloss: A quantified subset group of a definite superset group.
 head: AmongMost
 kind: measure
 arity: 3
-type-def: (: AmongMost (-> Class Instance Class ?))  ; out type pending review
-gloss: Top-stratum membership: one of the ADJ-est members of a class.
+type-def: (: AmongMost (-> Class Instance Class Proposition))
+gloss: Top-stratum membership: one of the ADJ-est members of a class. Order: (AmongMost scale X class).
 
 
 head: Cardinality
 kind: measure
 arity: 2
-type-def: (: Cardinality (-> Instance Number ?))  ; out type pending review
-gloss: Exact size of a group (a point value, native integer).
+type-def: (: Cardinality (-> Entity Number Proposition))  ; and 1 more (per arity / per union alternative)
+gloss: Exact size of a group (a point value, native integer). Order: (… group n); an approximate size may be a distribution.
 
 
 head: CardinalityAtLeast
 kind: measure
 arity: 2
-type-def: (: CardinalityAtLeast (-> Instance Number ?))  ; out type pending review
-gloss: Lower bound on a group's size.
+type-def: (: CardinalityAtLeast (-> Entity Number Proposition))  ; and 1 more (per arity / per union alternative)
+gloss: Lower bound on a group's size. Order: (… group n); an approximate size may be a distribution.
 
 
 head: CardinalityAtMost
 kind: measure
 arity: 2
-type-def: (: CardinalityAtMost (-> Instance Number ?))  ; out type pending review
-gloss: Upper bound on a group's size.
+type-def: (: CardinalityAtMost (-> Entity Number Proposition))  ; and 1 more (per arity / per union alternative)
+gloss: Upper bound on a group's size. Order: (… group n); an approximate size may be a distribution.
 
 
 head: Degree
 kind: measure
 arity: 3
-type-def: (: Degree (-> Instance Class String ?))  ; out type pending review
-gloss: Intensity level of a property on an entity.
+type-def: (: Degree (-> Instance Class Level Proposition))
+gloss: Intensity level of a property on an entity. Order: (Degree entity scale level); the level is a Level label (very, excessive) or (forKind class).
 
 
 head: Fraction
 kind: measure
 arity: 2
-type-def: (: Fraction (-> Number Number ?))  ; out type pending review
-gloss: Exact fraction / percentage term, numerator over denominator.
+type-def: (: Fraction (-> Number Number Level))
+gloss: Exact fraction / percentage term, numerator over denominator. A value term, not a statement: stands in the level slot of ProportionOf ("two-thirds of", "37% of" as (Fraction 37 100), never reduced).
 
 
 head: Measure
 kind: measure
 arity: 4
-type-def: (: Measure (-> Instance Class Number Class ?))  ; out type pending review
-gloss: Puts a magnitude and unit on an entity's dimension.
+type-def: (: Measure (-> Instance Class Number Class Proposition))  ; and 1 more (per arity / per union alternative)
+gloss: Puts a magnitude and unit on an entity's dimension. Order: (… entity-or-event dimension magnitude unit); an approximate magnitude may be a distribution.
 
 
 head: MeasureAtLeast
 kind: measure
 arity: 4
-type-def: (: MeasureAtLeast (-> Instance Class Number Class ?))  ; out type pending review
-gloss: Lower-bounded measure.
+type-def: (: MeasureAtLeast (-> Instance Class Number Class Proposition))  ; and 1 more (per arity / per union alternative)
+gloss: Lower-bounded measure. Order: (… entity-or-event dimension magnitude unit); an approximate magnitude may be a distribution.
 
 
 head: MeasureAtMost
 kind: measure
 arity: 4
-type-def: (: MeasureAtMost (-> Instance Class Number Class ?))  ; out type pending review
-gloss: Upper-bounded measure.
+type-def: (: MeasureAtMost (-> Instance Class Number Class Proposition))  ; and 1 more (per arity / per union alternative)
+gloss: Upper-bounded measure. Order: (… entity-or-event dimension magnitude unit); an approximate magnitude may be a distribution.
 
 
 head: MeasureBy
 kind: measure
 arity: 4
-type-def: (: MeasureBy (-> Event Class Number Class ?))  ; out type pending review
-gloss: Delta of a scalar-change eventuality: how much the dimension changed.
+type-def: (: MeasureBy (-> Event Class Number Class Proposition))  ; and 1 more (per arity / per union alternative)
+gloss: Delta of a scalar-change eventuality: how much the dimension changed. Order: (… event dimension magnitude unit).
 
 
 head: MeasureFrom
 kind: measure
 arity: 4
-type-def: (: MeasureFrom (-> Event Class Number Class ?))  ; out type pending review
-gloss: Start value of a scalar change ("from X").
+type-def: (: MeasureFrom (-> Event Class Number Class Proposition))  ; and 1 more (per arity / per union alternative)
+gloss: Start value of a scalar change ("from X"). Order: (… event dimension magnitude unit).
 
 
 head: MeasureTo
 kind: measure
 arity: 4
-type-def: (: MeasureTo (-> Event Class Number Class ?))  ; out type pending review
-gloss: End value of a scalar change ("to Y", "rose to 6.1%").
+type-def: (: MeasureTo (-> Event Class Number Class Proposition))  ; and 1 more (per arity / per union alternative)
+gloss: End value of a scalar change ("to Y", "rose to 6.1%"). Order: (… event dimension magnitude unit).
 
 
 head: More
 kind: measure
 arity: 3
-type-def: (: More (-> Class Instance Instance ?))  ; out type pending review
-gloss: X exceeds Y on a scale (reified comparative ordering).
+type-def: (: More (-> Class Instance Instance Proposition))
+gloss: X exceeds Y on a scale (reified comparative ordering). Order: (More scale X Y) = X exceeds Y.
 
 
 head: MoreBy
 kind: measure
 arity: 5
-type-def: (: MoreBy (-> Class Instance Instance Number Class ?))  ; out type pending review
-gloss: Comparative with a measured gap: X exceeds Y by n units.
+type-def: (: MoreBy (-> Class Instance Instance Number Class Proposition))  ; and 1 more (per arity / per union alternative)
+gloss: Comparative with a measured gap: X exceeds Y by n units. Order: (MoreBy scale X Y magnitude unit).
 
 
 head: Most
 kind: measure
 arity: 3
-type-def: (: Most (-> Class Instance Class ?))  ; out type pending review
-gloss: Superlative: X is the most ADJ member of a class.
+type-def: (: Most (-> Class Instance Class Proposition))
+gloss: Superlative: X is the most ADJ member of a class. Order: (Most scale X class).
 
 
 head: Ordinal
 kind: measure
 arity: 3
-type-def: (: Ordinal (-> Instance Number Class ?))  ; out type pending review
-gloss: The entity's rank n on an ordering scale.
+type-def: (: Ordinal (-> Instance Number Class Proposition))
+gloss: The entity's rank n on an ordering scale. Order: (Ordinal entity rank scale); the scale may be a verb lemma ("first to respond").
 
 
 head: SameDegree
 kind: measure
 arity: 3
-type-def: (: SameDegree (-> Class Instance Instance ?))  ; out type pending review
-gloss: Equative: X is as ADJ as Y.
+type-def: (: SameDegree (-> Class Instance Instance Proposition))
+gloss: Equative: X is as ADJ as Y. Order: (SameDegree scale X Y).
 
 
 head: TimesAs
 kind: measure
 arity: 4
-type-def: (: TimesAs (-> Class Instance Instance Number ?))  ; out type pending review
-gloss: Multiplicative comparative: X is <factor> times as ADJ as Y.
+type-def: (: TimesAs (-> Class Instance Instance Number Proposition))
+gloss: Multiplicative comparative: X is <factor> times as ADJ as Y. Order: (TimesAs scale X Y factor).
 
 
 head: forKind
 kind: measure
 arity: 1
-type-def: (: forKind (-> Class ?))  ; out type pending review
-gloss: Comparison-class marker: ADJ relative to the norm for a kind.
+type-def: (: forKind (-> Class Level))
+gloss: Comparison-class marker: ADJ relative to the norm for a kind. A value term, not a statement: stands in the level slot of Degree.
 
 
 ## lexicon (4)
@@ -718,129 +730,137 @@ gloss: Comparison-class marker: ADJ relative to the norm for a kind.
 head: MonthNumber
 kind: lexicon
 arity: 2
-type-def: (: MonthNumber (-> String Number ?))  ; out type pending review
-gloss: Seeded lexicon fact giving a month name its ordinal number.
+type-def: (: MonthNumber (-> Class Number Proposition))
+gloss: Seeded lexicon fact giving a month name its ordinal number. Background fact (seeded), never parser output; month names are classes of time periods.
 
 
 head: ScaleOpposite
 kind: lexicon
 arity: 2
-type-def: (: ScaleOpposite (-> Class Class ?))  ; out type pending review
-gloss: Links the two poles of one gradable dimension.
+type-def: (: ScaleOpposite (-> Class Class Proposition))
+gloss: Links the two poles of one gradable dimension. Background fact (seeded), never parser output.
 
 
 head: Symmetric
 kind: lexicon
 arity: 1
-type-def: (: Symmetric (-> String ?))  ; out type pending review
-gloss: Tags a relation head as mutual by meaning.
+type-def: (: Symmetric (-> Atom Proposition))
+gloss: Tags a relation head as mutual by meaning. The argument is a relation HEAD symbol (an open-class mutual predicate such as Friend); heads are not a sort, so the position is unchecked. Background fact about the vocabulary.
 
 
 head: WeekdayNumber
 kind: lexicon
 arity: 2
-type-def: (: WeekdayNumber (-> String Number ?))  ; out type pending review
-gloss: Seeded lexicon fact giving a weekday name its number (monday=1).
+type-def: (: WeekdayNumber (-> Class Number Proposition))
+gloss: Seeded lexicon fact giving a weekday name its number (monday=1). Background fact (seeded), never parser output.
 
 
-## discourse (14)
+## discourse (15)
 
 head: Although
 kind: discourse
 arity: 2
-type-def: (: Although (-> Event Event ?))  ; out type pending review
-gloss: Concessive connective 'although'.
+type-def: (: Although (-> Event Event Proposition))
+gloss: Concessive connective 'although'. Order: (Connective main-clause-eventuality subordinate-eventuality); a copular endpoint is reified as a state witness. The head is the surface connective itself, never normalized.
 
 
 head: AsAResult
 kind: discourse
 arity: 2
-type-def: (: AsAResult (-> Event Event ?))  ; out type pending review
-gloss: Causal connective 'as a result'.
+type-def: (: AsAResult (-> Event Event Proposition))
+gloss: Causal connective 'as a result'. Order: (Connective main-clause-eventuality subordinate-eventuality); a copular endpoint is reified as a state witness. The head is the surface connective itself, never normalized.
 
 
 head: Because
 kind: discourse
 arity: 2
-type-def: (: Because (-> Event Event ?))  ; out type pending review
-gloss: Causal connective 'because'.
+type-def: (: Because (-> Event Event Proposition))
+gloss: Causal connective 'because'. Order: (Connective main-clause-eventuality subordinate-eventuality); a copular endpoint is reified as a state witness. The head is the surface connective itself, never normalized.
 
 
 head: But
 kind: discourse
 arity: 2
-type-def: (: But (-> Event Event ?))  ; out type pending review
-gloss: Adversative connective 'but'.
+type-def: (: But (-> Event Event Proposition))
+gloss: Adversative connective 'but'. Order: (Connective main-clause-eventuality subordinate-eventuality); a copular endpoint is reified as a state witness. The head is the surface connective itself, never normalized.
 
 
 head: Consequently
 kind: discourse
 arity: 2
-type-def: (: Consequently (-> Event Event ?))  ; out type pending review
-gloss: Causal connective 'consequently'.
+type-def: (: Consequently (-> Event Event Proposition))
+gloss: Causal connective 'consequently'. Order: (Connective main-clause-eventuality subordinate-eventuality); a copular endpoint is reified as a state witness. The head is the surface connective itself, never normalized.
 
 
 head: Despite
 kind: discourse
 arity: 2
-type-def: (: Despite (-> Event Event ?))  ; out type pending review
-gloss: Concessive connective 'despite'.
+type-def: (: Despite (-> Event Event Proposition))
+gloss: Concessive connective 'despite'. Order: (Connective main-clause-eventuality subordinate-eventuality); a copular endpoint is reified as a state witness. The head is the surface connective itself, never normalized.
 
 
 head: EvenThough
 kind: discourse
 arity: 2
-type-def: (: EvenThough (-> Event Event ?))  ; out type pending review
-gloss: Concessive connective 'even though'.
+type-def: (: EvenThough (-> Event Event Proposition))
+gloss: Concessive connective 'even though'. Order: (Connective main-clause-eventuality subordinate-eventuality); a copular endpoint is reified as a state witness. The head is the surface connective itself, never normalized.
 
 
 head: InOrderTo
 kind: discourse
 arity: 2
-type-def: (: InOrderTo (-> Event Event ?))  ; out type pending review
-gloss: Purpose connective 'in order to'.
+type-def: (: InOrderTo (-> Event Event Proposition))
+gloss: Purpose connective 'in order to'. Order: (Connective main-clause-eventuality subordinate-eventuality); a copular endpoint is reified as a state witness. The head is the surface connective itself, never normalized.
 
 
 head: Since
 kind: discourse
 arity: 2
-type-def: (: Since (-> Event Event ?))  ; out type pending review
-gloss: Causal connective 'since'.
+type-def: (: Since (-> Event Event Proposition))
+gloss: Causal connective 'since'. Order: (Connective main-clause-eventuality subordinate-eventuality); a copular endpoint is reified as a state witness. The head is the surface connective itself, never normalized.
 
 
 head: So
 kind: discourse
 arity: 2
-type-def: (: So (-> Event Event ?))  ; out type pending review
-gloss: Causal connective 'so'.
+type-def: (: So (-> Event Event Proposition))
+gloss: Causal connective 'so'. Order: (Connective main-clause-eventuality subordinate-eventuality); a copular endpoint is reified as a state witness. The head is the surface connective itself, never normalized.
 
 
 head: SoAsTo
 kind: discourse
 arity: 2
-type-def: (: SoAsTo (-> Event Event ?))  ; out type pending review
-gloss: Purpose connective 'so as to'.
+type-def: (: SoAsTo (-> Event Event Proposition))
+gloss: Purpose connective 'so as to'. Order: (Connective main-clause-eventuality subordinate-eventuality); a copular endpoint is reified as a state witness. The head is the surface connective itself, never normalized.
 
 
 head: Therefore
 kind: discourse
 arity: 2
-type-def: (: Therefore (-> Event Event ?))  ; out type pending review
-gloss: Causal connective 'therefore'.
+type-def: (: Therefore (-> Event Event Proposition))
+gloss: Causal connective 'therefore'. Order: (Connective main-clause-eventuality subordinate-eventuality); a copular endpoint is reified as a state witness. The head is the surface connective itself, never normalized.
 
 
 head: Thus
 kind: discourse
 arity: 2
-type-def: (: Thus (-> Event Event ?))  ; out type pending review
-gloss: Causal connective 'thus'.
+type-def: (: Thus (-> Event Event Proposition))
+gloss: Causal connective 'thus'. Order: (Connective main-clause-eventuality subordinate-eventuality); a copular endpoint is reified as a state witness. The head is the surface connective itself, never normalized.
 
 
 head: To
 kind: discourse
 arity: 2
-type-def: (: To (-> Event Event ?))  ; out type pending review
-gloss: Purpose infinitive connective 'to'.
+type-def: (: To (-> Event Event Proposition))
+gloss: Purpose infinitive connective 'to'. Order: (Connective main-clause-eventuality subordinate-eventuality); a copular endpoint is reified as a state witness. The head is the surface connective itself, never normalized. Same symbol as the oblique preposition To (To eventuality-or-compound-property entity), told apart by the filler sort.
+
+
+head: Yet
+kind: discourse
+arity: 2
+type-def: (: Yet (-> Event Event Proposition))
+legacy: (: Yet (-> Event Proposition)) · (: Yet (-> Proposition Proposition))  ; kept until the re-parse
+gloss: Adversative inter-clause connective 'X, yet Y' (main, sub), like But. The unary particle sense is now Pending; its legacy declarations are kept until the re-parse. Order: (Connective main-clause-eventuality subordinate-eventuality); a copular endpoint is reified as a state witness. The head is the surface connective itself, never normalized.
 
 
 ## property-constructor (3)
@@ -848,45 +868,53 @@ gloss: Purpose infinitive connective 'to'.
 head: can
 kind: property-constructor
 arity: 1
-type-def: (: can (-> Class ?))  ; out type pending review
-gloss: Builds the reified capability property term from a verb lemma.
+type-def: (: can (-> Class Class))
+gloss: Builds the reified capability property term from a verb lemma; a class-valued term kept nested: (Inheritance bird (can fly)), (Inheritance swimmer (can swim)); on an individual, (Member x (can fly)) is the inherited form.
 
 
 head: obligated
 kind: property-constructor
 arity: 1
-type-def: (: obligated (-> Class ?))  ; out type pending review
-gloss: Builds the reified obligation property term from an action.
+type-def: (: obligated (-> Class Class))
+gloss: Builds the reified obligation property term from an action (possibly a compound verb_object symbol); a class-valued term kept nested: (Inheritance member (obligated pay)); weak "should" at strength 0.7.
 
 
 head: permitted
 kind: property-constructor
 arity: 1
-type-def: (: permitted (-> Class ?))  ; out type pending review
-gloss: Builds the reified permission property term from an action.
+type-def: (: permitted (-> Class Class))
+gloss: Builds the reified permission property term from an action; a class-valued term kept nested: (Inheritance visitor (permitted enter)); a kind-level prohibition is the same term at strength 0.0.
 
 
-## surface-record (3)
+## surface-record (4)
 
 head: CardinalityPhrase
 kind: surface-record
 arity: 2
-type-def: (: CardinalityPhrase (-> Instance String ?))  ; out type pending review
-gloss: Records a vague count phrase on a group ('several', 'dozens').
+type-def: (: CardinalityPhrase (-> Entity String Proposition))
+gloss: Records a vague count phrase on a group ('several', 'dozens'). Surface record: a literal string; excluded from the faithful mining view.
+
+
+head: LikelihoodPhrase
+kind: surface-record
+arity: 2
+type-def: (: LikelihoodPhrase (-> Event String Proposition))
+gloss: Surface record of a likelihood adverb ("probably", "likely", "definitely", "certainly") on the eventuality whose clause carries the corresponding STV strength band — traceability and reversibility of the word-to-strength mapping. Excluded from the faithful mining view like the other surface records.
+status: proposed
 
 
 head: Name
 kind: surface-record
 arity: 2
-type-def: (: Name (-> Instance String ?))  ; out type pending review
-gloss: Records a named individual's surface name string.
+type-def: (: Name (-> Instance String Proposition))
+gloss: Records a named individual's surface name string. Surface record: a literal string; excluded from the faithful mining view.
 
 
 head: QuantifierPhrase
 kind: surface-record
 arity: 3
-type-def: (: QuantifierPhrase (-> Class Class String ?))  ; out type pending review
-gloss: Records the surface quantifier word beside the strength it set.
+type-def: (: QuantifierPhrase (-> Class Class String Proposition))
+gloss: Records the surface quantifier word beside the strength it set. Surface record: a literal string; excluded from the faithful mining view.
 
 
 ## meta (1)
@@ -894,52 +922,41 @@ gloss: Records the surface quantifier word beside the strength it set.
 head: Interpretation
 kind: meta
 arity: 2
-type-def: (: Interpretation (-> String Proposition ?))  ; out type pending review
-gloss: Transport wrapper marking a statement as belonging to one reading of a multi-reading parse: (Interpretation rN (: name expr stv)). Dissolved by the canonicalizer's split-before-canonicalize; never a KB atom (engine marginalization = deferred #48 half).
+type-def: (: Interpretation (-> String Statement Proposition))
+legacy: (: Interpretation (-> String Atom Proposition))  ; kept until the re-parse
+gloss: Transport wrapper marking a statement as belonging to one reading of a multi-reading parse: (Interpretation rN (: name expr stv)). Dissolved by the canonicalizer's split-before-canonicalize; never a KB atom (engine marginalization = deferred #48 half). Typed form: (Interpretation reading-tag statement-id); the legacy inline form wraps the whole statement and is unchecked. Under the flat scope view a reading is a Context and this becomes (Reading c) + (InContext f c).
 
 
-## engine (6)
-
-head: :
-kind: engine
-arity: 3
-type-def: (: : (-> String Proposition Proposition ?))  ; out type pending review
-gloss: Statement wrapper: proof-name, logical content, truth value.
-
+## computation (4)
 
 head: Compute
-kind: engine
+kind: computation
 arity: 4
-type-def: (: Compute (-> String Proposition String Atom ?))  ; out type pending review
-gloss: Hard-numeric arithmetic/comparison test on bound integers.
+type-def: (: Compute (-> Atom Atom Atom Atom Proposition))
+lowering: PeTTaChainer  ; engine form produced by the lowering, not by a template
+gloss: Hard-numeric arithmetic/comparison test on bound integers. Engine form inside rules and queries (Compute op (args) -> result); positions unchecked. Lowering target: templates emit the generic comparison; the lowering produces this form.
 
 
 head: FoldAll
-kind: engine
+kind: computation
 arity: 6
-type-def: (: FoldAll (-> Proposition Atom Number String String Atom ?))  ; out type pending review
-gloss: Aggregate fold across all pattern matches (e.g. sum of cardinalities).
+type-def: (: FoldAll (-> Atom Atom Atom Atom Atom Atom Proposition))
+lowering: PeTTaChainer  ; engine form produced by the lowering, not by a template
+gloss: Aggregate fold across all pattern matches (e.g. sum of cardinalities). Engine aggregate form; positions unchecked. Lowering target: templates emit the generic aggregate (count / sum over a pattern); the lowering produces this form.
 
 
 head: GreaterThan
-kind: engine
+kind: computation
 arity: 2
-type-def: (: GreaterThan (-> Number Number ?))  ; out type pending review
-gloss: Graded P(value > N) over a distribution magnitude.
+type-def: (: GreaterThan (-> Number Number Proposition))  ; and 3 more (per arity / per union alternative)
+gloss: Graded P(value > N) over a distribution magnitude. Generic meaning (a comparison, graded over a distribution); engine-named.
 
 
 head: ParticleFromNormal
-kind: engine
+kind: computation
 arity: 2
-type-def: (: ParticleFromNormal (-> Number Number ?))  ; out type pending review
-gloss: Approximate magnitude as a normal distribution: mean and sigma.
-
-
-head: STV
-kind: engine
-arity: 2
-type-def: (: STV (-> Number Number ?))  ; out type pending review
-gloss: Truth value: strength and confidence, both in [0,1].
+type-def: (: ParticleFromNormal (-> Number Number Distribution))
+gloss: Approximate magnitude as a normal distribution: mean and sigma. Generic meaning (an approximate magnitude, "about 200 kg"); engine-named; other engines get it by lowering.
 
 
 ## open-class heads (not enumerable)
@@ -951,6 +968,9 @@ Heads the prompt licenses generically; the validator checks position and arity o
 - head of a nominalization kind-relation, e.g. (Build dam_builder dam)
 - skolem-function head (sk_<verb>) in a scope construction, e.g. (sk_y $x)
 
+Oblique prepositions (62), all declared `(-> Event|Class Instance Proposition)`: About, Above, Across, After, Against, Along, Among, Around, As, At, Before, Behind, Below, Beneath, Beside, Besides, Between, Beyond, But, By, Concerning, Despite, Down, During, Except, For, From, In, Inside, Into, Like, Near, Of, Off, On, Onto, Opposite, Out, Outside, Over, Past, Per, Regarding, Round, Since, Than, Through, Throughout, Till, To, Toward, Towards, Under, Underneath, Unlike, Until, Up, Upon, Via, With, Within, Without.
+
 ## notes
 
-- Proposed, not yet emitted by any template: Coref, Equivalence, InContext, Not, Similarity.
+- Proposed, not yet emitted by any template: Coref, Equivalence, InContext, LikelihoodPhrase, Not, Pending, Similarity.
+- To retire at the re-parse (declaration kept until then so today's parses still type-check): Forbid, Probably.

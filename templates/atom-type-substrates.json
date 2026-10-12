@@ -7,28 +7,21 @@
       "Atom",
       "Class",
       "Context",
+      "Distribution",
       "Entity",
       "Event",
       "Instance",
+      "Level",
       "Number",
       "Proposition",
       "Statement",
-      "String"
+      "String",
+      "TimeTerm"
     ],
-    "sorts_note": "Declared sort list (PeTTa convention, capitalized): Atom = unchecked position; Proposition = a statement-forming expression; Instance with sub-sorts Entity and Event (a symbol carries both its sub-sort and Instance); Class; Number; String. Migration mapping from the ad-hoc names: term, assertion -> Proposition; property, verb-lemma, unit -> Class; symbol, reading-tag -> String; var, uncertain -> Atom. A union such as Event|Proposition expands to one declaration per alternative. `out` = the output type of the head's type declaration, set as each kind is reviewed. Proposed sorts Statement (a statement id = the proof name, reified) and Context (a scope reified), both sub-sorts of Instance by dual declaration; they belong to the flat context VIEW of scope unless that form becomes canonical."
+    "sorts_note": "Declared sort list (PeTTa convention, capitalized): Atom = unchecked position; Proposition = a statement-forming expression; Instance with sub-sorts Entity and Event (a symbol carries both its sub-sort and Instance); Class; Number; String. Migration mapping from the ad-hoc names: term, assertion -> Proposition; property, verb-lemma, unit -> Class; symbol, reading-tag -> String; var, uncertain -> Atom. A union such as Event|Proposition expands to one declaration per alternative. `out` = the output type of the head's type declaration, set as each kind is reviewed. Proposed sorts Statement (a statement id = the proof name, reified) and Context (a scope reified), both sub-sorts of Instance by dual declaration; they belong to the flat context VIEW of scope unless that form becomes canonical. TimeTerm = a reified time instant or period (not named Time: that is the role head) (sub-sort of Instance by dual declaration; time predicates Day / Hour / Month / … describe it). Distribution = an engine value (ParticleFromNormal …) allowed where an approximate number is. Level = a degree / proportion level: a symbol from a closed label set (very, excessive, most, half — declared Level by the emitter) or a term standing in for one ((forKind class), (Fraction n d)).",
+    "statement_form": "Every atom is carried as a statement (: <proof-name> <atom> <tv>), tv = (STV strength confidence) or another engine truth value. The carrier is not an atom kind: ':' is never type-declared (it is also PeTTa's type-declaration head) and the truth value is declared by the engine, not by this substrate."
   },
   "heads": {
-    ":": {
-      "kind": "engine",
-      "arity": 3,
-      "arg_types": [
-        "String",
-        "Proposition",
-        "Proposition"
-      ],
-      "opaque": false,
-      "gloss": "Statement wrapper: proof-name, logical content, truth value."
-    },
     "AccordingTo": {
       "kind": "scope",
       "arity": 2,
@@ -75,11 +68,12 @@
       "kind": "particle",
       "arity": 2,
       "arg_types": [
-        "Instance",
+        "Instance|Class",
         "Event"
       ],
+      "out": "Proposition",
       "opaque": true,
-      "gloss": "Additive focus particle ('also / too / as well')."
+      "gloss": "Additive focus particle ('also / too / as well'). Filler as for Only; also the carrier of either / neither (ruling 2026-09-29); the additive presupposition is recorded, never asserted."
     },
     "Although": {
       "kind": "discourse",
@@ -88,8 +82,9 @@
         "Event",
         "Event"
       ],
+      "out": "Proposition",
       "opaque": true,
-      "gloss": "Concessive connective 'although'."
+      "gloss": "Concessive connective 'although'. Order: (Connective main-clause-eventuality subordinate-eventuality); a copular endpoint is reified as a state witness. The head is the surface connective itself, never normalized."
     },
     "AmongMost": {
       "kind": "measure",
@@ -99,8 +94,9 @@
         "Instance",
         "Class"
       ],
+      "out": "Proposition",
       "opaque": false,
-      "gloss": "Top-stratum membership: one of the ADJ-est members of a class."
+      "gloss": "Top-stratum membership: one of the ADJ-est members of a class. Order: (AmongMost scale X class)."
     },
     "And": {
       "kind": "core-link",
@@ -120,8 +116,9 @@
         "Event",
         "Event"
       ],
+      "out": "Proposition",
       "opaque": true,
-      "gloss": "Causal connective 'as a result'."
+      "gloss": "Causal connective 'as a result'. Order: (Connective main-clause-eventuality subordinate-eventuality); a copular endpoint is reified as a state witness. The head is the surface connective itself, never normalized."
     },
     "Because": {
       "kind": "discourse",
@@ -130,8 +127,9 @@
         "Event",
         "Event"
       ],
+      "out": "Proposition",
       "opaque": true,
-      "gloss": "Causal connective 'because'."
+      "gloss": "Causal connective 'because'. Order: (Connective main-clause-eventuality subordinate-eventuality); a copular endpoint is reified as a state witness. The head is the surface connective itself, never normalized."
     },
     "Before": {
       "kind": "temporal",
@@ -140,6 +138,7 @@
         "Event",
         "Event"
       ],
+      "out": "Proposition",
       "opaque": false,
       "gloss": "Canonical ordering: the first eventuality precedes the second."
     },
@@ -148,12 +147,13 @@
       "arity": 4,
       "arg_types": [
         "Event",
-        "Event",
+        "Event|TimeTerm",
         "Number",
         "Class"
       ],
+      "out": "Proposition",
       "opaque": false,
-      "gloss": "Measured temporal gap between two eventualities."
+      "gloss": "Measured temporal gap: the first eventuality precedes the second (an eventuality or a time such as now) by n units."
     },
     "Beneficiary": {
       "kind": "role",
@@ -173,8 +173,9 @@
         "Event",
         "Event"
       ],
+      "out": "Proposition",
       "opaque": true,
-      "gloss": "Adversative connective 'but'."
+      "gloss": "Adversative connective 'but'. Order: (Connective main-clause-eventuality subordinate-eventuality); a copular endpoint is reified as a state witness. The head is the surface connective itself, never normalized."
     },
     "Can": {
       "kind": "scope",
@@ -190,51 +191,56 @@
       "kind": "measure",
       "arity": 2,
       "arg_types": [
-        "Instance",
-        "Number"
+        "Entity",
+        "Number|Distribution"
       ],
+      "out": "Proposition",
       "opaque": false,
-      "gloss": "Exact size of a group (a point value, native integer)."
+      "gloss": "Exact size of a group (a point value, native integer). Order: (… group n); an approximate size may be a distribution."
     },
     "CardinalityAtLeast": {
       "kind": "measure",
       "arity": 2,
       "arg_types": [
-        "Instance",
-        "Number"
+        "Entity",
+        "Number|Distribution"
       ],
+      "out": "Proposition",
       "opaque": false,
-      "gloss": "Lower bound on a group's size."
+      "gloss": "Lower bound on a group's size. Order: (… group n); an approximate size may be a distribution."
     },
     "CardinalityAtMost": {
       "kind": "measure",
       "arity": 2,
       "arg_types": [
-        "Instance",
-        "Number"
+        "Entity",
+        "Number|Distribution"
       ],
+      "out": "Proposition",
       "opaque": false,
-      "gloss": "Upper bound on a group's size."
+      "gloss": "Upper bound on a group's size. Order: (… group n); an approximate size may be a distribution."
     },
     "CardinalityPhrase": {
       "kind": "surface-record",
       "arity": 2,
       "arg_types": [
-        "Instance",
+        "Entity",
         "String"
       ],
+      "out": "Proposition",
       "opaque": false,
-      "gloss": "Records a vague count phrase on a group ('several', 'dozens')."
+      "gloss": "Records a vague count phrase on a group ('several', 'dozens'). Surface record: a literal string; excluded from the faithful mining view."
     },
     "Cleft": {
       "kind": "particle",
       "arity": 2,
       "arg_types": [
-        "Instance",
+        "Instance|Class",
         "Event"
       ],
+      "out": "Proposition",
       "opaque": true,
-      "gloss": "It-cleft / pseudo-cleft focus marker."
+      "gloss": "It-cleft / pseudo-cleft focus marker. Filler = the clefted phrase; the backgrounded clause is the asserted prejacent."
     },
     "CoAgent": {
       "kind": "role",
@@ -248,16 +254,18 @@
       "gloss": "Animate co-participant named by a comitative phrase ('with John')."
     },
     "Compute": {
-      "kind": "engine",
+      "kind": "computation",
       "arity": 4,
       "arg_types": [
-        "String",
-        "Proposition",
-        "String",
+        "Atom",
+        "Atom",
+        "Atom",
         "Atom"
       ],
+      "out": "Proposition",
       "opaque": false,
-      "gloss": "Hard-numeric arithmetic/comparison test on bound integers."
+      "gloss": "Hard-numeric arithmetic/comparison test on bound integers. Engine form inside rules and queries (Compute op (args) -> result); positions unchecked. Lowering target: templates emit the generic comparison; the lowering produces this form.",
+      "lowering": "PeTTaChainer"
     },
     "ConditionalProperty": {
       "kind": "relation",
@@ -267,8 +275,9 @@
         "Class",
         "Class"
       ],
+      "out": "Proposition",
       "opaque": false,
-      "gloss": "A kind has a property only under a stated condition."
+      "gloss": "A kind has a property only under a stated condition. Order: (ConditionalProperty kind property condition)."
     },
     "Consequently": {
       "kind": "discourse",
@@ -277,8 +286,9 @@
         "Event",
         "Event"
       ],
+      "out": "Proposition",
       "opaque": true,
-      "gloss": "Causal connective 'consequently'."
+      "gloss": "Causal connective 'consequently'. Order: (Connective main-clause-eventuality subordinate-eventuality); a copular endpoint is reified as a state witness. The head is the surface connective itself, never normalized."
     },
     "Coref": {
       "kind": "core-link",
@@ -305,12 +315,17 @@
     },
     "Day": {
       "kind": "temporal",
-      "arity": 1,
+      "arity": 2,
       "arg_types": [
+        "TimeTerm",
         "Number"
       ],
+      "out": "Proposition",
       "opaque": false,
-      "gloss": "Day-of-month term."
+      "gloss": "Day-of-month of a time instance: (Day t 6). Legacy constructor form (Day 6) kept until the re-parse.",
+      "legacy_type_defs": [
+        "(: Day (-> Number TimeTerm))"
+      ]
     },
     "Degree": {
       "kind": "measure",
@@ -318,10 +333,11 @@
       "arg_types": [
         "Instance",
         "Class",
-        "String"
+        "Level"
       ],
+      "out": "Proposition",
       "opaque": false,
-      "gloss": "Intensity level of a property on an entity."
+      "gloss": "Intensity level of a property on an entity. Order: (Degree entity scale level); the level is a Level label (very, excessive) or (forKind class)."
     },
     "Despite": {
       "kind": "discourse",
@@ -330,8 +346,9 @@
         "Event",
         "Event"
       ],
+      "out": "Proposition",
       "opaque": true,
-      "gloss": "Concessive connective 'despite'."
+      "gloss": "Concessive connective 'despite'. Order: (Connective main-clause-eventuality subordinate-eventuality); a copular endpoint is reified as a state witness. The head is the surface connective itself, never normalized."
     },
     "Directive": {
       "kind": "scope",
@@ -350,8 +367,9 @@
         "Event",
         "String"
       ],
+      "out": "Proposition",
       "opaque": false,
-      "gloss": "Licensed duration-adverb slot: the surface adverb lemma on an eventuality."
+      "gloss": "Licensed duration-adverb slot: the surface adverb lemma on an eventuality. A surface-record-like slot (vague extent); the measured form is (Measure e duration n unit)."
     },
     "During": {
       "kind": "temporal",
@@ -360,6 +378,7 @@
         "Event",
         "Event"
       ],
+      "out": "Proposition",
       "opaque": false,
       "gloss": "The inner eventuality is nested inside the outer one."
     },
@@ -368,10 +387,11 @@
       "arity": 2,
       "arg_types": [
         "Event",
-        "Proposition"
+        "TimeTerm"
       ],
+      "out": "Proposition",
       "opaque": false,
-      "gloss": "Interval end point of an eventuality."
+      "gloss": "Interval end point of an eventuality: (End e t), t a time instance."
     },
     "Equivalence": {
       "kind": "core-link",
@@ -389,11 +409,12 @@
       "kind": "particle",
       "arity": 2,
       "arg_types": [
-        "Instance",
+        "Instance|Class",
         "Event"
       ],
+      "out": "Proposition",
       "opaque": true,
-      "gloss": "Scalar focus particle ('even')."
+      "gloss": "Scalar focus particle ('even'). Filler as for Only; the scalar presupposition is recorded, never asserted."
     },
     "EvenThough": {
       "kind": "discourse",
@@ -402,8 +423,9 @@
         "Event",
         "Event"
       ],
+      "out": "Proposition",
       "opaque": true,
-      "gloss": "Concessive connective 'even though'."
+      "gloss": "Concessive connective 'even though'. Order: (Connective main-clause-eventuality subordinate-eventuality); a copular endpoint is reified as a state witness. The head is the surface connective itself, never normalized."
     },
     "Every": {
       "kind": "temporal",
@@ -413,6 +435,7 @@
         "Number",
         "Class"
       ],
+      "out": "Proposition",
       "opaque": false,
       "gloss": "Periodic recurrence: the event happens every n units."
     },
@@ -428,18 +451,20 @@
       "gloss": "Subject of a stative predication — psych state or predicate-adjective state."
     },
     "FoldAll": {
-      "kind": "engine",
+      "kind": "computation",
       "arity": 6,
       "arg_types": [
-        "Proposition",
         "Atom",
-        "Number",
-        "String",
-        "String",
+        "Atom",
+        "Atom",
+        "Atom",
+        "Atom",
         "Atom"
       ],
+      "out": "Proposition",
       "opaque": false,
-      "gloss": "Aggregate fold across all pattern matches (e.g. sum of cardinalities)."
+      "gloss": "Aggregate fold across all pattern matches (e.g. sum of cardinalities). Engine aggregate form; positions unchecked. Lowering target: templates emit the generic aggregate (count / sum over a pattern); the lowering produces this form.",
+      "lowering": "PeTTaChainer"
     },
     "Forbid": {
       "kind": "scope",
@@ -449,7 +474,8 @@
       ],
       "out": "Proposition",
       "opaque": true,
-      "gloss": "Seals a negative imperative's forbidden eventuality."
+      "gloss": "Seals a negative imperative's forbidden eventuality. RETIRE: under explicit scope a negative imperative is (Directive (Not P)), parallel to (Obligated (Not P)); declaration kept only until the re-parse.",
+      "status": "retire"
     },
     "Fraction": {
       "kind": "measure",
@@ -458,8 +484,9 @@
         "Number",
         "Number"
       ],
+      "out": "Level",
       "opaque": false,
-      "gloss": "Exact fraction / percentage term, numerator over denominator."
+      "gloss": "Exact fraction / percentage term, numerator over denominator. A value term, not a statement: stands in the level slot of ProportionOf (\"two-thirds of\", \"37% of\" as (Fraction 37 100), never reduced)."
     },
     "Future": {
       "kind": "temporal",
@@ -483,22 +510,24 @@
       "gloss": "Non-recipient destination / 'to …' oblique (whither); the addressee of a transfer or communication is Recipient, never Goal."
     },
     "GreaterThan": {
-      "kind": "engine",
+      "kind": "computation",
       "arity": 2,
       "arg_types": [
-        "Number",
-        "Number"
+        "Number|Distribution",
+        "Number|Distribution"
       ],
+      "out": "Proposition",
       "opaque": false,
-      "gloss": "Graded P(value > N) over a distribution magnitude."
+      "gloss": "Graded P(value > N) over a distribution magnitude. Generic meaning (a comparison, graded over a distribution); engine-named."
     },
     "GroupOf": {
       "kind": "relation",
       "arity": 2,
       "arg_types": [
-        "Instance",
+        "Entity",
         "Class"
       ],
+      "out": "Proposition",
       "opaque": false,
       "gloss": "The members of this group individual are of that kind."
     },
@@ -515,12 +544,18 @@
     },
     "Hour": {
       "kind": "temporal",
-      "arity": 1,
+      "arity": 2,
       "arg_types": [
-        "Number"
+        "TimeTerm",
+        "Number|Distribution"
       ],
+      "out": "Proposition",
       "opaque": false,
-      "gloss": "Clock hour term, 24-hour."
+      "gloss": "Clock hour (24-hour) of a time instance: (Hour t 15); an approximate hour may be a distribution. Legacy constructor form (Hour 15) kept until the re-parse.",
+      "legacy_type_defs": [
+        "(: Hour (-> Number TimeTerm))",
+        "(: Hour (-> Distribution TimeTerm))"
+      ]
     },
     "Implication": {
       "kind": "core-link",
@@ -552,8 +587,9 @@
         "Event",
         "Event"
       ],
+      "out": "Proposition",
       "opaque": true,
-      "gloss": "Purpose connective 'in order to'."
+      "gloss": "Purpose connective 'in order to'. Order: (Connective main-clause-eventuality subordinate-eventuality); a copular endpoint is reified as a state witness. The head is the surface connective itself, never normalized."
     },
     "Inheritance": {
       "kind": "core-link",
@@ -582,10 +618,14 @@
       "arity": 2,
       "arg_types": [
         "String",
-        "Proposition"
+        "Statement"
       ],
+      "out": "Proposition",
       "opaque": true,
-      "gloss": "Transport wrapper marking a statement as belonging to one reading of a multi-reading parse: (Interpretation rN (: name expr stv)). Dissolved by the canonicalizer's split-before-canonicalize; never a KB atom (engine marginalization = deferred #48 half)."
+      "gloss": "Transport wrapper marking a statement as belonging to one reading of a multi-reading parse: (Interpretation rN (: name expr stv)). Dissolved by the canonicalizer's split-before-canonicalize; never a KB atom (engine marginalization = deferred #48 half). Typed form: (Interpretation reading-tag statement-id); the legacy inline form wraps the whole statement and is unchecked. Under the flat scope view a reading is a Context and this becomes (Reading c) + (InContext f c).",
+      "legacy_type_defs": [
+        "(: Interpretation (-> String Atom Proposition))"
+      ]
     },
     "KindProperty": {
       "kind": "relation",
@@ -594,18 +634,32 @@
         "Class",
         "Class"
       ],
+      "out": "Proposition",
       "opaque": true,
-      "gloss": "Non-distributing property of a kind/population as a whole."
+      "gloss": "Non-distributing property of a kind/population as a whole. Order: (KindProperty kind property)."
+    },
+    "LikelihoodPhrase": {
+      "kind": "surface-record",
+      "arity": 2,
+      "arg_types": [
+        "Event",
+        "String"
+      ],
+      "out": "Proposition",
+      "opaque": true,
+      "gloss": "Surface record of a likelihood adverb (\"probably\", \"likely\", \"definitely\", \"certainly\") on the eventuality whose clause carries the corresponding STV strength band — traceability and reversibility of the word-to-strength mapping. Excluded from the faithful mining view like the other surface records.",
+      "status": "proposed"
     },
     "LocatedIn": {
       "kind": "relation",
       "arity": 2,
       "arg_types": [
-        "Instance",
-        "Instance"
+        "Entity",
+        "Entity"
       ],
+      "out": "Proposition",
       "opaque": false,
-      "gloss": "Static location of an entity ('X is in Y') — as against the event oblique Location."
+      "gloss": "Static location of an entity ('X is in Y') — as against the event oblique Location. Order: (LocatedIn entity place); the location of an EVENT is the role Location."
     },
     "Location": {
       "kind": "role",
@@ -635,11 +689,12 @@
       "arg_types": [
         "Instance",
         "Class",
-        "Number",
+        "Number|Distribution",
         "Class"
       ],
+      "out": "Proposition",
       "opaque": false,
-      "gloss": "Puts a magnitude and unit on an entity's dimension."
+      "gloss": "Puts a magnitude and unit on an entity's dimension. Order: (… entity-or-event dimension magnitude unit); an approximate magnitude may be a distribution."
     },
     "MeasureAtLeast": {
       "kind": "measure",
@@ -647,11 +702,12 @@
       "arg_types": [
         "Instance",
         "Class",
-        "Number",
+        "Number|Distribution",
         "Class"
       ],
+      "out": "Proposition",
       "opaque": false,
-      "gloss": "Lower-bounded measure."
+      "gloss": "Lower-bounded measure. Order: (… entity-or-event dimension magnitude unit); an approximate magnitude may be a distribution."
     },
     "MeasureAtMost": {
       "kind": "measure",
@@ -659,11 +715,12 @@
       "arg_types": [
         "Instance",
         "Class",
-        "Number",
+        "Number|Distribution",
         "Class"
       ],
+      "out": "Proposition",
       "opaque": false,
-      "gloss": "Upper-bounded measure."
+      "gloss": "Upper-bounded measure. Order: (… entity-or-event dimension magnitude unit); an approximate magnitude may be a distribution."
     },
     "MeasureBy": {
       "kind": "measure",
@@ -671,11 +728,12 @@
       "arg_types": [
         "Event",
         "Class",
-        "Number",
+        "Number|Distribution",
         "Class"
       ],
+      "out": "Proposition",
       "opaque": false,
-      "gloss": "Delta of a scalar-change eventuality: how much the dimension changed."
+      "gloss": "Delta of a scalar-change eventuality: how much the dimension changed. Order: (… event dimension magnitude unit)."
     },
     "MeasureFrom": {
       "kind": "measure",
@@ -683,11 +741,12 @@
       "arg_types": [
         "Event",
         "Class",
-        "Number",
+        "Number|Distribution",
         "Class"
       ],
+      "out": "Proposition",
       "opaque": false,
-      "gloss": "Start value of a scalar change (\"from X\")."
+      "gloss": "Start value of a scalar change (\"from X\"). Order: (… event dimension magnitude unit)."
     },
     "MeasureTo": {
       "kind": "measure",
@@ -695,11 +754,12 @@
       "arg_types": [
         "Event",
         "Class",
-        "Number",
+        "Number|Distribution",
         "Class"
       ],
+      "out": "Proposition",
       "opaque": false,
-      "gloss": "End value of a scalar change (\"to Y\", \"rose to 6.1%\")."
+      "gloss": "End value of a scalar change (\"to Y\", \"rose to 6.1%\"). Order: (… event dimension magnitude unit)."
     },
     "Member": {
       "kind": "core-link",
@@ -724,31 +784,42 @@
     },
     "Minute": {
       "kind": "temporal",
-      "arity": 1,
+      "arity": 2,
       "arg_types": [
+        "TimeTerm",
         "Number"
       ],
+      "out": "Proposition",
       "opaque": false,
-      "gloss": "Clock minute term."
+      "gloss": "Clock minute of a time instance: (Minute t 30). Legacy constructor form kept until the re-parse.",
+      "legacy_type_defs": [
+        "(: Minute (-> Number TimeTerm))"
+      ]
     },
     "Month": {
       "kind": "temporal",
-      "arity": 1,
+      "arity": 2,
       "arg_types": [
-        "String"
+        "TimeTerm",
+        "Class"
       ],
+      "out": "Proposition",
       "opaque": false,
-      "gloss": "Calendar month term (lowercase month-name lemma)."
+      "gloss": "Calendar month of a time instance, the month name as a class of time periods: (Month t july). Legacy constructor form (Month july) kept until the re-parse.",
+      "legacy_type_defs": [
+        "(: Month (-> Class TimeTerm))"
+      ]
     },
     "MonthNumber": {
       "kind": "lexicon",
       "arity": 2,
       "arg_types": [
-        "String",
+        "Class",
         "Number"
       ],
+      "out": "Proposition",
       "opaque": false,
-      "gloss": "Seeded lexicon fact giving a month name its ordinal number."
+      "gloss": "Seeded lexicon fact giving a month name its ordinal number. Background fact (seeded), never parser output; month names are classes of time periods."
     },
     "More": {
       "kind": "measure",
@@ -758,8 +829,9 @@
         "Instance",
         "Instance"
       ],
+      "out": "Proposition",
       "opaque": false,
-      "gloss": "X exceeds Y on a scale (reified comparative ordering)."
+      "gloss": "X exceeds Y on a scale (reified comparative ordering). Order: (More scale X Y) = X exceeds Y."
     },
     "MoreBy": {
       "kind": "measure",
@@ -768,11 +840,12 @@
         "Class",
         "Instance",
         "Instance",
-        "Number",
+        "Number|Distribution",
         "Class"
       ],
+      "out": "Proposition",
       "opaque": false,
-      "gloss": "Comparative with a measured gap: X exceeds Y by n units."
+      "gloss": "Comparative with a measured gap: X exceeds Y by n units. Order: (MoreBy scale X Y magnitude unit)."
     },
     "Most": {
       "kind": "measure",
@@ -782,8 +855,9 @@
         "Instance",
         "Class"
       ],
+      "out": "Proposition",
       "opaque": false,
-      "gloss": "Superlative: X is the most ADJ member of a class."
+      "gloss": "Superlative: X is the most ADJ member of a class. Order: (Most scale X class)."
     },
     "Must": {
       "kind": "scope",
@@ -802,8 +876,9 @@
         "Instance",
         "String"
       ],
+      "out": "Proposition",
       "opaque": false,
-      "gloss": "Records a named individual's surface name string."
+      "gloss": "Records a named individual's surface name string. Surface record: a literal string; excluded from the faithful mining view."
     },
     "Not": {
       "kind": "scope",
@@ -840,11 +915,12 @@
       "kind": "particle",
       "arity": 2,
       "arg_types": [
-        "Instance",
+        "Instance|Class",
         "Event"
       ],
+      "out": "Proposition",
       "opaque": true,
-      "gloss": "Exclusive focus particle ('only / just / solely')."
+      "gloss": "Exclusive focus particle ('only / just / solely'). Filler = the focused constituent: an instance (subject / object focus) or a class lemma (VP / predicate focus); the prejacent is asserted normally; no exclusion rule is emitted (closure-gated)."
     },
     "Or": {
       "kind": "core-link",
@@ -865,8 +941,9 @@
         "Number",
         "Class"
       ],
+      "out": "Proposition",
       "opaque": true,
-      "gloss": "The entity's rank n on an ordering scale."
+      "gloss": "The entity's rank n on an ordering scale. Order: (Ordinal entity rank scale); the scale may be a verb lemma (\"first to respond\")."
     },
     "PartOf": {
       "kind": "relation",
@@ -875,18 +952,20 @@
         "Instance",
         "Instance"
       ],
+      "out": "Proposition",
       "opaque": false,
-      "gloss": "Part/component (or named member) of a whole."
+      "gloss": "Part/component (or named member) of a whole. Order: (PartOf part whole); eventualities may have parts."
     },
     "ParticleFromNormal": {
-      "kind": "engine",
+      "kind": "computation",
       "arity": 2,
       "arg_types": [
         "Number",
         "Number"
       ],
+      "out": "Distribution",
       "opaque": false,
-      "gloss": "Approximate magnitude as a normal distribution: mean and sigma."
+      "gloss": "Approximate magnitude as a normal distribution: mean and sigma. Generic meaning (an approximate magnitude, \"about 200 kg\"); engine-named; other engines get it by lowering."
     },
     "Past": {
       "kind": "temporal",
@@ -909,6 +988,17 @@
       "opaque": false,
       "gloss": "Object the action creates, destroys, consumes or physically changes."
     },
+    "Pending": {
+      "kind": "particle",
+      "arity": 1,
+      "arg_types": [
+        "Event|Proposition"
+      ],
+      "out": "Proposition",
+      "opaque": true,
+      "gloss": "NPI 'yet' particle: expected but not yet (under negation or a question); the expectation is recorded, never asserted — its own positive atom outside any denial. Renamed from the arity-1 sense of Yet (owner 2026-10-12) to free Yet for the adversative connective.",
+      "status": "proposed"
+    },
     "Permitted": {
       "kind": "scope",
       "arity": 1,
@@ -923,11 +1013,12 @@
       "kind": "relation",
       "arity": 2,
       "arg_types": [
-        "Instance",
-        "Instance"
+        "Entity",
+        "Entity"
       ],
+      "out": "Proposition",
       "opaque": true,
-      "gloss": "Possessed-to-possessor link (ownership, kinship, loose association)."
+      "gloss": "Possessed-to-possessor link (ownership, kinship, loose association). Order: (Possession possessed possessor). The possessive construction (NP-internal); the verb \"own / have\" is an event with Holder and Theme, and their relation is a background rule, never a parser collapse."
     },
     "Probably": {
       "kind": "scope",
@@ -937,18 +1028,20 @@
       ],
       "out": "Proposition",
       "opaque": false,
-      "gloss": "Epistemic probability ('probably'). Target form: operator over the sealed clause (-> Proposition Proposition); the tag form (-> Event Proposition) is legacy, kept only until the re-parse."
+      "gloss": "Epistemic probability ('probably'). Target form: operator over the sealed clause (-> Proposition Proposition); the tag form (-> Event Proposition) is legacy, kept only until the re-parse. RETIRE: the likelihood becomes the clause statement's STV strength (band per word, in the template), and the surface word is kept by a LikelihoodPhrase surface record; declaration kept only until the re-parse.",
+      "status": "retire"
     },
     "ProportionOf": {
       "kind": "relation",
       "arity": 3,
       "arg_types": [
-        "Instance",
-        "Instance",
-        "String"
+        "Entity",
+        "Entity",
+        "Level"
       ],
+      "out": "Proposition",
       "opaque": false,
-      "gloss": "The portion's proportion of a definite whole."
+      "gloss": "The portion's proportion of a definite whole. Order: (ProportionOf portion whole level); the level is a symbol from a closed label set (most, half, …), declared String-sorted by the emitter. The level is a Level label (most, half) or a (Fraction n d) term."
     },
     "PurposeOf": {
       "kind": "relation",
@@ -957,8 +1050,9 @@
         "Event",
         "Event"
       ],
+      "out": "Proposition",
       "opaque": false,
-      "gloss": "Canonical ask-relation: purpose/goal of a focus event."
+      "gloss": "Canonical ask-relation: purpose/goal of a focus event. Order: (PurposeOf goal-eventuality focus-event). Observation when the text states it; derived by a seeded bridge from InOrderTo / To otherwise — the origin field tells which."
     },
     "QuantifierPhrase": {
       "kind": "surface-record",
@@ -968,18 +1062,23 @@
         "Class",
         "String"
       ],
+      "out": "Proposition",
       "opaque": false,
-      "gloss": "Records the surface quantifier word beside the strength it set."
+      "gloss": "Records the surface quantifier word beside the strength it set. Surface record: a literal string; excluded from the faithful mining view."
     },
     "Quarter": {
       "kind": "temporal",
       "arity": 2,
       "arg_types": [
-        "Number",
+        "TimeTerm",
         "Number"
       ],
+      "out": "Proposition",
       "opaque": false,
-      "gloss": "Calendar/fiscal quarter term: (Quarter q year)."
+      "gloss": "Calendar / fiscal quarter of a time instance: (Quarter t 3) beside (Year t 2003). Legacy constructor form (Quarter 3 2003) kept until the re-parse.",
+      "legacy_type_defs": [
+        "(: Quarter (-> Number Number TimeTerm))"
+      ]
     },
     "Question": {
       "kind": "scope",
@@ -999,8 +1098,9 @@
         "Event",
         "Event"
       ],
+      "out": "Proposition",
       "opaque": false,
-      "gloss": "Canonical ask-relation: reason for a focus event."
+      "gloss": "Canonical ask-relation: reason for a focus event. Order: (ReasonFor reason-eventuality focus-event). Observation when the text states it; derived by a seeded bridge from Because / Since otherwise — the origin field tells which."
     },
     "Recipient": {
       "kind": "role",
@@ -1017,11 +1117,12 @@
       "kind": "relation",
       "arity": 2,
       "arg_types": [
-        "Instance",
-        "Instance"
+        "Entity",
+        "Entity"
       ],
+      "out": "Proposition",
       "opaque": true,
-      "gloss": "Flags a portion as the remainder of a definite whole."
+      "gloss": "Flags a portion as the remainder of a definite whole. Order: (RestOf remainder whole)."
     },
     "Result": {
       "kind": "relation",
@@ -1030,18 +1131,9 @@
         "Event",
         "Event"
       ],
+      "out": "Proposition",
       "opaque": false,
-      "gloss": "Links an event to the reified result state it caused."
-    },
-    "STV": {
-      "kind": "engine",
-      "arity": 2,
-      "arg_types": [
-        "Number",
-        "Number"
-      ],
-      "opaque": false,
-      "gloss": "Truth value: strength and confidence, both in [0,1]."
+      "gloss": "Links an event to the reified result state it caused. Order: (Result event result-state); the result state is an eventuality."
     },
     "SameDegree": {
       "kind": "measure",
@@ -1051,8 +1143,9 @@
         "Instance",
         "Instance"
       ],
+      "out": "Proposition",
       "opaque": false,
-      "gloss": "Equative: X is as ADJ as Y."
+      "gloss": "Equative: X is as ADJ as Y. Order: (SameDegree scale X Y)."
     },
     "ScaleOpposite": {
       "kind": "lexicon",
@@ -1061,8 +1154,9 @@
         "Class",
         "Class"
       ],
+      "out": "Proposition",
       "opaque": false,
-      "gloss": "Links the two poles of one gradable dimension."
+      "gloss": "Links the two poles of one gradable dimension. Background fact (seeded), never parser output."
     },
     "Similarity": {
       "kind": "core-link",
@@ -1083,8 +1177,9 @@
         "Event",
         "Event"
       ],
+      "out": "Proposition",
       "opaque": true,
-      "gloss": "Causal connective 'since'."
+      "gloss": "Causal connective 'since'. Order: (Connective main-clause-eventuality subordinate-eventuality); a copular endpoint is reified as a state witness. The head is the surface connective itself, never normalized."
     },
     "So": {
       "kind": "discourse",
@@ -1093,8 +1188,9 @@
         "Event",
         "Event"
       ],
+      "out": "Proposition",
       "opaque": true,
-      "gloss": "Causal connective 'so'."
+      "gloss": "Causal connective 'so'. Order: (Connective main-clause-eventuality subordinate-eventuality); a copular endpoint is reified as a state witness. The head is the surface connective itself, never normalized."
     },
     "SoAsTo": {
       "kind": "discourse",
@@ -1103,8 +1199,9 @@
         "Event",
         "Event"
       ],
+      "out": "Proposition",
       "opaque": true,
-      "gloss": "Purpose connective 'so as to'."
+      "gloss": "Purpose connective 'so as to'. Order: (Connective main-clause-eventuality subordinate-eventuality); a copular endpoint is reified as a state witness. The head is the surface connective itself, never normalized."
     },
     "Source": {
       "kind": "role",
@@ -1122,10 +1219,11 @@
       "arity": 2,
       "arg_types": [
         "Event",
-        "Proposition"
+        "TimeTerm"
       ],
+      "out": "Proposition",
       "opaque": false,
-      "gloss": "Interval start point of an eventuality."
+      "gloss": "Interval start point of an eventuality: (Start e t) with the time instance t described by Day / Hour / Year … atoms."
     },
     "Still": {
       "kind": "particle",
@@ -1152,20 +1250,22 @@
       "kind": "relation",
       "arity": 2,
       "arg_types": [
-        "Instance",
-        "Instance"
+        "Entity",
+        "Entity"
       ],
+      "out": "Proposition",
       "opaque": false,
-      "gloss": "A quantified subset group of a definite superset group."
+      "gloss": "A quantified subset group of a definite superset group. Order: (SubsetOf subset-group superset-group); both are group individuals."
     },
     "Symmetric": {
       "kind": "lexicon",
       "arity": 1,
       "arg_types": [
-        "String"
+        "Atom"
       ],
+      "out": "Proposition",
       "opaque": true,
-      "gloss": "Tags a relation head as mutual by meaning."
+      "gloss": "Tags a relation head as mutual by meaning. The argument is a relation HEAD symbol (an open-class mutual predicate such as Friend); heads are not a sort, so the position is unchecked. Background fact about the vocabulary."
     },
     "Theme": {
       "kind": "role",
@@ -1185,8 +1285,9 @@
         "Event",
         "Event"
       ],
+      "out": "Proposition",
       "opaque": true,
-      "gloss": "Causal connective 'therefore'."
+      "gloss": "Causal connective 'therefore'. Order: (Connective main-clause-eventuality subordinate-eventuality); a copular endpoint is reified as a state witness. The head is the surface connective itself, never normalized."
     },
     "Thus": {
       "kind": "discourse",
@@ -1195,39 +1296,42 @@
         "Event",
         "Event"
       ],
+      "out": "Proposition",
       "opaque": true,
-      "gloss": "Causal connective 'thus'."
+      "gloss": "Causal connective 'thus'. Order: (Connective main-clause-eventuality subordinate-eventuality); a copular endpoint is reified as a state witness. The head is the surface connective itself, never normalized."
     },
     "Time": {
       "kind": "role",
       "arity": 2,
       "arg_types": [
         "Event",
-        "Instance"
+        "TimeTerm"
       ],
       "out": "Proposition",
       "opaque": false,
-      "gloss": "Locates an eventuality at a time point or recurrence slot."
+      "gloss": "Locates an eventuality at a time point or recurrence slot. Filler = a time instance (deictic constants such as yesterday / now are declared Time by the emitter)."
     },
     "TimeAtLeast": {
       "kind": "temporal",
       "arity": 2,
       "arg_types": [
         "Event",
-        "Proposition"
+        "TimeTerm"
       ],
+      "out": "Proposition",
       "opaque": false,
-      "gloss": "Lower-bounded (earliest) time of an eventuality."
+      "gloss": "Lower-bounded (earliest) time of an eventuality: (TimeAtLeast e t), t a time instance."
     },
     "TimeAtMost": {
       "kind": "temporal",
       "arity": 2,
       "arg_types": [
         "Event",
-        "Proposition"
+        "TimeTerm"
       ],
+      "out": "Proposition",
       "opaque": false,
-      "gloss": "Upper-bounded (latest) time of an eventuality."
+      "gloss": "Upper-bounded (latest) time of an eventuality: (TimeAtMost e t), t a time instance."
     },
     "TimesAs": {
       "kind": "measure",
@@ -1238,8 +1342,9 @@
         "Instance",
         "Number"
       ],
+      "out": "Proposition",
       "opaque": false,
-      "gloss": "Multiplicative comparative: X is <factor> times as ADJ as Y."
+      "gloss": "Multiplicative comparative: X is <factor> times as ADJ as Y. Order: (TimesAs scale X Y factor)."
     },
     "TimesPer": {
       "kind": "temporal",
@@ -1249,6 +1354,7 @@
         "Number",
         "Class"
       ],
+      "out": "Proposition",
       "opaque": false,
       "gloss": "Rate recurrence: n times per unit."
     },
@@ -1259,27 +1365,34 @@
         "Event",
         "Event"
       ],
+      "out": "Proposition",
       "opaque": true,
-      "gloss": "Purpose infinitive connective 'to'."
+      "gloss": "Purpose infinitive connective 'to'. Order: (Connective main-clause-eventuality subordinate-eventuality); a copular endpoint is reified as a state witness. The head is the surface connective itself, never normalized. Same symbol as the oblique preposition To (To eventuality-or-compound-property entity), told apart by the filler sort."
     },
     "Weekday": {
       "kind": "temporal",
-      "arity": 1,
+      "arity": 2,
       "arg_types": [
-        "String"
+        "TimeTerm",
+        "Class"
       ],
+      "out": "Proposition",
       "opaque": false,
-      "gloss": "Weekday term (lowercase weekday-name lemma)."
+      "gloss": "Weekday of a time instance, the weekday name as a class: (Weekday t tuesday). Legacy constructor form kept until the re-parse.",
+      "legacy_type_defs": [
+        "(: Weekday (-> Class TimeTerm))"
+      ]
     },
     "WeekdayNumber": {
       "kind": "lexicon",
       "arity": 2,
       "arg_types": [
-        "String",
+        "Class",
         "Number"
       ],
+      "out": "Proposition",
       "opaque": false,
-      "gloss": "Seeded lexicon fact giving a weekday name its number (monday=1)."
+      "gloss": "Seeded lexicon fact giving a weekday name its number (monday=1). Background fact (seeded), never parser output."
     },
     "Whether": {
       "kind": "scope",
@@ -1299,6 +1412,7 @@
         "Number",
         "Class"
       ],
+      "out": "Proposition",
       "opaque": false,
       "gloss": "Backward window: the eventuality falls within the last n units."
     },
@@ -1315,26 +1429,32 @@
     },
     "Year": {
       "kind": "temporal",
-      "arity": 1,
+      "arity": 2,
       "arg_types": [
+        "TimeTerm",
         "Number"
       ],
+      "out": "Proposition",
       "opaque": false,
-      "gloss": "Calendar year term."
+      "gloss": "Calendar year of a time instance: (Year t 2026). Legacy constructor form (Year 2026) kept until the re-parse.",
+      "legacy_type_defs": [
+        "(: Year (-> Number TimeTerm))"
+      ]
     },
     "Yet": {
-      "kind": "particle",
-      "arity": [
-        1,
-        2
-      ],
+      "kind": "discourse",
+      "arity": 2,
       "arg_types": [
-        "Event|Proposition",
-        "Proposition"
+        "Event",
+        "Event"
       ],
       "out": "Proposition",
       "opaque": true,
-      "gloss": "NPI 'yet': expected but not yet — under negation or a question. HEAD COLLISION: arity 1 = the aspectual particle (tag on an event or operator over a proposition); arity 2 = an unrelated adversative connective 'X, yet Y' — to be split into its own head under discourse."
+      "gloss": "Adversative inter-clause connective 'X, yet Y' (main, sub), like But. The unary particle sense is now Pending; its legacy declarations are kept until the re-parse. Order: (Connective main-clause-eventuality subordinate-eventuality); a copular endpoint is reified as a state witness. The head is the surface connective itself, never normalized.",
+      "legacy_type_defs": [
+        "(: Yet (-> Event Proposition))",
+        "(: Yet (-> Proposition Proposition))"
+      ]
     },
     "can": {
       "kind": "property-constructor",
@@ -1342,8 +1462,9 @@
       "arg_types": [
         "Class"
       ],
+      "out": "Class",
       "opaque": false,
-      "gloss": "Builds the reified capability property term from a verb lemma."
+      "gloss": "Builds the reified capability property term from a verb lemma; a class-valued term kept nested: (Inheritance bird (can fly)), (Inheritance swimmer (can swim)); on an individual, (Member x (can fly)) is the inherited form."
     },
     "forKind": {
       "kind": "measure",
@@ -1351,8 +1472,9 @@
       "arg_types": [
         "Class"
       ],
+      "out": "Level",
       "opaque": false,
-      "gloss": "Comparison-class marker: ADJ relative to the norm for a kind."
+      "gloss": "Comparison-class marker: ADJ relative to the norm for a kind. A value term, not a statement: stands in the level slot of Degree."
     },
     "obligated": {
       "kind": "property-constructor",
@@ -1360,8 +1482,9 @@
       "arg_types": [
         "Class"
       ],
+      "out": "Class",
       "opaque": false,
-      "gloss": "Builds the reified obligation property term from an action."
+      "gloss": "Builds the reified obligation property term from an action (possibly a compound verb_object symbol); a class-valued term kept nested: (Inheritance member (obligated pay)); weak \"should\" at strength 0.7."
     },
     "permitted": {
       "kind": "property-constructor",
@@ -1369,8 +1492,9 @@
       "arg_types": [
         "Class"
       ],
+      "out": "Class",
       "opaque": false,
-      "gloss": "Builds the reified permission property term from an action."
+      "gloss": "Builds the reified permission property term from an action; a class-valued term kept nested: (Inheritance visitor (permitted enter)); a kind-level prohibition is the same term at strength 0.0."
     }
   },
   "open_class": {
@@ -1380,6 +1504,78 @@
       "head of a symmetric relation atom accompanied by (Symmetric <head>)",
       "head of a nominalization kind-relation, e.g. (Build dam_builder dam)",
       "skolem-function head (sk_<verb>) in a scope construction, e.g. (sk_y $x)"
-    ]
+    ],
+    "oblique_prepositions": [
+      "About",
+      "Above",
+      "Across",
+      "After",
+      "Against",
+      "Along",
+      "Among",
+      "Around",
+      "As",
+      "At",
+      "Before",
+      "Behind",
+      "Below",
+      "Beneath",
+      "Beside",
+      "Besides",
+      "Between",
+      "Beyond",
+      "But",
+      "By",
+      "Concerning",
+      "Despite",
+      "Down",
+      "During",
+      "Except",
+      "For",
+      "From",
+      "In",
+      "Inside",
+      "Into",
+      "Like",
+      "Near",
+      "Of",
+      "Off",
+      "On",
+      "Onto",
+      "Opposite",
+      "Out",
+      "Outside",
+      "Over",
+      "Past",
+      "Per",
+      "Regarding",
+      "Round",
+      "Since",
+      "Than",
+      "Through",
+      "Throughout",
+      "Till",
+      "To",
+      "Toward",
+      "Towards",
+      "Under",
+      "Underneath",
+      "Unlike",
+      "Until",
+      "Up",
+      "Upon",
+      "Via",
+      "With",
+      "Within",
+      "Without"
+    ],
+    "oblique_signature": {
+      "arg_types": [
+        "Event|Class",
+        "Instance"
+      ],
+      "out": "Proposition",
+      "note": "every oblique preposition head attaches a participant to an eventuality (or, in the compound-property decomposition, to a compound property class); the preposition actually used is the head"
+    }
   }
 }

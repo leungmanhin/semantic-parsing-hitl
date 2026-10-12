@@ -53,7 +53,7 @@ KIND_ORDER = [
     "property-constructor",
     "surface-record",
     "meta",
-    "engine",
+    "computation",
 ]
 
 #: PeTTa types are fixed-arity, so a variadic head gets one declaration per arity up to this.
@@ -101,9 +101,11 @@ def type_defs(head: str, entry: dict, out: str) -> list[str]:
 
 
 def declarations(head: str, entry: dict) -> list[str]:
-    """The declarations emitted to the .metta file: only heads with an ``out`` type."""
+    """The declarations emitted to the .metta file: heads with an ``out`` type, plus any
+    ``legacy_type_defs`` kept so that parses made before a rename still type-check."""
     out = entry.get("out")
-    return type_defs(head, entry, out) if out else []
+    forms = type_defs(head, entry, out) if out else []
+    return forms + list(entry.get("legacy_type_defs") or [])
 
 
 def type_def_line(head: str, entry: dict) -> str:
@@ -143,6 +145,9 @@ def render_md(src: dict) -> str:
         f"`.metta` file; `{UNTYPED}` marks a position the head takes but the JSON does not type."
     )
     lines.append("")
+    if meta.get("statement_form"):
+        lines.append(meta["statement_form"])
+        lines.append("")
     sorts = meta.get("sorts")
     if sorts:
         lines.append(f"Sorts: {', '.join(sorts)}.")
@@ -161,10 +166,14 @@ def render_md(src: dict) -> str:
             lines.append(f"kind: {kind}")
             lines.append(f"arity: {arity_text(e)}")
             lines.append(f"type-def: {type_def_line(name, e)}")
+            if e.get("lowering"):
+                lines.append(f"lowering: {e['lowering']}  ; engine form produced by the lowering, not by a template")
+            if e.get("legacy_type_defs"):
+                lines.append(f"legacy: {' · '.join(e['legacy_type_defs'])}  ; kept until the re-parse")
             if e.get("gloss"):
                 lines.append(f"gloss: {e['gloss']}")
-            if e.get("status") == "proposed":
-                lines.append("status: proposed")
+            if e.get("status"):
+                lines.append(f"status: {e['status']}")
             lines.append("")
             lines.append("")
 
@@ -179,12 +188,27 @@ def render_md(src: dict) -> str:
         lines.append("")
         for pos in oc.get("positions") or []:
             lines.append(f"- {pos}")
+        sig = oc.get("oblique_signature")
+        preps = oc.get("oblique_prepositions") or []
+        if sig and preps:
+            lines.append("")
+            lines.append(
+                f"Oblique prepositions ({len(preps)}), all declared "
+                f"`(-> {' '.join(sig['arg_types'])} {sig['out']})`: {', '.join(preps)}."
+            )
         lines.append("")
 
-    if proposed:
+    retired = sorted(n for n, e in heads.items() if e.get("status") == "retire")
+    if proposed or retired:
         lines.append("## notes")
         lines.append("")
-        lines.append(f"- Proposed, not yet emitted by any template: {', '.join(proposed)}.")
+        if proposed:
+            lines.append(f"- Proposed, not yet emitted by any template: {', '.join(proposed)}.")
+        if retired:
+            lines.append(
+                f"- To retire at the re-parse (declaration kept until then so today's parses still "
+                f"type-check): {', '.join(retired)}."
+            )
         lines.append("")
     return "\n".join(lines)
 
@@ -206,6 +230,14 @@ def render_metta(src: dict) -> str:
     lines.append("")
     for name in sorted(heads):
         lines.extend(declarations(name, heads[name]))
+    oc = src.get("open_class") or {}
+    sig = oc.get("oblique_signature")
+    preps = oc.get("oblique_prepositions") or []
+    if sig and preps:
+        lines.append("")
+        lines.append(";; open-class oblique prepositions (licensed heads), one signature for all")
+        for prep in preps:
+            lines.extend(type_defs(prep, {"arity": len(sig["arg_types"]), "arg_types": sig["arg_types"]}, sig["out"]))
     lines.append("")
     return "\n".join(lines)
 
