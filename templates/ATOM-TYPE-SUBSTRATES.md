@@ -679,15 +679,15 @@ gloss: End value of a scalar change ("to Y", "rose to 6.1%"). Order: (… event 
 head: More
 kind: measure
 arity: 3
-type-def: (: More (-> Class Instance Instance Proposition))
-gloss: X exceeds Y on a scale (reified comparative ordering). Order: (More scale X Y) = X exceeds Y.
+type-def: (: More (-> Class Instance Instance Proposition))  ; and 3 more (per arity / per union alternative)
+gloss: X exceeds Y on a scale (reified comparative ordering). Order: (More scale X Y) = X exceeds Y. X and Y are instances, or classes in a kind-level comparison ((More hard basalt chalk)).
 
 
 head: MoreBy
 kind: measure
 arity: 5
-type-def: (: MoreBy (-> Class Instance Instance Number Class Proposition))  ; and 1 more (per arity / per union alternative)
-gloss: Comparative with a measured gap: X exceeds Y by n units. Order: (MoreBy scale X Y magnitude unit).
+type-def: (: MoreBy (-> Class Instance Instance Number Class Proposition))  ; and 7 more (per arity / per union alternative)
+gloss: Comparative with a measured gap: X exceeds Y by n units. Order: (MoreBy scale X Y magnitude unit). X and Y are instances, or classes in a kind-level comparison ((More hard basalt chalk)).
 
 
 head: Most
@@ -707,15 +707,15 @@ gloss: The entity's rank n on an ordering scale. Order: (Ordinal entity rank sca
 head: SameDegree
 kind: measure
 arity: 3
-type-def: (: SameDegree (-> Class Instance Instance Proposition))
-gloss: Equative: X is as ADJ as Y. Order: (SameDegree scale X Y).
+type-def: (: SameDegree (-> Class Instance Instance Proposition))  ; and 3 more (per arity / per union alternative)
+gloss: Equative: X is as ADJ as Y. Order: (SameDegree scale X Y). X and Y are instances, or classes in a kind-level comparison ((More hard basalt chalk)).
 
 
 head: TimesAs
 kind: measure
 arity: 4
-type-def: (: TimesAs (-> Class Instance Instance Number Proposition))
-gloss: Multiplicative comparative: X is <factor> times as ADJ as Y. Order: (TimesAs scale X Y factor).
+type-def: (: TimesAs (-> Class Instance Instance Number Proposition))  ; and 3 more (per arity / per union alternative)
+gloss: Multiplicative comparative: X is <factor> times as ADJ as Y. Order: (TimesAs scale X Y factor). X and Y are instances, or classes in a kind-level comparison ((More hard basalt chalk)).
 
 
 head: forKind

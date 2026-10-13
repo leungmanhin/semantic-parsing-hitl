@@ -485,6 +485,66 @@ class _Emitter:
     def _bundle(self, terms):
         return terms[0] if len(terms) == 1 else ["And"] + terms
 
+    # ------------------------------------------------------------------ sorts
+    MINTED_SORT = {"E01": "Entity", "E02": "Entity", "E03": "Entity",
+                   "V01": "Event", "V05": "Event", "V02": "Event"}
+    SUBSORTS_OF_INSTANCE = ("Entity", "Event", "TimeTerm")
+
+    def _declarations(self) -> list[str]:
+        """``(: symbol Sort)`` lines for every symbol this record mints or mentions, derived
+        from the registry's slot types (R9: the type checker verifies the atoms against them).
+        Minted referents: entities (E01/E02/E03) and eventualities (V01/V05/V02); ``lemma``
+        slots are classes; bare role / oblique / filler symbols are entities, except the
+        lexical roles (Manner -> Class, Duration -> String) and a kind-level comparison (both
+        D01 sides bare -> classes); a T02 constant is a time term; a T01 month / weekday name
+        is a class."""
+        sorts: dict[str, set] = {}
+
+        def put(sym, sort):
+            if isinstance(sym, str) and sym and not R.is_ref(sym) and not sym.startswith("$"):
+                sorts.setdefault(sym, set()).add(sort)
+
+        for r in self.insts:
+            t = r["t"]
+            if r.get("id") in self.sym and t in self.MINTED_SORT:
+                put(self.sym[r["id"]], self.MINTED_SORT[t])
+            spec = (self.reg["templates"].get(t) or {}).get("slots") or {}
+            for slot, sp in spec.items():
+                v = r.get(slot)
+                if v is None:
+                    continue
+                kind = sp.get("type")
+                if kind == "lemma":
+                    put(v, "TimeTerm" if (t, slot) == ("T02", "const") else "Class")
+                elif kind == "list":
+                    inner = (sp.get("of") or {}).get("type")
+                    for x in v:
+                        if inner == "lemma":
+                            put(x, "Class")
+                        elif inner == "filler":
+                            put(x, "Entity")
+                elif kind == "filler":
+                    both_bare = t == "D01" and not R.is_ref(r.get("x", "@")) and not R.is_ref(r.get("y", "@"))
+                    put(v, "Class" if both_bare and slot in ("x", "y") else "Entity")
+                elif kind == "roles":
+                    for role, vals in v.items():
+                        for x in (vals if isinstance(vals, list) else [vals]):
+                            put(x, {"Manner": "Class", "Duration": "String"}.get(role, "Entity"))
+                elif kind == "obliques":
+                    for ob in v:
+                        put(ob.get("obj"), "Entity")
+                elif kind == "terms":
+                    for key, x in v.items():
+                        if key in self.P["time_term_keys"] and isinstance(x, str):
+                            put(x, "Class")
+        lines = []
+        for sym in sorted(sorts):
+            full = set(sorts[sym])
+            if full & set(self.SUBSORTS_OF_INSTANCE):
+                full.add("Instance")
+            lines += [f"(: {sym} {so})" for so in sorted(full)]
+        return lines
+
     def _emit_denial(self, idx: int):
         o = self.o3[idx]
         # sealed content is the seal's business (dropped there, G05): it never reaches top level
@@ -630,6 +690,7 @@ class _Emitter:
                 "fired": {k: fired[k] for k in sorted(fired)},
                 "derived": {k: self.derived[k] for k in sorted(self.derived)},
                 "losses": self.losses,
+                "declarations": self._declarations(),
                 "unmapped": self.item["unmapped"]}
 
 

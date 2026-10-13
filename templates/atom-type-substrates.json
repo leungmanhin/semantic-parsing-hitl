@@ -826,26 +826,26 @@
       "arity": 3,
       "arg_types": [
         "Class",
-        "Instance",
-        "Instance"
+        "Instance|Class",
+        "Instance|Class"
       ],
       "out": "Proposition",
       "opaque": false,
-      "gloss": "X exceeds Y on a scale (reified comparative ordering). Order: (More scale X Y) = X exceeds Y."
+      "gloss": "X exceeds Y on a scale (reified comparative ordering). Order: (More scale X Y) = X exceeds Y. X and Y are instances, or classes in a kind-level comparison ((More hard basalt chalk))."
     },
     "MoreBy": {
       "kind": "measure",
       "arity": 5,
       "arg_types": [
         "Class",
-        "Instance",
-        "Instance",
+        "Instance|Class",
+        "Instance|Class",
         "Number|Distribution",
         "Class"
       ],
       "out": "Proposition",
       "opaque": false,
-      "gloss": "Comparative with a measured gap: X exceeds Y by n units. Order: (MoreBy scale X Y magnitude unit)."
+      "gloss": "Comparative with a measured gap: X exceeds Y by n units. Order: (MoreBy scale X Y magnitude unit). X and Y are instances, or classes in a kind-level comparison ((More hard basalt chalk))."
     },
     "Most": {
       "kind": "measure",
@@ -1140,12 +1140,12 @@
       "arity": 3,
       "arg_types": [
         "Class",
-        "Instance",
-        "Instance"
+        "Instance|Class",
+        "Instance|Class"
       ],
       "out": "Proposition",
       "opaque": false,
-      "gloss": "Equative: X is as ADJ as Y. Order: (SameDegree scale X Y)."
+      "gloss": "Equative: X is as ADJ as Y. Order: (SameDegree scale X Y). X and Y are instances, or classes in a kind-level comparison ((More hard basalt chalk))."
     },
     "ScaleOpposite": {
       "kind": "lexicon",
@@ -1338,13 +1338,13 @@
       "arity": 4,
       "arg_types": [
         "Class",
-        "Instance",
-        "Instance",
+        "Instance|Class",
+        "Instance|Class",
         "Number"
       ],
       "out": "Proposition",
       "opaque": false,
-      "gloss": "Multiplicative comparative: X is <factor> times as ADJ as Y. Order: (TimesAs scale X Y factor)."
+      "gloss": "Multiplicative comparative: X is <factor> times as ADJ as Y. Order: (TimesAs scale X Y factor). X and Y are instances, or classes in a kind-level comparison ((More hard basalt chalk))."
     },
     "TimesPer": {
       "kind": "temporal",

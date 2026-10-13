@@ -6,6 +6,7 @@ Run:  /home/manhin/Dev/.venv-dev/bin/python templates/tests/test_emitter.py
 from __future__ import annotations
 
 import copy
+import json
 import itertools
 import os
 import sys
@@ -568,6 +569,34 @@ class RecordChecks(unittest.TestCase):
         self.assertEqual(self.codes(item({"t": "C02", "id": "c1", "subj": "swan", "pred": "white",
                                           "qword": "several", "dial": "empirical"})), ["R5"])
 
+
+
+class DeclarationTests(unittest.TestCase):
+    """R9 support: the emitter declares a sort for every bare symbol its atoms mention."""
+
+    def test_every_example_symbol_is_declared(self):
+        from tmpl import typecheck as T
+        for tid, t in REG["templates"].items():
+            for ex in t.get("examples") or []:
+                out = E.emit(json.loads(ex["records_json"]), REG)
+                declared = {line.split()[1] for line in out["declarations"]}
+                heads = set(REG["params"]["roles"]) | {"Member", "Inheritance"}
+                missing = set()
+
+                def walk(expr):
+                    if not isinstance(expr, list):
+                        return
+                    for arg in expr[1:]:
+                        if isinstance(arg, list):
+                            walk(arg)
+                        elif T.is_symbol(arg) and arg not in declared and arg != "now":
+                            missing.add(arg)
+
+                for st in out["statements"]:
+                    _, atom = T.split_statement(st)
+                    walk(atom)
+                self.assertEqual(missing, set(), f"{tid}: undeclared symbols {sorted(missing)}")
+                self.assertTrue(all(len(line.split()) == 3 for line in out["declarations"]), tid)
 
 if __name__ == "__main__":
     unittest.main(verbosity=1)

@@ -221,7 +221,10 @@ def cmd_assemble(args) -> int:
                 out = E.emit(rec, reg)
                 statements = out["statements"]
                 info.update({k: out[k] for k in ("detail", "fired", "derived", "losses", "unmapped")})
+                info["declarations"] = out["declarations"]
             record = HR.build_record(item, statements, run, prov)
+            if "declarations" in info:
+                record["declarations"] = info["declarations"]
             result = V.validate(record, vocab, index, include_c7=False)
             HR.attach_validation(record, V.validation_block(result))
             info["c_findings"] = [{"code": f["code"], "detail": f["detail"]}
@@ -487,7 +490,7 @@ def cmd_examples(args) -> int:
         for k, ex in enumerate(t.get("examples", []), 1):
             out = E.emit(json.loads(ex["records_json"]), reg)
             rows.append({"id": f"example-{tid}", "run": k, "text": ex["text"],
-                         "statements": out["statements"]})
+                         "statements": out["statements"], "declarations": out["declarations"]})
     path = os.path.join(PILOT, "out", "registry_examples.statements.jsonl")
     write_jsonl(path, rows)
     print(f"{len(rows)} example renderings -> {path}")

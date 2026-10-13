@@ -87,6 +87,20 @@ class TypecheckTests(unittest.TestCase):
                 os.unlink(report)
         self.assertEqual(rep["passed"], rep["statements"], rep["findings"][:3])
 
+    def test_registry_examples_type_strictly_with_emitter_declarations(self):
+        path = os.path.join(TEMPLATES, "pilot", "out", "registry_examples.statements.jsonl")
+        if not os.path.exists(path):
+            self.skipTest("registry examples not generated")
+        report = path + ".tc.json"
+        try:
+            typecheck.main([path, "--no-infer", "--report", report])
+            with open(report, encoding="utf-8") as fh:
+                rep = json.load(fh)
+        finally:
+            if os.path.exists(report):
+                os.unlink(report)
+        self.assertEqual(rep["passed"], rep["statements"], rep["findings"][:3])
+
     def test_goldens_have_no_type_failures(self):
         path = os.path.join(TEMPLATES, "pilot", "corpus", "gold.expected.jsonl")
         if not os.path.exists(path):
