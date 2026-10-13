@@ -38,6 +38,18 @@ Dispatch wrapper for a blind parser (nothing else):
     Your batch file is /home/manhin/Dev/semantic-parsing-hitl/templates/pilot/batches/<set>/<batch>.txt.
     Run number: <N>.
 
+### Atom-type substrate and type checker (R9)
+
+- Source: `atom-type-substrates.json` (hand-maintained). Render: `python -m tmpl.gen_substrate` →
+  `ATOM-TYPE-SUBSTRATES.md` (review) + `generated/atom-types.metta` (PeTTa declarations). Never edit
+  the generated files.
+- Check parses: `python -m tmpl.typecheck <statements.jsonl|.metta> [--no-infer] [--report out.json]`
+  (needs the `petta` package: the dev venv has it; otherwise
+  `uv run --project /home/manhin/Dev/PeTTaChainer python -m tmpl.typecheck …`). A record may carry
+  `declarations` (the emitter's `(: sym Sort)` lines); without them sorts are inferred from usage,
+  which only surfaces sort errors as `sort-conflict` / `sort-warning`. Tests:
+  `python tests/test_typecheck.py`.
+
 ## Rules of the road
 
 - Freeze before dispatch: never regenerate the instruction set while a parser is in flight.

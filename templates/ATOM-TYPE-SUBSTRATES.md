@@ -92,105 +92,105 @@ head: Agent
 kind: role
 arity: 2
 type-def: (: Agent (-> Event Entity Proposition))
-gloss: Volitional doer / subject of an action.
+gloss: Volitional doer / subject of an action. A compound-action class symbol under the compound decomposition ((Patient use_crosswalk crosswalk)) is declared both Class and Event.
 
 
 head: Beneficiary
 kind: role
 arity: 2
 type-def: (: Beneficiary (-> Event Entity Proposition))
-gloss: 'for …' oblique: only a party the event is done for the benefit of (incl. acting in someone's place); a 'for' naming the ground, prize or exchange is the preposition-named (For …) oblique instead.
+gloss: 'for …' oblique: only a party the event is done for the benefit of (incl. acting in someone's place); a 'for' naming the ground, prize or exchange is the preposition-named (For …) oblique instead. A compound-action class symbol under the compound decomposition ((Patient use_crosswalk crosswalk)) is declared both Class and Event.
 
 
 head: CoAgent
 kind: role
 arity: 2
 type-def: (: CoAgent (-> Event Entity Proposition))
-gloss: Animate co-participant named by a comitative phrase ('with John').
+gloss: Animate co-participant named by a comitative phrase ('with John'). A compound-action class symbol under the compound decomposition ((Patient use_crosswalk crosswalk)) is declared both Class and Event.
 
 
 head: Experiencer
 kind: role
 arity: 2
 type-def: (: Experiencer (-> Event Entity Proposition))
-gloss: Subject of a stative predication — psych state or predicate-adjective state.
+gloss: Subject of a stative predication — psych state or predicate-adjective state. A compound-action class symbol under the compound decomposition ((Patient use_crosswalk crosswalk)) is declared both Class and Event.
 
 
 head: Goal
 kind: role
 arity: 2
 type-def: (: Goal (-> Event Entity Proposition))
-gloss: Non-recipient destination / 'to …' oblique (whither); the addressee of a transfer or communication is Recipient, never Goal.
+gloss: Non-recipient destination / 'to …' oblique (whither); the addressee of a transfer or communication is Recipient, never Goal. A compound-action class symbol under the compound decomposition ((Patient use_crosswalk crosswalk)) is declared both Class and Event.
 
 
 head: Holder
 kind: role
 arity: 2
 type-def: (: Holder (-> Event Entity Proposition))
-gloss: Subject of a possession/relational state only (own, have, lack).
+gloss: Subject of a possession/relational state only (own, have, lack). A compound-action class symbol under the compound decomposition ((Patient use_crosswalk crosswalk)) is declared both Class and Event.
 
 
 head: Instrument
 kind: role
 arity: 2
 type-def: (: Instrument (-> Event Entity Proposition))
-gloss: The means an action is performed by ('with a knife') or a 'via / by way of' route or channel: a tool, substance or conduit, never a person (a person 'with' whom is CoAgent).
+gloss: The means an action is performed by ('with a knife') or a 'via / by way of' route or channel: a tool, substance or conduit, never a person (a person 'with' whom is CoAgent). A compound-action class symbol under the compound decomposition ((Patient use_crosswalk crosswalk)) is declared both Class and Event.
 
 
 head: Location
 kind: role
 arity: 2
 type-def: (: Location (-> Event Entity Proposition))
-gloss: Where the eventuality holds ('in/at/on …').
+gloss: Where the eventuality holds ('in/at/on …'). A compound-action class symbol under the compound decomposition ((Patient use_crosswalk crosswalk)) is declared both Class and Event.
 
 
 head: Manner
 kind: role
 arity: 2
 type-def: (: Manner (-> Event Class Proposition))
-gloss: Adverbial manner of the eventuality.
+gloss: Adverbial manner of the eventuality. A compound-action class symbol under the compound decomposition ((Patient use_crosswalk crosswalk)) is declared both Class and Event.
 
 
 head: Patient
 kind: role
 arity: 2
 type-def: (: Patient (-> Event Entity Proposition))
-gloss: Object the action creates, destroys, consumes or physically changes.
+gloss: Object the action creates, destroys, consumes or physically changes. A compound-action class symbol under the compound decomposition ((Patient use_crosswalk crosswalk)) is declared both Class and Event.
 
 
 head: Recipient
 kind: role
 arity: 2
 type-def: (: Recipient (-> Event Entity Proposition))
-gloss: Goal of a transfer (indirect object / 'to').
+gloss: Goal of a transfer (indirect object / 'to'). A compound-action class symbol under the compound decomposition ((Patient use_crosswalk crosswalk)) is declared both Class and Event.
 
 
 head: Source
 kind: role
 arity: 2
 type-def: (: Source (-> Event Entity Proposition))
-gloss: Origin / 'from …' oblique.
+gloss: Origin / 'from …' oblique. A compound-action class symbol under the compound decomposition ((Patient use_crosswalk crosswalk)) is declared both Class and Event.
 
 
 head: Stimulus
 kind: role
 arity: 2
 type-def: (: Stimulus (-> Event Entity Proposition))  ; and 1 more (per arity / per union alternative)
-gloss: Object of a psych/perception state.
+gloss: Object of a psych/perception state. A compound-action class symbol under the compound decomposition ((Patient use_crosswalk crosswalk)) is declared both Class and Event.
 
 
 head: Theme
 kind: role
 arity: 2
-type-def: (: Theme (-> Event Entity Proposition))  ; and 1 more (per arity / per union alternative)
-gloss: Object acquired, transferred, moved, possessed, perceived or evaluated unchanged.
+type-def: (: Theme (-> Event Entity Proposition))  ; and 2 more (per arity / per union alternative)
+gloss: Object acquired, transferred, moved, possessed, perceived or evaluated unchanged. A compound-action class symbol under the compound decomposition ((Patient use_crosswalk crosswalk)) is declared both Class and Event. Filler: an entity, an actual eventuality (aspectual / continuation complements: "stopped knitting", "kept falling"), or a sealed proposition (attitude / control complements).
 
 
 head: Time
 kind: role
 arity: 2
 type-def: (: Time (-> Event TimeTerm Proposition))
-gloss: Locates an eventuality at a time point or recurrence slot. Filler = a time instance (deictic constants such as yesterday / now are declared Time by the emitter).
+gloss: Locates an eventuality at a time point or recurrence slot. Filler = a time instance (deictic constants such as yesterday / now are declared Time by the emitter). A compound-action class symbol under the compound decomposition ((Patient use_crosswalk crosswalk)) is declared both Class and Event.
 
 
 ## scope (13)
@@ -278,8 +278,8 @@ status: retire
 head: Question
 kind: scope
 arity: 2
-type-def: (: Question (-> String Proposition Proposition))
-gloss: Seals an embedded constituent (wh-) question with its wh-word.
+type-def: (: Question (-> Atom Proposition Proposition))
+gloss: Seals an embedded constituent (wh-) question with its wh-word. The wh-word is a bare symbol that doubles as the gap filler inside the body, so its position is unchecked.
 
 
 head: Whether
@@ -968,7 +968,7 @@ Heads the prompt licenses generically; the validator checks position and arity o
 - head of a nominalization kind-relation, e.g. (Build dam_builder dam)
 - skolem-function head (sk_<verb>) in a scope construction, e.g. (sk_y $x)
 
-Oblique prepositions (62), all declared `(-> Event|Class Instance Proposition)`: About, Above, Across, After, Against, Along, Among, Around, As, At, Before, Behind, Below, Beneath, Beside, Besides, Between, Beyond, But, By, Concerning, Despite, Down, During, Except, For, From, In, Inside, Into, Like, Near, Of, Off, On, Onto, Opposite, Out, Outside, Over, Past, Per, Regarding, Round, Since, Than, Through, Throughout, Till, To, Toward, Towards, Under, Underneath, Unlike, Until, Up, Upon, Via, With, Within, Without.
+Oblique prepositions (62), all declared `(-> Instance|Class Instance Proposition)`: About, Above, Across, After, Against, Along, Among, Around, As, At, Before, Behind, Below, Beneath, Beside, Besides, Between, Beyond, But, By, Concerning, Despite, Down, During, Except, For, From, In, Inside, Into, Like, Near, Of, Off, On, Onto, Opposite, Out, Outside, Over, Past, Per, Regarding, Round, Since, Than, Through, Throughout, Till, To, Toward, Towards, Under, Underneath, Unlike, Until, Up, Upon, Via, With, Within, Without.
 
 ## notes
 
