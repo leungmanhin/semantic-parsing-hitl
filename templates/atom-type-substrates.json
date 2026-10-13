@@ -2,7 +2,7 @@
   "meta": {
     "schema": "atom-type-substrates/1",
     "role": "source of the atom-kind substrate rendered by templates/tmpl/gen_substrate.py; hand-maintained; NOT an attestation record",
-    "migrated_from": "fusenf/specs/vocabulary.json (fusenf-vocabulary/1, revised 2026-08-29, prompt 2ed18b93) — attestation fields dropped; deprecated heads dropped; arg types renamed kind->class, individual->instance; field class->kind",
+    "migrated_from": "fusenf/specs/vocabulary.json (schema fusenf-vocabulary/1) — attestation fields dropped; deprecated heads dropped; argument types renamed kind → class, individual → instance; field class → kind",
     "types": [
       "Atom",
       "Class",
@@ -73,7 +73,7 @@
       ],
       "out": "Proposition",
       "opaque": true,
-      "gloss": "Additive focus particle ('also / too / as well'). Filler as for Only; also the carrier of either / neither (ruling 2026-09-29); the additive presupposition is recorded, never asserted."
+      "gloss": "Additive focus particle ('also / too / as well'). Filler as for Only; also the carrier of either / neither; the additive presupposition is recorded, never asserted."
     },
     "Although": {
       "kind": "discourse",
@@ -622,7 +622,7 @@
       ],
       "out": "Proposition",
       "opaque": true,
-      "gloss": "Transport wrapper marking a statement as belonging to one reading of a multi-reading parse: (Interpretation rN (: name expr stv)). Dissolved by the canonicalizer's split-before-canonicalize; never a KB atom (engine marginalization = deferred #48 half). Typed form: (Interpretation reading-tag statement-id); the legacy inline form wraps the whole statement and is unchecked. Under the flat scope view a reading is a Context and this becomes (Reading c) + (InContext f c).",
+      "gloss": "Transport wrapper marking a statement as belonging to one reading of a multi-reading parse: (Interpretation rN (: name expr stv)). Dissolved by the canonicalizer's split-before-canonicalize; never a KB atom (engine-side marginalization over readings is deferred). Typed form: (Interpretation reading-tag statement-id); the legacy inline form wraps the whole statement and is unchecked. Under the flat scope view a reading is a Context and this becomes (Reading c) + (InContext f c).",
       "legacy_type_defs": [
         "(: Interpretation (-> String Atom Proposition))"
       ]
@@ -996,7 +996,7 @@
       ],
       "out": "Proposition",
       "opaque": true,
-      "gloss": "NPI 'yet' particle: expected but not yet (under negation or a question); the expectation is recorded, never asserted — its own positive atom outside any denial. Renamed from the arity-1 sense of Yet (owner 2026-10-12) to free Yet for the adversative connective.",
+      "gloss": "NPI 'yet' particle: expected but not yet (under negation or a question); the expectation is recorded, never asserted — its own positive atom outside any denial. Renamed from the arity-1 sense of Yet to free Yet for the adversative connective.",
       "status": "proposed"
     },
     "Permitted": {

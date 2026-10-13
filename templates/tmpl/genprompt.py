@@ -3,7 +3,7 @@
 The registry is the single source. Every example's rendering is produced by running the
 emitter on the example's own records, so the instruction set cannot drift from the code.
 
-    /home/manhin/Dev/.venv-dev/bin/python -m tmpl.genprompt            (from templates/)
+    python -m tmpl.genprompt            (from templates/)
 """
 from __future__ import annotations
 

@@ -14,7 +14,7 @@ comments go to the JSON or to this renderer, never to the generated files.
 
 Run from ``templates/``::
 
-    /home/manhin/Dev/.venv-dev/bin/python -m tmpl.gen_substrate
+    python -m tmpl.gen_substrate
 
 Rendering rules (deterministic, no dates of our own):
 

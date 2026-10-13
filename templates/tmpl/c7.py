@@ -1,8 +1,7 @@
 """C7 (engine load) for emitted atoms. Runs under PeTTaChainer's own environment and imports
 nothing but the harness validator, so that environment is never touched:
 
-    cd /home/manhin/Dev/PeTTaChainer && STEPS=400 uv run python \
-        /home/manhin/Dev/semantic-parsing-hitl/templates/tmpl/c7.py <statements.jsonl> ...
+    STEPS=400 python templates/tmpl/c7.py <statements.jsonl> ...   (in the chainer's environment)
 
 Each input line is {"id", "run", "statements"} (a parses file, or the registry examples as
 rendered by `python -m tmpl.pilot examples`).

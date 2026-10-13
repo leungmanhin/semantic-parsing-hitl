@@ -10,7 +10,7 @@ the record and the registry alone; nothing judges whether a template was the RIG
   R5  ids and enumerations  ids unique and well-formed; enum / qword / code values known
   R6  lemma form            lowercase snake_case
   R7  unmapped records      span + code + construction
-  R8  composition           the registry's structural rules and the P06 rulings
+  R8  composition           the registry's structural and nesting rules
 """
 from __future__ import annotations
 
@@ -291,7 +291,7 @@ def _composition(insts, by_id, reg) -> list[dict]:
     for key, idx in c01_pairs.items():
         if key in v02_pairs:
             out.append(_f("R8", idx, "C01 duplicates the plain fact a V02 already states"))
-    # P06 corner 5: a denied bundle never carries an Or
+    # nesting rule: a denied bundle never carries a disjunction
     for pid in sorted(or_events):
         if pid in denied:
             out.append(_f("R8", denied[pid], f"@{pid} is denied and carries a disjunction: "

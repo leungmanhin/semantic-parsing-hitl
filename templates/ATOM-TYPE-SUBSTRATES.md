@@ -309,7 +309,7 @@ head: Also
 kind: particle
 arity: 2
 type-def: (: Also (-> Instance Event Proposition))  ; and 1 more (per arity / per union alternative)
-gloss: Additive focus particle ('also / too / as well'). Filler as for Only; also the carrier of either / neither (ruling 2026-09-29); the additive presupposition is recorded, never asserted.
+gloss: Additive focus particle ('also / too / as well'). Filler as for Only; also the carrier of either / neither; the additive presupposition is recorded, never asserted.
 
 
 head: Cleft
@@ -337,7 +337,7 @@ head: Pending
 kind: particle
 arity: 1
 type-def: (: Pending (-> Event Proposition))  ; and 1 more (per arity / per union alternative)
-gloss: NPI 'yet' particle: expected but not yet (under negation or a question); the expectation is recorded, never asserted — its own positive atom outside any denial. Renamed from the arity-1 sense of Yet (owner 2026-10-12) to free Yet for the adversative connective.
+gloss: NPI 'yet' particle: expected but not yet (under negation or a question); the expectation is recorded, never asserted — its own positive atom outside any denial. Renamed from the arity-1 sense of Yet to free Yet for the adversative connective.
 status: proposed
 
 
@@ -924,7 +924,7 @@ kind: meta
 arity: 2
 type-def: (: Interpretation (-> String Statement Proposition))
 legacy: (: Interpretation (-> String Atom Proposition))  ; kept until the re-parse
-gloss: Transport wrapper marking a statement as belonging to one reading of a multi-reading parse: (Interpretation rN (: name expr stv)). Dissolved by the canonicalizer's split-before-canonicalize; never a KB atom (engine marginalization = deferred #48 half). Typed form: (Interpretation reading-tag statement-id); the legacy inline form wraps the whole statement and is unchecked. Under the flat scope view a reading is a Context and this becomes (Reading c) + (InContext f c).
+gloss: Transport wrapper marking a statement as belonging to one reading of a multi-reading parse: (Interpretation rN (: name expr stv)). Dissolved by the canonicalizer's split-before-canonicalize; never a KB atom (engine-side marginalization over readings is deferred). Typed form: (Interpretation reading-tag statement-id); the legacy inline form wraps the whole statement and is unchecked. Under the flat scope view a reading is a Context and this becomes (Reading c) + (InContext f c).
 
 
 ## computation (4)

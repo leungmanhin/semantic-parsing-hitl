@@ -2,7 +2,7 @@
 declared, and must accept the emitter's own examples and the goldens (modulo the two known
 warning kinds).  Needs the ``petta`` package; skips otherwise.
 
-Run from ``templates/``: ``/home/manhin/Dev/.venv-dev/bin/python tests/test_typecheck.py``
+Run from ``templates/``: ``python tests/test_typecheck.py``
 """
 from __future__ import annotations
 

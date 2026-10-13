@@ -5,7 +5,7 @@ Nothing here changes `prompt.txt`, the briefs under `fusenf/briefs/`, or any pip
 
 | path | what |
 |---|---|
-| `INVENTORY.md` | prompt.txt read as a registry: 110 statement templates, gap codes, the P06 nesting order and its six rulings |
+| `INVENTORY.md` | prompt.txt read as a registry: 110 statement templates, gap codes, the nesting order and its rules |
 | `registry/starter26.yaml` | THE single source for the pilot: slot specs, criteria, examples, parameters (quote the keys `"on"`, `"n"`, `"y"`) |
 | `tmpl/records.py` | R1–R8, mechanical checks on template instance records |
 | `tmpl/emitter.py` | records → atoms: symbols, witness numbers, truth values, proof names, nesting, projection |
@@ -13,15 +13,15 @@ Nothing here changes `prompt.txt`, the briefs under `fusenf/briefs/`, or any pip
 | `tmpl/goldens.py` | reads `regression/regression_cases.md`; head-based coverage prediction |
 | `tmpl/pilot.py` | `select` · `batches` · `assemble` · `score` · `report` · `examples` |
 | `tmpl/c7.py` | engine-load check (runs under PeTTaChainer's environment, imports only the harness validator) |
-| `tests/test_emitter.py` | emitter vs prompt.txt's own examples, the six rulings, determinism, example freshness |
+| `tests/test_emitter.py` | emitter vs prompt.txt's own examples, the nesting rules, determinism, example freshness |
 | `briefs/TPARSE.md`, `briefs/CPARSE.md` | blind briefs: template arm, control arm |
-| `pilot/PREREG.md` | pre-registration (proposed until the owner's go) |
+| `pilot/PREREG.md` | pre-registration (proposed thresholds, not yet adopted) |
 | `pilot/manifest.json` | sampling rule, item ids, hashes of every instrument |
 | `pilot/out/*.REPORT.md`, `*.PAIRS.md` | summary and side-by-side mismatches per set |
 
 ## Recipes
 
-    P=/home/manhin/Dev/.venv-dev/bin/python
+    P=python            # an environment with pyyaml (and petta for the type checker)
     $P templates/tests/test_emitter.py                       # from the repository root
     cd templates
     $P -m tmpl.genprompt                                     # after ANY registry edit
@@ -29,13 +29,12 @@ Nothing here changes `prompt.txt`, the briefs under `fusenf/briefs/`, or any pip
     $P -m tmpl.pilot assemble --set <dev|gold|tiera> --arm <t26|ctl> --runs 3 --date <YYYY-MM-DD>
     $P -m tmpl.pilot score  --set <set> --arm <arm>
     $P -m tmpl.pilot report --set <set>
-    cd /home/manhin/Dev/PeTTaChainer && STEPS=400 uv run python \
-        /home/manhin/Dev/semantic-parsing-hitl/templates/tmpl/c7.py <parses.jsonl>
+    STEPS=400 python templates/tmpl/c7.py <parses.jsonl>      # in the chainer's environment
 
 Dispatch wrapper for a blind parser (nothing else):
 
-    Read /home/manhin/Dev/semantic-parsing-hitl/templates/briefs/<TPARSE|CPARSE>.md and follow it exactly.
-    Your batch file is /home/manhin/Dev/semantic-parsing-hitl/templates/pilot/batches/<set>/<batch>.txt.
+    Read <repo>/templates/briefs/<TPARSE|CPARSE>.md and follow it exactly.
+    Your batch file is <repo>/templates/pilot/batches/<set>/<batch>.txt.
     Run number: <N>.
 
 ### Atom-type substrate and type checker (C9)
@@ -44,8 +43,7 @@ Dispatch wrapper for a blind parser (nothing else):
   `ATOM-TYPE-SUBSTRATES.md` (review) + `generated/atom-types.metta` (PeTTa declarations). Never edit
   the generated files.
 - Check parses: `python -m tmpl.typecheck <statements.jsonl|.metta> [--no-infer] [--report out.json]`
-  (needs the `petta` package: the dev venv has it; otherwise
-  `uv run --project /home/manhin/Dev/PeTTaChainer python -m tmpl.typecheck …`). A record may carry
+  (needs the `petta` package). A record may carry
   `declarations` (the emitter's `(: sym Sort)` lines); without them types are inferred from usage,
   which only surfaces type errors as `type-conflict` / `type-warning`. Tests:
   `python tests/test_typecheck.py`.

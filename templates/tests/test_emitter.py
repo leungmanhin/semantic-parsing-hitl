@@ -1,7 +1,7 @@
 """Emitter tests: prompt.txt's own worked examples must come out canonically identical, and the
-six P06 rulings (2026-09-29) must hold as code.
+registry's nesting rules must hold as code.
 
-Run:  /home/manhin/Dev/.venv-dev/bin/python templates/tests/test_emitter.py
+Run:  python templates/tests/test_emitter.py
 """
 from __future__ import annotations
 
@@ -369,8 +369,8 @@ class PromptExamples(Base):
                      '(Agent sk_meet_1 bob)', '(Agent sk_meet_1 alice)', '(Past sk_meet_1)'))
 
 
-class Rulings(Base):
-    def test_corner2_tense_inside_copular_denial(self):   # The loft was not a legal dwelling.
+class NestingRules(Base):
+    def test_tense_inside_copular_denial(self):   # The loft was not a legal dwelling.
         self.same(item(x("x1", "loft"),
                        {"t": "C01", "id": "c1", "subj": "@x1", "pred": "dwelling"},
                        {"t": "C01", "id": "c2", "subj": "@x1", "pred": "legal"},
@@ -379,7 +379,7 @@ class Rulings(Base):
                   st('(And (Past (Member sk_loft_1 dwelling)) (Past (Member sk_loft_1 legal)))',
                      stv="(STV 0.0 0.99)"))
 
-    def test_corner4_link_positive_over_denied_endpoint(self):
+    def test_link_positive_over_denied_endpoint(self):
         self.same(item(x("x1", "latch"), x("x2", "hinge"), ev("e1", "stick", Patient="@x1"),
                        past("e1"), ev("e2", "oil", Patient="@x2"), past("e2"),
                        {"t": "O03", "over": ["@e2"]},
@@ -390,7 +390,7 @@ class Rulings(Base):
                   st('(And (Member sk_oil_1 oil) (Patient sk_oil_1 sk_hinge_1) (Past sk_oil_1))',
                      stv="(STV 0.0 0.99)"))
 
-    def test_corner4_denied_link(self):             # not because X, but because Y
+    def test_denied_link(self):             # not because X, but because Y
         out = E.emit(item(x("x1", "alarm"), x("x2", "battery"), x("x3", "wire"),
                           ev("e1", "sound", Agent="@x1"), past("e1"),
                           {"t": "V02", "id": "s1", "prop": "flat", "subj": "@x2",
@@ -404,14 +404,14 @@ class Rulings(Base):
         self.assertIn("(Because sk_sound_1 sk_snap_1) (STV 1.0 0.99)", text)
         self.assertIn("(Member sk_sound_1 sound) (STV 1.0 0.99)", text)     # the event is asserted
 
-    def test_corner4_temporal_relation_inside_bundle(self):   # The bus did not leave before the show.
+    def test_temporal_relation_inside_bundle(self):   # The bus did not leave before the show.
         self.same(item(x("x1", "bus"), x("x2", "show"), ev("e1", "leave", Agent="@x1"), past("e1"),
                        {"t": "T08", "earlier": "@e1", "later": "@x2"}, {"t": "O03", "over": ["@e1"]}),
                   st('(Member sk_bus_1 bus)', '(Member sk_show_1 show)') +
                   st('(And (Member sk_leave_1 leave) (Agent sk_leave_1 sk_bus_1) (Past sk_leave_1) '
                      '(Before sk_leave_1 sk_show_1))', stv="(STV 0.0 0.99)"))
 
-    def test_corner5_neither_is_two_denials(self):  # Bob did not order tea or coffee.
+    def test_neither_is_two_denials(self):  # Bob did not order tea or coffee.
         self.same(item(n("n1", "Bob"), ev("e1", "order", Agent="@n1", Theme="tea"), past("e1"),
                        ev("e2", "order", Agent="@n1", Theme="coffee"), past("e2"),
                        {"t": "O03", "over": ["@e1"]}, {"t": "O03", "over": ["@e2"]}),
@@ -421,7 +421,7 @@ class Rulings(Base):
                      '(And (Member sk_order_2 order) (Agent sk_order_2 bob) '
                      '(Theme sk_order_2 coffee) (Past sk_order_2))', stv="(STV 0.0 0.99)"))
 
-    def test_corner5_denied_or_is_rejected(self):
+    def test_denied_or_is_rejected(self):
         it = item(n("n1", "Bob"), ev("e1", "order", Agent="@n1"),
                   {"t": "J01", "event": "@e1", "role": "Theme", "alts": ["tea", "coffee"]},
                   {"t": "O03", "over": ["@e1"]})
@@ -431,7 +431,7 @@ class Rulings(Base):
         with self.assertRaises(E.EmitError):
             E.emit(it, REG)
 
-    def test_corner6_or_inside_seal(self):          # believes that Bob or Alice took the key
+    def test_or_inside_seal(self):          # believes that Bob or Alice took the key
         self.same(item(n("n1", "Nadia"), n("n2", "Bob"), n("n3", "Alice"), x("x1", "key"),
                        ev("e1", "take", Theme="@x1"), past("e1"),
                        {"t": "J01", "event": "@e1", "role": "Agent", "alts": ["@n2", "@n3"]},

@@ -1,6 +1,6 @@
 """Pilot tool: select the substrates, make batches, assemble raw output, score, report.
 
-    cd templates && /home/manhin/Dev/.venv-dev/bin/python -m tmpl.pilot <command> ...
+    cd templates && python -m tmpl.pilot <command> ...
 
 Deterministic throughout: no clock (dates are arguments), no randomness (sampling is by
 sha256 order), no set iteration reaching an output. Pilot files never enter fusenf/raw or

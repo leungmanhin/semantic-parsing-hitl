@@ -1,10 +1,10 @@
 """Deterministic emitter: template instance records -> logic statements.
 
 Everything a parser used to decide by hand and that is mechanically decidable lives here:
-symbols, witness numbers, truth values, proof names, operator nesting (P06) and projection (P05).
+symbols, witness numbers, truth values, proof names, operator nesting and projection.
 Same records in, byte-identical statements out. No clock, no randomness, no set iteration.
 
-Nesting order implemented (registry P06, all six corners ruled 2026-09-29):
+Nesting order implemented (the registry's nesting rules):
   0 referent atoms      typing / Name / decomposition / group / count / possession
   1 predication         event class + roles, copular atom, relation atom; a sealed proposition is a
                         TERM in the attitude's Theme slot, not a wrapper
@@ -555,7 +555,7 @@ class _Emitter:
         extra = [term for term, _o, _i, _t in self.homed.get(("deny", idx), [])]
         if all(k in COPULAR for k in kinds):
             terms = [self.parts(p)[0]["term"] for p in targets]
-            # corner 2: tense wraps each atom, the denial bundles the wrapped atoms
+            # copular denial: tense wraps each atom, the denial bundles the wrapped atoms
             self._add(self._bundle(terms), (0.0, 0.99), "O03", targets[0], "not")
             for term, owner, inst, tag in self.homed.get(("deny", idx), []):
                 self._add(term, DEFAULT_STV, owner, inst, tag)      # typing stays top-level

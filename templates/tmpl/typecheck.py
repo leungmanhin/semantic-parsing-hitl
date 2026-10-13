@@ -27,8 +27,7 @@ replaced by a fresh variable before the query: they are unchecked by design.
 
 Run from ``templates/`` inside the engine environment (the ``petta`` package)::
 
-    cd /home/manhin/Dev/semantic-parsing-hitl/templates && uv run --project /home/manhin/Dev/PeTTaChainer \\
-        python -m tmpl.typecheck <statements.jsonl | statements.metta> [--report out.json]
+    python -m tmpl.typecheck <statements.jsonl | statements.metta> [--report out.json]
 
 Input: a JSONL whose lines carry ``id`` and ``statements`` (a list of statement strings), or a
 ``.metta`` file with one statement per line (one record).
