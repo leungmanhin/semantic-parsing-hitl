@@ -485,29 +485,29 @@ class _Emitter:
     def _bundle(self, terms):
         return terms[0] if len(terms) == 1 else ["And"] + terms
 
-    # ------------------------------------------------------------------ sorts
-    MINTED_SORT = {"E01": "Entity", "E02": "Entity", "E03": "Entity",
+    # ------------------------------------------------------------------ types
+    MINTED_TYPE = {"E01": "Entity", "E02": "Entity", "E03": "Entity",
                    "V01": "Event", "V05": "Event", "V02": "Event"}
-    SUBSORTS_OF_INSTANCE = ("Entity", "Event", "TimeTerm")
+    SUBTYPES_OF_INSTANCE = ("Entity", "Event", "TimeTerm")
 
     def _declarations(self) -> list[str]:
-        """``(: symbol Sort)`` lines for every symbol this record mints or mentions, derived
-        from the registry's slot types (R9: the type checker verifies the atoms against them).
+        """``(: symbol Type)`` lines for every symbol this record mints or mentions, derived
+        from the registry's slot types (C9: the type checker verifies the atoms against them).
         Minted referents: entities (E01/E02/E03) and eventualities (V01/V05/V02); ``lemma``
         slots are classes; bare role / oblique / filler symbols are entities, except the
         lexical roles (Manner -> Class, Duration -> String) and a kind-level comparison (both
         D01 sides bare -> classes); a T02 constant is a time term; a T01 month / weekday name
         is a class."""
-        sorts: dict[str, set] = {}
+        types: dict[str, set] = {}
 
-        def put(sym, sort):
+        def put(sym, ty):
             if isinstance(sym, str) and sym and not R.is_ref(sym) and not sym.startswith("$"):
-                sorts.setdefault(sym, set()).add(sort)
+                types.setdefault(sym, set()).add(ty)
 
         for r in self.insts:
             t = r["t"]
-            if r.get("id") in self.sym and t in self.MINTED_SORT:
-                put(self.sym[r["id"]], self.MINTED_SORT[t])
+            if r.get("id") in self.sym and t in self.MINTED_TYPE:
+                put(self.sym[r["id"]], self.MINTED_TYPE[t])
             spec = (self.reg["templates"].get(t) or {}).get("slots") or {}
             for slot, sp in spec.items():
                 v = r.get(slot)
@@ -538,9 +538,9 @@ class _Emitter:
                         if key in self.P["time_term_keys"] and isinstance(x, str):
                             put(x, "Class")
         lines = []
-        for sym in sorted(sorts):
-            full = set(sorts[sym])
-            if full & set(self.SUBSORTS_OF_INSTANCE):
+        for sym in sorted(types):
+            full = set(types[sym])
+            if full & set(self.SUBTYPES_OF_INSTANCE):
                 full.add("Instance")
             lines += [f"(: {sym} {so})" for so in sorted(full)]
         return lines

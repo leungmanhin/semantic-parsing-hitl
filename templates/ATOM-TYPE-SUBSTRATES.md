@@ -6,9 +6,9 @@ Generated from `templates/atom-type-substrates.json` (schema `atom-type-substrat
 
 Every atom is carried as a statement (: <proof-name> <atom> <tv>), tv = (STV strength confidence) or another engine truth value. The carrier is not an atom kind: ':' is never type-declared (it is also PeTTa's type-declaration head) and the truth value is declared by the engine, not by this substrate.
 
-Sorts: Atom, Class, Context, Distribution, Entity, Event, Instance, Level, Number, Proposition, Statement, String, TimeTerm.
+Types: Atom, Class, Context, Distribution, Entity, Event, Instance, Level, Number, Proposition, Statement, String, TimeTerm.
 
-Declared sort list (PeTTa convention, capitalized): Atom = unchecked position; Proposition = a statement-forming expression; Instance with sub-sorts Entity and Event (a symbol carries both its sub-sort and Instance); Class; Number; String. Migration mapping from the ad-hoc names: term, assertion -> Proposition; property, verb-lemma, unit -> Class; symbol, reading-tag -> String; var, uncertain -> Atom. A union such as Event|Proposition expands to one declaration per alternative. `out` = the output type of the head's type declaration, set as each kind is reviewed. Proposed sorts Statement (a statement id = the proof name, reified) and Context (a scope reified), both sub-sorts of Instance by dual declaration; they belong to the flat context VIEW of scope unless that form becomes canonical. TimeTerm = a reified time instant or period (not named Time: that is the role head) (sub-sort of Instance by dual declaration; time predicates Day / Hour / Month / … describe it). Distribution = an engine value (ParticleFromNormal …) allowed where an approximate number is. Level = a degree / proportion level: a symbol from a closed label set (very, excessive, most, half — declared Level by the emitter) or a term standing in for one ((forKind class), (Fraction n d)).
+Declared type list (PeTTa convention, capitalized): Atom = unchecked position; Proposition = a statement-forming expression; Instance with sub-types Entity and Event (a symbol carries both its sub-type and Instance); Class; Number; String. Migration mapping from the ad-hoc names: term, assertion -> Proposition; property, verb-lemma, unit -> Class; symbol, reading-tag -> String; var, uncertain -> Atom. A union such as Event|Proposition expands to one declaration per alternative. `out` = the output type of the head's type declaration, set as each kind is reviewed. Proposed types Statement (a statement id = the proof name, reified) and Context (a scope reified), both sub-types of Instance by dual declaration; they belong to the flat context VIEW of scope unless that form becomes canonical. TimeTerm = a reified time instant or period (not named Time: that is the role head) (sub-type of Instance by dual declaration; time predicates Day / Hour / Month / … describe it). Distribution = an engine value (ParticleFromNormal …) allowed where an approximate number is. Level = a degree / proportion level: a symbol from a closed label set (very, excessive, most, half — declared Level by the emitter) or a term standing in for one ((forKind class), (Fraction n d)).
 
 ## core-link (10)
 
@@ -23,7 +23,7 @@ head: Coref
 kind: core-link
 arity: 2
 type-def: (: Coref (-> Instance Instance Proposition))
-gloss: Hypothesis that two mentions denote one entity; STV = probability of identity. Base of the resolved-entity view. A mention sort is pending.
+gloss: Hypothesis that two mentions denote one entity; STV = probability of identity. Base of the resolved-entity view. A mention type is pending.
 status: proposed
 
 
@@ -552,7 +552,7 @@ head: ProportionOf
 kind: relation
 arity: 3
 type-def: (: ProportionOf (-> Entity Entity Level Proposition))
-gloss: The portion's proportion of a definite whole. Order: (ProportionOf portion whole level); the level is a symbol from a closed label set (most, half, …), declared String-sorted by the emitter. The level is a Level label (most, half) or a (Fraction n d) term.
+gloss: The portion's proportion of a definite whole. Order: (ProportionOf portion whole level); the level is a symbol from a closed label set (most, half, …), declared String-typed by the emitter. The level is a Level label (most, half) or a (Fraction n d) term.
 
 
 head: PurposeOf
@@ -745,7 +745,7 @@ head: Symmetric
 kind: lexicon
 arity: 1
 type-def: (: Symmetric (-> Atom Proposition))
-gloss: Tags a relation head as mutual by meaning. The argument is a relation HEAD symbol (an open-class mutual predicate such as Friend); heads are not a sort, so the position is unchecked. Background fact about the vocabulary.
+gloss: Tags a relation head as mutual by meaning. The argument is a relation HEAD symbol (an open-class mutual predicate such as Friend); heads are not a type, so the position is unchecked. Background fact about the vocabulary.
 
 
 head: WeekdayNumber
@@ -852,7 +852,7 @@ head: To
 kind: discourse
 arity: 2
 type-def: (: To (-> Event Event Proposition))
-gloss: Purpose infinitive connective 'to'. Order: (Connective main-clause-eventuality subordinate-eventuality); a copular endpoint is reified as a state witness. The head is the surface connective itself, never normalized. Same symbol as the oblique preposition To (To eventuality-or-compound-property entity), told apart by the filler sort.
+gloss: Purpose infinitive connective 'to'. Order: (Connective main-clause-eventuality subordinate-eventuality); a copular endpoint is reified as a state witness. The head is the surface connective itself, never normalized. Same symbol as the oblique preposition To (To eventuality-or-compound-property entity), told apart by the filler type.
 
 
 head: Yet

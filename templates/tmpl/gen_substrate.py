@@ -4,7 +4,7 @@ Outputs:
 
 * ``templates/ATOM-TYPE-SUBSTRATES.md`` — the reviewable rendering, one block per head;
 * ``templates/generated/atom-types.metta`` — PeTTa type declarations for every head whose
-  ``out`` type is set (``(: Head (-> In … Out))``), plus the sort declarations.  This is the
+  ``out`` type is set (``(: Head (-> In … Out))``), plus the type declarations.  This is the
   file a type checker loads before asking ``(get-type <atom>)``; a well-typed atom answers
   with its head's ``out`` type, anything else is a finding.
 
@@ -148,12 +148,12 @@ def render_md(src: dict) -> str:
     if meta.get("statement_form"):
         lines.append(meta["statement_form"])
         lines.append("")
-    sorts = meta.get("sorts")
+    sorts = meta.get("types")
     if sorts:
-        lines.append(f"Sorts: {', '.join(sorts)}.")
-        if meta.get("sorts_note"):
+        lines.append(f"Types: {', '.join(sorts)}.")
+        if meta.get("types_note"):
             lines.append("")
-            lines.append(meta["sorts_note"])
+            lines.append(meta["types_note"])
         lines.append("")
 
     for kind in kinds:
@@ -223,7 +223,7 @@ def render_metta(src: dict) -> str:
     lines.append(";; its head's out type. Per-record symbol declarations ((: e1 Event) (: e1 Instance) ...)")
     lines.append(";; come from the emitter, not from this file.")
     lines.append("")
-    for sort in meta.get("sorts") or []:
+    for sort in meta.get("types") or []:
         if sort in ("Atom", "Number", "String"):
             continue  # PeTTa built-ins
         lines.append(f"(: {sort} Type)")

@@ -1,25 +1,25 @@
-"""R9 — type-check parse statements against the atom-type substrate, using PeTTa's own typing.
+"""C9 — type-check parse statements against the atom-type substrate, using PeTTa's own typing.
 
 For every statement ``(: name atom tv)`` the checker asks PeTTa ``(get-type atom)`` with the
 generated declarations (``templates/generated/atom-types.metta``) loaded, and passes the atom
 iff its head's ``out`` type (``Proposition`` for statement-forming heads) is AMONG the
-solutions.  Membership, not uniqueness: symbols with several sort declarations yield several
+solutions.  Membership, not uniqueness: symbols with several type declarations yield several
 candidate lines.
 
-Symbol sorts.  PeTTa only types a symbol that carries a declaration, so the checker needs
+Symbol types.  PeTTa only types a symbol that carries a declaration, so the checker needs
 ``(: sk_cook_1 Event)`` etc.  Until the emitter emits them, ``--infer`` (the default) derives
 them from usage, PER RECORD (symbol names are record-local): every bare symbol in a position
-whose declared sort is a single sort other than ``Atom`` receives that sort (``Event`` /
+whose declared type is a single type other than ``Atom`` receives that type (``Event`` /
 ``Entity`` / ``TimeTerm`` / ``Statement`` / ``Context`` also receive ``Instance``); a bare
-symbol that ends up with no specific sort is an ``Entity`` by default; proof names receive
+symbol that ends up with no specific type is an ``Entity`` by default; proof names receive
 ``Statement``; a skolem-function head ``sk_<verb>`` receives ``(-> Atom … Event)`` and
 ``(-> Atom … Instance)`` at the arity it is used with.  Legacy constructor signatures
 (``legacy_type_defs``) take part in the inference so pre-reification forms still type.
 Record-local symbols are renamed ``<symbol>__r<n>`` before PeTTa sees them, so records never
 pollute each other's declarations inside the one PeTTa session.
 
-Reported kinds: ``type`` (the atom does not type), ``sort-conflict`` (a symbol used as a Class
-and as an instance, or as a Level and anything else), ``sort-warning`` (a symbol used both as an
+Reported kinds: ``type`` (the atom does not type), ``type-conflict`` (a symbol used as a Class
+and as an instance, or as a Level and anything else), ``type-warning`` (a symbol used both as an
 Entity and as an Event: an eventive nominal such as "the storm", or a swapped role — look),
 ``unknown-head`` (a head the substrate does not know; open-class relation heads are licensed and
 cannot be enumerated, so this is a warning), ``parse-error``.  ``Atom``-typed positions are
@@ -47,11 +47,11 @@ REPO = os.path.abspath(os.path.join(HERE, os.pardir, os.pardir))
 SRC_PATH = os.path.join(REPO, "templates", "atom-type-substrates.json")
 DECL_PATH = os.path.join(REPO, "templates", "generated", "atom-types.metta")
 
-#: sorts that imply ``Instance`` as a second declaration
-INSTANCE_SUBSORTS = {"Entity", "Event", "TimeTerm", "Statement", "Context"}
-#: sort pairs a symbol may not carry together (findings)
-CONFLICTS = [({"Class"}, {"Entity", "TimeTerm", "Statement", "Context"}), ({"Level"}, INSTANCE_SUBSORTS | {"Instance", "Class"})]
-#: sort pairs worth a look but legitimate: an eventive nominal ("the storm" as agent and as an
+#: types that imply ``Instance`` as a second declaration
+INSTANCE_SUBTYPES = {"Entity", "Event", "TimeTerm", "Statement", "Context"}
+#: type pairs a symbol may not carry together (findings)
+CONFLICTS = [({"Class"}, {"Entity", "TimeTerm", "Statement", "Context"}), ({"Level"}, INSTANCE_SUBTYPES | {"Instance", "Class"})]
+#: type pairs worth a look but legitimate: an eventive nominal ("the storm" as agent and as an
 #: eventuality), or a compound-action class under the compound decomposition (Patient on a class)
 WARNINGS = [({"Entity"}, {"Event"}), ({"Class"}, {"Event"})]
 
@@ -152,8 +152,8 @@ def signatures(entry: dict) -> list[tuple[list[str], str]]:
     return sigs
 
 
-def arg_sorts_for(entry: dict, nargs: int) -> list[str]:
-    """The argument sorts a head declares for this arity (variadic: repeated); [] if none fits."""
+def arg_types_here_for(entry: dict, nargs: int) -> list[str]:
+    """The argument types a head declares for this arity (variadic: repeated); [] if none fits."""
     for arg_types, _ in signatures(entry):
         if arg_types and arg_types[0].startswith("*"):
             return [arg_types[0][1:]] * nargs
@@ -163,13 +163,13 @@ def arg_sorts_for(entry: dict, nargs: int) -> list[str]:
 
 
 # --------------------------------------------------------------------------
-# sort inference from usage (one record)
+# type inference from usage (one record)
 # --------------------------------------------------------------------------
 
 
 def infer_record(atoms: list, heads: dict):
-    """Return ({symbol: set(sorts)}, {sk_head: set(arities)}, findings)."""
-    sorts: dict[str, set] = collections.defaultdict(set)
+    """Return ({symbol: set(types)}, {sk_head: set(arities)}, findings)."""
+    types: dict[str, set] = collections.defaultdict(set)
     seen: set = set()
     sk_heads: dict[str, set] = collections.defaultdict(set)
 
@@ -180,7 +180,7 @@ def infer_record(atoms: list, heads: dict):
         if isinstance(head, str) and head.startswith("sk_"):
             sk_heads[head].add(len(args))
         entry = heads.get(head) if isinstance(head, str) else None
-        arg_sorts = arg_sorts_for(entry, len(args)) if entry else []
+        arg_types_here = arg_types_here_for(entry, len(args)) if entry else []
         for i, arg in enumerate(args):
             if isinstance(arg, list):
                 visit(arg)
@@ -188,44 +188,44 @@ def infer_record(atoms: list, heads: dict):
             if not is_symbol(arg):
                 continue
             seen.add(arg)
-            if i >= len(arg_sorts):
+            if i >= len(arg_types_here):
                 continue
-            sort = arg_sorts[i]
-            if "|" in sort or sort == "Atom":
+            ty = arg_types_here[i]
+            if "|" in ty or ty == "Atom":
                 continue
-            sorts[arg].add(sort)
+            types[arg].add(ty)
 
     for atom in atoms:
         visit(atom)
 
     findings = []
     for sym in seen:
-        ss = sorts[sym]
+        ss = types[sym]
         if not ss or ss <= {"Instance"}:
             ss.add("Entity")  # a bare individual that is never an eventuality is an entity
-    for sym, ss in sorted(sorts.items()):
+    for sym, ss in sorted(types.items()):
         for a, b in CONFLICTS:
             if ss & a and ss & b:
-                findings.append({"kind": "sort-conflict", "symbol": sym, "sorts": sorted(ss)})
+                findings.append({"kind": "type-conflict", "symbol": sym, "types": sorted(ss)})
                 break
         else:
             for a, b in WARNINGS:
                 if ss & a and ss & b:
-                    findings.append({"kind": "sort-warning", "symbol": sym, "sorts": sorted(ss)})
+                    findings.append({"kind": "type-warning", "symbol": sym, "types": sorted(ss)})
                     break
-    return sorts, sk_heads, findings
+    return types, sk_heads, findings
 
 
-def declarations_for(sorts: dict, sk_heads: dict, proof_names: set, rename) -> list[str]:
+def declarations_for(types: dict, sk_heads: dict, proof_names: set, rename) -> list[str]:
     lines = []
-    for sym, ss in sorted(sorts.items()):
+    for sym, ss in sorted(types.items()):
         full = set(ss)
-        if full & INSTANCE_SUBSORTS:
+        if full & INSTANCE_SUBTYPES:
             full.add("Instance")
         for s in sorted(full):
             lines.append(f"(: {rename(sym)} {s})")
     for name in sorted(proof_names):
-        if name not in sorts:
+        if name not in types:
             lines.append(f"(: {rename(name)} Statement)")
             lines.append(f"(: {rename(name)} Instance)")
     for head, arities in sorted(sk_heads.items()):
@@ -237,7 +237,7 @@ def declarations_for(sorts: dict, sk_heads: dict, proof_names: set, rename) -> l
 
 def check_expr(expr, expected: set | None, heads: dict, rename, checker) -> tuple[bool, list[str], list]:
     """Type one expression LINEARLY: every nested expression is checked on its own against the
-    sort its position expects, then replaced by a fresh variable in the parent's query, so
+    type its position expects, then replaced by a fresh variable in the parent's query, so
     PeTTa never enumerates candidate combinations across a whole bundle.
 
     Returns (ok, types PeTTa gave for this expression, nested failures)."""
@@ -245,17 +245,17 @@ def check_expr(expr, expected: set | None, heads: dict, rename, checker) -> tupl
         return True, [], []
     head, args = expr[0], expr[1:]
     entry = heads.get(head) if isinstance(head, str) else None
-    arg_sorts = arg_sorts_for(entry, len(args)) if entry else []
-    out_sort = (entry or {}).get("out") or "Proposition"
+    arg_types_here = arg_types_here_for(entry, len(args)) if entry else []
+    out_type = (entry or {}).get("out") or "Proposition"
     query = [head]
     ok = True
     failures = []
     for i, arg in enumerate(args):
-        sort = arg_sorts[i] if i < len(arg_sorts) else None
-        if sort == "Atom":
+        ty = arg_types_here[i] if i < len(arg_types_here) else None
+        if ty == "Atom":
             query.append("$_unchecked")
         elif isinstance(arg, list):
-            want = set(sort.split("|")) if sort else None
+            want = set(ty.split("|")) if ty else None
             child_ok, child_types, child_fail = check_expr(arg, want, heads, rename, checker)
             failures.extend(child_fail)
             if not child_ok:
@@ -266,8 +266,8 @@ def check_expr(expr, expected: set | None, heads: dict, rename, checker) -> tupl
         else:
             query.append(arg)
     types = checker.get_type(render(query))
-    want_here = expected if expected else {out_sort}
-    # a child must deliver a sort its position accepts; an undeclared sort pattern is a failure
+    want_here = expected if expected else {out_type}
+    # a child must deliver a type its position accepts; an undeclared type pattern is a failure
     if not (want_here & set(types)):
         ok = False
         failures.append({"expr": render(expr), "expected": sorted(want_here), "got": types[:3]})
@@ -335,7 +335,7 @@ def main(argv=None) -> int:
     ap.add_argument("--declarations", default=DECL_PATH)
     ap.add_argument("--substrate", default=SRC_PATH)
     ap.add_argument("--no-infer", action="store_true",
-                    help="never infer sorts from usage: every record must carry its own `declarations` (the emitter's)")
+                    help="never infer types from usage: every record must carry its own `declarations` (the emitter's)")
     ap.add_argument("--report", default=None, help="write the findings as JSON here")
     ap.add_argument("--limit", type=int, default=None, help="check only the first N records")
     args = ap.parse_args(argv)
@@ -368,24 +368,24 @@ def main(argv=None) -> int:
 
         given = rec.get("declarations") or []
         if given:
-            # the emitter's own sort declarations: no inference, sk heads and proof names still declared
-            sorts = collections.defaultdict(set)
+            # the emitter's own type declarations: no inference, sk heads and proof names still declared
+            types = collections.defaultdict(set)
             for d in given:
                 m = re.match(r"^\(: (\S+) (\S+)\)$", d.strip())
                 if m:
-                    sorts[m.group(1)].add(m.group(2))
+                    types[m.group(1)].add(m.group(2))
             _, sk_heads, _ = infer_record([a for _, _, a in parsed], heads)
         elif args.no_infer:
             findings.append({"kind": "parse-error", "id": rec["id"], "statement": "", "error": "no declarations and --no-infer"})
             continue
         else:
-            sorts, sk_heads, rec_findings = infer_record([a for _, _, a in parsed], heads)
+            types, sk_heads, rec_findings = infer_record([a for _, _, a in parsed], heads)
             for f in rec_findings:
                 f["id"] = rec["id"]
             findings.extend(rec_findings)
-        known = set(sorts) | proof_names
+        known = set(types) | proof_names
         rename = lambda s, _i=idx, _k=known: f"{s}__r{_i}" if s in _k else s  # noqa: E731
-        checker.declare(declarations_for(sorts, sk_heads, proof_names, rename))
+        checker.declare(declarations_for(types, sk_heads, proof_names, rename))
 
         for st, name, atom in parsed:
             head = atom[0] if isinstance(atom, list) and atom else atom
@@ -411,7 +411,7 @@ def main(argv=None) -> int:
         with open(args.report, "w", encoding="utf-8") as fh:
             json.dump({"records": len(records), "statements": n_statements, "passed": passed, "findings": findings}, fh, indent=2)
         print(f"report: {args.report}")
-    return 1 if any(f["kind"] in ("type", "sort-conflict", "parse-error") for f in findings) else 0
+    return 1 if any(f["kind"] in ("type", "type-conflict", "parse-error") for f in findings) else 0
 
 
 if __name__ == "__main__":

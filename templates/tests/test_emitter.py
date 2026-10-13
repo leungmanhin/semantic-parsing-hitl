@@ -572,7 +572,7 @@ class RecordChecks(unittest.TestCase):
 
 
 class DeclarationTests(unittest.TestCase):
-    """R9 support: the emitter declares a sort for every bare symbol its atoms mention."""
+    """C9 support: the emitter declares a type for every bare symbol its atoms mention."""
 
     def test_every_example_symbol_is_declared(self):
         from tmpl import typecheck as T

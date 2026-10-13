@@ -1,4 +1,4 @@
-"""Tests for tmpl/typecheck.py (R9): the checker must reject known-bad shapes when sorts are
+"""Tests for tmpl/typecheck.py (C9): the checker must reject known-bad shapes when sorts are
 declared, and must accept the emitter's own examples and the goldens (modulo the two known
 warning kinds).  Needs the ``petta`` package; skips otherwise.
 
@@ -113,7 +113,7 @@ class TypecheckTests(unittest.TestCase):
         finally:
             if os.path.exists(report):
                 os.unlink(report)
-        bad = [f for f in rep["findings"] if f["kind"] in ("type", "sort-conflict", "parse-error")]
+        bad = [f for f in rep["findings"] if f["kind"] in ("type", "type-conflict", "parse-error")]
         self.assertEqual(bad, [], bad[:3])
 
 
