@@ -1,0 +1,210 @@
+# Template: transfer  (one template per file; this file is the whole specification)
+#
+# Sections, in reading order:
+#   trigger   — the construction: when the parser uses this template, and its boundary (what
+#               looks like it but is not it — stated in terms of the construction only, never by
+#               pointing at other templates; where a boundary case goes instead is recorded in
+#               the abstain examples, which the suite runner checks against the catalog)
+#   slots     — what the parser fills, with the substrate type of each filler
+#   emits     — the typed shape the emitter produces from a filled instance (declared, not coded)
+#   notes     — reviewer-facing rationale for where the shape stops
+#   examples  — shown (rendered into the prompt) and held_out (tests), tagged by category
+#
+# Conventions: `@id` in a shape is the symbol minted for the instance; `{slot}` is a filler;
+# a line with `if_filled` is emitted only when that slot is present; `when` tests slot values.
+# Fillers are references to other instances ("@n1") or bare lemmas; the emitter resolves both.
+# Gap codes are global (the catalog's general section), not listed per template.
+
+id: transfer
+family: predication
+kind: verb-class
+title: Transfer of an object from one party to another
+status: draft
+
+trigger:
+  construction: >
+    A verbal clause whose verb denotes a transfer: one party (the giver) causes another (the
+    recipient) to come to have an object. The transfer may be of possession (give, sell, lend,
+    pay, award) or of custody (hand, pass, send, ship, deliver, return).
+  verbs: [give, hand, pass, send, ship, mail, deliver, sell, lend, rent, pay, offer, return,
+          award, grant]
+  verbs_note: >
+    The list anchors the class; a verb not listed that clearly denotes a transfer belongs here
+    (record its lemma as usual). The class is semantic, the list is guidance.
+  surface_forms:
+    - "<giver> V <recipient> <object>"            # double object: gave Yusra a thermos
+    - "<giver> V <object> to <recipient>"         # to-dative: gave a thermos to Yusra
+    - "<object> was V-ed to <recipient> by <giver>"   # passive: the roles do not change
+    - "<recipient> was V-ed <object> by <giver>"      # recipient passive: the roles do not change
+    - "<giver> V <object>"                        # no recipient stated: sold the van
+  boundary:                   # looks like a transfer but is not one
+    - >-
+      particle verbs — give up, give in, give way, hand over (idiomatic), pass out: the particle
+      is part of the lemma and the verb no longer denotes a transfer
+    - >-
+      light-verb constructions — give a speech, give a hand, give a call, pay a visit: the noun
+      carries the event; nothing is transferred
+    - >-
+      communication verbs — tell, say, write to, text, phone: a message has an addressee, not a
+      recipient of an object
+    - >-
+      acquisition verbs — take, receive, get, obtain, accept, buy: the subject is the party who
+      comes to have the object, not the giver
+    - >-
+      the price or fee — sold the van for 900 euros: the amount is never the object unless the
+      verb is pay, in which case the amount IS the object
+
+slots:
+  id:        {type: id, required: true, doc: your label for the transfer event}
+  verb:      {type: lemma, class: Class, required: true, doc: the verb lemma}
+  giver:     {type: filler, class: Entity, role: Agent, required: true,
+              doc: the party who gives; in a passive, the by-phrase; absent only in an agentless passive}
+  recipient: {type: filler, class: Entity, role: Recipient, required: false,
+              doc: the party who comes to have the object; the indirect object or the to-phrase}
+  object:    {type: filler, class: Entity, role: Theme, required: true,
+              doc: what is transferred, unchanged by the transfer}
+  tense:     {type: enum, values: [past, present, future], required: true,
+              doc: the clause's tense; present is recorded, not inferred}
+  aspect:    {type: enum, values: [simple, progressive, perfect], required: false, default: simple}
+
+mints: {id: Event}
+
+emits:
+  - atom: "(Member @id {verb})"
+  - atom: "(Agent @id {giver})"
+    if_filled: giver
+  - atom: "(Recipient @id {recipient})"
+    if_filled: recipient
+  - atom: "(Theme @id {object})"
+  - atom: "(Past @id)"
+    when: "tense == past or aspect == perfect"
+  - atom: "(Future @id)"
+    when: "tense == future"
+  - atom: "(Ongoing @id)"
+    when: "aspect == progressive"
+
+notes:
+  - >-
+    The completion "the recipient now has the object" is a background rule with its own
+    defeasibility (a loan ends, a parcel may be lost); that the giver had it before is a
+    presupposition. Neither is part of the parse, and the positive examples enforce that by
+    exact match — no possession instance beside a transfer.
+  - >-
+    A price, a time, a place or an instrument are attachments on the transfer event, owned by
+    their own templates.
+
+depends_on: [named-entity, witness, group, constant]     # what fills giver / recipient / object
+composes_with: [negation, modal, attitude-seal, time, location, instrument, manner]
+
+examples:
+  shown:                     # rendered into the prompt
+    - category: positive
+      text: "Teodor gave Yusra a thermos."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: named-entity, id: n2, name: "Yusra"}
+        - {t: witness, id: n3, kind: thermos}
+        - {t: transfer, id: e1, verb: give, giver: "@n1", recipient: "@n2", object: "@n3",
+           tense: past}
+      emitted:               # what the emitter produces (illustration; the emitter is the authority)
+        - "(Name teodor \"Teodor\")"
+        - "(Name yusra \"Yusra\")"
+        - "(Member sk_thermos_1 thermos)"
+        - "(Member sk_give_1 give)"
+        - "(Agent sk_give_1 teodor)"
+        - "(Recipient sk_give_1 yusra)"
+        - "(Theme sk_give_1 sk_thermos_1)"
+        - "(Past sk_give_1)"
+      declarations:
+        - "(: teodor Entity)"
+        - "(: yusra Entity)"
+        - "(: sk_thermos_1 Entity)"
+        - "(: sk_give_1 Event)"
+        - "(: give Class)"
+        - "(: thermos Class)"
+    - category: positive
+      note: the to-dative is the same instance as the double object
+      text: "Lamine will send the quilt to Ottoline."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: n2, kind: quilt, definite: true}
+        - {t: named-entity, id: n3, name: "Ottoline"}
+        - {t: transfer, id: e1, verb: send, giver: "@n1", recipient: "@n3", object: "@n2",
+           tense: future}
+    - category: optional
+      note: no recipient stated
+      text: "Yusra sold the spindle."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: n2, kind: spindle, definite: true}
+        - {t: transfer, id: e1, verb: sell, giver: "@n1", object: "@n2", tense: past}
+    - category: abstain
+      text: "Teodor gave a speech."
+      expected: {abstain: true, gap: G00, span: "gave a speech"}      # light-verb construction
+    - category: abstain
+      text: "Ottoline took the envelope from Lamine."
+      expected: {abstain: true, template: acquisition}               # the mirror class
+
+  held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      text: "Lamine handed Teodor an envelope."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: named-entity, id: n2, name: "Teodor"}
+        - {t: witness, id: n3, kind: envelope}
+        - {t: transfer, id: e1, verb: hand, giver: "@n1", recipient: "@n2", object: "@n3",
+           tense: past}
+    - category: contrast
+      note: role reversal — the instance must differ from the positive in giver and recipient only
+      text: "Teodor handed Lamine an envelope."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: witness, id: n3, kind: envelope}
+        - {t: transfer, id: e1, verb: hand, giver: "@n1", recipient: "@n2", object: "@n3",
+           tense: past}
+    - category: positive
+      note: passive — same instance as the active
+      text: "An envelope was handed to Teodor by Lamine."
+      instances:
+        - {t: witness, id: n1, kind: envelope}
+        - {t: named-entity, id: n2, name: "Teodor"}
+        - {t: named-entity, id: n3, name: "Lamine"}
+        - {t: transfer, id: e1, verb: hand, giver: "@n3", recipient: "@n2", object: "@n1",
+           tense: past}
+    - category: scoped
+      note: under clausal negation — the transfer instance is unchanged, the negation template scopes over it
+      text: "Lamine did not hand Teodor an envelope."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: named-entity, id: n2, name: "Teodor"}
+        - {t: witness, id: n3, kind: envelope}
+        - {t: transfer, id: e1, verb: hand, giver: "@n1", recipient: "@n2", object: "@n3",
+           tense: past}
+        - {t: negation, over: ["@e1"]}
+    - category: scoped
+      note: under a modal — the transfer instance is unchanged, the modal template scopes over it
+      text: "Lamine might lend Ottoline the trowel."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: named-entity, id: n2, name: "Ottoline"}
+        - {t: witness, id: n3, kind: trowel, definite: true}
+        - {t: transfer, id: e1, verb: lend, giver: "@n1", recipient: "@n2", object: "@n3",
+           tense: present}
+        - {t: modal, over: ["@e1"], head: Might, surface: might}
+    - category: optional
+      text: "Ottoline is sending the quilt."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: witness, id: n2, kind: quilt, definite: true}
+        - {t: transfer, id: e1, verb: send, giver: "@n1", object: "@n2", tense: present,
+           aspect: progressive}
+    - category: abstain
+      text: "Yusra gave up."
+      expected: {abstain: true, template: activity, lemma: give_up}   # particle verb
+    - category: abstain
+      text: "Lamine paid Yusra a visit."
+      expected: {abstain: true, gap: G00, span: "paid a visit"}       # light-verb construction
+    - category: abstain
+      text: "Teodor told Ottoline the news."
+      expected: {abstain: true, template: communication}
