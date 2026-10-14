@@ -79,8 +79,19 @@ class Gemini:
     name = "gemini"
     default_model = "gemini-2.5-flash"
     env_keys = ("GEMINI_API_KEY", "GOOGLE_API_KEY")
-    #: thinking budgets (tokens) per effort for the 2.5 family; Gemini 3 takes a level instead
+    #: Per the generateContent reference (GenerationConfig.ThinkingConfig): ``thinkingLevel`` —
+    #: MINIMAL / LOW / MEDIUM / HIGH, "recommended for Gemini 3 or later models; use with earlier
+    #: models results in an error" — and ``thinkingBudget`` (a token count; 0 disables thinking
+    #: where the model allows it, -1 lets the model choose) for the 2.x family. The thinking
+    #: guide's table gives each model's allowed levels (gemini-4-argon: low / medium / high,
+    #: default medium). Thinking tokens come back as usageMetadata.thoughtsTokenCount.
     budgets = {"none": 0, "low": 1024, "medium": 8192, "high": 24576}
+    levels = {"none": "LOW", "low": "LOW", "medium": "MEDIUM", "high": "HIGH"}
+
+    @staticmethod
+    def takes_levels(model: str) -> bool:
+        """Gemini 3 and later take a thinking level; the 1.x / 2.x families take a budget."""
+        return not (model.startswith("gemini-1") or model.startswith("gemini-2"))
 
     def __init__(self, args):
         self.args = args
@@ -101,8 +112,8 @@ class Gemini:
                 gen["thinkingConfig"] = {"thinkingLevel": a.thinking_level.upper()}
             elif a.thinking_budget is not None:
                 gen["thinkingConfig"] = {"thinkingBudget": a.thinking_budget}
-            elif model.startswith("gemini-3"):
-                gen["thinkingConfig"] = {"thinkingLevel": ("LOW" if a.effort in ("none", "low") else a.effort.upper())}
+            elif self.takes_levels(model):
+                gen["thinkingConfig"] = {"thinkingLevel": self.levels[a.effort]}
             else:
                 gen["thinkingConfig"] = {"thinkingBudget": self.budgets[a.effort]}
         body = {"system_instruction": {"parts": [{"text": system}]},
@@ -246,14 +257,17 @@ def main(argv=None) -> int:
     ap.add_argument("text", help="the English sentence to parse")
     ap.add_argument("--provider", choices=sorted(PROVIDERS), default="gemini")
     ap.add_argument("--model", default=None, help="model name (default: the provider's default)")
-    ap.add_argument("--effort", choices=EFFORTS, default="low", help="reasoning effort (default: low)")
+    ap.add_argument("--effort", choices=EFFORTS, default="low",
+                    help="reasoning effort (default: low). Gemini 3+: a thinking level (none -> LOW, the lowest level every model offers); Gemini 2.x: a thinking budget (none -> 0)")
     ap.add_argument("--prompt", default=DEFAULT_PROMPT, help="instruction set file (default: the generated catalog prompt)")
     ap.add_argument("--id", default="item", help="the item id written into the request and expected back")
     ap.add_argument("--temperature", type=float, default=0.0)
     ap.add_argument("--max-tokens", type=int, default=None)
     ap.add_argument("--timeout", type=float, default=180.0)
-    ap.add_argument("--thinking-budget", type=int, default=None, help="gemini 2.5: thinking token budget (overrides --effort)")
-    ap.add_argument("--thinking-level", choices=("low", "medium", "high"), default=None, help="gemini 3: thinking level (overrides --effort)")
+    ap.add_argument("--thinking-budget", type=int, default=None,
+                    help="gemini 1.x / 2.x: thinking token budget, 0 = off where allowed, -1 = dynamic (overrides --effort)")
+    ap.add_argument("--thinking-level", choices=("minimal", "low", "medium", "high"), default=None,
+                    help="gemini 3 and later: thinking level (overrides --effort; a model errors on a level it does not offer)")
     ap.add_argument("--no-thinking", action="store_true", help="send no thinking configuration at all")
     ap.add_argument("--out", default=None, help="write the full run record (request parameters, usage, raw text, parsed reply) here")
     ap.add_argument("--raw", action="store_true", help="print the reply text as received instead of the parsed JSON")
