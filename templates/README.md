@@ -48,6 +48,10 @@ Dispatch wrapper for a blind parser (nothing else):
   `catalog/_general.yaml`, only `shown` examples, each with its emitted rendering) → `generated/PROMPT_CATALOG.txt`.
   Tests: `python tests/test_render_prompt.py`.
 
+- `../semantic-parse.py "<sentence>"` sends one sentence with the generated catalog prompt to an LLM
+  (`--provider gemini|openai`, `--model`, `--effort`, `--out run.json`, `--dry-run`; keys from the
+  environment, e.g. `GEMINI_API_KEY`). The suite runner uses it for blind parses.
+
 ### Atom-type substrate and type checker (C9)
 
 - Source: `atom-type-substrates.json` (hand-maintained). Render: `python -m tmpl.gen_substrate` →
