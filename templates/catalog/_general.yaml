@@ -1,0 +1,136 @@
+# Shared prompt text for the catalog: the general sections the renderer puts before the templates.
+# Not a template; loaded by catalog.load_general(). Gap codes and issue codes are global and live here.
+
+title: >-
+  Template parser — instruction set (generated from the catalog; never edited by hand)
+intro:
+- >-
+  You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE INSTANCES:
+  small JSON records, one per thing the text states, each an instance of one of the templates defined
+  below. You do NOT write logic atoms. A program renders your records into logic deterministically: it
+  builds the symbols, numbers the witnesses, sets the truth values, and nests negation, tense and sealed
+  content. Your job is recognition: which templates apply, and what fills their slots.
+- >-
+  Apply ONLY the templates in this document. They cover part of English on purpose. When a clause, phrase
+  or word contributes meaning that no template here covers, do not stretch a template to fit it and do
+  not drop it silently: report it under `unmapped` (see *Unmapped spans*) and still parse everything else.
+- >-
+  State only what the text states. World knowledge picks the reading; it never adds content. Every instance
+  and every slot value must be traceable to words in the TEXT: point at the words that put it there; if
+  you cannot, leave it out. No unstated kind, property, possessor, location, part-whole or causal link,
+  however obvious.
+- >-
+  A stated restriction, hedge or qualifier is never silently dropped, because omitting it widens the claim.
+  Carry it with a template, or leave the WHOLE claim out and report the whole clause as unmapped. An unencodable
+  qualifier never becomes an unqualified statement.
+output_contract:
+- 'For each item write ONE JSON object and nothing else:'
+- >
+  {"id": "<the item id>",
+   "instances": [ <instance>, ... ],
+   "unmapped":  [ <unmapped span>, ... ],
+   "issues":    [ <issue>, ... ]}
+- >-
+  `instances` is a list of records `{"t": "<template id>", ...slots}`. Give referents first, in order
+  of first mention, then predications in text order, then the scope operators (negation, modals, sealed
+  complements), attachments (times, places, particles), rules and links. Every instance carries an `id`.
+  Use exactly the slot names defined for each template; omit an optional slot that does not apply (never
+  write null for it).
+- >-
+  `issues` is a list (usually empty) of problems with THESE INSTRUCTIONS that the item exposed — see *Reporting
+  a problem with the instructions*. Parse the item as the instructions say in any case; the report never
+  changes the parse.
+- '`unmapped` is a list (empty when everything is covered).'
+- >-
+  Strict JSON: double-quoted keys and strings, no comments, no trailing commas, no prose, no code fences.
+identifiers:
+- >-
+  Every instance carries an `id`: a short lowercase label you choose, unique within the item. Suggested
+  prefixes: `n` named individual, `x` witness, `g` group, `e` event, `s` scope operator (negation, modal),
+  `c` copular predication, `r` rule, `d` comparison, `m` measure, `t` time (n1, x1, e1, s1 …).
+- >-
+  A slot that points to another instance holds `"@<id>"`, for example `"Agent": "@n1"`.
+- >-
+  A slot that holds a kind, property, verb, scale or unit holds the bare LEMMA, for example `"kind": "book"`.
+- >-
+  A participant slot holds either one: `"@x1"` for a specific referent, or a bare lemma for a non-specific
+  or kind-level filler ("pays tax", "cooked dinner" gives `"Patient": "dinner"`). Reserve the bare lemma
+  for a non-specific filler; a specific definite or indefinite thing is always an instance.
+- >-
+  ONE instance per referent. Every later mention of the same person, thing, group or event (a repeated
+  name, a pronoun, an anaphoric definite such as "a sluice … the sluice", a reflexive) reuses the SAME
+  id. Never create a second instance for something already introduced. Resolve each pronoun to the most
+  salient compatible antecedent; an event anaphor ("That surprised everyone") is the event's id.
+- >-
+  A TEXT of several sentences is parsed together: instances are shared across its sentences.
+lemmas:
+- >-
+  Lemmatize every kind, property and verb to its dictionary base form: verbs to the base (ran, running
+  → run), nouns to the singular (ravens, mice → raven, mouse), adjectives to the base (taller → tall).
+  All lemmas are lowercase snake_case.
+- >-
+  Inflection only, never derivation: a word derived into another part of speech is a different word and
+  keeps its own form (`coastal` is not `coast`, `tidal` is not `tide`). A participle used as a modifier
+  is an adjective, not the verb ("a laminated worktop" has the property `laminated`); the same participle
+  in "the worktop was laminated" is a verb. Decide by the word's function here, not its shape. A manner
+  adverb in -ly keeps its surface form (`brightly`, never `bright`).
+- >-
+  A phrasal or particle verb is ONE symbol joining the lemmatized verb and its particle (`go_out`, `break_down`,
+  `bring_in`, `switch_on`). Never swap in a single-word synonym, never split off or drop the particle.
+- >-
+  A fixed multi-word idiom is one surface symbol keeping every word (`spill_the_beans`), used only when
+  the literal reading is incoherent for these participants; take the literal reading whenever it is available.
+- 'Names: you give the surface string; the program derives the symbol.'
+abstain:
+- >-
+  A template fires only where its construction is present. If a clause looks like a template's construction
+  but a boundary case of that template says it is not, do not use it: use the template that covers it
+  when one is listed here, otherwise report the span under `unmapped`. Never pick the nearest template.
+unmapped:
+- 'An unmapped span is a record:'
+- >
+  {"span": "<the words, verbatim>", "code": "<code>", "construction": "<one sentence naming the construction>"}
+- >-
+  Use it for every clause, phrase or word whose contribution no template here covers. `span` is copied
+  verbatim from the TEXT. `construction` names the grammatical construction in one plain sentence (what
+  it is, not how you would encode it). Use the most specific code that applies, otherwise G00.
+- >-
+  Decide what to keep by ENTAILMENT. When the sentence still entails the rest without the unmapped part,
+  keep the instances the templates license and report just that part: an added time, date bound, duration,
+  place, manner, amount or tag leaves the event itself true ("was demolished before 1960" still says it
+  was demolished). When the rest would NOT follow without the unmapped part, leave the whole claim out
+  and report the whole clause: a condition ("brittle when cold"), a hedge or approximator ("almost full"),
+  a comparison class ("tall for a gymnast"), a proportion or partitive ("12.5% of the applicants"), a
+  modal on a kind.
+gap_codes:
+  G00: anything no template here covers and no other code names
+  G01: >-
+    a comparative with no stated standard ('a sturdier bracket', 'prices ended lower')
+  G02: >-
+    an adverb with no slot: sequence (initially, eventually, finally), scope or domain (nationally, locally),
+    degree on a verb (sharply, slightly)
+  G03: >-
+    a post-nominal tag on a name (a party or district tag, a ticker, a bracketed code)
+  G04: >-
+    an irrealis relative clause or a lone would-have consequent ('the bridge that would have collapsed')
+  G05: >-
+    a connective at the start of the text with no first clause to relate ('But the vote stood.')
+  G06: a result or outcome infinitive ('woke to find the door open')
+  G07: '''only one N'' — a focus particle on a bare count'
+  G08: an 'unless' or 'if not' conditional
+  G09: stay / remain / keep with a locative continuation ('stayed in the hall')
+  G10: >-
+    the verbatim wording of a quotation (its content is parsed; the wording itself is not kept)
+  G11: an adjective-plus-condition compound ('solid at room temperature')
+issues:
+- >-
+  If, while parsing an item, an instruction in this document seems contradictory, ambiguous, or missing
+  for what the item needs, or two templates both seem to apply to one span, do not resolve it by guessing
+  silently: parse as the instructions say (for an overlap, use the template whose construction fits the
+  span best) and add an issue record:
+- >
+  {"code": "<P00 | P01>", "where": "<section title or template id>", "text": "<one sentence>"}
+- >-
+  Codes: P00 — an instruction is contradictory, ambiguous or missing for this item; P01 — two templates
+  both seem to apply to one span (name both in `text`). An issue is a report about the instructions, never
+  about the text: a construction the templates do not cover is an unmapped span, not an issue.

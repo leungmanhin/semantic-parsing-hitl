@@ -44,6 +44,9 @@ Dispatch wrapper for a blind parser (nothing else):
   `python -c "from tmpl import catalog; catalog.load()"` checks the structural invariants.
 - `tmpl/emit.py` renders instances through the shapes (nothing template-specific in code);
   `from tmpl import emit; emit.emit(item)` → statements + declarations. Tests: `python tests/test_emit.py`.
+- `python -m tmpl.render_prompt` renders the parser's instruction set from the catalog (shared text in
+  `catalog/_general.yaml`, only `shown` examples, each with its emitted rendering) → `generated/PROMPT_CATALOG.txt`.
+  Tests: `python tests/test_render_prompt.py`.
 
 ### Atom-type substrate and type checker (C9)
 

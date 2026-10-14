@@ -26,7 +26,7 @@ trigger:
 
 slots:
   id:   {type: id, required: true}
-  over: {type: refs, class: Proposition, required: true, doc: the predication(s) negated}
+  over: {type: refs, class: Proposition, required: true, doc: "the predication(s) negated"}
 
 emits:
   - atom: "(Not {over})"

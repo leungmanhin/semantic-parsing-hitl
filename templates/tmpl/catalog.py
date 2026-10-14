@@ -28,6 +28,7 @@ CATALOG_DIR = os.path.abspath(os.path.join(HERE, os.pardir, "catalog"))
 SLOT_TYPES = {"id", "lemma", "filler", "refs", "enum", "bool", "string", "number", "int", "list"}
 CLASSED = {"lemma", "filler", "refs"}
 CATEGORIES = {"positive", "contrast", "scoped", "optional", "abstain"}
+SLOT_KEYS = {"type", "class", "role", "required", "default", "values", "doc"}
 
 _PLACEHOLDER = re.compile(r"\{([a-z_]+)\}")
 
@@ -53,6 +54,9 @@ def check_template(t: dict, path: str) -> list[str]:
         if not isinstance(spec, dict) or spec.get("type") not in SLOT_TYPES:
             problems.append(f"slot {sname}: unknown type {spec.get('type') if isinstance(spec, dict) else spec!r}")
             continue
+        for key in spec:
+            if key not in SLOT_KEYS:
+                problems.append(f"slot {sname}: unknown key {key!r} (a comma inside an unquoted doc?)")
         if spec["type"] in CLASSED and not spec.get("class"):
             problems.append(f"slot {sname}: a {spec['type']} slot needs a substrate class")
         if spec["type"] == "enum" and not spec.get("values"):
@@ -100,6 +104,8 @@ def load(directory: str = CATALOG_DIR, strict: bool = True) -> dict:
     catalog: dict = {}
     problems: list[str] = []
     for path in sorted(glob.glob(os.path.join(directory, "*.yaml"))):
+        if os.path.basename(path).startswith("_"):
+            continue                                   # shared files, not templates
         with open(path, encoding="utf-8") as fh:
             t = yaml.safe_load(fh)
         for p in check_template(t, path):
@@ -108,3 +114,10 @@ def load(directory: str = CATALOG_DIR, strict: bool = True) -> dict:
     if problems and strict:
         raise CatalogError("\n".join(problems))
     return catalog
+
+
+def load_general(directory: str = CATALOG_DIR) -> dict:
+    """The shared prompt text (``_general.yaml``): intro, output contract, identifiers, lemmas,
+    unmapped spans, the global gap codes, the abstain rule."""
+    with open(os.path.join(directory, "_general.yaml"), encoding="utf-8") as fh:
+        return yaml.safe_load(fh)

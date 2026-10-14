@@ -55,16 +55,16 @@ trigger:
       verb is pay, in which case the amount IS the object
 
 slots:
-  id:        {type: id, required: true, doc: your label for the transfer event}
-  verb:      {type: lemma, class: Class, required: true, doc: the verb lemma}
+  id:        {type: id, required: true, doc: "your label for the transfer event"}
+  verb:      {type: lemma, class: Class, required: true, doc: "the verb lemma"}
   giver:     {type: filler, class: Entity, role: Agent, required: true,
-              doc: the party who gives; in a passive, the by-phrase; absent only in an agentless passive}
+              doc: "the party who gives; in a passive, the by-phrase; absent only in an agentless passive"}
   recipient: {type: filler, class: Entity, role: Recipient, required: false,
-              doc: the party who comes to have the object; the indirect object or the to-phrase}
+              doc: "the party who comes to have the object; the indirect object or the to-phrase"}
   object:    {type: filler, class: Entity, role: Theme, required: true,
-              doc: what is transferred, unchanged by the transfer}
+              doc: "what is transferred, unchanged by the transfer"}
   tense:     {type: enum, values: [past, present, future], required: true,
-              doc: the clause's tense; present is recorded, not inferred}
+              doc: "the clause's tense; present is recorded, not inferred"}
   aspect:    {type: enum, values: [simple, progressive, perfect], required: false, default: simple}
 
 mints: {id: Event}

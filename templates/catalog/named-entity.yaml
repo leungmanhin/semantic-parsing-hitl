@@ -22,9 +22,9 @@ trigger:
 
 slots:
   id:    {type: id, required: true}
-  name:  {type: string, required: true, doc: the surface name, capitalised as written}
-  title: {type: string, required: false, doc: a leading title, if any}
-  kind:  {type: lemma, class: Class, required: false, doc: the kind the text states for the name}
+  name:  {type: string, required: true, doc: "the surface name, capitalised as written"}
+  title: {type: string, required: false, doc: "a leading title, if any"}
+  kind:  {type: lemma, class: Class, required: false, doc: "the kind the text states for the name"}
 
 mints: {id: Entity, symbol: name}
 

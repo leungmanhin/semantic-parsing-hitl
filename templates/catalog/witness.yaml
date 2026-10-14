@@ -23,9 +23,9 @@ trigger:
 
 slots:
   id:       {type: id, required: true}
-  kind:     {type: lemma, class: Class, required: true, doc: the head noun's lemma}
-  definite: {type: bool, required: false, doc: true for the / this / that, absent for a / an}
-  props:    {type: list, class: Class, required: false, doc: adjectival properties stated in the phrase}
+  kind:     {type: lemma, class: Class, required: true, doc: "the head noun's lemma"}
+  definite: {type: bool, required: false, doc: "true for the / this / that, absent for a / an"}
+  props:    {type: list, class: Class, required: false, doc: "adjectival properties stated in the phrase"}
 
 mints: {id: Entity, stem: kind}
 

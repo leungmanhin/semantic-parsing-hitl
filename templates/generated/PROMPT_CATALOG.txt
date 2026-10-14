@@ -1,0 +1,403 @@
+# Template parser — instruction set (generated from the catalog; never edited by hand)
+
+catalog sha256 314910c967a44c59 · 5 templates
+
+You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
+INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
+templates defined below. You do NOT write logic atoms. A program renders your records into logic
+deterministically: it builds the symbols, numbers the witnesses, sets the truth values, and
+nests negation, tense and sealed content. Your job is recognition: which templates apply, and
+what fills their slots.
+
+Apply ONLY the templates in this document. They cover part of English on purpose. When a clause,
+phrase or word contributes meaning that no template here covers, do not stretch a template to
+fit it and do not drop it silently: report it under `unmapped` (see *Unmapped spans*) and still
+parse everything else.
+
+State only what the text states. World knowledge picks the reading; it never adds content. Every
+instance and every slot value must be traceable to words in the TEXT: point at the words that
+put it there; if you cannot, leave it out. No unstated kind, property, possessor, location,
+part-whole or causal link, however obvious.
+
+A stated restriction, hedge or qualifier is never silently dropped, because omitting it widens
+the claim. Carry it with a template, or leave the WHOLE claim out and report the whole clause as
+unmapped. An unencodable qualifier never becomes an unqualified statement.
+
+## Output
+
+For each item write ONE JSON object and nothing else:
+
+    {"id": "<the item id>",
+     "instances": [ <instance>, ... ],
+     "unmapped":  [ <unmapped span>, ... ],
+     "issues":    [ <issue>, ... ]}
+
+`instances` is a list of records `{"t": "<template id>", ...slots}`. Give referents first, in
+order of first mention, then predications in text order, then the scope operators (negation,
+modals, sealed complements), attachments (times, places, particles), rules and links. Every
+instance carries an `id`. Use exactly the slot names defined for each template; omit an optional
+slot that does not apply (never write null for it).
+
+`issues` is a list (usually empty) of problems with THESE INSTRUCTIONS that the item exposed —
+see *Reporting a problem with the instructions*. Parse the item as the instructions say in any
+case; the report never changes the parse.
+
+`unmapped` is a list (empty when everything is covered).
+
+Strict JSON: double-quoted keys and strings, no comments, no trailing commas, no prose, no code
+fences.
+
+## Identifiers and fillers
+
+- Every instance carries an `id`: a short lowercase label you choose, unique within the item.
+  Suggested prefixes: `n` named individual, `x` witness, `g` group, `e` event, `s` scope
+  operator (negation, modal), `c` copular predication, `r` rule, `d` comparison, `m` measure,
+  `t` time (n1, x1, e1, s1 …).
+- A slot that points to another instance holds `"@<id>"`, for example `"Agent": "@n1"`.
+- A slot that holds a kind, property, verb, scale or unit holds the bare LEMMA, for example
+  `"kind": "book"`.
+- A participant slot holds either one: `"@x1"` for a specific referent, or a bare lemma for a
+  non-specific or kind-level filler ("pays tax", "cooked dinner" gives `"Patient": "dinner"`).
+  Reserve the bare lemma for a non-specific filler; a specific definite or indefinite thing is
+  always an instance.
+- ONE instance per referent. Every later mention of the same person, thing, group or event (a
+  repeated name, a pronoun, an anaphoric definite such as "a sluice … the sluice", a reflexive)
+  reuses the SAME id. Never create a second instance for something already introduced. Resolve
+  each pronoun to the most salient compatible antecedent; an event anaphor ("That surprised
+  everyone") is the event's id.
+- A TEXT of several sentences is parsed together: instances are shared across its sentences.
+
+## Lemmas and symbols
+
+- Lemmatize every kind, property and verb to its dictionary base form: verbs to the base (ran,
+  running → run), nouns to the singular (ravens, mice → raven, mouse), adjectives to the base
+  (taller → tall). All lemmas are lowercase snake_case.
+- Inflection only, never derivation: a word derived into another part of speech is a different
+  word and keeps its own form (`coastal` is not `coast`, `tidal` is not `tide`). A participle
+  used as a modifier is an adjective, not the verb ("a laminated worktop" has the property
+  `laminated`); the same participle in "the worktop was laminated" is a verb. Decide by the
+  word's function here, not its shape. A manner adverb in -ly keeps its surface form
+  (`brightly`, never `bright`).
+- A phrasal or particle verb is ONE symbol joining the lemmatized verb and its particle
+  (`go_out`, `break_down`, `bring_in`, `switch_on`). Never swap in a single-word synonym, never
+  split off or drop the particle.
+- A fixed multi-word idiom is one surface symbol keeping every word (`spill_the_beans`), used
+  only when the literal reading is incoherent for these participants; take the literal reading
+  whenever it is available.
+- Names: you give the surface string; the program derives the symbol.
+
+## Choosing a template
+
+A template fires only where its construction is present. If a clause looks like a template's
+construction but a boundary case of that template says it is not, do not use it: use the
+template that covers it when one is listed here, otherwise report the span under `unmapped`.
+Never pick the nearest template.
+
+## Unmapped spans
+
+An unmapped span is a record:
+
+    {"span": "<the words, verbatim>", "code": "<code>", "construction": "<one sentence naming the construction>"}
+
+Use it for every clause, phrase or word whose contribution no template here covers. `span` is
+copied verbatim from the TEXT. `construction` names the grammatical construction in one plain
+sentence (what it is, not how you would encode it). Use the most specific code that applies,
+otherwise G00.
+
+Decide what to keep by ENTAILMENT. When the sentence still entails the rest without the unmapped
+part, keep the instances the templates license and report just that part: an added time, date
+bound, duration, place, manner, amount or tag leaves the event itself true ("was demolished
+before 1960" still says it was demolished). When the rest would NOT follow without the unmapped
+part, leave the whole claim out and report the whole clause: a condition ("brittle when cold"),
+a hedge or approximator ("almost full"), a comparison class ("tall for a gymnast"), a proportion
+or partitive ("12.5% of the applicants"), a modal on a kind.
+
+Codes:
+
+- G00: anything no template here covers and no other code names
+- G01: a comparative with no stated standard ('a sturdier bracket', 'prices ended lower')
+- G02: an adverb with no slot: sequence (initially, eventually, finally), scope or domain
+  (nationally, locally), degree on a verb (sharply, slightly)
+- G03: a post-nominal tag on a name (a party or district tag, a ticker, a bracketed code)
+- G04: an irrealis relative clause or a lone would-have consequent ('the bridge that would have
+  collapsed')
+- G05: a connective at the start of the text with no first clause to relate ('But the vote
+  stood.')
+- G06: a result or outcome infinitive ('woke to find the door open')
+- G07: 'only one N' — a focus particle on a bare count
+- G08: an 'unless' or 'if not' conditional
+- G09: stay / remain / keep with a locative continuation ('stayed in the hall')
+- G10: the verbatim wording of a quotation (its content is parsed; the wording itself is not
+  kept)
+- G11: an adjective-plus-condition compound ('solid at room temperature')
+
+## Reporting a problem with the instructions
+
+If, while parsing an item, an instruction in this document seems contradictory, ambiguous, or
+missing for what the item needs, or two templates both seem to apply to one span, do not resolve
+it by guessing silently: parse as the instructions say (for an overlap, use the template whose
+construction fits the span best) and add an issue record:
+
+    {"code": "<P00 | P01>", "where": "<section title or template id>", "text": "<one sentence>"}
+
+Codes: P00 — an instruction is contradictory, ambiguous or missing for this item; P01 — two
+templates both seem to apply to one span (name both in `text`). An issue is a report about the
+instructions, never about the text: a construction the templates do not cover is an unmapped
+span, not an issue.
+
+## Templates
+
+## Referents — the things the text talks about
+
+### named-entity — A proper name introducing a rigid referent
+
+When: A proper name (a person, a place, an organisation, a product) used to refer to one
+individual. A name is rigid: its symbol is derived from the name itself, it never gets a witness
+number, and it is never introduced inside a scope.
+
+Forms:
+- <Name>
+- <Title> <Name>
+
+Not this template:
+- a common noun with an article — the clerk, a thermos: a witness, not a name
+- a bare mass or domain noun — rust, chemistry: a constant, not a name
+
+Slots:
+
+- `t` (required): "named-entity"
+- `id` (required; your label for this instance).
+- `name` (required; a string): the surface name, capitalised as written.
+- `title` (optional; a string): a leading title, if any.
+- `kind` (optional; a lemma): the kind the text states for the name.
+
+Example. TEXT: Teodor arrived.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Teodor"}
+    ]
+
+The program renders these instances as:
+
+    (Name teodor "Teodor")
+
+### witness — A common-noun phrase introducing an individual
+
+When: A noun phrase headed by a common noun with a determiner or a modifier — a thermos, the
+quilt, this spindle, two envelopes' member — introducing an individual of that kind. The
+individual gets a numbered witness symbol; whether the phrase is definite is recorded.
+
+Forms:
+- a <N>
+- the <N>
+- <Adj> <N>
+
+Not this template:
+- a bare plural read generically — dogs bark: a kind-level statement, not a witness
+- a proper name — Teodor: a named entity
+
+Slots:
+
+- `t` (required): "witness"
+- `id` (required; your label for this instance).
+- `kind` (required; a lemma): the head noun's lemma.
+- `definite` (optional; true / false): true for the / this / that, absent for a / an.
+- `props` (optional; a list of lemmas): adjectival properties stated in the phrase.
+
+Example. TEXT: a thermos
+
+Instances:
+
+    [
+      {"t": "witness", "id": "n1", "kind": "thermos"}
+    ]
+
+The program renders these instances as:
+
+    (Member sk_thermos_1 thermos)
+
+## Predications — what the text states about them
+
+### transfer — Transfer of an object from one party to another
+
+When: A verbal clause whose verb denotes a transfer: one party (the giver) causes another (the
+recipient) to come to have an object. The transfer may be of possession (give, sell, lend, pay,
+award) or of custody (hand, pass, send, ship, deliver, return).
+
+Verbs that anchor the class: give, hand, pass, send, ship, mail, deliver, sell, lend, rent, pay,
+offer, return, award, grant.
+The list anchors the class; a verb not listed that clearly denotes a transfer belongs here
+(record its lemma as usual). The class is semantic, the list is guidance.
+
+Forms:
+- <giver> V <recipient> <object>
+- <giver> V <object> to <recipient>
+- <object> was V-ed to <recipient> by <giver>
+- <recipient> was V-ed <object> by <giver>
+- <giver> V <object>
+
+Not this template:
+- particle verbs — give up, give in, give way, hand over (idiomatic), pass out: the particle is
+  part of the lemma and the verb no longer denotes a transfer
+- light-verb constructions — give a speech, give a hand, give a call, pay a visit: the noun
+  carries the event; nothing is transferred
+- communication verbs — tell, say, write to, text, phone: a message has an addressee, not a
+  recipient of an object
+- acquisition verbs — take, receive, get, obtain, accept, buy: the subject is the party who
+  comes to have the object, not the giver
+- the price or fee — sold the van for 900 euros: the amount is never the object unless the verb
+  is pay, in which case the amount IS the object
+
+Slots:
+
+- `t` (required): "transfer"
+- `id` (required; your label for this instance): your label for the transfer event.
+- `verb` (required; a lemma): the verb lemma.
+- `giver` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
+  the party who gives; in a passive, the by-phrase; absent only in an agentless passive.
+- `recipient` (optional; "@id" of a referent instance, or a bare lemma for a non-specific
+  filler): the party who comes to have the object; the indirect object or the to-phrase.
+- `object` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
+  what is transferred, unchanged by the transfer.
+- `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
+  not inferred.
+- `aspect` (optional; one of: simple, progressive, perfect).
+
+Example. TEXT: Teodor gave Yusra a thermos.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Teodor"},
+      {"t": "named-entity", "id": "n2", "name": "Yusra"},
+      {"t": "witness", "id": "n3", "kind": "thermos"},
+      {"t": "transfer", "id": "e1", "verb": "give", "giver": "@n1", "recipient": "@n2", "object": "@n3", "tense": "past"}
+    ]
+
+The program renders these instances as:
+
+    (Name teodor "Teodor")
+    (Name yusra "Yusra")
+    (Member sk_thermos_1 thermos)
+    (Member sk_give_1 give)
+    (Agent sk_give_1 teodor)
+    (Recipient sk_give_1 yusra)
+    (Theme sk_give_1 sk_thermos_1)
+    (Past sk_give_1)
+
+Example (the to-dative is the same instance as the double object). TEXT: Lamine will send the quilt to Ottoline.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Lamine"},
+      {"t": "witness", "id": "n2", "kind": "quilt", "definite": true},
+      {"t": "named-entity", "id": "n3", "name": "Ottoline"},
+      {"t": "transfer", "id": "e1", "verb": "send", "giver": "@n1", "recipient": "@n3", "object": "@n2", "tense": "future"}
+    ]
+
+The program renders these instances as:
+
+    (Name lamine "Lamine")
+    (Member sk_quilt_1 quilt)
+    (Name ottoline "Ottoline")
+    (Member sk_send_1 send)
+    (Agent sk_send_1 lamine)
+    (Recipient sk_send_1 ottoline)
+    (Theme sk_send_1 sk_quilt_1)
+    (Future sk_send_1)
+
+Example (no recipient stated). TEXT: Yusra sold the spindle.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Yusra"},
+      {"t": "witness", "id": "n2", "kind": "spindle", "definite": true},
+      {"t": "transfer", "id": "e1", "verb": "sell", "giver": "@n1", "object": "@n2", "tense": "past"}
+    ]
+
+The program renders these instances as:
+
+    (Name yusra "Yusra")
+    (Member sk_spindle_1 spindle)
+    (Member sk_sell_1 sell)
+    (Agent sk_sell_1 yusra)
+    (Theme sk_sell_1 sk_spindle_1)
+    (Past sk_sell_1)
+
+Not this template. TEXT: Teodor gave a speech. — report it as unmapped: {"span": "gave a
+speech", "code": "G00"}.
+
+Not this template. TEXT: Ottoline took the envelope from Lamine. — report the span as unmapped.
+
+## Scope operators — negation, modality, sealed content
+
+### modal — A modal auxiliary scoping over a clause
+
+When: A modal auxiliary (can, could, might, may, must, should, have to, be allowed to) applied
+to a clause. The clause is not asserted; the modal scopes over it. The head records the modality
+(capability, epistemic possibility, epistemic necessity, obligation, permission), and the
+surface word is kept.
+
+Forms:
+- <S> might <V> …
+- <S> must <V> …
+- <S> is allowed to <V> …
+
+Not this template:
+- a modal word used epistemically vs deontically — may: permission (Permitted) or possibility
+  (Might); the sentence decides, the head records the choice
+- the ordering with negation — must not (Obligated over Not), need not (Not over Obligated), may
+  not (Not over Permitted), can't (Not over Can): the instance order follows the meaning
+
+Slots:
+
+- `t` (required): "modal"
+- `id` (required; your label for this instance).
+- `over` (required; a list of "@id" of the instances this one scopes over): the clause scoped
+  over.
+- `head` (required; one of: Can, Might, Must, Obligated, Permitted).
+- `surface` (optional; a string): the modal word as written.
+
+### negation — Clausal negation
+
+When: A clause negated by not / n't / never / no (as a sentential negator). The negated content
+is the whole predication the negator attaches to, with its tense and its own attachments; a
+witness introduced inside the negated clause belongs to the negation's scope.
+
+Forms:
+- <S> did not <V> …
+- <S> is not <Adj>
+- <S> never <V> …
+
+Not this template:
+- not only — a focus particle, not negation
+- no as a quantifier — no clerk arrived: a quantified statement at strength 0, not a scope
+- must not / may not / need not — the modal template decides the scope order; this template
+  provides the negation instance it scopes over or under
+
+Slots:
+
+- `t` (required): "negation"
+- `id` (required; your label for this instance).
+- `over` (required; a list of "@id" of the instances this one scopes over): the predication(s)
+  negated.
+
+Example. TEXT: Teodor did not send the quilt.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Teodor"},
+      {"t": "witness", "id": "n2", "kind": "quilt", "definite": true},
+      {"t": "transfer", "id": "e1", "verb": "send", "giver": "@n1", "object": "@n2", "tense": "past"},
+      {"t": "negation", "id": "s1", "over": ["@e1"]}
+    ]
+
+The program renders these instances as:
+
+    (Name teodor "Teodor")
+    (Not (And (Member sk_send_1 send) (Agent sk_send_1 teodor) (Theme sk_send_1 sk_quilt_1) (Past sk_send_1) (Member sk_quilt_1 quilt)))

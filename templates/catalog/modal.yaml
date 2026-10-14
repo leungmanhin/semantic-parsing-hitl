@@ -26,9 +26,9 @@ trigger:
 
 slots:
   id:      {type: id, required: true}
-  over:    {type: refs, class: Proposition, required: true, doc: the clause scoped over}
+  over:    {type: refs, class: Proposition, required: true, doc: "the clause scoped over"}
   head:    {type: enum, values: [Can, Might, Must, Obligated, Permitted], required: true}
-  surface: {type: string, required: false, doc: the modal word as written}
+  surface: {type: string, required: false, doc: "the modal word as written"}
 
 emits:
   - atom: "({head} {over})"
