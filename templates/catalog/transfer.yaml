@@ -181,7 +181,7 @@ examples:
         - {t: witness, id: n3, kind: envelope}
         - {t: transfer, id: e1, verb: hand, giver: "@n1", recipient: "@n2", object: "@n3",
            tense: past}
-        - {t: negation, over: ["@e1"]}
+        - {t: negation, id: s1, over: ["@e1"]}
     - category: scoped
       note: under a modal — the transfer instance is unchanged, the modal template scopes over it
       text: "Lamine might lend Ottoline the trowel."
@@ -191,7 +191,7 @@ examples:
         - {t: witness, id: n3, kind: trowel, definite: true}
         - {t: transfer, id: e1, verb: lend, giver: "@n1", recipient: "@n2", object: "@n3",
            tense: present}
-        - {t: modal, over: ["@e1"], head: Might, surface: might}
+        - {t: modal, id: s1, over: ["@e1"], head: Might, surface: might}
     - category: optional
       text: "Ottoline is sending the quilt."
       instances:

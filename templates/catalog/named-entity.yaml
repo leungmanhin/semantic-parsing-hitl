@@ -1,0 +1,46 @@
+# Template: named-entity  (stub for review: the minimal referent template a proper name needs)
+
+id: named-entity
+family: referent
+kind: referent
+title: A proper name introducing a rigid referent
+status: stub
+
+trigger:
+  construction: >
+    A proper name (a person, a place, an organisation, a product) used to refer to one
+    individual. A name is rigid: its symbol is derived from the name itself, it never gets a
+    witness number, and it is never introduced inside a scope.
+  surface_forms:
+    - "<Name>"                      # Teodor
+    - "<Title> <Name>"              # Dr Varga — the title is recorded, not part of the symbol
+  boundary:
+    - >-
+      a common noun with an article — the clerk, a thermos: a witness, not a name
+    - >-
+      a bare mass or domain noun — rust, chemistry: a constant, not a name
+
+slots:
+  id:    {type: id, required: true}
+  name:  {type: string, required: true, doc: the surface name, capitalised as written}
+  title: {type: string, required: false, doc: a leading title, if any}
+  kind:  {type: lemma, class: Class, required: false, doc: the kind the text states for the name}
+
+mints: {id: Entity, symbol: name}
+
+emits:
+  - atom: "(Name @id \"{name}\")"
+  - atom: "(Member @id {kind})"
+    if_filled: kind
+
+examples:
+  shown:
+    - category: positive
+      text: "Teodor arrived."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+  held_out:
+    - category: positive
+      text: "Yusra, a locksmith, arrived."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra", kind: locksmith}

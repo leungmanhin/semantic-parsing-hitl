@@ -1,0 +1,47 @@
+# Template: witness  (stub for review: the minimal referent template a common-noun phrase needs)
+
+id: witness
+family: referent
+kind: referent
+title: A common-noun phrase introducing an individual
+status: stub
+
+trigger:
+  construction: >
+    A noun phrase headed by a common noun with a determiner or a modifier — a thermos, the
+    quilt, this spindle, two envelopes' member — introducing an individual of that kind. The
+    individual gets a numbered witness symbol; whether the phrase is definite is recorded.
+  surface_forms:
+    - "a <N>"                       # indefinite
+    - "the <N>"                     # definite
+    - "<Adj> <N>"                   # the property is recorded beside the kind
+  boundary:
+    - >-
+      a bare plural read generically — dogs bark: a kind-level statement, not a witness
+    - >-
+      a proper name — Teodor: a named entity
+
+slots:
+  id:       {type: id, required: true}
+  kind:     {type: lemma, class: Class, required: true, doc: the head noun's lemma}
+  definite: {type: bool, required: false, doc: true for the / this / that, absent for a / an}
+  props:    {type: list, class: Class, required: false, doc: adjectival properties stated in the phrase}
+
+mints: {id: Entity, stem: kind}
+
+emits:
+  - atom: "(Member @id {kind})"
+  - atom: "(Member @id {props})"
+    each: props
+
+examples:
+  shown:
+    - category: positive
+      text: "a thermos"
+      instances:
+        - {t: witness, id: n1, kind: thermos}
+  held_out:
+    - category: positive
+      text: "the old quilt"
+      instances:
+        - {t: witness, id: n1, kind: quilt, definite: true, props: [old]}

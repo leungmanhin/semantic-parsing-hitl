@@ -1,0 +1,43 @@
+# Template: negation  (stub for review: clausal negation as a scope over the negated content)
+
+id: negation
+family: scope
+kind: scope
+title: Clausal negation
+status: stub
+
+trigger:
+  construction: >
+    A clause negated by not / n't / never / no (as a sentential negator). The negated content is
+    the whole predication the negator attaches to, with its tense and its own attachments; a
+    witness introduced inside the negated clause belongs to the negation's scope.
+  surface_forms:
+    - "<S> did not <V> …"
+    - "<S> is not <Adj>"
+    - "<S> never <V> …"
+  boundary:
+    - >-
+      not only — a focus particle, not negation
+    - >-
+      no as a quantifier — no clerk arrived: a quantified statement at strength 0, not a scope
+    - >-
+      must not / may not / need not — the modal template decides the scope order; this template
+      provides the negation instance it scopes over or under
+
+slots:
+  id:   {type: id, required: true}
+  over: {type: refs, class: Proposition, required: true, doc: the predication(s) negated}
+
+emits:
+  - atom: "(Not {over})"
+
+examples:
+  shown:
+    - category: positive
+      text: "Teodor did not send the quilt."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: n2, kind: quilt, definite: true}
+        - {t: transfer, id: e1, verb: send, giver: "@n1", object: "@n2", tense: past}
+        - {t: negation, id: s1, over: ["@e1"]}
+  held_out: []

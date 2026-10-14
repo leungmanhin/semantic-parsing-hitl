@@ -1,0 +1,38 @@
+# Template: modal  (stub for review: a modal auxiliary as a scope over the sealed clause)
+
+id: modal
+family: scope
+kind: scope
+title: A modal auxiliary scoping over a clause
+status: stub
+
+trigger:
+  construction: >
+    A modal auxiliary (can, could, might, may, must, should, have to, be allowed to) applied to
+    a clause. The clause is not asserted; the modal scopes over it. The head records the
+    modality (capability, epistemic possibility, epistemic necessity, obligation, permission),
+    and the surface word is kept.
+  surface_forms:
+    - "<S> might <V> …"
+    - "<S> must <V> …"
+    - "<S> is allowed to <V> …"
+  boundary:
+    - >-
+      a modal word used epistemically vs deontically — may: permission (Permitted) or
+      possibility (Might); the sentence decides, the head records the choice
+    - >-
+      the ordering with negation — must not (Obligated over Not), need not (Not over Obligated),
+      may not (Not over Permitted), can't (Not over Can): the instance order follows the meaning
+
+slots:
+  id:      {type: id, required: true}
+  over:    {type: refs, class: Proposition, required: true, doc: the clause scoped over}
+  head:    {type: enum, values: [Can, Might, Must, Obligated, Permitted], required: true}
+  surface: {type: string, required: false, doc: the modal word as written}
+
+emits:
+  - atom: "({head} {over})"
+
+examples:
+  shown: []
+  held_out: []

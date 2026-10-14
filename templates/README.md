@@ -37,6 +37,14 @@ Dispatch wrapper for a blind parser (nothing else):
     Your batch file is <repo>/templates/pilot/batches/<set>/<batch>.txt.
     Run number: <N>.
 
+### Catalog (one template per file) and the generic emitter
+
+- `catalog/<id>.yaml` is a whole template: trigger (construction, boundary), slots with their
+  substrate class, `mints`, `emits` shapes, notes, `examples.shown` / `examples.held_out`.
+  `python -c "from tmpl import catalog; catalog.load()"` checks the structural invariants.
+- `tmpl/emit.py` renders instances through the shapes (nothing template-specific in code);
+  `from tmpl import emit; emit.emit(item)` → statements + declarations. Tests: `python tests/test_emit.py`.
+
 ### Atom-type substrate and type checker (C9)
 
 - Source: `atom-type-substrates.json` (hand-maintained). Render: `python -m tmpl.gen_substrate` →
