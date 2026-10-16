@@ -1,6 +1,6 @@
-"""Tests for tmpl/typecheck.py (C9): the checker must reject known-bad shapes when sorts are
-declared, and must accept the emitter's own examples and the goldens (modulo the two known
-warning kinds).  Needs the ``petta`` package; skips otherwise.
+"""Tests for tmpl/typecheck.py (C9): the checker must reject known-bad shapes when types are
+declared and accept the good ones, with and without declarations.  The catalog's own examples
+are type-checked in tests/test_emit.py.  Needs the ``petta`` package; skips otherwise.
 
 Run from ``templates/``: ``python tests/test_typecheck.py``
 """
@@ -72,49 +72,6 @@ class TypecheckTests(unittest.TestCase):
         rep = run([{"id": "good", "statements": GOOD}])
         self.assertEqual(rep["passed"], len(GOOD))
         self.assertEqual([f for f in rep["findings"] if f["kind"] == "type"], [])
-
-    def test_registry_examples_type(self):
-        path = os.path.join(TEMPLATES, "pilot", "out", "registry_examples.statements.jsonl")
-        if not os.path.exists(path):
-            self.skipTest("registry examples not generated")
-        report = path + ".tc.json"
-        try:
-            typecheck.main([path, "--report", report])
-            with open(report, encoding="utf-8") as fh:
-                rep = json.load(fh)
-        finally:
-            if os.path.exists(report):
-                os.unlink(report)
-        self.assertEqual(rep["passed"], rep["statements"], rep["findings"][:3])
-
-    def test_registry_examples_type_strictly_with_emitter_declarations(self):
-        path = os.path.join(TEMPLATES, "pilot", "out", "registry_examples.statements.jsonl")
-        if not os.path.exists(path):
-            self.skipTest("registry examples not generated")
-        report = path + ".tc.json"
-        try:
-            typecheck.main([path, "--no-infer", "--report", report])
-            with open(report, encoding="utf-8") as fh:
-                rep = json.load(fh)
-        finally:
-            if os.path.exists(report):
-                os.unlink(report)
-        self.assertEqual(rep["passed"], rep["statements"], rep["findings"][:3])
-
-    def test_goldens_have_no_type_failures(self):
-        path = os.path.join(TEMPLATES, "pilot", "corpus", "gold.expected.jsonl")
-        if not os.path.exists(path):
-            self.skipTest("gold corpus not present")
-        report = path + ".tc.json"
-        try:
-            typecheck.main([path, "--report", report])
-            with open(report, encoding="utf-8") as fh:
-                rep = json.load(fh)
-        finally:
-            if os.path.exists(report):
-                os.unlink(report)
-        bad = [f for f in rep["findings"] if f["kind"] in ("type", "type-conflict", "parse-error")]
-        self.assertEqual(bad, [], bad[:3])
 
 
 if __name__ == "__main__":

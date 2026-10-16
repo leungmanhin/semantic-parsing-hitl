@@ -1,41 +1,37 @@
-# Logical templates — pilot (exploratory)
+# Logical templates — the catalog
 
 Parsing as recognition: a blind parser fills pre-defined templates; code renders the atoms.
 Nothing here changes `prompt.txt`, the briefs under `fusenf/briefs/`, or any pipeline store.
 
 | path | what |
 |---|---|
-| `INVENTORY.md` | prompt.txt read as a registry: 110 statement templates, gap codes, the nesting order and its rules |
-| `registry/starter26.yaml` | THE single source for the pilot: slot specs, criteria, examples, parameters (quote the keys `"on"`, `"n"`, `"y"`) |
-| `tmpl/records.py` | R1–R8, mechanical checks on template instance records |
-| `tmpl/emitter.py` | records → atoms: symbols, witness numbers, truth values, proof names, nesting, projection |
-| `tmpl/genprompt.py` | registry → `generated/PROMPT_T26.txt`; example renderings come from the emitter |
-| `tmpl/goldens.py` | reads `regression/regression_cases.md`; head-based coverage prediction |
-| `tmpl/pilot.py` | `select` · `batches` · `assemble` · `score` · `report` · `examples` |
-| `tmpl/c7.py` | engine-load check (runs under PeTTaChainer's environment, imports only the harness validator) |
-| `tests/test_emitter.py` | emitter vs prompt.txt's own examples, the nesting rules, determinism, example freshness |
-| `briefs/TPARSE.md`, `briefs/CPARSE.md` | blind briefs: template arm, control arm |
-| `pilot/PREREG.md` | pre-registration (proposed thresholds, not yet adopted) |
-| `pilot/manifest.json` | sampling rule, item ids, hashes of every instrument |
-| `pilot/out/*.REPORT.md`, `*.PAIRS.md` | summary and side-by-side mismatches per set |
+| `catalog/<id>.yaml` | one template per file: trigger, slots, mints, emits, notes, examples (`shown` / `held_out`) |
+| `catalog/_general.yaml` | the shared prompt text: intro, output contract, identifiers, lemmas, abstain rule, gap codes, issue codes |
+| `atom-type-substrates.json` | the typed substrate, hand-maintained; rendered to `ATOM-TYPE-SUBSTRATES.md` (review) and `generated/atom-types.metta` (PeTTa declarations) |
+| `generated/PROMPT_CATALOG.txt` | the parser's instruction set, rendered from the catalog; never edited by hand |
+| `tmpl/catalog.py` | loader and structural checks |
+| `tmpl/emit.py` | generic emitter: instances → statements + declarations |
+| `tmpl/render_prompt.py` | catalog → instruction set |
+| `tmpl/typecheck.py` | C9: statements type-checked against the substrate with PeTTa |
+| `tmpl/validate.py` | post-parse validator: contract, emitter checks, graph lints, C9 |
+| `tmpl/suite.py` | suite runner: `check` · `collect` · `score` |
+| `tmpl/gen_substrate.py` | substrate source → review document + declarations |
+| `suite/raw/<template>/` · `suite/out/` | stored run records · scores, summary, `REPORT.md` |
+| `INVENTORY.md` | prompt.txt read as a registry of constructions: the coverage worklist (its template ids are historical) |
+| `../semantic-parse.py` | one sentence → instances via an LLM, validated |
 
 ## Recipes
 
     P=python            # an environment with pyyaml (and petta for the type checker)
-    $P templates/tests/test_emitter.py                       # from the repository root
     cd templates
-    $P -m tmpl.genprompt                                     # after ANY registry edit
-    $P -m tmpl.pilot select --date <YYYY-MM-DD>              # refreshes manifest hashes
-    $P -m tmpl.pilot assemble --set <dev|gold|tiera> --arm <t26|ctl> --runs 3 --date <YYYY-MM-DD>
-    $P -m tmpl.pilot score  --set <set> --arm <arm>
-    $P -m tmpl.pilot report --set <set>
-    STEPS=400 python templates/tmpl/c7.py <parses.jsonl>      # in the chainer's environment
-
-Dispatch wrapper for a blind parser (nothing else):
-
-    Read <repo>/templates/briefs/<TPARSE|CPARSE>.md and follow it exactly.
-    Your batch file is <repo>/templates/pilot/batches/<set>/<batch>.txt.
-    Run number: <N>.
+    $P -m tmpl.gen_substrate                                 # after editing atom-type-substrates.json
+    $P -m tmpl.render_prompt                                 # after ANY catalog edit → generated/PROMPT_CATALOG.txt
+    $P -m tmpl.suite check                                   # catalog-wide checks, no LLM call
+    $P -m tmpl.suite collect --template <id> --runs 3 \
+        --provider google --model gemini-4-argon --effort low    # one call per held-out case and run
+    $P -m tmpl.suite score --template <id>                   # or --all → suite/out/REPORT.md
+    $P ../semantic-parse.py "<sentence>" --atoms             # one parse, validated, atoms shown
+    for t in tests/test_*.py; do $P $t; done
 
 ### Catalog (one template per file) and the generic emitter
 
@@ -48,11 +44,13 @@ Dispatch wrapper for a blind parser (nothing else):
   `catalog/_general.yaml`, only `shown` examples, each with its emitted rendering) → `generated/PROMPT_CATALOG.txt`.
   Tests: `python tests/test_render_prompt.py`.
 
+### Parsing and validation
+
 - `../semantic-parse.py "<sentence>"` sends one sentence with the generated catalog prompt to an LLM
   (`--provider google|openai`, `--model`, `--effort`, `--out run.json`, `--dry-run`; keys from the
   environment, e.g. `GEMINI_API_KEY`). No temperature is sent unless `--temperature` is given (Gemini 4
   Argon ignores sampling parameters; Gemini 3 is meant to run at its default). Every reply is validated
-  after the call (see below): the summary and any findings go to stderr, the result into the run record,
+  after the call: the summary and any findings go to stderr, the result into the run record,
   `--atoms` prints the emitted statements too, `--no-validate` skips it, exit status 3 on findings. The
   suite runner uses the same script for blind parses.
 - `tmpl/validate.py` is the one post-parse validator, shared by the script and the suite scorer: the
@@ -65,11 +63,6 @@ Dispatch wrapper for a blind parser (nothing else):
 
 ### Suite runner (`tmpl/suite.py`)
 
-    python -m tmpl.suite check                                   # catalog-wide checks, no LLM call
-    python -m tmpl.suite collect --template transfer --runs 3 \
-        --provider google --model gemini-4-argon --effort low    # one call per held-out case and run
-    python -m tmpl.suite score --template transfer               # or --all → suite/out/REPORT.md
-
 - `check`: every example emits; abstain targets exist (else listed as PENDING, the worklist of
   templates to write) and, when they exist, claim the sentence in their own examples without firing
   the abstaining template; a sentence that is a firing example of two templates with different
@@ -79,29 +72,27 @@ Dispatch wrapper for a blind parser (nothing else):
   resumable (stored replies are skipped; `--force` re-requests). `--section shown` parses the prompt's
   own examples (a smoke test, not a regression); `--only <words>`, `--limit N`, `--delay s`,
   `--dry-run`. The parser sees only a hash as the item id.
-- `score` renders every reply through the emitter and compares the atoms with the expected instances'
+- `score` renders every reply through the validator and compares the atoms with the expected instances'
   atoms label-independently (witness symbols up to a bijection, bundles unordered), classifies each
   (case, run) by category, type-checks every emitted parse (C9, when `petta` is importable), and writes
   `suite/out/<template>.scores.jsonl`, `summary.json`, `REPORT.md` (selection, fill, stability, usage,
-  the parser's `issues`, the per-run view of every abstain case, mismatches with leaf-level diffs).
-  Records collected under another instruction set are counted as stale. Tests: `python tests/test_suite.py`.
+  the parser's `issues`, graph lints, the per-run view of every abstain case, mismatches with leaf-level
+  diffs). Records collected under another instruction set are counted as stale. Tests: `python tests/test_suite.py`.
 
 ### Atom-type substrate and type checker (C9)
 
 - Source: `atom-type-substrates.json` (hand-maintained). Render: `python -m tmpl.gen_substrate` →
   `ATOM-TYPE-SUBSTRATES.md` (review) + `generated/atom-types.metta` (PeTTa declarations). Never edit
   the generated files.
-- Check parses: `python -m tmpl.typecheck <statements.jsonl|.metta> [--no-infer] [--report out.json]`
-  (needs the `petta` package). A record may carry
-  `declarations` (the emitter's `(: sym Sort)` lines); without them types are inferred from usage,
-  which only surfaces type errors as `type-conflict` / `type-warning`. Tests:
-  `python tests/test_typecheck.py`.
+- Check statements: `python -m tmpl.typecheck <statements.jsonl|.metta> [--no-infer] [--report out.json]`
+  (needs the `petta` package). A record may carry `declarations` (the emitter's `(: sym Type)` lines);
+  without them types are inferred from usage, which only surfaces type errors as `type-conflict` /
+  `type-warning`. Tests: `python tests/test_typecheck.py`.
 
 ## Rules of the road
 
-- Freeze before dispatch: never regenerate the instruction set while a parser is in flight.
-- Clear an arm's raw files for the items about to be re-parsed; an agent must never meet an
-  existing parse (archive first: `pilot/raw_dev_v*/`).
-- Examples in the registry never reuse a sentence from prompt.txt, the goldens or any corpus
-  (enforced by a test).
-- Pilot output never enters `fusenf/raw` or `fusenf/parses`.
+- Freeze before collect: never regenerate the instruction set while a collect is in flight (the scorer
+  flags records collected under another instruction set as stale).
+- Example sentences never reuse a sentence from prompt.txt, the goldens or any corpus, and a held-out
+  sentence never appears in the prompt (both enforced by `tmpl.suite check`).
+- Suite output never enters `fusenf/raw` or `fusenf/parses`.
