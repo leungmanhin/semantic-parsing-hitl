@@ -6,7 +6,7 @@ default); the sentence is sent as one item; the model's JSON object (instances, 
 issues) is printed.  Providers are pluggable: one small class per provider, selected by name.
 
     python semantic-parse.py "Teodor gave Yusra a thermos."
-    python semantic-parse.py "…" --provider gemini --model gemini-2.5-flash --effort low
+    python semantic-parse.py "…" --provider google --model gemini-2.5-flash --effort low
     python semantic-parse.py "…" --out run.json          # keep the full run record
     python semantic-parse.py "…" --dry-run               # show the request, call nothing
 
@@ -81,10 +81,10 @@ def _post_json(url: str, headers: dict, body: dict, timeout: float, attempts: in
     raise ProviderError(last or "request failed")
 
 
-class Gemini:
-    """Google Gemini through the Generative Language REST API (generateContent)."""
+class Google:
+    """Google (the Gemini models) through the Generative Language REST API (generateContent)."""
 
-    name = "gemini"
+    name = "google"
     default_model = "gemini-2.5-flash"
     env_keys = ("GEMINI_API_KEY", "GOOGLE_API_KEY")
     #: Per the generateContent reference (GenerationConfig.ThinkingConfig): ``thinkingLevel`` —
@@ -112,7 +112,9 @@ class Gemini:
 
     def request(self, system: str, user: str, model: str) -> tuple[str, dict, dict]:
         a = self.args
-        gen = {"temperature": a.temperature}
+        gen = {}
+        if a.temperature is not None:
+            gen["temperature"] = a.temperature
         if not a.no_json_mode:
             gen["responseMimeType"] = "application/json"
         if a.max_tokens:
@@ -215,7 +217,7 @@ class Anthropic:
         raise ProviderError("the anthropic provider is not implemented yet")
 
 
-PROVIDERS = {p.name: p for p in (Gemini, OpenAI, Anthropic)}
+PROVIDERS = {p.name: p for p in (Google, OpenAI, Anthropic)}
 
 
 # --------------------------------------------------------------------------
@@ -275,16 +277,17 @@ def parse_sentence(text: str, args, item_id: str = "item") -> dict:
     return record
 
 
-def main(argv=None) -> int:
-    ap = argparse.ArgumentParser(description=__doc__.split("\n")[0], formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("text", help="the English sentence to parse")
-    ap.add_argument("--provider", choices=sorted(PROVIDERS), default="gemini")
+def add_provider_args(ap: argparse.ArgumentParser) -> None:
+    """The provider, model, effort and request flags ``parse_sentence`` reads from ``args``;
+    shared with the suite runner (templates/tmpl/suite.py), which adds them to its own parser."""
+    ap.add_argument("--provider", choices=sorted(PROVIDERS), default="google")
     ap.add_argument("--model", default=None, help="model name (default: the provider's default)")
     ap.add_argument("--effort", choices=EFFORTS, default="low",
                     help="reasoning effort (default: low). Gemini 3+: a thinking level (none -> LOW, the lowest level every model offers); Gemini 2.x: a thinking budget (none -> 0)")
     ap.add_argument("--prompt", default=DEFAULT_PROMPT, help="instruction set file (default: the generated catalog prompt)")
-    ap.add_argument("--id", default="item", help="the item id written into the request and expected back")
-    ap.add_argument("--temperature", type=float, default=0.0)
+    ap.add_argument("--temperature", type=float, default=None,
+                    help="sampling temperature; default: not sent, the model's own default applies (Gemini 4 Argon ignores "
+                         "sampling parameters altogether; for Gemini 3 Google recommends its default of 1.0)")
     ap.add_argument("--max-tokens", type=int, default=None)
     ap.add_argument("--timeout", type=float, default=600.0, help="seconds to wait for a reply (default 600; long thinking runs need it)")
     ap.add_argument("--thinking-budget", type=int, default=None,
@@ -296,6 +299,13 @@ def main(argv=None) -> int:
                     help="do not request application/json replies (diagnostic: JSON mode may interact with thinking)")
     ap.add_argument("--include-thoughts", action="store_true",
                     help="ask for thought summaries (includeThoughts); kept in the run record, counted on stderr")
+
+
+def main(argv=None) -> int:
+    ap = argparse.ArgumentParser(description=__doc__.split("\n")[0], formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("text", help="the English sentence to parse")
+    add_provider_args(ap)
+    ap.add_argument("--id", default="item", help="the item id written into the request and expected back")
     ap.add_argument("--out", default=None, help="write the full run record (request parameters, usage, raw text, parsed reply) here")
     ap.add_argument("--raw", action="store_true", help="print the reply text as received instead of the parsed JSON")
     ap.add_argument("--dry-run", action="store_true", help="show the request that would be sent and call nothing")

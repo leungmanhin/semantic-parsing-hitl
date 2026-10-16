@@ -1,0 +1,91 @@
+{
+  "provider": "gemini",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": 0.0,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "db9f01f07a93a0f671dcc116f489b584692005917106c6c946345d43e67bcd90",
+  "item": {
+    "id": "s9c78fd5b3d",
+    "text": "Teodor told Ottoline the news."
+  },
+  "usage": {
+    "input": 4987,
+    "output": 133,
+    "thinking": null,
+    "total": 5120,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "temperature": 0.0,
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 4987,
+    "candidatesTokenCount": 133,
+    "totalTokenCount": 5120,
+    "cachedContentTokenCount": 2938,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 4987
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 2938
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 133
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s9c78fd5b3d\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Ottoline\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"news\", \"definite\": true}], \"unmapped\": [{\"span\": \"told Ottoline the news\", \"code\": \"G00\", \"construction\": \"A communication verb with an addressee and a message noun phrase.\"}], \"issues\": []}",
+  "response": {
+    "id": "s9c78fd5b3d",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Ottoline"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "news",
+        "definite": true
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "told Ottoline the news",
+        "code": "G00",
+        "construction": "A communication verb with an addressee and a message noun phrase."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "202a40b842f6568cb8833b555ec9242b400326af8352304199f73d8f47ad39eb",
+  "run": 3,
+  "case": {
+    "template": "transfer",
+    "section": "held_out",
+    "index": 8,
+    "category": "abstain",
+    "text": "Teodor told Ottoline the news.",
+    "key": "9c78fd5b3d"
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "provider": "gemini",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": 0.0,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "db9f01f07a93a0f671dcc116f489b584692005917106c6c946345d43e67bcd90",
+  "item": {
+    "id": "se82bcdacbc",
+    "text": "An envelope was handed to Teodor by Lamine."
+  },
+  "usage": {
+    "input": 4986,
+    "output": 137,
+    "thinking": null,
+    "total": 5123,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "temperature": 0.0,
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 4986,
+    "candidatesTokenCount": 137,
+    "totalTokenCount": 5123,
+    "cachedContentTokenCount": 2937,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 4986
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 2937
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 137
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"se82bcdacbc\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"envelope\"}, {\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Lamine\"}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"hand\", \"giver\": \"@n2\", \"recipient\": \"@n1\", \"object\": \"@x1\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "se82bcdacbc",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "envelope"
+      },
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Lamine"
+      },
+      {
+        "t": "transfer",
+        "id": "e1",
+        "verb": "hand",
+        "giver": "@n2",
+        "recipient": "@n1",
+        "object": "@x1",
+        "tense": "past"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "202a40b842f6568cb8833b555ec9242b400326af8352304199f73d8f47ad39eb",
+  "run": 3,
+  "case": {
+    "template": "transfer",
+    "section": "held_out",
+    "index": 2,
+    "category": "positive",
+    "text": "An envelope was handed to Teodor by Lamine.",
+    "key": "e82bcdacbc"
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "prompt": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_body_sha256": "202a40b842f6568cb8833b555ec9242b400326af8352304199f73d8f47ad39eb",
+  "typecheck": "ran",
+  "checks": {
+    "examples": 19,
+    "findings": [],
+    "pending": {
+      "acquisition": [
+        {
+          "template": "transfer",
+          "text": "Ottoline took the envelope from Lamine."
+        }
+      ],
+      "activity": [
+        {
+          "template": "transfer",
+          "text": "Yusra gave up."
+        }
+      ],
+      "communication": [
+        {
+          "template": "transfer",
+          "text": "Teodor told Ottoline the news."
+        }
+      ]
+    },
+    "shared": []
+  },
+  "orphans": [],
+  "templates": {
+    "transfer": {
+      "held_out": {
+        "records": 27,
+        "cases": 9,
+        "status": {
+          "ok": 27
+        },
+        "stale_prompt": 0,
+        "by_category": {
+          "positive": {
+            "cases": 2,
+            "runs": 6,
+            "pass": 6,
+            "fired": 6,
+            "exact": 6
+          },
+          "contrast": {
+            "cases": 1,
+            "runs": 3,
+            "pass": 3,
+            "fired": 3,
+            "exact": 3
+          },
+          "scoped": {
+            "cases": 2,
+            "runs": 6,
+            "pass": 6,
+            "fired": 6,
+            "exact": 6
+          },
+          "optional": {
+            "cases": 1,
+            "runs": 3,
+            "pass": 3,
+            "fired": 3,
+            "exact": 3
+          },
+          "abstain": {
+            "cases": 3,
+            "runs": 9,
+            "pass": 9,
+            "false_fires": 0,
+            "outcomes": {
+              "gap_reported": 3,
+              "pending_unmapped": 6
+            }
+          }
+        },
+        "pass": 27,
+        "selection": {
+          "fire_runs": 18,
+          "fired": 18,
+          "abstain_runs": 9,
+          "false_fires": 0
+        },
+        "fill": {
+          "fired": 18,
+          "exact": 18,
+          "rate": 1.0
+        },
+        "stability": {
+          "cases": 9,
+          "pairs": 27,
+          "pairwise_agreement": 1.0,
+          "unanimous": 9
+        },
+        "typecheck": {
+          "checked": 27,
+          "passed": 27
+        },
+        "usage": {
+          "input": 134628,
+          "output": 3636,
+          "thinking": 0,
+          "total": 138264,
+          "calls": 27,
+          "thinking_calls": 0
+        },
+        "issues": [],
+        "null_slots": 0,
+        "models": [
+          "gemini-4-argon effort=low"
+        ]
+      }
+    }
+  }
+}

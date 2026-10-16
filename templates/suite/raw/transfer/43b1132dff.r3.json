@@ -1,0 +1,80 @@
+{
+  "provider": "gemini",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": 0.0,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "db9f01f07a93a0f671dcc116f489b584692005917106c6c946345d43e67bcd90",
+  "item": {
+    "id": "s43b1132dff",
+    "text": "Yusra gave up."
+  },
+  "usage": {
+    "input": 4983,
+    "output": 81,
+    "thinking": null,
+    "total": 5064,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "temperature": 0.0,
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 4983,
+    "candidatesTokenCount": 81,
+    "totalTokenCount": 5064,
+    "cachedContentTokenCount": 2934,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 4983
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 2934
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 81
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s43b1132dff\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}], \"unmapped\": [{\"span\": \"gave up\", \"code\": \"G00\", \"construction\": \"An intransitive phrasal verb predicate.\"}], \"issues\": []}",
+  "response": {
+    "id": "s43b1132dff",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "gave up",
+        "code": "G00",
+        "construction": "An intransitive phrasal verb predicate."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "202a40b842f6568cb8833b555ec9242b400326af8352304199f73d8f47ad39eb",
+  "run": 3,
+  "case": {
+    "template": "transfer",
+    "section": "held_out",
+    "index": 6,
+    "category": "abstain",
+    "text": "Yusra gave up.",
+    "key": "43b1132dff"
+  }
+}

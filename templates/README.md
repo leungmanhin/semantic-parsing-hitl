@@ -49,8 +49,33 @@ Dispatch wrapper for a blind parser (nothing else):
   Tests: `python tests/test_render_prompt.py`.
 
 - `../semantic-parse.py "<sentence>"` sends one sentence with the generated catalog prompt to an LLM
-  (`--provider gemini|openai`, `--model`, `--effort`, `--out run.json`, `--dry-run`; keys from the
-  environment, e.g. `GEMINI_API_KEY`). The suite runner uses it for blind parses.
+  (`--provider google|openai`, `--model`, `--effort`, `--out run.json`, `--dry-run`; keys from the
+  environment, e.g. `GEMINI_API_KEY`). No temperature is sent unless `--temperature` is given (Gemini 4
+  Argon ignores sampling parameters; Gemini 3 is meant to run at its default). The suite runner uses it
+  for blind parses.
+
+### Suite runner (`tmpl/suite.py`)
+
+    python -m tmpl.suite check                                   # catalog-wide checks, no LLM call
+    python -m tmpl.suite collect --template transfer --runs 3 \
+        --provider google --model gemini-4-argon --effort low    # one call per held-out case and run
+    python -m tmpl.suite score --template transfer               # or --all → suite/out/REPORT.md
+
+- `check`: every example emits; abstain targets exist (else listed as PENDING, the worklist of
+  templates to write) and, when they exist, claim the sentence in their own examples without firing
+  the abstaining template; a sentence that is a firing example of two templates with different
+  expected atoms is an OVERLAP; no held-out sentence is a shown sentence anywhere; gap codes exist;
+  no example sentence comes from prompt.txt, the goldens or a corpus.
+- `collect` stores one run record per call under `suite/raw/<template>/<key>.r<n>.json` and is
+  resumable (stored replies are skipped; `--force` re-requests). `--section shown` parses the prompt's
+  own examples (a smoke test, not a regression); `--only <words>`, `--limit N`, `--delay s`,
+  `--dry-run`. The parser sees only a hash as the item id.
+- `score` renders every reply through the emitter and compares the atoms with the expected instances'
+  atoms label-independently (witness symbols up to a bijection, bundles unordered), classifies each
+  (case, run) by category, type-checks every emitted parse (C9, when `petta` is importable), and writes
+  `suite/out/<template>.scores.jsonl`, `summary.json`, `REPORT.md` (selection, fill, stability, usage,
+  the parser's `issues`, the per-run view of every abstain case, mismatches with leaf-level diffs).
+  Records collected under another instruction set are counted as stale. Tests: `python tests/test_suite.py`.
 
 ### Atom-type substrate and type checker (C9)
 
