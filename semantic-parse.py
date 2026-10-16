@@ -20,6 +20,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import http.client
 import json
 import os
 import re
@@ -70,6 +71,13 @@ def _post_json(url: str, headers: dict, body: dict, timeout: float, attempts: in
                 time.sleep(2 ** attempt)
                 continue
             raise ProviderError(last) from None
+        except (http.client.RemoteDisconnected, ConnectionResetError, TimeoutError, OSError) as exc:
+            # the server closed the connection (long thinking runs do this) or the client timed out
+            last = f"connection dropped before a reply ({exc.__class__.__name__}: {exc}); attempt {attempt} of {attempts}"
+            if attempt < attempts:
+                time.sleep(2 ** attempt)
+                continue
+            raise ProviderError(last + " — raise --timeout, lower the thinking level, or retry") from None
     raise ProviderError(last or "request failed")
 
 
@@ -104,9 +112,13 @@ class Gemini:
 
     def request(self, system: str, user: str, model: str) -> tuple[str, dict, dict]:
         a = self.args
-        gen = {"temperature": a.temperature, "responseMimeType": "application/json"}
+        gen = {"temperature": a.temperature}
+        if not a.no_json_mode:
+            gen["responseMimeType"] = "application/json"
         if a.max_tokens:
             gen["maxOutputTokens"] = a.max_tokens
+        if a.include_thoughts:
+            gen.setdefault("thinkingConfig", {})
         if not a.no_thinking:
             if a.thinking_level:
                 gen["thinkingConfig"] = {"thinkingLevel": a.thinking_level.upper()}
@@ -116,6 +128,8 @@ class Gemini:
                 gen["thinkingConfig"] = {"thinkingLevel": self.levels[a.effort]}
             else:
                 gen["thinkingConfig"] = {"thinkingBudget": self.budgets[a.effort]}
+        if a.include_thoughts:
+            gen.setdefault("thinkingConfig", {})["includeThoughts"] = True
         body = {"system_instruction": {"parts": [{"text": system}]},
                 "contents": [{"role": "user", "parts": [{"text": user}]}],
                 "generationConfig": gen}
@@ -131,11 +145,16 @@ class Gemini:
             raise ProviderError(f"no candidates in the reply: {json.dumps(raw)[:800]}")
         parts = (cands[0].get("content") or {}).get("parts") or []
         text = "".join(p.get("text", "") for p in parts if not p.get("thought"))
+        thoughts = [p.get("text", "") for p in parts if p.get("thought")]
         u = raw.get("usageMetadata") or {}
         usage = {"input": u.get("promptTokenCount"), "output": u.get("candidatesTokenCount"),
                  "thinking": u.get("thoughtsTokenCount"), "total": u.get("totalTokenCount"),
-                 "finish": cands[0].get("finishReason")}
-        return Reply(text, usage, raw)
+                 "finish": cands[0].get("finishReason"), "thought_parts": len(thoughts)}
+        reply = Reply(text, usage, raw)
+        reply.thoughts = thoughts
+        reply.config = body["generationConfig"]
+        reply.raw_usage = u
+        return reply
 
 
 class OpenAI:
@@ -243,6 +262,10 @@ def parse_sentence(text: str, args, item_id: str = "item") -> dict:
         return record
     reply = provider.complete(system, user, model)
     record["usage"] = reply.usage
+    record["request_config"] = getattr(reply, "config", None)
+    record["raw_usage"] = getattr(reply, "raw_usage", None)
+    if getattr(reply, "thoughts", None):
+        record["thoughts"] = reply.thoughts
     record["raw_text"] = reply.text
     try:
         record["response"] = extract_json(reply.text)
@@ -263,12 +286,16 @@ def main(argv=None) -> int:
     ap.add_argument("--id", default="item", help="the item id written into the request and expected back")
     ap.add_argument("--temperature", type=float, default=0.0)
     ap.add_argument("--max-tokens", type=int, default=None)
-    ap.add_argument("--timeout", type=float, default=180.0)
+    ap.add_argument("--timeout", type=float, default=600.0, help="seconds to wait for a reply (default 600; long thinking runs need it)")
     ap.add_argument("--thinking-budget", type=int, default=None,
                     help="gemini 1.x / 2.x: thinking token budget, 0 = off where allowed, -1 = dynamic (overrides --effort)")
     ap.add_argument("--thinking-level", choices=("minimal", "low", "medium", "high"), default=None,
                     help="gemini 3 and later: thinking level (overrides --effort; a model errors on a level it does not offer)")
     ap.add_argument("--no-thinking", action="store_true", help="send no thinking configuration at all")
+    ap.add_argument("--no-json-mode", action="store_true",
+                    help="do not request application/json replies (diagnostic: JSON mode may interact with thinking)")
+    ap.add_argument("--include-thoughts", action="store_true",
+                    help="ask for thought summaries (includeThoughts); kept in the run record, counted on stderr")
     ap.add_argument("--out", default=None, help="write the full run record (request parameters, usage, raw text, parsed reply) here")
     ap.add_argument("--raw", action="store_true", help="print the reply text as received instead of the parsed JSON")
     ap.add_argument("--dry-run", action="store_true", help="show the request that would be sent and call nothing")
@@ -291,7 +318,8 @@ def main(argv=None) -> int:
         print(json.dumps(record["response"], indent=2, ensure_ascii=False))
     u = record.get("usage") or {}
     print(f"[{record['provider']} {record['model']} effort={record['effort']} tokens in={u.get('input')} "
-          f"out={u.get('output')} thinking={u.get('thinking')} finish={u.get('finish')}]", file=sys.stderr)
+          f"out={u.get('output')} thinking={u.get('thinking')} total={u.get('total')} "
+          f"thought_parts={u.get('thought_parts')} finish={u.get('finish')}]", file=sys.stderr)
     if record.get("error"):
         print(f"error: {record['error']}", file=sys.stderr)
         return 2

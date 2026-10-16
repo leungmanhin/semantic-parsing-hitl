@@ -103,8 +103,8 @@ examples:
       instances:
         - {t: named-entity, id: n1, name: "Teodor"}
         - {t: named-entity, id: n2, name: "Yusra"}
-        - {t: witness, id: n3, kind: thermos}
-        - {t: transfer, id: e1, verb: give, giver: "@n1", recipient: "@n2", object: "@n3",
+        - {t: witness, id: x1, kind: thermos}
+        - {t: transfer, id: e1, verb: give, giver: "@n1", recipient: "@n2", object: "@x1",
            tense: past}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
         - "(Name teodor \"Teodor\")"
@@ -127,17 +127,17 @@ examples:
       text: "Lamine will send the quilt to Ottoline."
       instances:
         - {t: named-entity, id: n1, name: "Lamine"}
-        - {t: witness, id: n2, kind: quilt, definite: true}
+        - {t: witness, id: x1, kind: quilt, definite: true}
         - {t: named-entity, id: n3, name: "Ottoline"}
-        - {t: transfer, id: e1, verb: send, giver: "@n1", recipient: "@n3", object: "@n2",
+        - {t: transfer, id: e1, verb: send, giver: "@n1", recipient: "@n3", object: "@x1",
            tense: future}
     - category: optional
       note: no recipient stated
       text: "Yusra sold the spindle."
       instances:
         - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: witness, id: n2, kind: spindle, definite: true}
-        - {t: transfer, id: e1, verb: sell, giver: "@n1", object: "@n2", tense: past}
+        - {t: witness, id: x1, kind: spindle, definite: true}
+        - {t: transfer, id: e1, verb: sell, giver: "@n1", object: "@x1", tense: past}
     - category: abstain
       text: "Teodor gave a speech."
       expected: {abstain: true, gap: G00, span: "gave a speech"}      # light-verb construction
@@ -151,8 +151,8 @@ examples:
       instances:
         - {t: named-entity, id: n1, name: "Lamine"}
         - {t: named-entity, id: n2, name: "Teodor"}
-        - {t: witness, id: n3, kind: envelope}
-        - {t: transfer, id: e1, verb: hand, giver: "@n1", recipient: "@n2", object: "@n3",
+        - {t: witness, id: x1, kind: envelope}
+        - {t: transfer, id: e1, verb: hand, giver: "@n1", recipient: "@n2", object: "@x1",
            tense: past}
     - category: contrast
       note: role reversal — the instance must differ from the positive in giver and recipient only
@@ -160,17 +160,17 @@ examples:
       instances:
         - {t: named-entity, id: n1, name: "Teodor"}
         - {t: named-entity, id: n2, name: "Lamine"}
-        - {t: witness, id: n3, kind: envelope}
-        - {t: transfer, id: e1, verb: hand, giver: "@n1", recipient: "@n2", object: "@n3",
+        - {t: witness, id: x1, kind: envelope}
+        - {t: transfer, id: e1, verb: hand, giver: "@n1", recipient: "@n2", object: "@x1",
            tense: past}
     - category: positive
       note: passive — same instance as the active
       text: "An envelope was handed to Teodor by Lamine."
       instances:
-        - {t: witness, id: n1, kind: envelope}
+        - {t: witness, id: x1, kind: envelope}
         - {t: named-entity, id: n2, name: "Teodor"}
         - {t: named-entity, id: n3, name: "Lamine"}
-        - {t: transfer, id: e1, verb: hand, giver: "@n3", recipient: "@n2", object: "@n1",
+        - {t: transfer, id: e1, verb: hand, giver: "@n3", recipient: "@n2", object: "@x1",
            tense: past}
     - category: scoped
       note: under clausal negation — the transfer instance is unchanged, the negation template scopes over it
@@ -178,8 +178,8 @@ examples:
       instances:
         - {t: named-entity, id: n1, name: "Lamine"}
         - {t: named-entity, id: n2, name: "Teodor"}
-        - {t: witness, id: n3, kind: envelope}
-        - {t: transfer, id: e1, verb: hand, giver: "@n1", recipient: "@n2", object: "@n3",
+        - {t: witness, id: x1, kind: envelope}
+        - {t: transfer, id: e1, verb: hand, giver: "@n1", recipient: "@n2", object: "@x1",
            tense: past}
         - {t: negation, id: s1, over: ["@e1"]}
     - category: scoped
@@ -188,16 +188,16 @@ examples:
       instances:
         - {t: named-entity, id: n1, name: "Lamine"}
         - {t: named-entity, id: n2, name: "Ottoline"}
-        - {t: witness, id: n3, kind: trowel, definite: true}
-        - {t: transfer, id: e1, verb: lend, giver: "@n1", recipient: "@n2", object: "@n3",
+        - {t: witness, id: x1, kind: trowel, definite: true}
+        - {t: transfer, id: e1, verb: lend, giver: "@n1", recipient: "@n2", object: "@x1",
            tense: present}
         - {t: modal, id: s1, over: ["@e1"], head: Might, surface: might}
     - category: optional
       text: "Ottoline is sending the quilt."
       instances:
         - {t: named-entity, id: n1, name: "Ottoline"}
-        - {t: witness, id: n2, kind: quilt, definite: true}
-        - {t: transfer, id: e1, verb: send, giver: "@n1", object: "@n2", tense: present,
+        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: transfer, id: e1, verb: send, giver: "@n1", object: "@x1", tense: present,
            aspect: progressive}
     - category: abstain
       text: "Yusra gave up."

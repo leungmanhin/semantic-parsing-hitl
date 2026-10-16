@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 314910c967a44c59 · 5 templates
+catalog sha256 8f04b45bdfbf1a62 · 5 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -272,8 +272,8 @@ Instances:
     [
       {"t": "named-entity", "id": "n1", "name": "Teodor"},
       {"t": "named-entity", "id": "n2", "name": "Yusra"},
-      {"t": "witness", "id": "n3", "kind": "thermos"},
-      {"t": "transfer", "id": "e1", "verb": "give", "giver": "@n1", "recipient": "@n2", "object": "@n3", "tense": "past"}
+      {"t": "witness", "id": "x1", "kind": "thermos"},
+      {"t": "transfer", "id": "e1", "verb": "give", "giver": "@n1", "recipient": "@n2", "object": "@x1", "tense": "past"}
     ]
 
 The program renders these instances as:
@@ -293,9 +293,9 @@ Instances:
 
     [
       {"t": "named-entity", "id": "n1", "name": "Lamine"},
-      {"t": "witness", "id": "n2", "kind": "quilt", "definite": true},
+      {"t": "witness", "id": "x1", "kind": "quilt", "definite": true},
       {"t": "named-entity", "id": "n3", "name": "Ottoline"},
-      {"t": "transfer", "id": "e1", "verb": "send", "giver": "@n1", "recipient": "@n3", "object": "@n2", "tense": "future"}
+      {"t": "transfer", "id": "e1", "verb": "send", "giver": "@n1", "recipient": "@n3", "object": "@x1", "tense": "future"}
     ]
 
 The program renders these instances as:
@@ -315,8 +315,8 @@ Instances:
 
     [
       {"t": "named-entity", "id": "n1", "name": "Yusra"},
-      {"t": "witness", "id": "n2", "kind": "spindle", "definite": true},
-      {"t": "transfer", "id": "e1", "verb": "sell", "giver": "@n1", "object": "@n2", "tense": "past"}
+      {"t": "witness", "id": "x1", "kind": "spindle", "definite": true},
+      {"t": "transfer", "id": "e1", "verb": "sell", "giver": "@n1", "object": "@x1", "tense": "past"}
     ]
 
 The program renders these instances as:
@@ -392,8 +392,8 @@ Instances:
 
     [
       {"t": "named-entity", "id": "n1", "name": "Teodor"},
-      {"t": "witness", "id": "n2", "kind": "quilt", "definite": true},
-      {"t": "transfer", "id": "e1", "verb": "send", "giver": "@n1", "object": "@n2", "tense": "past"},
+      {"t": "witness", "id": "x1", "kind": "quilt", "definite": true},
+      {"t": "transfer", "id": "e1", "verb": "send", "giver": "@n1", "object": "@x1", "tense": "past"},
       {"t": "negation", "id": "s1", "over": ["@e1"]}
     ]
 
