@@ -41,20 +41,17 @@ from __future__ import annotations
 
 import argparse
 import collections
-import contextlib
 import glob
 import hashlib
 import importlib.util
-import io
 import itertools
 import json
 import os
 import re
 import sys
-import tempfile
 import time
 
-from . import catalog as CAT, emit as E, typecheck as T
+from . import catalog as CAT, emit as E, typecheck as T, validate as V
 
 TEMPLATES = os.path.dirname(CAT.CATALOG_DIR)
 REPO = os.path.dirname(TEMPLATES)
@@ -436,22 +433,18 @@ def score_record(case: dict, rec: dict, catalog: dict, heads: dict, body_sha: st
         row["status"] = "no_json" if "not valid JSON" in err else "failed"
         row["reasons"].append(err)
         return row
-    instances = [r for r in (resp.get("instances") or []) if isinstance(r, dict)]
-    row["unmapped"] = resp.get("unmapped") or []
-    row["issues"] = resp.get("issues") or []
-    row["fired"] = dict(collections.Counter(str(r.get("t")) for r in instances))
-    cleaned = [{k: v for k, v in r.items() if v is not None} for r in instances]
-    row["null_slots"] = sum(len(r) - len(c) for r, c in zip(instances, cleaned))
+    ins = V.inspect(resp, catalog)
+    row["unmapped"], row["issues"], row["fired"], row["null_slots"] = ins["unmapped"], ins["issues"], ins["fired"], ins["null_slots"]
+    row["lints"] = [f for f in ins["findings"] if f["kind"] not in ("instance", "contract")]
     fired_t = tid in row["fired"]
     units = None
-    try:
-        out = E.emit({"id": "parse", "instances": cleaned, "unmapped": row["unmapped"]}, catalog)
-        row["statements"], row["declarations"] = out["statements"], out["declarations"]
-        units = units_of(out["statements"])
-    except (E.EmitError, ValueError) as exc:
+    if ins["status"] != "ok":
         row["status"] = "malformed"
-        row["problems"] = list(exc.args[0]) if isinstance(exc.args[0], list) else [str(exc)]
+        row["problems"] = [f["detail"] for f in ins["findings"] if f["kind"] in ("instance", "contract")]
         row["reasons"].append("the emitter refused the instances")
+    else:
+        row["statements"], row["declarations"] = ins["statements"], ins["declarations"]
+        units = units_of(ins["statements"])
     if category in FIRING:
         expected = units_of(E.emit({"id": "expected", "instances": case["instances"]}, catalog)["statements"])
         row["fired_template"] = fired_t
@@ -495,35 +488,9 @@ def score_record(case: dict, rec: dict, catalog: dict, heads: dict, body_sha: st
     return row
 
 
-def _typecheck(rows: list[dict]) -> dict:
-    """C9 over every emitted parse; {row index: findings} or None when petta is missing."""
-    try:
-        import petta  # noqa: F401
-    except Exception:
-        return None
-    records = [{"id": str(i), "statements": r["statements"], "declarations": r["declarations"]}
-               for i, r in enumerate(rows) if r.get("statements")]
-    if not records:
-        return {}
-    with tempfile.NamedTemporaryFile("w", suffix=".jsonl", delete=False) as fh:
-        for r in records:
-            fh.write(json.dumps(r) + "\n")
-        path = fh.name
-    report = path + ".report.json"
-    try:
-        with contextlib.redirect_stdout(io.StringIO()):
-            T.main([path, "--no-infer", "--report", report])
-        with open(report, encoding="utf-8") as fh:
-            rep = json.load(fh)
-    finally:
-        for p in (path, report):
-            if os.path.exists(p):
-                os.unlink(p)
-    by = collections.defaultdict(list)
-    for f in rep["findings"]:
-        if f["kind"] in ("type", "type-conflict", "parse-error"):
-            by[int(f["id"])].append(f)
-    return by
+def _typecheck(rows: list[dict]):
+    """C9 over every emitted parse in one engine session; {row index: findings} or None without petta."""
+    return V.typecheck_records([{"statements": r.get("statements"), "declarations": r.get("declarations")} for r in rows])
 
 
 def _show(path: str) -> str:
@@ -588,6 +555,7 @@ def summarize(rows: list[dict]) -> dict:
         "usage": {**usage, "calls": len(rows), "thinking_calls": sum(1 for r in rows if (r["usage"].get("thinking") or 0) > 0)},
         "issues": issues,
         "null_slots": sum(r.get("null_slots") or 0 for r in rows),
+        "lints": dict(collections.Counter(f["kind"] for r in rows for f in (r.get("lints") or []))),
         "models": sorted({f"{r.get('model')} effort={r.get('effort')}" for r in rows if r.get("model")}),
     }
 
@@ -718,6 +686,7 @@ def render_report(summary: dict, rows: list[dict]) -> str:
             add(f"- stability: pairwise agreement {stab['pairwise_agreement']} ({stab['cases']} cases, {stab['pairs']} pairs), "
                 f"unanimous {stab['unanimous']}/{stab['cases']}")
             add(f"- type check: {tc['passed']}/{tc['checked']} emitted parses type")
+            add("- graph lints: " + (", ".join(f"{k} {v}" for k, v in sorted(s["lints"].items())) or "none"))
             add(f"- usage: {u['calls']} calls · in {u['input']:,} · out {u['output']:,} · thinking {u['thinking']:,} "
                 f"(calls with thought tokens: {u['thinking_calls']})" + (f" · null slots {s['null_slots']}" if s["null_slots"] else ""))
             if s["issues"]:

@@ -13,8 +13,13 @@ issues) is printed.  Providers are pluggable: one small class per provider, sele
 Keys come from the environment: GEMINI_API_KEY (or GOOGLE_API_KEY), OPENAI_API_KEY,
 ANTHROPIC_API_KEY.  Only the standard library is used.
 
-Exit status: 0 the reply is a JSON object; 2 the reply is not valid JSON (the raw text is
-printed); 1 a request failed.
+Every reply is validated after the call by the catalog's validator (templates/tmpl/validate.py:
+the emitter's instance checks, graph lints, C9 type check): findings go to stderr and into the run
+record, the reply itself is never changed.  ``--atoms`` also prints the emitted statements;
+``--no-validate`` skips the step.
+
+Exit status: 0 the reply is a JSON object that validates; 3 it has validation findings; 2 it is
+not valid JSON (the raw text is printed); 1 a request failed.
 """
 from __future__ import annotations
 
@@ -301,6 +306,19 @@ def add_provider_args(ap: argparse.ArgumentParser) -> None:
                     help="ask for thought summaries (includeThoughts); kept in the run record, counted on stderr")
 
 
+def validate_reply(reply: dict) -> dict:
+    """Run the catalog's validator on the parsed reply and return its result (report only)."""
+    sys.path.insert(0, os.path.join(ROOT, "templates"))
+    try:
+        from tmpl import validate as V
+    except Exception as exc:  # no pyyaml, or the templates tree is missing
+        return {"status": "skipped", "summary": f"validation skipped: {exc}", "findings": [], "typecheck": "not run"}
+    res = V.validate(reply)
+    keep = {k: res.get(k) for k in ("status", "findings", "typecheck", "statements", "declarations", "fired", "null_slots")}
+    keep["summary"] = V.summary(res)
+    return keep
+
+
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0], formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("text", help="the English sentence to parse")
@@ -309,6 +327,8 @@ def main(argv=None) -> int:
     ap.add_argument("--out", default=None, help="write the full run record (request parameters, usage, raw text, parsed reply) here")
     ap.add_argument("--raw", action="store_true", help="print the reply text as received instead of the parsed JSON")
     ap.add_argument("--dry-run", action="store_true", help="show the request that would be sent and call nothing")
+    ap.add_argument("--no-validate", action="store_true", help="do not run the catalog's validator on the reply")
+    ap.add_argument("--atoms", action="store_true", help="also print the emitted statements and declarations")
     args = ap.parse_args(argv)
 
     try:
@@ -316,6 +336,8 @@ def main(argv=None) -> int:
     except ProviderError as exc:
         print(f"error: {exc}", file=sys.stderr)
         return 1
+    if not args.dry_run and not args.no_validate and record.get("response") is not None:
+        record["validation"] = validate_reply(record["response"])
     if args.out:
         with open(args.out, "w", encoding="utf-8") as fh:
             json.dump(record, fh, indent=2, ensure_ascii=False)
@@ -326,13 +348,25 @@ def main(argv=None) -> int:
         print(record["raw_text"])
     else:
         print(json.dumps(record["response"], indent=2, ensure_ascii=False))
+    v = record.get("validation")
+    if args.atoms and v and v.get("statements"):
+        print("\n; statements")
+        print("\n".join(v["statements"]))
+        print("; declarations")
+        print("\n".join(v["declarations"]))
     u = record.get("usage") or {}
     print(f"[{record['provider']} {record['model']} effort={record['effort']} tokens in={u.get('input')} "
           f"out={u.get('output')} thinking={u.get('thinking')} total={u.get('total')} "
           f"thought_parts={u.get('thought_parts')} finish={u.get('finish')}]", file=sys.stderr)
+    if v:
+        print(f"[{v['summary']}]", file=sys.stderr)
+        for f in v["findings"]:
+            print(f"  - {f['kind']}: {f['detail']}", file=sys.stderr)
     if record.get("error"):
         print(f"error: {record['error']}", file=sys.stderr)
         return 2
+    if v and (v["status"] not in ("ok", "skipped") or v["findings"]):
+        return 3
     return 0
 
 

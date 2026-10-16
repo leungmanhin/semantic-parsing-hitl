@@ -27,6 +27,7 @@ Pending abstain targets (templates to write; each line = the sentences waiting f
 - fill: exact 18/18 among fires
 - stability: pairwise agreement 1.0 (9 cases, 27 pairs), unanimous 9/9
 - type check: 27/27 emitted parses type
+- graph lints: none
 - usage: 27 calls · in 134,628 · out 3,636 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 

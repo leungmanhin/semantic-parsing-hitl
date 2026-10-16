@@ -51,8 +51,17 @@ Dispatch wrapper for a blind parser (nothing else):
 - `../semantic-parse.py "<sentence>"` sends one sentence with the generated catalog prompt to an LLM
   (`--provider google|openai`, `--model`, `--effort`, `--out run.json`, `--dry-run`; keys from the
   environment, e.g. `GEMINI_API_KEY`). No temperature is sent unless `--temperature` is given (Gemini 4
-  Argon ignores sampling parameters; Gemini 3 is meant to run at its default). The suite runner uses it
-  for blind parses.
+  Argon ignores sampling parameters; Gemini 3 is meant to run at its default). Every reply is validated
+  after the call (see below): the summary and any findings go to stderr, the result into the run record,
+  `--atoms` prints the emitted statements too, `--no-validate` skips it, exit status 3 on findings. The
+  suite runner uses the same script for blind parses.
+- `tmpl/validate.py` is the one post-parse validator, shared by the script and the suite scorer: the
+  reply's contract (object, lists, null slots counted and stripped), the emitter's instance checks
+  (unknown template, ids, required slots, enum values, dangling references, a filler pointing at a
+  scope, a scope cycle), graph lints (dangling referent while nothing is unmapped, bare predication,
+  empty optional scope) and C9 on the emitted statements (skipped without `petta`). Report only; it
+  never changes a reply. `from tmpl import validate; validate.validate(reply)`. Tests:
+  `python tests/test_validate.py`.
 
 ### Suite runner (`tmpl/suite.py`)
 

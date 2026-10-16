@@ -160,19 +160,58 @@ class _Emitter:
                 seen.add(r["id"])
             for sname, spec in (t.get("slots") or {}).items():
                 v = r.get(sname)
-                if v is None:
+                if v is None or v == [] or v == "":
                     if spec.get("required"):
                         problems.append(f"{where}: missing required slot {sname}")
                     continue
                 if spec["type"] == "enum" and str(v) not in [str(x) for x in spec.get("values") or []]:
                     problems.append(f"{where}: {sname}={v!r} is not one of {spec.get('values')}")
                 refs = v if spec["type"] == "refs" else [v] if spec["type"] == "filler" else []
+                if spec["type"] == "refs" and not isinstance(v, list):
+                    problems.append(f"{where}: {sname} must be a list of references")
+                    refs = []
                 for ref in refs:
-                    if is_ref(ref) and ref[1:] not in self.by_id:
+                    if not is_ref(ref):
+                        if spec["type"] == "refs":
+                            problems.append(f"{where}: {sname} holds {ref!r}, not a reference")
+                        continue
+                    target = self.by_id.get(ref[1:])
+                    if target is None:
                         problems.append(f"{where}: {sname} references unknown instance {ref}")
+                    elif spec["type"] == "filler" and not (self.cat.get(target.get("t")) or {}).get("mints"):
+                        problems.append(f"{where}: {sname} references {ref}, which mints no symbol")
             for sname in r:
                 if sname not in ("t", "id") and sname not in (t.get("slots") or {}):
                     problems.append(f"{where}: unknown slot {sname}")
+        problems.extend(self.scope_cycles())
+        return list(dict.fromkeys(problems))
+
+    def scope_cycles(self) -> list[str]:
+        """A scope over itself, directly or through other scopes, could never be rendered."""
+        edges: dict[str, list[str]] = {}
+        for r in self.insts:
+            t = self.cat.get(r.get("t"))
+            if t is None or "id" not in r:
+                continue
+            for sname, spec in (t.get("slots") or {}).items():
+                if spec["type"] == "refs" and isinstance(r.get(sname), list):
+                    edges.setdefault(r["id"], []).extend(x[1:] for x in r[sname] if is_ref(x))
+        problems, state = [], {}
+
+        def visit(node, path):
+            state[node] = "open"
+            path.append(node)
+            for nxt in edges.get(node, []):
+                if state.get(nxt) == "open":
+                    problems.append("scope cycle: " + " -> ".join(path[path.index(nxt):] + [nxt]))
+                elif nxt not in state:
+                    visit(nxt, path)
+            path.pop()
+            state[node] = "done"
+
+        for node in edges:
+            if node not in state:
+                visit(node, [])
         return problems
 
     # ---------------------------------------------------------------- symbols
