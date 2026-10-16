@@ -108,13 +108,18 @@ class InstanceTests(unittest.TestCase):
 
 
 class LintTests(unittest.TestCase):
-    def test_dangling_referent_only_when_nothing_is_unmapped(self):
+    def test_dangling_name_only_when_nothing_is_unmapped_but_a_witness_always(self):
         names = [{"t": "named-entity", "id": "n1", "name": "Yusra"}]
         res = V.inspect(reply(names), CATALOG)
         self.assertEqual(res["status"], "ok")
         self.assertEqual(kinds(res), ["dangling-referent"])
-        res = V.inspect(reply(names, unmapped=[{"span": "gave up", "code": "G00"}]), CATALOG)
+        gap = [{"span": "gave up", "code": "G00"}]
+        res = V.inspect(reply(names, unmapped=gap), CATALOG)
         self.assertEqual(kinds(res), [])
+        with_witness = names + [{"t": "witness", "id": "x1", "kind": "quilt", "definite": True}]
+        res = V.inspect(reply(with_witness, unmapped=[{"span": "wants to send the quilt", "code": "G00"}]), CATALOG)
+        self.assertEqual(kinds(res), ["dangling-referent"])
+        self.assertIn("witness x1", res["findings"][0]["detail"])
 
     def test_clean_parse_has_no_lints(self):
         res = V.inspect(reply(EXAMPLE["instances"]), CATALOG)

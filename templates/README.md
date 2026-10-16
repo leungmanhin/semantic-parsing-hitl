@@ -56,8 +56,9 @@ Nothing here changes `prompt.txt`, the briefs under `fusenf/briefs/`, or any pip
 - `tmpl/validate.py` is the one post-parse validator, shared by the script and the suite scorer: the
   reply's contract (object, lists, null slots counted and stripped), the emitter's instance checks
   (unknown template, ids, required slots, enum values, dangling references, a filler pointing at a
-  scope, a scope cycle), graph lints (dangling referent while nothing is unmapped, bare predication,
-  empty optional scope) and C9 on the emitted statements (skipped without `petta`). Report only; it
+  scope, a scope cycle), graph lints (a witness nothing mentions, a name nothing mentions while nothing
+  is unmapped, bare predication, empty optional scope) and C9 on the emitted statements (skipped without
+  `petta`). Report only; it
   never changes a reply. `from tmpl import validate; validate.validate(reply)`. Tests:
   `python tests/test_validate.py`.
 
@@ -70,14 +71,15 @@ Nothing here changes `prompt.txt`, the briefs under `fusenf/briefs/`, or any pip
   no example sentence comes from prompt.txt, the goldens or a corpus.
 - `collect` stores one run record per call under `suite/raw/<template>/<key>.r<n>.json` and is
   resumable (stored replies are skipped; `--force` re-requests). `--section shown` parses the prompt's
-  own examples (a smoke test, not a regression); `--only <words>`, `--limit N`, `--delay s`,
-  `--dry-run`. The parser sees only a hash as the item id.
+  own examples (a smoke test, not a regression); `--only <words>`, `--category abstain` (repeatable),
+  `--limit N`, `--delay s`, `--dry-run`. The parser sees only a hash as the item id.
 - `score` renders every reply through the validator and compares the atoms with the expected instances'
   atoms label-independently (witness symbols up to a bijection, bundles unordered), classifies each
   (case, run) by category, type-checks every emitted parse (C9, when `petta` is importable), and writes
   `suite/out/<template>.scores.jsonl`, `summary.json`, `REPORT.md` (selection, fill, stability, usage,
-  the parser's `issues`, graph lints, the per-run view of every abstain case, mismatches with leaf-level
-  diffs). Records collected under another instruction set are counted as stale. Tests: `python tests/test_suite.py`.
+  the parser's `issues`, graph lints — any lint fails the record — the per-run view of every abstain
+  case, mismatches with leaf-level diffs). Records collected under another instruction set are counted
+  as stale. Tests: `python tests/test_suite.py`.
 
 ### Atom-type substrate and type checker (C9)
 

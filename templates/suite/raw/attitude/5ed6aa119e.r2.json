@@ -1,0 +1,103 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "6c7ab265c2f61fbc6ee9a1e7fb5e2f38e4bc5b305b4b1d71e184078c71738a99",
+  "item": {
+    "id": "s5ed6aa119e",
+    "text": "Teodor believes that Lamine did not sell the spindle."
+  },
+  "usage": {
+    "input": 6545,
+    "output": 206,
+    "thinking": null,
+    "total": 6751,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 6545,
+    "candidatesTokenCount": 206,
+    "totalTokenCount": 6751,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 6545
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 206
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s5ed6aa119e\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"spindle\", \"definite\": true}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"sell\", \"giver\": \"@n2\", \"object\": \"@x1\", \"tense\": \"past\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@e1\"]}, {\"t\": \"attitude\", \"id\": \"a1\", \"verb\": \"believe\", \"holder\": \"@n1\", \"content\": [\"@s1\"], \"factive\": false, \"tense\": \"present\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s5ed6aa119e",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Lamine"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "spindle",
+        "definite": true
+      },
+      {
+        "t": "transfer",
+        "id": "e1",
+        "verb": "sell",
+        "giver": "@n2",
+        "object": "@x1",
+        "tense": "past"
+      },
+      {
+        "t": "negation",
+        "id": "s1",
+        "over": [
+          "@e1"
+        ]
+      },
+      {
+        "t": "attitude",
+        "id": "a1",
+        "verb": "believe",
+        "holder": "@n1",
+        "content": [
+          "@s1"
+        ],
+        "factive": false,
+        "tense": "present"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "5fb090d7583e264955ec31adb74c438bcda9224778c39d2a4d5c690a235e86c4",
+  "run": 2,
+  "case": {
+    "template": "attitude",
+    "section": "held_out",
+    "index": 7,
+    "category": "scoped",
+    "text": "Teodor believes that Lamine did not sell the spindle.",
+    "key": "5ed6aa119e"
+  }
+}

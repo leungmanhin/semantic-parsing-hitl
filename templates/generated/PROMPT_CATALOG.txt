@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 8f04b45bdfbf1a62 · 5 templates
+catalog sha256 50300186afd23083 · 6 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -54,6 +54,9 @@ fences.
   operator (negation, modal), `c` copular predication, `r` rule, `d` comparison, `m` measure,
   `t` time (n1, x1, e1, s1 …).
 - A slot that points to another instance holds `"@<id>"`, for example `"Agent": "@n1"`.
+- A slot that holds a CLAUSE — the content of a negation, a modal or an attitude — holds a list
+  of ids: the clause's predication, or the scope operator over it when it has one (`["@s1"]` for
+  a negated or modalised clause); never the referents the clause mentions.
 - A slot that holds a kind, property, verb, scale or unit holds the bare LEMMA, for example
   `"kind": "book"`.
 - A participant slot holds either one: `"@x1"` for a specific referent, or a bare lemma for a
@@ -111,6 +114,12 @@ before 1960" still says it was demolished). When the rest would NOT follow witho
 part, leave the whole claim out and report the whole clause: a condition ("brittle when cold"),
 a hedge or approximator ("almost full"), a comparison class ("tall for a gymnast"), a proportion
 or partitive ("12.5% of the applicants"), a modal on a kind.
+
+Referents inside an unmapped span: a NAME still gets its instance (a name is rigid, the same
+individual wherever it appears), but a common-noun phrase does not. A witness is introduced only
+by a clause a template covers; the span carries the noun verbatim, and if a covered clause
+mentions the same thing, that clause's instance is the referent. Never introduce a witness for
+something stated only in words you report as unmapped.
 
 Codes:
 
@@ -219,6 +228,106 @@ The program renders these instances as:
     (Member sk_thermos_1 thermos)
 
 ## Predications — what the text states about them
+
+### attitude — A propositional attitude towards a complement clause
+
+When: A clause whose verb expresses a mental or reporting attitude of its subject (the holder)
+towards a finite complement clause, introduced by "that" or bare. Non-factive verbs (believe,
+think, suppose, assume, suspect, doubt, hope, fear, expect, claim, say) do not assert the
+complement; factive verbs (know, realize, discover, learn, notice, remember, regret) presuppose
+it. The complement is a complete clause with a subject and a tense of its own.
+
+Verbs that anchor the class: believe, think, suppose, assume, suspect, doubt, hope, fear,
+expect, claim, say, know, realize, discover, learn, notice, remember, regret.
+The lists anchor the two classes; an unlisted verb that takes a finite complement belongs here,
+with `factive` decided by whether the verb presupposes the complement — the complement survives
+negation of the attitude ("did not realize that P" still entails P).
+
+Forms:
+- <holder> V that <clause>
+- <holder> V <clause>
+- <holder> V-ed that <clause>
+
+Not this template:
+- an entity object instead of a clause — fears the dog, distrusts Lamine, knows Yusra: a psych
+  state or an acquaintance; nothing is sealed
+- an infinitival complement — wants to send the quilt, expects Lamine to come: the complement
+  has no subject or tense of its own; a different construction
+- an interrogative complement — wonders whether, knows whether, asks if: the complement is a
+  question, not a proposition
+- an addressee — told Ottoline that P, informed Yusra that P: a communication with a recipient
+  of the message, not an attitude of the subject alone
+- a parenthetical or discourse use — I think, you know, as far as I know: no attitude is
+  predicated of anyone
+
+Slots:
+
+- `t` (required): "attitude"
+- `id` (required; your label for this instance): your label for the attitude event.
+- `verb` (required; a lemma): the attitude verb lemma.
+- `holder` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
+  who holds the attitude: the subject.
+- `content` (required; a list of "@id" of the instances this one scopes over): the complement
+  clause: the ids of the instances that state it, that is its predication or the scope operator
+  (negation, modal) over that predication; the referents it mentions are not listed.
+- `factive` (required; true / false): true when the verb presupposes the complement (know,
+  realize, discover, learn, notice, remember, regret), false otherwise (believe, think, suppose,
+  assume, suspect, doubt, hope, fear, expect, claim, say).
+- `tense` (required; one of: past, present, future): the attitude clause's tense; present is
+  recorded, not inferred.
+- `aspect` (optional; one of: simple, progressive, perfect).
+
+Example. TEXT: Teodor believes that Lamine lent Ottoline the trowel.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Teodor"},
+      {"t": "named-entity", "id": "n2", "name": "Lamine"},
+      {"t": "named-entity", "id": "n3", "name": "Ottoline"},
+      {"t": "witness", "id": "x1", "kind": "trowel", "definite": true},
+      {"t": "transfer", "id": "e1", "verb": "lend", "giver": "@n2", "recipient": "@n3", "object": "@x1", "tense": "past"},
+      {"t": "attitude", "id": "a1", "verb": "believe", "holder": "@n1", "content": ["@e1"], "factive": false, "tense": "present"}
+    ]
+
+The program renders these instances as:
+
+    (Name teodor "Teodor")
+    (Name lamine "Lamine")
+    (Name ottoline "Ottoline")
+    (Member sk_believe_1 believe)
+    (Experiencer sk_believe_1 teodor)
+    (Theme sk_believe_1 (And (Member sk_lend_1 lend) (Agent sk_lend_1 lamine) (Recipient sk_lend_1 ottoline) (Theme sk_lend_1 sk_trowel_1) (Past sk_lend_1) (Member sk_trowel_1 trowel)))
+
+Example (factive — the complement is also stated flat). TEXT: Yusra knows that Teodor sold the spindle.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Yusra"},
+      {"t": "named-entity", "id": "n2", "name": "Teodor"},
+      {"t": "witness", "id": "x1", "kind": "spindle", "definite": true},
+      {"t": "transfer", "id": "e1", "verb": "sell", "giver": "@n2", "object": "@x1", "tense": "past"},
+      {"t": "attitude", "id": "a1", "verb": "know", "holder": "@n1", "content": ["@e1"], "factive": true, "tense": "present"}
+    ]
+
+The program renders these instances as:
+
+    (Name yusra "Yusra")
+    (Name teodor "Teodor")
+    (Member sk_know_1 know)
+    (Experiencer sk_know_1 yusra)
+    (Theme sk_know_1 (And (Member sk_sell_1 sell) (Agent sk_sell_1 teodor) (Theme sk_sell_1 sk_spindle_1) (Past sk_sell_1) (Member sk_spindle_1 spindle)))
+    (Member sk_sell_1 sell)
+    (Agent sk_sell_1 teodor)
+    (Theme sk_sell_1 sk_spindle_1)
+    (Past sk_sell_1)
+    (Member sk_spindle_1 spindle)
+
+Not this template. TEXT: Teodor told Ottoline that Lamine sold the spindle. — report the span as
+unmapped.
+
+Not this template. TEXT: Yusra distrusts Lamine. — report the span as unmapped.
 
 ### transfer — Transfer of an object from one party to another
 

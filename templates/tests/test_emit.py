@@ -1,8 +1,10 @@
 """Tests for the generic emitter (tmpl/emit.py) over the catalog (templates/catalog/*.yaml).
 
 * the catalog loads and passes its structural checks;
-* the transfer template's illustrated example emits exactly the illustrated atoms and
-  declarations;
+* every example that carries an illustration (``emitted`` / ``declarations``) emits exactly
+  the illustrated atoms and declarations;
+* an attitude seals its complement; a factive also states it flat, and that presupposition
+  projects out of a negation over the attitude;
 * every example with instances emits, deterministically, and type-checks strictly (C9) with
   the emitter's own declarations;
 * scope: a witness mentioned only inside a negated clause is rendered inside the Not;
@@ -53,13 +55,45 @@ class CatalogTests(unittest.TestCase):
 
 
 class EmitTests(unittest.TestCase):
-    def test_transfer_illustration_matches(self):
-        ex = CATALOG["transfer"]["examples"]["shown"][0]
-        out = E.emit({"id": "x", "instances": ex["instances"]}, CATALOG)
-        self.assertEqual(sorted(atoms_of(out["statements"])), sorted(ex["emitted"]))
-        want = set(ex["declarations"]) | {d.replace(" Entity)", " Instance)") for d in ex["declarations"] if " Entity)" in d} \
-            | {d.replace(" Event)", " Instance)") for d in ex["declarations"] if " Event)" in d}
-        self.assertEqual(set(out["declarations"]), want)
+    def test_illustrations_match_the_emitter(self):
+        n = 0
+        for tid, section, ex in all_examples():
+            if not ex.get("emitted"):
+                continue
+            n += 1
+            out = E.emit({"id": "x", "instances": ex["instances"]}, CATALOG)
+            self.assertEqual(sorted(atoms_of(out["statements"])), sorted(ex["emitted"]), (tid, ex["text"]))
+            want = set(ex["declarations"]) | {d.replace(" Entity)", " Instance)") for d in ex["declarations"] if " Entity)" in d} \
+                | {d.replace(" Event)", " Instance)") for d in ex["declarations"] if " Event)" in d}
+            self.assertEqual(set(out["declarations"]), want, (tid, ex["text"]))
+        self.assertGreaterEqual(n, 2)
+
+    def test_attitude_seals_and_factives_project(self):
+        def atoms_for(text):
+            ex = next(e for _, _, e in all_examples() if e["text"] == text)
+            return atoms_of(E.emit({"id": "a", "instances": ex["instances"]}, CATALOG)["statements"])
+
+        belief = atoms_for("Teodor believes that Lamine lent Ottoline the trowel.")
+        self.assertTrue(any(a.startswith("(Theme sk_believe_1 (And (Member sk_lend_1 lend)") for a in belief))
+        self.assertFalse(any(a.startswith("(Member sk_lend_1") or a.startswith("(Agent sk_lend_1") for a in belief))
+        know = atoms_for("Yusra knows that Teodor sold the spindle.")
+        self.assertIn("(Agent sk_sell_1 teodor)", know)                      # the presupposed complement, flat
+        self.assertIn("(Member sk_spindle_1 spindle)", know)
+        self.assertEqual(sum(a.startswith("(Theme sk_know_1 ") for a in know), 1)
+        neg_know = atoms_for("Yusra does not know that Teodor sold the spindle.")
+        self.assertEqual(sum(a.startswith("(Not (And (Member sk_know_1 know)") for a in neg_know), 1)
+        self.assertIn("(Agent sk_sell_1 teodor)", neg_know)                  # projects through the negation
+        neg_belief = atoms_for("Teodor does not believe that Lamine sold the spindle.")
+        self.assertFalse(any(a.startswith("(Agent sk_sell_1") for a in neg_belief))
+        self.assertEqual(len([a for a in neg_belief if a.startswith("(Not ")]), 1)
+        modal = atoms_for("Teodor believes that Lamine might lend Ottoline the trowel.")
+        self.assertTrue(any(a.startswith("(Theme sk_believe_1 (Might (And ") for a in modal))
+
+    def test_when_clauses_are_case_insensitive(self):
+        self.assertTrue(E.holds("factive == true", {"factive": True}))
+        self.assertFalse(E.holds("factive == true", {"factive": False}))
+        self.assertTrue(E.holds("head == might", {"head": "Might"}))
+        self.assertTrue(E.holds("tense == past or aspect == perfect", {"tense": "present", "aspect": "perfect"}))
 
     def test_every_example_emits_deterministically(self):
         for tid, section, ex in all_examples():

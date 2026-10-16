@@ -11,7 +11,7 @@ Structural invariants checked here (content is reviewed by people, not checked h
   slot has a substrate ``class``;
 * every ``emits`` entry has an ``atom`` whose placeholders name a slot of the template (or
   ``@id`` when the template mints a symbol); ``if_filled`` / ``each`` name a slot; ``when``
-  mentions only slots;
+  mentions only slots, their values and ``true`` / ``false``; ``project`` is a boolean;
 * examples carry a ``category`` and either ``instances`` or an ``expected`` abstain target.
 """
 from __future__ import annotations
@@ -77,8 +77,10 @@ def check_template(t: dict, path: str) -> list[str]:
                 problems.append(f"emits[{i}]: {key} names unknown slot {e[key]}")
         if "when" in e:
             for word in re.findall(r"[a-z_]+", e["when"]):
-                if word not in slots and word not in ("and", "or", "not") and word not in _enum_values(slots):
+                if word not in slots and word not in ("and", "or", "not", "true", "false") and word not in _enum_values(slots):
                     problems.append(f"emits[{i}]: when mentions {word!r}, not a slot or a value")
+        if "project" in e and not isinstance(e["project"], bool):
+            problems.append(f"emits[{i}]: project must be true or false")
     for section in ("shown", "held_out"):
         for j, ex in enumerate((t.get("examples") or {}).get(section) or []):
             if ex.get("category") not in CATEGORIES:

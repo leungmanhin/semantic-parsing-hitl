@@ -1,0 +1,253 @@
+# Template: attitude  (a propositional attitude: a holder and a sealed complement clause)
+#
+# The complement clause is parsed with the ordinary templates (its predication, its referents,
+# any negation or modal over it); the attitude instance REFERENCES those instances in its
+# `content` slot. The emitter renders them inside the attitude's Theme as one sealed term and
+# not on their own, so a non-factive attitude asserts nothing about the complement. A factive
+# attitude (know, realize …) presupposes the complement: it is also emitted flat, at the top
+# level, whatever scope the attitude itself sits in — a presupposition projects through
+# negation ("Yusra does not know that P" still says P).
+
+id: attitude
+family: predication
+kind: verb-class
+title: A propositional attitude towards a complement clause
+status: draft
+
+trigger:
+  construction: >
+    A clause whose verb expresses a mental or reporting attitude of its subject (the holder)
+    towards a finite complement clause, introduced by "that" or bare. Non-factive verbs
+    (believe, think, suppose, assume, suspect, doubt, hope, fear, expect, claim, say) do not
+    assert the complement; factive verbs (know, realize, discover, learn, notice, remember,
+    regret) presuppose it. The complement is a complete clause with a subject and a tense of
+    its own.
+  verbs: [believe, think, suppose, assume, suspect, doubt, hope, fear, expect, claim, say,
+          know, realize, discover, learn, notice, remember, regret]
+  verbs_note: >
+    The lists anchor the two classes; an unlisted verb that takes a finite complement belongs
+    here, with `factive` decided by whether the verb presupposes the complement — the
+    complement survives negation of the attitude ("did not realize that P" still entails P).
+  surface_forms:
+    - "<holder> V that <clause>"                 # believes that Lamine lent Ottoline the trowel
+    - "<holder> V <clause>"                      # thinks Lamine lent Ottoline the trowel
+    - "<holder> V-ed that <clause>"              # tense on the attitude; the clause keeps its own
+  boundary:                   # looks like an attitude but is not one
+    - >-
+      an entity object instead of a clause — fears the dog, distrusts Lamine, knows Yusra: a
+      psych state or an acquaintance; nothing is sealed
+    - >-
+      an infinitival complement — wants to send the quilt, expects Lamine to come: the
+      complement has no subject or tense of its own; a different construction
+    - >-
+      an interrogative complement — wonders whether, knows whether, asks if: the complement is
+      a question, not a proposition
+    - >-
+      an addressee — told Ottoline that P, informed Yusra that P: a communication with a
+      recipient of the message, not an attitude of the subject alone
+    - >-
+      a parenthetical or discourse use — I think, you know, as far as I know: no attitude is
+      predicated of anyone
+
+slots:
+  id:      {type: id, required: true, doc: "your label for the attitude event"}
+  verb:    {type: lemma, class: Class, required: true, doc: "the attitude verb lemma"}
+  holder:  {type: filler, class: Entity, role: Experiencer, required: true,
+            doc: "who holds the attitude: the subject"}
+  content: {type: refs, class: Proposition, required: true,
+            doc: "the complement clause: the ids of the instances that state it, that is its predication or the scope operator (negation, modal) over that predication; the referents it mentions are not listed"}
+  factive: {type: bool, required: true,
+            doc: "true when the verb presupposes the complement (know, realize, discover, learn, notice, remember, regret), false otherwise (believe, think, suppose, assume, suspect, doubt, hope, fear, expect, claim, say)"}
+  tense:   {type: enum, values: [past, present, future], required: true,
+            doc: "the attitude clause's tense; present is recorded, not inferred"}
+  aspect:  {type: enum, values: [simple, progressive, perfect], required: false, default: simple}
+
+mints: {id: Event}
+
+emits:
+  - atom: "(Member @id {verb})"
+  - atom: "(Experiencer @id {holder})"
+  - atom: "(Theme @id {content})"           # the complement, sealed as one term
+  - atom: "{content}"                       # a factive's complement is presupposed: also stated flat,
+    each: content                           # one statement per conjunct,
+    when: "factive == true"
+    project: true                           # at the top level whatever scope the attitude sits in
+  - atom: "(Past @id)"
+    when: "tense == past or aspect == perfect"
+  - atom: "(Future @id)"
+    when: "tense == future"
+  - atom: "(Ongoing @id)"
+    when: "aspect == progressive"
+
+notes:
+  - >-
+    Sealing is what makes belief safe: the complement's atoms appear only inside the Theme
+    term, so nothing in the complement is asserted or queryable on its own, while a query can
+    still bind variables inside the term.
+  - >-
+    The factive complement is emitted flat by the parse rather than derived by a background
+    rule, because the presupposition projects through negation of the attitude: a rule keyed
+    on the attitude event would not fire when the attitude is negated.
+  - >-
+    "say" and "claim" with a that-clause report a proposition on the subject's authority and
+    belong here; with an addressee the clause is a communication.
+
+depends_on: [named-entity, witness, transfer, negation, modal]     # what states the complement
+composes_with: [negation, modal, time]
+
+examples:
+  shown:                     # rendered into the prompt
+    - category: positive
+      text: "Teodor believes that Lamine lent Ottoline the trowel."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: named-entity, id: n3, name: "Ottoline"}
+        - {t: witness, id: x1, kind: trowel, definite: true}
+        - {t: transfer, id: e1, verb: lend, giver: "@n2", recipient: "@n3", object: "@x1", tense: past}
+        - {t: attitude, id: a1, verb: believe, holder: "@n1", content: ["@e1"], factive: false,
+           tense: present}
+      emitted:               # what the emitter produces (illustration; the emitter is the authority)
+        - "(Name teodor \"Teodor\")"
+        - "(Name lamine \"Lamine\")"
+        - "(Name ottoline \"Ottoline\")"
+        - "(Member sk_believe_1 believe)"
+        - "(Experiencer sk_believe_1 teodor)"
+        - "(Theme sk_believe_1 (And (Member sk_lend_1 lend) (Agent sk_lend_1 lamine) (Recipient sk_lend_1 ottoline) (Theme sk_lend_1 sk_trowel_1) (Past sk_lend_1) (Member sk_trowel_1 trowel)))"
+      declarations:
+        - "(: teodor Entity)"
+        - "(: lamine Entity)"
+        - "(: ottoline Entity)"
+        - "(: sk_trowel_1 Entity)"
+        - "(: sk_lend_1 Event)"
+        - "(: sk_believe_1 Event)"
+        - "(: lend Class)"
+        - "(: believe Class)"
+        - "(: trowel Class)"
+    - category: positive
+      note: factive — the complement is also stated flat
+      text: "Yusra knows that Teodor sold the spindle."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: named-entity, id: n2, name: "Teodor"}
+        - {t: witness, id: x1, kind: spindle, definite: true}
+        - {t: transfer, id: e1, verb: sell, giver: "@n2", object: "@x1", tense: past}
+        - {t: attitude, id: a1, verb: know, holder: "@n1", content: ["@e1"], factive: true,
+           tense: present}
+    - category: abstain
+      text: "Teodor told Ottoline that Lamine sold the spindle."
+      expected: {abstain: true, template: communication}             # an addressee
+    - category: abstain
+      text: "Yusra distrusts Lamine."
+      expected: {abstain: true, template: psych}                     # an entity object
+
+  held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      note: a witness introduced inside the complement stays inside the seal
+      text: "Teodor suspects that Lamine sold a spindle."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: witness, id: x1, kind: spindle}
+        - {t: transfer, id: e1, verb: sell, giver: "@n2", object: "@x1", tense: past}
+        - {t: attitude, id: a1, verb: suspect, holder: "@n1", content: ["@e1"], factive: false,
+           tense: present}
+    - category: contrast
+      note: holder and giver swapped — the instances must differ in holder and giver only
+      text: "Lamine suspects that Teodor sold a spindle."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: named-entity, id: n2, name: "Teodor"}
+        - {t: witness, id: x1, kind: spindle}
+        - {t: transfer, id: e1, verb: sell, giver: "@n2", object: "@x1", tense: past}
+        - {t: attitude, id: a1, verb: suspect, holder: "@n1", content: ["@e1"], factive: false,
+           tense: present}
+    - category: positive
+      note: bare complement, no "that"; past attitude
+      text: "Ottoline thought Yusra handed Lamine an envelope."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: named-entity, id: n2, name: "Yusra"}
+        - {t: named-entity, id: n3, name: "Lamine"}
+        - {t: witness, id: x1, kind: envelope}
+        - {t: transfer, id: e1, verb: hand, giver: "@n2", recipient: "@n3", object: "@x1", tense: past}
+        - {t: attitude, id: a1, verb: think, holder: "@n1", content: ["@e1"], factive: false,
+           tense: past}
+    - category: contrast
+      note: factivity — the verb changes, factive becomes true, the complement is also stated flat
+      text: "Ottoline realized Yusra handed Lamine an envelope."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: named-entity, id: n2, name: "Yusra"}
+        - {t: named-entity, id: n3, name: "Lamine"}
+        - {t: witness, id: x1, kind: envelope}
+        - {t: transfer, id: e1, verb: hand, giver: "@n2", recipient: "@n3", object: "@x1", tense: past}
+        - {t: attitude, id: a1, verb: realize, holder: "@n1", content: ["@e1"], factive: true,
+           tense: past}
+    - category: scoped
+      note: the attitude negated — the complement stays sealed inside
+      text: "Teodor does not believe that Lamine sold the spindle."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: witness, id: x1, kind: spindle, definite: true}
+        - {t: transfer, id: e1, verb: sell, giver: "@n2", object: "@x1", tense: past}
+        - {t: attitude, id: a1, verb: believe, holder: "@n1", content: ["@e1"], factive: false,
+           tense: present}
+        - {t: negation, id: s1, over: ["@a1"]}
+    - category: scoped
+      note: a factive negated — the presupposed complement still stands at the top level
+      text: "Yusra does not know that Teodor sold the spindle."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: named-entity, id: n2, name: "Teodor"}
+        - {t: witness, id: x1, kind: spindle, definite: true}
+        - {t: transfer, id: e1, verb: sell, giver: "@n2", object: "@x1", tense: past}
+        - {t: attitude, id: a1, verb: know, holder: "@n1", content: ["@e1"], factive: true,
+           tense: present}
+        - {t: negation, id: s1, over: ["@a1"]}
+    - category: scoped
+      note: a modal inside the complement — the content is the modal, which scopes over the transfer
+      text: "Teodor believes that Lamine might lend Ottoline the trowel."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: named-entity, id: n3, name: "Ottoline"}
+        - {t: witness, id: x1, kind: trowel, definite: true}
+        - {t: transfer, id: e1, verb: lend, giver: "@n2", recipient: "@n3", object: "@x1", tense: present}
+        - {t: modal, id: s1, over: ["@e1"], head: Might, surface: might}
+        - {t: attitude, id: a1, verb: believe, holder: "@n1", content: ["@s1"], factive: false,
+           tense: present}
+    - category: scoped
+      note: negation inside the complement — the content is the negation
+      text: "Teodor believes that Lamine did not sell the spindle."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: witness, id: x1, kind: spindle, definite: true}
+        - {t: transfer, id: e1, verb: sell, giver: "@n2", object: "@x1", tense: past}
+        - {t: negation, id: s1, over: ["@e1"]}
+        - {t: attitude, id: a1, verb: believe, holder: "@n1", content: ["@s1"], factive: false,
+           tense: present}
+    - category: optional
+      note: perfect aspect on the attitude
+      text: "Lamine had assumed that Ottoline sent the quilt."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: named-entity, id: n2, name: "Ottoline"}
+        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: transfer, id: e1, verb: send, giver: "@n2", object: "@x1", tense: past}
+        - {t: attitude, id: a1, verb: assume, holder: "@n1", content: ["@e1"], factive: false,
+           tense: past, aspect: perfect}
+    - category: abstain
+      text: "Yusra knows Lamine."
+      expected: {abstain: true, gap: G00, span: "knows Lamine"}                 # an entity object: acquaintance
+    - category: abstain
+      text: "Teodor wonders whether Lamine sold the spindle."
+      expected: {abstain: true, gap: G00, span: "wonders whether Lamine sold the spindle"}   # interrogative complement
+    - category: abstain
+      text: "Ottoline wants to send the quilt."
+      expected: {abstain: true, gap: G00, span: "wants to send the quilt"}    # infinitival complement
+    - category: abstain
+      text: "Yusra told Teodor that Ottoline sent the quilt."
+      expected: {abstain: true, template: communication}

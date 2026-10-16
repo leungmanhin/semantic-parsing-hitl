@@ -16,8 +16,12 @@ Shapes.  ``@id`` is the symbol minted for the instance; ``{slot}`` substitutes t
 minted symbol of a referenced instance, the lemma, the number, the quoted string, or the bundle
 of a ``refs`` slot); ``"{slot}"`` inside quotes substitutes into the string.  ``if_filled``
 emits the shape only when the slot is present, ``each`` emits one statement per element of a
-list slot (``{slot}`` then stands for the element), ``when`` tests slot values with
-``slot == value`` / ``slot != value`` clauses joined by ``and`` / ``or``.
+list slot (``{slot}`` then stands for the element; over a ``refs`` slot the elements are the
+conjuncts of the scoped bundle, so a sealed clause can also be stated flat), ``when`` tests
+slot values with ``slot == value`` / ``slot != value`` clauses joined by ``and`` / ``or``
+(case-insensitive, so ``factive == true`` tests a boolean), ``project: true`` emits the shape
+at the top level whatever scope the instance sits in (a presupposition projects through
+negation).
 
 Symbols.  A template that ``mints`` a symbol says its class and how it is named:
 ``symbol: name`` derives the symbol from the ``name`` slot (``"Ilse Varga"`` -> ``ilse_varga``,
@@ -116,10 +120,10 @@ def holds(cond: str, inst: dict) -> bool:
             c = c[4:].strip()
         if "!=" in c:
             k, v = [x.strip() for x in c.split("!=", 1)]
-            res = str(inst.get(k)) != v
+            res = str(inst.get(k)).lower() != v.lower()
         elif "==" in c:
             k, v = [x.strip() for x in c.split("==", 1)]
-            res = str(inst.get(k)) == v
+            res = str(inst.get(k)).lower() == v.lower()
         else:
             res = inst.get(c) not in (None, False, [], "")
         return (not res) if neg else res
@@ -277,7 +281,7 @@ class _Emitter:
     def fill(self, inst: dict, slot: str, spec: dict, element=None):
         v = element if element is not None else inst.get(slot)
         if spec["type"] == "refs":
-            return self.bundle(v, inst["id"])
+            return element if element is not None else self.bundle(v, inst["id"])
         if is_ref(v):
             return self.sym[v[1:]]
         if spec["type"] == "string":
@@ -301,20 +305,29 @@ class _Emitter:
             return self.fill(inst, s, slots[s], element if s == element_slot else None)
         return tok
 
-    def atoms_of(self, iid: str) -> list:
-        """The atom terms an instance emits from its own shapes (scoped content rendered inside)."""
+    def atoms_of(self, iid: str, projecting: bool = False) -> list:
+        """The atom terms an instance emits from its own shapes (scoped content rendered inside).
+        ``projecting`` selects the ``project: true`` shapes instead of the ordinary ones."""
         r = self.by_id[iid]
         t = self.cat[r["t"]]
         terms = []
         for e in t.get("emits") or []:
+            if bool(e.get("project")) != projecting:
+                continue
             if "if_filled" in e and r.get(e["if_filled"]) in (None, [], ""):
                 continue
             if "when" in e and not holds(e["when"], r):
                 continue
             shape = parse_shape(e["atom"])
             if "each" in e:
-                for element in r.get(e["each"]) or []:
-                    terms.append(self.substitute(shape, r, t["slots"], e["each"], element))
+                slot = e["each"]
+                if t["slots"][slot]["type"] == "refs":
+                    b = self.bundle(r.get(slot) or [], iid)
+                    elements = b[1:] if isinstance(b, list) and b and b[0] == "And" else [b]
+                else:
+                    elements = r.get(slot) or []
+                for element in elements:
+                    terms.append(self.substitute(shape, r, t["slots"], slot, element))
             else:
                 terms.append(self.substitute(shape, r, t["slots"]))
         return terms
@@ -380,6 +393,9 @@ class _Emitter:
                 continue                                    # rendered inside a scope
             for term in self.atoms_of(iid):
                 self.add(term, r["t"], iid)
+        for r in self.insts:                                    # presuppositions: top level, any scope
+            for term in self.atoms_of(r["id"], projecting=True):
+                self.add(term, r["t"], r["id"])
         fired: dict[str, int] = {}
         for r in self.insts:
             fired[r["t"]] = fired.get(r["t"], 0) + 1

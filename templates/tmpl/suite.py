@@ -31,8 +31,8 @@ template did not fire and the parser did what the expected target says (fired th
 it exists in the catalog, reported the gap code, or reported the span as unmapped when the
 target is pending).  Per template and section: selection (fire-cases fired, abstain-cases
 false fires), fill (exact matches among fires), stability (pairwise agreement across runs),
-C9 type check of every emitted parse when the ``petta`` package is importable, token usage per
-call, and the ``issues`` the parser reported.  Writes ``suite/out/<template>.scores.jsonl``,
+C9 type check of every emitted parse when the ``petta`` package is importable, graph lints (any
+lint fails the record), token usage per call, and the ``issues`` the parser reported.  Writes ``suite/out/<template>.scores.jsonl``,
 ``suite/out/summary.json`` and ``suite/out/REPORT.md``.
 
 No LLM judges anything here: the expected instances are the authority, the comparison is code.
@@ -348,11 +348,13 @@ def catalog_checks(catalog: dict, general: dict | None = None, freshness: bool =
 
 
 def plan(catalog: dict, templates: list[str], sections: tuple, runs: int, raw_dir: str,
-         force: bool = False, only: str | None = None) -> list[dict]:
+         force: bool = False, only: str | None = None, categories: list[str] | None = None) -> list[dict]:
     todo = []
     for tid in templates:
         for case in cases_of(catalog, tid, sections):
             if only and only.lower() not in case["text"].lower():
+                continue
+            if categories and case["category"] not in categories:
                 continue
             for n in range(1, runs + 1):
                 path = raw_path(raw_dir, tid, case["key"], n)
@@ -373,7 +375,7 @@ def collect(args, catalog: dict) -> int:
         if tid not in catalog:
             print(f"error: no template {tid}", file=sys.stderr)
             return 2
-    todo = plan(catalog, templates, sections, args.runs, args.raw_dir, args.force, args.only)
+    todo = plan(catalog, templates, sections, args.runs, args.raw_dir, args.force, args.only, args.category)
     if args.limit:
         todo = todo[: args.limit]
     with open(args.prompt, encoding="utf-8") as fh:
@@ -485,6 +487,9 @@ def score_record(case: dict, rec: dict, catalog: dict, heads: dict, body_sha: st
         row["pass"] = outcome in PASSING_ABSTAIN and row["status"] == "ok"
         if not row["pass"]:
             row["reasons"].append(outcome)
+    if row.get("lints"):
+        row["pass"] = False
+        row["reasons"].append("graph lints: " + ", ".join(f["kind"] for f in row["lints"]))
     return row
 
 
@@ -761,6 +766,8 @@ def main(argv=None) -> int:
                    help="which examples to send (shown = a teach-to-the-test smoke, not a regression)")
     k.add_argument("--runs", type=int, default=3)
     k.add_argument("--only", default=None, help="only cases whose text contains this (case-insensitive)")
+    k.add_argument("--category", action="append", default=[], choices=CATEGORIES,
+                   help="only cases of this category (repeatable), e.g. --category abstain after an instruction change")
     k.add_argument("--limit", type=int, default=None, help="at most this many calls")
     k.add_argument("--delay", type=float, default=0.0, help="seconds between calls")
     k.add_argument("--force", action="store_true", help="re-request cases that already have a stored reply")

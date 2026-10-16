@@ -1,0 +1,89 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "54d8ad81ab6b6ede7a54597207657d933ded873a8d445236afc298e7c6b6743a",
+  "item": {
+    "id": "sc394597e4d",
+    "text": "Yusra told Teodor that Ottoline sent the quilt."
+  },
+  "usage": {
+    "input": 6641,
+    "output": 139,
+    "thinking": null,
+    "total": 6780,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 6641,
+    "candidatesTokenCount": 139,
+    "totalTokenCount": 6780,
+    "cachedContentTokenCount": 4592,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 6641
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 4592
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 139
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sc394597e4d\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\"}, {\"t\": \"named-entity\", \"id\": \"n3\", \"name\": \"Ottoline\"}], \"unmapped\": [{\"span\": \"Yusra told Teodor that Ottoline sent the quilt.\", \"code\": \"G00\", \"construction\": \"A communication clause with an addressee taking a finite complement clause.\"}], \"issues\": []}",
+  "response": {
+    "id": "sc394597e4d",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Teodor"
+      },
+      {
+        "t": "named-entity",
+        "id": "n3",
+        "name": "Ottoline"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "Yusra told Teodor that Ottoline sent the quilt.",
+        "code": "G00",
+        "construction": "A communication clause with an addressee taking a finite complement clause."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "8674bf87a4b179e17df201a06cdfa72949f5c085c9011d610b4139b838fd4f5a",
+  "run": 2,
+  "case": {
+    "template": "attitude",
+    "section": "held_out",
+    "index": 12,
+    "category": "abstain",
+    "text": "Yusra told Teodor that Ottoline sent the quilt.",
+    "key": "c394597e4d"
+  }
+}

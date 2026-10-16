@@ -1,11 +1,31 @@
 {
   "prompt": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_body_sha256": "202a40b842f6568cb8833b555ec9242b400326af8352304199f73d8f47ad39eb",
+  "prompt_body_sha256": "8674bf87a4b179e17df201a06cdfa72949f5c085c9011d610b4139b838fd4f5a",
   "typecheck": "ran",
   "checks": {
-    "examples": 19,
+    "examples": 36,
     "findings": [],
     "pending": {
+      "communication": [
+        {
+          "template": "attitude",
+          "text": "Teodor told Ottoline that Lamine sold the spindle."
+        },
+        {
+          "template": "attitude",
+          "text": "Yusra told Teodor that Ottoline sent the quilt."
+        },
+        {
+          "template": "transfer",
+          "text": "Teodor told Ottoline the news."
+        }
+      ],
+      "psych": [
+        {
+          "template": "attitude",
+          "text": "Yusra distrusts Lamine."
+        }
+      ],
       "acquisition": [
         {
           "template": "transfer",
@@ -17,18 +37,98 @@
           "template": "transfer",
           "text": "Yusra gave up."
         }
-      ],
-      "communication": [
-        {
-          "template": "transfer",
-          "text": "Teodor told Ottoline the news."
-        }
       ]
     },
     "shared": []
   },
   "orphans": [],
   "templates": {
+    "attitude": {
+      "held_out": {
+        "records": 39,
+        "cases": 13,
+        "status": {
+          "ok": 39
+        },
+        "stale_prompt": 27,
+        "by_category": {
+          "positive": {
+            "cases": 2,
+            "runs": 6,
+            "pass": 6,
+            "fired": 6,
+            "exact": 6
+          },
+          "contrast": {
+            "cases": 2,
+            "runs": 6,
+            "pass": 6,
+            "fired": 6,
+            "exact": 6
+          },
+          "scoped": {
+            "cases": 4,
+            "runs": 12,
+            "pass": 12,
+            "fired": 12,
+            "exact": 12
+          },
+          "optional": {
+            "cases": 1,
+            "runs": 3,
+            "pass": 3,
+            "fired": 3,
+            "exact": 3
+          },
+          "abstain": {
+            "cases": 4,
+            "runs": 12,
+            "pass": 12,
+            "false_fires": 0,
+            "outcomes": {
+              "gap_reported": 9,
+              "pending_unmapped": 3
+            }
+          }
+        },
+        "pass": 39,
+        "selection": {
+          "fire_runs": 27,
+          "fired": 27,
+          "abstain_runs": 12,
+          "false_fires": 0
+        },
+        "fill": {
+          "fired": 27,
+          "exact": 27,
+          "rate": 1.0
+        },
+        "stability": {
+          "cases": 13,
+          "pairs": 39,
+          "pairwise_agreement": 1.0,
+          "unanimous": 13
+        },
+        "typecheck": {
+          "checked": 39,
+          "passed": 39
+        },
+        "usage": {
+          "input": 256335,
+          "output": 6791,
+          "thinking": 0,
+          "total": 263126,
+          "calls": 39,
+          "thinking_calls": 0
+        },
+        "issues": [],
+        "null_slots": 0,
+        "lints": {},
+        "models": [
+          "gemini-4-argon effort=low"
+        ]
+      }
+    },
     "transfer": {
       "held_out": {
         "records": 27,
@@ -36,7 +136,7 @@
         "status": {
           "ok": 27
         },
-        "stale_prompt": 0,
+        "stale_prompt": 18,
         "by_category": {
           "positive": {
             "cases": 2,
@@ -100,10 +200,10 @@
           "passed": 27
         },
         "usage": {
-          "input": 134628,
-          "output": 3636,
+          "input": 149478,
+          "output": 3577,
           "thinking": 0,
-          "total": 138264,
+          "total": 153055,
           "calls": 27,
           "thinking_calls": 0
         },

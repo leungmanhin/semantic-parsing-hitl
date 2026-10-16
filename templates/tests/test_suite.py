@@ -92,7 +92,7 @@ class CheckTests(unittest.TestCase):
     def test_real_catalog_has_no_findings_and_lists_pending_targets(self):
         checks = S.catalog_checks(CATALOG)
         self.assertEqual(checks["findings"], [])
-        self.assertEqual(sorted(checks["pending"]), ["acquisition", "activity", "communication"])
+        self.assertTrue({"acquisition", "activity", "communication"} <= set(checks["pending"]), checks["pending"])
         self.assertGreater(checks["examples"], 10)
 
     def _with_acquisition(self, claim_text=None, instances=None):
@@ -211,6 +211,11 @@ class ScoreTests(unittest.TestCase):
         row = self.score(self.abst_pending, reply(names[:1], unmapped=[{"span": "gave up", "code": "G00"}]))
         self.assertEqual(row["outcome"], "pending_unmapped")
         self.assertTrue(row["pass"])
+        stray = names[:1] + [{"t": "witness", "id": "x1", "kind": "quilt", "definite": True}]
+        row = self.score(self.abst_pending, reply(stray, unmapped=[{"span": "gave up", "code": "G00"}]))
+        self.assertEqual(row["outcome"], "pending_unmapped")
+        self.assertFalse(row["pass"])                                     # a witness from unmapped words is a lint
+        self.assertTrue(any(r.startswith("graph lints: dangling-referent") for r in row["reasons"]))
 
     def test_null_slots_are_stripped_and_counted(self):
         insts = copy.deepcopy(self.pos["instances"])

@@ -1,0 +1,101 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "6c7ab265c2f61fbc6ee9a1e7fb5e2f38e4bc5b305b4b1d71e184078c71738a99",
+  "item": {
+    "id": "sdeddafdd36",
+    "text": "Ottoline realized Yusra handed Lamine an envelope."
+  },
+  "usage": {
+    "input": 6541,
+    "output": 207,
+    "thinking": null,
+    "total": 6748,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 6541,
+    "candidatesTokenCount": 207,
+    "totalTokenCount": 6748,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 6541
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 207
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sdeddafdd36\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n3\", \"name\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"envelope\"}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"hand\", \"giver\": \"@n2\", \"recipient\": \"@n3\", \"object\": \"@x1\", \"tense\": \"past\"}, {\"t\": \"attitude\", \"id\": \"a1\", \"verb\": \"realize\", \"holder\": \"@n1\", \"content\": [\"@e1\"], \"factive\": true, \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sdeddafdd36",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Ottoline"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Yusra"
+      },
+      {
+        "t": "named-entity",
+        "id": "n3",
+        "name": "Lamine"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "envelope"
+      },
+      {
+        "t": "transfer",
+        "id": "e1",
+        "verb": "hand",
+        "giver": "@n2",
+        "recipient": "@n3",
+        "object": "@x1",
+        "tense": "past"
+      },
+      {
+        "t": "attitude",
+        "id": "a1",
+        "verb": "realize",
+        "holder": "@n1",
+        "content": [
+          "@e1"
+        ],
+        "factive": true,
+        "tense": "past"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "5fb090d7583e264955ec31adb74c438bcda9224778c39d2a4d5c690a235e86c4",
+  "run": 1,
+  "case": {
+    "template": "attitude",
+    "section": "held_out",
+    "index": 3,
+    "category": "contrast",
+    "text": "Ottoline realized Yusra handed Lamine an envelope.",
+    "key": "deddafdd36"
+  }
+}

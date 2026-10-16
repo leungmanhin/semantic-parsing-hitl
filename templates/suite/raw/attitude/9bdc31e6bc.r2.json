@@ -1,0 +1,101 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "6c7ab265c2f61fbc6ee9a1e7fb5e2f38e4bc5b305b4b1d71e184078c71738a99",
+  "item": {
+    "id": "s9bdc31e6bc",
+    "text": "Ottoline thought Yusra handed Lamine an envelope."
+  },
+  "usage": {
+    "input": 6543,
+    "output": 208,
+    "thinking": null,
+    "total": 6751,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 6543,
+    "candidatesTokenCount": 208,
+    "totalTokenCount": 6751,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 6543
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 208
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s9bdc31e6bc\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n3\", \"name\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"envelope\"}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"hand\", \"giver\": \"@n2\", \"recipient\": \"@n3\", \"object\": \"@x1\", \"tense\": \"past\"}, {\"t\": \"attitude\", \"id\": \"a1\", \"verb\": \"think\", \"holder\": \"@n1\", \"content\": [\"@e1\"], \"factive\": false, \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s9bdc31e6bc",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Ottoline"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Yusra"
+      },
+      {
+        "t": "named-entity",
+        "id": "n3",
+        "name": "Lamine"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "envelope"
+      },
+      {
+        "t": "transfer",
+        "id": "e1",
+        "verb": "hand",
+        "giver": "@n2",
+        "recipient": "@n3",
+        "object": "@x1",
+        "tense": "past"
+      },
+      {
+        "t": "attitude",
+        "id": "a1",
+        "verb": "think",
+        "holder": "@n1",
+        "content": [
+          "@e1"
+        ],
+        "factive": false,
+        "tense": "past"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "5fb090d7583e264955ec31adb74c438bcda9224778c39d2a4d5c690a235e86c4",
+  "run": 2,
+  "case": {
+    "template": "attitude",
+    "section": "held_out",
+    "index": 2,
+    "category": "positive",
+    "text": "Ottoline thought Yusra handed Lamine an envelope.",
+    "key": "9bdc31e6bc"
+  }
+}

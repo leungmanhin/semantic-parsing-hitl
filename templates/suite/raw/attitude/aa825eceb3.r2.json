@@ -1,0 +1,84 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "54d8ad81ab6b6ede7a54597207657d933ded873a8d445236afc298e7c6b6743a",
+  "item": {
+    "id": "saa825eceb3",
+    "text": "Teodor wonders whether Lamine sold the spindle."
+  },
+  "usage": {
+    "input": 6636,
+    "output": 109,
+    "thinking": null,
+    "total": 6745,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 6636,
+    "candidatesTokenCount": 109,
+    "totalTokenCount": 6745,
+    "cachedContentTokenCount": 4587,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 6636
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 4587
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 109
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"saa825eceb3\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Lamine\"}], \"unmapped\": [{\"span\": \"Teodor wonders whether Lamine sold the spindle.\", \"code\": \"G00\", \"construction\": \"An attitude verb taking an interrogative complement clause.\"}], \"issues\": []}",
+  "response": {
+    "id": "saa825eceb3",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Lamine"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "Teodor wonders whether Lamine sold the spindle.",
+        "code": "G00",
+        "construction": "An attitude verb taking an interrogative complement clause."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "8674bf87a4b179e17df201a06cdfa72949f5c085c9011d610b4139b838fd4f5a",
+  "run": 2,
+  "case": {
+    "template": "attitude",
+    "section": "held_out",
+    "index": 10,
+    "category": "abstain",
+    "text": "Teodor wonders whether Lamine sold the spindle.",
+    "key": "aa825eceb3"
+  }
+}

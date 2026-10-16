@@ -12,10 +12,11 @@ Checks, in order:
   required slot, bad enum value, unknown slot, dangling reference, a filler pointing at an
   instance that mints no symbol, a scope cycle.  Any of these stops the record here
   (status ``malformed``);
-* graph lints on well-formed instances: a referent no other instance mentions while nothing is
-  reported unmapped (``dangling-referent``), a predication with filler slots none of which is
-  filled (``bare-predication``), an optional scope with an empty ``refs`` list
-  (``empty-scope``);
+* graph lints on well-formed instances: a witness no other instance mentions, or a name no
+  instance mentions while nothing is reported unmapped (``dangling-referent``: a witness is
+  introduced only by a covered clause, a name may stand alone beside an unmapped span), a
+  predication with filler slots none of which is filled (``bare-predication``), an optional
+  scope with an empty ``refs`` list (``empty-scope``);
 * C9 — every emitted statement types against the substrate with the emitter's declarations
   (needs the ``petta`` package, otherwise ``typecheck`` is ``skipped``).
 
@@ -103,9 +104,14 @@ def lints(insts: list, catalog: dict, unmapped: list) -> list:
     for r in insts:
         t = catalog[r["t"]]
         slots = t.get("slots") or {}
-        if t.get("family") == "referent" and r["id"] not in mentioned and not unmapped:
-            out.append({"kind": "dangling-referent", "instance": r["id"],
-                        "detail": f"{r['t']} {r['id']} is mentioned by no other instance and nothing is reported unmapped"})
+        if t.get("family") == "referent" and r["id"] not in mentioned:
+            rigid = (t.get("mints") or {}).get("symbol") == "name"
+            if not rigid:
+                out.append({"kind": "dangling-referent", "instance": r["id"],
+                            "detail": f"{r['t']} {r['id']} is mentioned by no other instance: a witness is introduced only by a clause a template covers"})
+            elif not unmapped:
+                out.append({"kind": "dangling-referent", "instance": r["id"],
+                            "detail": f"{r['t']} {r['id']} is mentioned by no other instance and nothing is reported unmapped"})
         if t.get("family") == "predication":
             fillers = [s for s, spec in slots.items() if spec["type"] == "filler"]
             if fillers and not any(r.get(s) not in (None, "", []) for s in fillers):

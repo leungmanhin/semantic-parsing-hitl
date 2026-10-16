@@ -1,0 +1,102 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "6c7ab265c2f61fbc6ee9a1e7fb5e2f38e4bc5b305b4b1d71e184078c71738a99",
+  "item": {
+    "id": "s4fc0f5d83e",
+    "text": "Lamine suspects that Teodor sold a spindle."
+  },
+  "usage": {
+    "input": 6544,
+    "output": 181,
+    "thinking": null,
+    "total": 6725,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 6544,
+    "candidatesTokenCount": 181,
+    "totalTokenCount": 6725,
+    "cachedContentTokenCount": 4495,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 6544
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 4495
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 181
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s4fc0f5d83e\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"spindle\"}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"sell\", \"giver\": \"@n2\", \"object\": \"@x1\", \"tense\": \"past\"}, {\"t\": \"attitude\", \"id\": \"a1\", \"verb\": \"suspect\", \"holder\": \"@n1\", \"content\": [\"@e1\"], \"factive\": false, \"tense\": \"present\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s4fc0f5d83e",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Teodor"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "spindle"
+      },
+      {
+        "t": "transfer",
+        "id": "e1",
+        "verb": "sell",
+        "giver": "@n2",
+        "object": "@x1",
+        "tense": "past"
+      },
+      {
+        "t": "attitude",
+        "id": "a1",
+        "verb": "suspect",
+        "holder": "@n1",
+        "content": [
+          "@e1"
+        ],
+        "factive": false,
+        "tense": "present"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "5fb090d7583e264955ec31adb74c438bcda9224778c39d2a4d5c690a235e86c4",
+  "run": 3,
+  "case": {
+    "template": "attitude",
+    "section": "held_out",
+    "index": 1,
+    "category": "contrast",
+    "text": "Lamine suspects that Teodor sold a spindle.",
+    "key": "4fc0f5d83e"
+  }
+}
