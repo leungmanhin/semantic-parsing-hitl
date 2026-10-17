@@ -1,0 +1,88 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "517fa33db1e726e201b1348c24b85866cf55bad518e4a4cbb5add28a521e2750",
+  "item": {
+    "id": "sa0a062c21a",
+    "text": "Yusra had owned the spindle."
+  },
+  "usage": {
+    "input": 11840,
+    "output": 126,
+    "thinking": null,
+    "total": 11966,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 11840,
+    "candidatesTokenCount": 126,
+    "totalTokenCount": 11966,
+    "cachedContentTokenCount": 9791,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 11840
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 9791
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 126
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sa0a062c21a\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"spindle\", \"definite\": true}, {\"t\": \"possession\", \"id\": \"p1\", \"verb\": \"own\", \"holder\": \"@n1\", \"possessed\": \"@x1\", \"tense\": \"past\", \"aspect\": \"perfect\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sa0a062c21a",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "spindle",
+        "definite": true
+      },
+      {
+        "t": "possession",
+        "id": "p1",
+        "verb": "own",
+        "holder": "@n1",
+        "possessed": "@x1",
+        "tense": "past",
+        "aspect": "perfect"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "41b1c076c80ab3ff14e8e47da03ff29f11a94fdce1398936f1eb2cbe9cb1a5e7",
+  "run": 3,
+  "case": {
+    "template": "possession",
+    "section": "held_out",
+    "index": 7,
+    "category": "optional",
+    "text": "Yusra had owned the spindle.",
+    "key": "a0a062c21a"
+  }
+}

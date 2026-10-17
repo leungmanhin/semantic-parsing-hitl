@@ -37,4 +37,12 @@ emits:
 
 examples:
   shown: []
-  held_out: []
+  held_out:
+    - category: positive
+      note: have to — an obligation over the clause, not a state of having
+      text: "Yusra has to send the quilt."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: transfer, id: e1, verb: send, giver: "@n1", object: "@x1", tense: present}
+        - {t: modal, id: s1, over: ["@e1"], head: Obligated, surface: "has to"}

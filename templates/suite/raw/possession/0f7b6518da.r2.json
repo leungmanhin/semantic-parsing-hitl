@@ -1,0 +1,93 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "517fa33db1e726e201b1348c24b85866cf55bad518e4a4cbb5add28a521e2750",
+  "item": {
+    "id": "s0f7b6518da",
+    "text": "Teodor bought the spindle from Yusra."
+  },
+  "usage": {
+    "input": 11842,
+    "output": 149,
+    "thinking": null,
+    "total": 11991,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 11842,
+    "candidatesTokenCount": 149,
+    "totalTokenCount": 11991,
+    "cachedContentTokenCount": 9793,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 11842
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 9793
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 149
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s0f7b6518da\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"spindle\", \"definite\": true}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Yusra\"}, {\"t\": \"acquisition\", \"id\": \"e1\", \"verb\": \"buy\", \"acquirer\": \"@n1\", \"object\": \"@x1\", \"source\": \"@n2\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s0f7b6518da",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "spindle",
+        "definite": true
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Yusra"
+      },
+      {
+        "t": "acquisition",
+        "id": "e1",
+        "verb": "buy",
+        "acquirer": "@n1",
+        "object": "@x1",
+        "source": "@n2",
+        "tense": "past"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "41b1c076c80ab3ff14e8e47da03ff29f11a94fdce1398936f1eb2cbe9cb1a5e7",
+  "run": 2,
+  "case": {
+    "template": "possession",
+    "section": "held_out",
+    "index": 11,
+    "category": "abstain",
+    "text": "Teodor bought the spindle from Yusra.",
+    "key": "0f7b6518da"
+  }
+}

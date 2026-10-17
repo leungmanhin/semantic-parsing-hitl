@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 a056928b3ca4060b · 9 templates
+catalog sha256 a28327101e234f0f · 10 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -546,6 +546,88 @@ Not this template. TEXT: Teodor said that Lamine sold the spindle. — use `atti
 
 Not this template. TEXT: Teodor asked Ottoline whether Lamine sold the spindle. — report it as
 unmapped: {"span": "asked Ottoline whether Lamine sold the spindle", "code": "G00"}.
+
+### possession — A state of having
+
+When: A verbal clause whose verb denotes a state of having: the subject holds, owns or keeps a
+thing. With "belong to" the subject is the thing held and the to-phrase is the holder; the roles
+do not change. "lack" is the state of not having, recorded with its own lemma. The thing held is
+a thing or a named individual.
+
+Verbs that anchor the class: have, own, possess, keep, belong, lack.
+The list anchors the class; an unlisted verb that denotes a state of having belongs here. "have"
+belongs here only as a main verb of having: as an auxiliary (has sent) it marks the perfect
+aspect of another predication, and "have to" is a modal.
+
+Forms:
+- <holder> V <possessed>
+- <possessed> belongs to <holder>
+
+Not this template:
+- coming to have — took, received, bought, inherited: an event of acquiring, not a state
+- "have" as an auxiliary — has sent the quilt, had obtained a trowel: the perfect aspect of the
+  other verb; no state of having
+- "have to" — has to send the quilt: an obligation; a modal over the clause
+- "have" with an event noun or in a light-verb use — had lunch, had a word, had a look: the noun
+  carries the event
+- kinship, parts and attributes — has a brother, has blue eyes, has a lid: a relation or a
+  property stated with "have", not the holding of a thing
+- the possessive inside a noun phrase — Ottoline's quilt, the quilt of Ottoline: a referent with
+  a possessor, not a clause
+
+Slots:
+
+- `t` (required): "possession"
+- `id` (required; your label for this instance): your label for the state.
+- `verb` (required; a lemma): the verb lemma.
+- `holder` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
+  who has the thing: the subject, or the to-phrase of belong.
+- `possessed` (required; "@id" of a referent instance, or a bare lemma for a non-specific
+  filler): the thing held: the object, or the subject of belong.
+- `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
+  not inferred.
+- `aspect` (optional; one of: simple, progressive, perfect).
+
+Example (have as a main verb). TEXT: Teodor has a trowel.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Teodor"},
+      {"t": "witness", "id": "x1", "kind": "trowel"},
+      {"t": "possession", "id": "p1", "verb": "have", "holder": "@n1", "possessed": "@x1", "tense": "present"}
+    ]
+
+The program renders these instances as:
+
+    (Name teodor "Teodor")
+    (Member sk_trowel_1 trowel)
+    (Member sk_have_1 have)
+    (Holder sk_have_1 teodor)
+    (Theme sk_have_1 sk_trowel_1)
+
+Example (belong — the subject is the thing held; the roles do not change). TEXT: The ladder belongs to Lamine.
+
+Instances:
+
+    [
+      {"t": "witness", "id": "x1", "kind": "ladder", "definite": true},
+      {"t": "named-entity", "id": "n1", "name": "Lamine"},
+      {"t": "possession", "id": "p1", "verb": "belong", "holder": "@n1", "possessed": "@x1", "tense": "present"}
+    ]
+
+The program renders these instances as:
+
+    (Member sk_ladder_1 ladder)
+    (Name lamine "Lamine")
+    (Member sk_belong_1 belong)
+    (Holder sk_belong_1 lamine)
+    (Theme sk_belong_1 sk_ladder_1)
+
+Not this template. TEXT: Yusra received a thermos. — use `acquisition`.
+
+Not this template. TEXT: Lamine had lunch. — report it as unmapped: {"span": "had lunch",
+"code": "G00"}.
 
 ### psych — An emotional or evaluative state towards a stimulus
 

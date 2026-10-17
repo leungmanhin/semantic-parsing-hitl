@@ -1,0 +1,87 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "517fa33db1e726e201b1348c24b85866cf55bad518e4a4cbb5add28a521e2750",
+  "item": {
+    "id": "s2ed5b113d5",
+    "text": "The spindle belongs to Yusra."
+  },
+  "usage": {
+    "input": 11840,
+    "output": 121,
+    "thinking": null,
+    "total": 11961,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 11840,
+    "candidatesTokenCount": 121,
+    "totalTokenCount": 11961,
+    "cachedContentTokenCount": 9791,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 11840
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 9791
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 121
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s2ed5b113d5\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"spindle\", \"definite\": true}, {\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"possession\", \"id\": \"e1\", \"verb\": \"belong\", \"holder\": \"@n1\", \"possessed\": \"@x1\", \"tense\": \"present\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s2ed5b113d5",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "spindle",
+        "definite": true
+      },
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra"
+      },
+      {
+        "t": "possession",
+        "id": "e1",
+        "verb": "belong",
+        "holder": "@n1",
+        "possessed": "@x1",
+        "tense": "present"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "41b1c076c80ab3ff14e8e47da03ff29f11a94fdce1398936f1eb2cbe9cb1a5e7",
+  "run": 3,
+  "case": {
+    "template": "possession",
+    "section": "held_out",
+    "index": 2,
+    "category": "contrast",
+    "text": "The spindle belongs to Yusra.",
+    "key": "2ed5b113d5"
+  }
+}

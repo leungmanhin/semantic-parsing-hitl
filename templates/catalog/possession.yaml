@@ -1,0 +1,187 @@
+# Template: possession  (a state of having: a holder and the thing held)
+#
+# The verb of having (own, have, possess, keep, belong, lack) is a state with an eventuality of
+# its own, carrying the holder and the thing held as roles exactly like the verb-class templates
+# for events; tense, negation and modality attach to that eventuality. The possessive inside a
+# noun phrase ("Ottoline's quilt") is a different construction, and the link between the two is
+# a background rule, never a collapse made by the parser.
+
+id: possession
+family: predication
+kind: verb-class
+title: A state of having
+status: draft
+
+trigger:
+  construction: >
+    A verbal clause whose verb denotes a state of having: the subject holds, owns or keeps a
+    thing. With "belong to" the subject is the thing held and the to-phrase is the holder; the
+    roles do not change. "lack" is the state of not having, recorded with its own lemma. The
+    thing held is a thing or a named individual.
+  verbs: [have, own, possess, keep, belong, lack]
+  verbs_note: >
+    The list anchors the class; an unlisted verb that denotes a state of having belongs here.
+    "have" belongs here only as a main verb of having: as an auxiliary (has sent) it marks the
+    perfect aspect of another predication, and "have to" is a modal.
+  surface_forms:
+    - "<holder> V <possessed>"                 # Ottoline owns the quilt
+    - "<possessed> belongs to <holder>"        # the quilt belongs to Ottoline: the roles do not change
+  boundary:                   # looks like a state of having but is not one
+    - >-
+      coming to have — took, received, bought, inherited: an event of acquiring, not a state
+    - >-
+      "have" as an auxiliary — has sent the quilt, had obtained a trowel: the perfect aspect of
+      the other verb; no state of having
+    - >-
+      "have to" — has to send the quilt: an obligation; a modal over the clause
+    - >-
+      "have" with an event noun or in a light-verb use — had lunch, had a word, had a look: the
+      noun carries the event
+    - >-
+      kinship, parts and attributes — has a brother, has blue eyes, has a lid: a relation or a
+      property stated with "have", not the holding of a thing
+    - >-
+      the possessive inside a noun phrase — Ottoline's quilt, the quilt of Ottoline: a referent
+      with a possessor, not a clause
+
+slots:
+  id:        {type: id, required: true, doc: "your label for the state"}
+  verb:      {type: lemma, class: Class, required: true, doc: "the verb lemma"}
+  holder:    {type: filler, class: Entity, role: Holder, required: true,
+              doc: "who has the thing: the subject, or the to-phrase of belong"}
+  possessed: {type: filler, class: Entity, role: Theme, required: true,
+              doc: "the thing held: the object, or the subject of belong"}
+  tense:     {type: enum, values: [past, present, future], required: true,
+              doc: "the clause's tense; present is recorded, not inferred"}
+  aspect:    {type: enum, values: [simple, progressive, perfect], required: false, default: simple}
+
+mints: {id: Event}
+
+emits:
+  - atom: "(Member @id {verb})"
+  - atom: "(Holder @id {holder})"
+  - atom: "(Theme @id {possessed})"
+  - atom: "(Past @id)"
+    when: "tense == past or aspect == perfect"
+  - atom: "(Future @id)"
+    when: "tense == future"
+  - atom: "(Ongoing @id)"
+    when: "aspect == progressive"
+
+notes:
+  - >-
+    A state has an eventuality of its own so that tense, negation and modality attach to it
+    the way they attach to events; the substrate's Holder role exists for exactly this class.
+  - >-
+    "lack" keeps its lemma: the state of not having is what the word states, and the
+    entailment "does not have" is a background rule, as is the link between owning and the
+    possessive (Ottoline owns the quilt / Ottoline's quilt).
+
+depends_on: [named-entity, witness]
+composes_with: [negation, modal, time]
+
+examples:
+  shown:                     # rendered into the prompt
+    - category: positive
+      note: have as a main verb
+      text: "Teodor has a trowel."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, kind: trowel}
+        - {t: possession, id: p1, verb: have, holder: "@n1", possessed: "@x1", tense: present}
+      emitted:               # what the emitter produces (illustration; the emitter is the authority)
+        - "(Name teodor \"Teodor\")"
+        - "(Member sk_trowel_1 trowel)"
+        - "(Member sk_have_1 have)"
+        - "(Holder sk_have_1 teodor)"
+        - "(Theme sk_have_1 sk_trowel_1)"
+      declarations:
+        - "(: teodor Entity)"
+        - "(: sk_trowel_1 Entity)"
+        - "(: sk_have_1 Event)"
+        - "(: have Class)"
+        - "(: trowel Class)"
+    - category: positive
+      note: belong — the subject is the thing held; the roles do not change
+      text: "The ladder belongs to Lamine."
+      instances:
+        - {t: witness, id: x1, kind: ladder, definite: true}
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: possession, id: p1, verb: belong, holder: "@n1", possessed: "@x1", tense: present}
+    - category: abstain
+      text: "Yusra received a thermos."
+      expected: {abstain: true, template: acquisition}                # coming to have
+    - category: abstain
+      text: "Lamine had lunch."
+      expected: {abstain: true, gap: G00, span: "had lunch"}          # light-verb use of have
+
+  held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      text: "Ottoline owns the quilt."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: possession, id: p1, verb: own, holder: "@n1", possessed: "@x1", tense: present}
+    - category: positive
+      text: "Yusra owns the spindle."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, kind: spindle, definite: true}
+        - {t: possession, id: p1, verb: own, holder: "@n1", possessed: "@x1", tense: present}
+    - category: contrast
+      note: surface flip — subject and object swap positions, the roles do not; only the verb differs
+      text: "The spindle belongs to Yusra."
+      instances:
+        - {t: witness, id: x1, kind: spindle, definite: true}
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: possession, id: p1, verb: belong, holder: "@n1", possessed: "@x1", tense: present}
+    - category: positive
+      note: past tense
+      text: "Lamine had a ladder."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: x1, kind: ladder}
+        - {t: possession, id: p1, verb: have, holder: "@n1", possessed: "@x1", tense: past}
+    - category: positive
+      note: lack keeps its lemma
+      text: "Teodor lacks a trowel."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, kind: trowel}
+        - {t: possession, id: p1, verb: lack, holder: "@n1", possessed: "@x1", tense: present}
+    - category: scoped
+      note: under clausal negation
+      text: "Ottoline does not own the quilt."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: possession, id: p1, verb: own, holder: "@n1", possessed: "@x1", tense: present}
+        - {t: negation, id: s1, over: ["@p1"]}
+    - category: scoped
+      note: under a modal
+      text: "Teodor might keep the envelope."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, kind: envelope, definite: true}
+        - {t: possession, id: p1, verb: keep, holder: "@n1", possessed: "@x1", tense: present}
+        - {t: modal, id: s1, over: ["@p1"], head: Might, surface: might}
+    - category: optional
+      note: perfect aspect
+      text: "Yusra had owned the spindle."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, kind: spindle, definite: true}
+        - {t: possession, id: p1, verb: own, holder: "@n1", possessed: "@x1", tense: past,
+           aspect: perfect}
+    - category: abstain
+      text: "Yusra has sent the quilt."
+      expected: {abstain: true, template: transfer}                   # have as an auxiliary
+    - category: abstain
+      text: "Yusra has to send the quilt."
+      expected: {abstain: true, template: modal}                      # have to: an obligation
+    - category: abstain
+      text: "Ottoline has a brother."
+      expected: {abstain: true, gap: G00, span: "has a brother"}      # kinship
+    - category: abstain
+      text: "Teodor bought the spindle from Yusra."
+      expected: {abstain: true, template: acquisition}                # coming to have

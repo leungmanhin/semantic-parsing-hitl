@@ -181,6 +181,14 @@ examples:
         - {t: named-entity, id: n2, name: "Teodor"}
         - {t: transfer, id: e1, verb: sell, giver: "@n1", recipient: "@n2", object: "@x1",
            tense: past}
+    - category: positive
+      note: present perfect — the auxiliary have is aspect, not a state of having
+      text: "Yusra has sent the quilt."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: transfer, id: e1, verb: send, giver: "@n1", object: "@x1", tense: present,
+           aspect: perfect}
     - category: scoped
       note: under clausal negation — the transfer instance is unchanged, the negation template scopes over it
       text: "Lamine did not hand Teodor an envelope."

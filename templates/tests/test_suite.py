@@ -109,30 +109,32 @@ class CheckTests(unittest.TestCase):
         self.assertTrue(expected)
         self.assertGreater(checks["examples"], 10)
 
-    def _with_acquisition(self, claim_text=None, instances=None):
+    MIRROR_TEXT = "Zed took the zither from Quill."
+
+    def _with_mirror(self, claim_instances=None):
+        """A doctored catalog: transfer abstains on a sentence to a fake template `mirror`,
+        which claims it with `claim_instances` when given."""
         cat = copy.deepcopy(CATALOG)
-        acq = copy.deepcopy(cat["transfer"])
-        acq["id"] = "acquisition"
-        acq["examples"] = {"shown": [], "held_out": []}
-        if claim_text:
-            acq["examples"]["held_out"].append({"category": "positive", "text": claim_text, "instances": instances})
-        cat["acquisition"] = acq
+        mirror = copy.deepcopy(cat["transfer"])
+        mirror["id"] = "mirror"
+        mirror["examples"] = {"shown": [], "held_out": []}
+        cat["transfer"]["examples"]["held_out"].append(
+            {"category": "abstain", "text": self.MIRROR_TEXT, "expected": {"abstain": True, "template": "mirror"}})
+        if claim_instances:
+            mirror["examples"]["held_out"].append({"category": "positive", "text": self.MIRROR_TEXT, "instances": claim_instances})
+        cat["mirror"] = mirror
         return cat
 
     def test_existing_target_must_claim_the_sentence(self):
-        cat = self._with_acquisition()
-        kinds = [f["kind"] for f in S.catalog_checks(cat, freshness=False)["findings"]]
-        self.assertIn("unclaimed", kinds)
+        kinds = [f["kind"] for f in S.catalog_checks(self._with_mirror(), freshness=False)["findings"]]
+        self.assertEqual(kinds, ["unclaimed"])
 
     def test_claim_that_fires_the_abstaining_template_conflicts(self):
-        text = "Ottoline took the envelope from Lamine."
-        insts = [{"t": "named-entity", "id": "n1", "name": "Ottoline"}, {"t": "witness", "id": "x1", "kind": "envelope", "definite": True},
-                 {"t": "named-entity", "id": "n2", "name": "Lamine"},
+        insts = [{"t": "named-entity", "id": "n1", "name": "Zed"}, {"t": "witness", "id": "x1", "kind": "zither", "definite": True},
+                 {"t": "named-entity", "id": "n2", "name": "Quill"},
                  {"t": "transfer", "id": "e1", "verb": "take", "giver": "@n2", "recipient": "@n1", "object": "@x1", "tense": "past"}]
-        cat = self._with_acquisition(text, insts)
-        kinds = [f["kind"] for f in S.catalog_checks(cat, freshness=False)["findings"]]
-        self.assertIn("claim-conflict", kinds)
-        self.assertNotIn("unclaimed", kinds)
+        kinds = [f["kind"] for f in S.catalog_checks(self._with_mirror(insts), freshness=False)["findings"]]
+        self.assertEqual(kinds, ["claim-conflict"])
 
     def test_overlap_and_shared(self):
         pos = case("transfer", "held_out", "Lamine handed Teodor an envelope.")

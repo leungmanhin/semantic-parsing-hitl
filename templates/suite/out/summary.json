@@ -1,17 +1,11 @@
 {
   "prompt": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_body_sha256": "6cf313445a0a101e1fc3416cc18e201b1014c1ed7339419f511094ac6b3ffbd5",
+  "prompt_body_sha256": "41b1c076c80ab3ff14e8e47da03ff29f11a94fdce1398936f1eb2cbe9cb1a5e7",
   "typecheck": "ran",
   "checks": {
-    "examples": 88,
+    "examples": 106,
     "findings": [],
     "pending": {
-      "possession": [
-        {
-          "template": "acquisition",
-          "text": "Ottoline owns the quilt."
-        }
-      ],
       "perception": [
         {
           "template": "psych",
@@ -33,7 +27,7 @@
   },
   "orphans": [],
   "templates": {
-    "acquisition": {
+    "possession": {
       "held_out": {
         "records": 36,
         "cases": 12,
@@ -43,11 +37,11 @@
         "stale_prompt": 0,
         "by_category": {
           "positive": {
-            "cases": 3,
-            "runs": 9,
-            "pass": 9,
-            "fired": 9,
-            "exact": 9
+            "cases": 4,
+            "runs": 12,
+            "pass": 12,
+            "fired": 12,
+            "exact": 12
           },
           "contrast": {
             "cases": 1,
@@ -64,11 +58,11 @@
             "exact": 6
           },
           "optional": {
-            "cases": 2,
-            "runs": 6,
-            "pass": 6,
-            "fired": 6,
-            "exact": 6
+            "cases": 1,
+            "runs": 3,
+            "pass": 3,
+            "fired": 3,
+            "exact": 3
           },
           "abstain": {
             "cases": 4,
@@ -76,9 +70,8 @@
             "pass": 12,
             "false_fires": 0,
             "outcomes": {
-              "pending_unmapped": 3,
-              "gap_reported": 6,
-              "target_fired": 3
+              "target_fired": 9,
+              "gap_reported": 3
             }
           }
         },
@@ -105,10 +98,10 @@
           "passed": 36
         },
         "usage": {
-          "input": 389835,
-          "output": 4418,
+          "input": 426216,
+          "output": 4518,
           "thinking": 0,
-          "total": 394253,
+          "total": 430734,
           "calls": 36,
           "thinking_calls": 0
         },

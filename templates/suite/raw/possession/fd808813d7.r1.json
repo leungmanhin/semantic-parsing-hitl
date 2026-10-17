@@ -1,0 +1,89 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "517fa33db1e726e201b1348c24b85866cf55bad518e4a4cbb5add28a521e2750",
+  "item": {
+    "id": "sfd808813d7",
+    "text": "Teodor might keep the envelope."
+  },
+  "usage": {
+    "input": 11840,
+    "output": 150,
+    "thinking": null,
+    "total": 11990,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 11840,
+    "candidatesTokenCount": 150,
+    "totalTokenCount": 11990,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 11840
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 150
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sfd808813d7\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"envelope\", \"definite\": true}, {\"t\": \"possession\", \"id\": \"e1\", \"verb\": \"keep\", \"holder\": \"@n1\", \"possessed\": \"@x1\", \"tense\": \"present\"}, {\"t\": \"modal\", \"id\": \"s1\", \"over\": [\"@e1\"], \"head\": \"Might\", \"surface\": \"might\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sfd808813d7",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "envelope",
+        "definite": true
+      },
+      {
+        "t": "possession",
+        "id": "e1",
+        "verb": "keep",
+        "holder": "@n1",
+        "possessed": "@x1",
+        "tense": "present"
+      },
+      {
+        "t": "modal",
+        "id": "s1",
+        "over": [
+          "@e1"
+        ],
+        "head": "Might",
+        "surface": "might"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "41b1c076c80ab3ff14e8e47da03ff29f11a94fdce1398936f1eb2cbe9cb1a5e7",
+  "run": 1,
+  "case": {
+    "template": "possession",
+    "section": "held_out",
+    "index": 6,
+    "category": "scoped",
+    "text": "Teodor might keep the envelope.",
+    "key": "fd808813d7"
+  }
+}
