@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 b1cc01580f1789d9 · 8 templates
+catalog sha256 a056928b3ca4060b · 9 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -228,6 +228,99 @@ The program renders these instances as:
     (Member sk_thermos_1 thermos)
 
 ## Predications — what the text states about them
+
+### acquisition — Acquisition of an object by the party who comes to have it
+
+When: A verbal clause whose verb denotes that its subject comes to have an object: by acting
+(take, buy, borrow, grab, seize, fetch, collect, pick up) or by receiving (receive, get, obtain,
+accept, inherit, win, earn, gain). The party the object comes from may be stated in a
+from-phrase. The object is a thing, unchanged by the acquisition.
+
+Verbs that anchor the class: take, receive, get, obtain, accept, buy, borrow, inherit, win,
+earn, gain, collect, grab, seize, fetch, pick_up.
+The list anchors the class; an unlisted verb that clearly denotes coming to have an object
+belongs here (record its lemma as usual; a particle verb keeps its particle, pick_up). The class
+is semantic, the list is guidance.
+
+Forms:
+- <acquirer> V <object>
+- <acquirer> V <object> from <source>
+- <object> was V-ed by <acquirer>
+- <object> was V-ed
+
+Not this template:
+- told from the giver's side — gave, handed, sent, sold, lent: the subject is the party who
+  parts with the object; a transfer
+- a state of having — owns the quilt, has a trowel: no event of coming to have it
+- light-verb constructions — took a walk, took a look, had a word: the noun carries the event;
+  nothing is acquired
+- get as become or as a causative — got tired, got Lamine to send the quilt: nothing is acquired
+- win or earn with a contest or an activity as the object — won the race: nothing changes hands;
+  with a prize or a sum as the object it is an acquisition
+- the price — bought the quilt for forty euros: the amount is never the object; it is an
+  attachment with no slot here, reported as unmapped while the acquisition is parsed
+
+Slots:
+
+- `t` (required): "acquisition"
+- `id` (required; your label for this instance): your label for the acquisition event.
+- `verb` (required; a lemma): the verb lemma.
+- `acquirer` (optional; "@id" of a referent instance, or a bare lemma for a non-specific
+  filler): the party who comes to have the object: the subject, or the by-phrase of a passive;
+  absent only in an agentless passive.
+- `object` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
+  what is acquired, unchanged by the acquisition.
+- `source` (optional; "@id" of a referent instance, or a bare lemma for a non-specific filler):
+  the party the object comes from: the from-phrase.
+- `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
+  not inferred.
+- `aspect` (optional; one of: simple, progressive, perfect).
+
+Example (with the source stated). TEXT: Ottoline took the envelope from Lamine.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Ottoline"},
+      {"t": "witness", "id": "x1", "kind": "envelope", "definite": true},
+      {"t": "named-entity", "id": "n2", "name": "Lamine"},
+      {"t": "acquisition", "id": "q1", "verb": "take", "acquirer": "@n1", "object": "@x1", "source": "@n2", "tense": "past"}
+    ]
+
+The program renders these instances as:
+
+    (Name ottoline "Ottoline")
+    (Member sk_envelope_1 envelope)
+    (Name lamine "Lamine")
+    (Member sk_take_1 take)
+    (Recipient sk_take_1 ottoline)
+    (Theme sk_take_1 sk_envelope_1)
+    (Source sk_take_1 lamine)
+    (Past sk_take_1)
+
+Example (by receiving, no source stated). TEXT: Yusra received a thermos.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Yusra"},
+      {"t": "witness", "id": "x1", "kind": "thermos"},
+      {"t": "acquisition", "id": "q1", "verb": "receive", "acquirer": "@n1", "object": "@x1", "tense": "past"}
+    ]
+
+The program renders these instances as:
+
+    (Name yusra "Yusra")
+    (Member sk_thermos_1 thermos)
+    (Member sk_receive_1 receive)
+    (Recipient sk_receive_1 yusra)
+    (Theme sk_receive_1 sk_thermos_1)
+    (Past sk_receive_1)
+
+Not this template. TEXT: Teodor gave Yusra a thermos. — use `transfer`.
+
+Not this template. TEXT: Lamine took a walk. — report it as unmapped: {"span": "took a walk",
+"code": "G00"}.
 
 ### attitude — A propositional attitude towards a complement clause
 
@@ -579,7 +672,7 @@ Slots:
 - `t` (required): "transfer"
 - `id` (required; your label for this instance): your label for the transfer event.
 - `verb` (required; a lemma): the verb lemma.
-- `giver` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
+- `giver` (optional; "@id" of a referent instance, or a bare lemma for a non-specific filler):
   the party who gives; in a passive, the by-phrase; absent only in an agentless passive.
 - `recipient` (optional; "@id" of a referent instance, or a bare lemma for a non-specific
   filler): the party who comes to have the object; the indirect object or the to-phrase.
@@ -655,7 +748,7 @@ The program renders these instances as:
 Not this template. TEXT: Teodor gave a speech. — report it as unmapped: {"span": "gave a
 speech", "code": "G00"}.
 
-Not this template. TEXT: Ottoline took the envelope from Lamine. — report the span as unmapped.
+Not this template. TEXT: Ottoline took the envelope from Lamine. — use `acquisition`.
 
 ## Scope operators — negation, modality, sealed content
 

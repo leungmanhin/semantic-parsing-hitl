@@ -1,0 +1,72 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "549a9f7ae5e71c64cad5c2d1abc2482ac27640f2496235a0ac72afe79e5b0f08",
+  "item": {
+    "id": "s2db92d9fe3",
+    "text": "Ottoline owns the quilt."
+  },
+  "usage": {
+    "input": 10827,
+    "output": 85,
+    "thinking": null,
+    "total": 10912,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 10827,
+    "candidatesTokenCount": 85,
+    "totalTokenCount": 10912,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 10827
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 85
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s2db92d9fe3\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\"}], \"unmapped\": [{\"span\": \"owns the quilt\", \"code\": \"G00\", \"construction\": \"Stative verb of possession ('owns') with a direct object.\"}], \"issues\": []}",
+  "response": {
+    "id": "s2db92d9fe3",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Ottoline"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "owns the quilt",
+        "code": "G00",
+        "construction": "Stative verb of possession ('owns') with a direct object."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "6cf313445a0a101e1fc3416cc18e201b1014c1ed7339419f511094ac6b3ffbd5",
+  "run": 1,
+  "case": {
+    "template": "acquisition",
+    "section": "held_out",
+    "index": 9,
+    "category": "abstain",
+    "text": "Ottoline owns the quilt.",
+    "key": "2db92d9fe3"
+  }
+}

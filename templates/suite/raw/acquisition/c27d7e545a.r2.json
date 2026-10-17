@@ -1,0 +1,79 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "549a9f7ae5e71c64cad5c2d1abc2482ac27640f2496235a0ac72afe79e5b0f08",
+  "item": {
+    "id": "sc27d7e545a",
+    "text": "Yusra got tired."
+  },
+  "usage": {
+    "input": 10827,
+    "output": 93,
+    "thinking": null,
+    "total": 10920,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 10827,
+    "candidatesTokenCount": 93,
+    "totalTokenCount": 10920,
+    "cachedContentTokenCount": 8778,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 10827
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 8778
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 93
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sc27d7e545a\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}], \"unmapped\": [{\"span\": \"got tired\", \"code\": \"G00\", \"construction\": \"Inchoative copular clause ('got' as 'become' with an adjectival complement).\"}], \"issues\": []}",
+  "response": {
+    "id": "sc27d7e545a",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "got tired",
+        "code": "G00",
+        "construction": "Inchoative copular clause ('got' as 'become' with an adjectival complement)."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "6cf313445a0a101e1fc3416cc18e201b1014c1ed7339419f511094ac6b3ffbd5",
+  "run": 2,
+  "case": {
+    "template": "acquisition",
+    "section": "held_out",
+    "index": 10,
+    "category": "abstain",
+    "text": "Yusra got tired.",
+    "key": "c27d7e545a"
+  }
+}

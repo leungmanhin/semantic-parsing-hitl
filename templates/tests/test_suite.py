@@ -37,6 +37,18 @@ def case(tid, section, text):
     return next(c for c in S.cases_of(CATALOG, tid, (section,)) if c["text"] == text)
 
 
+def pending_targets(catalog=CATALOG) -> set:
+    """The abstain targets no template covers yet, derived from the catalog itself."""
+    out = set()
+    for t in catalog.values():
+        for section in ("shown", "held_out"):
+            for ex in (t.get("examples") or {}).get(section) or []:
+                target = (ex.get("expected") or {}).get("template")
+                if ex.get("category") == "abstain" and target and target not in catalog:
+                    out.add(target)
+    return out
+
+
 def units(instances, catalog=CATALOG):
     return S.units_of(E.emit({"id": "u", "instances": instances}, catalog)["statements"])
 
@@ -92,11 +104,7 @@ class CheckTests(unittest.TestCase):
     def test_real_catalog_has_no_findings_and_lists_pending_targets(self):
         checks = S.catalog_checks(CATALOG)
         self.assertEqual(checks["findings"], [])
-        expected = {(ex.get("expected") or {}).get("template")
-                    for t in CATALOG.values() for section in ("shown", "held_out")
-                    for ex in (t.get("examples") or {}).get(section) or []
-                    if ex.get("category") == "abstain" and (ex.get("expected") or {}).get("template") not in CATALOG}
-        expected.discard(None)
+        expected = pending_targets()
         self.assertEqual(set(checks["pending"]), expected)
         self.assertTrue(expected)
         self.assertGreater(checks["examples"], 10)
@@ -330,7 +338,7 @@ class EndToEndTests(unittest.TestCase):
         self.assertEqual(s["usage"]["calls"], 2 * n_cases)
         self.assertEqual(s["usage"]["thinking_calls"], 2)          # the fake thinks on "might"
         self.assertEqual(s["stale_prompt"], 0)
-        self.assertIn("acquisition", summary["checks"]["pending"])
+        self.assertEqual(set(summary["checks"]["pending"]), pending_targets())
         with open(os.path.join(self.out, "REPORT.md"), encoding="utf-8") as fh:
             report = fh.read()
         self.assertIn("## transfer — held_out", report)

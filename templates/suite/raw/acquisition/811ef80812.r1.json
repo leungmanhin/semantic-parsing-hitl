@@ -1,0 +1,74 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "549a9f7ae5e71c64cad5c2d1abc2482ac27640f2496235a0ac72afe79e5b0f08",
+  "item": {
+    "id": "s811ef80812",
+    "text": "The envelope was taken."
+  },
+  "usage": {
+    "input": 10827,
+    "output": 88,
+    "thinking": null,
+    "total": 10915,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 10827,
+    "candidatesTokenCount": 88,
+    "totalTokenCount": 10915,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 10827
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 88
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s811ef80812\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"envelope\", \"definite\": true}, {\"t\": \"acquisition\", \"id\": \"e1\", \"verb\": \"take\", \"object\": \"@x1\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s811ef80812",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "envelope",
+        "definite": true
+      },
+      {
+        "t": "acquisition",
+        "id": "e1",
+        "verb": "take",
+        "object": "@x1",
+        "tense": "past"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "6cf313445a0a101e1fc3416cc18e201b1014c1ed7339419f511094ac6b3ffbd5",
+  "run": 1,
+  "case": {
+    "template": "acquisition",
+    "section": "held_out",
+    "index": 6,
+    "category": "optional",
+    "text": "The envelope was taken.",
+    "key": "811ef80812"
+  }
+}

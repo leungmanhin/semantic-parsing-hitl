@@ -1,0 +1,87 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "549a9f7ae5e71c64cad5c2d1abc2482ac27640f2496235a0ac72afe79e5b0f08",
+  "item": {
+    "id": "s10cfe77b44",
+    "text": "Lamine picked up the trowel."
+  },
+  "usage": {
+    "input": 10828,
+    "output": 121,
+    "thinking": null,
+    "total": 10949,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 10828,
+    "candidatesTokenCount": 121,
+    "totalTokenCount": 10949,
+    "cachedContentTokenCount": 8779,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 10828
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 8779
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 121
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s10cfe77b44\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"trowel\", \"definite\": true}, {\"t\": \"acquisition\", \"id\": \"e1\", \"verb\": \"pick_up\", \"acquirer\": \"@n1\", \"object\": \"@x1\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s10cfe77b44",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "trowel",
+        "definite": true
+      },
+      {
+        "t": "acquisition",
+        "id": "e1",
+        "verb": "pick_up",
+        "acquirer": "@n1",
+        "object": "@x1",
+        "tense": "past"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "6cf313445a0a101e1fc3416cc18e201b1014c1ed7339419f511094ac6b3ffbd5",
+  "run": 2,
+  "case": {
+    "template": "acquisition",
+    "section": "held_out",
+    "index": 2,
+    "category": "positive",
+    "text": "Lamine picked up the trowel.",
+    "key": "10cfe77b44"
+  }
+}

@@ -1,0 +1,211 @@
+# Template: acquisition  (a party comes to have an object: the mirror of a transfer)
+#
+# A transfer is told from the giver's side (gave, sent, sold); an acquisition from the side of
+# the party who comes to have the object (took, received, bought). The acquirer carries the
+# Recipient role in both tellings, so one completion rule ("the recipient now has the object")
+# serves both classes; whether the acquirer acted (took, bought) or not (received, inherited)
+# stays in the verb lemma. The party the object comes from, when stated, is the Source.
+
+id: acquisition
+family: predication
+kind: verb-class
+title: Acquisition of an object by the party who comes to have it
+status: draft
+
+trigger:
+  construction: >
+    A verbal clause whose verb denotes that its subject comes to have an object: by acting
+    (take, buy, borrow, grab, seize, fetch, collect, pick up) or by receiving (receive, get,
+    obtain, accept, inherit, win, earn, gain). The party the object comes from may be stated in
+    a from-phrase. The object is a thing, unchanged by the acquisition.
+  verbs: [take, receive, get, obtain, accept, buy, borrow, inherit, win, earn, gain, collect,
+          grab, seize, fetch, pick_up]
+  verbs_note: >
+    The list anchors the class; an unlisted verb that clearly denotes coming to have an object
+    belongs here (record its lemma as usual; a particle verb keeps its particle, pick_up).
+    The class is semantic, the list is guidance.
+  surface_forms:
+    - "<acquirer> V <object>"                        # received a thermos
+    - "<acquirer> V <object> from <source>"          # took the envelope from Lamine
+    - "<object> was V-ed by <acquirer>"              # passive: the roles do not change
+    - "<object> was V-ed"                            # passive, acquirer unstated
+  boundary:                   # looks like an acquisition but is not one
+    - >-
+      told from the giver's side — gave, handed, sent, sold, lent: the subject is the party who
+      parts with the object; a transfer
+    - >-
+      a state of having — owns the quilt, has a trowel: no event of coming to have it
+    - >-
+      light-verb constructions — took a walk, took a look, had a word: the noun carries the
+      event; nothing is acquired
+    - >-
+      get as become or as a causative — got tired, got Lamine to send the quilt: nothing is
+      acquired
+    - >-
+      win or earn with a contest or an activity as the object — won the race: nothing changes
+      hands; with a prize or a sum as the object it is an acquisition
+    - >-
+      the price — bought the quilt for forty euros: the amount is never the object; it is an
+      attachment with no slot here, reported as unmapped while the acquisition is parsed
+
+slots:
+  id:       {type: id, required: true, doc: "your label for the acquisition event"}
+  verb:     {type: lemma, class: Class, required: true, doc: "the verb lemma"}
+  acquirer: {type: filler, class: Entity, role: Recipient, required: false,
+             doc: "the party who comes to have the object: the subject, or the by-phrase of a passive; absent only in an agentless passive"}
+  object:   {type: filler, class: Entity, role: Theme, required: true,
+             doc: "what is acquired, unchanged by the acquisition"}
+  source:   {type: filler, class: Entity, role: Source, required: false,
+             doc: "the party the object comes from: the from-phrase"}
+  tense:    {type: enum, values: [past, present, future], required: true,
+             doc: "the clause's tense; present is recorded, not inferred"}
+  aspect:   {type: enum, values: [simple, progressive, perfect], required: false, default: simple}
+
+mints: {id: Event}
+
+emits:
+  - atom: "(Member @id {verb})"
+  - atom: "(Recipient @id {acquirer})"
+    if_filled: acquirer
+  - atom: "(Theme @id {object})"
+  - atom: "(Source @id {source})"
+    if_filled: source
+  - atom: "(Past @id)"
+    when: "tense == past or aspect == perfect"
+  - atom: "(Future @id)"
+    when: "tense == future"
+  - atom: "(Ongoing @id)"
+    when: "aspect == progressive"
+
+notes:
+  - >-
+    The acquirer is the Recipient, not the Agent, even for took or bought: the role names the
+    party's place in the change of possession, which is what the completion rule and a later
+    question about who has the object need; agentivity is a property of the verb and stays in
+    its lemma. The giver of a transfer is the Agent of that telling; the Source here is the
+    same party seen from the other side. Reconciling the two tellings of one event is a job
+    for a background rule, not for the parse.
+  - >-
+    As in the transfer template, the completion "the acquirer now has the object" and the
+    presupposition that the source had it before are not part of the parse.
+
+depends_on: [named-entity, witness]
+composes_with: [negation, modal, time, location]
+
+examples:
+  shown:                     # rendered into the prompt
+    - category: positive
+      note: with the source stated
+      text: "Ottoline took the envelope from Lamine."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: witness, id: x1, kind: envelope, definite: true}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: acquisition, id: q1, verb: take, acquirer: "@n1", object: "@x1", source: "@n2",
+           tense: past}
+      emitted:               # what the emitter produces (illustration; the emitter is the authority)
+        - "(Name ottoline \"Ottoline\")"
+        - "(Name lamine \"Lamine\")"
+        - "(Member sk_envelope_1 envelope)"
+        - "(Member sk_take_1 take)"
+        - "(Recipient sk_take_1 ottoline)"
+        - "(Theme sk_take_1 sk_envelope_1)"
+        - "(Source sk_take_1 lamine)"
+        - "(Past sk_take_1)"
+      declarations:
+        - "(: ottoline Entity)"
+        - "(: lamine Entity)"
+        - "(: sk_envelope_1 Entity)"
+        - "(: sk_take_1 Event)"
+        - "(: take Class)"
+        - "(: envelope Class)"
+    - category: positive
+      note: by receiving, no source stated
+      text: "Yusra received a thermos."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, kind: thermos}
+        - {t: acquisition, id: q1, verb: receive, acquirer: "@n1", object: "@x1", tense: past}
+    - category: abstain
+      text: "Teodor gave Yusra a thermos."
+      expected: {abstain: true, template: transfer}                   # the giver's side
+    - category: abstain
+      text: "Lamine took a walk."
+      expected: {abstain: true, gap: G00, span: "took a walk"}        # light-verb construction
+
+  held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      text: "Teodor bought the spindle from Yusra."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, kind: spindle, definite: true}
+        - {t: named-entity, id: n2, name: "Yusra"}
+        - {t: acquisition, id: q1, verb: buy, acquirer: "@n1", object: "@x1", source: "@n2",
+           tense: past}
+    - category: contrast
+      note: role reversal — the instance must differ in acquirer and source only
+      text: "Yusra bought the spindle from Teodor."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, kind: spindle, definite: true}
+        - {t: named-entity, id: n2, name: "Teodor"}
+        - {t: acquisition, id: q1, verb: buy, acquirer: "@n1", object: "@x1", source: "@n2",
+           tense: past}
+    - category: positive
+      note: a particle verb keeps its particle
+      text: "Lamine picked up the trowel."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: x1, kind: trowel, definite: true}
+        - {t: acquisition, id: q1, verb: pick_up, acquirer: "@n1", object: "@x1", tense: past}
+    - category: positive
+      note: the price is an attachment with no slot — the acquisition is parsed, the amount reported
+      text: "Ottoline bought the quilt for forty euros."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: acquisition, id: q1, verb: buy, acquirer: "@n1", object: "@x1", tense: past}
+      unmapped:
+        - {code: G00, span: "for forty euros"}
+    - category: scoped
+      note: under clausal negation
+      text: "Yusra did not accept the envelope."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, kind: envelope, definite: true}
+        - {t: acquisition, id: q1, verb: accept, acquirer: "@n1", object: "@x1", tense: past}
+        - {t: negation, id: s1, over: ["@q1"]}
+    - category: scoped
+      note: under a modal
+      text: "Teodor might inherit the quilt."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: acquisition, id: q1, verb: inherit, acquirer: "@n1", object: "@x1", tense: present}
+        - {t: modal, id: s1, over: ["@q1"], head: Might, surface: might}
+    - category: optional
+      note: agentless passive — no acquirer
+      text: "The envelope was taken."
+      instances:
+        - {t: witness, id: x1, kind: envelope, definite: true}
+        - {t: acquisition, id: q1, verb: take, object: "@x1", tense: past}
+    - category: optional
+      note: perfect aspect
+      text: "Ottoline had obtained a trowel."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: witness, id: x1, kind: trowel}
+        - {t: acquisition, id: q1, verb: obtain, acquirer: "@n1", object: "@x1", tense: past,
+           aspect: perfect}
+    - category: abstain
+      text: "Lamine sold the spindle to Teodor."
+      expected: {abstain: true, template: transfer}                   # the giver's side of the same event
+    - category: abstain
+      text: "Ottoline owns the quilt."
+      expected: {abstain: true, template: possession}                 # a state of having
+    - category: abstain
+      text: "Yusra got tired."
+      expected: {abstain: true, gap: G00, span: "got tired"}          # get as become
+    - category: abstain
+      text: "Teodor won the race."
+      expected: {abstain: true, gap: G00, span: "won the race"}       # nothing changes hands

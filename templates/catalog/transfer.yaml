@@ -57,7 +57,7 @@ trigger:
 slots:
   id:        {type: id, required: true, doc: "your label for the transfer event"}
   verb:      {type: lemma, class: Class, required: true, doc: "the verb lemma"}
-  giver:     {type: filler, class: Entity, role: Agent, required: true,
+  giver:     {type: filler, class: Entity, role: Agent, required: false,
               doc: "the party who gives; in a passive, the by-phrase; absent only in an agentless passive"}
   recipient: {type: filler, class: Entity, role: Recipient, required: false,
               doc: "the party who comes to have the object; the indirect object or the to-phrase"}
@@ -171,6 +171,15 @@ examples:
         - {t: named-entity, id: n2, name: "Teodor"}
         - {t: named-entity, id: n3, name: "Lamine"}
         - {t: transfer, id: e1, verb: hand, giver: "@n3", recipient: "@n2", object: "@x1",
+           tense: past}
+    - category: positive
+      note: to-dative with a recipient — the giver's side of an acquisition
+      text: "Lamine sold the spindle to Teodor."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: x1, kind: spindle, definite: true}
+        - {t: named-entity, id: n2, name: "Teodor"}
+        - {t: transfer, id: e1, verb: sell, giver: "@n1", recipient: "@n2", object: "@x1",
            tense: past}
     - category: scoped
       note: under clausal negation — the transfer instance is unchanged, the negation template scopes over it
