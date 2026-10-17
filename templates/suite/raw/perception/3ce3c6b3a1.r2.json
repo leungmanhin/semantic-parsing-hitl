@@ -1,0 +1,79 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "3cf1c657d278c5f88cd86233811adb01fd7b99c43b58fc7e7f270c08f8532885",
+  "item": {
+    "id": "s3ce3c6b3a1",
+    "text": "Yusra saw the point."
+  },
+  "usage": {
+    "input": 13819,
+    "output": 85,
+    "thinking": null,
+    "total": 13904,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 13819,
+    "candidatesTokenCount": 85,
+    "totalTokenCount": 13904,
+    "cachedContentTokenCount": 11770,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 13819
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 11770
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 85
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s3ce3c6b3a1\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}], \"unmapped\": [{\"span\": \"saw the point\", \"code\": \"G00\", \"construction\": \"Idiomatic verb phrase of understanding rather than literal perception.\"}], \"issues\": []}",
+  "response": {
+    "id": "s3ce3c6b3a1",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "saw the point",
+        "code": "G00",
+        "construction": "Idiomatic verb phrase of understanding rather than literal perception."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "4045b2ad4809e7e7e07e9faa62e508fb7a2daeb033c9f5aedf2c8aef30067522",
+  "run": 2,
+  "case": {
+    "template": "perception",
+    "section": "held_out",
+    "index": 11,
+    "category": "abstain",
+    "text": "Yusra saw the point.",
+    "key": "3ce3c6b3a1"
+  }
+}

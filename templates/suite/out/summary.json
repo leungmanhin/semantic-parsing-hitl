@@ -1,21 +1,11 @@
 {
   "prompt": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_body_sha256": "41b1c076c80ab3ff14e8e47da03ff29f11a94fdce1398936f1eb2cbe9cb1a5e7",
+  "prompt_body_sha256": "4045b2ad4809e7e7e07e9faa62e508fb7a2daeb033c9f5aedf2c8aef30067522",
   "typecheck": "ran",
   "checks": {
-    "examples": 106,
+    "examples": 124,
     "findings": [],
     "pending": {
-      "perception": [
-        {
-          "template": "psych",
-          "text": "Teodor saw the ferret."
-        },
-        {
-          "template": "psych",
-          "text": "Teodor heard the news."
-        }
-      ],
       "activity": [
         {
           "template": "transfer",
@@ -27,7 +17,7 @@
   },
   "orphans": [],
   "templates": {
-    "possession": {
+    "perception": {
       "held_out": {
         "records": 36,
         "cases": 12,
@@ -37,11 +27,11 @@
         "stale_prompt": 0,
         "by_category": {
           "positive": {
-            "cases": 4,
-            "runs": 12,
-            "pass": 12,
-            "fired": 12,
-            "exact": 12
+            "cases": 5,
+            "runs": 15,
+            "pass": 15,
+            "fired": 15,
+            "exact": 15
           },
           "contrast": {
             "cases": 1,
@@ -65,26 +55,26 @@
             "exact": 3
           },
           "abstain": {
-            "cases": 4,
-            "runs": 12,
-            "pass": 12,
+            "cases": 3,
+            "runs": 9,
+            "pass": 9,
             "false_fires": 0,
             "outcomes": {
-              "target_fired": 9,
-              "gap_reported": 3
+              "gap_reported": 6,
+              "target_fired": 3
             }
           }
         },
         "pass": 36,
         "selection": {
-          "fire_runs": 24,
-          "fired": 24,
-          "abstain_runs": 12,
+          "fire_runs": 27,
+          "fired": 27,
+          "abstain_runs": 9,
           "false_fires": 0
         },
         "fill": {
-          "fired": 24,
-          "exact": 24,
+          "fired": 27,
+          "exact": 27,
           "rate": 1.0
         },
         "stability": {
@@ -98,10 +88,10 @@
           "passed": 36
         },
         "usage": {
-          "input": 426216,
-          "output": 4518,
+          "input": 497493,
+          "output": 4489,
           "thinking": 0,
-          "total": 430734,
+          "total": 501982,
           "calls": 36,
           "thinking_calls": 0
         },

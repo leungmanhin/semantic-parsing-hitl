@@ -1,0 +1,96 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "3cf1c657d278c5f88cd86233811adb01fd7b99c43b58fc7e7f270c08f8532885",
+  "item": {
+    "id": "s08c40f5fa9",
+    "text": "Lamine might hear the news."
+  },
+  "usage": {
+    "input": 13820,
+    "output": 150,
+    "thinking": null,
+    "total": 13970,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 13820,
+    "candidatesTokenCount": 150,
+    "totalTokenCount": 13970,
+    "cachedContentTokenCount": 11771,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 13820
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 11771
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 150
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s08c40f5fa9\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"news\", \"definite\": true}, {\"t\": \"perception\", \"id\": \"p1\", \"verb\": \"hear\", \"perceiver\": \"@n1\", \"stimulus\": \"@x1\", \"tense\": \"present\"}, {\"t\": \"modal\", \"id\": \"s1\", \"over\": [\"@p1\"], \"head\": \"Might\", \"surface\": \"might\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s08c40f5fa9",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "news",
+        "definite": true
+      },
+      {
+        "t": "perception",
+        "id": "p1",
+        "verb": "hear",
+        "perceiver": "@n1",
+        "stimulus": "@x1",
+        "tense": "present"
+      },
+      {
+        "t": "modal",
+        "id": "s1",
+        "over": [
+          "@p1"
+        ],
+        "head": "Might",
+        "surface": "might"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "4045b2ad4809e7e7e07e9faa62e508fb7a2daeb033c9f5aedf2c8aef30067522",
+  "run": 2,
+  "case": {
+    "template": "perception",
+    "section": "held_out",
+    "index": 7,
+    "category": "scoped",
+    "text": "Lamine might hear the news.",
+    "key": "08c40f5fa9"
+  }
+}

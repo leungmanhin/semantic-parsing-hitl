@@ -1,0 +1,79 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "3cf1c657d278c5f88cd86233811adb01fd7b99c43b58fc7e7f270c08f8532885",
+  "item": {
+    "id": "s6fe67fb946",
+    "text": "Teodor felt tired."
+  },
+  "usage": {
+    "input": 13817,
+    "output": 83,
+    "thinking": null,
+    "total": 13900,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 13817,
+    "candidatesTokenCount": 83,
+    "totalTokenCount": 13900,
+    "cachedContentTokenCount": 11768,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 13817
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 11768
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 83
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s6fe67fb946\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}], \"unmapped\": [{\"span\": \"felt tired\", \"code\": \"G00\", \"construction\": \"A copular sensation clause with an adjectival predicate.\"}], \"issues\": []}",
+  "response": {
+    "id": "s6fe67fb946",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "felt tired",
+        "code": "G00",
+        "construction": "A copular sensation clause with an adjectival predicate."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "4045b2ad4809e7e7e07e9faa62e508fb7a2daeb033c9f5aedf2c8aef30067522",
+  "run": 3,
+  "case": {
+    "template": "perception",
+    "section": "held_out",
+    "index": 10,
+    "category": "abstain",
+    "text": "Teodor felt tired.",
+    "key": "6fe67fb946"
+  }
+}

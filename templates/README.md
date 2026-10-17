@@ -30,6 +30,7 @@ Nothing here changes `prompt.txt`, the briefs under `fusenf/briefs/`, or any pip
     $P -m tmpl.suite collect --template <id> --runs 3 \
         --provider google --model gemini-4-argon --effort low    # one call per held-out case and run
     $P -m tmpl.suite score --template <id>                   # or --all → suite/out/REPORT.md
+    $P ../suite.py <check|collect|score> …                   # the same runner from any directory
     $P ../semantic-parse.py "<sentence>" --atoms             # one parse, validated, atoms shown
     for t in tests/test_*.py; do $P $t; done
 

@@ -1,0 +1,210 @@
+# Template: perception  (a perceiver perceives a thing or an event)
+#
+# The perceived is a thing (saw the ferret, heard the news) or an event the text states as a
+# clause without "that" (saw Lamine hand Teodor an envelope, saw Lamine handing it over). An
+# event perceived is an event that happened: its instance is parsed as usual and asserted on
+# its own, and the perception points at it as its stimulus. A that-clause after a perception
+# verb is a factive attitude, not this template.
+
+id: perception
+family: predication
+kind: verb-class
+title: Perception of a thing or an event
+status: draft
+
+trigger:
+  construction: >
+    A verbal clause whose verb denotes perceiving: see, hear, smell, taste, feel (a sensation),
+    watch, observe, notice, spot, glimpse, overhear, look at, listen to. The perceiver is the
+    subject; what is perceived is a noun phrase (the stimulus) or a clause without "that": a
+    bare infinitive (saw Lamine hand Teodor an envelope) or a participle (saw Lamine handing
+    Teodor an envelope). With "look at" and "listen to" the preposition marks the stimulus and
+    the lemma is look / listen.
+  verbs: [see, hear, smell, taste, feel, watch, observe, notice, spot, glimpse, overhear, look,
+          listen]
+  verbs_note: >
+    The list anchors the class; an unlisted verb that denotes perceiving belongs here. Whether
+    the perceiving was deliberate (watch, listen) or not (see, hear) stays in the verb lemma.
+  surface_forms:
+    - "<perceiver> V <stimulus>"                        # saw the ferret
+    - "<perceiver> V <event clause>"                    # saw Lamine hand Teodor an envelope
+    - "<perceiver> V <event clause with -ing>"          # saw Lamine handing Teodor an envelope
+    - "<perceiver> looks at / listens to <stimulus>"    # the preposition marks the stimulus
+    - "<stimulus> was V-ed"                             # passive, perceiver unstated
+  event_note: >
+    A perceived event is parsed with its own template and referenced in the `event` slot; it
+    takes the tense of the perception clause (the two are simultaneous) and the aspect its
+    form shows (a participle is progressive). The event is stated as having happened.
+  boundary:                   # looks like a perception but is not one
+    - >-
+      a that-clause — saw that P, heard that P, noticed that P: a factive attitude towards a
+      proposition
+    - >-
+      an emotional or evaluative state — fears the ferret, likes the news: a psych state, not
+      perceiving
+    - >-
+      appearance and sensation with an adjective — looks tired, sounds odd, feels cold, felt
+      tired: a copular clause with a property
+    - >-
+      understanding and idioms — saw the point, I see, hear from Lamine: not perceiving a thing
+
+slots:
+  id:        {type: id, required: true, doc: "your label for the perception event"}
+  verb:      {type: lemma, class: Class, required: true, doc: "the verb lemma"}
+  perceiver: {type: filler, class: Entity, role: Experiencer, required: false,
+              doc: "who perceives: the subject, or the by-phrase of a passive; absent only in an agentless passive"}
+  stimulus:  {type: filler, class: Entity, role: Stimulus, required: false,
+              doc: "the thing perceived: the object, or the subject of a passive"}
+  event:     {type: filler, class: Event, role: Stimulus, required: false,
+              doc: "the event perceived: the id of the clause's predication instance (saw Lamine hand Teodor an envelope: the transfer's id)"}
+  tense:     {type: enum, values: [past, present, future], required: true,
+              doc: "the clause's tense; present is recorded, not inferred"}
+  aspect:    {type: enum, values: [simple, progressive, perfect], required: false, default: simple}
+
+one_of: [[stimulus, event]]           # a thing or an event is perceived, never both, never neither
+
+mints: {id: Event}
+
+emits:
+  - atom: "(Member @id {verb})"
+  - atom: "(Experiencer @id {perceiver})"
+    if_filled: perceiver
+  - atom: "(Stimulus @id {stimulus})"
+    if_filled: stimulus
+  - atom: "(Stimulus @id {event})"
+    if_filled: event
+  - atom: "(Past @id)"
+    when: "tense == past or aspect == perfect"
+  - atom: "(Future @id)"
+    when: "tense == future"
+  - atom: "(Ongoing @id)"
+    when: "aspect == progressive"
+
+notes:
+  - >-
+    Perceiving an event is veridical: the event is asserted on its own and the perception
+    refers to it, unlike an attitude's sealed complement. That is why the event is a filler
+    referencing the predication instance, not a sealed list.
+  - >-
+    The perceiver carries Experiencer and the perceived Stimulus for every verb of the class;
+    deliberateness (watch, listen) is a property of the verb and stays in its lemma.
+
+depends_on: [named-entity, witness, transfer, acquisition]
+composes_with: [negation, modal, time, location]
+
+examples:
+  shown:                     # rendered into the prompt
+    - category: positive
+      note: a thing perceived
+      text: "Teodor saw the ferret."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, kind: ferret, definite: true}
+        - {t: perception, id: p1, verb: see, perceiver: "@n1", stimulus: "@x1", tense: past}
+      emitted:               # what the emitter produces (illustration; the emitter is the authority)
+        - "(Name teodor \"Teodor\")"
+        - "(Member sk_ferret_1 ferret)"
+        - "(Member sk_see_1 see)"
+        - "(Experiencer sk_see_1 teodor)"
+        - "(Stimulus sk_see_1 sk_ferret_1)"
+        - "(Past sk_see_1)"
+      declarations:
+        - "(: teodor Entity)"
+        - "(: sk_ferret_1 Entity)"
+        - "(: sk_see_1 Event)"
+        - "(: see Class)"
+        - "(: ferret Class)"
+    - category: positive
+      note: an event perceived — the transfer is parsed and asserted, the perception points at it
+      text: "Yusra saw Lamine hand Teodor an envelope."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: named-entity, id: n3, name: "Teodor"}
+        - {t: witness, id: x1, kind: envelope}
+        - {t: transfer, id: e1, verb: hand, giver: "@n2", recipient: "@n3", object: "@x1", tense: past}
+        - {t: perception, id: p1, verb: see, perceiver: "@n1", event: "@e1", tense: past}
+    - category: abstain
+      text: "Teodor saw that Lamine sold the spindle."
+      expected: {abstain: true, template: attitude}                   # a that-clause: a factive attitude
+    - category: abstain
+      text: "The ferret looks tired."
+      expected: {abstain: true, gap: G00, span: "looks tired"}        # appearance with an adjective
+
+  held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      text: "Teodor heard the news."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, kind: news, definite: true}
+        - {t: perception, id: p1, verb: hear, perceiver: "@n1", stimulus: "@x1", tense: past}
+    - category: positive
+      text: "Ottoline noticed Lamine."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: perception, id: p1, verb: notice, perceiver: "@n1", stimulus: "@n2", tense: past}
+    - category: contrast
+      note: role reversal — the instance must differ in perceiver and stimulus only
+      text: "Lamine noticed Ottoline."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: named-entity, id: n2, name: "Ottoline"}
+        - {t: perception, id: p1, verb: notice, perceiver: "@n1", stimulus: "@n2", tense: past}
+    - category: positive
+      note: a possessive noun phrase as the stimulus
+      text: "Teodor saw Yusra's ferret."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: named-entity, id: n2, name: "Yusra"}
+        - {t: witness, id: x1, kind: ferret, possessor: "@n2"}
+        - {t: perception, id: p1, verb: see, perceiver: "@n1", stimulus: "@x1", tense: past}
+    - category: positive
+      note: an event perceived in progress — the participle is progressive aspect on the event
+      text: "Ottoline saw Lamine handing Yusra an envelope."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: named-entity, id: n3, name: "Yusra"}
+        - {t: witness, id: x1, kind: envelope}
+        - {t: transfer, id: e1, verb: hand, giver: "@n2", recipient: "@n3", object: "@x1", tense: past,
+           aspect: progressive}
+        - {t: perception, id: p1, verb: see, perceiver: "@n1", event: "@e1", tense: past}
+    - category: positive
+      note: the preposition marks the stimulus; the lemma is listen
+      text: "Yusra listened to the news."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, kind: news, definite: true}
+        - {t: perception, id: p1, verb: listen, perceiver: "@n1", stimulus: "@x1", tense: past}
+    - category: scoped
+      note: under clausal negation
+      text: "Teodor did not see the ferret."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, kind: ferret, definite: true}
+        - {t: perception, id: p1, verb: see, perceiver: "@n1", stimulus: "@x1", tense: past}
+        - {t: negation, id: s1, over: ["@p1"]}
+    - category: scoped
+      note: under a modal
+      text: "Lamine might hear the news."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: x1, kind: news, definite: true}
+        - {t: perception, id: p1, verb: hear, perceiver: "@n1", stimulus: "@x1", tense: present}
+        - {t: modal, id: s1, over: ["@p1"], head: Might, surface: might}
+    - category: optional
+      note: agentless passive — no perceiver
+      text: "The ferret was seen."
+      instances:
+        - {t: witness, id: x1, kind: ferret, definite: true}
+        - {t: perception, id: p1, verb: see, stimulus: "@x1", tense: past}
+    - category: abstain
+      text: "Yusra fears the ferret."
+      expected: {abstain: true, template: psych}                      # a psych state
+    - category: abstain
+      text: "Teodor felt tired."
+      expected: {abstain: true, gap: G00, span: "felt tired"}          # sensation with an adjective
+    - category: abstain
+      text: "Yusra saw the point."
+      expected: {abstain: true, gap: G00, span: "saw the point"}       # understanding, an idiom

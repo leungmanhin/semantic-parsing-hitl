@@ -144,6 +144,16 @@ examples:
         - {t: transfer, id: e1, verb: sell, giver: "@n2", object: "@x1", tense: past}
         - {t: attitude, id: a1, verb: say, holder: "@n1", content: ["@e1"], factive: false,
            tense: past}
+    - category: positive
+      note: a perception verb with a that-clause is a factive attitude
+      text: "Teodor saw that Lamine sold the spindle."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: witness, id: x1, kind: spindle, definite: true}
+        - {t: transfer, id: e1, verb: sell, giver: "@n2", object: "@x1", tense: past}
+        - {t: attitude, id: a1, verb: see, holder: "@n1", content: ["@e1"], factive: true,
+           tense: past}
     - category: abstain
       text: "Teodor told Ottoline that Lamine sold the spindle."
       expected: {abstain: true, template: communication}             # an addressee

@@ -1,0 +1,87 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "3cf1c657d278c5f88cd86233811adb01fd7b99c43b58fc7e7f270c08f8532885",
+  "item": {
+    "id": "se9a1e579f3",
+    "text": "Yusra fears the ferret."
+  },
+  "usage": {
+    "input": 13819,
+    "output": 121,
+    "thinking": null,
+    "total": 13940,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 13819,
+    "candidatesTokenCount": 121,
+    "totalTokenCount": 13940,
+    "cachedContentTokenCount": 11770,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 13819
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 11770
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 121
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"se9a1e579f3\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"ferret\", \"definite\": true}, {\"t\": \"psych\", \"id\": \"p1\", \"verb\": \"fear\", \"experiencer\": \"@n1\", \"stimulus\": \"@x1\", \"tense\": \"present\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "se9a1e579f3",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "ferret",
+        "definite": true
+      },
+      {
+        "t": "psych",
+        "id": "p1",
+        "verb": "fear",
+        "experiencer": "@n1",
+        "stimulus": "@x1",
+        "tense": "present"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "4045b2ad4809e7e7e07e9faa62e508fb7a2daeb033c9f5aedf2c8aef30067522",
+  "run": 3,
+  "case": {
+    "template": "perception",
+    "section": "held_out",
+    "index": 9,
+    "category": "abstain",
+    "text": "Yusra fears the ferret.",
+    "key": "e9a1e579f3"
+  }
+}

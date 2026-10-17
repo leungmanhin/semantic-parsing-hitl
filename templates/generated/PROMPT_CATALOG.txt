@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 a28327101e234f0f · 10 templates
+catalog sha256 e7d3b232b048f148 · 11 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -196,12 +196,17 @@ The program renders these instances as:
 
 When: A noun phrase headed by a common noun with a determiner or a modifier — a thermos, the
 quilt, this spindle, two envelopes' member — introducing an individual of that kind. The
-individual gets a numbered witness symbol; whether the phrase is definite is recorded.
+individual gets a numbered witness symbol; whether the phrase is definite is recorded. A
+possessive phrase (Yusra's quilt, the quilt of Yusra, her quilt) is a witness with its possessor
+recorded: the possessor is a referent (a possessive pronoun resolves to its antecedent's id),
+and the phrase counts as definite.
 
 Forms:
 - a <N>
 - the <N>
 - <Adj> <N>
+- <possessor>'s <N>
+- the <N> of <possessor>
 
 Not this template:
 - a bare plural read generically — dogs bark: a kind-level statement, not a witness
@@ -214,6 +219,9 @@ Slots:
 - `kind` (required; a lemma): the head noun's lemma.
 - `definite` (optional; true / false): true for the / this / that, absent for a / an.
 - `props` (optional; a list of lemmas): adjectival properties stated in the phrase.
+- `possessor` (optional; "@id" of a referent instance, or a bare lemma for a non-specific
+  filler): the possessor of a possessive phrase: Yusra's quilt, the quilt of Yusra; a referent
+  id, or a bare lemma for a kind-level possessor.
 
 Example. TEXT: a thermos
 
@@ -226,6 +234,21 @@ Instances:
 The program renders these instances as:
 
     (Member sk_thermos_1 thermos)
+
+Example (a possessive phrase — the possessor is a referent of its own). TEXT: Yusra's quilt
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Yusra"},
+      {"t": "witness", "id": "x1", "kind": "quilt", "definite": true, "possessor": "@n1"}
+    ]
+
+The program renders these instances as:
+
+    (Name yusra "Yusra")
+    (Member sk_quilt_1 quilt)
+    (Possession sk_quilt_1 yusra)
 
 ## Predications — what the text states about them
 
@@ -438,6 +461,32 @@ The program renders these instances as:
     (Theme sk_say_1 (And (Member sk_sell_1 sell) (Agent sk_sell_1 lamine) (Theme sk_sell_1 sk_spindle_1) (Past sk_sell_1) (Member sk_spindle_1 spindle)))
     (Past sk_say_1)
 
+Example (a perception verb with a that-clause is a factive attitude). TEXT: Teodor saw that Lamine sold the spindle.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Teodor"},
+      {"t": "named-entity", "id": "n2", "name": "Lamine"},
+      {"t": "witness", "id": "x1", "kind": "spindle", "definite": true},
+      {"t": "transfer", "id": "e1", "verb": "sell", "giver": "@n2", "object": "@x1", "tense": "past"},
+      {"t": "attitude", "id": "a1", "verb": "see", "holder": "@n1", "content": ["@e1"], "factive": true, "tense": "past"}
+    ]
+
+The program renders these instances as:
+
+    (Name teodor "Teodor")
+    (Name lamine "Lamine")
+    (Member sk_see_1 see)
+    (Experiencer sk_see_1 teodor)
+    (Theme sk_see_1 (And (Member sk_sell_1 sell) (Agent sk_sell_1 lamine) (Theme sk_sell_1 sk_spindle_1) (Past sk_sell_1) (Member sk_spindle_1 spindle)))
+    (Past sk_see_1)
+    (Member sk_sell_1 sell)
+    (Agent sk_sell_1 lamine)
+    (Theme sk_sell_1 sk_spindle_1)
+    (Past sk_sell_1)
+    (Member sk_spindle_1 spindle)
+
 Not this template. TEXT: Teodor told Ottoline that Lamine sold the spindle. — use
 `communication`.
 
@@ -546,6 +595,107 @@ Not this template. TEXT: Teodor said that Lamine sold the spindle. — use `atti
 
 Not this template. TEXT: Teodor asked Ottoline whether Lamine sold the spindle. — report it as
 unmapped: {"span": "asked Ottoline whether Lamine sold the spindle", "code": "G00"}.
+
+### perception — Perception of a thing or an event
+
+When: A verbal clause whose verb denotes perceiving: see, hear, smell, taste, feel (a
+sensation), watch, observe, notice, spot, glimpse, overhear, look at, listen to. The perceiver
+is the subject; what is perceived is a noun phrase (the stimulus) or a clause without "that": a
+bare infinitive (saw Lamine hand Teodor an envelope) or a participle (saw Lamine handing Teodor
+an envelope). With "look at" and "listen to" the preposition marks the stimulus and the lemma is
+look / listen.
+
+Verbs that anchor the class: see, hear, smell, taste, feel, watch, observe, notice, spot,
+glimpse, overhear, look, listen.
+The list anchors the class; an unlisted verb that denotes perceiving belongs here. Whether the
+perceiving was deliberate (watch, listen) or not (see, hear) stays in the verb lemma.
+
+Forms:
+- <perceiver> V <stimulus>
+- <perceiver> V <event clause>
+- <perceiver> V <event clause with -ing>
+- <perceiver> looks at / listens to <stimulus>
+- <stimulus> was V-ed
+
+Not this template:
+- a that-clause — saw that P, heard that P, noticed that P: a factive attitude towards a
+  proposition
+- an emotional or evaluative state — fears the ferret, likes the news: a psych state, not
+  perceiving
+- appearance and sensation with an adjective — looks tired, sounds odd, feels cold, felt tired:
+  a copular clause with a property
+- understanding and idioms — saw the point, I see, hear from Lamine: not perceiving a thing
+
+Slots:
+
+- `t` (required): "perception"
+- `id` (required; your label for this instance): your label for the perception event.
+- `verb` (required; a lemma): the verb lemma.
+- `perceiver` (optional; "@id" of a referent instance, or a bare lemma for a non-specific
+  filler): who perceives: the subject, or the by-phrase of a passive; absent only in an
+  agentless passive.
+- `stimulus` (optional; "@id" of a referent instance, or a bare lemma for a non-specific
+  filler): the thing perceived: the object, or the subject of a passive.
+- `event` (optional; "@id" of a referent instance, or a bare lemma for a non-specific filler):
+  the event perceived: the id of the clause's predication instance (saw Lamine hand Teodor an
+  envelope: the transfer's id).
+- `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
+  not inferred.
+- `aspect` (optional; one of: simple, progressive, perfect).
+- Exactly one of `stimulus`, `event` is filled.
+
+Example (a thing perceived). TEXT: Teodor saw the ferret.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Teodor"},
+      {"t": "witness", "id": "x1", "kind": "ferret", "definite": true},
+      {"t": "perception", "id": "p1", "verb": "see", "perceiver": "@n1", "stimulus": "@x1", "tense": "past"}
+    ]
+
+The program renders these instances as:
+
+    (Name teodor "Teodor")
+    (Member sk_ferret_1 ferret)
+    (Member sk_see_1 see)
+    (Experiencer sk_see_1 teodor)
+    (Stimulus sk_see_1 sk_ferret_1)
+    (Past sk_see_1)
+
+Example (an event perceived — the transfer is parsed and asserted, the perception points at it). TEXT: Yusra saw Lamine hand Teodor an envelope.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Yusra"},
+      {"t": "named-entity", "id": "n2", "name": "Lamine"},
+      {"t": "named-entity", "id": "n3", "name": "Teodor"},
+      {"t": "witness", "id": "x1", "kind": "envelope"},
+      {"t": "transfer", "id": "e1", "verb": "hand", "giver": "@n2", "recipient": "@n3", "object": "@x1", "tense": "past"},
+      {"t": "perception", "id": "p1", "verb": "see", "perceiver": "@n1", "event": "@e1", "tense": "past"}
+    ]
+
+The program renders these instances as:
+
+    (Name yusra "Yusra")
+    (Name lamine "Lamine")
+    (Name teodor "Teodor")
+    (Member sk_envelope_1 envelope)
+    (Member sk_hand_1 hand)
+    (Agent sk_hand_1 lamine)
+    (Recipient sk_hand_1 teodor)
+    (Theme sk_hand_1 sk_envelope_1)
+    (Past sk_hand_1)
+    (Member sk_see_1 see)
+    (Experiencer sk_see_1 yusra)
+    (Stimulus sk_see_1 sk_hand_1)
+    (Past sk_see_1)
+
+Not this template. TEXT: Teodor saw that Lamine sold the spindle. — use `attitude`.
+
+Not this template. TEXT: The ferret looks tired. — report it as unmapped: {"span": "looks
+tired", "code": "G00"}.
 
 ### possession — A state of having
 
@@ -714,7 +864,7 @@ The program renders these instances as:
     (Experiencer sk_frighten_1 teodor)
     (Stimulus sk_frighten_1 sk_ferret_1)
 
-Not this template. TEXT: Teodor saw the ferret. — report the span as unmapped.
+Not this template. TEXT: Teodor saw the ferret. — use `perception`.
 
 Not this template. TEXT: Yusra likes to send quilts. — report it as unmapped: {"span": "likes to
 send quilts", "code": "G00"}.

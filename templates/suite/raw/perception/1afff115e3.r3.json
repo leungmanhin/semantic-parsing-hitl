@@ -1,0 +1,94 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "3cf1c657d278c5f88cd86233811adb01fd7b99c43b58fc7e7f270c08f8532885",
+  "item": {
+    "id": "s1afff115e3",
+    "text": "Teodor did not see the ferret."
+  },
+  "usage": {
+    "input": 13820,
+    "output": 140,
+    "thinking": null,
+    "total": 13960,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 13820,
+    "candidatesTokenCount": 140,
+    "totalTokenCount": 13960,
+    "cachedContentTokenCount": 11771,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 13820
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 11771
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 140
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s1afff115e3\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"ferret\", \"definite\": true}, {\"t\": \"perception\", \"id\": \"e1\", \"verb\": \"see\", \"perceiver\": \"@n1\", \"stimulus\": \"@x1\", \"tense\": \"past\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@e1\"]}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s1afff115e3",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "ferret",
+        "definite": true
+      },
+      {
+        "t": "perception",
+        "id": "e1",
+        "verb": "see",
+        "perceiver": "@n1",
+        "stimulus": "@x1",
+        "tense": "past"
+      },
+      {
+        "t": "negation",
+        "id": "s1",
+        "over": [
+          "@e1"
+        ]
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "4045b2ad4809e7e7e07e9faa62e508fb7a2daeb033c9f5aedf2c8aef30067522",
+  "run": 3,
+  "case": {
+    "template": "perception",
+    "section": "held_out",
+    "index": 6,
+    "category": "scoped",
+    "text": "Teodor did not see the ferret.",
+    "key": "1afff115e3"
+  }
+}

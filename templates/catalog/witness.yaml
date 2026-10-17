@@ -10,11 +10,16 @@ trigger:
   construction: >
     A noun phrase headed by a common noun with a determiner or a modifier — a thermos, the
     quilt, this spindle, two envelopes' member — introducing an individual of that kind. The
-    individual gets a numbered witness symbol; whether the phrase is definite is recorded.
+    individual gets a numbered witness symbol; whether the phrase is definite is recorded. A
+    possessive phrase (Yusra's quilt, the quilt of Yusra, her quilt) is a witness with its
+    possessor recorded: the possessor is a referent (a possessive pronoun resolves to its
+    antecedent's id), and the phrase counts as definite.
   surface_forms:
     - "a <N>"                       # indefinite
     - "the <N>"                     # definite
     - "<Adj> <N>"                   # the property is recorded beside the kind
+    - "<possessor>'s <N>"           # the possessor is recorded; definite
+    - "the <N> of <possessor>"      # the same
   boundary:
     - >-
       a bare plural read generically — dogs bark: a kind-level statement, not a witness
@@ -26,6 +31,8 @@ slots:
   kind:     {type: lemma, class: Class, required: true, doc: "the head noun's lemma"}
   definite: {type: bool, required: false, doc: "true for the / this / that, absent for a / an"}
   props:    {type: list, class: Class, required: false, doc: "adjectival properties stated in the phrase"}
+  possessor: {type: filler, class: Entity, required: false,
+              doc: "the possessor of a possessive phrase: Yusra's quilt, the quilt of Yusra; a referent id, or a bare lemma for a kind-level possessor"}
 
 mints: {id: Entity, stem: kind}
 
@@ -33,6 +40,8 @@ emits:
   - atom: "(Member @id {kind})"
   - atom: "(Member @id {props})"
     each: props
+  - atom: "(Possession @id {possessor})"
+    if_filled: possessor
 
 examples:
   shown:
@@ -40,6 +49,12 @@ examples:
       text: "a thermos"
       instances:
         - {t: witness, id: n1, kind: thermos}
+    - category: positive
+      note: a possessive phrase — the possessor is a referent of its own
+      text: "Yusra's quilt"
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, kind: quilt, definite: true, possessor: "@n1"}
   held_out:
     - category: positive
       text: "the old quilt"

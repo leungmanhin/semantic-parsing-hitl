@@ -1,0 +1,106 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "3cf1c657d278c5f88cd86233811adb01fd7b99c43b58fc7e7f270c08f8532885",
+  "item": {
+    "id": "sb18e306900",
+    "text": "Ottoline saw Lamine handing Yusra an envelope."
+  },
+  "usage": {
+    "input": 13824,
+    "output": 211,
+    "thinking": null,
+    "total": 14035,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 13824,
+    "candidatesTokenCount": 211,
+    "totalTokenCount": 14035,
+    "cachedContentTokenCount": 11775,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 13824
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 11775
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 211
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sb18e306900\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n3\", \"name\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"envelope\"}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"hand\", \"giver\": \"@n2\", \"recipient\": \"@n3\", \"object\": \"@x1\", \"tense\": \"past\", \"aspect\": \"progressive\"}, {\"t\": \"perception\", \"id\": \"p1\", \"verb\": \"see\", \"perceiver\": \"@n1\", \"event\": \"@e1\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sb18e306900",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Ottoline"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Lamine"
+      },
+      {
+        "t": "named-entity",
+        "id": "n3",
+        "name": "Yusra"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "envelope"
+      },
+      {
+        "t": "transfer",
+        "id": "e1",
+        "verb": "hand",
+        "giver": "@n2",
+        "recipient": "@n3",
+        "object": "@x1",
+        "tense": "past",
+        "aspect": "progressive"
+      },
+      {
+        "t": "perception",
+        "id": "p1",
+        "verb": "see",
+        "perceiver": "@n1",
+        "event": "@e1",
+        "tense": "past"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "4045b2ad4809e7e7e07e9faa62e508fb7a2daeb033c9f5aedf2c8aef30067522",
+  "run": 3,
+  "case": {
+    "template": "perception",
+    "section": "held_out",
+    "index": 4,
+    "category": "positive",
+    "text": "Ottoline saw Lamine handing Yusra an envelope.",
+    "key": "b18e306900"
+  }
+}
