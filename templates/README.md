@@ -18,6 +18,7 @@ Nothing here changes `prompt.txt`, the briefs under `fusenf/briefs/`, or any pip
 | `tmpl/gen_substrate.py` | substrate source → review document + declarations |
 | `suite/raw/<template>/` · `suite/out/` | stored run records · scores, summary, `REPORT.md` |
 | `INVENTORY.md` | prompt.txt read as a registry of constructions: the coverage worklist (its template ids are historical) |
+| `tmpl/frequency.py` → `FREQUENCY.md` | which verb classes and constructions the parsed corpora contain, and what share the live templates claim |
 | `../semantic-parse.py` | one sentence → instances via an LLM, validated |
 
 ## Recipes
@@ -31,6 +32,7 @@ Nothing here changes `prompt.txt`, the briefs under `fusenf/briefs/`, or any pip
         --provider google --model gemini-4-argon --effort low    # one call per held-out case and run
     $P -m tmpl.suite score --template <id>                   # or --all → suite/out/REPORT.md
     $P ../suite.py <check|collect|score> …                   # the same runner from any directory
+    $P -m tmpl.frequency                                     # verb-class / construction frequencies → FREQUENCY.md
     $P ../semantic-parse.py "<sentence>" --atoms             # one parse, validated, atoms shown
     for t in tests/test_*.py; do $P $t; done
 
