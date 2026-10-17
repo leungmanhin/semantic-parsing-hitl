@@ -29,12 +29,18 @@ duplicates numbered), otherwise a witness ``sk_<stem>_<n>`` whose stem is the ``
 else ``verb``, else ``kind``, else the template id, numbered per stem in instance order.
 
 Homes.  An instance's own atoms are emitted at the top level unless every instance that
-mentions it sits inside one scope; then they are emitted inside that scope (a witness under
-negation is existentially bound there).  Symbols named from a name are rigid and stay at the
-top level.
+mentions it sits inside one scope; then they are emitted inside that scope (an indefinite
+witness under negation is existentially bound there).  Symbols named from a name are rigid and
+stay at the top level, and so is any instance whose template lists ``presupposed`` slots when
+one of them is filled (a definite or possessed witness exists whatever scope mentions it).
 
 Constraints.  A template may declare ``one_of: [[a, b], …]``: exactly one slot of each group
 must be filled (a message that is a thing or a clause).
+
+Truth values.  Every statement carries ``(STV 1.0 0.99)`` unless the template declares
+``truth: {slot: <name>, values: {<value>: [s, c], …}, default: [s, c]}``: the instance's value
+of that slot picks the truth value of every statement the instance emits (a kind statement at
+confidence 0.99 when definitional, 0.9 when empirical).
 
 Declarations.  Every minted symbol is declared with its class, every bare filler with its slot's
 class, every lemma with ``Class``; ``Entity`` / ``Event`` / ``TimeTerm`` also declare
@@ -273,8 +279,10 @@ class _Emitter:
         self.home: dict[str, str | None] = {}
         for r in self.insts:
             iid = r["id"]
-            if iid in self.scope_of or not mentions.get(iid) or \
-                    (self.cat[r["t"]].get("mints") or {}).get("symbol") == "name":
+            t = self.cat[r["t"]]
+            rigid = (t.get("mints") or {}).get("symbol") == "name" or \
+                any(r.get(s) not in (None, False, [], "") for s in t.get("presupposed") or [])
+            if iid in self.scope_of or not mentions.get(iid) or rigid:
                 self.home[iid] = None
                 continue
             chains = [enclosing(m) for m in mentions[iid]]
@@ -348,13 +356,25 @@ class _Emitter:
             terms.extend(self.atoms_of(iid))
         return terms[0] if len(terms) == 1 else ["And"] + terms
 
+    def truth_of(self, inst: str) -> tuple:
+        """The instance's truth value from its template's ``truth`` rule, else the default."""
+        r = self.by_id[inst]
+        rule = self.cat[r["t"]].get("truth")
+        if not rule:
+            return DEFAULT_STV
+        v = r.get(rule.get("slot"))
+        values = rule.get("values") or {}
+        picked = values.get(str(v).lower()) if v is not None else None
+        picked = picked or rule.get("default") or DEFAULT_STV
+        return (float(picked[0]), float(picked[1]))
+
     def add(self, term, owner: str, inst: str):
         head = term[0] if isinstance(term, list) else str(term)
         base = slug(f"{inst}_{head}")
         n = self._names.get(base, 0) + 1
         self._names[base] = n
         name = base if n == 1 else f"{base}_{n}"
-        stv = DEFAULT_STV
+        stv = self.truth_of(inst)
         self.out.append({"name": name, "term": term, "owner": owner, "inst": inst,
                          "text": f"(: {name} {render(term)} (STV {fmt_num(stv[0])} {fmt_num(stv[1])}))"})
 

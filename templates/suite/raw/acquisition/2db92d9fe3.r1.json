@@ -4,16 +4,16 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "549a9f7ae5e71c64cad5c2d1abc2482ac27640f2496235a0ac72afe79e5b0f08",
+  "prompt_sha256": "cc7e0b382b3c88b92960aff69d15e7c4dc9e6408a3e908184046b5a4a058efae",
   "item": {
     "id": "s2db92d9fe3",
     "text": "Ottoline owns the quilt."
   },
   "usage": {
-    "input": 10827,
-    "output": 85,
+    "input": 16564,
+    "output": 118,
     "thinking": null,
-    "total": 10912,
+    "total": 16682,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,23 +24,23 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 10827,
-    "candidatesTokenCount": 85,
-    "totalTokenCount": 10912,
+    "promptTokenCount": 16564,
+    "candidatesTokenCount": 118,
+    "totalTokenCount": 16682,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 10827
+        "tokenCount": 16564
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 85
+        "tokenCount": 118
       }
     ]
   },
-  "raw_text": "{\"id\": \"s2db92d9fe3\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\"}], \"unmapped\": [{\"span\": \"owns the quilt\", \"code\": \"G00\", \"construction\": \"Stative verb of possession ('owns') with a direct object.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"s2db92d9fe3\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"quilt\", \"definite\": true}, {\"t\": \"possession\", \"id\": \"p1\", \"verb\": \"own\", \"holder\": \"@n1\", \"possessed\": \"@x1\", \"tense\": \"present\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s2db92d9fe3",
     "instances": [
@@ -48,18 +48,26 @@
         "t": "named-entity",
         "id": "n1",
         "name": "Ottoline"
-      }
-    ],
-    "unmapped": [
+      },
       {
-        "span": "owns the quilt",
-        "code": "G00",
-        "construction": "Stative verb of possession ('owns') with a direct object."
+        "t": "witness",
+        "id": "x1",
+        "kind": "quilt",
+        "definite": true
+      },
+      {
+        "t": "possession",
+        "id": "p1",
+        "verb": "own",
+        "holder": "@n1",
+        "possessed": "@x1",
+        "tense": "present"
       }
     ],
+    "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "6cf313445a0a101e1fc3416cc18e201b1014c1ed7339419f511094ac6b3ffbd5",
+  "prompt_body_sha256": "88394b9b4a867520005bf2fd41df21e828da1b70d76a826de44c9a2ccd2dbd87",
   "run": 1,
   "case": {
     "template": "acquisition",

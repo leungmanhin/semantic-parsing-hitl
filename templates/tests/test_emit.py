@@ -7,7 +7,8 @@
   projects out of a negation over the attitude;
 * every example with instances emits, deterministically, and type-checks strictly (C9) with
   the emitter's own declarations;
-* scope: a witness mentioned only inside a negated clause is rendered inside the Not;
+* scope: an indefinite witness mentioned only inside a negated clause is rendered inside the
+  Not, a definite one stays at the top level;
 * malformed instances are refused with a reason.
 
 Run from ``templates/``: ``python tests/test_emit.py``
@@ -89,6 +90,17 @@ class EmitTests(unittest.TestCase):
         modal = atoms_for("Teodor believes that Lamine might lend Ottoline the trowel.")
         self.assertTrue(any(a.startswith("(Theme sk_believe_1 (Might (And ") for a in modal))
 
+    def test_truth_rule_sets_the_confidence(self):
+        def stmts(text):
+            ex = next(e for _, _, e in all_examples() if e["text"] == text)
+            return E.emit({"id": "t", "instances": ex["instances"]}, CATALOG)["statements"]
+
+        self.assertTrue(all(st.endswith("(STV 1.0 0.99))") for st in stmts("Ferrets are mustelids.")))
+        self.assertTrue(all(st.endswith("(STV 1.0 0.9))") for st in stmts("Ferrets are curious.")))
+        neg = stmts("Ferrets are not rodents.")
+        self.assertEqual(len(neg), 1)
+        self.assertTrue(neg[0].startswith("(: s1_not (Not (Inheritance ferret rodent))") and neg[0].endswith("(STV 1.0 0.99))"))
+
     def test_when_clauses_are_case_insensitive(self):
         self.assertTrue(E.holds("factive == true", {"factive": True}))
         self.assertFalse(E.holds("factive == true", {"factive": False}))
@@ -144,7 +156,8 @@ class EmitTests(unittest.TestCase):
         might = [a for a in atoms if a.startswith("(Might ")]
         self.assertEqual(len(might), 1, atoms)
         self.assertNotIn("(Past", might[0])                            # present tense emits nothing
-        self.assertIn("(Member sk_trowel_1 trowel)", might[0])
+        self.assertNotIn("(Member sk_trowel_1 trowel)", might[0])      # a definite witness is presupposed: top level
+        self.assertIn("(Member sk_trowel_1 trowel)", atoms)
 
     def test_present_emits_no_tense_and_progressive_emits_ongoing(self):
         ex = next(e for _, _, e in all_examples() if e["text"] == "Ottoline is sending the quilt.")

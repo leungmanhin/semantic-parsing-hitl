@@ -24,7 +24,8 @@ slots:
   id:    {type: id, required: true}
   name:  {type: string, required: true, doc: "the surface name, capitalised as written"}
   title: {type: string, required: false, doc: "a leading title, if any"}
-  kind:  {type: lemma, class: Class, required: false, doc: "the kind the text states for the name"}
+  kind:  {type: lemma, class: Class, required: false,
+          doc: "the kind an appositive or a title phrase states for the name (Lamine, a glazier); a predicative is a N is a copular instance, not this slot"}
 
 mints: {id: Entity, symbol: name}
 

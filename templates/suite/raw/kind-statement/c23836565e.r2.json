@@ -1,0 +1,86 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "cc7e0b382b3c88b92960aff69d15e7c4dc9e6408a3e908184046b5a4a058efae",
+  "item": {
+    "id": "sc23836565e",
+    "text": "Herons might be migratory."
+  },
+  "usage": {
+    "input": 16565,
+    "output": 111,
+    "thinking": null,
+    "total": 16676,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 16565,
+    "candidatesTokenCount": 111,
+    "totalTokenCount": 16676,
+    "cachedContentTokenCount": 14516,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 16565
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 14516
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 111
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sc23836565e\", \"instances\": [{\"t\": \"kind-statement\", \"id\": \"k1\", \"subject\": \"heron\", \"predicate\": \"migratory\", \"form\": \"adjective\", \"definitional\": false, \"tense\": \"present\"}, {\"t\": \"modal\", \"id\": \"s1\", \"over\": [\"@k1\"], \"head\": \"Might\", \"surface\": \"might\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sc23836565e",
+    "instances": [
+      {
+        "t": "kind-statement",
+        "id": "k1",
+        "subject": "heron",
+        "predicate": "migratory",
+        "form": "adjective",
+        "definitional": false,
+        "tense": "present"
+      },
+      {
+        "t": "modal",
+        "id": "s1",
+        "over": [
+          "@k1"
+        ],
+        "head": "Might",
+        "surface": "might"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "88394b9b4a867520005bf2fd41df21e828da1b70d76a826de44c9a2ccd2dbd87",
+  "run": 2,
+  "case": {
+    "template": "kind-statement",
+    "section": "held_out",
+    "index": 6,
+    "category": "scoped",
+    "text": "Herons might be migratory.",
+    "key": "c23836565e"
+  }
+}

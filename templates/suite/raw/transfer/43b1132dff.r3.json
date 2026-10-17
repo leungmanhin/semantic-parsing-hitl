@@ -4,16 +4,16 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "54d8ad81ab6b6ede7a54597207657d933ded873a8d445236afc298e7c6b6743a",
+  "prompt_sha256": "cc7e0b382b3c88b92960aff69d15e7c4dc9e6408a3e908184046b5a4a058efae",
   "item": {
     "id": "s43b1132dff",
     "text": "Yusra gave up."
   },
   "usage": {
-    "input": 6633,
-    "output": 87,
+    "input": 16563,
+    "output": 88,
     "thinking": null,
-    "total": 6720,
+    "total": 16651,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,30 +24,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 6633,
-    "candidatesTokenCount": 87,
-    "totalTokenCount": 6720,
-    "cachedContentTokenCount": 4584,
+    "promptTokenCount": 16563,
+    "candidatesTokenCount": 88,
+    "totalTokenCount": 16651,
+    "cachedContentTokenCount": 14514,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 6633
+        "tokenCount": 16563
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 4584
+        "tokenCount": 14514
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 87
+        "tokenCount": 88
       }
     ]
   },
-  "raw_text": "{\"id\": \"s43b1132dff\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}], \"unmapped\": [{\"span\": \"gave up\", \"code\": \"G00\", \"construction\": \"An intransitive particle verb phrase not covered by the available predication templates.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"s43b1132dff\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"give_up\", \"actor\": \"@n1\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s43b1132dff",
     "instances": [
@@ -55,23 +55,24 @@
         "t": "named-entity",
         "id": "n1",
         "name": "Yusra"
-      }
-    ],
-    "unmapped": [
+      },
       {
-        "span": "gave up",
-        "code": "G00",
-        "construction": "An intransitive particle verb phrase not covered by the available predication templates."
+        "t": "activity",
+        "id": "e1",
+        "verb": "give_up",
+        "actor": "@n1",
+        "tense": "past"
       }
     ],
+    "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "8674bf87a4b179e17df201a06cdfa72949f5c085c9011d610b4139b838fd4f5a",
+  "prompt_body_sha256": "88394b9b4a867520005bf2fd41df21e828da1b70d76a826de44c9a2ccd2dbd87",
   "run": 3,
   "case": {
     "template": "transfer",
     "section": "held_out",
-    "index": 6,
+    "index": 8,
     "category": "abstain",
     "text": "Yusra gave up.",
     "key": "43b1132dff"

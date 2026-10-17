@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 dd6e97c4c4572eaf · 12 templates
+catalog sha256 07e33a4d87311d56 · 14 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -113,7 +113,7 @@ bound, duration, place, manner, amount or tag leaves the event itself true ("was
 before 1960" still says it was demolished). When the rest would NOT follow without the unmapped
 part, leave the whole claim out and report the whole clause: a condition ("brittle when cold"),
 a hedge or approximator ("almost full"), a comparison class ("tall for a gymnast"), a proportion
-or partitive ("12.5% of the applicants"), a modal on a kind.
+or partitive ("12.5% of the applicants").
 
 Referents inside an unmapped span: a NAME still gets its instance (a name is rigid, the same
 individual wherever it appears), but a common-noun phrase does not. A witness is introduced only
@@ -178,7 +178,8 @@ Slots:
 - `id` (required; your label for this instance).
 - `name` (required; a string): the surface name, capitalised as written.
 - `title` (optional; a string): a leading title, if any.
-- `kind` (optional; a lemma): the kind the text states for the name.
+- `kind` (optional; a lemma): the kind an appositive or a title phrase states for the name
+  (Lamine, a glazier); a predicative is a N is a copular instance, not this slot.
 
 Example. TEXT: Teodor
 
@@ -210,6 +211,7 @@ Forms:
 
 Not this template:
 - a bare plural read generically — dogs bark: a kind-level statement, not a witness
+- a plural noun phrase — the ferrets, two envelopes: a group of individuals, not one witness
 - a proper name — Teodor: a named entity
 
 Slots:
@@ -497,9 +499,10 @@ The program renders these instances as:
     (Name teodor "Teodor")
     (Name lamine "Lamine")
     (Name ottoline "Ottoline")
+    (Member sk_trowel_1 trowel)
     (Member sk_believe_1 believe)
     (Experiencer sk_believe_1 teodor)
-    (Theme sk_believe_1 (And (Member sk_lend_1 lend) (Agent sk_lend_1 lamine) (Recipient sk_lend_1 ottoline) (Theme sk_lend_1 sk_trowel_1) (Past sk_lend_1) (Member sk_trowel_1 trowel)))
+    (Theme sk_believe_1 (And (Member sk_lend_1 lend) (Agent sk_lend_1 lamine) (Recipient sk_lend_1 ottoline) (Theme sk_lend_1 sk_trowel_1) (Past sk_lend_1)))
 
 Example (factive — the complement is also stated flat). TEXT: Yusra knows that Teodor sold the spindle.
 
@@ -517,14 +520,14 @@ The program renders these instances as:
 
     (Name yusra "Yusra")
     (Name teodor "Teodor")
+    (Member sk_spindle_1 spindle)
     (Member sk_know_1 know)
     (Experiencer sk_know_1 yusra)
-    (Theme sk_know_1 (And (Member sk_sell_1 sell) (Agent sk_sell_1 teodor) (Theme sk_sell_1 sk_spindle_1) (Past sk_sell_1) (Member sk_spindle_1 spindle)))
+    (Theme sk_know_1 (And (Member sk_sell_1 sell) (Agent sk_sell_1 teodor) (Theme sk_sell_1 sk_spindle_1) (Past sk_sell_1)))
     (Member sk_sell_1 sell)
     (Agent sk_sell_1 teodor)
     (Theme sk_sell_1 sk_spindle_1)
     (Past sk_sell_1)
-    (Member sk_spindle_1 spindle)
 
 Example (a reporting verb with no addressee is an attitude). TEXT: Teodor said that Lamine sold the spindle.
 
@@ -542,9 +545,10 @@ The program renders these instances as:
 
     (Name teodor "Teodor")
     (Name lamine "Lamine")
+    (Member sk_spindle_1 spindle)
     (Member sk_say_1 say)
     (Experiencer sk_say_1 teodor)
-    (Theme sk_say_1 (And (Member sk_sell_1 sell) (Agent sk_sell_1 lamine) (Theme sk_sell_1 sk_spindle_1) (Past sk_sell_1) (Member sk_spindle_1 spindle)))
+    (Theme sk_say_1 (And (Member sk_sell_1 sell) (Agent sk_sell_1 lamine) (Theme sk_sell_1 sk_spindle_1) (Past sk_sell_1)))
     (Past sk_say_1)
 
 Example (a perception verb with a that-clause is a factive attitude). TEXT: Teodor saw that Lamine sold the spindle.
@@ -563,15 +567,15 @@ The program renders these instances as:
 
     (Name teodor "Teodor")
     (Name lamine "Lamine")
+    (Member sk_spindle_1 spindle)
     (Member sk_see_1 see)
     (Experiencer sk_see_1 teodor)
-    (Theme sk_see_1 (And (Member sk_sell_1 sell) (Agent sk_sell_1 lamine) (Theme sk_sell_1 sk_spindle_1) (Past sk_sell_1) (Member sk_spindle_1 spindle)))
+    (Theme sk_see_1 (And (Member sk_sell_1 sell) (Agent sk_sell_1 lamine) (Theme sk_sell_1 sk_spindle_1) (Past sk_sell_1)))
     (Past sk_see_1)
     (Member sk_sell_1 sell)
     (Agent sk_sell_1 lamine)
     (Theme sk_sell_1 sk_spindle_1)
     (Past sk_sell_1)
-    (Member sk_spindle_1 spindle)
 
 Not this template. TEXT: Teodor told Ottoline that Lamine sold the spindle. — use
 `communication`.
@@ -671,16 +675,161 @@ The program renders these instances as:
     (Name teodor "Teodor")
     (Name ottoline "Ottoline")
     (Name lamine "Lamine")
+    (Member sk_spindle_1 spindle)
     (Member sk_tell_1 tell)
     (Agent sk_tell_1 teodor)
     (Recipient sk_tell_1 ottoline)
-    (Theme sk_tell_1 (And (Member sk_sell_1 sell) (Agent sk_sell_1 lamine) (Theme sk_sell_1 sk_spindle_1) (Past sk_sell_1) (Member sk_spindle_1 spindle)))
+    (Theme sk_tell_1 (And (Member sk_sell_1 sell) (Agent sk_sell_1 lamine) (Theme sk_sell_1 sk_spindle_1) (Past sk_sell_1)))
     (Past sk_tell_1)
 
 Not this template. TEXT: Teodor said that Lamine sold the spindle. — use `attitude`.
 
 Not this template. TEXT: Teodor asked Ottoline whether Lamine sold the spindle. — report it as
 unmapped: {"span": "asked Ottoline whether Lamine sold the spindle", "code": "G00"}.
+
+### copular — An individual is a kind or has a property
+
+When: A clause with "be" as its main verb whose subject refers to an individual and whose
+predicate is an indefinite noun phrase (is a locksmith) or an adjective (is crooked). The
+predicate's head is the kind or the property; an adjective inside a predicate noun phrase (is a
+careful weaver) is a second copular instance with the adjective as its predicate. Tense is the
+clause's; present is recorded and emits nothing.
+
+Forms:
+- <subject> is a <N>
+- <subject> is <ADJ>
+- <subject> was / will be <N or ADJ>
+
+Not this template:
+- a kind as the subject — ferrets are mustelids, granite is a rock, a spindle is a tool: a
+  statement about a kind, not an individual
+- a quantifier word on the subject — all ferrets are curious, most herons are patient: a
+  quantified generalization
+- a plural subject — the ferrets are curious, two ladders are crooked: a group of individuals,
+  not one individual
+- a copular verb other than be — seems tired, looks tired, remains open: an evidential or
+  aspectual verb; became a locksmith, got tired: a change of state
+- an adjective with a complement — afraid of the ferret, fond of Lamine, full of water: the
+  complement is part of the predication; report the whole predicate as a gap
+- a definite or a name as the predicate — is the locksmith, is Teodor: an identity statement,
+  not a kind or a property
+- a non-intersective modifier in the predicate — a former weaver, an alleged thief: the
+  adjective does not hold of the individual on its own
+- "there is / there are" — there is a thermos: an existential, which is the referent alone
+
+Slots:
+
+- `t` (required): "copular"
+- `id` (required; your label for this instance): your label for the predication.
+- `subject` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
+  the individual: a referent id (a name, a witness, a resolved pronoun).
+- `predicate` (required; a lemma): the kind (locksmith) or the property (crooked), lemmatized.
+- `form` (required; one of: noun, adjective): noun for a kind (is a locksmith), adjective for a
+  property (is crooked).
+- `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
+  not inferred.
+- `aspect` (optional; one of: simple, progressive, perfect).
+
+Example (a kind). TEXT: Teodor is a locksmith.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Teodor"},
+      {"t": "copular", "id": "c1", "subject": "@n1", "predicate": "locksmith", "form": "noun", "tense": "present"}
+    ]
+
+The program renders these instances as:
+
+    (Name teodor "Teodor")
+    (Member teodor locksmith)
+
+Example (a property, past tense — the tense wraps the atom). TEXT: The audit was difficult.
+
+Instances:
+
+    [
+      {"t": "witness", "id": "x1", "kind": "audit", "definite": true},
+      {"t": "copular", "id": "c1", "subject": "@x1", "predicate": "difficult", "form": "adjective", "tense": "past"}
+    ]
+
+The program renders these instances as:
+
+    (Member sk_audit_1 audit)
+    (Past (Member sk_audit_1 difficult))
+
+Not this template. TEXT: Ferrets are mustelids. — use `kind-statement`.
+
+Not this template. TEXT: Teodor became a locksmith. — report the span as unmapped.
+
+### kind-statement — A kind is a kind or has a property
+
+When: A clause with "be" as its main verb whose subject names a kind rather than an individual —
+a bare plural (ferrets, herons), a mass noun (granite) or a generic indefinite singular (a
+spindle is a tool) — and whose predicate is an indefinite noun phrase or an adjective. The
+statement is definitional when it states what the kind is by definition or taxonomy (ferrets are
+mustelids, a spindle is a tool) and empirical when it generalizes over the kind's members
+(ferrets are curious). No quantifier word is present.
+
+Forms:
+- <kind>s are <N>s
+- <kind>s are <ADJ>
+- <mass noun> is a <N>
+- a <kind> is a <N>
+
+Not this template:
+- an individual as the subject — Teodor is a locksmith, the ladder is crooked: a predication
+  about one individual
+- a quantifier word — all ferrets are curious, most herons are patient, no reptile is
+  warm-blooded: a quantified generalization carrying its quantifier
+- a definite plural — the ferrets are curious: a specific group of individuals, not the kind
+- a property of the kind as a whole that no member holds — ferrets are widespread, the dodo is
+  extinct, herons are common: a kind-level property, not a generalization
+- a copular verb other than be — herons seem patient, ferrets became popular: evidential, or a
+  change of state
+
+Slots:
+
+- `t` (required): "kind-statement"
+- `id` (required; your label for this instance): your label for the statement.
+- `subject` (required; a lemma): the kind, lemmatized to the singular (ferret, granite,
+  spindle).
+- `predicate` (required; a lemma): the kind (mustelid) or the property (curious), lemmatized.
+- `form` (required; one of: noun, adjective): noun for a kind predicate, adjective for a
+  property.
+- `definitional` (required; true / false): true for a definitional or taxonomic claim (ferrets
+  are mustelids), false for an empirical generalization (ferrets are curious).
+- `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
+  not inferred.
+- `aspect` (optional; one of: simple, progressive, perfect).
+
+Example (definitional). TEXT: Ferrets are mustelids.
+
+Instances:
+
+    [
+      {"t": "kind-statement", "id": "k1", "subject": "ferret", "predicate": "mustelid", "form": "noun", "definitional": true, "tense": "present"}
+    ]
+
+The program renders these instances as:
+
+    (Inheritance ferret mustelid)
+
+Example (empirical — the program lowers the confidence). TEXT: Ferrets are curious.
+
+Instances:
+
+    [
+      {"t": "kind-statement", "id": "k1", "subject": "ferret", "predicate": "curious", "form": "adjective", "definitional": false, "tense": "present"}
+    ]
+
+The program renders these instances as:
+
+    (Inheritance ferret curious)
+
+Not this template. TEXT: Teodor is a locksmith. — use `copular`.
+
+Not this template. TEXT: All ferrets are curious. — report the span as unmapped.
 
 ### perception — Perception of a thing or an event
 
@@ -1137,4 +1286,5 @@ Instances:
 The program renders these instances as:
 
     (Name teodor "Teodor")
-    (Not (And (Member sk_send_1 send) (Agent sk_send_1 teodor) (Theme sk_send_1 sk_quilt_1) (Past sk_send_1) (Member sk_quilt_1 quilt)))
+    (Member sk_quilt_1 quilt)
+    (Not (And (Member sk_send_1 send) (Agent sk_send_1 teodor) (Theme sk_send_1 sk_quilt_1) (Past sk_send_1)))

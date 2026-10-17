@@ -1,0 +1,182 @@
+# Template: copular  (an individual is a kind or has a property: "X is a N", "X is ADJ")
+#
+# The predication is the flat atom (Member <subject> <predicate>); tense, negation and modality
+# are operators over it ((Past (Member …)), (Not (Member …)), (Might (Member …))). No state
+# eventuality is minted for a plain copular clause. The subject is a referent instance (a name,
+# a witness, a resolved pronoun); the predicate is a kind or a property lemma. A bare-plural or
+# mass-noun subject makes a kind statement, not this template.
+
+id: copular
+family: predication
+kind: copular
+title: An individual is a kind or has a property
+status: draft
+
+trigger:
+  construction: >
+    A clause with "be" as its main verb whose subject refers to an individual and whose
+    predicate is an indefinite noun phrase (is a locksmith) or an adjective (is crooked). The
+    predicate's head is the kind or the property; an adjective inside a predicate noun phrase
+    (is a careful weaver) is a second copular instance with the adjective as its predicate.
+    Tense is the clause's; present is recorded and emits nothing.
+  surface_forms:
+    - "<subject> is a <N>"                     # Teodor is a locksmith
+    - "<subject> is <ADJ>"                     # the ladder is crooked
+    - "<subject> was / will be <N or ADJ>"     # the tense wraps the atom
+  boundary:                   # looks like a copular clause but is not one
+    - >-
+      a kind as the subject — ferrets are mustelids, granite is a rock, a spindle is a tool:
+      a statement about a kind, not an individual
+    - >-
+      a quantifier word on the subject — all ferrets are curious, most herons are patient:
+      a quantified generalization
+    - >-
+      a plural subject — the ferrets are curious, two ladders are crooked: a group of
+      individuals, not one individual
+    - >-
+      a copular verb other than be — seems tired, looks tired, remains open: an evidential or
+      aspectual verb; became a locksmith, got tired: a change of state
+    - >-
+      an adjective with a complement — afraid of the ferret, fond of Lamine, full of water: the
+      complement is part of the predication; report the whole predicate as a gap
+    - >-
+      a definite or a name as the predicate — is the locksmith, is Teodor: an identity
+      statement, not a kind or a property
+    - >-
+      a non-intersective modifier in the predicate — a former weaver, an alleged thief: the
+      adjective does not hold of the individual on its own
+    - >-
+      "there is / there are" — there is a thermos: an existential, which is the referent alone
+
+slots:
+  id:        {type: id, required: true, doc: "your label for the predication"}
+  subject:   {type: filler, class: Entity, required: true,
+              doc: "the individual: a referent id (a name, a witness, a resolved pronoun)"}
+  predicate: {type: lemma, class: Class, required: true,
+              doc: "the kind (locksmith) or the property (crooked), lemmatized"}
+  form:      {type: enum, values: [noun, adjective], required: true,
+              doc: "noun for a kind (is a locksmith), adjective for a property (is crooked)"}
+  tense:     {type: enum, values: [past, present, future], required: true,
+              doc: "the clause's tense; present is recorded, not inferred"}
+  aspect:    {type: enum, values: [simple, progressive, perfect], required: false, default: simple}
+
+emits:
+  - atom: "(Member {subject} {predicate})"
+    when: "tense == present and aspect != perfect and aspect != progressive"
+  - atom: "(Past (Member {subject} {predicate}))"
+    when: "tense == past or aspect == perfect"
+  - atom: "(Future (Member {subject} {predicate}))"
+    when: "tense == future"
+  - atom: "(Ongoing (Member {subject} {predicate}))"
+    when: "aspect == progressive"
+
+notes:
+  - >-
+    The flat atom is the representation; tense and the scope operators wrap it. A state
+    eventuality for a copular clause is minted only when something must attach to it (a time,
+    a duration, a place), which is a matter for the attachment templates.
+  - >-
+    A kind and a property take the same atom, as the substrate treats properties as classes;
+    the form slot records which the text used, for later normalization.
+
+depends_on: [named-entity, witness]
+composes_with: [negation, modal, time]
+
+examples:
+  shown:                     # rendered into the prompt
+    - category: positive
+      note: a kind
+      text: "Teodor is a locksmith."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: copular, id: c1, subject: "@n1", predicate: locksmith, form: noun, tense: present}
+      emitted:               # what the emitter produces (illustration; the emitter is the authority)
+        - "(Name teodor \"Teodor\")"
+        - "(Member teodor locksmith)"
+      declarations:
+        - "(: teodor Entity)"
+        - "(: locksmith Class)"
+    - category: positive
+      note: a property, past tense — the tense wraps the atom
+      text: "The audit was difficult."
+      instances:
+        - {t: witness, id: x1, kind: audit, definite: true}
+        - {t: copular, id: c1, subject: "@x1", predicate: difficult, form: adjective, tense: past}
+    - category: abstain
+      text: "Ferrets are mustelids."
+      expected: {abstain: true, template: kind-statement}             # a kind as the subject
+    - category: abstain
+      text: "Teodor became a locksmith."
+      expected: {abstain: true, template: change-of-state}            # a change of state
+
+  held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      text: "Yusra is a weaver."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: copular, id: c1, subject: "@n1", predicate: weaver, form: noun, tense: present}
+    - category: contrast
+      note: tense marker — the instance must differ in tense only
+      text: "Yusra was a weaver."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: copular, id: c1, subject: "@n1", predicate: weaver, form: noun, tense: past}
+    - category: positive
+      note: a property of a witness
+      text: "The ladder is crooked."
+      instances:
+        - {t: witness, id: x1, kind: ladder, definite: true}
+        - {t: copular, id: c1, subject: "@x1", predicate: crooked, form: adjective, tense: present}
+    - category: positive
+      note: future
+      text: "Lamine will be a glazier."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: copular, id: c1, subject: "@n1", predicate: glazier, form: noun, tense: future}
+    - category: positive
+      note: an adjective inside the predicate noun phrase is a second instance
+      text: "Ottoline is a careful weaver."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: copular, id: c1, subject: "@n1", predicate: weaver, form: noun, tense: present}
+        - {t: copular, id: c2, subject: "@n1", predicate: careful, form: adjective, tense: present}
+    - category: scoped
+      note: under clausal negation
+      text: "Teodor is not a locksmith."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: copular, id: c1, subject: "@n1", predicate: locksmith, form: noun, tense: present}
+        - {t: negation, id: s1, over: ["@c1"]}
+    - category: scoped
+      note: under a modal
+      text: "The ladder might be crooked."
+      instances:
+        - {t: witness, id: x1, kind: ladder, definite: true}
+        - {t: copular, id: c1, subject: "@x1", predicate: crooked, form: adjective, tense: present}
+        - {t: modal, id: s1, over: ["@c1"], head: Might, surface: might}
+    - category: scoped
+      note: negation over a past predication — the negation wraps the tensed atom
+      text: "The audit was not difficult."
+      instances:
+        - {t: witness, id: x1, kind: audit, definite: true}
+        - {t: copular, id: c1, subject: "@x1", predicate: difficult, form: adjective, tense: past}
+        - {t: negation, id: s1, over: ["@c1"]}
+    - category: optional
+      note: perfect aspect
+      text: "Yusra has been a weaver."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: copular, id: c1, subject: "@n1", predicate: weaver, form: noun, tense: present,
+           aspect: perfect}
+    - category: abstain
+      text: "Herons are birds."
+      expected: {abstain: true, template: kind-statement}             # a kind as the subject
+    - category: abstain
+      text: "Teodor seems tired."
+      expected: {abstain: true, gap: G00, span: "seems tired"}        # a copular verb other than be
+    - category: abstain
+      text: "Lamine is fond of Yusra."
+      expected: {abstain: true, gap: G00, span: "is fond of Yusra"}   # an adjective with a complement
+    - category: abstain
+      text: "Teodor is the locksmith."
+      expected: {abstain: true, gap: G00, span: "is the locksmith"}   # an identity statement

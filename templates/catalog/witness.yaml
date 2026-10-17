@@ -24,6 +24,9 @@ trigger:
     - >-
       a bare plural read generically — dogs bark: a kind-level statement, not a witness
     - >-
+      a plural noun phrase — the ferrets, two envelopes: a group of individuals, not one
+      witness
+    - >-
       a proper name — Teodor: a named entity
 
 slots:
@@ -35,6 +38,8 @@ slots:
               doc: "the possessor of a possessive phrase: Yusra's quilt, the quilt of Yusra; a referent id, or a bare lemma for a kind-level possessor"}
 
 mints: {id: Entity, stem: kind}
+
+presupposed: [definite, possessor]      # a definite or possessed witness exists whatever scope mentions it
 
 emits:
   - atom: "(Member @id {kind})"

@@ -111,9 +111,10 @@ examples:
         - "(Name teodor \"Teodor\")"
         - "(Name lamine \"Lamine\")"
         - "(Name ottoline \"Ottoline\")"
+        - "(Member sk_trowel_1 trowel)"
         - "(Member sk_believe_1 believe)"
         - "(Experiencer sk_believe_1 teodor)"
-        - "(Theme sk_believe_1 (And (Member sk_lend_1 lend) (Agent sk_lend_1 lamine) (Recipient sk_lend_1 ottoline) (Theme sk_lend_1 sk_trowel_1) (Past sk_lend_1) (Member sk_trowel_1 trowel)))"
+        - "(Theme sk_believe_1 (And (Member sk_lend_1 lend) (Agent sk_lend_1 lamine) (Recipient sk_lend_1 ottoline) (Theme sk_lend_1 sk_trowel_1) (Past sk_lend_1)))"
       declarations:
         - "(: teodor Entity)"
         - "(: lamine Entity)"

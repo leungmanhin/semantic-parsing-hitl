@@ -1,0 +1,79 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "a425dddb507554c71fb4c88aec8fc84118920b43204deae9960577427454e8da",
+  "item": {
+    "id": "s997b90e859",
+    "text": "Teodor seems tired."
+  },
+  "usage": {
+    "input": 16518,
+    "output": 86,
+    "thinking": null,
+    "total": 16604,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 16518,
+    "candidatesTokenCount": 86,
+    "totalTokenCount": 16604,
+    "cachedContentTokenCount": 14469,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 16518
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 14469
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 86
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s997b90e859\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}], \"unmapped\": [{\"span\": \"seems tired\", \"code\": \"G00\", \"construction\": \"An evidential copular verb with an adjectival predicate.\"}], \"issues\": []}",
+  "response": {
+    "id": "s997b90e859",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "seems tired",
+        "code": "G00",
+        "construction": "An evidential copular verb with an adjectival predicate."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "120b60a17e82d50d47855b28fe77e98ae4c75e431ab78838d5db2b4f83cfa873",
+  "run": 3,
+  "case": {
+    "template": "copular",
+    "section": "held_out",
+    "index": 10,
+    "category": "abstain",
+    "text": "Teodor seems tired.",
+    "key": "997b90e859"
+  }
+}

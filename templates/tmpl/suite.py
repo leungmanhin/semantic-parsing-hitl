@@ -372,14 +372,26 @@ def catalog_checks(catalog: dict, general: dict | None = None, freshness: bool =
 # --------------------------------------------------------------------------
 
 
+def failed_keys(out_dir: str, tid: str) -> set[str]:
+    """Keys of the cases with at least one failing row in the template's current scores file."""
+    path = os.path.join(out_dir, f"{tid}.scores.jsonl")
+    if not os.path.exists(path):
+        return set()
+    with open(path, encoding="utf-8") as fh:
+        return {json.loads(ln)["key"] for ln in fh if ln.strip() and not json.loads(ln).get("pass")}
+
+
 def plan(catalog: dict, templates: list[str], sections: tuple, runs: int, raw_dir: str,
-         force: bool = False, only: str | None = None, categories: list[str] | None = None) -> list[dict]:
+         force: bool = False, only: str | None = None, categories: list[str] | None = None,
+         failed: dict[str, set] | None = None) -> list[dict]:
     todo = []
     for tid in templates:
         for case in cases_of(catalog, tid, sections):
             if only and only.lower() not in case["text"].lower():
                 continue
             if categories and case["category"] not in categories:
+                continue
+            if failed is not None and case["key"] not in failed.get(tid, set()):
                 continue
             for n in range(1, runs + 1):
                 path = raw_path(raw_dir, tid, case["key"], n)
@@ -400,7 +412,9 @@ def collect(args, catalog: dict) -> int:
         if tid not in catalog:
             print(f"error: no template {tid}", file=sys.stderr)
             return 2
-    todo = plan(catalog, templates, sections, args.runs, args.raw_dir, args.force, args.only, args.category)
+    failed = {tid: failed_keys(args.out_dir, tid) for tid in templates} if args.failed else None
+    todo = plan(catalog, templates, sections, args.runs, args.raw_dir, args.force or bool(args.failed),
+                args.only, args.category, failed)
     if args.limit:
         todo = todo[: args.limit]
     with open(args.prompt, encoding="utf-8") as fh:
@@ -802,6 +816,10 @@ def main(argv=None) -> int:
     k.add_argument("--limit", type=int, default=None, help="at most this many calls")
     k.add_argument("--delay", type=float, default=0.0, help="seconds between calls")
     k.add_argument("--force", action="store_true", help="re-request cases that already have a stored reply")
+    k.add_argument("--failed", action="store_true",
+                   help="only the cases with a failing row in the current scores file (implies --force for them): "
+                        "re-collect what the last score flagged, e.g. abstain cases whose target template now exists")
+    k.add_argument("--out-dir", default=OUT_DIR, help="where the scores files are (for --failed)")
     k.add_argument("--dry-run", action="store_true", help="show the plan and the first request; call nothing")
     k.add_argument("--parse-script", default=PARSE_SCRIPT)
     load_parse_script(PARSE_SCRIPT).add_provider_args(k)

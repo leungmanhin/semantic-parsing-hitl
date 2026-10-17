@@ -77,7 +77,8 @@ Nothing here changes `prompt.txt`, the briefs under `fusenf/briefs/`, or any pip
 - `collect` stores one run record per call under `suite/raw/<template>/<key>.r<n>.json` and is
   resumable (stored replies are skipped; `--force` re-requests). `--section shown` parses the prompt's
   own examples (a smoke test, not a regression); `--only <words>`, `--category abstain` (repeatable),
-  `--limit N`, `--delay s`, `--dry-run`. The parser sees only a hash as the item id.
+  `--failed` (only the cases the last score flagged, e.g. abstain cases whose target now exists), `--limit N`,
+  `--delay s`, `--dry-run`. The parser sees only a hash as the item id.
 - `score` renders every reply through the validator and compares the atoms with the expected instances'
   atoms label-independently (witness symbols up to a bijection, bundles unordered), classifies each
   (case, run) by category, type-checks every emitted parse (C9, when `petta` is importable), and writes

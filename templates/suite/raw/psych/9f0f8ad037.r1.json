@@ -4,16 +4,16 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "83d654d351078da34843fcdd2c851cb17742d5e5b2a421b203c2fcf14b7e368c",
+  "prompt_sha256": "cc7e0b382b3c88b92960aff69d15e7c4dc9e6408a3e908184046b5a4a058efae",
   "item": {
     "id": "s9f0f8ad037",
     "text": "Teodor heard the news."
   },
   "usage": {
-    "input": 9645,
-    "output": 83,
+    "input": 16565,
+    "output": 118,
     "thinking": null,
-    "total": 9728,
+    "total": 16683,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,23 +24,23 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 9645,
-    "candidatesTokenCount": 83,
-    "totalTokenCount": 9728,
+    "promptTokenCount": 16565,
+    "candidatesTokenCount": 118,
+    "totalTokenCount": 16683,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 9645
+        "tokenCount": 16565
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 83
+        "tokenCount": 118
       }
     ]
   },
-  "raw_text": "{\"id\": \"s9f0f8ad037\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}], \"unmapped\": [{\"span\": \"heard the news\", \"code\": \"G00\", \"construction\": \"A perception clause with a noun-phrase object.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"s9f0f8ad037\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"news\", \"definite\": true}, {\"t\": \"perception\", \"id\": \"p1\", \"verb\": \"hear\", \"perceiver\": \"@n1\", \"stimulus\": \"@x1\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s9f0f8ad037",
     "instances": [
@@ -48,18 +48,26 @@
         "t": "named-entity",
         "id": "n1",
         "name": "Teodor"
-      }
-    ],
-    "unmapped": [
+      },
       {
-        "span": "heard the news",
-        "code": "G00",
-        "construction": "A perception clause with a noun-phrase object."
+        "t": "witness",
+        "id": "x1",
+        "kind": "news",
+        "definite": true
+      },
+      {
+        "t": "perception",
+        "id": "p1",
+        "verb": "hear",
+        "perceiver": "@n1",
+        "stimulus": "@x1",
+        "tense": "past"
       }
     ],
+    "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "43caf6785635a5b865bcd87326023595e1fddfa30888316f56be9574edb8e5cb",
+  "prompt_body_sha256": "88394b9b4a867520005bf2fd41df21e828da1b70d76a826de44c9a2ccd2dbd87",
   "run": 1,
   "case": {
     "template": "psych",

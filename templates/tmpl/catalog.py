@@ -12,7 +12,8 @@ Structural invariants checked here (content is reviewed by people, not checked h
 * every ``emits`` entry has an ``atom`` whose placeholders name a slot of the template (or
   ``@id`` when the template mints a symbol); ``if_filled`` / ``each`` name a slot; ``when``
   mentions only slots, their values and ``true`` / ``false``; ``project`` is a boolean;
-* ``one_of`` groups list two or more slots each;
+* ``one_of`` groups list two or more slots each; a ``truth`` rule names a slot and gives
+  ``[strength, confidence]`` pairs; ``presupposed`` lists slots of the template;
 * examples carry a ``category`` and either ``instances`` or an ``expected`` abstain target.
 """
 from __future__ import annotations
@@ -65,6 +66,18 @@ def check_template(t: dict, path: str) -> list[str]:
     for i, group in enumerate(t.get("one_of") or []):
         if not isinstance(group, list) or len(group) < 2 or any(g not in slots for g in group):
             problems.append(f"one_of[{i}]: must list two or more slots of the template")
+    for s in t.get("presupposed") or []:
+        if s not in slots:
+            problems.append(f"presupposed: {s!r} is not a slot")
+    truth = t.get("truth")
+    if truth is not None:
+        if not isinstance(truth, dict) or truth.get("slot") not in slots:
+            problems.append("truth: must name a slot of the template")
+        else:
+            pairs = list((truth.get("values") or {}).values()) + ([truth["default"]] if "default" in truth else [])
+            for pair in pairs:
+                if not (isinstance(pair, list) and len(pair) == 2 and all(isinstance(x, (int, float)) for x in pair)):
+                    problems.append(f"truth: {pair!r} is not a [strength, confidence] pair")
     mints = t.get("mints") or {}
     for i, e in enumerate(t.get("emits") or []):
         atom = e.get("atom") if isinstance(e, dict) else None

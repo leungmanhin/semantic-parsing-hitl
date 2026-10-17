@@ -1,0 +1,88 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "a425dddb507554c71fb4c88aec8fc84118920b43204deae9960577427454e8da",
+  "item": {
+    "id": "s46841b14bd",
+    "text": "Teodor is not a locksmith."
+  },
+  "usage": {
+    "input": 16519,
+    "output": 116,
+    "thinking": null,
+    "total": 16635,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 16519,
+    "candidatesTokenCount": 116,
+    "totalTokenCount": 16635,
+    "cachedContentTokenCount": 14470,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 16519
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 14470
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 116
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s46841b14bd\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@n1\", \"predicate\": \"locksmith\", \"form\": \"noun\", \"tense\": \"present\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@c1\"]}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s46841b14bd",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor"
+      },
+      {
+        "t": "copular",
+        "id": "c1",
+        "subject": "@n1",
+        "predicate": "locksmith",
+        "form": "noun",
+        "tense": "present"
+      },
+      {
+        "t": "negation",
+        "id": "s1",
+        "over": [
+          "@c1"
+        ]
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "120b60a17e82d50d47855b28fe77e98ae4c75e431ab78838d5db2b4f83cfa873",
+  "run": 2,
+  "case": {
+    "template": "copular",
+    "section": "held_out",
+    "index": 5,
+    "category": "scoped",
+    "text": "Teodor is not a locksmith.",
+    "key": "46841b14bd"
+  }
+}

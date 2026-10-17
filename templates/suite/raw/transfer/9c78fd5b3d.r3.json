@@ -4,16 +4,16 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "54d8ad81ab6b6ede7a54597207657d933ded873a8d445236afc298e7c6b6743a",
+  "prompt_sha256": "cc7e0b382b3c88b92960aff69d15e7c4dc9e6408a3e908184046b5a4a058efae",
   "item": {
     "id": "s9c78fd5b3d",
     "text": "Teodor told Ottoline the news."
   },
   "usage": {
-    "input": 6637,
-    "output": 110,
+    "input": 16567,
+    "output": 148,
     "thinking": null,
-    "total": 6747,
+    "total": 16715,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,30 +24,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 6637,
-    "candidatesTokenCount": 110,
-    "totalTokenCount": 6747,
-    "cachedContentTokenCount": 4588,
+    "promptTokenCount": 16567,
+    "candidatesTokenCount": 148,
+    "totalTokenCount": 16715,
+    "cachedContentTokenCount": 14518,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 6637
+        "tokenCount": 16567
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 4588
+        "tokenCount": 14518
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 110
+        "tokenCount": 148
       }
     ]
   },
-  "raw_text": "{\"id\": \"s9c78fd5b3d\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Ottoline\"}], \"unmapped\": [{\"span\": \"Teodor told Ottoline the news.\", \"code\": \"G00\", \"construction\": \"A communication verb with an addressee and a direct object.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"s9c78fd5b3d\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Ottoline\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"news\", \"definite\": true}, {\"t\": \"communication\", \"id\": \"e1\", \"verb\": \"tell\", \"speaker\": \"@n1\", \"addressee\": \"@n2\", \"message\": \"@x1\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s9c78fd5b3d",
     "instances": [
@@ -60,23 +60,32 @@
         "t": "named-entity",
         "id": "n2",
         "name": "Ottoline"
-      }
-    ],
-    "unmapped": [
+      },
       {
-        "span": "Teodor told Ottoline the news.",
-        "code": "G00",
-        "construction": "A communication verb with an addressee and a direct object."
+        "t": "witness",
+        "id": "x1",
+        "kind": "news",
+        "definite": true
+      },
+      {
+        "t": "communication",
+        "id": "e1",
+        "verb": "tell",
+        "speaker": "@n1",
+        "addressee": "@n2",
+        "message": "@x1",
+        "tense": "past"
       }
     ],
+    "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "8674bf87a4b179e17df201a06cdfa72949f5c085c9011d610b4139b838fd4f5a",
+  "prompt_body_sha256": "88394b9b4a867520005bf2fd41df21e828da1b70d76a826de44c9a2ccd2dbd87",
   "run": 3,
   "case": {
     "template": "transfer",
     "section": "held_out",
-    "index": 8,
+    "index": 10,
     "category": "abstain",
     "text": "Teodor told Ottoline the news.",
     "key": "9c78fd5b3d"

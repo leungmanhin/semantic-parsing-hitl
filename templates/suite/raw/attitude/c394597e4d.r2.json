@@ -4,16 +4,16 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "54d8ad81ab6b6ede7a54597207657d933ded873a8d445236afc298e7c6b6743a",
+  "prompt_sha256": "cc7e0b382b3c88b92960aff69d15e7c4dc9e6408a3e908184046b5a4a058efae",
   "item": {
     "id": "sc394597e4d",
     "text": "Yusra told Teodor that Ottoline sent the quilt."
   },
   "usage": {
-    "input": 6641,
-    "output": 139,
+    "input": 16571,
+    "output": 212,
     "thinking": null,
-    "total": 6780,
+    "total": 16783,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,30 +24,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 6641,
-    "candidatesTokenCount": 139,
-    "totalTokenCount": 6780,
-    "cachedContentTokenCount": 4592,
+    "promptTokenCount": 16571,
+    "candidatesTokenCount": 212,
+    "totalTokenCount": 16783,
+    "cachedContentTokenCount": 14522,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 6641
+        "tokenCount": 16571
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 4592
+        "tokenCount": 14522
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 139
+        "tokenCount": 212
       }
     ]
   },
-  "raw_text": "{\"id\": \"sc394597e4d\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\"}, {\"t\": \"named-entity\", \"id\": \"n3\", \"name\": \"Ottoline\"}], \"unmapped\": [{\"span\": \"Yusra told Teodor that Ottoline sent the quilt.\", \"code\": \"G00\", \"construction\": \"A communication clause with an addressee taking a finite complement clause.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"sc394597e4d\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\"}, {\"t\": \"named-entity\", \"id\": \"n3\", \"name\": \"Ottoline\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"quilt\", \"definite\": true}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"send\", \"giver\": \"@n3\", \"object\": \"@x1\", \"tense\": \"past\"}, {\"t\": \"communication\", \"id\": \"c1\", \"verb\": \"tell\", \"speaker\": \"@n1\", \"addressee\": \"@n2\", \"content\": [\"@e1\"], \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sc394597e4d",
     "instances": [
@@ -65,23 +65,42 @@
         "t": "named-entity",
         "id": "n3",
         "name": "Ottoline"
-      }
-    ],
-    "unmapped": [
+      },
       {
-        "span": "Yusra told Teodor that Ottoline sent the quilt.",
-        "code": "G00",
-        "construction": "A communication clause with an addressee taking a finite complement clause."
+        "t": "witness",
+        "id": "x1",
+        "kind": "quilt",
+        "definite": true
+      },
+      {
+        "t": "transfer",
+        "id": "e1",
+        "verb": "send",
+        "giver": "@n3",
+        "object": "@x1",
+        "tense": "past"
+      },
+      {
+        "t": "communication",
+        "id": "c1",
+        "verb": "tell",
+        "speaker": "@n1",
+        "addressee": "@n2",
+        "content": [
+          "@e1"
+        ],
+        "tense": "past"
       }
     ],
+    "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "8674bf87a4b179e17df201a06cdfa72949f5c085c9011d610b4139b838fd4f5a",
+  "prompt_body_sha256": "88394b9b4a867520005bf2fd41df21e828da1b70d76a826de44c9a2ccd2dbd87",
   "run": 2,
   "case": {
     "template": "attitude",
     "section": "held_out",
-    "index": 12,
+    "index": 13,
     "category": "abstain",
     "text": "Yusra told Teodor that Ottoline sent the quilt.",
     "key": "c394597e4d"
