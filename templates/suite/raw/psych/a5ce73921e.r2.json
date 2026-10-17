@@ -1,0 +1,87 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "83d654d351078da34843fcdd2c851cb17742d5e5b2a421b203c2fcf14b7e368c",
+  "item": {
+    "id": "sa5ce73921e",
+    "text": "The ferret frightens Yusra."
+  },
+  "usage": {
+    "input": 9645,
+    "output": 122,
+    "thinking": null,
+    "total": 9767,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 9645,
+    "candidatesTokenCount": 122,
+    "totalTokenCount": 9767,
+    "cachedContentTokenCount": 7596,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 9645
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 7596
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 122
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sa5ce73921e\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"ferret\", \"definite\": true}, {\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"psych\", \"id\": \"p1\", \"verb\": \"frighten\", \"experiencer\": \"@n1\", \"stimulus\": \"@x1\", \"tense\": \"present\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sa5ce73921e",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "ferret",
+        "definite": true
+      },
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra"
+      },
+      {
+        "t": "psych",
+        "id": "p1",
+        "verb": "frighten",
+        "experiencer": "@n1",
+        "stimulus": "@x1",
+        "tense": "present"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "43caf6785635a5b865bcd87326023595e1fddfa30888316f56be9574edb8e5cb",
+  "run": 2,
+  "case": {
+    "template": "psych",
+    "section": "held_out",
+    "index": 3,
+    "category": "contrast",
+    "text": "The ferret frightens Yusra.",
+    "key": "a5ce73921e"
+  }
+}

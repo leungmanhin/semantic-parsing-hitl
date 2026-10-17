@@ -249,6 +249,16 @@ examples:
         - {t: transfer, id: e1, verb: send, giver: "@n2", object: "@x1", tense: past}
         - {t: attitude, id: a1, verb: assume, holder: "@n1", content: ["@e1"], factive: false,
            tense: past, aspect: perfect}
+    - category: positive
+      note: a psych verb with a clause is an attitude
+      text: "Yusra fears that Lamine sold the spindle."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: witness, id: x1, kind: spindle, definite: true}
+        - {t: transfer, id: e1, verb: sell, giver: "@n2", object: "@x1", tense: past}
+        - {t: attitude, id: a1, verb: fear, holder: "@n1", content: ["@e1"], factive: false,
+           tense: present}
     - category: abstain
       text: "Yusra knows Lamine."
       expected: {abstain: true, gap: G00, span: "knows Lamine"}                 # an entity object: acquaintance

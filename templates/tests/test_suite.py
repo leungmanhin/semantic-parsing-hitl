@@ -223,6 +223,18 @@ class ScoreTests(unittest.TestCase):
         self.assertFalse(row["pass"])                                     # a witness from unmapped words is a lint
         self.assertTrue(any(r.startswith("graph lints: dangling-referent") for r in row["reasons"]))
 
+    def test_expected_unmapped_on_a_firing_case(self):
+        c = case("psych", "held_out", "Yusra deeply distrusts Lamine.")
+        row = self.score(c, reply(c["instances"], unmapped=[{"span": "deeply", "code": "G02"}]))
+        self.assertTrue(row["pass"], row["reasons"])
+        row = self.score(c, reply(c["instances"]))
+        self.assertFalse(row["pass"])
+        self.assertIn("unmapped spans differ from the expected ones", row["reasons"])
+        row = self.score(c, reply(c["instances"], unmapped=[{"span": "deeply", "code": "G00"}]))
+        self.assertFalse(row["pass"])
+        row = self.score(c, reply(c["instances"], unmapped=[{"span": "deeply", "code": "G02"}, {"span": "Lamine", "code": "G00"}]))
+        self.assertFalse(row["pass"])
+
     def test_null_slots_are_stripped_and_counted(self):
         insts = copy.deepcopy(self.pos["instances"])
         insts[3]["aspect"] = None
@@ -257,7 +269,7 @@ FAKE_SCRIPT = textwrap.dedent('''
             raise ProviderError("unknown sentence")
         ex = next((m for m in matches if m.get("instances")), matches[0])   # a claim beats an abstain
         if ex.get("instances"):
-            resp = {"id": item_id, "instances": ex["instances"], "unmapped": [], "issues": []}
+            resp = {"id": item_id, "instances": ex["instances"], "unmapped": ex.get("unmapped") or [], "issues": []}
         else:
             exp = ex["expected"]
             resp = {"id": item_id, "instances": [], "issues": [],

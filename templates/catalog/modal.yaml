@@ -11,7 +11,9 @@ trigger:
     A modal auxiliary (can, could, might, may, must, should, have to, be allowed to) applied to
     a clause. The clause is not asserted; the modal scopes over it. The head records the
     modality (capability, epistemic possibility, epistemic necessity, obligation, permission),
-    and the surface word is kept.
+    and the surface word is kept. The clause under the modal keeps its own tense slot: present
+    for a bare infinitive (might lend), past with aspect perfect for a perfect infinitive
+    (might have lent); the modal instance carries nothing about tense.
   surface_forms:
     - "<S> might <V> …"
     - "<S> must <V> …"

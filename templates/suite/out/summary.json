@@ -1,15 +1,19 @@
 {
   "prompt": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_body_sha256": "e3d200dab1a94aef009e77e2e5738e5fb8713fdb47b96afd97dbe6f48a10d909",
+  "prompt_body_sha256": "43caf6785635a5b865bcd87326023595e1fddfa30888316f56be9574edb8e5cb",
   "typecheck": "ran",
   "checks": {
-    "examples": 53,
+    "examples": 71,
     "findings": [],
     "pending": {
-      "psych": [
+      "perception": [
         {
-          "template": "attitude",
-          "text": "Yusra distrusts Lamine."
+          "template": "psych",
+          "text": "Teodor saw the ferret."
+        },
+        {
+          "template": "psych",
+          "text": "Teodor heard the news."
         }
       ],
       "acquisition": [
@@ -29,12 +33,12 @@
   },
   "orphans": [],
   "templates": {
-    "communication": {
+    "psych": {
       "held_out": {
-        "records": 36,
-        "cases": 12,
+        "records": 39,
+        "cases": 13,
         "status": {
-          "ok": 36
+          "ok": 39
         },
         "stale_prompt": 0,
         "by_category": {
@@ -46,11 +50,11 @@
             "exact": 12
           },
           "contrast": {
-            "cases": 1,
-            "runs": 3,
-            "pass": 3,
-            "fired": 3,
-            "exact": 3
+            "cases": 2,
+            "runs": 6,
+            "pass": 6,
+            "fired": 6,
+            "exact": 6
           },
           "scoped": {
             "cases": 2,
@@ -60,28 +64,29 @@
             "exact": 6
           },
           "optional": {
-            "cases": 2,
-            "runs": 6,
-            "pass": 6,
-            "fired": 6,
-            "exact": 6
+            "cases": 1,
+            "runs": 3,
+            "pass": 3,
+            "fired": 3,
+            "exact": 3
           },
           "abstain": {
-            "cases": 3,
-            "runs": 9,
-            "pass": 9,
+            "cases": 4,
+            "runs": 12,
+            "pass": 12,
             "false_fires": 0,
             "outcomes": {
               "gap_reported": 6,
-              "target_fired": 3
+              "target_fired": 3,
+              "pending_unmapped": 3
             }
           }
         },
-        "pass": 36,
+        "pass": 39,
         "selection": {
           "fire_runs": 27,
           "fired": 27,
-          "abstain_runs": 9,
+          "abstain_runs": 12,
           "false_fires": 0
         },
         "fill": {
@@ -90,32 +95,24 @@
           "rate": 1.0
         },
         "stability": {
-          "cases": 12,
-          "pairs": 36,
+          "cases": 13,
+          "pairs": 39,
           "pairwise_agreement": 1.0,
-          "unanimous": 12
+          "unanimous": 13
         },
         "typecheck": {
-          "checked": 36,
-          "passed": 36
+          "checked": 39,
+          "passed": 39
         },
         "usage": {
-          "input": 303468,
-          "output": 6461,
+          "input": 376194,
+          "output": 4715,
           "thinking": 0,
-          "total": 309929,
-          "calls": 36,
+          "total": 380909,
+          "calls": 39,
           "thinking_calls": 0
         },
-        "issues": [
-          {
-            "code": "P00",
-            "where": "transfer",
-            "text": "The tense slot is required on predications, but the instructions do not specify which tense value to use when the clause is governed by a modal auxiliary like 'might'.",
-            "sentence": "Yusra told Teodor that Lamine might lend Ottoline the trowel.",
-            "run": 1
-          }
-        ],
+        "issues": [],
         "null_slots": 0,
         "lints": {},
         "models": [

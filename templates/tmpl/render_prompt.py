@@ -36,7 +36,7 @@ def _wrap(text: str, indent: str = "", first: str | None = None) -> str:
                          subsequent_indent=indent, break_long_words=False, break_on_hyphens=False)
 
 
-def _value_doc(spec: dict) -> str:
+def _value_doc(spec: dict, family: str | None = None) -> str:
     t = spec["type"]
     if t == "id":
         return "your label for this instance"
@@ -55,7 +55,9 @@ def _value_doc(spec: dict) -> str:
     if t == "filler":
         return '"@id" of a referent instance, or a bare lemma for a non-specific filler'
     if t == "refs":
-        return 'a list of "@id" of the instances this one scopes over'
+        if family == "scope":
+            return 'a list of "@id" of the instances this one scopes over'
+        return 'a list of "@id" of the instances that state the clause'
     if t == "list":
         return "a list of lemmas"
     return t
@@ -102,7 +104,7 @@ def render_template(tid: str, t: dict, catalog: dict, add) -> None:
         req = "required" if spec.get("required") else "optional"
         doc = spec.get("doc", "")
         tail = f": {doc}" if doc else ""
-        add(_wrap(f"`{name}` ({req}; {_value_doc(spec)}){tail}.", indent="  ", first="- "))
+        add(_wrap(f"`{name}` ({req}; {_value_doc(spec, t.get('family'))}){tail}.", indent="  ", first="- "))
     for group in t.get("one_of") or []:
         add(_wrap("Exactly one of " + ", ".join(f"`{g}`" for g in group) + " is filled.", indent="  ", first="- "))
     add("")
@@ -134,6 +136,12 @@ def render_template(tid: str, t: dict, catalog: dict, add) -> None:
         add("")
         for d in out["detail"]:
             add(f"    {d['term']}")
+        if ex.get("unmapped"):
+            add("")
+            add("and reports as unmapped:")
+            add("")
+            for u in ex["unmapped"]:
+                add("    " + json.dumps(u, ensure_ascii=False))
         add("")
 
 

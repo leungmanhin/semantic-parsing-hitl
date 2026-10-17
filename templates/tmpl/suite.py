@@ -26,7 +26,8 @@ it never sees the template, the category or the expected result.
 emitter and compares the atoms with the expected instances' atoms LABEL-INDEPENDENTLY: equal
 modulo a bijection on witness symbols (same stem), ``And`` / ``Or`` bundles as multisets.
 Every (case, run) is classified by category: a firing case passes when the template fired,
-the atoms match exactly and nothing was left unmapped; an abstain case passes when the
+the atoms match exactly and the unmapped spans are exactly the expected ones (none, unless the
+example lists some: an adverb with no slot is reported, the state still parsed); an abstain case passes when the
 template did not fire and the parser did what the expected target says (fired the target when
 it exists in the catalog, reported the gap code, or reported the span as unmapped when the
 target is pending).  Per template and section: selection (fire-cases fired, abstain-cases
@@ -104,7 +105,8 @@ def cases_of(catalog: dict, tid: str, sections=("held_out",)) -> list[dict]:
         for i, ex in enumerate((catalog[tid].get("examples") or {}).get(section) or []):
             out.append({"template": tid, "section": section, "index": i, "category": ex["category"],
                         "text": ex["text"], "note": ex.get("note"), "instances": ex.get("instances"),
-                        "expected": ex.get("expected"), "key": key_of(ex["text"])})
+                        "expected": ex.get("expected"), "unmapped": ex.get("unmapped") or [],
+                        "key": key_of(ex["text"])})
     return out
 
 
@@ -240,6 +242,25 @@ def _norm_sentence(s: str) -> str:
     return re.sub(r"[^a-z0-9]+", "", s.lower())
 
 
+def _tokens(span) -> set[str]:
+    return {_norm_sentence(w) for w in str(span or "").split()} - {""}
+
+
+def unmapped_match(want: list, got: list) -> bool:
+    """Every expected unmapped record is met by one parser record with the same code and an
+    overlapping span (one's tokens within the other's), and nothing is left over."""
+    left = [u for u in got if isinstance(u, dict)]
+    if len(want) != len(left):
+        return False
+    for w in want:
+        hit = next((g for g in left if g.get("code") == w.get("code")
+                    and (_tokens(w.get("span")) <= _tokens(g.get("span")) or _tokens(g.get("span")) <= _tokens(w.get("span")))), None)
+        if hit is None:
+            return False
+        left.remove(hit)
+    return True
+
+
 def _seen_sentences() -> set[str]:
     seen = set()
     for path in FRESHNESS_FILES:
@@ -276,6 +297,10 @@ def catalog_checks(catalog: dict, general: dict | None = None, freshness: bool =
             if case["section"] == "shown":
                 shown_texts.setdefault(text, tid)
             if case["category"] in FIRING:
+                for u in case.get("unmapped") or []:
+                    if not isinstance(u, dict) or u.get("code") not in gap_codes:
+                        findings.append({"kind": "unknown-gap-code", "template": tid, "text": case["text"],
+                                         "detail": f"expected unmapped record {u!r}"})
                 try:
                     out = E.emit({"id": "check", "instances": case["instances"]}, catalog)
                     units = units_of(out["statements"])
@@ -457,9 +482,15 @@ def score_record(case: dict, rec: dict, catalog: dict, heads: dict, body_sha: st
             if not row["exact"]:
                 row["diff"] = diff(expected, units, heads)
                 row["reasons"].append("witness identity differs" if row["diff"]["shape"] else "atoms differ")
-        if row["unmapped"]:
-            row["reasons"].append("unmapped spans in a covered sentence")
-        row["pass"] = fired_t and bool(row.get("exact")) and not row["unmapped"] and row["status"] == "ok"
+        if case.get("unmapped"):
+            unmapped_ok = unmapped_match(case["unmapped"], row["unmapped"])
+            if not unmapped_ok:
+                row["reasons"].append("unmapped spans differ from the expected ones")
+        else:
+            unmapped_ok = not row["unmapped"]
+            if not unmapped_ok:
+                row["reasons"].append("unmapped spans in a covered sentence")
+        row["pass"] = fired_t and bool(row.get("exact")) and unmapped_ok and row["status"] == "ok"
     else:
         exp = case["expected"] or {}
         target, gap = exp.get("template"), exp.get("gap")

@@ -1,0 +1,201 @@
+# Template: psych  (an emotional or evaluative state of an experiencer towards a stimulus)
+#
+# Two syntactic classes share one meaning shape. Fear-type verbs put the experiencer in subject
+# position (Yusra fears the ferret); frighten-type verbs put it in object position (The ferret
+# frightens Yusra). The slots are named by ROLE, not by position, so both classes fill the same
+# instance; the surface forms below say which is which. The stimulus is a thing or a named
+# individual; a clause as the object of a psych verb is an attitude, not this template.
+
+id: psych
+family: predication
+kind: verb-class
+title: An emotional or evaluative state towards a stimulus
+status: draft
+
+trigger:
+  construction: >
+    A verbal clause whose verb denotes an emotional or evaluative state that an experiencer
+    holds towards a stimulus: liking, disliking, fear, trust, admiration, envy, enjoyment,
+    dread. With a fear-type verb the subject is the experiencer and the object the stimulus
+    (fears the ferret); with a frighten-type verb the subject is the stimulus and the object
+    the experiencer (the ferret frightens Yusra). The stimulus is a noun phrase: a thing, a
+    named individual or an event named by a noun (dreaded the audit).
+  verbs: [like, dislike, love, hate, adore, despise, fear, dread, trust, distrust, admire,
+          respect, envy, resent, miss, enjoy, prefer, pity,
+          frighten, scare, worry, annoy, bother, please, delight, amuse, surprise, upset,
+          disappoint, impress]
+  verbs_note: >
+    The first line is the fear-type class (experiencer as subject), the second the frighten-type
+    class (experiencer as object). An unlisted verb that denotes such a state belongs here, with
+    the roles assigned by meaning: who feels, and what the feeling is about.
+  surface_forms:
+    - "<experiencer> V <stimulus>"              # fear-type: Yusra fears the ferret
+    - "<stimulus> V <experiencer>"              # frighten-type: the ferret frightens Yusra
+    - "<experiencer> was V-ed by <stimulus>"    # frighten-type passive: the roles do not change
+    - "<experiencer> was V-ed"                  # frighten-type passive, stimulus unstated
+  boundary:                   # looks like a psych state but is not one
+    - >-
+      a clause as the object — fears that P, hopes that P, likes that P: an attitude towards a
+      proposition; nothing is felt about a thing
+    - >-
+      an infinitival or gerund complement — likes to send quilts, enjoys sending quilts: the
+      object is an action, a different construction
+    - >-
+      an adjectival state — is afraid of the ferret, is fond of Lamine, is angry: a copular
+      clause with a property, not a verb of this class
+    - >-
+      perception — saw the ferret, heard the news: perceiving something, not feeling something
+      about it
+    - >-
+      a degree or manner adverb on the verb (deeply distrusts, really likes): the state is
+      parsed; the adverb has no slot and is reported as unmapped
+
+slots:
+  id:          {type: id, required: true, doc: "your label for the state"}
+  verb:        {type: lemma, class: Class, required: true, doc: "the verb lemma"}
+  experiencer: {type: filler, class: Entity, role: Experiencer, required: true,
+                doc: "who holds the state: the subject of a fear-type verb, the object of a frighten-type verb"}
+  stimulus:    {type: filler, class: Entity, role: Stimulus, required: false,
+                doc: "what the state is about: the object of a fear-type verb, the subject (or by-phrase) of a frighten-type verb; absent in an agentless passive"}
+  tense:       {type: enum, values: [past, present, future], required: true,
+                doc: "the clause's tense; present is recorded, not inferred"}
+  aspect:      {type: enum, values: [simple, progressive, perfect], required: false, default: simple}
+
+mints: {id: Event}
+
+emits:
+  - atom: "(Member @id {verb})"
+  - atom: "(Experiencer @id {experiencer})"
+  - atom: "(Stimulus @id {stimulus})"
+    if_filled: stimulus
+  - atom: "(Past @id)"
+    when: "tense == past or aspect == perfect"
+  - atom: "(Future @id)"
+    when: "tense == future"
+  - atom: "(Ongoing @id)"
+    when: "aspect == progressive"
+
+notes:
+  - >-
+    One shape for both syntactic classes: the verb lemma records which class the text used, and
+    the roles record who feels what. The class contrast pair in the held-out suite (fears /
+    frightens) is the sensitivity test for the role mapping.
+  - >-
+    Degree ("deeply", "really") is a stated qualifier with no slot here; by the entailment rule
+    the state itself still holds, so the state is parsed and the adverb is reported as unmapped
+    (G02) rather than the whole clause dropped.
+
+depends_on: [named-entity, witness]
+composes_with: [negation, modal, time]
+
+examples:
+  shown:                     # rendered into the prompt
+    - category: positive
+      note: fear-type, experiencer as subject
+      text: "Yusra distrusts Lamine."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: psych, id: p1, verb: distrust, experiencer: "@n1", stimulus: "@n2", tense: present}
+      emitted:               # what the emitter produces (illustration; the emitter is the authority)
+        - "(Name yusra \"Yusra\")"
+        - "(Name lamine \"Lamine\")"
+        - "(Member sk_distrust_1 distrust)"
+        - "(Experiencer sk_distrust_1 yusra)"
+        - "(Stimulus sk_distrust_1 lamine)"
+      declarations:
+        - "(: yusra Entity)"
+        - "(: lamine Entity)"
+        - "(: sk_distrust_1 Event)"
+        - "(: distrust Class)"
+    - category: positive
+      note: frighten-type, experiencer as object — the same roles
+      text: "The ferret frightens Teodor."
+      instances:
+        - {t: witness, id: x1, kind: ferret, definite: true}
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: psych, id: p1, verb: frighten, experiencer: "@n1", stimulus: "@x1", tense: present}
+    - category: abstain
+      text: "Teodor saw the ferret."
+      expected: {abstain: true, template: perception}                 # perception, not a feeling
+    - category: abstain
+      text: "Yusra likes to send quilts."
+      expected: {abstain: true, gap: G00, span: "likes to send quilts"}   # infinitival complement
+
+  held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      text: "Lamine admires Ottoline."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: named-entity, id: n2, name: "Ottoline"}
+        - {t: psych, id: p1, verb: admire, experiencer: "@n1", stimulus: "@n2", tense: present}
+    - category: contrast
+      note: role reversal — the instance must differ in experiencer and stimulus only
+      text: "Ottoline admires Lamine."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: psych, id: p1, verb: admire, experiencer: "@n1", stimulus: "@n2", tense: present}
+    - category: positive
+      text: "Yusra fears the ferret."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, kind: ferret, definite: true}
+        - {t: psych, id: p1, verb: fear, experiencer: "@n1", stimulus: "@x1", tense: present}
+    - category: contrast
+      note: class flip — subject and object swap positions, the roles do not; only the verb differs
+      text: "The ferret frightens Yusra."
+      instances:
+        - {t: witness, id: x1, kind: ferret, definite: true}
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: psych, id: p1, verb: frighten, experiencer: "@n1", stimulus: "@x1", tense: present}
+    - category: positive
+      note: an event named by a noun as the stimulus; past tense
+      text: "Teodor dreaded the audit."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, kind: audit, definite: true}
+        - {t: psych, id: p1, verb: dread, experiencer: "@n1", stimulus: "@x1", tense: past}
+    - category: scoped
+      note: under clausal negation
+      text: "Yusra does not trust Lamine."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: psych, id: p1, verb: trust, experiencer: "@n1", stimulus: "@n2", tense: present}
+        - {t: negation, id: s1, over: ["@p1"]}
+    - category: scoped
+      note: under a modal
+      text: "Ottoline might like the quilt."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: psych, id: p1, verb: like, experiencer: "@n1", stimulus: "@x1", tense: present}
+        - {t: modal, id: s1, over: ["@p1"], head: Might, surface: might}
+    - category: optional
+      note: frighten-type agentless passive — no stimulus
+      text: "Teodor was frightened."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: psych, id: p1, verb: frighten, experiencer: "@n1", tense: past}
+    - category: positive
+      note: a degree adverb — the state is parsed, the adverb is reported (entailment rule)
+      text: "Yusra deeply distrusts Lamine."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: psych, id: p1, verb: distrust, experiencer: "@n1", stimulus: "@n2", tense: present}
+      unmapped:
+        - {code: G02, span: "deeply"}
+    - category: abstain
+      text: "Yusra fears that Lamine sold the spindle."
+      expected: {abstain: true, template: attitude}                   # a clause as the object
+    - category: abstain
+      text: "Teodor heard the news."
+      expected: {abstain: true, template: perception}
+    - category: abstain
+      text: "Ottoline is afraid of the ferret."
+      expected: {abstain: true, gap: G00, span: "is afraid of the ferret"}      # adjectival state
+    - category: abstain
+      text: "Lamine enjoys sending quilts."
+      expected: {abstain: true, gap: G00, span: "enjoys sending quilts"}        # gerund complement

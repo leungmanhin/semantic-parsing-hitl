@@ -1,0 +1,86 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "83d654d351078da34843fcdd2c851cb17742d5e5b2a421b203c2fcf14b7e368c",
+  "item": {
+    "id": "s2b4a452a60",
+    "text": "Ottoline admires Lamine."
+  },
+  "usage": {
+    "input": 9647,
+    "output": 119,
+    "thinking": null,
+    "total": 9766,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 9647,
+    "candidatesTokenCount": 119,
+    "totalTokenCount": 9766,
+    "cachedContentTokenCount": 7598,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 9647
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 7598
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 119
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s2b4a452a60\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Lamine\"}, {\"t\": \"psych\", \"id\": \"p1\", \"verb\": \"admire\", \"experiencer\": \"@n1\", \"stimulus\": \"@n2\", \"tense\": \"present\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s2b4a452a60",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Ottoline"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Lamine"
+      },
+      {
+        "t": "psych",
+        "id": "p1",
+        "verb": "admire",
+        "experiencer": "@n1",
+        "stimulus": "@n2",
+        "tense": "present"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "43caf6785635a5b865bcd87326023595e1fddfa30888316f56be9574edb8e5cb",
+  "run": 2,
+  "case": {
+    "template": "psych",
+    "section": "held_out",
+    "index": 1,
+    "category": "contrast",
+    "text": "Ottoline admires Lamine.",
+    "key": "2b4a452a60"
+  }
+}

@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 00eaeae5141e88ab · 7 templates
+catalog sha256 b1cc01580f1789d9 · 8 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -267,7 +267,7 @@ Slots:
 - `verb` (required; a lemma): the attitude verb lemma.
 - `holder` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
   who holds the attitude: the subject.
-- `content` (required; a list of "@id" of the instances this one scopes over): the complement
+- `content` (required; a list of "@id" of the instances that state the clause): the complement
   clause: the ids of the instances that state it, that is its predication or the scope operator
   (negation, modal) over that predication; the referents it mentions are not listed.
 - `factive` (required; true / false): true when the verb presupposes the complement (know,
@@ -348,7 +348,7 @@ The program renders these instances as:
 Not this template. TEXT: Teodor told Ottoline that Lamine sold the spindle. — use
 `communication`.
 
-Not this template. TEXT: Yusra distrusts Lamine. — report the span as unmapped.
+Not this template. TEXT: Yusra distrusts Lamine. — use `psych`.
 
 ### communication — Communication of a message to an addressee
 
@@ -395,7 +395,7 @@ Slots:
   text leaves it out.
 - `message` (optional; "@id" of a referent instance, or a bare lemma for a non-specific filler):
   the message as a thing: the news, a secret, the result.
-- `content` (optional; a list of "@id" of the instances this one scopes over): the message as a
+- `content` (optional; a list of "@id" of the instances that state the clause): the message as a
   clause: the ids of the instances that state it, that is its predication or the scope operator
   (negation, modal) over that predication; the referents it mentions are not listed.
 - `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
@@ -453,6 +453,96 @@ Not this template. TEXT: Teodor said that Lamine sold the spindle. — use `atti
 
 Not this template. TEXT: Teodor asked Ottoline whether Lamine sold the spindle. — report it as
 unmapped: {"span": "asked Ottoline whether Lamine sold the spindle", "code": "G00"}.
+
+### psych — An emotional or evaluative state towards a stimulus
+
+When: A verbal clause whose verb denotes an emotional or evaluative state that an experiencer
+holds towards a stimulus: liking, disliking, fear, trust, admiration, envy, enjoyment, dread.
+With a fear-type verb the subject is the experiencer and the object the stimulus (fears the
+ferret); with a frighten-type verb the subject is the stimulus and the object the experiencer
+(the ferret frightens Yusra). The stimulus is a noun phrase: a thing, a named individual or an
+event named by a noun (dreaded the audit).
+
+Verbs that anchor the class: like, dislike, love, hate, adore, despise, fear, dread, trust,
+distrust, admire, respect, envy, resent, miss, enjoy, prefer, pity, frighten, scare, worry,
+annoy, bother, please, delight, amuse, surprise, upset, disappoint, impress.
+The first line is the fear-type class (experiencer as subject), the second the frighten-type
+class (experiencer as object). An unlisted verb that denotes such a state belongs here, with the
+roles assigned by meaning: who feels, and what the feeling is about.
+
+Forms:
+- <experiencer> V <stimulus>
+- <stimulus> V <experiencer>
+- <experiencer> was V-ed by <stimulus>
+- <experiencer> was V-ed
+
+Not this template:
+- a clause as the object — fears that P, hopes that P, likes that P: an attitude towards a
+  proposition; nothing is felt about a thing
+- an infinitival or gerund complement — likes to send quilts, enjoys sending quilts: the object
+  is an action, a different construction
+- an adjectival state — is afraid of the ferret, is fond of Lamine, is angry: a copular clause
+  with a property, not a verb of this class
+- perception — saw the ferret, heard the news: perceiving something, not feeling something about
+  it
+- a degree or manner adverb on the verb (deeply distrusts, really likes): the state is parsed;
+  the adverb has no slot and is reported as unmapped
+
+Slots:
+
+- `t` (required): "psych"
+- `id` (required; your label for this instance): your label for the state.
+- `verb` (required; a lemma): the verb lemma.
+- `experiencer` (required; "@id" of a referent instance, or a bare lemma for a non-specific
+  filler): who holds the state: the subject of a fear-type verb, the object of a frighten-type
+  verb.
+- `stimulus` (optional; "@id" of a referent instance, or a bare lemma for a non-specific
+  filler): what the state is about: the object of a fear-type verb, the subject (or by-phrase)
+  of a frighten-type verb; absent in an agentless passive.
+- `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
+  not inferred.
+- `aspect` (optional; one of: simple, progressive, perfect).
+
+Example (fear-type, experiencer as subject). TEXT: Yusra distrusts Lamine.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Yusra"},
+      {"t": "named-entity", "id": "n2", "name": "Lamine"},
+      {"t": "psych", "id": "p1", "verb": "distrust", "experiencer": "@n1", "stimulus": "@n2", "tense": "present"}
+    ]
+
+The program renders these instances as:
+
+    (Name yusra "Yusra")
+    (Name lamine "Lamine")
+    (Member sk_distrust_1 distrust)
+    (Experiencer sk_distrust_1 yusra)
+    (Stimulus sk_distrust_1 lamine)
+
+Example (frighten-type, experiencer as object — the same roles). TEXT: The ferret frightens Teodor.
+
+Instances:
+
+    [
+      {"t": "witness", "id": "x1", "kind": "ferret", "definite": true},
+      {"t": "named-entity", "id": "n1", "name": "Teodor"},
+      {"t": "psych", "id": "p1", "verb": "frighten", "experiencer": "@n1", "stimulus": "@x1", "tense": "present"}
+    ]
+
+The program renders these instances as:
+
+    (Member sk_ferret_1 ferret)
+    (Name teodor "Teodor")
+    (Member sk_frighten_1 frighten)
+    (Experiencer sk_frighten_1 teodor)
+    (Stimulus sk_frighten_1 sk_ferret_1)
+
+Not this template. TEXT: Teodor saw the ferret. — report the span as unmapped.
+
+Not this template. TEXT: Yusra likes to send quilts. — report it as unmapped: {"span": "likes to
+send quilts", "code": "G00"}.
 
 ### transfer — Transfer of an object from one party to another
 
@@ -574,7 +664,9 @@ Not this template. TEXT: Ottoline took the envelope from Lamine. — report the 
 When: A modal auxiliary (can, could, might, may, must, should, have to, be allowed to) applied
 to a clause. The clause is not asserted; the modal scopes over it. The head records the modality
 (capability, epistemic possibility, epistemic necessity, obligation, permission), and the
-surface word is kept.
+surface word is kept. The clause under the modal keeps its own tense slot: present for a bare
+infinitive (might lend), past with aspect perfect for a perfect infinitive (might have lent);
+the modal instance carries nothing about tense.
 
 Forms:
 - <S> might <V> …
