@@ -1,0 +1,177 @@
+# Template: group  (a plural noun phrase introducing a group of individuals)
+#
+# A plural phrase with a common-noun head is ONE referent: a group witness whose members are
+# of the stated kind, with an exact count when a numeral gives it and the vague size phrase
+# otherwise. What the sentence says of the group is said by the ordinary templates with the
+# group as the filler (the group-level statement); whether it also holds of each member is the
+# distribution template's business. Coordinated names are not a group: one instance per conjunct.
+
+id: group
+family: referent
+kind: referent
+title: A plural noun phrase introducing a group of individuals
+status: draft
+
+trigger:
+  construction: >
+    A plural noun phrase headed by a common noun — the ferrets, several students, three
+    ladders, a few children, dozens of protesters, both ladders, Yusra's ferrets — introducing
+    a group of individuals of that kind. The group gets one witness symbol. Its size is
+    recorded as an exact count when a numeral or "both" states it (three → 3, both → 2) and as
+    the vague phrase as written otherwise (several, a few, dozens). A definite group ("the",
+    "these", "those", "both") is marked definite; a possessed group (Yusra's ferrets) records
+    its possessor and needs no definite mark — the possessor presupposes it.
+  surface_forms:
+    - "the <N>s"                        # the ferrets
+    - "<numeral> <N>s"                  # three ladders
+    - "several / a few / many / dozens of <N>s"
+    - "both <N>s"                       # definite, count 2, no phrase
+    - "<possessor>'s <N>s"              # Yusra's ferrets
+  boundary:                   # looks like a group but is not one
+    - >-
+      coordinated names or referents — Teodor and Yusra, the ladder and the quilt: one
+      instance per conjunct, no group
+    - >-
+      a bare plural read generically — ferrets are curious: a statement about the kind
+    - >-
+      a quantifier word — all ferrets, every ferret, each ferret, most ferrets, no ferret: a
+      quantified generalization, not a group
+    - >-
+      a singular noun phrase — the ferret, a ladder: a witness
+
+slots:
+  id:        {type: id, required: true, doc: "your label for the group"}
+  kind:      {type: lemma, class: Class, required: true, doc: "the head noun's lemma, singular (ferret)"}
+  definite:  {type: bool, required: false, doc: "true for the / these / those / both; absent for a possessed group (the possessor presupposes it) and otherwise"}
+  count:     {type: number, required: false, doc: "the exact size when a numeral or both states it (three → 3; both → 2)"}
+  quantity:  {type: string, required: false, doc: "the vague size phrase as written (several, a few, dozens); absent when a numeral or both states the size"}
+  props:     {type: list, class: Class, required: false, doc: "adjectival properties stated in the phrase"}
+  possessor: {type: filler, class: Entity, required: false, doc: "the possessor of a possessive phrase (Yusra's ferrets)"}
+
+mints: {id: Entity, literal: group}
+
+presupposed: [definite, possessor]      # a definite or possessed group exists whatever scope mentions it
+
+emits:
+  - atom: "(GroupOf @id {kind})"
+  - atom: "(Cardinality @id {count})"
+    if_filled: count
+  - atom: "(CardinalityPhrase @id \"{quantity}\")"
+    if_filled: quantity
+  - atom: "(Member @id {props})"
+    each: props
+  - atom: "(Possession @id {possessor})"
+    if_filled: possessor
+
+notes:
+  - >-
+    The group is an individual of its own, so the predication templates take it as any other
+    referent; the group-level statement is always true of the group as such. The per-member
+    reading is a separate instance (distribution), because the text decides it: several
+    students laughed distributes, three students carried the ladder together does not.
+  - >-
+    "both" asserts exactly two of a known pair: count 2 and definite, like a numeral on a
+    definite group; the word itself is not kept as a phrase.
+
+depends_on: [named-entity, witness]
+composes_with: [distribution]
+
+examples:
+  shown:                     # rendered into the prompt
+    - category: positive
+      note: a vague size; the sleeping distributes to each ferret
+      text: "Several ferrets slept."
+      instances:
+        - {t: group, id: g1, kind: ferret, quantity: several}
+        - {t: activity, id: v1, verb: sleep, actor: "@g1", tense: past}
+        - {t: distribution, id: d1, group: "@g1", over: ["@v1"]}
+      emitted:               # what the emitter produces (illustration; the emitter is the authority)
+        - "(GroupOf sk_group_1 ferret)"
+        - "(CardinalityPhrase sk_group_1 \"several\")"
+        - "(Member sk_sleep_1 sleep)"
+        - "(Agent sk_sleep_1 sk_group_1)"
+        - "(Past sk_sleep_1)"
+        - "(Implication (PartOf $x sk_group_1) (And (Member (sk_sleep $x) sleep) (Agent (sk_sleep $x) $x) (Past (sk_sleep $x))))"
+      declarations:
+        - "(: ferret Class)"
+        - "(: sk_group_1 Entity)"
+        - "(: sk_sleep_1 Event)"
+        - "(: sleep Class)"
+    - category: positive
+      note: an exact count; a collective predicate — no distribution
+      text: "Three ferrets surrounded the barn."
+      instances:
+        - {t: group, id: g1, kind: ferret, count: 3}
+        - {t: witness, id: x1, kind: barn, definite: true}
+        - {t: activity, id: v1, verb: surround, actor: "@g1", patient: "@x1", tense: past}
+    - category: abstain
+      text: "Ferrets are curious."
+      expected: {abstain: true, template: kind-statement}             # a bare plural: the kind
+
+  held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      note: a definite group with a copular predicate, distributed
+      text: "The ferrets are curious."
+      instances:
+        - {t: group, id: g1, kind: ferret, definite: true}
+        - {t: copular, id: c1, subject: "@g1", predicate: curious, form: adjective, tense: present}
+        - {t: distribution, id: d1, group: "@g1", over: ["@c1"]}
+    - category: positive
+      note: an exact count
+      text: "Three students waited."
+      instances:
+        - {t: group, id: g1, kind: student, count: 3}
+        - {t: activity, id: v1, verb: wait, actor: "@g1", tense: past}
+        - {t: distribution, id: d1, group: "@g1", over: ["@v1"]}
+    - category: positive
+      text: "The ferrets slept."
+      instances:
+        - {t: group, id: g1, kind: ferret, definite: true}
+        - {t: activity, id: v1, verb: sleep, actor: "@g1", tense: past}
+        - {t: distribution, id: d1, group: "@g1", over: ["@v1"]}
+    - category: contrast
+      note: a collective predicate — the same group, no distribution instance
+      text: "The ferrets surrounded the barn."
+      instances:
+        - {t: group, id: g1, kind: ferret, definite: true}
+        - {t: witness, id: x1, kind: barn, definite: true}
+        - {t: activity, id: v1, verb: surround, actor: "@g1", patient: "@x1", tense: past}
+    - category: positive
+      note: a vague phrase
+      text: "A few students laughed."
+      instances:
+        - {t: group, id: g1, kind: student, quantity: a few}
+        - {t: activity, id: v1, verb: laugh, actor: "@g1", tense: past}
+        - {t: distribution, id: d1, group: "@g1", over: ["@v1"]}
+    - category: positive
+      note: both — definite, count 2
+      text: "Both ladders are crooked."
+      instances:
+        - {t: group, id: g1, kind: ladder, definite: true, count: 2}
+        - {t: copular, id: c1, subject: "@g1", predicate: crooked, form: adjective, tense: present}
+        - {t: distribution, id: d1, group: "@g1", over: ["@c1"]}
+    - category: positive
+      note: a possessed group
+      text: "Yusra's ferrets slept."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: group, id: g1, kind: ferret, possessor: "@n1"}
+        - {t: activity, id: v1, verb: sleep, actor: "@g1", tense: past}
+        - {t: distribution, id: d1, group: "@g1", over: ["@v1"]}
+    - category: scoped
+      note: under clausal negation — the group-level denial and the per-member rule over it
+      text: "The ferrets did not sleep."
+      instances:
+        - {t: group, id: g1, kind: ferret, definite: true}
+        - {t: activity, id: v1, verb: sleep, actor: "@g1", tense: past}
+        - {t: negation, id: s1, over: ["@v1"]}
+        - {t: distribution, id: d1, group: "@g1", over: ["@s1"]}
+    - category: abstain
+      text: "Teodor and Yusra laughed."
+      expected: {abstain: true, template: activity}                   # coordinated names: one instance each
+    - category: abstain
+      text: "The ferret slept."
+      expected: {abstain: true, template: activity}                   # a singular subject: a witness
+    - category: abstain
+      text: "Every ferret slept."
+      expected: {abstain: true, template: generic}                    # a quantifier word

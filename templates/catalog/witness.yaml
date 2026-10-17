@@ -13,7 +13,7 @@ trigger:
     individual gets a numbered witness symbol; whether the phrase is definite is recorded. A
     possessive phrase (Yusra's quilt, the quilt of Yusra, her quilt) is a witness with its
     possessor recorded: the possessor is a referent (a possessive pronoun resolves to its
-    antecedent's id), and the phrase counts as definite.
+    antecedent's id); the possessor presupposes the witness, so no definite mark is needed.
   surface_forms:
     - "a <N>"                       # indefinite
     - "the <N>"                     # definite
@@ -32,7 +32,7 @@ trigger:
 slots:
   id:       {type: id, required: true}
   kind:     {type: lemma, class: Class, required: true, doc: "the head noun's lemma"}
-  definite: {type: bool, required: false, doc: "true for the / this / that, absent for a / an"}
+  definite: {type: bool, required: false, doc: "true for the / this / that; absent for a / an and for a possessed phrase (the possessor presupposes it)"}
   props:    {type: list, class: Class, required: false, doc: "adjectival properties stated in the phrase"}
   possessor: {type: filler, class: Entity, required: false,
               doc: "the possessor of a possessive phrase: Yusra's quilt, the quilt of Yusra; a referent id, or a bare lemma for a kind-level possessor"}

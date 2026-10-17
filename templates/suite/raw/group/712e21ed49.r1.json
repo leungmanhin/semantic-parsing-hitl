@@ -1,0 +1,66 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "e2b973ee776d149578b24ed0b89eebd7611ca803b1694eeec798000b403d85d1",
+  "item": {
+    "id": "s712e21ed49",
+    "text": "Every ferret slept."
+  },
+  "usage": {
+    "input": 18158,
+    "output": 64,
+    "thinking": null,
+    "total": 18222,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 18158,
+    "candidatesTokenCount": 64,
+    "totalTokenCount": 18222,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 18158
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 64
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s712e21ed49\", \"instances\": [], \"unmapped\": [{\"span\": \"Every ferret slept.\", \"code\": \"G00\", \"construction\": \"A universally quantified clause with 'every' on the subject.\"}], \"issues\": []}",
+  "response": {
+    "id": "s712e21ed49",
+    "instances": [],
+    "unmapped": [
+      {
+        "span": "Every ferret slept.",
+        "code": "G00",
+        "construction": "A universally quantified clause with 'every' on the subject."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "14b00737838e1675ab4e788a994c47c68a9bee0ef066c52422d3b5da5e8f650a",
+  "run": 1,
+  "case": {
+    "template": "group",
+    "section": "held_out",
+    "index": 10,
+    "category": "abstain",
+    "text": "Every ferret slept.",
+    "key": "712e21ed49"
+  }
+}

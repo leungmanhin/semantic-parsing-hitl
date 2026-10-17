@@ -101,6 +101,19 @@ class EmitTests(unittest.TestCase):
         self.assertEqual(len(neg), 1)
         self.assertTrue(neg[0].startswith("(: s1_not (Not (Inheritance ferret rodent))") and neg[0].endswith("(STV 1.0 0.99))"))
 
+    def test_distribution_rule_keeps_the_group_statement_and_skolemizes(self):
+        ex = next(e for _, _, e in all_examples() if e["text"] == "Several ferrets slept.")
+        out = E.emit({"id": "g", "instances": ex["instances"]}, CATALOG)
+        atoms = atoms_of(out["statements"])
+        self.assertIn("(Agent sk_sleep_1 sk_group_1)", atoms)                 # the group-level statement stays
+        rule = next(a for a in atoms if a.startswith("(Implication"))
+        self.assertEqual(rule, "(Implication (PartOf $x sk_group_1) (And (Member (sk_sleep $x) sleep) (Agent (sk_sleep $x) $x) (Past (sk_sleep $x))))")
+        self.assertTrue(next(st for st in out["statements"] if "(Implication" in st).endswith("(STV 1.0 0.9))"))
+        neg = next(e for _, _, e in all_examples() if e["text"] == "The ferrets did not sleep.")
+        natoms = atoms_of(E.emit({"id": "n", "instances": neg["instances"]}, CATALOG)["statements"])
+        self.assertTrue(any(a.startswith("(Not (And (Member sk_sleep_1 sleep)") for a in natoms))
+        self.assertTrue(any(a.startswith("(Implication (PartOf $x sk_group_1) (Not (And (Member (sk_sleep $x) sleep)") for a in natoms))
+
     def test_when_clauses_are_case_insensitive(self):
         self.assertTrue(E.holds("factive == true", {"factive": True}))
         self.assertFalse(E.holds("factive == true", {"factive": False}))

@@ -30,7 +30,7 @@ CATALOG_DIR = os.path.abspath(os.path.join(HERE, os.pardir, "catalog"))
 SLOT_TYPES = {"id", "lemma", "filler", "refs", "enum", "bool", "string", "number", "int", "list"}
 CLASSED = {"lemma", "filler", "refs"}
 CATEGORIES = {"positive", "contrast", "scoped", "optional", "abstain"}
-SLOT_KEYS = {"type", "class", "role", "required", "default", "values", "doc"}
+SLOT_KEYS = {"type", "class", "role", "required", "default", "values", "doc", "consumes", "bind", "skolemize"}
 
 _PLACEHOLDER = re.compile(r"\{([a-z_]+)\}")
 
@@ -63,6 +63,11 @@ def check_template(t: dict, path: str) -> list[str]:
             problems.append(f"slot {sname}: a {spec['type']} slot needs a substrate class")
         if spec["type"] == "enum" and not spec.get("values"):
             problems.append(f"slot {sname}: an enum slot needs values")
+        for key in ("consumes", "bind", "skolemize"):
+            if key in spec and spec["type"] != "refs":
+                problems.append(f"slot {sname}: {key} applies to refs slots only")
+        if spec.get("bind") and (slots.get(spec["bind"]) or {}).get("type") != "filler":
+            problems.append(f"slot {sname}: bind must name a filler slot of the template")
     for i, group in enumerate(t.get("one_of") or []):
         if not isinstance(group, list) or len(group) < 2 or any(g not in slots for g in group):
             problems.append(f"one_of[{i}]: must list two or more slots of the template")
@@ -71,8 +76,8 @@ def check_template(t: dict, path: str) -> list[str]:
             problems.append(f"presupposed: {s!r} is not a slot")
     truth = t.get("truth")
     if truth is not None:
-        if not isinstance(truth, dict) or truth.get("slot") not in slots:
-            problems.append("truth: must name a slot of the template")
+        if not isinstance(truth, dict) or ("slot" in truth and truth["slot"] not in slots) or ("slot" not in truth and "default" not in truth):
+            problems.append("truth: must name a slot of the template, or give a default")
         else:
             pairs = list((truth.get("values") or {}).values()) + ([truth["default"]] if "default" in truth else [])
             for pair in pairs:

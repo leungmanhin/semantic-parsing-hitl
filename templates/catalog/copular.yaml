@@ -14,8 +14,11 @@ status: draft
 
 trigger:
   construction: >
-    A clause with "be" as its main verb whose subject refers to an individual and whose
-    predicate is an indefinite noun phrase (is a locksmith) or an adjective (is crooked). The
+    A clause with "be" as its main verb whose subject is a referent instance — a name, a
+    witness, a group (the ferrets) or a resolved pronoun — and whose predicate is an indefinite
+    noun phrase (is a locksmith) or an adjective (is crooked). A group as the subject takes the
+    predicate as a group; whether it also holds of each member is the distribution template's
+    business. The
     predicate's head is the kind or the property; an adjective inside a predicate noun phrase
     (is a careful weaver) is a second copular instance with the adjective as its predicate.
     Tense is the clause's; present is recorded and emits nothing.
@@ -30,9 +33,6 @@ trigger:
     - >-
       a quantifier word on the subject — all ferrets are curious, most herons are patient:
       a quantified generalization
-    - >-
-      a plural subject — the ferrets are curious, two ladders are crooked: a group of
-      individuals, not one individual
     - >-
       a copular verb other than be — seems tired, looks tired, remains open: an evidential or
       aspectual verb; became a locksmith, got tired: a change of state
@@ -51,7 +51,7 @@ trigger:
 slots:
   id:        {type: id, required: true, doc: "your label for the predication"}
   subject:   {type: filler, class: Entity, required: true,
-              doc: "the individual: a referent id (a name, a witness, a resolved pronoun)"}
+              doc: "the subject: a referent id (a name, a witness, a group, a resolved pronoun)"}
   predicate: {type: lemma, class: Class, required: true,
               doc: "the kind (locksmith) or the property (crooked), lemmatized"}
   form:      {type: enum, values: [noun, adjective], required: true,

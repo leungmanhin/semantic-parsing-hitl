@@ -1,0 +1,93 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "8c00a5b1e0a3e9bf07dd0d7ee0b05eda890e9ced0c007552a084053d71915f5d",
+  "item": {
+    "id": "sf8f1c2fcde",
+    "text": "Lamine sold the spindle to Teodor."
+  },
+  "usage": {
+    "input": 18312,
+    "output": 145,
+    "thinking": null,
+    "total": 18457,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 18312,
+    "candidatesTokenCount": 145,
+    "totalTokenCount": 18457,
+    "cachedContentTokenCount": 16263,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 18312
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 16263
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 145
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sf8f1c2fcde\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"spindle\", \"definite\": true}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\"}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"sell\", \"giver\": \"@n1\", \"recipient\": \"@n2\", \"object\": \"@x1\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sf8f1c2fcde",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "spindle",
+        "definite": true
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Teodor"
+      },
+      {
+        "t": "transfer",
+        "id": "e1",
+        "verb": "sell",
+        "giver": "@n1",
+        "recipient": "@n2",
+        "object": "@x1",
+        "tense": "past"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "1f1bd4be275047a20fd04619f6974c72a5121f21242054798635c1cd6fa89c28",
+  "run": 3,
+  "case": {
+    "template": "transfer",
+    "section": "held_out",
+    "index": 3,
+    "category": "positive",
+    "text": "Lamine sold the spindle to Teodor.",
+    "key": "f8f1c2fcde"
+  }
+}

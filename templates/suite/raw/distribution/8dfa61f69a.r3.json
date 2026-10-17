@@ -1,0 +1,88 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "8c00a5b1e0a3e9bf07dd0d7ee0b05eda890e9ced0c007552a084053d71915f5d",
+  "item": {
+    "id": "s8dfa61f69a",
+    "text": "The ferrets surrounded the barn."
+  },
+  "usage": {
+    "input": 18311,
+    "output": 119,
+    "thinking": null,
+    "total": 18430,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 18311,
+    "candidatesTokenCount": 119,
+    "totalTokenCount": 18430,
+    "cachedContentTokenCount": 16262,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 18311
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 16262
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 119
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s8dfa61f69a\", \"instances\": [{\"t\": \"group\", \"id\": \"g1\", \"kind\": \"ferret\", \"definite\": true}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"barn\", \"definite\": true}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"surround\", \"actor\": \"@g1\", \"patient\": \"@x1\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s8dfa61f69a",
+    "instances": [
+      {
+        "t": "group",
+        "id": "g1",
+        "kind": "ferret",
+        "definite": true
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "barn",
+        "definite": true
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "surround",
+        "actor": "@g1",
+        "patient": "@x1",
+        "tense": "past"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "1f1bd4be275047a20fd04619f6974c72a5121f21242054798635c1cd6fa89c28",
+  "run": 3,
+  "case": {
+    "template": "distribution",
+    "section": "held_out",
+    "index": 4,
+    "category": "abstain",
+    "text": "The ferrets surrounded the barn.",
+    "key": "8dfa61f69a"
+  }
+}

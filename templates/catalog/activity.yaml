@@ -183,6 +183,20 @@ examples:
       instances:
         - {t: witness, id: x1, kind: quilt, definite: true}
         - {t: activity, id: v1, verb: wash, patient: "@x1", tense: past}
+    - category: positive
+      note: coordinated names — one instance per conjunct, no group
+      text: "Teodor and Yusra laughed."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: named-entity, id: n2, name: "Yusra"}
+        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past}
+        - {t: activity, id: v2, verb: laugh, actor: "@n2", tense: past}
+    - category: positive
+      note: a singular definite subject is a witness
+      text: "The ferret slept."
+      instances:
+        - {t: witness, id: x1, kind: ferret, definite: true}
+        - {t: activity, id: v1, verb: sleep, actor: "@x1", tense: past}
     - category: abstain
       text: "Teodor arrived."
       expected: {abstain: true, template: motion}                     # a change of place

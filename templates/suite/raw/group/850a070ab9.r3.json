@@ -1,0 +1,89 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "e2b973ee776d149578b24ed0b89eebd7611ca803b1694eeec798000b403d85d1",
+  "item": {
+    "id": "s850a070ab9",
+    "text": "Three students waited."
+  },
+  "usage": {
+    "input": 18158,
+    "output": 117,
+    "thinking": null,
+    "total": 18275,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 18158,
+    "candidatesTokenCount": 117,
+    "totalTokenCount": 18275,
+    "cachedContentTokenCount": 16109,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 18158
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 16109
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 117
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s850a070ab9\", \"instances\": [{\"t\": \"group\", \"id\": \"g1\", \"kind\": \"student\", \"count\": 3}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"wait\", \"actor\": \"@g1\", \"tense\": \"past\"}, {\"t\": \"distribution\", \"id\": \"d1\", \"group\": \"@g1\", \"over\": [\"@e1\"]}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s850a070ab9",
+    "instances": [
+      {
+        "t": "group",
+        "id": "g1",
+        "kind": "student",
+        "count": 3
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "wait",
+        "actor": "@g1",
+        "tense": "past"
+      },
+      {
+        "t": "distribution",
+        "id": "d1",
+        "group": "@g1",
+        "over": [
+          "@e1"
+        ]
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "14b00737838e1675ab4e788a994c47c68a9bee0ef066c52422d3b5da5e8f650a",
+  "run": 3,
+  "case": {
+    "template": "group",
+    "section": "held_out",
+    "index": 1,
+    "category": "positive",
+    "text": "Three students waited.",
+    "key": "850a070ab9"
+  }
+}

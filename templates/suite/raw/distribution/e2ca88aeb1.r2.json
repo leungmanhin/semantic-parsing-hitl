@@ -1,0 +1,99 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "8c00a5b1e0a3e9bf07dd0d7ee0b05eda890e9ced0c007552a084053d71915f5d",
+  "item": {
+    "id": "se2ca88aeb1",
+    "text": "The ladders might be crooked."
+  },
+  "usage": {
+    "input": 18308,
+    "output": 153,
+    "thinking": null,
+    "total": 18461,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 18308,
+    "candidatesTokenCount": 153,
+    "totalTokenCount": 18461,
+    "cachedContentTokenCount": 16259,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 18308
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 16259
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 153
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"se2ca88aeb1\", \"instances\": [{\"t\": \"group\", \"id\": \"g1\", \"kind\": \"ladder\", \"definite\": true}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@g1\", \"predicate\": \"crooked\", \"form\": \"adjective\", \"tense\": \"present\"}, {\"t\": \"modal\", \"id\": \"s1\", \"over\": [\"@c1\"], \"head\": \"Might\", \"surface\": \"might\"}, {\"t\": \"distribution\", \"id\": \"r1\", \"group\": \"@g1\", \"over\": [\"@s1\"]}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "se2ca88aeb1",
+    "instances": [
+      {
+        "t": "group",
+        "id": "g1",
+        "kind": "ladder",
+        "definite": true
+      },
+      {
+        "t": "copular",
+        "id": "c1",
+        "subject": "@g1",
+        "predicate": "crooked",
+        "form": "adjective",
+        "tense": "present"
+      },
+      {
+        "t": "modal",
+        "id": "s1",
+        "over": [
+          "@c1"
+        ],
+        "head": "Might",
+        "surface": "might"
+      },
+      {
+        "t": "distribution",
+        "id": "r1",
+        "group": "@g1",
+        "over": [
+          "@s1"
+        ]
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "1f1bd4be275047a20fd04619f6974c72a5121f21242054798635c1cd6fa89c28",
+  "run": 2,
+  "case": {
+    "template": "distribution",
+    "section": "held_out",
+    "index": 3,
+    "category": "scoped",
+    "text": "The ladders might be crooked.",
+    "key": "e2ca88aeb1"
+  }
+}

@@ -12,6 +12,12 @@ string.  A ``refs`` slot holds a list of references to instances whose atoms the
 OVER (negation, modality, sealed complements): those instances' atoms are rendered inside the
 shape, as one atom or an ``(And …)`` bundle, and are not emitted on their own.
 
+A ``refs`` slot may carry ``consumes: false`` (the referenced instances' atoms are ALSO emitted
+on their own: a rule that restates a predication per member), ``bind: <filler slot>`` (inside
+this slot's bundle the symbol of the instance that filler names becomes the variable ``$x``)
+and ``skolemize: true`` (inside the bundle every event symbol minted by a rendered instance
+becomes the skolem function ``(sk_<stem> $x)``: each member has its own event).
+
 Shapes.  ``@id`` is the symbol minted for the instance; ``{slot}`` substitutes the filler (the
 minted symbol of a referenced instance, the lemma, the number, the quoted string, or the bundle
 of a ``refs`` slot); ``"{slot}"`` inside quotes substitutes into the string.  ``if_filled``
@@ -25,8 +31,9 @@ negation).
 
 Symbols.  A template that ``mints`` a symbol says its class and how it is named:
 ``symbol: name`` derives the symbol from the ``name`` slot (``"Ilse Varga"`` -> ``ilse_varga``,
-duplicates numbered), otherwise a witness ``sk_<stem>_<n>`` whose stem is the ``stem`` slot,
-else ``verb``, else ``kind``, else the template id, numbered per stem in instance order.
+duplicates numbered), otherwise a witness ``sk_<stem>_<n>`` whose stem is the ``stem`` slot's value, or the
+``literal`` word (``literal: group`` -> ``sk_group_n``), else ``verb``, else ``kind``, else the
+template id, numbered per stem in instance order.
 
 Homes.  An instance's own atoms are emitted at the top level unless every instance that
 mentions it sits inside one scope; then they are emitted inside that scope (an indefinite
@@ -245,7 +252,7 @@ class _Emitter:
                 named.setdefault(base, []).append(r["id"])
             else:
                 stem_slot = m.get("stem")
-                stem = r.get(stem_slot) if stem_slot else r.get("verb") or r.get("kind") or t["id"]
+                stem = r.get(stem_slot) if stem_slot else m.get("literal") or r.get("verb") or r.get("kind") or t["id"]
                 stem = slug(stem)
                 counters[stem] = counters.get(stem, 0) + 1
                 self.sym[r["id"]] = f"sk_{stem}_{counters[stem]}"
@@ -259,7 +266,7 @@ class _Emitter:
         self.scope_of: dict[str, str] = {}
         for r in self.insts:
             for sname, spec in (self.cat[r["t"]].get("slots") or {}).items():
-                if spec["type"] == "refs":
+                if spec["type"] == "refs" and spec.get("consumes", True):
                     for ref in r.get(sname) or []:
                         self.scope_of[ref[1:]] = r["id"]
 
@@ -296,7 +303,7 @@ class _Emitter:
     def fill(self, inst: dict, slot: str, spec: dict, element=None):
         v = element if element is not None else inst.get(slot)
         if spec["type"] == "refs":
-            return element if element is not None else self.bundle(v, inst["id"])
+            return element if element is not None else self.bundle(v, inst["id"], spec)
         if is_ref(v):
             return self.sym[v[1:]]
         if spec["type"] == "string":
@@ -347,13 +354,48 @@ class _Emitter:
                 terms.append(self.substitute(shape, r, t["slots"]))
         return terms
 
-    def bundle(self, refs: list, scope_iid: str):
-        """The content of a scope: its referenced instances' atoms plus the referents homed here."""
-        terms = []
-        for ref in refs:
-            terms.extend(self.atoms_of(ref[1:]))
-        for iid in self.homed_in.get(scope_iid, []):
-            terms.extend(self.atoms_of(iid))
+    def inside(self, refs: list, scope_iid: str) -> list[str]:
+        """Every instance rendered within a bundle: the references, transitively, and the homed."""
+        out, todo = [], [ref[1:] for ref in refs] + list(self.homed_in.get(scope_iid, []))
+        while todo:
+            iid = todo.pop(0)
+            if iid in out:
+                continue
+            out.append(iid)
+            r = self.by_id[iid]
+            for sname, spec in (self.cat[r["t"]].get("slots") or {}).items():
+                if spec["type"] == "refs":
+                    todo.extend(x[1:] for x in (r.get(sname) or []) if is_ref(x))
+            todo.extend(self.homed_in.get(iid, []))
+        return out
+
+    def bundle(self, refs: list, scope_iid: str, spec: dict | None = None):
+        """The content of a scope: its referenced instances' atoms plus the referents homed here.
+        With ``bind`` / ``skolemize`` on the slot, symbols are overlaid while rendering."""
+        overlay = None
+        if spec and (spec.get("bind") or spec.get("skolemize")):
+            overlay = dict(self.sym)
+            inst = self.by_id[scope_iid]
+            if spec.get("bind"):
+                target = inst.get(spec["bind"])
+                if is_ref(target):
+                    overlay[target[1:]] = "$x"
+            if spec.get("skolemize"):
+                for iid in self.inside(refs, scope_iid):
+                    t = self.cat[self.by_id[iid]["t"]]
+                    if (t.get("mints") or {}).get("id") == "Event" and iid in self.sym:
+                        overlay[iid] = [self.sym[iid].rsplit("_", 1)[0], "$x"]
+        saved = self.sym
+        if overlay is not None:
+            self.sym = overlay
+        try:
+            terms = []
+            for ref in refs:
+                terms.extend(self.atoms_of(ref[1:]))
+            for iid in self.homed_in.get(scope_iid, []):
+                terms.extend(self.atoms_of(iid))
+        finally:
+            self.sym = saved
         return terms[0] if len(terms) == 1 else ["And"] + terms
 
     def truth_of(self, inst: str) -> tuple:
@@ -362,7 +404,7 @@ class _Emitter:
         rule = self.cat[r["t"]].get("truth")
         if not rule:
             return DEFAULT_STV
-        v = r.get(rule.get("slot"))
+        v = r.get(rule["slot"]) if rule.get("slot") else None
         values = rule.get("values") or {}
         picked = values.get(str(v).lower()) if v is not None else None
         picked = picked or rule.get("default") or DEFAULT_STV

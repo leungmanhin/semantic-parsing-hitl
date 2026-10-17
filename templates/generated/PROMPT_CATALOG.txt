@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 07e33a4d87311d56 · 14 templates
+catalog sha256 b974e24f2e8a1bb0 · 16 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -69,6 +69,10 @@ fences.
   each pronoun to the most salient compatible antecedent; an event anaphor ("That surprised
   everyone") is the event's id.
 - A TEXT of several sentences is parsed together: instances are shared across its sentences.
+- A coordinated subject or object (Teodor and Yusra laughed; read the letter and the note) is
+  one predication instance per conjunct, each with its own event, never a group. When the
+  predicate holds only of the conjuncts together (met, argued, shared a thermos), no instance
+  fits: report the clause as unmapped.
 
 ## Lemmas and symbols
 
@@ -158,6 +162,87 @@ span, not an issue.
 
 ## Referents — the things the text talks about
 
+### group — A plural noun phrase introducing a group of individuals
+
+When: A plural noun phrase headed by a common noun — the ferrets, several students, three
+ladders, a few children, dozens of protesters, both ladders, Yusra's ferrets — introducing a
+group of individuals of that kind. The group gets one witness symbol. Its size is recorded as an
+exact count when a numeral or "both" states it (three → 3, both → 2) and as the vague phrase as
+written otherwise (several, a few, dozens). A definite group ("the", "these", "those", "both")
+is marked definite; a possessed group (Yusra's ferrets) records its possessor and needs no
+definite mark — the possessor presupposes it.
+
+Forms:
+- the <N>s
+- <numeral> <N>s
+- several / a few / many / dozens of <N>s
+- both <N>s
+- <possessor>'s <N>s
+
+Not this template:
+- coordinated names or referents — Teodor and Yusra, the ladder and the quilt: one instance per
+  conjunct, no group
+- a bare plural read generically — ferrets are curious: a statement about the kind
+- a quantifier word — all ferrets, every ferret, each ferret, most ferrets, no ferret: a
+  quantified generalization, not a group
+- a singular noun phrase — the ferret, a ladder: a witness
+
+Slots:
+
+- `t` (required): "group"
+- `id` (required; your label for this instance): your label for the group.
+- `kind` (required; a lemma): the head noun's lemma, singular (ferret).
+- `definite` (optional; true / false): true for the / these / those / both; absent for a
+  possessed group (the possessor presupposes it) and otherwise.
+- `count` (optional; a number): the exact size when a numeral or both states it (three → 3; both
+  → 2).
+- `quantity` (optional; a string): the vague size phrase as written (several, a few, dozens);
+  absent when a numeral or both states the size.
+- `props` (optional; a list of lemmas): adjectival properties stated in the phrase.
+- `possessor` (optional; "@id" of a referent instance, or a bare lemma for a non-specific
+  filler): the possessor of a possessive phrase (Yusra's ferrets).
+
+Example (a vague size; the sleeping distributes to each ferret). TEXT: Several ferrets slept.
+
+Instances:
+
+    [
+      {"t": "group", "id": "g1", "kind": "ferret", "quantity": "several"},
+      {"t": "activity", "id": "v1", "verb": "sleep", "actor": "@g1", "tense": "past"},
+      {"t": "distribution", "id": "d1", "group": "@g1", "over": ["@v1"]}
+    ]
+
+The program renders these instances as:
+
+    (GroupOf sk_group_1 ferret)
+    (CardinalityPhrase sk_group_1 "several")
+    (Member sk_sleep_1 sleep)
+    (Agent sk_sleep_1 sk_group_1)
+    (Past sk_sleep_1)
+    (Implication (PartOf $x sk_group_1) (And (Member (sk_sleep $x) sleep) (Agent (sk_sleep $x) $x) (Past (sk_sleep $x))))
+
+Example (an exact count; a collective predicate — no distribution). TEXT: Three ferrets surrounded the barn.
+
+Instances:
+
+    [
+      {"t": "group", "id": "g1", "kind": "ferret", "count": 3},
+      {"t": "witness", "id": "x1", "kind": "barn", "definite": true},
+      {"t": "activity", "id": "v1", "verb": "surround", "actor": "@g1", "patient": "@x1", "tense": "past"}
+    ]
+
+The program renders these instances as:
+
+    (GroupOf sk_group_1 ferret)
+    (Cardinality sk_group_1 3)
+    (Member sk_barn_1 barn)
+    (Member sk_surround_1 surround)
+    (Agent sk_surround_1 sk_group_1)
+    (Patient sk_surround_1 sk_barn_1)
+    (Past sk_surround_1)
+
+Not this template. TEXT: Ferrets are curious. — use `kind-statement`.
+
 ### named-entity — A proper name introducing a rigid referent
 
 When: A proper name (a person, a place, an organisation, a product) used to refer to one
@@ -199,8 +284,8 @@ When: A noun phrase headed by a common noun with a determiner or a modifier — 
 quilt, this spindle, two envelopes' member — introducing an individual of that kind. The
 individual gets a numbered witness symbol; whether the phrase is definite is recorded. A
 possessive phrase (Yusra's quilt, the quilt of Yusra, her quilt) is a witness with its possessor
-recorded: the possessor is a referent (a possessive pronoun resolves to its antecedent's id),
-and the phrase counts as definite.
+recorded: the possessor is a referent (a possessive pronoun resolves to its antecedent's id);
+the possessor presupposes the witness, so no definite mark is needed.
 
 Forms:
 - a <N>
@@ -219,7 +304,8 @@ Slots:
 - `t` (required): "witness"
 - `id` (required; your label for this instance).
 - `kind` (required; a lemma): the head noun's lemma.
-- `definite` (optional; true / false): true for the / this / that, absent for a / an.
+- `definite` (optional; true / false): true for the / this / that; absent for a / an and for a
+  possessed phrase (the possessor presupposes it).
 - `props` (optional; a list of lemmas): adjectival properties stated in the phrase.
 - `possessor` (optional; "@id" of a referent instance, or a bare lemma for a non-specific
   filler): the possessor of a possessive phrase: Yusra's quilt, the quilt of Yusra; a referent
@@ -689,8 +775,10 @@ unmapped: {"span": "asked Ottoline whether Lamine sold the spindle", "code": "G0
 
 ### copular — An individual is a kind or has a property
 
-When: A clause with "be" as its main verb whose subject refers to an individual and whose
-predicate is an indefinite noun phrase (is a locksmith) or an adjective (is crooked). The
+When: A clause with "be" as its main verb whose subject is a referent instance — a name, a
+witness, a group (the ferrets) or a resolved pronoun — and whose predicate is an indefinite noun
+phrase (is a locksmith) or an adjective (is crooked). A group as the subject takes the predicate
+as a group; whether it also holds of each member is the distribution template's business. The
 predicate's head is the kind or the property; an adjective inside a predicate noun phrase (is a
 careful weaver) is a second copular instance with the adjective as its predicate. Tense is the
 clause's; present is recorded and emits nothing.
@@ -705,8 +793,6 @@ Not this template:
   statement about a kind, not an individual
 - a quantifier word on the subject — all ferrets are curious, most herons are patient: a
   quantified generalization
-- a plural subject — the ferrets are curious, two ladders are crooked: a group of individuals,
-  not one individual
 - a copular verb other than be — seems tired, looks tired, remains open: an evidential or
   aspectual verb; became a locksmith, got tired: a change of state
 - an adjective with a complement — afraid of the ferret, fond of Lamine, full of water: the
@@ -722,7 +808,7 @@ Slots:
 - `t` (required): "copular"
 - `id` (required; your label for this instance): your label for the predication.
 - `subject` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
-  the individual: a referent id (a name, a witness, a resolved pronoun).
+  the subject: a referent id (a name, a witness, a group, a resolved pronoun).
 - `predicate` (required; a lemma): the kind (locksmith) or the property (crooked), lemmatized.
 - `form` (required; one of: noun, adjective): noun for a kind (is a locksmith), adjective for a
   property (is crooked).
@@ -1288,3 +1374,51 @@ The program renders these instances as:
     (Name teodor "Teodor")
     (Member sk_quilt_1 quilt)
     (Not (And (Member sk_send_1 send) (Agent sk_send_1 teodor) (Theme sk_send_1 sk_quilt_1) (Past sk_send_1)))
+
+## Rules — generic and quantified statements
+
+### distribution — A predication over a group holds of each member
+
+When: A clause whose subject or object is a group (a plural noun phrase) and whose predicate
+holds of each member on its own: the ferrets are curious (each is), several students laughed
+(each did), the students did not laugh (none did). The instance names the group and the
+predication over it — or the scope operator over that predication, when there is one — and
+nothing else. Do not add it for a collective predicate: surrounded the barn, carried the ladder
+together, met, gathered, outnumbered.
+
+Not this template:
+- a collective predicate — surrounded, gathered, met, outnumbered, carried it together: holds of
+  the group as a whole, not of each member
+- a size or a measure of the group — are three in number, weigh ten kilos together: a property
+  of the whole
+- a kind as the subject — ferrets are curious: a statement about the kind, there is no group
+
+Slots:
+
+- `t` (required): "distribution"
+- `id` (required; your label for this instance): your label for the rule.
+- `group` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
+  the group instance's id.
+- `over` (required; a list of "@id" of the instances that state the clause): the predication
+  over the group, or the negation / modal over that predication: its id, nothing else.
+
+Example. TEXT: Several students laughed.
+
+Instances:
+
+    [
+      {"t": "group", "id": "g1", "kind": "student", "quantity": "several"},
+      {"t": "activity", "id": "v1", "verb": "laugh", "actor": "@g1", "tense": "past"},
+      {"t": "distribution", "id": "d1", "group": "@g1", "over": ["@v1"]}
+    ]
+
+The program renders these instances as:
+
+    (GroupOf sk_group_1 student)
+    (CardinalityPhrase sk_group_1 "several")
+    (Member sk_laugh_1 laugh)
+    (Agent sk_laugh_1 sk_group_1)
+    (Past sk_laugh_1)
+    (Implication (PartOf $x sk_group_1) (And (Member (sk_laugh $x) laugh) (Agent (sk_laugh $x) $x) (Past (sk_laugh $x))))
+
+Not this template. TEXT: Three ferrets surrounded the barn. — use `group`.

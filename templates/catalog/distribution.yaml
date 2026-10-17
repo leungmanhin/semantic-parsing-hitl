@@ -1,0 +1,117 @@
+# Template: distribution  (what is said of a group holds of each of its members)
+#
+# A predication over a group can be read distributively (several students laughed: each did)
+# or collectively (three students carried the ladder together: no one did alone). The text
+# decides. A distributive reading is recorded as a distribution instance pointing at the group
+# and at the predication (or at the negation or modal over it); the program emits the
+# per-member rule beside the group-level statement, which stays:
+#   (Implication (PartOf $x <group>) <the predication with the group as $x and its own event per member>)
+# at confidence 0.9. A collective reading has no distribution instance.
+
+id: distribution
+family: rule
+kind: rule
+title: A predication over a group holds of each member
+status: draft
+
+trigger:
+  construction: >
+    A clause whose subject or object is a group (a plural noun phrase) and whose predicate holds
+    of each member on its own: the ferrets are curious (each is), several students laughed
+    (each did), the students did not laugh (none did). The instance names the group and the
+    predication over it — or the scope operator over that predication, when there is one — and
+    nothing else. Do not add it for a collective predicate: surrounded the barn, carried the
+    ladder together, met, gathered, outnumbered.
+  boundary:                   # looks distributive but is not
+    - >-
+      a collective predicate — surrounded, gathered, met, outnumbered, carried it together:
+      holds of the group as a whole, not of each member
+    - >-
+      a size or a measure of the group — are three in number, weigh ten kilos together: a
+      property of the whole
+    - >-
+      a kind as the subject — ferrets are curious: a statement about the kind, there is no group
+
+slots:
+  id:    {type: id, required: true, doc: "your label for the rule"}
+  group: {type: filler, class: Entity, required: true, doc: "the group instance's id"}
+  over:  {type: refs, class: Proposition, required: true, consumes: false, bind: group, skolemize: true,
+          doc: "the predication over the group, or the negation / modal over that predication: its id, nothing else"}
+
+truth: {default: [1.0, 0.9]}
+
+emits:
+  - atom: "(Implication (PartOf $x {group}) {over})"
+
+notes:
+  - >-
+    The group-level statement is never replaced: a group that slept is a fact about the group,
+    and the rule adds the members. Each member gets its own event, a function of the member,
+    so that two members' sleepings are two events.
+  - >-
+    The rule's confidence is 0.9: the distributive reading is the sentence's, but the program
+    marks it as a generalization over members rather than an observed fact per member.
+
+depends_on: [group]
+composes_with: [negation, modal]
+
+examples:
+  shown:                     # rendered into the prompt
+    - category: positive
+      text: "Several students laughed."
+      instances:
+        - {t: group, id: g1, kind: student, quantity: several}
+        - {t: activity, id: v1, verb: laugh, actor: "@g1", tense: past}
+        - {t: distribution, id: d1, group: "@g1", over: ["@v1"]}
+      emitted:               # what the emitter produces (illustration; the emitter is the authority)
+        - "(GroupOf sk_group_1 student)"
+        - "(CardinalityPhrase sk_group_1 \"several\")"
+        - "(Member sk_laugh_1 laugh)"
+        - "(Agent sk_laugh_1 sk_group_1)"
+        - "(Past sk_laugh_1)"
+        - "(Implication (PartOf $x sk_group_1) (And (Member (sk_laugh $x) laugh) (Agent (sk_laugh $x) $x) (Past (sk_laugh $x))))"
+      declarations:
+        - "(: laugh Class)"
+        - "(: sk_group_1 Entity)"
+        - "(: sk_laugh_1 Event)"
+        - "(: student Class)"
+    - category: abstain
+      text: "Three ferrets surrounded the barn."
+      expected: {abstain: true, template: group}                      # collective: no distribution
+
+  held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      text: "A few students waited."
+      instances:
+        - {t: group, id: g1, kind: student, quantity: a few}
+        - {t: activity, id: v1, verb: wait, actor: "@g1", tense: past}
+        - {t: distribution, id: d1, group: "@g1", over: ["@v1"]}
+    - category: positive
+      note: a copular predicate distributed
+      text: "The ladders are crooked."
+      instances:
+        - {t: group, id: g1, kind: ladder, definite: true}
+        - {t: copular, id: c1, subject: "@g1", predicate: crooked, form: adjective, tense: present}
+        - {t: distribution, id: d1, group: "@g1", over: ["@c1"]}
+    - category: scoped
+      note: negation distributed — the rule is over the negation
+      text: "The students did not laugh."
+      instances:
+        - {t: group, id: g1, kind: student, definite: true}
+        - {t: activity, id: v1, verb: laugh, actor: "@g1", tense: past}
+        - {t: negation, id: s1, over: ["@v1"]}
+        - {t: distribution, id: d1, group: "@g1", over: ["@s1"]}
+    - category: scoped
+      note: a modal distributed — the rule is over the modal
+      text: "The ladders might be crooked."
+      instances:
+        - {t: group, id: g1, kind: ladder, definite: true}
+        - {t: copular, id: c1, subject: "@g1", predicate: crooked, form: adjective, tense: present}
+        - {t: modal, id: s1, over: ["@c1"], head: Might, surface: might}
+        - {t: distribution, id: d1, group: "@g1", over: ["@s1"]}
+    - category: abstain
+      text: "The ferrets surrounded the barn."
+      expected: {abstain: true, template: group}                      # collective: no distribution
+    - category: abstain
+      text: "Herons are patient."
+      expected: {abstain: true, template: kind-statement}             # a kind, not a group

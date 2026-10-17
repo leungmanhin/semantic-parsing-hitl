@@ -1,0 +1,96 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "8c00a5b1e0a3e9bf07dd0d7ee0b05eda890e9ced0c007552a084053d71915f5d",
+  "item": {
+    "id": "s802b1a72d6",
+    "text": "Yusra fears that Lamine sold the spindle."
+  },
+  "usage": {
+    "input": 18316,
+    "output": 188,
+    "thinking": null,
+    "total": 18504,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 18316,
+    "candidatesTokenCount": 188,
+    "totalTokenCount": 18504,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 18316
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 188
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s802b1a72d6\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"spindle\", \"definite\": true}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"sell\", \"giver\": \"@n2\", \"object\": \"@x1\", \"tense\": \"past\"}, {\"t\": \"attitude\", \"id\": \"a1\", \"verb\": \"fear\", \"holder\": \"@n1\", \"content\": [\"@e1\"], \"factive\": false, \"tense\": \"present\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s802b1a72d6",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Lamine"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "spindle",
+        "definite": true
+      },
+      {
+        "t": "transfer",
+        "id": "e1",
+        "verb": "sell",
+        "giver": "@n2",
+        "object": "@x1",
+        "tense": "past"
+      },
+      {
+        "t": "attitude",
+        "id": "a1",
+        "verb": "fear",
+        "holder": "@n1",
+        "content": [
+          "@e1"
+        ],
+        "factive": false,
+        "tense": "present"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "1f1bd4be275047a20fd04619f6974c72a5121f21242054798635c1cd6fa89c28",
+  "run": 1,
+  "case": {
+    "template": "attitude",
+    "section": "held_out",
+    "index": 9,
+    "category": "positive",
+    "text": "Yusra fears that Lamine sold the spindle.",
+    "key": "802b1a72d6"
+  }
+}
