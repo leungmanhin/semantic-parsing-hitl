@@ -1,0 +1,87 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "4e0b46810b988ce05e1f517f3a6d2747555679ded22ea0a5d060190513c50586",
+  "item": {
+    "id": "scad209b1d5",
+    "text": "Lamine is telling Yusra the news."
+  },
+  "usage": {
+    "input": 8428,
+    "output": 154,
+    "thinking": null,
+    "total": 8582,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 8428,
+    "candidatesTokenCount": 154,
+    "totalTokenCount": 8582,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 8428
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 154
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"scad209b1d5\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"news\", \"definite\": true}, {\"t\": \"communication\", \"id\": \"c1\", \"verb\": \"tell\", \"speaker\": \"@n1\", \"addressee\": \"@n2\", \"message\": \"@x1\", \"tense\": \"present\", \"aspect\": \"progressive\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "scad209b1d5",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Yusra"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "news",
+        "definite": true
+      },
+      {
+        "t": "communication",
+        "id": "c1",
+        "verb": "tell",
+        "speaker": "@n1",
+        "addressee": "@n2",
+        "message": "@x1",
+        "tense": "present",
+        "aspect": "progressive"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "e3d200dab1a94aef009e77e2e5738e5fb8713fdb47b96afd97dbe6f48a10d909",
+  "run": 1,
+  "case": {
+    "template": "communication",
+    "section": "held_out",
+    "index": 8,
+    "category": "optional",
+    "text": "Lamine is telling Yusra the news.",
+    "key": "cad209b1d5"
+  }
+}

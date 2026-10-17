@@ -103,6 +103,8 @@ def render_template(tid: str, t: dict, catalog: dict, add) -> None:
         doc = spec.get("doc", "")
         tail = f": {doc}" if doc else ""
         add(_wrap(f"`{name}` ({req}; {_value_doc(spec)}){tail}.", indent="  ", first="- "))
+    for group in t.get("one_of") or []:
+        add(_wrap("Exactly one of " + ", ".join(f"`{g}`" for g in group) + " is filled.", indent="  ", first="- "))
     add("")
     for ex in (t.get("examples") or {}).get("shown") or []:
         cat = ex.get("category")

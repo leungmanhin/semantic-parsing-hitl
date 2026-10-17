@@ -33,6 +33,9 @@ mentions it sits inside one scope; then they are emitted inside that scope (a wi
 negation is existentially bound there).  Symbols named from a name are rigid and stay at the
 top level.
 
+Constraints.  A template may declare ``one_of: [[a, b], …]``: exactly one slot of each group
+must be filled (a message that is a thing or a clause).
+
 Declarations.  Every minted symbol is declared with its class, every bare filler with its slot's
 class, every lemma with ``Class``; ``Entity`` / ``Event`` / ``TimeTerm`` also declare
 ``Instance``.
@@ -187,6 +190,10 @@ class _Emitter:
             for sname in r:
                 if sname not in ("t", "id") and sname not in (t.get("slots") or {}):
                     problems.append(f"{where}: unknown slot {sname}")
+            for group in t.get("one_of") or []:
+                filled = [s for s in group if r.get(s) not in (None, [], "")]
+                if len(filled) != 1:
+                    problems.append(f"{where}: exactly one of {', '.join(group)} must be filled ({len(filled)} are)")
         problems.extend(self.scope_cycles())
         return list(dict.fromkeys(problems))
 

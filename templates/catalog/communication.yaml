@@ -1,0 +1,243 @@
+# Template: communication  (a speaker conveys a message to an addressee)
+#
+# The message is either a thing (the news, a secret: a referent instance in `message`) or a
+# clause (that Lamine sold the spindle: the ids of the instances that state it, in `content`,
+# rendered sealed inside the Theme exactly as an attitude's complement is). Exactly one of the
+# two is filled. Telling does not make the message true: the clause is never asserted on its own.
+
+id: communication
+family: predication
+kind: verb-class
+title: Communication of a message to an addressee
+status: draft
+
+trigger:
+  construction: >
+    A verbal clause in which a speaker conveys a message to an addressee. The addressee is the
+    indirect object or a to-phrase; the message is a noun phrase (the news, a secret, the
+    result) or a finite clause introduced by "that" or bare. Verbs that take an addressee by
+    nature (tell, inform, notify, remind, warn, text, phone) belong here even when the text
+    leaves the addressee out; a reporting verb (say, claim, report, announce, explain,
+    mention) belongs here only when an addressee is stated.
+  verbs: [tell, inform, notify, remind, warn, announce, report, explain, mention, say, write,
+          text, email, phone]
+  verbs_note: >
+    The list anchors the class; an unlisted verb that conveys a message to an addressee belongs
+    here (record its lemma as usual). The class is semantic, the list is guidance.
+  surface_forms:
+    - "<speaker> V <addressee> <message>"            # told Ottoline the news
+    - "<speaker> V <addressee> that <clause>"        # told Ottoline that Lamine sold the spindle
+    - "<speaker> V <addressee> <clause>"             # told Ottoline Lamine sold the spindle
+    - "<speaker> V to <addressee> that <clause>"     # mentioned to Yusra that Teodor sold a spindle
+    - "<speaker> V <message> to <addressee>"         # reported the result to Lamine
+    - "<addressee> was V-ed that <clause>"           # passive: the speaker is unstated
+  boundary:                   # looks like a communication but is not one
+    - >-
+      a reporting verb with no addressee — said that P, claimed that P, announced that P: the
+      subject's attitude towards the clause; nothing is conveyed to anyone
+    - >-
+      an object that changes hands rather than a message — handed Ottoline the letter, sent
+      Yusra a parcel: a transfer
+    - >-
+      a question or a request as the content — asked Ottoline whether P, asked Ottoline to send
+      the quilt, told Ottoline to leave: the content is not a proposition conveyed
+    - >-
+      light-verb constructions — gave Ottoline a call, had a word with Yusra: the noun carries
+      the event
+
+slots:
+  id:        {type: id, required: true, doc: "your label for the communication event"}
+  verb:      {type: lemma, class: Class, required: true, doc: "the verb lemma"}
+  speaker:   {type: filler, class: Entity, role: Agent, required: false,
+              doc: "who conveys the message: the subject, or the by-phrase of a passive; absent only in an agentless passive"}
+  addressee: {type: filler, class: Entity, role: Recipient, required: false,
+              doc: "who the message is conveyed to: the indirect object or the to-phrase; absent when the text leaves it out"}
+  message:   {type: filler, class: Entity, role: Theme, required: false,
+              doc: "the message as a thing: the news, a secret, the result"}
+  content:   {type: refs, class: Proposition, required: false,
+              doc: "the message as a clause: the ids of the instances that state it, that is its predication or the scope operator (negation, modal) over that predication; the referents it mentions are not listed"}
+  tense:     {type: enum, values: [past, present, future], required: true,
+              doc: "the clause's tense; present is recorded, not inferred"}
+  aspect:    {type: enum, values: [simple, progressive, perfect], required: false, default: simple}
+
+one_of: [[message, content]]          # the message is a thing or a clause, never both, never neither
+
+mints: {id: Event}
+
+emits:
+  - atom: "(Member @id {verb})"
+  - atom: "(Agent @id {speaker})"
+    if_filled: speaker
+  - atom: "(Recipient @id {addressee})"
+    if_filled: addressee
+  - atom: "(Theme @id {message})"
+    if_filled: message
+  - atom: "(Theme @id {content})"          # the clause, sealed as one term
+    if_filled: content
+  - atom: "(Past @id)"
+    when: "tense == past or aspect == perfect"
+  - atom: "(Future @id)"
+    when: "tense == future"
+  - atom: "(Ongoing @id)"
+    when: "aspect == progressive"
+
+notes:
+  - >-
+    The conveyed clause is sealed and never asserted on its own: telling does not make it true.
+    Whether informing or reminding presupposes the clause is left open here; a factive variant
+    would follow the attitude template's pattern.
+  - >-
+    The addressee carries the Recipient role, the goal of a transfer, because the message is
+    conveyed to the addressee; the message itself is the Theme, a thing or a sealed clause.
+
+depends_on: [named-entity, witness, transfer, negation, modal]     # what fills the slots
+composes_with: [negation, modal, time, location]
+
+examples:
+  shown:                     # rendered into the prompt
+    - category: positive
+      note: the message as a thing
+      text: "Ottoline told Teodor the news."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: named-entity, id: n2, name: "Teodor"}
+        - {t: witness, id: x1, kind: news, definite: true}
+        - {t: communication, id: c1, verb: tell, speaker: "@n1", addressee: "@n2", message: "@x1",
+           tense: past}
+      emitted:               # what the emitter produces (illustration; the emitter is the authority)
+        - "(Name ottoline \"Ottoline\")"
+        - "(Name teodor \"Teodor\")"
+        - "(Member sk_news_1 news)"
+        - "(Member sk_tell_1 tell)"
+        - "(Agent sk_tell_1 ottoline)"
+        - "(Recipient sk_tell_1 teodor)"
+        - "(Theme sk_tell_1 sk_news_1)"
+        - "(Past sk_tell_1)"
+      declarations:
+        - "(: ottoline Entity)"
+        - "(: teodor Entity)"
+        - "(: sk_news_1 Entity)"
+        - "(: sk_tell_1 Event)"
+        - "(: tell Class)"
+        - "(: news Class)"
+    - category: positive
+      note: the message as a clause, sealed
+      text: "Teodor told Ottoline that Lamine sold the spindle."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: named-entity, id: n2, name: "Ottoline"}
+        - {t: named-entity, id: n3, name: "Lamine"}
+        - {t: witness, id: x1, kind: spindle, definite: true}
+        - {t: transfer, id: e1, verb: sell, giver: "@n3", object: "@x1", tense: past}
+        - {t: communication, id: c1, verb: tell, speaker: "@n1", addressee: "@n2", content: ["@e1"],
+           tense: past}
+    - category: abstain
+      text: "Teodor said that Lamine sold the spindle."
+      expected: {abstain: true, template: attitude}                  # no addressee
+    - category: abstain
+      text: "Teodor asked Ottoline whether Lamine sold the spindle."
+      expected: {abstain: true, gap: G00, span: "asked Ottoline whether Lamine sold the spindle"}   # a question as content
+
+  held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      note: the message as a thing (the sentence the transfer template abstains on)
+      text: "Teodor told Ottoline the news."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: named-entity, id: n2, name: "Ottoline"}
+        - {t: witness, id: x1, kind: news, definite: true}
+        - {t: communication, id: c1, verb: tell, speaker: "@n1", addressee: "@n2", message: "@x1",
+           tense: past}
+    - category: positive
+      text: "Yusra told Teodor that Ottoline sent the quilt."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: named-entity, id: n2, name: "Teodor"}
+        - {t: named-entity, id: n3, name: "Ottoline"}
+        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: transfer, id: e1, verb: send, giver: "@n3", object: "@x1", tense: past}
+        - {t: communication, id: c1, verb: tell, speaker: "@n1", addressee: "@n2", content: ["@e1"],
+           tense: past}
+    - category: contrast
+      note: speaker and addressee swapped — the instances must differ in speaker and addressee only
+      text: "Teodor told Yusra that Ottoline sent the quilt."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: named-entity, id: n2, name: "Yusra"}
+        - {t: named-entity, id: n3, name: "Ottoline"}
+        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: transfer, id: e1, verb: send, giver: "@n3", object: "@x1", tense: past}
+        - {t: communication, id: c1, verb: tell, speaker: "@n1", addressee: "@n2", content: ["@e1"],
+           tense: past}
+    - category: positive
+      note: to-phrase addressee; a witness introduced inside the clause stays inside the seal
+      text: "Lamine mentioned to Yusra that Teodor sold a spindle."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: named-entity, id: n2, name: "Yusra"}
+        - {t: named-entity, id: n3, name: "Teodor"}
+        - {t: witness, id: x1, kind: spindle}
+        - {t: transfer, id: e1, verb: sell, giver: "@n3", object: "@x1", tense: past}
+        - {t: communication, id: c1, verb: mention, speaker: "@n1", addressee: "@n2", content: ["@e1"],
+           tense: past}
+    - category: positive
+      note: the message as an indefinite thing
+      text: "Yusra told Lamine a secret."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: witness, id: x1, kind: secret}
+        - {t: communication, id: c1, verb: tell, speaker: "@n1", addressee: "@n2", message: "@x1",
+           tense: past}
+    - category: scoped
+      note: the communication negated — the clause stays sealed inside
+      text: "Teodor did not tell Ottoline that Lamine sold the spindle."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: named-entity, id: n2, name: "Ottoline"}
+        - {t: named-entity, id: n3, name: "Lamine"}
+        - {t: witness, id: x1, kind: spindle, definite: true}
+        - {t: transfer, id: e1, verb: sell, giver: "@n3", object: "@x1", tense: past}
+        - {t: communication, id: c1, verb: tell, speaker: "@n1", addressee: "@n2", content: ["@e1"],
+           tense: past}
+        - {t: negation, id: s1, over: ["@c1"]}
+    - category: optional
+      note: agentless passive — the addressee is the subject, no speaker
+      text: "Ottoline was told that Lamine sold the spindle."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: witness, id: x1, kind: spindle, definite: true}
+        - {t: transfer, id: e1, verb: sell, giver: "@n2", object: "@x1", tense: past}
+        - {t: communication, id: c1, verb: tell, addressee: "@n1", content: ["@e1"], tense: past}
+    - category: scoped
+      note: a modal inside the clause — the content is the modal, which scopes over the transfer
+      text: "Yusra told Teodor that Lamine might lend Ottoline the trowel."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: named-entity, id: n2, name: "Teodor"}
+        - {t: named-entity, id: n3, name: "Lamine"}
+        - {t: named-entity, id: n4, name: "Ottoline"}
+        - {t: witness, id: x1, kind: trowel, definite: true}
+        - {t: transfer, id: e1, verb: lend, giver: "@n3", recipient: "@n4", object: "@x1", tense: present}
+        - {t: modal, id: s1, over: ["@e1"], head: Might, surface: might}
+        - {t: communication, id: c1, verb: tell, speaker: "@n1", addressee: "@n2", content: ["@s1"],
+           tense: past}
+    - category: optional
+      note: progressive, the message as a thing
+      text: "Lamine is telling Yusra the news."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: named-entity, id: n2, name: "Yusra"}
+        - {t: witness, id: x1, kind: news, definite: true}
+        - {t: communication, id: c1, verb: tell, speaker: "@n1", addressee: "@n2", message: "@x1",
+           tense: present, aspect: progressive}
+    - category: abstain
+      text: "Teodor asked Ottoline to send the quilt."
+      expected: {abstain: true, gap: G00, span: "asked Ottoline to send the quilt"}      # a request as content
+    - category: abstain
+      text: "Yusra gave Ottoline a call."
+      expected: {abstain: true, gap: G00, span: "gave Ottoline a call"}                 # light-verb construction
+    - category: abstain
+      text: "Lamine handed Teodor an envelope."
+      expected: {abstain: true, template: transfer}                                     # an object changes hands

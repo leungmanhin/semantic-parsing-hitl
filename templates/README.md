@@ -36,7 +36,9 @@ Nothing here changes `prompt.txt`, the briefs under `fusenf/briefs/`, or any pip
 ### Catalog (one template per file) and the generic emitter
 
 - `catalog/<id>.yaml` is a whole template: trigger (construction, boundary), slots with their
-  substrate class, `mints`, `emits` shapes, notes, `examples.shown` / `examples.held_out`.
+  substrate class, `mints`, `emits` shapes (`if_filled`, `each`, `when`, `project`), `one_of` slot groups, notes,
+  `examples.shown` / `examples.held_out`. A sentence another template abstains on is claimed in the SAME
+  section (shown or held-out), or `check` reports a leak.
   `python -c "from tmpl import catalog; catalog.load()"` checks the structural invariants.
 - `tmpl/emit.py` renders instances through the shapes (nothing template-specific in code);
   `from tmpl import emit; emit.emit(item)` → statements + declarations. Tests: `python tests/test_emit.py`.

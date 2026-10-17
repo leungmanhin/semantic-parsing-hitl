@@ -1,0 +1,123 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "4e0b46810b988ce05e1f517f3a6d2747555679ded22ea0a5d060190513c50586",
+  "item": {
+    "id": "s5fdba7f85d",
+    "text": "Yusra told Teodor that Lamine might lend Ottoline the trowel."
+  },
+  "usage": {
+    "input": 8434,
+    "output": 273,
+    "thinking": null,
+    "total": 8707,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 8434,
+    "candidatesTokenCount": 273,
+    "totalTokenCount": 8707,
+    "cachedContentTokenCount": 6385,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 8434
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 6385
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 273
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s5fdba7f85d\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\"}, {\"t\": \"named-entity\", \"id\": \"n3\", \"name\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n4\", \"name\": \"Ottoline\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"trowel\", \"definite\": true}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"lend\", \"giver\": \"@n3\", \"recipient\": \"@n4\", \"object\": \"@x1\", \"tense\": \"present\"}, {\"t\": \"modal\", \"id\": \"s1\", \"over\": [\"@e1\"], \"head\": \"Might\", \"surface\": \"might\"}, {\"t\": \"communication\", \"id\": \"e2\", \"verb\": \"tell\", \"speaker\": \"@n1\", \"addressee\": \"@n2\", \"content\": [\"@s1\"], \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s5fdba7f85d",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Teodor"
+      },
+      {
+        "t": "named-entity",
+        "id": "n3",
+        "name": "Lamine"
+      },
+      {
+        "t": "named-entity",
+        "id": "n4",
+        "name": "Ottoline"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "trowel",
+        "definite": true
+      },
+      {
+        "t": "transfer",
+        "id": "e1",
+        "verb": "lend",
+        "giver": "@n3",
+        "recipient": "@n4",
+        "object": "@x1",
+        "tense": "present"
+      },
+      {
+        "t": "modal",
+        "id": "s1",
+        "over": [
+          "@e1"
+        ],
+        "head": "Might",
+        "surface": "might"
+      },
+      {
+        "t": "communication",
+        "id": "e2",
+        "verb": "tell",
+        "speaker": "@n1",
+        "addressee": "@n2",
+        "content": [
+          "@s1"
+        ],
+        "tense": "past"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "e3d200dab1a94aef009e77e2e5738e5fb8713fdb47b96afd97dbe6f48a10d909",
+  "run": 2,
+  "case": {
+    "template": "communication",
+    "section": "held_out",
+    "index": 7,
+    "category": "scoped",
+    "text": "Yusra told Teodor that Lamine might lend Ottoline the trowel.",
+    "key": "5fdba7f85d"
+  }
+}

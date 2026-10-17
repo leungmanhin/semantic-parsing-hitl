@@ -12,6 +12,7 @@ Structural invariants checked here (content is reviewed by people, not checked h
 * every ``emits`` entry has an ``atom`` whose placeholders name a slot of the template (or
   ``@id`` when the template mints a symbol); ``if_filled`` / ``each`` name a slot; ``when``
   mentions only slots, their values and ``true`` / ``false``; ``project`` is a boolean;
+* ``one_of`` groups list two or more slots each;
 * examples carry a ``category`` and either ``instances`` or an ``expected`` abstain target.
 """
 from __future__ import annotations
@@ -61,6 +62,9 @@ def check_template(t: dict, path: str) -> list[str]:
             problems.append(f"slot {sname}: a {spec['type']} slot needs a substrate class")
         if spec["type"] == "enum" and not spec.get("values"):
             problems.append(f"slot {sname}: an enum slot needs values")
+    for i, group in enumerate(t.get("one_of") or []):
+        if not isinstance(group, list) or len(group) < 2 or any(g not in slots for g in group):
+            problems.append(f"one_of[{i}]: must list two or more slots of the template")
     mints = t.get("mints") or {}
     for i, e in enumerate(t.get("emits") or []):
         atom = e.get("atom") if isinstance(e, dict) else None

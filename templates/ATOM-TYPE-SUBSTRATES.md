@@ -162,7 +162,7 @@ head: Recipient
 kind: role
 arity: 2
 type-def: (: Recipient (-> Event Entity Proposition))
-gloss: Goal of a transfer (indirect object / 'to'). A compound-action class symbol under the compound decomposition ((Patient use_crosswalk crosswalk)) is declared both Class and Event.
+gloss: Goal of a transfer (indirect object / 'to'); the addressee of a communication. A compound-action class symbol under the compound decomposition ((Patient use_crosswalk crosswalk)) is declared both Class and Event.
 
 
 head: Source

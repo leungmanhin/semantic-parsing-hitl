@@ -92,7 +92,13 @@ class CheckTests(unittest.TestCase):
     def test_real_catalog_has_no_findings_and_lists_pending_targets(self):
         checks = S.catalog_checks(CATALOG)
         self.assertEqual(checks["findings"], [])
-        self.assertTrue({"acquisition", "activity", "communication"} <= set(checks["pending"]), checks["pending"])
+        expected = {(ex.get("expected") or {}).get("template")
+                    for t in CATALOG.values() for section in ("shown", "held_out")
+                    for ex in (t.get("examples") or {}).get(section) or []
+                    if ex.get("category") == "abstain" and (ex.get("expected") or {}).get("template") not in CATALOG}
+        expected.discard(None)
+        self.assertEqual(set(checks["pending"]), expected)
+        self.assertTrue(expected)
         self.assertGreater(checks["examples"], 10)
 
     def _with_acquisition(self, claim_text=None, instances=None):
@@ -245,21 +251,21 @@ FAKE_SCRIPT = textwrap.dedent('''
             fh.write(text + "\\n")
         if args.dry_run:
             return {"request": {"url": "fake", "body": {"text": text}}}
-        for tid, t in CATALOG.items():
-            for section in ("shown", "held_out"):
-                for ex in (t.get("examples") or {}).get(section) or []:
-                    if ex["text"] == text:
-                        if ex.get("instances"):
-                            resp = {"id": item_id, "instances": ex["instances"], "unmapped": [], "issues": []}
-                        else:
-                            exp = ex["expected"]
-                            resp = {"id": item_id, "instances": [], "issues": [],
-                                    "unmapped": [{"span": exp.get("span") or text, "code": exp.get("gap") or "G00"}]}
-                        return {"provider": "google", "model": "fake-1", "effort": "low", "temperature": 0.0,
-                                "prompt_sha256": "0", "item": {"id": item_id, "text": text},
-                                "usage": {"input": 100, "output": 20, "thinking": 7 if "might" in text else None, "total": 127},
-                                "raw_text": json.dumps(resp), "response": resp}
-        raise ProviderError("unknown sentence")
+        matches = [ex for t in CATALOG.values() for section in ("shown", "held_out")
+                   for ex in (t.get("examples") or {}).get(section) or [] if ex["text"] == text]
+        if not matches:
+            raise ProviderError("unknown sentence")
+        ex = next((m for m in matches if m.get("instances")), matches[0])   # a claim beats an abstain
+        if ex.get("instances"):
+            resp = {"id": item_id, "instances": ex["instances"], "unmapped": [], "issues": []}
+        else:
+            exp = ex["expected"]
+            resp = {"id": item_id, "instances": [], "issues": [],
+                    "unmapped": [{"span": exp.get("span") or text, "code": exp.get("gap") or "G00"}]}
+        return {"provider": "google", "model": "fake-1", "effort": "low", "temperature": 0.0,
+                "prompt_sha256": "0", "item": {"id": item_id, "text": text},
+                "usage": {"input": 100, "output": 20, "thinking": 7 if "might" in text else None, "total": 127},
+                "raw_text": json.dumps(resp), "response": resp}
 ''')
 
 

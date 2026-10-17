@@ -1,25 +1,11 @@
 {
   "prompt": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_body_sha256": "8674bf87a4b179e17df201a06cdfa72949f5c085c9011d610b4139b838fd4f5a",
+  "prompt_body_sha256": "e3d200dab1a94aef009e77e2e5738e5fb8713fdb47b96afd97dbe6f48a10d909",
   "typecheck": "ran",
   "checks": {
-    "examples": 36,
+    "examples": 53,
     "findings": [],
     "pending": {
-      "communication": [
-        {
-          "template": "attitude",
-          "text": "Teodor told Ottoline that Lamine sold the spindle."
-        },
-        {
-          "template": "attitude",
-          "text": "Yusra told Teodor that Ottoline sent the quilt."
-        },
-        {
-          "template": "transfer",
-          "text": "Teodor told Ottoline the news."
-        }
-      ],
       "psych": [
         {
           "template": "attitude",
@@ -43,59 +29,59 @@
   },
   "orphans": [],
   "templates": {
-    "attitude": {
+    "communication": {
       "held_out": {
-        "records": 39,
-        "cases": 13,
+        "records": 36,
+        "cases": 12,
         "status": {
-          "ok": 39
+          "ok": 36
         },
-        "stale_prompt": 27,
+        "stale_prompt": 0,
         "by_category": {
           "positive": {
-            "cases": 2,
-            "runs": 6,
-            "pass": 6,
-            "fired": 6,
-            "exact": 6
-          },
-          "contrast": {
-            "cases": 2,
-            "runs": 6,
-            "pass": 6,
-            "fired": 6,
-            "exact": 6
-          },
-          "scoped": {
             "cases": 4,
             "runs": 12,
             "pass": 12,
             "fired": 12,
             "exact": 12
           },
-          "optional": {
+          "contrast": {
             "cases": 1,
             "runs": 3,
             "pass": 3,
             "fired": 3,
             "exact": 3
           },
+          "scoped": {
+            "cases": 2,
+            "runs": 6,
+            "pass": 6,
+            "fired": 6,
+            "exact": 6
+          },
+          "optional": {
+            "cases": 2,
+            "runs": 6,
+            "pass": 6,
+            "fired": 6,
+            "exact": 6
+          },
           "abstain": {
-            "cases": 4,
-            "runs": 12,
-            "pass": 12,
+            "cases": 3,
+            "runs": 9,
+            "pass": 9,
             "false_fires": 0,
             "outcomes": {
-              "gap_reported": 9,
-              "pending_unmapped": 3
+              "gap_reported": 6,
+              "target_fired": 3
             }
           }
         },
-        "pass": 39,
+        "pass": 36,
         "selection": {
           "fire_runs": 27,
           "fired": 27,
-          "abstain_runs": 12,
+          "abstain_runs": 9,
           "false_fires": 0
         },
         "fill": {
@@ -104,110 +90,32 @@
           "rate": 1.0
         },
         "stability": {
-          "cases": 13,
-          "pairs": 39,
+          "cases": 12,
+          "pairs": 36,
           "pairwise_agreement": 1.0,
-          "unanimous": 13
+          "unanimous": 12
         },
         "typecheck": {
-          "checked": 39,
-          "passed": 39
+          "checked": 36,
+          "passed": 36
         },
         "usage": {
-          "input": 256335,
-          "output": 6791,
+          "input": 303468,
+          "output": 6461,
           "thinking": 0,
-          "total": 263126,
-          "calls": 39,
+          "total": 309929,
+          "calls": 36,
           "thinking_calls": 0
         },
-        "issues": [],
-        "null_slots": 0,
-        "lints": {},
-        "models": [
-          "gemini-4-argon effort=low"
-        ]
-      }
-    },
-    "transfer": {
-      "held_out": {
-        "records": 27,
-        "cases": 9,
-        "status": {
-          "ok": 27
-        },
-        "stale_prompt": 18,
-        "by_category": {
-          "positive": {
-            "cases": 2,
-            "runs": 6,
-            "pass": 6,
-            "fired": 6,
-            "exact": 6
-          },
-          "contrast": {
-            "cases": 1,
-            "runs": 3,
-            "pass": 3,
-            "fired": 3,
-            "exact": 3
-          },
-          "scoped": {
-            "cases": 2,
-            "runs": 6,
-            "pass": 6,
-            "fired": 6,
-            "exact": 6
-          },
-          "optional": {
-            "cases": 1,
-            "runs": 3,
-            "pass": 3,
-            "fired": 3,
-            "exact": 3
-          },
-          "abstain": {
-            "cases": 3,
-            "runs": 9,
-            "pass": 9,
-            "false_fires": 0,
-            "outcomes": {
-              "gap_reported": 3,
-              "pending_unmapped": 6
-            }
+        "issues": [
+          {
+            "code": "P00",
+            "where": "transfer",
+            "text": "The tense slot is required on predications, but the instructions do not specify which tense value to use when the clause is governed by a modal auxiliary like 'might'.",
+            "sentence": "Yusra told Teodor that Lamine might lend Ottoline the trowel.",
+            "run": 1
           }
-        },
-        "pass": 27,
-        "selection": {
-          "fire_runs": 18,
-          "fired": 18,
-          "abstain_runs": 9,
-          "false_fires": 0
-        },
-        "fill": {
-          "fired": 18,
-          "exact": 18,
-          "rate": 1.0
-        },
-        "stability": {
-          "cases": 9,
-          "pairs": 27,
-          "pairwise_agreement": 1.0,
-          "unanimous": 9
-        },
-        "typecheck": {
-          "checked": 27,
-          "passed": 27
-        },
-        "usage": {
-          "input": 149478,
-          "output": 3577,
-          "thinking": 0,
-          "total": 153055,
-          "calls": 27,
-          "thinking_calls": 0
-        },
-        "issues": [],
+        ],
         "null_slots": 0,
         "lints": {},
         "models": [
