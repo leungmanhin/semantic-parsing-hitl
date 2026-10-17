@@ -1,0 +1,200 @@
+# Template: activity  (an actor does something, optionally to a patient)
+#
+# The plain action class: the subject acts, and may act on a patient that is used, handled or
+# affected but is not created, destroyed, moved or transferred. This is NOT a catch-all for any
+# verb: a verb that denotes movement, a change of state, creation, a transfer, a state of
+# having, a perception, a feeling or a communication belongs to its own class, and a verb of no
+# listed class is reported as a gap, never forced into this frame.
+
+id: activity
+family: predication
+kind: verb-class
+title: An action by an actor, with or without a patient
+status: draft
+
+trigger:
+  construction: >
+    A verbal clause whose verb denotes an action the subject performs: intransitive (laugh,
+    sleep, work, wait, dance, sing, rest, give up, carry on) or with a patient the action is
+    done to or with (read the letter, cook dinner, wash the quilt, use the ladder, help
+    Lamine, eat the soup). The patient is used, handled or affected; it does not come into
+    being, cease to be, change place or change hands.
+  verbs: [laugh, sleep, work, wait, dance, sing, play, rest, read, cook, wash, clean, use,
+          help, eat, drink, study, practise, give_up, carry_on]
+  verbs_note: >
+    The list anchors the class; an unlisted verb that denotes such an action belongs here. A
+    particle verb keeps its particle (give_up, carry_on). A verb that denotes movement, a
+    change of state or the creation of its object is not of this class even if unlisted
+    elsewhere: report it as a gap with the lemma in the span.
+  surface_forms:
+    - "<actor> V"                                # Yusra laughed
+    - "<actor> V <patient>"                      # Teodor read the letter
+    - "<patient> was V-ed by <actor>"            # passive: the roles do not change
+    - "<patient> was V-ed"                       # passive, actor unstated
+  boundary:                   # looks like an activity but is not one
+    - >-
+      movement — went to the market, arrived, left, travelled: a change of place
+    - >-
+      a change of state — broke, melted, died, grew: the subject or the object ends up in a
+      new state
+    - >-
+      creation — built a shed, baked a loaf, wrote a letter: the object comes into being
+    - >-
+      a transfer, an acquisition, a state of having, a perception, a feeling or a
+      communication — gave, took, owns, saw, fears, told: each has its own class
+    - >-
+      light-verb constructions — had a rest, took a walk, gave a speech, made a call: the
+      noun carries the event
+    - >-
+      an infinitival or gerund complement — tried to sleep, stopped working, kept singing: a
+      different construction
+    - >-
+      a companion or an instrument phrase — danced with Yusra, cut it with a knife: an
+      attachment with no slot here; the action is parsed, the phrase reported as unmapped
+
+slots:
+  id:      {type: id, required: true, doc: "your label for the action"}
+  verb:    {type: lemma, class: Class, required: true, doc: "the verb lemma"}
+  actor:   {type: filler, class: Entity, role: Agent, required: false,
+            doc: "who acts: the subject, or the by-phrase of a passive; absent only in an agentless passive"}
+  patient: {type: filler, class: Entity, role: Patient, required: false,
+            doc: "what the action is done to or with: the object; a bare lemma for a non-specific one (cooked dinner)"}
+  tense:   {type: enum, values: [past, present, future], required: true,
+            doc: "the clause's tense; present is recorded, not inferred"}
+  aspect:  {type: enum, values: [simple, progressive, perfect], required: false, default: simple}
+
+mints: {id: Event}
+
+emits:
+  - atom: "(Member @id {verb})"
+  - atom: "(Agent @id {actor})"
+    if_filled: actor
+  - atom: "(Patient @id {patient})"
+    if_filled: patient
+  - atom: "(Past @id)"
+    when: "tense == past or aspect == perfect"
+  - atom: "(Future @id)"
+    when: "tense == future"
+  - atom: "(Ongoing @id)"
+    when: "aspect == progressive"
+
+notes:
+  - >-
+    The class is defined by what it excludes. Movement, change of state and creation each
+    carry an outcome the action class does not (a new place, a new state, a new thing), and
+    they get their own templates; until then they are gaps, so that their counts show which
+    class to write next.
+  - >-
+    A patient is the thing the action is done to or with; it is Patient, not Theme, because it
+    is not moved or transferred unchanged — it is used or affected.
+
+depends_on: [named-entity, witness]
+composes_with: [negation, modal, time, location, manner]
+
+examples:
+  shown:                     # rendered into the prompt
+    - category: positive
+      note: intransitive
+      text: "Yusra laughed."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past}
+      emitted:               # what the emitter produces (illustration; the emitter is the authority)
+        - "(Name yusra \"Yusra\")"
+        - "(Member sk_laugh_1 laugh)"
+        - "(Agent sk_laugh_1 yusra)"
+        - "(Past sk_laugh_1)"
+      declarations:
+        - "(: yusra Entity)"
+        - "(: sk_laugh_1 Event)"
+        - "(: laugh Class)"
+    - category: positive
+      note: a non-specific patient as a bare lemma
+      text: "Lamine cooked dinner."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: activity, id: v1, verb: cook, actor: "@n1", patient: dinner, tense: past}
+    - category: abstain
+      text: "Teodor gave Yusra a thermos."
+      expected: {abstain: true, template: transfer}                   # a change of hands
+    - category: abstain
+      text: "Yusra went to the market."
+      expected: {abstain: true, template: motion}                     # a change of place
+
+  held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      note: a particle verb keeps its particle
+      text: "Yusra gave up."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: activity, id: v1, verb: give_up, actor: "@n1", tense: past}
+    - category: positive
+      note: a specific patient
+      text: "Teodor read the letter."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, kind: letter, definite: true}
+        - {t: activity, id: v1, verb: read, actor: "@n1", patient: "@x1", tense: past}
+    - category: positive
+      text: "Ottoline helped Lamine."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: activity, id: v1, verb: help, actor: "@n1", patient: "@n2", tense: past}
+    - category: contrast
+      note: role reversal — the instance must differ in actor and patient only
+      text: "Lamine helped Ottoline."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: named-entity, id: n2, name: "Ottoline"}
+        - {t: activity, id: v1, verb: help, actor: "@n1", patient: "@n2", tense: past}
+    - category: positive
+      note: a companion phrase is an attachment with no slot — the action is parsed, the phrase reported
+      text: "Lamine danced with Yusra."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: named-entity, id: n2, name: "Yusra"}
+        - {t: activity, id: v1, verb: dance, actor: "@n1", tense: past}
+      unmapped:
+        - {code: G00, span: "with Yusra"}
+    - category: scoped
+      note: under clausal negation
+      text: "Teodor did not laugh."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past}
+        - {t: negation, id: s1, over: ["@v1"]}
+    - category: scoped
+      note: under a modal
+      text: "Ottoline might wait."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: activity, id: v1, verb: wait, actor: "@n1", tense: present}
+        - {t: modal, id: s1, over: ["@v1"], head: Might, surface: might}
+    - category: optional
+      note: progressive
+      text: "Yusra is sleeping."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: activity, id: v1, verb: sleep, actor: "@n1", tense: present, aspect: progressive}
+    - category: optional
+      note: agentless passive — no actor
+      text: "The quilt was washed."
+      instances:
+        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: activity, id: v1, verb: wash, patient: "@x1", tense: past}
+    - category: abstain
+      text: "Teodor arrived."
+      expected: {abstain: true, template: motion}                     # a change of place
+    - category: abstain
+      text: "The ladder broke."
+      expected: {abstain: true, template: change-of-state}            # a new state
+    - category: abstain
+      text: "Teodor built a shed."
+      expected: {abstain: true, template: creation}                   # the object comes into being
+    - category: abstain
+      text: "Yusra tried to sleep."
+      expected: {abstain: true, gap: G00, span: "tried to sleep"}     # infinitival complement
+    - category: abstain
+      text: "Yusra had a rest."
+      expected: {abstain: true, gap: G00, span: "had a rest"}         # light-verb construction

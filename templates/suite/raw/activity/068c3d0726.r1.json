@@ -1,0 +1,72 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "9e1db0997dbb17ae70fb35b09cad0a93ecd8ebeab47d506a264555a1a9d7b5ae",
+  "item": {
+    "id": "s068c3d0726",
+    "text": "Yusra tried to sleep."
+  },
+  "usage": {
+    "input": 14851,
+    "output": 83,
+    "thinking": null,
+    "total": 14934,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 14851,
+    "candidatesTokenCount": 83,
+    "totalTokenCount": 14934,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 14851
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 83
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s068c3d0726\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}], \"unmapped\": [{\"span\": \"tried to sleep\", \"code\": \"G00\", \"construction\": \"A verb with an infinitival complement.\"}], \"issues\": []}",
+  "response": {
+    "id": "s068c3d0726",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "tried to sleep",
+        "code": "G00",
+        "construction": "A verb with an infinitival complement."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "7ebc2160e3f1d78f6205db12ef42b449428c7fa0394c1c3609f66a739cb62694",
+  "run": 1,
+  "case": {
+    "template": "activity",
+    "section": "held_out",
+    "index": 12,
+    "category": "abstain",
+    "text": "Yusra tried to sleep.",
+    "key": "068c3d0726"
+  }
+}

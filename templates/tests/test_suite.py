@@ -166,7 +166,9 @@ class ScoreTests(unittest.TestCase):
     def setUp(self):
         self.pos = case("transfer", "held_out", "Lamine handed Teodor an envelope.")
         self.abst_gap = case("transfer", "held_out", "Lamine paid Yusra a visit.")
-        self.abst_pending = case("transfer", "held_out", "Yusra gave up.")
+        # a case whose target no template covers, whatever the catalog grows into
+        self.abst_pending = dict(case("transfer", "held_out", "Yusra gave up."),
+                                 expected={"abstain": True, "template": "never-written"})
 
     def score(self, c, rec):
         return S.score_record(c, rec, CATALOG, HEADS, None)

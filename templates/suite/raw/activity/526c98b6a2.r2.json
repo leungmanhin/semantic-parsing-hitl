@@ -1,0 +1,81 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "9e1db0997dbb17ae70fb35b09cad0a93ecd8ebeab47d506a264555a1a9d7b5ae",
+  "item": {
+    "id": "s526c98b6a2",
+    "text": "Yusra is sleeping."
+  },
+  "usage": {
+    "input": 14850,
+    "output": 94,
+    "thinking": null,
+    "total": 14944,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 14850,
+    "candidatesTokenCount": 94,
+    "totalTokenCount": 14944,
+    "cachedContentTokenCount": 12801,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 14850
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 12801
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 94
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s526c98b6a2\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"sleep\", \"actor\": \"@n1\", \"tense\": \"present\", \"aspect\": \"progressive\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s526c98b6a2",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "sleep",
+        "actor": "@n1",
+        "tense": "present",
+        "aspect": "progressive"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "7ebc2160e3f1d78f6205db12ef42b449428c7fa0394c1c3609f66a739cb62694",
+  "run": 2,
+  "case": {
+    "template": "activity",
+    "section": "held_out",
+    "index": 7,
+    "category": "optional",
+    "text": "Yusra is sleeping.",
+    "key": "526c98b6a2"
+  }
+}

@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 e7d3b232b048f148 · 11 templates
+catalog sha256 dd6e97c4c4572eaf · 12 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -180,7 +180,7 @@ Slots:
 - `title` (optional; a string): a leading title, if any.
 - `kind` (optional; a lemma): the kind the text states for the name.
 
-Example. TEXT: Teodor arrived.
+Example. TEXT: Teodor
 
 Instances:
 
@@ -344,6 +344,92 @@ Not this template. TEXT: Teodor gave Yusra a thermos. — use `transfer`.
 
 Not this template. TEXT: Lamine took a walk. — report it as unmapped: {"span": "took a walk",
 "code": "G00"}.
+
+### activity — An action by an actor, with or without a patient
+
+When: A verbal clause whose verb denotes an action the subject performs: intransitive (laugh,
+sleep, work, wait, dance, sing, rest, give up, carry on) or with a patient the action is done to
+or with (read the letter, cook dinner, wash the quilt, use the ladder, help Lamine, eat the
+soup). The patient is used, handled or affected; it does not come into being, cease to be,
+change place or change hands.
+
+Verbs that anchor the class: laugh, sleep, work, wait, dance, sing, play, rest, read, cook,
+wash, clean, use, help, eat, drink, study, practise, give_up, carry_on.
+The list anchors the class; an unlisted verb that denotes such an action belongs here. A
+particle verb keeps its particle (give_up, carry_on). A verb that denotes movement, a change of
+state or the creation of its object is not of this class even if unlisted elsewhere: report it
+as a gap with the lemma in the span.
+
+Forms:
+- <actor> V
+- <actor> V <patient>
+- <patient> was V-ed by <actor>
+- <patient> was V-ed
+
+Not this template:
+- movement — went to the market, arrived, left, travelled: a change of place
+- a change of state — broke, melted, died, grew: the subject or the object ends up in a new
+  state
+- creation — built a shed, baked a loaf, wrote a letter: the object comes into being
+- a transfer, an acquisition, a state of having, a perception, a feeling or a communication —
+  gave, took, owns, saw, fears, told: each has its own class
+- light-verb constructions — had a rest, took a walk, gave a speech, made a call: the noun
+  carries the event
+- an infinitival or gerund complement — tried to sleep, stopped working, kept singing: a
+  different construction
+- a companion or an instrument phrase — danced with Yusra, cut it with a knife: an attachment
+  with no slot here; the action is parsed, the phrase reported as unmapped
+
+Slots:
+
+- `t` (required): "activity"
+- `id` (required; your label for this instance): your label for the action.
+- `verb` (required; a lemma): the verb lemma.
+- `actor` (optional; "@id" of a referent instance, or a bare lemma for a non-specific filler):
+  who acts: the subject, or the by-phrase of a passive; absent only in an agentless passive.
+- `patient` (optional; "@id" of a referent instance, or a bare lemma for a non-specific filler):
+  what the action is done to or with: the object; a bare lemma for a non-specific one (cooked
+  dinner).
+- `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
+  not inferred.
+- `aspect` (optional; one of: simple, progressive, perfect).
+
+Example (intransitive). TEXT: Yusra laughed.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Yusra"},
+      {"t": "activity", "id": "v1", "verb": "laugh", "actor": "@n1", "tense": "past"}
+    ]
+
+The program renders these instances as:
+
+    (Name yusra "Yusra")
+    (Member sk_laugh_1 laugh)
+    (Agent sk_laugh_1 yusra)
+    (Past sk_laugh_1)
+
+Example (a non-specific patient as a bare lemma). TEXT: Lamine cooked dinner.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Lamine"},
+      {"t": "activity", "id": "v1", "verb": "cook", "actor": "@n1", "patient": "dinner", "tense": "past"}
+    ]
+
+The program renders these instances as:
+
+    (Name lamine "Lamine")
+    (Member sk_cook_1 cook)
+    (Agent sk_cook_1 lamine)
+    (Patient sk_cook_1 dinner)
+    (Past sk_cook_1)
+
+Not this template. TEXT: Teodor gave Yusra a thermos. — use `transfer`.
+
+Not this template. TEXT: Yusra went to the market. — report the span as unmapped.
 
 ### attitude — A propositional attitude towards a complement clause
 

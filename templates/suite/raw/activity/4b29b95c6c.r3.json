@@ -1,0 +1,87 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "9e1db0997dbb17ae70fb35b09cad0a93ecd8ebeab47d506a264555a1a9d7b5ae",
+  "item": {
+    "id": "s4b29b95c6c",
+    "text": "Teodor did not laugh."
+  },
+  "usage": {
+    "input": 14851,
+    "output": 109,
+    "thinking": null,
+    "total": 14960,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 14851,
+    "candidatesTokenCount": 109,
+    "totalTokenCount": 14960,
+    "cachedContentTokenCount": 12802,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 14851
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 12802
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 109
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s4b29b95c6c\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"laugh\", \"actor\": \"@n1\", \"tense\": \"past\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@e1\"]}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s4b29b95c6c",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "laugh",
+        "actor": "@n1",
+        "tense": "past"
+      },
+      {
+        "t": "negation",
+        "id": "s1",
+        "over": [
+          "@e1"
+        ]
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "7ebc2160e3f1d78f6205db12ef42b449428c7fa0394c1c3609f66a739cb62694",
+  "run": 3,
+  "case": {
+    "template": "activity",
+    "section": "held_out",
+    "index": 5,
+    "category": "scoped",
+    "text": "Teodor did not laugh.",
+    "key": "4b29b95c6c"
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "9e1db0997dbb17ae70fb35b09cad0a93ecd8ebeab47d506a264555a1a9d7b5ae",
+  "item": {
+    "id": "s940b7aa2a4",
+    "text": "The ladder broke."
+  },
+  "usage": {
+    "input": 14848,
+    "output": 65,
+    "thinking": null,
+    "total": 14913,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 14848,
+    "candidatesTokenCount": 65,
+    "totalTokenCount": 14913,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 14848
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 65
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s940b7aa2a4\", \"instances\": [], \"unmapped\": [{\"span\": \"The ladder broke.\", \"code\": \"G00\", \"construction\": \"Inchoative change-of-state clause with 'break'.\"}], \"issues\": []}",
+  "response": {
+    "id": "s940b7aa2a4",
+    "instances": [],
+    "unmapped": [
+      {
+        "span": "The ladder broke.",
+        "code": "G00",
+        "construction": "Inchoative change-of-state clause with 'break'."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "7ebc2160e3f1d78f6205db12ef42b449428c7fa0394c1c3609f66a739cb62694",
+  "run": 1,
+  "case": {
+    "template": "activity",
+    "section": "held_out",
+    "index": 10,
+    "category": "abstain",
+    "text": "The ladder broke.",
+    "key": "940b7aa2a4"
+  }
+}

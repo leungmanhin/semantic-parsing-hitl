@@ -1,0 +1,79 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "9e1db0997dbb17ae70fb35b09cad0a93ecd8ebeab47d506a264555a1a9d7b5ae",
+  "item": {
+    "id": "s317857497e",
+    "text": "Teodor arrived."
+  },
+  "usage": {
+    "input": 14849,
+    "output": 87,
+    "thinking": null,
+    "total": 14936,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 14849,
+    "candidatesTokenCount": 87,
+    "totalTokenCount": 14936,
+    "cachedContentTokenCount": 12800,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 14849
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 12800
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 87
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s317857497e\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}], \"unmapped\": [{\"span\": \"arrived\", \"code\": \"G00\", \"construction\": \"An intransitive clause with a verb of movement or arrival (arrive).\"}], \"issues\": []}",
+  "response": {
+    "id": "s317857497e",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "arrived",
+        "code": "G00",
+        "construction": "An intransitive clause with a verb of movement or arrival (arrive)."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "7ebc2160e3f1d78f6205db12ef42b449428c7fa0394c1c3609f66a739cb62694",
+  "run": 3,
+  "case": {
+    "template": "activity",
+    "section": "held_out",
+    "index": 9,
+    "category": "abstain",
+    "text": "Teodor arrived.",
+    "key": "317857497e"
+  }
+}

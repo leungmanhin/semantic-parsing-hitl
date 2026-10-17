@@ -1,0 +1,86 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "9e1db0997dbb17ae70fb35b09cad0a93ecd8ebeab47d506a264555a1a9d7b5ae",
+  "item": {
+    "id": "se668acc641",
+    "text": "Ottoline helped Lamine."
+  },
+  "usage": {
+    "input": 14848,
+    "output": 113,
+    "thinking": null,
+    "total": 14961,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 14848,
+    "candidatesTokenCount": 113,
+    "totalTokenCount": 14961,
+    "cachedContentTokenCount": 12799,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 14848
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 12799
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 113
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"se668acc641\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Lamine\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"help\", \"actor\": \"@n1\", \"patient\": \"@n2\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "se668acc641",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Ottoline"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Lamine"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "help",
+        "actor": "@n1",
+        "patient": "@n2",
+        "tense": "past"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "7ebc2160e3f1d78f6205db12ef42b449428c7fa0394c1c3609f66a739cb62694",
+  "run": 2,
+  "case": {
+    "template": "activity",
+    "section": "held_out",
+    "index": 2,
+    "category": "positive",
+    "text": "Ottoline helped Lamine.",
+    "key": "e668acc641"
+  }
+}

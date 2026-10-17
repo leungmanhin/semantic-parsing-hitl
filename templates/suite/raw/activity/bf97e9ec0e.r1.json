@@ -1,0 +1,80 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "9e1db0997dbb17ae70fb35b09cad0a93ecd8ebeab47d506a264555a1a9d7b5ae",
+  "item": {
+    "id": "sbf97e9ec0e",
+    "text": "Teodor read the letter."
+  },
+  "usage": {
+    "input": 14849,
+    "output": 116,
+    "thinking": null,
+    "total": 14965,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 14849,
+    "candidatesTokenCount": 116,
+    "totalTokenCount": 14965,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 14849
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 116
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sbf97e9ec0e\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"letter\", \"definite\": true}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"read\", \"actor\": \"@n1\", \"patient\": \"@x1\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sbf97e9ec0e",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "letter",
+        "definite": true
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "read",
+        "actor": "@n1",
+        "patient": "@x1",
+        "tense": "past"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "7ebc2160e3f1d78f6205db12ef42b449428c7fa0394c1c3609f66a739cb62694",
+  "run": 1,
+  "case": {
+    "template": "activity",
+    "section": "held_out",
+    "index": 1,
+    "category": "positive",
+    "text": "Teodor read the letter.",
+    "key": "bf97e9ec0e"
+  }
+}
