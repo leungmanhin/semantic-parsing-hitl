@@ -44,6 +44,10 @@ trigger:
     - >-
       light-verb constructions — gave Ottoline a call, had a word with Yusra: the noun carries
       the event
+    - >-
+      a thing written, drawn or composed with no addressee — wrote a letter, wrote a song, drew a
+      map: a creation; write belongs here only with an addressee (wrote to Yusra, wrote Yusra a
+      letter)
 
 slots:
   id:        {type: id, required: true, doc: "your label for the communication event"}
@@ -188,6 +192,15 @@ examples:
         - {t: named-entity, id: n2, name: "Lamine"}
         - {t: witness, id: x1, kind: secret}
         - {t: communication, id: c1, verb: tell, speaker: "@n1", addressee: "@n2", message: "@x1",
+           tense: past}
+    - category: positive
+      note: write with an addressee — the letter is the message, not a thing made
+      text: "Yusra wrote Teodor a letter."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: named-entity, id: n2, name: "Teodor"}
+        - {t: witness, id: x1, kind: letter}
+        - {t: communication, id: c1, verb: write, speaker: "@n1", addressee: "@n2", message: "@x1",
            tense: past}
     - category: scoped
       note: the communication negated — the clause stays sealed inside

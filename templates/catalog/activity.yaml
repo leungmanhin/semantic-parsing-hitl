@@ -197,6 +197,13 @@ examples:
       instances:
         - {t: witness, id: x1, kind: ferret, definite: true}
         - {t: activity, id: v1, verb: sleep, actor: "@x1", tense: past}
+    - category: positive
+      note: paint with a thing already there as the object — coated, not brought into being
+      text: "Ottoline painted the shed."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: witness, id: x1, kind: shed, definite: true}
+        - {t: activity, id: v1, verb: paint, actor: "@n1", patient: "@x1", tense: past}
     - category: abstain
       text: "Teodor arrived."
       expected: {abstain: true, template: motion}                     # a change of place

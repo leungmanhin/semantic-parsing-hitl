@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 635856dad7c687bb · 20 templates
+catalog sha256 07164d0923c7dc7e · 21 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -707,20 +707,24 @@ state: on its own — break, melt, crack, dry, freeze, burn, collapse, grow, shr
 wither, improve, recover, die, open, close, begin, end, start, stop (the audit began), fall and
 rise of a value (the price fell) — or brought about by someone — Yusra broke the ladder, Lamine
 melted the wax. Become, turn, get and go with a predicate (became a locksmith, turned red, got
-wet, went bad) name the state the subject comes to be in: record it as the result.
+wet, went bad) name the state the subject comes to be in: record it as the result. Make with a
+predicate on its object (made the wax soft, made Yusra uncomfortable) names the state the object
+comes to be in: the maker is the agent, the object the undergoer, the predicate the result.
 
 Verbs that anchor the class: break, melt, crack, dry, freeze, burn, collapse, grow, shrink,
 expand, fade, wither, improve, recover, die, open, close, begin, end, start, stop, fall, rise,
-become, turn, get, go.
+become, turn, get, go, make.
 The list anchors the class; an unlisted verb that denotes a change of state belongs here (record
 its lemma as usual). Fall, rise, go and get are of this class only in the change-of-state sense
 (a value fell, went bad, got wet); a physical fall is a motion, and get with an object acquired
-is an acquisition.
+is an acquisition. Make is of this class only with a predicate on its object (made the wax
+soft); making a thing is a creation.
 
 Forms:
 - <undergoer> V
 - <agent> V <undergoer>
 - <undergoer> became / turned / got <N or ADJ>
+- <agent> made <undergoer> <N or ADJ>
 - <undergoer> was V-ed by <agent>
 
 Not this template:
@@ -805,7 +809,7 @@ The program renders these instances as:
 
 Not this template. TEXT: Yusra went to the market. — use `motion`.
 
-Not this template. TEXT: Lamine baked a loaf. — report the span as unmapped.
+Not this template. TEXT: Lamine baked a loaf. — use `creation`.
 
 ### communication — Communication of a message to an addressee
 
@@ -838,6 +842,9 @@ Not this template:
   quilt, told Ottoline to leave: the content is not a proposition conveyed
 - light-verb constructions — gave Ottoline a call, had a word with Yusra: the noun carries the
   event
+- a thing written, drawn or composed with no addressee — wrote a letter, wrote a song, drew a
+  map: a creation; write belongs here only with an addressee (wrote to Yusra, wrote Yusra a
+  letter)
 
 Slots:
 
@@ -986,6 +993,125 @@ The program renders these instances as:
 Not this template. TEXT: Ferrets are mustelids. — use `kind-statement`.
 
 Not this template. TEXT: Teodor became a locksmith. — use `change-of-state`.
+
+### creation — Something comes into being through an action
+
+When: A verbal clause whose object comes into being through the action the verb names: make (in
+the sense of producing a thing), build, construct, assemble, create, produce, form, found,
+establish, invent, design, bake, brew, knit, sew, weave, forge, carve, write, compose, draw,
+paint, print, publish. The subject is the maker, the object the thing made; a thing of any sort
+counts — a shed, a loaf, a letter, a song, a map, a committee, a school.
+
+Verbs that anchor the class: make, build, construct, assemble, create, produce, form, found,
+establish, invent, design, bake, brew, knit, sew, weave, forge, carve, write, compose, draw,
+paint, print, publish.
+The list anchors the class; an unlisted verb whose object comes into being belongs here (record
+its lemma as usual). Several listed verbs have other senses that are not creations: make with a
+predicate on its object (made the wax soft), with an event noun (made a decision) or with a
+clause (made Teodor laugh); paint, write and draw with an existing thing as the object (painted
+the shed, drew the curtain); write with an addressee (wrote to Yusra, wrote Yusra a letter). The
+boundary says where each goes.
+
+Forms:
+- <maker> V <thing made>
+- <maker> V <thing made> from / with / for …
+- <thing made> was V-ed by <maker>
+- <thing made> was V-ed
+
+Not this template:
+- an action on a thing that is already there — painted the shed, read the letter, washed the
+  quilt: an activity; the object is handled or affected, not brought into being
+- a thing that comes to be in a new state — broke the ladder, melted the wax, made the wax soft:
+  a change of state; make with a predicate on its object names the state the object comes to be
+  in
+- a message reaching an addressee — wrote to Yusra, wrote Yusra a letter, told Ottoline the
+  news: a communication
+- light-verb constructions — made a decision, made a trip, made a call, made a change: the noun
+  carries the event
+- make with a clause — made Teodor laugh, made Yusra send the quilt: a causative over a clause,
+  a different construction
+- a state of composition or existence — the shed is made of planks, there is a shed: no event; a
+  different construction
+- a material, instrument, companion or beneficiary phrase — from planks, with a chisel, with
+  Yusra, for Teodor: an attachment with no slot here; the creation is parsed, the phrase
+  reported as unmapped
+
+Slots:
+
+- `t` (required): "creation"
+- `id` (required; your label for this instance): your label for the creation event.
+- `verb` (required; a lemma): the verb lemma.
+- `creator` (optional; "@id" of a referent instance, or a bare lemma for a non-specific filler):
+  who or what makes the thing: the subject, or the by-phrase of a passive; absent only in an
+  agentless passive.
+- `product` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
+  the thing that comes into being: the object; an instance for a specific thing (a shed, the
+  shed), a bare lemma for a non-specific one (baked bread).
+- `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
+  not inferred.
+- `aspect` (optional; one of: simple, progressive, perfect).
+
+Example (the thing made is an indefinite witness). TEXT: Lamine baked a loaf.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Lamine"},
+      {"t": "witness", "id": "x1", "kind": "loaf"},
+      {"t": "creation", "id": "e1", "verb": "bake", "creator": "@n1", "product": "@x1", "tense": "past"}
+    ]
+
+The program renders these instances as:
+
+    (Name lamine "Lamine")
+    (Member sk_loaf_1 loaf)
+    (Member sk_bake_1 bake)
+    (Agent sk_bake_1 lamine)
+    (Patient sk_bake_1 sk_loaf_1)
+    (Past sk_bake_1)
+
+Example (paint in the creation sense — the object is the picture). TEXT: Ottoline painted a portrait.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Ottoline"},
+      {"t": "witness", "id": "x1", "kind": "portrait"},
+      {"t": "creation", "id": "e1", "verb": "paint", "creator": "@n1", "product": "@x1", "tense": "past"}
+    ]
+
+The program renders these instances as:
+
+    (Name ottoline "Ottoline")
+    (Member sk_portrait_1 portrait)
+    (Member sk_paint_1 paint)
+    (Agent sk_paint_1 ottoline)
+    (Patient sk_paint_1 sk_portrait_1)
+    (Past sk_paint_1)
+
+Example (an institution comes into being). TEXT: Yusra founded a school.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Yusra"},
+      {"t": "witness", "id": "x1", "kind": "school"},
+      {"t": "creation", "id": "e1", "verb": "found", "creator": "@n1", "product": "@x1", "tense": "past"}
+    ]
+
+The program renders these instances as:
+
+    (Name yusra "Yusra")
+    (Member sk_school_1 school)
+    (Member sk_found_1 found)
+    (Agent sk_found_1 yusra)
+    (Patient sk_found_1 sk_school_1)
+    (Past sk_found_1)
+
+Not this template. TEXT: Lamine made a decision. — report it as unmapped: {"span": "made a
+decision", "code": "G00"}.
+
+Not this template. TEXT: Yusra broke the ladder. — use `change-of-state`.
 
 ### kind-statement — A kind is a kind or has a property
 

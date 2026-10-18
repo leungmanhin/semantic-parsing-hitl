@@ -1,0 +1,84 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "1abc0d0b07f4c926cff160d9fa63f3bde90c8450677ab125519e57a3b0274ea1",
+  "item": {
+    "id": "s131993ffcf",
+    "text": "Yusra made Teodor laugh."
+  },
+  "usage": {
+    "input": 24119,
+    "output": 114,
+    "thinking": null,
+    "total": 24233,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 24119,
+    "candidatesTokenCount": 114,
+    "totalTokenCount": 24233,
+    "cachedContentTokenCount": 22070,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 24119
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 22070
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 114
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s131993ffcf\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\"}], \"unmapped\": [{\"span\": \"Yusra made Teodor laugh\", \"code\": \"G00\", \"construction\": \"A causative construction with 'make' taking a bare infinitival clause complement.\"}], \"issues\": []}",
+  "response": {
+    "id": "s131993ffcf",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Teodor"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "Yusra made Teodor laugh",
+        "code": "G00",
+        "construction": "A causative construction with 'make' taking a bare infinitival clause complement."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "4c731d51dd5634a62763dd1f7d45e7a095ec79a09ca184df6ab70fc7d2a40b36",
+  "run": 1,
+  "case": {
+    "template": "creation",
+    "section": "held_out",
+    "index": 15,
+    "category": "abstain",
+    "text": "Yusra made Teodor laugh.",
+    "key": "131993ffcf"
+  }
+}

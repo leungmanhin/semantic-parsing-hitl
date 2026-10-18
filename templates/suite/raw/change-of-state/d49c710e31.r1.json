@@ -4,16 +4,16 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "8b94d53524c908c3b49c07b327d4f63b7de7791f1c8a4da1645e4578624a27da",
+  "prompt_sha256": "1abc0d0b07f4c926cff160d9fa63f3bde90c8450677ab125519e57a3b0274ea1",
   "item": {
     "id": "sd49c710e31",
     "text": "Teodor built a shed."
   },
   "usage": {
-    "input": 22488,
-    "output": 84,
+    "input": 24119,
+    "output": 112,
     "thinking": null,
-    "total": 22572,
+    "total": 24231,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,23 +24,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 22488,
-    "candidatesTokenCount": 84,
-    "totalTokenCount": 22572,
+    "promptTokenCount": 24119,
+    "candidatesTokenCount": 112,
+    "totalTokenCount": 24231,
+    "cachedContentTokenCount": 22070,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 22488
+        "tokenCount": 24119
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 22070
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 84
+        "tokenCount": 112
       }
     ]
   },
-  "raw_text": "{\"id\": \"sd49c710e31\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}], \"unmapped\": [{\"span\": \"built a shed\", \"code\": \"G00\", \"construction\": \"A creation clause in which the object comes into being.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"sd49c710e31\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"shed\"}, {\"t\": \"creation\", \"id\": \"e1\", \"verb\": \"build\", \"creator\": \"@n1\", \"product\": \"@x1\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sd49c710e31",
     "instances": [
@@ -48,23 +55,30 @@
         "t": "named-entity",
         "id": "n1",
         "name": "Teodor"
-      }
-    ],
-    "unmapped": [
+      },
       {
-        "span": "built a shed",
-        "code": "G00",
-        "construction": "A creation clause in which the object comes into being."
+        "t": "witness",
+        "id": "x1",
+        "kind": "shed"
+      },
+      {
+        "t": "creation",
+        "id": "e1",
+        "verb": "build",
+        "creator": "@n1",
+        "product": "@x1",
+        "tense": "past"
       }
     ],
+    "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "2cc3e8f061d7bfce34a1f4404efb88ede552d8e0464511d138418685ffc1221b",
+  "prompt_body_sha256": "4c731d51dd5634a62763dd1f7d45e7a095ec79a09ca184df6ab70fc7d2a40b36",
   "run": 1,
   "case": {
     "template": "change-of-state",
     "section": "held_out",
-    "index": 10,
+    "index": 11,
     "category": "abstain",
     "text": "Teodor built a shed.",
     "key": "d49c710e31"

@@ -22,19 +22,23 @@ trigger:
     fall and rise of a value (the price fell) — or brought about by someone — Yusra broke the
     ladder, Lamine melted the wax. Become, turn, get and go with a predicate (became a locksmith,
     turned red, got wet, went bad) name the state the subject comes to be in: record it as the
-    result.
+    result. Make with a predicate on its object (made the wax soft, made Yusra uncomfortable)
+    names the state the object comes to be in: the maker is the agent, the object the
+    undergoer, the predicate the result.
   verbs: [break, melt, crack, dry, freeze, burn, collapse, grow, shrink, expand, fade, wither,
           improve, recover, die, open, close, begin, end, start, stop, fall, rise, become, turn,
-          get, go]
+          get, go, make]
   verbs_note: >
     The list anchors the class; an unlisted verb that denotes a change of state belongs here
     (record its lemma as usual). Fall, rise, go and get are of this class only in the
     change-of-state sense (a value fell, went bad, got wet); a physical fall is a motion, and
-    get with an object acquired is an acquisition.
+    get with an object acquired is an acquisition. Make is of this class only with a predicate on
+    its object (made the wax soft); making a thing is a creation.
   surface_forms:
     - "<undergoer> V"                                # the ladder broke; the price fell
     - "<agent> V <undergoer>"                        # Yusra broke the ladder
     - "<undergoer> became / turned / got <N or ADJ>" # became a locksmith; got wet
+    - "<agent> made <undergoer> <N or ADJ>"          # made the wax soft
     - "<undergoer> was V-ed by <agent>"              # passive: the roles do not change
   boundary:                   # looks like a change of state but is not one
     - >-
@@ -171,6 +175,13 @@ examples:
       instances:
         - {t: witness, id: x1, kind: quilt, definite: true}
         - {t: change-of-state, id: c1, verb: turn, undergoer: "@x1", result: red, tense: past}
+    - category: positive
+      note: make with a predicate on its object — the maker is the agent, the predicate the result
+      text: "Lamine made the wax soft."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: x1, kind: wax, definite: true}
+        - {t: change-of-state, id: c1, verb: make, agent: "@n1", undergoer: "@x1", result: soft, tense: past}
     - category: positive
       note: an event noun beginning
       text: "The audit began."

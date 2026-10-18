@@ -1,0 +1,241 @@
+# Template: creation  (something comes into being through an action: built a shed, baked a loaf, wrote a letter)
+#
+# The maker is the Agent and the thing made is the Patient — the substrate's role for the object an
+# action creates — so the atoms have the shape of an activity's; what the class adds is the reading
+# of the object: it does not exist before the event and is not presupposed. Its witness is asserted
+# like any indefinite (the thing is there once the sentence is true), and a negated or modalised
+# creation keeps it inside the operator: "Teodor did not build a shed" asserts no shed. Paint, draw
+# and write belong here when the object is the picture or the text produced, not when an existing
+# thing is worked on or a message reaches an addressee.
+
+id: creation
+family: predication
+kind: verb-class
+title: Something comes into being through an action
+status: draft
+
+trigger:
+  construction: >
+    A verbal clause whose object comes into being through the action the verb names: make (in the
+    sense of producing a thing), build, construct, assemble, create, produce, form, found,
+    establish, invent, design, bake, brew, knit, sew, weave, forge, carve, write, compose, draw,
+    paint, print, publish. The subject is the maker, the object the thing made; a thing of any sort
+    counts — a shed, a loaf, a letter, a song, a map, a committee, a school.
+  verbs: [make, build, construct, assemble, create, produce, form, found, establish, invent, design,
+          bake, brew, knit, sew, weave, forge, carve, write, compose, draw, paint, print, publish]
+  verbs_note: >
+    The list anchors the class; an unlisted verb whose object comes into being belongs here (record
+    its lemma as usual). Several listed verbs have other senses that are not creations: make with a
+    predicate on its object (made the wax soft), with an event noun (made a decision) or with a
+    clause (made Teodor laugh); paint, write and draw with an existing thing as the object (painted
+    the shed, drew the curtain); write with an addressee (wrote to Yusra, wrote Yusra a letter). The
+    boundary says where each goes.
+  surface_forms:
+    - "<maker> V <thing made>"                      # Teodor built a shed
+    - "<maker> V <thing made> from / with / for …"  # a material, instrument or beneficiary phrase: no slot, reported
+    - "<thing made> was V-ed by <maker>"            # passive: the roles do not change
+    - "<thing made> was V-ed"                       # passive, maker unstated
+  boundary:                   # looks like a creation but is not one
+    - >-
+      an action on a thing that is already there — painted the shed, read the letter, washed the
+      quilt: an activity; the object is handled or affected, not brought into being
+    - >-
+      a thing that comes to be in a new state — broke the ladder, melted the wax, made the wax
+      soft: a change of state; make with a predicate on its object names the state the object
+      comes to be in
+    - >-
+      a message reaching an addressee — wrote to Yusra, wrote Yusra a letter, told Ottoline the
+      news: a communication
+    - >-
+      light-verb constructions — made a decision, made a trip, made a call, made a change: the
+      noun carries the event
+    - >-
+      make with a clause — made Teodor laugh, made Yusra send the quilt: a causative over a
+      clause, a different construction
+    - >-
+      a state of composition or existence — the shed is made of planks, there is a shed: no
+      event; a different construction
+    - >-
+      a material, instrument, companion or beneficiary phrase — from planks, with a chisel, with
+      Yusra, for Teodor: an attachment with no slot here; the creation is parsed, the phrase
+      reported as unmapped
+
+slots:
+  id:      {type: id, required: true, doc: "your label for the creation event"}
+  verb:    {type: lemma, class: Class, required: true, doc: "the verb lemma"}
+  creator: {type: filler, class: Entity, role: Agent, required: false,
+            doc: "who or what makes the thing: the subject, or the by-phrase of a passive; absent only in an agentless passive"}
+  product: {type: filler, class: Entity, role: Patient, required: true,
+            doc: "the thing that comes into being: the object; an instance for a specific thing (a shed, the shed), a bare lemma for a non-specific one (baked bread)"}
+  tense:   {type: enum, values: [past, present, future], required: true,
+            doc: "the clause's tense; present is recorded, not inferred"}
+  aspect:  {type: enum, values: [simple, progressive, perfect], required: false, default: simple}
+
+mints: {id: Event}
+
+emits:
+  - atom: "(Member @id {verb})"
+  - atom: "(Agent @id {creator})"
+    if_filled: creator
+  - atom: "(Patient @id {product})"
+  - atom: "(Past @id)"
+    when: "tense == past or aspect == perfect"
+  - atom: "(Future @id)"
+    when: "tense == future"
+  - atom: "(Ongoing @id)"
+    when: "aspect == progressive"
+
+notes:
+  - >-
+    The atoms are those of an activity — the event, its Agent and its Patient — because the
+    substrate's Patient is already the object an action creates; the class carries the reading,
+    not a new shape. The product is not presupposed: its witness is asserted when the creation
+    is, and stays inside a negation or a modal over it ("did not build a shed" asserts no shed).
+  - >-
+    Record the product as an instance even when the text says the work is not finished or not
+    begun (is building a shed, will build a shed): the tense and aspect on the event carry that;
+    that the thing may not exist yet is an approximation the tense conventions make everywhere.
+
+depends_on: [named-entity, witness, group]
+composes_with: [negation, modal, time, location, manner]
+
+examples:
+  shown:                     # rendered into the prompt
+    - category: positive
+      note: the thing made is an indefinite witness
+      text: "Lamine baked a loaf."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: x1, kind: loaf}
+        - {t: creation, id: e1, verb: bake, creator: "@n1", product: "@x1", tense: past}
+      emitted:               # what the emitter produces (illustration; the emitter is the authority)
+        - "(Name lamine \"Lamine\")"
+        - "(Member sk_loaf_1 loaf)"
+        - "(Member sk_bake_1 bake)"
+        - "(Agent sk_bake_1 lamine)"
+        - "(Patient sk_bake_1 sk_loaf_1)"
+        - "(Past sk_bake_1)"
+      declarations:
+        - "(: lamine Entity)"
+        - "(: sk_loaf_1 Entity)"
+        - "(: sk_bake_1 Event)"
+        - "(: bake Class)"
+        - "(: loaf Class)"
+    - category: positive
+      note: paint in the creation sense — the object is the picture
+      text: "Ottoline painted a portrait."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: witness, id: x1, kind: portrait}
+        - {t: creation, id: e1, verb: paint, creator: "@n1", product: "@x1", tense: past}
+    - category: positive
+      note: an institution comes into being
+      text: "Yusra founded a school."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, kind: school}
+        - {t: creation, id: e1, verb: found, creator: "@n1", product: "@x1", tense: past}
+    - category: abstain
+      text: "Lamine made a decision."
+      expected: {abstain: true, gap: G00, span: "made a decision"}    # light-verb construction
+    - category: abstain
+      text: "Yusra broke the ladder."
+      expected: {abstain: true, template: change-of-state}            # a thing already there changes
+
+  held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      text: "Teodor built a shed."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, kind: shed}
+        - {t: creation, id: e1, verb: build, creator: "@n1", product: "@x1", tense: past}
+    - category: contrast
+      note: a definite product is a presupposed referent — the instances differ in the witness only
+      text: "Teodor built the shed."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, kind: shed, definite: true}
+        - {t: creation, id: e1, verb: build, creator: "@n1", product: "@x1", tense: past}
+    - category: positive
+      note: write with no addressee — the object is the text produced
+      text: "Yusra wrote a letter."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, kind: letter}
+        - {t: creation, id: e1, verb: write, creator: "@n1", product: "@x1", tense: past}
+    - category: positive
+      note: a non-specific product as a bare lemma
+      text: "Lamine baked bread."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: creation, id: e1, verb: bake, creator: "@n1", product: bread, tense: past}
+    - category: positive
+      note: a witness as the maker; an abstract product
+      text: "The council formed a committee."
+      instances:
+        - {t: witness, id: x1, kind: council, definite: true}
+        - {t: witness, id: x2, kind: committee}
+        - {t: creation, id: e1, verb: form, creator: "@x1", product: "@x2", tense: past}
+    - category: positive
+      text: "Yusra drew a map."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, kind: map}
+        - {t: creation, id: e1, verb: draw, creator: "@n1", product: "@x1", tense: past}
+    - category: positive
+      note: a material phrase has no slot — the creation is parsed, the phrase reported
+      text: "Teodor built a shed from planks."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, kind: shed}
+        - {t: creation, id: e1, verb: build, creator: "@n1", product: "@x1", tense: past}
+      unmapped:
+        - {code: G00, span: "from planks"}
+    - category: scoped
+      note: under clausal negation — the indefinite product stays inside the negation
+      text: "Teodor did not build a shed."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, kind: shed}
+        - {t: creation, id: e1, verb: build, creator: "@n1", product: "@x1", tense: past}
+        - {t: negation, id: s1, over: ["@e1"]}
+    - category: scoped
+      note: under a modal
+      text: "Lamine might bake a loaf."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: x1, kind: loaf}
+        - {t: creation, id: e1, verb: bake, creator: "@n1", product: "@x1", tense: present}
+        - {t: modal, id: s1, over: ["@e1"], head: Might, surface: might}
+    - category: optional
+      note: perfect aspect
+      text: "Yusra has written a letter."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, kind: letter}
+        - {t: creation, id: e1, verb: write, creator: "@n1", product: "@x1", tense: present, aspect: perfect}
+    - category: optional
+      note: agentless passive — no creator
+      text: "A shed was built."
+      instances:
+        - {t: witness, id: x1, kind: shed}
+        - {t: creation, id: e1, verb: build, product: "@x1", tense: past}
+    - category: optional
+      note: progressive — the product is recorded although the work is not finished
+      text: "Teodor is building the shed."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, kind: shed, definite: true}
+        - {t: creation, id: e1, verb: build, creator: "@n1", product: "@x1", tense: present, aspect: progressive}
+    - category: abstain
+      text: "Ottoline painted the shed."
+      expected: {abstain: true, template: activity}                   # a thing already there is worked on
+    - category: abstain
+      text: "Yusra wrote Teodor a letter."
+      expected: {abstain: true, template: communication}              # a message reaches an addressee
+    - category: abstain
+      text: "Lamine made the wax soft."
+      expected: {abstain: true, template: change-of-state}            # make with a predicate on its object
+    - category: abstain
+      text: "Yusra made Teodor laugh."
+      expected: {abstain: true, gap: G00, span: "made Teodor laugh"}  # a causative over a clause

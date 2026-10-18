@@ -580,7 +580,7 @@ head: Result
 kind: relation
 arity: 2
 type-def: (: Result (-> Event Event Proposition))  ; and 1 more (per arity / per union alternative)
-gloss: Links a change event to its result. Order: (Result event result). The result is the outcome proposition as a sealed term in the catalog form ((Result sk_become_1 (Member teodor locksmith))), beside the flat outcome; the legacy form linked a reified result-state eventuality.
+gloss: Links a change event to its result. Order: (Result event result). The result is the outcome proposition as a sealed term in the catalog form ((Result sk_become_1 (Member teodor locksmith))); that the outcome holds afterwards is a background rule (the catalog's seeded rules), not a flat emission; the legacy form linked a reified result-state eventuality.
 
 
 head: SubsetOf

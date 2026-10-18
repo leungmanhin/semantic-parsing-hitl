@@ -105,8 +105,7 @@ class CheckTests(unittest.TestCase):
         checks = S.catalog_checks(CATALOG)
         self.assertEqual(checks["findings"], [])
         expected = pending_targets()
-        self.assertEqual(set(checks["pending"]), expected)
-        self.assertTrue(expected)
+        self.assertEqual(set(checks["pending"]), expected)       # empty once every target is claimed
         self.assertGreater(checks["examples"], 10)
 
     MIRROR_TEXT = "Zed took the zither from Quill."

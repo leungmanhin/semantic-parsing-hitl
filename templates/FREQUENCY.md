@@ -15,16 +15,19 @@ A stative mention is an event with no core role other than Experiencer: mostly t
 
 | source | claimed lemmas | event mentions claimed | verbal mentions claimed | records with an event whose every event is claimed |
 |---|---|---|---|---|
-| mining substrate | 81 of 895 | 484 of 2,271 (21%) | 484 of 1,999 (24%) | 273 of 1,553 |
-| goldens | 33 of 231 | 62 of 334 (19%) | 62 of 316 (20%) | 36 of 255 |
+| mining substrate | 141 of 895 | 888 of 2,271 (39%) | 888 of 1,999 (44%) | 494 of 1,553 |
+| goldens | 64 of 231 | 118 of 334 (35%) | 118 of 316 (37%) | 75 of 255 |
 
 Per template (event mentions in the substrate · in the goldens):
 
-- `activity`: 163 · 16 — use 37/1, work 17/3, play 19/1, study 13/2, sing 13/0, eat 12/1, sleep 11/0, laugh 5/4, drink 8/1, read 7/0, help 7/0, clean 3/3 …
+- `change-of-state`: 202 · 22 — make 31/1, start 24/1, go 24/0, stop 14/3, begin 16/1, fall 13/3, become 15/0, open 11/2, close 10/2, turn 9/1, grow 8/1, die 6/0 …
+- `activity`: 166 · 19 — use 37/1, work 17/3, play 19/1, study 13/2, sing 13/0, eat 12/1, sleep 11/0, laugh 5/4, drink 8/1, read 7/0, help 7/0, paint 3/3 …
+- `motion`: 130 · 27 — come 19/0, run 10/2, lead 11/0, leave 10/0, arrive 5/5, walk 9/0, travel 6/2, swim 7/1, fly 8/0, move 5/2, enter 7/0, return 3/3 …
 - `acquisition`: 81 · 8 — get 21/1, take 20/0, buy 11/5, win 9/2, receive 8/0, pick_up 3/0, inherit 3/0, borrow 2/0, obtain 1/0, grab 1/0, earn 1/0, accept 1/0
 - `possession`: 71 · 9 — have 65/4, own 2/3, keep 3/2, possess 1/0
+- `creation`: 72 · 7 — build 19/0, produce 12/0, form 8/0, create 8/0, draw 6/0, design 4/0, compose 4/0, bake 3/0, assemble 0/3, print 2/0, establish 2/0, construct 1/1 …
 - `attitude`: 52 · 14 — say 9/4, see 8/0, know 6/1, discover 5/2, learn 6/0, believe 3/2, think 3/1, fear 4/0, claim 2/2, remember 3/0, hope 2/0, notice 1/0 …
-- `transfer`: 37 · 9 — sell 8/1, return 3/3, pass 5/1, send 4/1, pay 3/2, offer 4/0, give 4/0, ship 2/0, rent 1/1, deliver 2/0, award 1/0
+- `transfer`: 34 · 6 — sell 8/1, pass 5/1, send 4/1, pay 3/2, offer 4/0, give 4/0, ship 2/0, rent 1/1, deliver 2/0, award 1/0
 - `perception`: 35 · 1 — hear 11/0, watch 7/1, look 6/0, taste 2/0, spot 2/0, smell 2/0, listen 2/0, feel 2/0, observe 1/0
 - `communication`: 22 · 3 — write 10/1, tell 6/0, announce 2/1, report 2/0, mention 1/0, explain 1/0, email 0/1
 - `psych`: 23 · 2 — like 6/0, love 4/0, hate 4/0, scare 2/0, miss 2/0, distrust 0/2, worry 1/0, upset 1/0, respect 1/0, prefer 1/0, please 1/0
@@ -33,36 +36,24 @@ Per template (event mentions in the substrate · in the goldens):
 
 | class guess | distinct lemmas | substrate mentions | golden mentions |
 |---|---|---|---|
-| unclassified verbal | 616 | 955 | 168 |
-| no core role (copular states, bare intransitives) | 188 | 244 | 20 |
-| motion | 28 | 167 | 26 |
-| change-of-state | 27 | 152 | 27 |
-| creation | 19 | 108 | 10 |
+| unclassified verbal | 609 | 929 | 165 |
+| no core role (copular states, bare intransitives) | 187 | 243 | 19 |
 | copular-stative | 10 | 57 | 3 |
 | social | 16 | 41 | 8 |
+| motion | 9 | 29 | 1 |
 | existence-aspect | 9 | 28 | 2 |
+| change-of-state | 7 | 18 | 10 |
 | cognition | 7 | 23 | 2 |
 | speech | 7 | 12 | 6 |
+| creation | 1 | 3 | 0 |
 
 ### unclassified verbal
 
-find 15/0, do 15/0, try 14/0, kill 14/0, speak 11/2, serve 11/2, want 10/1, lead 11/0, talk 9/0, accompany 9/0, cry 6/2, cause 8/0, hold 5/2, capture 7/0, bear 7/0, add 7/0, sign 1/5, replace 5/1, present 6/0, perform 5/1, direct 6/0, bring 5/1, approve 3/3, spend 5/0, provide 5/0, portray 5/0, operate 1/4, hold_up 5/0, good 5/0, difficult 5/0, define 5/0, cover 5/0, celebrate 3/2, topple 2/2, task 4/0, succeed 4/0, stick 4/0, star 4/0, solve 4/0, score 2/2 … (576 more)
+find 15/0, do 15/0, try 14/0, kill 14/0, speak 11/2, serve 11/2, want 10/1, talk 9/0, accompany 9/0, cry 6/2, cause 8/0, hold 5/2, capture 7/0, bear 7/0, add 7/0, sign 1/5, replace 5/1, present 6/0, perform 5/1, direct 6/0, approve 3/3, spend 5/0, provide 5/0, portray 5/0, operate 1/4, hold_up 5/0, good 5/0, difficult 5/0, define 5/0, cover 5/0, celebrate 3/2, topple 2/2, task 4/0, succeed 4/0, stick 4/0, star 4/0, solve 4/0, score 2/2, put 4/0, preach 4/0 … (569 more)
 
 ### no core role (copular states, bare intransitives)
 
-happen 7/0, stand 6/0, sit 4/1, ready 5/0, lie 5/0, war 4/0, clear 1/3, bad 4/0, shine 3/0, rain 2/1, beautiful 3/0, active 3/0, widespread 2/0, warrior 2/0, torture 2/0, spokesman 2/0, speaker 2/0, remain 2/0, relate 2/0, red 2/0, recreational_sport 2/0, out_of_the_question 2/0, on 2/0, hint 2/0, high 2/0, hidden 2/0, healthy 2/0, hard 2/0, happy 2/0, hang 2/0, get_down 2/0, famous 2/0, exist 2/0, event 2/0, established 2/0, enough 2/0, due 2/0, diverse 2/0, depend 2/0, crow 1/1 … (148 more)
-
-### motion
-
-go 24/0, come 19/0, fall 13/3, run 10/2, follow 12/0, leave 10/0, arrive 5/5, walk 9/0, travel 6/2, swim 7/1, fly 8/0, move 5/2, enter 7/0, ride 3/2, reach 3/2, jump 5/0, depart 1/4, come_back 4/0, climb 3/1, go_back 3/0, drive 3/0, march 1/1, escape 2/0, sail 1/0, rise 0/1, head 1/0, go_out 1/0, ascend 1/0
-
-### change-of-state
-
-start 24/1, stop 14/3, begin 16/1, become 15/0, open 11/2, close 10/2, change 11/0, turn 9/1, grow 8/1, die 6/0, finish 0/5, fail 2/3, collapse 2/3, burn 3/2, improve 4/0, break 3/1, bloom 3/0, sink 1/1, expand 2/0, end 2/0, wither 1/0, split 0/1, recover 1/0, melt 1/0, fade 1/0, crack 1/0, boil 1/0
-
-### creation
-
-make 31/1, build 19/0, produce 12/0, form 8/0, create 8/0, paint 3/3, draw 6/0, design 4/0, compose 4/0, develop 3/0, bake 3/0, assemble 0/3, print 2/0, establish 2/0, construct 1/1, publish 0/1, knit 0/1, invent 1/0, found 1/0
+happen 7/0, stand 6/0, sit 4/1, ready 5/0, lie 5/0, war 4/0, clear 1/3, bad 4/0, shine 3/0, rain 2/1, beautiful 3/0, active 3/0, widespread 2/0, warrior 2/0, torture 2/0, spokesman 2/0, speaker 2/0, remain 2/0, relate 2/0, red 2/0, recreational_sport 2/0, out_of_the_question 2/0, on 2/0, hint 2/0, high 2/0, hidden 2/0, healthy 2/0, hard 2/0, happy 2/0, hang 2/0, get_down 2/0, famous 2/0, exist 2/0, event 2/0, established 2/0, enough 2/0, due 2/0, diverse 2/0, depend 2/0, crow 1/1 … (147 more)
 
 ### copular-stative
 
@@ -72,9 +63,17 @@ contain 16/1, need 12/0, appear 11/1, require 4/1, include 5/0, cost 3/0, deserv
 
 welcome 6/1, fight 7/0, lose 4/2, visit 3/2, marry 4/0, meet 2/1, join 3/0, attack 3/0, support 2/0, protect 2/0, elect 2/0, vote 0/1, greet 0/1, fire 1/0, employ 1/0, defeat 1/0
 
+### motion
+
+follow 12/0, jump 5/0, come_back 4/0, go_back 3/0, march 1/1, sail 1/0, head 1/0, go_out 1/0, ascend 1/0
+
 ### existence-aspect
 
 live 14/0, continue 4/0, survive 2/1, vanish 1/1, stay 2/0, disappear 2/0, reside 1/0, occur 1/0, emerge 1/0
+
+### change-of-state
+
+change 11/0, finish 0/5, fail 2/3, bloom 3/0, sink 1/1, split 0/1, boil 1/0
 
 ### cognition
 
@@ -83,6 +82,10 @@ consider 8/1, mean 6/0, decide 4/0, understand 3/0, wonder 0/1, recall 1/0, imag
 ### speech
 
 call 3/2, ask 3/1, suggest 3/0, complain 1/2, promise 1/0, argue 0/1, answer 1/0
+
+### creation
+
+develop 3/0
 
 ## Construction profile (statement heads)
 
