@@ -215,7 +215,11 @@ def infer_record(atoms: list, heads: dict):
     return types, sk_heads, findings
 
 
-def declarations_for(types: dict, sk_heads: dict, proof_names: set, rename) -> list[str]:
+def declarations_for(types: dict, sk_heads: dict, proof_names: set, rename, given_fn: dict | None = None) -> list[str]:
+    """Type declarations for one record. ``given_fn`` holds function types the record itself
+    declared for skolem heads (``(-> Atom Entity)`` for a skolemized witness); a head with a
+    given type is not given the default ``Event`` one."""
+    given_fn = given_fn or {}
     lines = []
     for sym, ss in sorted(types.items()):
         full = set(ss)
@@ -228,9 +232,14 @@ def declarations_for(types: dict, sk_heads: dict, proof_names: set, rename) -> l
             lines.append(f"(: {rename(name)} Statement)")
             lines.append(f"(: {rename(name)} Instance)")
     for head, arities in sorted(sk_heads.items()):
+        if head in given_fn:
+            continue
         for n in sorted(arities):
             for out in ("Event", "Instance"):
                 lines.append(f"(: {head} (-> {' '.join(['Atom'] * n)} {out}))")
+    for head, fn_types in sorted(given_fn.items()):
+        for ft in sorted(fn_types):
+            lines.append(f"(: {head} {ft})")
     return lines
 
 
@@ -369,22 +378,26 @@ def main(argv=None) -> int:
         if given:
             # the emitter's own type declarations: no inference, sk heads and proof names still declared
             types = collections.defaultdict(set)
+            given_fn = collections.defaultdict(set)
             for d in given:
-                m = re.match(r"^\(: (\S+) (\S+)\)$", d.strip())
-                if m:
+                m = re.match(r"^\(: (\S+) (.+)\)$", d.strip())
+                if m and m.group(2).startswith("(->"):
+                    given_fn[m.group(1)].add(m.group(2))
+                elif m:
                     types[m.group(1)].add(m.group(2))
             _, sk_heads, _ = infer_record([a for _, _, a in parsed], heads)
         elif args.no_infer:
             findings.append({"kind": "parse-error", "id": rec["id"], "statement": "", "error": "no declarations and --no-infer"})
             continue
         else:
+            given_fn = {}
             types, sk_heads, rec_findings = infer_record([a for _, _, a in parsed], heads)
             for f in rec_findings:
                 f["id"] = rec["id"]
             findings.extend(rec_findings)
         known = set(types) | proof_names
         rename = lambda s, _i=idx, _k=known: f"{s}__r{_i}" if s in _k else s  # noqa: E731
-        checker.declare(declarations_for(types, sk_heads, proof_names, rename))
+        checker.declare(declarations_for(types, sk_heads, proof_names, rename, given_fn))
 
         for st, name, atom in parsed:
             head = atom[0] if isinstance(atom, list) and atom else atom

@@ -96,7 +96,10 @@ class EmitTests(unittest.TestCase):
             return E.emit({"id": "t", "instances": ex["instances"]}, CATALOG)["statements"]
 
         self.assertTrue(all(st.endswith("(STV 1.0 0.99))") for st in stmts("Ferrets are mustelids.")))
-        self.assertTrue(all(st.endswith("(STV 1.0 0.9))") for st in stmts("Ferrets are curious.")))
+        self.assertTrue(all(st.endswith("(STV 0.9 0.9))") for st in stmts("Ferrets are curious.")))
+        quant = stmts("All ferrets are curious.")
+        self.assertIn("(: k1_inheritance (Inheritance ferret curious) (STV 1.0 0.9))", quant)
+        self.assertIn('(: k1_quantifierphrase (QuantifierPhrase ferret curious "all") (STV 1.0 0.99))', quant)
         neg = stmts("Ferrets are not rodents.")
         self.assertEqual(len(neg), 1)
         self.assertTrue(neg[0].startswith("(: s1_not (Not (Inheritance ferret rodent))") and neg[0].endswith("(STV 1.0 0.99))"))
@@ -113,6 +116,29 @@ class EmitTests(unittest.TestCase):
         natoms = atoms_of(E.emit({"id": "n", "instances": neg["instances"]}, CATALOG)["statements"])
         self.assertTrue(any(a.startswith("(Not (And (Member sk_sleep_1 sleep)") for a in natoms))
         self.assertTrue(any(a.startswith("(Implication (PartOf $x sk_group_1) (Not (And (Member (sk_sleep $x) sleep)") for a in natoms))
+
+    def test_generic_rules_over_a_variable(self):
+        def stmts(text):
+            ex = next(e for _, _, e in all_examples() if e["text"] == text)
+            return E.emit({"id": "g", "instances": ex["instances"]}, CATALOG)["statements"]
+
+        every = stmts("Every ferret slept.")
+        self.assertIn("(: r1_implication (Implication (Member $x ferret) (And (Member (sk_sleep $x) sleep) (Agent (sk_sleep $x) $x) (Past (sk_sleep $x)))) (STV 1.0 0.9))", every)
+        self.assertIn('(: q1_quantifierphrase (QuantifierPhrase ferret sleep "every") (STV 1.0 0.99))', every)
+        self.assertTrue(next(st for st in stmts("Few ferrets slept.") if "Implication" in st).endswith("(STV 0.1 0.9))"))
+        self.assertTrue(next(st for st in stmts("No ferret slept.") if "Implication" in st).endswith("(STV 0.0 0.9))"))
+        bare = stmts("Ferrets sleep.")
+        self.assertEqual(len(bare), 1)
+        self.assertTrue(bare[0].endswith("(STV 0.9 0.9))") and "(Past" not in bare[0])
+        indef = [a for a in atoms_of(stmts("Every student read a letter.")) if a.startswith("(Implication")]
+        self.assertEqual(indef, ["(Implication (Member $x student) (And (Member (sk_read $x) read) (Agent (sk_read $x) $x) (Patient (sk_read $x) (sk_letter $x)) (Past (sk_read $x)) (Member (sk_letter $x) letter)))"])
+        defin = atoms_of(stmts("Every student read the letter."))
+        self.assertIn("(Member sk_letter_1 letter)", defin)
+        self.assertTrue(any("(Patient (sk_read $x) sk_letter_1)" in a for a in defin))
+        two = atoms_of(stmts("Every ferret feared every heron."))
+        self.assertTrue(any(a.startswith("(Implication (And (Member $x ferret) (Member $y heron)) (And (Member (sk_fear $x $y) fear) (Experiencer (sk_fear $x $y) $x) (Stimulus (sk_fear $x $y) $y)") for a in two))
+        neg = atoms_of(stmts("Ferrets do not sleep."))
+        self.assertTrue(any(a.startswith("(Implication (Member $x ferret) (Not (And (Member (sk_sleep $x) sleep)") for a in neg))
 
     def test_when_clauses_are_case_insensitive(self):
         self.assertTrue(E.holds("factive == true", {"factive": True}))

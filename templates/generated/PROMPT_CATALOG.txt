@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 b974e24f2e8a1bb0 · 16 templates
+catalog sha256 ba6ef77bdbf88b49 · 18 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -51,8 +51,8 @@ fences.
 
 - Every instance carries an `id`: a short lowercase label you choose, unique within the item.
   Suggested prefixes: `n` named individual, `x` witness, `g` group, `e` event, `s` scope
-  operator (negation, modal), `c` copular predication, `r` rule, `d` comparison, `m` measure,
-  `t` time (n1, x1, e1, s1 …).
+  operator (negation, modal), `c` copular predication, `q` quantified range, `r` rule, `d`
+  comparison, `m` measure, `t` time (n1, x1, e1, s1 …).
 - A slot that points to another instance holds `"@<id>"`, for example `"Agent": "@n1"`.
 - A slot that holds a CLAUSE — the content of a negation, a modal or an attitude — holds a list
   of ids: the clause's predication, or the scope operator over it when it has one (`["@s1"]` for
@@ -196,8 +196,8 @@ Slots:
   possessed group (the possessor presupposes it) and otherwise.
 - `count` (optional; a number): the exact size when a numeral or both states it (three → 3; both
   → 2).
-- `quantity` (optional; a string): the vague size phrase as written (several, a few, dozens);
-  absent when a numeral or both states the size.
+- `quantity` (optional; a string): the vague size phrase as written (several, a few, some, many,
+  dozens); absent when a numeral or both states the size.
 - `props` (optional; a list of lemmas): adjectival properties stated in the phrase.
 - `possessor` (optional; "@id" of a referent instance, or a bare lemma for a non-specific
   filler): the possessor of a possessive phrase (Yusra's ferrets).
@@ -277,6 +277,38 @@ Instances:
 The program renders these instances as:
 
     (Name teodor "Teodor")
+
+### range — The quantified variable of a verbal generalization
+
+When: The subject or object of a verbal generalization over a kind: a quantifier word with a
+kind noun (every ferret, each student, all ferrets, most students, many herons, few ferrets, no
+ferret, none of the ferrets) or a bare plural read generically (ferrets sleep). It stands for an
+arbitrary member of the kind, not for a particular individual or a particular group. One range
+per quantified kind noun: "every ferret feared every heron" has two.
+
+Forms:
+- every / each / all <N>(s)
+- most / many / few <N>s
+- no <N> / none of the <N>s
+- <N>s V …
+
+Not this template:
+- a specific group — the ferrets, several ferrets, three students, some students: a group
+  referent, and what is said of its members is a distribution
+- a bare plural with "be" — ferrets are curious: a kind statement, which carries its own
+  quantifier
+- an existential singular — some ferret slept, a ferret slept: an indefinite witness
+
+Slots:
+
+- `t` (required): "range"
+- `id` (required; your label for this instance): your label for the range (q1, q2 …).
+- `kind` (required; a lemma): the kind, lemmatized to the singular (ferret).
+- `quantifier` (optional; a string): the quantifier word as written (every, each, all, most,
+  many, few, no, none); absent for a bare generic.
+- `predicate` (optional; a lemma): the lemma of the predication the range takes part in, as its
+  subject or its object (slept → sleep, feared → fear); fill it on every range that has a
+  quantifier word.
 
 ### witness — A common-noun phrase introducing an individual
 
@@ -855,19 +887,20 @@ a bare plural (ferrets, herons), a mass noun (granite) or a generic indefinite s
 spindle is a tool) — and whose predicate is an indefinite noun phrase or an adjective. The
 statement is definitional when it states what the kind is by definition or taxonomy (ferrets are
 mustelids, a spindle is a tool) and empirical when it generalizes over the kind's members
-(ferrets are curious). No quantifier word is present.
+(ferrets are curious). A quantifier word on the subject (all, every, most, many, few, no)
+belongs to the statement: record it as written; the program sets the strength from it and keeps
+the word beside the statement.
 
 Forms:
 - <kind>s are <N>s
 - <kind>s are <ADJ>
 - <mass noun> is a <N>
 - a <kind> is a <N>
+- all / most / few / no <kind>s are <N or ADJ>
 
 Not this template:
 - an individual as the subject — Teodor is a locksmith, the ladder is crooked: a predication
   about one individual
-- a quantifier word — all ferrets are curious, most herons are patient, no reptile is
-  warm-blooded: a quantified generalization carrying its quantifier
 - a definite plural — the ferrets are curious: a specific group of individuals, not the kind
 - a property of the kind as a whole that no member holds — ferrets are widespread, the dodo is
   extinct, herons are common: a kind-level property, not a generalization
@@ -885,6 +918,8 @@ Slots:
   property.
 - `definitional` (required; true / false): true for a definitional or taxonomic claim (ferrets
   are mustelids), false for an empirical generalization (ferrets are curious).
+- `quantifier` (optional; a string): the quantifier word on the subject as written (all, every,
+  most, many, few, no, none); absent for a bare kind statement.
 - `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
   not inferred.
 - `aspect` (optional; one of: simple, progressive, perfect).
@@ -915,7 +950,18 @@ The program renders these instances as:
 
 Not this template. TEXT: Teodor is a locksmith. — use `copular`.
 
-Not this template. TEXT: All ferrets are curious. — report the span as unmapped.
+Example (a quantifier word — strength 1.0 at empirical confidence, the word kept). TEXT: All ferrets are curious.
+
+Instances:
+
+    [
+      {"t": "kind-statement", "id": "k1", "subject": "ferret", "predicate": "curious", "form": "adjective", "definitional": false, "quantifier": "all", "tense": "present"}
+    ]
+
+The program renders these instances as:
+
+    (Inheritance ferret curious)
+    (QuantifierPhrase ferret curious "all")
 
 ### perception — Perception of a thing or an event
 
@@ -1422,3 +1468,65 @@ The program renders these instances as:
     (Implication (PartOf $x sk_group_1) (And (Member (sk_laugh $x) laugh) (Agent (sk_laugh $x) $x) (Past (sk_laugh $x))))
 
 Not this template. TEXT: Three ferrets surrounded the barn. — use `group`.
+
+### generic — A verbal generalization over a kind
+
+When: A clause whose subject (or another argument) is a range — a quantified kind noun or a bare
+plural read generically — and whose predicate is a verb other than "be": every ferret slept,
+ferrets sleep, most students laugh, few herons migrate, no ferret slept. The predication is
+parsed with its own template, with the range as its filler; the generic instance names the
+range(s) and the predication (or the negation / modal over it) and nothing else. One generic per
+clause, however many ranges it has.
+
+Not this template:
+- a copular predicate — all ferrets are curious, most herons are patient: a kind statement,
+  which carries the quantifier itself
+- a specific group — the ferrets slept, several students laughed, some students waited: a group
+  and a distribution, not a rule over a kind
+- a modal or a capability on a kind — ferrets can climb, citizens must pay tax: a property of
+  the kind, not an event rule
+- "every time" or "whenever" with a clause — every time the bell rings: a frequency conditional
+  over occasions, not a quantifier on a subject
+- an existential singular — some ferret slept, a ferret slept: a particular witness
+
+Slots:
+
+- `t` (required): "generic"
+- `id` (required; your label for this instance): your label for the rule.
+- `ranges` (required; a list of "@id" of the instances that state the clause): the range
+  instance(s) the rule quantifies over, in text order: one per quantified kind noun.
+- `over` (required; a list of "@id" of the instances that state the clause): the predication
+  over the range(s), or the negation / modal over that predication: its id, nothing else.
+
+Example (a bare generic — no quantifier word, strength 0.9, no companion). TEXT: Ferrets sleep.
+
+Instances:
+
+    [
+      {"t": "range", "id": "q1", "kind": "ferret"},
+      {"t": "activity", "id": "v1", "verb": "sleep", "actor": "@q1", "tense": "present"},
+      {"t": "generic", "id": "r1", "ranges": ["@q1"], "over": ["@v1"]}
+    ]
+
+The program renders these instances as:
+
+    (Implication (Member $x ferret) (And (Member (sk_sleep $x) sleep) (Agent (sk_sleep $x) $x)))
+
+Example (a graded quantifier — the word sets the strength and is kept beside the rule). TEXT: Most students laugh.
+
+Instances:
+
+    [
+      {"t": "range", "id": "q1", "kind": "student", "quantifier": "most", "predicate": "laugh"},
+      {"t": "activity", "id": "v1", "verb": "laugh", "actor": "@q1", "tense": "present"},
+      {"t": "generic", "id": "r1", "ranges": ["@q1"], "over": ["@v1"]}
+    ]
+
+The program renders these instances as:
+
+    (Implication (Member $x student) (And (Member (sk_laugh $x) laugh) (Agent (sk_laugh $x) $x)))
+    (QuantifierPhrase student laugh "most")
+
+Not this template. TEXT: Several ferrets slept. — use `group`.
+
+Not this template. TEXT: All ferrets are curious. — use `kind-statement`.

@@ -1,0 +1,70 @@
+# Template: range  (the quantified variable of a generalization: "every ferret", "ferrets" as a kind)
+#
+# A verbal generalization — every ferret slept, ferrets sleep, most students laugh, no ferret
+# slept — ranges over the members of a kind. The range is the referent the predication is
+# about: a variable ($x) standing for an arbitrary member, with the kind and the quantifier
+# word recorded. It fills the predication's slots like any referent; the generic template then
+# turns the predication into a rule over it. The quantifier word is kept in a companion record
+# beside the rule; a bare generic (ferrets sleep) has no word and no companion.
+
+id: range
+family: referent
+kind: referent
+title: The quantified variable of a verbal generalization
+status: draft
+
+trigger:
+  construction: >
+    The subject or object of a verbal generalization over a kind: a quantifier word with a kind
+    noun (every ferret, each student, all ferrets, most students, many herons, few ferrets, no
+    ferret, none of the ferrets) or a bare plural read generically (ferrets sleep). It stands
+    for an arbitrary member of the kind, not for a particular individual or a particular group.
+    One range per quantified kind noun: "every ferret feared every heron" has two.
+  surface_forms:
+    - "every / each / all <N>(s)"                # universal
+    - "most / many / few <N>s"                   # graded
+    - "no <N> / none of the <N>s"                # the negative universal
+    - "<N>s V …"                                 # a bare plural read generically: no word
+  boundary:                   # looks like a range but is not one
+    - >-
+      a specific group — the ferrets, several ferrets, three students, some students: a group
+      referent, and what is said of its members is a distribution
+    - >-
+      a bare plural with "be" — ferrets are curious: a kind statement, which carries its own
+      quantifier
+    - >-
+      an existential singular — some ferret slept, a ferret slept: an indefinite witness
+
+slots:
+  id:         {type: id, required: true, doc: "your label for the range (q1, q2 …)"}
+  kind:       {type: lemma, class: Class, required: true, doc: "the kind, lemmatized to the singular (ferret)"}
+  quantifier: {type: string, required: false,
+               doc: "the quantifier word as written (every, each, all, most, many, few, no, none); absent for a bare generic"}
+  predicate:  {type: lemma, class: Class, required: false,
+               doc: "the lemma of the predication the range takes part in, as its subject or its object (slept → sleep, feared → fear); fill it on every range that has a quantifier word"}
+
+mints: {id: Entity, variable: true}
+
+emits:
+  - atom: "(Member @id {kind})"                              # the premise: an arbitrary member of the kind
+  - atom: "(QuantifierPhrase {kind} {predicate} \"{quantifier}\")"   # the word, kept beside the rule
+    if_filled: quantifier
+    when: "predicate"                                          # needs the predication's lemma too
+    project: true
+    stv: [1.0, 0.99]
+
+notes:
+  - >-
+    The range mints a variable rather than a witness: nothing asserts that a member exists; the
+    rule the generic template builds quantifies over whatever members there are.
+  - >-
+    The companion is a surface record at full confidence, outside the rule, so that "most"
+    and "few" stay distinguishable from a bare generic even though the rule's strength already
+    reflects them.
+
+depends_on: []
+composes_with: [generic]
+
+examples:                    # a range appears only inside a generalization: see the generic template
+  shown: []
+  held_out: []

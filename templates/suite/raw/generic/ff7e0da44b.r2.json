@@ -1,0 +1,99 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "f131d9909123f262f22649f1d0a661fcd2875712cc42a57ee96b4987f17f15ff",
+  "item": {
+    "id": "sff7e0da44b",
+    "text": "Every student read the letter."
+  },
+  "usage": {
+    "input": 19690,
+    "output": 154,
+    "thinking": null,
+    "total": 19844,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 19690,
+    "candidatesTokenCount": 154,
+    "totalTokenCount": 19844,
+    "cachedContentTokenCount": 17641,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 19690
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 17641
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 154
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sff7e0da44b\", \"instances\": [{\"t\": \"range\", \"id\": \"q1\", \"kind\": \"student\", \"quantifier\": \"every\", \"predicate\": \"read\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"letter\", \"definite\": true}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"read\", \"actor\": \"@q1\", \"patient\": \"@x1\", \"tense\": \"past\"}, {\"t\": \"generic\", \"id\": \"r1\", \"ranges\": [\"@q1\"], \"over\": [\"@e1\"]}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sff7e0da44b",
+    "instances": [
+      {
+        "t": "range",
+        "id": "q1",
+        "kind": "student",
+        "quantifier": "every",
+        "predicate": "read"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "letter",
+        "definite": true
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "read",
+        "actor": "@q1",
+        "patient": "@x1",
+        "tense": "past"
+      },
+      {
+        "t": "generic",
+        "id": "r1",
+        "ranges": [
+          "@q1"
+        ],
+        "over": [
+          "@e1"
+        ]
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "1d1d69fff405c91e41b45cfd40fd9da93832112f9edce8f3b99dca62a91fe348",
+  "run": 2,
+  "case": {
+    "template": "generic",
+    "section": "held_out",
+    "index": 5,
+    "category": "positive",
+    "text": "Every student read the letter.",
+    "key": "ff7e0da44b"
+  }
+}

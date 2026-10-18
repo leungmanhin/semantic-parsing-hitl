@@ -4,16 +4,16 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "e2b973ee776d149578b24ed0b89eebd7611ca803b1694eeec798000b403d85d1",
+  "prompt_sha256": "30136217c8a53b070f76fabaf4ca8fa6bd9b79b46900954e11cd22896106c271",
   "item": {
     "id": "s712e21ed49",
     "text": "Every ferret slept."
   },
   "usage": {
-    "input": 18158,
-    "output": 62,
+    "input": 19697,
+    "output": 125,
     "thinking": null,
-    "total": 18220,
+    "total": 19822,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,43 +24,62 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 18158,
-    "candidatesTokenCount": 62,
-    "totalTokenCount": 18220,
-    "cachedContentTokenCount": 16109,
+    "promptTokenCount": 19697,
+    "candidatesTokenCount": 125,
+    "totalTokenCount": 19822,
+    "cachedContentTokenCount": 17648,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 18158
+        "tokenCount": 19697
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 16109
+        "tokenCount": 17648
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 62
+        "tokenCount": 125
       }
     ]
   },
-  "raw_text": "{\"id\": \"s712e21ed49\", \"instances\": [], \"unmapped\": [{\"span\": \"Every ferret slept.\", \"code\": \"G00\", \"construction\": \"A universally quantified verbal clause introduced by 'every'.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"s712e21ed49\", \"instances\": [{\"t\": \"range\", \"id\": \"q1\", \"kind\": \"ferret\", \"quantifier\": \"every\", \"predicate\": \"sleep\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"sleep\", \"actor\": \"@q1\", \"tense\": \"past\"}, {\"t\": \"generic\", \"id\": \"r1\", \"ranges\": [\"@q1\"], \"over\": [\"@v1\"]}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s712e21ed49",
-    "instances": [],
-    "unmapped": [
+    "instances": [
       {
-        "span": "Every ferret slept.",
-        "code": "G00",
-        "construction": "A universally quantified verbal clause introduced by 'every'."
+        "t": "range",
+        "id": "q1",
+        "kind": "ferret",
+        "quantifier": "every",
+        "predicate": "sleep"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "sleep",
+        "actor": "@q1",
+        "tense": "past"
+      },
+      {
+        "t": "generic",
+        "id": "r1",
+        "ranges": [
+          "@q1"
+        ],
+        "over": [
+          "@v1"
+        ]
       }
     ],
+    "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "14b00737838e1675ab4e788a994c47c68a9bee0ef066c52422d3b5da5e8f650a",
+  "prompt_body_sha256": "ae90abe12b2d4b21b84088798d51cf84ec4ff071897448fde41cb8d910734e20",
   "run": 2,
   "case": {
     "template": "group",

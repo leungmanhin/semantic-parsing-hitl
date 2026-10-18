@@ -1,0 +1,101 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "30136217c8a53b070f76fabaf4ca8fa6bd9b79b46900954e11cd22896106c271",
+  "item": {
+    "id": "sd440a71351",
+    "text": "Every ferret feared every heron."
+  },
+  "usage": {
+    "input": 19699,
+    "output": 171,
+    "thinking": null,
+    "total": 19870,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 19699,
+    "candidatesTokenCount": 171,
+    "totalTokenCount": 19870,
+    "cachedContentTokenCount": 17650,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 19699
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 17650
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 171
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sd440a71351\", \"instances\": [{\"t\": \"range\", \"id\": \"q1\", \"kind\": \"ferret\", \"quantifier\": \"every\", \"predicate\": \"fear\"}, {\"t\": \"range\", \"id\": \"q2\", \"kind\": \"heron\", \"quantifier\": \"every\", \"predicate\": \"fear\"}, {\"t\": \"psych\", \"id\": \"p1\", \"verb\": \"fear\", \"experiencer\": \"@q1\", \"stimulus\": \"@q2\", \"tense\": \"past\"}, {\"t\": \"generic\", \"id\": \"r1\", \"ranges\": [\"@q1\", \"@q2\"], \"over\": [\"@p1\"]}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sd440a71351",
+    "instances": [
+      {
+        "t": "range",
+        "id": "q1",
+        "kind": "ferret",
+        "quantifier": "every",
+        "predicate": "fear"
+      },
+      {
+        "t": "range",
+        "id": "q2",
+        "kind": "heron",
+        "quantifier": "every",
+        "predicate": "fear"
+      },
+      {
+        "t": "psych",
+        "id": "p1",
+        "verb": "fear",
+        "experiencer": "@q1",
+        "stimulus": "@q2",
+        "tense": "past"
+      },
+      {
+        "t": "generic",
+        "id": "r1",
+        "ranges": [
+          "@q1",
+          "@q2"
+        ],
+        "over": [
+          "@p1"
+        ]
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "ae90abe12b2d4b21b84088798d51cf84ec4ff071897448fde41cb8d910734e20",
+  "run": 2,
+  "case": {
+    "template": "generic",
+    "section": "held_out",
+    "index": 6,
+    "category": "positive",
+    "text": "Every ferret feared every heron.",
+    "key": "d440a71351"
+  }
+}

@@ -38,7 +38,7 @@ slots:
   over:  {type: refs, class: Proposition, required: true, consumes: false, bind: group, skolemize: true,
           doc: "the predication over the group, or the negation / modal over that predication: its id, nothing else"}
 
-truth: {default: [1.0, 0.9]}
+truth: {strength: [1.0], confidence: [0.9]}
 
 emits:
   - atom: "(Implication (PartOf $x {group}) {over})"
@@ -75,6 +75,7 @@ examples:
         - "(: sk_group_1 Entity)"
         - "(: sk_laugh_1 Event)"
         - "(: student Class)"
+        - "(: sk_laugh (-> Atom Event))"
     - category: abstain
       text: "Three ferrets surrounded the barn."
       expected: {abstain: true, template: group}                      # collective: no distribution

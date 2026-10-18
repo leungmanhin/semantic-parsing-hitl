@@ -1,16 +1,15 @@
 # Suite report
 
-prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 1f1bd4be275047a2) · type check: ran
+prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 ae90abe12b2d4b21) · type check: ran
 
 ## Catalog checks
 
-198 examples checked; findings: 0
+214 examples checked; findings: 0
 
 Pending abstain targets (templates to write; each line = the sentences waiting for it):
 - `motion` ← activity: "Yusra went to the market."; activity: "Teodor arrived."
 - `change-of-state` ← activity: "The ladder broke."; copular: "Teodor became a locksmith."
 - `creation` ← activity: "Teodor built a shed."
-- `generic` ← group: "Every ferret slept."; kind-statement: "All ferrets are curious."; kind-statement: "Most herons are patient."
 
 ## acquisition — held_out
 
@@ -42,7 +41,7 @@ Mismatches: none
 
 ## activity — held_out
 
-16 cases, 48 records (ok 48; stale prompt 42) · gemini-4-argon effort=low
+16 cases, 48 records (ok 48; stale prompt 48) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -71,7 +70,7 @@ Mismatches: none
 
 ## attitude — held_out
 
-14 cases, 42 records (ok 42; stale prompt 39) · gemini-4-argon effort=low
+14 cases, 42 records (ok 42; stale prompt 42) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -155,7 +154,7 @@ Mismatches: none
 
 ## distribution — held_out
 
-6 cases, 18 records (ok 18; stale prompt 0) · gemini-4-argon effort=low
+6 cases, 18 records (ok 18; stale prompt 18) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -177,9 +176,9 @@ Abstain cases (what the parser did, per run):
 
 Mismatches: none
 
-## group — held_out
+## generic — held_out
 
-11 cases, 33 records (ok 33; stale prompt 33) · gemini-4-argon effort=low
+11 cases, 33 records (ok 33; stale prompt 30) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -193,7 +192,33 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (11 cases, 33 pairs), unanimous 11/11
 - type check: 30/30 emitted parses type
 - graph lints: none
-- usage: 33 calls · in 599,238 · out 4,245 · thinking 0 (calls with thought tokens: 0)
+- usage: 33 calls · in 649,791 · out 4,104 · thinking 0 (calls with thought tokens: 0)
+- issues reported by the parser: none
+
+Abstain cases (what the parser did, per run):
+- "Ferrets can climb." (gap G00): r1 gap_reported [nothing fired; unmapped G00] · r2 gap_reported [nothing fired; unmapped G00] · r3 gap_reported [nothing fired; unmapped G00]
+- "A few students laughed." (target `group`): r1 target_fired [activity×1, distribution×1, group×1] · r2 target_fired [activity×1, distribution×1, group×1] · r3 target_fired [activity×1, distribution×1, group×1]
+- "Most herons are patient." (target `kind-statement`): r1 target_fired [kind-statement×1] · r2 target_fired [kind-statement×1] · r3 target_fired [kind-statement×1]
+
+Mismatches: none
+
+## group — held_out
+
+11 cases, 33 records (ok 33; stale prompt 30) · gemini-4-argon effort=low
+
+| category | cases | runs | fired | exact | pass |
+|---|---|---|---|---|---|
+| positive | 6 | 18 | 18 | 18 | 18 |
+| contrast | 1 | 3 | 3 | 3 | 3 |
+| scoped | 1 | 3 | 3 | 3 | 3 |
+| abstain | 3 | 9 | 0 (false fires) | – | 9 |
+
+- selection: fire cases fired 24/24 · abstain cases false fires 0/9
+- fill: exact 24/24 among fires
+- stability: pairwise agreement 1.0 (11 cases, 33 pairs), unanimous 11/11
+- type check: 33/33 emitted parses type
+- graph lints: none
+- usage: 33 calls · in 603,855 · out 4,432 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: 5
   - P00 · group · r1 "Yusra's ferrets slept.": The prose states that a possessed group is presupposed to exist (which marks definite: true in witness), while the definite slot description for group only lists 'the / these / those / both'.
   - P00 · group / activity · r1 "Teodor and Yusra laughed.": The group template forbids creating a group for coordinated names ('one instance per conjunct, no group'), and the activity actor slot only accepts a single referent id, leaving it unstated whether a predicate with a coordinated subject requires one predication instance per conjunct.
@@ -203,41 +228,40 @@ Mismatches: none
 
 Abstain cases (what the parser did, per run):
 - "The ferret slept." (target `activity`): r1 target_fired [activity×1, witness×1] · r2 target_fired [activity×1, witness×1] · r3 target_fired [activity×1, witness×1]
-- "Every ferret slept." (target `generic`): r1 pending_unmapped [nothing fired; unmapped G00] · r2 pending_unmapped [nothing fired; unmapped G00] · r3 pending_unmapped [nothing fired; unmapped G00]
+- "Every ferret slept." (target `generic`): r1 target_fired [activity×1, generic×1, range×1] · r2 target_fired [activity×1, generic×1, range×1] · r3 target_fired [activity×1, generic×1, range×1]
 - "Teodor and Yusra laughed." (target `activity`): r1 target_fired [activity×2, named-entity×2] · r2 target_fired [activity×2, named-entity×2] · r3 target_fired [activity×2, named-entity×2]
 
 Mismatches: none
 
 ## kind-statement — held_out
 
-11 cases, 33 records (ok 33; stale prompt 30) · gemini-4-argon effort=low
+12 cases, 36 records (ok 36; stale prompt 30) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
-| positive | 4 | 12 | 12 | 12 | 12 |
+| positive | 6 | 18 | 18 | 18 | 18 |
 | contrast | 1 | 3 | 3 | 3 | 3 |
 | scoped | 2 | 6 | 6 | 6 | 6 |
-| abstain | 4 | 12 | 0 (false fires) | – | 12 |
+| abstain | 3 | 9 | 0 (false fires) | – | 9 |
 
-- selection: fire cases fired 21/21 · abstain cases false fires 0/12
-- fill: exact 21/21 among fires
-- stability: pairwise agreement 1.0 (11 cases, 33 pairs), unanimous 11/11
-- type check: 27/27 emitted parses type
+- selection: fire cases fired 27/27 · abstain cases false fires 0/9
+- fill: exact 27/27 among fires
+- stability: pairwise agreement 1.0 (12 cases, 36 pairs), unanimous 12/12
+- type check: 33/33 emitted parses type
 - graph lints: none
-- usage: 33 calls · in 550,578 · out 2,863 · thinking 0 (calls with thought tokens: 0)
+- usage: 36 calls · in 619,209 · out 3,164 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
 Abstain cases (what the parser did, per run):
 - "The ferrets are curious." (target `group`): r1 target_fired [copular×1, distribution×1, group×1] · r2 target_fired [copular×1, distribution×1, group×1] · r3 target_fired [copular×1, distribution×1, group×1]
 - "Yusra is a weaver." (target `copular`): r1 target_fired [copular×1, named-entity×1] · r2 target_fired [copular×1, named-entity×1] · r3 target_fired [copular×1, named-entity×1]
 - "Ferrets are widespread." (gap G00): r1 gap_reported [nothing fired; unmapped G00] · r2 gap_reported [nothing fired; unmapped G00] · r3 gap_reported [nothing fired; unmapped G00]
-- "Most herons are patient." (target `generic`): r1 pending_unmapped [nothing fired; unmapped G00] · r2 pending_unmapped [nothing fired; unmapped G00] · r3 pending_unmapped [nothing fired; unmapped G00]
 
 Mismatches: none
 
 ## modal — held_out
 
-1 cases, 3 records (ok 3; stale prompt 0) · gemini-4-argon effort=low
+1 cases, 3 records (ok 3; stale prompt 3) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -338,7 +362,7 @@ Mismatches: none
 
 ## transfer — held_out
 
-11 cases, 33 records (ok 33; stale prompt 27) · gemini-4-argon effort=low
+11 cases, 33 records (ok 33; stale prompt 33) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|

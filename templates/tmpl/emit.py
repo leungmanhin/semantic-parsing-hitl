@@ -45,9 +45,18 @@ Constraints.  A template may declare ``one_of: [[a, b], …]``: exactly one slot
 must be filled (a message that is a thing or a clause).
 
 Truth values.  Every statement carries ``(STV 1.0 0.99)`` unless the template declares
-``truth: {slot: <name>, values: {<value>: [s, c], …}, default: [s, c]}``: the instance's value
-of that slot picks the truth value of every statement the instance emits (a kind statement at
-confidence 0.99 when definitional, 0.9 when empirical).
+``truth: {strength: [<clause>, …], confidence: [<clause>, …]}``; each list is tried in order
+and a clause is either a number (the default) or ``{slot: <name>, values: {<value>: <number>}}``
+(the instance's own slot) or ``{from: <refs slot>, slot: <name>, values: …}`` (the first
+referenced instance whose slot has a listed value).  A shape may carry its own ``stv: [s, c]``,
+which overrides the instance's truth value for that statement (a surface record beside a rule).
+
+Variables.  ``mints: {variable: true}`` mints ``$x``, ``$y``, ``$z`` … in instance order: the
+range of a quantified rule.  ``skolemize: true`` on a ``refs`` slot replaces, inside that slot's
+bundle, every non-rigid minted symbol (an event, an indefinite witness or group) by a skolem
+function of the variables in scope — the bound variable of ``bind`` and the variables of the
+ranges the instance references — so each instance of the range gets its own event and its own
+dependent indefinite, while names and presupposed referents stay constants.
 
 Declarations.  Every minted symbol is declared with its class, every bare filler with its slot's
 class, every lemma with ``Class``; ``Entity`` / ``Event`` / ``TimeTerm`` also declare
@@ -61,6 +70,7 @@ import unicodedata
 from . import catalog as CAT
 
 DEFAULT_STV = (1.0, 0.99)
+VARIABLES = ["$x", "$y", "$z", "$u", "$v", "$w"]
 INSTANCE_SUBTYPES = ("Entity", "Event", "TimeTerm", "Statement", "Context")
 
 _TOKEN = re.compile(r'"(?:[^"\\]|\\.)*"|[()]|[^\s()]+')
@@ -160,6 +170,7 @@ class _Emitter:
         self.sym: dict[str, str] = {}
         self.out: list[dict] = []
         self.types: dict[str, set] = {}
+        self.sk_functions: dict[tuple, str] = {}        # (stem, arity) -> the class of the skolemized symbol
         self._names: dict[str, int] = {}
 
     # ---------------------------------------------------------------- checks
@@ -242,12 +253,16 @@ class _Emitter:
     def assign_symbols(self):
         named: dict[str, list[str]] = {}
         counters: dict[str, int] = {}
+        n_vars = 0
         for r in self.insts:
             t = self.cat[r["t"]]
             m = t.get("mints")
             if not m:
                 continue
-            if m.get("symbol") == "name":
+            if m.get("variable"):
+                self.sym[r["id"]] = VARIABLES[n_vars] if n_vars < len(VARIABLES) else f"$v{n_vars}"
+                n_vars += 1
+            elif m.get("symbol") == "name":
                 base = slug(r.get("name", r["id"]))
                 named.setdefault(base, []).append(r["id"])
             else:
@@ -261,6 +276,14 @@ class _Emitter:
                 self.sym[i] = base if len(ids) == 1 else f"{base}_{k}"
 
     # ---------------------------------------------------------------- homes
+    def is_rigid(self, iid: str) -> bool:
+        """A name, a presupposed referent (definite, possessed) or a variable: never scoped or skolemized."""
+        r = self.by_id[iid]
+        t = self.cat[r["t"]]
+        m = t.get("mints") or {}
+        return m.get("symbol") == "name" or bool(m.get("variable")) or \
+            any(r.get(s) not in (None, False, [], "") for s in t.get("presupposed") or [])
+
     def compute_homes(self):
         # content instance -> the scope instance whose refs slot names it
         self.scope_of: dict[str, str] = {}
@@ -282,14 +305,12 @@ class _Emitter:
             for sname, spec in (self.cat[r["t"]].get("slots") or {}).items():
                 if spec["type"] == "filler" and is_ref(r.get(sname)):
                     mentions.setdefault(r[sname][1:], []).append(r["id"])
+        self.mentions = mentions
         # referent instance -> the innermost scope enclosing every mention, or None (top level)
         self.home: dict[str, str | None] = {}
         for r in self.insts:
             iid = r["id"]
-            t = self.cat[r["t"]]
-            rigid = (t.get("mints") or {}).get("symbol") == "name" or \
-                any(r.get(s) not in (None, False, [], "") for s in t.get("presupposed") or [])
-            if iid in self.scope_of or not mentions.get(iid) or rigid:
+            if iid in self.scope_of or not mentions.get(iid) or self.is_rigid(iid):
                 self.home[iid] = None
                 continue
             chains = [enclosing(m) for m in mentions[iid]]
@@ -328,8 +349,12 @@ class _Emitter:
         return tok
 
     def atoms_of(self, iid: str, projecting: bool = False) -> list:
-        """The atom terms an instance emits from its own shapes (scoped content rendered inside).
-        ``projecting`` selects the ``project: true`` shapes instead of the ordinary ones."""
+        """The atom terms an instance emits from its own shapes (scoped content rendered inside)."""
+        return [term for term, _e in self.shapes_of(iid, projecting)]
+
+    def shapes_of(self, iid: str, projecting: bool = False) -> list:
+        """``(term, shape)`` pairs for an instance's own shapes; ``projecting`` selects the
+        ``project: true`` shapes instead of the ordinary ones."""
         r = self.by_id[iid]
         t = self.cat[r["t"]]
         terms = []
@@ -349,14 +374,29 @@ class _Emitter:
                 else:
                     elements = r.get(slot) or []
                 for element in elements:
-                    terms.append(self.substitute(shape, r, t["slots"], slot, element))
+                    terms.append((self.substitute(shape, r, t["slots"], slot, element), e))
             else:
-                terms.append(self.substitute(shape, r, t["slots"]))
+                terms.append((self.substitute(shape, r, t["slots"]), e))
         return terms
 
-    def inside(self, refs: list, scope_iid: str) -> list[str]:
+    def attached(self, refs: list, scope_iid: str) -> list[str]:
+        """The referents homed at this scope that belong to THIS slot's bundle: those mentioned by
+        an instance the slot's references reach (a rule's premise bundle does not carry the
+        conclusion's indefinites)."""
+        core = set(self.inside(refs, scope_iid, with_homed=False))
+        out: list[str] = []
+        changed = True
+        while changed:
+            changed = False
+            for iid in self.homed_in.get(scope_iid, []):
+                if iid not in out and any(m in core or m in out for m in self.mentions.get(iid, [])):
+                    out.append(iid)
+                    changed = True
+        return out
+
+    def inside(self, refs: list, scope_iid: str, with_homed: bool = True) -> list[str]:
         """Every instance rendered within a bundle: the references, transitively, and the homed."""
-        out, todo = [], [ref[1:] for ref in refs] + list(self.homed_in.get(scope_iid, []))
+        out, todo = [], [ref[1:] for ref in refs] + (self.attached(refs, scope_iid) if with_homed else [])
         while todo:
             iid = todo.pop(0)
             if iid in out:
@@ -381,10 +421,21 @@ class _Emitter:
                 if is_ref(target):
                     overlay[target[1:]] = "$x"
             if spec.get("skolemize"):
+                variables = []
+                if spec.get("bind") and is_ref(inst.get(spec["bind"])):
+                    variables.append("$x")
+                slots = self.cat[inst["t"]].get("slots") or {}
+                all_refs = [x for s2, sp2 in slots.items() if sp2["type"] == "refs" for x in (inst.get(s2) or []) if is_ref(x)]
+                reached = set(self.inside(all_refs, scope_iid))
+                for r2 in self.insts:
+                    if r2["id"] in reached and (self.cat[r2["t"]].get("mints") or {}).get("variable"):
+                        variables.append(self.sym[r2["id"]])
                 for iid in self.inside(refs, scope_iid):
-                    t = self.cat[self.by_id[iid]["t"]]
-                    if (t.get("mints") or {}).get("id") == "Event" and iid in self.sym:
-                        overlay[iid] = [self.sym[iid].rsplit("_", 1)[0], "$x"]
+                    m = self.cat[self.by_id[iid]["t"]].get("mints") or {}
+                    if m and iid in self.sym and not self.is_rigid(iid):
+                        stem = self.sym[iid].rsplit("_", 1)[0]
+                        overlay[iid] = [stem] + variables
+                        self.sk_functions[(stem, len(variables))] = m.get("id", "Entity")
         saved = self.sym
         if overlay is not None:
             self.sym = overlay
@@ -392,31 +443,53 @@ class _Emitter:
             terms = []
             for ref in refs:
                 terms.extend(self.atoms_of(ref[1:]))
-            for iid in self.homed_in.get(scope_iid, []):
+            for iid in self.attached(refs, scope_iid):
                 terms.extend(self.atoms_of(iid))
         finally:
             self.sym = saved
         return terms[0] if len(terms) == 1 else ["And"] + terms
 
     def truth_of(self, inst: str) -> tuple:
-        """The instance's truth value from its template's ``truth`` rule, else the default."""
+        """The instance's truth value from its template's layered ``truth`` rules, else the default."""
         r = self.by_id[inst]
         rule = self.cat[r["t"]].get("truth")
         if not rule:
             return DEFAULT_STV
-        v = r.get(rule["slot"]) if rule.get("slot") else None
-        values = rule.get("values") or {}
-        picked = values.get(str(v).lower()) if v is not None else None
-        picked = picked or rule.get("default") or DEFAULT_STV
-        return (float(picked[0]), float(picked[1]))
 
-    def add(self, term, owner: str, inst: str):
+        def lookup(clause, source):
+            v = source.get(clause["slot"])
+            if v is None:
+                return None
+            values = {str(k).lower(): x for k, x in (clause.get("values") or {}).items()}
+            return values.get(str(v).lower())
+
+        def pick(clauses, fallback):
+            for c in clauses if isinstance(clauses, list) else [clauses]:
+                if isinstance(c, (int, float)):
+                    return float(c)
+                if not isinstance(c, dict):
+                    continue
+                if c.get("from"):
+                    for ref in r.get(c["from"]) or []:
+                        tgt = self.by_id.get(ref[1:]) if is_ref(ref) else None
+                        got = lookup(c, tgt) if tgt is not None else None
+                        if got is not None:
+                            return float(got)
+                else:
+                    got = lookup(c, r)
+                    if got is not None:
+                        return float(got)
+            return fallback
+
+        return (pick(rule.get("strength", []), DEFAULT_STV[0]), pick(rule.get("confidence", []), DEFAULT_STV[1]))
+
+    def add(self, term, owner: str, inst: str, stv=None):
         head = term[0] if isinstance(term, list) else str(term)
         base = slug(f"{inst}_{head}")
         n = self._names.get(base, 0) + 1
         self._names[base] = n
         name = base if n == 1 else f"{base}_{n}"
-        stv = self.truth_of(inst)
+        stv = (float(stv[0]), float(stv[1])) if stv else self.truth_of(inst)
         self.out.append({"name": name, "term": term, "owner": owner, "inst": inst,
                          "text": f"(: {name} {render(term)} (STV {fmt_num(stv[0])} {fmt_num(stv[1])}))"})
 
@@ -447,6 +520,10 @@ class _Emitter:
             if full & set(INSTANCE_SUBTYPES):
                 full.add("Instance")
             lines += [f"(: {sym} {c})" for c in sorted(full)]
+        for (stem, arity), cls in sorted(self.sk_functions.items()):   # skolem functions: (sk_letter $x) is an Entity
+            args = " ".join(["Atom"] * arity)
+            for c in sorted({cls, "Instance"} if cls in INSTANCE_SUBTYPES else {cls}):
+                lines.append(f"(: {stem} (-> {args} {c}))")
         return lines
 
     # ---------------------------------------------------------------- run
@@ -460,11 +537,11 @@ class _Emitter:
             iid = r["id"]
             if iid in self.scope_of or self.home.get(iid) is not None:
                 continue                                    # rendered inside a scope
-            for term in self.atoms_of(iid):
-                self.add(term, r["t"], iid)
+            for term, e in self.shapes_of(iid):
+                self.add(term, r["t"], iid, e.get("stv"))
         for r in self.insts:                                    # presuppositions: top level, any scope
-            for term in self.atoms_of(r["id"], projecting=True):
-                self.add(term, r["t"], r["id"])
+            for term, e in self.shapes_of(r["id"], projecting=True):
+                self.add(term, r["t"], r["id"], e.get("stv"))
         fired: dict[str, int] = {}
         for r in self.insts:
             fired[r["t"]] = fired.get(r["t"], 0) + 1

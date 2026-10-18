@@ -12,8 +12,9 @@ Structural invariants checked here (content is reviewed by people, not checked h
 * every ``emits`` entry has an ``atom`` whose placeholders name a slot of the template (or
   ``@id`` when the template mints a symbol); ``if_filled`` / ``each`` name a slot; ``when``
   mentions only slots, their values and ``true`` / ``false``; ``project`` is a boolean;
-* ``one_of`` groups list two or more slots each; a ``truth`` rule names a slot and gives
-  ``[strength, confidence]`` pairs; ``presupposed`` lists slots of the template;
+* ``one_of`` groups list two or more slots each; ``truth`` gives ``strength`` / ``confidence``
+  clause lists (numbers, or ``{slot, values}`` / ``{from, slot, values}``); a shape's ``stv`` is a
+  pair of numbers; ``presupposed`` lists slots of the template;
 * examples carry a ``category`` and either ``instances`` or an ``expected`` abstain target.
 """
 from __future__ import annotations
@@ -76,13 +77,21 @@ def check_template(t: dict, path: str) -> list[str]:
             problems.append(f"presupposed: {s!r} is not a slot")
     truth = t.get("truth")
     if truth is not None:
-        if not isinstance(truth, dict) or ("slot" in truth and truth["slot"] not in slots) or ("slot" not in truth and "default" not in truth):
-            problems.append("truth: must name a slot of the template, or give a default")
+        if not isinstance(truth, dict) or not ({"strength", "confidence"} & set(truth)):
+            problems.append("truth: needs strength and/or confidence clause lists")
         else:
-            pairs = list((truth.get("values") or {}).values()) + ([truth["default"]] if "default" in truth else [])
-            for pair in pairs:
-                if not (isinstance(pair, list) and len(pair) == 2 and all(isinstance(x, (int, float)) for x in pair)):
-                    problems.append(f"truth: {pair!r} is not a [strength, confidence] pair")
+            for key in ("strength", "confidence"):
+                clauses = truth.get(key, [])
+                for c in clauses if isinstance(clauses, list) else [clauses]:
+                    if isinstance(c, (int, float)):
+                        continue
+                    if not isinstance(c, dict) or "slot" not in c or not isinstance(c.get("values"), dict):
+                        problems.append(f"truth.{key}: a clause is a number or {{slot, values}} (optionally from)")
+                    elif c.get("from"):
+                        if (slots.get(c["from"]) or {}).get("type") != "refs":
+                            problems.append(f"truth.{key}: from must name a refs slot")
+                    elif c["slot"] not in slots:
+                        problems.append(f"truth.{key}: {c['slot']!r} is not a slot")
     mints = t.get("mints") or {}
     for i, e in enumerate(t.get("emits") or []):
         atom = e.get("atom") if isinstance(e, dict) else None
@@ -103,6 +112,8 @@ def check_template(t: dict, path: str) -> list[str]:
                     problems.append(f"emits[{i}]: when mentions {word!r}, not a slot or a value")
         if "project" in e and not isinstance(e["project"], bool):
             problems.append(f"emits[{i}]: project must be true or false")
+        if "stv" in e and not (isinstance(e["stv"], list) and len(e["stv"]) == 2 and all(isinstance(x, (int, float)) for x in e["stv"])):
+            problems.append(f"emits[{i}]: stv must be [strength, confidence]")
     for section in ("shown", "held_out"):
         for j, ex in enumerate((t.get("examples") or {}).get(section) or []):
             if ex.get("category") not in CATEGORIES:

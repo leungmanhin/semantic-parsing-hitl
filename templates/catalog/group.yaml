@@ -44,7 +44,7 @@ slots:
   kind:      {type: lemma, class: Class, required: true, doc: "the head noun's lemma, singular (ferret)"}
   definite:  {type: bool, required: false, doc: "true for the / these / those / both; absent for a possessed group (the possessor presupposes it) and otherwise"}
   count:     {type: number, required: false, doc: "the exact size when a numeral or both states it (three → 3; both → 2)"}
-  quantity:  {type: string, required: false, doc: "the vague size phrase as written (several, a few, dozens); absent when a numeral or both states the size"}
+  quantity:  {type: string, required: false, doc: "the vague size phrase as written (several, a few, some, many, dozens); absent when a numeral or both states the size"}
   props:     {type: list, class: Class, required: false, doc: "adjectival properties stated in the phrase"}
   possessor: {type: filler, class: Entity, required: false, doc: "the possessor of a possessive phrase (Yusra's ferrets)"}
 
@@ -97,6 +97,7 @@ examples:
         - "(: sk_group_1 Entity)"
         - "(: sk_sleep_1 Event)"
         - "(: sleep Class)"
+        - "(: sk_sleep (-> Atom Event))"
     - category: positive
       note: an exact count; a collective predicate — no distribution
       text: "Three ferrets surrounded the barn."

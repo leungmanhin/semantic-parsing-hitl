@@ -1,0 +1,73 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "f131d9909123f262f22649f1d0a661fcd2875712cc42a57ee96b4987f17f15ff",
+  "item": {
+    "id": "s5f105e3b12",
+    "text": "Ferrets can climb."
+  },
+  "usage": {
+    "input": 19691,
+    "output": 62,
+    "thinking": null,
+    "total": 19753,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 19691,
+    "candidatesTokenCount": 62,
+    "totalTokenCount": 19753,
+    "cachedContentTokenCount": 17642,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 19691
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 17642
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 62
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s5f105e3b12\", \"instances\": [], \"unmapped\": [{\"span\": \"Ferrets can climb\", \"code\": \"G00\", \"construction\": \"A modal capability statement over a kind.\"}], \"issues\": []}",
+  "response": {
+    "id": "s5f105e3b12",
+    "instances": [],
+    "unmapped": [
+      {
+        "span": "Ferrets can climb",
+        "code": "G00",
+        "construction": "A modal capability statement over a kind."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "1d1d69fff405c91e41b45cfd40fd9da93832112f9edce8f3b99dca62a91fe348",
+  "run": 2,
+  "case": {
+    "template": "generic",
+    "section": "held_out",
+    "index": 10,
+    "category": "abstain",
+    "text": "Ferrets can climb.",
+    "key": "5f105e3b12"
+  }
+}

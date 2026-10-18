@@ -1,0 +1,85 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "f131d9909123f262f22649f1d0a661fcd2875712cc42a57ee96b4987f17f15ff",
+  "item": {
+    "id": "s746d95e6e4",
+    "text": "No ferret slept."
+  },
+  "usage": {
+    "input": 19690,
+    "output": 126,
+    "thinking": null,
+    "total": 19816,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 19690,
+    "candidatesTokenCount": 126,
+    "totalTokenCount": 19816,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 19690
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 126
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s746d95e6e4\", \"instances\": [{\"t\": \"range\", \"id\": \"q1\", \"kind\": \"ferret\", \"quantifier\": \"no\", \"predicate\": \"sleep\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"sleep\", \"actor\": \"@q1\", \"tense\": \"past\"}, {\"t\": \"generic\", \"id\": \"r1\", \"ranges\": [\"@q1\"], \"over\": [\"@e1\"]}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s746d95e6e4",
+    "instances": [
+      {
+        "t": "range",
+        "id": "q1",
+        "kind": "ferret",
+        "quantifier": "no",
+        "predicate": "sleep"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "sleep",
+        "actor": "@q1",
+        "tense": "past"
+      },
+      {
+        "t": "generic",
+        "id": "r1",
+        "ranges": [
+          "@q1"
+        ],
+        "over": [
+          "@e1"
+        ]
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "1d1d69fff405c91e41b45cfd40fd9da93832112f9edce8f3b99dca62a91fe348",
+  "run": 1,
+  "case": {
+    "template": "generic",
+    "section": "held_out",
+    "index": 3,
+    "category": "positive",
+    "text": "No ferret slept.",
+    "key": "746d95e6e4"
+  }
+}
