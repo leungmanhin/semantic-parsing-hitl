@@ -1,0 +1,74 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "f5f1e44762d5f71f92cba2959b585298e51bf895cfccd7dae6d6503648dc8ffe",
+  "item": {
+    "id": "s511d55d068",
+    "text": "The ladder fell."
+  },
+  "usage": {
+    "input": 21102,
+    "output": 89,
+    "thinking": null,
+    "total": 21191,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 21102,
+    "candidatesTokenCount": 89,
+    "totalTokenCount": 21191,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 21102
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 89
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s511d55d068\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"ladder\", \"definite\": true}, {\"t\": \"motion\", \"id\": \"e1\", \"verb\": \"fall\", \"moved\": \"@x1\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s511d55d068",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "ladder",
+        "definite": true
+      },
+      {
+        "t": "motion",
+        "id": "e1",
+        "verb": "fall",
+        "moved": "@x1",
+        "tense": "past"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "000098f3bba489804dab742a00fbb307c4c7cc7edbe3c2d93bcc7ed7118790ae",
+  "run": 1,
+  "case": {
+    "template": "motion",
+    "section": "held_out",
+    "index": 5,
+    "category": "positive",
+    "text": "The ladder fell.",
+    "key": "511d55d068"
+  }
+}

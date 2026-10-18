@@ -1,0 +1,81 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "f5f1e44762d5f71f92cba2959b585298e51bf895cfccd7dae6d6503648dc8ffe",
+  "item": {
+    "id": "s9568338724",
+    "text": "The crate was carried to the shed."
+  },
+  "usage": {
+    "input": 21106,
+    "output": 120,
+    "thinking": null,
+    "total": 21226,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 21106,
+    "candidatesTokenCount": 120,
+    "totalTokenCount": 21226,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 21106
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 120
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s9568338724\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"crate\", \"definite\": true}, {\"t\": \"witness\", \"id\": \"x2\", \"kind\": \"shed\", \"definite\": true}, {\"t\": \"motion\", \"id\": \"e1\", \"verb\": \"carry\", \"moved\": \"@x1\", \"goal\": \"@x2\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s9568338724",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "crate",
+        "definite": true
+      },
+      {
+        "t": "witness",
+        "id": "x2",
+        "kind": "shed",
+        "definite": true
+      },
+      {
+        "t": "motion",
+        "id": "e1",
+        "verb": "carry",
+        "moved": "@x1",
+        "goal": "@x2",
+        "tense": "past"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "000098f3bba489804dab742a00fbb307c4c7cc7edbe3c2d93bcc7ed7118790ae",
+  "run": 3,
+  "case": {
+    "template": "motion",
+    "section": "held_out",
+    "index": 10,
+    "category": "optional",
+    "text": "The crate was carried to the shed.",
+    "key": "9568338724"
+  }
+}

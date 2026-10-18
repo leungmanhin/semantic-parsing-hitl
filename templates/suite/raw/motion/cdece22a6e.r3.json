@@ -1,0 +1,96 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "f5f1e44762d5f71f92cba2959b585298e51bf895cfccd7dae6d6503648dc8ffe",
+  "item": {
+    "id": "scdece22a6e",
+    "text": "Lamine might leave the market."
+  },
+  "usage": {
+    "input": 21102,
+    "output": 147,
+    "thinking": null,
+    "total": 21249,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 21102,
+    "candidatesTokenCount": 147,
+    "totalTokenCount": 21249,
+    "cachedContentTokenCount": 19053,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 21102
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 19053
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 147
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"scdece22a6e\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"market\", \"definite\": true}, {\"t\": \"motion\", \"id\": \"e1\", \"verb\": \"leave\", \"mover\": \"@n1\", \"source\": \"@x1\", \"tense\": \"present\"}, {\"t\": \"modal\", \"id\": \"s1\", \"over\": [\"@e1\"], \"head\": \"Might\", \"surface\": \"might\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "scdece22a6e",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "market",
+        "definite": true
+      },
+      {
+        "t": "motion",
+        "id": "e1",
+        "verb": "leave",
+        "mover": "@n1",
+        "source": "@x1",
+        "tense": "present"
+      },
+      {
+        "t": "modal",
+        "id": "s1",
+        "over": [
+          "@e1"
+        ],
+        "head": "Might",
+        "surface": "might"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "000098f3bba489804dab742a00fbb307c4c7cc7edbe3c2d93bcc7ed7118790ae",
+  "run": 3,
+  "case": {
+    "template": "motion",
+    "section": "held_out",
+    "index": 8,
+    "category": "scoped",
+    "text": "Lamine might leave the market.",
+    "key": "cdece22a6e"
+  }
+}

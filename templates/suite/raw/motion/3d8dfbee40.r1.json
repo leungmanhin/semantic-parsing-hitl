@@ -1,0 +1,72 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "f5f1e44762d5f71f92cba2959b585298e51bf895cfccd7dae6d6503648dc8ffe",
+  "item": {
+    "id": "s3d8dfbee40",
+    "text": "Teodor made a trip."
+  },
+  "usage": {
+    "input": 21101,
+    "output": 83,
+    "thinking": null,
+    "total": 21184,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 21101,
+    "candidatesTokenCount": 83,
+    "totalTokenCount": 21184,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 21101
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 83
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s3d8dfbee40\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}], \"unmapped\": [{\"span\": \"made a trip\", \"code\": \"G00\", \"construction\": \"A light-verb construction where the noun carries the event.\"}], \"issues\": []}",
+  "response": {
+    "id": "s3d8dfbee40",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "made a trip",
+        "code": "G00",
+        "construction": "A light-verb construction where the noun carries the event."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "000098f3bba489804dab742a00fbb307c4c7cc7edbe3c2d93bcc7ed7118790ae",
+  "run": 1,
+  "case": {
+    "template": "motion",
+    "section": "held_out",
+    "index": 12,
+    "category": "abstain",
+    "text": "Teodor made a trip.",
+    "key": "3d8dfbee40"
+  }
+}

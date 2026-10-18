@@ -1,0 +1,86 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "f5f1e44762d5f71f92cba2959b585298e51bf895cfccd7dae6d6503648dc8ffe",
+  "item": {
+    "id": "s685b41db5e",
+    "text": "Teodor ran across the field."
+  },
+  "usage": {
+    "input": 21104,
+    "output": 117,
+    "thinking": null,
+    "total": 21221,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 21104,
+    "candidatesTokenCount": 117,
+    "totalTokenCount": 21221,
+    "cachedContentTokenCount": 19055,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 21104
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 19055
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 117
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s685b41db5e\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"run\", \"mover\": \"@n1\", \"tense\": \"past\"}], \"unmapped\": [{\"span\": \"across the field\", \"code\": \"G00\", \"construction\": \"A prepositional path phrase attaching to a motion verb.\"}], \"issues\": []}",
+  "response": {
+    "id": "s685b41db5e",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor"
+      },
+      {
+        "t": "motion",
+        "id": "m1",
+        "verb": "run",
+        "mover": "@n1",
+        "tense": "past"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "across the field",
+        "code": "G00",
+        "construction": "A prepositional path phrase attaching to a motion verb."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "000098f3bba489804dab742a00fbb307c4c7cc7edbe3c2d93bcc7ed7118790ae",
+  "run": 3,
+  "case": {
+    "template": "motion",
+    "section": "held_out",
+    "index": 6,
+    "category": "positive",
+    "text": "Teodor ran across the field.",
+    "key": "685b41db5e"
+  }
+}

@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 ba6ef77bdbf88b49 · 18 templates
+catalog sha256 b830233e1b1c4a63 · 19 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -549,7 +549,7 @@ The program renders these instances as:
 
 Not this template. TEXT: Teodor gave Yusra a thermos. — use `transfer`.
 
-Not this template. TEXT: Yusra went to the market. — report the span as unmapped.
+Not this template. TEXT: Yusra went to the market. — use `motion`.
 
 ### attitude — A propositional attitude towards a complement clause
 
@@ -962,6 +962,109 @@ The program renders these instances as:
 
     (Inheritance ferret curious)
     (QuantifierPhrase ferret curious "all")
+
+### motion — A change of place
+
+When: A verbal clause whose verb denotes a change of place: go, come, arrive, leave, depart,
+enter, exit, return, move, travel, walk, run, climb, fall, rise, fly, swim, drive, ride, cross,
+reach, escape, flee; or a causer moving something: carry, bring, take (somewhere), push, pull,
+roll, drag, lead, send is a transfer when the object changes hands. The mover is the Agent when
+it moves under its own power and the Theme when it is moved or moves without acting; a
+destination phrase is the Goal, an origin phrase the Source. With enter and reach the object is
+the Goal; with leave and exit the object is the Source.
+
+Verbs that anchor the class: go, come, arrive, leave, depart, enter, exit, return, move, travel,
+walk, run, climb, fall, rise, fly, swim, drive, ride, cross, reach, escape, flee, carry, bring,
+push, pull, roll, drag, lead.
+The list anchors the class; an unlisted verb that denotes a change of place belongs here (record
+its lemma as usual; a particle verb keeps its particle: set_off, come_back). The class is
+semantic, the list is guidance.
+
+Forms:
+- <mover> V
+- <mover> V to / into <goal>
+- <mover> V from <source> to <goal>
+- <mover> left / entered <place>
+- <causer> V <moved> to <goal>
+- <moved> V
+- <moved> was V-ed to <goal>
+
+Not this template:
+- a change of hands — gave, handed, sent, sold, delivered: the object comes to belong to
+  someone; a transfer
+- an action with no change of place — laughed, worked, read the letter: a plain activity
+- a figurative fall or rise — the price fell, hopes rose: a change in a value or a state, not of
+  place
+- go, come, turn as become — went bad, came true, turned red: a change of state
+- light-verb constructions — made a trip, took a walk, had a run: the noun carries the event
+- come or go with an infinitive — came to like the quilt, went to buy a thermos: an inchoative
+  or a purpose, a different construction
+- a path phrase other than to or from — across the field, along the river, through the gate: an
+  attachment with no slot here; parse the motion and report the phrase
+
+Slots:
+
+- `t` (required): "motion"
+- `id` (required; your label for this instance): your label for the motion event.
+- `verb` (required; a lemma): the verb lemma.
+- `mover` (optional; "@id" of a referent instance, or a bare lemma for a non-specific filler):
+  who or what moves under its own power, or who moves the moved thing: the subject; absent when
+  the subject is moved or moves without acting, and in an agentless passive.
+- `moved` (optional; "@id" of a referent instance, or a bare lemma for a non-specific filler):
+  what is moved by someone (the object of carry, push), or what moves without acting (the crate
+  arrived, the ladder fell).
+- `goal` (optional; "@id" of a referent instance, or a bare lemma for a non-specific filler):
+  the destination: a to / into / onto phrase, or the object of enter, reach.
+- `source` (optional; "@id" of a referent instance, or a bare lemma for a non-specific filler):
+  the origin: a from / off / out of phrase, or the object of leave, exit.
+- `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
+  not inferred.
+- `aspect` (optional; one of: simple, progressive, perfect).
+
+Example (a self-mover and a destination). TEXT: Yusra went to the market.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Yusra"},
+      {"t": "witness", "id": "x1", "kind": "market", "definite": true},
+      {"t": "motion", "id": "m1", "verb": "go", "mover": "@n1", "goal": "@x1", "tense": "past"}
+    ]
+
+The program renders these instances as:
+
+    (Name yusra "Yusra")
+    (Member sk_market_1 market)
+    (Member sk_go_1 go)
+    (Agent sk_go_1 yusra)
+    (Goal sk_go_1 sk_market_1)
+    (Past sk_go_1)
+
+Example (a caused motion — the causer is the mover, the thing moved is the moved). TEXT: Lamine carried the ladder to the shed.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Lamine"},
+      {"t": "witness", "id": "x1", "kind": "ladder", "definite": true},
+      {"t": "witness", "id": "x2", "kind": "shed", "definite": true},
+      {"t": "motion", "id": "m1", "verb": "carry", "mover": "@n1", "moved": "@x1", "goal": "@x2", "tense": "past"}
+    ]
+
+The program renders these instances as:
+
+    (Name lamine "Lamine")
+    (Member sk_ladder_1 ladder)
+    (Member sk_shed_1 shed)
+    (Member sk_carry_1 carry)
+    (Agent sk_carry_1 lamine)
+    (Theme sk_carry_1 sk_ladder_1)
+    (Goal sk_carry_1 sk_shed_1)
+    (Past sk_carry_1)
+
+Not this template. TEXT: Teodor gave Yusra a thermos. — use `transfer`.
+
+Not this template. TEXT: Yusra laughed. — use `activity`.
 
 ### perception — Perception of a thing or an event
 

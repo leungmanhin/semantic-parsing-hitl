@@ -1,0 +1,235 @@
+# Template: motion  (a change of place: something moves, by itself or moved by someone)
+#
+# Who or what moves takes one of two roles. A self-mover — a person, an animal, a vehicle under
+# its own power — is the Agent (Yusra went to the market, Teodor arrived). A thing that is
+# moved by someone, or that moves without acting, is the Theme (Lamine carried the ladder, the
+# crate arrived, the ladder fell); a causer who moves it is the Agent beside it. The path is
+# recorded as Goal (to, into, onto; the object of enter, reach) and Source (from, off, out of;
+# the object of leave, exit). Other path phrases (across, along, through, past) have no slot
+# here: the motion is parsed and the phrase reported as unmapped.
+
+id: motion
+family: predication
+kind: verb-class
+title: A change of place
+status: draft
+
+trigger:
+  construction: >
+    A verbal clause whose verb denotes a change of place: go, come, arrive, leave, depart,
+    enter, exit, return, move, travel, walk, run, climb, fall, rise, fly, swim, drive, ride,
+    cross, reach, escape, flee; or a causer moving something: carry, bring, take (somewhere),
+    push, pull, roll, drag, lead, send is a transfer when the object changes hands. The mover
+    is the Agent when it moves under its own power and the Theme when it is moved or moves
+    without acting; a destination phrase is the Goal, an origin phrase the Source. With enter
+    and reach the object is the Goal; with leave and exit the object is the Source.
+  verbs: [go, come, arrive, leave, depart, enter, exit, return, move, travel, walk, run, climb,
+          fall, rise, fly, swim, drive, ride, cross, reach, escape, flee, carry, bring, push,
+          pull, roll, drag, lead]
+  verbs_note: >
+    The list anchors the class; an unlisted verb that denotes a change of place belongs here
+    (record its lemma as usual; a particle verb keeps its particle: set_off, come_back). The
+    class is semantic, the list is guidance.
+  surface_forms:
+    - "<mover> V"                                    # Teodor arrived
+    - "<mover> V to / into <goal>"                   # Yusra went to the market
+    - "<mover> V from <source> to <goal>"            # walked from the barn to the shed
+    - "<mover> left / entered <place>"               # the object is the source / the goal
+    - "<causer> V <moved> to <goal>"                 # carried the ladder to the shed
+    - "<moved> V"                                    # the crate arrived; the ladder fell
+    - "<moved> was V-ed to <goal>"                   # passive of a caused motion
+  boundary:                   # looks like a change of place but is not one
+    - >-
+      a change of hands — gave, handed, sent, sold, delivered: the object comes to belong to
+      someone; a transfer
+    - >-
+      an action with no change of place — laughed, worked, read the letter: a plain activity
+    - >-
+      a figurative fall or rise — the price fell, hopes rose: a change in a value or a state,
+      not of place
+    - >-
+      go, come, turn as become — went bad, came true, turned red: a change of state
+    - >-
+      light-verb constructions — made a trip, took a walk, had a run: the noun carries the
+      event
+    - >-
+      come or go with an infinitive — came to like the quilt, went to buy a thermos: an
+      inchoative or a purpose, a different construction
+    - >-
+      a path phrase other than to or from — across the field, along the river, through the
+      gate: an attachment with no slot here; parse the motion and report the phrase
+
+slots:
+  id:     {type: id, required: true, doc: "your label for the motion event"}
+  verb:   {type: lemma, class: Class, required: true, doc: "the verb lemma"}
+  mover:  {type: filler, class: Entity, role: Agent, required: false,
+           doc: "who or what moves under its own power, or who moves the moved thing: the subject; absent when the subject is moved or moves without acting, and in an agentless passive"}
+  moved:  {type: filler, class: Entity, role: Theme, required: false,
+           doc: "what is moved by someone (the object of carry, push), or what moves without acting (the crate arrived, the ladder fell)"}
+  goal:   {type: filler, class: Entity, role: Goal, required: false,
+           doc: "the destination: a to / into / onto phrase, or the object of enter, reach"}
+  source: {type: filler, class: Entity, role: Source, required: false,
+           doc: "the origin: a from / off / out of phrase, or the object of leave, exit"}
+  tense:  {type: enum, values: [past, present, future], required: true,
+           doc: "the clause's tense; present is recorded, not inferred"}
+  aspect: {type: enum, values: [simple, progressive, perfect], required: false, default: simple}
+
+mints: {id: Event}
+
+emits:
+  - atom: "(Member @id {verb})"
+  - atom: "(Agent @id {mover})"
+    if_filled: mover
+  - atom: "(Theme @id {moved})"
+    if_filled: moved
+  - atom: "(Goal @id {goal})"
+    if_filled: goal
+  - atom: "(Source @id {source})"
+    if_filled: source
+  - atom: "(Past @id)"
+    when: "tense == past or aspect == perfect"
+  - atom: "(Future @id)"
+    when: "tense == future"
+  - atom: "(Ongoing @id)"
+    when: "aspect == progressive"
+
+notes:
+  - >-
+    Two roles for the mover, because the text says which: a self-mover acts, a moved thing or a
+    falling one does not; the mover / moved contrast pair in the suite tests the choice. A
+    causer and a moved thing fill both at once.
+  - >-
+    Being somewhere after the motion ("Yusra is at the market") is a background rule with its
+    own defeasibility, not part of the parse; nor is the presupposition of having been
+    elsewhere before.
+
+depends_on: [named-entity, witness, group]
+composes_with: [negation, modal, time, location, manner]
+
+examples:
+  shown:                     # rendered into the prompt
+    - category: positive
+      note: a self-mover and a destination
+      text: "Yusra went to the market."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, kind: market, definite: true}
+        - {t: motion, id: m1, verb: go, mover: "@n1", goal: "@x1", tense: past}
+      emitted:               # what the emitter produces (illustration; the emitter is the authority)
+        - "(Name yusra \"Yusra\")"
+        - "(Member sk_market_1 market)"
+        - "(Member sk_go_1 go)"
+        - "(Agent sk_go_1 yusra)"
+        - "(Goal sk_go_1 sk_market_1)"
+        - "(Past sk_go_1)"
+      declarations:
+        - "(: go Class)"
+        - "(: market Class)"
+        - "(: sk_go_1 Event)"
+        - "(: sk_market_1 Entity)"
+        - "(: yusra Entity)"
+    - category: positive
+      note: a caused motion — the causer is the mover, the thing moved is the moved
+      text: "Lamine carried the ladder to the shed."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: x1, kind: ladder, definite: true}
+        - {t: witness, id: x2, kind: shed, definite: true}
+        - {t: motion, id: m1, verb: carry, mover: "@n1", moved: "@x1", goal: "@x2", tense: past}
+    - category: abstain
+      text: "Teodor gave Yusra a thermos."
+      expected: {abstain: true, template: transfer}                   # a change of hands
+    - category: abstain
+      text: "Yusra laughed."
+      expected: {abstain: true, template: activity}                   # no change of place
+
+  held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      text: "Teodor arrived."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: motion, id: m1, verb: arrive, mover: "@n1", tense: past}
+    - category: contrast
+      note: a thing that moves without acting is the moved, not the mover
+      text: "The crate arrived."
+      instances:
+        - {t: witness, id: x1, kind: crate, definite: true}
+        - {t: motion, id: m1, verb: arrive, moved: "@x1", tense: past}
+    - category: positive
+      note: origin and destination
+      text: "Ottoline walked from the barn to the shed."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: witness, id: x1, kind: barn, definite: true}
+        - {t: witness, id: x2, kind: shed, definite: true}
+        - {t: motion, id: m1, verb: walk, mover: "@n1", source: "@x1", goal: "@x2", tense: past}
+    - category: positive
+      note: the object of leave is the source
+      text: "Yusra left the market."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, kind: market, definite: true}
+        - {t: motion, id: m1, verb: leave, mover: "@n1", source: "@x1", tense: past}
+    - category: positive
+      note: the object of enter is the goal
+      text: "Lamine entered the shed."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: x1, kind: shed, definite: true}
+        - {t: motion, id: m1, verb: enter, mover: "@n1", goal: "@x1", tense: past}
+    - category: positive
+      note: a fall — the subject moves without acting
+      text: "The ladder fell."
+      instances:
+        - {t: witness, id: x1, kind: ladder, definite: true}
+        - {t: motion, id: m1, verb: fall, moved: "@x1", tense: past}
+    - category: positive
+      note: a path phrase with no slot — the motion is parsed, the phrase reported
+      text: "Teodor ran across the field."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: motion, id: m1, verb: run, mover: "@n1", tense: past}
+      unmapped:
+        - {code: G00, span: "across the field"}
+    - category: scoped
+      note: under clausal negation — the definite destination stays presupposed
+      text: "Yusra did not go to the market."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, kind: market, definite: true}
+        - {t: motion, id: m1, verb: go, mover: "@n1", goal: "@x1", tense: past}
+        - {t: negation, id: s1, over: ["@m1"]}
+    - category: scoped
+      note: under a modal
+      text: "Lamine might leave the market."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: x1, kind: market, definite: true}
+        - {t: motion, id: m1, verb: leave, mover: "@n1", source: "@x1", tense: present}
+        - {t: modal, id: s1, over: ["@m1"], head: Might, surface: might}
+    - category: optional
+      note: progressive
+      text: "Ottoline is walking to the shed."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: witness, id: x1, kind: shed, definite: true}
+        - {t: motion, id: m1, verb: walk, mover: "@n1", goal: "@x1", tense: present, aspect: progressive}
+    - category: optional
+      note: agentless passive of a caused motion — no mover
+      text: "The crate was carried to the shed."
+      instances:
+        - {t: witness, id: x1, kind: crate, definite: true}
+        - {t: witness, id: x2, kind: shed, definite: true}
+        - {t: motion, id: m1, verb: carry, moved: "@x1", goal: "@x2", tense: past}
+    - category: abstain
+      text: "The price fell."
+      expected: {abstain: true, template: change-of-state}            # a figurative fall
+    - category: abstain
+      text: "Teodor made a trip."
+      expected: {abstain: true, gap: G00, span: "made a trip"}        # light-verb construction
+    - category: abstain
+      text: "Lamine handed Teodor an envelope."
+      expected: {abstain: true, template: transfer}                   # a change of hands
+    - category: abstain
+      text: "Yusra came to like the quilt."
+      expected: {abstain: true, gap: G00, span: "came to like the quilt"}   # come with an infinitive
