@@ -271,9 +271,12 @@ class _Emitter:
             if m.get("variable"):
                 self.sym[r["id"]] = VARIABLES[n_vars] if n_vars < len(VARIABLES) else f"$v{n_vars}"
                 n_vars += 1
-            elif m.get("symbol") == "name":
-                base = slug(r.get("name", r["id"]))
-                named.setdefault(base, []).append(r["id"])
+            elif m.get("symbol") and r.get(m["symbol"]) not in (None, "", []):
+                base = slug(str(r[m["symbol"]]))
+                if m.get("constant"):                     # the same word is the same symbol (yesterday, noon)
+                    self.sym[r["id"]] = base
+                else:
+                    named.setdefault(base, []).append(r["id"])
             else:
                 stem_slot = m.get("stem")
                 stem = r.get(stem_slot) if stem_slot else m.get("literal") or r.get("verb") or r.get("kind") or t["id"]
@@ -290,7 +293,8 @@ class _Emitter:
         r = self.by_id[iid]
         t = self.cat[r["t"]]
         m = t.get("mints") or {}
-        return m.get("symbol") == "name" or bool(m.get("variable")) or \
+        sym_slot = m.get("symbol")
+        return (bool(sym_slot) and r.get(sym_slot) not in (None, "", [])) or bool(m.get("variable")) or \
             any(r.get(s) not in (None, False, [], "") for s in t.get("presupposed") or [])
 
     def compute_homes(self):
@@ -539,6 +543,10 @@ class _Emitter:
             m = t.get("mints")
             if m and r["id"] in self.sym:
                 self.declare(self.sym[r["id"]], m["id"])
+                also = m.get("also") or {}                  # extra classes: a list, or {class: slot} when the slot is filled
+                for cls, slot in (also.items() if isinstance(also, dict) else [(c, None) for c in also]):
+                    if slot is None or r.get(slot) not in (None, False, "", []):
+                        self.declare(self.sym[r["id"]], cls)
             for sname, spec in (t.get("slots") or {}).items():
                 v = r.get(sname)
                 if v is None or spec["type"] not in ("filler", "lemma", "list"):

@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 f0e3b6142a92de80 · 23 templates
+catalog sha256 a59a6962b532ccf1 · 24 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -317,7 +317,10 @@ quilt, this spindle, two envelopes' member — introducing an individual of that
 individual gets a numbered witness symbol; whether the phrase is definite is recorded. A
 possessive phrase (Yusra's quilt, the quilt of Yusra, her quilt) is a witness with its possessor
 recorded: the possessor is a referent (a possessive pronoun resolves to its antecedent's id);
-the possessor presupposes the witness, so no definite mark is needed.
+the possessor presupposes the witness, so no definite mark is needed. A noun that names an event
+or a period (meeting, audit, war, trip, storm) is a witness like any other; when the clause puts
+the noun itself in time (the meeting is at noon, the audit was on Monday), mark it eventive so
+that the time can attach to it.
 
 Forms:
 - a <N>
@@ -342,6 +345,8 @@ Slots:
 - `possessor` (optional; "@id" of a referent instance, or a bare lemma for a non-specific
   filler): the possessor of a possessive phrase: Yusra's quilt, the quilt of Yusra; a referent
   id, or a bare lemma for a kind-level possessor.
+- `eventive` (optional; true / false): true when the noun names an event or a period and the
+  clause puts the noun itself in time (the meeting is at noon); absent otherwise.
 
 Example. TEXT: a thermos
 
@@ -1931,6 +1936,110 @@ Not this template. TEXT: Yusra went to the market. — use `motion`.
 Not this template. TEXT: Ottoline took the envelope from Lamine. — use `acquisition`.
 
 Not this template. TEXT: The ledger is on the workbench. — use `locative`.
+
+### time — The time at which an event takes place
+
+When: A time expression saying when the clause's event takes place: a calendar date or any part
+of one (in 2019, in May, on 3 May 2019, on Monday), a clock time (at 3 pm, at 2:30 pm, at noon,
+at midnight), or a time named by a word or a fixed phrase (yesterday, today, tomorrow, now,
+tonight, later, this morning, last week, next year, at dawn, at night, in autumn). The event is
+parsed with its own template; the time instance names that event and describes the time: a date
+or a clock time by its fields (year, month, day, weekday, hour, minute), a named time by its
+name. One instance per time expression; a day part beside a date (Monday morning) is a second
+instance. When the time is predicated of an event noun by "be" (the meeting is at noon, the
+audit was on Monday), the noun is a witness marked eventive, the time attaches to it, and this
+instance records the clause's tense.
+
+Forms:
+- <clause> in <year / month>
+- <clause> on <date / weekday>
+- <clause> at <clock time>
+- <clause> <named time>
+- <time>, <clause>
+- <event noun> is / was at / on <time>
+
+Not this template:
+- a relation between two times or events — before the audit, after noon, until noon, since May,
+  by Monday, during the meeting, three days ago, two weeks later: no slot here; the event is
+  parsed, the phrase reported as unmapped
+- a frequency or a schedule — every day, twice a week, on Sundays as a habit: no slot here;
+  reported as unmapped
+- a duration — for six hours, lasted two days: a measure, not a time
+- a decade, a century or an era — in the 1990s, in the 19th century: no slot yet; reported as
+  unmapped
+- an approximate time — around noon, about 3 pm: record the time, report the approximator as
+  unmapped
+- a place — in the barn, at the market: a location
+- tense alone — arrived, will arrive: the event's own template records it; a time instance needs
+  a time expression
+
+Slots:
+
+- `t` (required): "time"
+- `id` (required; your label for this instance): your label for the time (t1, t2 …).
+- `event` (optional; "@id" of the predication instance this attaches to): the event the time
+  attaches to: the id of the clause's predication instance, or of an eventive witness when the
+  time is predicated of an event noun (the meeting is at noon); absent only for a time no clause
+  places an event at.
+- `name` (optional; a lemma): a time named by a word or a fixed phrase, lowercase, joined with
+  underscores: now, today, yesterday, tomorrow, tonight, later, this_morning, last_week,
+  next_year, dawn, dusk, morning, afternoon, evening, night, spring, summer, autumn, winter;
+  fill no field beside it.
+- `year` (optional; an integer): the calendar year (2019).
+- `month` (optional; a lemma): the month name, lowercase (may).
+- `day` (optional; an integer): the day of the month (3).
+- `weekday` (optional; a lemma): the weekday name, lowercase (monday).
+- `hour` (optional; an integer): the clock hour in 24-hour form (3 pm → 15, noon → 12, midnight
+  → 0).
+- `minute` (optional; an integer): the clock minute (2:30 → 30); absent for a whole hour.
+- `tense` (optional; one of: past, present, future): only when the time is predicated of an
+  event noun by be (the meeting was at noon): the clause's tense; otherwise absent, the event's
+  own template records it.
+
+Example (a named time is its own symbol). TEXT: Yusra laughed yesterday.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Yusra"},
+      {"t": "activity", "id": "v1", "verb": "laugh", "actor": "@n1", "tense": "past"},
+      {"t": "time", "id": "t1", "event": "@v1", "name": "yesterday"}
+    ]
+
+The program renders these instances as:
+
+    (Name yusra "Yusra")
+    (Member sk_laugh_1 laugh)
+    (Agent sk_laugh_1 yusra)
+    (Past sk_laugh_1)
+    (Time sk_laugh_1 yesterday)
+
+Example (a weekday — a time instance described by a field). TEXT: Lamine sold the spindle on Monday.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Lamine"},
+      {"t": "witness", "id": "x1", "kind": "spindle", "definite": true},
+      {"t": "transfer", "id": "e1", "verb": "sell", "giver": "@n1", "object": "@x1", "tense": "past"},
+      {"t": "time", "id": "t1", "event": "@e1", "weekday": "monday"}
+    ]
+
+The program renders these instances as:
+
+    (Name lamine "Lamine")
+    (Member sk_spindle_1 spindle)
+    (Member sk_sell_1 sell)
+    (Agent sk_sell_1 lamine)
+    (Theme sk_sell_1 sk_spindle_1)
+    (Past sk_sell_1)
+    (Time sk_sell_1 sk_time_1)
+    (Weekday sk_time_1 monday)
+
+Not this template. TEXT: Three days ago, Yusra left. — report it as unmapped: {"span": "Three
+days ago", "code": "G00"}.
+
+Not this template. TEXT: Yusra laughed in the barn. — use `location`.
 
 ## Rules — generic and quantified statements
 

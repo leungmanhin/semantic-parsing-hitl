@@ -13,7 +13,10 @@ trigger:
     individual gets a numbered witness symbol; whether the phrase is definite is recorded. A
     possessive phrase (Yusra's quilt, the quilt of Yusra, her quilt) is a witness with its
     possessor recorded: the possessor is a referent (a possessive pronoun resolves to its
-    antecedent's id); the possessor presupposes the witness, so no definite mark is needed.
+    antecedent's id); the possessor presupposes the witness, so no definite mark is needed. A
+    noun that names an event or a period (meeting, audit, war, trip, storm) is a witness like any
+    other; when the clause puts the noun itself in time (the meeting is at noon, the audit was on
+    Monday), mark it eventive so that the time can attach to it.
   surface_forms:
     - "a <N>"                       # indefinite
     - "the <N>"                     # definite
@@ -36,8 +39,10 @@ slots:
   props:    {type: list, class: Class, required: false, doc: "adjectival properties stated in the phrase"}
   possessor: {type: filler, class: Entity, required: false,
               doc: "the possessor of a possessive phrase: Yusra's quilt, the quilt of Yusra; a referent id, or a bare lemma for a kind-level possessor"}
+  eventive: {type: bool, required: false,
+             doc: "true when the noun names an event or a period and the clause puts the noun itself in time (the meeting is at noon); absent otherwise"}
 
-mints: {id: Entity, stem: kind}
+mints: {id: Entity, stem: kind, also: {Event: eventive}}      # an eventive witness is an Event too
 
 presupposed: [definite, possessor]      # a definite or possessed witness exists whatever scope mentions it
 

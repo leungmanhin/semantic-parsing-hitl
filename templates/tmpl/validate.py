@@ -105,7 +105,8 @@ def lints(insts: list, catalog: dict, unmapped: list) -> list:
         t = catalog[r["t"]]
         slots = t.get("slots") or {}
         if t.get("family") == "referent" and r["id"] not in mentioned:
-            rigid = (t.get("mints") or {}).get("symbol") == "name"
+            sym_slot = (t.get("mints") or {}).get("symbol")
+            rigid = bool(sym_slot) and r.get(sym_slot) not in (None, "", [])
             if not rigid:
                 out.append({"kind": "dangling-referent", "instance": r["id"],
                             "detail": f"{r['t']} {r['id']} is mentioned by no other instance: a witness is introduced only by a clause a template covers"})

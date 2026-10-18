@@ -64,8 +64,8 @@ class EmitTests(unittest.TestCase):
             n += 1
             out = E.emit({"id": "x", "instances": ex["instances"]}, CATALOG)
             self.assertEqual(sorted(atoms_of(out["statements"])), sorted(ex["emitted"]), (tid, ex["text"]))
-            want = set(ex["declarations"]) | {d.replace(" Entity)", " Instance)") for d in ex["declarations"] if " Entity)" in d} \
-                | {d.replace(" Event)", " Instance)") for d in ex["declarations"] if " Event)" in d}
+            want = set(ex["declarations"]) | {d.replace(f" {c})", " Instance)") for d in ex["declarations"]
+                                              for c in E.INSTANCE_SUBTYPES if f" {c})" in d}
             self.assertEqual(set(out["declarations"]), want, (tid, ex["text"]))
         self.assertGreaterEqual(n, 2)
 
@@ -223,6 +223,31 @@ class EmitTests(unittest.TestCase):
         with self.assertRaises(E.EmitError) as cm:
             E.emit({"id": "b", "instances": bad}, CATALOG)
         self.assertTrue(any("boolean where a word is expected" in p for p in cm.exception.args[0]))
+
+    def test_time_attaches_names_are_constants_and_eventive_witnesses_are_events(self):
+        def example(tid, text):
+            t = CATALOG[tid]
+            return next(e for s in ("shown", "held_out") for e in t["examples"][s] if e["text"] == text)
+        named = E.emit({"id": "a", "instances": example("time", "Yusra laughed yesterday.")["instances"]}, CATALOG)
+        self.assertIn("(Time sk_laugh_1 yesterday)", atoms_of(named["statements"]))
+        self.assertIn("(: yesterday TimeTerm)", named["declarations"])
+        neg = E.emit({"id": "n", "instances": example("time", "Teodor did not arrive in 2019.")["instances"]}, CATALOG)
+        natoms = atoms_of(neg["statements"])
+        self.assertEqual(sum(a.startswith("(Not (And") and "(Time sk_arrive_1 sk_time_1)" in a and "(Year sk_time_1 2019)" in a for a in natoms), 1)
+        self.assertFalse(any(a.startswith("(Time") or a.startswith("(Year") for a in natoms))
+        audit = E.emit({"id": "e", "instances": example("time", "The audit was on Monday.")["instances"]}, CATALOG)
+        aatoms = atoms_of(audit["statements"])
+        self.assertIn("(Past sk_audit_1)", aatoms)
+        self.assertIn("(Weekday sk_time_1 monday)", aatoms)
+        self.assertTrue({"(: sk_audit_1 Entity)", "(: sk_audit_1 Event)"} <= set(audit["declarations"]))
+        twice = [{"t": "named-entity", "id": "n1", "name": "Yusra"},
+                 {"t": "activity", "id": "v1", "verb": "laugh", "actor": "@n1", "tense": "past"},
+                 {"t": "activity", "id": "v2", "verb": "sing", "actor": "@n1", "tense": "past"},
+                 {"t": "time", "id": "t1", "event": "@v1", "name": "yesterday"},
+                 {"t": "time", "id": "t2", "event": "@v2", "name": "yesterday"}]
+        tatoms = atoms_of(E.emit({"id": "t", "instances": twice}, CATALOG)["statements"])
+        self.assertIn("(Time sk_laugh_1 yesterday)", tatoms)
+        self.assertIn("(Time sk_sing_1 yesterday)", tatoms)                        # one constant, not yesterday_2
 
     def test_modal_scopes_over_the_clause(self):
         ex = next(e for _, _, e in all_examples() if e["text"] == "Lamine might lend Ottoline the trowel.")

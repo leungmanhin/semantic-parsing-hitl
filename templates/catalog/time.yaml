@@ -1,0 +1,247 @@
+# Template: time  (when an event takes place: a date, a clock time, a weekday, a named time)
+#
+# A time expression on a clause attaches a time instance to the clause's event: (Time event t),
+# with the time described by its fields — (Year t 2019), (Month t may), (Day t 3), (Weekday t
+# monday), (Hour t 15), (Minute t 30) — or named by a word, in which case the word is the time's
+# own symbol ((Time event yesterday), (Time event dawn)). Like a location, the attachment is part
+# of the clause: negated, modalised and generalised with the event. Relations between times
+# (before, after, until, since, during, ago), frequencies and durations are not this template.
+
+id: time
+family: attachment
+kind: attachment
+title: The time at which an event takes place
+status: draft
+
+trigger:
+  construction: >
+    A time expression saying when the clause's event takes place: a calendar date or any part of
+    one (in 2019, in May, on 3 May 2019, on Monday), a clock time (at 3 pm, at 2:30 pm, at noon,
+    at midnight), or a time named by a word or a fixed phrase (yesterday, today, tomorrow, now,
+    tonight, later, this morning, last week, next year, at dawn, at night, in autumn). The event
+    is parsed with its own template; the time instance names that event and describes the time:
+    a date or a clock time by its fields (year, month, day, weekday, hour, minute), a named time
+    by its name. One instance per time expression; a day part beside a date (Monday morning) is
+    a second instance. When the time is predicated of an event noun by "be" (the meeting is at
+    noon, the audit was on Monday), the noun is a witness marked eventive, the time attaches to
+    it, and this instance records the clause's tense.
+  surface_forms:
+    - "<clause> in <year / month>"                   # arrived in 2019; left in May
+    - "<clause> on <date / weekday>"                 # baked a loaf on 3 May 2019; sold the spindle on Monday
+    - "<clause> at <clock time>"                     # left at 3 pm; arrived at noon
+    - "<clause> <named time>"                        # laughed yesterday; will leave tomorrow; slept at night
+    - "<time>, <clause>"                             # In 2019, Teodor arrived
+    - "<event noun> is / was at / on <time>"         # the meeting is at noon; the audit was on Monday
+  boundary:                   # looks like the time of an event but is not one
+    - >-
+      a relation between two times or events — before the audit, after noon, until noon, since
+      May, by Monday, during the meeting, three days ago, two weeks later: no slot here; the
+      event is parsed, the phrase reported as unmapped
+    - >-
+      a frequency or a schedule — every day, twice a week, on Sundays as a habit: no slot here;
+      reported as unmapped
+    - >-
+      a duration — for six hours, lasted two days: a measure, not a time
+    - >-
+      a decade, a century or an era — in the 1990s, in the 19th century: no slot yet; reported
+      as unmapped
+    - >-
+      an approximate time — around noon, about 3 pm: record the time, report the approximator
+      as unmapped
+    - >-
+      a place — in the barn, at the market: a location
+    - >-
+      tense alone — arrived, will arrive: the event's own template records it; a time instance
+      needs a time expression
+
+slots:
+  id:      {type: id, required: true, doc: "your label for the time (t1, t2 …)"}
+  event:   {type: filler, class: Event, attaches: true, required: false,
+            doc: "the event the time attaches to: the id of the clause's predication instance, or of an eventive witness when the time is predicated of an event noun (the meeting is at noon); absent only for a time no clause places an event at"}
+  name:    {type: lemma, class: TimeTerm, required: false,
+            doc: "a time named by a word or a fixed phrase, lowercase, joined with underscores: now, today, yesterday, tomorrow, tonight, later, this_morning, last_week, next_year, dawn, dusk, morning, afternoon, evening, night, spring, summer, autumn, winter; fill no field beside it"}
+  year:    {type: int, required: false, doc: "the calendar year (2019)"}
+  month:   {type: lemma, class: Class, required: false, doc: "the month name, lowercase (may)"}
+  day:     {type: int, required: false, doc: "the day of the month (3)"}
+  weekday: {type: lemma, class: Class, required: false, doc: "the weekday name, lowercase (monday)"}
+  hour:    {type: int, required: false, doc: "the clock hour in 24-hour form (3 pm → 15, noon → 12, midnight → 0)"}
+  minute:  {type: int, required: false, doc: "the clock minute (2:30 → 30); absent for a whole hour"}
+  tense:   {type: enum, values: [past, present, future], required: false,
+            doc: "only when the time is predicated of an event noun by be (the meeting was at noon): the clause's tense; otherwise absent, the event's own template records it"}
+
+mints: {id: TimeTerm, symbol: name, constant: true, literal: time}   # a named time is its word; otherwise sk_time_n
+
+emits:
+  - atom: "(Time {event} @id)"
+    if_filled: event
+  - atom: "(Year @id {year})"
+    if_filled: year
+  - atom: "(Month @id {month})"
+    if_filled: month
+  - atom: "(Day @id {day})"
+    if_filled: day
+  - atom: "(Weekday @id {weekday})"
+    if_filled: weekday
+  - atom: "(Hour @id {hour})"
+    if_filled: hour
+  - atom: "(Minute @id {minute})"
+    if_filled: minute
+  - atom: "(Past {event})"
+    if_filled: event
+    when: "tense == past"
+  - atom: "(Future {event})"
+    if_filled: event
+    when: "tense == future"
+
+notes:
+  - >-
+    A time is an instance of its own, described by field atoms, so that two events on the same
+    date share nothing but their fields and a later relation (before, until, during) can hold
+    between time instances; a named time is a shared constant — every "yesterday" in an item is
+    the one symbol.
+  - >-
+    The attachment is rendered wherever its event is rendered: "Teodor did not arrive in 2019"
+    denies the dated arrival as a whole, and a generalization carries the time into its rule.
+
+depends_on: [witness]
+composes_with: [negation, modal, generic, distribution]
+
+examples:
+  shown:                     # rendered into the prompt
+    - category: positive
+      note: a named time is its own symbol
+      text: "Yusra laughed yesterday."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past}
+        - {t: time, id: t1, event: "@v1", name: yesterday}
+      emitted:               # what the emitter produces (illustration; the emitter is the authority)
+        - "(Name yusra \"Yusra\")"
+        - "(Member sk_laugh_1 laugh)"
+        - "(Agent sk_laugh_1 yusra)"
+        - "(Past sk_laugh_1)"
+        - "(Time sk_laugh_1 yesterday)"
+      declarations:
+        - "(: yusra Entity)"
+        - "(: laugh Class)"
+        - "(: sk_laugh_1 Event)"
+        - "(: yesterday TimeTerm)"
+    - category: positive
+      note: a weekday — a time instance described by a field
+      text: "Lamine sold the spindle on Monday."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: x1, kind: spindle, definite: true}
+        - {t: transfer, id: e1, verb: sell, giver: "@n1", object: "@x1", tense: past}
+        - {t: time, id: t1, event: "@e1", weekday: monday}
+    - category: abstain
+      text: "Three days ago, Yusra left."
+      expected: {abstain: true, gap: G00, span: "Three days ago"}     # a relation to now
+    - category: abstain
+      text: "Yusra laughed in the barn."
+      expected: {abstain: true, template: location}                   # a place
+
+  held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      note: a year
+      text: "Teodor arrived in 2019."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: motion, id: m1, verb: arrive, mover: "@n1", tense: past}
+        - {t: time, id: t1, event: "@m1", year: 2019}
+    - category: positive
+      note: a time predicated of an event noun — the witness is eventive, the clause's tense recorded here
+      text: "The meeting is at noon."
+      instances:
+        - {t: witness, id: x1, kind: meeting, definite: true, eventive: true}
+        - {t: time, id: t1, event: "@x1", hour: 12, tense: present}
+    - category: positive
+      note: a full date — one instance, three fields
+      text: "Lamine baked a loaf on 3 May 2019."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: x1, kind: loaf}
+        - {t: creation, id: e1, verb: bake, creator: "@n1", product: "@x1", tense: past}
+        - {t: time, id: t1, event: "@e1", year: 2019, month: may, day: 3}
+    - category: positive
+      note: a named day part
+      text: "Ottoline sang at dawn."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: activity, id: v1, verb: sing, actor: "@n1", tense: past}
+        - {t: time, id: t1, event: "@v1", name: dawn}
+    - category: positive
+      note: a named time with a future event
+      text: "Teodor will leave tomorrow."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: motion, id: m1, verb: leave, mover: "@n1", tense: future}
+        - {t: time, id: t1, event: "@m1", name: tomorrow}
+    - category: positive
+      note: a clock time in 24-hour form
+      text: "Yusra left at 3 pm."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: motion, id: m1, verb: leave, mover: "@n1", tense: past}
+        - {t: time, id: t1, event: "@m1", hour: 15}
+    - category: positive
+      note: hour and minute
+      text: "Lamine arrived at 2:30 pm."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: motion, id: m1, verb: arrive, mover: "@n1", tense: past}
+        - {t: time, id: t1, event: "@m1", hour: 14, minute: 30}
+    - category: positive
+      note: a weekday and a day part — two instances
+      text: "Teodor arrived on Monday morning."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: motion, id: m1, verb: arrive, mover: "@n1", tense: past}
+        - {t: time, id: t1, event: "@m1", weekday: monday}
+        - {t: time, id: t2, event: "@m1", name: morning}
+    - category: positive
+      note: an event noun in the past — the tense lands on the eventive witness
+      text: "The audit was on Monday."
+      instances:
+        - {t: witness, id: x1, kind: audit, definite: true, eventive: true}
+        - {t: time, id: t1, event: "@x1", weekday: monday, tense: past}
+    - category: optional
+      note: a fronted time
+      text: "In 2019, Teodor arrived."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: motion, id: m1, verb: arrive, mover: "@n1", tense: past}
+        - {t: time, id: t1, event: "@m1", year: 2019}
+    - category: scoped
+      note: under clausal negation — the dated arrival is denied as a whole
+      text: "Teodor did not arrive in 2019."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: motion, id: m1, verb: arrive, mover: "@n1", tense: past}
+        - {t: time, id: t1, event: "@m1", year: 2019}
+        - {t: negation, id: s1, over: ["@m1"]}
+    - category: scoped
+      note: under a modal
+      text: "Lamine might leave on Monday."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: motion, id: m1, verb: leave, mover: "@n1", tense: present}
+        - {t: time, id: t1, event: "@m1", weekday: monday}
+        - {t: modal, id: s1, over: ["@m1"], head: Might, surface: might}
+    - category: scoped
+      note: inside a generalization — the named time is a constant in the rule
+      text: "Every ferret slept at night."
+      instances:
+        - {t: range, id: q1, kind: ferret, quantifier: every, predicate: sleep}
+        - {t: activity, id: v1, verb: sleep, actor: "@q1", tense: past}
+        - {t: time, id: t1, event: "@v1", name: night}
+        - {t: generic, id: r1, ranges: ["@q1"], over: ["@v1"]}
+    - category: abstain
+      text: "Lamine left after the audit."
+      expected: {abstain: true, gap: G00, span: "after the audit"}    # a relation between events
+    - category: abstain
+      text: "Teodor reads every day."
+      expected: {abstain: true, gap: G00, span: "every day"}          # a frequency
+    - category: abstain
+      text: "Lamine waited at the market."
+      expected: {abstain: true, template: location}                   # a place
