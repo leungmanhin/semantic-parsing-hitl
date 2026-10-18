@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "1abc0d0b07f4c926cff160d9fa63f3bde90c8450677ab125519e57a3b0274ea1",
+  "prompt_sha256": "00bbb6f7068a2a54f33bfc0111df472edb2130448e8fb8c84b7c32a1afde3448",
   "item": {
     "id": "s131993ffcf",
     "text": "Yusra made Teodor laugh."
   },
   "usage": {
-    "input": 24119,
-    "output": 113,
+    "input": 30878,
+    "output": 146,
     "thinking": null,
-    "total": 24232,
+    "total": 31024,
+    "cached": 28829,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 24119,
-    "candidatesTokenCount": 113,
-    "totalTokenCount": 24232,
-    "cachedContentTokenCount": 22070,
+    "promptTokenCount": 30878,
+    "candidatesTokenCount": 146,
+    "totalTokenCount": 31024,
+    "cachedContentTokenCount": 28829,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 24119
+        "tokenCount": 30878
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 22070
+        "tokenCount": 28829
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 113
+        "tokenCount": 146
       }
     ]
   },
-  "raw_text": "{\"id\": \"s131993ffcf\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\"}], \"unmapped\": [{\"span\": \"Yusra made Teodor laugh.\", \"code\": \"G00\", \"construction\": \"A causative construction with 'make' and a bare infinitive complement.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"s131993ffcf\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"laugh\", \"actor\": \"@n2\", \"tense\": \"past\"}], \"unmapped\": [{\"span\": \"Yusra made Teodor laugh\", \"code\": \"G00\", \"construction\": \"A causative construction with 'make' taking a bare infinitival complement.\"}], \"issues\": []}",
   "response": {
     "id": "s131993ffcf",
     "instances": [
@@ -60,18 +61,25 @@
         "t": "named-entity",
         "id": "n2",
         "name": "Teodor"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "laugh",
+        "actor": "@n2",
+        "tense": "past"
       }
     ],
     "unmapped": [
       {
-        "span": "Yusra made Teodor laugh.",
+        "span": "Yusra made Teodor laugh",
         "code": "G00",
-        "construction": "A causative construction with 'make' and a bare infinitive complement."
+        "construction": "A causative construction with 'make' taking a bare infinitival complement."
       }
     ],
     "issues": []
   },
-  "prompt_body_sha256": "4c731d51dd5634a62763dd1f7d45e7a095ec79a09ca184df6ab70fc7d2a40b36",
+  "prompt_body_sha256": "c0d47baf69c87fd1005101d2c3752c57d83adb2f730ed1199fdb9b6546502fa7",
   "run": 2,
   "case": {
     "template": "creation",

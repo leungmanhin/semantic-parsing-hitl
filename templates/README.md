@@ -62,6 +62,13 @@ Nothing here changes `prompt.txt`, the briefs under `fusenf/briefs/`, or any pip
   after the call: the summary and any findings go to stderr, the result into the run record,
   `--atoms` prints the emitted statements too, `--no-validate` skips it, exit status 3 on findings. The
   suite runner uses the same script for blind parses.
+- Request layout and caching (Google): the catalog goes as the first user turn, a fixed model
+  acknowledgement follows, then the item (`--layout turns`, the default; `--layout system` is the old
+  system-instruction layout). Gemini's implicit cache discounts a request only when an EARLIER request's
+  whole prompt is a prefix of it, so the suite runner first sends the catalog alone (a prime), after which
+  every item request is served with the catalog cached (~93% of the input), and primes again whenever a
+  reply shows no cached tokens (`--no-prime` turns this off; `--prime` does it for a single-sentence run).
+  Each reply's `usage.cached` and the suite report's usage line show what the cache served.
 - `tmpl/validate.py` is the one post-parse validator, shared by the script and the suite scorer: the
   reply's contract (object, lists, null slots counted and stripped), the emitter's instance checks
   (unknown template, ids, required slots, enum values, dangling references, a filler pointing at a

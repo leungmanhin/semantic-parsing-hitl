@@ -37,6 +37,8 @@ import urllib.request
 ROOT = os.path.dirname(os.path.abspath(__file__))
 DEFAULT_PROMPT = os.path.join(ROOT, "templates", "generated", "PROMPT_CATALOG.txt")
 EFFORTS = ("none", "low", "medium", "high")
+ACK = "Understood. Send the item."          # the fixed model turn between the catalog and the item (turn layout)
+CACHE_MIN_TOKENS = 4096                     # below this Gemini never caches; above it a reply without cached tokens means the cache was lost
 
 
 # --------------------------------------------------------------------------
@@ -137,11 +139,33 @@ class Google:
                 gen["thinkingConfig"] = {"thinkingBudget": self.budgets[a.effort]}
         if a.include_thoughts:
             gen.setdefault("thinkingConfig", {})["includeThoughts"] = True
-        body = {"system_instruction": {"parts": [{"text": system}]},
-                "contents": [{"role": "user", "parts": [{"text": user}]}],
-                "generationConfig": gen}
+        if getattr(a, "layout", "turns") == "system":
+            body = {"system_instruction": {"parts": [{"text": system}]},
+                    "contents": [{"role": "user", "parts": [{"text": user}]}],
+                    "generationConfig": gen}
+        else:
+            # The catalog as the first user turn, a fixed acknowledgement, then the item: a request whose
+            # whole prompt is the catalog alone (``prime``) is then a prefix of every item request, which
+            # is what Gemini's implicit caching needs to discount the catalog (measured 2026-10-18).
+            body = {"contents": [{"role": "user", "parts": [{"text": system}]},
+                                 {"role": "model", "parts": [{"text": ACK}]},
+                                 {"role": "user", "parts": [{"text": user}]}],
+                    "generationConfig": gen}
         url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
         return url, {"x-goog-api-key": "<key>"}, body
+
+    def prime(self, system: str, model: str) -> dict:
+        """Send the catalog alone, so that later requests starting with it hit the implicit cache.
+        Returns the usage of the priming call (``cached`` is what an earlier prime left)."""
+        url, headers, body = self.request(system, "", model)
+        if "system_instruction" in body:
+            raise ProviderError("priming needs the turn layout (--layout turns)")
+        body["contents"] = body["contents"][:1]
+        headers["x-goog-api-key"] = self.key()
+        raw = _post_json(url, headers, body, self.args.timeout)
+        u = raw.get("usageMetadata") or {}
+        return {"input": u.get("promptTokenCount"), "output": u.get("candidatesTokenCount"),
+                "cached": u.get("cachedContentTokenCount"), "total": u.get("totalTokenCount")}
 
     def complete(self, system: str, user: str, model: str) -> Reply:
         url, headers, body = self.request(system, user, model)
@@ -156,6 +180,7 @@ class Google:
         u = raw.get("usageMetadata") or {}
         usage = {"input": u.get("promptTokenCount"), "output": u.get("candidatesTokenCount"),
                  "thinking": u.get("thoughtsTokenCount"), "total": u.get("totalTokenCount"),
+                 "cached": u.get("cachedContentTokenCount"),
                  "finish": cands[0].get("finishReason"), "thought_parts": len(thoughts)}
         reply = Reply(text, usage, raw)
         reply.thoughts = thoughts
@@ -247,6 +272,22 @@ def extract_json(text: str):
         raise
 
 
+def prime(args) -> dict | None:
+    """Prime the provider's cache with the instruction set alone; None when the provider has no priming."""
+    provider = PROVIDERS[args.provider](args)
+    if not hasattr(provider, "prime") or getattr(args, "layout", "turns") != "turns":
+        return None
+    with open(args.prompt, encoding="utf-8") as fh:
+        system = fh.read()
+    return provider.prime(system, args.model or provider.default_model)
+
+
+def cache_lost(usage: dict | None) -> bool:
+    """A reply long enough to be cached came back without cached tokens: the catalog is not in the cache."""
+    u = usage or {}
+    return (u.get("input") or 0) >= CACHE_MIN_TOKENS and not u.get("cached")
+
+
 def parse_sentence(text: str, args, item_id: str = "item") -> dict:
     """One sentence -> the run record (the parsed JSON object under ``response``)."""
     with open(args.prompt, encoding="utf-8") as fh:
@@ -263,10 +304,16 @@ def parse_sentence(text: str, args, item_id: str = "item") -> dict:
         shown = json.loads(json.dumps(body))
         if "system_instruction" in shown:
             shown["system_instruction"] = {"parts": [{"text": f"<{len(system)} chars of {record['prompt_path']}>"}]}
+        for turn in shown.get("contents") or []:
+            for part in turn.get("parts") or []:
+                if part.get("text") == system:
+                    part["text"] = f"<{len(system)} chars of {record['prompt_path']}>"
         if "instructions" in shown:
             shown["instructions"] = f"<{len(system)} chars of {record['prompt_path']}>"
         record["request"] = {"url": url, "headers": headers, "body": shown}
         return record
+    if getattr(args, "prime", False) and hasattr(provider, "prime") and getattr(args, "layout", "turns") == "turns":
+        record["prime"] = provider.prime(system, model)
     reply = provider.complete(system, user, model)
     record["usage"] = reply.usage
     record["request_config"] = getattr(reply, "config", None)
@@ -304,16 +351,22 @@ def add_provider_args(ap: argparse.ArgumentParser) -> None:
                     help="do not request application/json replies (diagnostic: JSON mode may interact with thinking)")
     ap.add_argument("--include-thoughts", action="store_true",
                     help="ask for thought summaries (includeThoughts); kept in the run record, counted on stderr")
+    ap.add_argument("--layout", choices=("turns", "system"), default="turns",
+                    help="google: where the instruction set goes. turns (default): the catalog as the first user turn, a fixed "
+                         "model acknowledgement, then the item — primable, so the catalog is cached across items; system: as the "
+                         "system instruction (the layout before 2026-10-18; never cached across items)")
+    ap.add_argument("--prime", action="store_true",
+                    help="send the catalog alone once before the call, so the catalog is served from the implicit cache (the suite runner primes by itself)")
 
 
-def validate_reply(reply: dict) -> dict:
+def validate_reply(reply: dict, reference_time=None) -> dict:
     """Run the catalog's validator on the parsed reply and return its result (report only)."""
     sys.path.insert(0, os.path.join(ROOT, "templates"))
     try:
         from tmpl import validate as V
     except Exception as exc:  # no pyyaml, or the templates tree is missing
         return {"status": "skipped", "summary": f"validation skipped: {exc}", "findings": [], "typecheck": "not run"}
-    res = V.validate(reply)
+    res = V.validate(reply, reference_time=reference_time)
     keep = {k: res.get(k) for k in ("status", "findings", "typecheck", "statements", "declarations", "fired", "null_slots")}
     keep["summary"] = V.summary(res)
     return keep
@@ -329,7 +382,12 @@ def main(argv=None) -> int:
     ap.add_argument("--dry-run", action="store_true", help="show the request that would be sent and call nothing")
     ap.add_argument("--no-validate", action="store_true", help="do not run the catalog's validator on the reply")
     ap.add_argument("--atoms", action="store_true", help="also print the emitted statements and declarations")
+    ap.add_argument("--reference-time", default=None,
+                    help="the text's reference time as an ISO date (YYYY-MM-DD, optionally THH:MM): gives the anchor `now` its calendar fields; 'today' = the system date")
     args = ap.parse_args(argv)
+    if args.reference_time == "today":
+        import datetime
+        args.reference_time = datetime.date.today().isoformat()
 
     try:
         record = parse_sentence(args.text, args, args.id)
@@ -337,7 +395,7 @@ def main(argv=None) -> int:
         print(f"error: {exc}", file=sys.stderr)
         return 1
     if not args.dry_run and not args.no_validate and record.get("response") is not None:
-        record["validation"] = validate_reply(record["response"])
+        record["validation"] = validate_reply(record["response"], args.reference_time)
     if args.out:
         with open(args.out, "w", encoding="utf-8") as fh:
             json.dump(record, fh, indent=2, ensure_ascii=False)

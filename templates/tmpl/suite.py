@@ -432,6 +432,22 @@ def collect(args, catalog: dict) -> int:
         print(json.dumps(rec["request"], indent=2, ensure_ascii=False))
         return 0
     failed = 0
+    primes, cached_total, input_total = 0, 0, 0
+
+    def prime(reason):
+        nonlocal primes
+        if args.no_prime or not hasattr(sp, "prime"):
+            return
+        try:
+            pu = sp.prime(args)
+        except Exception as exc:  # a failed prime only costs the discount
+            print(f"prime failed ({exc})")
+            return
+        if pu is not None:
+            primes += 1
+            print(f"primed ({reason}): catalog alone, in={pu.get('input')} cached={pu.get('cached')}")
+
+    prime("start")
     for i, job in enumerate(todo, 1):
         case, n, path = job["case"], job["run"], job["path"]
         item_id = "s" + case["key"]
@@ -449,11 +465,16 @@ def collect(args, catalog: dict) -> int:
             json.dump(rec, fh, indent=2, ensure_ascii=False)
         u = rec.get("usage") or {}
         status = "error" if rec.get("error") else "ok"
+        cached_total += u.get("cached") or 0
+        input_total += u.get("input") or 0
         print(f"[{i}/{len(todo)}] {case['template']} {case['category']:8s} r{n} {status:5s} "
-              f"in={u.get('input')} out={u.get('output')} thinking={u.get('thinking')} · {case['text']}")
+              f"in={u.get('input')} cached={u.get('cached')} out={u.get('output')} thinking={u.get('thinking')} · {case['text']}")
+        if status == "ok" and i < len(todo) and hasattr(sp, "cache_lost") and sp.cache_lost(u):
+            prime("the last reply had no cached tokens")
         if args.delay and i < len(todo):
             time.sleep(args.delay)
-    print(f"done: {len(todo) - failed} replies stored, {failed} failed · {_show(args.raw_dir)}")
+    share = f" · cached {cached_total:,} of {input_total:,} input tokens ({cached_total / input_total:.0%})" if input_total else ""
+    print(f"done: {len(todo) - failed} replies stored, {failed} failed · primes {primes}{share} · {_show(args.raw_dir)}")
     return 1 if failed else 0
 
 
@@ -468,7 +489,7 @@ def score_record(case: dict, rec: dict, catalog: dict, heads: dict, body_sha: st
            "key": case["key"], "run": rec.get("run"), "status": "ok", "pass": False, "reasons": [],
            "model": rec.get("model"), "effort": rec.get("effort"),
            "stale_prompt": (body_sha is not None and rec.get("prompt_body_sha256") not in (None, body_sha)),
-           "usage": {k: (rec.get("usage") or {}).get(k) for k in ("input", "output", "thinking", "total")}}
+           "usage": {k: (rec.get("usage") or {}).get(k) for k in ("input", "output", "thinking", "total", "cached")}}
     resp = rec.get("response")
     if not isinstance(resp, dict):
         err = rec.get("error") or "no response"
@@ -589,7 +610,7 @@ def summarize(rows: list[dict]) -> dict:
                 n_agree += 1
         agree += n_agree
         unanimous += n_agree == len(ps)
-    usage = {k: sum((r["usage"].get(k) or 0) for r in rows) for k in ("input", "output", "thinking", "total")}
+    usage = {k: sum((r["usage"].get(k) or 0) for r in rows) for k in ("input", "output", "thinking", "total", "cached")}
     issues = [{**i, "sentence": r["text"], "run": r["run"]} for r in rows for i in (r.get("issues") or []) if isinstance(i, dict)]
     return {
         "records": len(rows), "cases": len(by_key),
@@ -739,7 +760,8 @@ def render_report(summary: dict, rows: list[dict]) -> str:
                 f"unanimous {stab['unanimous']}/{stab['cases']}")
             add(f"- type check: {tc['passed']}/{tc['checked']} emitted parses type")
             add("- graph lints: " + (", ".join(f"{k} {v}" for k, v in sorted(s["lints"].items())) or "none"))
-            add(f"- usage: {u['calls']} calls · in {u['input']:,} · out {u['output']:,} · thinking {u['thinking']:,} "
+            cached = f" · cached {u['cached']:,} ({u['cached'] / u['input']:.0%} of the input)" if u.get("cached") and u["input"] else ""
+            add(f"- usage: {u['calls']} calls · in {u['input']:,}{cached} · out {u['output']:,} · thinking {u['thinking']:,} "
                 f"(calls with thought tokens: {u['thinking_calls']})" + (f" · null slots {s['null_slots']}" if s["null_slots"] else ""))
             if s["issues"]:
                 add(f"- issues reported by the parser: {len(s['issues'])}")
@@ -818,6 +840,8 @@ def main(argv=None) -> int:
     k.add_argument("--limit", type=int, default=None, help="at most this many calls")
     k.add_argument("--delay", type=float, default=0.0, help="seconds between calls")
     k.add_argument("--force", action="store_true", help="re-request cases that already have a stored reply")
+    k.add_argument("--no-prime", action="store_true",
+                   help="do not prime the provider's cache with the catalog (the default primes once at the start and again whenever a reply shows no cached tokens)")
     k.add_argument("--failed", action="store_true",
                    help="only the cases with a failing row in the current scores file (implies --force for them): "
                         "re-collect what the last score flagged, e.g. abstain cases whose target template now exists")

@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "1abc0d0b07f4c926cff160d9fa63f3bde90c8450677ab125519e57a3b0274ea1",
+  "prompt_sha256": "00bbb6f7068a2a54f33bfc0111df472edb2130448e8fb8c84b7c32a1afde3448",
   "item": {
     "id": "s36efeb6be8",
     "text": "Teodor built a shed from planks."
   },
   "usage": {
-    "input": 24119,
+    "input": 30878,
     "output": 140,
     "thinking": null,
-    "total": 24259,
+    "total": 31018,
+    "cached": 28828,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,20 +25,20 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 24119,
+    "promptTokenCount": 30878,
     "candidatesTokenCount": 140,
-    "totalTokenCount": 24259,
-    "cachedContentTokenCount": 22069,
+    "totalTokenCount": 31018,
+    "cachedContentTokenCount": 28828,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 24119
+        "tokenCount": 30878
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 22069
+        "tokenCount": 28828
       }
     ],
     "candidatesTokensDetails": [
@@ -47,7 +48,7 @@
       }
     ]
   },
-  "raw_text": "{\"id\": \"s36efeb6be8\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"shed\"}, {\"t\": \"creation\", \"id\": \"e1\", \"verb\": \"build\", \"creator\": \"@n1\", \"product\": \"@x1\", \"tense\": \"past\"}], \"unmapped\": [{\"span\": \"from planks\", \"code\": \"G00\", \"construction\": \"A prepositional material phrase attaching to the creation event.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"s36efeb6be8\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"shed\"}, {\"t\": \"creation\", \"id\": \"e1\", \"verb\": \"build\", \"creator\": \"@n1\", \"product\": \"@x1\", \"tense\": \"past\"}], \"unmapped\": [{\"span\": \"from planks\", \"code\": \"G00\", \"construction\": \"A material prepositional phrase attached to a creation verb.\"}], \"issues\": []}",
   "response": {
     "id": "s36efeb6be8",
     "instances": [
@@ -74,12 +75,12 @@
       {
         "span": "from planks",
         "code": "G00",
-        "construction": "A prepositional material phrase attaching to the creation event."
+        "construction": "A material prepositional phrase attached to a creation verb."
       }
     ],
     "issues": []
   },
-  "prompt_body_sha256": "4c731d51dd5634a62763dd1f7d45e7a095ec79a09ca184df6ab70fc7d2a40b36",
+  "prompt_body_sha256": "c0d47baf69c87fd1005101d2c3752c57d83adb2f730ed1199fdb9b6546502fa7",
   "run": 1,
   "case": {
     "template": "creation",
