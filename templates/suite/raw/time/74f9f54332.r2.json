@@ -1,0 +1,86 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "0ab3a7d71dae93dd6b6d88b219ab39b150a88bdeccc614969d05d33ac8fef5aa",
+  "item": {
+    "id": "s74f9f54332",
+    "text": "In 2019, Teodor arrived."
+  },
+  "usage": {
+    "input": 28016,
+    "output": 116,
+    "thinking": null,
+    "total": 28132,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 28016,
+    "candidatesTokenCount": 116,
+    "totalTokenCount": 28132,
+    "cachedContentTokenCount": 25967,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 28016
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 25967
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 116
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s74f9f54332\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"arrive\", \"mover\": \"@n1\", \"tense\": \"past\"}, {\"t\": \"time\", \"id\": \"t1\", \"event\": \"@m1\", \"year\": 2019}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s74f9f54332",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor"
+      },
+      {
+        "t": "motion",
+        "id": "m1",
+        "verb": "arrive",
+        "mover": "@n1",
+        "tense": "past"
+      },
+      {
+        "t": "time",
+        "id": "t1",
+        "event": "@m1",
+        "year": 2019
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "488ea14d008681814e98d240e401daa13109b112674f8d3a1d6bef8927a15fdd",
+  "run": 2,
+  "case": {
+    "template": "time",
+    "section": "held_out",
+    "index": 9,
+    "category": "optional",
+    "text": "In 2019, Teodor arrived.",
+    "key": "74f9f54332"
+  }
+}

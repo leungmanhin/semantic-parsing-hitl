@@ -1,0 +1,87 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "9ef7be016fe9c94587147da8ab8e32dc10a36598db3616736ec4f119204faeb4",
+  "item": {
+    "id": "s5b3803ff8a",
+    "text": "The clerk who laughed left."
+  },
+  "usage": {
+    "input": 30249,
+    "output": 115,
+    "thinking": null,
+    "total": 30364,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 30249,
+    "candidatesTokenCount": 115,
+    "totalTokenCount": 30364,
+    "cachedContentTokenCount": 28200,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 30249
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 28200
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 115
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s5b3803ff8a\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"clerk\", \"definite\": true}, {\"t\": \"motion\", \"id\": \"e1\", \"verb\": \"leave\", \"mover\": \"@x1\", \"tense\": \"past\"}], \"unmapped\": [{\"span\": \"who laughed\", \"code\": \"G00\", \"construction\": \"A restrictive relative clause modifying a noun.\"}], \"issues\": []}",
+  "response": {
+    "id": "s5b3803ff8a",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "clerk",
+        "definite": true
+      },
+      {
+        "t": "motion",
+        "id": "e1",
+        "verb": "leave",
+        "mover": "@x1",
+        "tense": "past"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "who laughed",
+        "code": "G00",
+        "construction": "A restrictive relative clause modifying a noun."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "8ec71bbffe57aa54f5eb1dc051643ad73943df5ef3964188a68d8dd96a4babd4",
+  "run": 2,
+  "case": {
+    "template": "coref",
+    "section": "held_out",
+    "index": 7,
+    "category": "abstain",
+    "text": "The clerk who laughed left.",
+    "key": "5b3803ff8a"
+  }
+}

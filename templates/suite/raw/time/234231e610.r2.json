@@ -1,0 +1,87 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "00bbb6f7068a2a54f33bfc0111df472edb2130448e8fb8c84b7c32a1afde3448",
+  "item": {
+    "id": "s234231e610",
+    "text": "Teodor will leave tomorrow."
+  },
+  "usage": {
+    "input": 30867,
+    "output": 93,
+    "thinking": null,
+    "total": 30960,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 30867,
+    "candidatesTokenCount": 93,
+    "totalTokenCount": 30960,
+    "cachedContentTokenCount": 28818,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 30867
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 28818
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 93
+      }
+    ]
+  },
+  "raw_text": "{\"id\":\"s234231e610\",\"instances\":[{\"t\":\"named-entity\",\"id\":\"n1\",\"name\":\"Teodor\"},{\"t\":\"motion\",\"id\":\"e1\",\"verb\":\"leave\",\"mover\":\"@n1\",\"tense\":\"future\"},{\"t\":\"time\",\"id\":\"t1\",\"event\":\"@e1\",\"deictic\":\"tomorrow\",\"anchor\":\"@now\"}],\"unmapped\":[],\"issues\":[]}",
+  "response": {
+    "id": "s234231e610",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor"
+      },
+      {
+        "t": "motion",
+        "id": "e1",
+        "verb": "leave",
+        "mover": "@n1",
+        "tense": "future"
+      },
+      {
+        "t": "time",
+        "id": "t1",
+        "event": "@e1",
+        "deictic": "tomorrow",
+        "anchor": "@now"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "c0d47baf69c87fd1005101d2c3752c57d83adb2f730ed1199fdb9b6546502fa7",
+  "run": 2,
+  "case": {
+    "template": "time",
+    "section": "held_out",
+    "index": 4,
+    "category": "positive",
+    "text": "Teodor will leave tomorrow.",
+    "key": "234231e610"
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "9ef7be016fe9c94587147da8ab8e32dc10a36598db3616736ec4f119204faeb4",
+  "item": {
+    "id": "sfd84d2733a",
+    "text": "Teodor arrived. That frightened Yusra."
+  },
+  "usage": {
+    "input": 30252,
+    "output": 208,
+    "thinking": null,
+    "total": 30460,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 30252,
+    "candidatesTokenCount": 208,
+    "totalTokenCount": 30460,
+    "cachedContentTokenCount": 28203,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 30252
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 28203
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 208
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sfd84d2733a\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"mention\", \"id\": \"m1\", \"word\": \"that\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Yusra\"}, {\"t\": \"motion\", \"id\": \"e1\", \"verb\": \"arrive\", \"mover\": \"@n1\", \"tense\": \"past\"}, {\"t\": \"psych\", \"id\": \"e2\", \"verb\": \"frighten\", \"experiencer\": \"@n2\", \"stimulus\": \"@m1\", \"tense\": \"past\"}, {\"t\": \"coref\", \"id\": \"c1\", \"mention\": \"@m1\", \"antecedent\": \"@e1\", \"certainty\": \"certain\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sfd84d2733a",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor"
+      },
+      {
+        "t": "mention",
+        "id": "m1",
+        "word": "that"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Yusra"
+      },
+      {
+        "t": "motion",
+        "id": "e1",
+        "verb": "arrive",
+        "mover": "@n1",
+        "tense": "past"
+      },
+      {
+        "t": "psych",
+        "id": "e2",
+        "verb": "frighten",
+        "experiencer": "@n2",
+        "stimulus": "@m1",
+        "tense": "past"
+      },
+      {
+        "t": "coref",
+        "id": "c1",
+        "mention": "@m1",
+        "antecedent": "@e1",
+        "certainty": "certain"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "8ec71bbffe57aa54f5eb1dc051643ad73943df5ef3964188a68d8dd96a4babd4",
+  "run": 3,
+  "case": {
+    "template": "coref",
+    "section": "held_out",
+    "index": 5,
+    "category": "optional",
+    "text": "Teodor arrived. That frightened Yusra.",
+    "key": "fd84d2733a"
+  }
+}

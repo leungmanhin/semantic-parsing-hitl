@@ -90,16 +90,16 @@ examples:
         - {t: witness, id: x1, kind: trowel}
         - {t: possession, id: p1, verb: have, holder: "@n1", possessed: "@x1", tense: present}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
-        - "(Name teodor \"Teodor\")"
+        - "(Name sk_teodor_1 \"Teodor\")"
         - "(Member sk_trowel_1 trowel)"
         - "(Member sk_have_1 have)"
-        - "(Holder sk_have_1 teodor)"
+        - "(Holder sk_have_1 sk_teodor_1)"
         - "(Theme sk_have_1 sk_trowel_1)"
       declarations:
-        - "(: teodor Entity)"
-        - "(: sk_trowel_1 Entity)"
-        - "(: sk_have_1 Event)"
         - "(: have Class)"
+        - "(: sk_have_1 Event)"
+        - "(: sk_teodor_1 Entity)"
+        - "(: sk_trowel_1 Entity)"
         - "(: trowel Class)"
     - category: positive
       note: belong — the subject is the thing held; the roles do not change

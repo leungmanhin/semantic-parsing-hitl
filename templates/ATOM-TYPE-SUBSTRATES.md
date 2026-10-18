@@ -360,8 +360,8 @@ gloss: Canonical ordering: the first eventuality precedes the second.
 head: BeforeBy
 kind: temporal
 arity: 4
-type-def: (: BeforeBy (-> Event Event Number Class Proposition))  ; and 1 more (per arity / per union alternative)
-gloss: Measured temporal gap: the first eventuality precedes the second (an eventuality or a time such as now) by n units.
+type-def: (: BeforeBy (-> Event Event Number Class Proposition))  ; and 3 more (per arity / per union alternative)
+gloss: Measured temporal gap: the first eventuality or time instance precedes the second (an eventuality, or a time instance such as the text's reference time now) by n units; 0 units = the same period (today = 0 day before now).
 
 
 head: Day

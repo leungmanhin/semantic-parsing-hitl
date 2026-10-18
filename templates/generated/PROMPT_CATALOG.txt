@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 a59a6962b532ccf1 · 24 templates
+catalog sha256 d03c79d39f74fc14 · 27 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -54,6 +54,10 @@ fences.
   operator (negation, modal), `c` copular predication, `l` location, `q` quantified range, `r`
   rule, `d` comparison, `m` measure, `t` time (n1, x1, e1, s1 …).
 - A slot that points to another instance holds `"@<id>"`, for example `"Agent": "@n1"`.
+- The id `now` is reserved for the text's REFERENCE TIME (the moment the text speaks from). You
+  never write its instance; a deictic time (yesterday, tomorrow, last week) refers to it as its
+  anchor, `"anchor": "@now"`, and the program supplies the instance, with calendar fields when
+  the caller states the reference date.
 - A slot that holds a CLAUSE — the content of a negation, a modal or an attitude — holds a list
   of ids: the clause's predication, or the scope operator over it when it has one (`["@s1"]` for
   a negated or modalised clause); never the referents the clause mentions.
@@ -63,12 +67,17 @@ fences.
   non-specific or kind-level filler ("pays tax", "cooked dinner" gives `"Patient": "dinner"`).
   Reserve the bare lemma for a non-specific filler; a specific definite or indefinite thing is
   always an instance.
-- ONE instance per referent. Every later mention of the same person, thing, group or event (a
-  repeated name, a pronoun, an anaphoric definite such as "a sluice … the sluice", a reflexive)
-  reuses the SAME id. Never create a second instance for something already introduced. Resolve
-  each pronoun to the most salient compatible antecedent; an event anaphor ("That surprised
-  everyone") is the event's id.
-- A TEXT of several sentences is parsed together: instances are shared across its sentences.
+- ONE instance per MENTION, and the identity stated. The first mention of a person, thing, group
+  or event gets its instance as usual. Every LATER mention of the same referent — a pronoun or a
+  demonstrative (a `mention` instance), a repeated name (a second `named-entity` instance), an
+  anaphoric definite such as "a sluice … the sluice" (a second `witness` instance), a reflexive
+  — gets its OWN instance, fills the slots of its own clause, and is linked to the referent's
+  FIRST instance by a `coref` instance that says how sure the text makes the identity. Never
+  fold a later mention into an earlier instance: the link is the resolution, stated where it can
+  be checked and revised. An event anaphor ("That surprised everyone") is a `mention` linked to
+  the event.
+- A TEXT of several sentences is parsed together: a later sentence's mentions of earlier
+  referents are new instances linked by `coref` to the first ones.
 - A coordinated subject or object (Teodor and Yusra laughed; read the letter and the note) is
   one predication instance per conjunct, each with its own event, never a group. When the
   predicate holds only of the conjuncts together (met, argued, shared a thermos), no instance
@@ -120,10 +129,10 @@ a hedge or approximator ("almost full"), a comparison class ("tall for a gymnast
 or partitive ("12.5% of the applicants").
 
 Referents inside an unmapped span: a NAME still gets its instance (a name is rigid, the same
-individual wherever it appears), but a common-noun phrase does not. A witness is introduced only
-by a clause a template covers; the span carries the noun verbatim, and if a covered clause
-mentions the same thing, that clause's instance is the referent. Never introduce a witness for
-something stated only in words you report as unmapped.
+individual wherever it appears in the text), but a common-noun phrase or a pronoun does not. A
+witness is introduced only by a clause a template covers; the span carries the noun verbatim,
+and if a covered clause mentions the same thing, that clause's instance is the referent. Never
+introduce a witness for something stated only in words you report as unmapped.
 
 Codes:
 
@@ -243,11 +252,43 @@ The program renders these instances as:
 
 Not this template. TEXT: Ferrets are curious. — use `kind-statement`.
 
+### mention — A pronoun or a demonstrative standing for an earlier referent
+
+When: A pronoun or a demonstrative used as a noun phrase that stands for something already in
+the text: he, she, it, they, him, her, them, his, its, their, himself, herself, themselves,
+this, that ("that surprised Yusra"). One instance per occurrence; the word is recorded. The
+mention fills the slot a name or a witness would fill (the actor, the patient, the possessor of
+a witness), and a coref instance links it to the referent's first instance. A repeated name
+(Yusra … Yusra) is a second named-entity instance, and an anaphoric definite (a sluice … the
+sluice) a second witness, each with its own coref instance: they are not mentions.
+
+Forms:
+- <pronoun>
+- <possessive pronoun> <N>
+- <demonstrative> as a noun phrase
+
+Not this template:
+- a relative pronoun opening a relative clause — the clerk who laughed, the quilt that Yusra
+  sold: a different construction, reported as unmapped
+- an expletive — it rained, it is clear that: no referent, no mention
+- a generic or impersonal pronoun — one never knows, you cannot be sure, they say: no referent,
+  reported as unmapped
+- a pronoun whose antecedent is not in the text (a text beginning "He laughed."): still a
+  mention, but with no coref instance to state
+
+Slots:
+
+- `t` (required): "mention"
+- `id` (required; your label for this instance): your label for the mention (m1, m2 …).
+- `word` (required; a string): the pronoun or demonstrative as written, lowercase (he, her, it,
+  that).
+
 ### named-entity — A proper name introducing a rigid referent
 
 When: A proper name (a person, a place, an organisation, a product) used to refer to one
-individual. A name is rigid: its symbol is derived from the name itself, it never gets a witness
-number, and it is never introduced inside a scope.
+individual. A name is rigid: it is never introduced inside a scope. Its symbol is the name with
+a number for this text (sk_teodor_1); whether two texts' Teodors are one person is a separate,
+revisable link, not a matter of spelling.
 
 Forms:
 - <Name>
@@ -276,7 +317,7 @@ Instances:
 
 The program renders these instances as:
 
-    (Name teodor "Teodor")
+    (Name sk_teodor_1 "Teodor")
 
 ### range — The quantified variable of a verbal generalization
 
@@ -310,15 +351,37 @@ Slots:
   subject or its object (slept → sleep, feared → fear); fill it on every range that has a
   quantifier word.
 
+### reference-time — The text's reference time
+
+When: Not a construction of the text: the reserved instance `now`, the text's reference time.
+The parser refers to it from a deictic time's `anchor` slot and never writes it; the program
+adds it, with its calendar fields when the caller gives the reference date.
+
+Not this template:
+- a stated time that a later expression refers back to (that evening, the following morning): an
+  ordinary time instance, named as the anchor of the later one — not this
+
+Slots:
+
+- `t` (required): "reference-time"
+- `id` (required; your label for this instance): always `now`.
+- `year` (optional; an integer): the calendar year of the reference time, from the caller.
+- `month` (optional; a lemma): the month name, lowercase.
+- `day` (optional; an integer): the day of the month.
+- `weekday` (optional; a lemma): the weekday name, lowercase.
+- `hour` (optional; an integer): the clock hour, 24-hour.
+- `minute` (optional; an integer): the clock minute.
+
 ### witness — A common-noun phrase introducing an individual
 
 When: A noun phrase headed by a common noun with a determiner or a modifier — a thermos, the
 quilt, this spindle, two envelopes' member — introducing an individual of that kind. The
 individual gets a numbered witness symbol; whether the phrase is definite is recorded. A
 possessive phrase (Yusra's quilt, the quilt of Yusra, her quilt) is a witness with its possessor
-recorded: the possessor is a referent (a possessive pronoun resolves to its antecedent's id);
-the possessor presupposes the witness, so no definite mark is needed. A noun that names an event
-or a period (meeting, audit, war, trip, storm) is a witness like any other; when the clause puts
+recorded: the possessor is a referent — a name, a witness, or for a possessive pronoun (her
+quilt) a mention instance of its own, linked to its antecedent by a coref instance; the
+possessor presupposes the witness, so no definite mark is needed. A noun that names an event or
+a period (meeting, audit, war, trip, storm) is a witness like any other; when the clause puts
 the noun itself in time (the meeting is at noon, the audit was on Monday), mark it eventive so
 that the time can attach to it.
 
@@ -343,8 +406,9 @@ Slots:
   possessed phrase (the possessor presupposes it).
 - `props` (optional; a list of lemmas): adjectival properties stated in the phrase.
 - `possessor` (optional; "@id" of a referent instance, or a bare lemma for a non-specific
-  filler): the possessor of a possessive phrase: Yusra's quilt, the quilt of Yusra; a referent
-  id, or a bare lemma for a kind-level possessor.
+  filler): the possessor of a possessive phrase: Yusra's quilt, the quilt of Yusra, her quilt; a
+  referent id (for a possessive pronoun, the id of its mention instance), or a bare lemma for a
+  kind-level possessor.
 - `eventive` (optional; true / false): true when the noun names an event or a period and the
   clause puts the noun itself in time (the meeting is at noon); absent otherwise.
 
@@ -371,9 +435,9 @@ Instances:
 
 The program renders these instances as:
 
-    (Name yusra "Yusra")
+    (Name sk_yusra_1 "Yusra")
     (Member sk_quilt_1 quilt)
-    (Possession sk_quilt_1 yusra)
+    (Possession sk_quilt_1 sk_yusra_1)
 
 ## Predications — what the text states about them
 
@@ -437,13 +501,13 @@ Instances:
 
 The program renders these instances as:
 
-    (Name ottoline "Ottoline")
+    (Name sk_ottoline_1 "Ottoline")
     (Member sk_envelope_1 envelope)
-    (Name lamine "Lamine")
+    (Name sk_lamine_1 "Lamine")
     (Member sk_take_1 take)
-    (Recipient sk_take_1 ottoline)
+    (Recipient sk_take_1 sk_ottoline_1)
     (Theme sk_take_1 sk_envelope_1)
-    (Source sk_take_1 lamine)
+    (Source sk_take_1 sk_lamine_1)
     (Past sk_take_1)
 
 Example (by receiving, no source stated). TEXT: Yusra received a thermos.
@@ -458,10 +522,10 @@ Instances:
 
 The program renders these instances as:
 
-    (Name yusra "Yusra")
+    (Name sk_yusra_1 "Yusra")
     (Member sk_thermos_1 thermos)
     (Member sk_receive_1 receive)
-    (Recipient sk_receive_1 yusra)
+    (Recipient sk_receive_1 sk_yusra_1)
     (Theme sk_receive_1 sk_thermos_1)
     (Past sk_receive_1)
 
@@ -530,9 +594,9 @@ Instances:
 
 The program renders these instances as:
 
-    (Name yusra "Yusra")
+    (Name sk_yusra_1 "Yusra")
     (Member sk_laugh_1 laugh)
-    (Agent sk_laugh_1 yusra)
+    (Agent sk_laugh_1 sk_yusra_1)
     (Past sk_laugh_1)
 
 Example (a non-specific patient as a bare lemma). TEXT: Lamine cooked dinner.
@@ -546,9 +610,9 @@ Instances:
 
 The program renders these instances as:
 
-    (Name lamine "Lamine")
+    (Name sk_lamine_1 "Lamine")
     (Member sk_cook_1 cook)
-    (Agent sk_cook_1 lamine)
+    (Agent sk_cook_1 sk_lamine_1)
     (Patient sk_cook_1 dinner)
     (Past sk_cook_1)
 
@@ -619,13 +683,13 @@ Instances:
 
 The program renders these instances as:
 
-    (Name teodor "Teodor")
-    (Name lamine "Lamine")
-    (Name ottoline "Ottoline")
+    (Name sk_teodor_1 "Teodor")
+    (Name sk_lamine_1 "Lamine")
+    (Name sk_ottoline_1 "Ottoline")
     (Member sk_trowel_1 trowel)
     (Member sk_believe_1 believe)
-    (Experiencer sk_believe_1 teodor)
-    (Theme sk_believe_1 (And (Member sk_lend_1 lend) (Agent sk_lend_1 lamine) (Recipient sk_lend_1 ottoline) (Theme sk_lend_1 sk_trowel_1) (Past sk_lend_1)))
+    (Experiencer sk_believe_1 sk_teodor_1)
+    (Theme sk_believe_1 (And (Member sk_lend_1 lend) (Agent sk_lend_1 sk_lamine_1) (Recipient sk_lend_1 sk_ottoline_1) (Theme sk_lend_1 sk_trowel_1) (Past sk_lend_1)))
 
 Example (factive — the complement is also stated flat). TEXT: Yusra knows that Teodor sold the spindle.
 
@@ -641,14 +705,14 @@ Instances:
 
 The program renders these instances as:
 
-    (Name yusra "Yusra")
-    (Name teodor "Teodor")
+    (Name sk_yusra_1 "Yusra")
+    (Name sk_teodor_1 "Teodor")
     (Member sk_spindle_1 spindle)
     (Member sk_know_1 know)
-    (Experiencer sk_know_1 yusra)
-    (Theme sk_know_1 (And (Member sk_sell_1 sell) (Agent sk_sell_1 teodor) (Theme sk_sell_1 sk_spindle_1) (Past sk_sell_1)))
+    (Experiencer sk_know_1 sk_yusra_1)
+    (Theme sk_know_1 (And (Member sk_sell_1 sell) (Agent sk_sell_1 sk_teodor_1) (Theme sk_sell_1 sk_spindle_1) (Past sk_sell_1)))
     (Member sk_sell_1 sell)
-    (Agent sk_sell_1 teodor)
+    (Agent sk_sell_1 sk_teodor_1)
     (Theme sk_sell_1 sk_spindle_1)
     (Past sk_sell_1)
 
@@ -666,12 +730,12 @@ Instances:
 
 The program renders these instances as:
 
-    (Name teodor "Teodor")
-    (Name lamine "Lamine")
+    (Name sk_teodor_1 "Teodor")
+    (Name sk_lamine_1 "Lamine")
     (Member sk_spindle_1 spindle)
     (Member sk_say_1 say)
-    (Experiencer sk_say_1 teodor)
-    (Theme sk_say_1 (And (Member sk_sell_1 sell) (Agent sk_sell_1 lamine) (Theme sk_sell_1 sk_spindle_1) (Past sk_sell_1)))
+    (Experiencer sk_say_1 sk_teodor_1)
+    (Theme sk_say_1 (And (Member sk_sell_1 sell) (Agent sk_sell_1 sk_lamine_1) (Theme sk_sell_1 sk_spindle_1) (Past sk_sell_1)))
     (Past sk_say_1)
 
 Example (a perception verb with a that-clause is a factive attitude). TEXT: Teodor saw that Lamine sold the spindle.
@@ -688,15 +752,15 @@ Instances:
 
 The program renders these instances as:
 
-    (Name teodor "Teodor")
-    (Name lamine "Lamine")
+    (Name sk_teodor_1 "Teodor")
+    (Name sk_lamine_1 "Lamine")
     (Member sk_spindle_1 spindle)
     (Member sk_see_1 see)
-    (Experiencer sk_see_1 teodor)
-    (Theme sk_see_1 (And (Member sk_sell_1 sell) (Agent sk_sell_1 lamine) (Theme sk_sell_1 sk_spindle_1) (Past sk_sell_1)))
+    (Experiencer sk_see_1 sk_teodor_1)
+    (Theme sk_see_1 (And (Member sk_sell_1 sell) (Agent sk_sell_1 sk_lamine_1) (Theme sk_sell_1 sk_spindle_1) (Past sk_sell_1)))
     (Past sk_see_1)
     (Member sk_sell_1 sell)
-    (Agent sk_sell_1 lamine)
+    (Agent sk_sell_1 sk_lamine_1)
     (Theme sk_sell_1 sk_spindle_1)
     (Past sk_sell_1)
 
@@ -787,10 +851,10 @@ Instances:
 
 The program renders these instances as:
 
-    (Name teodor "Teodor")
+    (Name sk_teodor_1 "Teodor")
     (Member sk_become_1 become)
-    (Patient sk_become_1 teodor)
-    (Result sk_become_1 (Member teodor locksmith))
+    (Patient sk_become_1 sk_teodor_1)
+    (Result sk_become_1 (Member sk_teodor_1 locksmith))
     (Past sk_become_1)
 
 Example (brought about by someone). TEXT: Yusra broke the ladder.
@@ -805,10 +869,10 @@ Instances:
 
 The program renders these instances as:
 
-    (Name yusra "Yusra")
+    (Name sk_yusra_1 "Yusra")
     (Member sk_ladder_1 ladder)
     (Member sk_break_1 break)
-    (Agent sk_break_1 yusra)
+    (Agent sk_break_1 sk_yusra_1)
     (Patient sk_break_1 sk_ladder_1)
     (Past sk_break_1)
 
@@ -885,12 +949,12 @@ Instances:
 
 The program renders these instances as:
 
-    (Name ottoline "Ottoline")
-    (Name teodor "Teodor")
+    (Name sk_ottoline_1 "Ottoline")
+    (Name sk_teodor_1 "Teodor")
     (Member sk_news_1 news)
     (Member sk_tell_1 tell)
-    (Agent sk_tell_1 ottoline)
-    (Recipient sk_tell_1 teodor)
+    (Agent sk_tell_1 sk_ottoline_1)
+    (Recipient sk_tell_1 sk_teodor_1)
     (Theme sk_tell_1 sk_news_1)
     (Past sk_tell_1)
 
@@ -909,14 +973,14 @@ Instances:
 
 The program renders these instances as:
 
-    (Name teodor "Teodor")
-    (Name ottoline "Ottoline")
-    (Name lamine "Lamine")
+    (Name sk_teodor_1 "Teodor")
+    (Name sk_ottoline_1 "Ottoline")
+    (Name sk_lamine_1 "Lamine")
     (Member sk_spindle_1 spindle)
     (Member sk_tell_1 tell)
-    (Agent sk_tell_1 teodor)
-    (Recipient sk_tell_1 ottoline)
-    (Theme sk_tell_1 (And (Member sk_sell_1 sell) (Agent sk_sell_1 lamine) (Theme sk_sell_1 sk_spindle_1) (Past sk_sell_1)))
+    (Agent sk_tell_1 sk_teodor_1)
+    (Recipient sk_tell_1 sk_ottoline_1)
+    (Theme sk_tell_1 (And (Member sk_sell_1 sell) (Agent sk_sell_1 sk_lamine_1) (Theme sk_sell_1 sk_spindle_1) (Past sk_sell_1)))
     (Past sk_tell_1)
 
 Not this template. TEXT: Teodor said that Lamine sold the spindle. — use `attitude`.
@@ -978,8 +1042,8 @@ Instances:
 
 The program renders these instances as:
 
-    (Name teodor "Teodor")
-    (Member teodor locksmith)
+    (Name sk_teodor_1 "Teodor")
+    (Member sk_teodor_1 locksmith)
 
 Example (a property, past tense — the tense wraps the atom). TEXT: The audit was difficult.
 
@@ -1068,10 +1132,10 @@ Instances:
 
 The program renders these instances as:
 
-    (Name lamine "Lamine")
+    (Name sk_lamine_1 "Lamine")
     (Member sk_loaf_1 loaf)
     (Member sk_bake_1 bake)
-    (Agent sk_bake_1 lamine)
+    (Agent sk_bake_1 sk_lamine_1)
     (Patient sk_bake_1 sk_loaf_1)
     (Past sk_bake_1)
 
@@ -1087,10 +1151,10 @@ Instances:
 
 The program renders these instances as:
 
-    (Name ottoline "Ottoline")
+    (Name sk_ottoline_1 "Ottoline")
     (Member sk_portrait_1 portrait)
     (Member sk_paint_1 paint)
-    (Agent sk_paint_1 ottoline)
+    (Agent sk_paint_1 sk_ottoline_1)
     (Patient sk_paint_1 sk_portrait_1)
     (Past sk_paint_1)
 
@@ -1106,10 +1170,10 @@ Instances:
 
 The program renders these instances as:
 
-    (Name yusra "Yusra")
+    (Name sk_yusra_1 "Yusra")
     (Member sk_school_1 school)
     (Member sk_found_1 found)
-    (Agent sk_found_1 yusra)
+    (Agent sk_found_1 sk_yusra_1)
     (Patient sk_found_1 sk_school_1)
     (Past sk_found_1)
 
@@ -1276,9 +1340,9 @@ Instances:
 
 The program renders these instances as:
 
-    (Name calderwick "Calderwick")
-    (Name norfolk "Norfolk")
-    (LocatedIn calderwick norfolk)
+    (Name sk_calderwick_1 "Calderwick")
+    (Name sk_norfolk_1 "Norfolk")
+    (LocatedIn sk_calderwick_1 sk_norfolk_1)
 
 Not this template. TEXT: Yusra laughed in the barn. — use `location`.
 
@@ -1354,10 +1418,10 @@ Instances:
 
 The program renders these instances as:
 
-    (Name yusra "Yusra")
+    (Name sk_yusra_1 "Yusra")
     (Member sk_market_1 market)
     (Member sk_go_1 go)
-    (Agent sk_go_1 yusra)
+    (Agent sk_go_1 sk_yusra_1)
     (Goal sk_go_1 sk_market_1)
     (Past sk_go_1)
 
@@ -1374,11 +1438,11 @@ Instances:
 
 The program renders these instances as:
 
-    (Name lamine "Lamine")
+    (Name sk_lamine_1 "Lamine")
     (Member sk_ladder_1 ladder)
     (Member sk_shed_1 shed)
     (Member sk_carry_1 carry)
-    (Agent sk_carry_1 lamine)
+    (Agent sk_carry_1 sk_lamine_1)
     (Theme sk_carry_1 sk_ladder_1)
     (Goal sk_carry_1 sk_shed_1)
     (Past sk_carry_1)
@@ -1447,10 +1511,10 @@ Instances:
 
 The program renders these instances as:
 
-    (Name teodor "Teodor")
+    (Name sk_teodor_1 "Teodor")
     (Member sk_ferret_1 ferret)
     (Member sk_see_1 see)
-    (Experiencer sk_see_1 teodor)
+    (Experiencer sk_see_1 sk_teodor_1)
     (Stimulus sk_see_1 sk_ferret_1)
     (Past sk_see_1)
 
@@ -1469,17 +1533,17 @@ Instances:
 
 The program renders these instances as:
 
-    (Name yusra "Yusra")
-    (Name lamine "Lamine")
-    (Name teodor "Teodor")
+    (Name sk_yusra_1 "Yusra")
+    (Name sk_lamine_1 "Lamine")
+    (Name sk_teodor_1 "Teodor")
     (Member sk_envelope_1 envelope)
     (Member sk_hand_1 hand)
-    (Agent sk_hand_1 lamine)
-    (Recipient sk_hand_1 teodor)
+    (Agent sk_hand_1 sk_lamine_1)
+    (Recipient sk_hand_1 sk_teodor_1)
     (Theme sk_hand_1 sk_envelope_1)
     (Past sk_hand_1)
     (Member sk_see_1 see)
-    (Experiencer sk_see_1 yusra)
+    (Experiencer sk_see_1 sk_yusra_1)
     (Stimulus sk_see_1 sk_hand_1)
     (Past sk_see_1)
 
@@ -1541,10 +1605,10 @@ Instances:
 
 The program renders these instances as:
 
-    (Name teodor "Teodor")
+    (Name sk_teodor_1 "Teodor")
     (Member sk_trowel_1 trowel)
     (Member sk_have_1 have)
-    (Holder sk_have_1 teodor)
+    (Holder sk_have_1 sk_teodor_1)
     (Theme sk_have_1 sk_trowel_1)
 
 Example (belong — the subject is the thing held; the roles do not change). TEXT: The ladder belongs to Lamine.
@@ -1560,9 +1624,9 @@ Instances:
 The program renders these instances as:
 
     (Member sk_ladder_1 ladder)
-    (Name lamine "Lamine")
+    (Name sk_lamine_1 "Lamine")
     (Member sk_belong_1 belong)
-    (Holder sk_belong_1 lamine)
+    (Holder sk_belong_1 sk_lamine_1)
     (Theme sk_belong_1 sk_ladder_1)
 
 Not this template. TEXT: Yusra received a thermos. — use `acquisition`.
@@ -1631,11 +1695,11 @@ Instances:
 
 The program renders these instances as:
 
-    (Name yusra "Yusra")
-    (Name lamine "Lamine")
+    (Name sk_yusra_1 "Yusra")
+    (Name sk_lamine_1 "Lamine")
     (Member sk_distrust_1 distrust)
-    (Experiencer sk_distrust_1 yusra)
-    (Stimulus sk_distrust_1 lamine)
+    (Experiencer sk_distrust_1 sk_yusra_1)
+    (Stimulus sk_distrust_1 sk_lamine_1)
 
 Example (frighten-type, experiencer as object — the same roles). TEXT: The ferret frightens Teodor.
 
@@ -1650,9 +1714,9 @@ Instances:
 The program renders these instances as:
 
     (Member sk_ferret_1 ferret)
-    (Name teodor "Teodor")
+    (Name sk_teodor_1 "Teodor")
     (Member sk_frighten_1 frighten)
-    (Experiencer sk_frighten_1 teodor)
+    (Experiencer sk_frighten_1 sk_teodor_1)
     (Stimulus sk_frighten_1 sk_ferret_1)
 
 Not this template. TEXT: Teodor saw the ferret. — use `perception`.
@@ -1718,12 +1782,12 @@ Instances:
 
 The program renders these instances as:
 
-    (Name teodor "Teodor")
-    (Name yusra "Yusra")
+    (Name sk_teodor_1 "Teodor")
+    (Name sk_yusra_1 "Yusra")
     (Member sk_thermos_1 thermos)
     (Member sk_give_1 give)
-    (Agent sk_give_1 teodor)
-    (Recipient sk_give_1 yusra)
+    (Agent sk_give_1 sk_teodor_1)
+    (Recipient sk_give_1 sk_yusra_1)
     (Theme sk_give_1 sk_thermos_1)
     (Past sk_give_1)
 
@@ -1740,12 +1804,12 @@ Instances:
 
 The program renders these instances as:
 
-    (Name lamine "Lamine")
+    (Name sk_lamine_1 "Lamine")
     (Member sk_quilt_1 quilt)
-    (Name ottoline "Ottoline")
+    (Name sk_ottoline_1 "Ottoline")
     (Member sk_send_1 send)
-    (Agent sk_send_1 lamine)
-    (Recipient sk_send_1 ottoline)
+    (Agent sk_send_1 sk_lamine_1)
+    (Recipient sk_send_1 sk_ottoline_1)
     (Theme sk_send_1 sk_quilt_1)
     (Future sk_send_1)
 
@@ -1761,10 +1825,10 @@ Instances:
 
 The program renders these instances as:
 
-    (Name yusra "Yusra")
+    (Name sk_yusra_1 "Yusra")
     (Member sk_spindle_1 spindle)
     (Member sk_sell_1 sell)
-    (Agent sk_sell_1 yusra)
+    (Agent sk_sell_1 sk_yusra_1)
     (Theme sk_sell_1 sk_spindle_1)
     (Past sk_sell_1)
 
@@ -1841,9 +1905,9 @@ Instances:
 
 The program renders these instances as:
 
-    (Name teodor "Teodor")
+    (Name sk_teodor_1 "Teodor")
     (Member sk_quilt_1 quilt)
-    (Not (And (Member sk_send_1 send) (Agent sk_send_1 teodor) (Theme sk_send_1 sk_quilt_1) (Past sk_send_1)))
+    (Not (And (Member sk_send_1 send) (Agent sk_send_1 sk_teodor_1) (Theme sk_send_1 sk_quilt_1) (Past sk_send_1)))
 
 ## Attachments — time, place, measure, particles
 
@@ -1904,10 +1968,10 @@ Instances:
 
 The program renders these instances as:
 
-    (Name yusra "Yusra")
+    (Name sk_yusra_1 "Yusra")
     (Member sk_barn_1 barn)
     (Member sk_laugh_1 laugh)
-    (Agent sk_laugh_1 yusra)
+    (Agent sk_laugh_1 sk_yusra_1)
     (Past sk_laugh_1)
     (Location sk_laugh_1 sk_barn_1)
 
@@ -1941,19 +2005,21 @@ Not this template. TEXT: The ledger is on the workbench. — use `locative`.
 
 When: A time expression saying when the clause's event takes place: a calendar date or any part
 of one (in 2019, in May, on 3 May 2019, on Monday), a clock time (at 3 pm, at 2:30 pm, at noon,
-at midnight), or a time named by a word or a fixed phrase (yesterday, today, tomorrow, now,
-tonight, later, this morning, last week, next year, at dawn, at night, in autumn). The event is
-parsed with its own template; the time instance names that event and describes the time: a date
-or a clock time by its fields (year, month, day, weekday, hour, minute), a named time by its
-name. One instance per time expression; a day part beside a date (Monday morning) is a second
-instance. When the time is predicated of an event noun by "be" (the meeting is at noon, the
-audit was on Monday), the noun is a witness marked eventive, the time attaches to it, and this
-instance records the clause's tense.
+at midnight), a deictic relative to the moment the text speaks from (now, today, tonight,
+yesterday, tomorrow, last / this / next week, month or year), or a time named by a word (at
+dawn, at night, in autumn, later, this morning). The event is parsed with its own template; the
+time instance names that event and describes the time: a date or a clock time by its fields
+(year, month, day, weekday, hour, minute), a deictic by the `deictic` word with the reference
+time as its anchor, a named time by its name. One instance per time expression; a day part
+beside a date (Monday morning) is a second instance. When the time is predicated of an event
+noun by "be" (the meeting is at noon, the audit was on Monday), the noun is a witness marked
+eventive, the time attaches to it, and this instance records the clause's tense.
 
 Forms:
 - <clause> in <year / month>
 - <clause> on <date / weekday>
 - <clause> at <clock time>
+- <clause> <deictic>
 - <clause> <named time>
 - <time>, <clause>
 - <event noun> is / was at / on <time>
@@ -1981,10 +2047,16 @@ Slots:
   attaches to: the id of the clause's predication instance, or of an eventive witness when the
   time is predicated of an event noun (the meeting is at noon); absent only for a time no clause
   places an event at.
-- `name` (optional; a lemma): a time named by a word or a fixed phrase, lowercase, joined with
-  underscores: now, today, yesterday, tomorrow, tonight, later, this_morning, last_week,
-  next_year, dawn, dusk, morning, afternoon, evening, night, spring, summer, autumn, winter;
-  fill no field beside it.
+- `deictic` (optional; one of: now, today, tonight, yesterday, tomorrow, last_week, this_week,
+  next_week, last_month, this_month, next_month, last_year, this_year, next_year): a time
+  relative to the moment the text speaks from, as one of the listed words (last Tuesday or two
+  days ago are not deictics here); fill no field beside it.
+- `anchor` (optional; "@id" of a referent instance, or a bare lemma for a non-specific filler):
+  the reference time a deictic is relative to: always "@now" (the reserved id); the program
+  supplies the instance.
+- `name` (optional; a lemma): a time named by a word or a fixed phrase that no deictic word
+  covers, lowercase, joined with underscores: dawn, dusk, morning, afternoon, evening, night,
+  spring, summer, autumn, winter, later, this_morning; fill no field beside it.
 - `year` (optional; an integer): the calendar year (2019).
 - `month` (optional; a lemma): the month name, lowercase (may).
 - `day` (optional; an integer): the day of the month (3).
@@ -1996,23 +2068,24 @@ Slots:
   event noun by be (the meeting was at noon): the clause's tense; otherwise absent, the event's
   own template records it.
 
-Example (a named time is its own symbol). TEXT: Yusra laughed yesterday.
+Example (a deictic — an offset from the reference time, which the program supplies as `now`). TEXT: Yusra laughed yesterday.
 
 Instances:
 
     [
       {"t": "named-entity", "id": "n1", "name": "Yusra"},
       {"t": "activity", "id": "v1", "verb": "laugh", "actor": "@n1", "tense": "past"},
-      {"t": "time", "id": "t1", "event": "@v1", "name": "yesterday"}
+      {"t": "time", "id": "t1", "event": "@v1", "deictic": "yesterday", "anchor": "@now"}
     ]
 
 The program renders these instances as:
 
-    (Name yusra "Yusra")
+    (Name sk_yusra_1 "Yusra")
     (Member sk_laugh_1 laugh)
-    (Agent sk_laugh_1 yusra)
+    (Agent sk_laugh_1 sk_yusra_1)
     (Past sk_laugh_1)
-    (Time sk_laugh_1 yesterday)
+    (Time sk_laugh_1 sk_time_1)
+    (BeforeBy sk_time_1 sk_now_1 1 day)
 
 Example (a weekday — a time instance described by a field). TEXT: Lamine sold the spindle on Monday.
 
@@ -2027,10 +2100,10 @@ Instances:
 
 The program renders these instances as:
 
-    (Name lamine "Lamine")
+    (Name sk_lamine_1 "Lamine")
     (Member sk_spindle_1 spindle)
     (Member sk_sell_1 sell)
-    (Agent sk_sell_1 lamine)
+    (Agent sk_sell_1 sk_lamine_1)
     (Theme sk_sell_1 sk_spindle_1)
     (Past sk_sell_1)
     (Time sk_sell_1 sk_time_1)
@@ -2150,3 +2223,96 @@ The program renders these instances as:
 Not this template. TEXT: Several ferrets slept. — use `group`.
 
 Not this template. TEXT: All ferrets are curious. — use `kind-statement`.
+
+## Links — connectives between clauses
+
+### coref — A later mention stands for an earlier referent
+
+When: The judgement that a later mention stands for a referent introduced earlier in the text: a
+pronoun (he, it, her), a repeated name (Yusra … Yusra), an anaphoric definite (a sluice … the
+sluice), a demonstrative for an event (that surprised Yusra). State it as an instance naming the
+later mention, the referent's FIRST instance in the text, and the certainty: certain when only
+one antecedent fits, likely when one fits clearly better than another, unsure when the text
+leaves it open, unlikely for the other candidate when you state both. One instance per later
+mention; for an open choice between two candidates, one instance per candidate.
+
+Forms:
+- <N> … <pronoun>
+- <Name> … <Name>
+- a <N> … the <N>
+- <clause>. That <V> …
+
+Not this template:
+- a first mention — Yusra laughed: nothing to link; the referent's own instance suffices
+- two different referents with the same kind — a ferret and another ferret: no link
+- a relative pronoun — the clerk who laughed: a different construction, reported as unmapped
+- an expletive or a generic pronoun — it rained, one never knows: no referent, no link
+
+Slots:
+
+- `t` (required): "coref"
+- `id` (required; your label for this instance): your label for the link (c1, c2 …).
+- `mention` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
+  the later mention: the id of its own instance (a mention, a second named-entity, a second
+  witness).
+- `antecedent` (required; "@id" of a referent instance, or a bare lemma for a non-specific
+  filler): the referent it stands for: the id of that referent's FIRST instance in the text (an
+  entity or an event).
+- `certainty` (required; one of: certain, likely, unsure, unlikely): how sure the text makes the
+  identity; the program sets the strength from it.
+
+Example (two pronouns, each its own mention, each linked to the first instance of its referent). TEXT: Lamine baked a loaf and she ate it.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Lamine"},
+      {"t": "witness", "id": "x1", "kind": "loaf"},
+      {"t": "creation", "id": "e1", "verb": "bake", "creator": "@n1", "product": "@x1", "tense": "past"},
+      {"t": "mention", "id": "m1", "word": "she"},
+      {"t": "mention", "id": "m2", "word": "it"},
+      {"t": "activity", "id": "v1", "verb": "eat", "actor": "@m1", "patient": "@m2", "tense": "past"},
+      {"t": "coref", "id": "c1", "mention": "@m1", "antecedent": "@n1", "certainty": "certain"},
+      {"t": "coref", "id": "c2", "mention": "@m2", "antecedent": "@x1", "certainty": "certain"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_lamine_1 "Lamine")
+    (Member sk_loaf_1 loaf)
+    (Member sk_bake_1 bake)
+    (Agent sk_bake_1 sk_lamine_1)
+    (Patient sk_bake_1 sk_loaf_1)
+    (Past sk_bake_1)
+    (Member sk_eat_1 eat)
+    (Agent sk_eat_1 sk_she_1)
+    (Patient sk_eat_1 sk_it_1)
+    (Past sk_eat_1)
+    (Coref sk_she_1 sk_lamine_1)
+    (Coref sk_it_1 sk_loaf_1)
+
+Example (a repeated name is a second instance, linked). TEXT: Yusra laughed. Yusra left.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Yusra"},
+      {"t": "activity", "id": "v1", "verb": "laugh", "actor": "@n1", "tense": "past"},
+      {"t": "named-entity", "id": "n2", "name": "Yusra"},
+      {"t": "motion", "id": "m1", "verb": "leave", "mover": "@n2", "tense": "past"},
+      {"t": "coref", "id": "c1", "mention": "@n2", "antecedent": "@n1", "certainty": "certain"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_yusra_1 "Yusra")
+    (Member sk_laugh_1 laugh)
+    (Agent sk_laugh_1 sk_yusra_1)
+    (Past sk_laugh_1)
+    (Name sk_yusra_2 "Yusra")
+    (Member sk_leave_1 leave)
+    (Agent sk_leave_1 sk_yusra_2)
+    (Past sk_leave_1)
+    (Coref sk_yusra_2 sk_yusra_1)
+
+Not this template. TEXT: Yusra laughed. — use `activity`.

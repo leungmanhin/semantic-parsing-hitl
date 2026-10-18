@@ -2,10 +2,12 @@
 #
 # A time expression on a clause attaches a time instance to the clause's event: (Time event t),
 # with the time described by its fields — (Year t 2019), (Month t may), (Day t 3), (Weekday t
-# monday), (Hour t 15), (Minute t 30) — or named by a word, in which case the word is the time's
-# own symbol ((Time event yesterday), (Time event dawn)). Like a location, the attachment is part
-# of the clause: negated, modalised and generalised with the event. Relations between times
-# (before, after, until, since, during, ago), frequencies and durations are not this template.
+# monday), (Hour t 15), (Minute t 30) — or named by a word that is the time's own symbol ((Time
+# event dawn), (Time event night)), or, for a deictic (yesterday, tomorrow, last week), related
+# by an offset to the text's reference time, the reserved instance now: (Time event t) (BeforeBy
+# t now 1 day). Like a location, the attachment is part of the clause: negated, modalised and
+# generalised with the event. Relations between times (before, after, until, since, during, ago),
+# frequencies and durations are not this template.
 
 id: time
 family: attachment
@@ -17,19 +19,21 @@ trigger:
   construction: >
     A time expression saying when the clause's event takes place: a calendar date or any part of
     one (in 2019, in May, on 3 May 2019, on Monday), a clock time (at 3 pm, at 2:30 pm, at noon,
-    at midnight), or a time named by a word or a fixed phrase (yesterday, today, tomorrow, now,
-    tonight, later, this morning, last week, next year, at dawn, at night, in autumn). The event
-    is parsed with its own template; the time instance names that event and describes the time:
-    a date or a clock time by its fields (year, month, day, weekday, hour, minute), a named time
-    by its name. One instance per time expression; a day part beside a date (Monday morning) is
-    a second instance. When the time is predicated of an event noun by "be" (the meeting is at
-    noon, the audit was on Monday), the noun is a witness marked eventive, the time attaches to
-    it, and this instance records the clause's tense.
+    at midnight), a deictic relative to the moment the text speaks from (now, today, tonight,
+    yesterday, tomorrow, last / this / next week, month or year), or a time named by a word (at
+    dawn, at night, in autumn, later, this morning). The event is parsed with its own template;
+    the time instance names that event and describes the time: a date or a clock time by its
+    fields (year, month, day, weekday, hour, minute), a deictic by the `deictic` word with the
+    reference time as its anchor, a named time by its name. One instance per time expression; a
+    day part beside a date (Monday morning) is a second instance. When the time is predicated of
+    an event noun by "be" (the meeting is at noon, the audit was on Monday), the noun is a witness
+    marked eventive, the time attaches to it, and this instance records the clause's tense.
   surface_forms:
     - "<clause> in <year / month>"                   # arrived in 2019; left in May
     - "<clause> on <date / weekday>"                 # baked a loaf on 3 May 2019; sold the spindle on Monday
     - "<clause> at <clock time>"                     # left at 3 pm; arrived at noon
-    - "<clause> <named time>"                        # laughed yesterday; will leave tomorrow; slept at night
+    - "<clause> <deictic>"                           # laughed yesterday; will leave tomorrow; left last week
+    - "<clause> <named time>"                        # slept at night; sang at dawn
     - "<time>, <clause>"                             # In 2019, Teodor arrived
     - "<event noun> is / was at / on <time>"         # the meeting is at noon; the audit was on Monday
   boundary:                   # looks like the time of an event but is not one
@@ -58,8 +62,12 @@ slots:
   id:      {type: id, required: true, doc: "your label for the time (t1, t2 …)"}
   event:   {type: filler, class: Event, attaches: true, required: false,
             doc: "the event the time attaches to: the id of the clause's predication instance, or of an eventive witness when the time is predicated of an event noun (the meeting is at noon); absent only for a time no clause places an event at"}
+  deictic: {type: enum, values: [now, today, tonight, yesterday, tomorrow, last_week, this_week, next_week, last_month, this_month, next_month, last_year, this_year, next_year], required: false,
+            doc: "a time relative to the moment the text speaks from, as one of the listed words (last Tuesday or two days ago are not deictics here); fill no field beside it"}
+  anchor:  {type: filler, class: TimeTerm, required: false, default: "@now",
+            doc: "the reference time a deictic is relative to: always \"@now\" (the reserved id); the program supplies the instance"}
   name:    {type: lemma, class: TimeTerm, required: false,
-            doc: "a time named by a word or a fixed phrase, lowercase, joined with underscores: now, today, yesterday, tomorrow, tonight, later, this_morning, last_week, next_year, dawn, dusk, morning, afternoon, evening, night, spring, summer, autumn, winter; fill no field beside it"}
+            doc: "a time named by a word or a fixed phrase that no deictic word covers, lowercase, joined with underscores: dawn, dusk, morning, afternoon, evening, night, spring, summer, autumn, winter, later, this_morning; fill no field beside it"}
   year:    {type: int, required: false, doc: "the calendar year (2019)"}
   month:   {type: lemma, class: Class, required: false, doc: "the month name, lowercase (may)"}
   day:     {type: int, required: false, doc: "the day of the month (3)"}
@@ -69,7 +77,7 @@ slots:
   tense:   {type: enum, values: [past, present, future], required: false,
             doc: "only when the time is predicated of an event noun by be (the meeting was at noon): the clause's tense; otherwise absent, the event's own template records it"}
 
-mints: {id: TimeTerm, symbol: name, constant: true, literal: time}   # a named time is its word; otherwise sk_time_n
+mints: {id: TimeTerm, symbol: name, constant: true, literal: time}   # a named time is its word; otherwise sk_time_n (a date, a clock time, a deictic)
 
 emits:
   - atom: "(Time {event} @id)"
@@ -86,6 +94,49 @@ emits:
     if_filled: hour
   - atom: "(Minute @id {minute})"
     if_filled: minute
+  - atom: "(BeforeBy @id {anchor} 0 hour)"                 # now: the reference moment itself
+    when: "deictic == now"
+    declare: {hour: Class}
+  - atom: "(BeforeBy @id {anchor} 0 day)"                  # today, tonight: the reference day
+    when: "deictic == today or deictic == tonight"
+    declare: {day: Class}
+  - atom: "(Time {event} night)"                           # tonight: the night of it
+    when: "deictic == tonight"
+    if_filled: event
+    declare: {night: TimeTerm}
+  - atom: "(BeforeBy @id {anchor} 1 day)"                  # yesterday: one day before
+    when: "deictic == yesterday"
+    declare: {day: Class}
+  - atom: "(BeforeBy {anchor} @id 1 day)"                  # tomorrow: one day after
+    when: "deictic == tomorrow"
+    declare: {day: Class}
+  - atom: "(BeforeBy @id {anchor} 1 week)"
+    when: "deictic == last_week"
+    declare: {week: Class}
+  - atom: "(BeforeBy @id {anchor} 0 week)"
+    when: "deictic == this_week"
+    declare: {week: Class}
+  - atom: "(BeforeBy {anchor} @id 1 week)"
+    when: "deictic == next_week"
+    declare: {week: Class}
+  - atom: "(BeforeBy @id {anchor} 1 month)"
+    when: "deictic == last_month"
+    declare: {month: Class}
+  - atom: "(BeforeBy @id {anchor} 0 month)"
+    when: "deictic == this_month"
+    declare: {month: Class}
+  - atom: "(BeforeBy {anchor} @id 1 month)"
+    when: "deictic == next_month"
+    declare: {month: Class}
+  - atom: "(BeforeBy @id {anchor} 1 year)"
+    when: "deictic == last_year"
+    declare: {year: Class}
+  - atom: "(BeforeBy @id {anchor} 0 year)"
+    when: "deictic == this_year"
+    declare: {year: Class}
+  - atom: "(BeforeBy {anchor} @id 1 year)"
+    when: "deictic == next_year"
+    declare: {year: Class}
   - atom: "(Past {event})"
     if_filled: event
     when: "tense == past"
@@ -97,35 +148,43 @@ notes:
   - >-
     A time is an instance of its own, described by field atoms, so that two events on the same
     date share nothing but their fields and a later relation (before, until, during) can hold
-    between time instances; a named time is a shared constant — every "yesterday" in an item is
-    the one symbol.
+    between time instances; a named time (dawn, night) is a shared constant — every "night" in an
+    item is the one symbol.
+  - >-
+    A deictic is not resolved by the parser: it is recorded as the word and rendered as an offset
+    from the reference time — (BeforeBy t now 1 day) for yesterday — so that a reasoner resolves
+    it against the anchor's calendar fields, and a revised reference time revises every deictic
+    at once. Two "yesterday"s are two instances with the same offset.
   - >-
     The attachment is rendered wherever its event is rendered: "Teodor did not arrive in 2019"
     denies the dated arrival as a whole, and a generalization carries the time into its rule.
 
-depends_on: [witness]
+depends_on: [witness, reference-time]
 composes_with: [negation, modal, generic, distribution]
 
 examples:
   shown:                     # rendered into the prompt
     - category: positive
-      note: a named time is its own symbol
+      note: a deictic — an offset from the reference time, which the program supplies as `now`
       text: "Yusra laughed yesterday."
       instances:
         - {t: named-entity, id: n1, name: "Yusra"}
         - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past}
-        - {t: time, id: t1, event: "@v1", name: yesterday}
+        - {t: time, id: t1, event: "@v1", deictic: yesterday, anchor: "@now"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
-        - "(Name yusra \"Yusra\")"
+        - "(Name sk_yusra_1 \"Yusra\")"
         - "(Member sk_laugh_1 laugh)"
-        - "(Agent sk_laugh_1 yusra)"
+        - "(Agent sk_laugh_1 sk_yusra_1)"
         - "(Past sk_laugh_1)"
-        - "(Time sk_laugh_1 yesterday)"
+        - "(Time sk_laugh_1 sk_time_1)"
+        - "(BeforeBy sk_time_1 sk_now_1 1 day)"
       declarations:
-        - "(: yusra Entity)"
+        - "(: day Class)"
         - "(: laugh Class)"
         - "(: sk_laugh_1 Event)"
-        - "(: yesterday TimeTerm)"
+        - "(: sk_now_1 TimeTerm)"
+        - "(: sk_time_1 TimeTerm)"
+        - "(: sk_yusra_1 Entity)"
     - category: positive
       note: a weekday — a time instance described by a field
       text: "Lamine sold the spindle on Monday."
@@ -171,12 +230,28 @@ examples:
         - {t: activity, id: v1, verb: sing, actor: "@n1", tense: past}
         - {t: time, id: t1, event: "@v1", name: dawn}
     - category: positive
-      note: a named time with a future event
+      note: a deictic after the reference time, with a future event
       text: "Teodor will leave tomorrow."
       instances:
         - {t: named-entity, id: n1, name: "Teodor"}
         - {t: motion, id: m1, verb: leave, mover: "@n1", tense: future}
-        - {t: time, id: t1, event: "@m1", name: tomorrow}
+        - {t: time, id: t1, event: "@m1", deictic: tomorrow, anchor: "@now"}
+    - category: positive
+      note: a deictic with the reference date known — the anchor carries the calendar, the offset is zero
+      text: "Lamine baked bread today."
+      reference_time: "2026-10-18"
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: creation, id: e1, verb: bake, creator: "@n1", product: bread, tense: past}
+        - {t: time, id: t1, event: "@e1", deictic: today, anchor: "@now"}
+    - category: positive
+      note: a week-level deictic
+      text: "Ottoline sold the quilt last week."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: transfer, id: e1, verb: sell, giver: "@n1", object: "@x1", tense: past}
+        - {t: time, id: t1, event: "@e1", deictic: last_week, anchor: "@now"}
     - category: positive
       note: a clock time in 24-hour form
       text: "Yusra left at 3 pm."

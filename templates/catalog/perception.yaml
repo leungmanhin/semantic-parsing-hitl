@@ -102,18 +102,18 @@ examples:
         - {t: witness, id: x1, kind: ferret, definite: true}
         - {t: perception, id: p1, verb: see, perceiver: "@n1", stimulus: "@x1", tense: past}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
-        - "(Name teodor \"Teodor\")"
+        - "(Name sk_teodor_1 \"Teodor\")"
         - "(Member sk_ferret_1 ferret)"
         - "(Member sk_see_1 see)"
-        - "(Experiencer sk_see_1 teodor)"
+        - "(Experiencer sk_see_1 sk_teodor_1)"
         - "(Stimulus sk_see_1 sk_ferret_1)"
         - "(Past sk_see_1)"
       declarations:
-        - "(: teodor Entity)"
+        - "(: ferret Class)"
+        - "(: see Class)"
         - "(: sk_ferret_1 Entity)"
         - "(: sk_see_1 Event)"
-        - "(: see Class)"
-        - "(: ferret Class)"
+        - "(: sk_teodor_1 Entity)"
     - category: positive
       note: an event perceived — the transfer is parsed and asserted, the perception points at it
       text: "Yusra saw Lamine hand Teodor an envelope."

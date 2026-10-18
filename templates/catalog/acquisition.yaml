@@ -104,21 +104,21 @@ examples:
         - {t: acquisition, id: q1, verb: take, acquirer: "@n1", object: "@x1", source: "@n2",
            tense: past}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
-        - "(Name ottoline \"Ottoline\")"
-        - "(Name lamine \"Lamine\")"
+        - "(Name sk_ottoline_1 \"Ottoline\")"
         - "(Member sk_envelope_1 envelope)"
+        - "(Name sk_lamine_1 \"Lamine\")"
         - "(Member sk_take_1 take)"
-        - "(Recipient sk_take_1 ottoline)"
+        - "(Recipient sk_take_1 sk_ottoline_1)"
         - "(Theme sk_take_1 sk_envelope_1)"
-        - "(Source sk_take_1 lamine)"
+        - "(Source sk_take_1 sk_lamine_1)"
         - "(Past sk_take_1)"
       declarations:
-        - "(: ottoline Entity)"
-        - "(: lamine Entity)"
+        - "(: envelope Class)"
         - "(: sk_envelope_1 Entity)"
+        - "(: sk_lamine_1 Entity)"
+        - "(: sk_ottoline_1 Entity)"
         - "(: sk_take_1 Event)"
         - "(: take Class)"
-        - "(: envelope Class)"
     - category: positive
       note: by receiving, no source stated
       text: "Yusra received a thermos."

@@ -108,22 +108,22 @@ examples:
         - {t: attitude, id: a1, verb: believe, holder: "@n1", content: ["@e1"], factive: false,
            tense: present}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
-        - "(Name teodor \"Teodor\")"
-        - "(Name lamine \"Lamine\")"
-        - "(Name ottoline \"Ottoline\")"
+        - "(Name sk_teodor_1 \"Teodor\")"
+        - "(Name sk_lamine_1 \"Lamine\")"
+        - "(Name sk_ottoline_1 \"Ottoline\")"
         - "(Member sk_trowel_1 trowel)"
         - "(Member sk_believe_1 believe)"
-        - "(Experiencer sk_believe_1 teodor)"
-        - "(Theme sk_believe_1 (And (Member sk_lend_1 lend) (Agent sk_lend_1 lamine) (Recipient sk_lend_1 ottoline) (Theme sk_lend_1 sk_trowel_1) (Past sk_lend_1)))"
+        - "(Experiencer sk_believe_1 sk_teodor_1)"
+        - "(Theme sk_believe_1 (And (Member sk_lend_1 lend) (Agent sk_lend_1 sk_lamine_1) (Recipient sk_lend_1 sk_ottoline_1) (Theme sk_lend_1 sk_trowel_1) (Past sk_lend_1)))"
       declarations:
-        - "(: teodor Entity)"
-        - "(: lamine Entity)"
-        - "(: ottoline Entity)"
-        - "(: sk_trowel_1 Entity)"
-        - "(: sk_lend_1 Event)"
-        - "(: sk_believe_1 Event)"
-        - "(: lend Class)"
         - "(: believe Class)"
+        - "(: lend Class)"
+        - "(: sk_believe_1 Event)"
+        - "(: sk_lamine_1 Entity)"
+        - "(: sk_lend_1 Event)"
+        - "(: sk_ottoline_1 Entity)"
+        - "(: sk_teodor_1 Entity)"
+        - "(: sk_trowel_1 Entity)"
         - "(: trowel Class)"
     - category: positive
       note: factive — the complement is also stated flat

@@ -1,0 +1,64 @@
+# Template: reference-time  (the text's reference time: the anchor deictic times are relative to)
+#
+# Every text speaks from a moment: the real-world date of an utterance or a document, or a
+# narrative's own now. The reserved instance `now` stands for it. A deictic time (yesterday, last
+# week) is a time instance related to the anchor by an offset — (BeforeBy t now 1 day) — and the
+# anchor carries calendar fields when the caller states the reference date; when it does not, the
+# anchor is bare and the offsets still order the times. The parser never writes this instance:
+# the program supplies it when a deictic refers to "@now", and fills it from the item's
+# reference time. Resolving the deictic to a date is the downstream reasoner's inference, or a
+# later program stage, never the parser's.
+
+id: reference-time
+family: referent
+kind: anchor
+title: The text's reference time
+status: draft
+
+trigger:
+  construction: >
+    Not a construction of the text: the reserved instance `now`, the text's reference time. The
+    parser refers to it from a deictic time's `anchor` slot and never writes it; the program adds
+    it, with its calendar fields when the caller gives the reference date.
+  boundary:
+    - >-
+      a stated time that a later expression refers back to (that evening, the following
+      morning): an ordinary time instance, named as the anchor of the later one — not this
+
+slots:
+  id:      {type: id, required: true, doc: "always `now`"}
+  year:    {type: int, required: false, doc: "the calendar year of the reference time, from the caller"}
+  month:   {type: lemma, class: Class, required: false, doc: "the month name, lowercase"}
+  day:     {type: int, required: false, doc: "the day of the month"}
+  weekday: {type: lemma, class: Class, required: false, doc: "the weekday name, lowercase"}
+  hour:    {type: int, required: false, doc: "the clock hour, 24-hour"}
+  minute:  {type: int, required: false, doc: "the clock minute"}
+
+mints: {id: TimeTerm, literal: now}        # sk_now_1
+
+emits:
+  - atom: "(Year @id {year})"
+    if_filled: year
+  - atom: "(Month @id {month})"
+    if_filled: month
+  - atom: "(Day @id {day})"
+    if_filled: day
+  - atom: "(Weekday @id {weekday})"
+    if_filled: weekday
+  - atom: "(Hour @id {hour})"
+    if_filled: hour
+  - atom: "(Minute @id {minute})"
+    if_filled: minute
+
+notes:
+  - >-
+    The anchor's fields are context the caller supplies, not statements of the text; they let a
+    reasoner resolve "yesterday" to a date by rule, and a revised reference time is a revised
+    anchor, nothing else.
+
+depends_on: []
+composes_with: [time]
+
+examples:                    # the anchor appears only beside a deictic time: see the time template
+  shown: []
+  held_out: []

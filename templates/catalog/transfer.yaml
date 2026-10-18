@@ -107,20 +107,20 @@ examples:
         - {t: transfer, id: e1, verb: give, giver: "@n1", recipient: "@n2", object: "@x1",
            tense: past}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
-        - "(Name teodor \"Teodor\")"
-        - "(Name yusra \"Yusra\")"
+        - "(Name sk_teodor_1 \"Teodor\")"
+        - "(Name sk_yusra_1 \"Yusra\")"
         - "(Member sk_thermos_1 thermos)"
         - "(Member sk_give_1 give)"
-        - "(Agent sk_give_1 teodor)"
-        - "(Recipient sk_give_1 yusra)"
+        - "(Agent sk_give_1 sk_teodor_1)"
+        - "(Recipient sk_give_1 sk_yusra_1)"
         - "(Theme sk_give_1 sk_thermos_1)"
         - "(Past sk_give_1)"
       declarations:
-        - "(: teodor Entity)"
-        - "(: yusra Entity)"
-        - "(: sk_thermos_1 Entity)"
-        - "(: sk_give_1 Event)"
         - "(: give Class)"
+        - "(: sk_give_1 Event)"
+        - "(: sk_teodor_1 Entity)"
+        - "(: sk_thermos_1 Entity)"
+        - "(: sk_yusra_1 Entity)"
         - "(: thermos Class)"
     - category: positive
       note: the to-dative is the same instance as the double object

@@ -1,22 +1,11 @@
 {
   "prompt": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_body_sha256": "fe66913c81da38dc9d9e0ba589cc774123d4719abb4eec09e23557bfcfde237f",
+  "prompt_body_sha256": "c0d47baf69c87fd1005101d2c3752c57d83adb2f730ed1199fdb9b6546502fa7",
   "typecheck": "ran",
   "checks": {
-    "examples": 314,
+    "examples": 347,
     "findings": [],
-    "pending": {
-      "time": [
-        {
-          "template": "location",
-          "text": "Teodor arrived in 2019."
-        },
-        {
-          "template": "locative",
-          "text": "The meeting is at noon."
-        }
-      ]
-    },
+    "pending": {},
     "shared": []
   },
   "orphans": [],
@@ -545,6 +534,100 @@
         ]
       }
     },
+    "coref": {
+      "held_out": {
+        "records": 24,
+        "cases": 8,
+        "status": {
+          "ok": 24
+        },
+        "stale_prompt": 24,
+        "by_category": {
+          "positive": {
+            "cases": 4,
+            "runs": 12,
+            "pass": 12,
+            "fired": 12,
+            "exact": 12
+          },
+          "scoped": {
+            "cases": 1,
+            "runs": 3,
+            "pass": 3,
+            "fired": 3,
+            "exact": 3
+          },
+          "optional": {
+            "cases": 1,
+            "runs": 3,
+            "pass": 3,
+            "fired": 3,
+            "exact": 3
+          },
+          "abstain": {
+            "cases": 2,
+            "runs": 6,
+            "pass": 6,
+            "false_fires": 0,
+            "outcomes": {
+              "target_fired": 3,
+              "gap_reported": 3
+            }
+          }
+        },
+        "pass": 24,
+        "selection": {
+          "fire_runs": 18,
+          "fired": 18,
+          "abstain_runs": 6,
+          "false_fires": 0
+        },
+        "fill": {
+          "fired": 18,
+          "exact": 18,
+          "rate": 1.0
+        },
+        "stability": {
+          "cases": 8,
+          "pairs": 24,
+          "pairwise_agreement": 1.0,
+          "unanimous": 8
+        },
+        "typecheck": {
+          "checked": 24,
+          "passed": 24
+        },
+        "usage": {
+          "input": 726012,
+          "output": 4855,
+          "thinking": 0,
+          "total": 730867,
+          "calls": 24,
+          "thinking_calls": 0
+        },
+        "issues": [
+          {
+            "code": "P00",
+            "where": "witness",
+            "text": "The mention template says a possessive pronoun gets its own mention instance that fills the possessor slot of a witness, whereas the witness template says a possessive pronoun resolves to its antecedent's id.",
+            "sentence": "Yusra sold her spindle.",
+            "run": 2
+          },
+          {
+            "code": "P00",
+            "where": "witness",
+            "text": "The witness template says a possessive pronoun resolves to its antecedent's id, whereas the mention template says a possessive pronoun is a mention instance that fills the possessor slot of a witness.",
+            "sentence": "Yusra sold her spindle.",
+            "run": 3
+          }
+        ],
+        "null_slots": 0,
+        "lints": {},
+        "models": [
+          "gemini-4-argon effort=low"
+        ]
+      }
+    },
     "creation": {
       "held_out": {
         "records": 48,
@@ -981,7 +1064,7 @@
         "status": {
           "ok": 45
         },
-        "stale_prompt": 0,
+        "stale_prompt": 45,
         "by_category": {
           "positive": {
             "cases": 8,
@@ -1010,8 +1093,7 @@
             "pass": 9,
             "false_fires": 0,
             "outcomes": {
-              "pending_unmapped": 3,
-              "target_fired": 3,
+              "target_fired": 6,
               "gap_reported": 3
             }
           }
@@ -1039,10 +1121,10 @@
           "passed": 45
         },
         "usage": {
-          "input": 1190250,
-          "output": 6767,
+          "input": 1201650,
+          "output": 6749,
           "thinking": 0,
-          "total": 1197017,
+          "total": 1208399,
           "calls": 45,
           "thinking_calls": 0
         },
@@ -1061,7 +1143,7 @@
         "status": {
           "ok": 42
         },
-        "stale_prompt": 0,
+        "stale_prompt": 42,
         "by_category": {
           "positive": {
             "cases": 8,
@@ -1090,9 +1172,8 @@
             "pass": 9,
             "false_fires": 0,
             "outcomes": {
-              "pending_unmapped": 3,
-              "gap_reported": 3,
-              "target_fired": 3
+              "target_fired": 6,
+              "gap_reported": 3
             }
           }
         },
@@ -1115,14 +1196,14 @@
           "unanimous": 14
         },
         "typecheck": {
-          "checked": 39,
-          "passed": 39
+          "checked": 42,
+          "passed": 42
         },
         "usage": {
-          "input": 1110885,
-          "output": 5320,
+          "input": 1122285,
+          "output": 5403,
           "thinking": 0,
-          "total": 1116205,
+          "total": 1127688,
           "calls": 42,
           "thinking_calls": 0
         },
@@ -1523,6 +1604,85 @@
           "thinking": 0,
           "total": 401776,
           "calls": 39,
+          "thinking_calls": 0
+        },
+        "issues": [],
+        "null_slots": 0,
+        "lints": {},
+        "models": [
+          "gemini-4-argon effort=low"
+        ]
+      }
+    },
+    "time": {
+      "held_out": {
+        "records": 48,
+        "cases": 16,
+        "status": {
+          "ok": 48
+        },
+        "stale_prompt": 45,
+        "by_category": {
+          "positive": {
+            "cases": 9,
+            "runs": 27,
+            "pass": 27,
+            "fired": 27,
+            "exact": 27
+          },
+          "scoped": {
+            "cases": 3,
+            "runs": 9,
+            "pass": 9,
+            "fired": 9,
+            "exact": 9
+          },
+          "optional": {
+            "cases": 1,
+            "runs": 3,
+            "pass": 3,
+            "fired": 3,
+            "exact": 3
+          },
+          "abstain": {
+            "cases": 3,
+            "runs": 9,
+            "pass": 9,
+            "false_fires": 0,
+            "outcomes": {
+              "gap_reported": 6,
+              "target_fired": 3
+            }
+          }
+        },
+        "pass": 48,
+        "selection": {
+          "fire_runs": 39,
+          "fired": 39,
+          "abstain_runs": 9,
+          "false_fires": 0
+        },
+        "fill": {
+          "fired": 39,
+          "exact": 39,
+          "rate": 1.0
+        },
+        "stability": {
+          "cases": 16,
+          "pairs": 48,
+          "pairwise_agreement": 1.0,
+          "unanimous": 16
+        },
+        "typecheck": {
+          "checked": 48,
+          "passed": 48
+        },
+        "usage": {
+          "input": 1353144,
+          "output": 5931,
+          "thinking": 0,
+          "total": 1359075,
+          "calls": 48,
           "thinking_calls": 0
         },
         "issues": [],

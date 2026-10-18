@@ -41,7 +41,7 @@ def _is_list(x) -> bool:
     return isinstance(x, list)
 
 
-def inspect(reply, catalog: dict | None = None) -> dict:
+def inspect(reply, catalog: dict | None = None, reference_time=None) -> dict:
     """Contract + emission + lints for one reply; never raises on a malformed reply."""
     if catalog is None:
         catalog = CAT.load()
@@ -79,7 +79,8 @@ def inspect(reply, catalog: dict | None = None) -> dict:
     res["instances"] = cleaned
     res["fired"] = dict(collections.Counter(str(r.get("t")) for r in cleaned))
     try:
-        out = E.emit({"id": reply.get("id") or "parse", "instances": cleaned, "unmapped": res["unmapped"]}, catalog)
+        out = E.emit({"id": reply.get("id") or "parse", "instances": cleaned, "unmapped": res["unmapped"],
+                      "reference_time": reference_time}, catalog)
     except E.EmitError as exc:
         problems = exc.args[0] if exc.args and isinstance(exc.args[0], list) else [str(exc)]
         res["findings"].extend({"kind": "instance", "detail": p} for p in problems)
@@ -105,9 +106,9 @@ def lints(insts: list, catalog: dict, unmapped: list) -> list:
         t = catalog[r["t"]]
         slots = t.get("slots") or {}
         if t.get("family") == "referent" and r["id"] not in mentioned:
-            sym_slot = (t.get("mints") or {}).get("symbol")
-            rigid = bool(sym_slot) and r.get(sym_slot) not in (None, "", [])
-            if not rigid:
+            mints = t.get("mints") or {}
+            is_name = mints.get("stem") == "name" or mints.get("symbol") == "name"   # a name may stand inside an unmapped span
+            if not is_name:
                 out.append({"kind": "dangling-referent", "instance": r["id"],
                             "detail": f"{r['t']} {r['id']} is mentioned by no other instance: a witness is introduced only by a clause a template covers"})
             elif not unmapped:
@@ -159,9 +160,9 @@ def typecheck_records(records: list[dict]):
     return by
 
 
-def validate(reply, catalog: dict | None = None, typecheck: bool = True) -> dict:
+def validate(reply, catalog: dict | None = None, typecheck: bool = True, reference_time=None) -> dict:
     """Everything for one reply: contract, emission, lints and C9."""
-    res = inspect(reply, catalog)
+    res = inspect(reply, catalog, reference_time)
     if typecheck and res["statements"]:
         typed = typecheck_records([res])
         if typed is None:

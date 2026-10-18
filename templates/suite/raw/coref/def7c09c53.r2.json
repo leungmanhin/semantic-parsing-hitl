@@ -1,0 +1,125 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "9ef7be016fe9c94587147da8ab8e32dc10a36598db3616736ec4f119204faeb4",
+  "item": {
+    "id": "sdef7c09c53",
+    "text": "Yusra baked a loaf. She did not eat it."
+  },
+  "usage": {
+    "input": 30254,
+    "output": 283,
+    "thinking": null,
+    "total": 30537,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 30254,
+    "candidatesTokenCount": 283,
+    "totalTokenCount": 30537,
+    "cachedContentTokenCount": 28205,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 30254
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 28205
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 283
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sdef7c09c53\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"loaf\"}, {\"t\": \"mention\", \"id\": \"m1\", \"word\": \"she\"}, {\"t\": \"mention\", \"id\": \"m2\", \"word\": \"it\"}, {\"t\": \"creation\", \"id\": \"e1\", \"verb\": \"bake\", \"creator\": \"@n1\", \"product\": \"@x1\", \"tense\": \"past\"}, {\"t\": \"activity\", \"id\": \"e2\", \"verb\": \"eat\", \"actor\": \"@m1\", \"patient\": \"@m2\", \"tense\": \"past\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@e2\"]}, {\"t\": \"coref\", \"id\": \"c1\", \"mention\": \"@m1\", \"antecedent\": \"@n1\", \"certainty\": \"certain\"}, {\"t\": \"coref\", \"id\": \"c2\", \"mention\": \"@m2\", \"antecedent\": \"@x1\", \"certainty\": \"certain\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sdef7c09c53",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "loaf"
+      },
+      {
+        "t": "mention",
+        "id": "m1",
+        "word": "she"
+      },
+      {
+        "t": "mention",
+        "id": "m2",
+        "word": "it"
+      },
+      {
+        "t": "creation",
+        "id": "e1",
+        "verb": "bake",
+        "creator": "@n1",
+        "product": "@x1",
+        "tense": "past"
+      },
+      {
+        "t": "activity",
+        "id": "e2",
+        "verb": "eat",
+        "actor": "@m1",
+        "patient": "@m2",
+        "tense": "past"
+      },
+      {
+        "t": "negation",
+        "id": "s1",
+        "over": [
+          "@e2"
+        ]
+      },
+      {
+        "t": "coref",
+        "id": "c1",
+        "mention": "@m1",
+        "antecedent": "@n1",
+        "certainty": "certain"
+      },
+      {
+        "t": "coref",
+        "id": "c2",
+        "mention": "@m2",
+        "antecedent": "@x1",
+        "certainty": "certain"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "8ec71bbffe57aa54f5eb1dc051643ad73943df5ef3964188a68d8dd96a4babd4",
+  "run": 2,
+  "case": {
+    "template": "coref",
+    "section": "held_out",
+    "index": 4,
+    "category": "scoped",
+    "text": "Yusra baked a loaf. She did not eat it.",
+    "key": "def7c09c53"
+  }
+}

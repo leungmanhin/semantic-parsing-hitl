@@ -4,16 +4,16 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "ecb9313bbef541ec29940699dad9a1b36a9780334e6b77fdb8e31663cca0597f",
+  "prompt_sha256": "9ef7be016fe9c94587147da8ab8e32dc10a36598db3616736ec4f119204faeb4",
   "item": {
     "id": "s3ca7054a1a",
     "text": "The meeting is at noon."
   },
   "usage": {
-    "input": 26449,
-    "output": 68,
+    "input": 30249,
+    "output": 95,
     "thinking": null,
-    "total": 26517,
+    "total": 30344,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,36 +24,45 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 26449,
-    "candidatesTokenCount": 68,
-    "totalTokenCount": 26517,
+    "promptTokenCount": 30249,
+    "candidatesTokenCount": 95,
+    "totalTokenCount": 30344,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 26449
+        "tokenCount": 30249
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 68
+        "tokenCount": 95
       }
     ]
   },
-  "raw_text": "{\"id\": \"s3ca7054a1a\", \"instances\": [], \"unmapped\": [{\"span\": \"The meeting is at noon.\", \"code\": \"G00\", \"construction\": \"A copular clause with a temporal prepositional phrase as its predicate.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"s3ca7054a1a\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"meeting\", \"definite\": true, \"eventive\": true}, {\"t\": \"time\", \"id\": \"t1\", \"event\": \"@x1\", \"hour\": 12, \"tense\": \"present\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s3ca7054a1a",
-    "instances": [],
-    "unmapped": [
+    "instances": [
       {
-        "span": "The meeting is at noon.",
-        "code": "G00",
-        "construction": "A copular clause with a temporal prepositional phrase as its predicate."
+        "t": "witness",
+        "id": "x1",
+        "kind": "meeting",
+        "definite": true,
+        "eventive": true
+      },
+      {
+        "t": "time",
+        "id": "t1",
+        "event": "@x1",
+        "hour": 12,
+        "tense": "present"
       }
     ],
+    "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "fe66913c81da38dc9d9e0ba589cc774123d4719abb4eec09e23557bfcfde237f",
+  "prompt_body_sha256": "8ec71bbffe57aa54f5eb1dc051643ad73943df5ef3964188a68d8dd96a4babd4",
   "run": 1,
   "case": {
     "template": "locative",

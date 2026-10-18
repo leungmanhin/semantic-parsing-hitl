@@ -154,10 +154,10 @@ class TypecheckTests(unittest.TestCase):
         self.assertIn("C9 8/8", V.summary(res))
 
     def test_ill_typed_emission_is_reported(self):
-        records = [{"statements": ["(: s1 (Agent teodor sk_give_1) (STV 1.0 0.99))"],
-                    "declarations": ["(: teodor Entity)", "(: teodor Instance)", "(: sk_give_1 Event)", "(: sk_give_1 Instance)"]},
-                   {"statements": ["(: s1 (Agent sk_give_1 teodor) (STV 1.0 0.99))"],
-                    "declarations": ["(: teodor Entity)", "(: teodor Instance)", "(: sk_give_1 Event)", "(: sk_give_1 Instance)"]}]
+        records = [{"statements": ["(: s1 (Agent sk_teodor_1 sk_give_1) (STV 1.0 0.99))"],
+                    "declarations": ["(: sk_teodor_1 Entity)", "(: sk_teodor_1 Instance)", "(: sk_give_1 Event)", "(: sk_give_1 Instance)"]},
+                   {"statements": ["(: s1 (Agent sk_give_1 sk_teodor_1) (STV 1.0 0.99))"],
+                    "declarations": ["(: sk_teodor_1 Entity)", "(: sk_teodor_1 Instance)", "(: sk_give_1 Event)", "(: sk_give_1 Instance)"]}]
         typed = V.typecheck_records(records)
         self.assertEqual(sorted(typed), [0])
         self.assertEqual(typed[0][0]["kind"], "type")
@@ -201,7 +201,7 @@ class ScriptTests(unittest.TestCase):
             self.assertEqual(rc, 0, err)
             self.assertIn("validation ok · 8 statements", err)
             self.assertIn("; statements", out)
-            self.assertIn("(Agent sk_give_1 teodor)", out)
+            self.assertIn("(Agent sk_give_1 sk_teodor_1)", out)
             with open(rec_path, encoding="utf-8") as fh:
                 rec = json.load(fh)
             self.assertEqual(rec["validation"]["status"], "ok")

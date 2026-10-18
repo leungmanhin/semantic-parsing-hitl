@@ -1,0 +1,118 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "9ef7be016fe9c94587147da8ab8e32dc10a36598db3616736ec4f119204faeb4",
+  "item": {
+    "id": "sa7673110f8",
+    "text": "Teodor and Lamine arrived. He laughed."
+  },
+  "usage": {
+    "input": 30253,
+    "output": 267,
+    "thinking": null,
+    "total": 30520,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 30253,
+    "candidatesTokenCount": 267,
+    "totalTokenCount": 30520,
+    "cachedContentTokenCount": 28204,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 30253
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 28204
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 267
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sa7673110f8\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Lamine\"}, {\"t\": \"mention\", \"id\": \"m1\", \"word\": \"he\"}, {\"t\": \"motion\", \"id\": \"e1\", \"verb\": \"arrive\", \"mover\": \"@n1\", \"tense\": \"past\"}, {\"t\": \"motion\", \"id\": \"e2\", \"verb\": \"arrive\", \"mover\": \"@n2\", \"tense\": \"past\"}, {\"t\": \"activity\", \"id\": \"e3\", \"verb\": \"laugh\", \"actor\": \"@m1\", \"tense\": \"past\"}, {\"t\": \"coref\", \"id\": \"c1\", \"mention\": \"@m1\", \"antecedent\": \"@n1\", \"certainty\": \"unsure\"}, {\"t\": \"coref\", \"id\": \"c2\", \"mention\": \"@m1\", \"antecedent\": \"@n2\", \"certainty\": \"unsure\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sa7673110f8",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Lamine"
+      },
+      {
+        "t": "mention",
+        "id": "m1",
+        "word": "he"
+      },
+      {
+        "t": "motion",
+        "id": "e1",
+        "verb": "arrive",
+        "mover": "@n1",
+        "tense": "past"
+      },
+      {
+        "t": "motion",
+        "id": "e2",
+        "verb": "arrive",
+        "mover": "@n2",
+        "tense": "past"
+      },
+      {
+        "t": "activity",
+        "id": "e3",
+        "verb": "laugh",
+        "actor": "@m1",
+        "tense": "past"
+      },
+      {
+        "t": "coref",
+        "id": "c1",
+        "mention": "@m1",
+        "antecedent": "@n1",
+        "certainty": "unsure"
+      },
+      {
+        "t": "coref",
+        "id": "c2",
+        "mention": "@m1",
+        "antecedent": "@n2",
+        "certainty": "unsure"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "8ec71bbffe57aa54f5eb1dc051643ad73943df5ef3964188a68d8dd96a4babd4",
+  "run": 2,
+  "case": {
+    "template": "coref",
+    "section": "held_out",
+    "index": 3,
+    "category": "positive",
+    "text": "Teodor and Lamine arrived. He laughed.",
+    "key": "a7673110f8"
+  }
+}

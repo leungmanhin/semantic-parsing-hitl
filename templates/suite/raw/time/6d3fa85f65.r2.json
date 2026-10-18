@@ -1,0 +1,86 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "0ab3a7d71dae93dd6b6d88b219ab39b150a88bdeccc614969d05d33ac8fef5aa",
+  "item": {
+    "id": "s6d3fa85f65",
+    "text": "Lamine left after the audit."
+  },
+  "usage": {
+    "input": 28011,
+    "output": 121,
+    "thinking": null,
+    "total": 28132,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 28011,
+    "candidatesTokenCount": 121,
+    "totalTokenCount": 28132,
+    "cachedContentTokenCount": 25962,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 28011
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 25962
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 121
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s6d3fa85f65\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n1\", \"tense\": \"past\"}], \"unmapped\": [{\"span\": \"after the audit\", \"code\": \"G00\", \"construction\": \"A temporal prepositional phrase relating the clause's event to another event.\"}], \"issues\": []}",
+  "response": {
+    "id": "s6d3fa85f65",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine"
+      },
+      {
+        "t": "motion",
+        "id": "m1",
+        "verb": "leave",
+        "mover": "@n1",
+        "tense": "past"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "after the audit",
+        "code": "G00",
+        "construction": "A temporal prepositional phrase relating the clause's event to another event."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "488ea14d008681814e98d240e401daa13109b112674f8d3a1d6bef8927a15fdd",
+  "run": 2,
+  "case": {
+    "template": "time",
+    "section": "held_out",
+    "index": 13,
+    "category": "abstain",
+    "text": "Lamine left after the audit.",
+    "key": "6d3fa85f65"
+  }
+}

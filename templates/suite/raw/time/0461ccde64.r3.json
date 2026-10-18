@@ -1,0 +1,86 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "0ab3a7d71dae93dd6b6d88b219ab39b150a88bdeccc614969d05d33ac8fef5aa",
+  "item": {
+    "id": "s0461ccde64",
+    "text": "Teodor arrived in 2019."
+  },
+  "usage": {
+    "input": 28013,
+    "output": 114,
+    "thinking": null,
+    "total": 28127,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 28013,
+    "candidatesTokenCount": 114,
+    "totalTokenCount": 28127,
+    "cachedContentTokenCount": 25964,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 28013
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 25964
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 114
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s0461ccde64\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"arrive\", \"mover\": \"@n1\", \"tense\": \"past\"}, {\"t\": \"time\", \"id\": \"t1\", \"event\": \"@m1\", \"year\": 2019}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s0461ccde64",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor"
+      },
+      {
+        "t": "motion",
+        "id": "m1",
+        "verb": "arrive",
+        "mover": "@n1",
+        "tense": "past"
+      },
+      {
+        "t": "time",
+        "id": "t1",
+        "event": "@m1",
+        "year": 2019
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "488ea14d008681814e98d240e401daa13109b112674f8d3a1d6bef8927a15fdd",
+  "run": 3,
+  "case": {
+    "template": "time",
+    "section": "held_out",
+    "index": 0,
+    "category": "positive",
+    "text": "Teodor arrived in 2019.",
+    "key": "0461ccde64"
+  }
+}

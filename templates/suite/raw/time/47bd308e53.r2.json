@@ -1,0 +1,86 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "0ab3a7d71dae93dd6b6d88b219ab39b150a88bdeccc614969d05d33ac8fef5aa",
+  "item": {
+    "id": "s47bd308e53",
+    "text": "Teodor reads every day."
+  },
+  "usage": {
+    "input": 28010,
+    "output": 112,
+    "thinking": null,
+    "total": 28122,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 28010,
+    "candidatesTokenCount": 112,
+    "totalTokenCount": 28122,
+    "cachedContentTokenCount": 25961,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 28010
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 25961
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 112
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s47bd308e53\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"read\", \"actor\": \"@n1\", \"tense\": \"present\"}], \"unmapped\": [{\"span\": \"every day\", \"code\": \"G00\", \"construction\": \"A frequency phrase modifying the clause.\"}], \"issues\": []}",
+  "response": {
+    "id": "s47bd308e53",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "read",
+        "actor": "@n1",
+        "tense": "present"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "every day",
+        "code": "G00",
+        "construction": "A frequency phrase modifying the clause."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "488ea14d008681814e98d240e401daa13109b112674f8d3a1d6bef8927a15fdd",
+  "run": 2,
+  "case": {
+    "template": "time",
+    "section": "held_out",
+    "index": 14,
+    "category": "abstain",
+    "text": "Teodor reads every day.",
+    "key": "47bd308e53"
+  }
+}

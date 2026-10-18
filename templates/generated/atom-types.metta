@@ -38,6 +38,8 @@
 (: Before (-> Event Event Proposition))
 (: BeforeBy (-> Event Event Number Class Proposition))
 (: BeforeBy (-> Event TimeTerm Number Class Proposition))
+(: BeforeBy (-> TimeTerm Event Number Class Proposition))
+(: BeforeBy (-> TimeTerm TimeTerm Number Class Proposition))
 (: Beneficiary (-> Event Entity Proposition))
 (: But (-> Event Event Proposition))
 (: Can (-> Event Proposition))

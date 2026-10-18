@@ -1,0 +1,119 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "9ef7be016fe9c94587147da8ab8e32dc10a36598db3616736ec4f119204faeb4",
+  "item": {
+    "id": "sc3d69ce944",
+    "text": "Teodor ate the loaf and he liked it."
+  },
+  "usage": {
+    "input": 30252,
+    "output": 268,
+    "thinking": null,
+    "total": 30520,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 30252,
+    "candidatesTokenCount": 268,
+    "totalTokenCount": 30520,
+    "cachedContentTokenCount": 28203,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 30252
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 28203
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 268
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sc3d69ce944\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"loaf\", \"definite\": true}, {\"t\": \"mention\", \"id\": \"m1\", \"word\": \"he\"}, {\"t\": \"mention\", \"id\": \"m2\", \"word\": \"it\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"eat\", \"actor\": \"@n1\", \"patient\": \"@x1\", \"tense\": \"past\"}, {\"t\": \"psych\", \"id\": \"e2\", \"verb\": \"like\", \"experiencer\": \"@m1\", \"stimulus\": \"@m2\", \"tense\": \"past\"}, {\"t\": \"coref\", \"id\": \"c1\", \"mention\": \"@m1\", \"antecedent\": \"@n1\", \"certainty\": \"certain\"}, {\"t\": \"coref\", \"id\": \"c2\", \"mention\": \"@m2\", \"antecedent\": \"@x1\", \"certainty\": \"certain\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sc3d69ce944",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "loaf",
+        "definite": true
+      },
+      {
+        "t": "mention",
+        "id": "m1",
+        "word": "he"
+      },
+      {
+        "t": "mention",
+        "id": "m2",
+        "word": "it"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "eat",
+        "actor": "@n1",
+        "patient": "@x1",
+        "tense": "past"
+      },
+      {
+        "t": "psych",
+        "id": "e2",
+        "verb": "like",
+        "experiencer": "@m1",
+        "stimulus": "@m2",
+        "tense": "past"
+      },
+      {
+        "t": "coref",
+        "id": "c1",
+        "mention": "@m1",
+        "antecedent": "@n1",
+        "certainty": "certain"
+      },
+      {
+        "t": "coref",
+        "id": "c2",
+        "mention": "@m2",
+        "antecedent": "@x1",
+        "certainty": "certain"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "8ec71bbffe57aa54f5eb1dc051643ad73943df5ef3964188a68d8dd96a4babd4",
+  "run": 2,
+  "case": {
+    "template": "coref",
+    "section": "held_out",
+    "index": 0,
+    "category": "positive",
+    "text": "Teodor ate the loaf and he liked it.",
+    "key": "c3d69ce944"
+  }
+}

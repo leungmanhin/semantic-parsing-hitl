@@ -91,11 +91,11 @@ examples:
         - {t: named-entity, id: n1, name: "Teodor"}
         - {t: copular, id: c1, subject: "@n1", predicate: locksmith, form: noun, tense: present}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
-        - "(Name teodor \"Teodor\")"
-        - "(Member teodor locksmith)"
+        - "(Name sk_teodor_1 \"Teodor\")"
+        - "(Member sk_teodor_1 locksmith)"
       declarations:
-        - "(: teodor Entity)"
         - "(: locksmith Class)"
+        - "(: sk_teodor_1 Entity)"
     - category: positive
       note: a property, past tense — the tense wraps the atom
       text: "The audit was difficult."

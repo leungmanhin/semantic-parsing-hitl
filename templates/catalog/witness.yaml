@@ -12,8 +12,9 @@ trigger:
     quilt, this spindle, two envelopes' member — introducing an individual of that kind. The
     individual gets a numbered witness symbol; whether the phrase is definite is recorded. A
     possessive phrase (Yusra's quilt, the quilt of Yusra, her quilt) is a witness with its
-    possessor recorded: the possessor is a referent (a possessive pronoun resolves to its
-    antecedent's id); the possessor presupposes the witness, so no definite mark is needed. A
+    possessor recorded: the possessor is a referent — a name, a witness, or for a possessive
+    pronoun (her quilt) a mention instance of its own, linked to its antecedent by a coref
+    instance; the possessor presupposes the witness, so no definite mark is needed. A
     noun that names an event or a period (meeting, audit, war, trip, storm) is a witness like any
     other; when the clause puts the noun itself in time (the meeting is at noon, the audit was on
     Monday), mark it eventive so that the time can attach to it.
@@ -38,7 +39,7 @@ slots:
   definite: {type: bool, required: false, doc: "true for the / this / that; absent for a / an and for a possessed phrase (the possessor presupposes it)"}
   props:    {type: list, class: Class, required: false, doc: "adjectival properties stated in the phrase"}
   possessor: {type: filler, class: Entity, required: false,
-              doc: "the possessor of a possessive phrase: Yusra's quilt, the quilt of Yusra; a referent id, or a bare lemma for a kind-level possessor"}
+              doc: "the possessor of a possessive phrase: Yusra's quilt, the quilt of Yusra, her quilt; a referent id (for a possessive pronoun, the id of its mention instance), or a bare lemma for a kind-level possessor"}
   eventive: {type: bool, required: false,
              doc: "true when the noun names an event or a period and the clause puts the noun itself in time (the meeting is at noon); absent otherwise"}
 

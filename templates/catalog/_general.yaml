@@ -51,6 +51,11 @@ identifiers:
 - >-
   A slot that points to another instance holds `"@<id>"`, for example `"Agent": "@n1"`.
 - >-
+  The id `now` is reserved for the text's REFERENCE TIME (the moment the text speaks from). You never
+  write its instance; a deictic time (yesterday, tomorrow, last week) refers to it as its anchor,
+  `"anchor": "@now"`, and the program supplies the instance, with calendar fields when the caller
+  states the reference date.
+- >-
   A slot that holds a CLAUSE — the content of a negation, a modal or an attitude — holds a list of ids:
   the clause's predication, or the scope operator over it when it has one (`["@s1"]` for a negated or
   modalised clause); never the referents the clause mentions.
@@ -61,12 +66,17 @@ identifiers:
   or kind-level filler ("pays tax", "cooked dinner" gives `"Patient": "dinner"`). Reserve the bare lemma
   for a non-specific filler; a specific definite or indefinite thing is always an instance.
 - >-
-  ONE instance per referent. Every later mention of the same person, thing, group or event (a repeated
-  name, a pronoun, an anaphoric definite such as "a sluice … the sluice", a reflexive) reuses the SAME
-  id. Never create a second instance for something already introduced. Resolve each pronoun to the most
-  salient compatible antecedent; an event anaphor ("That surprised everyone") is the event's id.
+  ONE instance per MENTION, and the identity stated. The first mention of a person, thing, group or event
+  gets its instance as usual. Every LATER mention of the same referent — a pronoun or a demonstrative (a
+  `mention` instance), a repeated name (a second `named-entity` instance), an anaphoric definite such as
+  "a sluice … the sluice" (a second `witness` instance), a reflexive — gets its OWN instance, fills the
+  slots of its own clause, and is linked to the referent's FIRST instance by a `coref` instance that says
+  how sure the text makes the identity. Never fold a later mention into an earlier instance: the link is
+  the resolution, stated where it can be checked and revised. An event anaphor ("That surprised everyone")
+  is a `mention` linked to the event.
 - >-
-  A TEXT of several sentences is parsed together: instances are shared across its sentences.
+  A TEXT of several sentences is parsed together: a later sentence's mentions of earlier referents are
+  new instances linked by `coref` to the first ones.
 - >-
   A coordinated subject or object (Teodor and Yusra laughed; read the letter and the note) is one predication
   instance per conjunct, each with its own event, never a group. When the predicate holds only of the
@@ -111,7 +121,7 @@ unmapped:
   a comparison class ("tall for a gymnast"), a proportion or partitive ("12.5% of the applicants").
 - >-
   Referents inside an unmapped span: a NAME still gets its instance (a name is rigid, the same individual
-  wherever it appears), but a common-noun phrase does not. A witness is introduced only by a clause a
+  wherever it appears in the text), but a common-noun phrase or a pronoun does not. A witness is introduced only by a clause a
   template covers; the span carries the noun verbatim, and if a covered clause mentions the same thing,
   that clause's instance is the referent. Never introduce a witness for something stated only in words
   you report as unmapped.

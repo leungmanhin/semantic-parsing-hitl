@@ -116,6 +116,8 @@ def check_template(t: dict, path: str) -> list[str]:
             problems.append(f"emits[{i}]: project must be true or false")
         if "stv" in e and not (isinstance(e["stv"], list) and len(e["stv"]) == 2 and all(isinstance(x, (int, float)) for x in e["stv"])):
             problems.append(f"emits[{i}]: stv must be [strength, confidence]")
+        if "declare" in e and not (isinstance(e["declare"], dict) and all(isinstance(k, str) and isinstance(v, str) for k, v in e["declare"].items())):
+            problems.append(f"emits[{i}]: declare must map symbols to classes")
     for section in ("shown", "held_out"):
         for j, ex in enumerate((t.get("examples") or {}).get(section) or []):
             if ex.get("category") not in CATEGORIES:

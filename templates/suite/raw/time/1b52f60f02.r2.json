@@ -1,0 +1,94 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "0ab3a7d71dae93dd6b6d88b219ab39b150a88bdeccc614969d05d33ac8fef5aa",
+  "item": {
+    "id": "s1b52f60f02",
+    "text": "Lamine baked a loaf on 3 May 2019."
+  },
+  "usage": {
+    "input": 28020,
+    "output": 154,
+    "thinking": null,
+    "total": 28174,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 28020,
+    "candidatesTokenCount": 154,
+    "totalTokenCount": 28174,
+    "cachedContentTokenCount": 25971,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 28020
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 25971
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 154
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s1b52f60f02\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"loaf\"}, {\"t\": \"creation\", \"id\": \"e1\", \"verb\": \"bake\", \"creator\": \"@n1\", \"product\": \"@x1\", \"tense\": \"past\"}, {\"t\": \"time\", \"id\": \"t1\", \"event\": \"@e1\", \"year\": 2019, \"month\": \"may\", \"day\": 3}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s1b52f60f02",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "loaf"
+      },
+      {
+        "t": "creation",
+        "id": "e1",
+        "verb": "bake",
+        "creator": "@n1",
+        "product": "@x1",
+        "tense": "past"
+      },
+      {
+        "t": "time",
+        "id": "t1",
+        "event": "@e1",
+        "year": 2019,
+        "month": "may",
+        "day": 3
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "488ea14d008681814e98d240e401daa13109b112674f8d3a1d6bef8927a15fdd",
+  "run": 2,
+  "case": {
+    "template": "time",
+    "section": "held_out",
+    "index": 2,
+    "category": "positive",
+    "text": "Lamine baked a loaf on 3 May 2019.",
+    "key": "1b52f60f02"
+  }
+}

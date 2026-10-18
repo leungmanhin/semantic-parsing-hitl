@@ -1,0 +1,191 @@
+# Template: coref  (coreference stated as a link: a later mention stands for an earlier referent)
+#
+# The parser resolves coreference, but not silently: a pronoun, a repeated name or an anaphoric
+# definite is an instance of its own, and this instance states which earlier referent it stands
+# for and how sure the text makes it — (Coref sk_he_1 sk_bob_1) with the probability of identity
+# as its strength. Roles stay on the mention; a downstream reasoner carries them across the link
+# (the seeded congruence rules) and can revise the link. Two readings the text leaves open are two
+# links, one per candidate.
+
+id: coref
+family: link
+kind: link
+title: A later mention stands for an earlier referent
+status: draft
+
+trigger:
+  construction: >
+    The judgement that a later mention stands for a referent introduced earlier in the text: a
+    pronoun (he, it, her), a repeated name (Yusra … Yusra), an anaphoric definite (a sluice … the
+    sluice), a demonstrative for an event (that surprised Yusra). State it as an instance naming
+    the later mention, the referent's FIRST instance in the text, and the certainty: certain when
+    only one antecedent fits, likely when one fits clearly better than another, unsure when the
+    text leaves it open, unlikely for the other candidate when you state both. One instance per
+    later mention; for an open choice between two candidates, one instance per candidate.
+  surface_forms:
+    - "<N> … <pronoun>"                 # Teodor ate the loaf and he liked it
+    - "<Name> … <Name>"                 # Yusra laughed. Yusra left.
+    - "a <N> … the <N>"                 # a ferret arrived; the ferret slept
+    - "<clause>. That <V> …"            # Teodor arrived. That frightened Yusra.
+  boundary:                   # looks like coreference but is not one
+    - >-
+      a first mention — Yusra laughed: nothing to link; the referent's own instance suffices
+    - >-
+      two different referents with the same kind — a ferret and another ferret: no link
+    - >-
+      a relative pronoun — the clerk who laughed: a different construction, reported as unmapped
+    - >-
+      an expletive or a generic pronoun — it rained, one never knows: no referent, no link
+
+slots:
+  id:         {type: id, required: true, doc: "your label for the link (c1, c2 …)"}
+  mention:    {type: filler, class: Entity, required: true,
+               doc: "the later mention: the id of its own instance (a mention, a second named-entity, a second witness)"}
+  antecedent: {type: filler, class: Entity, required: true,
+               doc: "the referent it stands for: the id of that referent's FIRST instance in the text (an entity or an event)"}
+  certainty:  {type: enum, values: [certain, likely, unsure, unlikely], required: true,
+               doc: "how sure the text makes the identity; the program sets the strength from it"}
+
+truth:
+  strength:
+    - {slot: certainty, values: {certain: 0.99, likely: 0.8, unsure: 0.5, unlikely: 0.2}}
+  confidence: [0.9]
+
+emits:
+  - atom: "(Coref {mention} {antecedent})"
+
+notes:
+  - >-
+    The link's strength is the probability of identity, set by the program from the certainty
+    word; its confidence is the parse's usual 0.9, revisable by later evidence. Roles are never
+    moved from the mention to the antecedent in the parse: the seeded congruence rules derive them
+    downstream, at the link's strength and with provenance, so a wrong resolution is one atom to
+    retract.
+  - >-
+    Link every later mention to the referent's first instance, not to the previous mention, so
+    that the reasoner reaches any fact in one step.
+
+depends_on: [mention, named-entity, witness]
+composes_with: []
+
+examples:
+  shown:                     # rendered into the prompt
+    - category: positive
+      note: two pronouns, each its own mention, each linked to the first instance of its referent
+      text: "Lamine baked a loaf and she ate it."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: x1, kind: loaf}
+        - {t: creation, id: e1, verb: bake, creator: "@n1", product: "@x1", tense: past}
+        - {t: mention, id: m1, word: she}
+        - {t: mention, id: m2, word: it}
+        - {t: activity, id: v1, verb: eat, actor: "@m1", patient: "@m2", tense: past}
+        - {t: coref, id: c1, mention: "@m1", antecedent: "@n1", certainty: certain}
+        - {t: coref, id: c2, mention: "@m2", antecedent: "@x1", certainty: certain}
+      emitted:               # what the emitter produces (illustration; the emitter is the authority)
+        - "(Name sk_lamine_1 \"Lamine\")"
+        - "(Member sk_loaf_1 loaf)"
+        - "(Member sk_bake_1 bake)"
+        - "(Agent sk_bake_1 sk_lamine_1)"
+        - "(Patient sk_bake_1 sk_loaf_1)"
+        - "(Past sk_bake_1)"
+        - "(Member sk_eat_1 eat)"
+        - "(Agent sk_eat_1 sk_she_1)"
+        - "(Patient sk_eat_1 sk_it_1)"
+        - "(Past sk_eat_1)"
+        - "(Coref sk_she_1 sk_lamine_1)"
+        - "(Coref sk_it_1 sk_loaf_1)"
+      declarations:
+        - "(: bake Class)"
+        - "(: eat Class)"
+        - "(: loaf Class)"
+        - "(: sk_bake_1 Event)"
+        - "(: sk_eat_1 Event)"
+        - "(: sk_it_1 Entity)"
+        - "(: sk_lamine_1 Entity)"
+        - "(: sk_loaf_1 Entity)"
+        - "(: sk_she_1 Entity)"
+    - category: positive
+      note: a repeated name is a second instance, linked
+      text: "Yusra laughed. Yusra left."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past}
+        - {t: named-entity, id: n2, name: "Yusra"}
+        - {t: motion, id: m1, verb: leave, mover: "@n2", tense: past}
+        - {t: coref, id: c1, mention: "@n2", antecedent: "@n1", certainty: certain}
+    - category: abstain
+      text: "Yusra laughed."
+      expected: {abstain: true, template: activity}                   # a first mention: nothing to link
+
+  held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      text: "Teodor ate the loaf and he liked it."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, kind: loaf, definite: true}
+        - {t: activity, id: v1, verb: eat, actor: "@n1", patient: "@x1", tense: past}
+        - {t: mention, id: m1, word: he}
+        - {t: mention, id: m2, word: it}
+        - {t: psych, id: p1, verb: like, experiencer: "@m1", stimulus: "@m2", tense: past}
+        - {t: coref, id: c1, mention: "@m1", antecedent: "@n1", certainty: certain}
+        - {t: coref, id: c2, mention: "@m2", antecedent: "@x1", certainty: certain}
+    - category: positive
+      note: an anaphoric definite is a second witness, linked
+      text: "A ferret arrived. The ferret slept."
+      instances:
+        - {t: witness, id: x1, kind: ferret}
+        - {t: motion, id: e1, verb: arrive, mover: "@x1", tense: past}
+        - {t: witness, id: x2, kind: ferret, definite: true}
+        - {t: activity, id: v1, verb: sleep, actor: "@x2", tense: past}
+        - {t: coref, id: c1, mention: "@x2", antecedent: "@x1", certainty: certain}
+    - category: positive
+      note: a possessive pronoun is the witness's possessor, and a mention
+      text: "Yusra sold her spindle."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: mention, id: m1, word: her}
+        - {t: witness, id: x1, kind: spindle, possessor: "@m1"}
+        - {t: transfer, id: e1, verb: sell, giver: "@n1", object: "@x1", tense: past}
+        - {t: coref, id: c1, mention: "@m1", antecedent: "@n1", certainty: certain}
+    - category: positive
+      note: two candidates the text leaves open — one link per candidate
+      text: "Teodor and Lamine arrived. He laughed."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: motion, id: e1, verb: arrive, mover: "@n1", tense: past}
+        - {t: motion, id: e2, verb: arrive, mover: "@n2", tense: past}
+        - {t: mention, id: m1, word: he}
+        - {t: activity, id: v1, verb: laugh, actor: "@m1", tense: past}
+        - {t: coref, id: c1, mention: "@m1", antecedent: "@n1", certainty: unsure}
+        - {t: coref, id: c2, mention: "@m1", antecedent: "@n2", certainty: unsure}
+    - category: scoped
+      note: the mentions stay outside the negation; only the eating is denied
+      text: "Yusra baked a loaf. She did not eat it."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, kind: loaf}
+        - {t: creation, id: e1, verb: bake, creator: "@n1", product: "@x1", tense: past}
+        - {t: mention, id: m1, word: she}
+        - {t: mention, id: m2, word: it}
+        - {t: activity, id: v1, verb: eat, actor: "@m1", patient: "@m2", tense: past}
+        - {t: negation, id: s1, over: ["@v1"]}
+        - {t: coref, id: c1, mention: "@m1", antecedent: "@n1", certainty: certain}
+        - {t: coref, id: c2, mention: "@m2", antecedent: "@x1", certainty: certain}
+    - category: optional
+      note: a demonstrative standing for an event
+      text: "Teodor arrived. That frightened Yusra."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: motion, id: e1, verb: arrive, mover: "@n1", tense: past}
+        - {t: mention, id: m1, word: that}
+        - {t: named-entity, id: n2, name: "Yusra"}
+        - {t: psych, id: p1, verb: frighten, experiencer: "@n2", stimulus: "@m1", tense: past}
+        - {t: coref, id: c1, mention: "@m1", antecedent: "@e1", certainty: certain}
+    - category: abstain
+      text: "Yusra gave up."
+      expected: {abstain: true, template: activity}                   # a first mention: nothing to link
+    - category: abstain
+      text: "The clerk who laughed left."
+      expected: {abstain: true, gap: G00, span: "who laughed"}       # a relative pronoun

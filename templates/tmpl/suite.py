@@ -105,6 +105,7 @@ def cases_of(catalog: dict, tid: str, sections=("held_out",)) -> list[dict]:
         for i, ex in enumerate((catalog[tid].get("examples") or {}).get(section) or []):
             out.append({"template": tid, "section": section, "index": i, "category": ex["category"],
                         "text": ex["text"], "note": ex.get("note"), "instances": ex.get("instances"),
+                        "reference_time": ex.get("reference_time"),
                         "expected": ex.get("expected"), "unmapped": ex.get("unmapped") or [],
                         "key": key_of(ex["text"])})
     return out
@@ -302,7 +303,7 @@ def catalog_checks(catalog: dict, general: dict | None = None, freshness: bool =
                         findings.append({"kind": "unknown-gap-code", "template": tid, "text": case["text"],
                                          "detail": f"expected unmapped record {u!r}"})
                 try:
-                    out = E.emit({"id": "check", "instances": case["instances"]}, catalog)
+                    out = E.emit({"id": "check", "instances": case["instances"], "reference_time": case.get("reference_time")}, catalog)
                     units = units_of(out["statements"])
                 except (E.EmitError, ValueError) as exc:
                     findings.append({"kind": "emit-error", "template": tid, "section": case["section"],
@@ -474,7 +475,7 @@ def score_record(case: dict, rec: dict, catalog: dict, heads: dict, body_sha: st
         row["status"] = "no_json" if "not valid JSON" in err else "failed"
         row["reasons"].append(err)
         return row
-    ins = V.inspect(resp, catalog)
+    ins = V.inspect(resp, catalog, case.get("reference_time"))
     row["unmapped"], row["issues"], row["fired"], row["null_slots"] = ins["unmapped"], ins["issues"], ins["fired"], ins["null_slots"]
     row["lints"] = [f for f in ins["findings"] if f["kind"] not in ("instance", "contract")]
     fired_t = tid in row["fired"]
@@ -487,7 +488,8 @@ def score_record(case: dict, rec: dict, catalog: dict, heads: dict, body_sha: st
         row["statements"], row["declarations"] = ins["statements"], ins["declarations"]
         units = units_of(ins["statements"])
     if category in FIRING:
-        expected = units_of(E.emit({"id": "expected", "instances": case["instances"]}, catalog)["statements"])
+        expected = units_of(E.emit({"id": "expected", "instances": case["instances"],
+                                    "reference_time": case.get("reference_time")}, catalog)["statements"])
         row["fired_template"] = fired_t
         if not fired_t:
             row["reasons"].append(f"{tid} did not fire")

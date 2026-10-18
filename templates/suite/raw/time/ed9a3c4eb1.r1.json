@@ -1,0 +1,79 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "0ab3a7d71dae93dd6b6d88b219ab39b150a88bdeccc614969d05d33ac8fef5aa",
+  "item": {
+    "id": "sed9a3c4eb1",
+    "text": "Yusra left at 3 pm."
+  },
+  "usage": {
+    "input": 28010,
+    "output": 112,
+    "thinking": null,
+    "total": 28122,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 28010,
+    "candidatesTokenCount": 112,
+    "totalTokenCount": 28122,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 28010
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 112
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sed9a3c4eb1\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n1\", \"tense\": \"past\"}, {\"t\": \"time\", \"id\": \"t1\", \"event\": \"@m1\", \"hour\": 15}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sed9a3c4eb1",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra"
+      },
+      {
+        "t": "motion",
+        "id": "m1",
+        "verb": "leave",
+        "mover": "@n1",
+        "tense": "past"
+      },
+      {
+        "t": "time",
+        "id": "t1",
+        "event": "@m1",
+        "hour": 15
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "488ea14d008681814e98d240e401daa13109b112674f8d3a1d6bef8927a15fdd",
+  "run": 1,
+  "case": {
+    "template": "time",
+    "section": "held_out",
+    "index": 5,
+    "category": "positive",
+    "text": "Yusra left at 3 pm.",
+    "key": "ed9a3c4eb1"
+  }
+}

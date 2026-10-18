@@ -1,0 +1,62 @@
+# Template: mention  (an anaphoric mention: a pronoun or a demonstrative standing for an earlier referent)
+#
+# A pronoun is a referent of its own — sk_he_1, sk_it_1 — that fills the slots of the clause it
+# appears in; which earlier referent it stands for is stated separately by a coref instance, with
+# the certainty the text gives. Nothing is folded silently: the roles stay on the mention, the
+# identity is a link that can be checked and revised downstream. A mention emits no atom of its
+# own; its symbol is typed by the emitter and the link says who it is.
+
+id: mention
+family: referent
+kind: referent
+title: A pronoun or a demonstrative standing for an earlier referent
+status: draft
+
+trigger:
+  construction: >
+    A pronoun or a demonstrative used as a noun phrase that stands for something already in the
+    text: he, she, it, they, him, her, them, his, its, their, himself, herself, themselves, this,
+    that ("that surprised Yusra"). One instance per occurrence; the word is recorded. The mention
+    fills the slot a name or a witness would fill (the actor, the patient, the possessor of a
+    witness), and a coref instance links it to the referent's first instance. A repeated name
+    (Yusra … Yusra) is a second named-entity instance, and an anaphoric definite (a sluice … the
+    sluice) a second witness, each with its own coref instance: they are not mentions.
+  surface_forms:
+    - "<pronoun>"                       # he laughed; Yusra saw him
+    - "<possessive pronoun> <N>"        # her spindle: the pronoun is the witness's possessor
+    - "<demonstrative> as a noun phrase" # that surprised Yusra
+  boundary:                   # looks like a mention but is not one
+    - >-
+      a relative pronoun opening a relative clause — the clerk who laughed, the quilt that Yusra
+      sold: a different construction, reported as unmapped
+    - >-
+      an expletive — it rained, it is clear that: no referent, no mention
+    - >-
+      a generic or impersonal pronoun — one never knows, you cannot be sure, they say: no
+      referent, reported as unmapped
+    - >-
+      a pronoun whose antecedent is not in the text (a text beginning "He laughed."): still a
+      mention, but with no coref instance to state
+
+slots:
+  id:   {type: id, required: true, doc: "your label for the mention (m1, m2 …)"}
+  word: {type: string, required: true, doc: "the pronoun or demonstrative as written, lowercase (he, her, it, that)"}
+
+mints: {id: Entity, stem: word}          # sk_he_1, sk_it_1
+
+presupposed: [word]                      # anaphoric: never introduced inside a scope
+
+emits: []
+
+notes:
+  - >-
+    The mention has no atom of its own: the clause's roles say what it does, the coref link says
+    who it is. A downstream reasoner carries the roles across the link at the link's strength
+    (the seeded congruence rules), so nothing is lost and the identity stays revisable.
+
+depends_on: []
+composes_with: [coref]
+
+examples:                    # a mention appears with its coref instance: see the coref template
+  shown: []
+  held_out: []

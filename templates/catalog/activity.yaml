@@ -100,14 +100,14 @@ examples:
         - {t: named-entity, id: n1, name: "Yusra"}
         - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
-        - "(Name yusra \"Yusra\")"
+        - "(Name sk_yusra_1 \"Yusra\")"
         - "(Member sk_laugh_1 laugh)"
-        - "(Agent sk_laugh_1 yusra)"
+        - "(Agent sk_laugh_1 sk_yusra_1)"
         - "(Past sk_laugh_1)"
       declarations:
-        - "(: yusra Entity)"
-        - "(: sk_laugh_1 Event)"
         - "(: laugh Class)"
+        - "(: sk_laugh_1 Event)"
+        - "(: sk_yusra_1 Entity)"
     - category: positive
       note: a non-specific patient as a bare lemma
       text: "Lamine cooked dinner."

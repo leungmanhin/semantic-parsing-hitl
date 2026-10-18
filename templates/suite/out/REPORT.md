@@ -1,13 +1,10 @@
 # Suite report
 
-prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 fe66913c81da38dc) · type check: ran
+prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 c0d47baf69c87fd1) · type check: ran
 
 ## Catalog checks
 
-314 examples checked; findings: 0
-
-Pending abstain targets (templates to write; each line = the sentences waiting for it):
-- `time` ← location: "Teodor arrived in 2019."; locative: "The meeting is at noon."
+347 examples checked; findings: 0
 
 ## acquisition — held_out
 
@@ -178,6 +175,33 @@ Abstain cases (what the parser did, per run):
 
 Mismatches: none
 
+## coref — held_out
+
+8 cases, 24 records (ok 24; stale prompt 24) · gemini-4-argon effort=low
+
+| category | cases | runs | fired | exact | pass |
+|---|---|---|---|---|---|
+| positive | 4 | 12 | 12 | 12 | 12 |
+| scoped | 1 | 3 | 3 | 3 | 3 |
+| optional | 1 | 3 | 3 | 3 | 3 |
+| abstain | 2 | 6 | 0 (false fires) | – | 6 |
+
+- selection: fire cases fired 18/18 · abstain cases false fires 0/6
+- fill: exact 18/18 among fires
+- stability: pairwise agreement 1.0 (8 cases, 24 pairs), unanimous 8/8
+- type check: 24/24 emitted parses type
+- graph lints: none
+- usage: 24 calls · in 726,012 · out 4,855 · thinking 0 (calls with thought tokens: 0)
+- issues reported by the parser: 2
+  - P00 · witness · r2 "Yusra sold her spindle.": The mention template says a possessive pronoun gets its own mention instance that fills the possessor slot of a witness, whereas the witness template says a possessive pronoun resolves to its antecedent's id.
+  - P00 · witness · r3 "Yusra sold her spindle.": The witness template says a possessive pronoun resolves to its antecedent's id, whereas the mention template says a possessive pronoun is a mention instance that fills the possessor slot of a witness.
+
+Abstain cases (what the parser did, per run):
+- "Yusra gave up." (target `activity`): r1 target_fired [activity×1, named-entity×1] · r2 target_fired [activity×1, named-entity×1] · r3 target_fired [activity×1, named-entity×1]
+- "The clerk who laughed left." (gap G00): r1 gap_reported [motion×1, witness×1; unmapped G00] · r2 gap_reported [motion×1, witness×1; unmapped G00] · r3 gap_reported [motion×1, witness×1; unmapped G00]
+
+Mismatches: none
+
 ## creation — held_out
 
 16 cases, 48 records (ok 48; stale prompt 48) · gemini-4-argon effort=low
@@ -315,7 +339,7 @@ Mismatches: none
 
 ## location — held_out
 
-15 cases, 45 records (ok 45; stale prompt 0) · gemini-4-argon effort=low
+15 cases, 45 records (ok 45; stale prompt 45) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -329,11 +353,11 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (15 cases, 45 pairs), unanimous 15/15
 - type check: 45/45 emitted parses type
 - graph lints: none
-- usage: 45 calls · in 1,190,250 · out 6,767 · thinking 0 (calls with thought tokens: 0)
+- usage: 45 calls · in 1,201,650 · out 6,749 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
 Abstain cases (what the parser did, per run):
-- "Teodor arrived in 2019." (target `time`): r1 pending_unmapped [motion×1, named-entity×1; unmapped G00] · r2 pending_unmapped [motion×1, named-entity×1; unmapped G00] · r3 pending_unmapped [motion×1, named-entity×1; unmapped G00]
+- "Teodor arrived in 2019." (target `time`): r1 target_fired [motion×1, named-entity×1, time×1] · r2 target_fired [motion×1, named-entity×1, time×1] · r3 target_fired [motion×1, named-entity×1, time×1]
 - "Teodor ran across the field." (target `motion`): r1 target_fired [motion×1, named-entity×1; unmapped G00] · r2 target_fired [motion×1, named-entity×1; unmapped G00] · r3 target_fired [motion×1, named-entity×1; unmapped G00]
 - "Lamine was modest in his demands." (gap G00): r1 gap_reported [named-entity×1; unmapped G00] · r2 gap_reported [named-entity×1; unmapped G00] · r3 gap_reported [named-entity×1; unmapped G00]
 
@@ -341,7 +365,7 @@ Mismatches: none
 
 ## locative — held_out
 
-14 cases, 42 records (ok 42; stale prompt 0) · gemini-4-argon effort=low
+14 cases, 42 records (ok 42; stale prompt 42) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -353,13 +377,13 @@ Mismatches: none
 - selection: fire cases fired 33/33 · abstain cases false fires 0/9
 - fill: exact 33/33 among fires
 - stability: pairwise agreement 1.0 (14 cases, 42 pairs), unanimous 14/14
-- type check: 39/39 emitted parses type
+- type check: 42/42 emitted parses type
 - graph lints: none
-- usage: 42 calls · in 1,110,885 · out 5,320 · thinking 0 (calls with thought tokens: 0)
+- usage: 42 calls · in 1,122,285 · out 5,403 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
 Abstain cases (what the parser did, per run):
-- "The meeting is at noon." (target `time`): r1 pending_unmapped [nothing fired; unmapped G00] · r2 pending_unmapped [nothing fired; unmapped G00] · r3 pending_unmapped [nothing fired; unmapped G00]
+- "The meeting is at noon." (target `time`): r1 target_fired [time×1, witness×1] · r2 target_fired [time×1, witness×1] · r3 target_fired [time×1, witness×1]
 - "Lamine is in trouble." (gap G00): r1 gap_reported [named-entity×1; unmapped G00] · r2 gap_reported [named-entity×1; unmapped G00] · r3 gap_reported [named-entity×1; unmapped G00]
 - "Lamine entered the shed." (target `motion`): r1 target_fired [motion×1, named-entity×1, witness×1] · r2 target_fired [motion×1, named-entity×1, witness×1] · r3 target_fired [motion×1, named-entity×1, witness×1]
 
@@ -491,6 +515,32 @@ Abstain cases (what the parser did, per run):
 - "Yusra fears that Lamine sold the spindle." (target `attitude`): r1 target_fired [attitude×1, named-entity×2, transfer×1, witness×1] · r2 target_fired [attitude×1, named-entity×2, transfer×1, witness×1] · r3 target_fired [attitude×1, named-entity×2, transfer×1, witness×1]
 - "Teodor heard the news." (target `perception`): r1 target_fired [named-entity×1, perception×1, witness×1] · r2 target_fired [named-entity×1, perception×1, witness×1] · r3 target_fired [named-entity×1, perception×1, witness×1]
 - "Lamine enjoys sending quilts." (gap G00): r1 gap_reported [named-entity×1; unmapped G00] · r2 gap_reported [named-entity×1; unmapped G00] · r3 gap_reported [named-entity×1; unmapped G00]
+
+Mismatches: none
+
+## time — held_out
+
+16 cases, 48 records (ok 48; stale prompt 45) · gemini-4-argon effort=low
+
+| category | cases | runs | fired | exact | pass |
+|---|---|---|---|---|---|
+| positive | 9 | 27 | 27 | 27 | 27 |
+| scoped | 3 | 9 | 9 | 9 | 9 |
+| optional | 1 | 3 | 3 | 3 | 3 |
+| abstain | 3 | 9 | 0 (false fires) | – | 9 |
+
+- selection: fire cases fired 39/39 · abstain cases false fires 0/9
+- fill: exact 39/39 among fires
+- stability: pairwise agreement 1.0 (16 cases, 48 pairs), unanimous 16/16
+- type check: 48/48 emitted parses type
+- graph lints: none
+- usage: 48 calls · in 1,353,144 · out 5,931 · thinking 0 (calls with thought tokens: 0)
+- issues reported by the parser: none
+
+Abstain cases (what the parser did, per run):
+- "Teodor reads every day." (gap G00): r1 gap_reported [activity×1, named-entity×1; unmapped G00] · r2 gap_reported [activity×1, named-entity×1; unmapped G00] · r3 gap_reported [activity×1, named-entity×1; unmapped G00]
+- "Lamine left after the audit." (gap G00): r1 gap_reported [motion×1, named-entity×1; unmapped G00] · r2 gap_reported [motion×1, named-entity×1; unmapped G00] · r3 gap_reported [motion×1, named-entity×1; unmapped G00]
+- "Lamine waited at the market." (target `location`): r1 target_fired [activity×1, location×1, named-entity×1, witness×1] · r2 target_fired [activity×1, location×1, named-entity×1, witness×1] · r3 target_fired [activity×1, location×1, named-entity×1, witness×1]
 
 Mismatches: none
 

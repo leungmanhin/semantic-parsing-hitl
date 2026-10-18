@@ -4,16 +4,16 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "ecb9313bbef541ec29940699dad9a1b36a9780334e6b77fdb8e31663cca0597f",
+  "prompt_sha256": "9ef7be016fe9c94587147da8ab8e32dc10a36598db3616736ec4f119204faeb4",
   "item": {
     "id": "s0461ccde64",
     "text": "Teodor arrived in 2019."
   },
   "usage": {
-    "input": 26452,
-    "output": 120,
+    "input": 30252,
+    "output": 114,
     "thinking": null,
-    "total": 26572,
+    "total": 30366,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,30 +24,23 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 26452,
-    "candidatesTokenCount": 120,
-    "totalTokenCount": 26572,
-    "cachedContentTokenCount": 24402,
+    "promptTokenCount": 30252,
+    "candidatesTokenCount": 114,
+    "totalTokenCount": 30366,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 26452
-      }
-    ],
-    "cacheTokensDetails": [
-      {
-        "modality": "TEXT",
-        "tokenCount": 24402
+        "tokenCount": 30252
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 120
+        "tokenCount": 114
       }
     ]
   },
-  "raw_text": "{\"id\": \"s0461ccde64\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"motion\", \"id\": \"e1\", \"verb\": \"arrive\", \"mover\": \"@n1\", \"tense\": \"past\"}], \"unmapped\": [{\"span\": \"in 2019\", \"code\": \"G00\", \"construction\": \"A temporal prepositional phrase specifying the year of the event.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"s0461ccde64\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"arrive\", \"mover\": \"@n1\", \"tense\": \"past\"}, {\"t\": \"time\", \"id\": \"t1\", \"event\": \"@m1\", \"year\": 2019}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s0461ccde64",
     "instances": [
@@ -58,22 +51,22 @@
       },
       {
         "t": "motion",
-        "id": "e1",
+        "id": "m1",
         "verb": "arrive",
         "mover": "@n1",
         "tense": "past"
-      }
-    ],
-    "unmapped": [
+      },
       {
-        "span": "in 2019",
-        "code": "G00",
-        "construction": "A temporal prepositional phrase specifying the year of the event."
+        "t": "time",
+        "id": "t1",
+        "event": "@m1",
+        "year": 2019
       }
     ],
+    "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "fe66913c81da38dc9d9e0ba589cc774123d4719abb4eec09e23557bfcfde237f",
+  "prompt_body_sha256": "8ec71bbffe57aa54f5eb1dc051643ad73943df5ef3964188a68d8dd96a4babd4",
   "run": 1,
   "case": {
     "template": "location",

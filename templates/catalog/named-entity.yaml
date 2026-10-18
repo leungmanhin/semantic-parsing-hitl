@@ -9,8 +9,9 @@ status: stub
 trigger:
   construction: >
     A proper name (a person, a place, an organisation, a product) used to refer to one
-    individual. A name is rigid: its symbol is derived from the name itself, it never gets a
-    witness number, and it is never introduced inside a scope.
+    individual. A name is rigid: it is never introduced inside a scope. Its symbol is the name
+    with a number for this text (sk_teodor_1); whether two texts' Teodors are one person is a
+    separate, revisable link, not a matter of spelling.
   surface_forms:
     - "<Name>"                      # Teodor
     - "<Title> <Name>"              # Dr Varga — the title is recorded, not part of the symbol
@@ -27,7 +28,9 @@ slots:
   kind:  {type: lemma, class: Class, required: false,
           doc: "the kind an appositive or a title phrase states for the name (Lamine, a glazier); a predicative is a N is a copular instance, not this slot"}
 
-mints: {id: Entity, symbol: name}
+mints: {id: Entity, stem: name}
+
+presupposed: [name]                     # a name is rigid whatever scope mentions it
 
 emits:
   - atom: "(Name @id \"{name}\")"

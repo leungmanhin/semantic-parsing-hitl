@@ -146,14 +146,14 @@
       "kind": "temporal",
       "arity": 4,
       "arg_types": [
-        "Event",
+        "Event|TimeTerm",
         "Event|TimeTerm",
         "Number",
         "Class"
       ],
       "out": "Proposition",
       "opaque": false,
-      "gloss": "Measured temporal gap: the first eventuality precedes the second (an eventuality or a time such as now) by n units."
+      "gloss": "Measured temporal gap: the first eventuality or time instance precedes the second (an eventuality, or a time instance such as the text's reference time now) by n units; 0 units = the same period (today = 0 day before now)."
     },
     "Beneficiary": {
       "kind": "role",

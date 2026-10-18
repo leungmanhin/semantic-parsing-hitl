@@ -98,16 +98,16 @@ examples:
         - {t: named-entity, id: n2, name: "Lamine"}
         - {t: psych, id: p1, verb: distrust, experiencer: "@n1", stimulus: "@n2", tense: present}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
-        - "(Name yusra \"Yusra\")"
-        - "(Name lamine \"Lamine\")"
+        - "(Name sk_yusra_1 \"Yusra\")"
+        - "(Name sk_lamine_1 \"Lamine\")"
         - "(Member sk_distrust_1 distrust)"
-        - "(Experiencer sk_distrust_1 yusra)"
-        - "(Stimulus sk_distrust_1 lamine)"
+        - "(Experiencer sk_distrust_1 sk_yusra_1)"
+        - "(Stimulus sk_distrust_1 sk_lamine_1)"
       declarations:
-        - "(: yusra Entity)"
-        - "(: lamine Entity)"
-        - "(: sk_distrust_1 Event)"
         - "(: distrust Class)"
+        - "(: sk_distrust_1 Event)"
+        - "(: sk_lamine_1 Entity)"
+        - "(: sk_yusra_1 Entity)"
     - category: positive
       note: frighten-type, experiencer as object — the same roles
       text: "The ferret frightens Teodor."

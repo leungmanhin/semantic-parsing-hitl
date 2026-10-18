@@ -109,21 +109,21 @@ examples:
         - {t: communication, id: c1, verb: tell, speaker: "@n1", addressee: "@n2", message: "@x1",
            tense: past}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
-        - "(Name ottoline \"Ottoline\")"
-        - "(Name teodor \"Teodor\")"
+        - "(Name sk_ottoline_1 \"Ottoline\")"
+        - "(Name sk_teodor_1 \"Teodor\")"
         - "(Member sk_news_1 news)"
         - "(Member sk_tell_1 tell)"
-        - "(Agent sk_tell_1 ottoline)"
-        - "(Recipient sk_tell_1 teodor)"
+        - "(Agent sk_tell_1 sk_ottoline_1)"
+        - "(Recipient sk_tell_1 sk_teodor_1)"
         - "(Theme sk_tell_1 sk_news_1)"
         - "(Past sk_tell_1)"
       declarations:
-        - "(: ottoline Entity)"
-        - "(: teodor Entity)"
-        - "(: sk_news_1 Entity)"
-        - "(: sk_tell_1 Event)"
-        - "(: tell Class)"
         - "(: news Class)"
+        - "(: sk_news_1 Entity)"
+        - "(: sk_ottoline_1 Entity)"
+        - "(: sk_tell_1 Event)"
+        - "(: sk_teodor_1 Entity)"
+        - "(: tell Class)"
     - category: positive
       note: the message as a clause, sealed
       text: "Teodor told Ottoline that Lamine sold the spindle."

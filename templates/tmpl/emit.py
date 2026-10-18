@@ -162,10 +162,43 @@ def holds(cond: str, inst: dict) -> bool:
 # --------------------------------------------------------------------------
 
 
+MONTHS = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"]
+WEEKDAYS = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
+
+
+def reference_fields(reference_time) -> dict:
+    """Calendar fields of an ISO ``YYYY-MM-DD`` or ``YYYY-MM-DDTHH:MM`` reference time, for the anchor."""
+    if not reference_time:
+        return {}
+    import datetime
+    text = str(reference_time).strip()
+    try:
+        if "T" in text:
+            dt = datetime.datetime.fromisoformat(text)
+            d, clock = dt.date(), (dt.hour, dt.minute)
+        else:
+            d, clock = datetime.date.fromisoformat(text), None
+    except ValueError as exc:
+        raise EmitError([f"reference_time {reference_time!r} is not an ISO date (YYYY-MM-DD[THH:MM]): {exc}"])
+    out = {"year": d.year, "month": MONTHS[d.month - 1], "day": d.day, "weekday": WEEKDAYS[d.weekday()]}
+    if clock:
+        out["hour"], out["minute"] = clock
+    return out
+
+
+def rigid(r: dict, t: dict) -> bool:
+    """A referent that is never scoped or skolemized: a symbol taken from a filled slot (a named
+    time), a variable, or a presupposed slot filled (a name, a definite, a possessed witness)."""
+    m = t.get("mints") or {}
+    sym_slot = m.get("symbol")
+    return (bool(sym_slot) and r.get(sym_slot) not in (None, "", [])) or bool(m.get("variable")) or \
+        any(r.get(s) not in (None, False, [], "") for s in t.get("presupposed") or [])
+
+
 class _Emitter:
     def __init__(self, item: dict, catalog: dict):
         self.item, self.cat = item, catalog
-        self.insts = item.get("instances") or []
+        self.insts = [dict(r) if isinstance(r, dict) else r for r in (item.get("instances") or [])]   # never mutate the caller's records
         self.by_id = {r["id"]: r for r in self.insts if "id" in r}
         self.sym: dict[str, str] = {}
         self.out: list[dict] = []
@@ -291,11 +324,7 @@ class _Emitter:
     def is_rigid(self, iid: str) -> bool:
         """A name, a presupposed referent (definite, possessed) or a variable: never scoped or skolemized."""
         r = self.by_id[iid]
-        t = self.cat[r["t"]]
-        m = t.get("mints") or {}
-        sym_slot = m.get("symbol")
-        return (bool(sym_slot) and r.get(sym_slot) not in (None, "", [])) or bool(m.get("variable")) or \
-            any(r.get(s) not in (None, False, [], "") for s in t.get("presupposed") or [])
+        return rigid(r, self.cat[r["t"]])
 
     def compute_homes(self):
         # content instance -> the scope instance whose refs slot names it
@@ -403,6 +432,8 @@ class _Emitter:
             if "when" in e and not holds(e["when"], r):
                 continue
             shape = parse_shape(e["atom"])
+            for sym, cls in (e.get("declare") or {}).items():
+                self.declare(sym, cls)
             if "each" in e:
                 slot = e["each"]
                 if t["slots"][slot]["type"] == "refs":
@@ -569,7 +600,40 @@ class _Emitter:
         return lines
 
     # ---------------------------------------------------------------- run
+    def prepare(self):
+        """Slot defaults, and the text's reference time: an instance referencing the reserved id
+        ``now`` gets a ``reference-time`` instance, with calendar fields when the item carries a
+        ``reference_time`` (ISO date, optionally with a clock time)."""
+        for r in self.insts:
+            t = self.cat.get(r.get("t")) or {}
+            for sname, spec in (t.get("slots") or {}).items():
+                if "default" in spec and r.get(sname) in (None, "", []) and self.shape_uses(t, sname, r):
+                    r[sname] = spec["default"]
+        if "now" in self.by_id or "reference-time" not in self.cat:
+            return
+        referenced = any(is_ref(v) and v[1:] == "now" for r in self.insts for v in r.values() if isinstance(v, str))
+        if not referenced:
+            return
+        anchor = {"t": "reference-time", "id": "now"}
+        anchor.update(reference_fields(self.item.get("reference_time")))
+        self.insts.append(anchor)
+        self.by_id["now"] = anchor
+
+    def shape_uses(self, t: dict, slot: str, r: dict) -> bool:
+        """Would some shape that mentions ``{slot}`` fire for this instance (its other conditions
+        given)? A default is applied only then, so an unused anchor is not conjured."""
+        for e in t.get("emits") or []:
+            if "{" + slot + "}" not in e.get("atom", ""):
+                continue
+            if "if_filled" in e and e["if_filled"] != slot and r.get(e["if_filled"]) in (None, [], ""):
+                continue
+            if "when" in e and not holds(e["when"], r):
+                continue
+            return True
+        return False
+
     def run(self) -> dict:
+        self.prepare()
         problems = self.check()
         if problems:
             raise EmitError(problems)

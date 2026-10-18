@@ -78,12 +78,12 @@ class EmitTests(unittest.TestCase):
         self.assertTrue(any(a.startswith("(Theme sk_believe_1 (And (Member sk_lend_1 lend)") for a in belief))
         self.assertFalse(any(a.startswith("(Member sk_lend_1") or a.startswith("(Agent sk_lend_1") for a in belief))
         know = atoms_for("Yusra knows that Teodor sold the spindle.")
-        self.assertIn("(Agent sk_sell_1 teodor)", know)                      # the presupposed complement, flat
+        self.assertIn("(Agent sk_sell_1 sk_teodor_1)", know)                      # the presupposed complement, flat
         self.assertIn("(Member sk_spindle_1 spindle)", know)
         self.assertEqual(sum(a.startswith("(Theme sk_know_1 ") for a in know), 1)
         neg_know = atoms_for("Yusra does not know that Teodor sold the spindle.")
         self.assertEqual(sum(a.startswith("(Not (And (Member sk_know_1 know)") for a in neg_know), 1)
-        self.assertIn("(Agent sk_sell_1 teodor)", neg_know)                  # projects through the negation
+        self.assertIn("(Agent sk_sell_1 sk_teodor_1)", neg_know)                  # projects through the negation
         neg_belief = atoms_for("Teodor does not believe that Lamine sold the spindle.")
         self.assertFalse(any(a.startswith("(Agent sk_sell_1") for a in neg_belief))
         self.assertEqual(len([a for a in neg_belief if a.startswith("(Not ")]), 1)
@@ -186,7 +186,7 @@ class EmitTests(unittest.TestCase):
         self.assertIn("(Member sk_envelope_1 envelope)", nots[0])      # the witness lives inside the Not
         self.assertIn("(Past sk_hand_1)", nots[0])                     # tense inside the scope
         self.assertFalse(any(a.startswith("(Member sk_envelope_1") for a in atoms))   # not at top level
-        self.assertIn('(Name lamine "Lamine")', atoms)                 # names stay at top level
+        self.assertIn('(Name sk_lamine_1 "Lamine")', atoms)                 # names stay at top level
 
     def test_attachment_follows_its_head(self):
         """A location is rendered wherever its event is: flat at the top level, inside a negation's
@@ -228,9 +228,18 @@ class EmitTests(unittest.TestCase):
         def example(tid, text):
             t = CATALOG[tid]
             return next(e for s in ("shown", "held_out") for e in t["examples"][s] if e["text"] == text)
-        named = E.emit({"id": "a", "instances": example("time", "Yusra laughed yesterday.")["instances"]}, CATALOG)
-        self.assertIn("(Time sk_laugh_1 yesterday)", atoms_of(named["statements"]))
-        self.assertIn("(: yesterday TimeTerm)", named["declarations"])
+        deictic = E.emit({"id": "a", "instances": [dict(i) for i in example("time", "Yusra laughed yesterday.")["instances"]]}, CATALOG)
+        datoms = atoms_of(deictic["statements"])
+        self.assertIn("(Time sk_laugh_1 sk_time_1)", datoms)
+        self.assertIn("(BeforeBy sk_time_1 sk_now_1 1 day)", datoms)                # a deictic is an offset from the anchor
+        self.assertTrue({"(: sk_now_1 TimeTerm)", "(: day Class)"} <= set(deictic["declarations"]))
+        dated = E.emit({"id": "d", "instances": [dict(i) for i in example("time", "Lamine baked bread today.")["instances"]],
+                        "reference_time": "2026-10-18"}, CATALOG)
+        self.assertTrue({"(BeforeBy sk_time_1 sk_now_1 0 day)", "(Day sk_now_1 18)", "(Weekday sk_now_1 sunday)"} <= set(atoms_of(dated["statements"])))
+        named = E.emit({"id": "n", "instances": [dict(i) for i in example("time", "Ottoline sang at dawn.")["instances"]]}, CATALOG)
+        self.assertIn("(Time sk_sing_1 dawn)", atoms_of(named["statements"]))        # a named time is its own constant
+        self.assertIn("(: dawn TimeTerm)", named["declarations"])
+        self.assertNotIn("(: sk_now_1 TimeTerm)", named["declarations"])             # no anchor conjured for a named time
         neg = E.emit({"id": "n", "instances": example("time", "Teodor did not arrive in 2019.")["instances"]}, CATALOG)
         natoms = atoms_of(neg["statements"])
         self.assertEqual(sum(a.startswith("(Not (And") and "(Time sk_arrive_1 sk_time_1)" in a and "(Year sk_time_1 2019)" in a for a in natoms), 1)
@@ -248,6 +257,21 @@ class EmitTests(unittest.TestCase):
         tatoms = atoms_of(E.emit({"id": "t", "instances": twice}, CATALOG)["statements"])
         self.assertIn("(Time sk_laugh_1 yesterday)", tatoms)
         self.assertIn("(Time sk_sing_1 yesterday)", tatoms)                        # one constant, not yesterday_2
+
+    def test_mentions_are_rigid_and_coref_links_are_flat(self):
+        ex = next(e for e in CATALOG["coref"]["examples"]["held_out"] if e["text"] == "Yusra baked a loaf. She did not eat it.")
+        out = E.emit({"id": "c", "instances": ex["instances"]}, CATALOG)
+        atoms = atoms_of(out["statements"])
+        self.assertIn("(Coref sk_she_1 sk_yusra_1)", atoms)
+        self.assertIn("(Coref sk_it_1 sk_loaf_1)", atoms)
+        self.assertIn("(Member sk_loaf_1 loaf)", atoms)                               # the loaf, mentioned by the link, stays flat
+        self.assertEqual(sum(a.startswith("(Not (And (Member sk_eat_1 eat) (Agent sk_eat_1 sk_she_1) (Patient sk_eat_1 sk_it_1)") for a in atoms), 1)
+        self.assertEqual(sum(a.startswith("(Not") for a in atoms), 1)
+        strengths = {d["term"]: s for d, s in zip(out["detail"], out["statements"]) if d["term"].startswith("(Coref")}
+        self.assertTrue(all("(STV 0.99 0.9)" in s for s in strengths.values()))        # certain -> 0.99
+        two = next(e for e in CATALOG["coref"]["examples"]["held_out"] if e["text"] == "Teodor and Lamine arrived. He laughed.")
+        two_out = E.emit({"id": "t", "instances": two["instances"]}, CATALOG)
+        self.assertEqual(sum("(STV 0.5 0.9)" in s and "(Coref sk_he_1" in s for s in two_out["statements"]), 2)   # unsure -> 0.5 each
 
     def test_modal_scopes_over_the_clause(self):
         ex = next(e for _, _, e in all_examples() if e["text"] == "Lamine might lend Ottoline the trowel.")

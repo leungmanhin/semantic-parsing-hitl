@@ -109,18 +109,18 @@ examples:
         - {t: witness, id: x1, kind: loaf}
         - {t: creation, id: e1, verb: bake, creator: "@n1", product: "@x1", tense: past}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
-        - "(Name lamine \"Lamine\")"
+        - "(Name sk_lamine_1 \"Lamine\")"
         - "(Member sk_loaf_1 loaf)"
         - "(Member sk_bake_1 bake)"
-        - "(Agent sk_bake_1 lamine)"
+        - "(Agent sk_bake_1 sk_lamine_1)"
         - "(Patient sk_bake_1 sk_loaf_1)"
         - "(Past sk_bake_1)"
       declarations:
-        - "(: lamine Entity)"
-        - "(: sk_loaf_1 Entity)"
-        - "(: sk_bake_1 Event)"
         - "(: bake Class)"
         - "(: loaf Class)"
+        - "(: sk_bake_1 Event)"
+        - "(: sk_lamine_1 Entity)"
+        - "(: sk_loaf_1 Entity)"
     - category: positive
       note: paint in the creation sense — the object is the picture
       text: "Ottoline painted a portrait."

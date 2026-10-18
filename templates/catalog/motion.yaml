@@ -116,10 +116,10 @@ examples:
         - {t: witness, id: x1, kind: market, definite: true}
         - {t: motion, id: m1, verb: go, mover: "@n1", goal: "@x1", tense: past}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
-        - "(Name yusra \"Yusra\")"
+        - "(Name sk_yusra_1 \"Yusra\")"
         - "(Member sk_market_1 market)"
         - "(Member sk_go_1 go)"
-        - "(Agent sk_go_1 yusra)"
+        - "(Agent sk_go_1 sk_yusra_1)"
         - "(Goal sk_go_1 sk_market_1)"
         - "(Past sk_go_1)"
       declarations:
@@ -127,7 +127,7 @@ examples:
         - "(: market Class)"
         - "(: sk_go_1 Event)"
         - "(: sk_market_1 Entity)"
-        - "(: yusra Entity)"
+        - "(: sk_yusra_1 Entity)"
     - category: positive
       note: a caused motion — the causer is the mover, the thing moved is the moved
       text: "Lamine carried the ladder to the shed."
