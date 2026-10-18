@@ -1,0 +1,226 @@
+# Template: location  (where an event takes place: "laughed in the barn", "waited at the gate")
+#
+# A place phrase on a clause attaches to the clause's event: (Location event place) for in / at /
+# on / inside / within, the preposition's own head for the others ((Under event place), (Near …)).
+# The place is a referent like any other — a witness (the barn), a name (Calderwick) or a bare
+# lemma for a kind-level place (in burrows). The attachment is part of the clause: it is negated,
+# modalised and generalised together with the event it attaches to. A phrase that locates a thing
+# rather than an event (the ledger is on the workbench) is a locative predication instead.
+
+id: location
+family: attachment
+kind: attachment
+title: The place where an event takes place
+status: draft
+
+trigger:
+  construction: >
+    A prepositional phrase naming the place where the clause's event takes place: in / at / on /
+    inside / within a place (laughed in the barn, waited at the gate, slept on the rug), or
+    near / by / under / over / above / below / behind / beside / outside / opposite it. The event
+    is parsed with its own template; the location instance names that event and the place. One
+    instance per place phrase.
+  surface_forms:
+    - "<clause> in / at / on <place>"                 # Yusra laughed in the barn
+    - "<clause> near / under / behind … <place>"      # the ferret slept under the ladder
+    - "<place phrase>, <clause>"                      # In the barn, Lamine laughed
+  boundary:                   # looks like the place of an event but is not one
+    - >-
+      a destination or an origin of a motion — went to the market, came from the barn, entered
+      the shed: the motion's goal or source
+    - >-
+      the origin of an acquisition or a transfer — took the envelope from Lamine: the source slot
+      of that template
+    - >-
+      where a THING is, with no event — the ledger is on the workbench, Calderwick is in Norfolk:
+      a locative predication
+    - >-
+      a path of a motion — ran across the field, walked along the river, went through the gate:
+      no slot; the motion is parsed, the phrase reported as unmapped
+    - >-
+      a time phrase — in 2019, at noon, on Monday: a time, not a place
+    - >-
+      a non-spatial in / on / at — in trouble, in its demands, on alert, at war, in quality: no
+      place; report the phrase as unmapped
+    - >-
+      a place phrase inside a noun phrase — the ledger on the workbench as an argument: a locative
+      predication of that thing, not an attachment to the clause's event
+    - >-
+      between two places, among a group — between the barn and the shed: no slot here; reported
+      as unmapped
+
+slots:
+  id:          {type: id, required: true, doc: "your label for the attachment (l1, l2 …)"}
+  event:       {type: filler, class: Event, attaches: true, required: true,
+                doc: "the predication the place attaches to: the id of the clause's event instance"}
+  place:       {type: filler, class: Entity, required: true,
+                doc: "the place: a referent id (a witness for the barn, a name for Calderwick) or a bare lemma for a kind-level place (in burrows)"}
+  head:        {type: enum, values: [Location, Near, By, Under, Over, Above, Below, Behind, Beside, Outside, Opposite], required: true,
+                doc: "Location for in / at / on / inside / within; otherwise the preposition itself, capitalized (under → Under)"}
+  preposition: {type: string, required: true, doc: "the preposition as written (in, at, under …)"}
+
+emits:
+  - atom: "({head} {event} {place})"
+
+notes:
+  - >-
+    An attachment has no symbol of its own: its atom is rendered wherever its event is rendered —
+    inside a negation or a modal over the clause, inside the rule a generalization builds — so
+    "Yusra did not laugh in the barn" denies the located laughing as a whole.
+  - >-
+    In, at and on all render as Location, the substrate's role for where an eventuality holds;
+    the other prepositions keep their own head, as the legacy output did, and the word itself is
+    kept in the instance.
+
+depends_on: [named-entity, witness]
+composes_with: [negation, modal, generic, distribution]
+
+examples:
+  shown:                     # rendered into the prompt
+    - category: positive
+      note: the place attaches to the clause's event
+      text: "Yusra laughed in the barn."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, kind: barn, definite: true}
+        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past}
+        - {t: location, id: l1, event: "@v1", place: "@x1", head: Location, preposition: in}
+      emitted:               # what the emitter produces (illustration; the emitter is the authority)
+        - "(Name yusra \"Yusra\")"
+        - "(Member sk_barn_1 barn)"
+        - "(Member sk_laugh_1 laugh)"
+        - "(Agent sk_laugh_1 yusra)"
+        - "(Past sk_laugh_1)"
+        - "(Location sk_laugh_1 sk_barn_1)"
+      declarations:
+        - "(: yusra Entity)"
+        - "(: sk_barn_1 Entity)"
+        - "(: barn Class)"
+        - "(: sk_laugh_1 Event)"
+        - "(: laugh Class)"
+    - category: positive
+      note: a preposition other than in / at / on keeps its own head
+      text: "The ferret slept under the ladder."
+      instances:
+        - {t: witness, id: x1, kind: ferret, definite: true}
+        - {t: witness, id: x2, kind: ladder, definite: true}
+        - {t: activity, id: v1, verb: sleep, actor: "@x1", tense: past}
+        - {t: location, id: l1, event: "@v1", place: "@x2", head: Under, preposition: under}
+    - category: abstain
+      text: "Yusra went to the market."
+      expected: {abstain: true, template: motion}                     # a destination
+    - category: abstain
+      text: "Ottoline took the envelope from Lamine."
+      expected: {abstain: true, template: acquisition}                # the source of an acquisition
+    - category: abstain
+      text: "The ledger is on the workbench."
+      expected: {abstain: true, template: locative}                   # where a thing is, no event
+
+  held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      text: "Teodor read the letter in the barn."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, kind: letter, definite: true}
+        - {t: witness, id: x2, kind: barn, definite: true}
+        - {t: activity, id: v1, verb: read, actor: "@n1", patient: "@x1", tense: past}
+        - {t: location, id: l1, event: "@v1", place: "@x2", head: Location, preposition: in}
+    - category: positive
+      note: at renders as Location
+      text: "Lamine waited at the market."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: x1, kind: market, definite: true}
+        - {t: activity, id: v1, verb: wait, actor: "@n1", tense: past}
+        - {t: location, id: l1, event: "@v1", place: "@x1", head: Location, preposition: at}
+    - category: positive
+      note: on renders as Location
+      text: "The ferret slept on the quilt."
+      instances:
+        - {t: witness, id: x1, kind: ferret, definite: true}
+        - {t: witness, id: x2, kind: quilt, definite: true}
+        - {t: activity, id: v1, verb: sleep, actor: "@x1", tense: past}
+        - {t: location, id: l1, event: "@v1", place: "@x2", head: Location, preposition: "on"}
+    - category: positive
+      text: "Yusra laughed behind the shed."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, kind: shed, definite: true}
+        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past}
+        - {t: location, id: l1, event: "@v1", place: "@x1", head: Behind, preposition: behind}
+    - category: positive
+      text: "Ottoline sang near the barn."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: witness, id: x1, kind: barn, definite: true}
+        - {t: activity, id: v1, verb: sing, actor: "@n1", tense: past}
+        - {t: location, id: l1, event: "@v1", place: "@x1", head: Near, preposition: near}
+    - category: positive
+      note: a named place
+      text: "Yusra laughed in Calderwick."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: named-entity, id: n2, name: "Calderwick"}
+        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past}
+        - {t: location, id: l1, event: "@v1", place: "@n2", head: Location, preposition: in}
+    - category: positive
+      note: an indefinite place, present tense
+      text: "Teodor works in a bakery."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, kind: bakery}
+        - {t: activity, id: v1, verb: work, actor: "@n1", tense: present}
+        - {t: location, id: l1, event: "@v1", place: "@x1", head: Location, preposition: in}
+    - category: positive
+      note: the place of a creation — the event's place, nothing about where the shed is
+      text: "Yusra built a shed in the garden."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, kind: shed}
+        - {t: witness, id: x2, kind: garden, definite: true}
+        - {t: creation, id: e1, verb: build, creator: "@n1", product: "@x1", tense: past}
+        - {t: location, id: l1, event: "@e1", place: "@x2", head: Location, preposition: in}
+    - category: scoped
+      note: under clausal negation — the attachment is denied with the event
+      text: "Teodor did not laugh in the barn."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, kind: barn, definite: true}
+        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past}
+        - {t: location, id: l1, event: "@v1", place: "@x1", head: Location, preposition: in}
+        - {t: negation, id: s1, over: ["@v1"]}
+    - category: scoped
+      note: under a modal
+      text: "Lamine might wait in the barn."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: x1, kind: barn, definite: true}
+        - {t: activity, id: v1, verb: wait, actor: "@n1", tense: present}
+        - {t: location, id: l1, event: "@v1", place: "@x1", head: Location, preposition: in}
+        - {t: modal, id: s1, over: ["@v1"], head: Might, surface: might}
+    - category: scoped
+      note: inside a generalization — each member's sleeping is in the one barn
+      text: "Every ferret slept in the barn."
+      instances:
+        - {t: range, id: q1, kind: ferret, quantifier: every, predicate: sleep}
+        - {t: witness, id: x1, kind: barn, definite: true}
+        - {t: activity, id: v1, verb: sleep, actor: "@q1", tense: past}
+        - {t: location, id: l1, event: "@v1", place: "@x1", head: Location, preposition: in}
+        - {t: generic, id: r1, ranges: ["@q1"], over: ["@v1"]}
+    - category: optional
+      note: a fronted place phrase
+      text: "In the barn, Yusra laughed."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, kind: barn, definite: true}
+        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past}
+        - {t: location, id: l1, event: "@v1", place: "@x1", head: Location, preposition: in}
+    - category: abstain
+      text: "Teodor arrived in 2019."
+      expected: {abstain: true, template: time}                       # a time, not a place
+    - category: abstain
+      text: "Teodor ran across the field."
+      expected: {abstain: true, template: motion}                     # a path, no slot
+    - category: abstain
+      text: "Lamine was modest in his demands."
+      expected: {abstain: true, gap: G00, span: "in his demands"}     # a non-spatial in

@@ -188,6 +188,42 @@ class EmitTests(unittest.TestCase):
         self.assertFalse(any(a.startswith("(Member sk_envelope_1") for a in atoms))   # not at top level
         self.assertIn('(Name lamine "Lamine")', atoms)                 # names stay at top level
 
+    def test_attachment_follows_its_head(self):
+        """A location is rendered wherever its event is: flat at the top level, inside a negation's
+        bundle, inside a generalization's rule; its statement is owned by the attachment instance."""
+        def example(tid, text):
+            t = CATALOG[tid]
+            return next(e for s in ("shown", "held_out") for e in t["examples"][s] if e["text"] == text)
+        flat = E.emit({"id": "f", "instances": example("location", "Yusra laughed in the barn.")["instances"]}, CATALOG)
+        self.assertIn("(Location sk_laugh_1 sk_barn_1)", atoms_of(flat["statements"]))
+        self.assertEqual([d["inst"] for d in flat["detail"] if d["term"].startswith("(Location")], ["l1"])
+        neg = E.emit({"id": "n", "instances": example("location", "Teodor did not laugh in the barn.")["instances"]}, CATALOG)
+        natoms = atoms_of(neg["statements"])
+        self.assertEqual(sum(a.startswith("(Not (And") and "(Location sk_laugh_1 sk_barn_1)" in a for a in natoms), 1)
+        self.assertFalse(any(a.startswith("(Location") for a in natoms))          # nothing leaks out of the negation
+        self.assertIn("(Member sk_barn_1 barn)", natoms)                           # the definite place stays presupposed
+        rule = E.emit({"id": "r", "instances": example("location", "Every ferret slept in the barn.")["instances"]}, CATALOG)
+        ratoms = atoms_of(rule["statements"])
+        self.assertTrue(any(a.startswith("(Implication") and "(Location (sk_sleep $x) sk_barn_1)" in a for a in ratoms))
+        indef = [{"t": "range", "id": "q1", "kind": "ferret", "quantifier": "every", "predicate": "sleep"},
+                 {"t": "witness", "id": "x1", "kind": "barn"},
+                 {"t": "activity", "id": "v1", "verb": "sleep", "actor": "@q1", "tense": "past"},
+                 {"t": "location", "id": "l1", "event": "@v1", "place": "@x1", "head": "Location", "preposition": "in"},
+                 {"t": "generic", "id": "r1", "ranges": ["@q1"], "over": ["@v1"]}]
+        iatoms = atoms_of(E.emit({"id": "i", "instances": indef}, CATALOG)["statements"])
+        self.assertTrue(any("(Member (sk_barn $x) barn)" in a and "(Location (sk_sleep $x) (sk_barn $x))" in a for a in iatoms))
+        with self.assertRaises(E.EmitError):                                        # an attachment needs its head
+            E.emit({"id": "b", "instances": [{"t": "location", "id": "l1", "event": "laugh", "place": "barn",
+                                              "head": "Location", "preposition": "in"}]}, CATALOG)
+
+    def test_yaml_booleans_are_refused_where_words_belong(self):
+        bad = [{"t": "witness", "id": "x1", "kind": "ledger", "definite": True},
+               {"t": "witness", "id": "x2", "kind": "workbench", "definite": True},
+               {"t": "locative", "id": "l1", "thing": "@x1", "place": "@x2", "head": True, "preposition": True, "tense": "present"}]
+        with self.assertRaises(E.EmitError) as cm:
+            E.emit({"id": "b", "instances": bad}, CATALOG)
+        self.assertTrue(any("boolean where a word is expected" in p for p in cm.exception.args[0]))
+
     def test_modal_scopes_over_the_clause(self):
         ex = next(e for _, _, e in all_examples() if e["text"] == "Lamine might lend Ottoline the trowel.")
         out = E.emit({"id": "mod", "instances": ex["instances"]}, CATALOG)

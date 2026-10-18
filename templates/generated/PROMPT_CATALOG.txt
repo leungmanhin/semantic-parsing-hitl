@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 07164d0923c7dc7e · 21 templates
+catalog sha256 f0e3b6142a92de80 · 23 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -51,8 +51,8 @@ fences.
 
 - Every instance carries an `id`: a short lowercase label you choose, unique within the item.
   Suggested prefixes: `n` named individual, `x` witness, `g` group, `e` event, `s` scope
-  operator (negation, modal), `c` copular predication, `q` quantified range, `r` rule, `d`
-  comparison, `m` measure, `t` time (n1, x1, e1, s1 …).
+  operator (negation, modal), `c` copular predication, `l` location, `q` quantified range, `r`
+  rule, `d` comparison, `m` measure, `t` time (n1, x1, e1, s1 …).
 - A slot that points to another instance holds `"@<id>"`, for example `"Agent": "@n1"`.
 - A slot that holds a CLAUSE — the content of a negation, a modal or an attitude — holds a list
   of ids: the clause's predication, or the scope operator over it when it has one (`["@s1"]` for
@@ -1196,6 +1196,89 @@ The program renders these instances as:
     (Inheritance ferret curious)
     (QuantifierPhrase ferret curious "all")
 
+### locative — Where a thing is
+
+When: A clause whose main verb is "be" (or "be located", "be situated") and whose predicate is a
+place phrase: the ledger is on the workbench, Calderwick is in Norfolk, the key was under the
+quilt, there is a trowel on the workbench, Ottoline is from Calderwick. The subject is the thing
+located; the object of the preposition is the place. A place phrase inside a noun phrase (the
+ledger on the workbench, a village in Norfolk) is a locative of that thing too, in the present.
+
+Forms:
+- <thing> is in / at / on / under … <place>
+- there is <thing> <place phrase>
+- <thing> is located / situated in <place>
+- <thing> is from <place>
+- <thing> <place phrase>
+
+Not this template:
+- the place of an EVENT — laughed in the barn, waited at the gate: an attachment to that event,
+  not a locative
+- a verb of residence or posture — lives in Calderwick, stood by the door, lay on the workbench:
+  the verb's own event with a location attachment
+- a destination or an origin of a motion — went to the market, came from the barn: the motion's
+  goal or source
+- a kind predicate — Calderwick is a village: a copular predication; "Calderwick is a village in
+  Norfolk" is a copular predication and a locative on the same subject
+- a time — the meeting is at noon, the audit is in May: a time, not a place
+- a non-spatial in / on / at — in trouble, in love, on alert, at war: a state, not a place;
+  report the phrase as unmapped
+- membership — on the committee, in the guild: a group or a relation, not a place
+- between two places — between the barn and the shed: no slot here; reported as unmapped
+
+Slots:
+
+- `t` (required): "locative"
+- `id` (required; your label for this instance): your label for the predication (l1, l2 …).
+- `thing` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
+  the thing located: a referent id (a name, a witness, a group).
+- `place` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
+  the place: a referent id (a witness for the workbench, a name for Norfolk) or a bare lemma for
+  a kind-level place.
+- `head` (required; one of: LocatedIn, On, Near, By, Under, Over, Above, Below, Behind, Beside,
+  Outside, Opposite, From): LocatedIn for in / at / inside / within; otherwise the preposition
+  itself, capitalized (on → On, under → Under); From for an origin (is from).
+- `preposition` (required; a string): the preposition as written (in, on, under, from …).
+- `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
+  not inferred; present for a place phrase inside a noun phrase.
+- `aspect` (optional; one of: simple, progressive, perfect).
+
+Example (on keeps its own head). TEXT: The ledger is on the workbench.
+
+Instances:
+
+    [
+      {"t": "witness", "id": "x1", "kind": "ledger", "definite": true},
+      {"t": "witness", "id": "x2", "kind": "workbench", "definite": true},
+      {"t": "locative", "id": "l1", "thing": "@x1", "place": "@x2", "head": "On", "preposition": "on", "tense": "present"}
+    ]
+
+The program renders these instances as:
+
+    (Member sk_ledger_1 ledger)
+    (Member sk_workbench_1 workbench)
+    (On sk_ledger_1 sk_workbench_1)
+
+Example (in renders as LocatedIn; two names). TEXT: Calderwick is in Norfolk.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Calderwick"},
+      {"t": "named-entity", "id": "n2", "name": "Norfolk"},
+      {"t": "locative", "id": "l1", "thing": "@n1", "place": "@n2", "head": "LocatedIn", "preposition": "in", "tense": "present"}
+    ]
+
+The program renders these instances as:
+
+    (Name calderwick "Calderwick")
+    (Name norfolk "Norfolk")
+    (LocatedIn calderwick norfolk)
+
+Not this template. TEXT: Yusra laughed in the barn. — use `location`.
+
+Not this template. TEXT: Teodor is a locksmith. — use `copular`.
+
 ### motion — A change of place
 
 When: A verbal clause whose verb denotes a change of place: go, come, arrive, leave, depart,
@@ -1339,9 +1422,9 @@ Slots:
   agentless passive.
 - `stimulus` (optional; "@id" of a referent instance, or a bare lemma for a non-specific
   filler): the thing perceived: the object, or the subject of a passive.
-- `event` (optional; "@id" of a referent instance, or a bare lemma for a non-specific filler):
-  the event perceived: the id of the clause's predication instance (saw Lamine hand Teodor an
-  envelope: the transfer's id).
+- `event` (optional; "@id" of a predication instance (the clause's event)): the event perceived:
+  the id of the clause's predication instance (saw Lamine hand Teodor an envelope: the
+  transfer's id).
 - `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
   not inferred.
 - `aspect` (optional; one of: simple, progressive, perfect).
@@ -1756,6 +1839,98 @@ The program renders these instances as:
     (Name teodor "Teodor")
     (Member sk_quilt_1 quilt)
     (Not (And (Member sk_send_1 send) (Agent sk_send_1 teodor) (Theme sk_send_1 sk_quilt_1) (Past sk_send_1)))
+
+## Attachments — time, place, measure, particles
+
+### location — The place where an event takes place
+
+When: A prepositional phrase naming the place where the clause's event takes place: in / at / on
+/ inside / within a place (laughed in the barn, waited at the gate, slept on the rug), or near /
+by / under / over / above / below / behind / beside / outside / opposite it. The event is parsed
+with its own template; the location instance names that event and the place. One instance per
+place phrase.
+
+Forms:
+- <clause> in / at / on <place>
+- <clause> near / under / behind … <place>
+- <place phrase>, <clause>
+
+Not this template:
+- a destination or an origin of a motion — went to the market, came from the barn, entered the
+  shed: the motion's goal or source
+- the origin of an acquisition or a transfer — took the envelope from Lamine: the source slot of
+  that template
+- where a THING is, with no event — the ledger is on the workbench, Calderwick is in Norfolk: a
+  locative predication
+- a path of a motion — ran across the field, walked along the river, went through the gate: no
+  slot; the motion is parsed, the phrase reported as unmapped
+- a time phrase — in 2019, at noon, on Monday: a time, not a place
+- a non-spatial in / on / at — in trouble, in its demands, on alert, at war, in quality: no
+  place; report the phrase as unmapped
+- a place phrase inside a noun phrase — the ledger on the workbench as an argument: a locative
+  predication of that thing, not an attachment to the clause's event
+- between two places, among a group — between the barn and the shed: no slot here; reported as
+  unmapped
+
+Slots:
+
+- `t` (required): "location"
+- `id` (required; your label for this instance): your label for the attachment (l1, l2 …).
+- `event` (required; "@id" of the predication instance this attaches to): the predication the
+  place attaches to: the id of the clause's event instance.
+- `place` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
+  the place: a referent id (a witness for the barn, a name for Calderwick) or a bare lemma for a
+  kind-level place (in burrows).
+- `head` (required; one of: Location, Near, By, Under, Over, Above, Below, Behind, Beside,
+  Outside, Opposite): Location for in / at / on / inside / within; otherwise the preposition
+  itself, capitalized (under → Under).
+- `preposition` (required; a string): the preposition as written (in, at, under …).
+
+Example (the place attaches to the clause's event). TEXT: Yusra laughed in the barn.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Yusra"},
+      {"t": "witness", "id": "x1", "kind": "barn", "definite": true},
+      {"t": "activity", "id": "v1", "verb": "laugh", "actor": "@n1", "tense": "past"},
+      {"t": "location", "id": "l1", "event": "@v1", "place": "@x1", "head": "Location", "preposition": "in"}
+    ]
+
+The program renders these instances as:
+
+    (Name yusra "Yusra")
+    (Member sk_barn_1 barn)
+    (Member sk_laugh_1 laugh)
+    (Agent sk_laugh_1 yusra)
+    (Past sk_laugh_1)
+    (Location sk_laugh_1 sk_barn_1)
+
+Example (a preposition other than in / at / on keeps its own head). TEXT: The ferret slept under the ladder.
+
+Instances:
+
+    [
+      {"t": "witness", "id": "x1", "kind": "ferret", "definite": true},
+      {"t": "witness", "id": "x2", "kind": "ladder", "definite": true},
+      {"t": "activity", "id": "v1", "verb": "sleep", "actor": "@x1", "tense": "past"},
+      {"t": "location", "id": "l1", "event": "@v1", "place": "@x2", "head": "Under", "preposition": "under"}
+    ]
+
+The program renders these instances as:
+
+    (Member sk_ferret_1 ferret)
+    (Member sk_ladder_1 ladder)
+    (Member sk_sleep_1 sleep)
+    (Agent sk_sleep_1 sk_ferret_1)
+    (Past sk_sleep_1)
+    (Under sk_sleep_1 sk_ladder_1)
+
+Not this template. TEXT: Yusra went to the market. — use `motion`.
+
+Not this template. TEXT: Ottoline took the envelope from Lamine. — use `acquisition`.
+
+Not this template. TEXT: The ledger is on the workbench. — use `locative`.
 
 ## Rules — generic and quantified statements
 

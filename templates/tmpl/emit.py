@@ -172,6 +172,8 @@ class _Emitter:
         self.types: dict[str, set] = {}
         self.sk_functions: dict[tuple, str] = {}        # (stem, arity) -> the class of the skolemized symbol
         self._names: dict[str, int] = {}
+        self.head_of: dict[str, str] = {}               # attachment instance -> the instance it attaches to
+        self.attachments_of: dict[str, list[str]] = {}  # head instance -> its attachments, in order
 
     # ---------------------------------------------------------------- checks
     def check(self) -> list[str]:
@@ -195,9 +197,14 @@ class _Emitter:
                     if spec.get("required"):
                         problems.append(f"{where}: missing required slot {sname}")
                     continue
+                if isinstance(v, bool) and spec["type"] != "bool":
+                    problems.append(f"{where}: {sname}={v!r} is a boolean where a word is expected (an unquoted On / Off / Yes / No in YAML?)")
+                    continue
                 if spec["type"] == "enum" and str(v) not in [str(x) for x in spec.get("values") or []]:
                     problems.append(f"{where}: {sname}={v!r} is not one of {spec.get('values')}")
                 refs = v if spec["type"] == "refs" else [v] if spec["type"] == "filler" else []
+                if spec["type"] == "filler" and spec.get("attaches") and not is_ref(v):
+                    problems.append(f"{where}: {sname} must reference the instance it attaches to")
                 if spec["type"] == "refs" and not isinstance(v, list):
                     problems.append(f"{where}: {sname} must be a list of references")
                     refs = []
@@ -231,6 +238,8 @@ class _Emitter:
             for sname, spec in (t.get("slots") or {}).items():
                 if spec["type"] == "refs" and isinstance(r.get(sname), list):
                     edges.setdefault(r["id"], []).extend(x[1:] for x in r[sname] if is_ref(x))
+                if spec["type"] == "filler" and spec.get("attaches") and is_ref(r.get(sname)):
+                    edges.setdefault(r["id"], []).append(r[sname][1:])
         problems, state = [], {}
 
         def visit(node, path):
@@ -293,12 +302,26 @@ class _Emitter:
                     for ref in r.get(sname) or []:
                         self.scope_of[ref[1:]] = r["id"]
 
+        # attachment instance -> its head (a slot with ``attaches: true``); rendered wherever the head is
+        self.head_of = {}
+        for r in self.insts:
+            for sname, spec in (self.cat[r["t"]].get("slots") or {}).items():
+                if spec["type"] == "filler" and spec.get("attaches") and is_ref(r.get(sname)):
+                    self.head_of[r["id"]] = r[sname][1:]
+        self.attachments_of = {}
+        for a, h in self.head_of.items():
+            self.attachments_of.setdefault(h, []).append(a)
+
         def enclosing(iid):
             chain = []
-            while iid in self.scope_of:
-                iid = self.scope_of[iid]
-                chain.append(iid)
-            return chain
+            while True:
+                if iid in self.scope_of:
+                    iid = self.scope_of[iid]
+                    chain.append(iid)
+                elif iid in self.head_of:               # an attachment is enclosed by whatever encloses its head
+                    iid = self.head_of[iid]
+                else:
+                    return chain
 
         mentions: dict[str, list[str]] = {}
         for r in self.insts:
@@ -349,8 +372,18 @@ class _Emitter:
         return tok
 
     def atoms_of(self, iid: str, projecting: bool = False) -> list:
-        """The atom terms an instance emits from its own shapes (scoped content rendered inside)."""
-        return [term for term, _e in self.shapes_of(iid, projecting)]
+        """The atom terms an instance emits (scoped content rendered inside), its attachments' after its own."""
+        return [term for term, _e, _owner in self.rendered(iid, projecting)]
+
+    def rendered(self, iid: str, projecting: bool = False) -> list:
+        """``(term, shape, instance)`` for an instance's own shapes followed by those of its
+        attachments: an attachment (a filler slot with ``attaches: true``) is rendered wherever its
+        head is — at the top level, inside a scope's bundle or inside a rule."""
+        out = [(term, e, iid) for term, e in self.shapes_of(iid, projecting)]
+        if not projecting:
+            for a in self.attachments_of.get(iid, []):
+                out.extend(self.rendered(a))
+        return out
 
     def shapes_of(self, iid: str, projecting: bool = False) -> list:
         """``(term, shape)`` pairs for an instance's own shapes; ``projecting`` selects the
@@ -407,6 +440,7 @@ class _Emitter:
                 if spec["type"] == "refs":
                     todo.extend(x[1:] for x in (r.get(sname) or []) if is_ref(x))
             todo.extend(self.homed_in.get(iid, []))
+            todo.extend(self.attachments_of.get(iid, []))
         return out
 
     def bundle(self, refs: list, scope_iid: str, spec: dict | None = None):
@@ -535,10 +569,10 @@ class _Emitter:
         self.compute_homes()
         for r in self.insts:
             iid = r["id"]
-            if iid in self.scope_of or self.home.get(iid) is not None:
-                continue                                    # rendered inside a scope
-            for term, e in self.shapes_of(iid):
-                self.add(term, r["t"], iid, e.get("stv"))
+            if iid in self.scope_of or self.home.get(iid) is not None or iid in self.head_of:
+                continue                                    # rendered inside a scope, or with its head
+            for term, e, owner in self.rendered(iid):
+                self.add(term, self.by_id[owner]["t"], owner, e.get("stv"))
         for r in self.insts:                                    # presuppositions: top level, any scope
             for term, e in self.shapes_of(r["id"], projecting=True):
                 self.add(term, r["t"], r["id"], e.get("stv"))

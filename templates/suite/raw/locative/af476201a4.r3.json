@@ -1,0 +1,88 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "ecb9313bbef541ec29940699dad9a1b36a9780334e6b77fdb8e31663cca0597f",
+  "item": {
+    "id": "saf476201a4",
+    "text": "Teodor is in the barn."
+  },
+  "usage": {
+    "input": 26449,
+    "output": 125,
+    "thinking": null,
+    "total": 26574,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 26449,
+    "candidatesTokenCount": 125,
+    "totalTokenCount": 26574,
+    "cachedContentTokenCount": 24400,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 26449
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 24400
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 125
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"saf476201a4\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"barn\", \"definite\": true}, {\"t\": \"locative\", \"id\": \"l1\", \"thing\": \"@n1\", \"place\": \"@x1\", \"head\": \"LocatedIn\", \"preposition\": \"in\", \"tense\": \"present\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "saf476201a4",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "barn",
+        "definite": true
+      },
+      {
+        "t": "locative",
+        "id": "l1",
+        "thing": "@n1",
+        "place": "@x1",
+        "head": "LocatedIn",
+        "preposition": "in",
+        "tense": "present"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "fe66913c81da38dc9d9e0ba589cc774123d4719abb4eec09e23557bfcfde237f",
+  "run": 3,
+  "case": {
+    "template": "locative",
+    "section": "held_out",
+    "index": 6,
+    "category": "positive",
+    "text": "Teodor is in the barn.",
+    "key": "af476201a4"
+  }
+}

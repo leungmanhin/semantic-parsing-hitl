@@ -53,6 +53,10 @@ def _value_doc(spec: dict, family: str | None = None) -> str:
     if t == "enum":
         return "one of: " + ", ".join(str(v) for v in spec.get("values") or [])
     if t == "filler":
+        if spec.get("attaches"):
+            return '"@id" of the predication instance this attaches to'
+        if spec.get("class") == "Event":
+            return '"@id" of a predication instance (the clause\'s event)'
         return '"@id" of a referent instance, or a bare lemma for a non-specific filler'
     if t == "refs":
         if family == "scope":

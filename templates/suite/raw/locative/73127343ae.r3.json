@@ -1,0 +1,79 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "ecb9313bbef541ec29940699dad9a1b36a9780334e6b77fdb8e31663cca0597f",
+  "item": {
+    "id": "s73127343ae",
+    "text": "Lamine is in trouble."
+  },
+  "usage": {
+    "input": 26449,
+    "output": 89,
+    "thinking": null,
+    "total": 26538,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 26449,
+    "candidatesTokenCount": 89,
+    "totalTokenCount": 26538,
+    "cachedContentTokenCount": 24400,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 26449
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 24400
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 89
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s73127343ae\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}], \"unmapped\": [{\"span\": \"is in trouble\", \"code\": \"G00\", \"construction\": \"A copular clause with a non-spatial prepositional phrase expressing a state.\"}], \"issues\": []}",
+  "response": {
+    "id": "s73127343ae",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "is in trouble",
+        "code": "G00",
+        "construction": "A copular clause with a non-spatial prepositional phrase expressing a state."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "fe66913c81da38dc9d9e0ba589cc774123d4719abb4eec09e23557bfcfde237f",
+  "run": 3,
+  "case": {
+    "template": "locative",
+    "section": "held_out",
+    "index": 13,
+    "category": "abstain",
+    "text": "Lamine is in trouble.",
+    "key": "73127343ae"
+  }
+}

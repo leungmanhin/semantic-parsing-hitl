@@ -1,10 +1,13 @@
 # Suite report
 
-prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 4c731d51dd5634a6) · type check: ran
+prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 fe66913c81da38dc) · type check: ran
 
 ## Catalog checks
 
-276 examples checked; findings: 0
+314 examples checked; findings: 0
+
+Pending abstain targets (templates to write; each line = the sentences waiting for it):
+- `time` ← location: "Teodor arrived in 2019."; locative: "The meeting is at noon."
 
 ## acquisition — held_out
 
@@ -36,7 +39,7 @@ Mismatches: none
 
 ## activity — held_out
 
-17 cases, 51 records (ok 51; stale prompt 45) · gemini-4-argon effort=low
+17 cases, 51 records (ok 51; stale prompt 51) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -93,7 +96,7 @@ Mismatches: none
 
 ## change-of-state — held_out
 
-15 cases, 45 records (ok 45; stale prompt 39) · gemini-4-argon effort=low
+15 cases, 45 records (ok 45; stale prompt 45) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -121,7 +124,7 @@ Mismatches: none
 
 ## communication — held_out
 
-13 cases, 39 records (ok 39; stale prompt 36) · gemini-4-argon effort=low
+13 cases, 39 records (ok 39; stale prompt 39) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -177,7 +180,7 @@ Mismatches: none
 
 ## creation — held_out
 
-16 cases, 48 records (ok 48; stale prompt 0) · gemini-4-argon effort=low
+16 cases, 48 records (ok 48; stale prompt 48) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -307,6 +310,58 @@ Abstain cases (what the parser did, per run):
 - "The ferrets are curious." (target `group`): r1 target_fired [copular×1, distribution×1, group×1] · r2 target_fired [copular×1, distribution×1, group×1] · r3 target_fired [copular×1, distribution×1, group×1]
 - "Yusra is a weaver." (target `copular`): r1 target_fired [copular×1, named-entity×1] · r2 target_fired [copular×1, named-entity×1] · r3 target_fired [copular×1, named-entity×1]
 - "Ferrets are widespread." (gap G00): r1 gap_reported [nothing fired; unmapped G00] · r2 gap_reported [nothing fired; unmapped G00] · r3 gap_reported [nothing fired; unmapped G00]
+
+Mismatches: none
+
+## location — held_out
+
+15 cases, 45 records (ok 45; stale prompt 0) · gemini-4-argon effort=low
+
+| category | cases | runs | fired | exact | pass |
+|---|---|---|---|---|---|
+| positive | 8 | 24 | 24 | 24 | 24 |
+| scoped | 3 | 9 | 9 | 9 | 9 |
+| optional | 1 | 3 | 3 | 3 | 3 |
+| abstain | 3 | 9 | 0 (false fires) | – | 9 |
+
+- selection: fire cases fired 36/36 · abstain cases false fires 0/9
+- fill: exact 36/36 among fires
+- stability: pairwise agreement 1.0 (15 cases, 45 pairs), unanimous 15/15
+- type check: 45/45 emitted parses type
+- graph lints: none
+- usage: 45 calls · in 1,190,250 · out 6,767 · thinking 0 (calls with thought tokens: 0)
+- issues reported by the parser: none
+
+Abstain cases (what the parser did, per run):
+- "Teodor arrived in 2019." (target `time`): r1 pending_unmapped [motion×1, named-entity×1; unmapped G00] · r2 pending_unmapped [motion×1, named-entity×1; unmapped G00] · r3 pending_unmapped [motion×1, named-entity×1; unmapped G00]
+- "Teodor ran across the field." (target `motion`): r1 target_fired [motion×1, named-entity×1; unmapped G00] · r2 target_fired [motion×1, named-entity×1; unmapped G00] · r3 target_fired [motion×1, named-entity×1; unmapped G00]
+- "Lamine was modest in his demands." (gap G00): r1 gap_reported [named-entity×1; unmapped G00] · r2 gap_reported [named-entity×1; unmapped G00] · r3 gap_reported [named-entity×1; unmapped G00]
+
+Mismatches: none
+
+## locative — held_out
+
+14 cases, 42 records (ok 42; stale prompt 0) · gemini-4-argon effort=low
+
+| category | cases | runs | fired | exact | pass |
+|---|---|---|---|---|---|
+| positive | 8 | 24 | 24 | 24 | 24 |
+| contrast | 1 | 3 | 3 | 3 | 3 |
+| scoped | 2 | 6 | 6 | 6 | 6 |
+| abstain | 3 | 9 | 0 (false fires) | – | 9 |
+
+- selection: fire cases fired 33/33 · abstain cases false fires 0/9
+- fill: exact 33/33 among fires
+- stability: pairwise agreement 1.0 (14 cases, 42 pairs), unanimous 14/14
+- type check: 39/39 emitted parses type
+- graph lints: none
+- usage: 42 calls · in 1,110,885 · out 5,320 · thinking 0 (calls with thought tokens: 0)
+- issues reported by the parser: none
+
+Abstain cases (what the parser did, per run):
+- "The meeting is at noon." (target `time`): r1 pending_unmapped [nothing fired; unmapped G00] · r2 pending_unmapped [nothing fired; unmapped G00] · r3 pending_unmapped [nothing fired; unmapped G00]
+- "Lamine is in trouble." (gap G00): r1 gap_reported [named-entity×1; unmapped G00] · r2 gap_reported [named-entity×1; unmapped G00] · r3 gap_reported [named-entity×1; unmapped G00]
+- "Lamine entered the shed." (target `motion`): r1 target_fired [motion×1, named-entity×1, witness×1] · r2 target_fired [motion×1, named-entity×1, witness×1] · r3 target_fired [motion×1, named-entity×1, witness×1]
 
 Mismatches: none
 

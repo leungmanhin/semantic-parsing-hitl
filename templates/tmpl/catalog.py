@@ -31,7 +31,7 @@ CATALOG_DIR = os.path.abspath(os.path.join(HERE, os.pardir, "catalog"))
 SLOT_TYPES = {"id", "lemma", "filler", "refs", "enum", "bool", "string", "number", "int", "list"}
 CLASSED = {"lemma", "filler", "refs"}
 CATEGORIES = {"positive", "contrast", "scoped", "optional", "abstain"}
-SLOT_KEYS = {"type", "class", "role", "required", "default", "values", "doc", "consumes", "bind", "skolemize"}
+SLOT_KEYS = {"type", "class", "role", "required", "default", "values", "doc", "consumes", "bind", "skolemize", "attaches"}
 
 _PLACEHOLDER = re.compile(r"\{([a-z_]+)\}")
 
@@ -69,6 +69,8 @@ def check_template(t: dict, path: str) -> list[str]:
                 problems.append(f"slot {sname}: {key} applies to refs slots only")
         if spec.get("bind") and (slots.get(spec["bind"]) or {}).get("type") != "filler":
             problems.append(f"slot {sname}: bind must name a filler slot of the template")
+        if spec.get("attaches") and spec["type"] != "filler":
+            problems.append(f"slot {sname}: attaches applies to filler slots only")
     for i, group in enumerate(t.get("one_of") or []):
         if not isinstance(group, list) or len(group) < 2 or any(g not in slots for g in group):
             problems.append(f"one_of[{i}]: must list two or more slots of the template")

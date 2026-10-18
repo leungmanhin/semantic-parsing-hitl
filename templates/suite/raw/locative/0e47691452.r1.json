@@ -1,0 +1,91 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "ecb9313bbef541ec29940699dad9a1b36a9780334e6b77fdb8e31663cca0597f",
+  "item": {
+    "id": "s0e47691452",
+    "text": "The ferret might be in the shed."
+  },
+  "usage": {
+    "input": 26452,
+    "output": 162,
+    "thinking": null,
+    "total": 26614,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 26452,
+    "candidatesTokenCount": 162,
+    "totalTokenCount": 26614,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 26452
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 162
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s0e47691452\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"ferret\", \"definite\": true}, {\"t\": \"witness\", \"id\": \"x2\", \"kind\": \"shed\", \"definite\": true}, {\"t\": \"locative\", \"id\": \"l1\", \"thing\": \"@x1\", \"place\": \"@x2\", \"head\": \"LocatedIn\", \"preposition\": \"in\", \"tense\": \"present\"}, {\"t\": \"modal\", \"id\": \"s1\", \"over\": [\"@l1\"], \"head\": \"Might\", \"surface\": \"might\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s0e47691452",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "ferret",
+        "definite": true
+      },
+      {
+        "t": "witness",
+        "id": "x2",
+        "kind": "shed",
+        "definite": true
+      },
+      {
+        "t": "locative",
+        "id": "l1",
+        "thing": "@x1",
+        "place": "@x2",
+        "head": "LocatedIn",
+        "preposition": "in",
+        "tense": "present"
+      },
+      {
+        "t": "modal",
+        "id": "s1",
+        "over": [
+          "@l1"
+        ],
+        "head": "Might",
+        "surface": "might"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "fe66913c81da38dc9d9e0ba589cc774123d4719abb4eec09e23557bfcfde237f",
+  "run": 1,
+  "case": {
+    "template": "locative",
+    "section": "held_out",
+    "index": 10,
+    "category": "scoped",
+    "text": "The ferret might be in the shed.",
+    "key": "0e47691452"
+  }
+}
