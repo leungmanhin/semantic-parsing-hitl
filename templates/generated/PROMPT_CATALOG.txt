@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 b830233e1b1c4a63 · 19 templates
+catalog sha256 635856dad7c687bb · 20 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -700,6 +700,113 @@ Not this template. TEXT: Teodor told Ottoline that Lamine sold the spindle. — 
 
 Not this template. TEXT: Yusra distrusts Lamine. — use `psych`.
 
+### change-of-state — A change of state, by itself or brought about
+
+When: A verbal clause whose verb denotes that its subject or its object comes to be in a new
+state: on its own — break, melt, crack, dry, freeze, burn, collapse, grow, shrink, expand, fade,
+wither, improve, recover, die, open, close, begin, end, start, stop (the audit began), fall and
+rise of a value (the price fell) — or brought about by someone — Yusra broke the ladder, Lamine
+melted the wax. Become, turn, get and go with a predicate (became a locksmith, turned red, got
+wet, went bad) name the state the subject comes to be in: record it as the result.
+
+Verbs that anchor the class: break, melt, crack, dry, freeze, burn, collapse, grow, shrink,
+expand, fade, wither, improve, recover, die, open, close, begin, end, start, stop, fall, rise,
+become, turn, get, go.
+The list anchors the class; an unlisted verb that denotes a change of state belongs here (record
+its lemma as usual). Fall, rise, go and get are of this class only in the change-of-state sense
+(a value fell, went bad, got wet); a physical fall is a motion, and get with an object acquired
+is an acquisition.
+
+Forms:
+- <undergoer> V
+- <agent> V <undergoer>
+- <undergoer> became / turned / got <N or ADJ>
+- <undergoer> was V-ed by <agent>
+
+Not this template:
+- a change of place — the ladder fell off the shelf, went to the market: a motion
+- a thing coming into being — built a shed, baked a loaf, wrote a letter: a creation
+- a change of hands — gave, took, bought: a transfer or an acquisition
+- an action that leaves its object as it was — read the letter, helped Lamine: an activity
+- begin, stop, keep, continue with a verbal complement — stopped working, began to sing: an
+  aspect on another event, a different construction
+- get or become with a clause or an infinitive — got Lamine to send the quilt, came to like the
+  quilt: a causative or an inchoative over a clause
+- light-verb constructions — made a change, took a turn: the noun carries the event
+
+Slots:
+
+- `t` (required): "change-of-state"
+- `id` (required; your label for this instance): your label for the change event.
+- `verb` (required; a lemma): the verb lemma.
+- `agent` (optional; "@id" of a referent instance, or a bare lemma for a non-specific filler):
+  who or what brings the change about: the subject of a transitive use (Yusra broke the ladder),
+  or the by-phrase of a passive.
+- `undergoer` (required; "@id" of a referent instance, or a bare lemma for a non-specific
+  filler): the thing that comes to be in the new state: the subject of an intransitive use, the
+  object of a transitive one.
+- `result` (optional; a lemma): the state the undergoer comes to be in, when the text names it:
+  a kind (became a locksmith → locksmith) or a property (got wet → wet, turned red → red).
+- `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
+  not inferred.
+- `aspect` (optional; one of: simple, progressive, perfect).
+
+Example (a change on its own). TEXT: The thermos cracked.
+
+Instances:
+
+    [
+      {"t": "witness", "id": "x1", "kind": "thermos", "definite": true},
+      {"t": "change-of-state", "id": "c1", "verb": "crack", "undergoer": "@x1", "tense": "past"}
+    ]
+
+The program renders these instances as:
+
+    (Member sk_thermos_1 thermos)
+    (Member sk_crack_1 crack)
+    (Patient sk_crack_1 sk_thermos_1)
+    (Past sk_crack_1)
+
+Example (becoming — the result is named). TEXT: Teodor became a locksmith.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Teodor"},
+      {"t": "change-of-state", "id": "c1", "verb": "become", "undergoer": "@n1", "result": "locksmith", "tense": "past"}
+    ]
+
+The program renders these instances as:
+
+    (Name teodor "Teodor")
+    (Member sk_become_1 become)
+    (Patient sk_become_1 teodor)
+    (Result sk_become_1 (Member teodor locksmith))
+    (Past sk_become_1)
+
+Example (brought about by someone). TEXT: Yusra broke the ladder.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Yusra"},
+      {"t": "witness", "id": "x1", "kind": "ladder", "definite": true},
+      {"t": "change-of-state", "id": "c1", "verb": "break", "agent": "@n1", "undergoer": "@x1", "tense": "past"}
+    ]
+
+The program renders these instances as:
+
+    (Name yusra "Yusra")
+    (Member sk_ladder_1 ladder)
+    (Member sk_break_1 break)
+    (Agent sk_break_1 yusra)
+    (Patient sk_break_1 sk_ladder_1)
+    (Past sk_break_1)
+
+Not this template. TEXT: Yusra went to the market. — use `motion`.
+
+Not this template. TEXT: Lamine baked a loaf. — report the span as unmapped.
+
 ### communication — Communication of a message to an addressee
 
 When: A verbal clause in which a speaker conveys a message to an addressee. The addressee is the
@@ -878,7 +985,7 @@ The program renders these instances as:
 
 Not this template. TEXT: Ferrets are mustelids. — use `kind-statement`.
 
-Not this template. TEXT: Teodor became a locksmith. — report the span as unmapped.
+Not this template. TEXT: Teodor became a locksmith. — use `change-of-state`.
 
 ### kind-statement — A kind is a kind or has a property
 

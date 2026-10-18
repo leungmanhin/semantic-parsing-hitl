@@ -1,0 +1,82 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "8b94d53524c908c3b49c07b327d4f63b7de7791f1c8a4da1645e4578624a27da",
+  "item": {
+    "id": "saf009e6fad",
+    "text": "The ladder got wet."
+  },
+  "usage": {
+    "input": 22484,
+    "output": 98,
+    "thinking": null,
+    "total": 22582,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 22484,
+    "candidatesTokenCount": 98,
+    "totalTokenCount": 22582,
+    "cachedContentTokenCount": 20435,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 22484
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 20435
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 98
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"saf009e6fad\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"ladder\", \"definite\": true}, {\"t\": \"change-of-state\", \"id\": \"e1\", \"verb\": \"get\", \"undergoer\": \"@x1\", \"result\": \"wet\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "saf009e6fad",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "ladder",
+        "definite": true
+      },
+      {
+        "t": "change-of-state",
+        "id": "e1",
+        "verb": "get",
+        "undergoer": "@x1",
+        "result": "wet",
+        "tense": "past"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "2cc3e8f061d7bfce34a1f4404efb88ede552d8e0464511d138418685ffc1221b",
+  "run": 3,
+  "case": {
+    "template": "change-of-state",
+    "section": "held_out",
+    "index": 4,
+    "category": "positive",
+    "text": "The ladder got wet.",
+    "key": "af009e6fad"
+  }
+}

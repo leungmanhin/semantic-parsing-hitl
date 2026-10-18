@@ -1,0 +1,211 @@
+# Template: change-of-state  (something comes to be in a new state: by itself or brought about)
+#
+# The thing that changes is the Patient, whether it changes on its own (the ladder broke, the
+# price fell, the audit began) or someone brings the change about (Yusra broke the ladder:
+# Agent beside the Patient). When the text names the state the thing comes to be in — became a
+# locksmith, got wet, turned red — the result is the term the change event is linked to by
+# (Result event outcome); that the outcome holds afterwards is a background rule (the seeded
+# rules beside the catalog), not part of the parse. A change of place is a motion; a thing
+# coming into being is a creation.
+
+id: change-of-state
+family: predication
+kind: verb-class
+title: A change of state, by itself or brought about
+status: draft
+
+trigger:
+  construction: >
+    A verbal clause whose verb denotes that its subject or its object comes to be in a new
+    state: on its own — break, melt, crack, dry, freeze, burn, collapse, grow, shrink, expand,
+    fade, wither, improve, recover, die, open, close, begin, end, start, stop (the audit began),
+    fall and rise of a value (the price fell) — or brought about by someone — Yusra broke the
+    ladder, Lamine melted the wax. Become, turn, get and go with a predicate (became a locksmith,
+    turned red, got wet, went bad) name the state the subject comes to be in: record it as the
+    result.
+  verbs: [break, melt, crack, dry, freeze, burn, collapse, grow, shrink, expand, fade, wither,
+          improve, recover, die, open, close, begin, end, start, stop, fall, rise, become, turn,
+          get, go]
+  verbs_note: >
+    The list anchors the class; an unlisted verb that denotes a change of state belongs here
+    (record its lemma as usual). Fall, rise, go and get are of this class only in the
+    change-of-state sense (a value fell, went bad, got wet); a physical fall is a motion, and
+    get with an object acquired is an acquisition.
+  surface_forms:
+    - "<undergoer> V"                                # the ladder broke; the price fell
+    - "<agent> V <undergoer>"                        # Yusra broke the ladder
+    - "<undergoer> became / turned / got <N or ADJ>" # became a locksmith; got wet
+    - "<undergoer> was V-ed by <agent>"              # passive: the roles do not change
+  boundary:                   # looks like a change of state but is not one
+    - >-
+      a change of place — the ladder fell off the shelf, went to the market: a motion
+    - >-
+      a thing coming into being — built a shed, baked a loaf, wrote a letter: a creation
+    - >-
+      a change of hands — gave, took, bought: a transfer or an acquisition
+    - >-
+      an action that leaves its object as it was — read the letter, helped Lamine: an activity
+    - >-
+      begin, stop, keep, continue with a verbal complement — stopped working, began to sing:
+      an aspect on another event, a different construction
+    - >-
+      get or become with a clause or an infinitive — got Lamine to send the quilt, came to
+      like the quilt: a causative or an inchoative over a clause
+    - >-
+      light-verb constructions — made a change, took a turn: the noun carries the event
+
+slots:
+  id:        {type: id, required: true, doc: "your label for the change event"}
+  verb:      {type: lemma, class: Class, required: true, doc: "the verb lemma"}
+  agent:     {type: filler, class: Entity, role: Agent, required: false,
+              doc: "who or what brings the change about: the subject of a transitive use (Yusra broke the ladder), or the by-phrase of a passive"}
+  undergoer: {type: filler, class: Entity, role: Patient, required: true,
+              doc: "the thing that comes to be in the new state: the subject of an intransitive use, the object of a transitive one"}
+  result:    {type: lemma, class: Class, required: false,
+              doc: "the state the undergoer comes to be in, when the text names it: a kind (became a locksmith → locksmith) or a property (got wet → wet, turned red → red)"}
+  tense:     {type: enum, values: [past, present, future], required: true,
+              doc: "the clause's tense; present is recorded, not inferred"}
+  aspect:    {type: enum, values: [simple, progressive, perfect], required: false, default: simple}
+
+mints: {id: Event}
+
+emits:
+  - atom: "(Member @id {verb})"
+  - atom: "(Agent @id {agent})"
+    if_filled: agent
+  - atom: "(Patient @id {undergoer})"
+  - atom: "(Result @id (Member {undergoer} {result}))"          # the change, linked to its outcome
+    if_filled: result
+  - atom: "(Past @id)"
+    when: "tense == past or aspect == perfect"
+  - atom: "(Future @id)"
+    when: "tense == future"
+  - atom: "(Ongoing @id)"
+    when: "aspect == progressive"
+
+notes:
+  - >-
+    The undergoer is the Patient in both uses: the role says what happens to it, and the
+    presence of an Agent says whether someone did it. The causative / inchoative contrast pair
+    (Lamine melted the wax / the wax melted) is the test.
+  - >-
+    A named result is the term the change event is linked to; the parse does not assert the
+    outcome as a standing fact. "Became a locksmith" says what the change was into, not that
+    it still holds: that the outcome holds afterwards is a background rule at confidence 0.9,
+    revisable by a later change, as the completions of a transfer or a motion are.
+
+depends_on: [named-entity, witness, group]
+composes_with: [negation, modal, time, location]
+
+examples:
+  shown:                     # rendered into the prompt
+    - category: positive
+      note: a change on its own
+      text: "The thermos cracked."
+      instances:
+        - {t: witness, id: x1, kind: thermos, definite: true}
+        - {t: change-of-state, id: c1, verb: crack, undergoer: "@x1", tense: past}
+      emitted:               # what the emitter produces (illustration; the emitter is the authority)
+        - "(Member sk_thermos_1 thermos)"
+        - "(Member sk_crack_1 crack)"
+        - "(Patient sk_crack_1 sk_thermos_1)"
+        - "(Past sk_crack_1)"
+      declarations:
+        - "(: crack Class)"
+        - "(: sk_crack_1 Event)"
+        - "(: sk_thermos_1 Entity)"
+        - "(: thermos Class)"
+    - category: positive
+      note: becoming — the result is named
+      text: "Teodor became a locksmith."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: change-of-state, id: c1, verb: become, undergoer: "@n1", result: locksmith, tense: past}
+    - category: positive
+      note: brought about by someone
+      text: "Yusra broke the ladder."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, kind: ladder, definite: true}
+        - {t: change-of-state, id: c1, verb: break, agent: "@n1", undergoer: "@x1", tense: past}
+    - category: abstain
+      text: "Yusra went to the market."
+      expected: {abstain: true, template: motion}                     # a change of place
+    - category: abstain
+      text: "Lamine baked a loaf."
+      expected: {abstain: true, template: creation}                   # a thing coming into being
+
+  held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      text: "The ladder broke."
+      instances:
+        - {t: witness, id: x1, kind: ladder, definite: true}
+        - {t: change-of-state, id: c1, verb: break, undergoer: "@x1", tense: past}
+    - category: positive
+      note: a figurative fall is a change of state
+      text: "The price fell."
+      instances:
+        - {t: witness, id: x1, kind: price, definite: true}
+        - {t: change-of-state, id: c1, verb: fall, undergoer: "@x1", tense: past}
+    - category: positive
+      text: "Lamine melted the wax."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: x1, kind: wax, definite: true}
+        - {t: change-of-state, id: c1, verb: melt, agent: "@n1", undergoer: "@x1", tense: past}
+    - category: contrast
+      note: the same change on its own — the instance must differ in the agent only
+      text: "The wax melted."
+      instances:
+        - {t: witness, id: x1, kind: wax, definite: true}
+        - {t: change-of-state, id: c1, verb: melt, undergoer: "@x1", tense: past}
+    - category: positive
+      note: get with a property as the result
+      text: "The ladder got wet."
+      instances:
+        - {t: witness, id: x1, kind: ladder, definite: true}
+        - {t: change-of-state, id: c1, verb: get, undergoer: "@x1", result: wet, tense: past}
+    - category: positive
+      note: turn with a property as the result
+      text: "The quilt turned red."
+      instances:
+        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: change-of-state, id: c1, verb: turn, undergoer: "@x1", result: red, tense: past}
+    - category: positive
+      note: an event noun beginning
+      text: "The audit began."
+      instances:
+        - {t: witness, id: x1, kind: audit, definite: true}
+        - {t: change-of-state, id: c1, verb: begin, undergoer: "@x1", tense: past}
+    - category: scoped
+      note: under clausal negation
+      text: "The ladder did not break."
+      instances:
+        - {t: witness, id: x1, kind: ladder, definite: true}
+        - {t: change-of-state, id: c1, verb: break, undergoer: "@x1", tense: past}
+        - {t: negation, id: s1, over: ["@c1"]}
+    - category: scoped
+      note: under a modal
+      text: "The thermos might crack."
+      instances:
+        - {t: witness, id: x1, kind: thermos, definite: true}
+        - {t: change-of-state, id: c1, verb: crack, undergoer: "@x1", tense: present}
+        - {t: modal, id: s1, over: ["@c1"], head: Might, surface: might}
+    - category: optional
+      note: perfect aspect
+      text: "The wax has melted."
+      instances:
+        - {t: witness, id: x1, kind: wax, definite: true}
+        - {t: change-of-state, id: c1, verb: melt, undergoer: "@x1", tense: present, aspect: perfect}
+    - category: abstain
+      text: "Teodor built a shed."
+      expected: {abstain: true, template: creation}                   # a thing coming into being
+    - category: abstain
+      text: "Yusra stopped working."
+      expected: {abstain: true, gap: G00, span: "stopped working"}    # an aspect on another event
+    - category: abstain
+      text: "The ladder fell."
+      expected: {abstain: true, template: motion}                     # a physical fall
+    - category: abstain
+      text: "Ottoline helped Lamine."
+      expected: {abstain: true, template: activity}                   # the object is left as it was

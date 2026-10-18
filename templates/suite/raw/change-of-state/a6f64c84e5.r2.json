@@ -1,0 +1,87 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "8b94d53524c908c3b49c07b327d4f63b7de7791f1c8a4da1645e4578624a27da",
+  "item": {
+    "id": "sa6f64c84e5",
+    "text": "Lamine melted the wax."
+  },
+  "usage": {
+    "input": 22488,
+    "output": 124,
+    "thinking": null,
+    "total": 22612,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 22488,
+    "candidatesTokenCount": 124,
+    "totalTokenCount": 22612,
+    "cachedContentTokenCount": 20439,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 22488
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 20439
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 124
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sa6f64c84e5\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"wax\", \"definite\": true}, {\"t\": \"change-of-state\", \"id\": \"e1\", \"verb\": \"melt\", \"agent\": \"@n1\", \"undergoer\": \"@x1\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sa6f64c84e5",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "wax",
+        "definite": true
+      },
+      {
+        "t": "change-of-state",
+        "id": "e1",
+        "verb": "melt",
+        "agent": "@n1",
+        "undergoer": "@x1",
+        "tense": "past"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "2cc3e8f061d7bfce34a1f4404efb88ede552d8e0464511d138418685ffc1221b",
+  "run": 2,
+  "case": {
+    "template": "change-of-state",
+    "section": "held_out",
+    "index": 2,
+    "category": "positive",
+    "text": "Lamine melted the wax.",
+    "key": "a6f64c84e5"
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "8b94d53524c908c3b49c07b327d4f63b7de7791f1c8a4da1645e4578624a27da",
+  "item": {
+    "id": "s940b7aa2a4",
+    "text": "The ladder broke."
+  },
+  "usage": {
+    "input": 22486,
+    "output": 95,
+    "thinking": null,
+    "total": 22581,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 22486,
+    "candidatesTokenCount": 95,
+    "totalTokenCount": 22581,
+    "cachedContentTokenCount": 20437,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 22486
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 20437
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 95
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s940b7aa2a4\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"ladder\", \"definite\": true}, {\"t\": \"change-of-state\", \"id\": \"e1\", \"verb\": \"break\", \"undergoer\": \"@x1\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s940b7aa2a4",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "ladder",
+        "definite": true
+      },
+      {
+        "t": "change-of-state",
+        "id": "e1",
+        "verb": "break",
+        "undergoer": "@x1",
+        "tense": "past"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "2cc3e8f061d7bfce34a1f4404efb88ede552d8e0464511d138418685ffc1221b",
+  "run": 3,
+  "case": {
+    "template": "change-of-state",
+    "section": "held_out",
+    "index": 0,
+    "category": "positive",
+    "text": "The ladder broke.",
+    "key": "940b7aa2a4"
+  }
+}

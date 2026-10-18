@@ -579,8 +579,8 @@ gloss: Flags a portion as the remainder of a definite whole. Order: (RestOf rema
 head: Result
 kind: relation
 arity: 2
-type-def: (: Result (-> Event Event Proposition))
-gloss: Links an event to the reified result state it caused. Order: (Result event result-state); the result state is an eventuality.
+type-def: (: Result (-> Event Event Proposition))  ; and 1 more (per arity / per union alternative)
+gloss: Links a change event to its result. Order: (Result event result). The result is the outcome proposition as a sealed term in the catalog form ((Result sk_become_1 (Member teodor locksmith))), beside the flat outcome; the legacy form linked a reified result-state eventuality.
 
 
 head: SubsetOf

@@ -4,16 +4,16 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "f5f1e44762d5f71f92cba2959b585298e51bf895cfccd7dae6d6503648dc8ffe",
+  "prompt_sha256": "8b94d53524c908c3b49c07b327d4f63b7de7791f1c8a4da1645e4578624a27da",
   "item": {
     "id": "s136b9c7c8e",
     "text": "The price fell."
   },
   "usage": {
-    "input": 21102,
-    "output": 73,
+    "input": 22487,
+    "output": 96,
     "thinking": null,
-    "total": 21175,
+    "total": 22583,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,36 +24,51 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 21102,
-    "candidatesTokenCount": 73,
-    "totalTokenCount": 21175,
+    "promptTokenCount": 22487,
+    "candidatesTokenCount": 96,
+    "totalTokenCount": 22583,
+    "cachedContentTokenCount": 20438,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 21102
+        "tokenCount": 22487
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 20438
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 73
+        "tokenCount": 96
       }
     ]
   },
-  "raw_text": "{\"id\": \"s136b9c7c8e\", \"instances\": [], \"unmapped\": [{\"span\": \"The price fell.\", \"code\": \"G00\", \"construction\": \"A clause whose verb denotes a change in a value or scalar state rather than a change of place.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"s136b9c7c8e\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"price\", \"definite\": true}, {\"t\": \"change-of-state\", \"id\": \"e1\", \"verb\": \"fall\", \"undergoer\": \"@x1\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s136b9c7c8e",
-    "instances": [],
-    "unmapped": [
+    "instances": [
       {
-        "span": "The price fell.",
-        "code": "G00",
-        "construction": "A clause whose verb denotes a change in a value or scalar state rather than a change of place."
+        "t": "witness",
+        "id": "x1",
+        "kind": "price",
+        "definite": true
+      },
+      {
+        "t": "change-of-state",
+        "id": "e1",
+        "verb": "fall",
+        "undergoer": "@x1",
+        "tense": "past"
       }
     ],
+    "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "000098f3bba489804dab742a00fbb307c4c7cc7edbe3c2d93bcc7ed7118790ae",
+  "prompt_body_sha256": "2cc3e8f061d7bfce34a1f4404efb88ede552d8e0464511d138418685ffc1221b",
   "run": 1,
   "case": {
     "template": "motion",

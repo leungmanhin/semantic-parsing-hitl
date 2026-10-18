@@ -4,16 +4,16 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "9e1db0997dbb17ae70fb35b09cad0a93ecd8ebeab47d506a264555a1a9d7b5ae",
+  "prompt_sha256": "8b94d53524c908c3b49c07b327d4f63b7de7791f1c8a4da1645e4578624a27da",
   "item": {
     "id": "s317857497e",
     "text": "Teodor arrived."
   },
   "usage": {
-    "input": 14849,
-    "output": 81,
+    "input": 22487,
+    "output": 87,
     "thinking": null,
-    "total": 14930,
+    "total": 22574,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,30 +24,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 14849,
-    "candidatesTokenCount": 81,
-    "totalTokenCount": 14930,
-    "cachedContentTokenCount": 12800,
+    "promptTokenCount": 22487,
+    "candidatesTokenCount": 87,
+    "totalTokenCount": 22574,
+    "cachedContentTokenCount": 20438,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 14849
+        "tokenCount": 22487
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 12800
+        "tokenCount": 20438
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 81
+        "tokenCount": 87
       }
     ]
   },
-  "raw_text": "{\"id\": \"s317857497e\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}], \"unmapped\": [{\"span\": \"arrived\", \"code\": \"G00\", \"construction\": \"An intransitive movement verb denoting arrival.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"s317857497e\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"motion\", \"id\": \"e1\", \"verb\": \"arrive\", \"mover\": \"@n1\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s317857497e",
     "instances": [
@@ -55,23 +55,24 @@
         "t": "named-entity",
         "id": "n1",
         "name": "Teodor"
-      }
-    ],
-    "unmapped": [
+      },
       {
-        "span": "arrived",
-        "code": "G00",
-        "construction": "An intransitive movement verb denoting arrival."
+        "t": "motion",
+        "id": "e1",
+        "verb": "arrive",
+        "mover": "@n1",
+        "tense": "past"
       }
     ],
+    "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "7ebc2160e3f1d78f6205db12ef42b449428c7fa0394c1c3609f66a739cb62694",
+  "prompt_body_sha256": "2cc3e8f061d7bfce34a1f4404efb88ede552d8e0464511d138418685ffc1221b",
   "run": 2,
   "case": {
     "template": "activity",
     "section": "held_out",
-    "index": 9,
+    "index": 11,
     "category": "abstain",
     "text": "Teodor arrived.",
     "key": "317857497e"

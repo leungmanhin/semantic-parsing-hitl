@@ -173,6 +173,7 @@
 (: Recipient (-> Event Entity Proposition))
 (: RestOf (-> Entity Entity Proposition))
 (: Result (-> Event Event Proposition))
+(: Result (-> Event Proposition Proposition))
 (: SameDegree (-> Class Instance Instance Proposition))
 (: SameDegree (-> Class Instance Class Proposition))
 (: SameDegree (-> Class Class Instance Proposition))

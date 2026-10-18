@@ -4,16 +4,16 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "9e1db0997dbb17ae70fb35b09cad0a93ecd8ebeab47d506a264555a1a9d7b5ae",
+  "prompt_sha256": "8b94d53524c908c3b49c07b327d4f63b7de7791f1c8a4da1645e4578624a27da",
   "item": {
     "id": "s940b7aa2a4",
     "text": "The ladder broke."
   },
   "usage": {
-    "input": 14848,
-    "output": 61,
+    "input": 22486,
+    "output": 95,
     "thinking": null,
-    "total": 14909,
+    "total": 22581,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,48 +24,56 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 14848,
-    "candidatesTokenCount": 61,
-    "totalTokenCount": 14909,
-    "cachedContentTokenCount": 12799,
+    "promptTokenCount": 22486,
+    "candidatesTokenCount": 95,
+    "totalTokenCount": 22581,
+    "cachedContentTokenCount": 20437,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 14848
+        "tokenCount": 22486
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 12799
+        "tokenCount": 20437
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 61
+        "tokenCount": 95
       }
     ]
   },
-  "raw_text": "{\"id\": \"s940b7aa2a4\", \"instances\": [], \"unmapped\": [{\"span\": \"The ladder broke.\", \"code\": \"G00\", \"construction\": \"Change of state clause with verb 'break'.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"s940b7aa2a4\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"ladder\", \"definite\": true}, {\"t\": \"change-of-state\", \"id\": \"e1\", \"verb\": \"break\", \"undergoer\": \"@x1\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s940b7aa2a4",
-    "instances": [],
-    "unmapped": [
+    "instances": [
       {
-        "span": "The ladder broke.",
-        "code": "G00",
-        "construction": "Change of state clause with verb 'break'."
+        "t": "witness",
+        "id": "x1",
+        "kind": "ladder",
+        "definite": true
+      },
+      {
+        "t": "change-of-state",
+        "id": "e1",
+        "verb": "break",
+        "undergoer": "@x1",
+        "tense": "past"
       }
     ],
+    "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "7ebc2160e3f1d78f6205db12ef42b449428c7fa0394c1c3609f66a739cb62694",
+  "prompt_body_sha256": "2cc3e8f061d7bfce34a1f4404efb88ede552d8e0464511d138418685ffc1221b",
   "run": 2,
   "case": {
     "template": "activity",
     "section": "held_out",
-    "index": 10,
+    "index": 12,
     "category": "abstain",
     "text": "The ladder broke.",
     "key": "940b7aa2a4"

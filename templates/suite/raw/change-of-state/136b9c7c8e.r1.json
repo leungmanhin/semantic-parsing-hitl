@@ -1,0 +1,74 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "8b94d53524c908c3b49c07b327d4f63b7de7791f1c8a4da1645e4578624a27da",
+  "item": {
+    "id": "s136b9c7c8e",
+    "text": "The price fell."
+  },
+  "usage": {
+    "input": 22487,
+    "output": 96,
+    "thinking": null,
+    "total": 22583,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 22487,
+    "candidatesTokenCount": 96,
+    "totalTokenCount": 22583,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 22487
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 96
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s136b9c7c8e\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"price\", \"definite\": true}, {\"t\": \"change-of-state\", \"id\": \"c1\", \"verb\": \"fall\", \"undergoer\": \"@x1\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s136b9c7c8e",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "price",
+        "definite": true
+      },
+      {
+        "t": "change-of-state",
+        "id": "c1",
+        "verb": "fall",
+        "undergoer": "@x1",
+        "tense": "past"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "2cc3e8f061d7bfce34a1f4404efb88ede552d8e0464511d138418685ffc1221b",
+  "run": 1,
+  "case": {
+    "template": "change-of-state",
+    "section": "held_out",
+    "index": 1,
+    "category": "positive",
+    "text": "The price fell.",
+    "key": "136b9c7c8e"
+  }
+}
