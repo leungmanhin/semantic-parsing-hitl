@@ -21,7 +21,9 @@ Nothing here changes `prompt.txt`, the briefs under `fusenf/briefs/`, or any pip
 | `INVENTORY.md` | prompt.txt read as a registry of constructions: the coverage worklist (its template ids are historical) |
 | `tmpl/frequency.py` → `FREQUENCY.md` | which verb classes and constructions the parsed corpora contain, and what share the live templates claim |
 | `../semantic-parse.py` | one sentence → instances via an LLM, validated |
-| `seeded_rules.metta` | background rules the catalog's atoms rely on (a change's named result holds afterwards; a coref link carries a mention's roles to its antecedent; dates from the reference time, …), each with an explicit conditional truth value `(CTV <P(B\|A)> (STV 0.0 1.0))`; loaded beside the emitted statements by a consumer, never by the parser; `tests/test_rules_engine.py` checks them on the chainer |
+| `rules.yaml` | the catalog's background rules in a consumer-neutral form: premises, conclusion, arithmetic steps, reliability, semantics (a change's named result holds afterwards; a coref link carries a mention's roles to its antecedent; dates from the reference time, …) |
+| `tmpl/rules.py` | validates `rules.yaml` (heads in the substrate, variables bound, truth in range) and lowers it for a consumer |
+| `generated/seeded_rules.metta` | the rules in the chainer's form, each an implication with an explicit conditional truth value; loaded beside the emitted statements by a consumer, never by the parser; never edited by hand; `tests/test_rules_engine.py` checks them on the chainer |
 
 ## Recipes
 
@@ -30,6 +32,7 @@ Nothing here changes `prompt.txt`, the briefs under `fusenf/briefs/`, or any pip
     $P -m tmpl.gen_substrate                                 # after editing atom-type-substrates.json
     $P -m tmpl.render_prompt                                 # after ANY catalog edit → generated/PROMPT_CATALOG.txt
     $P -m tmpl.refresh_illustrations                         # after an emitter change: the examples' illustration blocks
+    $P -m tmpl.rules                                         # after editing rules.yaml → generated/seeded_rules.metta (--check: validate only)
     $P -m tmpl.suite check                                   # catalog-wide checks, no LLM call
     $P -m tmpl.suite collect --template <id> --runs 3 \
         --provider google --model gemini-4-argon --effort low    # one call per held-out case and run

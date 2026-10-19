@@ -12,7 +12,7 @@ import sys
 import unittest
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-RULES = os.path.join(HERE, os.pardir, "seeded_rules.metta")
+RULES = os.path.join(HERE, os.pardir, "generated", "seeded_rules.metta")
 
 try:
     from pettachainer import PeTTaChainer
