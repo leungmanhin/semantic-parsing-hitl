@@ -924,7 +924,7 @@ kind: meta
 arity: 2
 type-def: (: Interpretation (-> String Statement Proposition))
 legacy: (: Interpretation (-> String Atom Proposition))  ; kept until the re-parse
-gloss: Transport wrapper marking a statement as belonging to one reading of a multi-reading parse: (Interpretation rN (: name expr stv)). Dissolved by the canonicalizer's split-before-canonicalize; never a KB atom (engine-side marginalization over readings is deferred). Typed form: (Interpretation reading-tag statement-id); the legacy inline form wraps the whole statement and is unchecked. Under the flat scope view a reading is a Context and this becomes (Reading c) + (InContext f c).
+gloss: Transport wrapper marking a statement as belonging to one reading of a multi-reading parse: (Interpretation rN (: name expr stv)). The legacy canonicalizer dissolves it (split-before-canonicalize); the chainer accepts it as a reading-scoped assertion and answers per reading or as a marginal with the confidence discounted by the reading share. Typed form: (Interpretation reading-tag statement-id); the legacy inline form wraps the whole statement and is unchecked. Under the flat scope view a reading is a Context and this becomes (Reading c) + (InContext f c).
 
 
 ## computation (4)
