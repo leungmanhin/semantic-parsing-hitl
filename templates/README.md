@@ -21,7 +21,7 @@ Nothing here changes `prompt.txt`, the briefs under `fusenf/briefs/`, or any pip
 | `INVENTORY.md` | prompt.txt read as a registry of constructions: the coverage worklist (its template ids are historical) |
 | `tmpl/frequency.py` → `FREQUENCY.md` | which verb classes and constructions the parsed corpora contain, and what share the live templates claim |
 | `../semantic-parse.py` | one sentence → instances via an LLM, validated |
-| `seeded_rules.metta` | background rules the catalog's atoms rely on (a change's named result holds afterwards; a coref link carries a mention's roles to its antecedent, …); loaded beside the emitted statements by a consumer, never by the parser |
+| `seeded_rules.metta` | background rules the catalog's atoms rely on (a change's named result holds afterwards; a coref link carries a mention's roles to its antecedent; dates from the reference time, …), each with an explicit conditional truth value `(CTV <P(B\|A)> (STV 0.0 1.0))`; loaded beside the emitted statements by a consumer, never by the parser; `tests/test_rules_engine.py` checks them on the chainer |
 
 ## Recipes
 
@@ -39,6 +39,7 @@ Nothing here changes `prompt.txt`, the briefs under `fusenf/briefs/`, or any pip
     $P ../semantic-parse.py "<sentence>" --atoms             # one parse, validated, atoms shown
     $P ../semantic-parse.py "<sentence>" --reference-time today   # the anchor `now` gets the date's calendar fields
     for t in tests/test_*.py; do $P $t; done
+    (cd <PeTTaChainer checkout> && uv run python $PWD/tests/test_rules_engine.py)   # the seeded rules on the chainer
 
 ### Catalog (one template per file) and the generic emitter
 
