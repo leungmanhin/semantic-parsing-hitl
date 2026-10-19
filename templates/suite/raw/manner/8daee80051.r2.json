@@ -1,0 +1,96 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "57c0a2cf118bc64251ee1dc4f10535ec1900e8fb5354bff54b546c18457f758b",
+  "item": {
+    "id": "s8daee80051",
+    "text": "Lamine might work hard."
+  },
+  "usage": {
+    "input": 33502,
+    "output": 143,
+    "thinking": null,
+    "total": 33645,
+    "cached": 31453,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 33502,
+    "candidatesTokenCount": 143,
+    "totalTokenCount": 33645,
+    "cachedContentTokenCount": 31453,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 33502
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 31453
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 143
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s8daee80051\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"work\", \"actor\": \"@n1\", \"tense\": \"present\"}, {\"t\": \"modal\", \"id\": \"s1\", \"over\": [\"@e1\"], \"head\": \"Might\", \"surface\": \"might\"}, {\"t\": \"manner\", \"id\": \"a1\", \"event\": \"@e1\", \"manner\": \"hard\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s8daee80051",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "work",
+        "actor": "@n1",
+        "tense": "present"
+      },
+      {
+        "t": "modal",
+        "id": "s1",
+        "over": [
+          "@e1"
+        ],
+        "head": "Might",
+        "surface": "might"
+      },
+      {
+        "t": "manner",
+        "id": "a1",
+        "event": "@e1",
+        "manner": "hard"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "55732af26869bbaa55169fc16db0ed85110798ac0721bfbdda732a93ff4b5fd0",
+  "run": 2,
+  "case": {
+    "template": "manner",
+    "section": "held_out",
+    "index": 6,
+    "category": "scoped",
+    "text": "Lamine might work hard.",
+    "key": "8daee80051"
+  }
+}

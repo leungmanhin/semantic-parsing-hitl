@@ -1,0 +1,88 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "57c0a2cf118bc64251ee1dc4f10535ec1900e8fb5354bff54b546c18457f758b",
+  "item": {
+    "id": "s62d363167e",
+    "text": "Quietly, the ferret slept."
+  },
+  "usage": {
+    "input": 33505,
+    "output": 117,
+    "thinking": null,
+    "total": 33622,
+    "cached": 31454,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 33505,
+    "candidatesTokenCount": 117,
+    "totalTokenCount": 33622,
+    "cachedContentTokenCount": 31454,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 33505
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 31454
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 117
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s62d363167e\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"ferret\", \"definite\": true}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"sleep\", \"actor\": \"@x1\", \"tense\": \"past\"}, {\"t\": \"manner\", \"id\": \"a1\", \"event\": \"@v1\", \"manner\": \"quietly\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s62d363167e",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "ferret",
+        "definite": true
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "sleep",
+        "actor": "@x1",
+        "tense": "past"
+      },
+      {
+        "t": "manner",
+        "id": "a1",
+        "event": "@v1",
+        "manner": "quietly"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "55732af26869bbaa55169fc16db0ed85110798ac0721bfbdda732a93ff4b5fd0",
+  "run": 1,
+  "case": {
+    "template": "manner",
+    "section": "held_out",
+    "index": 8,
+    "category": "optional",
+    "text": "Quietly, the ferret slept.",
+    "key": "62d363167e"
+  }
+}

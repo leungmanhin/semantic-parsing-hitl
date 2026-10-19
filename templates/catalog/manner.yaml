@@ -1,0 +1,185 @@
+# Template: manner  (how an event is done: "laughed loudly", "read the letter carefully")
+#
+# A manner adverb or phrase on a clause attaches to the clause's event: (Manner event lemma), the
+# adverb kept as written (quickly, carefully, alone, well). Like a location or a time, the
+# attachment is part of the clause: negated, modalised and generalised with the event. Adverbs
+# that say how much (deeply, very), how often (often, twice), when in a sequence (finally, later)
+# or in what domain (nationally) are not manner and keep their own gap or template.
+
+id: manner
+family: attachment
+kind: attachment
+title: How an event is done
+status: draft
+
+trigger:
+  construction: >
+    An adverb or an adverbial phrase saying how the clause's event is done: loudly, quietly,
+    carefully, slowly, quickly, patiently, well, badly, hard, alone, together, by hand, with care,
+    in a hurry. The event is parsed with its own template; the manner instance names that event
+    and records the adverb as written (a phrase by its head word: with care → carefully is wrong,
+    record care; in a hurry → hurry). One instance per manner expression.
+  surface_forms:
+    - "<clause> <adverb>"                            # Yusra laughed loudly
+    - "<adverb>, <clause>"                           # Quietly, the ferret slept
+    - "<clause> with <manner noun>"                  # read the letter with care
+  boundary:                   # looks like a manner but is not one
+    - >-
+      a degree adverb — deeply distrusts, really likes, very, sharply, slightly: how much, not how;
+      reported as unmapped
+    - >-
+      a frequency adverb — often, always, twice, every day: how often; reported as unmapped (the
+      adverb gap)
+    - >-
+      a sequence or time adverb — finally, eventually, initially, later, now, yesterday: when; a
+      time or a gap
+    - >-
+      a domain or scope adverb — nationally, internationally, locally: reported as unmapped
+    - >-
+      a hedge or an evaluation — probably, certainly, unfortunately, luckily: the speaker's stance;
+      reported as unmapped
+    - >-
+      a direction particle — climbed back, went away, came out: part of the motion's path; reported
+      as unmapped
+    - >-
+      an instrument or a companion phrase — with a knife, with Yusra: an adjunct role, not a manner
+    - >-
+      an adjective on a copular clause — is loud, was careful: a copular predication, not an
+      adverb on an event
+
+slots:
+  id:     {type: id, required: true, doc: "your label for the attachment (a1, a2 …)"}
+  event:  {type: filler, class: Event, attaches: true, required: true,
+           doc: "the predication the manner attaches to: the id of the clause's event instance"}
+  manner: {type: lemma, class: Class, required: true,
+           doc: "the adverb as written, lowercase (loudly, carefully, well, alone); a phrase by its head word (with care → care)"}
+
+emits:
+  - atom: "(Manner {event} {manner})"
+
+notes:
+  - >-
+    The adverb is kept as written rather than reduced to an adjective (loudly, not loud): the
+    manner word is a class of its own, and the copular property is a different predication.
+  - >-
+    An attachment has no symbol of its own: its atom is rendered wherever its event is rendered,
+    inside a negation, a modal or a rule over the clause.
+
+depends_on: []
+composes_with: [negation, modal, generic, distribution]
+
+examples:
+  shown:                     # rendered into the prompt
+    - category: positive
+      note: an adverb attaches to the clause's event
+      text: "Yusra laughed loudly."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past}
+        - {t: manner, id: a1, event: "@v1", manner: loudly}
+      emitted:               # what the emitter produces (illustration; the emitter is the authority)
+        - "(Name sk_yusra_1 \"Yusra\")"
+        - "(Member sk_laugh_1 laugh)"
+        - "(Agent sk_laugh_1 sk_yusra_1)"
+        - "(Past sk_laugh_1)"
+        - "(Manner sk_laugh_1 loudly)"
+      declarations:
+        - "(: laugh Class)"
+        - "(: loudly Class)"
+        - "(: sk_laugh_1 Event)"
+        - "(: sk_yusra_1 Entity)"
+    - category: positive
+      note: a manner phrase by its head word
+      text: "Teodor read the letter with care."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, kind: letter, definite: true}
+        - {t: activity, id: v1, verb: read, actor: "@n1", patient: "@x1", tense: past}
+        - {t: manner, id: a1, event: "@v1", manner: care}
+    - category: abstain
+      text: "Yusra laughed in the barn."
+      expected: {abstain: true, template: location}                   # where, not how
+    - category: abstain
+      text: "Lamine sold the spindle on Monday."
+      expected: {abstain: true, template: time}                       # when, not how
+
+  held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      text: "Lamine waited patiently."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: activity, id: v1, verb: wait, actor: "@n1", tense: past}
+        - {t: manner, id: a1, event: "@v1", manner: patiently}
+    - category: positive
+      note: well is a manner word
+      text: "Ottoline sang well."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: activity, id: v1, verb: sing, actor: "@n1", tense: past}
+        - {t: manner, id: a1, event: "@v1", manner: well}
+    - category: positive
+      note: on a motion, beside its goal
+      text: "Teodor walked slowly to the market."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, kind: market, definite: true}
+        - {t: motion, id: m1, verb: walk, mover: "@n1", goal: "@x1", tense: past}
+        - {t: manner, id: a1, event: "@m1", manner: slowly}
+    - category: positive
+      note: alone is a manner word
+      text: "The ferret slept alone."
+      instances:
+        - {t: witness, id: x1, kind: ferret, definite: true}
+        - {t: activity, id: v1, verb: sleep, actor: "@x1", tense: past}
+        - {t: manner, id: a1, event: "@v1", manner: alone}
+    - category: positive
+      note: on a creation
+      text: "Yusra built the shed quickly."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, kind: shed, definite: true}
+        - {t: creation, id: e1, verb: build, creator: "@n1", product: "@x1", tense: past}
+        - {t: manner, id: a1, event: "@e1", manner: quickly}
+    - category: scoped
+      note: under clausal negation — the manner is denied with the event
+      text: "Yusra did not laugh loudly."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past}
+        - {t: manner, id: a1, event: "@v1", manner: loudly}
+        - {t: negation, id: s1, over: ["@v1"]}
+    - category: scoped
+      note: under a modal
+      text: "Lamine might work hard."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: activity, id: v1, verb: work, actor: "@n1", tense: present}
+        - {t: manner, id: a1, event: "@v1", manner: hard}
+        - {t: modal, id: s1, over: ["@v1"], head: Might, surface: might}
+    - category: scoped
+      note: inside a generalization
+      text: "Every ferret slept quietly."
+      instances:
+        - {t: range, id: q1, kind: ferret, quantifier: every, predicate: sleep}
+        - {t: activity, id: v1, verb: sleep, actor: "@q1", tense: past}
+        - {t: manner, id: a1, event: "@v1", manner: quietly}
+        - {t: generic, id: r1, ranges: ["@q1"], over: ["@v1"]}
+    - category: optional
+      note: a fronted adverb
+      text: "Quietly, the ferret slept."
+      instances:
+        - {t: witness, id: x1, kind: ferret, definite: true}
+        - {t: activity, id: v1, verb: sleep, actor: "@x1", tense: past}
+        - {t: manner, id: a1, event: "@v1", manner: quietly}
+    - category: abstain
+      text: "Yusra deeply distrusts Lamine."
+      expected: {abstain: true, template: psych}                      # a degree adverb, not a manner
+    - category: abstain
+      text: "Teodor arrived in 2019."
+      expected: {abstain: true, template: time}                       # when, not how
+    - category: abstain
+      text: "Lamine often laughed."
+      expected: {abstain: true, gap: G02, span: "often"}              # a frequency adverb: the adverb gap
+    - category: abstain
+      text: "Yusra probably left."
+      expected: {abstain: true, gap: G00, span: "probably"}           # a hedge

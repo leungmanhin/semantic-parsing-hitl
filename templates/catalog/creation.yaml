@@ -32,7 +32,8 @@ trigger:
     boundary says where each goes.
   surface_forms:
     - "<maker> V <thing made>"                      # Teodor built a shed
-    - "<maker> V <thing made> from / with / for …"  # a material, instrument or beneficiary phrase: no slot, reported
+    - "<maker> V <thing made> from <material>"      # a material phrase: no slot, reported
+    - "<maker> V <thing made> with / for …"         # an instrument or a beneficiary: an adjunct attachment
     - "<thing made> was V-ed by <maker>"            # passive: the roles do not change
     - "<thing made> was V-ed"                       # passive, maker unstated
   boundary:                   # looks like a creation but is not one
@@ -56,9 +57,9 @@ trigger:
       a state of composition or existence — the shed is made of planks, there is a shed: no
       event; a different construction
     - >-
-      a material, instrument, companion or beneficiary phrase — from planks, with a chisel, with
-      Yusra, for Teodor: an attachment with no slot here; the creation is parsed, the phrase
-      reported as unmapped
+      an instrument, a companion or a beneficiary phrase — with a chisel, with Yusra, for Teodor:
+      an adjunct attachment on the creation event; a material phrase — from planks — has no slot
+      and is reported as unmapped
 
 slots:
   id:      {type: id, required: true, doc: "your label for the creation event"}

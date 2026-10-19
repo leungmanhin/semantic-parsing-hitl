@@ -1,0 +1,101 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "57c0a2cf118bc64251ee1dc4f10535ec1900e8fb5354bff54b546c18457f758b",
+  "item": {
+    "id": "s8f9042c990",
+    "text": "With a knife, Lamine cut the loaf."
+  },
+  "usage": {
+    "input": 33508,
+    "output": 178,
+    "thinking": null,
+    "total": 33686,
+    "cached": 31459,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 33508,
+    "candidatesTokenCount": 178,
+    "totalTokenCount": 33686,
+    "cachedContentTokenCount": 31459,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 33508
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 31459
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 178
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s8f9042c990\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"knife\"}, {\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x2\", \"kind\": \"loaf\", \"definite\": true}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"cut\", \"actor\": \"@n1\", \"patient\": \"@x2\", \"tense\": \"past\"}, {\"t\": \"adjunct\", \"id\": \"a1\", \"event\": \"@e1\", \"participant\": \"@x1\", \"head\": \"Instrument\", \"preposition\": \"with\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s8f9042c990",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "knife"
+      },
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine"
+      },
+      {
+        "t": "witness",
+        "id": "x2",
+        "kind": "loaf",
+        "definite": true
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "cut",
+        "actor": "@n1",
+        "patient": "@x2",
+        "tense": "past"
+      },
+      {
+        "t": "adjunct",
+        "id": "a1",
+        "event": "@e1",
+        "participant": "@x1",
+        "head": "Instrument",
+        "preposition": "with"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "55732af26869bbaa55169fc16db0ed85110798ac0721bfbdda732a93ff4b5fd0",
+  "run": 3,
+  "case": {
+    "template": "adjunct",
+    "section": "held_out",
+    "index": 7,
+    "category": "optional",
+    "text": "With a knife, Lamine cut the loaf.",
+    "key": "8f9042c990"
+  }
+}

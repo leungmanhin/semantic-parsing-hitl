@@ -1,0 +1,88 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "57c0a2cf118bc64251ee1dc4f10535ec1900e8fb5354bff54b546c18457f758b",
+  "item": {
+    "id": "s3fac7e7577",
+    "text": "The ferret slept alone."
+  },
+  "usage": {
+    "input": 33501,
+    "output": 114,
+    "thinking": null,
+    "total": 33615,
+    "cached": 31452,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 33501,
+    "candidatesTokenCount": 114,
+    "totalTokenCount": 33615,
+    "cachedContentTokenCount": 31452,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 33501
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 31452
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 114
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s3fac7e7577\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"ferret\", \"definite\": true}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"sleep\", \"actor\": \"@x1\", \"tense\": \"past\"}, {\"t\": \"manner\", \"id\": \"a1\", \"event\": \"@e1\", \"manner\": \"alone\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s3fac7e7577",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "ferret",
+        "definite": true
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "sleep",
+        "actor": "@x1",
+        "tense": "past"
+      },
+      {
+        "t": "manner",
+        "id": "a1",
+        "event": "@e1",
+        "manner": "alone"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "55732af26869bbaa55169fc16db0ed85110798ac0721bfbdda732a93ff4b5fd0",
+  "run": 3,
+  "case": {
+    "template": "manner",
+    "section": "held_out",
+    "index": 3,
+    "category": "positive",
+    "text": "The ferret slept alone.",
+    "key": "3fac7e7577"
+  }
+}

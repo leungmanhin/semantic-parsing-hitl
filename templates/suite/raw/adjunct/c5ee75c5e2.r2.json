@@ -1,0 +1,103 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "57c0a2cf118bc64251ee1dc4f10535ec1900e8fb5354bff54b546c18457f758b",
+  "item": {
+    "id": "sc5ee75c5e2",
+    "text": "Yusra might dance with Lamine."
+  },
+  "usage": {
+    "input": 33504,
+    "output": 182,
+    "thinking": null,
+    "total": 33686,
+    "cached": 31455,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 33504,
+    "candidatesTokenCount": 182,
+    "totalTokenCount": 33686,
+    "cachedContentTokenCount": 31455,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 33504
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 31455
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 182
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sc5ee75c5e2\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Lamine\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"dance\", \"actor\": \"@n1\", \"tense\": \"present\"}, {\"t\": \"modal\", \"id\": \"s1\", \"over\": [\"@e1\"], \"head\": \"Might\", \"surface\": \"might\"}, {\"t\": \"adjunct\", \"id\": \"a1\", \"event\": \"@e1\", \"participant\": \"@n2\", \"head\": \"CoAgent\", \"preposition\": \"with\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sc5ee75c5e2",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Lamine"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "dance",
+        "actor": "@n1",
+        "tense": "present"
+      },
+      {
+        "t": "modal",
+        "id": "s1",
+        "over": [
+          "@e1"
+        ],
+        "head": "Might",
+        "surface": "might"
+      },
+      {
+        "t": "adjunct",
+        "id": "a1",
+        "event": "@e1",
+        "participant": "@n2",
+        "head": "CoAgent",
+        "preposition": "with"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "55732af26869bbaa55169fc16db0ed85110798ac0721bfbdda732a93ff4b5fd0",
+  "run": 2,
+  "case": {
+    "template": "adjunct",
+    "section": "held_out",
+    "index": 6,
+    "category": "scoped",
+    "text": "Yusra might dance with Lamine.",
+    "key": "c5ee75c5e2"
+  }
+}

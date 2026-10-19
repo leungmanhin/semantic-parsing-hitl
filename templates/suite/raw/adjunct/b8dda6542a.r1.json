@@ -1,0 +1,88 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "57c0a2cf118bc64251ee1dc4f10535ec1900e8fb5354bff54b546c18457f758b",
+  "item": {
+    "id": "sb8dda6542a",
+    "text": "The quilt was washed by Yusra."
+  },
+  "usage": {
+    "input": 33503,
+    "output": 117,
+    "thinking": null,
+    "total": 33620,
+    "cached": 89,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 33503,
+    "candidatesTokenCount": 117,
+    "totalTokenCount": 33620,
+    "cachedContentTokenCount": 89,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 33503
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 89
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 117
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sb8dda6542a\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"quilt\", \"definite\": true}, {\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"wash\", \"actor\": \"@n1\", \"patient\": \"@x1\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sb8dda6542a",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "quilt",
+        "definite": true
+      },
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "wash",
+        "actor": "@n1",
+        "patient": "@x1",
+        "tense": "past"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "55732af26869bbaa55169fc16db0ed85110798ac0721bfbdda732a93ff4b5fd0",
+  "run": 1,
+  "case": {
+    "template": "adjunct",
+    "section": "held_out",
+    "index": 8,
+    "category": "abstain",
+    "text": "The quilt was washed by Yusra.",
+    "key": "b8dda6542a"
+  }
+}

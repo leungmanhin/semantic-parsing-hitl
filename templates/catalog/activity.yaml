@@ -49,8 +49,9 @@ trigger:
       an infinitival or gerund complement — tried to sleep, stopped working, kept singing: a
       different construction
     - >-
-      a companion or an instrument phrase — danced with Yusra, cut it with a knife: an
-      attachment with no slot here; the action is parsed, the phrase reported as unmapped
+      a companion, an instrument, a beneficiary or a manner phrase — danced with Yusra, cut it
+      with a knife, baked it for Teodor, laughed loudly: attachments with their own templates
+      (adjunct, manner); the action is parsed, the phrase attaches to it
 
 slots:
   id:      {type: id, required: true, doc: "your label for the action"}
@@ -149,14 +150,20 @@ examples:
         - {t: named-entity, id: n2, name: "Ottoline"}
         - {t: activity, id: v1, verb: help, actor: "@n1", patient: "@n2", tense: past}
     - category: positive
-      note: a companion phrase is an attachment with no slot — the action is parsed, the phrase reported
+      note: a companion phrase is an adjunct attachment — the action is parsed, the companion attaches to it
       text: "Lamine danced with Yusra."
       instances:
         - {t: named-entity, id: n1, name: "Lamine"}
         - {t: named-entity, id: n2, name: "Yusra"}
         - {t: activity, id: v1, verb: dance, actor: "@n1", tense: past}
-      unmapped:
-        - {code: G00, span: "with Yusra"}
+        - {t: adjunct, id: a1, event: "@v1", participant: "@n2", head: CoAgent, preposition: with}
+    - category: positive
+      note: a passive with a by-phrase — the by-phrase is the actor, not an instrument
+      text: "The quilt was washed by Yusra."
+      instances:
+        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: activity, id: v1, verb: wash, actor: "@n1", patient: "@x1", tense: past}
     - category: scoped
       note: under clausal negation
       text: "Teodor did not laugh."

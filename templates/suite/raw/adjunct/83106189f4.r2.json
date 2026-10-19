@@ -1,0 +1,108 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "57c0a2cf118bc64251ee1dc4f10535ec1900e8fb5354bff54b546c18457f758b",
+  "item": {
+    "id": "s83106189f4",
+    "text": "Lamine did not cut the loaf with a knife."
+  },
+  "usage": {
+    "input": 33509,
+    "output": 199,
+    "thinking": null,
+    "total": 33708,
+    "cached": 31460,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 33509,
+    "candidatesTokenCount": 199,
+    "totalTokenCount": 33708,
+    "cachedContentTokenCount": 31460,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 33509
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 31460
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 199
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s83106189f4\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"loaf\", \"definite\": true}, {\"t\": \"witness\", \"id\": \"x2\", \"kind\": \"knife\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"cut\", \"actor\": \"@n1\", \"patient\": \"@x1\", \"tense\": \"past\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@e1\"]}, {\"t\": \"adjunct\", \"id\": \"a1\", \"event\": \"@e1\", \"participant\": \"@x2\", \"head\": \"Instrument\", \"preposition\": \"with\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s83106189f4",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "loaf",
+        "definite": true
+      },
+      {
+        "t": "witness",
+        "id": "x2",
+        "kind": "knife"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "cut",
+        "actor": "@n1",
+        "patient": "@x1",
+        "tense": "past"
+      },
+      {
+        "t": "negation",
+        "id": "s1",
+        "over": [
+          "@e1"
+        ]
+      },
+      {
+        "t": "adjunct",
+        "id": "a1",
+        "event": "@e1",
+        "participant": "@x2",
+        "head": "Instrument",
+        "preposition": "with"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "55732af26869bbaa55169fc16db0ed85110798ac0721bfbdda732a93ff4b5fd0",
+  "run": 2,
+  "case": {
+    "template": "adjunct",
+    "section": "held_out",
+    "index": 5,
+    "category": "scoped",
+    "text": "Lamine did not cut the loaf with a knife.",
+    "key": "83106189f4"
+  }
+}

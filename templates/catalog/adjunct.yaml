@@ -1,0 +1,212 @@
+# Template: adjunct  (an instrument, a companion or a beneficiary of an event)
+#
+# A with-, by- or for-phrase that adds a participant to a clause without being one of its core
+# roles: the tool, substance or means the action is done with or by (Instrument), the animate
+# co-participant it is done with (CoAgent), the party it is done for the benefit of (Beneficiary).
+# The phrase attaches to the clause's event as (Instrument event x), (CoAgent event x) or
+# (Beneficiary event x), and travels with the event into a negation, a modal or a rule. A
+# by-phrase naming who did a passive's action, a for-phrase naming a price, a duration or a
+# purpose, and a with-phrase inside a noun phrase are not adjunct roles.
+
+id: adjunct
+family: attachment
+kind: attachment
+title: An instrument, a companion or a beneficiary of an event
+status: draft
+
+trigger:
+  construction: >
+    A prepositional phrase adding a participant to the clause's event: with, by, using or by means
+    of a tool, substance or means (cut the loaf with a knife, travelled by train, washed it with
+    soap) — an Instrument; with, together with or alongside a person or animal who takes part
+    (danced with Yusra, worked with Bo) — a CoAgent; for or on behalf of a party the event is done
+    for the benefit of (baked a loaf for Teodor, doubled for Nelson) — a Beneficiary. The event is
+    parsed with its own template; the adjunct instance names that event, the participant and the
+    role. One instance per phrase.
+  surface_forms:
+    - "<clause> with <tool or substance>"            # cut the loaf with a knife
+    - "<clause> by <means>"                          # travelled by train
+    - "<clause> with <person>"                       # danced with Yusra
+    - "<clause> for <person>"                        # baked a loaf for Teodor
+    - "<phrase>, <clause>"                           # With a knife, Lamine cut the loaf
+  boundary:                   # looks like an adjunct role but is not one
+    - >-
+      the by-phrase of a passive — the quilt was washed by Yusra: the one who did it, the clause's
+      own actor, not an instrument
+    - >-
+      the recipient of a transfer or a communication — gave a thermos to Yusra, told the news to
+      Lamine: the template's own recipient slot
+    - >-
+      a for-phrase naming a price, an exchange, a duration or a purpose — bought the quilt for forty
+      euros, worked for six hours, left for the market, a machine for polishing: no beneficiary;
+      report the phrase as unmapped (a destination is the motion's goal)
+    - >-
+      a with-phrase that says how — with care, with difficulty: a manner
+    - >-
+      a with-phrase inside a noun phrase — the man with the hat, a thermos with a dent: a
+      property of that thing; report the phrase as unmapped
+    - >-
+      with meaning because of or full of — red with blood, teeming with spiders: a state or a
+      cause; report the phrase as unmapped
+    - >-
+      a coordinated subject — Teodor and Yusra danced: one instance per conjunct, no companion
+    - >-
+      a material — built a shed from planks: no slot here; reported as unmapped
+
+slots:
+  id:          {type: id, required: true, doc: "your label for the attachment (a1, a2 …)"}
+  event:       {type: filler, class: Event, attaches: true, required: true,
+                doc: "the predication the phrase attaches to: the id of the clause's event instance"}
+  participant: {type: filler, class: Entity, required: true,
+                doc: "the added participant: a referent id (a witness for a knife, a name for Yusra) or a bare lemma for a kind-level one (by train, with soap)"}
+  head:        {type: enum, values: [Instrument, CoAgent, Beneficiary], required: true,
+                doc: "Instrument for a tool, substance or means; CoAgent for a person or animal taking part; Beneficiary for the party the event is done for"}
+  preposition: {type: string, required: true, doc: "the preposition as written (with, by, for, using, together_with, on_behalf_of)"}
+
+emits:
+  - atom: "({head} {event} {participant})"
+
+notes:
+  - >-
+    The role is a judgement of sense, not of the preposition: with a knife is an instrument, with
+    Yusra a companion, with care a manner; the preposition is kept as written beside the choice.
+  - >-
+    An attachment has no symbol of its own: its atom is rendered wherever its event is rendered,
+    inside a negation or a modal over the clause and inside a rule.
+
+depends_on: [named-entity, witness]
+composes_with: [negation, modal, generic, distribution]
+
+examples:
+  shown:                     # rendered into the prompt
+    - category: positive
+      note: a tool is an instrument
+      text: "Lamine cut the loaf with a knife."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: x1, kind: loaf, definite: true}
+        - {t: witness, id: x2, kind: knife}
+        - {t: activity, id: v1, verb: cut, actor: "@n1", patient: "@x1", tense: past}
+        - {t: adjunct, id: a1, event: "@v1", participant: "@x2", head: Instrument, preposition: with}
+      emitted:               # what the emitter produces (illustration; the emitter is the authority)
+        - "(Name sk_lamine_1 \"Lamine\")"
+        - "(Member sk_loaf_1 loaf)"
+        - "(Member sk_knife_1 knife)"
+        - "(Member sk_cut_1 cut)"
+        - "(Agent sk_cut_1 sk_lamine_1)"
+        - "(Patient sk_cut_1 sk_loaf_1)"
+        - "(Past sk_cut_1)"
+        - "(Instrument sk_cut_1 sk_knife_1)"
+      declarations:
+        - "(: cut Class)"
+        - "(: knife Class)"
+        - "(: loaf Class)"
+        - "(: sk_cut_1 Event)"
+        - "(: sk_knife_1 Entity)"
+        - "(: sk_lamine_1 Entity)"
+        - "(: sk_loaf_1 Entity)"
+    - category: positive
+      note: a person taking part is a companion
+      text: "Teodor sang with Ottoline."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: named-entity, id: n2, name: "Ottoline"}
+        - {t: activity, id: v1, verb: sing, actor: "@n1", tense: past}
+        - {t: adjunct, id: a1, event: "@v1", participant: "@n2", head: CoAgent, preposition: with}
+    - category: positive
+      note: the party something is done for
+      text: "Yusra baked a loaf for Teodor."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, kind: loaf}
+        - {t: named-entity, id: n2, name: "Teodor"}
+        - {t: creation, id: e1, verb: bake, creator: "@n1", product: "@x1", tense: past}
+        - {t: adjunct, id: a1, event: "@e1", participant: "@n2", head: Beneficiary, preposition: for}
+    - category: abstain
+      text: "Teodor gave Yusra a thermos."
+      expected: {abstain: true, template: transfer}                   # a recipient, not a beneficiary
+    - category: abstain
+      text: "Yusra laughed in the barn."
+      expected: {abstain: true, template: location}                   # a place
+    - category: abstain
+      text: "Teodor read the letter with care."
+      expected: {abstain: true, template: manner}                     # how, not with what
+
+  held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      text: "Lamine danced with Yusra."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: named-entity, id: n2, name: "Yusra"}
+        - {t: activity, id: v1, verb: dance, actor: "@n1", tense: past}
+        - {t: adjunct, id: a1, event: "@v1", participant: "@n2", head: CoAgent, preposition: with}
+    - category: positive
+      note: a means by "by" — a kind-level participant as a bare lemma
+      text: "Teodor travelled by train."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: motion, id: m1, verb: travel, mover: "@n1", tense: past}
+        - {t: adjunct, id: a1, event: "@m1", participant: train, head: Instrument, preposition: by}
+    - category: positive
+      note: a substance is an instrument
+      text: "The quilt was washed with soap."
+      instances:
+        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: activity, id: v1, verb: wash, patient: "@x1", tense: past}
+        - {t: adjunct, id: a1, event: "@v1", participant: soap, head: Instrument, preposition: with}
+    - category: positive
+      note: an instrument on a creation
+      text: "Ottoline wrote the letter with a pen."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: witness, id: x1, kind: letter, definite: true}
+        - {t: witness, id: x2, kind: pen}
+        - {t: creation, id: e1, verb: write, creator: "@n1", product: "@x1", tense: past}
+        - {t: adjunct, id: a1, event: "@e1", participant: "@x2", head: Instrument, preposition: with}
+    - category: positive
+      note: a beneficiary on a transfer, beside the recipient
+      text: "Lamine sold the spindle to Teodor for Yusra."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: x1, kind: spindle, definite: true}
+        - {t: named-entity, id: n2, name: "Teodor"}
+        - {t: named-entity, id: n3, name: "Yusra"}
+        - {t: transfer, id: e1, verb: sell, giver: "@n1", object: "@x1", recipient: "@n2", tense: past}
+        - {t: adjunct, id: a1, event: "@e1", participant: "@n3", head: Beneficiary, preposition: for}
+    - category: scoped
+      note: under clausal negation — the instrument is denied with the event
+      text: "Lamine did not cut the loaf with a knife."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: x1, kind: loaf, definite: true}
+        - {t: witness, id: x2, kind: knife}
+        - {t: activity, id: v1, verb: cut, actor: "@n1", patient: "@x1", tense: past}
+        - {t: adjunct, id: a1, event: "@v1", participant: "@x2", head: Instrument, preposition: with}
+        - {t: negation, id: s1, over: ["@v1"]}
+    - category: scoped
+      note: under a modal
+      text: "Yusra might dance with Lamine."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: activity, id: v1, verb: dance, actor: "@n1", tense: present}
+        - {t: adjunct, id: a1, event: "@v1", participant: "@n2", head: CoAgent, preposition: with}
+        - {t: modal, id: s1, over: ["@v1"], head: Might, surface: might}
+    - category: optional
+      note: a fronted phrase
+      text: "With a knife, Lamine cut the loaf."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: x1, kind: knife}
+        - {t: witness, id: x2, kind: loaf, definite: true}
+        - {t: activity, id: v1, verb: cut, actor: "@n1", patient: "@x2", tense: past}
+        - {t: adjunct, id: a1, event: "@v1", participant: "@x1", head: Instrument, preposition: with}
+    - category: abstain
+      text: "The quilt was washed by Yusra."
+      expected: {abstain: true, template: activity}                   # the by-phrase is the actor
+    - category: abstain
+      text: "Ottoline bought the quilt for forty euros."
+      expected: {abstain: true, template: acquisition}                # a price, not a beneficiary
+    - category: abstain
+      text: "Lamine worked for six hours."
+      expected: {abstain: true, gap: G00, span: "for six hours"}      # a duration

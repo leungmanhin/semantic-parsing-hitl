@@ -1,0 +1,87 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "1d222d0cef42ea41597077c079a342d34e81c08048db53bf998fc833807a7753",
+  "item": {
+    "id": "s690bb21a66",
+    "text": "Lamine often laughed."
+  },
+  "usage": {
+    "input": 33518,
+    "output": 111,
+    "thinking": null,
+    "total": 33629,
+    "cached": 31469,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 33518,
+    "candidatesTokenCount": 111,
+    "totalTokenCount": 33629,
+    "cachedContentTokenCount": 31469,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 33518
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 31469
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 111
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s690bb21a66\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"laugh\", \"actor\": \"@n1\", \"tense\": \"past\"}], \"unmapped\": [{\"span\": \"often\", \"code\": \"G02\", \"construction\": \"A frequency adverb modifying the verb.\"}], \"issues\": []}",
+  "response": {
+    "id": "s690bb21a66",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "laugh",
+        "actor": "@n1",
+        "tense": "past"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "often",
+        "code": "G02",
+        "construction": "A frequency adverb modifying the verb."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "11f4b54bfb570c51c864b0df3d73d7ef4191fa6000e1ad5b04b5cb034e32080b",
+  "run": 3,
+  "case": {
+    "template": "manner",
+    "section": "held_out",
+    "index": 11,
+    "category": "abstain",
+    "text": "Lamine often laughed.",
+    "key": "690bb21a66"
+  }
+}

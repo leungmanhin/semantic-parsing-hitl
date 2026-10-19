@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 d03c79d39f74fc14 · 27 templates
+catalog sha256 c9f086e99a979ad8 · 29 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -139,7 +139,7 @@ Codes:
 - G00: anything no template here covers and no other code names
 - G01: a comparative with no stated standard ('a sturdier bracket', 'prices ended lower')
 - G02: an adverb with no slot: sequence (initially, eventually, finally), scope or domain
-  (nationally, locally), degree on a verb (sharply, slightly)
+  (nationally, locally), degree on a verb (sharply, slightly), frequency (often, always, twice)
 - G03: a post-nominal tag on a name (a party or district tag, a ticker, a bracketed code)
 - G04: an irrealis relative clause or a lone would-have consequent ('the bridge that would have
   collapsed')
@@ -566,8 +566,9 @@ Not this template:
   carries the event
 - an infinitival or gerund complement — tried to sleep, stopped working, kept singing: a
   different construction
-- a companion or an instrument phrase — danced with Yusra, cut it with a knife: an attachment
-  with no slot here; the action is parsed, the phrase reported as unmapped
+- a companion, an instrument, a beneficiary or a manner phrase — danced with Yusra, cut it with
+  a knife, baked it for Teodor, laughed loudly: attachments with their own templates (adjunct,
+  manner); the action is parsed, the phrase attaches to it
 
 Slots:
 
@@ -1083,7 +1084,8 @@ boundary says where each goes.
 
 Forms:
 - <maker> V <thing made>
-- <maker> V <thing made> from / with / for …
+- <maker> V <thing made> from <material>
+- <maker> V <thing made> with / for …
 - <thing made> was V-ed by <maker>
 - <thing made> was V-ed
 
@@ -1101,8 +1103,8 @@ Not this template:
   a different construction
 - a state of composition or existence — the shed is made of planks, there is a shed: no event; a
   different construction
-- a material, instrument, companion or beneficiary phrase — from planks, with a chisel, with
-  Yusra, for Teodor: an attachment with no slot here; the creation is parsed, the phrase
+- an instrument, a companion or a beneficiary phrase — with a chisel, with Yusra, for Teodor: an
+  adjunct attachment on the creation event; a material phrase — from planks — has no slot and is
   reported as unmapped
 
 Slots:
@@ -1665,8 +1667,8 @@ Not this template:
   with a property, not a verb of this class
 - perception — saw the ferret, heard the news: perceiving something, not feeling something about
   it
-- a degree or manner adverb on the verb (deeply distrusts, really likes): the state is parsed;
-  the adverb has no slot and is reported as unmapped
+- a degree adverb on the verb (deeply distrusts, really likes): the state is parsed; the adverb
+  has no slot and is reported as unmapped — a manner adverb is a manner attachment
 
 Slots:
 
@@ -1911,6 +1913,126 @@ The program renders these instances as:
 
 ## Attachments — time, place, measure, particles
 
+### adjunct — An instrument, a companion or a beneficiary of an event
+
+When: A prepositional phrase adding a participant to the clause's event: with, by, using or by
+means of a tool, substance or means (cut the loaf with a knife, travelled by train, washed it
+with soap) — an Instrument; with, together with or alongside a person or animal who takes part
+(danced with Yusra, worked with Bo) — a CoAgent; for or on behalf of a party the event is done
+for the benefit of (baked a loaf for Teodor, doubled for Nelson) — a Beneficiary. The event is
+parsed with its own template; the adjunct instance names that event, the participant and the
+role. One instance per phrase.
+
+Forms:
+- <clause> with <tool or substance>
+- <clause> by <means>
+- <clause> with <person>
+- <clause> for <person>
+- <phrase>, <clause>
+
+Not this template:
+- the by-phrase of a passive — the quilt was washed by Yusra: the one who did it, the clause's
+  own actor, not an instrument
+- the recipient of a transfer or a communication — gave a thermos to Yusra, told the news to
+  Lamine: the template's own recipient slot
+- a for-phrase naming a price, an exchange, a duration or a purpose — bought the quilt for forty
+  euros, worked for six hours, left for the market, a machine for polishing: no beneficiary;
+  report the phrase as unmapped (a destination is the motion's goal)
+- a with-phrase that says how — with care, with difficulty: a manner
+- a with-phrase inside a noun phrase — the man with the hat, a thermos with a dent: a property
+  of that thing; report the phrase as unmapped
+- with meaning because of or full of — red with blood, teeming with spiders: a state or a cause;
+  report the phrase as unmapped
+- a coordinated subject — Teodor and Yusra danced: one instance per conjunct, no companion
+- a material — built a shed from planks: no slot here; reported as unmapped
+
+Slots:
+
+- `t` (required): "adjunct"
+- `id` (required; your label for this instance): your label for the attachment (a1, a2 …).
+- `event` (required; "@id" of the predication instance this attaches to): the predication the
+  phrase attaches to: the id of the clause's event instance.
+- `participant` (required; "@id" of a referent instance, or a bare lemma for a non-specific
+  filler): the added participant: a referent id (a witness for a knife, a name for Yusra) or a
+  bare lemma for a kind-level one (by train, with soap).
+- `head` (required; one of: Instrument, CoAgent, Beneficiary): Instrument for a tool, substance
+  or means; CoAgent for a person or animal taking part; Beneficiary for the party the event is
+  done for.
+- `preposition` (required; a string): the preposition as written (with, by, for, using,
+  together_with, on_behalf_of).
+
+Example (a tool is an instrument). TEXT: Lamine cut the loaf with a knife.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Lamine"},
+      {"t": "witness", "id": "x1", "kind": "loaf", "definite": true},
+      {"t": "witness", "id": "x2", "kind": "knife"},
+      {"t": "activity", "id": "v1", "verb": "cut", "actor": "@n1", "patient": "@x1", "tense": "past"},
+      {"t": "adjunct", "id": "a1", "event": "@v1", "participant": "@x2", "head": "Instrument", "preposition": "with"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_lamine_1 "Lamine")
+    (Member sk_loaf_1 loaf)
+    (Member sk_knife_1 knife)
+    (Member sk_cut_1 cut)
+    (Agent sk_cut_1 sk_lamine_1)
+    (Patient sk_cut_1 sk_loaf_1)
+    (Past sk_cut_1)
+    (Instrument sk_cut_1 sk_knife_1)
+
+Example (a person taking part is a companion). TEXT: Teodor sang with Ottoline.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Teodor"},
+      {"t": "named-entity", "id": "n2", "name": "Ottoline"},
+      {"t": "activity", "id": "v1", "verb": "sing", "actor": "@n1", "tense": "past"},
+      {"t": "adjunct", "id": "a1", "event": "@v1", "participant": "@n2", "head": "CoAgent", "preposition": "with"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_teodor_1 "Teodor")
+    (Name sk_ottoline_1 "Ottoline")
+    (Member sk_sing_1 sing)
+    (Agent sk_sing_1 sk_teodor_1)
+    (Past sk_sing_1)
+    (CoAgent sk_sing_1 sk_ottoline_1)
+
+Example (the party something is done for). TEXT: Yusra baked a loaf for Teodor.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Yusra"},
+      {"t": "witness", "id": "x1", "kind": "loaf"},
+      {"t": "named-entity", "id": "n2", "name": "Teodor"},
+      {"t": "creation", "id": "e1", "verb": "bake", "creator": "@n1", "product": "@x1", "tense": "past"},
+      {"t": "adjunct", "id": "a1", "event": "@e1", "participant": "@n2", "head": "Beneficiary", "preposition": "for"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_yusra_1 "Yusra")
+    (Member sk_loaf_1 loaf)
+    (Name sk_teodor_1 "Teodor")
+    (Member sk_bake_1 bake)
+    (Agent sk_bake_1 sk_yusra_1)
+    (Patient sk_bake_1 sk_loaf_1)
+    (Past sk_bake_1)
+    (Beneficiary sk_bake_1 sk_teodor_1)
+
+Not this template. TEXT: Teodor gave Yusra a thermos. — use `transfer`.
+
+Not this template. TEXT: Yusra laughed in the barn. — use `location`.
+
+Not this template. TEXT: Teodor read the letter with care. — use `manner`.
+
 ### location — The place where an event takes place
 
 When: A prepositional phrase naming the place where the clause's event takes place: in / at / on
@@ -2000,6 +2122,87 @@ Not this template. TEXT: Yusra went to the market. — use `motion`.
 Not this template. TEXT: Ottoline took the envelope from Lamine. — use `acquisition`.
 
 Not this template. TEXT: The ledger is on the workbench. — use `locative`.
+
+### manner — How an event is done
+
+When: An adverb or an adverbial phrase saying how the clause's event is done: loudly, quietly,
+carefully, slowly, quickly, patiently, well, badly, hard, alone, together, by hand, with care,
+in a hurry. The event is parsed with its own template; the manner instance names that event and
+records the adverb as written (a phrase by its head word: with care → carefully is wrong, record
+care; in a hurry → hurry). One instance per manner expression.
+
+Forms:
+- <clause> <adverb>
+- <adverb>, <clause>
+- <clause> with <manner noun>
+
+Not this template:
+- a degree adverb — deeply distrusts, really likes, very, sharply, slightly: how much, not how;
+  reported as unmapped
+- a frequency adverb — often, always, twice, every day: how often; reported as unmapped (the
+  adverb gap)
+- a sequence or time adverb — finally, eventually, initially, later, now, yesterday: when; a
+  time or a gap
+- a domain or scope adverb — nationally, internationally, locally: reported as unmapped
+- a hedge or an evaluation — probably, certainly, unfortunately, luckily: the speaker's stance;
+  reported as unmapped
+- a direction particle — climbed back, went away, came out: part of the motion's path; reported
+  as unmapped
+- an instrument or a companion phrase — with a knife, with Yusra: an adjunct role, not a manner
+- an adjective on a copular clause — is loud, was careful: a copular predication, not an adverb
+  on an event
+
+Slots:
+
+- `t` (required): "manner"
+- `id` (required; your label for this instance): your label for the attachment (a1, a2 …).
+- `event` (required; "@id" of the predication instance this attaches to): the predication the
+  manner attaches to: the id of the clause's event instance.
+- `manner` (required; a lemma): the adverb as written, lowercase (loudly, carefully, well,
+  alone); a phrase by its head word (with care → care).
+
+Example (an adverb attaches to the clause's event). TEXT: Yusra laughed loudly.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Yusra"},
+      {"t": "activity", "id": "v1", "verb": "laugh", "actor": "@n1", "tense": "past"},
+      {"t": "manner", "id": "a1", "event": "@v1", "manner": "loudly"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_yusra_1 "Yusra")
+    (Member sk_laugh_1 laugh)
+    (Agent sk_laugh_1 sk_yusra_1)
+    (Past sk_laugh_1)
+    (Manner sk_laugh_1 loudly)
+
+Example (a manner phrase by its head word). TEXT: Teodor read the letter with care.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Teodor"},
+      {"t": "witness", "id": "x1", "kind": "letter", "definite": true},
+      {"t": "activity", "id": "v1", "verb": "read", "actor": "@n1", "patient": "@x1", "tense": "past"},
+      {"t": "manner", "id": "a1", "event": "@v1", "manner": "care"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_teodor_1 "Teodor")
+    (Member sk_letter_1 letter)
+    (Member sk_read_1 read)
+    (Agent sk_read_1 sk_teodor_1)
+    (Patient sk_read_1 sk_letter_1)
+    (Past sk_read_1)
+    (Manner sk_read_1 care)
+
+Not this template. TEXT: Yusra laughed in the barn. — use `location`.
+
+Not this template. TEXT: Lamine sold the spindle on Monday. — use `time`.
 
 ### time — The time at which an event takes place
 

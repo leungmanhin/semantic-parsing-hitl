@@ -1,0 +1,87 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "57c0a2cf118bc64251ee1dc4f10535ec1900e8fb5354bff54b546c18457f758b",
+  "item": {
+    "id": "s6671baa77f",
+    "text": "Lamine waited patiently."
+  },
+  "usage": {
+    "input": 33501,
+    "output": 112,
+    "thinking": null,
+    "total": 33613,
+    "cached": 31406,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 33501,
+    "candidatesTokenCount": 112,
+    "totalTokenCount": 33613,
+    "cachedContentTokenCount": 31406,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 33501
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 31406
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 112
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s6671baa77f\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"wait\", \"actor\": \"@n1\", \"tense\": \"past\"}, {\"t\": \"manner\", \"id\": \"a1\", \"event\": \"@e1\", \"manner\": \"patiently\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s6671baa77f",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "wait",
+        "actor": "@n1",
+        "tense": "past"
+      },
+      {
+        "t": "manner",
+        "id": "a1",
+        "event": "@e1",
+        "manner": "patiently"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "55732af26869bbaa55169fc16db0ed85110798ac0721bfbdda732a93ff4b5fd0",
+  "run": 1,
+  "case": {
+    "template": "manner",
+    "section": "held_out",
+    "index": 0,
+    "category": "positive",
+    "text": "Lamine waited patiently.",
+    "key": "6671baa77f"
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "57c0a2cf118bc64251ee1dc4f10535ec1900e8fb5354bff54b546c18457f758b",
+  "item": {
+    "id": "s1dc1ac1f6b",
+    "text": "Ottoline sang well."
+  },
+  "usage": {
+    "input": 33501,
+    "output": 111,
+    "thinking": null,
+    "total": 33612,
+    "cached": 31452,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 33501,
+    "candidatesTokenCount": 111,
+    "totalTokenCount": 33612,
+    "cachedContentTokenCount": 31452,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 33501
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 31452
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 111
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s1dc1ac1f6b\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"sing\", \"actor\": \"@n1\", \"tense\": \"past\"}, {\"t\": \"manner\", \"id\": \"a1\", \"event\": \"@e1\", \"manner\": \"well\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s1dc1ac1f6b",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Ottoline"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "sing",
+        "actor": "@n1",
+        "tense": "past"
+      },
+      {
+        "t": "manner",
+        "id": "a1",
+        "event": "@e1",
+        "manner": "well"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "55732af26869bbaa55169fc16db0ed85110798ac0721bfbdda732a93ff4b5fd0",
+  "run": 1,
+  "case": {
+    "template": "manner",
+    "section": "held_out",
+    "index": 1,
+    "category": "positive",
+    "text": "Ottoline sang well.",
+    "key": "1dc1ac1f6b"
+  }
+}

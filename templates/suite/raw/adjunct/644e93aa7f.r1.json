@@ -1,0 +1,89 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "57c0a2cf118bc64251ee1dc4f10535ec1900e8fb5354bff54b546c18457f758b",
+  "item": {
+    "id": "s644e93aa7f",
+    "text": "Teodor travelled by train."
+  },
+  "usage": {
+    "input": 33503,
+    "output": 126,
+    "thinking": null,
+    "total": 33629,
+    "cached": 31453,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 33503,
+    "candidatesTokenCount": 126,
+    "totalTokenCount": 33629,
+    "cachedContentTokenCount": 31453,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 33503
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 31453
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 126
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s644e93aa7f\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"motion\", \"id\": \"e1\", \"verb\": \"travel\", \"mover\": \"@n1\", \"tense\": \"past\"}, {\"t\": \"adjunct\", \"id\": \"a1\", \"event\": \"@e1\", \"participant\": \"train\", \"head\": \"Instrument\", \"preposition\": \"by\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s644e93aa7f",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor"
+      },
+      {
+        "t": "motion",
+        "id": "e1",
+        "verb": "travel",
+        "mover": "@n1",
+        "tense": "past"
+      },
+      {
+        "t": "adjunct",
+        "id": "a1",
+        "event": "@e1",
+        "participant": "train",
+        "head": "Instrument",
+        "preposition": "by"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "55732af26869bbaa55169fc16db0ed85110798ac0721bfbdda732a93ff4b5fd0",
+  "run": 1,
+  "case": {
+    "template": "adjunct",
+    "section": "held_out",
+    "index": 1,
+    "category": "positive",
+    "text": "Teodor travelled by train.",
+    "key": "644e93aa7f"
+  }
+}

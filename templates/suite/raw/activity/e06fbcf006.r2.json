@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "9e1db0997dbb17ae70fb35b09cad0a93ecd8ebeab47d506a264555a1a9d7b5ae",
+  "prompt_sha256": "57c0a2cf118bc64251ee1dc4f10535ec1900e8fb5354bff54b546c18457f758b",
   "item": {
     "id": "se06fbcf006",
     "text": "Lamine danced with Yusra."
   },
   "usage": {
-    "input": 14849,
-    "output": 140,
+    "input": 33502,
+    "output": 149,
     "thinking": null,
-    "total": 14989,
+    "total": 33651,
+    "cached": 31453,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 14849,
-    "candidatesTokenCount": 140,
-    "totalTokenCount": 14989,
-    "cachedContentTokenCount": 12800,
+    "promptTokenCount": 33502,
+    "candidatesTokenCount": 149,
+    "totalTokenCount": 33651,
+    "cachedContentTokenCount": 31453,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 14849
+        "tokenCount": 33502
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 12800
+        "tokenCount": 31453
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 140
+        "tokenCount": 149
       }
     ]
   },
-  "raw_text": "{\"id\": \"se06fbcf006\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Yusra\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"dance\", \"actor\": \"@n1\", \"tense\": \"past\"}], \"unmapped\": [{\"span\": \"with Yusra\", \"code\": \"G00\", \"construction\": \"A comitative prepositional phrase naming a companion to the action.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"se06fbcf006\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Yusra\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"dance\", \"actor\": \"@n1\", \"tense\": \"past\"}, {\"t\": \"adjunct\", \"id\": \"a1\", \"event\": \"@e1\", \"participant\": \"@n2\", \"head\": \"CoAgent\", \"preposition\": \"with\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "se06fbcf006",
     "instances": [
@@ -67,18 +68,20 @@
         "verb": "dance",
         "actor": "@n1",
         "tense": "past"
-      }
-    ],
-    "unmapped": [
+      },
       {
-        "span": "with Yusra",
-        "code": "G00",
-        "construction": "A comitative prepositional phrase naming a companion to the action."
+        "t": "adjunct",
+        "id": "a1",
+        "event": "@e1",
+        "participant": "@n2",
+        "head": "CoAgent",
+        "preposition": "with"
       }
     ],
+    "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "7ebc2160e3f1d78f6205db12ef42b449428c7fa0394c1c3609f66a739cb62694",
+  "prompt_body_sha256": "55732af26869bbaa55169fc16db0ed85110798ac0721bfbdda732a93ff4b5fd0",
   "run": 2,
   "case": {
     "template": "activity",

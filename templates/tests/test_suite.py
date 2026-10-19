@@ -144,7 +144,7 @@ class CheckTests(unittest.TestCase):
         cat["other"] = other
         checks = S.catalog_checks(cat, freshness=False)
         self.assertEqual([f["kind"] for f in checks["findings"]], [])
-        self.assertEqual(checks["shared"][0]["templates"], ["other", "transfer"])
+        self.assertIn(["other", "transfer"], [sh["templates"] for sh in checks["shared"]])   # beside the catalog's own compositions
         insts = copy.deepcopy(pos["instances"])
         insts[3]["tense"] = "future"
         other["examples"]["held_out"][0]["instances"] = insts
