@@ -16,6 +16,7 @@ Nothing here changes `prompt.txt`, the briefs under `fusenf/briefs/`, or any pip
 | `tmpl/validate.py` | post-parse validator: contract, emitter checks, graph lints, C9 |
 | `tmpl/suite.py` | suite runner: `check` · `collect` · `score` |
 | `tmpl/gen_substrate.py` | substrate source → review document + declarations |
+| `tmpl/refresh_illustrations.py` | rewrites every example's `emitted:` / `declarations:` block from the emitter (after any emitter or template change) |
 | `suite/raw/<template>/` · `suite/out/` | stored run records · scores, summary, `REPORT.md` |
 | `INVENTORY.md` | prompt.txt read as a registry of constructions: the coverage worklist (its template ids are historical) |
 | `tmpl/frequency.py` → `FREQUENCY.md` | which verb classes and constructions the parsed corpora contain, and what share the live templates claim |
@@ -28,6 +29,7 @@ Nothing here changes `prompt.txt`, the briefs under `fusenf/briefs/`, or any pip
     cd templates
     $P -m tmpl.gen_substrate                                 # after editing atom-type-substrates.json
     $P -m tmpl.render_prompt                                 # after ANY catalog edit → generated/PROMPT_CATALOG.txt
+    $P -m tmpl.refresh_illustrations                         # after an emitter change: the examples' illustration blocks
     $P -m tmpl.suite check                                   # catalog-wide checks, no LLM call
     $P -m tmpl.suite collect --template <id> --runs 3 \
         --provider google --model gemini-4-argon --effort low    # one call per held-out case and run

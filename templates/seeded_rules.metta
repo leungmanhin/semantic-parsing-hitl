@@ -29,3 +29,15 @@
 (: coref_member (Implication (And (Coref $m $a) (Member $m $k)) (Member $a $k)) (STV 1.0 0.99))
 (: coref_possession (Implication (And (Coref $m $a) (Possession $x $m)) (Possession $x $a)) (STV 1.0 0.99))
 (: coref_locatedin (Implication (And (Coref $m $a) (LocatedIn $m $p)) (LocatedIn $a $p)) (STV 1.0 0.99))
+
+;; Dates: a deictic time is an offset from the text's reference time (the anchor `now`), and the
+;; anchor carries calendar fields when the caller states the date. Within one month the day number
+;; follows by arithmetic; month and year are carried at 0.9 (no boundary handling yet: a time n days
+;; before the 1st needs a days-in-month table and a previous-month rule, and weekdays need modular
+;; arithmetic — follow-ups).
+(: days_before_day (Implication (And (BeforeBy $t $a $n day) (Day $a $d) (Compute - ($d $n) -> $e)) (Day $t $e)) (STV 1.0 0.99))
+(: days_after_day (Implication (And (BeforeBy $a $t $n day) (Day $a $d) (Compute + ($d $n) -> $e)) (Day $t $e)) (STV 1.0 0.99))
+(: days_before_month (Implication (And (BeforeBy $t $a $n day) (Month $a $m)) (Month $t $m)) (STV 1.0 0.9))
+(: days_before_year (Implication (And (BeforeBy $t $a $n day) (Year $a $y)) (Year $t $y)) (STV 1.0 0.9))
+(: days_after_month (Implication (And (BeforeBy $a $t $n day) (Month $a $m)) (Month $t $m)) (STV 1.0 0.9))
+(: days_after_year (Implication (And (BeforeBy $a $t $n day) (Year $a $y)) (Year $t $y)) (STV 1.0 0.9))
