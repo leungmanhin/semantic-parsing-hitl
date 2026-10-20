@@ -1,14 +1,16 @@
 # Suite report
 
-prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 86006c1331646959) · type check: ran
+prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 00aa1e572fee6d3c) · type check: ran
 
 ## Catalog checks
 
-449 examples checked; findings: 0
+503 examples checked; findings: 0
 
 Sentences two templates claim with the same expected atoms (composition, fine):
 - "Lamine danced with Yusra." — activity, adjunct
 - "Yusra deeply distrusts Lamine." — extent, psych
+
+Stored records whose sentence is no longer in the catalog (ignored): suite/raw/activity/068c3d0726.r1.json, suite/raw/activity/068c3d0726.r2.json, suite/raw/activity/068c3d0726.r3.json, suite/raw/creation/131993ffcf.r1.json, suite/raw/creation/131993ffcf.r2.json, suite/raw/creation/131993ffcf.r3.json
 
 ## acquisition — held_out
 
@@ -27,20 +29,20 @@ Sentences two templates claim with the same expected atoms (composition, fine):
 - stability: pairwise agreement 1.0 (12 cases, 36 pairs), unanimous 12/12
 - type check: 36/36 emitted parses type
 - graph lints: none
-- usage: 36 calls · in 407,046 · out 4,531 · thinking 0 (calls with thought tokens: 0)
+- usage: 36 calls · in 502,629 · cached 121,917 (24% of the input) · out 4,561 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
 Abstain cases (what the parser did, per run):
 - "Ottoline owns the quilt." (target `possession`): r1 target_fired [named-entity×1, possession×1, witness×1] · r2 target_fired [named-entity×1, possession×1, witness×1] · r3 target_fired [named-entity×1, possession×1, witness×1]
 - "Teodor won the race." (gap G00): r1 gap_reported [named-entity×1; unmapped G00] · r2 gap_reported [named-entity×1; unmapped G00] · r3 gap_reported [named-entity×1; unmapped G00]
-- "Yusra got tired." (gap G00): r1 gap_reported [named-entity×1; unmapped G00] · r2 gap_reported [named-entity×1; unmapped G00] · r3 gap_reported [named-entity×1; unmapped G00]
+- "Yusra got tired." (target `change-of-state`): r1 target_fired [change-of-state×1, named-entity×1] · r2 target_fired [change-of-state×1, named-entity×1] · r3 target_fired [change-of-state×1, named-entity×1]
 - "Lamine sold the spindle to Teodor." (target `transfer`): r1 target_fired [named-entity×2, transfer×1, witness×1] · r2 target_fired [named-entity×2, transfer×1, witness×1] · r3 target_fired [named-entity×2, transfer×1, witness×1]
 
 Mismatches: none
 
 ## activity — held_out
 
-17 cases, 51 records (ok 51; stale prompt 51) · gemini-4-argon effort=low
+16 cases, 48 records (ok 48; stale prompt 48) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -48,18 +50,17 @@ Mismatches: none
 | contrast | 1 | 3 | 3 | 3 | 3 |
 | scoped | 2 | 6 | 6 | 6 | 6 |
 | optional | 2 | 6 | 6 | 6 | 6 |
-| abstain | 5 | 15 | 0 (false fires) | – | 15 |
+| abstain | 4 | 12 | 0 (false fires) | – | 12 |
 
-- selection: fire cases fired 36/36 · abstain cases false fires 0/15
+- selection: fire cases fired 36/36 · abstain cases false fires 0/12
 - fill: exact 36/36 among fires
-- stability: pairwise agreement 1.0 (17 cases, 51 pairs), unanimous 17/17
-- type check: 51/51 emitted parses type
+- stability: pairwise agreement 1.0 (16 cases, 48 pairs), unanimous 16/16
+- type check: 48/48 emitted parses type
 - graph lints: none
-- usage: 51 calls · in 935,466 · cached 94,312 (10% of the input) · out 5,349 · thinking 0 (calls with thought tokens: 0)
+- usage: 48 calls · in 890,913 · cached 94,312 (11% of the input) · out 5,100 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
 Abstain cases (what the parser did, per run):
-- "Yusra tried to sleep." (gap G00): r1 gap_reported [named-entity×1; unmapped G00] · r2 gap_reported [named-entity×1; unmapped G00] · r3 gap_reported [named-entity×1; unmapped G00]
 - "Teodor arrived." (target `motion`): r1 target_fired [motion×1, named-entity×1] · r2 target_fired [motion×1, named-entity×1] · r3 target_fired [motion×1, named-entity×1]
 - "Yusra had a rest." (gap G00): r1 gap_reported [named-entity×1; unmapped G00] · r2 gap_reported [named-entity×1; unmapped G00] · r3 gap_reported [named-entity×1; unmapped G00]
 - "The ladder broke." (target `change-of-state`): r1 target_fired [change-of-state×1, witness×1] · r2 target_fired [change-of-state×1, witness×1] · r3 target_fired [change-of-state×1, witness×1]
@@ -93,9 +94,36 @@ Abstain cases (what the parser did, per run):
 
 Mismatches: none
 
+## aspectual — held_out
+
+11 cases, 33 records (ok 33; stale prompt 33) · gemini-4-argon effort=low
+
+| category | cases | runs | fired | exact | pass |
+|---|---|---|---|---|---|
+| positive | 5 | 15 | 15 | 15 | 15 |
+| scoped | 2 | 6 | 6 | 6 | 6 |
+| optional | 1 | 3 | 3 | 3 | 3 |
+| abstain | 3 | 9 | 0 (false fires) | – | 9 |
+
+- selection: fire cases fired 24/24 · abstain cases false fires 0/9
+- fill: exact 24/24 among fires
+- stability: pairwise agreement 1.0 (11 cases, 33 pairs), unanimous 11/11
+- type check: 33/33 emitted parses type
+- graph lints: none
+- usage: 33 calls · in 1,408,757 · cached 1,256,081 (89% of the input) · out 4,551 · thinking 0 (calls with thought tokens: 0)
+- issues reported by the parser: 1
+  - P00 · aspectual · r3 "Yusra no longer works.": The boundary case for 'no longer V-s' says to report the aspectual words as unmapped, leaving it ambiguous whether to parse the negated present clause or report the whole clause as unmapped under the entailment rule.
+
+Abstain cases (what the parser did, per run):
+- "Yusra no longer works." (gap G00): r1 gap_reported [activity×1, named-entity×1, negation×1; unmapped G00] · r2 gap_reported [activity×1, named-entity×1, negation×1; unmapped G00] · r3 gap_reported [activity×1, named-entity×1, negation×1; unmapped G00]
+- "The audit began." (target `change-of-state`): r1 target_fired [change-of-state×1, witness×1] · r2 target_fired [change-of-state×1, witness×1] · r3 target_fired [change-of-state×1, witness×1]
+- "Lamine kept Teodor from leaving." (target `causative`): r1 target_fired [causative×1, motion×1, named-entity×2] · r2 target_fired [causative×1, motion×1, named-entity×2] · r3 target_fired [causative×1, motion×1, named-entity×2]
+
+Mismatches: none
+
 ## attitude — held_out
 
-14 cases, 42 records (ok 42; stale prompt 42) · gemini-4-argon effort=low
+13 cases, 39 records (ok 39; stale prompt 39) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -103,21 +131,47 @@ Mismatches: none
 | contrast | 2 | 6 | 6 | 6 | 6 |
 | scoped | 4 | 12 | 12 | 12 | 12 |
 | optional | 1 | 3 | 3 | 3 | 3 |
+| abstain | 3 | 9 | 0 (false fires) | – | 9 |
+
+- selection: fire cases fired 30/30 · abstain cases false fires 0/9
+- fill: exact 30/30 among fires
+- stability: pairwise agreement 1.0 (13 cases, 39 pairs), unanimous 13/13
+- type check: 39/39 emitted parses type
+- graph lints: none
+- usage: 39 calls · in 321,159 · out 7,311 · thinking 0 (calls with thought tokens: 0)
+- issues reported by the parser: none
+
+Abstain cases (what the parser did, per run):
+- "Yusra knows Lamine." (gap G00): r1 gap_reported [named-entity×2; unmapped G00] · r2 gap_reported [named-entity×2; unmapped G00] · r3 gap_reported [named-entity×2; unmapped G00]
+- "Teodor wonders whether Lamine sold the spindle." (gap G00): r1 gap_reported [named-entity×2; unmapped G00] · r2 gap_reported [named-entity×2; unmapped G00] · r3 gap_reported [named-entity×2; unmapped G00]
+- "Yusra told Teodor that Ottoline sent the quilt." (target `communication`): r1 target_fired [communication×1, named-entity×3, transfer×1, witness×1] · r2 target_fired [communication×1, named-entity×3, transfer×1, witness×1] · r3 target_fired [communication×1, named-entity×3, transfer×1, witness×1]
+
+Mismatches: none
+
+## causative — held_out
+
+14 cases, 42 records (ok 42; stale prompt 42) · gemini-4-argon effort=low
+
+| category | cases | runs | fired | exact | pass |
+|---|---|---|---|---|---|
+| positive | 7 | 21 | 21 | 21 | 21 |
+| scoped | 2 | 6 | 6 | 6 | 6 |
+| optional | 1 | 3 | 3 | 3 | 3 |
 | abstain | 4 | 12 | 0 (false fires) | – | 12 |
 
 - selection: fire cases fired 30/30 · abstain cases false fires 0/12
 - fill: exact 30/30 among fires
 - stability: pairwise agreement 1.0 (14 cases, 42 pairs), unanimous 14/14
-- type check: 42/42 emitted parses type
+- type check: 39/39 emitted parses type
 - graph lints: none
-- usage: 42 calls · in 341,073 · out 7,574 · thinking 0 (calls with thought tokens: 0)
+- usage: 42 calls · in 1,793,025 · cached 1,666,317 (93% of the input) · out 6,319 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
 Abstain cases (what the parser did, per run):
-- "Ottoline wants to send the quilt." (gap G00): r1 gap_reported [named-entity×1; unmapped G00] · r2 gap_reported [named-entity×1; unmapped G00] · r3 gap_reported [named-entity×1; unmapped G00]
-- "Yusra knows Lamine." (gap G00): r1 gap_reported [named-entity×2; unmapped G00] · r2 gap_reported [named-entity×2; unmapped G00] · r3 gap_reported [named-entity×2; unmapped G00]
-- "Teodor wonders whether Lamine sold the spindle." (gap G00): r1 gap_reported [named-entity×2; unmapped G00] · r2 gap_reported [named-entity×2; unmapped G00] · r3 gap_reported [named-entity×2; unmapped G00]
-- "Yusra told Teodor that Ottoline sent the quilt." (target `communication`): r1 target_fired [communication×1, named-entity×3, transfer×1, witness×1] · r2 target_fired [communication×1, named-entity×3, transfer×1, witness×1] · r3 target_fired [communication×1, named-entity×3, transfer×1, witness×1]
+- "Let's go to the market." (gap G00): r1 gap_reported [nothing fired; unmapped G00] · r2 gap_reported [nothing fired; unmapped G00] · r3 gap_reported [nothing fired; unmapped G00]
+- "Teodor made a trip." (gap G00): r1 gap_reported [named-entity×1; unmapped G00] · r2 gap_reported [named-entity×1; unmapped G00] · r3 gap_reported [named-entity×1; unmapped G00]
+- "Yusra stopped working." (target `aspectual`): r1 target_fired [activity×1, aspectual×1, named-entity×1] · r2 target_fired [activity×1, aspectual×1, named-entity×1] · r3 target_fired [activity×1, aspectual×1, named-entity×1]
+- "Lamine made the wax soft." (target `change-of-state`): r1 target_fired [change-of-state×1, named-entity×1, witness×1] · r2 target_fired [change-of-state×1, named-entity×1, witness×1] · r3 target_fired [change-of-state×1, named-entity×1, witness×1]
 
 Mismatches: none
 
@@ -138,12 +192,12 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (15 cases, 45 pairs), unanimous 15/15
 - type check: 45/45 emitted parses type
 - graph lints: none
-- usage: 45 calls · in 1,021,680 · out 4,716 · thinking 0 (calls with thought tokens: 0)
+- usage: 45 calls · in 1,082,283 · cached 121,919 (11% of the input) · out 4,801 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
 Abstain cases (what the parser did, per run):
 - "The ladder fell." (target `motion`): r1 target_fired [motion×1, witness×1] · r2 target_fired [motion×1, witness×1] · r3 target_fired [motion×1, witness×1]
-- "Yusra stopped working." (gap G00): r1 gap_reported [named-entity×1; unmapped G00] · r2 gap_reported [named-entity×1; unmapped G00] · r3 gap_reported [named-entity×1; unmapped G00]
+- "Yusra stopped working." (target `aspectual`): r1 target_fired [activity×1, aspectual×1, named-entity×1] · r2 target_fired [activity×1, aspectual×1, named-entity×1] · r3 target_fired [activity×1, aspectual×1, named-entity×1]
 - "Teodor built a shed." (target `creation`): r1 target_fired [creation×1, named-entity×1, witness×1] · r2 target_fired [creation×1, named-entity×1, witness×1] · r3 target_fired [creation×1, named-entity×1, witness×1]
 - "Ottoline helped Lamine." (target `activity`): r1 target_fired [activity×1, named-entity×2] · r2 target_fired [activity×1, named-entity×2] · r3 target_fired [activity×1, named-entity×2]
 
@@ -155,25 +209,51 @@ Mismatches: none
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
-| positive | 5 | 15 | 15 | 15 | 15 |
+| positive | 6 | 18 | 18 | 18 | 18 |
 | contrast | 1 | 3 | 3 | 3 | 3 |
 | scoped | 2 | 6 | 6 | 6 | 6 |
 | optional | 2 | 6 | 6 | 6 | 6 |
-| abstain | 3 | 9 | 0 (false fires) | – | 9 |
+| abstain | 2 | 6 | 0 (false fires) | – | 6 |
 
-- selection: fire cases fired 30/30 · abstain cases false fires 0/9
-- fill: exact 30/30 among fires
+- selection: fire cases fired 33/33 · abstain cases false fires 0/6
+- fill: exact 33/33 among fires
 - stability: pairwise agreement 1.0 (13 cases, 39 pairs), unanimous 13/13
 - type check: 39/39 emitted parses type
 - graph lints: none
-- usage: 39 calls · in 375,831 · out 6,893 · thinking 0 (calls with thought tokens: 0)
+- usage: 39 calls · in 478,620 · cached 121,924 (25% of the input) · out 7,133 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: 1
   - P00 · transfer · r1 "Yusra told Teodor that Lamine might lend Ottoline the trowel.": The tense slot is required on predications, but the instructions do not specify which tense value to use when the clause is governed by a modal auxiliary like 'might'.
 
 Abstain cases (what the parser did, per run):
 - "Yusra gave Ottoline a call." (gap G00): r1 gap_reported [named-entity×2; unmapped G00] · r2 gap_reported [named-entity×2; unmapped G00] · r3 gap_reported [named-entity×2; unmapped G00]
 - "Lamine handed Teodor an envelope." (target `transfer`): r1 target_fired [named-entity×2, transfer×1, witness×1] · r2 target_fired [named-entity×2, transfer×1, witness×1] · r3 target_fired [named-entity×2, transfer×1, witness×1]
-- "Teodor asked Ottoline to send the quilt." (gap G00): r1 gap_reported [named-entity×2; unmapped G00] · r2 gap_reported [named-entity×2; unmapped G00] · r3 gap_reported [named-entity×2; unmapped G00]
+
+Mismatches: none
+
+## control — held_out
+
+14 cases, 42 records (ok 42; stale prompt 42) · gemini-4-argon effort=low
+
+| category | cases | runs | fired | exact | pass |
+|---|---|---|---|---|---|
+| positive | 5 | 15 | 15 | 15 | 15 |
+| scoped | 3 | 9 | 9 | 9 | 9 |
+| optional | 2 | 6 | 6 | 6 | 6 |
+| abstain | 4 | 12 | 0 (false fires) | – | 12 |
+
+- selection: fire cases fired 30/30 · abstain cases false fires 0/12
+- fill: exact 30/30 among fires
+- stability: pairwise agreement 1.0 (14 cases, 42 pairs), unanimous 14/14
+- type check: 42/42 emitted parses type
+- graph lints: none
+- usage: 42 calls · in 1,793,031 · cached 1,625,624 (91% of the input) · out 6,131 · thinking 0 (calls with thought tokens: 0)
+- issues reported by the parser: none
+
+Abstain cases (what the parser did, per run):
+- "Lamine let Ottoline leave." (target `causative`): r1 target_fired [causative×1, motion×1, named-entity×2] · r2 target_fired [causative×1, motion×1, named-entity×2] · r3 target_fired [causative×1, motion×1, named-entity×2]
+- "Yusra stopped working." (target `aspectual`): r1 target_fired [activity×1, aspectual×1, named-entity×1] · r2 target_fired [activity×1, aspectual×1, named-entity×1] · r3 target_fired [activity×1, aspectual×1, named-entity×1]
+- "Teodor seems to be tired." (gap G00): r1 gap_reported [named-entity×1; unmapped G00] · r2 gap_reported [named-entity×1; unmapped G00] · r3 gap_reported [named-entity×1; unmapped G00]
+- "Yusra went to the market to buy a thermos." (gap G00): r1 gap_reported [motion×1, named-entity×1, witness×1; unmapped G00] · r2 gap_reported [motion×1, named-entity×1, witness×1; unmapped G00] · r3 gap_reported [motion×1, named-entity×1, witness×1; unmapped G00]
 
 Mismatches: none
 
@@ -234,7 +314,7 @@ Mismatches: none
 
 ## creation — held_out
 
-16 cases, 48 records (ok 48; stale prompt 48) · gemini-4-argon effort=low
+15 cases, 45 records (ok 45; stale prompt 45) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -242,19 +322,18 @@ Mismatches: none
 | contrast | 1 | 3 | 3 | 3 | 3 |
 | scoped | 2 | 6 | 6 | 6 | 6 |
 | optional | 3 | 9 | 9 | 9 | 9 |
-| abstain | 4 | 12 | 0 (false fires) | – | 12 |
+| abstain | 3 | 9 | 0 (false fires) | – | 9 |
 
-- selection: fire cases fired 36/36 · abstain cases false fires 0/12
+- selection: fire cases fired 36/36 · abstain cases false fires 0/9
 - fill: exact 36/36 among fires
-- stability: pairwise agreement 1.0 (16 cases, 48 pairs), unanimous 16/16
-- type check: 48/48 emitted parses type
+- stability: pairwise agreement 1.0 (15 cases, 45 pairs), unanimous 15/15
+- type check: 45/45 emitted parses type
 - graph lints: none
-- usage: 48 calls · in 1,482,120 · cached 1,354,882 (91% of the input) · out 5,901 · thinking 0 (calls with thought tokens: 0)
+- usage: 45 calls · in 1,389,486 · cached 1,268,395 (91% of the input) · out 5,472 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
 Abstain cases (what the parser did, per run):
 - "Yusra wrote Teodor a letter." (target `communication`): r1 target_fired [communication×1, named-entity×2, witness×1] · r2 target_fired [communication×1, named-entity×2, witness×1] · r3 target_fired [communication×1, named-entity×2, witness×1]
-- "Yusra made Teodor laugh." (gap G00): r1 gap_reported [activity×1, named-entity×2; unmapped G00] · r2 gap_reported [activity×1, named-entity×2; unmapped G00] · r3 gap_reported [activity×1, named-entity×2; unmapped G00]
 - "Lamine made the wax soft." (target `change-of-state`): r1 target_fired [change-of-state×1, named-entity×1, witness×1] · r2 target_fired [change-of-state×1, named-entity×1, witness×1] · r3 target_fired [change-of-state×1, named-entity×1, witness×1]
 - "Ottoline painted the shed." (target `activity`): r1 target_fired [activity×1, named-entity×1, witness×1] · r2 target_fired [activity×1, named-entity×1, witness×1] · r3 target_fired [activity×1, named-entity×1, witness×1]
 
@@ -402,27 +481,26 @@ Mismatches: none
 
 ## imperative — held_out
 
-18 cases, 54 records (ok 54; stale prompt 0) · gemini-4-argon effort=low
+18 cases, 54 records (ok 54; stale prompt 54) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
-| positive | 9 | 27 | 27 | 27 | 27 |
+| positive | 10 | 30 | 30 | 30 | 30 |
 | scoped | 2 | 6 | 6 | 6 | 6 |
 | optional | 2 | 6 | 6 | 6 | 6 |
-| abstain | 5 | 15 | 0 (false fires) | – | 15 |
+| abstain | 4 | 12 | 0 (false fires) | – | 12 |
 
-- selection: fire cases fired 39/39 · abstain cases false fires 0/15
-- fill: exact 39/39 among fires
+- selection: fire cases fired 42/42 · abstain cases false fires 0/12
+- fill: exact 42/42 among fires
 - stability: pairwise agreement 1.0 (18 cases, 54 pairs), unanimous 18/18
 - type check: 48/48 emitted parses type
 - graph lints: none
-- usage: 54 calls · in 2,006,664 · cached 1,893,496 (94% of the input) · out 6,485 · thinking 0 (calls with thought tokens: 0)
+- usage: 54 calls · in 2,023,248 · cached 1,910,084 (94% of the input) · out 6,803 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
 Abstain cases (what the parser did, per run):
 - "Let's go to the market." (gap G00): r1 gap_reported [nothing fired; unmapped G00] · r2 gap_reported [nothing fired; unmapped G00] · r3 gap_reported [nothing fired; unmapped G00]
 - "Could you lock the shed?" (gap G00): r1 gap_reported [nothing fired; unmapped G00] · r2 gap_reported [nothing fired; unmapped G00] · r3 gap_reported [nothing fired; unmapped G00]
-- "Yusra told Lamine to lock the shed." (gap G00): r1 gap_reported [named-entity×2; unmapped G00] · r2 gap_reported [named-entity×2; unmapped G00] · r3 gap_reported [named-entity×2; unmapped G00]
 - "The quilt was washed." (target `activity`): r1 target_fired [activity×1, witness×1] · r2 target_fired [activity×1, witness×1] · r3 target_fired [activity×1, witness×1]
 - "Yusra has to send the quilt." (target `modal`): r1 target_fired [modal×1, named-entity×1, transfer×1, witness×1] · r2 target_fired [modal×1, named-entity×1, transfer×1, witness×1] · r3 target_fired [modal×1, named-entity×1, transfer×1, witness×1]
 
@@ -568,11 +646,11 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (15 cases, 45 pairs), unanimous 15/15
 - type check: 45/45 emitted parses type
 - graph lints: none
-- usage: 45 calls · in 953,796 · out 5,091 · thinking 0 (calls with thought tokens: 0)
+- usage: 45 calls · in 1,018,554 · cached 121,926 (12% of the input) · out 5,291 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
 Abstain cases (what the parser did, per run):
-- "Yusra came to like the quilt." (gap G00): r1 gap_reported [named-entity×1; unmapped G00] · r2 gap_reported [named-entity×1; unmapped G00] · r3 gap_reported [named-entity×1; unmapped G00]
+- "Yusra came to like the quilt." (target `aspectual`): r1 target_fired [aspectual×1, named-entity×1, psych×1, witness×1] · r2 target_fired [aspectual×1, named-entity×1, psych×1, witness×1] · r3 target_fired [aspectual×1, named-entity×1, psych×1, witness×1]
 - "The price fell." (target `change-of-state`): r1 target_fired [change-of-state×1, witness×1] · r2 target_fired [change-of-state×1, witness×1] · r3 target_fired [change-of-state×1, witness×1]
 - "Teodor made a trip." (gap G00): r1 gap_reported [named-entity×1; unmapped G00] · r2 gap_reported [named-entity×1; unmapped G00] · r3 gap_reported [named-entity×1; unmapped G00]
 - "Lamine handed Teodor an envelope." (target `transfer`): r1 target_fired [named-entity×2, transfer×1, witness×1] · r2 target_fired [named-entity×2, transfer×1, witness×1] · r3 target_fired [named-entity×2, transfer×1, witness×1]
@@ -640,25 +718,24 @@ Mismatches: none
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
-| positive | 4 | 12 | 12 | 12 | 12 |
+| positive | 5 | 15 | 15 | 15 | 15 |
 | contrast | 2 | 6 | 6 | 6 | 6 |
 | scoped | 2 | 6 | 6 | 6 | 6 |
 | optional | 1 | 3 | 3 | 3 | 3 |
-| abstain | 4 | 12 | 0 (false fires) | – | 12 |
+| abstain | 3 | 9 | 0 (false fires) | – | 9 |
 
-- selection: fire cases fired 27/27 · abstain cases false fires 0/12
-- fill: exact 27/27 among fires
+- selection: fire cases fired 30/30 · abstain cases false fires 0/9
+- fill: exact 30/30 among fires
 - stability: pairwise agreement 1.0 (13 cases, 39 pairs), unanimous 13/13
 - type check: 39/39 emitted parses type
 - graph lints: none
-- usage: 39 calls · in 475,698 · cached 101,538 (21% of the input) · out 4,825 · thinking 0 (calls with thought tokens: 0)
+- usage: 39 calls · in 574,830 · cached 223,458 (39% of the input) · out 4,940 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
 Abstain cases (what the parser did, per run):
 - "Ottoline is afraid of the ferret." (gap G00): r1 gap_reported [named-entity×1; unmapped G00] · r2 gap_reported [named-entity×1; unmapped G00] · r3 gap_reported [named-entity×1; unmapped G00]
 - "Yusra fears that Lamine sold the spindle." (target `attitude`): r1 target_fired [attitude×1, named-entity×2, transfer×1, witness×1] · r2 target_fired [attitude×1, named-entity×2, transfer×1, witness×1] · r3 target_fired [attitude×1, named-entity×2, transfer×1, witness×1]
 - "Teodor heard the news." (target `perception`): r1 target_fired [named-entity×1, perception×1, witness×1] · r2 target_fired [named-entity×1, perception×1, witness×1] · r3 target_fired [named-entity×1, perception×1, witness×1]
-- "Lamine enjoys sending quilts." (gap G00): r1 gap_reported [named-entity×1; unmapped G00] · r2 gap_reported [named-entity×1; unmapped G00] · r3 gap_reported [named-entity×1; unmapped G00]
 
 Mismatches: none
 

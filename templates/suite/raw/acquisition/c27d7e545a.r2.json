@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "549a9f7ae5e71c64cad5c2d1abc2482ac27640f2496235a0ac72afe79e5b0f08",
+  "prompt_sha256": "7b971397645436659b47229c67b5e18427eb894e0e6cbf0b176ccc7db0eed480",
   "item": {
     "id": "sc27d7e545a",
     "text": "Yusra got tired."
   },
   "usage": {
-    "input": 10827,
-    "output": 93,
+    "input": 42688,
+    "output": 100,
     "thinking": null,
-    "total": 10920,
+    "total": 42788,
+    "cached": 40639,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 10827,
-    "candidatesTokenCount": 93,
-    "totalTokenCount": 10920,
-    "cachedContentTokenCount": 8778,
+    "promptTokenCount": 42688,
+    "candidatesTokenCount": 100,
+    "totalTokenCount": 42788,
+    "cachedContentTokenCount": 40639,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 10827
+        "tokenCount": 42688
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 8778
+        "tokenCount": 40639
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 93
+        "tokenCount": 100
       }
     ]
   },
-  "raw_text": "{\"id\": \"sc27d7e545a\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}], \"unmapped\": [{\"span\": \"got tired\", \"code\": \"G00\", \"construction\": \"Inchoative copular clause ('got' as 'become' with an adjectival complement).\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"sc27d7e545a\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"change-of-state\", \"id\": \"c1\", \"verb\": \"get\", \"undergoer\": \"@n1\", \"result\": \"tired\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sc27d7e545a",
     "instances": [
@@ -55,18 +56,20 @@
         "t": "named-entity",
         "id": "n1",
         "name": "Yusra"
-      }
-    ],
-    "unmapped": [
+      },
       {
-        "span": "got tired",
-        "code": "G00",
-        "construction": "Inchoative copular clause ('got' as 'become' with an adjectival complement)."
+        "t": "change-of-state",
+        "id": "c1",
+        "verb": "get",
+        "undergoer": "@n1",
+        "result": "tired",
+        "tense": "past"
       }
     ],
+    "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "6cf313445a0a101e1fc3416cc18e201b1014c1ed7339419f511094ac6b3ffbd5",
+  "prompt_body_sha256": "550b5adae738e98b3a45e1fd666b1c271958eedeeddaca6a18b6db34c69a06c7",
   "run": 2,
   "case": {
     "template": "acquisition",

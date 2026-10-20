@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 37ed7cf75ec0cd9a · 32 templates
+catalog sha256 0d79a7003f30a941 · 35 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -58,9 +58,10 @@ fences.
   never write its instance; a deictic time (yesterday, tomorrow, last week) refers to it as its
   anchor, `"anchor": "@now"`, and the program supplies the instance, with calendar fields when
   the caller states the reference date.
-- A slot that holds a CLAUSE — the content of a negation, a modal, a directive or an attitude —
-  holds a list of ids: the clause's predication, or the scope operator over it when it has one
-  (`["@s1"]` for a negated or modalised clause); never the referents the clause mentions.
+- A slot that holds a CLAUSE — the content of a negation, a modal, a directive or an attitude,
+  the complement of a control, causative, aspectual or psych verb — holds a list of ids: the
+  clause's predication, or the scope operator over it when it has one (`["@s1"]` for a negated
+  or modalised clause); never the referents the clause mentions.
 - A slot that holds a kind, property, verb, scale or unit holds the bare LEMMA, for example
   `"kind": "book"`.
 - A participant slot holds either one: `"@x1"` for a specific referent, or a bare lemma for a
@@ -468,7 +469,8 @@ Not this template:
 - a state of having — owns the quilt, has a trowel: no event of coming to have it
 - light-verb constructions — took a walk, took a look, had a word: the noun carries the event;
   nothing is acquired
-- get as become or as a causative — got tired, got Lamine to send the quilt: nothing is acquired
+- get as become — got tired, got wet: a change of state; get with a verb phrase on its object —
+  got Lamine to send the quilt: a causative; nothing is acquired either way
 - win or earn with a contest or an activity as the object — won the race: nothing changes hands;
   with a prize or a sum as the object it is an acquisition
 - the price — bought the quilt for forty euros: the amount is never the object; it is an
@@ -567,8 +569,8 @@ Not this template:
   gave, took, owns, saw, fears, told: each has its own class
 - light-verb constructions — had a rest, took a walk, gave a speech, made a call: the noun
   carries the event
-- an infinitival or gerund complement — tried to sleep, stopped working, kept singing: a
-  different construction
+- an infinitival or gerund complement — tried to sleep, stopped working, made Teodor laugh: a
+  control, aspectual or causative verb; the action is parsed as its complement
 - a companion, an instrument, a beneficiary or a manner phrase — danced with Yusra, cut it with
   a knife, baked it for Teodor, laughed loudly: attachments with their own templates (adjunct,
   manner); the action is parsed, the phrase attaches to it
@@ -625,16 +627,106 @@ Not this template. TEXT: Teodor gave Yusra a thermos. — use `transfer`.
 
 Not this template. TEXT: Yusra went to the market. — use `motion`.
 
+### aspectual — A phase of an action
+
+When: A verbal clause whose verb names a phase of the action its complement states: begin,
+start, commence, continue, keep, go on, carry on, resume, stop, cease, quit, finish with a
+to-infinitive or a gerund (began to sing, kept reading the letter, stopped working, finished
+washing the quilt); and come to V, the inchoative (came to like the quilt), with the lemma
+come_to. Parse the action with the template its verb takes, its actor or undergoer the
+sentence's subject and its tense present; then write the aspectual instance naming the phase
+verb and the action.
+
+Verbs that anchor the class: begin, start, commence, continue, keep, go_on, carry_on, resume,
+stop, cease, quit, finish, come_to.
+These verbs belong here only with a verbal complement. Without one they are a change of state
+(the audit began, the price stopped) or an ordinary action on an object (started a business,
+finished the letter, kept the letter); stop / keep X from V-ing is a causative.
+
+Forms:
+- <subject> began / started / continued to <V2> …
+- <subject> kept / stopped / finished <V2>-ing …
+- <subject> came to <V2> …
+
+Not this template:
+- a phase verb without a verbal complement — the audit began, the price stopped, the storm
+  ceased: a change of state of the subject
+- a phase verb with a noun object — started a business, finished the letter, kept the letter,
+  continued the audit: an action on a thing, parsed by that action's template
+- stop, keep or prevent with an object and a verb — stopped Teodor from leaving, kept Lamine
+  from leaving: a causative
+- used to V, no longer V-s, V-s again, still V-s: a different construction, and the words change
+  the claim (no longer works does not say works); report the whole clause as unmapped
+- begin or start as the motion of setting off — started for the market: a motion
+
+Slots:
+
+- `t` (required): "aspectual"
+- `id` (required; your label for this instance): your label for the phase event.
+- `verb` (required; a lemma): the phase verb lemma (begin, start, continue, keep, stop, finish,
+  come_to …).
+- `complement` (required; a list of "@id" of the instances that state the clause): the action:
+  the ids of the instances that state it (its predication, with the sentence's subject as its
+  actor or undergoer); the referents it mentions are not listed.
+- `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
+  not inferred.
+- `aspect` (optional; one of: simple, progressive, perfect).
+
+Example (the phase event has no role of its own; the action is sealed as its Theme and marked as entailed). TEXT: Teodor began to sing.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Teodor"},
+      {"t": "activity", "id": "v1", "verb": "sing", "actor": "@n1", "tense": "present"},
+      {"t": "aspectual", "id": "e1", "verb": "begin", "complement": ["@v1"], "tense": "past"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_teodor_1 "Teodor")
+    (Member sk_begin_1 begin)
+    (Theme sk_begin_1 (And (Member sk_sing_1 sing) (Agent sk_sing_1 sk_teodor_1)))
+    (Entails sk_begin_1)
+    (Past sk_begin_1)
+
+Example (the subject undergoes the action — no agent anywhere). TEXT: The price started to fall.
+
+Instances:
+
+    [
+      {"t": "witness", "id": "x1", "kind": "price", "definite": true},
+      {"t": "change-of-state", "id": "c1", "verb": "fall", "undergoer": "@x1", "tense": "present"},
+      {"t": "aspectual", "id": "e1", "verb": "start", "complement": ["@c1"], "tense": "past"}
+    ]
+
+The program renders these instances as:
+
+    (Member sk_price_1 price)
+    (Member sk_start_1 start)
+    (Theme sk_start_1 (And (Member sk_fall_1 fall) (Patient sk_fall_1 sk_price_1)))
+    (Entails sk_start_1)
+    (Past sk_start_1)
+
+Not this template. TEXT: Yusra tried to sleep. — use `control`.
+
+Not this template. TEXT: Lamine prevented Teodor from leaving. — use `causative`.
+
 ### attitude — A propositional attitude towards a complement clause
 
 When: A clause whose verb expresses a mental or reporting attitude of its subject (the holder)
-towards a finite complement clause, introduced by "that" or bare. Non-factive verbs (believe,
-think, suppose, assume, suspect, doubt, hope, fear, expect, claim, say) do not assert the
-complement; factive verbs (know, realize, discover, learn, notice, remember, regret) presuppose
-it. The complement is a complete clause with a subject and a tense of its own.
+towards a complement clause: a finite clause introduced by "that" or bare, or a to-infinitive
+naming what the holder wants, hopes, intends, plans, decides, promises or agrees to do (wants to
+send the quilt) or expects of someone (expects Lamine to come). Non-factive verbs (believe,
+think, suppose, assume, suspect, doubt, hope, fear, expect, claim, say, want, wish, intend,
+plan, decide, promise, agree) do not assert the complement; factive verbs (know, realize,
+discover, learn, notice, remember, regret) presuppose it. A finite complement has a subject and
+a tense of its own; an infinitival one is parsed with the holder as its actor (or the object,
+when the syntax supplies one) and tense present.
 
 Verbs that anchor the class: believe, think, suppose, assume, suspect, doubt, hope, fear,
-expect, claim, say, know, realize, discover, learn, notice, remember, regret.
+expect, claim, say, want, wish, intend, plan, decide, promise, agree, know, realize, discover,
+learn, notice, remember, regret.
 The lists anchor the two classes; an unlisted verb that takes a finite complement belongs here,
 with `factive` decided by whether the verb presupposes the complement — the complement survives
 negation of the attitude ("did not realize that P" still entails P).
@@ -643,12 +735,16 @@ Forms:
 - <holder> V that <clause>
 - <holder> V <clause>
 - <holder> V-ed that <clause>
+- <holder> V to <V2> …
+- <holder> V <object> to <V2> …
 
 Not this template:
 - an entity object instead of a clause — fears the dog, distrusts Lamine, knows Yusra: a psych
   state or an acquaintance; nothing is sealed
-- an infinitival complement — wants to send the quilt, expects Lamine to come: the complement
-  has no subject or tense of its own; a different construction
+- an effort or an achievement towards an action — tried to sleep, managed to open the shed,
+  failed to arrive: a control verb, whose implication about the action is recorded there
+- a liking or a dislike of an action — likes to send quilts, enjoys sending quilts: a psych
+  state whose stimulus is the clause
 - an interrogative complement — wonders whether, knows whether, asks if: the complement is a
   question, not a proposition
 - an addressee — told Ottoline that P, informed Yusra that P: a communication with a recipient
@@ -665,10 +761,12 @@ Slots:
   who holds the attitude: the subject.
 - `content` (required; a list of "@id" of the instances that state the clause): the complement
   clause: the ids of the instances that state it, that is its predication or the scope operator
-  (negation, modal) over that predication; the referents it mentions are not listed.
+  (negation, modal) over that predication; for an infinitival complement, its predication with
+  the holder (or the object) as its actor; the referents it mentions are not listed.
 - `factive` (required; true / false): true when the verb presupposes the complement (know,
   realize, discover, learn, notice, remember, regret), false otherwise (believe, think, suppose,
-  assume, suspect, doubt, hope, fear, expect, claim, say).
+  assume, suspect, doubt, hope, fear, expect, claim, say, want, wish, intend, plan, decide,
+  promise, agree).
 - `tense` (required; one of: past, present, future): the attitude clause's tense; present is
   recorded, not inferred.
 - `aspect` (optional; one of: simple, progressive, perfect).
@@ -774,6 +872,132 @@ Not this template. TEXT: Teodor told Ottoline that Lamine sold the spindle. — 
 
 Not this template. TEXT: Yusra distrusts Lamine. — use `psych`.
 
+Example (an infinitival complement — the holder acts in it; nothing is asserted about the sending). TEXT: Ottoline wants to send the quilt.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Ottoline"},
+      {"t": "witness", "id": "x1", "kind": "quilt", "definite": true},
+      {"t": "transfer", "id": "e1", "verb": "send", "giver": "@n1", "object": "@x1", "tense": "present"},
+      {"t": "attitude", "id": "a1", "verb": "want", "holder": "@n1", "content": ["@e1"], "factive": false, "tense": "present"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_ottoline_1 "Ottoline")
+    (Member sk_quilt_1 quilt)
+    (Member sk_want_1 want)
+    (Experiencer sk_want_1 sk_ottoline_1)
+    (Theme sk_want_1 (And (Member sk_send_1 send) (Agent sk_send_1 sk_ottoline_1) (Theme sk_send_1 sk_quilt_1)))
+
+### causative — A causer brings about an action of someone or something else
+
+When: A verbal clause whose verb takes an object and a verb phrase naming an action of that
+object: make / let / have X V (bare infinitive), get / force / cause / help / allow / permit /
+enable / persuade / convince X to V, have / get X V-ed (a past participle: the object is the
+patient of the action, its agent unstated), prevent / stop / keep X from V-ing. Parse the caused
+clause with the template its verb takes, its actor (or patient) the object and its tense
+present; then write the causative instance naming the matrix verb, the causer and the caused
+clause, and record what the verb implies: it happened (make, let, have, get, force, cause, help,
+persuade, convince), nothing (allow, permit, enable, leave), or it did not (prevent, stop …
+from, keep … from).
+
+Verbs that anchor the class: make, let, have, get, force, cause, help, allow, permit, enable,
+persuade, convince, prevent, stop, keep.
+Have, get, make, stop and keep belong here only with a verb phrase on their object; with a noun
+phrase alone they are a possession, an acquisition, a creation or an activity, and make / get
+with a predicate (made the wax soft, got wet) is a change of state. An unlisted verb of this
+pattern belongs here, with `implication` decided by what the verb entails.
+
+Forms:
+- <causer> made / let / had <X> <V2> …
+- <causer> got / forced / helped <X> (to) <V2> …
+- <causer> had / got <X> <V2>-ed
+- <causer> prevented / stopped / kept <X> from <V2>-ing
+
+Not this template:
+- make or get with a predicate on the object — made the wax soft, got the ladder wet: a change
+  of state, with the predicate as its result
+- have or get with a noun phrase alone — has a thermos, got a letter: a possession or an
+  acquisition, no caused action
+- a lexical causative — broke the ladder, melted the wax, opened the gate: a change of state
+  brought about by the subject, one event
+- a request to someone — asked Ottoline to send the quilt, told Lamine to lock the shed: a
+  communication whose content is an imperative
+- an action of the subject itself — tried to sleep, managed to open the shed: a control verb
+- a hortative — let's go to the market: the speaker is included; report it as unmapped
+- light-verb constructions — made a decision, made a trip, had a rest: the noun carries the
+  event
+- a causal link between two clauses — the storm made the ferry late, because it rained: a clause
+  link; report it as unmapped
+
+Slots:
+
+- `t` (required): "causative"
+- `id` (required; your label for this instance): your label for the matrix event.
+- `verb` (required; a lemma): the causative verb lemma (make, let, get, prevent …).
+- `causer` (optional; "@id" of a referent instance, or a bare lemma for a non-specific filler):
+  who or what brings the action about: the subject; absent in an agentless passive, and in an
+  imperative, whose addressee is not a referent of the text.
+- `complement` (required; a list of "@id" of the instances that state the clause): the caused
+  clause: the ids of the instances that state it (its predication, with the causative verb's
+  object as its actor, or as its patient for a past participle); the referents it mentions are
+  not listed.
+- `implication` (required; one of: none, positive, negative): what the verb implies about the
+  caused action: positive — it happened (make, let, have, get, force, cause, help, persuade,
+  convince); none — nothing follows (allow, permit, enable, leave); negative — it did not
+  (prevent, stop … from, keep … from).
+- `tense` (required; one of: past, present, future): the matrix clause's tense; present is
+  recorded, not inferred.
+- `aspect` (optional; one of: simple, progressive, perfect).
+
+Example (the causee is the actor of the caused clause; make says it happened — the marker, not the parse, carries that). TEXT: Yusra made Teodor laugh.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Yusra"},
+      {"t": "named-entity", "id": "n2", "name": "Teodor"},
+      {"t": "activity", "id": "v1", "verb": "laugh", "actor": "@n2", "tense": "present"},
+      {"t": "causative", "id": "e1", "verb": "make", "causer": "@n1", "complement": ["@v1"], "implication": "positive", "tense": "past"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_yusra_1 "Yusra")
+    (Name sk_teodor_1 "Teodor")
+    (Member sk_make_1 make)
+    (Agent sk_make_1 sk_yusra_1)
+    (Theme sk_make_1 (And (Member sk_laugh_1 laugh) (Agent sk_laugh_1 sk_teodor_1)))
+    (Entails sk_make_1)
+    (Past sk_make_1)
+
+Example (a negative implication — the action did not happen). TEXT: Lamine prevented Teodor from leaving.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Lamine"},
+      {"t": "named-entity", "id": "n2", "name": "Teodor"},
+      {"t": "motion", "id": "m1", "verb": "leave", "mover": "@n2", "tense": "present"},
+      {"t": "causative", "id": "e1", "verb": "prevent", "causer": "@n1", "complement": ["@m1"], "implication": "negative", "tense": "past"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_lamine_1 "Lamine")
+    (Name sk_teodor_1 "Teodor")
+    (Member sk_prevent_1 prevent)
+    (Agent sk_prevent_1 sk_lamine_1)
+    (Theme sk_prevent_1 (And (Member sk_leave_1 leave) (Agent sk_leave_1 sk_teodor_1)))
+    (Precludes sk_prevent_1)
+    (Past sk_prevent_1)
+
+Not this template. TEXT: Yusra broke the ladder. — use `change-of-state`.
+
+Not this template. TEXT: Yusra tried to sleep. — use `control`.
+
 ### change-of-state — A change of state, by itself or brought about
 
 When: A verbal clause whose verb denotes that its subject or its object comes to be in a new
@@ -807,9 +1031,9 @@ Not this template:
 - a change of hands — gave, took, bought: a transfer or an acquisition
 - an action that leaves its object as it was — read the letter, helped Lamine: an activity
 - begin, stop, keep, continue with a verbal complement — stopped working, began to sing: an
-  aspect on another event, a different construction
-- get or become with a clause or an infinitive — got Lamine to send the quilt, came to like the
-  quilt: a causative or an inchoative over a clause
+  aspectual over the action
+- get or come with a clause or an infinitive — got Lamine to send the quilt: a causative; came
+  to like the quilt: an aspectual (the inchoative come_to)
 - light-verb constructions — made a change, took a turn: the noun carries the event
 
 Slots:
@@ -892,10 +1116,12 @@ indirect object or a to-phrase; the message is a noun phrase (the news, a secret
 a finite clause introduced by "that" or bare. Verbs that take an addressee by nature (tell,
 inform, notify, remind, warn, text, phone) belong here even when the text leaves the addressee
 out; a reporting verb (say, claim, report, announce, explain, mention) belongs here only when an
-addressee is stated.
+addressee is stated. A request or an instruction (asked Ottoline to send the quilt, told Lamine
+to lock the shed) is a message too: its content is an imperative instance over the requested
+clause, whose actor is the addressee.
 
 Verbs that anchor the class: tell, inform, notify, remind, warn, announce, report, explain,
-mention, say, write, text, email, phone.
+mention, say, write, text, email, phone, ask, order, urge, instruct.
 The list anchors the class; an unlisted verb that conveys a message to an addressee belongs here
 (record its lemma as usual). The class is semantic, the list is guidance.
 
@@ -906,14 +1132,15 @@ Forms:
 - <speaker> V to <addressee> that <clause>
 - <speaker> V <message> to <addressee>
 - <addressee> was V-ed that <clause>
+- <speaker> asked / told <addressee> to <V2> …
 
 Not this template:
 - a reporting verb with no addressee — said that P, claimed that P, announced that P: the
   subject's attitude towards the clause; nothing is conveyed to anyone
 - an object that changes hands rather than a message — handed Ottoline the letter, sent Yusra a
   parcel: a transfer
-- a question or a request as the content — asked Ottoline whether P, asked Ottoline to send the
-  quilt, told Ottoline to leave: the content is not a proposition conveyed
+- a question as the content — asked Ottoline whether P, asked Yusra who left: the content is a
+  question, not a proposition conveyed; report it as unmapped
 - light-verb constructions — gave Ottoline a call, had a word with Yusra: the noun carries the
   event
 - a thing written, drawn or composed with no addressee — wrote a letter, wrote a song, drew a
@@ -935,7 +1162,8 @@ Slots:
   the message as a thing: the news, a secret, the result.
 - `content` (optional; a list of "@id" of the instances that state the clause): the message as a
   clause: the ids of the instances that state it, that is its predication or the scope operator
-  (negation, modal) over that predication; the referents it mentions are not listed.
+  (negation, modal) over that predication, or the imperative instance for a request; the
+  referents it mentions are not listed.
 - `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
   not inferred.
 - `aspect` (optional; one of: simple, progressive, perfect).
@@ -992,6 +1220,126 @@ Not this template. TEXT: Teodor said that Lamine sold the spindle. — use `atti
 
 Not this template. TEXT: Teodor asked Ottoline whether Lamine sold the spindle. — report it as
 unmapped: {"span": "asked Ottoline whether Lamine sold the spindle", "code": "G00"}.
+
+### control — A verb whose complement is an action of its own subject
+
+When: A verbal clause whose verb takes a to-infinitive naming an action of the clause's own
+subject: try, attempt, manage, fail, refuse, dare, bother, neglect, remember to, forget to,
+learn to, happen to, struggle, hesitate, choose. Parse the complement with the template its verb
+takes, its actor the matrix subject and its tense present (a perfect infinitive — claims to have
+signed — is past); then write the control instance naming the matrix verb, the subject and the
+complement, and record what the verb implies about the complement: nothing (try, attempt,
+refuse, choose, struggle, hesitate), that it happened (manage, dare, bother, remember to, learn
+to, happen to), or that it did not (fail, forget to, neglect).
+
+Verbs that anchor the class: try, attempt, manage, fail, refuse, dare, bother, neglect,
+remember, forget, learn, happen, struggle, hesitate, choose.
+Remember, forget and learn belong here only with a to-infinitive (remembered to send the
+letter); with a that-clause they are attitudes. An unlisted verb of this pattern belongs here,
+with `implication` decided by what the verb entails about the complement.
+
+Forms:
+- <subject> V to <V2> …
+- <subject> V-ed to <V2> …
+- <subject> V to have <V2>-ed …
+
+Not this template:
+- a desire, intention, decision or commitment — wants to leave, hopes to win, intends / plans /
+  decides / promises / agrees to send the quilt: an attitude whose complement is the clause,
+  sealed and never asserted
+- a liking or a dislike of an action — likes to send quilts, enjoys sending quilts, hates
+  waiting: a psych state whose stimulus is the clause
+- a causer and a different actor — made Teodor laugh, let Ottoline leave, got Lamine to send the
+  quilt: a causative
+- a phase of the action — began to sing, stopped working, kept reading: an aspectual
+- a request to someone — asked Ottoline to send the quilt, told Lamine to lock the shed: a
+  communication whose content is an imperative
+- a purpose infinitive — went to the market to buy a thermos, stayed to help: the infinitive
+  states an aim; the main clause is parsed and the infinitive reported as unmapped
+- seem, appear, tend — seems to be tired, tends to wait: a hedge or a habit over the clause;
+  report it as unmapped
+- a finite that-clause — remembered that Lamine left, learned that the shed burned: an attitude
+
+Slots:
+
+- `t` (required): "control"
+- `id` (required; your label for this instance): your label for the matrix event.
+- `verb` (required; a lemma): the matrix verb lemma (try, manage, fail …).
+- `subject` (optional; "@id" of a referent instance, or a bare lemma for a non-specific filler):
+  the subject, who also acts in the complement: a referent id; absent in an agentless passive,
+  and in an imperative, whose addressee is not a referent of the text.
+- `complement` (required; a list of "@id" of the instances that state the clause): the
+  complement clause: the ids of the instances that state it (its predication, with the subject
+  as its actor, or a negation over that predication); the referents it mentions are not listed.
+- `implication` (required; one of: none, positive, negative): what the verb implies about the
+  complement: none — nothing follows (try, attempt, refuse, choose, struggle, hesitate);
+  positive — it happened (manage, dare, bother, remember to, learn to, happen to); negative — it
+  did not (fail, forget to, neglect).
+- `tense` (required; one of: past, present, future): the matrix clause's tense; present is
+  recorded, not inferred.
+- `aspect` (optional; one of: simple, progressive, perfect).
+
+Example (no implication — the complement is sealed, nothing is said about the sleeping). TEXT: Yusra tried to sleep.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Yusra"},
+      {"t": "activity", "id": "v1", "verb": "sleep", "actor": "@n1", "tense": "present"},
+      {"t": "control", "id": "e1", "verb": "try", "subject": "@n1", "complement": ["@v1"], "implication": "none", "tense": "past"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_yusra_1 "Yusra")
+    (Member sk_try_1 try)
+    (Agent sk_try_1 sk_yusra_1)
+    (Theme sk_try_1 (And (Member sk_sleep_1 sleep) (Agent sk_sleep_1 sk_yusra_1)))
+    (Past sk_try_1)
+
+Example (a positive implication — the marker lets a background rule derive the opening, in the past). TEXT: Lamine managed to open the shed.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Lamine"},
+      {"t": "witness", "id": "x1", "kind": "shed", "definite": true},
+      {"t": "change-of-state", "id": "c1", "verb": "open", "agent": "@n1", "undergoer": "@x1", "tense": "present"},
+      {"t": "control", "id": "e1", "verb": "manage", "subject": "@n1", "complement": ["@c1"], "implication": "positive", "tense": "past"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_lamine_1 "Lamine")
+    (Member sk_shed_1 shed)
+    (Member sk_manage_1 manage)
+    (Agent sk_manage_1 sk_lamine_1)
+    (Theme sk_manage_1 (And (Member sk_open_1 open) (Agent sk_open_1 sk_lamine_1) (Patient sk_open_1 sk_shed_1)))
+    (Entails sk_manage_1)
+    (Past sk_manage_1)
+
+Example (a negative implication — the marker lets a background rule derive that no arriving happened). TEXT: Teodor failed to arrive.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Teodor"},
+      {"t": "motion", "id": "m1", "verb": "arrive", "mover": "@n1", "tense": "present"},
+      {"t": "control", "id": "e1", "verb": "fail", "subject": "@n1", "complement": ["@m1"], "implication": "negative", "tense": "past"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_teodor_1 "Teodor")
+    (Member sk_fail_1 fail)
+    (Agent sk_fail_1 sk_teodor_1)
+    (Theme sk_fail_1 (And (Member sk_arrive_1 arrive) (Agent sk_arrive_1 sk_teodor_1)))
+    (Precludes sk_fail_1)
+    (Past sk_fail_1)
+
+Not this template. TEXT: Ottoline wants to send the quilt. — use `attitude`.
+
+Not this template. TEXT: Yusra made Teodor laugh. — use `causative`.
 
 ### copular — An individual is a kind or has a property
 
@@ -1493,8 +1841,9 @@ Not this template:
   place
 - go, come, turn as become — went bad, came true, turned red: a change of state
 - light-verb constructions — made a trip, took a walk, had a run: the noun carries the event
-- come or go with an infinitive — came to like the quilt, went to buy a thermos: an inchoative
-  or a purpose, a different construction
+- come with an infinitive — came to like the quilt: an aspectual (the inchoative come_to); go
+  with a purpose infinitive — went to buy a thermos: the motion is parsed, the purpose reported
+  as unmapped
 - a path phrase other than to or from — across the field, along the river, through the gate: an
   attachment with no slot here; parse the motion and report the phrase
 
@@ -1751,8 +2100,10 @@ When: A verbal clause whose verb denotes an emotional or evaluative state that a
 holds towards a stimulus: liking, disliking, fear, trust, admiration, envy, enjoyment, dread.
 With a fear-type verb the subject is the experiencer and the object the stimulus (fears the
 ferret); with a frighten-type verb the subject is the stimulus and the object the experiencer
-(the ferret frightens Yusra). The stimulus is a noun phrase: a thing, a named individual or an
-event named by a noun (dreaded the audit).
+(the ferret frightens Yusra). The stimulus is a noun phrase — a thing, a named individual or an
+event named by a noun (dreaded the audit) — or an action the experiencer likes, enjoys, hates,
+prefers or fears doing (likes to send quilts, enjoys sending quilts): then the stimulus is a
+clause, parsed with the experiencer as its actor and tense present, and sealed.
 
 Verbs that anchor the class: like, dislike, love, hate, adore, despise, fear, dread, trust,
 distrust, admire, respect, envy, resent, miss, enjoy, prefer, pity, frighten, scare, worry,
@@ -1770,8 +2121,6 @@ Forms:
 Not this template:
 - a clause as the object — fears that P, hopes that P, likes that P: an attitude towards a
   proposition; nothing is felt about a thing
-- an infinitival or gerund complement — likes to send quilts, enjoys sending quilts: the object
-  is an action, a different construction
 - an adjectival state — is afraid of the ferret, is fond of Lamine, is angry: a copular clause
   with a property, not a verb of this class
 - perception — saw the ferret, heard the news: perceiving something, not feeling something about
@@ -1788,8 +2137,13 @@ Slots:
   filler): who holds the state: the subject of a fear-type verb, the object of a frighten-type
   verb.
 - `stimulus` (optional; "@id" of a referent instance, or a bare lemma for a non-specific
-  filler): what the state is about: the object of a fear-type verb, the subject (or by-phrase)
-  of a frighten-type verb; absent in an agentless passive.
+  filler): what the state is about, as a thing: the object of a fear-type verb, the subject (or
+  by-phrase) of a frighten-type verb; absent in an agentless passive, and when the stimulus is a
+  clause.
+- `complement` (optional; a list of "@id" of the instances that state the clause): what the
+  state is about, as an action: the ids of the instances that state it (its predication, with
+  the experiencer as its actor); never together with stimulus; the referents it mentions are not
+  listed.
 - `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
   not inferred.
 - `aspect` (optional; one of: simple, progressive, perfect).
@@ -1832,8 +2186,22 @@ The program renders these instances as:
 
 Not this template. TEXT: Teodor saw the ferret. — use `perception`.
 
-Not this template. TEXT: Yusra likes to send quilts. — report it as unmapped: {"span": "likes to
-send quilts", "code": "G00"}.
+Example (an action as the stimulus — the clause is sealed, the experiencer acts in it). TEXT: Yusra likes to send quilts.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Yusra"},
+      {"t": "transfer", "id": "e1", "verb": "send", "giver": "@n1", "object": "quilt", "tense": "present"},
+      {"t": "psych", "id": "p1", "verb": "like", "experiencer": "@n1", "complement": ["@e1"], "tense": "present"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_yusra_1 "Yusra")
+    (Member sk_like_1 like)
+    (Experiencer sk_like_1 sk_yusra_1)
+    (Stimulus sk_like_1 (And (Member sk_send_1 send) (Agent sk_send_1 sk_yusra_1) (Theme sk_send_1 quilt)))
 
 ### transfer — Transfer of an object from one party to another
 
@@ -1960,7 +2328,10 @@ quilt). Parse the commanded clause with the template its verb takes, its tense p
 actor slot EMPTY unless a vocative fills it; then write the imperative instance over that
 clause. For a negative imperative (don't, do not, never) write a negation instance over the
 clause and the imperative instance over the negation. A coordinated command (wash the quilt and
-wait) is one imperative instance over both predications.
+wait) is one imperative instance over both predications. A command or request reported by a
+communication verb (asked Ottoline to send the quilt, told Lamine to lock the shed) is an
+imperative instance too — over the requested clause, whose actor is the addressee — filling the
+communication's content.
 
 Forms:
 - <V> <object>.
@@ -1973,9 +2344,8 @@ Not this template:
   predication, asserted
 - an obligation or a permission stated of someone — Yusra must send the quilt, Lamine may leave:
   a modal over an asserted clause, not a command
-- a reported command or request — told Lamine to lock the shed, asked Ottoline to send the
-  quilt: a communication whose content is a request; no template yet; report the span as
-  unmapped
+- a reported command or request stands inside a communication — told Lamine to lock the shed:
+  the imperative instance is the communication's content, not a top-level directive
 - a question that asks for an action — could you lock the shed?: a question; report it as
   unmapped
 - a hortative — let's go to the market, let us wait: the speaker is included; report it as

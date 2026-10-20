@@ -1,0 +1,90 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "7b971397645436659b47229c67b5e18427eb894e0e6cbf0b176ccc7db0eed480",
+  "item": {
+    "id": "s02ff2f3f8a",
+    "text": "Teodor quit singing."
+  },
+  "usage": {
+    "input": 42688,
+    "output": 120,
+    "thinking": null,
+    "total": 42808,
+    "cached": 40639,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 42688,
+    "candidatesTokenCount": 120,
+    "totalTokenCount": 42808,
+    "cachedContentTokenCount": 40639,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 42688
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 40639
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 120
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s02ff2f3f8a\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"sing\", \"actor\": \"@n1\", \"tense\": \"present\"}, {\"t\": \"aspectual\", \"id\": \"e1\", \"verb\": \"quit\", \"complement\": [\"@v1\"], \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s02ff2f3f8a",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "sing",
+        "actor": "@n1",
+        "tense": "present"
+      },
+      {
+        "t": "aspectual",
+        "id": "e1",
+        "verb": "quit",
+        "complement": [
+          "@v1"
+        ],
+        "tense": "past"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "550b5adae738e98b3a45e1fd666b1c271958eedeeddaca6a18b6db34c69a06c7",
+  "run": 3,
+  "case": {
+    "template": "aspectual",
+    "section": "held_out",
+    "index": 7,
+    "category": "optional",
+    "text": "Teodor quit singing.",
+    "key": "02ff2f3f8a"
+  }
+}

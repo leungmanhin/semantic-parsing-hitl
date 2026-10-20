@@ -1,0 +1,246 @@
+# Template: causative  (a causer brings about an action of someone or something else: "made Teodor laugh", "let Ottoline leave", "prevented Teodor from leaving")
+#
+# The matrix verb is an event with the causer as its Agent; the caused clause is parsed with its
+# own template — its actor the object of the causative verb (made Teodor laugh: Teodor laughs),
+# or its patient when the complement is a past participle (had the quilt washed) — and sealed as
+# the matrix event's Theme. The object lives only inside the caused clause, never on the matrix
+# verb. Whether the caused action happened is the verb's implication, which the parser records
+# and the parse marks on the matrix event: make, let, have, get, force, cause, help, persuade say
+# it did — (Entails e); allow, permit, enable say nothing; prevent, stop … from, keep … from say
+# it did not — (Precludes e). A background rule derives the caused action, or its negation, at
+# the matrix event's tense; the parse asserts nothing about it.
+
+id: causative
+family: predication
+kind: verb-class
+title: A causer brings about an action of someone or something else
+status: draft
+
+trigger:
+  construction: >
+    A verbal clause whose verb takes an object and a verb phrase naming an action of that
+    object: make / let / have X V (bare infinitive), get / force / cause / help / allow / permit /
+    enable / persuade / convince X to V, have / get X V-ed (a past participle: the object is the
+    patient of the action, its agent unstated), prevent / stop / keep X from V-ing. Parse the
+    caused clause with the template its verb takes, its actor (or patient) the object and its
+    tense present; then write the causative instance naming the matrix verb, the causer and the
+    caused clause, and record what the verb implies: it happened (make, let, have, get, force,
+    cause, help, persuade, convince), nothing (allow, permit, enable, leave), or it did not
+    (prevent, stop … from, keep … from).
+  verbs: [make, let, have, get, force, cause, help, allow, permit, enable, persuade, convince,
+          prevent, stop, keep]
+  verbs_note: >
+    Have, get, make, stop and keep belong here only with a verb phrase on their object; with a
+    noun phrase alone they are a possession, an acquisition, a creation or an activity, and
+    make / get with a predicate (made the wax soft, got wet) is a change of state. An unlisted
+    verb of this pattern belongs here, with `implication` decided by what the verb entails.
+  surface_forms:
+    - "<causer> made / let / had <X> <V2> …"         # Yusra made Teodor laugh
+    - "<causer> got / forced / helped <X> (to) <V2> …"  # got Lamine to send the quilt
+    - "<causer> had / got <X> <V2>-ed"               # had the quilt washed: X is the patient
+    - "<causer> prevented / stopped / kept <X> from <V2>-ing"   # the action did not happen
+  boundary:                   # looks like a causative but is not one
+    - >-
+      make or get with a predicate on the object — made the wax soft, got the ladder wet: a
+      change of state, with the predicate as its result
+    - >-
+      have or get with a noun phrase alone — has a thermos, got a letter: a possession or an
+      acquisition, no caused action
+    - >-
+      a lexical causative — broke the ladder, melted the wax, opened the gate: a change of
+      state brought about by the subject, one event
+    - >-
+      a request to someone — asked Ottoline to send the quilt, told Lamine to lock the shed: a
+      communication whose content is an imperative
+    - >-
+      an action of the subject itself — tried to sleep, managed to open the shed: a control
+      verb
+    - >-
+      a hortative — let's go to the market: the speaker is included; report it as unmapped
+    - >-
+      light-verb constructions — made a decision, made a trip, had a rest: the noun carries the
+      event
+    - >-
+      a causal link between two clauses — the storm made the ferry late, because it rained:
+      a clause link; report it as unmapped
+
+slots:
+  id:          {type: id, required: true, doc: "your label for the matrix event"}
+  verb:        {type: lemma, class: Class, required: true, doc: "the causative verb lemma (make, let, get, prevent …)"}
+  causer:      {type: filler, class: Entity, role: Agent, required: false,
+                doc: "who or what brings the action about: the subject; absent in an agentless passive, and in an imperative, whose addressee is not a referent of the text"}
+  complement:  {type: refs, class: Proposition, required: true,
+                doc: "the caused clause: the ids of the instances that state it (its predication, with the causative verb's object as its actor, or as its patient for a past participle); the referents it mentions are not listed"}
+  implication: {type: enum, values: [none, positive, negative], required: true,
+                doc: "what the verb implies about the caused action: positive — it happened (make, let, have, get, force, cause, help, persuade, convince); none — nothing follows (allow, permit, enable, leave); negative — it did not (prevent, stop … from, keep … from)"}
+  tense:       {type: enum, values: [past, present, future], required: true,
+                doc: "the matrix clause's tense; present is recorded, not inferred"}
+  aspect:      {type: enum, values: [simple, progressive, perfect], required: false, default: simple}
+
+mints: {id: Event}
+
+emits:
+  - atom: "(Member @id {verb})"
+  - atom: "(Agent @id {causer})"
+    if_filled: causer
+  - atom: "(Theme @id {complement})"        # the caused clause, sealed as one term
+  - atom: "(Entails @id)"                   # the action happened: a background rule derives it at this event's tense
+    when: "implication == positive"
+  - atom: "(Precludes @id)"                 # the action was prevented: the rule derives its negation
+    when: "implication == negative"
+  - atom: "(Past @id)"
+    when: "tense == past or aspect == perfect"
+  - atom: "(Future @id)"
+    when: "tense == future"
+  - atom: "(Ongoing @id)"
+    when: "aspect == progressive"
+
+notes:
+  - >-
+    The causee is a participant of the caused action only: Teodor is the Agent of the laughing,
+    not a Patient of the making. The arrange / coerce / permit sense rides the surface verb
+    (have, make, let), as in the legacy convention; no separate operator.
+  - >-
+    The marker sits inside whatever scope the matrix event sits in, so "did not make Teodor
+    laugh" denies the bundle and the background rule derives no laughing.
+
+depends_on: [named-entity, witness, activity, transfer, motion, change-of-state, negation]
+composes_with: [negation, modal, time, manner]
+
+examples:
+  shown:                     # rendered into the prompt
+    - category: positive
+      note: the causee is the actor of the caused clause; make says it happened — the marker, not the parse, carries that
+      text: "Yusra made Teodor laugh."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: named-entity, id: n2, name: "Teodor"}
+        - {t: activity, id: v1, verb: laugh, actor: "@n2", tense: present}
+        - {t: causative, id: e1, verb: make, causer: "@n1", complement: ["@v1"], implication: positive, tense: past}
+      emitted:               # what the emitter produces (illustration; the emitter is the authority)
+        - "(Name sk_yusra_1 \"Yusra\")"
+        - "(Name sk_teodor_1 \"Teodor\")"
+        - "(Member sk_make_1 make)"
+        - "(Agent sk_make_1 sk_yusra_1)"
+        - "(Theme sk_make_1 (And (Member sk_laugh_1 laugh) (Agent sk_laugh_1 sk_teodor_1)))"
+        - "(Entails sk_make_1)"
+        - "(Past sk_make_1)"
+      declarations:
+        - "(: laugh Class)"
+        - "(: make Class)"
+        - "(: sk_laugh_1 Event)"
+        - "(: sk_make_1 Event)"
+        - "(: sk_teodor_1 Entity)"
+        - "(: sk_yusra_1 Entity)"
+    - category: positive
+      note: a negative implication — the action did not happen
+      text: "Lamine prevented Teodor from leaving."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: named-entity, id: n2, name: "Teodor"}
+        - {t: motion, id: m1, verb: leave, mover: "@n2", tense: present}
+        - {t: causative, id: e1, verb: prevent, causer: "@n1", complement: ["@m1"], implication: negative, tense: past}
+    - category: abstain
+      text: "Yusra broke the ladder."
+      expected: {abstain: true, template: change-of-state}            # a lexical causative: one event
+    - category: abstain
+      text: "Yusra tried to sleep."
+      expected: {abstain: true, template: control}                    # an action of the subject itself
+
+  held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      note: make with a transfer as the caused action
+      text: "Lamine made Yusra send the quilt."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: named-entity, id: n2, name: "Yusra"}
+        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: transfer, id: e2, verb: send, giver: "@n2", object: "@x1", tense: present}
+        - {t: causative, id: e1, verb: make, causer: "@n1", complement: ["@e2"], implication: positive, tense: past}
+    - category: positive
+      note: let — permitted and done
+      text: "Lamine let Ottoline leave."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: named-entity, id: n2, name: "Ottoline"}
+        - {t: motion, id: m1, verb: leave, mover: "@n2", tense: present}
+        - {t: causative, id: e1, verb: let, causer: "@n1", complement: ["@m1"], implication: positive, tense: past}
+    - category: positive
+      note: a past participle — the object is the patient of the caused action, its agent unstated
+      text: "Teodor had the quilt washed."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: activity, id: v1, verb: wash, patient: "@x1", tense: present}
+        - {t: causative, id: e1, verb: have, causer: "@n1", complement: ["@v1"], implication: positive, tense: past}
+    - category: positive
+      note: get X to V
+      text: "Yusra got Lamine to send the quilt."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: transfer, id: e2, verb: send, giver: "@n2", object: "@x1", tense: present}
+        - {t: causative, id: e1, verb: get, causer: "@n1", complement: ["@e2"], implication: positive, tense: past}
+    - category: positive
+      note: help — the helper is the causer, the helped one the actor
+      text: "Ottoline helped Yusra wash the quilt."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: named-entity, id: n2, name: "Yusra"}
+        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: activity, id: v1, verb: wash, actor: "@n2", patient: "@x1", tense: present}
+        - {t: causative, id: e1, verb: help, causer: "@n1", complement: ["@v1"], implication: positive, tense: past}
+    - category: positive
+      note: allow — nothing follows about the action
+      text: "Yusra allowed Teodor to leave."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: named-entity, id: n2, name: "Teodor"}
+        - {t: motion, id: m1, verb: leave, mover: "@n2", tense: present}
+        - {t: causative, id: e1, verb: allow, causer: "@n1", complement: ["@m1"], implication: none, tense: past}
+    - category: positive
+      text: "Teodor forced Lamine to wait."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: activity, id: v1, verb: wait, actor: "@n2", tense: present}
+        - {t: causative, id: e1, verb: force, causer: "@n1", complement: ["@v1"], implication: positive, tense: past}
+    - category: optional
+      note: keep X from V-ing
+      text: "Lamine kept Teodor from leaving."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: named-entity, id: n2, name: "Teodor"}
+        - {t: motion, id: m1, verb: leave, mover: "@n2", tense: present}
+        - {t: causative, id: e1, verb: keep, causer: "@n1", complement: ["@m1"], implication: negative, tense: past}
+    - category: scoped
+      note: under clausal negation — the bundle is denied, marker included; no laughing is derived
+      text: "Yusra did not make Teodor laugh."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: named-entity, id: n2, name: "Teodor"}
+        - {t: activity, id: v1, verb: laugh, actor: "@n2", tense: present}
+        - {t: causative, id: e1, verb: make, causer: "@n1", complement: ["@v1"], implication: positive, tense: past}
+        - {t: negation, id: s1, over: ["@e1"]}
+    - category: scoped
+      note: under a modal
+      text: "Lamine might let Ottoline leave."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: named-entity, id: n2, name: "Ottoline"}
+        - {t: motion, id: m1, verb: leave, mover: "@n2", tense: present}
+        - {t: causative, id: e1, verb: let, causer: "@n1", complement: ["@m1"], implication: positive, tense: present}
+        - {t: modal, id: s1, over: ["@e1"], head: Might, surface: might}
+    - category: abstain
+      text: "Lamine made the wax soft."
+      expected: {abstain: true, template: change-of-state}            # make with a predicate: a result
+    - category: abstain
+      text: "Teodor made a trip."
+      expected: {abstain: true, gap: G00, span: "made a trip"}        # light-verb construction
+    - category: abstain
+      text: "Yusra stopped working."
+      expected: {abstain: true, template: aspectual}                  # a phase of the subject's own action
+    - category: abstain
+      text: "Let's go to the market."
+      expected: {abstain: true, gap: G00, span: "Let's go to the market"}   # a hortative

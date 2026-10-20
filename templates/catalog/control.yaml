@@ -1,0 +1,243 @@
+# Template: control  (a verb whose complement is an action of its own subject: "tried to sleep", "managed to open the shed", "failed to arrive")
+#
+# The matrix verb is an event with the subject as its Agent; the complement is a clause whose
+# actor is that same subject (subject control), parsed with its own template and sealed as the
+# matrix event's Theme: (Theme sk_try_1 (And (Member sk_sleep_1 sleep) (Agent sk_sleep_1 x))).
+# Whether the complement happened is the verb's lexical implication, which the parser records
+# and the parse marks on the matrix event: try / refuse say nothing (the complement stays
+# sealed); manage / remember to / dare say it did — (Entails sk_manage_1); fail / forget to /
+# neglect say it did not — (Precludes sk_fail_1). A background rule derives the complement, or
+# its negation, from the marker at the matrix event's tense; the parse asserts nothing about the
+# action itself. Desires, intentions and commitments (want, hope, intend, decide, promise) are
+# attitudes; make / let / help X V are causatives; begin / stop / keep V-ing are aspectuals.
+
+id: control
+family: predication
+kind: verb-class
+title: A verb whose complement is an action of its own subject
+status: draft
+
+trigger:
+  construction: >
+    A verbal clause whose verb takes a to-infinitive naming an action of the clause's own
+    subject: try, attempt, manage, fail, refuse, dare, bother, neglect, remember to, forget to,
+    learn to, happen to, struggle, hesitate, choose. Parse the complement with the template its
+    verb takes, its actor the matrix subject and its tense present (a perfect infinitive — claims
+    to have signed — is past); then write the control instance naming the matrix verb, the
+    subject and the complement, and record what the verb implies about the complement: nothing
+    (try, attempt, refuse, choose, struggle, hesitate), that it happened (manage, dare, bother,
+    remember to, learn to, happen to), or that it did not (fail, forget to, neglect).
+  verbs: [try, attempt, manage, fail, refuse, dare, bother, neglect, remember, forget, learn,
+          happen, struggle, hesitate, choose]
+  verbs_note: >
+    Remember, forget and learn belong here only with a to-infinitive (remembered to send the
+    letter); with a that-clause they are attitudes. An unlisted verb of this pattern belongs
+    here, with `implication` decided by what the verb entails about the complement.
+  surface_forms:
+    - "<subject> V to <V2> …"                        # Yusra tried to sleep
+    - "<subject> V-ed to <V2> …"                     # the tense is the matrix verb's
+    - "<subject> V to have <V2>-ed …"                # a perfect infinitive: the complement is past
+  boundary:                   # looks like a control verb but is not one
+    - >-
+      a desire, intention, decision or commitment — wants to leave, hopes to win, intends /
+      plans / decides / promises / agrees to send the quilt: an attitude whose complement is the
+      clause, sealed and never asserted
+    - >-
+      a liking or a dislike of an action — likes to send quilts, enjoys sending quilts, hates
+      waiting: a psych state whose stimulus is the clause
+    - >-
+      a causer and a different actor — made Teodor laugh, let Ottoline leave, got Lamine to send
+      the quilt: a causative
+    - >-
+      a phase of the action — began to sing, stopped working, kept reading: an aspectual
+    - >-
+      a request to someone — asked Ottoline to send the quilt, told Lamine to lock the shed: a
+      communication whose content is an imperative
+    - >-
+      a purpose infinitive — went to the market to buy a thermos, stayed to help: the
+      infinitive states an aim; the main clause is parsed and the infinitive reported as unmapped
+    - >-
+      seem, appear, tend — seems to be tired, tends to wait: a hedge or a habit over the clause;
+      report it as unmapped
+    - >-
+      a finite that-clause — remembered that Lamine left, learned that the shed burned: an
+      attitude
+
+slots:
+  id:          {type: id, required: true, doc: "your label for the matrix event"}
+  verb:        {type: lemma, class: Class, required: true, doc: "the matrix verb lemma (try, manage, fail …)"}
+  subject:     {type: filler, class: Entity, role: Agent, required: false,
+                doc: "the subject, who also acts in the complement: a referent id; absent in an agentless passive, and in an imperative, whose addressee is not a referent of the text"}
+  complement:  {type: refs, class: Proposition, required: true,
+                doc: "the complement clause: the ids of the instances that state it (its predication, with the subject as its actor, or a negation over that predication); the referents it mentions are not listed"}
+  implication: {type: enum, values: [none, positive, negative], required: true,
+                doc: "what the verb implies about the complement: none — nothing follows (try, attempt, refuse, choose, struggle, hesitate); positive — it happened (manage, dare, bother, remember to, learn to, happen to); negative — it did not (fail, forget to, neglect)"}
+  tense:       {type: enum, values: [past, present, future], required: true,
+                doc: "the matrix clause's tense; present is recorded, not inferred"}
+  aspect:      {type: enum, values: [simple, progressive, perfect], required: false, default: simple}
+
+mints: {id: Event}
+
+emits:
+  - atom: "(Member @id {verb})"
+  - atom: "(Agent @id {subject})"
+    if_filled: subject
+  - atom: "(Theme @id {complement})"        # the complement, sealed as one term
+  - atom: "(Entails @id)"                   # an implicative verb: a background rule derives the complement at this event's tense
+    when: "implication == positive"
+  - atom: "(Precludes @id)"                 # a negative implicative verb: the rule derives the complement's negation
+    when: "implication == negative"
+  - atom: "(Past @id)"
+    when: "tense == past or aspect == perfect"
+  - atom: "(Future @id)"
+    when: "tense == future"
+  - atom: "(Ongoing @id)"
+    when: "aspect == progressive"
+
+notes:
+  - >-
+    The complement is sealed under the Theme as an attitude's clause is, so the parse asserts
+    nothing about the action; the marker records the verb's implication, and the background
+    rules (theme_entailed, theme_precluded) state how a consumer derives the complement, or its
+    negation, with the matrix event's tense carried onto it. The marker sits inside whatever scope the matrix sits
+    in, so "did not manage to open the shed" denies the bundle and nothing is derived: an
+    implication is an entailment of the asserted clause, not a presupposition that projects.
+  - >-
+    The subject is written into the complement as its actor (subject control), so the sealed
+    term is a complete description of the action; the matrix event's own Agent is the same
+    referent.
+
+depends_on: [named-entity, witness, activity, transfer, motion, change-of-state, negation]
+composes_with: [negation, modal, time, manner]
+
+examples:
+  shown:                     # rendered into the prompt
+    - category: positive
+      note: no implication — the complement is sealed, nothing is said about the sleeping
+      text: "Yusra tried to sleep."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: activity, id: v1, verb: sleep, actor: "@n1", tense: present}
+        - {t: control, id: e1, verb: try, subject: "@n1", complement: ["@v1"], implication: none, tense: past}
+      emitted:               # what the emitter produces (illustration; the emitter is the authority)
+        - "(Name sk_yusra_1 \"Yusra\")"
+        - "(Member sk_try_1 try)"
+        - "(Agent sk_try_1 sk_yusra_1)"
+        - "(Theme sk_try_1 (And (Member sk_sleep_1 sleep) (Agent sk_sleep_1 sk_yusra_1)))"
+        - "(Past sk_try_1)"
+      declarations:
+        - "(: sk_sleep_1 Event)"
+        - "(: sk_try_1 Event)"
+        - "(: sk_yusra_1 Entity)"
+        - "(: sleep Class)"
+        - "(: try Class)"
+    - category: positive
+      note: a positive implication — the marker lets a background rule derive the opening, in the past
+      text: "Lamine managed to open the shed."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: x1, kind: shed, definite: true}
+        - {t: change-of-state, id: c1, verb: open, agent: "@n1", undergoer: "@x1", tense: present}
+        - {t: control, id: e1, verb: manage, subject: "@n1", complement: ["@c1"], implication: positive, tense: past}
+    - category: positive
+      note: a negative implication — the marker lets a background rule derive that no arriving happened
+      text: "Teodor failed to arrive."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: motion, id: m1, verb: arrive, mover: "@n1", tense: present}
+        - {t: control, id: e1, verb: fail, subject: "@n1", complement: ["@m1"], implication: negative, tense: past}
+    - category: abstain
+      text: "Ottoline wants to send the quilt."
+      expected: {abstain: true, template: attitude}                   # a desire
+    - category: abstain
+      text: "Yusra made Teodor laugh."
+      expected: {abstain: true, template: causative}                  # a causer and a different actor
+
+  held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      text: "Ottoline refused to sing."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: activity, id: v1, verb: sing, actor: "@n1", tense: present}
+        - {t: control, id: e1, verb: refuse, subject: "@n1", complement: ["@v1"], implication: none, tense: past}
+    - category: positive
+      note: remember to — it happened
+      text: "Lamine remembered to send the letter."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: x1, kind: letter, definite: true}
+        - {t: transfer, id: e2, verb: send, giver: "@n1", object: "@x1", tense: present}
+        - {t: control, id: e1, verb: remember, subject: "@n1", complement: ["@e2"], implication: positive, tense: past}
+    - category: positive
+      note: forget to — it did not happen
+      text: "Yusra forgot to lock the shed."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, kind: shed, definite: true}
+        - {t: activity, id: v1, verb: lock, actor: "@n1", patient: "@x1", tense: present}
+        - {t: control, id: e1, verb: forget, subject: "@n1", complement: ["@v1"], implication: negative, tense: past}
+    - category: positive
+      note: learn to — the action is within reach now
+      text: "Teodor learned to swim."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: motion, id: m1, verb: swim, mover: "@n1", tense: present}
+        - {t: control, id: e1, verb: learn, subject: "@n1", complement: ["@m1"], implication: positive, tense: past}
+    - category: positive
+      text: "Lamine attempted to open the gate."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: x1, kind: gate, definite: true}
+        - {t: change-of-state, id: c1, verb: open, agent: "@n1", undergoer: "@x1", tense: present}
+        - {t: control, id: e1, verb: attempt, subject: "@n1", complement: ["@c1"], implication: none, tense: past}
+    - category: scoped
+      note: under clausal negation — the whole bundle, sealed complement included, is denied
+      text: "Yusra did not try to sleep."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: activity, id: v1, verb: sleep, actor: "@n1", tense: present}
+        - {t: control, id: e1, verb: try, subject: "@n1", complement: ["@v1"], implication: none, tense: past}
+        - {t: negation, id: s1, over: ["@e1"]}
+    - category: scoped
+      note: a positive implication under negation — the marker is inside the denied bundle, so nothing is derived
+      text: "Teodor did not manage to open the shed."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, kind: shed, definite: true}
+        - {t: change-of-state, id: c1, verb: open, agent: "@n1", undergoer: "@x1", tense: present}
+        - {t: control, id: e1, verb: manage, subject: "@n1", complement: ["@c1"], implication: positive, tense: past}
+        - {t: negation, id: s1, over: ["@e1"]}
+    - category: scoped
+      note: under a modal
+      text: "Lamine might fail to arrive."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: motion, id: m1, verb: arrive, mover: "@n1", tense: present}
+        - {t: control, id: e1, verb: fail, subject: "@n1", complement: ["@m1"], implication: negative, tense: present}
+        - {t: modal, id: s1, over: ["@e1"], head: Might, surface: might}
+    - category: optional
+      note: progressive on the matrix verb
+      text: "Yusra is trying to sleep."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: activity, id: v1, verb: sleep, actor: "@n1", tense: present}
+        - {t: control, id: e1, verb: try, subject: "@n1", complement: ["@v1"], implication: none, tense: present, aspect: progressive}
+    - category: optional
+      note: in an imperative — no subject anywhere, the addressee is implicit
+      text: "Try to sleep."
+      instances:
+        - {t: activity, id: v1, verb: sleep, tense: present}
+        - {t: control, id: e1, verb: try, complement: ["@v1"], implication: none, tense: present}
+        - {t: imperative, id: s1, over: ["@e1"]}
+    - category: abstain
+      text: "Yusra stopped working."
+      expected: {abstain: true, template: aspectual}                  # a phase of the action
+    - category: abstain
+      text: "Lamine let Ottoline leave."
+      expected: {abstain: true, template: causative}                  # a causer and a different actor
+    - category: abstain
+      text: "Yusra went to the market to buy a thermos."
+      expected: {abstain: true, gap: G00, span: "to buy a thermos"}   # a purpose infinitive
+    - category: abstain
+      text: "Teodor seems to be tired."
+      expected: {abstain: true, gap: G00, span: "seems to be tired"}  # a hedge over the clause

@@ -1,0 +1,104 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "1e3a0e7b653d644ba66513f0d0e707b1cc9b81d1cb008f3f969832c0fde71796",
+  "item": {
+    "id": "s4dd956d334",
+    "text": "Yusra did not make Teodor laugh."
+  },
+  "usage": {
+    "input": 42693,
+    "output": 180,
+    "thinking": null,
+    "total": 42873,
+    "cached": 40644,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 42693,
+    "candidatesTokenCount": 180,
+    "totalTokenCount": 42873,
+    "cachedContentTokenCount": 40644,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 42693
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 40644
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 180
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s4dd956d334\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"laugh\", \"actor\": \"@n2\", \"tense\": \"present\"}, {\"t\": \"causative\", \"id\": \"e1\", \"verb\": \"make\", \"causer\": \"@n1\", \"complement\": [\"@v1\"], \"implication\": \"positive\", \"tense\": \"past\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@e1\"]}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s4dd956d334",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Teodor"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "laugh",
+        "actor": "@n2",
+        "tense": "present"
+      },
+      {
+        "t": "causative",
+        "id": "e1",
+        "verb": "make",
+        "causer": "@n1",
+        "complement": [
+          "@v1"
+        ],
+        "implication": "positive",
+        "tense": "past"
+      },
+      {
+        "t": "negation",
+        "id": "s1",
+        "over": [
+          "@e1"
+        ]
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "550b5adae738e98b3a45e1fd666b1c271958eedeeddaca6a18b6db34c69a06c7",
+  "run": 3,
+  "case": {
+    "template": "causative",
+    "section": "held_out",
+    "index": 8,
+    "category": "scoped",
+    "text": "Yusra did not make Teodor laugh.",
+    "key": "4dd956d334"
+  }
+}

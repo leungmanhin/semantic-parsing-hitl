@@ -17,12 +17,16 @@ status: draft
 trigger:
   construction: >
     A clause whose verb expresses a mental or reporting attitude of its subject (the holder)
-    towards a finite complement clause, introduced by "that" or bare. Non-factive verbs
-    (believe, think, suppose, assume, suspect, doubt, hope, fear, expect, claim, say) do not
-    assert the complement; factive verbs (know, realize, discover, learn, notice, remember,
-    regret) presuppose it. The complement is a complete clause with a subject and a tense of
-    its own.
+    towards a complement clause: a finite clause introduced by "that" or bare, or a
+    to-infinitive naming what the holder wants, hopes, intends, plans, decides, promises or
+    agrees to do (wants to send the quilt) or expects of someone (expects Lamine to come).
+    Non-factive verbs (believe, think, suppose, assume, suspect, doubt, hope, fear, expect,
+    claim, say, want, wish, intend, plan, decide, promise, agree) do not assert the complement;
+    factive verbs (know, realize, discover, learn, notice, remember, regret) presuppose it. A
+    finite complement has a subject and a tense of its own; an infinitival one is parsed with
+    the holder as its actor (or the object, when the syntax supplies one) and tense present.
   verbs: [believe, think, suppose, assume, suspect, doubt, hope, fear, expect, claim, say,
+          want, wish, intend, plan, decide, promise, agree,
           know, realize, discover, learn, notice, remember, regret]
   verbs_note: >
     The lists anchor the two classes; an unlisted verb that takes a finite complement belongs
@@ -32,13 +36,18 @@ trigger:
     - "<holder> V that <clause>"                 # believes that Lamine lent Ottoline the trowel
     - "<holder> V <clause>"                      # thinks Lamine lent Ottoline the trowel
     - "<holder> V-ed that <clause>"              # tense on the attitude; the clause keeps its own
+    - "<holder> V to <V2> …"                     # wants to send the quilt: the holder acts in the complement
+    - "<holder> V <object> to <V2> …"            # expects Lamine to come: the object acts in it
   boundary:                   # looks like an attitude but is not one
     - >-
       an entity object instead of a clause — fears the dog, distrusts Lamine, knows Yusra: a
       psych state or an acquaintance; nothing is sealed
     - >-
-      an infinitival complement — wants to send the quilt, expects Lamine to come: the
-      complement has no subject or tense of its own; a different construction
+      an effort or an achievement towards an action — tried to sleep, managed to open the shed,
+      failed to arrive: a control verb, whose implication about the action is recorded there
+    - >-
+      a liking or a dislike of an action — likes to send quilts, enjoys sending quilts: a psych
+      state whose stimulus is the clause
     - >-
       an interrogative complement — wonders whether, knows whether, asks if: the complement is
       a question, not a proposition
@@ -55,9 +64,9 @@ slots:
   holder:  {type: filler, class: Entity, role: Experiencer, required: true,
             doc: "who holds the attitude: the subject"}
   content: {type: refs, class: Proposition, required: true,
-            doc: "the complement clause: the ids of the instances that state it, that is its predication or the scope operator (negation, modal) over that predication; the referents it mentions are not listed"}
+            doc: "the complement clause: the ids of the instances that state it, that is its predication or the scope operator (negation, modal) over that predication; for an infinitival complement, its predication with the holder (or the object) as its actor; the referents it mentions are not listed"}
   factive: {type: bool, required: true,
-            doc: "true when the verb presupposes the complement (know, realize, discover, learn, notice, remember, regret), false otherwise (believe, think, suppose, assume, suspect, doubt, hope, fear, expect, claim, say)"}
+            doc: "true when the verb presupposes the complement (know, realize, discover, learn, notice, remember, regret), false otherwise (believe, think, suppose, assume, suspect, doubt, hope, fear, expect, claim, say, want, wish, intend, plan, decide, promise, agree)"}
   tense:   {type: enum, values: [past, present, future], required: true,
             doc: "the attitude clause's tense; present is recorded, not inferred"}
   aspect:  {type: enum, values: [simple, progressive, perfect], required: false, default: simple}
@@ -161,6 +170,14 @@ examples:
     - category: abstain
       text: "Yusra distrusts Lamine."
       expected: {abstain: true, template: psych}                     # an entity object
+    - category: positive
+      note: an infinitival complement — the holder acts in it; nothing is asserted about the sending
+      text: "Ottoline wants to send the quilt."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: transfer, id: e1, verb: send, giver: "@n1", object: "@x1", tense: present}
+        - {t: attitude, id: a1, verb: want, holder: "@n1", content: ["@e1"], factive: false, tense: present}
 
   held_out:                  # tests; never rendered into the prompt
     - category: positive
@@ -276,9 +293,21 @@ examples:
     - category: abstain
       text: "Teodor wonders whether Lamine sold the spindle."
       expected: {abstain: true, gap: G00, span: "wonders whether Lamine sold the spindle"}   # interrogative complement
-    - category: abstain
-      text: "Ottoline wants to send the quilt."
-      expected: {abstain: true, gap: G00, span: "wants to send the quilt"}    # infinitival complement
+    - category: positive
+      note: the object acts in the complement
+      text: "Teodor expects Lamine to come."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: motion, id: m1, verb: come, mover: "@n2", tense: present}
+        - {t: attitude, id: a1, verb: expect, holder: "@n1", content: ["@m1"], factive: false, tense: present}
+    - category: positive
+      note: a decision
+      text: "Lamine decided to leave."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: motion, id: m1, verb: leave, mover: "@n1", tense: present}
+        - {t: attitude, id: a1, verb: decide, holder: "@n1", content: ["@m1"], factive: false, tense: past}
     - category: abstain
       text: "Yusra told Teodor that Ottoline sent the quilt."
       expected: {abstain: true, template: communication}

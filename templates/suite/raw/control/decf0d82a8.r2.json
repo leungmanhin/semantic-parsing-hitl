@@ -1,0 +1,80 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "1e3a0e7b653d644ba66513f0d0e707b1cc9b81d1cb008f3f969832c0fde71796",
+  "item": {
+    "id": "sdecf0d82a8",
+    "text": "Teodor seems to be tired."
+  },
+  "usage": {
+    "input": 42690,
+    "output": 89,
+    "thinking": null,
+    "total": 42779,
+    "cached": 40641,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 42690,
+    "candidatesTokenCount": 89,
+    "totalTokenCount": 42779,
+    "cachedContentTokenCount": 40641,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 42690
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 40641
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 89
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sdecf0d82a8\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}], \"unmapped\": [{\"span\": \"Teodor seems to be tired.\", \"code\": \"G00\", \"construction\": \"A raising verb ('seem') hedging an infinitival copular complement.\"}], \"issues\": []}",
+  "response": {
+    "id": "sdecf0d82a8",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "Teodor seems to be tired.",
+        "code": "G00",
+        "construction": "A raising verb ('seem') hedging an infinitival copular complement."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "550b5adae738e98b3a45e1fd666b1c271958eedeeddaca6a18b6db34c69a06c7",
+  "run": 2,
+  "case": {
+    "template": "control",
+    "section": "held_out",
+    "index": 13,
+    "category": "abstain",
+    "text": "Teodor seems to be tired.",
+    "key": "decf0d82a8"
+  }
+}

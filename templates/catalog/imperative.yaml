@@ -24,7 +24,10 @@ trigger:
     its actor slot EMPTY unless a vocative fills it; then write the imperative instance over that
     clause. For a negative imperative (don't, do not, never) write a negation instance over the
     clause and the imperative instance over the negation. A coordinated command (wash the quilt
-    and wait) is one imperative instance over both predications.
+    and wait) is one imperative instance over both predications. A command or request reported
+    by a communication verb (asked Ottoline to send the quilt, told Lamine to lock the shed) is
+    an imperative instance too — over the requested clause, whose actor is the addressee —
+    filling the communication's content.
   surface_forms:
     - "<V> <object>."                                # Close the gate.
     - "Don't / Do not / Never <V> …"                 # Don't touch the spindle.
@@ -38,9 +41,8 @@ trigger:
       an obligation or a permission stated of someone — Yusra must send the quilt, Lamine may
       leave: a modal over an asserted clause, not a command
     - >-
-      a reported command or request — told Lamine to lock the shed, asked Ottoline to send the
-      quilt: a communication whose content is a request; no template yet; report the span as
-      unmapped
+      a reported command or request stands inside a communication — told Lamine to lock the
+      shed: the imperative instance is the communication's content, not a top-level directive
     - >-
       a question that asks for an action — could you lock the shed?: a question; report it as
       unmapped
@@ -221,9 +223,16 @@ examples:
     - category: abstain
       text: "The quilt was washed."
       expected: {abstain: true, template: activity}                   # an agentless passive, asserted
-    - category: abstain
+    - category: positive
+      note: a reported command — the imperative is the content of the communication, the addressee its actor
       text: "Yusra told Lamine to lock the shed."
-      expected: {abstain: true, gap: G00, span: "to lock the shed"}   # a reported command
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: witness, id: x1, kind: shed, definite: true}
+        - {t: activity, id: v1, verb: lock, actor: "@n2", patient: "@x1", tense: present}
+        - {t: imperative, id: s1, over: ["@v1"]}
+        - {t: communication, id: e1, verb: tell, speaker: "@n1", addressee: "@n2", content: ["@s1"], tense: past}
     - category: abstain
       text: "Let's go to the market."
       expected: {abstain: true, gap: G00, span: "Let's go to the market"}   # a hortative

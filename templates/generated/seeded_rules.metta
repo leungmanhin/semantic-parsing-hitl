@@ -3,6 +3,11 @@
 ;; consumer, never by the parser. Each rule is a deductive implication with an explicit
 ;; conditional truth value: the positive branch is the rule's reliability, the negative branch
 ;; (STV 0.0 1.0) says nothing follows from a failed premise.
+;;
+;; NOT WRITTEN, pending a capability of the chainer (the source states them; a consumer that
+;; can run them lowers them):
+;;   theme_entailed — an entailing event's sealed Theme holds, at the event's tense (requires sealed-term-projection)
+;;   theme_precluded — a precluding event's sealed Theme does not hold, at the event's tense (requires sealed-term-projection)
 
 ;; result_holds: a change's named result holds afterwards (reads: change-of-state)
 (: result_holds (Implication (Result $e (Member $x $s)) (Member $x $s)) (CTV (STV 1.0 0.9) (STV 0.0 1.0)))

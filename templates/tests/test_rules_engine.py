@@ -99,6 +99,34 @@ class SeededRulesOnTheEngine(unittest.TestCase):
         self.assertTrue(self.query(sym, "(Agent sk_eat_1 sk_he_1)"))   # through the symmetry rule
         self.assertFalse(self.query(self.space(base), "(Experiencer sk_like_1 sk_bob_1)"))   # no link, nothing
 
+    def test_sealed_complements_derive_at_the_matrix_tense(self):
+        """An entailing event's sealed Theme is derived with the event's tense on the clause's
+        event; a precluding event's is derived denied; an unmarked event derives nothing. Runs
+        once the chainer projects a bound sealed term (the rules are pending until then)."""
+        if not any(r.startswith("(: theme_entailed") for r in rules()):           # listed as pending in the file's header
+            self.skipTest("the chainer does not project sealed terms yet: theme_entailed is pending")
+        manage = ['(: n1 (Name sk_lamine_1 "Lamine") (STV 1.0 0.99))',
+                  '(: x1 (Member sk_shed_1 shed) (STV 1.0 0.99))',
+                  '(: e1_member (Member sk_manage_1 manage) (STV 1.0 0.99))',
+                  '(: e1_agent (Agent sk_manage_1 sk_lamine_1) (STV 1.0 0.99))',
+                  '(: e1_theme (Theme sk_manage_1 (And (Member sk_open_1 open) (Agent sk_open_1 sk_lamine_1) (Patient sk_open_1 sk_shed_1))) (STV 1.0 0.99))',
+                  '(: e1_past (Past sk_manage_1) (STV 1.0 0.99))']
+        h = self.space(manage + ['(: e1_entails (Entails sk_manage_1) (STV 1.0 0.99))'])
+        res = self.query(h, "(Past sk_open_1)")
+        self.assertTrue(res and "theme_entailed_past" in res[0], res)
+        self.assertGreater(tv(res)[1], 0.85)
+        self.assertTrue(self.query(h, "(Patient sk_open_1 sk_shed_1)"))
+        self.assertFalse(self.query(self.space(manage), "(Member sk_open_1 open)"))        # no marker: a plain try
+        fail = ['(: n1 (Name sk_teodor_1 "Teodor") (STV 1.0 0.99))',
+                '(: e1_member (Member sk_fail_1 fail) (STV 1.0 0.99))',
+                '(: e1_theme (Theme sk_fail_1 (And (Member sk_arrive_1 arrive) (Agent sk_arrive_1 sk_teodor_1))) (STV 1.0 0.99))',
+                '(: e1_past (Past sk_fail_1) (STV 1.0 0.99))',
+                '(: e1_precludes (Precludes sk_fail_1) (STV 1.0 0.99))']
+        h = self.space(fail)
+        denied = self.query(h, "(Not (And (Member sk_arrive_1 arrive) (Agent sk_arrive_1 sk_teodor_1) (Past sk_arrive_1)))")
+        self.assertTrue(denied and "theme_precluded_past" in denied[0], denied)
+        self.assertFalse(self.query(h, "(Member sk_arrive_1 arrive)"))
+
     def test_dates_resolve_against_the_anchor(self):
         facts = ['(: t1 (Time sk_bake_1 sk_time_1) (STV 1.0 0.99))',
                  '(: t1b (BeforeBy sk_time_1 sk_now_1 1 day) (STV 1.0 0.99))',

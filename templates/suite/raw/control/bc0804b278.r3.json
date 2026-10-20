@@ -1,0 +1,93 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "1e3a0e7b653d644ba66513f0d0e707b1cc9b81d1cb008f3f969832c0fde71796",
+  "item": {
+    "id": "sbc0804b278",
+    "text": "Yusra is trying to sleep."
+  },
+  "usage": {
+    "input": 42691,
+    "output": 139,
+    "thinking": null,
+    "total": 42830,
+    "cached": 40642,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 42691,
+    "candidatesTokenCount": 139,
+    "totalTokenCount": 42830,
+    "cachedContentTokenCount": 40642,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 42691
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 40642
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 139
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sbc0804b278\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"sleep\", \"actor\": \"@n1\", \"tense\": \"present\"}, {\"t\": \"control\", \"id\": \"e1\", \"verb\": \"try\", \"subject\": \"@n1\", \"complement\": [\"@v1\"], \"implication\": \"none\", \"tense\": \"present\", \"aspect\": \"progressive\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sbc0804b278",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "sleep",
+        "actor": "@n1",
+        "tense": "present"
+      },
+      {
+        "t": "control",
+        "id": "e1",
+        "verb": "try",
+        "subject": "@n1",
+        "complement": [
+          "@v1"
+        ],
+        "implication": "none",
+        "tense": "present",
+        "aspect": "progressive"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "550b5adae738e98b3a45e1fd666b1c271958eedeeddaca6a18b6db34c69a06c7",
+  "run": 3,
+  "case": {
+    "template": "control",
+    "section": "held_out",
+    "index": 8,
+    "category": "optional",
+    "text": "Yusra is trying to sleep.",
+    "key": "bc0804b278"
+  }
+}

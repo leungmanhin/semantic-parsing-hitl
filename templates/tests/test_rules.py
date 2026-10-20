@@ -28,12 +28,13 @@ class SourceTests(unittest.TestCase):
         self.assertEqual(R.check(RULES, R.substrate_heads(), R.catalog_ids()), [])
 
     def test_lowering_form(self):
-        for r in RULES:
+        for r in R.concrete(RULES):
             st = R.lower(r)
             self.assertTrue(st.startswith(f"(: {r['id']} (Implication "), st)
             self.assertTrue(st.endswith("(STV 0.0 1.0)))"), st)
             name, atom = T.split_statement(st)
             self.assertEqual(atom[0], "Implication")
+        self.assertEqual(sum(1 for r in RULES if R.runnable(r)), len(RULES) - 2)     # the two projection rules wait
         days = next(r for r in RULES if r["id"] == "days_before_day")
         self.assertIn("(Compute - ($d $n) -> $e)", R.lower(days))
         single = next(r for r in RULES if r["id"] == "result_holds")
@@ -41,6 +42,32 @@ class SourceTests(unittest.TestCase):
 
     def test_generated_file_is_fresh(self):
         self.assertEqual(open(R.GENERATED, encoding="utf-8").read(), R.render(RULES))
+
+    def test_sealed_clause_rules_expand_by_tense_and_wait_for_the_chainer(self):
+        """A rule over a sealed clause stands for one rule per matrix tense, the tense carried
+        onto the clause's event named by the clause-event computation; it requires the chainer's
+        sealed-term projection, so the generated file lists it as pending instead of writing it;
+        a placeholder without ``expand`` is a problem."""
+        src = next(r for r in RULES if r["id"] == "theme_entailed")
+        variants = R.expand(src)
+        self.assertEqual([v["id"] for v in variants], ["theme_entailed", "theme_entailed_past", "theme_entailed_future"])
+        none, past = variants[0], variants[1]
+        self.assertEqual(none["premises"], ["(Entails $m)", "(Theme $m $c)"])
+        self.assertEqual(none["conclusion"], "$c")
+        self.assertEqual(past["premises"], ["(Entails $m)", "(Theme $m $c)", "(Past $m)"])
+        self.assertEqual(past["conclusion"], "(And $c (Past $o))")
+        self.assertIn("(Compute clause-event ($c) -> $o)", R.lower(past))
+        self.assertEqual(R.expand(next(r for r in RULES if r["id"] == "theme_precluded"))[2]["conclusion"], "(Not (And $c (Future $o)))")
+        self.assertNotIn("expand", past)
+        self.assertFalse(R.runnable(src))
+        rendered = R.render(RULES)
+        self.assertNotIn("(: theme_entailed", rendered)
+        self.assertIn("theme_entailed — an entailing event's sealed Theme holds", rendered)
+        stray = copy.deepcopy(next(r for r in RULES if r["id"] == "result_holds"))
+        stray["conclusion"] = "{tensed}"
+        self.assertTrue(any("placeholder" in p for p in R.check([stray], R.substrate_heads(), R.catalog_ids())))
+        unknown = copy.deepcopy(src); unknown["requires"] = "telepathy"
+        self.assertTrue(any("unknown capability" in p for p in R.check([unknown], R.substrate_heads(), R.catalog_ids())))
 
     def test_validator_catches_unsound_rules(self):
         base = copy.deepcopy(next(r for r in RULES if r["id"] == "coref_agent"))
@@ -64,7 +91,7 @@ class TypecheckTests(unittest.TestCase):
         except Exception:
             self.skipTest("petta package not importable")
         with tempfile.NamedTemporaryFile("w", suffix=".jsonl", delete=False) as fh:
-            fh.write(json.dumps({"id": "rules", "statements": [R.lower(r) for r in RULES]}) + "\n")
+            fh.write(json.dumps({"id": "rules", "statements": [R.lower(r) for r in R.concrete([r for r in RULES if R.runnable(r)])]}) + "\n")
             path = fh.name
         report = path + ".report.json"
         try:

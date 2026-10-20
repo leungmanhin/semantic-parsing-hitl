@@ -53,8 +53,9 @@ trigger:
       light-verb constructions — made a trip, took a walk, had a run: the noun carries the
       event
     - >-
-      come or go with an infinitive — came to like the quilt, went to buy a thermos: an
-      inchoative or a purpose, a different construction
+      come with an infinitive — came to like the quilt: an aspectual (the inchoative come_to);
+      go with a purpose infinitive — went to buy a thermos: the motion is parsed, the purpose
+      reported as unmapped
     - >-
       a path phrase other than to or from — across the field, along the river, through the
       gate: an attachment with no slot here; parse the motion and report the phrase
@@ -232,4 +233,4 @@ examples:
       expected: {abstain: true, template: transfer}                   # a change of hands
     - category: abstain
       text: "Yusra came to like the quilt."
-      expected: {abstain: true, gap: G00, span: "came to like the quilt"}   # come with an infinitive
+      expected: {abstain: true, template: aspectual}                  # the inchoative come_to

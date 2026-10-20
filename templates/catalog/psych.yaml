@@ -18,8 +18,11 @@ trigger:
     holds towards a stimulus: liking, disliking, fear, trust, admiration, envy, enjoyment,
     dread. With a fear-type verb the subject is the experiencer and the object the stimulus
     (fears the ferret); with a frighten-type verb the subject is the stimulus and the object
-    the experiencer (the ferret frightens Yusra). The stimulus is a noun phrase: a thing, a
-    named individual or an event named by a noun (dreaded the audit).
+    the experiencer (the ferret frightens Yusra). The stimulus is a noun phrase — a thing, a
+    named individual or an event named by a noun (dreaded the audit) — or an action the
+    experiencer likes, enjoys, hates, prefers or fears doing (likes to send quilts, enjoys
+    sending quilts): then the stimulus is a clause, parsed with the experiencer as its actor
+    and tense present, and sealed.
   verbs: [like, dislike, love, hate, adore, despise, fear, dread, trust, distrust, admire,
           respect, envy, resent, miss, enjoy, prefer, pity,
           frighten, scare, worry, annoy, bother, please, delight, amuse, surprise, upset,
@@ -38,9 +41,6 @@ trigger:
       a clause as the object — fears that P, hopes that P, likes that P: an attitude towards a
       proposition; nothing is felt about a thing
     - >-
-      an infinitival or gerund complement — likes to send quilts, enjoys sending quilts: the
-      object is an action, a different construction
-    - >-
       an adjectival state — is afraid of the ferret, is fond of Lamine, is angry: a copular
       clause with a property, not a verb of this class
     - >-
@@ -56,7 +56,9 @@ slots:
   experiencer: {type: filler, class: Entity, role: Experiencer, required: true,
                 doc: "who holds the state: the subject of a fear-type verb, the object of a frighten-type verb"}
   stimulus:    {type: filler, class: Entity, role: Stimulus, required: false,
-                doc: "what the state is about: the object of a fear-type verb, the subject (or by-phrase) of a frighten-type verb; absent in an agentless passive"}
+                doc: "what the state is about, as a thing: the object of a fear-type verb, the subject (or by-phrase) of a frighten-type verb; absent in an agentless passive, and when the stimulus is a clause"}
+  complement:  {type: refs, class: Proposition, required: false,
+                doc: "what the state is about, as an action: the ids of the instances that state it (its predication, with the experiencer as its actor); never together with stimulus; the referents it mentions are not listed"}
   tense:       {type: enum, values: [past, present, future], required: true,
                 doc: "the clause's tense; present is recorded, not inferred"}
   aspect:      {type: enum, values: [simple, progressive, perfect], required: false, default: simple}
@@ -68,6 +70,8 @@ emits:
   - atom: "(Experiencer @id {experiencer})"
   - atom: "(Stimulus @id {stimulus})"
     if_filled: stimulus
+  - atom: "(Stimulus @id {complement})"    # an action as the stimulus, sealed as one term
+    if_filled: complement
   - atom: "(Past @id)"
     when: "tense == past or aspect == perfect"
   - atom: "(Future @id)"
@@ -117,9 +121,13 @@ examples:
     - category: abstain
       text: "Teodor saw the ferret."
       expected: {abstain: true, template: perception}                 # perception, not a feeling
-    - category: abstain
+    - category: positive
+      note: an action as the stimulus — the clause is sealed, the experiencer acts in it
       text: "Yusra likes to send quilts."
-      expected: {abstain: true, gap: G00, span: "likes to send quilts"}   # infinitival complement
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: transfer, id: e1, verb: send, giver: "@n1", object: quilt, tense: present}
+        - {t: psych, id: p1, verb: like, experiencer: "@n1", complement: ["@e1"], tense: present}
 
   held_out:                  # tests; never rendered into the prompt
     - category: positive
@@ -194,6 +202,10 @@ examples:
     - category: abstain
       text: "Ottoline is afraid of the ferret."
       expected: {abstain: true, gap: G00, span: "is afraid of the ferret"}      # adjectival state
-    - category: abstain
+    - category: positive
+      note: a gerund as the stimulus
       text: "Lamine enjoys sending quilts."
-      expected: {abstain: true, gap: G00, span: "enjoys sending quilts"}        # gerund complement
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: transfer, id: e1, verb: send, giver: "@n1", object: quilt, tense: present}
+        - {t: psych, id: p1, verb: enjoy, experiencer: "@n1", complement: ["@e1"], tense: present}

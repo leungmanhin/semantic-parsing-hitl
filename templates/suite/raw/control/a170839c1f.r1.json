@@ -1,0 +1,99 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "1e3a0e7b653d644ba66513f0d0e707b1cc9b81d1cb008f3f969832c0fde71796",
+  "item": {
+    "id": "sa170839c1f",
+    "text": "Yusra did not try to sleep."
+  },
+  "usage": {
+    "input": 42692,
+    "output": 156,
+    "thinking": null,
+    "total": 42848,
+    "cached": 40641,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 42692,
+    "candidatesTokenCount": 156,
+    "totalTokenCount": 42848,
+    "cachedContentTokenCount": 40641,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 42692
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 40641
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 156
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sa170839c1f\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"sleep\", \"actor\": \"@n1\", \"tense\": \"present\"}, {\"t\": \"control\", \"id\": \"e1\", \"verb\": \"try\", \"subject\": \"@n1\", \"complement\": [\"@v1\"], \"implication\": \"none\", \"tense\": \"past\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@e1\"]}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sa170839c1f",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "sleep",
+        "actor": "@n1",
+        "tense": "present"
+      },
+      {
+        "t": "control",
+        "id": "e1",
+        "verb": "try",
+        "subject": "@n1",
+        "complement": [
+          "@v1"
+        ],
+        "implication": "none",
+        "tense": "past"
+      },
+      {
+        "t": "negation",
+        "id": "s1",
+        "over": [
+          "@e1"
+        ]
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "550b5adae738e98b3a45e1fd666b1c271958eedeeddaca6a18b6db34c69a06c7",
+  "run": 1,
+  "case": {
+    "template": "control",
+    "section": "held_out",
+    "index": 5,
+    "category": "scoped",
+    "text": "Yusra did not try to sleep.",
+    "key": "a170839c1f"
+  }
+}

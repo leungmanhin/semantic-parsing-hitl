@@ -1,0 +1,94 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "7b971397645436659b47229c67b5e18427eb894e0e6cbf0b176ccc7db0eed480",
+  "item": {
+    "id": "s54916abfe5",
+    "text": "Yusra no longer works."
+  },
+  "usage": {
+    "input": 42688,
+    "output": 117,
+    "thinking": null,
+    "total": 42805,
+    "cached": 40639,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 42688,
+    "candidatesTokenCount": 117,
+    "totalTokenCount": 42805,
+    "cachedContentTokenCount": 40639,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 42688
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 40639
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 117
+      }
+    ]
+  },
+  "raw_text": "{\"id\":\"s54916abfe5\",\"instances\":[{\"t\":\"named-entity\",\"id\":\"n1\",\"name\":\"Yusra\"},{\"t\":\"activity\",\"id\":\"v1\",\"verb\":\"work\",\"actor\":\"@n1\",\"tense\":\"present\"},{\"t\":\"negation\",\"id\":\"s1\",\"over\":[\"@v1\"]}],\"unmapped\":[{\"span\":\"no longer\",\"code\":\"G00\",\"construction\":\"An aspectual adverbial of cessation ('no longer') combining negation with a presupposed prior state.\"}],\"issues\":[]}",
+  "response": {
+    "id": "s54916abfe5",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "work",
+        "actor": "@n1",
+        "tense": "present"
+      },
+      {
+        "t": "negation",
+        "id": "s1",
+        "over": [
+          "@v1"
+        ]
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "no longer",
+        "code": "G00",
+        "construction": "An aspectual adverbial of cessation ('no longer') combining negation with a presupposed prior state."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "550b5adae738e98b3a45e1fd666b1c271958eedeeddaca6a18b6db34c69a06c7",
+  "run": 2,
+  "case": {
+    "template": "aspectual",
+    "section": "held_out",
+    "index": 10,
+    "category": "abstain",
+    "text": "Yusra no longer works.",
+    "key": "54916abfe5"
+  }
+}

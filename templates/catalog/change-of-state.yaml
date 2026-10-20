@@ -51,10 +51,10 @@ trigger:
       an action that leaves its object as it was — read the letter, helped Lamine: an activity
     - >-
       begin, stop, keep, continue with a verbal complement — stopped working, began to sing:
-      an aspect on another event, a different construction
+      an aspectual over the action
     - >-
-      get or become with a clause or an infinitive — got Lamine to send the quilt, came to
-      like the quilt: a causative or an inchoative over a clause
+      get or come with a clause or an infinitive — got Lamine to send the quilt: a causative;
+      came to like the quilt: an aspectual (the inchoative come_to)
     - >-
       light-verb constructions — made a change, took a turn: the noun carries the event
 
@@ -170,6 +170,12 @@ examples:
         - {t: witness, id: x1, kind: ladder, definite: true}
         - {t: change-of-state, id: c1, verb: get, undergoer: "@x1", result: wet, tense: past}
     - category: positive
+      note: get with a property as the result, on a name
+      text: "Yusra got tired."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: change-of-state, id: c1, verb: get, undergoer: "@n1", result: tired, tense: past}
+    - category: positive
       note: turn with a property as the result
       text: "The quilt turned red."
       instances:
@@ -213,7 +219,7 @@ examples:
       expected: {abstain: true, template: creation}                   # a thing coming into being
     - category: abstain
       text: "Yusra stopped working."
-      expected: {abstain: true, gap: G00, span: "stopped working"}    # an aspect on another event
+      expected: {abstain: true, template: aspectual}                  # a phase of the action
     - category: abstain
       text: "The ladder fell."
       expected: {abstain: true, template: motion}                     # a physical fall

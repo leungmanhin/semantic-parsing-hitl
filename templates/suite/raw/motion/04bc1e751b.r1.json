@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "f5f1e44762d5f71f92cba2959b585298e51bf895cfccd7dae6d6503648dc8ffe",
+  "prompt_sha256": "7b971397645436659b47229c67b5e18427eb894e0e6cbf0b176ccc7db0eed480",
   "item": {
     "id": "s04bc1e751b",
     "text": "Yusra came to like the quilt."
   },
   "usage": {
-    "input": 21105,
-    "output": 89,
+    "input": 42691,
+    "output": 157,
     "thinking": null,
-    "total": 21194,
+    "total": 42848,
+    "cached": 40642,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,23 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 21105,
-    "candidatesTokenCount": 89,
-    "totalTokenCount": 21194,
+    "promptTokenCount": 42691,
+    "candidatesTokenCount": 157,
+    "totalTokenCount": 42848,
+    "cachedContentTokenCount": 40642,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 21105
+        "tokenCount": 42691
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 40642
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 89
+        "tokenCount": 157
       }
     ]
   },
-  "raw_text": "{\"id\": \"s04bc1e751b\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}], \"unmapped\": [{\"span\": \"came to like the quilt\", \"code\": \"G00\", \"construction\": \"Inchoative 'come to' with an infinitival complement.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"s04bc1e751b\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"quilt\", \"definite\": true}, {\"t\": \"psych\", \"id\": \"p1\", \"verb\": \"like\", \"experiencer\": \"@n1\", \"stimulus\": \"@x1\", \"tense\": \"present\"}, {\"t\": \"aspectual\", \"id\": \"e1\", \"verb\": \"come_to\", \"complement\": [\"@p1\"], \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s04bc1e751b",
     "instances": [
@@ -48,18 +56,35 @@
         "t": "named-entity",
         "id": "n1",
         "name": "Yusra"
-      }
-    ],
-    "unmapped": [
+      },
       {
-        "span": "came to like the quilt",
-        "code": "G00",
-        "construction": "Inchoative 'come to' with an infinitival complement."
+        "t": "witness",
+        "id": "x1",
+        "kind": "quilt",
+        "definite": true
+      },
+      {
+        "t": "psych",
+        "id": "p1",
+        "verb": "like",
+        "experiencer": "@n1",
+        "stimulus": "@x1",
+        "tense": "present"
+      },
+      {
+        "t": "aspectual",
+        "id": "e1",
+        "verb": "come_to",
+        "complement": [
+          "@p1"
+        ],
+        "tense": "past"
       }
     ],
+    "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "000098f3bba489804dab742a00fbb307c4c7cc7edbe3c2d93bcc7ed7118790ae",
+  "prompt_body_sha256": "550b5adae738e98b3a45e1fd666b1c271958eedeeddaca6a18b6db34c69a06c7",
   "run": 1,
   "case": {
     "template": "motion",

@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "8b94d53524c908c3b49c07b327d4f63b7de7791f1c8a4da1645e4578624a27da",
+  "prompt_sha256": "7b971397645436659b47229c67b5e18427eb894e0e6cbf0b176ccc7db0eed480",
   "item": {
     "id": "s8a96c5e0d4",
     "text": "Yusra stopped working."
   },
   "usage": {
-    "input": 22488,
-    "output": 84,
+    "input": 42689,
+    "output": 93,
     "thinking": null,
-    "total": 22572,
+    "total": 42782,
+    "cached": 40640,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 22488,
-    "candidatesTokenCount": 84,
-    "totalTokenCount": 22572,
-    "cachedContentTokenCount": 20439,
+    "promptTokenCount": 42689,
+    "candidatesTokenCount": 93,
+    "totalTokenCount": 42782,
+    "cachedContentTokenCount": 40640,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 22488
+        "tokenCount": 42689
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 20439
+        "tokenCount": 40640
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 84
+        "tokenCount": 93
       }
     ]
   },
-  "raw_text": "{\"id\": \"s8a96c5e0d4\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}], \"unmapped\": [{\"span\": \"stopped working\", \"code\": \"G00\", \"construction\": \"An aspectual verb taking a gerund complement.\"}], \"issues\": []}",
+  "raw_text": "{\"id\":\"s8a96c5e0d4\",\"instances\":[{\"t\":\"named-entity\",\"id\":\"n1\",\"name\":\"Yusra\"},{\"t\":\"activity\",\"id\":\"v1\",\"verb\":\"work\",\"actor\":\"@n1\",\"tense\":\"present\"},{\"t\":\"aspectual\",\"id\":\"e1\",\"verb\":\"stop\",\"complement\":[\"@v1\"],\"tense\":\"past\"}],\"unmapped\":[],\"issues\":[]}",
   "response": {
     "id": "s8a96c5e0d4",
     "instances": [
@@ -55,23 +56,33 @@
         "t": "named-entity",
         "id": "n1",
         "name": "Yusra"
-      }
-    ],
-    "unmapped": [
+      },
       {
-        "span": "stopped working",
-        "code": "G00",
-        "construction": "An aspectual verb taking a gerund complement."
+        "t": "activity",
+        "id": "v1",
+        "verb": "work",
+        "actor": "@n1",
+        "tense": "present"
+      },
+      {
+        "t": "aspectual",
+        "id": "e1",
+        "verb": "stop",
+        "complement": [
+          "@v1"
+        ],
+        "tense": "past"
       }
     ],
+    "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "2cc3e8f061d7bfce34a1f4404efb88ede552d8e0464511d138418685ffc1221b",
+  "prompt_body_sha256": "550b5adae738e98b3a45e1fd666b1c271958eedeeddaca6a18b6db34c69a06c7",
   "run": 3,
   "case": {
     "template": "change-of-state",
     "section": "held_out",
-    "index": 11,
+    "index": 13,
     "category": "abstain",
     "text": "Yusra stopped working.",
     "key": "8a96c5e0d4"

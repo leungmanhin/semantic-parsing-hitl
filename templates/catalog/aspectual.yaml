@@ -1,0 +1,189 @@
+# Template: aspectual  (a phase of an action: "began to sing", "stopped working", "kept reading the letter", "came to like the quilt")
+#
+# An aspectual verb says that an action started, went on, resumed or ended; the action is the
+# complement, parsed with its own template with the sentence's subject as its actor (or
+# undergoer: the price started to fall), and sealed as the phase event's Theme. The phase verb
+# has no role of its own: the subject belongs to the action. Whatever the phase, the action was
+# underway — began to sing is singing, stopped working was working — so the phase event is
+# marked (Entails e) and a background rule derives the action at the phase event's tense; the
+# parse asserts nothing about it. The phase itself (begin, continue, stop, finish) is the verb
+# lemma; when an action started relative to when it ended is a matter for the consumer.
+
+id: aspectual
+family: predication
+kind: verb-class
+title: A phase of an action
+status: draft
+
+trigger:
+  construction: >
+    A verbal clause whose verb names a phase of the action its complement states: begin, start,
+    commence, continue, keep, go on, carry on, resume, stop, cease, quit, finish with a
+    to-infinitive or a gerund (began to sing, kept reading the letter, stopped working, finished
+    washing the quilt); and come to V, the inchoative (came to like the quilt), with the lemma
+    come_to. Parse the action with the template its verb takes, its actor or undergoer the
+    sentence's subject and its tense present; then write the aspectual instance naming the phase
+    verb and the action.
+  verbs: [begin, start, commence, continue, keep, go_on, carry_on, resume, stop, cease, quit,
+          finish, come_to]
+  verbs_note: >
+    These verbs belong here only with a verbal complement. Without one they are a change of
+    state (the audit began, the price stopped) or an ordinary action on an object (started a
+    business, finished the letter, kept the letter); stop / keep X from V-ing is a causative.
+  surface_forms:
+    - "<subject> began / started / continued to <V2> …"   # Teodor began to sing
+    - "<subject> kept / stopped / finished <V2>-ing …"    # Yusra stopped working
+    - "<subject> came to <V2> …"                          # Yusra came to like the quilt
+  boundary:                   # looks like an aspectual but is not one
+    - >-
+      a phase verb without a verbal complement — the audit began, the price stopped, the storm
+      ceased: a change of state of the subject
+    - >-
+      a phase verb with a noun object — started a business, finished the letter, kept the
+      letter, continued the audit: an action on a thing, parsed by that action's template
+    - >-
+      stop, keep or prevent with an object and a verb — stopped Teodor from leaving, kept Lamine
+      from leaving: a causative
+    - >-
+      used to V, no longer V-s, V-s again, still V-s: a different construction, and the words
+      change the claim (no longer works does not say works); report the whole clause as unmapped
+    - >-
+      begin or start as the motion of setting off — started for the market: a motion
+
+slots:
+  id:         {type: id, required: true, doc: "your label for the phase event"}
+  verb:       {type: lemma, class: Class, required: true, doc: "the phase verb lemma (begin, start, continue, keep, stop, finish, come_to …)"}
+  complement: {type: refs, class: Proposition, required: true,
+               doc: "the action: the ids of the instances that state it (its predication, with the sentence's subject as its actor or undergoer); the referents it mentions are not listed"}
+  tense:      {type: enum, values: [past, present, future], required: true,
+               doc: "the clause's tense; present is recorded, not inferred"}
+  aspect:     {type: enum, values: [simple, progressive, perfect], required: false, default: simple}
+
+mints: {id: Event}
+
+emits:
+  - atom: "(Member @id {verb})"
+  - atom: "(Theme @id {complement})"        # the action, sealed as one term
+  - atom: "(Entails @id)"                   # the action was underway: a background rule derives it at this event's tense
+  - atom: "(Past @id)"
+    when: "tense == past or aspect == perfect"
+  - atom: "(Future @id)"
+    when: "tense == future"
+  - atom: "(Ongoing @id)"
+    when: "aspect == progressive"
+
+notes:
+  - >-
+    No Agent on the phase event: the subject of "Yusra stopped working" is the one who worked,
+    not a doer of a stopping; the price in "the price started to fall" undergoes the falling.
+    The action's atoms carry the subject.
+  - >-
+    The marker sits inside whatever scope the phase event sits in, as a control verb's is: "did
+    not stop working" denies the bundle and the background rule derives no working.
+
+depends_on: [named-entity, witness, activity, change-of-state, psych, negation]
+composes_with: [negation, modal, time]
+
+examples:
+  shown:                     # rendered into the prompt
+    - category: positive
+      note: the phase event has no role of its own; the action is sealed as its Theme and marked as entailed
+      text: "Teodor began to sing."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: activity, id: v1, verb: sing, actor: "@n1", tense: present}
+        - {t: aspectual, id: e1, verb: begin, complement: ["@v1"], tense: past}
+      emitted:               # what the emitter produces (illustration; the emitter is the authority)
+        - "(Name sk_teodor_1 \"Teodor\")"
+        - "(Member sk_begin_1 begin)"
+        - "(Theme sk_begin_1 (And (Member sk_sing_1 sing) (Agent sk_sing_1 sk_teodor_1)))"
+        - "(Entails sk_begin_1)"
+        - "(Past sk_begin_1)"
+      declarations:
+        - "(: begin Class)"
+        - "(: sing Class)"
+        - "(: sk_begin_1 Event)"
+        - "(: sk_sing_1 Event)"
+        - "(: sk_teodor_1 Entity)"
+    - category: positive
+      note: the subject undergoes the action — no agent anywhere
+      text: "The price started to fall."
+      instances:
+        - {t: witness, id: x1, kind: price, definite: true}
+        - {t: change-of-state, id: c1, verb: fall, undergoer: "@x1", tense: present}
+        - {t: aspectual, id: e1, verb: start, complement: ["@c1"], tense: past}
+    - category: abstain
+      text: "Yusra tried to sleep."
+      expected: {abstain: true, template: control}                    # an effort, not a phase
+    - category: abstain
+      text: "Lamine prevented Teodor from leaving."
+      expected: {abstain: true, template: causative}                  # a causer and a different actor
+
+  held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      note: a gerund complement
+      text: "Yusra stopped working."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: activity, id: v1, verb: work, actor: "@n1", tense: present}
+        - {t: aspectual, id: e1, verb: stop, complement: ["@v1"], tense: past}
+    - category: positive
+      note: the inchoative come to — the lemma is come_to
+      text: "Yusra came to like the quilt."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: psych, id: p1, verb: like, experiencer: "@n1", stimulus: "@x1", tense: present}
+        - {t: aspectual, id: e1, verb: come_to, complement: ["@p1"], tense: past}
+    - category: positive
+      note: keep V-ing
+      text: "Lamine kept reading the letter."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: x1, kind: letter, definite: true}
+        - {t: activity, id: v1, verb: read, actor: "@n1", patient: "@x1", tense: present}
+        - {t: aspectual, id: e1, verb: keep, complement: ["@v1"], tense: past}
+    - category: positive
+      text: "Ottoline continued to wait."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: activity, id: v1, verb: wait, actor: "@n1", tense: present}
+        - {t: aspectual, id: e1, verb: continue, complement: ["@v1"], tense: past}
+    - category: positive
+      text: "Yusra finished washing the quilt."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: activity, id: v1, verb: wash, actor: "@n1", patient: "@x1", tense: present}
+        - {t: aspectual, id: e1, verb: finish, complement: ["@v1"], tense: past}
+    - category: scoped
+      note: under clausal negation
+      text: "Yusra did not stop working."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: activity, id: v1, verb: work, actor: "@n1", tense: present}
+        - {t: aspectual, id: e1, verb: stop, complement: ["@v1"], tense: past}
+        - {t: negation, id: s1, over: ["@e1"]}
+    - category: scoped
+      note: under a modal
+      text: "Teodor might begin to sing."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: activity, id: v1, verb: sing, actor: "@n1", tense: present}
+        - {t: aspectual, id: e1, verb: begin, complement: ["@v1"], tense: present}
+        - {t: modal, id: s1, over: ["@e1"], head: Might, surface: might}
+    - category: optional
+      text: "Teodor quit singing."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: activity, id: v1, verb: sing, actor: "@n1", tense: present}
+        - {t: aspectual, id: e1, verb: quit, complement: ["@v1"], tense: past}
+    - category: abstain
+      text: "The audit began."
+      expected: {abstain: true, template: change-of-state}            # no verbal complement
+    - category: abstain
+      text: "Lamine kept Teodor from leaving."
+      expected: {abstain: true, template: causative}                  # a causer and a different actor
+    - category: abstain
+      text: "Yusra no longer works."
+      expected: {abstain: true, gap: G00, span: "no longer works"}    # a cessation construction

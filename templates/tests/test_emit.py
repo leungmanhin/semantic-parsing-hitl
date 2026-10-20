@@ -358,6 +358,34 @@ class EmitTests(unittest.TestCase):
         self.assertIn("(Member sk_ladder_1 ladder)", sealed[0])
         self.assertFalse(any(a.startswith("(Member sk_ladder_1") or a.startswith("(Not") or "Past" in a for a in atoms))
 
+    def test_complement_verbs_seal_and_mark_their_implication(self):
+        """A control verb seals its complement as the Theme and asserts nothing about it; the
+        verb's implication is a marker on the matrix event (Entails / Precludes) for the
+        background rules, and the marker sits inside a negation over the matrix clause."""
+        def control(verb, implication, negated=False):
+            inst = [{"t": "named-entity", "id": "n1", "name": "Lamine"},
+                    {"t": "witness", "id": "x1", "kind": "shed", "definite": True},
+                    {"t": "change-of-state", "id": "c1", "verb": "open", "agent": "@n1", "undergoer": "@x1", "tense": "present"},
+                    {"t": "control", "id": "e1", "verb": verb, "subject": "@n1", "complement": ["@c1"],
+                     "implication": implication, "tense": "past"}]
+            if negated:
+                inst.append({"t": "negation", "id": "s1", "over": ["@e1"]})
+            return atoms_of(E.emit({"id": "c", "instances": inst}, CATALOG)["statements"])
+        sealed = "(Theme sk_try_1 (And (Member sk_open_1 open) (Agent sk_open_1 sk_lamine_1) (Patient sk_open_1 sk_shed_1)))"
+        none = control("try", "none")
+        self.assertIn(sealed, none)
+        self.assertFalse(any(a.startswith(("(Member sk_open_1", "(Entails", "(Precludes", "(Not")) for a in none))
+        positive = control("manage", "positive")
+        self.assertIn("(Entails sk_manage_1)", positive)
+        self.assertFalse(any(a.startswith(("(Member sk_open_1", "(Not")) for a in positive))     # nothing flat: the rule derives it
+        negative = control("fail", "negative")
+        self.assertIn("(Precludes sk_fail_1)", negative)
+        self.assertFalse(any(a.startswith(("(Member sk_open_1", "(Not")) for a in negative))
+        denied = control("manage", "positive", negated=True)
+        self.assertFalse(any(a.startswith("(Entails") for a in denied))                         # the marker is inside the Not
+        self.assertEqual(sum(a.startswith("(Not (And (Member sk_manage_1 manage)") and "(Entails sk_manage_1)" in a for a in denied), 1)
+        self.assertIn("(Member sk_shed_1 shed)", denied)                                          # the definite shed stays presupposed
+
     def test_malformed_instances_are_refused(self):
         bad = [{"t": "transfer", "id": "e1", "verb": "give", "giver": "@n9", "object": "x", "tense": "past"}]
         with self.assertRaises(E.EmitError) as cm:

@@ -1,0 +1,101 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "1e3a0e7b653d644ba66513f0d0e707b1cc9b81d1cb008f3f969832c0fde71796",
+  "item": {
+    "id": "sc4b3b48d0a",
+    "text": "Lamine might fail to arrive."
+  },
+  "usage": {
+    "input": 42691,
+    "output": 165,
+    "thinking": null,
+    "total": 42856,
+    "cached": 40642,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 42691,
+    "candidatesTokenCount": 165,
+    "totalTokenCount": 42856,
+    "cachedContentTokenCount": 40642,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 42691
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 40642
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 165
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sc4b3b48d0a\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"arrive\", \"mover\": \"@n1\", \"tense\": \"present\"}, {\"t\": \"control\", \"id\": \"e1\", \"verb\": \"fail\", \"subject\": \"@n1\", \"complement\": [\"@m1\"], \"implication\": \"negative\", \"tense\": \"present\"}, {\"t\": \"modal\", \"id\": \"s1\", \"over\": [\"@e1\"], \"head\": \"Might\", \"surface\": \"might\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sc4b3b48d0a",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine"
+      },
+      {
+        "t": "motion",
+        "id": "m1",
+        "verb": "arrive",
+        "mover": "@n1",
+        "tense": "present"
+      },
+      {
+        "t": "control",
+        "id": "e1",
+        "verb": "fail",
+        "subject": "@n1",
+        "complement": [
+          "@m1"
+        ],
+        "implication": "negative",
+        "tense": "present"
+      },
+      {
+        "t": "modal",
+        "id": "s1",
+        "over": [
+          "@e1"
+        ],
+        "head": "Might",
+        "surface": "might"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "550b5adae738e98b3a45e1fd666b1c271958eedeeddaca6a18b6db34c69a06c7",
+  "run": 3,
+  "case": {
+    "template": "control",
+    "section": "held_out",
+    "index": 7,
+    "category": "scoped",
+    "text": "Lamine might fail to arrive.",
+    "key": "c4b3b48d0a"
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "1e3a0e7b653d644ba66513f0d0e707b1cc9b81d1cb008f3f969832c0fde71796",
+  "item": {
+    "id": "s2b01514395",
+    "text": "Lamine attempted to open the gate."
+  },
+  "usage": {
+    "input": 42693,
+    "output": 172,
+    "thinking": null,
+    "total": 42865,
+    "cached": 40644,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 42693,
+    "candidatesTokenCount": 172,
+    "totalTokenCount": 42865,
+    "cachedContentTokenCount": 40644,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 42693
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 40644
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 172
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s2b01514395\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"gate\", \"definite\": true}, {\"t\": \"change-of-state\", \"id\": \"c1\", \"verb\": \"open\", \"agent\": \"@n1\", \"undergoer\": \"@x1\", \"tense\": \"present\"}, {\"t\": \"control\", \"id\": \"e1\", \"verb\": \"attempt\", \"subject\": \"@n1\", \"complement\": [\"@c1\"], \"implication\": \"none\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s2b01514395",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "gate",
+        "definite": true
+      },
+      {
+        "t": "change-of-state",
+        "id": "c1",
+        "verb": "open",
+        "agent": "@n1",
+        "undergoer": "@x1",
+        "tense": "present"
+      },
+      {
+        "t": "control",
+        "id": "e1",
+        "verb": "attempt",
+        "subject": "@n1",
+        "complement": [
+          "@c1"
+        ],
+        "implication": "none",
+        "tense": "past"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "550b5adae738e98b3a45e1fd666b1c271958eedeeddaca6a18b6db34c69a06c7",
+  "run": 3,
+  "case": {
+    "template": "control",
+    "section": "held_out",
+    "index": 4,
+    "category": "positive",
+    "text": "Lamine attempted to open the gate.",
+    "key": "2b01514395"
+  }
+}

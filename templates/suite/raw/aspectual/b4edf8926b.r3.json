@@ -1,0 +1,90 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "7b971397645436659b47229c67b5e18427eb894e0e6cbf0b176ccc7db0eed480",
+  "item": {
+    "id": "sb4edf8926b",
+    "text": "Yusra did not stop working."
+  },
+  "usage": {
+    "input": 42688,
+    "output": 141,
+    "thinking": null,
+    "total": 42829,
+    "cached": null,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 42688,
+    "candidatesTokenCount": 141,
+    "totalTokenCount": 42829,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 42688
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 141
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sb4edf8926b\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"work\", \"actor\": \"@n1\", \"tense\": \"present\"}, {\"t\": \"aspectual\", \"id\": \"e1\", \"verb\": \"stop\", \"complement\": [\"@v1\"], \"tense\": \"past\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@e1\"]}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sb4edf8926b",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "work",
+        "actor": "@n1",
+        "tense": "present"
+      },
+      {
+        "t": "aspectual",
+        "id": "e1",
+        "verb": "stop",
+        "complement": [
+          "@v1"
+        ],
+        "tense": "past"
+      },
+      {
+        "t": "negation",
+        "id": "s1",
+        "over": [
+          "@e1"
+        ]
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "550b5adae738e98b3a45e1fd666b1c271958eedeeddaca6a18b6db34c69a06c7",
+  "run": 3,
+  "case": {
+    "template": "aspectual",
+    "section": "held_out",
+    "index": 5,
+    "category": "scoped",
+    "text": "Yusra did not stop working.",
+    "key": "b4edf8926b"
+  }
+}

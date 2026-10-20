@@ -1,0 +1,89 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "1e3a0e7b653d644ba66513f0d0e707b1cc9b81d1cb008f3f969832c0fde71796",
+  "item": {
+    "id": "s934d32eac2",
+    "text": "Lamine made the wax soft."
+  },
+  "usage": {
+    "input": 42690,
+    "output": 129,
+    "thinking": null,
+    "total": 42819,
+    "cached": 40641,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 42690,
+    "candidatesTokenCount": 129,
+    "totalTokenCount": 42819,
+    "cachedContentTokenCount": 40641,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 42690
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 40641
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 129
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s934d32eac2\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"wax\", \"definite\": true}, {\"t\": \"change-of-state\", \"id\": \"c1\", \"verb\": \"make\", \"agent\": \"@n1\", \"undergoer\": \"@x1\", \"result\": \"soft\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s934d32eac2",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "wax",
+        "definite": true
+      },
+      {
+        "t": "change-of-state",
+        "id": "c1",
+        "verb": "make",
+        "agent": "@n1",
+        "undergoer": "@x1",
+        "result": "soft",
+        "tense": "past"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "550b5adae738e98b3a45e1fd666b1c271958eedeeddaca6a18b6db34c69a06c7",
+  "run": 3,
+  "case": {
+    "template": "causative",
+    "section": "held_out",
+    "index": 10,
+    "category": "abstain",
+    "text": "Lamine made the wax soft.",
+    "key": "934d32eac2"
+  }
+}

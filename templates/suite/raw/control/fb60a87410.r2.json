@@ -1,0 +1,94 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "1e3a0e7b653d644ba66513f0d0e707b1cc9b81d1cb008f3f969832c0fde71796",
+  "item": {
+    "id": "sfb60a87410",
+    "text": "Yusra went to the market to buy a thermos."
+  },
+  "usage": {
+    "input": 42695,
+    "output": 150,
+    "thinking": null,
+    "total": 42845,
+    "cached": 40646,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 42695,
+    "candidatesTokenCount": 150,
+    "totalTokenCount": 42845,
+    "cachedContentTokenCount": 40646,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 42695
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 40646
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 150
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sfb60a87410\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"market\", \"definite\": true}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"go\", \"mover\": \"@n1\", \"goal\": \"@x1\", \"tense\": \"past\"}], \"unmapped\": [{\"span\": \"to buy a thermos\", \"code\": \"G00\", \"construction\": \"A purpose infinitive clause attached to a motion event.\"}], \"issues\": []}",
+  "response": {
+    "id": "sfb60a87410",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "market",
+        "definite": true
+      },
+      {
+        "t": "motion",
+        "id": "m1",
+        "verb": "go",
+        "mover": "@n1",
+        "goal": "@x1",
+        "tense": "past"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "to buy a thermos",
+        "code": "G00",
+        "construction": "A purpose infinitive clause attached to a motion event."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "550b5adae738e98b3a45e1fd666b1c271958eedeeddaca6a18b6db34c69a06c7",
+  "run": 2,
+  "case": {
+    "template": "control",
+    "section": "held_out",
+    "index": 12,
+    "category": "abstain",
+    "text": "Yusra went to the market to buy a thermos.",
+    "key": "fb60a87410"
+  }
+}

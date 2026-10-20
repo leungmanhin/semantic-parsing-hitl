@@ -1,0 +1,82 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "7b971397645436659b47229c67b5e18427eb894e0e6cbf0b176ccc7db0eed480",
+  "item": {
+    "id": "s93150fb325",
+    "text": "The audit began."
+  },
+  "usage": {
+    "input": 42687,
+    "output": 95,
+    "thinking": null,
+    "total": 42782,
+    "cached": 40638,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 42687,
+    "candidatesTokenCount": 95,
+    "totalTokenCount": 42782,
+    "cachedContentTokenCount": 40638,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 42687
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 40638
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 95
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s93150fb325\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"audit\", \"definite\": true}, {\"t\": \"change-of-state\", \"id\": \"c1\", \"verb\": \"begin\", \"undergoer\": \"@x1\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s93150fb325",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "audit",
+        "definite": true
+      },
+      {
+        "t": "change-of-state",
+        "id": "c1",
+        "verb": "begin",
+        "undergoer": "@x1",
+        "tense": "past"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "550b5adae738e98b3a45e1fd666b1c271958eedeeddaca6a18b6db34c69a06c7",
+  "run": 3,
+  "case": {
+    "template": "aspectual",
+    "section": "held_out",
+    "index": 8,
+    "category": "abstain",
+    "text": "The audit began.",
+    "key": "93150fb325"
+  }
+}

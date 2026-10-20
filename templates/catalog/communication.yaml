@@ -18,9 +18,11 @@ trigger:
     result) or a finite clause introduced by "that" or bare. Verbs that take an addressee by
     nature (tell, inform, notify, remind, warn, text, phone) belong here even when the text
     leaves the addressee out; a reporting verb (say, claim, report, announce, explain,
-    mention) belongs here only when an addressee is stated.
+    mention) belongs here only when an addressee is stated. A request or an instruction (asked
+    Ottoline to send the quilt, told Lamine to lock the shed) is a message too: its content is
+    an imperative instance over the requested clause, whose actor is the addressee.
   verbs: [tell, inform, notify, remind, warn, announce, report, explain, mention, say, write,
-          text, email, phone]
+          text, email, phone, ask, order, urge, instruct]
   verbs_note: >
     The list anchors the class; an unlisted verb that conveys a message to an addressee belongs
     here (record its lemma as usual). The class is semantic, the list is guidance.
@@ -31,6 +33,7 @@ trigger:
     - "<speaker> V to <addressee> that <clause>"     # mentioned to Yusra that Teodor sold a spindle
     - "<speaker> V <message> to <addressee>"         # reported the result to Lamine
     - "<addressee> was V-ed that <clause>"           # passive: the speaker is unstated
+    - "<speaker> asked / told <addressee> to <V2> …"  # a request: the content is an imperative
   boundary:                   # looks like a communication but is not one
     - >-
       a reporting verb with no addressee — said that P, claimed that P, announced that P: the
@@ -39,8 +42,8 @@ trigger:
       an object that changes hands rather than a message — handed Ottoline the letter, sent
       Yusra a parcel: a transfer
     - >-
-      a question or a request as the content — asked Ottoline whether P, asked Ottoline to send
-      the quilt, told Ottoline to leave: the content is not a proposition conveyed
+      a question as the content — asked Ottoline whether P, asked Yusra who left: the content is
+      a question, not a proposition conveyed; report it as unmapped
     - >-
       light-verb constructions — gave Ottoline a call, had a word with Yusra: the noun carries
       the event
@@ -59,7 +62,7 @@ slots:
   message:   {type: filler, class: Entity, role: Theme, required: false,
               doc: "the message as a thing: the news, a secret, the result"}
   content:   {type: refs, class: Proposition, required: false,
-              doc: "the message as a clause: the ids of the instances that state it, that is its predication or the scope operator (negation, modal) over that predication; the referents it mentions are not listed"}
+              doc: "the message as a clause: the ids of the instances that state it, that is its predication or the scope operator (negation, modal) over that predication, or the imperative instance for a request; the referents it mentions are not listed"}
   tense:     {type: enum, values: [past, present, future], required: true,
               doc: "the clause's tense; present is recorded, not inferred"}
   aspect:    {type: enum, values: [simple, progressive, perfect], required: false, default: simple}
@@ -245,9 +248,16 @@ examples:
         - {t: witness, id: x1, kind: news, definite: true}
         - {t: communication, id: c1, verb: tell, speaker: "@n1", addressee: "@n2", message: "@x1",
            tense: present, aspect: progressive}
-    - category: abstain
+    - category: positive
+      note: a request — the content is an imperative over the requested clause, whose actor is the addressee
       text: "Teodor asked Ottoline to send the quilt."
-      expected: {abstain: true, gap: G00, span: "asked Ottoline to send the quilt"}      # a request as content
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: named-entity, id: n2, name: "Ottoline"}
+        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: transfer, id: e2, verb: send, giver: "@n2", object: "@x1", tense: present}
+        - {t: imperative, id: s1, over: ["@e2"]}
+        - {t: communication, id: e1, verb: ask, speaker: "@n1", addressee: "@n2", content: ["@s1"], tense: past}
     - category: abstain
       text: "Yusra gave Ottoline a call."
       expected: {abstain: true, gap: G00, span: "gave Ottoline a call"}                 # light-verb construction

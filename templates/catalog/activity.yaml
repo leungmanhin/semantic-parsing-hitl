@@ -46,8 +46,8 @@ trigger:
       light-verb constructions — had a rest, took a walk, gave a speech, made a call: the
       noun carries the event
     - >-
-      an infinitival or gerund complement — tried to sleep, stopped working, kept singing: a
-      different construction
+      an infinitival or gerund complement — tried to sleep, stopped working, made Teodor laugh:
+      a control, aspectual or causative verb; the action is parsed as its complement
     - >-
       a companion, an instrument, a beneficiary or a manner phrase — danced with Yusra, cut it
       with a knife, baked it for Teodor, laughed loudly: attachments with their own templates
@@ -220,9 +220,6 @@ examples:
     - category: abstain
       text: "Teodor built a shed."
       expected: {abstain: true, template: creation}                   # the object comes into being
-    - category: abstain
-      text: "Yusra tried to sleep."
-      expected: {abstain: true, gap: G00, span: "tried to sleep"}     # infinitival complement
     - category: abstain
       text: "Yusra had a rest."
       expected: {abstain: true, gap: G00, span: "had a rest"}         # light-verb construction

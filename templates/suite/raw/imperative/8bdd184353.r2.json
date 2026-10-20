@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "011859ef1641de9eb20fbd0ff4c90d8a33b97940ed06b1a0de5d9191af6f2f3e",
+  "prompt_sha256": "7b971397645436659b47229c67b5e18427eb894e0e6cbf0b176ccc7db0eed480",
   "item": {
     "id": "s8bdd184353",
     "text": "Yusra told Lamine to lock the shed."
   },
   "usage": {
-    "input": 37164,
-    "output": 110,
+    "input": 42692,
+    "output": 216,
     "thinking": null,
-    "total": 37274,
-    "cached": 35115,
+    "total": 42908,
+    "cached": 40643,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 37164,
-    "candidatesTokenCount": 110,
-    "totalTokenCount": 37274,
-    "cachedContentTokenCount": 35115,
+    "promptTokenCount": 42692,
+    "candidatesTokenCount": 216,
+    "totalTokenCount": 42908,
+    "cachedContentTokenCount": 40643,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 37164
+        "tokenCount": 42692
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 35115
+        "tokenCount": 40643
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 110
+        "tokenCount": 216
       }
     ]
   },
-  "raw_text": "{\"id\": \"s8bdd184353\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Lamine\"}], \"unmapped\": [{\"span\": \"told Lamine to lock the shed\", \"code\": \"G00\", \"construction\": \"A reported command or request with an infinitival complement.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"s8bdd184353\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"shed\", \"definite\": true}, {\"t\": \"change-of-state\", \"id\": \"e1\", \"verb\": \"lock\", \"agent\": \"@n2\", \"undergoer\": \"@x1\", \"tense\": \"present\"}, {\"t\": \"imperative\", \"id\": \"s1\", \"over\": [\"@e1\"]}, {\"t\": \"communication\", \"id\": \"c1\", \"verb\": \"tell\", \"speaker\": \"@n1\", \"addressee\": \"@n2\", \"content\": [\"@s1\"], \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s8bdd184353",
     "instances": [
@@ -61,24 +61,50 @@
         "t": "named-entity",
         "id": "n2",
         "name": "Lamine"
-      }
-    ],
-    "unmapped": [
+      },
       {
-        "span": "told Lamine to lock the shed",
-        "code": "G00",
-        "construction": "A reported command or request with an infinitival complement."
+        "t": "witness",
+        "id": "x1",
+        "kind": "shed",
+        "definite": true
+      },
+      {
+        "t": "change-of-state",
+        "id": "e1",
+        "verb": "lock",
+        "agent": "@n2",
+        "undergoer": "@x1",
+        "tense": "present"
+      },
+      {
+        "t": "imperative",
+        "id": "s1",
+        "over": [
+          "@e1"
+        ]
+      },
+      {
+        "t": "communication",
+        "id": "c1",
+        "verb": "tell",
+        "speaker": "@n1",
+        "addressee": "@n2",
+        "content": [
+          "@s1"
+        ],
+        "tense": "past"
       }
     ],
+    "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "86006c1331646959e618205dae5c6fd6c614cc473b5b0769d0ff87669d0897c5",
+  "prompt_body_sha256": "550b5adae738e98b3a45e1fd666b1c271958eedeeddaca6a18b6db34c69a06c7",
   "run": 2,
   "case": {
     "template": "imperative",
     "section": "held_out",
     "index": 15,
-    "category": "abstain",
+    "category": "positive",
     "text": "Yusra told Lamine to lock the shed.",
     "key": "8bdd184353"
   }

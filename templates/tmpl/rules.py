@@ -7,6 +7,16 @@ writes the consumer's file:
 
     python -m tmpl.rules                 # validate rules.yaml, write generated/seeded_rules.metta
 
+A rule over a SEALED CLAUSE (a complement bound as one term, ``$c``) declares ``expand``:
+``{tenses: [none, past, future], event: "$o", matrix: "$m"}``. Its patterns use ``{tense}`` for
+the matrix event's tense atom (a premise dropped for ``none``) and ``{tensed}`` for the bound
+clause with that tense carried onto the clause's event (``$c``, or ``(And $c (Past $o))``); the
+clause's event comes from the computation ``clause-event`` over the term. One source rule
+stands for one lowered rule per tense (``id``, ``id_past``, ``id_future``); ``check`` validates
+the variants. A rule may name a consumer capability it ``requires`` (``sealed-term-projection``:
+concluding the conjuncts of a bound term, and the clause-event computation); lowering for a
+target that lacks the capability lists the rule as pending instead of writing it.
+
 Lowering for the chainer (the only target so far): ``(: id (Implication <premises> <conclusion>)
 (CTV (STV s c) (STV 0.0 1.0)))``. The explicit conditional is the chainer's documented form for a
 conditional relationship; its negative branch states the deductive semantics (nothing follows from
@@ -37,7 +47,10 @@ CATALOG_DIR = os.path.join(TEMPLATES, "catalog")
 GENERATED = os.path.join(TEMPLATES, "generated", "seeded_rules.metta")
 
 SEMANTICS = ("deductive",)
-OPS = ("+", "-")
+OPS = ("+", "-", "clause-event")              # arithmetic, and the event of a sealed clause
+TENSES = {"none": None, "past": "Past", "future": "Future"}
+CAPABILITIES = ("sealed-term-projection",)
+TARGET_CAPABILITIES = {"pettachainer": set()}  # what each consumer can run today; grows with the consumer
 _VAR = re.compile(r"\$[A-Za-z_][A-Za-z0-9_]*")
 
 
@@ -54,10 +67,58 @@ def _heads(expr, out: set) -> set:
     return out
 
 
+def expand(rule: dict) -> list[dict]:
+    """The concrete rules a source rule stands for: itself, or one per matrix tense when it
+    declares ``expand`` over a sealed clause."""
+    spec = rule.get("expand")
+    if not spec:
+        return [rule]
+    out = []
+    for tense in spec["tenses"]:
+        head = TENSES[tense]
+        tensed = "$c" if head is None else f"(And $c ({head} {spec['event']}))"
+        fill = {"{tensed}": tensed, "{tense}": "" if head is None else f"({head} {spec['matrix']})"}
+
+        def sub(text: str) -> str:
+            for k, v in fill.items():
+                text = text.replace(k, v)
+            return text
+        variant = {k: v for k, v in rule.items() if k != "expand"}
+        variant["id"] = rule["id"] + ("" if head is None else f"_{tense}")
+        variant["premises"] = [p for p in (sub(p) for p in rule["premises"]) if p.strip()]
+        variant["conclusion"] = sub(rule["conclusion"])
+        out.append(variant)
+    return out
+
+
 def check(rules: list[dict], heads: set | None = None, templates: set | None = None) -> list[str]:
-    """Structural problems of the source; an empty list means it is sound."""
+    """Structural problems of the source; an empty list means it is sound. A rule with
+    ``expand`` is checked through its variants."""
     problems, seen = [], set()
-    for i, r in enumerate(rules):
+    for i, src in enumerate(rules):
+        spec = src.get("expand")
+        if spec is not None:
+            where = f"rules[{i}] ({src.get('id', '?')})"
+            ok = (isinstance(spec, dict) and set(spec) == {"tenses", "event", "matrix"}
+                  and isinstance(spec["tenses"], list) and spec["tenses"] and all(t in TENSES for t in spec["tenses"])
+                  and all(isinstance(spec[k], str) and spec[k].startswith("$") for k in ("event", "matrix")))
+            if not ok:
+                problems.append(f"{where}: expand must be {{tenses: [none | past | future …], event: $var, matrix: $var}}")
+                continue
+        req = src.get("requires")
+        if req is not None and req not in CAPABILITIES:
+            problems.append(f"rules[{i}] ({src.get('id', '?')}): requires unknown capability {req!r}")
+            variants = expand(src)
+        else:
+            variants = [src]
+        for r in variants:
+            problems += _check_one(r, i, heads, templates, seen, expanded=spec is not None)
+    return problems
+
+
+def _check_one(r: dict, i: int, heads, templates, seen: set, expanded: bool = False) -> list[str]:
+    problems = []
+    if True:
         where = f"rules[{i}] ({r.get('id', '?')})"
         rid = r.get("id")
         if not isinstance(rid, str) or not re.fullmatch(r"[a-z][a-z0-9_]*", rid):
@@ -121,8 +182,12 @@ def check(rules: list[dict], heads: set | None = None, templates: set | None = N
                 if t not in templates:
                     problems.append(f"{where}: reads unknown template {t!r}")
         for key in r:
-            if key not in ("id", "meaning", "premises", "computations", "conclusion", "truth", "semantics", "reads", "notes"):
+            if key not in ("id", "meaning", "premises", "computations", "conclusion", "truth", "semantics", "reads", "notes", "expand", "requires"):
                 problems.append(f"{where}: unknown key {key!r}")
+        if not expanded:
+            for atom in prem + ([concl] if concl else []):
+                if "{" in atom:
+                    problems.append(f"{where}: {atom!r} holds a placeholder but the rule declares no expand")
     return problems
 
 
@@ -164,6 +229,17 @@ def lower(rule: dict, target: str = "pettachainer") -> str:
     return f"(: {rule['id']} (Implication {premise} {rule['conclusion']}) {tv})"
 
 
+def concrete(rules: list[dict]) -> list[dict]:
+    """Every rule the source stands for, expansions written out."""
+    return [v for r in rules for v in expand(r)]
+
+
+def runnable(rule: dict, target: str = "pettachainer") -> bool:
+    """Whether the target can run the rule: it requires no capability the target lacks."""
+    req = rule.get("requires")
+    return req is None or req in TARGET_CAPABILITIES.get(target, set())
+
+
 def render(rules: list[dict], target: str = "pettachainer") -> str:
     lines = [
         ";; The catalog's background rules, lowered for the chainer from rules.yaml — generated by",
@@ -171,12 +247,24 @@ def render(rules: list[dict], target: str = "pettachainer") -> str:
         ";; consumer, never by the parser. Each rule is a deductive implication with an explicit",
         ";; conditional truth value: the positive branch is the rule's reliability, the negative branch",
         ";; (STV 0.0 1.0) says nothing follows from a failed premise.",
-        "",
     ]
-    for r in rules:
-        reads = f" (reads: {', '.join(r['reads'])})" if r.get("reads") else ""
-        lines.append(f";; {r['id']}: {r['meaning']}{reads}")
-        lines.append(lower(r, target))
+    pending = [r for r in rules if not runnable(r, target)]
+    if pending:
+        lines.append(";;")
+        lines.append(";; NOT WRITTEN, pending a capability of the chainer (the source states them; a consumer that")
+        lines.append(";; can run them lowers them):")
+        for r in pending:
+            lines.append(f";;   {r['id']} — {r['meaning']} (requires {r['requires']})")
+    lines.append("")
+    for src in rules:
+        if not runnable(src, target):
+            continue
+        reads = f" (reads: {', '.join(src['reads'])})" if src.get("reads") else ""
+        variants = expand(src)
+        suffix = f" — {len(variants)} variants, by the matrix event's tense" if src.get("expand") else ""
+        lines.append(f";; {src['id']}: {src['meaning']}{reads}{suffix}")
+        for r in variants:
+            lines.append(lower(r, target))
     return "\n".join(lines) + "\n"
 
 
@@ -188,14 +276,17 @@ def main(argv=None) -> int:
     args = ap.parse_args(argv)
     rules = load(args.rules)
     text = render(rules)
+    n = len([v for r in rules if runnable(r) for v in expand(r)])
+    pending = [r["id"] for r in rules if not runnable(r)]
+    note = f", {len(pending)} pending the chainer's {', '.join(sorted({r['requires'] for r in rules if not runnable(r)}))}" if pending else ""
     if args.check:
         current = open(args.out, encoding="utf-8").read() if os.path.exists(args.out) else ""
-        print(f"{len(rules)} rules valid · generated file {'fresh' if current == text else 'STALE'}")
+        print(f"{len(rules)} rules ({n} lowered{note}) valid · generated file {'fresh' if current == text else 'STALE'}")
         return 0 if current == text else 1
     os.makedirs(os.path.dirname(args.out), exist_ok=True)
     with open(args.out, "w", encoding="utf-8") as fh:
         fh.write(text)
-    print(f"wrote {os.path.relpath(args.out, TEMPLATES)} ({len(rules)} rules)")
+    print(f"wrote {os.path.relpath(args.out, TEMPLATES)} ({len(rules)} rules, {n} lowered{note})")
     return 0
 
 

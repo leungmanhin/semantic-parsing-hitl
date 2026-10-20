@@ -393,6 +393,16 @@
       "opaque": false,
       "gloss": "Interval end point of an eventuality: (End e t), t a time instance."
     },
+    "Entails": {
+      "kind": "relation",
+      "arity": 1,
+      "arg_types": [
+        "Event"
+      ],
+      "out": "Proposition",
+      "opaque": false,
+      "gloss": "The event's sealed Theme holds: the parser's record that the matrix verb is implicative (manage, make, let, begin, remember to …). A background rule derives the Theme's content at the event's tense; nothing in the parse asserts it. Order: (Entails matrix-event)."
+    },
     "Equivalence": {
       "kind": "core-link",
       "arity": 2,
@@ -1031,6 +1041,16 @@
       "opaque": true,
       "gloss": "Possessed-to-possessor link (ownership, kinship, loose association). Order: (Possession possessed possessor). The possessive construction (NP-internal); the verb \"own / have\" is an event with Holder and Theme, and their relation is a background rule, never a parser collapse."
     },
+    "Precludes": {
+      "kind": "relation",
+      "arity": 1,
+      "arg_types": [
+        "Event"
+      ],
+      "out": "Proposition",
+      "opaque": false,
+      "gloss": "The event's sealed Theme does not hold: the parser's record that the matrix verb is negatively implicative (fail, forget to, prevent, keep from). A background rule derives the Theme's negation at the event's tense. Order: (Precludes matrix-event)."
+    },
     "Probably": {
       "kind": "scope",
       "arity": 1,
@@ -1251,11 +1271,11 @@
       "arity": 2,
       "arg_types": [
         "Event",
-        "Entity|Event"
+        "Entity|Event|Proposition"
       ],
       "out": "Proposition",
       "opaque": false,
-      "gloss": "Object of a psych/perception state. A compound-action class symbol under the compound decomposition ((Patient use_crosswalk crosswalk)) is declared both Class and Event."
+      "gloss": "Object of a psych/perception state. A compound-action class symbol under the compound decomposition ((Patient use_crosswalk crosswalk)) is declared both Class and Event. A sealed clause as the stimulus describes an action the experiencer likes, enjoys or fears doing (likes to send quilts)."
     },
     "SubsetOf": {
       "kind": "relation",

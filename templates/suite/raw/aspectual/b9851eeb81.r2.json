@@ -1,0 +1,97 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "7b971397645436659b47229c67b5e18427eb894e0e6cbf0b176ccc7db0eed480",
+  "item": {
+    "id": "sb9851eeb81",
+    "text": "Lamine kept Teodor from leaving."
+  },
+  "usage": {
+    "input": 42689,
+    "output": 155,
+    "thinking": null,
+    "total": 42844,
+    "cached": 40640,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 42689,
+    "candidatesTokenCount": 155,
+    "totalTokenCount": 42844,
+    "cachedContentTokenCount": 40640,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 42689
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 40640
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 155
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sb9851eeb81\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n2\", \"tense\": \"present\"}, {\"t\": \"causative\", \"id\": \"e1\", \"verb\": \"keep\", \"causer\": \"@n1\", \"complement\": [\"@m1\"], \"implication\": \"negative\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sb9851eeb81",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Teodor"
+      },
+      {
+        "t": "motion",
+        "id": "m1",
+        "verb": "leave",
+        "mover": "@n2",
+        "tense": "present"
+      },
+      {
+        "t": "causative",
+        "id": "e1",
+        "verb": "keep",
+        "causer": "@n1",
+        "complement": [
+          "@m1"
+        ],
+        "implication": "negative",
+        "tense": "past"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "550b5adae738e98b3a45e1fd666b1c271958eedeeddaca6a18b6db34c69a06c7",
+  "run": 2,
+  "case": {
+    "template": "aspectual",
+    "section": "held_out",
+    "index": 9,
+    "category": "abstain",
+    "text": "Lamine kept Teodor from leaving.",
+    "key": "b9851eeb81"
+  }
+}

@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "83d654d351078da34843fcdd2c851cb17742d5e5b2a421b203c2fcf14b7e368c",
+  "prompt_sha256": "7b971397645436659b47229c67b5e18427eb894e0e6cbf0b176ccc7db0eed480",
   "item": {
     "id": "sde291c3e0b",
     "text": "Lamine enjoys sending quilts."
   },
   "usage": {
-    "input": 9645,
-    "output": 84,
+    "input": 42689,
+    "output": 135,
     "thinking": null,
-    "total": 9729,
+    "total": 42824,
+    "cached": 40640,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 9645,
-    "candidatesTokenCount": 84,
-    "totalTokenCount": 9729,
-    "cachedContentTokenCount": 7596,
+    "promptTokenCount": 42689,
+    "candidatesTokenCount": 135,
+    "totalTokenCount": 42824,
+    "cachedContentTokenCount": 40640,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 9645
+        "tokenCount": 42689
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 7596
+        "tokenCount": 40640
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 84
+        "tokenCount": 135
       }
     ]
   },
-  "raw_text": "{\"id\": \"sde291c3e0b\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}], \"unmapped\": [{\"span\": \"enjoys sending quilts\", \"code\": \"G00\", \"construction\": \"A psych verb taking a gerund complement.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"sde291c3e0b\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"send\", \"giver\": \"@n1\", \"object\": \"quilt\", \"tense\": \"present\"}, {\"t\": \"psych\", \"id\": \"p1\", \"verb\": \"enjoy\", \"experiencer\": \"@n1\", \"complement\": [\"@e1\"], \"tense\": \"present\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sde291c3e0b",
     "instances": [
@@ -55,24 +56,36 @@
         "t": "named-entity",
         "id": "n1",
         "name": "Lamine"
-      }
-    ],
-    "unmapped": [
+      },
       {
-        "span": "enjoys sending quilts",
-        "code": "G00",
-        "construction": "A psych verb taking a gerund complement."
+        "t": "transfer",
+        "id": "e1",
+        "verb": "send",
+        "giver": "@n1",
+        "object": "quilt",
+        "tense": "present"
+      },
+      {
+        "t": "psych",
+        "id": "p1",
+        "verb": "enjoy",
+        "experiencer": "@n1",
+        "complement": [
+          "@e1"
+        ],
+        "tense": "present"
       }
     ],
+    "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "43caf6785635a5b865bcd87326023595e1fddfa30888316f56be9574edb8e5cb",
+  "prompt_body_sha256": "550b5adae738e98b3a45e1fd666b1c271958eedeeddaca6a18b6db34c69a06c7",
   "run": 2,
   "case": {
     "template": "psych",
     "section": "held_out",
     "index": 12,
-    "category": "abstain",
+    "category": "positive",
     "text": "Lamine enjoys sending quilts.",
     "key": "de291c3e0b"
   }

@@ -2,7 +2,7 @@
 
 Generated from `templates/atom-type-substrates.json` (schema `atom-type-substrates/1`) by `templates/tmpl/gen_substrate.py`, together with `templates/generated/atom-types.metta`. Do not edit by hand; regenerate with `cd templates && python -m tmpl.gen_substrate`.
 
-130 heads in 13 kinds (7 proposed; 130 with a reviewed type declaration so far). `type-def` is the PeTTa declaration emitted for the head; `?` as the output type means the head is not yet reviewed and is absent from the `.metta` file; `%Undefined%` marks a position the head takes but the JSON does not type.
+132 heads in 13 kinds (7 proposed; 132 with a reviewed type declaration so far). `type-def` is the PeTTa declaration emitted for the head; `?` as the output type means the head is not yet reviewed and is absent from the `.metta` file; `%Undefined%` marks a position the head takes but the JSON does not type.
 
 Every atom is carried as a statement (: <proof-name> <atom> <tv>), tv = (STV strength confidence) or another engine truth value. The carrier is not an atom kind: ':' is never type-declared (it is also PeTTa's type-declaration head) and the truth value is declared by the engine, not by this substrate.
 
@@ -175,8 +175,8 @@ gloss: Origin / 'from …' oblique. A compound-action class symbol under the com
 head: Stimulus
 kind: role
 arity: 2
-type-def: (: Stimulus (-> Event Entity Proposition))  ; and 1 more (per arity / per union alternative)
-gloss: Object of a psych/perception state. A compound-action class symbol under the compound decomposition ((Patient use_crosswalk crosswalk)) is declared both Class and Event.
+type-def: (: Stimulus (-> Event Entity Proposition))  ; and 2 more (per arity / per union alternative)
+gloss: Object of a psych/perception state. A compound-action class symbol under the compound decomposition ((Patient use_crosswalk crosswalk)) is declared both Class and Event. A sealed clause as the stimulus describes an action the experiencer likes, enjoys or fears doing (likes to send quilts).
 
 
 head: Theme
@@ -504,13 +504,20 @@ legacy: (: Year (-> Number TimeTerm))  ; kept until the re-parse
 gloss: Calendar year of a time instance: (Year t 2026). Legacy constructor form (Year 2026) kept until the re-parse.
 
 
-## relation (12)
+## relation (14)
 
 head: ConditionalProperty
 kind: relation
 arity: 3
 type-def: (: ConditionalProperty (-> Class Class Class Proposition))
 gloss: A kind has a property only under a stated condition. Order: (ConditionalProperty kind property condition).
+
+
+head: Entails
+kind: relation
+arity: 1
+type-def: (: Entails (-> Event Proposition))
+gloss: The event's sealed Theme holds: the parser's record that the matrix verb is implicative (manage, make, let, begin, remember to …). A background rule derives the Theme's content at the event's tense; nothing in the parse asserts it. Order: (Entails matrix-event).
 
 
 head: GroupOf
@@ -546,6 +553,13 @@ kind: relation
 arity: 2
 type-def: (: Possession (-> Entity Entity Proposition))
 gloss: Possessed-to-possessor link (ownership, kinship, loose association). Order: (Possession possessed possessor). The possessive construction (NP-internal); the verb "own / have" is an event with Holder and Theme, and their relation is a background rule, never a parser collapse.
+
+
+head: Precludes
+kind: relation
+arity: 1
+type-def: (: Precludes (-> Event Proposition))
+gloss: The event's sealed Theme does not hold: the parser's record that the matrix verb is negatively implicative (fail, forget to, prevent, keep from). A background rule derives the Theme's negation at the event's tense. Order: (Precludes matrix-event).
 
 
 head: ProportionOf

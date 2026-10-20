@@ -1,0 +1,97 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "1e3a0e7b653d644ba66513f0d0e707b1cc9b81d1cb008f3f969832c0fde71796",
+  "item": {
+    "id": "s721e8a9027",
+    "text": "Lamine kept reading the letter."
+  },
+  "usage": {
+    "input": 42692,
+    "output": 152,
+    "thinking": null,
+    "total": 42844,
+    "cached": 40643,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 42692,
+    "candidatesTokenCount": 152,
+    "totalTokenCount": 42844,
+    "cachedContentTokenCount": 40643,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 42692
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 40643
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 152
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s721e8a9027\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"letter\", \"definite\": true}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"read\", \"actor\": \"@n1\", \"patient\": \"@x1\", \"tense\": \"present\"}, {\"t\": \"aspectual\", \"id\": \"e1\", \"verb\": \"keep\", \"complement\": [\"@v1\"], \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s721e8a9027",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "letter",
+        "definite": true
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "read",
+        "actor": "@n1",
+        "patient": "@x1",
+        "tense": "present"
+      },
+      {
+        "t": "aspectual",
+        "id": "e1",
+        "verb": "keep",
+        "complement": [
+          "@v1"
+        ],
+        "tense": "past"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "550b5adae738e98b3a45e1fd666b1c271958eedeeddaca6a18b6db34c69a06c7",
+  "run": 3,
+  "case": {
+    "template": "aspectual",
+    "section": "held_out",
+    "index": 2,
+    "category": "positive",
+    "text": "Lamine kept reading the letter.",
+    "key": "721e8a9027"
+  }
+}
