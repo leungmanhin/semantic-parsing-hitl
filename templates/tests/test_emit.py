@@ -428,6 +428,27 @@ class EmitTests(unittest.TestCase):
         atoms = atoms_of(E.emit({"id": "a", "instances": inst}, CATALOG)["statements"])
         self.assertEqual(sum(a.count("(Manner sk_work_1 hard)") for a in atoms), 1)
 
+    def test_a_referents_attachment_follows_it_into_a_scope(self):
+        """A postmodifier on an indefinite does not anchor the indefinite at the top level: the
+        noun phrase is bound inside the negation that mentions it, its phrase rendered with it;
+        an oblique's indefinite object is bound inside the scope of the oblique's event."""
+        book = [{"t": "named-entity", "id": "n1", "name": "Yusra"},
+                {"t": "witness", "id": "x1", "kind": "book"},
+                {"t": "postmodifier", "id": "a1", "noun": "@x1", "head": "About", "object": "ferret"},
+                {"t": "activity", "id": "v1", "verb": "read", "actor": "@n1", "patient": "@x1", "tense": "past"},
+                {"t": "negation", "id": "s1", "over": ["@v1"]}]
+        atoms = atoms_of(E.emit({"id": "b", "instances": book}, CATALOG)["statements"])
+        self.assertFalse(any(a.startswith(("(Member sk_book_1", "(About sk_book_1")) for a in atoms))
+        self.assertEqual(sum(a.startswith("(Not (And") and "(About sk_book_1 ferret)" in a and "(Member sk_book_1 book)" in a for a in atoms), 1)
+        audit = [{"t": "named-entity", "id": "n1", "name": "Yusra"},
+                 {"t": "witness", "id": "x1", "kind": "audit"},
+                 {"t": "activity", "id": "v1", "verb": "talk", "actor": "@n1", "tense": "past"},
+                 {"t": "oblique", "id": "a1", "event": "@v1", "head": "About", "object": "@x1"},
+                 {"t": "negation", "id": "s1", "over": ["@v1"]}]
+        atoms = atoms_of(E.emit({"id": "o", "instances": audit}, CATALOG)["statements"])
+        self.assertEqual(sum(a.startswith("(Not (And") and "(About sk_talk_1 sk_audit_1)" in a and "(Member sk_audit_1 audit)" in a for a in atoms), 1)
+        self.assertFalse(any(a.startswith("(Member sk_audit_1") for a in atoms))
+
     def test_malformed_instances_are_refused(self):
         bad = [{"t": "transfer", "id": "e1", "verb": "give", "giver": "@n9", "object": "x", "tense": "past"}]
         with self.assertRaises(E.EmitError) as cm:

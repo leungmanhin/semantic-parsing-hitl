@@ -66,9 +66,20 @@ examples:
       text: "Yusra's quilt"
       instances:
         - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: witness, id: x1, kind: quilt, definite: true, possessor: "@n1"}
+        - {t: witness, id: x1, kind: quilt, possessor: "@n1"}
   held_out:
     - category: positive
-      text: "the old quilt"
+      note: a property stated in the phrase
+      text: "Lamine washed the old quilt."
       instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
         - {t: witness, id: x1, kind: quilt, definite: true, props: [old]}
+        - {t: activity, id: v1, verb: wash, actor: "@n1", patient: "@x1", tense: past}
+    - category: positive
+      note: a possessive of-phrase — the possessor, not a postmodifier; no definite mark
+      text: "Lamine washed the quilt of Teodor."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: named-entity, id: n2, name: "Teodor"}
+        - {t: witness, id: x1, kind: quilt, possessor: "@n2"}
+        - {t: activity, id: v1, verb: wash, actor: "@n1", patient: "@x1", tense: past}

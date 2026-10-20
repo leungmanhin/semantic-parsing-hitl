@@ -370,7 +370,9 @@ class _Emitter:
         mentions: dict[str, list[str]] = {}
         for r in self.insts:
             for sname, spec in (self.cat[r["t"]].get("slots") or {}).items():
-                if spec["type"] == "filler" and is_ref(r.get(sname)):
+                # an attachment's own head slot is not a mention that places the head: the
+                # attachment follows the head wherever the head's other mentions put it
+                if spec["type"] == "filler" and is_ref(r.get(sname)) and not spec.get("attaches"):
                     mentions.setdefault(r[sname][1:], []).append(r["id"])
         self.mentions = mentions
         # referent instance -> the innermost scope enclosing every mention, or None (top level)

@@ -1,14 +1,15 @@
 # Suite report
 
-prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 49ea9cf47ef53a70) · type check: ran
+prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 8e841a09e782ffd2) · type check: ran
 
 ## Catalog checks
 
-538 examples checked; findings: 0
+578 examples checked; findings: 0
 
 Sentences two templates claim with the same expected atoms (composition, fine):
 - "Lamine danced with Yusra." — activity, adjunct
 - "Yusra deeply distrusts Lamine." — extent, psych
+- "Teodor ran across the field." — motion, oblique
 
 Stored records whose sentence is no longer in the catalog (ignored): suite/raw/activity/068c3d0726.r1.json, suite/raw/activity/068c3d0726.r2.json, suite/raw/activity/068c3d0726.r3.json, suite/raw/creation/131993ffcf.r1.json, suite/raw/creation/131993ffcf.r2.json, suite/raw/creation/131993ffcf.r3.json
 
@@ -329,7 +330,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (15 cases, 45 pairs), unanimous 15/15
 - type check: 45/45 emitted parses type
 - graph lints: none
-- usage: 45 calls · in 1,389,486 · cached 1,268,395 (91% of the input) · out 5,472 · thinking 0 (calls with thought tokens: 0)
+- usage: 45 calls · in 1,444,134 · cached 1,322,991 (92% of the input) · out 5,403 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
 Abstain cases (what the parser did, per run):
@@ -534,7 +535,7 @@ Mismatches: none
 
 ## link — held_out
 
-15 cases, 45 records (ok 45; stale prompt 42) · gemini-4-argon effort=low
+15 cases, 45 records (ok 45; stale prompt 45) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -588,22 +589,24 @@ Mismatches: none
 
 ## locative — held_out
 
-14 cases, 42 records (ok 42; stale prompt 42) · gemini-4-argon effort=low
+15 cases, 45 records (ok 45; stale prompt 45) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
-| positive | 8 | 24 | 24 | 24 | 24 |
+| positive | 9 | 27 | 27 | 27 | 27 |
 | contrast | 1 | 3 | 3 | 3 | 3 |
 | scoped | 2 | 6 | 6 | 6 | 6 |
 | abstain | 3 | 9 | 0 (false fires) | – | 9 |
 
-- selection: fire cases fired 33/33 · abstain cases false fires 0/9
-- fill: exact 33/33 among fires
-- stability: pairwise agreement 1.0 (14 cases, 42 pairs), unanimous 14/14
-- type check: 42/42 emitted parses type
+- selection: fire cases fired 36/36 · abstain cases false fires 0/9
+- fill: exact 36/36 among fires
+- stability: pairwise agreement 1.0 (15 cases, 45 pairs), unanimous 15/15
+- type check: 45/45 emitted parses type
 - graph lints: none
-- usage: 42 calls · in 1,122,285 · out 5,403 · thinking 0 (calls with thought tokens: 0)
-- issues reported by the parser: none
+- usage: 45 calls · in 1,269,573 · cached 141,140 (11% of the input) · out 6,013 · thinking 0 (calls with thought tokens: 0)
+- issues reported by the parser: 2
+  - P00 · location · r1 "The ferret in the barn slept.": The location boundary calls a place phrase inside a noun phrase 'a postmodifier of that noun', whereas locative and postmodifier say it is a locative predication of that thing.
+  - P00 · location / postmodifier · r2 "The ferret in the barn slept.": The location template says 'the ferret in the barn slept' uses a postmodifier of the noun, while the postmodifier template says a place phrase inside a noun phrase is a locative predication, not a postmodifier.
 
 Abstain cases (what the parser did, per run):
 - "The meeting is at noon." (target `time`): r1 target_fired [time×1, witness×1] · r2 target_fired [time×1, witness×1] · r3 target_fired [time×1, witness×1]
@@ -674,7 +677,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (15 cases, 45 pairs), unanimous 15/15
 - type check: 45/45 emitted parses type
 - graph lints: none
-- usage: 45 calls · in 1,018,554 · cached 121,926 (12% of the input) · out 5,291 · thinking 0 (calls with thought tokens: 0)
+- usage: 45 calls · in 1,102,314 · cached 262,850 (24% of the input) · out 5,373 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
 Abstain cases (what the parser did, per run):
@@ -682,6 +685,35 @@ Abstain cases (what the parser did, per run):
 - "The price fell." (target `change-of-state`): r1 target_fired [change-of-state×1, witness×1] · r2 target_fired [change-of-state×1, witness×1] · r3 target_fired [change-of-state×1, witness×1]
 - "Teodor made a trip." (gap G00): r1 gap_reported [named-entity×1; unmapped G00] · r2 gap_reported [named-entity×1; unmapped G00] · r3 gap_reported [named-entity×1; unmapped G00]
 - "Lamine handed Teodor an envelope." (target `transfer`): r1 target_fired [named-entity×2, transfer×1, witness×1] · r2 target_fired [named-entity×2, transfer×1, witness×1] · r3 target_fired [named-entity×2, transfer×1, witness×1]
+
+Mismatches: none
+
+## oblique — held_out
+
+19 cases, 57 records (ok 57; stale prompt 57) · gemini-4-argon effort=low
+
+| category | cases | runs | fired | exact | pass |
+|---|---|---|---|---|---|
+| positive | 8 | 24 | 24 | 24 | 24 |
+| scoped | 4 | 12 | 12 | 12 | 12 |
+| optional | 1 | 3 | 3 | 3 | 3 |
+| abstain | 6 | 18 | 0 (false fires) | – | 18 |
+
+- selection: fire cases fired 39/39 · abstain cases false fires 0/18
+- fill: exact 39/39 among fires
+- stability: pairwise agreement 1.0 (19 cases, 57 pairs), unanimous 19/19
+- type check: 57/57 emitted parses type
+- graph lints: none
+- usage: 57 calls · in 2,794,383 · cached 2,677,521 (96% of the input) · out 7,878 · thinking 0 (calls with thought tokens: 0)
+- issues reported by the parser: none
+
+Abstain cases (what the parser did, per run):
+- "Teodor arrived in 2019." (target `time`): r1 target_fired [motion×1, named-entity×1, time×1] · r2 target_fired [motion×1, named-entity×1, time×1] · r3 target_fired [motion×1, named-entity×1, time×1]
+- "Lamine left without saying a word." (gap G00): r1 gap_reported [motion×1, named-entity×1; unmapped G00] · r2 gap_reported [motion×1, named-entity×1; unmapped G00] · r3 gap_reported [motion×1, named-entity×1; unmapped G00]
+- "Yusra left after the audit." (gap G00): r1 gap_reported [motion×1, named-entity×1; unmapped G00] · r2 gap_reported [motion×1, named-entity×1; unmapped G00] · r3 gap_reported [motion×1, named-entity×1; unmapped G00]
+- "Lamine entered the shed." (target `motion`): r1 target_fired [motion×1, named-entity×1, witness×1] · r2 target_fired [motion×1, named-entity×1, witness×1] · r3 target_fired [motion×1, named-entity×1, witness×1]
+- "The quilt was washed by Yusra." (target `activity`): r1 target_fired [activity×1, named-entity×1, witness×1] · r2 target_fired [activity×1, named-entity×1, witness×1] · r3 target_fired [activity×1, named-entity×1, witness×1]
+- "Teodor is taller than Yusra." (gap G00): r1 gap_reported [named-entity×2; unmapped G00] · r2 gap_reported [named-entity×2; unmapped G00] · r3 gap_reported [named-entity×2; unmapped G00]
 
 Mismatches: none
 
@@ -740,6 +772,35 @@ Abstain cases (what the parser did, per run):
 
 Mismatches: none
 
+## postmodifier — held_out
+
+10 cases, 30 records (ok 30; stale prompt 30) · gemini-4-argon effort=low
+
+| category | cases | runs | fired | exact | pass |
+|---|---|---|---|---|---|
+| positive | 5 | 15 | 15 | 15 | 15 |
+| scoped | 1 | 3 | 3 | 3 | 3 |
+| abstain | 4 | 12 | 0 (false fires) | – | 12 |
+
+- selection: fire cases fired 18/18 · abstain cases false fires 0/12
+- fill: exact 18/18 among fires
+- stability: pairwise agreement 1.0 (10 cases, 30 pairs), unanimous 10/10
+- type check: 30/30 emitted parses type
+- graph lints: none
+- usage: 30 calls · in 1,471,182 · cached 1,409,702 (96% of the input) · out 4,693 · thinking 0 (calls with thought tokens: 0)
+- issues reported by the parser: 3
+  - P00 · location · r1 "The ferret in the barn slept.": The location template boundary says 'the ferret in the barn slept: a postmodifier of that noun', whereas locative and postmodifier say a place phrase inside a noun phrase is a locative predication, not a postmodifier.
+  - P00 · postmodifier · r2 "Yusra drank a cup of tea.": The instructions say to report a measure or container phrase like 'a cup of flour' as unmapped, without specifying whether the substance ('tea') or the container ('cup') fills the verb's patient slot.
+  - P00 · postmodifier · r3 "Yusra drank a cup of tea.": The instructions say to report a container phrase like 'a cup of flour' as unmapped, but do not specify whether the substance ('tea') or the container ('a cup') should fill the verb's patient slot.
+
+Abstain cases (what the parser did, per run):
+- "Teodor voted against the plan." (target `oblique`): r1 target_fired [activity×1, named-entity×1, oblique×1, witness×1] · r2 target_fired [activity×1, named-entity×1, oblique×1, witness×1] · r3 target_fired [activity×1, named-entity×1, oblique×1, witness×1]
+- "The ferret in the barn slept." (target `locative`): r1 target_fired [activity×1, locative×1, witness×2] · r2 target_fired [activity×1, locative×1, witness×2] · r3 target_fired [activity×1, locative×1, witness×2]
+- "Yusra drank a cup of tea." (gap G00): r1 gap_reported [activity×1, named-entity×1; unmapped G00] · r2 gap_reported [activity×1, named-entity×1; unmapped G00] · r3 gap_reported [activity×1, named-entity×1; unmapped G00]
+- "Lamine washed the quilt of Teodor." (target `witness`): r1 target_fired [activity×1, named-entity×2, witness×1] · r2 target_fired [activity×1, named-entity×2, witness×1] · r3 target_fired [activity×1, named-entity×2, witness×1]
+
+Mismatches: none
+
 ## psych — held_out
 
 13 cases, 39 records (ok 39; stale prompt 39) · gemini-4-argon effort=low
@@ -769,7 +830,7 @@ Mismatches: none
 
 ## purpose — held_out
 
-11 cases, 33 records (ok 33; stale prompt 30) · gemini-4-argon effort=low
+11 cases, 33 records (ok 33; stale prompt 33) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -844,5 +905,23 @@ Abstain cases (what the parser did, per run):
 - "Lamine paid Yusra a visit." (gap G00): r1 gap_reported [named-entity×2; unmapped G00] · r2 gap_reported [named-entity×2; unmapped G00] · r3 gap_reported [named-entity×2; unmapped G00]
 - "Yusra gave up." (target `activity`): r1 target_fired [activity×1, named-entity×1] · r2 target_fired [activity×1, named-entity×1] · r3 target_fired [activity×1, named-entity×1]
 - "Teodor told Ottoline the news." (target `communication`): r1 target_fired [communication×1, named-entity×2, witness×1] · r2 target_fired [communication×1, named-entity×2, witness×1] · r3 target_fired [communication×1, named-entity×2, witness×1]
+
+Mismatches: none
+
+## witness — held_out
+
+2 cases, 6 records (ok 6; stale prompt 3) · gemini-4-argon effort=low
+
+| category | cases | runs | fired | exact | pass |
+|---|---|---|---|---|---|
+| positive | 2 | 6 | 6 | 6 | 6 |
+
+- selection: fire cases fired 6/6 · abstain cases false fires 0/0
+- fill: exact 6/6 among fires
+- stability: pairwise agreement 1.0 (2 cases, 6 pairs), unanimous 2/2
+- type check: 6/6 emitted parses type
+- graph lints: none
+- usage: 6 calls · in 294,573 · cached 282,219 (96% of the input) · out 798 · thinking 0 (calls with thought tokens: 0)
+- issues reported by the parser: none
 
 Mismatches: none

@@ -1,0 +1,101 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "ed7e5be12a09f9e5947e50cfa5d2b849bc8b16ea94ad2bdefa98a0592d434d3f",
+  "item": {
+    "id": "saa62e321f2",
+    "text": "The destruction of the shed upset Teodor."
+  },
+  "usage": {
+    "input": 49025,
+    "output": 135,
+    "thinking": null,
+    "total": 49160,
+    "cached": 46976,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 49025,
+    "candidatesTokenCount": 135,
+    "totalTokenCount": 49160,
+    "cachedContentTokenCount": 46976,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 49025
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 46976
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 135
+      }
+    ]
+  },
+  "raw_text": "{\"id\":\"saa62e321f2\",\"instances\":[{\"t\":\"witness\",\"id\":\"x1\",\"kind\":\"destruction\",\"definite\":true},{\"t\":\"witness\",\"id\":\"x2\",\"kind\":\"shed\",\"definite\":true},{\"t\":\"named-entity\",\"id\":\"n1\",\"name\":\"Teodor\"},{\"t\":\"postmodifier\",\"id\":\"a1\",\"noun\":\"@x1\",\"head\":\"Of\",\"object\":\"@x2\"},{\"t\":\"psych\",\"id\":\"p1\",\"verb\":\"upset\",\"experiencer\":\"@n1\",\"stimulus\":\"@x1\",\"tense\":\"past\"}],\"unmapped\":[],\"issues\":[]}",
+  "response": {
+    "id": "saa62e321f2",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "destruction",
+        "definite": true
+      },
+      {
+        "t": "witness",
+        "id": "x2",
+        "kind": "shed",
+        "definite": true
+      },
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor"
+      },
+      {
+        "t": "postmodifier",
+        "id": "a1",
+        "noun": "@x1",
+        "head": "Of",
+        "object": "@x2"
+      },
+      {
+        "t": "psych",
+        "id": "p1",
+        "verb": "upset",
+        "experiencer": "@n1",
+        "stimulus": "@x1",
+        "tense": "past"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "7ea5b5bb86c29718a2936a9c64163dc82790d7b8ea4be586be12417680d153a7",
+  "run": 2,
+  "case": {
+    "template": "postmodifier",
+    "section": "held_out",
+    "index": 4,
+    "category": "positive",
+    "text": "The destruction of the shed upset Teodor.",
+    "key": "aa62e321f2"
+  }
+}

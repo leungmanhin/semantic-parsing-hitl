@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "00bbb6f7068a2a54f33bfc0111df472edb2130448e8fb8c84b7c32a1afde3448",
+  "prompt_sha256": "afbcddcd8dd2d137cd347ff80a5aeef60f93abe4404e394982b0af310b9aa5d7",
   "item": {
     "id": "s36efeb6be8",
     "text": "Teodor built a shed from planks."
   },
   "usage": {
-    "input": 30878,
-    "output": 214,
+    "input": 49094,
+    "output": 143,
     "thinking": null,
-    "total": 31092,
-    "cached": 28829,
+    "total": 49237,
+    "cached": 47045,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 30878,
-    "candidatesTokenCount": 214,
-    "totalTokenCount": 31092,
-    "cachedContentTokenCount": 28829,
+    "promptTokenCount": 49094,
+    "candidatesTokenCount": 143,
+    "totalTokenCount": 49237,
+    "cachedContentTokenCount": 47045,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 30878
+        "tokenCount": 49094
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 28829
+        "tokenCount": 47045
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 214
+        "tokenCount": 143
       }
     ]
   },
-  "raw_text": "{\n  \"id\": \"s36efeb6be8\",\n  \"instances\": [\n    {\n      \"t\": \"named-entity\",\n      \"id\": \"n1\",\n      \"name\": \"Teodor\"\n    },\n    {\n      \"t\": \"witness\",\n      \"id\": \"x1\",\n      \"kind\": \"shed\"\n    },\n    {\n      \"t\": \"creation\",\n      \"id\": \"e1\",\n      \"verb\": \"build\",\n      \"creator\": \"@n1\",\n      \"product\": \"@x1\",\n      \"tense\": \"past\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"span\": \"from planks\",\n      \"code\": \"G00\",\n      \"construction\": \"A prepositional phrase stating the material from which something is created.\"\n    }\n  ],\n  \"issues\": []\n}",
+  "raw_text": "{\"id\": \"s36efeb6be8\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"shed\"}, {\"t\": \"creation\", \"id\": \"e1\", \"verb\": \"build\", \"creator\": \"@n1\", \"product\": \"@x1\", \"tense\": \"past\"}, {\"t\": \"oblique\", \"id\": \"a1\", \"event\": \"@e1\", \"head\": \"From\", \"object\": \"plank\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s36efeb6be8",
     "instances": [
@@ -69,18 +69,19 @@
         "creator": "@n1",
         "product": "@x1",
         "tense": "past"
-      }
-    ],
-    "unmapped": [
+      },
       {
-        "span": "from planks",
-        "code": "G00",
-        "construction": "A prepositional phrase stating the material from which something is created."
+        "t": "oblique",
+        "id": "a1",
+        "event": "@e1",
+        "head": "From",
+        "object": "plank"
       }
     ],
+    "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "c0d47baf69c87fd1005101d2c3752c57d83adb2f730ed1199fdb9b6546502fa7",
+  "prompt_body_sha256": "d6a0605f98b58473ed4af8b90ddda918c8a0fe7b5dd0f4ad33fe69a0a71e9192",
   "run": 2,
   "case": {
     "template": "creation",

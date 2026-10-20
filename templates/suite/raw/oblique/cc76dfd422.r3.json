@@ -1,0 +1,85 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "ed7e5be12a09f9e5947e50cfa5d2b849bc8b16ea94ad2bdefa98a0592d434d3f",
+  "item": {
+    "id": "scc76dfd422",
+    "text": "Teodor is taller than Yusra."
+  },
+  "usage": {
+    "input": 49023,
+    "output": 109,
+    "thinking": null,
+    "total": 49132,
+    "cached": 46974,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 49023,
+    "candidatesTokenCount": 109,
+    "totalTokenCount": 49132,
+    "cachedContentTokenCount": 46974,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 49023
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 46974
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 109
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"scc76dfd422\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Yusra\"}], \"unmapped\": [{\"span\": \"Teodor is taller than Yusra\", \"code\": \"G00\", \"construction\": \"A comparative copular clause with a stated standard of comparison.\"}], \"issues\": []}",
+  "response": {
+    "id": "scc76dfd422",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Yusra"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "Teodor is taller than Yusra",
+        "code": "G00",
+        "construction": "A comparative copular clause with a stated standard of comparison."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "7ea5b5bb86c29718a2936a9c64163dc82790d7b8ea4be586be12417680d153a7",
+  "run": 3,
+  "case": {
+    "template": "oblique",
+    "section": "held_out",
+    "index": 18,
+    "category": "abstain",
+    "text": "Teodor is taller than Yusra.",
+    "key": "cc76dfd422"
+  }
+}

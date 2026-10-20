@@ -1,9 +1,9 @@
 {
   "prompt": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_body_sha256": "49ea9cf47ef53a70b2bf960950b1ce0c94ebd6a1171e41d50b9639f0536c4e3e",
+  "prompt_body_sha256": "8e841a09e782ffd208850ac6fd0c48aadce6f38e906994a86785195b08c424f6",
   "typecheck": "ran",
   "checks": {
-    "examples": 538,
+    "examples": 578,
     "findings": [],
     "pending": {},
     "shared": [
@@ -19,6 +19,13 @@
         "templates": [
           "extent",
           "psych"
+        ]
+      },
+      {
+        "text": "Teodor ran across the field.",
+        "templates": [
+          "motion",
+          "oblique"
         ]
       }
     ]
@@ -1054,11 +1061,11 @@
           "passed": 45
         },
         "usage": {
-          "input": 1389486,
-          "output": 5472,
+          "input": 1444134,
+          "output": 5403,
           "thinking": 0,
-          "total": 1394958,
-          "cached": 1268395,
+          "total": 1449537,
+          "cached": 1322991,
           "calls": 45,
           "thinking_calls": 0
         },
@@ -1679,7 +1686,7 @@
         "status": {
           "ok": 45
         },
-        "stale_prompt": 42,
+        "stale_prompt": 45,
         "by_category": {
           "positive": {
             "cases": 8,
@@ -1834,19 +1841,19 @@
     },
     "locative": {
       "held_out": {
-        "records": 42,
-        "cases": 14,
+        "records": 45,
+        "cases": 15,
         "status": {
-          "ok": 42
+          "ok": 45
         },
-        "stale_prompt": 42,
+        "stale_prompt": 45,
         "by_category": {
           "positive": {
-            "cases": 8,
-            "runs": 24,
-            "pass": 24,
-            "fired": 24,
-            "exact": 24
+            "cases": 9,
+            "runs": 27,
+            "pass": 27,
+            "fired": 27,
+            "exact": 27
           },
           "contrast": {
             "cases": 1,
@@ -1873,38 +1880,53 @@
             }
           }
         },
-        "pass": 42,
+        "pass": 45,
         "selection": {
-          "fire_runs": 33,
-          "fired": 33,
+          "fire_runs": 36,
+          "fired": 36,
           "abstain_runs": 9,
           "false_fires": 0
         },
         "fill": {
-          "fired": 33,
-          "exact": 33,
+          "fired": 36,
+          "exact": 36,
           "rate": 1.0
         },
         "stability": {
-          "cases": 14,
-          "pairs": 42,
+          "cases": 15,
+          "pairs": 45,
           "pairwise_agreement": 1.0,
-          "unanimous": 14
+          "unanimous": 15
         },
         "typecheck": {
-          "checked": 42,
-          "passed": 42
+          "checked": 45,
+          "passed": 45
         },
         "usage": {
-          "input": 1122285,
-          "output": 5403,
+          "input": 1269573,
+          "output": 6013,
           "thinking": 0,
-          "total": 1127688,
-          "cached": 0,
-          "calls": 42,
+          "total": 1275586,
+          "cached": 141140,
+          "calls": 45,
           "thinking_calls": 0
         },
-        "issues": [],
+        "issues": [
+          {
+            "code": "P00",
+            "where": "location",
+            "text": "The location boundary calls a place phrase inside a noun phrase 'a postmodifier of that noun', whereas locative and postmodifier say it is a locative predication of that thing.",
+            "sentence": "The ferret in the barn slept.",
+            "run": 1
+          },
+          {
+            "code": "P00",
+            "where": "location / postmodifier",
+            "text": "The location template says 'the ferret in the barn slept' uses a postmodifier of the noun, while the postmodifier template says a place phrase inside a noun phrase is a locative predication, not a postmodifier.",
+            "sentence": "The ferret in the barn slept.",
+            "run": 2
+          }
+        ],
         "null_slots": 0,
         "lints": {},
         "models": [
@@ -2119,12 +2141,92 @@
           "passed": 45
         },
         "usage": {
-          "input": 1018554,
-          "output": 5291,
+          "input": 1102314,
+          "output": 5373,
           "thinking": 0,
-          "total": 1023845,
-          "cached": 121926,
+          "total": 1107687,
+          "cached": 262850,
           "calls": 45,
+          "thinking_calls": 0
+        },
+        "issues": [],
+        "null_slots": 0,
+        "lints": {},
+        "models": [
+          "gemini-4-argon effort=low"
+        ]
+      }
+    },
+    "oblique": {
+      "held_out": {
+        "records": 57,
+        "cases": 19,
+        "status": {
+          "ok": 57
+        },
+        "stale_prompt": 57,
+        "by_category": {
+          "positive": {
+            "cases": 8,
+            "runs": 24,
+            "pass": 24,
+            "fired": 24,
+            "exact": 24
+          },
+          "scoped": {
+            "cases": 4,
+            "runs": 12,
+            "pass": 12,
+            "fired": 12,
+            "exact": 12
+          },
+          "optional": {
+            "cases": 1,
+            "runs": 3,
+            "pass": 3,
+            "fired": 3,
+            "exact": 3
+          },
+          "abstain": {
+            "cases": 6,
+            "runs": 18,
+            "pass": 18,
+            "false_fires": 0,
+            "outcomes": {
+              "target_fired": 9,
+              "gap_reported": 9
+            }
+          }
+        },
+        "pass": 57,
+        "selection": {
+          "fire_runs": 39,
+          "fired": 39,
+          "abstain_runs": 18,
+          "false_fires": 0
+        },
+        "fill": {
+          "fired": 39,
+          "exact": 39,
+          "rate": 1.0
+        },
+        "stability": {
+          "cases": 19,
+          "pairs": 57,
+          "pairwise_agreement": 1.0,
+          "unanimous": 19
+        },
+        "typecheck": {
+          "checked": 57,
+          "passed": 57
+        },
+        "usage": {
+          "input": 2794383,
+          "output": 7878,
+          "thinking": 0,
+          "total": 2802261,
+          "cached": 2677521,
+          "calls": 57,
           "thinking_calls": 0
         },
         "issues": [],
@@ -2309,6 +2411,101 @@
         ]
       }
     },
+    "postmodifier": {
+      "held_out": {
+        "records": 30,
+        "cases": 10,
+        "status": {
+          "ok": 30
+        },
+        "stale_prompt": 30,
+        "by_category": {
+          "positive": {
+            "cases": 5,
+            "runs": 15,
+            "pass": 15,
+            "fired": 15,
+            "exact": 15
+          },
+          "scoped": {
+            "cases": 1,
+            "runs": 3,
+            "pass": 3,
+            "fired": 3,
+            "exact": 3
+          },
+          "abstain": {
+            "cases": 4,
+            "runs": 12,
+            "pass": 12,
+            "false_fires": 0,
+            "outcomes": {
+              "target_fired": 9,
+              "gap_reported": 3
+            }
+          }
+        },
+        "pass": 30,
+        "selection": {
+          "fire_runs": 18,
+          "fired": 18,
+          "abstain_runs": 12,
+          "false_fires": 0
+        },
+        "fill": {
+          "fired": 18,
+          "exact": 18,
+          "rate": 1.0
+        },
+        "stability": {
+          "cases": 10,
+          "pairs": 30,
+          "pairwise_agreement": 1.0,
+          "unanimous": 10
+        },
+        "typecheck": {
+          "checked": 30,
+          "passed": 30
+        },
+        "usage": {
+          "input": 1471182,
+          "output": 4693,
+          "thinking": 0,
+          "total": 1475875,
+          "cached": 1409702,
+          "calls": 30,
+          "thinking_calls": 0
+        },
+        "issues": [
+          {
+            "code": "P00",
+            "where": "location",
+            "text": "The location template boundary says 'the ferret in the barn slept: a postmodifier of that noun', whereas locative and postmodifier say a place phrase inside a noun phrase is a locative predication, not a postmodifier.",
+            "sentence": "The ferret in the barn slept.",
+            "run": 1
+          },
+          {
+            "code": "P00",
+            "where": "postmodifier",
+            "text": "The instructions say to report a measure or container phrase like 'a cup of flour' as unmapped, without specifying whether the substance ('tea') or the container ('cup') fills the verb's patient slot.",
+            "sentence": "Yusra drank a cup of tea.",
+            "run": 2
+          },
+          {
+            "code": "P00",
+            "where": "postmodifier",
+            "text": "The instructions say to report a container phrase like 'a cup of flour' as unmapped, but do not specify whether the substance ('tea') or the container ('a cup') should fill the verb's patient slot.",
+            "sentence": "Yusra drank a cup of tea.",
+            "run": 3
+          }
+        ],
+        "null_slots": 0,
+        "lints": {},
+        "models": [
+          "gemini-4-argon effort=low"
+        ]
+      }
+    },
     "psych": {
       "held_out": {
         "records": 39,
@@ -2403,7 +2600,7 @@
         "status": {
           "ok": 33
         },
-        "stale_prompt": 30,
+        "stale_prompt": 33,
         "by_category": {
           "positive": {
             "cases": 5,
@@ -2626,6 +2823,62 @@
           "total": 323429,
           "cached": 0,
           "calls": 33,
+          "thinking_calls": 0
+        },
+        "issues": [],
+        "null_slots": 0,
+        "lints": {},
+        "models": [
+          "gemini-4-argon effort=low"
+        ]
+      }
+    },
+    "witness": {
+      "held_out": {
+        "records": 6,
+        "cases": 2,
+        "status": {
+          "ok": 6
+        },
+        "stale_prompt": 3,
+        "by_category": {
+          "positive": {
+            "cases": 2,
+            "runs": 6,
+            "pass": 6,
+            "fired": 6,
+            "exact": 6
+          }
+        },
+        "pass": 6,
+        "selection": {
+          "fire_runs": 6,
+          "fired": 6,
+          "abstain_runs": 0,
+          "false_fires": 0
+        },
+        "fill": {
+          "fired": 6,
+          "exact": 6,
+          "rate": 1.0
+        },
+        "stability": {
+          "cases": 2,
+          "pairs": 6,
+          "pairwise_agreement": 1.0,
+          "unanimous": 2
+        },
+        "typecheck": {
+          "checked": 6,
+          "passed": 6
+        },
+        "usage": {
+          "input": 294573,
+          "output": 798,
+          "thinking": 0,
+          "total": 295371,
+          "cached": 282219,
+          "calls": 6,
           "thinking_calls": 0
         },
         "issues": [],

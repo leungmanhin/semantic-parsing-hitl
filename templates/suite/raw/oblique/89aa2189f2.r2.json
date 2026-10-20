@@ -1,0 +1,94 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "ed7e5be12a09f9e5947e50cfa5d2b849bc8b16ea94ad2bdefa98a0592d434d3f",
+  "item": {
+    "id": "s89aa2189f2",
+    "text": "Yusra sang despite the rain."
+  },
+  "usage": {
+    "input": 49024,
+    "output": 145,
+    "thinking": null,
+    "total": 49169,
+    "cached": 46975,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 49024,
+    "candidatesTokenCount": 145,
+    "totalTokenCount": 49169,
+    "cachedContentTokenCount": 46975,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 49024
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 46975
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 145
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s89aa2189f2\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"rain\", \"definite\": true}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"sing\", \"actor\": \"@n1\", \"tense\": \"past\"}, {\"t\": \"oblique\", \"id\": \"a1\", \"event\": \"@e1\", \"head\": \"Despite\", \"object\": \"@x1\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s89aa2189f2",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "rain",
+        "definite": true
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "sing",
+        "actor": "@n1",
+        "tense": "past"
+      },
+      {
+        "t": "oblique",
+        "id": "a1",
+        "event": "@e1",
+        "head": "Despite",
+        "object": "@x1"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "7ea5b5bb86c29718a2936a9c64163dc82790d7b8ea4be586be12417680d153a7",
+  "run": 2,
+  "case": {
+    "template": "oblique",
+    "section": "held_out",
+    "index": 7,
+    "category": "positive",
+    "text": "Yusra sang despite the rain.",
+    "key": "89aa2189f2"
+  }
+}

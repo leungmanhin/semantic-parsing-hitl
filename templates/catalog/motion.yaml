@@ -58,7 +58,7 @@ trigger:
       a purpose link
     - >-
       a path phrase other than to or from — across the field, along the river, through the
-      gate: an attachment with no slot here; parse the motion and report the phrase
+      gate: an oblique on the motion, by its preposition (Across, Along, Through)
 
 slots:
   id:     {type: id, required: true, doc: "your label for the motion event"}
@@ -185,13 +185,13 @@ examples:
         - {t: witness, id: x1, kind: ladder, definite: true}
         - {t: motion, id: m1, verb: fall, moved: "@x1", tense: past}
     - category: positive
-      note: a path phrase with no slot — the motion is parsed, the phrase reported
+      note: a path phrase — an oblique on the motion
       text: "Teodor ran across the field."
       instances:
         - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, kind: field, definite: true}
         - {t: motion, id: m1, verb: run, mover: "@n1", tense: past}
-      unmapped:
-        - {code: G00, span: "across the field"}
+        - {t: oblique, id: a1, event: "@m1", head: Across, object: "@x1"}
     - category: scoped
       note: under clausal negation — the definite destination stays presupposed
       text: "Yusra did not go to the market."

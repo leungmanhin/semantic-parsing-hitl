@@ -1,0 +1,94 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "ed7e5be12a09f9e5947e50cfa5d2b849bc8b16ea94ad2bdefa98a0592d434d3f",
+  "item": {
+    "id": "s1adeb44c46",
+    "text": "Teodor voted against the plan."
+  },
+  "usage": {
+    "input": 49023,
+    "output": 143,
+    "thinking": null,
+    "total": 49166,
+    "cached": 46974,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 49023,
+    "candidatesTokenCount": 143,
+    "totalTokenCount": 49166,
+    "cachedContentTokenCount": 46974,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 49023
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 46974
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 143
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s1adeb44c46\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"plan\", \"definite\": true}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"vote\", \"actor\": \"@n1\", \"tense\": \"past\"}, {\"t\": \"oblique\", \"id\": \"a1\", \"event\": \"@v1\", \"head\": \"Against\", \"object\": \"@x1\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s1adeb44c46",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "plan",
+        "definite": true
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "vote",
+        "actor": "@n1",
+        "tense": "past"
+      },
+      {
+        "t": "oblique",
+        "id": "a1",
+        "event": "@v1",
+        "head": "Against",
+        "object": "@x1"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "7ea5b5bb86c29718a2936a9c64163dc82790d7b8ea4be586be12417680d153a7",
+  "run": 3,
+  "case": {
+    "template": "postmodifier",
+    "section": "held_out",
+    "index": 8,
+    "category": "abstain",
+    "text": "Teodor voted against the plan.",
+    "key": "1adeb44c46"
+  }
+}

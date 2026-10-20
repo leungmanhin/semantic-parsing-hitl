@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 5ddf26b4e6012ec9 · 37 templates
+catalog sha256 51a03edca3e3b37c · 39 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -433,7 +433,7 @@ Instances:
 
     [
       {"t": "named-entity", "id": "n1", "name": "Yusra"},
-      {"t": "witness", "id": "x1", "kind": "quilt", "definite": true, "possessor": "@n1"}
+      {"t": "witness", "id": "x1", "kind": "quilt", "possessor": "@n1"}
     ]
 
 The program renders these instances as:
@@ -1461,8 +1461,8 @@ Not this template:
 - a state of composition or existence — the shed is made of planks, there is a shed: no event; a
   different construction
 - an instrument, a companion or a beneficiary phrase — with a chisel, with Yusra, for Teodor: an
-  adjunct attachment on the creation event; a material phrase — from planks — has no slot and is
-  reported as unmapped
+  adjunct attachment on the creation event; a material phrase — from planks — an oblique (From)
+  on the creation event
 
 Slots:
 
@@ -1846,7 +1846,7 @@ Not this template:
   with a purpose infinitive — went to buy a thermos: the motion is parsed, the purpose is a
   purpose link
 - a path phrase other than to or from — across the field, along the river, through the gate: an
-  attachment with no slot here; parse the motion and report the phrase
+  oblique on the motion, by its preposition (Across, Along, Through)
 
 Slots:
 
@@ -2508,16 +2508,16 @@ Not this template:
   own actor, not an instrument
 - the recipient of a transfer or a communication — gave a thermos to Yusra, told the news to
   Lamine: the template's own recipient slot
-- a for-phrase naming a price, an exchange, a duration or a purpose — bought the quilt for forty
-  euros, worked for six hours, left for the market, a machine for polishing: no beneficiary;
-  report the phrase as unmapped (a destination is the motion's goal)
+- a for-phrase that names no beneficiary — waited for Teodor, commended for the salvage: an
+  oblique (For); a price, an exchange or a duration — bought the quilt for forty euros, worked
+  for six hours: reported as unmapped; a destination — left for the market: the motion's goal
 - a with-phrase that says how — with care, with difficulty: a manner
-- a with-phrase inside a noun phrase — the man with the hat, a thermos with a dent: a property
-  of that thing; report the phrase as unmapped
+- a with-phrase inside a noun phrase — the man with the hat, a thermos with a dent: a
+  postmodifier of that noun
 - with meaning because of or full of — red with blood, teeming with spiders: a state or a cause;
   report the phrase as unmapped
 - a coordinated subject — Teodor and Yusra danced: one instance per conjunct, no companion
-- a material — built a shed from planks: no slot here; reported as unmapped
+- a material — built a shed from planks: an oblique (From) on the event
 
 Slots:
 
@@ -2706,13 +2706,13 @@ Not this template:
   that template
 - where a THING is, with no event — the ledger is on the workbench, Calderwick is in Norfolk: a
   locative predication
-- a path of a motion — ran across the field, walked along the river, went through the gate: no
-  slot; the motion is parsed, the phrase reported as unmapped
+- a path of a motion — ran across the field, walked along the river, went through the gate: an
+  oblique on the motion, by its preposition
 - a time phrase — in 2019, at noon, on Monday: a time, not a place
-- a non-spatial in / on / at — in trouble, in its demands, on alert, at war, in quality: no
-  place; report the phrase as unmapped
-- a place phrase inside a noun phrase — the ledger on the workbench as an argument: a locative
-  predication of that thing, not an attachment to the clause's event
+- a non-spatial in / on / at — works on the audit, good at chess, in its demands: no place; an
+  oblique on the event, by its preposition
+- a place phrase inside a noun phrase — the ferret in the barn slept: a locative predication of
+  that thing, not an attachment to the clause's event
 - between two places, among a group — between the barn and the shed: no slot here; reported as
   unmapped
 
@@ -2856,6 +2856,220 @@ The program renders these instances as:
 Not this template. TEXT: Yusra laughed in the barn. — use `location`.
 
 Not this template. TEXT: Lamine sold the spindle on Monday. — use `time`.
+
+### oblique — A prepositional phrase on a clause, by its own preposition
+
+When: A prepositional phrase on a clause whose preposition is neither a place, a time, a
+destination or origin, a means, a companion, a beneficiary nor a manner: what the action is
+about or directed at (talked about the audit, waited for Teodor, voted against the plan, argued
+over the quilt, complained about the ladder, dealt with the audit), in what capacity or likeness
+(worked as a weaver, sang like a bird), without what (left without the quilt), despite what
+(sang despite the rain), through or along what path (walked through the barn, ran across the
+field), among or between what (sat among the ferrets). The event is parsed with its own
+template; the oblique names the event, the preposition as written (capitalized) and the object.
+One instance per phrase. Decide by the question the phrase answers: where, when, whence,
+whither, by what means, with whom, for whose benefit and how go to the templates that own them;
+everything else comes here.
+
+Forms:
+- <clause> about / against / over / on <object>
+- <clause> for / at / to / with <object>
+- <clause> as / like <object>
+- <clause> without / despite <object>
+- <clause> through / across / along <object>
+
+Not this template:
+- where the event takes place — in the barn, at the market, on the roof, near the shed: a
+  location; where a thing is — the key is under the quilt: a locative
+- a destination or an origin — went to the market, came from the barn, into the shed, out of the
+  barn: the motion's goal or source; the source of a transfer or an acquisition
+- when — in 2019, on Monday, at noon: a time; after / before / during / until / since an event
+  or a time: a relation in time, with no slot here; report the phrase as unmapped
+- a means, a companion or a beneficiary — with a knife, by train, with Yusra, for Teodor's
+  benefit: an adjunct; the by-phrase of a passive — washed by Yusra: the clause's own actor
+- how — with care, in a hurry: a manner
+- a verb's particle — gave up, set off, broke down: part of the verb's lemma (give_up), no
+  phrase
+- a prepositional phrase inside a noun phrase — the man with the hat, a book about ferrets: a
+  postmodifier of that noun, not an attachment to the event
+- a comparison — taller than Yusra, as tall as Teodor: no slot here; report the span as unmapped
+- a gerund or a clause as the object — without saying a word, by working hard, after leaving: no
+  slot here; report the phrase as unmapped
+- a multi-word preposition with no head of its own — because of the rain, due to the audit,
+  instead of Lamine, on behalf of Yusra, in spite of the storm: report the phrase as unmapped
+  (in spite of is not despite)
+- the price or the exchange of a transfer — sold the spindle for forty euros: a measure, no slot
+  here; report the phrase as unmapped
+
+Slots:
+
+- `t` (required): "oblique"
+- `id` (required; your label for this instance): your label for the attachment (a1, a2 …).
+- `event` (required; "@id" of the predication instance this attaches to): the predication the
+  phrase attaches to: the id of the clause's event instance.
+- `head` (required; one of: About, Above, Across, Against, Along, Among, Around, As, At, Behind,
+  Below, Beneath, Beside, Besides, Between, Beyond, By, Concerning, Despite, Down, Except, For,
+  From, In, Inside, Into, Like, Near, Of, False, True, Onto, Opposite, Out, Outside, Over, Past,
+  Per, Regarding, Round, Through, To, Toward, Towards, Under, Underneath, Unlike, Up, Upon, Via,
+  With, Within, Without): the preposition as written, capitalized (about → About, without →
+  Without); never a synonym.
+- `object` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
+  the phrase's object: a referent id (a witness, a name) for a specific thing, or a bare lemma
+  for a non-specific or kind-level one (as a weaver → weaver, without a quilt → quilt, like a
+  bird → bird).
+
+Example (what the action is about — the preposition is the head). TEXT: Yusra talked about the audit.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Yusra"},
+      {"t": "witness", "id": "x1", "kind": "audit", "definite": true},
+      {"t": "activity", "id": "v1", "verb": "talk", "actor": "@n1", "tense": "past"},
+      {"t": "oblique", "id": "a1", "event": "@v1", "head": "About", "object": "@x1"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_yusra_1 "Yusra")
+    (Member sk_audit_1 audit)
+    (Member sk_talk_1 talk)
+    (Agent sk_talk_1 sk_yusra_1)
+    (Past sk_talk_1)
+    (About sk_talk_1 sk_audit_1)
+
+Example (a prepositional verb's object — not a beneficiary, not a direct object). TEXT: Lamine waited for Teodor.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Lamine"},
+      {"t": "named-entity", "id": "n2", "name": "Teodor"},
+      {"t": "activity", "id": "v1", "verb": "wait", "actor": "@n1", "tense": "past"},
+      {"t": "oblique", "id": "a1", "event": "@v1", "head": "For", "object": "@n2"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_lamine_1 "Lamine")
+    (Name sk_teodor_1 "Teodor")
+    (Member sk_wait_1 wait)
+    (Agent sk_wait_1 sk_lamine_1)
+    (Past sk_wait_1)
+    (For sk_wait_1 sk_teodor_1)
+
+Example (a capacity — the object is a bare lemma). TEXT: Teodor worked as a weaver.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Teodor"},
+      {"t": "activity", "id": "v1", "verb": "work", "actor": "@n1", "tense": "past"},
+      {"t": "oblique", "id": "a1", "event": "@v1", "head": "As", "object": "weaver"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_teodor_1 "Teodor")
+    (Member sk_work_1 work)
+    (Agent sk_work_1 sk_teodor_1)
+    (Past sk_work_1)
+    (As sk_work_1 weaver)
+
+Not this template. TEXT: Yusra laughed in the barn. — use `location`.
+
+Not this template. TEXT: Lamine cut the loaf with a knife. — use `adjunct`.
+
+### postmodifier — A prepositional phrase inside a noun phrase, by its own preposition
+
+When: A prepositional phrase that modifies a noun inside its noun phrase: the man with the hat,
+a book about ferrets, a letter from Yusra, the key to the shed, a thermos without a lid, the
+destruction of the shed. The noun's referent is parsed as usual (a witness or a name); the
+postmodifier names that referent, the preposition as written (capitalized) and the phrase's
+object. One instance per phrase. It is part of the noun phrase, so it follows the referent
+wherever the referent is rendered.
+
+Forms:
+- the <N> with / without <object>
+- a <N> about / from / to / for <object>
+- the <N> of <object>
+
+Not this template:
+- a possessive of-phrase or genitive — the quilt of Yusra, Yusra's quilt, the sister of Lamine:
+  the witness's possessor, not a phrase of this kind
+- a phrase on the clause, not on the noun — read the letter in the barn (the reading is in the
+  barn), talked about the audit: a location or an oblique on the event; decide by what the
+  phrase modifies
+- a partitive — two of the ferrets, some of the quilts: a group, not a modified noun
+- a measure or a container — a cup of tea, three metres of cloth: the substance is the verb's
+  object as a bare lemma (tea, cloth); the measure phrase is reported as unmapped
+- a place phrase inside a noun phrase — the ferret in the barn, the ledger on the workbench: a
+  locative predication of that thing (in, at, on, near, under …), not a phrase of this kind; and
+  a place predicated of a thing — the ledger is on the workbench — likewise
+- a reduced relative clause — the rules concerning the levy, a skiff moored at the jetty: an
+  event with the noun in its role, not a phrase; report it as unmapped
+
+Slots:
+
+- `t` (required): "postmodifier"
+- `id` (required; your label for this instance): your label for the attachment (a1, a2 …).
+- `noun` (required; "@id" of the predication instance this attaches to): the referent the phrase
+  modifies: the id of its witness or named-entity instance.
+- `head` (required; one of: About, Above, Across, Against, Along, Among, Around, As, At, Behind,
+  Below, Beneath, Beside, Besides, Between, Beyond, By, Concerning, Despite, Down, Except, For,
+  From, In, Inside, Into, Like, Near, Of, False, True, Onto, Opposite, Out, Outside, Over, Past,
+  Per, Regarding, Round, Through, To, Toward, Towards, Under, Underneath, Unlike, Up, Upon, Via,
+  With, Within, Without): the preposition as written, capitalized (with → With, about → About);
+  never a synonym.
+- `object` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
+  the phrase's object: a referent id (a witness, a name) for a specific thing, or a bare lemma
+  for a non-specific or kind-level one (a book about ferrets → ferret, a thermos without a lid →
+  lid).
+
+Example (the phrase picks out the referent; no possession is stated). TEXT: The man with the hat laughed.
+
+Instances:
+
+    [
+      {"t": "witness", "id": "x1", "kind": "man", "definite": true},
+      {"t": "witness", "id": "x2", "kind": "hat", "definite": true},
+      {"t": "postmodifier", "id": "a1", "noun": "@x1", "head": "With", "object": "@x2"},
+      {"t": "activity", "id": "v1", "verb": "laugh", "actor": "@x1", "tense": "past"}
+    ]
+
+The program renders these instances as:
+
+    (Member sk_man_1 man)
+    (With sk_man_1 sk_hat_1)
+    (Member sk_hat_1 hat)
+    (Member sk_laugh_1 laugh)
+    (Agent sk_laugh_1 sk_man_1)
+    (Past sk_laugh_1)
+
+Example (what a thing is about — a kind-level object as a bare lemma). TEXT: Yusra read a book about ferrets.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Yusra"},
+      {"t": "witness", "id": "x1", "kind": "book"},
+      {"t": "postmodifier", "id": "a1", "noun": "@x1", "head": "About", "object": "ferret"},
+      {"t": "activity", "id": "v1", "verb": "read", "actor": "@n1", "patient": "@x1", "tense": "past"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_yusra_1 "Yusra")
+    (Member sk_book_1 book)
+    (About sk_book_1 ferret)
+    (Member sk_read_1 read)
+    (Agent sk_read_1 sk_yusra_1)
+    (Patient sk_read_1 sk_book_1)
+    (Past sk_read_1)
+
+Not this template. TEXT: Yusra's quilt — use `witness`.
+
+Not this template. TEXT: Yusra talked about the audit. — use `oblique`.
 
 ### time — The time at which an event takes place
 
@@ -3196,8 +3410,8 @@ Not this template:
 - a temporal connective — after, before, when, while, until, as soon as, since (a time): a
   relation in time, not a reason or a contrast; no slot here; both clauses are parsed and the
   connective reported as unmapped
-- a connective with a noun phrase, not a clause — because of the rain, despite the storm, due to
-  the audit: a prepositional reason with no event to link; report the phrase as unmapped
+- a connective with a noun phrase, not a clause — despite the storm: an oblique (Despite) on the
+  event; because of the rain, due to the audit: no head; report the phrase as unmapped
 - a connective opening the text with nothing before it — "But Lamine left.": no first clause to
   relate; parse the clause and report the connective (G05)
 - a clause with no event of its own as an endpoint — the ladder is crooked because it is old,

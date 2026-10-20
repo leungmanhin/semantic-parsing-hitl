@@ -118,6 +118,14 @@ examples:
 
   held_out:                  # tests; never rendered into the prompt
     - category: positive
+      note: a place phrase inside a noun phrase — a locative of that thing, in the present
+      text: "The ferret in the barn slept."
+      instances:
+        - {t: witness, id: x1, kind: ferret, definite: true}
+        - {t: witness, id: x2, kind: barn, definite: true}
+        - {t: locative, id: l1, thing: "@x1", place: "@x2", head: LocatedIn, preposition: in, tense: present}
+        - {t: activity, id: v1, verb: sleep, actor: "@x1", tense: past}
+    - category: positive
       note: an existential — the thing is an indefinite witness
       text: "There is a ledger on the workbench."
       instances:

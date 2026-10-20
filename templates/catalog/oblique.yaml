@@ -1,0 +1,267 @@
+# Template: oblique  (a prepositional phrase on a clause, by its own preposition: "talked about the audit", "waited for Teodor", "worked as a weaver", "left without the quilt")
+#
+# A prepositional phrase on a clause that says what the action is about, directed at, done
+# against, done without, done as, done like, or in what respect attaches to the clause's event
+# under a head named after the preposition itself, capitalized: (About sk_talk_1 sk_audit_1),
+# (For sk_wait_1 sk_teodor_1), (As sk_work_1 weaver). The preposition is never normalized and
+# never promoted into a relation of its own: the word actually used is the head. This includes
+# the object of a prepositional verb (wait for, look at, depend on, refer to, deal with), which is
+# never a direct-object role. Where, when, whence, whither, by what means, with whom, for whose
+# benefit and how have their own templates (location, time, motion, adjunct, manner); this
+# template takes the rest.
+
+id: oblique
+family: attachment
+kind: attachment
+title: A prepositional phrase on a clause, by its own preposition
+status: draft
+
+trigger:
+  construction: >
+    A prepositional phrase on a clause whose preposition is neither a place, a time, a
+    destination or origin, a means, a companion, a beneficiary nor a manner: what the action is
+    about or directed at (talked about the audit, waited for Teodor, voted against the plan,
+    argued over the quilt, complained about the ladder, dealt with the audit), in what capacity
+    or likeness (worked as a weaver, sang like a bird), without what (left without the quilt),
+    despite what (sang despite the rain), through or along what path (walked through the barn,
+    ran across the field), among or between what (sat among the ferrets). The event is parsed
+    with its own template; the oblique names the event, the preposition as written (capitalized)
+    and the object. One instance per phrase. Decide by the question the phrase answers: where,
+    when, whence, whither, by what means, with whom, for whose benefit and how go to the
+    templates that own them; everything else comes here.
+  surface_forms:
+    - "<clause> about / against / over / on <object>"   # talked about the audit; voted against the plan
+    - "<clause> for / at / to / with <object>"          # waited for Teodor; dealt with the audit: a prepositional verb's object
+    - "<clause> as / like <object>"                     # worked as a weaver; sang like a bird
+    - "<clause> without / despite <object>"             # left without the quilt; sang despite the rain
+    - "<clause> through / across / along <object>"      # walked through the barn: a path
+  boundary:                   # looks like an oblique but is not one
+    - >-
+      where the event takes place — in the barn, at the market, on the roof, near the shed: a
+      location; where a thing is — the key is under the quilt: a locative
+    - >-
+      a destination or an origin — went to the market, came from the barn, into the shed, out of
+      the barn: the motion's goal or source; the source of a transfer or an acquisition
+    - >-
+      when — in 2019, on Monday, at noon: a time; after / before / during / until / since an
+      event or a time: a relation in time, with no slot here; report the phrase as unmapped
+    - >-
+      a means, a companion or a beneficiary — with a knife, by train, with Yusra, for Teodor's
+      benefit: an adjunct; the by-phrase of a passive — washed by Yusra: the clause's own actor
+    - >-
+      how — with care, in a hurry: a manner
+    - >-
+      a verb's particle — gave up, set off, broke down: part of the verb's lemma (give_up), no
+      phrase
+    - >-
+      a prepositional phrase inside a noun phrase — the man with the hat, a book about ferrets:
+      a postmodifier of that noun, not an attachment to the event
+    - >-
+      a comparison — taller than Yusra, as tall as Teodor: no slot here; report the span as
+      unmapped
+    - >-
+      a gerund or a clause as the object — without saying a word, by working hard, after
+      leaving: no slot here; report the phrase as unmapped
+    - >-
+      a multi-word preposition with no head of its own — because of the rain, due to the audit,
+      instead of Lamine, on behalf of Yusra, in spite of the storm: report the phrase as
+      unmapped (in spite of is not despite)
+    - >-
+      the price or the exchange of a transfer — sold the spindle for forty euros: a measure, no
+      slot here; report the phrase as unmapped
+
+slots:
+  id:     {type: id, required: true, doc: "your label for the attachment (a1, a2 …)"}
+  event:  {type: filler, class: Event, attaches: true, required: true,
+           doc: "the predication the phrase attaches to: the id of the clause's event instance"}
+  head:   {type: enum, values: [About, Above, Across, Against, Along, Among, Around, As, At, Behind, Below, Beneath, Beside, Besides, Between, Beyond, By, Concerning, Despite, Down, Except, For, From, In, Inside, Into, Like, Near, Of, Off, On, Onto, Opposite, Out, Outside, Over, Past, Per, Regarding, Round, Through, To, Toward, Towards, Under, Underneath, Unlike, Up, Upon, Via, With, Within, Without],
+           required: true, doc: "the preposition as written, capitalized (about → About, without → Without); never a synonym"}
+  object: {type: filler, class: Entity, required: true,
+           doc: "the phrase's object: a referent id (a witness, a name) for a specific thing, or a bare lemma for a non-specific or kind-level one (as a weaver → weaver, without a quilt → quilt, like a bird → bird)"}
+
+emits:
+  - atom: "({head} {event} {object})"
+
+notes:
+  - >-
+    The head is the surface preposition because there is no closed lexicon of these relations:
+    "about", "over" and "on" in "argued about / over / on the quilt" stay three records, and
+    whether they coincide is a consumer's business. The one rule is that the word used is the
+    head.
+  - >-
+    An attachment has no symbol of its own: its atom is rendered wherever its event is rendered,
+    inside a negation, a modal or a rule over the clause.
+
+depends_on: []
+composes_with: [negation, modal, generic, location, time, manner, adjunct]
+
+examples:
+  shown:                     # rendered into the prompt
+    - category: positive
+      note: what the action is about — the preposition is the head
+      text: "Yusra talked about the audit."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, kind: audit, definite: true}
+        - {t: activity, id: v1, verb: talk, actor: "@n1", tense: past}
+        - {t: oblique, id: a1, event: "@v1", head: About, object: "@x1"}
+      emitted:               # what the emitter produces (illustration; the emitter is the authority)
+        - "(Name sk_yusra_1 \"Yusra\")"
+        - "(Member sk_audit_1 audit)"
+        - "(Member sk_talk_1 talk)"
+        - "(Agent sk_talk_1 sk_yusra_1)"
+        - "(Past sk_talk_1)"
+        - "(About sk_talk_1 sk_audit_1)"
+      declarations:
+        - "(: audit Class)"
+        - "(: sk_audit_1 Entity)"
+        - "(: sk_talk_1 Event)"
+        - "(: sk_yusra_1 Entity)"
+        - "(: talk Class)"
+    - category: positive
+      note: a prepositional verb's object — not a beneficiary, not a direct object
+      text: "Lamine waited for Teodor."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: named-entity, id: n2, name: "Teodor"}
+        - {t: activity, id: v1, verb: wait, actor: "@n1", tense: past}
+        - {t: oblique, id: a1, event: "@v1", head: For, object: "@n2"}
+    - category: positive
+      note: a capacity — the object is a bare lemma
+      text: "Teodor worked as a weaver."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: activity, id: v1, verb: work, actor: "@n1", tense: past}
+        - {t: oblique, id: a1, event: "@v1", head: As, object: weaver}
+    - category: abstain
+      text: "Yusra laughed in the barn."
+      expected: {abstain: true, template: location}                   # where
+    - category: abstain
+      text: "Lamine cut the loaf with a knife."
+      expected: {abstain: true, template: adjunct}                    # a means
+
+  held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      text: "Teodor voted against the plan."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, kind: plan, definite: true}
+        - {t: activity, id: v1, verb: vote, actor: "@n1", tense: past}
+        - {t: oblique, id: a1, event: "@v1", head: Against, object: "@x1"}
+    - category: positive
+      text: "Lamine argued over the quilt."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: activity, id: v1, verb: argue, actor: "@n1", tense: past}
+        - {t: oblique, id: a1, event: "@v1", head: Over, object: "@x1"}
+    - category: positive
+      note: without — on a motion
+      text: "Teodor left without the quilt."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: motion, id: m1, verb: leave, mover: "@n1", tense: past}
+        - {t: oblique, id: a1, event: "@m1", head: Without, object: "@x1"}
+    - category: positive
+      note: a likeness — the object is kind-level, a bare lemma
+      text: "Yusra sang like a bird."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: activity, id: v1, verb: sing, actor: "@n1", tense: past}
+        - {t: oblique, id: a1, event: "@v1", head: Like, object: bird}
+    - category: positive
+      note: a path phrase on a motion
+      text: "Lamine walked through the barn."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: x1, kind: barn, definite: true}
+        - {t: motion, id: m1, verb: walk, mover: "@n1", tense: past}
+        - {t: oblique, id: a1, event: "@m1", head: Through, object: "@x1"}
+    - category: positive
+      note: a path phrase on a motion
+      text: "Teodor ran across the field."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, kind: field, definite: true}
+        - {t: motion, id: m1, verb: run, mover: "@n1", tense: past}
+        - {t: oblique, id: a1, event: "@m1", head: Across, object: "@x1"}
+    - category: positive
+      note: a prepositional verb with a definite object
+      text: "Teodor dealt with the audit."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, kind: audit, definite: true}
+        - {t: activity, id: v1, verb: deal, actor: "@n1", tense: past}
+        - {t: oblique, id: a1, event: "@v1", head: With, object: "@x1"}
+    - category: positive
+      note: despite with a noun phrase
+      text: "Yusra sang despite the rain."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, kind: rain, definite: true}
+        - {t: activity, id: v1, verb: sing, actor: "@n1", tense: past}
+        - {t: oblique, id: a1, event: "@v1", head: Despite, object: "@x1"}
+    - category: scoped
+      note: under clausal negation — the phrase is denied with the event
+      text: "Yusra did not talk about the audit."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, kind: audit, definite: true}
+        - {t: activity, id: v1, verb: talk, actor: "@n1", tense: past}
+        - {t: oblique, id: a1, event: "@v1", head: About, object: "@x1"}
+        - {t: negation, id: s1, over: ["@v1"]}
+    - category: scoped
+      note: under clausal negation with an indefinite object — the object is bound inside
+      text: "Lamine did not argue over a quilt."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: x1, kind: quilt}
+        - {t: activity, id: v1, verb: argue, actor: "@n1", tense: past}
+        - {t: oblique, id: a1, event: "@v1", head: Over, object: "@x1"}
+        - {t: negation, id: s1, over: ["@v1"]}
+    - category: scoped
+      note: under a modal
+      text: "Lamine might wait for Teodor."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: named-entity, id: n2, name: "Teodor"}
+        - {t: activity, id: v1, verb: wait, actor: "@n1", tense: present}
+        - {t: oblique, id: a1, event: "@v1", head: For, object: "@n2"}
+        - {t: modal, id: s1, over: ["@v1"], head: Might, surface: might}
+    - category: scoped
+      note: inside a generalization — without any quilt, so the object is a bare lemma
+      text: "Every ferret slept without a quilt."
+      instances:
+        - {t: range, id: q1, kind: ferret, quantifier: every, predicate: sleep}
+        - {t: activity, id: v1, verb: sleep, actor: "@q1", tense: past}
+        - {t: oblique, id: a1, event: "@v1", head: Without, object: quilt}
+        - {t: generic, id: r1, ranges: ["@q1"], over: ["@v1"]}
+    - category: optional
+      note: two phrases on one event
+      text: "Teodor voted against the plan despite the rain."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, kind: plan, definite: true}
+        - {t: witness, id: x2, kind: rain, definite: true}
+        - {t: activity, id: v1, verb: vote, actor: "@n1", tense: past}
+        - {t: oblique, id: a1, event: "@v1", head: Against, object: "@x1"}
+        - {t: oblique, id: a2, event: "@v1", head: Despite, object: "@x2"}
+    - category: abstain
+      text: "Lamine entered the shed."
+      expected: {abstain: true, template: motion}                     # the object of enter is the goal
+    - category: abstain
+      text: "Teodor arrived in 2019."
+      expected: {abstain: true, template: time}                       # when
+    - category: abstain
+      text: "The quilt was washed by Yusra."
+      expected: {abstain: true, template: activity}                   # the by-phrase of a passive
+    - category: abstain
+      text: "Yusra left after the audit."
+      expected: {abstain: true, gap: G00, span: "after the audit"}    # a relation in time
+    - category: abstain
+      text: "Lamine left without saying a word."
+      expected: {abstain: true, gap: G00, span: "without saying a word"}   # a gerund as the object
+    - category: abstain
+      text: "Teodor is taller than Yusra."
+      expected: {abstain: true, gap: G00, span: "taller than Yusra"}  # a comparison

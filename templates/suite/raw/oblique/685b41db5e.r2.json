@@ -1,0 +1,94 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "ed7e5be12a09f9e5947e50cfa5d2b849bc8b16ea94ad2bdefa98a0592d434d3f",
+  "item": {
+    "id": "s685b41db5e",
+    "text": "Teodor ran across the field."
+  },
+  "usage": {
+    "input": 49024,
+    "output": 144,
+    "thinking": null,
+    "total": 49168,
+    "cached": 46975,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 49024,
+    "candidatesTokenCount": 144,
+    "totalTokenCount": 49168,
+    "cachedContentTokenCount": 46975,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 49024
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 46975
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 144
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s685b41db5e\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"field\", \"definite\": true}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"run\", \"mover\": \"@n1\", \"tense\": \"past\"}, {\"t\": \"oblique\", \"id\": \"a1\", \"event\": \"@m1\", \"head\": \"Across\", \"object\": \"@x1\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s685b41db5e",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "field",
+        "definite": true
+      },
+      {
+        "t": "motion",
+        "id": "m1",
+        "verb": "run",
+        "mover": "@n1",
+        "tense": "past"
+      },
+      {
+        "t": "oblique",
+        "id": "a1",
+        "event": "@m1",
+        "head": "Across",
+        "object": "@x1"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "7ea5b5bb86c29718a2936a9c64163dc82790d7b8ea4be586be12417680d153a7",
+  "run": 2,
+  "case": {
+    "template": "oblique",
+    "section": "held_out",
+    "index": 5,
+    "category": "positive",
+    "text": "Teodor ran across the field.",
+    "key": "685b41db5e"
+  }
+}

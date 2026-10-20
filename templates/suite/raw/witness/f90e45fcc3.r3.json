@@ -1,0 +1,93 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "afbcddcd8dd2d137cd347ff80a5aeef60f93abe4404e394982b0af310b9aa5d7",
+  "item": {
+    "id": "sf90e45fcc3",
+    "text": "Lamine washed the quilt of Teodor."
+  },
+  "usage": {
+    "input": 49095,
+    "output": 141,
+    "thinking": null,
+    "total": 49236,
+    "cached": 47046,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 49095,
+    "candidatesTokenCount": 141,
+    "totalTokenCount": 49236,
+    "cachedContentTokenCount": 47046,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 49095
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 47046
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 141
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sf90e45fcc3\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"quilt\", \"possessor\": \"@n2\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"wash\", \"actor\": \"@n1\", \"patient\": \"@x1\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sf90e45fcc3",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Teodor"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "quilt",
+        "possessor": "@n2"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "wash",
+        "actor": "@n1",
+        "patient": "@x1",
+        "tense": "past"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "d6a0605f98b58473ed4af8b90ddda918c8a0fe7b5dd0f4ad33fe69a0a71e9192",
+  "run": 3,
+  "case": {
+    "template": "witness",
+    "section": "held_out",
+    "index": 1,
+    "category": "positive",
+    "text": "Lamine washed the quilt of Teodor.",
+    "key": "f90e45fcc3"
+  }
+}

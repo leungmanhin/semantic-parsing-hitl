@@ -32,7 +32,7 @@ trigger:
     boundary says where each goes.
   surface_forms:
     - "<maker> V <thing made>"                      # Teodor built a shed
-    - "<maker> V <thing made> from <material>"      # a material phrase: no slot, reported
+    - "<maker> V <thing made> from <material>"      # a material phrase: an oblique (From) on the event
     - "<maker> V <thing made> with / for …"         # an instrument or a beneficiary: an adjunct attachment
     - "<thing made> was V-ed by <maker>"            # passive: the roles do not change
     - "<thing made> was V-ed"                       # passive, maker unstated
@@ -58,8 +58,8 @@ trigger:
       event; a different construction
     - >-
       an instrument, a companion or a beneficiary phrase — with a chisel, with Yusra, for Teodor:
-      an adjunct attachment on the creation event; a material phrase — from planks — has no slot
-      and is reported as unmapped
+      an adjunct attachment on the creation event; a material phrase — from planks — an oblique
+      (From) on the creation event
 
 slots:
   id:      {type: id, required: true, doc: "your label for the creation event"}
@@ -184,14 +184,13 @@ examples:
         - {t: witness, id: x1, kind: map}
         - {t: creation, id: e1, verb: draw, creator: "@n1", product: "@x1", tense: past}
     - category: positive
-      note: a material phrase has no slot — the creation is parsed, the phrase reported
+      note: a material — an oblique (From) on the creation
       text: "Teodor built a shed from planks."
       instances:
         - {t: named-entity, id: n1, name: "Teodor"}
         - {t: witness, id: x1, kind: shed}
         - {t: creation, id: e1, verb: build, creator: "@n1", product: "@x1", tense: past}
-      unmapped:
-        - {code: G00, span: "from planks"}
+        - {t: oblique, id: a1, event: "@e1", head: From, object: plank}
     - category: scoped
       note: under clausal negation — the indefinite product stays inside the negation
       text: "Teodor did not build a shed."
