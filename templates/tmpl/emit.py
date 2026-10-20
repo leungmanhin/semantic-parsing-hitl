@@ -251,6 +251,8 @@ class _Emitter:
                         problems.append(f"{where}: {sname} references unknown instance {ref}")
                     elif spec["type"] == "filler" and not (self.cat.get(target.get("t")) or {}).get("mints"):
                         problems.append(f"{where}: {sname} references {ref}, which mints no symbol")
+                    elif spec["type"] == "refs" and self.is_attachment(target):
+                        problems.append(f"{where}: {sname} lists {ref}, an attachment, which follows its head into a scope and is never listed in one")
             for sname in r:
                 if sname not in ("t", "id") and sname not in (t.get("slots") or {}):
                     problems.append(f"{where}: unknown slot {sname}")
@@ -322,6 +324,12 @@ class _Emitter:
         for base, ids in named.items():
             for k, i in enumerate(ids, 1):
                 self.sym[i] = base if len(ids) == 1 else f"{base}_{k}"
+
+    def is_attachment(self, r: dict) -> bool:
+        """An instance whose template attaches it to a head (a filled slot with ``attaches: true``)."""
+        t = self.cat.get(r.get("t")) or {}
+        return any(spec["type"] == "filler" and spec.get("attaches") and is_ref(r.get(sname))
+                   for sname, spec in (t.get("slots") or {}).items())
 
     # ---------------------------------------------------------------- homes
     def is_rigid(self, iid: str) -> bool:

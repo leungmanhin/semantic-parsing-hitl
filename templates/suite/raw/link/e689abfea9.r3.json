@@ -1,0 +1,101 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "aea0dc69d24f92b4e9fc854261540ae45969c539482a78ca709b17321fd141f1",
+  "item": {
+    "id": "se689abfea9",
+    "text": "The ferret slept. Therefore Yusra sang."
+  },
+  "usage": {
+    "input": 45872,
+    "output": 175,
+    "thinking": null,
+    "total": 46047,
+    "cached": 43823,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 45872,
+    "candidatesTokenCount": 175,
+    "totalTokenCount": 46047,
+    "cachedContentTokenCount": 43823,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 45872
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 43823
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 175
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"se689abfea9\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"ferret\", \"definite\": true}, {\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"sleep\", \"actor\": \"@x1\", \"tense\": \"past\"}, {\"t\": \"activity\", \"id\": \"e2\", \"verb\": \"sing\", \"actor\": \"@n1\", \"tense\": \"past\"}, {\"t\": \"link\", \"id\": \"k1\", \"head\": \"Therefore\", \"main\": \"@e1\", \"sub\": \"@e2\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "se689abfea9",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "ferret",
+        "definite": true
+      },
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "sleep",
+        "actor": "@x1",
+        "tense": "past"
+      },
+      {
+        "t": "activity",
+        "id": "e2",
+        "verb": "sing",
+        "actor": "@n1",
+        "tense": "past"
+      },
+      {
+        "t": "link",
+        "id": "k1",
+        "head": "Therefore",
+        "main": "@e1",
+        "sub": "@e2"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "667366f56ac295f7c22279b3bdae00b28653ebaf94bfcee3f5443b9887b2e7ea",
+  "run": 3,
+  "case": {
+    "template": "link",
+    "section": "held_out",
+    "index": 4,
+    "category": "positive",
+    "text": "The ferret slept. Therefore Yusra sang.",
+    "key": "e689abfea9"
+  }
+}

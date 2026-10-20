@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "1e3a0e7b653d644ba66513f0d0e707b1cc9b81d1cb008f3f969832c0fde71796",
+  "prompt_sha256": "aea0dc69d24f92b4e9fc854261540ae45969c539482a78ca709b17321fd141f1",
   "item": {
     "id": "sfb60a87410",
     "text": "Yusra went to the market to buy a thermos."
   },
   "usage": {
-    "input": 42695,
-    "output": 150,
+    "input": 45877,
+    "output": 213,
     "thinking": null,
-    "total": 42845,
-    "cached": 40642,
+    "total": 46090,
+    "cached": 43827,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 42695,
-    "candidatesTokenCount": 150,
-    "totalTokenCount": 42845,
-    "cachedContentTokenCount": 40642,
+    "promptTokenCount": 45877,
+    "candidatesTokenCount": 213,
+    "totalTokenCount": 46090,
+    "cachedContentTokenCount": 43827,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 42695
+        "tokenCount": 45877
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 40642
+        "tokenCount": 43827
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 150
+        "tokenCount": 213
       }
     ]
   },
-  "raw_text": "{\"id\": \"sfb60a87410\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"market\", \"definite\": true}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"go\", \"mover\": \"@n1\", \"goal\": \"@x1\", \"tense\": \"past\"}], \"unmapped\": [{\"span\": \"to buy a thermos\", \"code\": \"G00\", \"construction\": \"A purpose infinitive clause attached to a motion verb.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"sfb60a87410\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"market\", \"definite\": true}, {\"t\": \"witness\", \"id\": \"x2\", \"kind\": \"thermos\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"go\", \"mover\": \"@n1\", \"goal\": \"@x1\", \"tense\": \"past\"}, {\"t\": \"acquisition\", \"id\": \"e1\", \"verb\": \"buy\", \"acquirer\": \"@n1\", \"object\": \"@x2\", \"tense\": \"present\"}, {\"t\": \"purpose\", \"id\": \"k1\", \"head\": \"To\", \"action\": \"@m1\", \"aim\": [\"@e1\"]}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sfb60a87410",
     "instances": [
@@ -64,24 +64,40 @@
         "definite": true
       },
       {
+        "t": "witness",
+        "id": "x2",
+        "kind": "thermos"
+      },
+      {
         "t": "motion",
         "id": "m1",
         "verb": "go",
         "mover": "@n1",
         "goal": "@x1",
         "tense": "past"
-      }
-    ],
-    "unmapped": [
+      },
       {
-        "span": "to buy a thermos",
-        "code": "G00",
-        "construction": "A purpose infinitive clause attached to a motion verb."
+        "t": "acquisition",
+        "id": "e1",
+        "verb": "buy",
+        "acquirer": "@n1",
+        "object": "@x2",
+        "tense": "present"
+      },
+      {
+        "t": "purpose",
+        "id": "k1",
+        "head": "To",
+        "action": "@m1",
+        "aim": [
+          "@e1"
+        ]
       }
     ],
+    "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "550b5adae738e98b3a45e1fd666b1c271958eedeeddaca6a18b6db34c69a06c7",
+  "prompt_body_sha256": "667366f56ac295f7c22279b3bdae00b28653ebaf94bfcee3f5443b9887b2e7ea",
   "run": 1,
   "case": {
     "template": "control",

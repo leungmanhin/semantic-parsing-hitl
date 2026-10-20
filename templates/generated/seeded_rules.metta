@@ -3,11 +3,6 @@
 ;; consumer, never by the parser. Each rule is a deductive implication with an explicit
 ;; conditional truth value: the positive branch is the rule's reliability, the negative branch
 ;; (STV 0.0 1.0) says nothing follows from a failed premise.
-;;
-;; NOT WRITTEN, pending a capability of the chainer (the source states them; a consumer that
-;; can run them lowers them):
-;;   theme_entailed — an entailing event's sealed Theme holds, at the event's tense (requires sealed-term-projection)
-;;   theme_precluded — a precluding event's sealed Theme does not hold, at the event's tense (requires sealed-term-projection)
 
 ;; result_holds: a change's named result holds afterwards (reads: change-of-state)
 (: result_holds (Implication (Result $e (Member $x $s)) (Member $x $s)) (CTV (STV 1.0 0.9) (STV 0.0 1.0)))
@@ -51,3 +46,11 @@
 (: days_after_month (Implication (And (BeforeBy $a $t $n day) (Month $a $m)) (Month $t $m)) (CTV (STV 1.0 0.9) (STV 0.0 1.0)))
 ;; days_after_year: a time some days after an anchor is in the anchor's year (reads: time, reference-time)
 (: days_after_year (Implication (And (BeforeBy $a $t $n day) (Year $a $y)) (Year $t $y)) (CTV (STV 1.0 0.9) (STV 0.0 1.0)))
+;; theme_entailed: an entailing event's sealed Theme holds, at the event's tense (reads: control, causative, aspectual) — 3 variants, by the matrix event's tense
+(: theme_entailed (Implication (And (Entails $m) (Theme $m $c) (Compute clause-event ($c) -> $o)) $c) (CTV (STV 1.0 0.9) (STV 0.0 1.0)))
+(: theme_entailed_past (Implication (And (Entails $m) (Theme $m $c) (Past $m) (Compute clause-event ($c) -> $o)) (And $c (Past $o))) (CTV (STV 1.0 0.9) (STV 0.0 1.0)))
+(: theme_entailed_future (Implication (And (Entails $m) (Theme $m $c) (Future $m) (Compute clause-event ($c) -> $o)) (And $c (Future $o))) (CTV (STV 1.0 0.9) (STV 0.0 1.0)))
+;; theme_precluded: a precluding event's sealed Theme does not hold, at the event's tense (reads: control, causative) — 3 variants, by the matrix event's tense
+(: theme_precluded (Implication (And (Precludes $m) (Theme $m $c) (Compute clause-event ($c) -> $o)) (Not $c)) (CTV (STV 1.0 0.9) (STV 0.0 1.0)))
+(: theme_precluded_past (Implication (And (Precludes $m) (Theme $m $c) (Past $m) (Compute clause-event ($c) -> $o)) (Not (And $c (Past $o)))) (CTV (STV 1.0 0.9) (STV 0.0 1.0)))
+(: theme_precluded_future (Implication (And (Precludes $m) (Theme $m $c) (Future $m) (Compute clause-event ($c) -> $o)) (Not (And $c (Future $o)))) (CTV (STV 1.0 0.9) (STV 0.0 1.0)))

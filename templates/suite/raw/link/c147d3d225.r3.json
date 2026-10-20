@@ -1,0 +1,100 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "aea0dc69d24f92b4e9fc854261540ae45969c539482a78ca709b17321fd141f1",
+  "item": {
+    "id": "sc147d3d225",
+    "text": "Teodor left because Yusra laughed."
+  },
+  "usage": {
+    "input": 45874,
+    "output": 175,
+    "thinking": null,
+    "total": 46049,
+    "cached": 43825,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 45874,
+    "candidatesTokenCount": 175,
+    "totalTokenCount": 46049,
+    "cachedContentTokenCount": 43825,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 45874
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 43825
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 175
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sc147d3d225\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Yusra\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n1\", \"tense\": \"past\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"laugh\", \"actor\": \"@n2\", \"tense\": \"past\"}, {\"t\": \"link\", \"id\": \"k1\", \"head\": \"Because\", \"main\": \"@m1\", \"sub\": \"@v1\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sc147d3d225",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Yusra"
+      },
+      {
+        "t": "motion",
+        "id": "m1",
+        "verb": "leave",
+        "mover": "@n1",
+        "tense": "past"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "laugh",
+        "actor": "@n2",
+        "tense": "past"
+      },
+      {
+        "t": "link",
+        "id": "k1",
+        "head": "Because",
+        "main": "@m1",
+        "sub": "@v1"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "667366f56ac295f7c22279b3bdae00b28653ebaf94bfcee3f5443b9887b2e7ea",
+  "run": 3,
+  "case": {
+    "template": "link",
+    "section": "held_out",
+    "index": 0,
+    "category": "positive",
+    "text": "Teodor left because Yusra laughed.",
+    "key": "c147d3d225"
+  }
+}

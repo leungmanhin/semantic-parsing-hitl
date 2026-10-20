@@ -1,0 +1,97 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "aea0dc69d24f92b4e9fc854261540ae45969c539482a78ca709b17321fd141f1",
+  "item": {
+    "id": "s41b2985e99",
+    "text": "Ottoline left so as to sleep."
+  },
+  "usage": {
+    "input": 45875,
+    "output": 156,
+    "thinking": null,
+    "total": 46031,
+    "cached": 43826,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 45875,
+    "candidatesTokenCount": 156,
+    "totalTokenCount": 46031,
+    "cachedContentTokenCount": 43826,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 45875
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 43826
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 156
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s41b2985e99\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n1\", \"tense\": \"past\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"sleep\", \"actor\": \"@n1\", \"tense\": \"present\"}, {\"t\": \"purpose\", \"id\": \"k1\", \"head\": \"SoAsTo\", \"action\": \"@m1\", \"aim\": [\"@v1\"]}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s41b2985e99",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Ottoline"
+      },
+      {
+        "t": "motion",
+        "id": "m1",
+        "verb": "leave",
+        "mover": "@n1",
+        "tense": "past"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "sleep",
+        "actor": "@n1",
+        "tense": "present"
+      },
+      {
+        "t": "purpose",
+        "id": "k1",
+        "head": "SoAsTo",
+        "action": "@m1",
+        "aim": [
+          "@v1"
+        ]
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "667366f56ac295f7c22279b3bdae00b28653ebaf94bfcee3f5443b9887b2e7ea",
+  "run": 2,
+  "case": {
+    "template": "purpose",
+    "section": "held_out",
+    "index": 2,
+    "category": "positive",
+    "text": "Ottoline left so as to sleep.",
+    "key": "41b2985e99"
+  }
+}

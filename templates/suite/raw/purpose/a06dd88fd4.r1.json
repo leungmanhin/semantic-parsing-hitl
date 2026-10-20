@@ -1,0 +1,103 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "aea0dc69d24f92b4e9fc854261540ae45969c539482a78ca709b17321fd141f1",
+  "item": {
+    "id": "sa06dd88fd4",
+    "text": "Yusra sang in order to please Teodor."
+  },
+  "usage": {
+    "input": 45874,
+    "output": 185,
+    "thinking": null,
+    "total": 46059,
+    "cached": 43825,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 45874,
+    "candidatesTokenCount": 185,
+    "totalTokenCount": 46059,
+    "cachedContentTokenCount": 43825,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 45874
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 43825
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 185
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sa06dd88fd4\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"sing\", \"actor\": \"@n1\", \"tense\": \"past\"}, {\"t\": \"psych\", \"id\": \"e2\", \"verb\": \"please\", \"experiencer\": \"@n2\", \"stimulus\": \"@n1\", \"tense\": \"present\"}, {\"t\": \"purpose\", \"id\": \"k1\", \"head\": \"InOrderTo\", \"action\": \"@e1\", \"aim\": [\"@e2\"]}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sa06dd88fd4",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Teodor"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "sing",
+        "actor": "@n1",
+        "tense": "past"
+      },
+      {
+        "t": "psych",
+        "id": "e2",
+        "verb": "please",
+        "experiencer": "@n2",
+        "stimulus": "@n1",
+        "tense": "present"
+      },
+      {
+        "t": "purpose",
+        "id": "k1",
+        "head": "InOrderTo",
+        "action": "@e1",
+        "aim": [
+          "@e2"
+        ]
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "667366f56ac295f7c22279b3bdae00b28653ebaf94bfcee3f5443b9887b2e7ea",
+  "run": 1,
+  "case": {
+    "template": "purpose",
+    "section": "held_out",
+    "index": 3,
+    "category": "positive",
+    "text": "Yusra sang in order to please Teodor.",
+    "key": "a06dd88fd4"
+  }
+}

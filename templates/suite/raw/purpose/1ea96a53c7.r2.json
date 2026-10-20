@@ -1,0 +1,92 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "aea0dc69d24f92b4e9fc854261540ae45969c539482a78ca709b17321fd141f1",
+  "item": {
+    "id": "s1ea96a53c7",
+    "text": "Lamine left so that Yusra could sleep."
+  },
+  "usage": {
+    "input": 45876,
+    "output": 142,
+    "thinking": null,
+    "total": 46018,
+    "cached": 43827,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 45876,
+    "candidatesTokenCount": 142,
+    "totalTokenCount": 46018,
+    "cachedContentTokenCount": 43827,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 45876
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 43827
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 142
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s1ea96a53c7\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Yusra\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n1\", \"tense\": \"past\"}], \"unmapped\": [{\"span\": \"so that Yusra could sleep\", \"code\": \"G00\", \"construction\": \"A finite purpose clause introduced by 'so that'.\"}], \"issues\": []}",
+  "response": {
+    "id": "s1ea96a53c7",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Yusra"
+      },
+      {
+        "t": "motion",
+        "id": "m1",
+        "verb": "leave",
+        "mover": "@n1",
+        "tense": "past"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "so that Yusra could sleep",
+        "code": "G00",
+        "construction": "A finite purpose clause introduced by 'so that'."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "667366f56ac295f7c22279b3bdae00b28653ebaf94bfcee3f5443b9887b2e7ea",
+  "run": 2,
+  "case": {
+    "template": "purpose",
+    "section": "held_out",
+    "index": 10,
+    "category": "abstain",
+    "text": "Lamine left so that Yusra could sleep.",
+    "key": "1ea96a53c7"
+  }
+}

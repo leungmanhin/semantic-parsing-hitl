@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import hashlib
 import os
+import re
 import sys
 import unittest
 
@@ -60,8 +61,8 @@ class RenderTests(unittest.TestCase):
                 target = (e.get("expected") or {}).get("template")
                 if target and target not in CATALOG:
                     self.assertNotIn(f"use `{target}`", self.text)
-                if (e.get("expected") or {}).get("gap"):
-                    self.assertIn(f'"code": "{e["expected"]["gap"]}"', self.text)
+                if (e.get("expected") or {}).get("gap"):                       # the record may wrap across lines
+                    self.assertIn(f'"code": "{e["expected"]["gap"]}"', re.sub(r"\s+", " ", self.text))
 
     def test_general_sections_present(self):
         for title in ("## Output", "## Identifiers and fillers", "## Lemmas and symbols",

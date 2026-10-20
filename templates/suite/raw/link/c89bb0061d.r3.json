@@ -1,0 +1,100 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "aea0dc69d24f92b4e9fc854261540ae45969c539482a78ca709b17321fd141f1",
+  "item": {
+    "id": "sc89bb0061d",
+    "text": "Even though Lamine waited, Teodor left."
+  },
+  "usage": {
+    "input": 45875,
+    "output": 131,
+    "thinking": null,
+    "total": 46006,
+    "cached": 43826,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 45875,
+    "candidatesTokenCount": 131,
+    "totalTokenCount": 46006,
+    "cachedContentTokenCount": 43826,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 45875
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 43826
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 131
+      }
+    ]
+  },
+  "raw_text": "{\"id\":\"sc89bb0061d\",\"instances\":[{\"t\":\"named-entity\",\"id\":\"n1\",\"name\":\"Lamine\"},{\"t\":\"named-entity\",\"id\":\"n2\",\"name\":\"Teodor\"},{\"t\":\"activity\",\"id\":\"e1\",\"verb\":\"wait\",\"actor\":\"@n1\",\"tense\":\"past\"},{\"t\":\"motion\",\"id\":\"e2\",\"verb\":\"leave\",\"mover\":\"@n2\",\"tense\":\"past\"},{\"t\":\"link\",\"id\":\"k1\",\"head\":\"EvenThough\",\"main\":\"@e2\",\"sub\":\"@e1\"}],\"unmapped\":[],\"issues\":[]}",
+  "response": {
+    "id": "sc89bb0061d",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Teodor"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "wait",
+        "actor": "@n1",
+        "tense": "past"
+      },
+      {
+        "t": "motion",
+        "id": "e2",
+        "verb": "leave",
+        "mover": "@n2",
+        "tense": "past"
+      },
+      {
+        "t": "link",
+        "id": "k1",
+        "head": "EvenThough",
+        "main": "@e2",
+        "sub": "@e1"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "667366f56ac295f7c22279b3bdae00b28653ebaf94bfcee3f5443b9887b2e7ea",
+  "run": 3,
+  "case": {
+    "template": "link",
+    "section": "held_out",
+    "index": 6,
+    "category": "positive",
+    "text": "Even though Lamine waited, Teodor left.",
+    "key": "c89bb0061d"
+  }
+}

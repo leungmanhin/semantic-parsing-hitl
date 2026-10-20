@@ -1,0 +1,254 @@
+# Template: link  (a stated relation between two clauses: "the ferret slept because Yusra sang", "Lamine laughed, so Teodor left", "although Ottoline waited, Lamine left")
+#
+# A causal, concessive or adversative connective between two clauses relates two events the
+# text asserts. Both clauses are parsed as usual — their events, roles and tense are stated on
+# their own — and the link is one atom whose head is the connective itself, as written:
+# (Because sk_sleep_1 sk_sing_1), (So sk_laugh_1 sk_leave_1), (Although sk_leave_1 sk_wait_1).
+# The connective is not normalized: because, since, so, therefore and as a result stay distinct
+# heads; what they have in common is a consumer's business. The first argument is the main
+# clause (the clause the connective's clause attaches to), the second the connective's own
+# clause; for a coordinating connective (so, but, yet, therefore) that is the text's order.
+
+id: link
+family: link
+kind: link
+title: A stated relation between two clauses
+status: draft
+
+trigger:
+  construction: >
+    Two clauses joined by a connective that states why, in spite of what, or in contrast to what:
+    because, since (causal), so, therefore, thus, consequently, as a result, although, even
+    though, despite (with a clause), but, yet. Each clause is parsed with its own template; the
+    link instance names the two event instances — the predication instances themselves, even
+    when a clause is negated or under a modal (the negation or modal instance stays over the
+    clause; the link points at the event) — and the connective. The main clause comes
+    first: for "X because / since / although / even though Y", X is the main clause whether it
+    comes first or after a fronted Y; for "X, so / but / yet / therefore Y" and for a connective
+    opening the next sentence ("… . Therefore Y."), the first clause is the main one and the
+    connective's clause the second. One instance per connective.
+  surface_forms:
+    - "<X> because / since / although / even though <Y>"   # X is the main clause
+    - "Because / Although <Y>, <X>"                        # fronted: X is still the main clause
+    - "<X>, so / but / yet <Y>"                            # the first clause is the main one
+    - "<X>. Therefore / As a result / Consequently, <Y>."  # across sentences: the same
+  boundary:                   # looks like a link but is not one
+    - >-
+      a temporal connective — after, before, when, while, until, as soon as, since (a time):
+      a relation in time, not a reason or a contrast; no slot here; both clauses are parsed and
+      the connective reported as unmapped
+    - >-
+      a connective with a noun phrase, not a clause — because of the rain, despite the storm,
+      due to the audit: a prepositional reason with no event to link; report the phrase as
+      unmapped
+    - >-
+      a connective opening the text with nothing before it — "But Lamine left.": no first
+      clause to relate; parse the clause and report the connective (G05)
+    - >-
+      a clause with no event of its own as an endpoint — the ladder is crooked because it is
+      old, Yusra left because the gate was open: a copular, locative or degree clause has no
+      event symbol to link; both clauses are parsed and the connective reported as unmapped
+    - >-
+      a conditional — if Lamine sings, Yusra leaves; unless it rains: a condition, not a stated
+      relation between two asserted clauses; report it as unmapped (G08 for unless)
+    - >-
+      an exception to a generalization — ferrets sleep, but this one works: the but introduces
+      a defeasible exception, a different construction; report the clause as unmapped
+    - >-
+      a purpose — went to the market to buy a thermos, in order to sleep: a purpose link
+    - >-
+      so that with a clause — left so that Yusra could sleep: a purpose with a finite clause; no
+      head here; report it as unmapped
+    - >-
+      a bare sequence of clauses or sentences with no connective — Lamine sang. Yusra left.: no
+      relation is stated; no link
+
+slots:
+  id:   {type: id, required: true, doc: "your label for the link (k1, k2 …)"}
+  head: {type: enum, values: [Because, Since, So, Therefore, Thus, Consequently, AsAResult, Although, EvenThough, Despite, But, Yet], required: true,
+         doc: "the connective as written, one word in CamelCase: as a result → AsAResult, even though → EvenThough; since only in its causal sense"}
+  main: {type: filler, class: Event, required: true,
+         doc: "the main clause's event: the id of its PREDICATION instance (an activity, a motion, an attitude …) — never the id of a negation or modal instance over it, even when the clause is negated — the clause the connective's clause attaches to (X in 'X because Y', even when Y is fronted), or the first clause for so / but / yet / therefore"}
+  sub:  {type: filler, class: Event, required: true,
+         doc: "the connective's own clause's event: the id of its predication instance (never of a negation or modal over it): Y in 'X because Y', the second clause for so / but / yet / therefore"}
+
+emits:
+  - atom: "({head} {main} {sub})"
+
+notes:
+  - >-
+    Both events are asserted on their own; the link adds the stated relation and nothing else.
+    It is a definitional record of what the text said, at full confidence, not a causal claim
+    the parse vouches for.
+  - >-
+    An endpoint may be any instance that mints an event — an activity, a transfer, a motion, a
+    change of state, a psych state, an attitude (thought the ferret was tired, so he left: the
+    thinking is the endpoint, its content stays sealed) — whatever scope it sits in; the link
+    atom stays at the top level.
+
+depends_on: [activity, motion, psych, attitude, negation]
+composes_with: [negation, modal, time, location]
+
+examples:
+  shown:                     # rendered into the prompt
+    - category: positive
+      note: the main clause first, the connective's clause second; both events asserted
+      text: "The ferret slept because Yusra sang."
+      instances:
+        - {t: witness, id: x1, kind: ferret, definite: true}
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: activity, id: v1, verb: sleep, actor: "@x1", tense: past}
+        - {t: activity, id: v2, verb: sing, actor: "@n1", tense: past}
+        - {t: link, id: k1, head: Because, main: "@v1", sub: "@v2"}
+      emitted:               # what the emitter produces (illustration; the emitter is the authority)
+        - "(Member sk_ferret_1 ferret)"
+        - "(Name sk_yusra_1 \"Yusra\")"
+        - "(Member sk_sleep_1 sleep)"
+        - "(Agent sk_sleep_1 sk_ferret_1)"
+        - "(Past sk_sleep_1)"
+        - "(Member sk_sing_1 sing)"
+        - "(Agent sk_sing_1 sk_yusra_1)"
+        - "(Past sk_sing_1)"
+        - "(Because sk_sleep_1 sk_sing_1)"
+      declarations:
+        - "(: ferret Class)"
+        - "(: sing Class)"
+        - "(: sk_ferret_1 Entity)"
+        - "(: sk_sing_1 Event)"
+        - "(: sk_sleep_1 Event)"
+        - "(: sk_yusra_1 Entity)"
+        - "(: sleep Class)"
+    - category: positive
+      note: a coordinating connective — the first clause is the main one
+      text: "Lamine laughed, so Teodor left."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: named-entity, id: n2, name: "Teodor"}
+        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past}
+        - {t: motion, id: m1, verb: leave, mover: "@n2", tense: past}
+        - {t: link, id: k1, head: So, main: "@v1", sub: "@m1"}
+    - category: positive
+      note: a fronted concessive — the main clause is still first
+      text: "Although Ottoline waited, Lamine left."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: activity, id: v1, verb: wait, actor: "@n1", tense: past}
+        - {t: motion, id: m1, verb: leave, mover: "@n2", tense: past}
+        - {t: link, id: k1, head: Although, main: "@m1", sub: "@v1"}
+    - category: abstain
+      text: "Yusra laughed after Lamine sang."
+      expected: {abstain: true, gap: G00, span: "after"}             # a temporal connective
+    - category: abstain
+      text: "But Lamine left."
+      expected: {abstain: true, gap: G05, span: "But"}               # a connective opening the text
+
+  held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      text: "Teodor left because Yusra laughed."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: named-entity, id: n2, name: "Yusra"}
+        - {t: motion, id: m1, verb: leave, mover: "@n1", tense: past}
+        - {t: activity, id: v1, verb: laugh, actor: "@n2", tense: past}
+        - {t: link, id: k1, head: Because, main: "@m1", sub: "@v1"}
+    - category: positive
+      note: causal since, fronted — the main clause first
+      text: "Since the ferret slept, Yusra sang."
+      instances:
+        - {t: witness, id: x1, kind: ferret, definite: true}
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: activity, id: v1, verb: sleep, actor: "@x1", tense: past}
+        - {t: activity, id: v2, verb: sing, actor: "@n1", tense: past}
+        - {t: link, id: k1, head: Since, main: "@v2", sub: "@v1"}
+    - category: positive
+      note: but — the first clause is the main one
+      text: "Ottoline waited, but Teodor left."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: named-entity, id: n2, name: "Teodor"}
+        - {t: activity, id: v1, verb: wait, actor: "@n1", tense: past}
+        - {t: motion, id: m1, verb: leave, mover: "@n2", tense: past}
+        - {t: link, id: k1, head: But, main: "@v1", sub: "@m1"}
+    - category: positive
+      text: "Lamine sang, yet Yusra left."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: named-entity, id: n2, name: "Yusra"}
+        - {t: activity, id: v1, verb: sing, actor: "@n1", tense: past}
+        - {t: motion, id: m1, verb: leave, mover: "@n2", tense: past}
+        - {t: link, id: k1, head: Yet, main: "@v1", sub: "@m1"}
+    - category: positive
+      note: a connective opening the next sentence — the previous sentence's event is the main one
+      text: "The ferret slept. Therefore Yusra sang."
+      instances:
+        - {t: witness, id: x1, kind: ferret, definite: true}
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: activity, id: v1, verb: sleep, actor: "@x1", tense: past}
+        - {t: activity, id: v2, verb: sing, actor: "@n1", tense: past}
+        - {t: link, id: k1, head: Therefore, main: "@v1", sub: "@v2"}
+    - category: positive
+      note: a multi-word connective
+      text: "Lamine laughed. As a result, Yusra sang."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: named-entity, id: n2, name: "Yusra"}
+        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past}
+        - {t: activity, id: v2, verb: sing, actor: "@n2", tense: past}
+        - {t: link, id: k1, head: AsAResult, main: "@v1", sub: "@v2"}
+    - category: positive
+      text: "Even though Lamine waited, Teodor left."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: named-entity, id: n2, name: "Teodor"}
+        - {t: activity, id: v1, verb: wait, actor: "@n1", tense: past}
+        - {t: motion, id: m1, verb: leave, mover: "@n2", tense: past}
+        - {t: link, id: k1, head: EvenThough, main: "@m1", sub: "@v1"}
+    - category: positive
+      note: an attitude as the endpoint — the thinking is linked, its content stays sealed
+      text: "Teodor believed that Yusra sang, so Lamine left."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: named-entity, id: n2, name: "Yusra"}
+        - {t: named-entity, id: n3, name: "Lamine"}
+        - {t: activity, id: v1, verb: sing, actor: "@n2", tense: past}
+        - {t: attitude, id: a1, verb: believe, holder: "@n1", content: ["@v1"], factive: false, tense: past}
+        - {t: motion, id: m1, verb: leave, mover: "@n3", tense: past}
+        - {t: link, id: k1, head: So, main: "@a1", sub: "@m1"}
+    - category: scoped
+      note: a denied main clause — the clause is negated as usual, the link stays at the top level
+      text: "Because Lamine sang, the ferret did not sleep."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: x1, kind: ferret, definite: true}
+        - {t: activity, id: v1, verb: sing, actor: "@n1", tense: past}
+        - {t: activity, id: v2, verb: sleep, actor: "@x1", tense: past}
+        - {t: negation, id: s1, over: ["@v2"]}
+        - {t: link, id: k1, head: Because, main: "@v2", sub: "@v1"}
+    - category: optional
+      note: two links in one text
+      text: "Lamine sang because Yusra laughed, so Teodor left."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: named-entity, id: n2, name: "Yusra"}
+        - {t: named-entity, id: n3, name: "Teodor"}
+        - {t: activity, id: v1, verb: sing, actor: "@n1", tense: past}
+        - {t: activity, id: v2, verb: laugh, actor: "@n2", tense: past}
+        - {t: motion, id: m1, verb: leave, mover: "@n3", tense: past}
+        - {t: link, id: k1, head: Because, main: "@v1", sub: "@v2"}
+        - {t: link, id: k2, head: So, main: "@v1", sub: "@m1"}
+    - category: abstain
+      text: "Yusra left because the gate was open."
+      expected: {abstain: true, gap: G00, span: "because"}           # a copular endpoint: nothing to link
+    - category: abstain
+      text: "Yusra laughed because of the rain."
+      expected: {abstain: true, gap: G00, span: "because of the rain"}   # a noun phrase, not a clause
+    - category: abstain
+      text: "Lamine waited while Yusra sang."
+      expected: {abstain: true, gap: G00, span: "while"}             # a temporal connective
+    - category: abstain
+      text: "If Lamine sings, Yusra leaves."
+      expected: {abstain: true, gap: G00, span: "If Lamine sings"}   # a conditional
+    - category: abstain
+      text: "Yusra went to the market to buy a thermos."
+      expected: {abstain: true, template: purpose}                   # a purpose

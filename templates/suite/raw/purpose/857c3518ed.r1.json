@@ -1,0 +1,112 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "96e661894bf32af3ef6950dd4f27fda7e7ee3757022f6ac32459bd4df569d022",
+  "item": {
+    "id": "s857c3518ed",
+    "text": "Lamine might work to buy a spindle."
+  },
+  "usage": {
+    "input": 46009,
+    "output": 213,
+    "thinking": null,
+    "total": 46222,
+    "cached": 43904,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 46009,
+    "candidatesTokenCount": 213,
+    "totalTokenCount": 46222,
+    "cachedContentTokenCount": 43904,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 46009
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 43904
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 213
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s857c3518ed\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"spindle\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"work\", \"actor\": \"@n1\", \"tense\": \"present\"}, {\"t\": \"acquisition\", \"id\": \"e1\", \"verb\": \"buy\", \"acquirer\": \"@n1\", \"object\": \"@x1\", \"tense\": \"present\"}, {\"t\": \"modal\", \"id\": \"s1\", \"over\": [\"@v1\"], \"head\": \"Might\", \"surface\": \"might\"}, {\"t\": \"purpose\", \"id\": \"k1\", \"head\": \"To\", \"action\": \"@v1\", \"aim\": [\"@e1\"]}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s857c3518ed",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "spindle"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "work",
+        "actor": "@n1",
+        "tense": "present"
+      },
+      {
+        "t": "acquisition",
+        "id": "e1",
+        "verb": "buy",
+        "acquirer": "@n1",
+        "object": "@x1",
+        "tense": "present"
+      },
+      {
+        "t": "modal",
+        "id": "s1",
+        "over": [
+          "@v1"
+        ],
+        "head": "Might",
+        "surface": "might"
+      },
+      {
+        "t": "purpose",
+        "id": "k1",
+        "head": "To",
+        "action": "@v1",
+        "aim": [
+          "@e1"
+        ]
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "49ea9cf47ef53a70b2bf960950b1ce0c94ebd6a1171e41d50b9639f0536c4e3e",
+  "run": 1,
+  "case": {
+    "template": "purpose",
+    "section": "held_out",
+    "index": 5,
+    "category": "scoped",
+    "text": "Lamine might work to buy a spindle.",
+    "key": "857c3518ed"
+  }
+}

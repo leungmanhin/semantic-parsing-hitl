@@ -1,0 +1,101 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "aea0dc69d24f92b4e9fc854261540ae45969c539482a78ca709b17321fd141f1",
+  "item": {
+    "id": "s03aad442ce",
+    "text": "Yusra left because the gate was open."
+  },
+  "usage": {
+    "input": 45873,
+    "output": 186,
+    "thinking": null,
+    "total": 46059,
+    "cached": 43824,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 45873,
+    "candidatesTokenCount": 186,
+    "totalTokenCount": 46059,
+    "cachedContentTokenCount": 43824,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 45873
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 43824
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 186
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s03aad442ce\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"gate\", \"definite\": true}, {\"t\": \"motion\", \"id\": \"e1\", \"verb\": \"leave\", \"mover\": \"@n1\", \"tense\": \"past\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@x1\", \"predicate\": \"open\", \"form\": \"adjective\", \"tense\": \"past\"}], \"unmapped\": [{\"span\": \"because\", \"code\": \"G00\", \"construction\": \"A causal connective whose subordinate clause is a copular predication with no event symbol to link.\"}], \"issues\": []}",
+  "response": {
+    "id": "s03aad442ce",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "gate",
+        "definite": true
+      },
+      {
+        "t": "motion",
+        "id": "e1",
+        "verb": "leave",
+        "mover": "@n1",
+        "tense": "past"
+      },
+      {
+        "t": "copular",
+        "id": "c1",
+        "subject": "@x1",
+        "predicate": "open",
+        "form": "adjective",
+        "tense": "past"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "because",
+        "code": "G00",
+        "construction": "A causal connective whose subordinate clause is a copular predication with no event symbol to link."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "667366f56ac295f7c22279b3bdae00b28653ebaf94bfcee3f5443b9887b2e7ea",
+  "run": 3,
+  "case": {
+    "template": "link",
+    "section": "held_out",
+    "index": 10,
+    "category": "abstain",
+    "text": "Yusra left because the gate was open.",
+    "key": "03aad442ce"
+  }
+}

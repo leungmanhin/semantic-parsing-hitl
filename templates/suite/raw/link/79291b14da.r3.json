@@ -1,0 +1,87 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "aea0dc69d24f92b4e9fc854261540ae45969c539482a78ca709b17321fd141f1",
+  "item": {
+    "id": "s79291b14da",
+    "text": "Yusra laughed because of the rain."
+  },
+  "usage": {
+    "input": 45874,
+    "output": 122,
+    "thinking": null,
+    "total": 45996,
+    "cached": 43825,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 45874,
+    "candidatesTokenCount": 122,
+    "totalTokenCount": 45996,
+    "cachedContentTokenCount": 43825,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 45874
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 43825
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 122
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s79291b14da\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"laugh\", \"actor\": \"@n1\", \"tense\": \"past\"}], \"unmapped\": [{\"span\": \"because of the rain\", \"code\": \"G00\", \"construction\": \"A prepositional reason phrase with a noun phrase rather than a clause.\"}], \"issues\": []}",
+  "response": {
+    "id": "s79291b14da",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "laugh",
+        "actor": "@n1",
+        "tense": "past"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "because of the rain",
+        "code": "G00",
+        "construction": "A prepositional reason phrase with a noun phrase rather than a clause."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "667366f56ac295f7c22279b3bdae00b28653ebaf94bfcee3f5443b9887b2e7ea",
+  "run": 3,
+  "case": {
+    "template": "link",
+    "section": "held_out",
+    "index": 11,
+    "category": "abstain",
+    "text": "Yusra laughed because of the rain.",
+    "key": "79291b14da"
+  }
+}

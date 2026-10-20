@@ -1,0 +1,119 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "aea0dc69d24f92b4e9fc854261540ae45969c539482a78ca709b17321fd141f1",
+  "item": {
+    "id": "scdabf3ac8b",
+    "text": "Lamine sang because Yusra laughed, so Teodor left."
+  },
+  "usage": {
+    "input": 45876,
+    "output": 260,
+    "thinking": null,
+    "total": 46136,
+    "cached": 43827,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 45876,
+    "candidatesTokenCount": 260,
+    "totalTokenCount": 46136,
+    "cachedContentTokenCount": 43827,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 45876
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 43827
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 260
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"scdabf3ac8b\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n3\", \"name\": \"Teodor\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"sing\", \"actor\": \"@n1\", \"tense\": \"past\"}, {\"t\": \"activity\", \"id\": \"v2\", \"verb\": \"laugh\", \"actor\": \"@n2\", \"tense\": \"past\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n3\", \"tense\": \"past\"}, {\"t\": \"link\", \"id\": \"k1\", \"head\": \"Because\", \"main\": \"@v1\", \"sub\": \"@v2\"}, {\"t\": \"link\", \"id\": \"k2\", \"head\": \"So\", \"main\": \"@v1\", \"sub\": \"@m1\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "scdabf3ac8b",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Yusra"
+      },
+      {
+        "t": "named-entity",
+        "id": "n3",
+        "name": "Teodor"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "sing",
+        "actor": "@n1",
+        "tense": "past"
+      },
+      {
+        "t": "activity",
+        "id": "v2",
+        "verb": "laugh",
+        "actor": "@n2",
+        "tense": "past"
+      },
+      {
+        "t": "motion",
+        "id": "m1",
+        "verb": "leave",
+        "mover": "@n3",
+        "tense": "past"
+      },
+      {
+        "t": "link",
+        "id": "k1",
+        "head": "Because",
+        "main": "@v1",
+        "sub": "@v2"
+      },
+      {
+        "t": "link",
+        "id": "k2",
+        "head": "So",
+        "main": "@v1",
+        "sub": "@m1"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "667366f56ac295f7c22279b3bdae00b28653ebaf94bfcee3f5443b9887b2e7ea",
+  "run": 2,
+  "case": {
+    "template": "link",
+    "section": "held_out",
+    "index": 9,
+    "category": "optional",
+    "text": "Lamine sang because Yusra laughed, so Teodor left.",
+    "key": "cdabf3ac8b"
+  }
+}

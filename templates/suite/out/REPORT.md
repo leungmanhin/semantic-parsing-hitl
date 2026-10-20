@@ -1,10 +1,10 @@
 # Suite report
 
-prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 00aa1e572fee6d3c) · type check: ran
+prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 49ea9cf47ef53a70) · type check: ran
 
 ## Catalog checks
 
-503 examples checked; findings: 0
+538 examples checked; findings: 0
 
 Sentences two templates claim with the same expected atoms (composition, fine):
 - "Lamine danced with Yusra." — activity, adjunct
@@ -246,14 +246,14 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (14 cases, 42 pairs), unanimous 14/14
 - type check: 42/42 emitted parses type
 - graph lints: none
-- usage: 42 calls · in 1,793,031 · cached 1,625,624 (91% of the input) · out 6,131 · thinking 0 (calls with thought tokens: 0)
+- usage: 42 calls · in 1,802,577 · cached 1,635,173 (91% of the input) · out 6,320 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
 Abstain cases (what the parser did, per run):
 - "Lamine let Ottoline leave." (target `causative`): r1 target_fired [causative×1, motion×1, named-entity×2] · r2 target_fired [causative×1, motion×1, named-entity×2] · r3 target_fired [causative×1, motion×1, named-entity×2]
 - "Yusra stopped working." (target `aspectual`): r1 target_fired [activity×1, aspectual×1, named-entity×1] · r2 target_fired [activity×1, aspectual×1, named-entity×1] · r3 target_fired [activity×1, aspectual×1, named-entity×1]
 - "Teodor seems to be tired." (gap G00): r1 gap_reported [named-entity×1; unmapped G00] · r2 gap_reported [named-entity×1; unmapped G00] · r3 gap_reported [named-entity×1; unmapped G00]
-- "Yusra went to the market to buy a thermos." (gap G00): r1 gap_reported [motion×1, named-entity×1, witness×1; unmapped G00] · r2 gap_reported [motion×1, named-entity×1, witness×1; unmapped G00] · r3 gap_reported [motion×1, named-entity×1, witness×1; unmapped G00]
+- "Yusra went to the market to buy a thermos." (target `purpose`): r1 target_fired [acquisition×1, motion×1, named-entity×1, purpose×1, witness×2] · r2 target_fired [acquisition×1, motion×1, named-entity×1, purpose×1, witness×2] · r3 target_fired [acquisition×1, motion×1, named-entity×1, purpose×1, witness×2]
 
 Mismatches: none
 
@@ -532,6 +532,34 @@ Abstain cases (what the parser did, per run):
 
 Mismatches: none
 
+## link — held_out
+
+15 cases, 45 records (ok 45; stale prompt 42) · gemini-4-argon effort=low
+
+| category | cases | runs | fired | exact | pass |
+|---|---|---|---|---|---|
+| positive | 8 | 24 | 24 | 24 | 24 |
+| scoped | 1 | 3 | 3 | 3 | 3 |
+| optional | 1 | 3 | 3 | 3 | 3 |
+| abstain | 5 | 15 | 0 (false fires) | – | 15 |
+
+- selection: fire cases fired 30/30 · abstain cases false fires 0/15
+- fill: exact 30/30 among fires
+- stability: pairwise agreement 1.0 (15 cases, 45 pairs), unanimous 15/15
+- type check: 45/45 emitted parses type
+- graph lints: none
+- usage: 45 calls · in 2,064,759 · cached 1,925,678 (93% of the input) · out 8,167 · thinking 0 (calls with thought tokens: 0)
+- issues reported by the parser: none
+
+Abstain cases (what the parser did, per run):
+- "Yusra left because the gate was open." (gap G00): r1 gap_reported [copular×1, motion×1, named-entity×1, witness×1; unmapped G00] · r2 gap_reported [copular×1, motion×1, named-entity×1, witness×1; unmapped G00] · r3 gap_reported [copular×1, motion×1, named-entity×1, witness×1; unmapped G00]
+- "Yusra laughed because of the rain." (gap G00): r1 gap_reported [activity×1, named-entity×1; unmapped G00] · r2 gap_reported [activity×1, named-entity×1; unmapped G00] · r3 gap_reported [activity×1, named-entity×1; unmapped G00]
+- "If Lamine sings, Yusra leaves." (gap G00): r1 gap_reported [named-entity×2; unmapped G00] · r2 gap_reported [named-entity×2; unmapped G00] · r3 gap_reported [named-entity×2; unmapped G00]
+- "Lamine waited while Yusra sang." (gap G00): r1 gap_reported [activity×2, named-entity×2; unmapped G00] · r2 gap_reported [activity×2, named-entity×2; unmapped G00] · r3 gap_reported [activity×2, named-entity×2; unmapped G00]
+- "Yusra went to the market to buy a thermos." (target `purpose`): r1 target_fired [acquisition×1, motion×1, named-entity×1, purpose×1, witness×2] · r2 target_fired [acquisition×1, motion×1, named-entity×1, purpose×1, witness×2] · r3 target_fired [acquisition×1, motion×1, named-entity×1, purpose×1, witness×2]
+
+Mismatches: none
+
 ## location — held_out
 
 15 cases, 45 records (ok 45; stale prompt 45) · gemini-4-argon effort=low
@@ -736,6 +764,33 @@ Abstain cases (what the parser did, per run):
 - "Ottoline is afraid of the ferret." (gap G00): r1 gap_reported [named-entity×1; unmapped G00] · r2 gap_reported [named-entity×1; unmapped G00] · r3 gap_reported [named-entity×1; unmapped G00]
 - "Yusra fears that Lamine sold the spindle." (target `attitude`): r1 target_fired [attitude×1, named-entity×2, transfer×1, witness×1] · r2 target_fired [attitude×1, named-entity×2, transfer×1, witness×1] · r3 target_fired [attitude×1, named-entity×2, transfer×1, witness×1]
 - "Teodor heard the news." (target `perception`): r1 target_fired [named-entity×1, perception×1, witness×1] · r2 target_fired [named-entity×1, perception×1, witness×1] · r3 target_fired [named-entity×1, perception×1, witness×1]
+
+Mismatches: none
+
+## purpose — held_out
+
+11 cases, 33 records (ok 33; stale prompt 30) · gemini-4-argon effort=low
+
+| category | cases | runs | fired | exact | pass |
+|---|---|---|---|---|---|
+| positive | 5 | 15 | 15 | 15 | 15 |
+| scoped | 1 | 3 | 3 | 3 | 3 |
+| abstain | 5 | 15 | 0 (false fires) | – | 15 |
+
+- selection: fire cases fired 18/18 · abstain cases false fires 0/15
+- fill: exact 18/18 among fires
+- stability: pairwise agreement 1.0 (11 cases, 33 pairs), unanimous 11/11
+- type check: 33/33 emitted parses type
+- graph lints: none
+- usage: 33 calls · in 1,514,256 · cached 1,446,578 (96% of the input) · out 5,548 · thinking 0 (calls with thought tokens: 0)
+- issues reported by the parser: none
+
+Abstain cases (what the parser did, per run):
+- "Lamine decided to leave." (target `attitude`): r1 target_fired [attitude×1, motion×1, named-entity×1] · r2 target_fired [attitude×1, motion×1, named-entity×1] · r3 target_fired [attitude×1, motion×1, named-entity×1]
+- "Lamine left so that Yusra could sleep." (gap G00): r1 gap_reported [motion×1, named-entity×2; unmapped G00] · r2 gap_reported [motion×1, named-entity×2; unmapped G00] · r3 gap_reported [motion×1, named-entity×2; unmapped G00]
+- "Teodor woke to find the gate open." (gap G06): r1 gap_reported [change-of-state×1, named-entity×1; unmapped G06] · r2 gap_reported [change-of-state×1, named-entity×1; unmapped G06] · r3 gap_reported [change-of-state×1, named-entity×1; unmapped G06]
+- "Ottoline refused to sing." (target `control`): r1 target_fired [activity×1, control×1, named-entity×1] · r2 target_fired [activity×1, control×1, named-entity×1] · r3 target_fired [activity×1, control×1, named-entity×1]
+- "Yusra is too tired to sing." (gap G00): r1 gap_reported [degree×1, named-entity×1; unmapped G00] · r2 gap_reported [degree×1, named-entity×1; unmapped G00] · r3 gap_reported [degree×1, named-entity×1; unmapped G00]
 
 Mismatches: none
 

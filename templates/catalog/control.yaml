@@ -54,8 +54,9 @@ trigger:
       a request to someone — asked Ottoline to send the quilt, told Lamine to lock the shed: a
       communication whose content is an imperative
     - >-
-      a purpose infinitive — went to the market to buy a thermos, stayed to help: the
-      infinitive states an aim; the main clause is parsed and the infinitive reported as unmapped
+      a purpose infinitive — went to the market to buy a thermos, worked to buy a spindle: the
+      infinitive states an aim of the main clause's action, not a complement of its verb; a
+      purpose link
     - >-
       seem, appear, tend — seems to be tired, tends to wait: a hedge or a habit over the clause;
       report it as unmapped
@@ -237,7 +238,7 @@ examples:
       expected: {abstain: true, template: causative}                  # a causer and a different actor
     - category: abstain
       text: "Yusra went to the market to buy a thermos."
-      expected: {abstain: true, gap: G00, span: "to buy a thermos"}   # a purpose infinitive
+      expected: {abstain: true, template: purpose}                    # a purpose infinitive
     - category: abstain
       text: "Teodor seems to be tired."
       expected: {abstain: true, gap: G00, span: "seems to be tired"}  # a hedge over the clause

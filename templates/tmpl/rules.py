@@ -50,7 +50,7 @@ SEMANTICS = ("deductive",)
 OPS = ("+", "-", "clause-event")              # arithmetic, and the event of a sealed clause
 TENSES = {"none": None, "past": "Past", "future": "Future"}
 CAPABILITIES = ("sealed-term-projection",)
-TARGET_CAPABILITIES = {"pettachainer": set()}  # what each consumer can run today; grows with the consumer
+TARGET_CAPABILITIES = {"pettachainer": {"sealed-term-projection"}}  # what each consumer can run; grows with the consumer
 _VAR = re.compile(r"\$[A-Za-z_][A-Za-z0-9_]*")
 
 

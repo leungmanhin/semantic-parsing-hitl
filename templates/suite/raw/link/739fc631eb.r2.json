@@ -1,0 +1,100 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "aea0dc69d24f92b4e9fc854261540ae45969c539482a78ca709b17321fd141f1",
+  "item": {
+    "id": "s739fc631eb",
+    "text": "Ottoline waited, but Teodor left."
+  },
+  "usage": {
+    "input": 45874,
+    "output": 173,
+    "thinking": null,
+    "total": 46047,
+    "cached": 43825,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 45874,
+    "candidatesTokenCount": 173,
+    "totalTokenCount": 46047,
+    "cachedContentTokenCount": 43825,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 45874
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 43825
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 173
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s739fc631eb\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"wait\", \"actor\": \"@n1\", \"tense\": \"past\"}, {\"t\": \"motion\", \"id\": \"e2\", \"verb\": \"leave\", \"mover\": \"@n2\", \"tense\": \"past\"}, {\"t\": \"link\", \"id\": \"k1\", \"head\": \"But\", \"main\": \"@e1\", \"sub\": \"@e2\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s739fc631eb",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Ottoline"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Teodor"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "wait",
+        "actor": "@n1",
+        "tense": "past"
+      },
+      {
+        "t": "motion",
+        "id": "e2",
+        "verb": "leave",
+        "mover": "@n2",
+        "tense": "past"
+      },
+      {
+        "t": "link",
+        "id": "k1",
+        "head": "But",
+        "main": "@e1",
+        "sub": "@e2"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "667366f56ac295f7c22279b3bdae00b28653ebaf94bfcee3f5443b9887b2e7ea",
+  "run": 2,
+  "case": {
+    "template": "link",
+    "section": "held_out",
+    "index": 2,
+    "category": "positive",
+    "text": "Ottoline waited, but Teodor left.",
+    "key": "739fc631eb"
+  }
+}

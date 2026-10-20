@@ -34,7 +34,7 @@ class SourceTests(unittest.TestCase):
             self.assertTrue(st.endswith("(STV 0.0 1.0)))"), st)
             name, atom = T.split_statement(st)
             self.assertEqual(atom[0], "Implication")
-        self.assertEqual(sum(1 for r in RULES if R.runnable(r)), len(RULES) - 2)     # the two projection rules wait
+        self.assertEqual(sum(1 for r in RULES if R.runnable(r)), len(RULES))         # every rule lowers now
         days = next(r for r in RULES if r["id"] == "days_before_day")
         self.assertIn("(Compute - ($d $n) -> $e)", R.lower(days))
         single = next(r for r in RULES if r["id"] == "result_holds")
@@ -43,11 +43,11 @@ class SourceTests(unittest.TestCase):
     def test_generated_file_is_fresh(self):
         self.assertEqual(open(R.GENERATED, encoding="utf-8").read(), R.render(RULES))
 
-    def test_sealed_clause_rules_expand_by_tense_and_wait_for_the_chainer(self):
+    def test_sealed_clause_rules_expand_by_tense_and_lower_when_the_chainer_can(self):
         """A rule over a sealed clause stands for one rule per matrix tense, the tense carried
         onto the clause's event named by the clause-event computation; it requires the chainer's
-        sealed-term projection, so the generated file lists it as pending instead of writing it;
-        a placeholder without ``expand`` is a problem."""
+        sealed-term projection, which the chainer has, so it lowers; for a target without the
+        capability it is listed as pending instead; a placeholder without ``expand`` is a problem."""
         src = next(r for r in RULES if r["id"] == "theme_entailed")
         variants = R.expand(src)
         self.assertEqual([v["id"] for v in variants], ["theme_entailed", "theme_entailed_past", "theme_entailed_future"])
@@ -59,10 +59,20 @@ class SourceTests(unittest.TestCase):
         self.assertIn("(Compute clause-event ($c) -> $o)", R.lower(past))
         self.assertEqual(R.expand(next(r for r in RULES if r["id"] == "theme_precluded"))[2]["conclusion"], "(Not (And $c (Future $o)))")
         self.assertNotIn("expand", past)
-        self.assertFalse(R.runnable(src))
+        self.assertTrue(R.runnable(src))
         rendered = R.render(RULES)
-        self.assertNotIn("(: theme_entailed", rendered)
-        self.assertIn("theme_entailed — an entailing event's sealed Theme holds", rendered)
+        self.assertEqual(rendered.count("(: theme_entailed"), 3)
+        self.assertEqual(rendered.count("(: theme_precluded"), 3)
+        self.assertNotIn("NOT WRITTEN", rendered)
+        caps = R.TARGET_CAPABILITIES["pettachainer"]                    # the same consumer without the capability
+        R.TARGET_CAPABILITIES["pettachainer"] = set()
+        try:
+            self.assertFalse(R.runnable(src))
+            pending = R.render(RULES)
+            self.assertNotIn("(: theme_entailed", pending)
+            self.assertIn("theme_entailed — an entailing event's sealed Theme holds", pending)
+        finally:
+            R.TARGET_CAPABILITIES["pettachainer"] = caps
         stray = copy.deepcopy(next(r for r in RULES if r["id"] == "result_holds"))
         stray["conclusion"] = "{tensed}"
         self.assertTrue(any("placeholder" in p for p in R.check([stray], R.substrate_heads(), R.catalog_ids())))

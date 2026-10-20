@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 0d79a7003f30a941 · 35 templates
+catalog sha256 5ddf26b4e6012ec9 · 37 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -52,7 +52,7 @@ fences.
 - Every instance carries an `id`: a short lowercase label you choose, unique within the item.
   Suggested prefixes: `n` named individual, `x` witness, `g` group, `e` event, `s` scope
   operator (negation, modal), `c` copular predication, `l` location, `q` quantified range, `r`
-  rule, `d` comparison or degree, `m` measure, `t` time (n1, x1, e1, s1 …).
+  rule, `d` comparison or degree, `m` measure, `t` time, `k` link (n1, x1, e1, s1 …).
 - A slot that points to another instance holds `"@<id>"`, for example `"Agent": "@n1"`.
 - The id `now` is reserved for the text's REFERENCE TIME (the moment the text speaks from). You
   never write its instance; a deictic time (yesterday, tomorrow, last week) refers to it as its
@@ -929,8 +929,8 @@ Not this template:
 - a hortative — let's go to the market: the speaker is included; report it as unmapped
 - light-verb constructions — made a decision, made a trip, had a rest: the noun carries the
   event
-- a causal link between two clauses — the storm made the ferry late, because it rained: a clause
-  link; report it as unmapped
+- a causal connective between two clauses — Teodor left because Yusra laughed: a link between
+  the two events, not a causative verb
 
 Slots:
 
@@ -1254,8 +1254,9 @@ Not this template:
 - a phase of the action — began to sing, stopped working, kept reading: an aspectual
 - a request to someone — asked Ottoline to send the quilt, told Lamine to lock the shed: a
   communication whose content is an imperative
-- a purpose infinitive — went to the market to buy a thermos, stayed to help: the infinitive
-  states an aim; the main clause is parsed and the infinitive reported as unmapped
+- a purpose infinitive — went to the market to buy a thermos, worked to buy a spindle: the
+  infinitive states an aim of the main clause's action, not a complement of its verb; a purpose
+  link
 - seem, appear, tend — seems to be tired, tends to wait: a hedge or a habit over the clause;
   report it as unmapped
 - a finite that-clause — remembered that Lamine left, learned that the shed burned: an attitude
@@ -1842,8 +1843,8 @@ Not this template:
 - go, come, turn as become — went bad, came true, turned red: a change of state
 - light-verb constructions — made a trip, took a walk, had a run: the noun carries the event
 - come with an infinitive — came to like the quilt: an aspectual (the inchoative come_to); go
-  with a purpose infinitive — went to buy a thermos: the motion is parsed, the purpose reported
-  as unmapped
+  with a purpose infinitive — went to buy a thermos: the motion is parsed, the purpose is a
+  purpose link
 - a path phrase other than to or from — across the field, along the river, through the gate: an
   attachment with no slot here; parse the motion and report the phrase
 
@@ -3171,3 +3172,224 @@ The program renders these instances as:
     (Coref sk_yusra_2 sk_yusra_1)
 
 Not this template. TEXT: Yusra laughed. — use `activity`.
+
+### link — A stated relation between two clauses
+
+When: Two clauses joined by a connective that states why, in spite of what, or in contrast to
+what: because, since (causal), so, therefore, thus, consequently, as a result, although, even
+though, despite (with a clause), but, yet. Each clause is parsed with its own template; the link
+instance names the two event instances — the predication instances themselves, even when a
+clause is negated or under a modal (the negation or modal instance stays over the clause; the
+link points at the event) — and the connective. The main clause comes first: for "X because /
+since / although / even though Y", X is the main clause whether it comes first or after a
+fronted Y; for "X, so / but / yet / therefore Y" and for a connective opening the next sentence
+("… . Therefore Y."), the first clause is the main one and the connective's clause the second.
+One instance per connective.
+
+Forms:
+- <X> because / since / although / even though <Y>
+- Because / Although <Y>, <X>
+- <X>, so / but / yet <Y>
+- <X>. Therefore / As a result / Consequently, <Y>.
+
+Not this template:
+- a temporal connective — after, before, when, while, until, as soon as, since (a time): a
+  relation in time, not a reason or a contrast; no slot here; both clauses are parsed and the
+  connective reported as unmapped
+- a connective with a noun phrase, not a clause — because of the rain, despite the storm, due to
+  the audit: a prepositional reason with no event to link; report the phrase as unmapped
+- a connective opening the text with nothing before it — "But Lamine left.": no first clause to
+  relate; parse the clause and report the connective (G05)
+- a clause with no event of its own as an endpoint — the ladder is crooked because it is old,
+  Yusra left because the gate was open: a copular, locative or degree clause has no event symbol
+  to link; both clauses are parsed and the connective reported as unmapped
+- a conditional — if Lamine sings, Yusra leaves; unless it rains: a condition, not a stated
+  relation between two asserted clauses; report it as unmapped (G08 for unless)
+- an exception to a generalization — ferrets sleep, but this one works: the but introduces a
+  defeasible exception, a different construction; report the clause as unmapped
+- a purpose — went to the market to buy a thermos, in order to sleep: a purpose link
+- so that with a clause — left so that Yusra could sleep: a purpose with a finite clause; no
+  head here; report it as unmapped
+- a bare sequence of clauses or sentences with no connective — Lamine sang. Yusra left.: no
+  relation is stated; no link
+
+Slots:
+
+- `t` (required): "link"
+- `id` (required; your label for this instance): your label for the link (k1, k2 …).
+- `head` (required; one of: Because, Since, So, Therefore, Thus, Consequently, AsAResult,
+  Although, EvenThough, Despite, But, Yet): the connective as written, one word in CamelCase: as
+  a result → AsAResult, even though → EvenThough; since only in its causal sense.
+- `main` (required; "@id" of a predication instance (the clause's event)): the main clause's
+  event: the id of its PREDICATION instance (an activity, a motion, an attitude …) — never the
+  id of a negation or modal instance over it, even when the clause is negated — the clause the
+  connective's clause attaches to (X in 'X because Y', even when Y is fronted), or the first
+  clause for so / but / yet / therefore.
+- `sub` (required; "@id" of a predication instance (the clause's event)): the connective's own
+  clause's event: the id of its predication instance (never of a negation or modal over it): Y
+  in 'X because Y', the second clause for so / but / yet / therefore.
+
+Example (the main clause first, the connective's clause second; both events asserted). TEXT: The ferret slept because Yusra sang.
+
+Instances:
+
+    [
+      {"t": "witness", "id": "x1", "kind": "ferret", "definite": true},
+      {"t": "named-entity", "id": "n1", "name": "Yusra"},
+      {"t": "activity", "id": "v1", "verb": "sleep", "actor": "@x1", "tense": "past"},
+      {"t": "activity", "id": "v2", "verb": "sing", "actor": "@n1", "tense": "past"},
+      {"t": "link", "id": "k1", "head": "Because", "main": "@v1", "sub": "@v2"}
+    ]
+
+The program renders these instances as:
+
+    (Member sk_ferret_1 ferret)
+    (Name sk_yusra_1 "Yusra")
+    (Member sk_sleep_1 sleep)
+    (Agent sk_sleep_1 sk_ferret_1)
+    (Past sk_sleep_1)
+    (Member sk_sing_1 sing)
+    (Agent sk_sing_1 sk_yusra_1)
+    (Past sk_sing_1)
+    (Because sk_sleep_1 sk_sing_1)
+
+Example (a coordinating connective — the first clause is the main one). TEXT: Lamine laughed, so Teodor left.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Lamine"},
+      {"t": "named-entity", "id": "n2", "name": "Teodor"},
+      {"t": "activity", "id": "v1", "verb": "laugh", "actor": "@n1", "tense": "past"},
+      {"t": "motion", "id": "m1", "verb": "leave", "mover": "@n2", "tense": "past"},
+      {"t": "link", "id": "k1", "head": "So", "main": "@v1", "sub": "@m1"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_lamine_1 "Lamine")
+    (Name sk_teodor_1 "Teodor")
+    (Member sk_laugh_1 laugh)
+    (Agent sk_laugh_1 sk_lamine_1)
+    (Past sk_laugh_1)
+    (Member sk_leave_1 leave)
+    (Agent sk_leave_1 sk_teodor_1)
+    (Past sk_leave_1)
+    (So sk_laugh_1 sk_leave_1)
+
+Example (a fronted concessive — the main clause is still first). TEXT: Although Ottoline waited, Lamine left.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Ottoline"},
+      {"t": "named-entity", "id": "n2", "name": "Lamine"},
+      {"t": "activity", "id": "v1", "verb": "wait", "actor": "@n1", "tense": "past"},
+      {"t": "motion", "id": "m1", "verb": "leave", "mover": "@n2", "tense": "past"},
+      {"t": "link", "id": "k1", "head": "Although", "main": "@m1", "sub": "@v1"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_ottoline_1 "Ottoline")
+    (Name sk_lamine_1 "Lamine")
+    (Member sk_wait_1 wait)
+    (Agent sk_wait_1 sk_ottoline_1)
+    (Past sk_wait_1)
+    (Member sk_leave_1 leave)
+    (Agent sk_leave_1 sk_lamine_1)
+    (Past sk_leave_1)
+    (Although sk_leave_1 sk_wait_1)
+
+Not this template. TEXT: Yusra laughed after Lamine sang. — report it as unmapped: {"span":
+"after", "code": "G00"}.
+
+Not this template. TEXT: But Lamine left. — report it as unmapped: {"span": "But", "code":
+"G05"}.
+
+### purpose — An action's stated aim
+
+When: A clause with a purpose infinitive — to V, in order to V, so as to V — stating the aim of
+the clause's action: went to the market to buy a thermos, worked to buy a spindle, sang in order
+to please Teodor, left so as to sleep. Parse the action with its own template; parse the aim
+with the template its verb takes, its actor the action's subject and its tense present; then
+write the purpose instance naming the action, the aim and the connective. A fronted purpose (In
+order to sleep, the ferret left the barn) is the same. The purpose follows its action into a
+negation or a modal over the clause: never list it in their `over`.
+
+Forms:
+- <action> to <V2> …
+- <action> in order to / so as to <V2> …
+- In order to <V2> …, <action>
+
+Not this template:
+- the complement of a control, attitude or causative verb — tried to sleep, wants to leave, got
+  Lamine to send the quilt: the infinitive is the verb's complement, not an aim; those templates
+- a result or outcome infinitive — woke to find the gate open, rebounded to close at par: no aim
+  is stated; report the infinitive as unmapped (G06)
+- the consequence of too or enough — too tired to sing, tall enough to reach the shelf: a degree
+  with a consequence, not an aim; the degree is recorded, the infinitive reported as unmapped
+- so that with a finite clause — left so that Yusra could sleep: a purpose with its own subject
+  and modal; no head here; report it as unmapped
+- a for-phrase naming a purpose — a machine for polishing, money for a spindle: no clause;
+  report the phrase as unmapped
+- a reason, not an aim — left because Yusra laughed: a link
+
+Slots:
+
+- `t` (required): "purpose"
+- `id` (required; your label for this instance): your label for the purpose link (k1, k2 …).
+- `head` (required; one of: To, InOrderTo, SoAsTo): the connective as written: to → To, in order
+  to → InOrderTo, so as to → SoAsTo.
+- `action` (required; "@id" of the predication instance this attaches to): the action's event:
+  the id of the clause's predication instance — never the id of a negation or modal instance
+  over it.
+- `aim` (required; a list of "@id" of the instances that state the clause): the aim as a clause:
+  the ids of the instances that state it (its predication, with the action's subject as its
+  actor); the referents it mentions are not listed.
+
+Example (the action asserted, the aim sealed — the spindle exists only inside the aim). TEXT: Lamine worked to buy a spindle.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Lamine"},
+      {"t": "witness", "id": "x1", "kind": "spindle"},
+      {"t": "activity", "id": "v1", "verb": "work", "actor": "@n1", "tense": "past"},
+      {"t": "acquisition", "id": "e1", "verb": "buy", "acquirer": "@n1", "object": "@x1", "tense": "present"},
+      {"t": "purpose", "id": "k1", "head": "To", "action": "@v1", "aim": ["@e1"]}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_lamine_1 "Lamine")
+    (Member sk_work_1 work)
+    (Agent sk_work_1 sk_lamine_1)
+    (Past sk_work_1)
+    (To sk_work_1 (And (Member sk_buy_1 buy) (Recipient sk_buy_1 sk_lamine_1) (Theme sk_buy_1 sk_spindle_1) (Member sk_spindle_1 spindle)))
+
+Example (in order to, with the aim's actor the action's subject). TEXT: The ferret left the barn in order to sleep.
+
+Instances:
+
+    [
+      {"t": "witness", "id": "x1", "kind": "ferret", "definite": true},
+      {"t": "witness", "id": "x2", "kind": "barn", "definite": true},
+      {"t": "motion", "id": "m1", "verb": "leave", "mover": "@x1", "source": "@x2", "tense": "past"},
+      {"t": "activity", "id": "v1", "verb": "sleep", "actor": "@x1", "tense": "present"},
+      {"t": "purpose", "id": "k1", "head": "InOrderTo", "action": "@m1", "aim": ["@v1"]}
+    ]
+
+The program renders these instances as:
+
+    (Member sk_ferret_1 ferret)
+    (Member sk_barn_1 barn)
+    (Member sk_leave_1 leave)
+    (Agent sk_leave_1 sk_ferret_1)
+    (Source sk_leave_1 sk_barn_1)
+    (Past sk_leave_1)
+    (InOrderTo sk_leave_1 (And (Member sk_sleep_1 sleep) (Agent sk_sleep_1 sk_ferret_1)))
+
+Not this template. TEXT: Yusra tried to sleep. — use `control`.
+
+Not this template. TEXT: The ferret slept because Yusra sang. — use `link`.

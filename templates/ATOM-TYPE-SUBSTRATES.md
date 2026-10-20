@@ -830,8 +830,8 @@ gloss: Concessive connective 'even though'. Order: (Connective main-clause-event
 head: InOrderTo
 kind: discourse
 arity: 2
-type-def: (: InOrderTo (-> Event Event Proposition))
-gloss: Purpose connective 'in order to'. Order: (Connective main-clause-eventuality subordinate-eventuality); a copular endpoint is reified as a state witness. The head is the surface connective itself, never normalized.
+type-def: (: InOrderTo (-> Event Proposition Proposition))
+gloss: Purpose connective 'in order to'. Order: (InOrderTo action-event aim); the aim is the purpose clause SEALED as one term (an aim is not an occurrence: nothing of it is asserted on its own), its actor the action's subject.
 
 
 head: Since
@@ -851,8 +851,8 @@ gloss: Causal connective 'so'. Order: (Connective main-clause-eventuality subord
 head: SoAsTo
 kind: discourse
 arity: 2
-type-def: (: SoAsTo (-> Event Event Proposition))
-gloss: Purpose connective 'so as to'. Order: (Connective main-clause-eventuality subordinate-eventuality); a copular endpoint is reified as a state witness. The head is the surface connective itself, never normalized.
+type-def: (: SoAsTo (-> Event Proposition Proposition))
+gloss: Purpose connective 'so as to'. Order: (SoAsTo action-event aim); the aim is the purpose clause SEALED as one term (an aim is not an occurrence: nothing of it is asserted on its own), its actor the action's subject.
 
 
 head: Therefore
@@ -872,8 +872,8 @@ gloss: Causal connective 'thus'. Order: (Connective main-clause-eventuality subo
 head: To
 kind: discourse
 arity: 2
-type-def: (: To (-> Event Event Proposition))
-gloss: Purpose infinitive connective 'to'. Order: (Connective main-clause-eventuality subordinate-eventuality); a copular endpoint is reified as a state witness. The head is the surface connective itself, never normalized. Same symbol as the oblique preposition To (To eventuality-or-compound-property entity), told apart by the filler type.
+type-def: (: To (-> Event Proposition Proposition))
+gloss: Purpose connective 'to'. Order: (To action-event aim); the aim is the purpose clause SEALED as one term (an aim is not an occurrence: nothing of it is asserted on its own), its actor the action's subject.
 
 
 head: Yet

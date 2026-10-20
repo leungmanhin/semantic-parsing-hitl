@@ -1,0 +1,108 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "96e661894bf32af3ef6950dd4f27fda7e7ee3757022f6ac32459bd4df569d022",
+  "item": {
+    "id": "se3b075768c",
+    "text": "Because Lamine sang, the ferret did not sleep."
+  },
+  "usage": {
+    "input": 46011,
+    "output": 198,
+    "thinking": null,
+    "total": 46209,
+    "cached": 43962,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 46011,
+    "candidatesTokenCount": 198,
+    "totalTokenCount": 46209,
+    "cachedContentTokenCount": 43962,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 46011
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 43962
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 198
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"se3b075768c\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"ferret\", \"definite\": true}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"sing\", \"actor\": \"@n1\", \"tense\": \"past\"}, {\"t\": \"activity\", \"id\": \"e2\", \"verb\": \"sleep\", \"actor\": \"@x1\", \"tense\": \"past\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@e2\"]}, {\"t\": \"link\", \"id\": \"k1\", \"head\": \"Because\", \"main\": \"@e2\", \"sub\": \"@e1\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "se3b075768c",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "ferret",
+        "definite": true
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "sing",
+        "actor": "@n1",
+        "tense": "past"
+      },
+      {
+        "t": "activity",
+        "id": "e2",
+        "verb": "sleep",
+        "actor": "@x1",
+        "tense": "past"
+      },
+      {
+        "t": "negation",
+        "id": "s1",
+        "over": [
+          "@e2"
+        ]
+      },
+      {
+        "t": "link",
+        "id": "k1",
+        "head": "Because",
+        "main": "@e2",
+        "sub": "@e1"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "49ea9cf47ef53a70b2bf960950b1ce0c94ebd6a1171e41d50b9639f0536c4e3e",
+  "run": 3,
+  "case": {
+    "template": "link",
+    "section": "held_out",
+    "index": 8,
+    "category": "scoped",
+    "text": "Because Lamine sang, the ferret did not sleep.",
+    "key": "e3b075768c"
+  }
+}

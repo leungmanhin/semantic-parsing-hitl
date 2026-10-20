@@ -1,0 +1,92 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "aea0dc69d24f92b4e9fc854261540ae45969c539482a78ca709b17321fd141f1",
+  "item": {
+    "id": "s48e285cf30",
+    "text": "Ottoline refused to sing."
+  },
+  "usage": {
+    "input": 45872,
+    "output": 134,
+    "thinking": null,
+    "total": 46006,
+    "cached": 43823,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 45872,
+    "candidatesTokenCount": 134,
+    "totalTokenCount": 46006,
+    "cachedContentTokenCount": 43823,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 45872
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 43823
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 134
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s48e285cf30\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"sing\", \"actor\": \"@n1\", \"tense\": \"present\"}, {\"t\": \"control\", \"id\": \"e1\", \"verb\": \"refuse\", \"subject\": \"@n1\", \"complement\": [\"@v1\"], \"implication\": \"none\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s48e285cf30",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Ottoline"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "sing",
+        "actor": "@n1",
+        "tense": "present"
+      },
+      {
+        "t": "control",
+        "id": "e1",
+        "verb": "refuse",
+        "subject": "@n1",
+        "complement": [
+          "@v1"
+        ],
+        "implication": "none",
+        "tense": "past"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "667366f56ac295f7c22279b3bdae00b28653ebaf94bfcee3f5443b9887b2e7ea",
+  "run": 3,
+  "case": {
+    "template": "purpose",
+    "section": "held_out",
+    "index": 7,
+    "category": "abstain",
+    "text": "Ottoline refused to sing.",
+    "key": "48e285cf30"
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "aea0dc69d24f92b4e9fc854261540ae45969c539482a78ca709b17321fd141f1",
+  "item": {
+    "id": "sc405e7e4c6",
+    "text": "Teodor believed that Yusra sang, so Lamine left."
+  },
+  "usage": {
+    "input": 45879,
+    "output": 243,
+    "thinking": null,
+    "total": 46122,
+    "cached": 43826,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 45879,
+    "candidatesTokenCount": 243,
+    "totalTokenCount": 46122,
+    "cachedContentTokenCount": 43826,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 45879
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 43826
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 243
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sc405e7e4c6\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n3\", \"name\": \"Lamine\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"sing\", \"actor\": \"@n2\", \"tense\": \"past\"}, {\"t\": \"attitude\", \"id\": \"a1\", \"verb\": \"believe\", \"holder\": \"@n1\", \"content\": [\"@v1\"], \"factive\": false, \"tense\": \"past\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n3\", \"tense\": \"past\"}, {\"t\": \"link\", \"id\": \"k1\", \"head\": \"So\", \"main\": \"@a1\", \"sub\": \"@m1\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sc405e7e4c6",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Yusra"
+      },
+      {
+        "t": "named-entity",
+        "id": "n3",
+        "name": "Lamine"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "sing",
+        "actor": "@n2",
+        "tense": "past"
+      },
+      {
+        "t": "attitude",
+        "id": "a1",
+        "verb": "believe",
+        "holder": "@n1",
+        "content": [
+          "@v1"
+        ],
+        "factive": false,
+        "tense": "past"
+      },
+      {
+        "t": "motion",
+        "id": "m1",
+        "verb": "leave",
+        "mover": "@n3",
+        "tense": "past"
+      },
+      {
+        "t": "link",
+        "id": "k1",
+        "head": "So",
+        "main": "@a1",
+        "sub": "@m1"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "667366f56ac295f7c22279b3bdae00b28653ebaf94bfcee3f5443b9887b2e7ea",
+  "run": 1,
+  "case": {
+    "template": "link",
+    "section": "held_out",
+    "index": 7,
+    "category": "positive",
+    "text": "Teodor believed that Yusra sang, so Lamine left.",
+    "key": "c405e7e4c6"
+  }
+}

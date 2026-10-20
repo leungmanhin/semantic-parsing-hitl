@@ -386,6 +386,48 @@ class EmitTests(unittest.TestCase):
         self.assertEqual(sum(a.startswith("(Not (And (Member sk_manage_1 manage)") and "(Entails sk_manage_1)" in a for a in denied), 1)
         self.assertIn("(Member sk_shed_1 shed)", denied)                                          # the definite shed stays presupposed
 
+    def test_links_relate_event_symbols_and_a_purpose_seals_its_aim(self):
+        """A link is one top-level atom over the two clauses' event symbols, whatever scope a clause
+        sits in; a purpose seals the aim as one term, its indefinite inside, nothing asserted."""
+        inst = [{"t": "named-entity", "id": "n1", "name": "Lamine"},
+                {"t": "witness", "id": "x1", "kind": "ferret", "definite": True},
+                {"t": "activity", "id": "v1", "verb": "sing", "actor": "@n1", "tense": "past"},
+                {"t": "activity", "id": "v2", "verb": "sleep", "actor": "@x1", "tense": "past"},
+                {"t": "negation", "id": "s1", "over": ["@v2"]},
+                {"t": "link", "id": "k1", "head": "Because", "main": "@v2", "sub": "@v1"}]
+        atoms = atoms_of(E.emit({"id": "l", "instances": inst}, CATALOG)["statements"])
+        self.assertIn("(Because sk_sleep_1 sk_sing_1)", atoms)
+        self.assertEqual(sum(a.startswith("(Not (And (Member sk_sleep_1 sleep)") for a in atoms), 1)
+        self.assertIn("(Past sk_sing_1)", atoms)
+        aim = [{"t": "named-entity", "id": "n1", "name": "Lamine"},
+               {"t": "witness", "id": "x1", "kind": "spindle"},
+               {"t": "activity", "id": "v1", "verb": "work", "actor": "@n1", "tense": "past"},
+               {"t": "acquisition", "id": "e1", "verb": "buy", "acquirer": "@n1", "object": "@x1", "tense": "present"},
+               {"t": "purpose", "id": "k1", "head": "To", "action": "@v1", "aim": ["@e1"]}]
+        out = E.emit({"id": "p", "instances": aim}, CATALOG)
+        patoms = atoms_of(out["statements"])
+        sealed = [a for a in patoms if a.startswith("(To sk_work_1 (And")]
+        self.assertEqual(len(sealed), 1)
+        self.assertIn("(Member sk_spindle_1 spindle)", sealed[0])
+        self.assertFalse(any(a.startswith(("(Member sk_buy_1", "(Member sk_spindle_1", "(Theme sk_buy_1")) for a in patoms))
+        self.assertIn("(Past sk_work_1)", patoms)
+        with self.assertRaises(E.EmitError):                                          # a link needs two event endpoints
+            E.emit({"id": "b", "instances": [{"t": "link", "id": "k1", "head": "Because", "main": "sleep", "sub": "@v9"}]}, CATALOG)
+
+    def test_an_attachment_is_never_listed_in_a_scope(self):
+        """A manner, a location or a purpose follows its head into a negation or a modal; listing
+        it in the scope's ``over`` is refused (it would render twice)."""
+        inst = [{"t": "named-entity", "id": "n1", "name": "Lamine"},
+                {"t": "activity", "id": "v1", "verb": "work", "actor": "@n1", "tense": "present"},
+                {"t": "manner", "id": "a1", "event": "@v1", "manner": "hard"},
+                {"t": "modal", "id": "s1", "over": ["@v1", "@a1"], "head": "Might", "surface": "might"}]
+        with self.assertRaises(E.EmitError) as cm:
+            E.emit({"id": "a", "instances": inst}, CATALOG)
+        self.assertTrue(any("an attachment" in p for p in cm.exception.args[0]))
+        inst[-1]["over"] = ["@v1"]
+        atoms = atoms_of(E.emit({"id": "a", "instances": inst}, CATALOG)["statements"])
+        self.assertEqual(sum(a.count("(Manner sk_work_1 hard)") for a in atoms), 1)
+
     def test_malformed_instances_are_refused(self):
         bad = [{"t": "transfer", "id": "e1", "verb": "give", "giver": "@n9", "object": "x", "tense": "past"}]
         with self.assertRaises(E.EmitError) as cm:

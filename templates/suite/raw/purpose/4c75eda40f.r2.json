@@ -1,0 +1,88 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "aea0dc69d24f92b4e9fc854261540ae45969c539482a78ca709b17321fd141f1",
+  "item": {
+    "id": "s4c75eda40f",
+    "text": "Yusra is too tired to sing."
+  },
+  "usage": {
+    "input": 45873,
+    "output": 185,
+    "thinking": null,
+    "total": 46058,
+    "cached": 43824,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 45873,
+    "candidatesTokenCount": 185,
+    "totalTokenCount": 46058,
+    "cachedContentTokenCount": 43824,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 45873
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 43824
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 185
+      }
+    ]
+  },
+  "raw_text": "{\n  \"id\": \"s4c75eda40f\",\n  \"instances\": [\n    {\n      \"t\": \"named-entity\",\n      \"id\": \"n1\",\n      \"name\": \"Yusra\"\n    },\n    {\n      \"t\": \"degree\",\n      \"id\": \"d1\",\n      \"bearer\": \"@n1\",\n      \"scale\": \"tired\",\n      \"level\": \"too\",\n      \"tense\": \"present\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"span\": \"to sing\",\n      \"code\": \"G00\",\n      \"construction\": \"An infinitive stating the consequence of a 'too' degree phrase.\"\n    }\n  ],\n  \"issues\": []\n}",
+  "response": {
+    "id": "s4c75eda40f",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra"
+      },
+      {
+        "t": "degree",
+        "id": "d1",
+        "bearer": "@n1",
+        "scale": "tired",
+        "level": "too",
+        "tense": "present"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "to sing",
+        "code": "G00",
+        "construction": "An infinitive stating the consequence of a 'too' degree phrase."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "667366f56ac295f7c22279b3bdae00b28653ebaf94bfcee3f5443b9887b2e7ea",
+  "run": 2,
+  "case": {
+    "template": "purpose",
+    "section": "held_out",
+    "index": 8,
+    "category": "abstain",
+    "text": "Yusra is too tired to sing.",
+    "key": "4c75eda40f"
+  }
+}
