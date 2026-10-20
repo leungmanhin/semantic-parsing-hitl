@@ -111,6 +111,8 @@ def render_template(tid: str, t: dict, catalog: dict, add) -> None:
         add(_wrap(f"`{name}` ({req}; {_value_doc(spec, t.get('family'))}){tail}.", indent="  ", first="- "))
     for group in t.get("one_of") or []:
         add(_wrap("Exactly one of " + ", ".join(f"`{g}`" for g in group) + " is filled.", indent="  ", first="- "))
+    for group in t.get("any_of") or []:
+        add(_wrap("At least one of " + ", ".join(f"`{g}`" for g in group) + " is filled.", indent="  ", first="- "))
     add("")
     for ex in (t.get("examples") or {}).get("shown") or []:
         cat = ex.get("category")

@@ -25,8 +25,8 @@ trigger:
     - "<clause> with <manner noun>"                  # read the letter with care
   boundary:                   # looks like a manner but is not one
     - >-
-      a degree adverb — deeply distrusts, really likes, very, sharply, slightly: how much, not how;
-      reported as unmapped
+      a degree adverb — deeply distrusts, really likes, barely moved, sharply, slightly: how much,
+      not how; an extent attachment on the event
     - >-
       a frequency adverb — often, always, twice, every day: how often; reported as unmapped (the
       adverb gap)
@@ -173,7 +173,7 @@ examples:
         - {t: manner, id: a1, event: "@v1", manner: quietly}
     - category: abstain
       text: "Yusra deeply distrusts Lamine."
-      expected: {abstain: true, template: psych}                      # a degree adverb, not a manner
+      expected: {abstain: true, template: extent}                     # a degree adverb, not a manner
     - category: abstain
       text: "Teodor arrived in 2019."
       expected: {abstain: true, template: time}                       # when, not how

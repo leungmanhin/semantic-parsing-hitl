@@ -1,0 +1,82 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "036261b67cffbb04273fa6353b6fe9d8a5bd7044375e91f3934b29dcd44ae2e8",
+  "item": {
+    "id": "sb61391d56f",
+    "text": "Teodor is extremely tired."
+  },
+  "usage": {
+    "input": 35893,
+    "output": 92,
+    "thinking": null,
+    "total": 35985,
+    "cached": 33791,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 35893,
+    "candidatesTokenCount": 92,
+    "totalTokenCount": 35985,
+    "cachedContentTokenCount": 33791,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 35893
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 33791
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 92
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sb61391d56f\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"degree\", \"id\": \"d1\", \"bearer\": \"@n1\", \"scale\": \"tired\", \"level\": \"extremely\", \"tense\": \"present\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sb61391d56f",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor"
+      },
+      {
+        "t": "degree",
+        "id": "d1",
+        "bearer": "@n1",
+        "scale": "tired",
+        "level": "extremely",
+        "tense": "present"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "107542897d74ba7ca217f1d5c88d49a7531f59530bec65a2f2b7b7200334e22e",
+  "run": 1,
+  "case": {
+    "template": "degree",
+    "section": "held_out",
+    "index": 0,
+    "category": "positive",
+    "text": "Teodor is extremely tired.",
+    "key": "b61391d56f"
+  }
+}

@@ -1,9 +1,9 @@
 {
   "prompt": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_body_sha256": "11f4b54bfb570c51c864b0df3d73d7ef4191fa6000e1ad5b04b5cb034e32080b",
+  "prompt_body_sha256": "107542897d74ba7ca217f1d5c88d49a7531f59530bec65a2f2b7b7200334e22e",
   "typecheck": "ran",
   "checks": {
-    "examples": 382,
+    "examples": 426,
     "findings": [],
     "pending": {},
     "shared": [
@@ -12,6 +12,13 @@
         "templates": [
           "activity",
           "adjunct"
+        ]
+      },
+      {
+        "text": "Yusra deeply distrusts Lamine.",
+        "templates": [
+          "extent",
+          "psych"
         ]
       }
     ]
@@ -810,6 +817,101 @@
         ]
       }
     },
+    "degree": {
+      "held_out": {
+        "records": 54,
+        "cases": 18,
+        "status": {
+          "ok": 54
+        },
+        "stale_prompt": 0,
+        "by_category": {
+          "positive": {
+            "cases": 7,
+            "runs": 21,
+            "pass": 21,
+            "fired": 21,
+            "exact": 21
+          },
+          "contrast": {
+            "cases": 1,
+            "runs": 3,
+            "pass": 3,
+            "fired": 3,
+            "exact": 3
+          },
+          "scoped": {
+            "cases": 2,
+            "runs": 6,
+            "pass": 6,
+            "fired": 6,
+            "exact": 6
+          },
+          "optional": {
+            "cases": 2,
+            "runs": 6,
+            "pass": 6,
+            "fired": 6,
+            "exact": 6
+          },
+          "abstain": {
+            "cases": 6,
+            "runs": 18,
+            "pass": 18,
+            "false_fires": 0,
+            "outcomes": {
+              "target_fired": 6,
+              "gap_reported": 12
+            }
+          }
+        },
+        "pass": 54,
+        "selection": {
+          "fire_runs": 36,
+          "fired": 36,
+          "abstain_runs": 18,
+          "false_fires": 0
+        },
+        "fill": {
+          "fired": 36,
+          "exact": 36,
+          "rate": 1.0
+        },
+        "stability": {
+          "cases": 18,
+          "pairs": 54,
+          "pairwise_agreement": 0.963,
+          "unanimous": 17
+        },
+        "typecheck": {
+          "checked": 54,
+          "passed": 54
+        },
+        "usage": {
+          "input": 1938240,
+          "output": 5781,
+          "thinking": 0,
+          "total": 1944021,
+          "cached": 1788403,
+          "calls": 54,
+          "thinking_calls": 0
+        },
+        "issues": [
+          {
+            "code": "P00",
+            "where": "copular / degree",
+            "text": "The instructions say to report 'the tallest weaver' as unmapped under degree, while copular forbids a definite predicate ('is the locksmith') unless licensed by the superlative, leaving it unclear whether the entailed kind predication ('weaver') should be kept as a copular instance or the whole predicate reported as unmapped.",
+            "sentence": "Yusra is the tallest weaver.",
+            "run": 2
+          }
+        ],
+        "null_slots": 0,
+        "lints": {},
+        "models": [
+          "gemini-4-argon effort=low"
+        ]
+      }
+    },
     "distribution": {
       "held_out": {
         "records": 18,
@@ -872,6 +974,86 @@
           "total": 331779,
           "cached": 0,
           "calls": 18,
+          "thinking_calls": 0
+        },
+        "issues": [],
+        "null_slots": 0,
+        "lints": {},
+        "models": [
+          "gemini-4-argon effort=low"
+        ]
+      }
+    },
+    "extent": {
+      "held_out": {
+        "records": 45,
+        "cases": 15,
+        "status": {
+          "ok": 45
+        },
+        "stale_prompt": 0,
+        "by_category": {
+          "positive": {
+            "cases": 6,
+            "runs": 18,
+            "pass": 18,
+            "fired": 18,
+            "exact": 18
+          },
+          "scoped": {
+            "cases": 3,
+            "runs": 9,
+            "pass": 9,
+            "fired": 9,
+            "exact": 9
+          },
+          "optional": {
+            "cases": 1,
+            "runs": 3,
+            "pass": 3,
+            "fired": 3,
+            "exact": 3
+          },
+          "abstain": {
+            "cases": 5,
+            "runs": 15,
+            "pass": 15,
+            "false_fires": 0,
+            "outcomes": {
+              "gap_reported": 9,
+              "target_fired": 6
+            }
+          }
+        },
+        "pass": 45,
+        "selection": {
+          "fire_runs": 30,
+          "fired": 30,
+          "abstain_runs": 15,
+          "false_fires": 0
+        },
+        "fill": {
+          "fired": 30,
+          "exact": 30,
+          "rate": 1.0
+        },
+        "stability": {
+          "cases": 15,
+          "pairs": 45,
+          "pairwise_agreement": 1.0,
+          "unanimous": 15
+        },
+        "typecheck": {
+          "checked": 42,
+          "passed": 42
+        },
+        "usage": {
+          "input": 1615176,
+          "output": 6088,
+          "thinking": 0,
+          "total": 1621264,
+          "cached": 1489113,
+          "calls": 45,
           "thinking_calls": 0
         },
         "issues": [],
@@ -1381,11 +1563,11 @@
           "passed": 39
         },
         "usage": {
-          "input": 1306665,
-          "output": 5060,
+          "input": 1313835,
+          "output": 5063,
           "thinking": 0,
-          "total": 1311725,
-          "cached": 1226648,
+          "total": 1318898,
+          "cached": 1233815,
           "calls": 39,
           "thinking_calls": 0
         },
@@ -1721,7 +1903,7 @@
         "status": {
           "ok": 39
         },
-        "stale_prompt": 39,
+        "stale_prompt": 36,
         "by_category": {
           "positive": {
             "cases": 4,
@@ -1785,11 +1967,11 @@
           "passed": 39
         },
         "usage": {
-          "input": 396954,
-          "output": 4822,
+          "input": 475698,
+          "output": 4825,
           "thinking": 0,
-          "total": 401776,
-          "cached": 0,
+          "total": 480523,
+          "cached": 101538,
           "calls": 39,
           "thinking_calls": 0
         },

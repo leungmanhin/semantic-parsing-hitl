@@ -1,0 +1,100 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "036261b67cffbb04273fa6353b6fe9d8a5bd7044375e91f3934b29dcd44ae2e8",
+  "item": {
+    "id": "s6af9613097",
+    "text": "Yusra does not deeply distrust Lamine."
+  },
+  "usage": {
+    "input": 35896,
+    "output": 167,
+    "thinking": null,
+    "total": 36063,
+    "cached": 33847,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 35896,
+    "candidatesTokenCount": 167,
+    "totalTokenCount": 36063,
+    "cachedContentTokenCount": 33847,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 35896
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 33847
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 167
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s6af9613097\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Lamine\"}, {\"t\": \"psych\", \"id\": \"e1\", \"verb\": \"distrust\", \"experiencer\": \"@n1\", \"stimulus\": \"@n2\", \"tense\": \"present\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@e1\"]}, {\"t\": \"extent\", \"id\": \"a1\", \"event\": \"@e1\", \"level\": \"deeply\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s6af9613097",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Lamine"
+      },
+      {
+        "t": "psych",
+        "id": "e1",
+        "verb": "distrust",
+        "experiencer": "@n1",
+        "stimulus": "@n2",
+        "tense": "present"
+      },
+      {
+        "t": "negation",
+        "id": "s1",
+        "over": [
+          "@e1"
+        ]
+      },
+      {
+        "t": "extent",
+        "id": "a1",
+        "event": "@e1",
+        "level": "deeply"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "107542897d74ba7ca217f1d5c88d49a7531f59530bec65a2f2b7b7200334e22e",
+  "run": 2,
+  "case": {
+    "template": "extent",
+    "section": "held_out",
+    "index": 6,
+    "category": "scoped",
+    "text": "Yusra does not deeply distrust Lamine.",
+    "key": "6af9613097"
+  }
+}

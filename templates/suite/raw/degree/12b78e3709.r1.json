@@ -1,0 +1,83 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "036261b67cffbb04273fa6353b6fe9d8a5bd7044375e91f3934b29dcd44ae2e8",
+  "item": {
+    "id": "s12b78e3709",
+    "text": "The barn is a bit cold."
+  },
+  "usage": {
+    "input": 35895,
+    "output": 97,
+    "thinking": null,
+    "total": 35992,
+    "cached": 33845,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 35895,
+    "candidatesTokenCount": 97,
+    "totalTokenCount": 35992,
+    "cachedContentTokenCount": 33845,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 35895
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 33845
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 97
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s12b78e3709\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"barn\", \"definite\": true}, {\"t\": \"degree\", \"id\": \"d1\", \"bearer\": \"@x1\", \"scale\": \"cold\", \"level\": \"a_bit\", \"tense\": \"present\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s12b78e3709",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "barn",
+        "definite": true
+      },
+      {
+        "t": "degree",
+        "id": "d1",
+        "bearer": "@x1",
+        "scale": "cold",
+        "level": "a_bit",
+        "tense": "present"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "107542897d74ba7ca217f1d5c88d49a7531f59530bec65a2f2b7b7200334e22e",
+  "run": 1,
+  "case": {
+    "template": "degree",
+    "section": "held_out",
+    "index": 9,
+    "category": "optional",
+    "text": "The barn is a bit cold.",
+    "key": "12b78e3709"
+  }
+}

@@ -47,8 +47,8 @@ trigger:
       perception — saw the ferret, heard the news: perceiving something, not feeling something
       about it
     - >-
-      a degree adverb on the verb (deeply distrusts, really likes): the state is parsed; the
-      adverb has no slot and is reported as unmapped — a manner adverb is a manner attachment
+      a degree adverb on the verb (deeply distrusts, really likes): the state is parsed and the
+      adverb is an extent attachment on it — a manner adverb is a manner attachment
 
 slots:
   id:          {type: id, required: true, doc: "your label for the state"}
@@ -81,12 +81,11 @@ notes:
     the roles record who feels what. The class contrast pair in the held-out suite (fears /
     frightens) is the sensitivity test for the role mapping.
   - >-
-    Degree ("deeply", "really") is a stated qualifier with no slot here; by the entailment rule
-    the state itself still holds, so the state is parsed and the adverb is reported as unmapped
-    (G02) rather than the whole clause dropped.
+    A degree adverb ("deeply", "really") is an extent attachment on the state and a manner
+    adverb a manner attachment: the state is parsed either way, the adverb beside it.
 
 depends_on: [named-entity, witness]
-composes_with: [negation, modal, time]
+composes_with: [negation, modal, time, extent]
 
 examples:
   shown:                     # rendered into the prompt
@@ -179,14 +178,13 @@ examples:
         - {t: named-entity, id: n1, name: "Teodor"}
         - {t: psych, id: p1, verb: frighten, experiencer: "@n1", tense: past}
     - category: positive
-      note: a degree adverb — the state is parsed, the adverb is reported (entailment rule)
+      note: a degree adverb — the state is parsed, the adverb attaches to it as an extent
       text: "Yusra deeply distrusts Lamine."
       instances:
         - {t: named-entity, id: n1, name: "Yusra"}
         - {t: named-entity, id: n2, name: "Lamine"}
         - {t: psych, id: p1, verb: distrust, experiencer: "@n1", stimulus: "@n2", tense: present}
-      unmapped:
-        - {code: G02, span: "deeply"}
+        - {t: extent, id: a1, event: "@p1", level: deeply}
     - category: abstain
       text: "Yusra fears that Lamine sold the spindle."
       expected: {abstain: true, template: attitude}                   # a clause as the object

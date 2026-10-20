@@ -1,0 +1,83 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "036261b67cffbb04273fa6353b6fe9d8a5bd7044375e91f3934b29dcd44ae2e8",
+  "item": {
+    "id": "sabaa602ed2",
+    "text": "The ladder is tall enough."
+  },
+  "usage": {
+    "input": 35890,
+    "output": 91,
+    "thinking": null,
+    "total": 35981,
+    "cached": 33791,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 35890,
+    "candidatesTokenCount": 91,
+    "totalTokenCount": 35981,
+    "cachedContentTokenCount": 33791,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 35890
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 33791
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 91
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sabaa602ed2\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"ladder\", \"definite\": true}, {\"t\": \"degree\", \"id\": \"d1\", \"bearer\": \"@x1\", \"scale\": \"tall\", \"level\": \"enough\", \"tense\": \"present\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sabaa602ed2",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "ladder",
+        "definite": true
+      },
+      {
+        "t": "degree",
+        "id": "d1",
+        "bearer": "@x1",
+        "scale": "tall",
+        "level": "enough",
+        "tense": "present"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "107542897d74ba7ca217f1d5c88d49a7531f59530bec65a2f2b7b7200334e22e",
+  "run": 1,
+  "case": {
+    "template": "degree",
+    "section": "held_out",
+    "index": 4,
+    "category": "positive",
+    "text": "The ladder is tall enough.",
+    "key": "abaa602ed2"
+  }
+}

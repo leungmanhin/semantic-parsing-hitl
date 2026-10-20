@@ -1,0 +1,83 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "036261b67cffbb04273fa6353b6fe9d8a5bd7044375e91f3934b29dcd44ae2e8",
+  "item": {
+    "id": "s3e1744ceb9",
+    "text": "The stew is too hot."
+  },
+  "usage": {
+    "input": 35892,
+    "output": 94,
+    "thinking": null,
+    "total": 35986,
+    "cached": 33843,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 35892,
+    "candidatesTokenCount": 94,
+    "totalTokenCount": 35986,
+    "cachedContentTokenCount": 33843,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 35892
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 33843
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 94
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s3e1744ceb9\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"stew\", \"definite\": true}, {\"t\": \"degree\", \"id\": \"d1\", \"bearer\": \"@x1\", \"scale\": \"hot\", \"level\": \"too\", \"tense\": \"present\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s3e1744ceb9",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "stew",
+        "definite": true
+      },
+      {
+        "t": "degree",
+        "id": "d1",
+        "bearer": "@x1",
+        "scale": "hot",
+        "level": "too",
+        "tense": "present"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "107542897d74ba7ca217f1d5c88d49a7531f59530bec65a2f2b7b7200334e22e",
+  "run": 2,
+  "case": {
+    "template": "degree",
+    "section": "held_out",
+    "index": 3,
+    "category": "positive",
+    "text": "The stew is too hot.",
+    "key": "3e1744ceb9"
+  }
+}

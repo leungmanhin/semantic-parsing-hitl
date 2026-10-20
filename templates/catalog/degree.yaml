@@ -1,0 +1,249 @@
+# Template: degree  (a property held to a degree: "very crooked", "almost full", "tall for a weaver")
+#
+# A degree word on a property grades the property. An intensifier or a downtoner (very,
+# extremely, quite, slightly, a bit) says how much the property holds and leaves it asserted;
+# too and enough set it against a limit and leave it asserted; an approximator (almost, nearly,
+# all but) or a comparison class (tall for a weaver) says the property is NOT asserted as such,
+# only its degree. The instance carries the bearer, the property and the degree, and renders the
+# property's positive atom only where the text asserts it: (Member x crooked) + (Degree x crooked
+# very); (Degree x full almost) alone; (Degree x tall (forKind weaver)) alone. The degree word is
+# kept as written. A degree adverb on a verb is an extent; a comparison is another construction.
+
+id: degree
+family: predication
+kind: copular
+title: A property held to a degree
+status: draft
+
+trigger:
+  construction: >
+    A gradable adjective with a degree expression, predicated of a referent by "be" (the ladder
+    is very crooked, the thermos was almost full, Yusra is tall for a weaver) or placed inside
+    the referent's noun phrase (a very old spindle). The degree expression is an intensifier or
+    a downtoner (very, extremely, really, quite, rather, fairly, somewhat, slightly, a bit, a
+    little, so), too or enough, an approximator (almost, nearly, all but), or a comparison class
+    (ADJ for a N). One instance per graded property; the instance stands in place of the copular
+    predication or the witness property that the adjective would otherwise be.
+  surface_forms:
+    - "<bearer> is <degree word> <ADJ>"             # the ladder is very crooked
+    - "<bearer> is too <ADJ> / <ADJ> enough"        # the soup is too hot; the ladder is tall enough
+    - "<bearer> is almost / nearly <ADJ>"           # the thermos was almost full: the property is not asserted
+    - "<bearer> is <ADJ> for a <N>"                 # Yusra is tall for a weaver: relative to the kind's norm
+    - "a <degree word> <ADJ> <N>"                   # a very old spindle: graded inside the noun phrase
+  boundary:                   # looks like a graded property but is not one
+    - >-
+      a plain adjective — is crooked, an old spindle: a copular predication or a witness property,
+      no degree
+    - >-
+      a degree adverb on a verb — deeply distrusts, barely moved, fell sharply: an extent on the
+      event
+    - >-
+      a comparative or a superlative — taller than Yusra, the tallest weaver, as tall as Teodor: a
+      comparison, with no template here; report the span as unmapped — for a superlative the
+      whole definite predicate (the tallest weaver), which is no plain kind predication either
+    - >-
+      a degree on a quantity — too much salt, enough water, a lot of ferrets: no slot here; report
+      the span as unmapped
+    - >-
+      a kind as the bearer — ferrets are very curious: a kind statement; the degree word is
+      reported as unmapped (G02)
+    - >-
+      a degree word on a manner adverb — laughed very loudly: the manner is recorded, the degree
+      word reported (G02)
+    - >-
+      an adjective with a complement — too fond of Yusra, very afraid of the ferret: the
+      complement is part of the predication; report the whole predicate as unmapped
+    - >-
+      the consequence of too, enough or so — too young to vote, so tired that she slept: the
+      degree is recorded; the infinitive or the that-clause is reported as unmapped
+
+slots:
+  id:       {type: id, required: true, doc: "your label for the predication (d1, d2 …)"}
+  bearer:   {type: filler, class: Entity, required: true,
+             doc: "the referent the property is graded on: the subject of the copular clause, or the witness whose phrase holds the adjective"}
+  scale:    {type: lemma, class: Class, required: true, doc: "the adjective, lemmatized (crooked, full, tall)"}
+  level:    {type: lemma, class: Level, required: false,
+             doc: "the degree word as written, lowercase (very, extremely, slightly, too, enough, almost, nearly, so); a multi-word expression as one snake_case symbol (a_bit, a_little, all_but, far_too)"}
+  for_kind: {type: lemma, class: Class, required: false,
+             doc: "the comparison class of \"ADJ for a N\", lemmatized to the singular (tall for a weaver → weaver)"}
+  tense:    {type: enum, values: [past, present, future], required: false, default: present,
+             doc: "the clause's tense for a predicative use (is / was / will be very crooked); omit it for a property graded inside a noun phrase (a very old spindle), which has no tense"}
+
+any_of: [[level, for_kind]]            # a degree word, a comparison class, or both
+
+emits:
+  # the positive: an intensifier, a downtoner, too and enough leave the property asserted;
+  # an approximator (almost, nearly, all but) or a comparison class cancels it
+  - atom: "(Member {bearer} {scale})"
+    when: "not for_kind and level != almost and level != nearly and level != all_but and tense == present"
+  - atom: "(Past (Member {bearer} {scale}))"
+    when: "not for_kind and level != almost and level != nearly and level != all_but and tense == past"
+  - atom: "(Future (Member {bearer} {scale}))"
+    when: "not for_kind and level != almost and level != nearly and level != all_but and tense == future"
+  - atom: "(Degree {bearer} {scale} {level})"
+    if_filled: level
+    when: "tense == present"
+  - atom: "(Past (Degree {bearer} {scale} {level}))"
+    if_filled: level
+    when: "tense == past"
+  - atom: "(Future (Degree {bearer} {scale} {level}))"
+    if_filled: level
+    when: "tense == future"
+  - atom: "(Degree {bearer} {scale} (forKind {for_kind}))"
+    if_filled: for_kind
+    when: "tense == present"
+  - atom: "(Past (Degree {bearer} {scale} (forKind {for_kind})))"
+    if_filled: for_kind
+    when: "tense == past"
+  - atom: "(Future (Degree {bearer} {scale} (forKind {for_kind})))"
+    if_filled: for_kind
+    when: "tense == future"
+
+notes:
+  - >-
+    The degree word is kept as written and declared a Level: no normalization to a high or low
+    band and no marker symbols; the word is the record, and a consumer interprets it.
+  - >-
+    Whether the property itself is asserted is the template's decision, not the parser's: an
+    intensifier, a downtoner, too and enough keep it (slightly damp is damp, too hot is hot);
+    almost, nearly, all but and a comparison class do not (almost full is not full, tall for a
+    weaver is not tall as such). "Very tall for a weaver" carries both the degree word and the
+    class, and no positive.
+  - >-
+    A graded property inside a noun phrase (a very old spindle) is this template's instance
+    beside the witness, which does not list the property among its own; the instance has no
+    tense, like a witness property.
+
+depends_on: [named-entity, witness]
+composes_with: [negation, modal]
+
+examples:
+  shown:                     # rendered into the prompt
+    - category: positive
+      note: an intensifier — the property stays asserted, the degree beside it
+      text: "The ladder is very crooked."
+      instances:
+        - {t: witness, id: x1, kind: ladder, definite: true}
+        - {t: degree, id: d1, bearer: "@x1", scale: crooked, level: very, tense: present}
+      emitted:               # what the emitter produces (illustration; the emitter is the authority)
+        - "(Member sk_ladder_1 ladder)"
+        - "(Member sk_ladder_1 crooked)"
+        - "(Degree sk_ladder_1 crooked very)"
+      declarations:
+        - "(: crooked Class)"
+        - "(: ladder Class)"
+        - "(: sk_ladder_1 Entity)"
+        - "(: very Level)"
+    - category: positive
+      note: an approximator — the property is not asserted, only its degree
+      text: "The thermos was almost full."
+      instances:
+        - {t: witness, id: x1, kind: thermos, definite: true}
+        - {t: degree, id: d1, bearer: "@x1", scale: full, level: almost, tense: past}
+    - category: positive
+      note: a comparison class — relative to the kind's norm, no positive
+      text: "Yusra is tall for a weaver."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: degree, id: d1, bearer: "@n1", scale: tall, for_kind: weaver, tense: present}
+    - category: abstain
+      text: "The audit was difficult."
+      expected: {abstain: true, template: copular}                    # a plain adjective
+    - category: abstain
+      text: "The price fell sharply."
+      expected: {abstain: true, template: extent}                     # a degree adverb on a verb
+
+  held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      text: "Teodor is extremely tired."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: degree, id: d1, bearer: "@n1", scale: tired, level: extremely, tense: present}
+    - category: positive
+      note: past tense — the tense wraps both atoms
+      text: "The audit was rather difficult."
+      instances:
+        - {t: witness, id: x1, kind: audit, definite: true}
+        - {t: degree, id: d1, bearer: "@x1", scale: difficult, level: rather, tense: past}
+    - category: positive
+      note: a downtoner keeps the property asserted
+      text: "The quilt is slightly damp."
+      instances:
+        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: degree, id: d1, bearer: "@x1", scale: damp, level: slightly, tense: present}
+    - category: positive
+      note: too — the property holds beyond a limit
+      text: "The stew is too hot."
+      instances:
+        - {t: witness, id: x1, kind: stew, definite: true}
+        - {t: degree, id: d1, bearer: "@x1", scale: hot, level: too, tense: present}
+    - category: positive
+      note: enough — the property holds to a sufficient degree
+      text: "The ladder is tall enough."
+      instances:
+        - {t: witness, id: x1, kind: ladder, definite: true}
+        - {t: degree, id: d1, bearer: "@x1", scale: tall, level: enough, tense: present}
+    - category: positive
+      note: a property graded inside a noun phrase — the witness lists no property, the instance has no tense
+      text: "Yusra bought a very old spindle."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, kind: spindle}
+        - {t: acquisition, id: e1, verb: buy, acquirer: "@n1", object: "@x1", tense: past}
+        - {t: degree, id: d1, bearer: "@x1", scale: old, level: very}
+    - category: contrast
+      note: the same clause with an intensifier — the positive appears; the instance differs in the level only
+      text: "The thermos was very full."
+      instances:
+        - {t: witness, id: x1, kind: thermos, definite: true}
+        - {t: degree, id: d1, bearer: "@x1", scale: full, level: very, tense: past}
+    - category: positive
+      note: a comparison class on a name
+      text: "Lamine is short for a glazier."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: degree, id: d1, bearer: "@n1", scale: short, for_kind: glazier, tense: present}
+    - category: optional
+      note: a degree word and a comparison class together — both recorded, no positive
+      text: "Ottoline is very tall for a weaver."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: degree, id: d1, bearer: "@n1", scale: tall, level: very, for_kind: weaver, tense: present}
+    - category: optional
+      note: a multi-word degree expression as one symbol
+      text: "The barn is a bit cold."
+      instances:
+        - {t: witness, id: x1, kind: barn, definite: true}
+        - {t: degree, id: d1, bearer: "@x1", scale: cold, level: a_bit, tense: present}
+    - category: scoped
+      note: under clausal negation — the graded property is denied as a whole
+      text: "The ladder is not very crooked."
+      instances:
+        - {t: witness, id: x1, kind: ladder, definite: true}
+        - {t: degree, id: d1, bearer: "@x1", scale: crooked, level: very, tense: present}
+        - {t: negation, id: s1, over: ["@d1"]}
+    - category: scoped
+      note: under a modal
+      text: "The stew might be too hot."
+      instances:
+        - {t: witness, id: x1, kind: stew, definite: true}
+        - {t: degree, id: d1, bearer: "@x1", scale: hot, level: too, tense: present}
+        - {t: modal, id: s1, over: ["@d1"], head: Might, surface: might}
+    - category: abstain
+      text: "The ladder is crooked."
+      expected: {abstain: true, template: copular}                    # a plain adjective
+    - category: abstain
+      text: "Lamine barely moved."
+      expected: {abstain: true, template: extent}                     # a degree adverb on a verb
+    - category: abstain
+      text: "Teodor is taller than Yusra."
+      expected: {abstain: true, gap: G00, span: "taller than Yusra"}  # a comparison
+    - category: abstain
+      text: "Teodor added too much salt."
+      expected: {abstain: true, gap: G00, span: "too much salt"}      # a degree on a quantity
+    - category: abstain
+      text: "Yusra is the tallest weaver."
+      expected: {abstain: true, gap: G00, span: "the tallest weaver"} # a superlative
+    - category: abstain
+      text: "Ferrets are very curious."
+      expected: {abstain: true, gap: G02, span: "very"}               # a kind as the bearer: the degree word is the gap

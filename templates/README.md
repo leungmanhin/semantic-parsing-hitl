@@ -49,7 +49,7 @@ Nothing here changes `prompt.txt`, the briefs under `fusenf/briefs/`, or any pip
 - `catalog/<id>.yaml` is a whole template: trigger (construction, boundary), slots with their
   substrate class (`attaches: true` on a filler makes the instance an attachment rendered wherever its head is),
   `mints` (`stem` / `literal` / `symbol: <slot>` with `constant` / `variable`; `also` for extra classes), `emits` shapes
-  (`if_filled`, `each`, `when`, `project`), `one_of` slot groups, notes,
+  (`if_filled`, `each`, `when`, `project`), `one_of` / `any_of` slot groups, notes,
   `examples.shown` / `examples.held_out`. A sentence another template abstains on is claimed in the SAME
   section (shown or held-out), or `check` reports a leak.
   `python -c "from tmpl import catalog; catalog.load()"` checks the structural invariants.

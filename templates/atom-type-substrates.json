@@ -337,7 +337,7 @@
       ],
       "out": "Proposition",
       "opaque": false,
-      "gloss": "Intensity level of a property on an entity. Order: (Degree entity scale level); the level is a Level label (very, excessive) or (forKind class)."
+      "gloss": "Intensity level of a property on an entity. Order: (Degree entity scale level); the level is the degree word as written, declared Level (very, slightly, too, enough, almost), or (forKind class) for a comparison class. Whether the property's positive atom is asserted beside it is the parse's decision: an intensifier, a downtoner, too and enough keep it; almost, nearly, all_but and forKind do not."
     },
     "Despite": {
       "kind": "discourse",
@@ -449,6 +449,17 @@
       "out": "Proposition",
       "opaque": false,
       "gloss": "Subject of a stative predication — psych state or predicate-adjective state. A compound-action class symbol under the compound decomposition ((Patient use_crosswalk crosswalk)) is declared both Class and Event."
+    },
+    "Extent": {
+      "kind": "measure",
+      "arity": 2,
+      "arg_types": [
+        "Event",
+        "Level"
+      ],
+      "out": "Proposition",
+      "opaque": false,
+      "gloss": "How much an eventuality holds: a degree adverb on a verb, kept as written and declared Level (deeply, really, barely, sharply, a_lot). Order: (Extent event level). The event stays asserted; an approximator on a verb (almost fell) is not an Extent."
     },
     "FoldAll": {
       "kind": "computation",

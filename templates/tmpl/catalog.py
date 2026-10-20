@@ -12,7 +12,8 @@ Structural invariants checked here (content is reviewed by people, not checked h
 * every ``emits`` entry has an ``atom`` whose placeholders name a slot of the template (or
   ``@id`` when the template mints a symbol); ``if_filled`` / ``each`` name a slot; ``when``
   mentions only slots, their values and ``true`` / ``false``; ``project`` is a boolean;
-* ``one_of`` groups list two or more slots each; ``truth`` gives ``strength`` / ``confidence``
+* ``one_of`` (exactly one filled) and ``any_of`` (at least one filled) groups list two or more
+  slots each; ``truth`` gives ``strength`` / ``confidence``
   clause lists (numbers, or ``{slot, values}`` / ``{from, slot, values}``); a shape's ``stv`` is a
   pair of numbers; ``presupposed`` lists slots of the template;
 * examples carry a ``category`` and either ``instances`` or an ``expected`` abstain target.
@@ -44,6 +45,34 @@ def placeholders(atom: str) -> set[str]:
     return set(_PLACEHOLDER.findall(atom))
 
 
+def check_when(cond: str, slots: dict) -> list[str]:
+    """A ``when`` condition is clauses joined by ``and`` / ``or``, each ``[not] slot``,
+    ``slot == value`` or ``slot != value``: the value is one of an enum slot's values,
+    ``true`` / ``false`` for a bool slot, and any lowercase word for a lemma or string slot."""
+    problems = []
+    for part in cond.split(" or "):
+        for clause in part.split(" and "):
+            clause = clause.strip()
+            if clause.startswith("not "):
+                clause = clause[4:].strip()
+            op = "!=" if "!=" in clause else "==" if "==" in clause else None
+            if op is None:
+                if clause not in slots:
+                    problems.append(f"when mentions {clause!r}, not a slot")
+                continue
+            name, value = [x.strip() for x in clause.split(op, 1)]
+            spec = slots.get(name)
+            if spec is None:
+                problems.append(f"when mentions {name!r}, not a slot")
+            elif spec["type"] == "enum" and value not in [str(v) for v in spec.get("values") or []]:
+                problems.append(f"when compares {name} with {value!r}, not one of its values")
+            elif spec["type"] == "bool" and value not in ("true", "false"):
+                problems.append(f"when compares {name} with {value!r}, not true / false")
+            elif not re.fullmatch(r"[a-z_][a-z0-9_]*", value):
+                problems.append(f"when compares {name} with {value!r}, not a word")
+    return problems
+
+
 def check_template(t: dict, path: str) -> list[str]:
     problems = []
     name = os.path.splitext(os.path.basename(path))[0]
@@ -71,9 +100,10 @@ def check_template(t: dict, path: str) -> list[str]:
             problems.append(f"slot {sname}: bind must name a filler slot of the template")
         if spec.get("attaches") and spec["type"] != "filler":
             problems.append(f"slot {sname}: attaches applies to filler slots only")
-    for i, group in enumerate(t.get("one_of") or []):
-        if not isinstance(group, list) or len(group) < 2 or any(g not in slots for g in group):
-            problems.append(f"one_of[{i}]: must list two or more slots of the template")
+    for key in ("one_of", "any_of"):
+        for i, group in enumerate(t.get(key) or []):
+            if not isinstance(group, list) or len(group) < 2 or any(g not in slots for g in group):
+                problems.append(f"{key}[{i}]: must list two or more slots of the template")
     for s in t.get("presupposed") or []:
         if s not in slots:
             problems.append(f"presupposed: {s!r} is not a slot")
@@ -109,9 +139,7 @@ def check_template(t: dict, path: str) -> list[str]:
             if key in e and e[key] not in slots:
                 problems.append(f"emits[{i}]: {key} names unknown slot {e[key]}")
         if "when" in e:
-            for word in re.findall(r"[a-z_]+", e["when"]):
-                if word not in slots and word not in ("and", "or", "not", "true", "false") and word not in _enum_values(slots):
-                    problems.append(f"emits[{i}]: when mentions {word!r}, not a slot or a value")
+            problems += [f"emits[{i}]: {m}" for m in check_when(e["when"], slots)]
         if "project" in e and not isinstance(e["project"], bool):
             problems.append(f"emits[{i}]: project must be true or false")
         if "stv" in e and not (isinstance(e["stv"], list) and len(e["stv"]) == 2 and all(isinstance(x, (int, float)) for x in e["stv"])):

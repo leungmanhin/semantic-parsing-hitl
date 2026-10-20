@@ -1,0 +1,203 @@
+# Template: extent  (how much an event holds: "deeply distrusts", "barely moved", "fell sharply")
+#
+# A degree adverb on a verb says to what extent the event holds — how strongly a state is felt,
+# how much a change amounts to, how completely an action is done — and attaches to the clause's
+# event: (Extent event word), the adverb kept as written (deeply, really, barely, sharply, a_lot).
+# Like a manner, the attachment is part of the clause and travels with the event into a negation,
+# a modal or a rule. The event itself stays asserted (barely moved is moved, a little); an
+# approximator on a verb (almost fell) says the event did not happen and has no slot here. A
+# degree word on an adjective is a degree predication.
+
+id: extent
+family: attachment
+kind: attachment
+title: How much an event holds
+status: draft
+
+trigger:
+  construction: >
+    A degree adverb or phrase on a verb: an intensifier (deeply, really, greatly, strongly, much,
+    a lot, very much, completely, thoroughly, entirely), a downtoner or a minimizer (slightly, a
+    little, somewhat, barely, hardly, scarcely), or a magnitude adverb on a change (sharply,
+    steeply, considerably, marginally). The event is parsed with its own template; the extent
+    instance names that event and records the adverb as written (a phrase as one snake_case
+    symbol: a_lot, very_much). One instance per degree expression.
+  surface_forms:
+    - "<subject> <adverb> V …"                       # Yusra deeply distrusts Lamine
+    - "<clause> <adverb>"                            # the price fell sharply; likes the quilt a lot
+    - "<subject> V <object> <adverb>"               # Teodor cleaned the shed thoroughly
+  boundary:                   # looks like a degree on an event but is not one
+    - >-
+      a manner adverb — loudly, carefully, slowly, well: how, not how much; a manner
+    - >-
+      a frequency adverb — often, always, twice: how often; reported as unmapped (G02)
+    - >-
+      a degree word on an adjective — is very crooked, a very old spindle: a degree predication
+    - >-
+      an approximator on a verb — almost fell, nearly broke: the event did not happen; no slot
+      here; report the clause as unmapped
+    - >-
+      a degree word on a manner adverb — laughed very loudly: the manner is recorded, the degree
+      word reported (G02)
+    - >-
+      a measured amount of change — fell by three percent, rose two degrees: a measure, with no
+      slot here; report the phrase as unmapped
+    - >-
+      a comparative adverb — fell faster than the rent, works harder than Yusra: a comparison;
+      report the span as unmapped
+    - >-
+      a quantity as the object — ate a lot, said much: the object, not a degree on the event;
+      report the span as unmapped
+
+slots:
+  id:    {type: id, required: true, doc: "your label for the attachment (a1, a2 …)"}
+  event: {type: filler, class: Event, attaches: true, required: true,
+          doc: "the predication the degree attaches to: the id of the clause's event instance"}
+  level: {type: lemma, class: Level, required: true,
+          doc: "the degree adverb as written, lowercase (deeply, really, barely, sharply, slightly); a phrase as one snake_case symbol (a_lot, very_much)"}
+
+emits:
+  - atom: "(Extent {event} {level})"
+
+notes:
+  - >-
+    The adverb is kept as written and declared a Level, as a degree word on a property is: the
+    word is the record, and a consumer interprets its strength. A minimizer (barely, hardly)
+    does not weaken the event's own truth value in the parse.
+  - >-
+    An attachment has no symbol of its own: its atom is rendered wherever its event is rendered,
+    inside a negation, a modal or a rule over the clause.
+
+depends_on: []
+composes_with: [negation, modal, generic]
+
+examples:
+  shown:                     # rendered into the prompt
+    - category: positive
+      note: a magnitude adverb on a change
+      text: "The price fell sharply."
+      instances:
+        - {t: witness, id: x1, kind: price, definite: true}
+        - {t: change-of-state, id: c1, verb: fall, undergoer: "@x1", tense: past}
+        - {t: extent, id: a1, event: "@c1", level: sharply}
+      emitted:               # what the emitter produces (illustration; the emitter is the authority)
+        - "(Member sk_price_1 price)"
+        - "(Member sk_fall_1 fall)"
+        - "(Patient sk_fall_1 sk_price_1)"
+        - "(Past sk_fall_1)"
+        - "(Extent sk_fall_1 sharply)"
+      declarations:
+        - "(: fall Class)"
+        - "(: price Class)"
+        - "(: sharply Level)"
+        - "(: sk_fall_1 Event)"
+        - "(: sk_price_1 Entity)"
+    - category: positive
+      note: an intensifier on a state
+      text: "Teodor really likes the quilt."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: psych, id: p1, verb: like, experiencer: "@n1", stimulus: "@x1", tense: present}
+        - {t: extent, id: a1, event: "@p1", level: really}
+    - category: abstain
+      text: "Yusra laughed loudly."
+      expected: {abstain: true, template: manner}                     # how, not how much
+    - category: abstain
+      text: "The ladder is very crooked."
+      expected: {abstain: true, template: degree}                     # a degree word on an adjective
+
+  held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      note: a degree adverb before the verb
+      text: "Yusra deeply distrusts Lamine."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: psych, id: p1, verb: distrust, experiencer: "@n1", stimulus: "@n2", tense: present}
+        - {t: extent, id: a1, event: "@p1", level: deeply}
+    - category: positive
+      note: a minimizer — the event is still asserted
+      text: "Lamine barely moved."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: motion, id: m1, verb: move, mover: "@n1", tense: past}
+        - {t: extent, id: a1, event: "@m1", level: barely}
+    - category: positive
+      text: "Teodor thoroughly cleaned the shed."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, kind: shed, definite: true}
+        - {t: activity, id: v1, verb: clean, actor: "@n1", patient: "@x1", tense: past}
+        - {t: extent, id: a1, event: "@v1", level: thoroughly}
+    - category: positive
+      note: on a frighten-type state
+      text: "The audit greatly annoyed Yusra."
+      instances:
+        - {t: witness, id: x1, kind: audit, definite: true}
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: psych, id: p1, verb: annoy, experiencer: "@n1", stimulus: "@x1", tense: past}
+        - {t: extent, id: a1, event: "@p1", level: greatly}
+    - category: positive
+      note: a phrase as one symbol
+      text: "Lamine likes the quilt a lot."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: psych, id: p1, verb: like, experiencer: "@n1", stimulus: "@x1", tense: present}
+        - {t: extent, id: a1, event: "@p1", level: a_lot}
+    - category: positive
+      note: a downtoner on a change
+      text: "The price rose slightly."
+      instances:
+        - {t: witness, id: x1, kind: price, definite: true}
+        - {t: change-of-state, id: c1, verb: rise, undergoer: "@x1", tense: past}
+        - {t: extent, id: a1, event: "@c1", level: slightly}
+    - category: scoped
+      note: under clausal negation — the degree is denied with the state
+      text: "Yusra does not deeply distrust Lamine."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: psych, id: p1, verb: distrust, experiencer: "@n1", stimulus: "@n2", tense: present}
+        - {t: extent, id: a1, event: "@p1", level: deeply}
+        - {t: negation, id: s1, over: ["@p1"]}
+    - category: scoped
+      note: under a modal
+      text: "The price might fall sharply."
+      instances:
+        - {t: witness, id: x1, kind: price, definite: true}
+        - {t: change-of-state, id: c1, verb: fall, undergoer: "@x1", tense: present}
+        - {t: extent, id: a1, event: "@c1", level: sharply}
+        - {t: modal, id: s1, over: ["@c1"], head: Might, surface: might}
+    - category: scoped
+      note: inside a generalization
+      text: "Every ferret hardly moved."
+      instances:
+        - {t: range, id: q1, kind: ferret, quantifier: every, predicate: move}
+        - {t: motion, id: m1, verb: move, mover: "@q1", tense: past}
+        - {t: extent, id: a1, event: "@m1", level: hardly}
+        - {t: generic, id: r1, ranges: ["@q1"], over: ["@m1"]}
+    - category: optional
+      note: much before the verb
+      text: "Lamine much prefers the quilt."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: psych, id: p1, verb: prefer, experiencer: "@n1", stimulus: "@x1", tense: present}
+        - {t: extent, id: a1, event: "@p1", level: much}
+    - category: abstain
+      text: "Lamine waited patiently."
+      expected: {abstain: true, template: manner}                     # how, not how much
+    - category: abstain
+      text: "Lamine often laughed."
+      expected: {abstain: true, gap: G02, span: "often"}              # a frequency adverb
+    - category: abstain
+      text: "Teodor is extremely tired."
+      expected: {abstain: true, template: degree}                     # a degree word on an adjective
+    - category: abstain
+      text: "The ladder almost fell."
+      expected: {abstain: true, gap: G00, span: "almost fell"}        # an approximator on a verb: the event did not happen
+    - category: abstain
+      text: "Yusra laughed very loudly."
+      expected: {abstain: true, gap: G02, span: "very"}               # a degree word on a manner adverb

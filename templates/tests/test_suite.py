@@ -235,15 +235,15 @@ class ScoreTests(unittest.TestCase):
         self.assertTrue(any(r.startswith("graph lints: dangling-referent") for r in row["reasons"]))
 
     def test_expected_unmapped_on_a_firing_case(self):
-        c = case("psych", "held_out", "Yusra deeply distrusts Lamine.")
-        row = self.score(c, reply(c["instances"], unmapped=[{"span": "deeply", "code": "G02"}]))
+        c = case("motion", "held_out", "Teodor ran across the field.")
+        row = self.score(c, reply(c["instances"], unmapped=[{"span": "across the field", "code": "G00"}]))
         self.assertTrue(row["pass"], row["reasons"])
         row = self.score(c, reply(c["instances"]))
         self.assertFalse(row["pass"])
         self.assertIn("unmapped spans differ from the expected ones", row["reasons"])
-        row = self.score(c, reply(c["instances"], unmapped=[{"span": "deeply", "code": "G00"}]))
+        row = self.score(c, reply(c["instances"], unmapped=[{"span": "across the field", "code": "G02"}]))
         self.assertFalse(row["pass"])
-        row = self.score(c, reply(c["instances"], unmapped=[{"span": "deeply", "code": "G02"}, {"span": "Lamine", "code": "G00"}]))
+        row = self.score(c, reply(c["instances"], unmapped=[{"span": "across the field", "code": "G00"}, {"span": "Teodor", "code": "G00"}]))
         self.assertFalse(row["pass"])
 
     def test_null_slots_are_stripped_and_counted(self):

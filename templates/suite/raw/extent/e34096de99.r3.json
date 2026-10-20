@@ -1,0 +1,99 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "036261b67cffbb04273fa6353b6fe9d8a5bd7044375e91f3934b29dcd44ae2e8",
+  "item": {
+    "id": "se34096de99",
+    "text": "Every ferret hardly moved."
+  },
+  "usage": {
+    "input": 35891,
+    "output": 151,
+    "thinking": null,
+    "total": 36042,
+    "cached": 33842,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 35891,
+    "candidatesTokenCount": 151,
+    "totalTokenCount": 36042,
+    "cachedContentTokenCount": 33842,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 35891
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 33842
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 151
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"se34096de99\", \"instances\": [{\"t\": \"range\", \"id\": \"q1\", \"kind\": \"ferret\", \"quantifier\": \"every\", \"predicate\": \"move\"}, {\"t\": \"motion\", \"id\": \"e1\", \"verb\": \"move\", \"mover\": \"@q1\", \"tense\": \"past\"}, {\"t\": \"extent\", \"id\": \"a1\", \"event\": \"@e1\", \"level\": \"hardly\"}, {\"t\": \"generic\", \"id\": \"r1\", \"ranges\": [\"@q1\"], \"over\": [\"@e1\"]}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "se34096de99",
+    "instances": [
+      {
+        "t": "range",
+        "id": "q1",
+        "kind": "ferret",
+        "quantifier": "every",
+        "predicate": "move"
+      },
+      {
+        "t": "motion",
+        "id": "e1",
+        "verb": "move",
+        "mover": "@q1",
+        "tense": "past"
+      },
+      {
+        "t": "extent",
+        "id": "a1",
+        "event": "@e1",
+        "level": "hardly"
+      },
+      {
+        "t": "generic",
+        "id": "r1",
+        "ranges": [
+          "@q1"
+        ],
+        "over": [
+          "@e1"
+        ]
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "107542897d74ba7ca217f1d5c88d49a7531f59530bec65a2f2b7b7200334e22e",
+  "run": 3,
+  "case": {
+    "template": "extent",
+    "section": "held_out",
+    "index": 8,
+    "category": "scoped",
+    "text": "Every ferret hardly moved.",
+    "key": "e34096de99"
+  }
+}

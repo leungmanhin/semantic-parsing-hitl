@@ -73,6 +73,7 @@
 (: EvenThough (-> Event Event Proposition))
 (: Every (-> Event Number Class Proposition))
 (: Experiencer (-> Event Entity Proposition))
+(: Extent (-> Event Level Proposition))
 (: FoldAll (-> Atom Atom Atom Atom Atom Atom Proposition))
 (: Forbid (-> Proposition Proposition))
 (: Fraction (-> Number Number Level))

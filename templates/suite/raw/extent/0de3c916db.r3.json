@@ -1,0 +1,94 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "036261b67cffbb04273fa6353b6fe9d8a5bd7044375e91f3934b29dcd44ae2e8",
+  "item": {
+    "id": "s0de3c916db",
+    "text": "The audit greatly annoyed Yusra."
+  },
+  "usage": {
+    "input": 35893,
+    "output": 147,
+    "thinking": null,
+    "total": 36040,
+    "cached": 33844,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 35893,
+    "candidatesTokenCount": 147,
+    "totalTokenCount": 36040,
+    "cachedContentTokenCount": 33844,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 35893
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 33844
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 147
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s0de3c916db\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"audit\", \"definite\": true}, {\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"psych\", \"id\": \"e1\", \"verb\": \"annoy\", \"experiencer\": \"@n1\", \"stimulus\": \"@x1\", \"tense\": \"past\"}, {\"t\": \"extent\", \"id\": \"a1\", \"event\": \"@e1\", \"level\": \"greatly\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s0de3c916db",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "audit",
+        "definite": true
+      },
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra"
+      },
+      {
+        "t": "psych",
+        "id": "e1",
+        "verb": "annoy",
+        "experiencer": "@n1",
+        "stimulus": "@x1",
+        "tense": "past"
+      },
+      {
+        "t": "extent",
+        "id": "a1",
+        "event": "@e1",
+        "level": "greatly"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "107542897d74ba7ca217f1d5c88d49a7531f59530bec65a2f2b7b7200334e22e",
+  "run": 3,
+  "case": {
+    "template": "extent",
+    "section": "held_out",
+    "index": 3,
+    "category": "positive",
+    "text": "The audit greatly annoyed Yusra.",
+    "key": "0de3c916db"
+  }
+}

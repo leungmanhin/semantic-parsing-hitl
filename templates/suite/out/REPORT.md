@@ -1,13 +1,14 @@
 # Suite report
 
-prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 11f4b54bfb570c51) · type check: ran
+prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 107542897d74ba7c) · type check: ran
 
 ## Catalog checks
 
-382 examples checked; findings: 0
+426 examples checked; findings: 0
 
 Sentences two templates claim with the same expected atoms (composition, fine):
 - "Lamine danced with Yusra." — activity, adjunct
+- "Yusra deeply distrusts Lamine." — extent, psych
 
 ## acquisition — held_out
 
@@ -259,6 +260,37 @@ Abstain cases (what the parser did, per run):
 
 Mismatches: none
 
+## degree — held_out
+
+18 cases, 54 records (ok 54; stale prompt 0) · gemini-4-argon effort=low
+
+| category | cases | runs | fired | exact | pass |
+|---|---|---|---|---|---|
+| positive | 7 | 21 | 21 | 21 | 21 |
+| contrast | 1 | 3 | 3 | 3 | 3 |
+| scoped | 2 | 6 | 6 | 6 | 6 |
+| optional | 2 | 6 | 6 | 6 | 6 |
+| abstain | 6 | 18 | 0 (false fires) | – | 18 |
+
+- selection: fire cases fired 36/36 · abstain cases false fires 0/18
+- fill: exact 36/36 among fires
+- stability: pairwise agreement 0.963 (18 cases, 54 pairs), unanimous 17/18
+- type check: 54/54 emitted parses type
+- graph lints: none
+- usage: 54 calls · in 1,938,240 · cached 1,788,403 (92% of the input) · out 5,781 · thinking 0 (calls with thought tokens: 0)
+- issues reported by the parser: 1
+  - P00 · copular / degree · r2 "Yusra is the tallest weaver.": The instructions say to report 'the tallest weaver' as unmapped under degree, while copular forbids a definite predicate ('is the locksmith') unless licensed by the superlative, leaving it unclear whether the entailed kind predication ('weaver') should be kept as a copular instance or the whole predicate reported as unmapped.
+
+Abstain cases (what the parser did, per run):
+- "The ladder is crooked." (target `copular`): r1 target_fired [copular×1, witness×1] · r2 target_fired [copular×1, witness×1] · r3 target_fired [copular×1, witness×1]
+- "Teodor added too much salt." (gap G00): r1 gap_reported [activity×1, named-entity×1; unmapped G00] · r2 gap_reported [activity×1, named-entity×1; unmapped G00] · r3 gap_reported [activity×1, named-entity×1; unmapped G00]
+- "Lamine barely moved." (target `extent`): r1 target_fired [extent×1, motion×1, named-entity×1] · r2 target_fired [extent×1, motion×1, named-entity×1] · r3 target_fired [extent×1, motion×1, named-entity×1]
+- "Ferrets are very curious." (gap G02): r1 gap_reported [kind-statement×1; unmapped G02] · r2 gap_reported [kind-statement×1; unmapped G02] · r3 gap_reported [kind-statement×1; unmapped G02]
+- "Teodor is taller than Yusra." (gap G00): r1 gap_reported [named-entity×2; unmapped G00] · r2 gap_reported [named-entity×2; unmapped G00] · r3 gap_reported [named-entity×2; unmapped G00]
+- "Yusra is the tallest weaver." (gap G00): r1 gap_reported [copular×1, named-entity×1; unmapped G00] · r2 gap_reported [copular×1, named-entity×1; unmapped G00] · r3 gap_reported [named-entity×1; unmapped G00]
+
+Mismatches: none
+
 ## distribution — held_out
 
 6 cases, 18 records (ok 18; stale prompt 18) · gemini-4-argon effort=low
@@ -280,6 +312,34 @@ Mismatches: none
 Abstain cases (what the parser did, per run):
 - "The ferrets surrounded the barn." (target `group`): r1 target_fired [activity×1, group×1, witness×1] · r2 target_fired [activity×1, group×1, witness×1] · r3 target_fired [activity×1, group×1, witness×1]
 - "Herons are patient." (target `kind-statement`): r1 target_fired [kind-statement×1] · r2 target_fired [kind-statement×1] · r3 target_fired [kind-statement×1]
+
+Mismatches: none
+
+## extent — held_out
+
+15 cases, 45 records (ok 45; stale prompt 0) · gemini-4-argon effort=low
+
+| category | cases | runs | fired | exact | pass |
+|---|---|---|---|---|---|
+| positive | 6 | 18 | 18 | 18 | 18 |
+| scoped | 3 | 9 | 9 | 9 | 9 |
+| optional | 1 | 3 | 3 | 3 | 3 |
+| abstain | 5 | 15 | 0 (false fires) | – | 15 |
+
+- selection: fire cases fired 30/30 · abstain cases false fires 0/15
+- fill: exact 30/30 among fires
+- stability: pairwise agreement 1.0 (15 cases, 45 pairs), unanimous 15/15
+- type check: 42/42 emitted parses type
+- graph lints: none
+- usage: 45 calls · in 1,615,176 · cached 1,489,113 (92% of the input) · out 6,088 · thinking 0 (calls with thought tokens: 0)
+- issues reported by the parser: none
+
+Abstain cases (what the parser did, per run):
+- "Yusra laughed very loudly." (gap G02): r1 gap_reported [activity×1, manner×1, named-entity×1; unmapped G02] · r2 gap_reported [activity×1, manner×1, named-entity×1; unmapped G02] · r3 gap_reported [activity×1, manner×1, named-entity×1; unmapped G02]
+- "The ladder almost fell." (gap G00): r1 gap_reported [nothing fired; unmapped G00] · r2 gap_reported [nothing fired; unmapped G00] · r3 gap_reported [nothing fired; unmapped G00]
+- "Lamine waited patiently." (target `manner`): r1 target_fired [activity×1, manner×1, named-entity×1] · r2 target_fired [activity×1, manner×1, named-entity×1] · r3 target_fired [activity×1, manner×1, named-entity×1]
+- "Lamine often laughed." (gap G02): r1 gap_reported [activity×1, named-entity×1; unmapped G02] · r2 gap_reported [activity×1, named-entity×1; unmapped G02] · r3 gap_reported [activity×1, named-entity×1; unmapped G02]
+- "Teodor is extremely tired." (target `degree`): r1 target_fired [degree×1, named-entity×1] · r2 target_fired [degree×1, named-entity×1] · r3 target_fired [degree×1, named-entity×1]
 
 Mismatches: none
 
@@ -434,12 +494,12 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (13 cases, 39 pairs), unanimous 13/13
 - type check: 39/39 emitted parses type
 - graph lints: none
-- usage: 39 calls · in 1,306,665 · cached 1,226,648 (94% of the input) · out 5,060 · thinking 0 (calls with thought tokens: 0)
+- usage: 39 calls · in 1,313,835 · cached 1,233,815 (94% of the input) · out 5,063 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
 Abstain cases (what the parser did, per run):
 - "Teodor arrived in 2019." (target `time`): r1 target_fired [motion×1, named-entity×1, time×1] · r2 target_fired [motion×1, named-entity×1, time×1] · r3 target_fired [motion×1, named-entity×1, time×1]
-- "Yusra deeply distrusts Lamine." (target `psych`): r1 target_fired [named-entity×2, psych×1; unmapped G02] · r2 target_fired [named-entity×2, psych×1; unmapped G02] · r3 target_fired [named-entity×2, psych×1; unmapped G02]
+- "Yusra deeply distrusts Lamine." (target `extent`): r1 target_fired [extent×1, named-entity×2, psych×1] · r2 target_fired [extent×1, named-entity×2, psych×1] · r3 target_fired [extent×1, named-entity×2, psych×1]
 - "Yusra probably left." (gap G00): r1 gap_reported [named-entity×1; unmapped G00] · r2 gap_reported [named-entity×1; unmapped G00] · r3 gap_reported [named-entity×1; unmapped G00]
 - "Lamine often laughed." (gap G02): r1 gap_reported [activity×1, named-entity×1; unmapped G02] · r2 gap_reported [activity×1, named-entity×1; unmapped G02] · r3 gap_reported [activity×1, named-entity×1; unmapped G02]
 
@@ -548,7 +608,7 @@ Mismatches: none
 
 ## psych — held_out
 
-13 cases, 39 records (ok 39; stale prompt 39) · gemini-4-argon effort=low
+13 cases, 39 records (ok 39; stale prompt 36) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -563,7 +623,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (13 cases, 39 pairs), unanimous 13/13
 - type check: 39/39 emitted parses type
 - graph lints: none
-- usage: 39 calls · in 396,954 · out 4,822 · thinking 0 (calls with thought tokens: 0)
+- usage: 39 calls · in 475,698 · cached 101,538 (21% of the input) · out 4,825 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
 Abstain cases (what the parser did, per run):

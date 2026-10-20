@@ -1,0 +1,94 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "036261b67cffbb04273fa6353b6fe9d8a5bd7044375e91f3934b29dcd44ae2e8",
+  "item": {
+    "id": "se20ecbb796",
+    "text": "Yusra is the tallest weaver."
+  },
+  "usage": {
+    "input": 35892,
+    "output": 206,
+    "thinking": null,
+    "total": 36098,
+    "cached": 33843,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 35892,
+    "candidatesTokenCount": 206,
+    "totalTokenCount": 36098,
+    "cachedContentTokenCount": 33843,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 35892
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 33843
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 206
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"se20ecbb796\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@n1\", \"predicate\": \"weaver\", \"form\": \"noun\", \"tense\": \"present\"}], \"unmapped\": [{\"span\": \"the tallest\", \"code\": \"G00\", \"construction\": \"A superlative adjective in a predicate noun phrase.\"}], \"issues\": [{\"code\": \"P00\", \"where\": \"copular / degree\", \"text\": \"The instructions say to report 'the tallest weaver' as unmapped under degree, while copular forbids a definite predicate ('is the locksmith') unless licensed by the superlative, leaving it unclear whether the entailed kind predication ('weaver') should be kept as a copular instance or the whole predicate reported as unmapped.\"}]}",
+  "response": {
+    "id": "se20ecbb796",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra"
+      },
+      {
+        "t": "copular",
+        "id": "c1",
+        "subject": "@n1",
+        "predicate": "weaver",
+        "form": "noun",
+        "tense": "present"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "the tallest",
+        "code": "G00",
+        "construction": "A superlative adjective in a predicate noun phrase."
+      }
+    ],
+    "issues": [
+      {
+        "code": "P00",
+        "where": "copular / degree",
+        "text": "The instructions say to report 'the tallest weaver' as unmapped under degree, while copular forbids a definite predicate ('is the locksmith') unless licensed by the superlative, leaving it unclear whether the entailed kind predication ('weaver') should be kept as a copular instance or the whole predicate reported as unmapped."
+      }
+    ]
+  },
+  "prompt_body_sha256": "107542897d74ba7ca217f1d5c88d49a7531f59530bec65a2f2b7b7200334e22e",
+  "run": 2,
+  "case": {
+    "template": "degree",
+    "section": "held_out",
+    "index": 16,
+    "category": "abstain",
+    "text": "Yusra is the tallest weaver.",
+    "key": "e20ecbb796"
+  }
+}

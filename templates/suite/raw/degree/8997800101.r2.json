@@ -1,0 +1,84 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "036261b67cffbb04273fa6353b6fe9d8a5bd7044375e91f3934b29dcd44ae2e8",
+  "item": {
+    "id": "s8997800101",
+    "text": "Ferrets are very curious."
+  },
+  "usage": {
+    "input": 35894,
+    "output": 111,
+    "thinking": null,
+    "total": 36005,
+    "cached": 33845,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 35894,
+    "candidatesTokenCount": 111,
+    "totalTokenCount": 36005,
+    "cachedContentTokenCount": 33845,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 35894
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 33845
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 111
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s8997800101\", \"instances\": [{\"t\": \"kind-statement\", \"id\": \"k1\", \"subject\": \"ferret\", \"predicate\": \"curious\", \"form\": \"adjective\", \"definitional\": false, \"tense\": \"present\"}], \"unmapped\": [{\"span\": \"very\", \"code\": \"G02\", \"construction\": \"A degree word modifying the predicate of a kind-level statement.\"}], \"issues\": []}",
+  "response": {
+    "id": "s8997800101",
+    "instances": [
+      {
+        "t": "kind-statement",
+        "id": "k1",
+        "subject": "ferret",
+        "predicate": "curious",
+        "form": "adjective",
+        "definitional": false,
+        "tense": "present"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "very",
+        "code": "G02",
+        "construction": "A degree word modifying the predicate of a kind-level statement."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "107542897d74ba7ca217f1d5c88d49a7531f59530bec65a2f2b7b7200334e22e",
+  "run": 2,
+  "case": {
+    "template": "degree",
+    "section": "held_out",
+    "index": 17,
+    "category": "abstain",
+    "text": "Ferrets are very curious.",
+    "key": "8997800101"
+  }
+}

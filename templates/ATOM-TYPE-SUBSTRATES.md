@@ -2,7 +2,7 @@
 
 Generated from `templates/atom-type-substrates.json` (schema `atom-type-substrates/1`) by `templates/tmpl/gen_substrate.py`, together with `templates/generated/atom-types.metta`. Do not edit by hand; regenerate with `cd templates && python -m tmpl.gen_substrate`.
 
-129 heads in 13 kinds (7 proposed; 129 with a reviewed type declaration so far). `type-def` is the PeTTa declaration emitted for the head; `?` as the output type means the head is not yet reviewed and is absent from the `.metta` file; `%Undefined%` marks a position the head takes but the JSON does not type.
+130 heads in 13 kinds (7 proposed; 130 with a reviewed type declaration so far). `type-def` is the PeTTa declaration emitted for the head; `?` as the output type means the head is not yet reviewed and is absent from the `.metta` file; `%Undefined%` marks a position the head takes but the JSON does not type.
 
 Every atom is carried as a statement (: <proof-name> <atom> <tv>), tv = (STV strength confidence) or another engine truth value. The carrier is not an atom kind: ':' is never type-declared (it is also PeTTa's type-declaration head) and the truth value is declared by the engine, not by this substrate.
 
@@ -590,7 +590,7 @@ type-def: (: SubsetOf (-> Entity Entity Proposition))
 gloss: A quantified subset group of a definite superset group. Order: (SubsetOf subset-group superset-group); both are group individuals.
 
 
-## measure (19)
+## measure (20)
 
 head: AmongMost
 kind: measure
@@ -624,7 +624,14 @@ head: Degree
 kind: measure
 arity: 3
 type-def: (: Degree (-> Instance Class Level Proposition))
-gloss: Intensity level of a property on an entity. Order: (Degree entity scale level); the level is a Level label (very, excessive) or (forKind class).
+gloss: Intensity level of a property on an entity. Order: (Degree entity scale level); the level is the degree word as written, declared Level (very, slightly, too, enough, almost), or (forKind class) for a comparison class. Whether the property's positive atom is asserted beside it is the parse's decision: an intensifier, a downtoner, too and enough keep it; almost, nearly, all_but and forKind do not.
+
+
+head: Extent
+kind: measure
+arity: 2
+type-def: (: Extent (-> Event Level Proposition))
+gloss: How much an eventuality holds: a degree adverb on a verb, kept as written and declared Level (deeply, really, barely, sharply, a_lot). Order: (Extent event level). The event stays asserted; an approximator on a verb (almost fell) is not an Extent.
 
 
 head: Fraction

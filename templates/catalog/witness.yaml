@@ -37,7 +37,8 @@ slots:
   id:       {type: id, required: true}
   kind:     {type: lemma, class: Class, required: true, doc: "the head noun's lemma"}
   definite: {type: bool, required: false, doc: "true for the / this / that; absent for a / an and for a possessed phrase (the possessor presupposes it)"}
-  props:    {type: list, class: Class, required: false, doc: "adjectival properties stated in the phrase"}
+  props:    {type: list, class: Class, required: false,
+             doc: "adjectival properties stated in the phrase; a property with a degree word (a very old spindle) is a degree instance beside the witness, not a property here"}
   possessor: {type: filler, class: Entity, required: false,
               doc: "the possessor of a possessive phrase: Yusra's quilt, the quilt of Yusra, her quilt; a referent id (for a possessive pronoun, the id of its mention instance), or a bare lemma for a kind-level possessor"}
   eventive: {type: bool, required: false,

@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 c9f086e99a979ad8 · 29 templates
+catalog sha256 0e7f52532262ceb7 · 31 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -52,7 +52,7 @@ fences.
 - Every instance carries an `id`: a short lowercase label you choose, unique within the item.
   Suggested prefixes: `n` named individual, `x` witness, `g` group, `e` event, `s` scope
   operator (negation, modal), `c` copular predication, `l` location, `q` quantified range, `r`
-  rule, `d` comparison, `m` measure, `t` time (n1, x1, e1, s1 …).
+  rule, `d` comparison or degree, `m` measure, `t` time (n1, x1, e1, s1 …).
 - A slot that points to another instance holds `"@<id>"`, for example `"Agent": "@n1"`.
 - The id `now` is reserved for the text's REFERENCE TIME (the moment the text speaks from). You
   never write its instance; a deictic time (yesterday, tomorrow, last week) refers to it as its
@@ -125,8 +125,7 @@ part, keep the instances the templates license and report just that part: an add
 bound, duration, place, manner, amount or tag leaves the event itself true ("was demolished
 before 1960" still says it was demolished). When the rest would NOT follow without the unmapped
 part, leave the whole claim out and report the whole clause: a condition ("brittle when cold"),
-a hedge or approximator ("almost full"), a comparison class ("tall for a gymnast"), a proportion
-or partitive ("12.5% of the applicants").
+a hedge ("supposedly full"), a proportion or partitive ("12.5% of the applicants").
 
 Referents inside an unmapped span: a NAME still gets its instance (a name is rigid, the same
 individual wherever it appears in the text), but a common-noun phrase or a pronoun does not. A
@@ -139,7 +138,8 @@ Codes:
 - G00: anything no template here covers and no other code names
 - G01: a comparative with no stated standard ('a sturdier bracket', 'prices ended lower')
 - G02: an adverb with no slot: sequence (initially, eventually, finally), scope or domain
-  (nationally, locally), degree on a verb (sharply, slightly), frequency (often, always, twice)
+  (nationally, locally), frequency (often, always, twice), a degree word on a manner adverb or
+  on a kind-level statement (laughed very loudly; ferrets are very curious)
 - G03: a post-nominal tag on a name (a party or district tag, a ticker, a bracketed code)
 - G04: an irrealis relative clause or a lone would-have consequent ('the bridge that would have
   collapsed')
@@ -404,7 +404,9 @@ Slots:
 - `kind` (required; a lemma): the head noun's lemma.
 - `definite` (optional; true / false): true for the / this / that; absent for a / an and for a
   possessed phrase (the possessor presupposes it).
-- `props` (optional; a list of lemmas): adjectival properties stated in the phrase.
+- `props` (optional; a list of lemmas): adjectival properties stated in the phrase; a property
+  with a degree word (a very old spindle) is a degree instance beside the witness, not a
+  property here.
 - `possessor` (optional; "@id" of a referent instance, or a bare lemma for a non-specific
   filler): the possessor of a possessive phrase: Yusra's quilt, the quilt of Yusra, her quilt; a
   referent id (for a possessive pronoun, the id of its mention instance), or a bare lemma for a
@@ -1018,6 +1020,8 @@ Not this template:
 - a non-intersective modifier in the predicate — a former weaver, an alleged thief: the
   adjective does not hold of the individual on its own
 - "there is / there are" — there is a thermos: an existential, which is the referent alone
+- an adjective with a degree word — is very crooked, was almost full, is tall for a weaver: a
+  degree predication, which decides itself whether the property is asserted
 
 Slots:
 
@@ -1063,6 +1067,8 @@ The program renders these instances as:
 Not this template. TEXT: Ferrets are mustelids. — use `kind-statement`.
 
 Not this template. TEXT: Teodor became a locksmith. — use `change-of-state`.
+
+Not this template. TEXT: The thermos was almost full. — use `degree`.
 
 ### creation — Something comes into being through an action
 
@@ -1183,6 +1189,107 @@ Not this template. TEXT: Lamine made a decision. — report it as unmapped: {"sp
 decision", "code": "G00"}.
 
 Not this template. TEXT: Yusra broke the ladder. — use `change-of-state`.
+
+### degree — A property held to a degree
+
+When: A gradable adjective with a degree expression, predicated of a referent by "be" (the
+ladder is very crooked, the thermos was almost full, Yusra is tall for a weaver) or placed
+inside the referent's noun phrase (a very old spindle). The degree expression is an intensifier
+or a downtoner (very, extremely, really, quite, rather, fairly, somewhat, slightly, a bit, a
+little, so), too or enough, an approximator (almost, nearly, all but), or a comparison class
+(ADJ for a N). One instance per graded property; the instance stands in place of the copular
+predication or the witness property that the adjective would otherwise be.
+
+Forms:
+- <bearer> is <degree word> <ADJ>
+- <bearer> is too <ADJ> / <ADJ> enough
+- <bearer> is almost / nearly <ADJ>
+- <bearer> is <ADJ> for a <N>
+- a <degree word> <ADJ> <N>
+
+Not this template:
+- a plain adjective — is crooked, an old spindle: a copular predication or a witness property,
+  no degree
+- a degree adverb on a verb — deeply distrusts, barely moved, fell sharply: an extent on the
+  event
+- a comparative or a superlative — taller than Yusra, the tallest weaver, as tall as Teodor: a
+  comparison, with no template here; report the span as unmapped — for a superlative the whole
+  definite predicate (the tallest weaver), which is no plain kind predication either
+- a degree on a quantity — too much salt, enough water, a lot of ferrets: no slot here; report
+  the span as unmapped
+- a kind as the bearer — ferrets are very curious: a kind statement; the degree word is reported
+  as unmapped (G02)
+- a degree word on a manner adverb — laughed very loudly: the manner is recorded, the degree
+  word reported (G02)
+- an adjective with a complement — too fond of Yusra, very afraid of the ferret: the complement
+  is part of the predication; report the whole predicate as unmapped
+- the consequence of too, enough or so — too young to vote, so tired that she slept: the degree
+  is recorded; the infinitive or the that-clause is reported as unmapped
+
+Slots:
+
+- `t` (required): "degree"
+- `id` (required; your label for this instance): your label for the predication (d1, d2 …).
+- `bearer` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
+  the referent the property is graded on: the subject of the copular clause, or the witness
+  whose phrase holds the adjective.
+- `scale` (required; a lemma): the adjective, lemmatized (crooked, full, tall).
+- `level` (optional; a lemma): the degree word as written, lowercase (very, extremely, slightly,
+  too, enough, almost, nearly, so); a multi-word expression as one snake_case symbol (a_bit,
+  a_little, all_but, far_too).
+- `for_kind` (optional; a lemma): the comparison class of "ADJ for a N", lemmatized to the
+  singular (tall for a weaver → weaver).
+- `tense` (optional; one of: past, present, future): the clause's tense for a predicative use
+  (is / was / will be very crooked); omit it for a property graded inside a noun phrase (a very
+  old spindle), which has no tense.
+- At least one of `level`, `for_kind` is filled.
+
+Example (an intensifier — the property stays asserted, the degree beside it). TEXT: The ladder is very crooked.
+
+Instances:
+
+    [
+      {"t": "witness", "id": "x1", "kind": "ladder", "definite": true},
+      {"t": "degree", "id": "d1", "bearer": "@x1", "scale": "crooked", "level": "very", "tense": "present"}
+    ]
+
+The program renders these instances as:
+
+    (Member sk_ladder_1 ladder)
+    (Member sk_ladder_1 crooked)
+    (Degree sk_ladder_1 crooked very)
+
+Example (an approximator — the property is not asserted, only its degree). TEXT: The thermos was almost full.
+
+Instances:
+
+    [
+      {"t": "witness", "id": "x1", "kind": "thermos", "definite": true},
+      {"t": "degree", "id": "d1", "bearer": "@x1", "scale": "full", "level": "almost", "tense": "past"}
+    ]
+
+The program renders these instances as:
+
+    (Member sk_thermos_1 thermos)
+    (Past (Degree sk_thermos_1 full almost))
+
+Example (a comparison class — relative to the kind's norm, no positive). TEXT: Yusra is tall for a weaver.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Yusra"},
+      {"t": "degree", "id": "d1", "bearer": "@n1", "scale": "tall", "for_kind": "weaver", "tense": "present"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_yusra_1 "Yusra")
+    (Degree sk_yusra_1 tall (forKind weaver))
+
+Not this template. TEXT: The audit was difficult. — use `copular`.
+
+Not this template. TEXT: The price fell sharply. — use `extent`.
 
 ### kind-statement — A kind is a kind or has a property
 
@@ -1667,8 +1774,8 @@ Not this template:
   with a property, not a verb of this class
 - perception — saw the ferret, heard the news: perceiving something, not feeling something about
   it
-- a degree adverb on the verb (deeply distrusts, really likes): the state is parsed; the adverb
-  has no slot and is reported as unmapped — a manner adverb is a manner attachment
+- a degree adverb on the verb (deeply distrusts, really likes): the state is parsed and the
+  adverb is an extent attachment on it — a manner adverb is a manner attachment
 
 Slots:
 
@@ -2033,6 +2140,86 @@ Not this template. TEXT: Yusra laughed in the barn. — use `location`.
 
 Not this template. TEXT: Teodor read the letter with care. — use `manner`.
 
+### extent — How much an event holds
+
+When: A degree adverb or phrase on a verb: an intensifier (deeply, really, greatly, strongly,
+much, a lot, very much, completely, thoroughly, entirely), a downtoner or a minimizer (slightly,
+a little, somewhat, barely, hardly, scarcely), or a magnitude adverb on a change (sharply,
+steeply, considerably, marginally). The event is parsed with its own template; the extent
+instance names that event and records the adverb as written (a phrase as one snake_case symbol:
+a_lot, very_much). One instance per degree expression.
+
+Forms:
+- <subject> <adverb> V …
+- <clause> <adverb>
+- <subject> V <object> <adverb>
+
+Not this template:
+- a manner adverb — loudly, carefully, slowly, well: how, not how much; a manner
+- a frequency adverb — often, always, twice: how often; reported as unmapped (G02)
+- a degree word on an adjective — is very crooked, a very old spindle: a degree predication
+- an approximator on a verb — almost fell, nearly broke: the event did not happen; no slot here;
+  report the clause as unmapped
+- a degree word on a manner adverb — laughed very loudly: the manner is recorded, the degree
+  word reported (G02)
+- a measured amount of change — fell by three percent, rose two degrees: a measure, with no slot
+  here; report the phrase as unmapped
+- a comparative adverb — fell faster than the rent, works harder than Yusra: a comparison;
+  report the span as unmapped
+- a quantity as the object — ate a lot, said much: the object, not a degree on the event; report
+  the span as unmapped
+
+Slots:
+
+- `t` (required): "extent"
+- `id` (required; your label for this instance): your label for the attachment (a1, a2 …).
+- `event` (required; "@id" of the predication instance this attaches to): the predication the
+  degree attaches to: the id of the clause's event instance.
+- `level` (required; a lemma): the degree adverb as written, lowercase (deeply, really, barely,
+  sharply, slightly); a phrase as one snake_case symbol (a_lot, very_much).
+
+Example (a magnitude adverb on a change). TEXT: The price fell sharply.
+
+Instances:
+
+    [
+      {"t": "witness", "id": "x1", "kind": "price", "definite": true},
+      {"t": "change-of-state", "id": "c1", "verb": "fall", "undergoer": "@x1", "tense": "past"},
+      {"t": "extent", "id": "a1", "event": "@c1", "level": "sharply"}
+    ]
+
+The program renders these instances as:
+
+    (Member sk_price_1 price)
+    (Member sk_fall_1 fall)
+    (Patient sk_fall_1 sk_price_1)
+    (Past sk_fall_1)
+    (Extent sk_fall_1 sharply)
+
+Example (an intensifier on a state). TEXT: Teodor really likes the quilt.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Teodor"},
+      {"t": "witness", "id": "x1", "kind": "quilt", "definite": true},
+      {"t": "psych", "id": "p1", "verb": "like", "experiencer": "@n1", "stimulus": "@x1", "tense": "present"},
+      {"t": "extent", "id": "a1", "event": "@p1", "level": "really"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_teodor_1 "Teodor")
+    (Member sk_quilt_1 quilt)
+    (Member sk_like_1 like)
+    (Experiencer sk_like_1 sk_teodor_1)
+    (Stimulus sk_like_1 sk_quilt_1)
+    (Extent sk_like_1 really)
+
+Not this template. TEXT: Yusra laughed loudly. — use `manner`.
+
+Not this template. TEXT: The ladder is very crooked. — use `degree`.
+
 ### location — The place where an event takes place
 
 When: A prepositional phrase naming the place where the clause's event takes place: in / at / on
@@ -2137,8 +2324,8 @@ Forms:
 - <clause> with <manner noun>
 
 Not this template:
-- a degree adverb — deeply distrusts, really likes, very, sharply, slightly: how much, not how;
-  reported as unmapped
+- a degree adverb — deeply distrusts, really likes, barely moved, sharply, slightly: how much,
+  not how; an extent attachment on the event
 - a frequency adverb — often, always, twice, every day: how often; reported as unmapped (the
   adverb gap)
 - a sequence or time adverb — finally, eventually, initially, later, now, yesterday: when; a

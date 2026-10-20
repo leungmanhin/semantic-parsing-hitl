@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "57c0a2cf118bc64251ee1dc4f10535ec1900e8fb5354bff54b546c18457f758b",
+  "prompt_sha256": "036261b67cffbb04273fa6353b6fe9d8a5bd7044375e91f3934b29dcd44ae2e8",
   "item": {
     "id": "s08d9cb7399",
     "text": "Yusra deeply distrusts Lamine."
   },
   "usage": {
-    "input": 33505,
-    "output": 145,
+    "input": 35895,
+    "output": 146,
     "thinking": null,
-    "total": 33650,
-    "cached": 31456,
+    "total": 36041,
+    "cached": 33846,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 33505,
-    "candidatesTokenCount": 145,
-    "totalTokenCount": 33650,
-    "cachedContentTokenCount": 31456,
+    "promptTokenCount": 35895,
+    "candidatesTokenCount": 146,
+    "totalTokenCount": 36041,
+    "cachedContentTokenCount": 33846,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 33505
+        "tokenCount": 35895
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 31456
+        "tokenCount": 33846
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 145
+        "tokenCount": 146
       }
     ]
   },
-  "raw_text": "{\"id\": \"s08d9cb7399\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Lamine\"}, {\"t\": \"psych\", \"id\": \"p1\", \"verb\": \"distrust\", \"experiencer\": \"@n1\", \"stimulus\": \"@n2\", \"tense\": \"present\"}], \"unmapped\": [{\"span\": \"deeply\", \"code\": \"G02\", \"construction\": \"A degree adverb modifying the verb.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"s08d9cb7399\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Lamine\"}, {\"t\": \"psych\", \"id\": \"p1\", \"verb\": \"distrust\", \"experiencer\": \"@n1\", \"stimulus\": \"@n2\", \"tense\": \"present\"}, {\"t\": \"extent\", \"id\": \"a1\", \"event\": \"@p1\", \"level\": \"deeply\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s08d9cb7399",
     "instances": [
@@ -69,18 +69,18 @@
         "experiencer": "@n1",
         "stimulus": "@n2",
         "tense": "present"
-      }
-    ],
-    "unmapped": [
+      },
       {
-        "span": "deeply",
-        "code": "G02",
-        "construction": "A degree adverb modifying the verb."
+        "t": "extent",
+        "id": "a1",
+        "event": "@p1",
+        "level": "deeply"
       }
     ],
+    "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "55732af26869bbaa55169fc16db0ed85110798ac0721bfbdda732a93ff4b5fd0",
+  "prompt_body_sha256": "107542897d74ba7ca217f1d5c88d49a7531f59530bec65a2f2b7b7200334e22e",
   "run": 3,
   "case": {
     "template": "manner",

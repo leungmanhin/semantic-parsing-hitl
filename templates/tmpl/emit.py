@@ -258,6 +258,9 @@ class _Emitter:
                 filled = [s for s in group if r.get(s) not in (None, [], "")]
                 if len(filled) != 1:
                     problems.append(f"{where}: exactly one of {', '.join(group)} must be filled ({len(filled)} are)")
+            for group in t.get("any_of") or []:
+                if not any(r.get(s) not in (None, [], "") for s in group):
+                    problems.append(f"{where}: at least one of {', '.join(group)} must be filled")
         problems.extend(self.scope_cycles())
         return list(dict.fromkeys(problems))
 
@@ -607,7 +610,7 @@ class _Emitter:
         for r in self.insts:
             t = self.cat.get(r.get("t")) or {}
             for sname, spec in (t.get("slots") or {}).items():
-                if "default" in spec and r.get(sname) in (None, "", []) and self.shape_uses(t, sname, r):
+                if "default" in spec and r.get(sname) in (None, "", []) and self.shape_uses(t, sname, r, spec["default"]):
                     r[sname] = spec["default"]
         if "now" in self.by_id or "reference-time" not in self.cat:
             return
@@ -619,15 +622,19 @@ class _Emitter:
         self.insts.append(anchor)
         self.by_id["now"] = anchor
 
-    def shape_uses(self, t: dict, slot: str, r: dict) -> bool:
-        """Would some shape that mentions ``{slot}`` fire for this instance (its other conditions
-        given)? A default is applied only then, so an unused anchor is not conjured."""
+    def shape_uses(self, t: dict, slot: str, r: dict, default=None) -> bool:
+        """Would some shape that mentions the slot -- as ``{slot}`` in its atom, or by name in its
+        ``when`` -- fire for this instance with the default in place (its other conditions given)?
+        A default is applied only then, so an unused anchor is not conjured."""
+        filled = dict(r, **{slot: default})
         for e in t.get("emits") or []:
-            if "{" + slot + "}" not in e.get("atom", ""):
+            in_atom = "{" + slot + "}" in e.get("atom", "")
+            in_when = bool(re.search(r"(?<![a-z_])" + re.escape(slot) + r"(?![a-z_])", e.get("when", "")))
+            if not (in_atom or in_when):
                 continue
             if "if_filled" in e and e["if_filled"] != slot and r.get(e["if_filled"]) in (None, [], ""):
                 continue
-            if "when" in e and not holds(e["when"], r):
+            if "when" in e and not holds(e["when"], filled):
                 continue
             return True
         return False

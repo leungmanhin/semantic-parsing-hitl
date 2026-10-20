@@ -54,6 +54,17 @@ class CatalogTests(unittest.TestCase):
         for tid, t in CATALOG.items():
             self.assertEqual(t["id"], tid)
 
+    def test_when_conditions_are_checked_by_slot_type(self):
+        """A ``when`` clause compares a slot with one of its values (enum), true / false (bool) or
+        any lowercase word (lemma, string); an unknown slot or value is a problem."""
+        slots = {"level": {"type": "lemma", "class": "Level"}, "for_kind": {"type": "lemma", "class": "Class"},
+                 "tense": {"type": "enum", "values": ["past", "present"]}, "definite": {"type": "bool"}}
+        self.assertEqual(CAT.check_when("not for_kind and level != almost and tense == past or definite == true", slots), [])
+        self.assertTrue(CAT.check_when("tense == sometime", slots))
+        self.assertTrue(CAT.check_when("definite == yes", slots))
+        self.assertTrue(CAT.check_when("mood == past", slots))
+        self.assertTrue(CAT.check_when("level != Almost", slots))
+
 
 class EmitTests(unittest.TestCase):
     def test_illustrations_match_the_emitter(self):
@@ -288,6 +299,47 @@ class EmitTests(unittest.TestCase):
         atoms = atoms_of(E.emit({"id": "prog", "instances": ex["instances"]}, CATALOG)["statements"])
         self.assertIn("(Ongoing sk_send_1)", atoms)
         self.assertFalse(any(a.startswith("(Past ") or a.startswith("(Future ") for a in atoms))
+
+    def test_degree_asserts_the_positive_only_where_the_text_does(self):
+        """An intensifier keeps the property asserted beside its degree; an approximator or a
+        comparison class leaves only the degree; both together record both and no positive; a
+        property graded inside a noun phrase has no tense and still renders flat (the default of a
+        slot that only ``when`` clauses mention is applied); a degree needs a word or a class."""
+        def degree(**slots):
+            inst = [{"t": "witness", "id": "x1", "kind": "ladder", "definite": True},
+                    dict({"t": "degree", "id": "d1", "bearer": "@x1", "scale": "tall"}, **slots)]
+            return E.emit({"id": "d", "instances": inst}, CATALOG)
+        very = degree(level="very", tense="present")
+        self.assertIn("(Member sk_ladder_1 tall)", atoms_of(very["statements"]))
+        self.assertIn("(Degree sk_ladder_1 tall very)", atoms_of(very["statements"]))
+        self.assertIn("(: very Level)", very["declarations"])
+        almost = atoms_of(degree(level="almost", tense="past")["statements"])
+        self.assertIn("(Past (Degree sk_ladder_1 tall almost))", almost)
+        self.assertFalse(any("(Member sk_ladder_1 tall)" in a for a in almost))
+        kind = atoms_of(degree(for_kind="stepladder", tense="present")["statements"])
+        self.assertIn("(Degree sk_ladder_1 tall (forKind stepladder))", kind)
+        self.assertFalse(any("(Member sk_ladder_1 tall)" in a for a in kind))
+        both = atoms_of(degree(level="very", for_kind="stepladder", tense="present")["statements"])
+        self.assertIn("(Degree sk_ladder_1 tall very)", both)
+        self.assertIn("(Degree sk_ladder_1 tall (forKind stepladder))", both)
+        self.assertFalse(any("(Member sk_ladder_1 tall)" in a for a in both))
+        attributive = atoms_of(degree(level="very")["statements"])
+        self.assertIn("(Member sk_ladder_1 tall)", attributive)
+        self.assertIn("(Degree sk_ladder_1 tall very)", attributive)
+        with self.assertRaises(E.EmitError) as cm:
+            degree(tense="present")
+        self.assertTrue(any("at least one of level, for_kind" in p for p in cm.exception.args[0]))
+
+    def test_extent_attaches_to_its_event(self):
+        inst = [{"t": "named-entity", "id": "n1", "name": "Lamine"},
+                {"t": "motion", "id": "m1", "verb": "move", "mover": "@n1", "tense": "past"},
+                {"t": "extent", "id": "a1", "event": "@m1", "level": "barely"},
+                {"t": "negation", "id": "s1", "over": ["@m1"]}]
+        out = E.emit({"id": "e", "instances": inst}, CATALOG)
+        atoms = atoms_of(out["statements"])
+        self.assertEqual(sum(a.startswith("(Not (And") and "(Extent sk_move_1 barely)" in a for a in atoms), 1)
+        self.assertFalse(any(a.startswith("(Extent") for a in atoms))
+        self.assertIn("(: barely Level)", out["declarations"])
 
     def test_malformed_instances_are_refused(self):
         bad = [{"t": "transfer", "id": "e1", "verb": "give", "giver": "@n9", "object": "x", "tense": "past"}]

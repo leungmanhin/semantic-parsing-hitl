@@ -47,6 +47,9 @@ trigger:
       adjective does not hold of the individual on its own
     - >-
       "there is / there are" — there is a thermos: an existential, which is the referent alone
+    - >-
+      an adjective with a degree word — is very crooked, was almost full, is tall for a weaver:
+      a degree predication, which decides itself whether the property is asserted
 
 slots:
   id:        {type: id, required: true, doc: "your label for the predication"}
@@ -108,6 +111,9 @@ examples:
     - category: abstain
       text: "Teodor became a locksmith."
       expected: {abstain: true, template: change-of-state}            # a change of state
+    - category: abstain
+      text: "The thermos was almost full."
+      expected: {abstain: true, template: degree}                     # an adjective with a degree word
 
   held_out:                  # tests; never rendered into the prompt
     - category: positive
@@ -180,3 +186,6 @@ examples:
     - category: abstain
       text: "Teodor is the locksmith."
       expected: {abstain: true, gap: G00, span: "is the locksmith"}   # an identity statement
+    - category: abstain
+      text: "Teodor is extremely tired."
+      expected: {abstain: true, template: degree}                     # an adjective with a degree word
