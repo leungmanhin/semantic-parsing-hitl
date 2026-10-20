@@ -52,7 +52,7 @@ slots:
   id:       {type: id, required: true, doc: "your label for the acquisition event"}
   verb:     {type: lemma, class: Class, required: true, doc: "the verb lemma"}
   acquirer: {type: filler, class: Entity, role: Recipient, required: false,
-             doc: "the party who comes to have the object: the subject, or the by-phrase of a passive; absent only in an agentless passive"}
+             doc: "the party who comes to have the object: the subject, or the by-phrase of a passive; absent in an agentless passive, and in an imperative, whose addressee is not a referent of the text"}
   object:   {type: filler, class: Entity, role: Theme, required: true,
              doc: "what is acquired, unchanged by the acquisition"}
   source:   {type: filler, class: Entity, role: Source, required: false,

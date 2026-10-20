@@ -1,0 +1,96 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "011859ef1641de9eb20fbd0ff4c90d8a33b97940ed06b1a0de5d9191af6f2f3e",
+  "item": {
+    "id": "s5cc92f8ea1",
+    "text": "Send the letter tomorrow."
+  },
+  "usage": {
+    "input": 37159,
+    "output": 142,
+    "thinking": null,
+    "total": 37301,
+    "cached": 35110,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 37159,
+    "candidatesTokenCount": 142,
+    "totalTokenCount": 37301,
+    "cachedContentTokenCount": 35110,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 37159
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 35110
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 142
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s5cc92f8ea1\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"letter\", \"definite\": true}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"send\", \"object\": \"@x1\", \"tense\": \"present\"}, {\"t\": \"imperative\", \"id\": \"s1\", \"over\": [\"@e1\"]}, {\"t\": \"time\", \"id\": \"t1\", \"event\": \"@e1\", \"deictic\": \"tomorrow\", \"anchor\": \"@now\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s5cc92f8ea1",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "letter",
+        "definite": true
+      },
+      {
+        "t": "transfer",
+        "id": "e1",
+        "verb": "send",
+        "object": "@x1",
+        "tense": "present"
+      },
+      {
+        "t": "imperative",
+        "id": "s1",
+        "over": [
+          "@e1"
+        ]
+      },
+      {
+        "t": "time",
+        "id": "t1",
+        "event": "@e1",
+        "deictic": "tomorrow",
+        "anchor": "@now"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "86006c1331646959e618205dae5c6fd6c614cc473b5b0769d0ff87669d0897c5",
+  "run": 3,
+  "case": {
+    "template": "imperative",
+    "section": "held_out",
+    "index": 11,
+    "category": "optional",
+    "text": "Send the letter tomorrow.",
+    "key": "5cc92f8ea1"
+  }
+}

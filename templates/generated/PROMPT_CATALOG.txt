@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 0e7f52532262ceb7 · 31 templates
+catalog sha256 37ed7cf75ec0cd9a · 32 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -34,9 +34,9 @@ For each item write ONE JSON object and nothing else:
 
 `instances` is a list of records `{"t": "<template id>", ...slots}`. Give referents first, in
 order of first mention, then predications in text order, then the scope operators (negation,
-modals, sealed complements), attachments (times, places, particles), rules and links. Every
-instance carries an `id`. Use exactly the slot names defined for each template; omit an optional
-slot that does not apply (never write null for it).
+modals, directives, sealed complements), attachments (times, places, particles), rules and
+links. Every instance carries an `id`. Use exactly the slot names defined for each template;
+omit an optional slot that does not apply (never write null for it).
 
 `issues` is a list (usually empty) of problems with THESE INSTRUCTIONS that the item exposed —
 see *Reporting a problem with the instructions*. Parse the item as the instructions say in any
@@ -58,9 +58,9 @@ fences.
   never write its instance; a deictic time (yesterday, tomorrow, last week) refers to it as its
   anchor, `"anchor": "@now"`, and the program supplies the instance, with calendar fields when
   the caller states the reference date.
-- A slot that holds a CLAUSE — the content of a negation, a modal or an attitude — holds a list
-  of ids: the clause's predication, or the scope operator over it when it has one (`["@s1"]` for
-  a negated or modalised clause); never the referents the clause mentions.
+- A slot that holds a CLAUSE — the content of a negation, a modal, a directive or an attitude —
+  holds a list of ids: the clause's predication, or the scope operator over it when it has one
+  (`["@s1"]` for a negated or modalised clause); never the referents the clause mentions.
 - A slot that holds a kind, property, verb, scale or unit holds the bare LEMMA, for example
   `"kind": "book"`.
 - A participant slot holds either one: `"@x1"` for a specific referent, or a bare lemma for a
@@ -481,7 +481,8 @@ Slots:
 - `verb` (required; a lemma): the verb lemma.
 - `acquirer` (optional; "@id" of a referent instance, or a bare lemma for a non-specific
   filler): the party who comes to have the object: the subject, or the by-phrase of a passive;
-  absent only in an agentless passive.
+  absent in an agentless passive, and in an imperative, whose addressee is not a referent of the
+  text.
 - `object` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
   what is acquired, unchanged by the acquisition.
 - `source` (optional; "@id" of a referent instance, or a bare lemma for a non-specific filler):
@@ -578,7 +579,8 @@ Slots:
 - `id` (required; your label for this instance): your label for the action.
 - `verb` (required; a lemma): the verb lemma.
 - `actor` (optional; "@id" of a referent instance, or a bare lemma for a non-specific filler):
-  who acts: the subject, or the by-phrase of a passive; absent only in an agentless passive.
+  who acts: the subject, or the by-phrase of a passive; absent in an agentless passive, and in
+  an imperative, whose addressee is not a referent of the text.
 - `patient` (optional; "@id" of a referent instance, or a bare lemma for a non-specific filler):
   what the action is done to or with: the object; a bare lemma for a non-specific one (cooked
   dinner).
@@ -924,8 +926,8 @@ Slots:
 - `id` (required; your label for this instance): your label for the communication event.
 - `verb` (required; a lemma): the verb lemma.
 - `speaker` (optional; "@id" of a referent instance, or a bare lemma for a non-specific filler):
-  who conveys the message: the subject, or the by-phrase of a passive; absent only in an
-  agentless passive.
+  who conveys the message: the subject, or the by-phrase of a passive; absent in an agentless
+  passive, and in an imperative, whose addressee is not a referent of the text.
 - `addressee` (optional; "@id" of a referent instance, or a bare lemma for a non-specific
   filler): who the message is conveyed to: the indirect object or the to-phrase; absent when the
   text leaves it out.
@@ -1119,8 +1121,8 @@ Slots:
 - `id` (required; your label for this instance): your label for the creation event.
 - `verb` (required; a lemma): the verb lemma.
 - `creator` (optional; "@id" of a referent instance, or a bare lemma for a non-specific filler):
-  who or what makes the thing: the subject, or the by-phrase of a passive; absent only in an
-  agentless passive.
+  who or what makes the thing: the subject, or the by-phrase of a passive; absent in an
+  agentless passive, and in an imperative, whose addressee is not a referent of the text.
 - `product` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
   the thing that comes into being: the object; an instance for a specific thing (a shed, the
   shed), a bare lemma for a non-specific one (baked bread).
@@ -1596,8 +1598,8 @@ Slots:
 - `id` (required; your label for this instance): your label for the perception event.
 - `verb` (required; a lemma): the verb lemma.
 - `perceiver` (optional; "@id" of a referent instance, or a bare lemma for a non-specific
-  filler): who perceives: the subject, or the by-phrase of a passive; absent only in an
-  agentless passive.
+  filler): who perceives: the subject, or the by-phrase of a passive; absent in an agentless
+  passive, and in an imperative, whose addressee is not a referent of the text.
 - `stimulus` (optional; "@id" of a referent instance, or a bare lemma for a non-specific
   filler): the thing perceived: the object, or the subject of a passive.
 - `event` (optional; "@id" of a predication instance (the clause's event)): the event perceived:
@@ -1869,7 +1871,8 @@ Slots:
 - `id` (required; your label for this instance): your label for the transfer event.
 - `verb` (required; a lemma): the verb lemma.
 - `giver` (optional; "@id" of a referent instance, or a bare lemma for a non-specific filler):
-  the party who gives; in a passive, the by-phrase; absent only in an agentless passive.
+  the party who gives; in a passive, the by-phrase; absent in an agentless passive, and in an
+  imperative, whose addressee is not a referent of the text.
 - `recipient` (optional; "@id" of a referent instance, or a bare lemma for a non-specific
   filler): the party who comes to have the object; the indirect object or the to-phrase.
 - `object` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
@@ -1947,6 +1950,98 @@ speech", "code": "G00"}.
 Not this template. TEXT: Ottoline took the envelope from Lamine. — use `acquisition`.
 
 ## Scope operators — negation, modality, sealed content
+
+### imperative — A command or a request to the addressee
+
+When: A clause in the imperative mood: a bare verb with no subject, addressed to the hearer —
+close the gate, wash the quilt carefully, send Yusra the quilt, go to the market, bring a ladder
+— with or without please, with or without a vocative naming the addressee (Teodor, wash the
+quilt). Parse the commanded clause with the template its verb takes, its tense present and its
+actor slot EMPTY unless a vocative fills it; then write the imperative instance over that
+clause. For a negative imperative (don't, do not, never) write a negation instance over the
+clause and the imperative instance over the negation. A coordinated command (wash the quilt and
+wait) is one imperative instance over both predications.
+
+Forms:
+- <V> <object>.
+- Don't / Do not / Never <V> …
+- <Name>, <V> …
+- Please <V> … / <V> …, please
+
+Not this template:
+- a declarative with the same verb — Yusra closed the gate, the quilt was washed: an ordinary
+  predication, asserted
+- an obligation or a permission stated of someone — Yusra must send the quilt, Lamine may leave:
+  a modal over an asserted clause, not a command
+- a reported command or request — told Lamine to lock the shed, asked Ottoline to send the
+  quilt: a communication whose content is a request; no template yet; report the span as
+  unmapped
+- a question that asks for an action — could you lock the shed?: a question; report it as
+  unmapped
+- a hortative — let's go to the market, let us wait: the speaker is included; report it as
+  unmapped
+- a conditional command — if it rains, close the gate: the command holds only under the
+  condition; report the whole sentence as unmapped
+
+Slots:
+
+- `t` (required): "imperative"
+- `id` (required; your label for this instance): your label for the directive (s1, s2 …).
+- `over` (required; a list of "@id" of the instances this one scopes over): the commanded
+  clause: the id of its predication instance (or instances, for a coordinated command), or of
+  the negation instance for a negative imperative.
+
+Example (the commanded event is sealed, tenseless and without an actor; the definite object stays a top-level referent). TEXT: Close the gate.
+
+Instances:
+
+    [
+      {"t": "witness", "id": "x1", "kind": "gate", "definite": true},
+      {"t": "change-of-state", "id": "c1", "verb": "close", "undergoer": "@x1", "tense": "present"},
+      {"t": "imperative", "id": "s1", "over": ["@c1"]}
+    ]
+
+The program renders these instances as:
+
+    (Member sk_gate_1 gate)
+    (Directive (And (Member sk_close_1 close) (Patient sk_close_1 sk_gate_1)))
+
+Example (a negative imperative — the directive over the negation). TEXT: Don't touch the spindle.
+
+Instances:
+
+    [
+      {"t": "witness", "id": "x1", "kind": "spindle", "definite": true},
+      {"t": "activity", "id": "v1", "verb": "touch", "patient": "@x1", "tense": "present"},
+      {"t": "negation", "id": "s1", "over": ["@v1"]},
+      {"t": "imperative", "id": "s2", "over": ["@s1"]}
+    ]
+
+The program renders these instances as:
+
+    (Member sk_spindle_1 spindle)
+    (Directive (Not (And (Member sk_touch_1 touch) (Patient sk_touch_1 sk_spindle_1))))
+
+Example (a vocative — the named addressee fills the actor slot). TEXT: Teodor, wash the quilt.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Teodor"},
+      {"t": "witness", "id": "x1", "kind": "quilt", "definite": true},
+      {"t": "activity", "id": "v1", "verb": "wash", "actor": "@n1", "patient": "@x1", "tense": "present"},
+      {"t": "imperative", "id": "s1", "over": ["@v1"]}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_teodor_1 "Teodor")
+    (Member sk_quilt_1 quilt)
+    (Directive (And (Member sk_wash_1 wash) (Agent sk_wash_1 sk_teodor_1) (Patient sk_wash_1 sk_quilt_1)))
+
+Not this template. TEXT: Yusra laughed. — use `activity`.
+
+Not this template. TEXT: Teodor gave Yusra a thermos. — use `transfer`.
 
 ### modal — A modal auxiliary scoping over a clause
 

@@ -15,7 +15,9 @@ Checks, in order:
 * graph lints on well-formed instances: a witness no other instance mentions, or a name no
   instance mentions while nothing is reported unmapped (``dangling-referent``: a witness is
   introduced only by a covered clause, a name may stand alone beside an unmapped span), a
-  predication with filler slots none of which is filled (``bare-predication``), an optional
+  predication with filler slots none of which is filled (``bare-predication``) unless it is the
+  content, directly or through another scope, of a scope whose refs slot declares
+  ``bare_content`` (an imperative's addressee is implicit), an optional
   scope with an empty ``refs`` list (``empty-scope``);
 * C9 — every emitted statement types against the substrate with the emitter's declarations
   (needs the ``petta`` package, otherwise ``typecheck`` is ``skipped``).
@@ -101,6 +103,31 @@ def lints(insts: list, catalog: dict, unmapped: list) -> list:
                 mentioned.add(v[1:])
             elif spec["type"] == "refs":
                 mentioned.update(x[1:] for x in (v or []) if E.is_ref(x))
+    by_id = {r["id"]: r for r in insts if "id" in r}
+
+    def content_of(iid: str, seen: set) -> set:
+        """The ids an instance scopes over, through its refs slots, transitively."""
+        r = by_id.get(iid)
+        if r is None or iid in seen:
+            return set()
+        seen.add(iid)
+        found = set()
+        for sname, spec in (catalog[r["t"]].get("slots") or {}).items():
+            if spec["type"] == "refs":
+                for x in r.get(sname) or []:
+                    if E.is_ref(x):
+                        found.add(x[1:])
+                        found |= content_of(x[1:], seen)
+        return found
+
+    bare_ok: set[str] = set()                   # predications an imperative-like scope licenses to fill no participant
+    for r in insts:
+        for sname, spec in (catalog[r["t"]].get("slots") or {}).items():
+            if spec["type"] == "refs" and spec.get("bare_content"):
+                for x in r.get(sname) or []:
+                    if E.is_ref(x):
+                        bare_ok.add(x[1:])
+                        bare_ok |= content_of(x[1:], set())
     out = []
     for r in insts:
         t = catalog[r["t"]]
@@ -114,7 +141,7 @@ def lints(insts: list, catalog: dict, unmapped: list) -> list:
             elif not unmapped:
                 out.append({"kind": "dangling-referent", "instance": r["id"],
                             "detail": f"{r['t']} {r['id']} is mentioned by no other instance and nothing is reported unmapped"})
-        if t.get("family") == "predication":
+        if t.get("family") == "predication" and r["id"] not in bare_ok:
             fillers = [s for s, spec in slots.items() if spec["type"] == "filler"]
             if fillers and not any(r.get(s) not in (None, "", []) for s in fillers):
                 out.append({"kind": "bare-predication", "instance": r["id"],

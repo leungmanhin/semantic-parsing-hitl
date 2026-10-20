@@ -53,7 +53,7 @@ slots:
   id:        {type: id, required: true, doc: "your label for the communication event"}
   verb:      {type: lemma, class: Class, required: true, doc: "the verb lemma"}
   speaker:   {type: filler, class: Entity, role: Agent, required: false,
-              doc: "who conveys the message: the subject, or the by-phrase of a passive; absent only in an agentless passive"}
+              doc: "who conveys the message: the subject, or the by-phrase of a passive; absent in an agentless passive, and in an imperative, whose addressee is not a referent of the text"}
   addressee: {type: filler, class: Entity, role: Recipient, required: false,
               doc: "who the message is conveyed to: the indirect object or the to-phrase; absent when the text leaves it out"}
   message:   {type: filler, class: Entity, role: Theme, required: false,

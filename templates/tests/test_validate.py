@@ -127,6 +127,16 @@ class LintTests(unittest.TestCase):
         self.assertEqual(kinds(res), [])
         self.assertEqual(res["fired"], {"named-entity": 2, "witness": 1, "transfer": 1})
 
+    def test_a_directive_licenses_a_bare_predication(self):
+        """An imperative's content may fill no participant slot (the addressee is implicit), also
+        through a negation under the imperative; the same clause on its own is still bare."""
+        wait = {"t": "activity", "id": "v1", "verb": "wait", "tense": "present"}
+        self.assertEqual(kinds(V.inspect(reply([wait]), CATALOG)), ["bare-predication"])
+        direct = [wait, {"t": "imperative", "id": "s1", "over": ["@v1"]}]
+        self.assertEqual(kinds(V.inspect(reply(direct), CATALOG)), [])
+        nested = [wait, {"t": "negation", "id": "s1", "over": ["@v1"]}, {"t": "imperative", "id": "s2", "over": ["@s1"]}]
+        self.assertEqual(kinds(V.inspect(reply(nested), CATALOG)), [])
+
     def test_bare_predication_and_empty_optional_scope(self):
         cat = copy.deepcopy(CATALOG)
         t = copy.deepcopy(cat["transfer"])

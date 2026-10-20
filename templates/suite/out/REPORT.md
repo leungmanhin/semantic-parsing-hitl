@@ -1,10 +1,10 @@
 # Suite report
 
-prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 107542897d74ba7c) · type check: ran
+prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 86006c1331646959) · type check: ran
 
 ## Catalog checks
 
-426 examples checked; findings: 0
+449 examples checked; findings: 0
 
 Sentences two templates claim with the same expected atoms (composition, fine):
 - "Lamine danced with Yusra." — activity, adjunct
@@ -262,7 +262,7 @@ Mismatches: none
 
 ## degree — held_out
 
-18 cases, 54 records (ok 54; stale prompt 0) · gemini-4-argon effort=low
+18 cases, 54 records (ok 54; stale prompt 54) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -317,7 +317,7 @@ Mismatches: none
 
 ## extent — held_out
 
-15 cases, 45 records (ok 45; stale prompt 0) · gemini-4-argon effort=low
+15 cases, 45 records (ok 45; stale prompt 45) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -397,6 +397,34 @@ Abstain cases (what the parser did, per run):
 - "The ferret slept." (target `activity`): r1 target_fired [activity×1, witness×1] · r2 target_fired [activity×1, witness×1] · r3 target_fired [activity×1, witness×1]
 - "Every ferret slept." (target `generic`): r1 target_fired [activity×1, generic×1, range×1] · r2 target_fired [activity×1, generic×1, range×1] · r3 target_fired [activity×1, generic×1, range×1]
 - "Teodor and Yusra laughed." (target `activity`): r1 target_fired [activity×2, named-entity×2] · r2 target_fired [activity×2, named-entity×2] · r3 target_fired [activity×2, named-entity×2]
+
+Mismatches: none
+
+## imperative — held_out
+
+18 cases, 54 records (ok 54; stale prompt 0) · gemini-4-argon effort=low
+
+| category | cases | runs | fired | exact | pass |
+|---|---|---|---|---|---|
+| positive | 9 | 27 | 27 | 27 | 27 |
+| scoped | 2 | 6 | 6 | 6 | 6 |
+| optional | 2 | 6 | 6 | 6 | 6 |
+| abstain | 5 | 15 | 0 (false fires) | – | 15 |
+
+- selection: fire cases fired 39/39 · abstain cases false fires 0/15
+- fill: exact 39/39 among fires
+- stability: pairwise agreement 1.0 (18 cases, 54 pairs), unanimous 18/18
+- type check: 48/48 emitted parses type
+- graph lints: none
+- usage: 54 calls · in 2,006,664 · cached 1,893,496 (94% of the input) · out 6,485 · thinking 0 (calls with thought tokens: 0)
+- issues reported by the parser: none
+
+Abstain cases (what the parser did, per run):
+- "Let's go to the market." (gap G00): r1 gap_reported [nothing fired; unmapped G00] · r2 gap_reported [nothing fired; unmapped G00] · r3 gap_reported [nothing fired; unmapped G00]
+- "Could you lock the shed?" (gap G00): r1 gap_reported [nothing fired; unmapped G00] · r2 gap_reported [nothing fired; unmapped G00] · r3 gap_reported [nothing fired; unmapped G00]
+- "Yusra told Lamine to lock the shed." (gap G00): r1 gap_reported [named-entity×2; unmapped G00] · r2 gap_reported [named-entity×2; unmapped G00] · r3 gap_reported [named-entity×2; unmapped G00]
+- "The quilt was washed." (target `activity`): r1 target_fired [activity×1, witness×1] · r2 target_fired [activity×1, witness×1] · r3 target_fired [activity×1, witness×1]
+- "Yusra has to send the quilt." (target `modal`): r1 target_fired [modal×1, named-entity×1, transfer×1, witness×1] · r2 target_fired [modal×1, named-entity×1, transfer×1, witness×1] · r3 target_fired [modal×1, named-entity×1, transfer×1, witness×1]
 
 Mismatches: none
 
@@ -480,7 +508,7 @@ Mismatches: none
 
 ## manner — held_out
 
-13 cases, 39 records (ok 39; stale prompt 36) · gemini-4-argon effort=low
+13 cases, 39 records (ok 39; stale prompt 39) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -608,7 +636,7 @@ Mismatches: none
 
 ## psych — held_out
 
-13 cases, 39 records (ok 39; stale prompt 36) · gemini-4-argon effort=low
+13 cases, 39 records (ok 39; stale prompt 39) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|

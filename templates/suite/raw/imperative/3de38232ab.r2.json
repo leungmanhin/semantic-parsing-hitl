@@ -1,0 +1,88 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "011859ef1641de9eb20fbd0ff4c90d8a33b97940ed06b1a0de5d9191af6f2f3e",
+  "item": {
+    "id": "s3de38232ab",
+    "text": "Bring a ladder."
+  },
+  "usage": {
+    "input": 37158,
+    "output": 104,
+    "thinking": null,
+    "total": 37262,
+    "cached": 35109,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 37158,
+    "candidatesTokenCount": 104,
+    "totalTokenCount": 37262,
+    "cachedContentTokenCount": 35109,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 37158
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 35109
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 104
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s3de38232ab\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"ladder\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"bring\", \"moved\": \"@x1\", \"tense\": \"present\"}, {\"t\": \"imperative\", \"id\": \"s1\", \"over\": [\"@m1\"]}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s3de38232ab",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "ladder"
+      },
+      {
+        "t": "motion",
+        "id": "m1",
+        "verb": "bring",
+        "moved": "@x1",
+        "tense": "present"
+      },
+      {
+        "t": "imperative",
+        "id": "s1",
+        "over": [
+          "@m1"
+        ]
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "86006c1331646959e618205dae5c6fd6c614cc473b5b0769d0ff87669d0897c5",
+  "run": 2,
+  "case": {
+    "template": "imperative",
+    "section": "held_out",
+    "index": 2,
+    "category": "positive",
+    "text": "Bring a ladder.",
+    "key": "3de38232ab"
+  }
+}

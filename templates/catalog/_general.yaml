@@ -32,7 +32,7 @@ output_contract:
    "issues":    [ <issue>, ... ]}
 - >-
   `instances` is a list of records `{"t": "<template id>", ...slots}`. Give referents first, in order
-  of first mention, then predications in text order, then the scope operators (negation, modals, sealed
+  of first mention, then predications in text order, then the scope operators (negation, modals, directives, sealed
   complements), attachments (times, places, particles), rules and links. Every instance carries an `id`.
   Use exactly the slot names defined for each template; omit an optional slot that does not apply (never
   write null for it).
@@ -56,7 +56,7 @@ identifiers:
   `"anchor": "@now"`, and the program supplies the instance, with calendar fields when the caller
   states the reference date.
 - >-
-  A slot that holds a CLAUSE — the content of a negation, a modal or an attitude — holds a list of ids:
+  A slot that holds a CLAUSE — the content of a negation, a modal, a directive or an attitude — holds a list of ids:
   the clause's predication, or the scope operator over it when it has one (`["@s1"]` for a negated or
   modalised clause); never the referents the clause mentions.
 - >-

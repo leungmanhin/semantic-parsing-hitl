@@ -52,7 +52,7 @@ slots:
   id:        {type: id, required: true, doc: "your label for the perception event"}
   verb:      {type: lemma, class: Class, required: true, doc: "the verb lemma"}
   perceiver: {type: filler, class: Entity, role: Experiencer, required: false,
-              doc: "who perceives: the subject, or the by-phrase of a passive; absent only in an agentless passive"}
+              doc: "who perceives: the subject, or the by-phrase of a passive; absent in an agentless passive, and in an imperative, whose addressee is not a referent of the text"}
   stimulus:  {type: filler, class: Entity, role: Stimulus, required: false,
               doc: "the thing perceived: the object, or the subject of a passive"}
   event:     {type: filler, class: Event, role: Stimulus, required: false,

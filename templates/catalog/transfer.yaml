@@ -58,7 +58,7 @@ slots:
   id:        {type: id, required: true, doc: "your label for the transfer event"}
   verb:      {type: lemma, class: Class, required: true, doc: "the verb lemma"}
   giver:     {type: filler, class: Entity, role: Agent, required: false,
-              doc: "the party who gives; in a passive, the by-phrase; absent only in an agentless passive"}
+              doc: "the party who gives; in a passive, the by-phrase; absent in an agentless passive, and in an imperative, whose addressee is not a referent of the text"}
   recipient: {type: filler, class: Entity, role: Recipient, required: false,
               doc: "the party who comes to have the object; the indirect object or the to-phrase"}
   object:    {type: filler, class: Entity, role: Theme, required: true,

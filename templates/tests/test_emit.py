@@ -341,6 +341,23 @@ class EmitTests(unittest.TestCase):
         self.assertFalse(any(a.startswith("(Extent") for a in atoms))
         self.assertIn("(: barely Level)", out["declarations"])
 
+    def test_imperative_seals_the_command_and_nests_a_negation(self):
+        """A directive seals the commanded clause tenseless and actorless; a negative imperative is
+        the directive over the negation; a vocative's name stays at the top level while its Agent
+        role is sealed; an indefinite object lives only inside the directive."""
+        inst = [{"t": "named-entity", "id": "n1", "name": "Lamine"},
+                {"t": "witness", "id": "x1", "kind": "ladder"},
+                {"t": "motion", "id": "m1", "verb": "bring", "mover": "@n1", "moved": "@x1", "tense": "present"},
+                {"t": "negation", "id": "s1", "over": ["@m1"]},
+                {"t": "imperative", "id": "s2", "over": ["@s1"]}]
+        atoms = atoms_of(E.emit({"id": "i", "instances": inst}, CATALOG)["statements"])
+        self.assertIn('(Name sk_lamine_1 "Lamine")', atoms)
+        sealed = [a for a in atoms if a.startswith("(Directive (Not (And")]
+        self.assertEqual(len(sealed), 1)
+        self.assertIn("(Agent sk_bring_1 sk_lamine_1)", sealed[0])
+        self.assertIn("(Member sk_ladder_1 ladder)", sealed[0])
+        self.assertFalse(any(a.startswith("(Member sk_ladder_1") or a.startswith("(Not") or "Past" in a for a in atoms))
+
     def test_malformed_instances_are_refused(self):
         bad = [{"t": "transfer", "id": "e1", "verb": "give", "giver": "@n9", "object": "x", "tense": "past"}]
         with self.assertRaises(E.EmitError) as cm:

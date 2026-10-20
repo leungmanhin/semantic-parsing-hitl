@@ -1,0 +1,232 @@
+# Template: imperative  (a command or a request: "Close the gate.", "Don't touch the spindle.", "Teodor, wash the quilt.")
+#
+# An imperative directs the addressee to act and asserts nothing about the world: the commanded
+# event has not happened, so its atoms are sealed under (Directive …) and carry no tense. The
+# commanded clause is parsed with its own template — an activity, a transfer, a motion, a change
+# of state — with NO actor (the addressee is not a referent of the text) unless a vocative names
+# one, and with tense present (the bare verb). A negative imperative (don't, do not, never) is
+# the directive over the negation: (Directive (Not …)). A definite object named in the command is
+# a real referent at the top level; an indefinite one exists only inside the directive.
+# Politeness (please) is not recorded.
+
+id: imperative
+family: scope
+kind: scope
+title: A command or a request to the addressee
+status: draft
+
+trigger:
+  construction: >
+    A clause in the imperative mood: a bare verb with no subject, addressed to the hearer — close
+    the gate, wash the quilt carefully, send Yusra the quilt, go to the market, bring a ladder —
+    with or without please, with or without a vocative naming the addressee (Teodor, wash the
+    quilt). Parse the commanded clause with the template its verb takes, its tense present and
+    its actor slot EMPTY unless a vocative fills it; then write the imperative instance over that
+    clause. For a negative imperative (don't, do not, never) write a negation instance over the
+    clause and the imperative instance over the negation. A coordinated command (wash the quilt
+    and wait) is one imperative instance over both predications.
+  surface_forms:
+    - "<V> <object>."                                # Close the gate.
+    - "Don't / Do not / Never <V> …"                 # Don't touch the spindle.
+    - "<Name>, <V> …"                                # Teodor, wash the quilt: the vocative fills the actor
+    - "Please <V> … / <V> …, please"                 # politeness, not recorded
+  boundary:                   # looks like a command but is not one
+    - >-
+      a declarative with the same verb — Yusra closed the gate, the quilt was washed: an
+      ordinary predication, asserted
+    - >-
+      an obligation or a permission stated of someone — Yusra must send the quilt, Lamine may
+      leave: a modal over an asserted clause, not a command
+    - >-
+      a reported command or request — told Lamine to lock the shed, asked Ottoline to send the
+      quilt: a communication whose content is a request; no template yet; report the span as
+      unmapped
+    - >-
+      a question that asks for an action — could you lock the shed?: a question; report it as
+      unmapped
+    - >-
+      a hortative — let's go to the market, let us wait: the speaker is included; report it as
+      unmapped
+    - >-
+      a conditional command — if it rains, close the gate: the command holds only under the
+      condition; report the whole sentence as unmapped
+
+slots:
+  id:   {type: id, required: true, doc: "your label for the directive (s1, s2 …)"}
+  over: {type: refs, class: Proposition, required: true, bare_content: true,     # the addressee is implicit: the clause may fill no participant
+         doc: "the commanded clause: the id of its predication instance (or instances, for a coordinated command), or of the negation instance for a negative imperative"}
+
+emits:
+  - atom: "(Directive {over})"
+
+notes:
+  - >-
+    The directive seals the command: nothing inside is asserted, no tense is recorded, no
+    addressee is minted. A query for what was commanded reaches inside the Directive; a query
+    for whether the event happened finds nothing.
+  - >-
+    A vocative is the only way an addressee enters the parse: as the clause's actor, a named
+    entity whose name atom stays at the top level, since a name is a label, not an occurrence.
+  - >-
+    A prohibition is the directive over the negation, parallel to an obligation over a
+    negation (must not); no separate head.
+
+depends_on: [negation]
+composes_with: [negation, manner, location, time, adjunct]
+
+examples:
+  shown:                     # rendered into the prompt
+    - category: positive
+      note: the commanded event is sealed, tenseless and without an actor; the definite object stays a top-level referent
+      text: "Close the gate."
+      instances:
+        - {t: witness, id: x1, kind: gate, definite: true}
+        - {t: change-of-state, id: c1, verb: close, undergoer: "@x1", tense: present}
+        - {t: imperative, id: s1, over: ["@c1"]}
+      emitted:               # what the emitter produces (illustration; the emitter is the authority)
+        - "(Member sk_gate_1 gate)"
+        - "(Directive (And (Member sk_close_1 close) (Patient sk_close_1 sk_gate_1)))"
+      declarations:
+        - "(: close Class)"
+        - "(: gate Class)"
+        - "(: sk_close_1 Event)"
+        - "(: sk_gate_1 Entity)"
+    - category: positive
+      note: a negative imperative — the directive over the negation
+      text: "Don't touch the spindle."
+      instances:
+        - {t: witness, id: x1, kind: spindle, definite: true}
+        - {t: activity, id: v1, verb: touch, patient: "@x1", tense: present}
+        - {t: negation, id: s1, over: ["@v1"]}
+        - {t: imperative, id: s2, over: ["@s1"]}
+    - category: positive
+      note: a vocative — the named addressee fills the actor slot
+      text: "Teodor, wash the quilt."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: activity, id: v1, verb: wash, actor: "@n1", patient: "@x1", tense: present}
+        - {t: imperative, id: s1, over: ["@v1"]}
+    - category: abstain
+      text: "Yusra laughed."
+      expected: {abstain: true, template: activity}                   # a declarative, asserted
+    - category: abstain
+      text: "Teodor gave Yusra a thermos."
+      expected: {abstain: true, template: transfer}                   # a declarative, asserted
+
+  held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      note: a transfer with no giver — the recipient and the object are referents
+      text: "Send Yusra the quilt."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: transfer, id: e1, verb: send, recipient: "@n1", object: "@x1", tense: present}
+        - {t: imperative, id: s1, over: ["@e1"]}
+    - category: positive
+      note: a motion with no mover
+      text: "Go to the market."
+      instances:
+        - {t: witness, id: x1, kind: market, definite: true}
+        - {t: motion, id: m1, verb: go, goal: "@x1", tense: present}
+        - {t: imperative, id: s1, over: ["@m1"]}
+    - category: positive
+      note: an indefinite object exists only inside the directive
+      text: "Bring a ladder."
+      instances:
+        - {t: witness, id: x1, kind: ladder}
+        - {t: motion, id: m1, verb: bring, moved: "@x1", tense: present}
+        - {t: imperative, id: s1, over: ["@m1"]}
+    - category: positive
+      note: please is not recorded
+      text: "Please send the letter."
+      instances:
+        - {t: witness, id: x1, kind: letter, definite: true}
+        - {t: transfer, id: e1, verb: send, object: "@x1", tense: present}
+        - {t: imperative, id: s1, over: ["@e1"]}
+    - category: positive
+      note: please at the end
+      text: "Wash the quilt, please."
+      instances:
+        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: activity, id: v1, verb: wash, patient: "@x1", tense: present}
+        - {t: imperative, id: s1, over: ["@v1"]}
+    - category: positive
+      note: do not — the same negative form
+      text: "Do not open the shed."
+      instances:
+        - {t: witness, id: x1, kind: shed, definite: true}
+        - {t: change-of-state, id: c1, verb: open, undergoer: "@x1", tense: present}
+        - {t: negation, id: s1, over: ["@c1"]}
+        - {t: imperative, id: s2, over: ["@s1"]}
+    - category: positive
+      note: never — a negation
+      text: "Never touch the thermos."
+      instances:
+        - {t: witness, id: x1, kind: thermos, definite: true}
+        - {t: activity, id: v1, verb: touch, patient: "@x1", tense: present}
+        - {t: negation, id: s1, over: ["@v1"]}
+        - {t: imperative, id: s2, over: ["@s1"]}
+    - category: positive
+      note: a vocative with a negative imperative
+      text: "Lamine, don't touch the spindle."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: x1, kind: spindle, definite: true}
+        - {t: activity, id: v1, verb: touch, actor: "@n1", patient: "@x1", tense: present}
+        - {t: negation, id: s1, over: ["@v1"]}
+        - {t: imperative, id: s2, over: ["@s1"]}
+    - category: positive
+      note: a creation with no creator — the product exists only inside the directive
+      text: "Build a shed."
+      instances:
+        - {t: witness, id: x1, kind: shed}
+        - {t: creation, id: e1, verb: build, product: "@x1", tense: present}
+        - {t: imperative, id: s1, over: ["@e1"]}
+    - category: scoped
+      note: with a manner — the attachment is sealed with the event
+      text: "Wash the quilt carefully."
+      instances:
+        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: activity, id: v1, verb: wash, patient: "@x1", tense: present}
+        - {t: manner, id: a1, event: "@v1", manner: carefully}
+        - {t: imperative, id: s1, over: ["@v1"]}
+    - category: scoped
+      note: with a location
+      text: "Wait in the barn."
+      instances:
+        - {t: witness, id: x1, kind: barn, definite: true}
+        - {t: activity, id: v1, verb: wait, tense: present}
+        - {t: location, id: l1, event: "@v1", place: "@x1", head: Location, preposition: in}
+        - {t: imperative, id: s1, over: ["@v1"]}
+    - category: optional
+      note: with a deictic time
+      text: "Send the letter tomorrow."
+      instances:
+        - {t: witness, id: x1, kind: letter, definite: true}
+        - {t: transfer, id: e1, verb: send, object: "@x1", tense: present}
+        - {t: time, id: t1, event: "@e1", deictic: tomorrow, anchor: "@now"}
+        - {t: imperative, id: s1, over: ["@e1"]}
+    - category: optional
+      note: a coordinated command — one directive over both predications
+      text: "Wash the quilt and wait."
+      instances:
+        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: activity, id: v1, verb: wash, patient: "@x1", tense: present}
+        - {t: activity, id: v2, verb: wait, tense: present}
+        - {t: imperative, id: s1, over: ["@v1", "@v2"]}
+    - category: abstain
+      text: "Yusra has to send the quilt."
+      expected: {abstain: true, template: modal}                      # an obligation stated of someone
+    - category: abstain
+      text: "The quilt was washed."
+      expected: {abstain: true, template: activity}                   # an agentless passive, asserted
+    - category: abstain
+      text: "Yusra told Lamine to lock the shed."
+      expected: {abstain: true, gap: G00, span: "to lock the shed"}   # a reported command
+    - category: abstain
+      text: "Let's go to the market."
+      expected: {abstain: true, gap: G00, span: "Let's go to the market"}   # a hortative
+    - category: abstain
+      text: "Could you lock the shed?"
+      expected: {abstain: true, gap: G00, span: "Could you lock the shed"}  # a question asking for an action

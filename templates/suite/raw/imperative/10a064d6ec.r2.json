@@ -1,0 +1,96 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "011859ef1641de9eb20fbd0ff4c90d8a33b97940ed06b1a0de5d9191af6f2f3e",
+  "item": {
+    "id": "s10a064d6ec",
+    "text": "Wait in the barn."
+  },
+  "usage": {
+    "input": 37160,
+    "output": 142,
+    "thinking": null,
+    "total": 37302,
+    "cached": 35111,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 37160,
+    "candidatesTokenCount": 142,
+    "totalTokenCount": 37302,
+    "cachedContentTokenCount": 35111,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 37160
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 35111
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 142
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s10a064d6ec\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"barn\", \"definite\": true}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"wait\", \"tense\": \"present\"}, {\"t\": \"imperative\", \"id\": \"s1\", \"over\": [\"@e1\"]}, {\"t\": \"location\", \"id\": \"l1\", \"event\": \"@e1\", \"place\": \"@x1\", \"head\": \"Location\", \"preposition\": \"in\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s10a064d6ec",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "kind": "barn",
+        "definite": true
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "wait",
+        "tense": "present"
+      },
+      {
+        "t": "imperative",
+        "id": "s1",
+        "over": [
+          "@e1"
+        ]
+      },
+      {
+        "t": "location",
+        "id": "l1",
+        "event": "@e1",
+        "place": "@x1",
+        "head": "Location",
+        "preposition": "in"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "86006c1331646959e618205dae5c6fd6c614cc473b5b0769d0ff87669d0897c5",
+  "run": 2,
+  "case": {
+    "template": "imperative",
+    "section": "held_out",
+    "index": 10,
+    "category": "scoped",
+    "text": "Wait in the barn.",
+    "key": "10a064d6ec"
+  }
+}

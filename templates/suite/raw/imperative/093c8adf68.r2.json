@@ -1,0 +1,74 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "eadf3c79bb345929ef19699833a289c38310f2366ddac06666e05d9cc34f284a",
+  "item": {
+    "id": "s093c8adf68",
+    "text": "Let's go to the market."
+  },
+  "usage": {
+    "input": 37160,
+    "output": 69,
+    "thinking": null,
+    "total": 37229,
+    "cached": 35111,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 37160,
+    "candidatesTokenCount": 69,
+    "totalTokenCount": 37229,
+    "cachedContentTokenCount": 35111,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 37160
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 35111
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 69
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s093c8adf68\", \"instances\": [], \"unmapped\": [{\"span\": \"Let's go to the market.\", \"code\": \"G00\", \"construction\": \"A hortative clause with 'let's' including the speaker.\"}], \"issues\": []}",
+  "response": {
+    "id": "s093c8adf68",
+    "instances": [],
+    "unmapped": [
+      {
+        "span": "Let's go to the market.",
+        "code": "G00",
+        "construction": "A hortative clause with 'let's' including the speaker."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "86006c1331646959e618205dae5c6fd6c614cc473b5b0769d0ff87669d0897c5",
+  "run": 2,
+  "case": {
+    "template": "imperative",
+    "section": "held_out",
+    "index": 16,
+    "category": "abstain",
+    "text": "Let's go to the market.",
+    "key": "093c8adf68"
+  }
+}

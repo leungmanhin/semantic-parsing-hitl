@@ -65,7 +65,7 @@ slots:
   id:      {type: id, required: true, doc: "your label for the creation event"}
   verb:    {type: lemma, class: Class, required: true, doc: "the verb lemma"}
   creator: {type: filler, class: Entity, role: Agent, required: false,
-            doc: "who or what makes the thing: the subject, or the by-phrase of a passive; absent only in an agentless passive"}
+            doc: "who or what makes the thing: the subject, or the by-phrase of a passive; absent in an agentless passive, and in an imperative, whose addressee is not a referent of the text"}
   product: {type: filler, class: Entity, role: Patient, required: true,
             doc: "the thing that comes into being: the object; an instance for a specific thing (a shed, the shed), a bare lemma for a non-specific one (baked bread)"}
   tense:   {type: enum, values: [past, present, future], required: true,

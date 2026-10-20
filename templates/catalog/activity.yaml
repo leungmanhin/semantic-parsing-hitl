@@ -57,7 +57,7 @@ slots:
   id:      {type: id, required: true, doc: "your label for the action"}
   verb:    {type: lemma, class: Class, required: true, doc: "the verb lemma"}
   actor:   {type: filler, class: Entity, role: Agent, required: false,
-            doc: "who acts: the subject, or the by-phrase of a passive; absent only in an agentless passive"}
+            doc: "who acts: the subject, or the by-phrase of a passive; absent in an agentless passive, and in an imperative, whose addressee is not a referent of the text"}
   patient: {type: filler, class: Entity, role: Patient, required: false,
             doc: "what the action is done to or with: the object; a bare lemma for a non-specific one (cooked dinner)"}
   tense:   {type: enum, values: [past, present, future], required: true,

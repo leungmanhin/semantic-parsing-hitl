@@ -1,0 +1,85 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "011859ef1641de9eb20fbd0ff4c90d8a33b97940ed06b1a0de5d9191af6f2f3e",
+  "item": {
+    "id": "s8bdd184353",
+    "text": "Yusra told Lamine to lock the shed."
+  },
+  "usage": {
+    "input": 37164,
+    "output": 110,
+    "thinking": null,
+    "total": 37274,
+    "cached": 35110,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 37164,
+    "candidatesTokenCount": 110,
+    "totalTokenCount": 37274,
+    "cachedContentTokenCount": 35110,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 37164
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 35110
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 110
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s8bdd184353\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Lamine\"}], \"unmapped\": [{\"span\": \"told Lamine to lock the shed\", \"code\": \"G00\", \"construction\": \"A reported command or request with an infinitival complement.\"}], \"issues\": []}",
+  "response": {
+    "id": "s8bdd184353",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Lamine"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "told Lamine to lock the shed",
+        "code": "G00",
+        "construction": "A reported command or request with an infinitival complement."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "86006c1331646959e618205dae5c6fd6c614cc473b5b0769d0ff87669d0897c5",
+  "run": 1,
+  "case": {
+    "template": "imperative",
+    "section": "held_out",
+    "index": 15,
+    "category": "abstain",
+    "text": "Yusra told Lamine to lock the shed.",
+    "key": "8bdd184353"
+  }
+}
