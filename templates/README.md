@@ -40,6 +40,7 @@ Nothing here changes `prompt.txt`, the briefs under `fusenf/briefs/`, or any pip
     $P ../suite.py <check|collect|score> …                   # the same runner from any directory
     $P -m tmpl.frequency                                     # verb-class / construction frequencies → FREQUENCY.md
     $P ../semantic-parse.py "<sentence>" --atoms             # one parse, validated, atoms shown
+    $P ../semantic-parse.py "<sentence>" --statements-only   # only the statements, one per line: the chainer's input
     $P ../semantic-parse.py "<sentence>" --reference-time today   # the anchor `now` gets the date's calendar fields
     for t in tests/test_*.py; do $P $t; done
     (cd <PeTTaChainer checkout> && uv run python $PWD/tests/test_rules_engine.py)   # the seeded rules on the chainer
@@ -67,8 +68,9 @@ Nothing here changes `prompt.txt`, the briefs under `fusenf/briefs/`, or any pip
   environment, e.g. `GEMINI_API_KEY`). No temperature is sent unless `--temperature` is given (Gemini 4
   Argon ignores sampling parameters; Gemini 3 is meant to run at its default). Every reply is validated
   after the call: the summary and any findings go to stderr, the result into the run record,
-  `--atoms` prints the emitted statements too, `--no-validate` skips it, exit status 3 on findings. The
-  suite runner uses the same script for blind parses.
+  `--atoms` prints the emitted statements too, `--statements-only` prints nothing else (one statement
+  per line, the chainer's `add_atom` input; the declarations are for the type check only), `--no-validate`
+  skips it, exit status 3 on findings. The suite runner uses the same script for blind parses.
 - Request layout and caching (Google): the catalog goes as the first user turn, a fixed model
   acknowledgement follows, then the item (`--layout turns`, the default; `--layout system` is the old
   system-instruction layout). Gemini's implicit cache discounts a request only when an EARLIER request's

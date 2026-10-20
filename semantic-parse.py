@@ -15,7 +15,9 @@ ANTHROPIC_API_KEY.  Only the standard library is used.
 
 Every reply is validated after the call by the catalog's validator (templates/tmpl/validate.py:
 the emitter's instance checks, graph lints, C9 type check): findings go to stderr and into the run
-record, the reply itself is never changed.  ``--atoms`` also prints the emitted statements;
+record, the reply itself is never changed.  ``--atoms`` also prints the emitted statements and
+declarations; ``--statements-only`` prints nothing but the statements, one per line — the
+chainer's input, ready to feed to add_atom beside templates/generated/seeded_rules.metta;
 ``--no-validate`` skips the step.
 
 Exit status: 0 the reply is a JSON object that validates; 3 it has validation findings; 2 it is
@@ -382,9 +384,13 @@ def main(argv=None) -> int:
     ap.add_argument("--dry-run", action="store_true", help="show the request that would be sent and call nothing")
     ap.add_argument("--no-validate", action="store_true", help="do not run the catalog's validator on the reply")
     ap.add_argument("--atoms", action="store_true", help="also print the emitted statements and declarations")
+    ap.add_argument("--statements-only", action="store_true",
+                    help="print only the emitted statements, one per line (the chainer's input); the reply and the declarations are not printed")
     ap.add_argument("--reference-time", default=None,
                     help="the text's reference time as an ISO date (YYYY-MM-DD, optionally THH:MM): gives the anchor `now` its calendar fields; 'today' = the system date")
     args = ap.parse_args(argv)
+    if args.statements_only and args.no_validate:
+        ap.error("--statements-only needs the validator, which emits the statements: drop --no-validate")
     if args.reference_time == "today":
         import datetime
         args.reference_time = datetime.date.today().isoformat()
@@ -402,12 +408,19 @@ def main(argv=None) -> int:
     if args.dry_run:
         print(json.dumps(record["request"], indent=2, ensure_ascii=False))
         return 0
-    if args.raw or record.get("response") is None:
+    v = record.get("validation")
+    if args.statements_only:                      # stdout carries the statements alone
+        if record.get("response") is None:
+            print(record["raw_text"], file=sys.stderr)
+        elif v and v.get("statements"):
+            print("\n".join(v["statements"]))
+        elif v:
+            print(f"[no statements: {v['summary']}]", file=sys.stderr)
+    elif args.raw or record.get("response") is None:
         print(record["raw_text"])
     else:
         print(json.dumps(record["response"], indent=2, ensure_ascii=False))
-    v = record.get("validation")
-    if args.atoms and v and v.get("statements"):
+    if args.atoms and not args.statements_only and v and v.get("statements"):
         print("\n; statements")
         print("\n".join(v["statements"]))
         print("; declarations")

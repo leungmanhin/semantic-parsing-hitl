@@ -218,6 +218,20 @@ class ScriptTests(unittest.TestCase):
             self.assertEqual(len(rec["validation"]["statements"]), 8)
             self.assertEqual(rec["validation"]["findings"], [])
 
+    def test_statements_only_prints_the_chainer_input_alone(self):
+        rc, out, err = self.run_script(FAKE_REPLY, "--statements-only")
+        self.assertEqual(rc, 0, err)
+        lines = out.strip().splitlines()
+        self.assertEqual(len(lines), 8)
+        self.assertTrue(all(l.startswith("(: ") and l.endswith(")") for l in lines), lines)
+        self.assertIn("(Agent sk_give_1 sk_teodor_1)", out)
+        self.assertNotIn("{", out)                                   # no JSON reply on stdout
+        self.assertNotIn("; declarations", out)
+        self.assertIn("validation ok", err)                          # the summary still goes to stderr
+        with self.assertRaises(SystemExit):                          # it needs the validator
+            with contextlib.redirect_stderr(io.StringIO()):
+                load_script().main(["x", "--statements-only", "--no-validate"])
+
     def test_findings_give_exit_3_and_no_validate_skips(self):
         bad = copy.deepcopy(FAKE_REPLY)
         del bad["instances"][3]["tense"]
