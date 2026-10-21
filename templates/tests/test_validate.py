@@ -53,6 +53,18 @@ def kinds(res):
 
 
 class ContractTests(unittest.TestCase):
+    def test_optional_non_participant_filler_is_not_bare(self):
+        """A predication whose only filler is marked participant: false (kind-property's restriction)
+        trips no bare-predication lint when the filler is empty; a verb-class predication with no
+        participant still does."""
+        ok = V.inspect({"id": "t", "instances": [
+            {"t": "kind-property", "id": "k1", "subject": "heron", "property": "widespread", "tense": "present"}],
+            "unmapped": [], "issues": []}, CATALOG)
+        self.assertFalse([f for f in ok["findings"] if f["kind"] == "bare-predication"], ok["findings"])
+        bare = V.inspect({"id": "t", "instances": [
+            {"t": "activity", "id": "v1", "verb": "run", "tense": "present"}], "unmapped": [], "issues": []}, CATALOG)
+        self.assertTrue([f for f in bare["findings"] if f["kind"] == "bare-predication"])
+
     def test_not_an_object(self):
         res = V.inspect("just text", CATALOG)
         self.assertEqual(res["status"], "not-an-object")

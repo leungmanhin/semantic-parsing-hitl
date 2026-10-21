@@ -509,8 +509,8 @@ gloss: Calendar year of a time instance: (Year t 2026). Legacy constructor form 
 head: ConditionalProperty
 kind: relation
 arity: 3
-type-def: (: ConditionalProperty (-> Class Class Class Proposition))
-gloss: A kind has a property only under a stated condition. Order: (ConditionalProperty kind property condition).
+type-def: (: ConditionalProperty (-> Class Class Class Proposition))  ; and 1 more (per arity / per union alternative)
+gloss: A kind-level property restricted to a place, a time or a circumstance: the kind as found there has the property (otters are rare in Norfolk; cranes are rare in winter). Order: (ConditionalProperty kind property restriction); the restriction is an entity (a place, a thing) or a class (a time, a circumstance). Opaque like KindProperty: distributes to no member. A member-level property under a condition is a parser-emitted rule instead, never this atom.
 
 
 head: Entails

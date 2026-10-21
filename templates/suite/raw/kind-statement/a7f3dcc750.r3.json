@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "a425dddb507554c71fb4c88aec8fc84118920b43204deae9960577427454e8da",
+  "prompt_sha256": "cb1e4f465fd44df52e135e3b785454bc076731b9548e16084bdb220d2e5b749a",
   "item": {
     "id": "sa7f3dcc750",
     "text": "Ferrets are widespread."
   },
   "usage": {
-    "input": 16515,
-    "output": 70,
+    "input": 51779,
+    "output": 65,
     "thinking": null,
-    "total": 16585,
+    "total": 51844,
+    "cached": 49730,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,48 +25,50 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 16515,
-    "candidatesTokenCount": 70,
-    "totalTokenCount": 16585,
-    "cachedContentTokenCount": 14466,
+    "promptTokenCount": 51779,
+    "candidatesTokenCount": 65,
+    "totalTokenCount": 51844,
+    "cachedContentTokenCount": 49730,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 16515
+        "tokenCount": 51779
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 14466
+        "tokenCount": 49730
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 70
+        "tokenCount": 65
       }
     ]
   },
-  "raw_text": "{\"id\": \"sa7f3dcc750\", \"instances\": [], \"unmapped\": [{\"span\": \"Ferrets are widespread\", \"code\": \"G00\", \"construction\": \"A kind-level property predicated of a kind as a whole rather than generalizing over its members.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"sa7f3dcc750\", \"instances\": [{\"t\": \"kind-property\", \"id\": \"k1\", \"subject\": \"ferret\", \"property\": \"widespread\", \"tense\": \"present\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sa7f3dcc750",
-    "instances": [],
-    "unmapped": [
+    "instances": [
       {
-        "span": "Ferrets are widespread",
-        "code": "G00",
-        "construction": "A kind-level property predicated of a kind as a whole rather than generalizing over its members."
+        "t": "kind-property",
+        "id": "k1",
+        "subject": "ferret",
+        "property": "widespread",
+        "tense": "present"
       }
     ],
+    "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "120b60a17e82d50d47855b28fe77e98ae4c75e431ab78838d5db2b4f83cfa873",
+  "prompt_body_sha256": "e818417b50e53224000dbbfbcf86feb0d70114df739431722ad3ad866d0b6d57",
   "run": 3,
   "case": {
     "template": "kind-statement",
     "section": "held_out",
-    "index": 10,
+    "index": 11,
     "category": "abstain",
     "text": "Ferrets are widespread.",
     "key": "a7f3dcc750"

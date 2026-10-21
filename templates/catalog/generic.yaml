@@ -5,7 +5,8 @@
 # then x has its own sleeping event:
 #   (Implication (Member $x ferret) (And (Member (sk_sleep $x) sleep) (Agent (sk_sleep $x) $x) (Past (sk_sleep $x))))
 # The strength is the quantifier's (every / all 1.0, most 0.9, many 0.7, few 0.1, no / none 0.0,
-# a bare generic 0.9) at confidence 0.9; the quantifier word itself is kept by the range's
+# a bare generic 0.9); the confidence is 0.9 under an explicit quantifier word and 0.7 for a bare
+# generic, which states no proportion; the quantifier word itself is kept by the range's
 # companion record. Two quantified kinds give one rule with two premises; an indefinite inside
 # the predication depends on the member (every student read a letter: each their own letter); a
 # definite or a name is a shared constant.
@@ -23,7 +24,11 @@ trigger:
     ferrets sleep, most students laugh, few herons migrate, no ferret slept. The predication is
     parsed with its own template, with the range as its filler; the generic instance names the
     range(s) and the predication (or the negation / modal over it) and nothing else. One
-    generic per clause, however many ranges it has.
+    generic per clause, however many ranges it has. An object that is itself a bare kind
+    (ferrets eat mice, spiders spin webs) is a bare lemma filler of the predication: the rule
+    says an arbitrary ferret eats mice. A condition under which the generalization holds
+    (ferrets bite when cornered, clay softens when wet) is a predication over the range — a
+    copular instance for the state — listed in `condition`.
   boundary:                   # looks like a generalization but is not one
     - >-
       a copular predicate — all ferrets are curious, most herons are patient: a kind statement,
@@ -39,6 +44,9 @@ trigger:
       conditional over occasions, not a quantifier on a subject
     - >-
       an existential singular — some ferret slept, a ferret slept: a particular witness
+    - >-
+      a copular predicate under a condition — clay is soft when wet: a conditional property,
+      the same rule with "be"
 
 slots:
   id:     {type: id, required: true, doc: "your label for the rule"}
@@ -46,16 +54,23 @@ slots:
            doc: "the range instance(s) the rule quantifies over, in text order: one per quantified kind noun"}
   over:   {type: refs, class: Proposition, required: true, skolemize: true,
            doc: "the predication over the range(s), or the negation / modal over that predication: its id, nothing else"}
+  condition: {type: refs, class: Proposition, required: false,
+              doc: "a predication over the range that must hold for the generalization to apply (ferrets bite when cornered: the copular instance for cornered, its subject the range); its id; absent as a rule"}
 
 truth:
   strength:
     - {from: ranges, slot: quantifier,
        values: {every: 1.0, each: 1.0, all: 1.0, most: 0.9, many: 0.7, few: 0.1, "no": 0.0, none: 0.0}}
     - 0.9
-  confidence: [0.9]
+  confidence:                  # an explicit quantifier word 0.9; a bare generic states no proportion: 0.7
+    - {from: ranges, slot: quantifier, values: {every: 0.9, each: 0.9, all: 0.9, most: 0.9, many: 0.9, few: 0.9, "no": 0.9, none: 0.9}}
+    - 0.7
 
 emits:
   - atom: "(Implication {ranges} {over})"
+    when: "not condition"
+  - atom: "(Implication (And {ranges} {condition}) {over})"
+    if_filled: condition
 
 notes:
   - >-
@@ -63,8 +78,10 @@ notes:
     per-member event is a function of the member (sk_sleep $x), and of every range when there
     are several (sk_fear $x $y), so that two members' events are two events.
   - >-
-    The strength carries the quantity and the confidence the generality: an empirical rule at
-    0.9 admits exceptions, which later evidence about members can override.
+    The strength carries the quantity and the confidence the commitment: an explicit
+    quantifier word states a proportion (confidence 0.9); a bare generic states none (0.7), so
+    evidence about members overrides it more easily. Neither number is a judgment about the
+    world: the parser records the words, the program sets the values.
   - >-
     A negated generalization (ferrets do not sleep) is the rule over the negation: the
     conclusion says that an arbitrary member does not sleep.
@@ -75,7 +92,7 @@ composes_with: [negation, modal]
 examples:
   shown:                     # rendered into the prompt
     - category: positive
-      note: a bare generic — no quantifier word, strength 0.9, no companion
+      note: a bare generic — no quantifier word, strength 0.9 at confidence 0.7, no companion
       text: "Ferrets sleep."
       instances:
         - {t: range, id: q1, kind: ferret}
@@ -147,6 +164,44 @@ examples:
         - {t: range, id: q2, kind: heron, quantifier: every, predicate: fear}
         - {t: psych, id: p1, verb: fear, experiencer: "@q1", stimulus: "@q2", tense: past}
         - {t: generic, id: r1, ranges: ["@q1", "@q2"], over: ["@p1"]}
+    - category: positive
+      note: a quantifier word with a kind-level object — a rule, the object a bare lemma
+      text: "Every ferret eats mice."
+      instances:
+        - {t: range, id: q1, kind: ferret, quantifier: every, predicate: eat}
+        - {t: activity, id: v1, verb: eat, actor: "@q1", patient: mouse, tense: present}
+        - {t: generic, id: r1, ranges: ["@q1"], over: ["@v1"]}
+    - category: positive
+      note: a bare generic with a named object — a rule, the name a shared constant
+      text: "Ferrets fear Teodor."
+      instances:
+        - {t: range, id: q1, kind: ferret}
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: psych, id: p1, verb: fear, experiencer: "@q1", stimulus: "@n1", tense: present}
+        - {t: generic, id: r1, ranges: ["@q1"], over: ["@p1"]}
+    - category: positive
+      note: a bare kind as the object — a bare lemma inside the rule
+      text: "Herons eat frogs."
+      instances:
+        - {t: range, id: q1, kind: heron}
+        - {t: activity, id: v1, verb: eat, actor: "@q1", patient: frog, tense: present}
+        - {t: generic, id: r1, ranges: ["@q1"], over: ["@v1"]}
+    - category: positive
+      note: a condition — a copular predication over the range, a premise beside the kind
+      text: "Ferrets bite when cornered."
+      instances:
+        - {t: range, id: q1, kind: ferret}
+        - {t: activity, id: v1, verb: bite, actor: "@q1", tense: present}
+        - {t: copular, id: c1, subject: "@q1", predicate: cornered, form: adjective, tense: present}
+        - {t: generic, id: r1, ranges: ["@q1"], condition: ["@c1"], over: ["@v1"]}
+    - category: positive
+      note: a change of state under a condition
+      text: "Clay softens when wet."
+      instances:
+        - {t: range, id: q1, kind: clay}
+        - {t: change-of-state, id: e1, verb: soften, undergoer: "@q1", tense: present}
+        - {t: copular, id: c1, subject: "@q1", predicate: wet, form: adjective, tense: present}
+        - {t: generic, id: r1, ranges: ["@q1"], condition: ["@c1"], over: ["@e1"]}
     - category: scoped
       note: a negated generalization — the rule is over the negation
       text: "Ferrets do not sleep."
@@ -164,3 +219,6 @@ examples:
     - category: abstain
       text: "Ferrets can climb."
       expected: {abstain: true, gap: G00, span: "Ferrets can climb."}  # a capability on a kind
+    - category: abstain
+      text: "Wax is soft when warm."
+      expected: {abstain: true, template: conditional-property}       # a copular predicate under a condition

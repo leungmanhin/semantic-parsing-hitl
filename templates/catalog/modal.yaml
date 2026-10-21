@@ -32,6 +32,8 @@ slots:
   head:    {type: enum, values: [Can, Might, Must, Obligated, Permitted], required: true}
   surface: {type: string, required: false, doc: "the modal word as written"}
 
+truth: {inherit: over}         # the atom carries the scoped statement's own truth value
+
 emits:
   - atom: "({head} {over})"
 

@@ -1,0 +1,102 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "a9e1ed5a7114de2bedee96ae4010964a4aa69ba1a78b19fae57121290e52e164",
+  "item": {
+    "id": "s84568d38f9",
+    "text": "Clay softens when wet."
+  },
+  "usage": {
+    "input": 51785,
+    "output": 167,
+    "thinking": null,
+    "total": 51952,
+    "cached": 49736,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 51785,
+    "candidatesTokenCount": 167,
+    "totalTokenCount": 51952,
+    "cachedContentTokenCount": 49736,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 51785
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 49736
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 167
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s84568d38f9\", \"instances\": [{\"t\": \"range\", \"id\": \"q1\", \"kind\": \"clay\"}, {\"t\": \"change-of-state\", \"id\": \"e1\", \"verb\": \"soften\", \"undergoer\": \"@q1\", \"tense\": \"present\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@q1\", \"predicate\": \"wet\", \"form\": \"adjective\", \"tense\": \"present\"}, {\"t\": \"generic\", \"id\": \"r1\", \"ranges\": [\"@q1\"], \"over\": [\"@e1\"], \"condition\": [\"@c1\"]}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s84568d38f9",
+    "instances": [
+      {
+        "t": "range",
+        "id": "q1",
+        "kind": "clay"
+      },
+      {
+        "t": "change-of-state",
+        "id": "e1",
+        "verb": "soften",
+        "undergoer": "@q1",
+        "tense": "present"
+      },
+      {
+        "t": "copular",
+        "id": "c1",
+        "subject": "@q1",
+        "predicate": "wet",
+        "form": "adjective",
+        "tense": "present"
+      },
+      {
+        "t": "generic",
+        "id": "r1",
+        "ranges": [
+          "@q1"
+        ],
+        "over": [
+          "@e1"
+        ],
+        "condition": [
+          "@c1"
+        ]
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "e818417b50e53224000dbbfbcf86feb0d70114df739431722ad3ad866d0b6d57",
+  "run": 2,
+  "case": {
+    "template": "generic",
+    "section": "held_out",
+    "index": 11,
+    "category": "positive",
+    "text": "Clay softens when wet.",
+    "key": "84568d38f9"
+  }
+}

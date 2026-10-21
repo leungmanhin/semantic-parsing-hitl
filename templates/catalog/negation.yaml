@@ -28,6 +28,8 @@ slots:
   id:   {type: id, required: true}
   over: {type: refs, class: Proposition, required: true, doc: "the predication(s) negated"}
 
+truth: {inherit: over}         # the atom carries the negated statement's own truth value
+
 emits:
   - atom: "(Not {over})"
 

@@ -3,7 +3,8 @@
 # A statement about a kind as such, with no quantifier word: a bare plural (ferrets), a mass
 # noun (granite) or a generic indefinite singular (a spindle is a tool). The atom is
 # (Inheritance <kind> <predicate>) with the confidence dial of the substrate: 0.99 for a
-# definitional or taxonomic claim, 0.9 for an empirical generalization; a quantifier word (all,
+# definitional or taxonomic claim, 0.9 for an empirical generalization with an explicit quantifier
+# word, 0.7 for a bare empirical one (which states no proportion); a quantifier word (all,
 # most, few, no) sets the strength and is kept in a companion record. Tense, negation and
 # modality are operators over the atom.
 
@@ -39,6 +40,10 @@ trigger:
       a property of the kind as a whole that no member holds — ferrets are widespread, the
       dodo is extinct, herons are common: a kind-level property, not a generalization
     - >-
+      a property under a condition — clay is soft when wet, ferrets are tame in Calderwick: a
+      conditional property, a rule over the members; a kind-level property restricted to a
+      place or a time — otters are rare in Norfolk: a kind-level property
+    - >-
       a copular verb other than be — herons seem patient, ferrets became popular: evidential,
       or a change of state
 
@@ -61,9 +66,10 @@ truth:
     - {slot: quantifier, values: {all: 1.0, every: 1.0, each: 1.0, most: 0.9, many: 0.7, few: 0.1, "no": 0.0, none: 0.0}}
     - {slot: definitional, values: {"true": 1.0, "false": 0.9}}
     - 0.9
-  confidence:
-    - {slot: definitional, values: {"true": 0.99, "false": 0.9}}
-    - 0.9
+  confidence:                  # definitional 0.99; an explicit quantifier word 0.9; a bare empirical statement 0.7
+    - {slot: definitional, values: {"true": 0.99}}
+    - {slot: quantifier, values: {all: 0.9, every: 0.9, each: 0.9, most: 0.9, many: 0.9, few: 0.9, "no": 0.9, none: 0.9}}
+    - 0.7
 
 emits:
   - atom: "(Inheritance {subject} {predicate})"
@@ -76,19 +82,22 @@ emits:
     when: "aspect == progressive"
   - atom: "(QuantifierPhrase {subject} {predicate} \"{quantifier}\")"   # the word, kept beside the statement
     if_filled: quantifier
+    project: true                                                     # a surface record: top level, outside any scope
     stv: [1.0, 0.99]
 
 notes:
   - >-
     The parser records two things and the program sets the truth value: definitional claims
-    hold by definition (confidence 0.99), empirical ones admit exceptions (0.9); a bare
+    hold by definition (confidence 0.99), empirical ones admit exceptions (0.9 with an explicit
+    quantifier word, 0.7 for a bare statement, which states no proportion); a bare
     empirical statement has strength 0.9, and a quantifier word sets it (all 1.0, most 0.9,
     many 0.7, few 0.1, no 0.0). "No" as a quantifier is a strength-0 generalization with its
     word kept, not a negation operator.
   - >-
     Kind-level properties that no member holds (extinct, widespread, common) are not
-    generalizations over members and would be wrong as Inheritance; they wait for their own
-    template.
+    generalizations over members and would be wrong as Inheritance; they have their own
+    template (kind-property). A property under a condition is a rule over the members
+    (conditional-property), since the flat atom could not carry the condition.
 
 depends_on: []
 composes_with: [negation, modal]
@@ -107,7 +116,7 @@ examples:
         - "(: ferret Class)"
         - "(: mustelid Class)"
     - category: positive
-      note: empirical — the program lowers the confidence
+      note: empirical and bare — the program lowers the confidence to 0.7
       text: "Ferrets are curious."
       instances:
         - {t: kind-statement, id: k1, subject: ferret, predicate: curious, form: adjective,
@@ -187,4 +196,7 @@ examples:
       expected: {abstain: true, template: copular}                     # an individual as the subject
     - category: abstain
       text: "Ferrets are widespread."
-      expected: {abstain: true, gap: G00, span: "Ferrets are widespread."}   # a kind-level property
+      expected: {abstain: true, template: kind-property}                # a kind-level property
+    - category: abstain
+      text: "Wax is soft when warm."
+      expected: {abstain: true, template: conditional-property}         # a property under a condition

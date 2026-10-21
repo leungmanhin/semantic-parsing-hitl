@@ -32,7 +32,7 @@ CATALOG_DIR = os.path.abspath(os.path.join(HERE, os.pardir, "catalog"))
 SLOT_TYPES = {"id", "lemma", "filler", "refs", "enum", "bool", "string", "number", "int", "list"}
 CLASSED = {"lemma", "filler", "refs"}
 CATEGORIES = {"positive", "contrast", "scoped", "optional", "abstain"}
-SLOT_KEYS = {"type", "class", "role", "required", "default", "values", "doc", "consumes", "bind", "skolemize", "attaches", "bare_content"}
+SLOT_KEYS = {"type", "class", "role", "required", "default", "values", "doc", "consumes", "bind", "skolemize", "attaches", "bare_content", "participant"}
 
 _PLACEHOLDER = re.compile(r"\{([a-z_]+)\}")
 
@@ -100,6 +100,8 @@ def check_template(t: dict, path: str) -> list[str]:
             problems.append(f"slot {sname}: bind must name a filler slot of the template")
         if spec.get("attaches") and spec["type"] != "filler":
             problems.append(f"slot {sname}: attaches applies to filler slots only")
+        if "participant" in spec and (spec["type"] != "filler" or spec["participant"] is not False):
+            problems.append(f"slot {sname}: participant: false applies to filler slots only")
     for key in ("one_of", "any_of"):
         for i, group in enumerate(t.get(key) or []):
             if not isinstance(group, list) or len(group) < 2 or any(g not in slots for g in group):
@@ -109,7 +111,10 @@ def check_template(t: dict, path: str) -> list[str]:
             problems.append(f"presupposed: {s!r} is not a slot")
     truth = t.get("truth")
     if truth is not None:
-        if not isinstance(truth, dict) or not ({"strength", "confidence"} & set(truth)):
+        if isinstance(truth, dict) and "inherit" in truth:
+            if set(truth) != {"inherit"} or (slots.get(truth["inherit"]) or {}).get("type") != "refs":
+                problems.append("truth: inherit must name a refs slot of the template and stand alone")
+        elif not isinstance(truth, dict) or not ({"strength", "confidence"} & set(truth)):
             problems.append("truth: needs strength and/or confidence clause lists")
         else:
             for key in ("strength", "confidence"):

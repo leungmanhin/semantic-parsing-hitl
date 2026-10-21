@@ -15,8 +15,9 @@ status: draft
 trigger:
   construction: >
     A clause with "be" as its main verb whose subject is a referent instance — a name, a
-    witness, a group (the ferrets) or a resolved pronoun — and whose predicate is an indefinite
-    noun phrase (is a locksmith) or an adjective (is crooked). A group as the subject takes the
+    witness, a group (the ferrets), a resolved pronoun, or a range inside a rule (the
+    arbitrary member of a conditional property or a generic's condition) — and whose predicate
+    is an indefinite noun phrase (is a locksmith) or an adjective (is crooked). A group as the subject takes the
     predicate as a group; whether it also holds of each member is the distribution template's
     business. The
     predicate's head is the kind or the property; an adjective inside a predicate noun phrase
@@ -29,7 +30,8 @@ trigger:
   boundary:                   # looks like a copular clause but is not one
     - >-
       a kind as the subject — ferrets are mustelids, granite is a rock, a spindle is a tool:
-      a statement about a kind, not an individual
+      a statement about a kind, not an individual (a range instance, "@q1", is not a kind: it
+      is the member a rule ranges over, and takes this template)
     - >-
       a quantifier word on the subject — all ferrets are curious, most herons are patient:
       a quantified generalization

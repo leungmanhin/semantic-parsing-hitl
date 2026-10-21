@@ -402,7 +402,13 @@ class _Emitter:
 
     def substitute(self, expr, inst: dict, slots: dict, element_slot=None, element=None):
         if isinstance(expr, list):
-            return [self.substitute(x, inst, slots, element_slot, element) for x in expr]
+            out = [self.substitute(x, inst, slots, element_slot, element) for x in expr]
+            if out and out[0] == "And":                 # a shape's own conjunction absorbs a bundle that is one
+                flat = ["And"]
+                for x in out[1:]:
+                    flat.extend(x[1:] if isinstance(x, list) and x and x[0] == "And" else [x])
+                return flat
+            return out
         tok = expr
         if tok == "@id":
             return self.sym[inst["id"]]
@@ -537,6 +543,9 @@ class _Emitter:
         rule = self.cat[r["t"]].get("truth")
         if not rule:
             return DEFAULT_STV
+        if rule.get("inherit"):                     # a scope operator asserts nothing of its own
+            refs = [x for x in (r.get(rule["inherit"]) or []) if is_ref(x) and x[1:] in self.by_id]
+            return self.truth_of(refs[0][1:]) if len(refs) == 1 else DEFAULT_STV
 
         def lookup(clause, source):
             v = source.get(clause["slot"])

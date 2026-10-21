@@ -1,0 +1,204 @@
+# Template: kind-property  (a property of a kind as a whole: "Herons are widespread", "The quagga is extinct", "Otters are rare in Norfolk")
+#
+# "Be" with a property that holds of a kind as a population and of no single member — extinct,
+# endangered, widespread, common, rare, scarce, abundant, numerous, plentiful, ubiquitous — is
+# a statement about the kind, not a generalization over its members: the atom is
+# (KindProperty <kind> <property>), opaque, at strength 1.0 and confidence 0.9. Nothing is
+# inherited: whether this heron is widespread is not a question. A restriction of the claim to
+# a place, a time or a circumstance (rare in Norfolk, rare in winter) is kept in the atom:
+# (ConditionalProperty <kind> <property> <restriction>), opaque in the same way. The subject is
+# a bare plural, a mass noun or a definite singular that names the kind (the quagga). Tense,
+# negation and modality are operators over the atom.
+
+id: kind-property
+family: predication
+kind: copular
+title: A property of a kind as a whole
+status: draft
+
+trigger:
+  construction: >
+    A clause with "be" as its main verb whose subject names a kind — a bare plural (herons), a
+    mass noun (lichen) or a definite singular naming the kind (the quagga, the great auk) — and
+    whose predicate adjective is a property only a kind as a whole can have: extinct,
+    endangered, widespread, common, rare, scarce, abundant, numerous, plentiful, ubiquitous,
+    prevalent. The test: could one individual be it? A single heron cannot be widespread or
+    rare; it can be patient or grey, and those are kind statements. The property is
+    lemmatized. A definite singular with such a property can only name the kind: no witness.
+    A phrase restricting the claim to a place (rare in Norfolk, common in the marsh), a time
+    (rare in winter) or a circumstance goes in `restriction`: the claim holds there, not at
+    large.
+  surface_forms:
+    - "<kind>s are <ADJ>"                      # herons are widespread
+    - "the <kind> is <ADJ>"                    # the quagga is extinct
+    - "<mass noun> is <ADJ>"                   # lichen is abundant
+    - "<kind>s are <ADJ> in <place / time>"    # otters are rare in Norfolk; cranes are rare in winter
+  boundary:                   # looks like a kind-level property but is not one
+    - >-
+      a property a member can hold — herons are patient, ferrets are curious, granite is hard:
+      a kind statement, which generalizes over the members
+    - >-
+      a property a member can hold, under a condition — clay is soft when wet, ferrets are
+      tame in Calderwick: a conditional property, a rule over the members
+    - >-
+      a verbal predicate — ferrets are dying out, herons are declining: no slot; report the
+      clause as unmapped
+    - >-
+      a specific group — the ferrets are numerous, these herons are rare: a group as the
+      subject of a copular predication
+    - >-
+      a kind as a kind — ferrets are mustelids, the quagga was a zebra: a kind statement
+
+slots:
+  id:          {type: id, required: true, doc: "your label for the statement"}
+  subject:     {type: lemma, class: Class, required: true,
+                doc: "the kind, lemmatized to the singular (heron, quagga, lichen)"}
+  property:    {type: lemma, class: Class, required: true,
+                doc: "the property, lemmatized (widespread, extinct, rare)"}
+  restriction: {type: filler, class: Class, required: false, participant: false,
+                doc: "a restriction of the claim to a place, a time or a circumstance: the id of a referent instance for a place or a thing (@n1 for Norfolk, @x1 for the marsh), or a lemma for a time or circumstance (winter, night); absent for a claim at large"}
+  tense:       {type: enum, values: [past, present, future], required: true,
+                doc: "the clause's tense; present is recorded, not inferred"}
+
+truth:
+  strength: [1.0]              # the property holds of the kind as such; no proportion to express
+  confidence: [0.9]            # a contingent claim about the world: the generalization dial
+
+emits:
+  - atom: "(KindProperty {subject} {property})"
+    when: "not restriction and tense == present"
+  - atom: "(Past (KindProperty {subject} {property}))"
+    when: "not restriction and tense == past"
+  - atom: "(Future (KindProperty {subject} {property}))"
+    when: "not restriction and tense == future"
+  - atom: "(ConditionalProperty {subject} {property} {restriction})"
+    if_filled: restriction
+    when: "tense == present"
+  - atom: "(Past (ConditionalProperty {subject} {property} {restriction}))"
+    if_filled: restriction
+    when: "tense == past"
+  - atom: "(Future (ConditionalProperty {subject} {property} {restriction}))"
+    if_filled: restriction
+    when: "tense == future"
+
+notes:
+  - >-
+    Opaque, unlike a kind statement: (Inheritance heron patient) hands patience to every heron,
+    (KindProperty heron widespread) hands nothing to any heron. The test "could one individual
+    be it?" is the whole difference between the two templates.
+  - >-
+    A restricted claim is as opaque as the bare one: "otters are rare in Norfolk" says nothing
+    about otters at large and nothing about any otter. A kind-level claim has no event for a
+    place or a time to attach to, so the restriction is kept in the atom.
+  - >-
+    A degree word on the property (very common, extremely rare) has no slot: keep the instance
+    and report the word (G02).
+
+depends_on: []
+composes_with: [negation, modal, named-entity, witness]
+
+examples:
+  shown:                     # rendered into the prompt
+    - category: positive
+      note: a property no single heron can have
+      text: "Herons are widespread."
+      instances:
+        - {t: kind-property, id: k1, subject: heron, property: widespread, tense: present}
+      emitted:               # what the emitter produces (illustration; the emitter is the authority)
+        - "(KindProperty heron widespread)"
+      declarations:
+        - "(: heron Class)"
+        - "(: widespread Class)"
+    - category: positive
+      note: a definite singular naming the kind — no witness
+      text: "The quagga is extinct."
+      instances:
+        - {t: kind-property, id: k1, subject: quagga, property: extinct, tense: present}
+    - category: positive
+      note: a place restricting the claim — kept in the atom, still about the kind
+      text: "Otters are rare in Norfolk."
+      instances:
+        - {t: named-entity, id: n1, name: "Norfolk"}
+        - {t: kind-property, id: k1, subject: otter, property: rare, restriction: "@n1", tense: present}
+    - category: abstain
+      text: "Ferrets are curious."
+      expected: {abstain: true, template: kind-statement}             # a property a member can hold
+
+  held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      text: "Ferrets are widespread."
+      instances:
+        - {t: kind-property, id: k1, subject: ferret, property: widespread, tense: present}
+    - category: positive
+      text: "Otters are rare."
+      instances:
+        - {t: kind-property, id: k1, subject: otter, property: rare, tense: present}
+    - category: positive
+      text: "Newts are endangered."
+      instances:
+        - {t: kind-property, id: k1, subject: newt, property: endangered, tense: present}
+    - category: positive
+      note: a mass noun
+      text: "Lichen is abundant."
+      instances:
+        - {t: kind-property, id: k1, subject: lichen, property: abundant, tense: present}
+    - category: positive
+      note: a definite singular naming the kind
+      text: "The aurochs is extinct."
+      instances:
+        - {t: kind-property, id: k1, subject: aurochs, property: extinct, tense: present}
+    - category: positive
+      note: past tense
+      text: "Cranes were common."
+      instances:
+        - {t: kind-property, id: k1, subject: crane, property: common, tense: past}
+    - category: positive
+      note: a witness as the restriction
+      text: "Newts are common in the marsh."
+      instances:
+        - {t: witness, id: x1, kind: marsh, definite: true}
+        - {t: kind-property, id: k1, subject: newt, property: common, restriction: "@x1", tense: present}
+    - category: positive
+      note: a time as the restriction — a lemma
+      text: "Cranes are rare in winter."
+      instances:
+        - {t: kind-property, id: k1, subject: crane, property: rare, restriction: winter, tense: present}
+    - category: positive
+      note: past tense with a restriction
+      text: "Cranes were common in Norfolk."
+      instances:
+        - {t: named-entity, id: n1, name: "Norfolk"}
+        - {t: kind-property, id: k1, subject: crane, property: common, restriction: "@n1", tense: past}
+    - category: contrast
+      note: the property decides the template — common is kind-level, patient is not
+      text: "Herons are common."
+      instances:
+        - {t: kind-property, id: k1, subject: heron, property: common, tense: present}
+    - category: scoped
+      note: under clausal negation
+      text: "Herons are not rare."
+      instances:
+        - {t: kind-property, id: k1, subject: heron, property: rare, tense: present}
+        - {t: negation, id: s1, over: ["@k1"]}
+    - category: scoped
+      note: under a modal
+      text: "Newts might be endangered."
+      instances:
+        - {t: kind-property, id: k1, subject: newt, property: endangered, tense: present}
+        - {t: modal, id: s1, over: ["@k1"], head: Might, surface: might}
+    - category: optional
+      note: a degree word on the property — reported, the property kept
+      text: "Herons are very common."
+      instances:
+        - {t: kind-property, id: k1, subject: heron, property: common, tense: present}
+      unmapped:
+        - {span: "very", code: G02}
+    - category: abstain
+      text: "Herons are patient."
+      expected: {abstain: true, template: kind-statement}             # a member can be patient
+    - category: abstain
+      text: "Tin is brittle when cold."
+      expected: {abstain: true, template: conditional-property}       # a member's property under a condition
+    - category: abstain
+      text: "Ferrets are dying out."
+      expected: {abstain: true, gap: G00, span: "Ferrets are dying out."}   # a verbal predicate of the kind

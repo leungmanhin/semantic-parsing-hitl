@@ -1,0 +1,74 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "a9e1ed5a7114de2bedee96ae4010964a4aa69ba1a78b19fae57121290e52e164",
+  "item": {
+    "id": "s51ef137994",
+    "text": "Pewter is solid at room temperature."
+  },
+  "usage": {
+    "input": 51787,
+    "output": 78,
+    "thinking": null,
+    "total": 51865,
+    "cached": 49738,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 51787,
+    "candidatesTokenCount": 78,
+    "totalTokenCount": 51865,
+    "cachedContentTokenCount": 49738,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 51787
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 49738
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 78
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s51ef137994\", \"instances\": [], \"unmapped\": [{\"span\": \"Pewter is solid at room temperature\", \"code\": \"G00\", \"construction\": \"A kind's property under a circumstance phrase ('at room temperature') that no template states of a member.\"}], \"issues\": []}",
+  "response": {
+    "id": "s51ef137994",
+    "instances": [],
+    "unmapped": [
+      {
+        "span": "Pewter is solid at room temperature",
+        "code": "G00",
+        "construction": "A kind's property under a circumstance phrase ('at room temperature') that no template states of a member."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "e818417b50e53224000dbbfbcf86feb0d70114df739431722ad3ad866d0b6d57",
+  "run": 3,
+  "case": {
+    "template": "conditional-property",
+    "section": "held_out",
+    "index": 11,
+    "category": "abstain",
+    "text": "Pewter is solid at room temperature.",
+    "key": "51ef137994"
+  }
+}

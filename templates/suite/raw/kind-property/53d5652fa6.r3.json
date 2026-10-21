@@ -1,0 +1,76 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "a9e1ed5a7114de2bedee96ae4010964a4aa69ba1a78b19fae57121290e52e164",
+  "item": {
+    "id": "s53d5652fa6",
+    "text": "Herons are common."
+  },
+  "usage": {
+    "input": 51784,
+    "output": 66,
+    "thinking": null,
+    "total": 51850,
+    "cached": 49735,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 51784,
+    "candidatesTokenCount": 66,
+    "totalTokenCount": 51850,
+    "cachedContentTokenCount": 49735,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 51784
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 49735
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 66
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s53d5652fa6\", \"instances\": [{\"t\": \"kind-property\", \"id\": \"k1\", \"subject\": \"heron\", \"property\": \"common\", \"tense\": \"present\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s53d5652fa6",
+    "instances": [
+      {
+        "t": "kind-property",
+        "id": "k1",
+        "subject": "heron",
+        "property": "common",
+        "tense": "present"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "e818417b50e53224000dbbfbcf86feb0d70114df739431722ad3ad866d0b6d57",
+  "run": 3,
+  "case": {
+    "template": "kind-property",
+    "section": "held_out",
+    "index": 9,
+    "category": "contrast",
+    "text": "Herons are common.",
+    "key": "53d5652fa6"
+  }
+}

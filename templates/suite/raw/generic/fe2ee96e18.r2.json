@@ -1,0 +1,94 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "a9e1ed5a7114de2bedee96ae4010964a4aa69ba1a78b19fae57121290e52e164",
+  "item": {
+    "id": "sfe2ee96e18",
+    "text": "Every ferret eats mice."
+  },
+  "usage": {
+    "input": 51783,
+    "output": 130,
+    "thinking": null,
+    "total": 51913,
+    "cached": 49734,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 51783,
+    "candidatesTokenCount": 130,
+    "totalTokenCount": 51913,
+    "cachedContentTokenCount": 49734,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 51783
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 49734
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 130
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sfe2ee96e18\", \"instances\": [{\"t\": \"range\", \"id\": \"q1\", \"kind\": \"ferret\", \"quantifier\": \"every\", \"predicate\": \"eat\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"eat\", \"actor\": \"@q1\", \"patient\": \"mouse\", \"tense\": \"present\"}, {\"t\": \"generic\", \"id\": \"r1\", \"ranges\": [\"@q1\"], \"over\": [\"@v1\"]}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sfe2ee96e18",
+    "instances": [
+      {
+        "t": "range",
+        "id": "q1",
+        "kind": "ferret",
+        "quantifier": "every",
+        "predicate": "eat"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "eat",
+        "actor": "@q1",
+        "patient": "mouse",
+        "tense": "present"
+      },
+      {
+        "t": "generic",
+        "id": "r1",
+        "ranges": [
+          "@q1"
+        ],
+        "over": [
+          "@v1"
+        ]
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "e818417b50e53224000dbbfbcf86feb0d70114df739431722ad3ad866d0b6d57",
+  "run": 2,
+  "case": {
+    "template": "generic",
+    "section": "held_out",
+    "index": 7,
+    "category": "positive",
+    "text": "Every ferret eats mice.",
+    "key": "fe2ee96e18"
+  }
+}

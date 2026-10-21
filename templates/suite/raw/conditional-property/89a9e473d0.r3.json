@@ -1,0 +1,112 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "a9e1ed5a7114de2bedee96ae4010964a4aa69ba1a78b19fae57121290e52e164",
+  "item": {
+    "id": "s89a9e473d0",
+    "text": "Herons are patient when they are healthy and warm."
+  },
+  "usage": {
+    "input": 51791,
+    "output": 213,
+    "thinking": null,
+    "total": 52004,
+    "cached": 49742,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 51791,
+    "candidatesTokenCount": 213,
+    "totalTokenCount": 52004,
+    "cachedContentTokenCount": 49742,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 51791
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 49742
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 213
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s89a9e473d0\", \"instances\": [{\"t\": \"range\", \"id\": \"q1\", \"kind\": \"heron\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@q1\", \"predicate\": \"patient\", \"form\": \"adjective\", \"tense\": \"present\"}, {\"t\": \"copular\", \"id\": \"c2\", \"subject\": \"@q1\", \"predicate\": \"healthy\", \"form\": \"adjective\", \"tense\": \"present\"}, {\"t\": \"copular\", \"id\": \"c3\", \"subject\": \"@q1\", \"predicate\": \"warm\", \"form\": \"adjective\", \"tense\": \"present\"}, {\"t\": \"conditional-property\", \"id\": \"r1\", \"ranges\": [\"@q1\"], \"condition\": [\"@c2\", \"@c3\"], \"over\": [\"@c1\"]}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s89a9e473d0",
+    "instances": [
+      {
+        "t": "range",
+        "id": "q1",
+        "kind": "heron"
+      },
+      {
+        "t": "copular",
+        "id": "c1",
+        "subject": "@q1",
+        "predicate": "patient",
+        "form": "adjective",
+        "tense": "present"
+      },
+      {
+        "t": "copular",
+        "id": "c2",
+        "subject": "@q1",
+        "predicate": "healthy",
+        "form": "adjective",
+        "tense": "present"
+      },
+      {
+        "t": "copular",
+        "id": "c3",
+        "subject": "@q1",
+        "predicate": "warm",
+        "form": "adjective",
+        "tense": "present"
+      },
+      {
+        "t": "conditional-property",
+        "id": "r1",
+        "ranges": [
+          "@q1"
+        ],
+        "condition": [
+          "@c2",
+          "@c3"
+        ],
+        "over": [
+          "@c1"
+        ]
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "e818417b50e53224000dbbfbcf86feb0d70114df739431722ad3ad866d0b6d57",
+  "run": 3,
+  "case": {
+    "template": "conditional-property",
+    "section": "held_out",
+    "index": 3,
+    "category": "positive",
+    "text": "Herons are patient when they are healthy and warm.",
+    "key": "89a9e473d0"
+  }
+}

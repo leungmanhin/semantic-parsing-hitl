@@ -56,6 +56,7 @@
 (: CoAgent (-> Event Entity Proposition))
 (: Compute (-> Atom Atom Atom Atom Proposition))
 (: ConditionalProperty (-> Class Class Class Proposition))
+(: ConditionalProperty (-> Class Class Entity Proposition))
 (: Consequently (-> Event Event Proposition))
 (: Coref (-> Instance Instance Proposition))
 (: Counterfactual (-> Proposition Proposition Proposition))

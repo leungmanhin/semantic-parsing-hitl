@@ -107,13 +107,38 @@ class EmitTests(unittest.TestCase):
             return E.emit({"id": "t", "instances": ex["instances"]}, CATALOG)["statements"]
 
         self.assertTrue(all(st.endswith("(STV 1.0 0.99))") for st in stmts("Ferrets are mustelids.")))
-        self.assertTrue(all(st.endswith("(STV 0.9 0.9))") for st in stmts("Ferrets are curious.")))
+        self.assertTrue(all(st.endswith("(STV 0.9 0.7))") for st in stmts("Ferrets are curious.")))   # bare: no proportion stated
         quant = stmts("All ferrets are curious.")
         self.assertIn("(: k1_inheritance (Inheritance ferret curious) (STV 1.0 0.9))", quant)
         self.assertIn('(: k1_quantifierphrase (QuantifierPhrase ferret curious "all") (STV 1.0 0.99))', quant)
         neg = stmts("Ferrets are not rodents.")
         self.assertEqual(len(neg), 1)
         self.assertTrue(neg[0].startswith("(: s1_not (Not (Inheritance ferret rodent))") and neg[0].endswith("(STV 1.0 0.99))"))
+        self.assertTrue(stmts("Ferrets sleep.")[0].endswith("(STV 0.9 0.7))"))                        # a bare generic rule
+        self.assertTrue(stmts("Most students laugh.")[0].endswith("(STV 0.9 0.9))"))                  # an explicit quantifier
+
+    def test_scope_atoms_inherit_the_truth_value_of_their_content(self):
+        """A negation or a modal over one statement carries that statement's truth value (the
+        operand's dial survives the operator); over an event bundle, or over several statements,
+        the default stands."""
+        empirical = [{"t": "kind-statement", "id": "k1", "subject": "ferret", "predicate": "curious", "form": "adjective",
+                      "definitional": False, "tense": "present"}, {"t": "negation", "id": "s1", "over": ["@k1"]}]
+        self.assertEqual(E.emit({"id": "t", "instances": empirical}, CATALOG)["statements"],
+                         ["(: s1_not (Not (Inheritance ferret curious)) (STV 0.9 0.7))"])
+        most = [dict(empirical[0], quantifier="most"), empirical[1]]
+        out = E.emit({"id": "t", "instances": most}, CATALOG)["statements"]
+        self.assertIn("(: s1_not (Not (Inheritance ferret curious)) (STV 0.9 0.9))", out)
+        self.assertIn('(: k1_quantifierphrase (QuantifierPhrase ferret curious "most") (STV 1.0 0.99))', out)   # the record stays outside the Not
+        modal = [{"t": "kind-property", "id": "k1", "subject": "newt", "property": "endangered", "tense": "present"},
+                 {"t": "modal", "id": "s1", "over": ["@k1"], "head": "Might", "surface": "might"}]
+        self.assertEqual(E.emit({"id": "t", "instances": modal}, CATALOG)["statements"],
+                         ["(: s1_might (Might (KindProperty newt endangered)) (STV 1.0 0.9))"])
+        nested = empirical + [{"t": "modal", "id": "s2", "over": ["@s1"], "head": "Might", "surface": "might"}]
+        self.assertTrue(E.emit({"id": "t", "instances": nested}, CATALOG)["statements"][0].endswith("(STV 0.9 0.7))"))
+        event = [{"t": "named-entity", "id": "n1", "name": "Yusra"},
+                 {"t": "activity", "id": "v1", "verb": "laugh", "actor": "@n1", "tense": "past"},
+                 {"t": "negation", "id": "s1", "over": ["@v1"]}]
+        self.assertTrue(E.emit({"id": "t", "instances": event}, CATALOG)["statements"][-1].endswith("(STV 1.0 0.99))"))
 
     def test_distribution_rule_keeps_the_group_statement_and_skolemizes(self):
         ex = next(e for _, _, e in all_examples() if e["text"] == "Several ferrets slept.")
@@ -140,7 +165,7 @@ class EmitTests(unittest.TestCase):
         self.assertTrue(next(st for st in stmts("No ferret slept.") if "Implication" in st).endswith("(STV 0.0 0.9))"))
         bare = stmts("Ferrets sleep.")
         self.assertEqual(len(bare), 1)
-        self.assertTrue(bare[0].endswith("(STV 0.9 0.9))") and "(Past" not in bare[0])
+        self.assertTrue(bare[0].endswith("(STV 0.9 0.7))") and "(Past" not in bare[0])          # a bare generic: confidence 0.7
         indef = [a for a in atoms_of(stmts("Every student read a letter.")) if a.startswith("(Implication")]
         self.assertEqual(indef, ["(Implication (Member $x student) (And (Member (sk_read $x) read) (Agent (sk_read $x) $x) (Patient (sk_read $x) (sk_letter $x)) (Past (sk_read $x)) (Member (sk_letter $x) letter)))"])
         defin = atoms_of(stmts("Every student read the letter."))
@@ -448,6 +473,47 @@ class EmitTests(unittest.TestCase):
         atoms = atoms_of(E.emit({"id": "o", "instances": audit}, CATALOG)["statements"])
         self.assertEqual(sum(a.startswith("(Not (And") and "(About sk_talk_1 sk_audit_1)" in a and "(Member sk_audit_1 audit)" in a for a in atoms), 1)
         self.assertFalse(any(a.startswith("(Member sk_audit_1") for a in atoms))
+
+    def test_kind_level_claims(self):
+        """A kind-level property is one opaque KindProperty atom, a restricted one a ConditionalProperty
+        atom with the restriction (a referent or a lemma), wrapped by tense; a member-level property
+        under a condition is a rule whose premises are the kind and the condition predication over
+        the range, with a quantifier word setting the strength beside its companion; a generic
+        takes the same condition."""
+        out = E.emit({"id": "t", "instances": [
+            {"t": "kind-property", "id": "k1", "subject": "heron", "property": "widespread", "tense": "present"}]}, CATALOG)
+        self.assertEqual(out["statements"], ["(: k1_kindproperty (KindProperty heron widespread) (STV 1.0 0.9))"])
+        out = E.emit({"id": "t", "instances": [
+            {"t": "named-entity", "id": "n1", "name": "Norfolk"},
+            {"t": "kind-property", "id": "k1", "subject": "crane", "property": "common", "restriction": "@n1", "tense": "past"}]}, CATALOG)
+        self.assertEqual(atoms_of(out["statements"]), ['(Name sk_norfolk_1 "Norfolk")', "(Past (ConditionalProperty crane common sk_norfolk_1))"])
+        out = E.emit({"id": "t", "instances": [
+            {"t": "kind-property", "id": "k1", "subject": "crane", "property": "rare", "restriction": "winter", "tense": "present"}]}, CATALOG)
+        self.assertEqual(atoms_of(out["statements"]), ["(ConditionalProperty crane rare winter)"])
+        self.assertIn("(: winter Class)", out["declarations"])
+        rule = [{"t": "range", "id": "q1", "kind": "alloy", "quantifier": "all", "predicate": "brittle"},
+                {"t": "copular", "id": "c1", "subject": "@q1", "predicate": "brittle", "form": "adjective", "tense": "present"},
+                {"t": "copular", "id": "c2", "subject": "@q1", "predicate": "cold", "form": "adjective", "tense": "present"},
+                {"t": "conditional-property", "id": "r1", "ranges": ["@q1"], "condition": ["@c2"], "over": ["@c1"]}]
+        out = E.emit({"id": "t", "instances": rule}, CATALOG)
+        self.assertEqual(out["statements"], [
+            "(: r1_implication (Implication (And (Member $x alloy) (Member $x cold)) (Member $x brittle)) (STV 1.0 0.9))",
+            '(: q1_quantifierphrase (QuantifierPhrase alloy brittle "all") (STV 1.0 0.99))'])
+        denied = rule[:3] + [{"t": "negation", "id": "s1", "over": ["@c1"]},
+                             {"t": "conditional-property", "id": "r1", "ranges": ["@q1"], "condition": ["@c2"], "over": ["@s1"]}]
+        out = E.emit({"id": "t", "instances": denied}, CATALOG)
+        self.assertIn("(Implication (And (Member $x alloy) (Member $x cold)) (Not (Member $x brittle)))", atoms_of(out["statements"]))
+        two = rule[:3] + [{"t": "copular", "id": "c3", "subject": "@q1", "predicate": "dry", "form": "adjective", "tense": "present"},
+                          {"t": "conditional-property", "id": "r1", "ranges": ["@q1"], "condition": ["@c2", "@c3"], "over": ["@c1"]}]
+        out = E.emit({"id": "t", "instances": two}, CATALOG)                      # a shape's conjunction absorbs the bundles
+        self.assertIn("(Implication (And (Member $x alloy) (Member $x cold) (Member $x dry)) (Member $x brittle))", atoms_of(out["statements"]))
+        out = E.emit({"id": "t", "instances": [
+            {"t": "range", "id": "q1", "kind": "ferret"},
+            {"t": "activity", "id": "v1", "verb": "bite", "actor": "@q1", "tense": "present"},
+            {"t": "copular", "id": "c1", "subject": "@q1", "predicate": "cornered", "form": "adjective", "tense": "present"},
+            {"t": "generic", "id": "r1", "ranges": ["@q1"], "condition": ["@c1"], "over": ["@v1"]}]}, CATALOG)
+        self.assertEqual(atoms_of(out["statements"]),
+                         ["(Implication (And (Member $x ferret) (Member $x cornered)) (And (Member (sk_bite $x) bite) (Agent (sk_bite $x) $x)))"])
 
     def test_malformed_instances_are_refused(self):
         bad = [{"t": "transfer", "id": "e1", "verb": "give", "giver": "@n9", "object": "x", "tense": "past"}]

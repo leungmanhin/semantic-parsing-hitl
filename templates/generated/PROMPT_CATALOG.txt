@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 51a03edca3e3b37c · 39 templates
+catalog sha256 eb1dbd6be23f4cb4 · 41 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -59,9 +59,10 @@ fences.
   anchor, `"anchor": "@now"`, and the program supplies the instance, with calendar fields when
   the caller states the reference date.
 - A slot that holds a CLAUSE — the content of a negation, a modal, a directive or an attitude,
-  the complement of a control, causative, aspectual or psych verb — holds a list of ids: the
-  clause's predication, or the scope operator over it when it has one (`["@s1"]` for a negated
-  or modalised clause); never the referents the clause mentions.
+  the complement of a control, causative, aspectual or psych verb, the content or the condition
+  of a rule — holds a list of ids: the clause's predication, or the scope operator over it when
+  it has one (`["@s1"]` for a negated or modalised clause); never the referents the clause
+  mentions.
 - A slot that holds a kind, property, verb, scale or unit holds the bare LEMMA, for example
   `"kind": "book"`.
 - A participant slot holds either one: `"@x1"` for a specific referent, or a bare lemma for a
@@ -77,6 +78,10 @@ fences.
   fold a later mention into an earlier instance: the link is the resolution, stated where it can
   be checked and revised. An event anaphor ("That surprised everyone") is a `mention` linked to
   the event.
+- The one pronoun that is NOT a mention: a pronoun bound by a range — "they" in "herons are
+  patient if they are healthy", "it" in "every ferret sleeps when it is tired" — is the range
+  itself, the arbitrary member. Fill the slot with the range's id (`"subject": "@q1"`); no
+  mention instance and no coref, since there is no separate referent.
 - A TEXT of several sentences is parsed together: a later sentence's mentions of earlier
   referents are new instances linked by `coref` to the first ones.
 - A coordinated subject or object (Teodor and Yusra laughed; read the letter and the note) is
@@ -125,8 +130,9 @@ Decide what to keep by ENTAILMENT. When the sentence still entails the rest with
 part, keep the instances the templates license and report just that part: an added time, date
 bound, duration, place, manner, amount or tag leaves the event itself true ("was demolished
 before 1960" still says it was demolished). When the rest would NOT follow without the unmapped
-part, leave the whole claim out and report the whole clause: a condition ("brittle when cold"),
-a hedge ("supposedly full"), a proportion or partitive ("12.5% of the applicants").
+part, leave the whole claim out and report the whole clause: a condition on an individual ("the
+ladder is brittle when cold"), a hedge ("supposedly full"), a proportion or partitive ("12.5% of
+the applicants").
 
 Referents inside an unmapped span: a NAME still gets its instance (a name is rigid, the same
 individual wherever it appears in the text), but a common-noun phrase or a pronoun does not. A
@@ -152,7 +158,8 @@ Codes:
 - G09: stay / remain / keep with a locative continuation ('stayed in the hall')
 - G10: the verbatim wording of a quotation (its content is parsed; the wording itself is not
   kept)
-- G11: an adjective-plus-condition compound ('solid at room temperature')
+- G11: an individual's property under a condition ('the ladder is brittle when cold'); a kind's
+  is the conditional-property template
 
 ## Reporting a problem with the instructions
 
@@ -1345,12 +1352,13 @@ Not this template. TEXT: Yusra made Teodor laugh. — use `causative`.
 ### copular — An individual is a kind or has a property
 
 When: A clause with "be" as its main verb whose subject is a referent instance — a name, a
-witness, a group (the ferrets) or a resolved pronoun — and whose predicate is an indefinite noun
-phrase (is a locksmith) or an adjective (is crooked). A group as the subject takes the predicate
-as a group; whether it also holds of each member is the distribution template's business. The
-predicate's head is the kind or the property; an adjective inside a predicate noun phrase (is a
-careful weaver) is a second copular instance with the adjective as its predicate. Tense is the
-clause's; present is recorded and emits nothing.
+witness, a group (the ferrets), a resolved pronoun, or a range inside a rule (the arbitrary
+member of a conditional property or a generic's condition) — and whose predicate is an
+indefinite noun phrase (is a locksmith) or an adjective (is crooked). A group as the subject
+takes the predicate as a group; whether it also holds of each member is the distribution
+template's business. The predicate's head is the kind or the property; an adjective inside a
+predicate noun phrase (is a careful weaver) is a second copular instance with the adjective as
+its predicate. Tense is the clause's; present is recorded and emits nothing.
 
 Forms:
 - <subject> is a <N>
@@ -1359,7 +1367,8 @@ Forms:
 
 Not this template:
 - a kind as the subject — ferrets are mustelids, granite is a rock, a spindle is a tool: a
-  statement about a kind, not an individual
+  statement about a kind, not an individual (a range instance, "@q1", is not a kind: it is the
+  member a rule ranges over, and takes this template)
 - a quantifier word on the subject — all ferrets are curious, most herons are patient: a
   quantified generalization
 - a copular verb other than be — seems tired, looks tired, remains open: an evidential or
@@ -1642,6 +1651,88 @@ Not this template. TEXT: The audit was difficult. — use `copular`.
 
 Not this template. TEXT: The price fell sharply. — use `extent`.
 
+### kind-property — A property of a kind as a whole
+
+When: A clause with "be" as its main verb whose subject names a kind — a bare plural (herons), a
+mass noun (lichen) or a definite singular naming the kind (the quagga, the great auk) — and
+whose predicate adjective is a property only a kind as a whole can have: extinct, endangered,
+widespread, common, rare, scarce, abundant, numerous, plentiful, ubiquitous, prevalent. The
+test: could one individual be it? A single heron cannot be widespread or rare; it can be patient
+or grey, and those are kind statements. The property is lemmatized. A definite singular with
+such a property can only name the kind: no witness. A phrase restricting the claim to a place
+(rare in Norfolk, common in the marsh), a time (rare in winter) or a circumstance goes in
+`restriction`: the claim holds there, not at large.
+
+Forms:
+- <kind>s are <ADJ>
+- the <kind> is <ADJ>
+- <mass noun> is <ADJ>
+- <kind>s are <ADJ> in <place / time>
+
+Not this template:
+- a property a member can hold — herons are patient, ferrets are curious, granite is hard: a
+  kind statement, which generalizes over the members
+- a property a member can hold, under a condition — clay is soft when wet, ferrets are tame in
+  Calderwick: a conditional property, a rule over the members
+- a verbal predicate — ferrets are dying out, herons are declining: no slot; report the clause
+  as unmapped
+- a specific group — the ferrets are numerous, these herons are rare: a group as the subject of
+  a copular predication
+- a kind as a kind — ferrets are mustelids, the quagga was a zebra: a kind statement
+
+Slots:
+
+- `t` (required): "kind-property"
+- `id` (required; your label for this instance): your label for the statement.
+- `subject` (required; a lemma): the kind, lemmatized to the singular (heron, quagga, lichen).
+- `property` (required; a lemma): the property, lemmatized (widespread, extinct, rare).
+- `restriction` (optional; "@id" of a referent instance, or a bare lemma for a non-specific
+  filler): a restriction of the claim to a place, a time or a circumstance: the id of a referent
+  instance for a place or a thing (@n1 for Norfolk, @x1 for the marsh), or a lemma for a time or
+  circumstance (winter, night); absent for a claim at large.
+- `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
+  not inferred.
+
+Example (a property no single heron can have). TEXT: Herons are widespread.
+
+Instances:
+
+    [
+      {"t": "kind-property", "id": "k1", "subject": "heron", "property": "widespread", "tense": "present"}
+    ]
+
+The program renders these instances as:
+
+    (KindProperty heron widespread)
+
+Example (a definite singular naming the kind — no witness). TEXT: The quagga is extinct.
+
+Instances:
+
+    [
+      {"t": "kind-property", "id": "k1", "subject": "quagga", "property": "extinct", "tense": "present"}
+    ]
+
+The program renders these instances as:
+
+    (KindProperty quagga extinct)
+
+Example (a place restricting the claim — kept in the atom, still about the kind). TEXT: Otters are rare in Norfolk.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Norfolk"},
+      {"t": "kind-property", "id": "k1", "subject": "otter", "property": "rare", "restriction": "@n1", "tense": "present"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_norfolk_1 "Norfolk")
+    (ConditionalProperty otter rare sk_norfolk_1)
+
+Not this template. TEXT: Ferrets are curious. — use `kind-statement`.
+
 ### kind-statement — A kind is a kind or has a property
 
 When: A clause with "be" as its main verb whose subject names a kind rather than an individual —
@@ -1666,6 +1757,9 @@ Not this template:
 - a definite plural — the ferrets are curious: a specific group of individuals, not the kind
 - a property of the kind as a whole that no member holds — ferrets are widespread, the dodo is
   extinct, herons are common: a kind-level property, not a generalization
+- a property under a condition — clay is soft when wet, ferrets are tame in Calderwick: a
+  conditional property, a rule over the members; a kind-level property restricted to a place or
+  a time — otters are rare in Norfolk: a kind-level property
 - a copular verb other than be — herons seem patient, ferrets became popular: evidential, or a
   change of state
 
@@ -1698,7 +1792,7 @@ The program renders these instances as:
 
     (Inheritance ferret mustelid)
 
-Example (empirical — the program lowers the confidence). TEXT: Ferrets are curious.
+Example (empirical and bare — the program lowers the confidence to 0.7). TEXT: Ferrets are curious.
 
 Instances:
 
@@ -3186,6 +3280,94 @@ Not this template. TEXT: Yusra laughed in the barn. — use `location`.
 
 ## Rules — generic and quantified statements
 
+### conditional-property — A kind's property under a condition
+
+When: A clause with "be" as its main verb whose subject names a kind — a bare plural (alloys), a
+mass noun (clay) or a generic indefinite singular — and whose predicate adjective holds of a
+member only under a stated condition: an adjective after when / if / while / once (soft when
+wet, brittle if cold, sticky once heated), or a place where the property holds of the members
+(tame in Calderwick). The subject is a range instance; the property is a copular instance over
+the range, listed in `over`; the condition is a predication over the same range — a copular
+instance for a state (wet, cold, heated), a locative instance for a place — listed in
+`condition`; several conditions are several instances. A pronoun in the condition that refers
+back to the kind (if they are healthy) is the range itself: the copular's subject is the range's
+id. A quantifier word on the subject (all, most, few, no) is recorded on the range as written,
+with the property's lemma as its predicate. One instance per clause.
+
+Forms:
+- <kind>s are <ADJ> when / if <ADJ>
+- <kind>s are <ADJ> in <place>
+- all / most / few / no <kind>s are <ADJ> when <ADJ>
+
+Not this template:
+- no condition — clay is soft, ferrets are curious: a kind statement; otters are rare: a
+  kind-level property
+- a property no member holds, restricted to a place or a time — otters are rare in Norfolk,
+  cranes are rare in winter: a kind-level property with a restriction, not a rule over the
+  members
+- an individual as the subject — the ladder is brittle when cold, Teodor is grumpy when tired:
+  not a kind; report the clause as unmapped (G11)
+- a verbal predicate under a condition — clay softens when wet, ferrets bite when cornered: a
+  generic with a condition
+- a condition about something other than the member — herons are patient if the weather is
+  sunny, bread is cheap when the harvest is good: the condition names an occasion, not a state
+  of the member, and has no slot yet; report the whole clause as unmapped
+- a circumstance phrase that no template states of a member — solid at room temperature, active
+  at night, soft under heat: the condition cannot be carried, so neither can the claim; report
+  the whole clause as unmapped
+- a property with a complement rather than a condition — moths are sensitive to light: the
+  phrase completes the adjective; report the predicate as unmapped
+
+Slots:
+
+- `t` (required): "conditional-property"
+- `id` (required; your label for this instance): your label for the rule.
+- `ranges` (required; a list of "@id" of the instances that state the clause): the range
+  instance for the kind (one, as a rule): the arbitrary member the condition and the property
+  are about.
+- `condition` (required; a list of "@id" of the instances that state the clause): the
+  predication(s) that must hold of the member: a copular instance over the range for a state
+  (wet), a locative instance for a place; their ids; a pronoun bound by the range is the range
+  (subject @q1).
+- `over` (required; a list of "@id" of the instances that state the clause): the copular
+  predication over the range that then holds, or the negation / modal over it: its id, nothing
+  else.
+
+Example (an adjective after when — the condition is a copular predication over the range). TEXT: Clay is soft when wet.
+
+Instances:
+
+    [
+      {"t": "range", "id": "q1", "kind": "clay"},
+      {"t": "copular", "id": "c1", "subject": "@q1", "predicate": "soft", "form": "adjective", "tense": "present"},
+      {"t": "copular", "id": "c2", "subject": "@q1", "predicate": "wet", "form": "adjective", "tense": "present"},
+      {"t": "conditional-property", "id": "r1", "ranges": ["@q1"], "condition": ["@c2"], "over": ["@c1"]}
+    ]
+
+The program renders these instances as:
+
+    (Implication (And (Member $x clay) (Member $x wet)) (Member $x soft))
+
+Example (a quantifier word — on the range, with the property as its predicate). TEXT: All alloys are brittle when cold.
+
+Instances:
+
+    [
+      {"t": "range", "id": "q1", "kind": "alloy", "quantifier": "all", "predicate": "brittle"},
+      {"t": "copular", "id": "c1", "subject": "@q1", "predicate": "brittle", "form": "adjective", "tense": "present"},
+      {"t": "copular", "id": "c2", "subject": "@q1", "predicate": "cold", "form": "adjective", "tense": "present"},
+      {"t": "conditional-property", "id": "r1", "ranges": ["@q1"], "condition": ["@c2"], "over": ["@c1"]}
+    ]
+
+The program renders these instances as:
+
+    (Implication (And (Member $x alloy) (Member $x cold)) (Member $x brittle))
+    (QuantifierPhrase alloy brittle "all")
+
+Not this template. TEXT: Otters are rare in Norfolk. — use `kind-property`.
+
+Not this template. TEXT: Ferrets are curious. — use `kind-statement`.
+
 ### distribution — A predication over a group holds of each member
 
 When: A clause whose subject or object is a group (a plural noun phrase) and whose predicate
@@ -3239,7 +3421,11 @@ plural read generically — and whose predicate is a verb other than "be": every
 ferrets sleep, most students laugh, few herons migrate, no ferret slept. The predication is
 parsed with its own template, with the range as its filler; the generic instance names the
 range(s) and the predication (or the negation / modal over it) and nothing else. One generic per
-clause, however many ranges it has.
+clause, however many ranges it has. An object that is itself a bare kind (ferrets eat mice,
+spiders spin webs) is a bare lemma filler of the predication: the rule says an arbitrary ferret
+eats mice. A condition under which the generalization holds (ferrets bite when cornered, clay
+softens when wet) is a predication over the range — a copular instance for the state — listed in
+`condition`.
 
 Not this template:
 - a copular predicate — all ferrets are curious, most herons are patient: a kind statement,
@@ -3251,6 +3437,8 @@ Not this template:
 - "every time" or "whenever" with a clause — every time the bell rings: a frequency conditional
   over occasions, not a quantifier on a subject
 - an existential singular — some ferret slept, a ferret slept: a particular witness
+- a copular predicate under a condition — clay is soft when wet: a conditional property, the
+  same rule with "be"
 
 Slots:
 
@@ -3260,8 +3448,11 @@ Slots:
   instance(s) the rule quantifies over, in text order: one per quantified kind noun.
 - `over` (required; a list of "@id" of the instances that state the clause): the predication
   over the range(s), or the negation / modal over that predication: its id, nothing else.
+- `condition` (optional; a list of "@id" of the instances that state the clause): a predication
+  over the range that must hold for the generalization to apply (ferrets bite when cornered: the
+  copular instance for cornered, its subject the range); its id; absent as a rule.
 
-Example (a bare generic — no quantifier word, strength 0.9, no companion). TEXT: Ferrets sleep.
+Example (a bare generic — no quantifier word, strength 0.9 at confidence 0.7, no companion). TEXT: Ferrets sleep.
 
 Instances:
 

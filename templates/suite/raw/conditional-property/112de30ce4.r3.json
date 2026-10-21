@@ -1,0 +1,74 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "a9e1ed5a7114de2bedee96ae4010964a4aa69ba1a78b19fae57121290e52e164",
+  "item": {
+    "id": "s112de30ce4",
+    "text": "The ladder is brittle when cold."
+  },
+  "usage": {
+    "input": 51785,
+    "output": 63,
+    "thinking": null,
+    "total": 51848,
+    "cached": 49736,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 51785,
+    "candidatesTokenCount": 63,
+    "totalTokenCount": 51848,
+    "cachedContentTokenCount": 49736,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 51785
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 49736
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 63
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s112de30ce4\", \"instances\": [], \"unmapped\": [{\"span\": \"The ladder is brittle when cold\", \"code\": \"G11\", \"construction\": \"An individual's property under a condition.\"}], \"issues\": []}",
+  "response": {
+    "id": "s112de30ce4",
+    "instances": [],
+    "unmapped": [
+      {
+        "span": "The ladder is brittle when cold",
+        "code": "G11",
+        "construction": "An individual's property under a condition."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "e818417b50e53224000dbbfbcf86feb0d70114df739431722ad3ad866d0b6d57",
+  "run": 3,
+  "case": {
+    "template": "conditional-property",
+    "section": "held_out",
+    "index": 10,
+    "category": "abstain",
+    "text": "The ladder is brittle when cold.",
+    "key": "112de30ce4"
+  }
+}

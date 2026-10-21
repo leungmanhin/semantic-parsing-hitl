@@ -57,7 +57,7 @@ identifiers:
   states the reference date.
 - >-
   A slot that holds a CLAUSE — the content of a negation, a modal, a directive or an attitude, the complement of a
-  control, causative, aspectual or psych verb — holds a list of ids:
+  control, causative, aspectual or psych verb, the content or the condition of a rule — holds a list of ids:
   the clause's predication, or the scope operator over it when it has one (`["@s1"]` for a negated or
   modalised clause); never the referents the clause mentions.
 - >-
@@ -75,6 +75,11 @@ identifiers:
   how sure the text makes the identity. Never fold a later mention into an earlier instance: the link is
   the resolution, stated where it can be checked and revised. An event anaphor ("That surprised everyone")
   is a `mention` linked to the event.
+- >-
+  The one pronoun that is NOT a mention: a pronoun bound by a range — "they" in "herons are patient
+  if they are healthy", "it" in "every ferret sleeps when it is tired" — is the range itself, the
+  arbitrary member. Fill the slot with the range's id (`"subject": "@q1"`); no mention instance and no
+  coref, since there is no separate referent.
 - >-
   A TEXT of several sentences is parsed together: a later sentence's mentions of earlier referents are
   new instances linked by `coref` to the first ones.
@@ -118,7 +123,7 @@ unmapped:
   keep the instances the templates license and report just that part: an added time, date bound, duration,
   place, manner, amount or tag leaves the event itself true ("was demolished before 1960" still says it
   was demolished). When the rest would NOT follow without the unmapped part, leave the whole claim out
-  and report the whole clause: a condition ("brittle when cold"), a hedge ("supposedly full"),
+  and report the whole clause: a condition on an individual ("the ladder is brittle when cold"), a hedge ("supposedly full"),
   a proportion or partitive ("12.5% of the applicants").
 - >-
   Referents inside an unmapped span: a NAME still gets its instance (a name is rigid, the same individual
@@ -146,7 +151,9 @@ gap_codes:
   G09: stay / remain / keep with a locative continuation ('stayed in the hall')
   G10: >-
     the verbatim wording of a quotation (its content is parsed; the wording itself is not kept)
-  G11: an adjective-plus-condition compound ('solid at room temperature')
+  G11: >-
+    an individual's property under a condition ('the ladder is brittle when cold'); a kind's is the
+    conditional-property template
 issues:
 - >-
   If, while parsing an item, an instruction in this document seems contradictory, ambiguous, or missing

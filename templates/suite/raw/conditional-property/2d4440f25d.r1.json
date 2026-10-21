@@ -1,0 +1,74 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "a9e1ed5a7114de2bedee96ae4010964a4aa69ba1a78b19fae57121290e52e164",
+  "item": {
+    "id": "s2d4440f25d",
+    "text": "Herons are patient if the weather is sunny."
+  },
+  "usage": {
+    "input": 51790,
+    "output": 77,
+    "thinking": null,
+    "total": 51867,
+    "cached": 49738,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 51790,
+    "candidatesTokenCount": 77,
+    "totalTokenCount": 51867,
+    "cachedContentTokenCount": 49738,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 51790
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 49738
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 77
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s2d4440f25d\", \"instances\": [], \"unmapped\": [{\"span\": \"Herons are patient if the weather is sunny\", \"code\": \"G00\", \"construction\": \"A kind's property under a condition about something other than the member (an occasion).\"}], \"issues\": []}",
+  "response": {
+    "id": "s2d4440f25d",
+    "instances": [],
+    "unmapped": [
+      {
+        "span": "Herons are patient if the weather is sunny",
+        "code": "G00",
+        "construction": "A kind's property under a condition about something other than the member (an occasion)."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "e818417b50e53224000dbbfbcf86feb0d70114df739431722ad3ad866d0b6d57",
+  "run": 1,
+  "case": {
+    "template": "conditional-property",
+    "section": "held_out",
+    "index": 12,
+    "category": "abstain",
+    "text": "Herons are patient if the weather is sunny.",
+    "key": "2d4440f25d"
+  }
+}

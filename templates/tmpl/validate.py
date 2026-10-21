@@ -142,7 +142,7 @@ def lints(insts: list, catalog: dict, unmapped: list) -> list:
                 out.append({"kind": "dangling-referent", "instance": r["id"],
                             "detail": f"{r['t']} {r['id']} is mentioned by no other instance and nothing is reported unmapped"})
         if t.get("family") == "predication" and r["id"] not in bare_ok:
-            fillers = [s for s, spec in slots.items() if spec["type"] == "filler"]
+            fillers = [s for s, spec in slots.items() if spec["type"] == "filler" and spec.get("participant", True)]
             if fillers and not any(r.get(s) not in (None, "", []) for s in fillers):
                 out.append({"kind": "bare-predication", "instance": r["id"],
                             "detail": f"{r['t']} {r['id']} fills none of its participant slots ({', '.join(fillers)})"})
