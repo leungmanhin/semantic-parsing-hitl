@@ -2,7 +2,7 @@
 
 id: named-entity
 family: referent
-kind: referent
+shape: referent
 title: A proper name introducing a rigid referent
 status: stub
 
@@ -25,8 +25,8 @@ slots:
   id:    {type: id, required: true}
   name:  {type: string, required: true, doc: "the surface name, capitalised as written"}
   title: {type: string, required: false, doc: "a leading title, if any"}
-  kind:  {type: lemma, class: Class, required: false,
-          doc: "the kind an appositive or a title phrase states for the name (Lamine, a glazier); a predicative is a N is a copular instance, not this slot"}
+  class:  {type: lemma, class: Class, required: false,
+          doc: "the class an appositive or a title phrase states for the name (Lamine, a glazier); a predicative is a N is a copular instance, not this slot"}
 
 mints: {id: Entity, stem: name}
 
@@ -34,8 +34,8 @@ presupposed: [name]                     # a name is rigid whatever scope mention
 
 emits:
   - atom: "(Name @id \"{name}\")"
-  - atom: "(Member @id {kind})"
-    if_filled: kind
+  - atom: "(Member @id {class})"
+    if_filled: class
 
 examples:
   shown:
@@ -45,7 +45,7 @@ examples:
         - {t: named-entity, id: n1, name: "Teodor"}
   held_out:
     - category: positive
-      note: an appositive states the kind
+      note: an appositive states the class
       text: "Yusra, a locksmith"
       instances:
-        - {t: named-entity, id: n1, name: "Yusra", kind: locksmith}
+        - {t: named-entity, id: n1, name: "Yusra", class: locksmith}

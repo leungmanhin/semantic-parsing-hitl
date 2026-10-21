@@ -2,7 +2,7 @@
 
 id: negation
 family: scope
-kind: scope
+shape: scope
 title: Clausal negation
 status: stub
 
@@ -39,7 +39,7 @@ examples:
       text: "Teodor did not send the quilt."
       instances:
         - {t: named-entity, id: n1, name: "Teodor"}
-        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: witness, id: x1, class: quilt, definite: true}
         - {t: transfer, id: e1, verb: send, giver: "@n1", object: "@x1", tense: past}
         - {t: negation, id: s1, over: ["@e1"]}
   held_out: []

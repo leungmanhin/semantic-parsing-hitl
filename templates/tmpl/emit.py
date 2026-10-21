@@ -317,7 +317,7 @@ class _Emitter:
                     named.setdefault(base, []).append(r["id"])
             else:
                 stem_slot = m.get("stem")
-                stem = r.get(stem_slot) if stem_slot else m.get("literal") or r.get("verb") or r.get("kind") or t["id"]
+                stem = r.get(stem_slot) if stem_slot else m.get("literal") or r.get("verb") or r.get("class") or t["id"]
                 stem = slug(stem)
                 counters[stem] = counters.get(stem, 0) + 1
                 self.sym[r["id"]] = f"sk_{stem}_{counters[stem]}"

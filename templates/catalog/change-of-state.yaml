@@ -10,7 +10,7 @@
 
 id: change-of-state
 family: predication
-kind: verb-class
+shape: verb-class
 title: A change of state, by itself or brought about
 status: draft
 
@@ -66,7 +66,7 @@ slots:
   undergoer: {type: filler, class: Entity, role: Patient, required: true,
               doc: "the thing that comes to be in the new state: the subject of an intransitive use, the object of a transitive one"}
   result:    {type: lemma, class: Class, required: false,
-              doc: "the state the undergoer comes to be in, when the text names it: a kind (became a locksmith → locksmith) or a property (got wet → wet, turned red → red)"}
+              doc: "the state the undergoer comes to be in, when the text names it: a class (became a locksmith → locksmith) or a property (got wet → wet, turned red → red)"}
   tense:     {type: enum, values: [past, present, future], required: true,
               doc: "the clause's tense; present is recorded, not inferred"}
   aspect:    {type: enum, values: [simple, progressive, perfect], required: false, default: simple}
@@ -107,7 +107,7 @@ examples:
       note: a change on its own
       text: "The thermos cracked."
       instances:
-        - {t: witness, id: x1, kind: thermos, definite: true}
+        - {t: witness, id: x1, class: thermos, definite: true}
         - {t: change-of-state, id: c1, verb: crack, undergoer: "@x1", tense: past}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
         - "(Member sk_thermos_1 thermos)"
@@ -130,7 +130,7 @@ examples:
       text: "Yusra broke the ladder."
       instances:
         - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: witness, id: x1, kind: ladder, definite: true}
+        - {t: witness, id: x1, class: ladder, definite: true}
         - {t: change-of-state, id: c1, verb: break, agent: "@n1", undergoer: "@x1", tense: past}
     - category: abstain
       text: "Yusra went to the market."
@@ -143,31 +143,31 @@ examples:
     - category: positive
       text: "The ladder broke."
       instances:
-        - {t: witness, id: x1, kind: ladder, definite: true}
+        - {t: witness, id: x1, class: ladder, definite: true}
         - {t: change-of-state, id: c1, verb: break, undergoer: "@x1", tense: past}
     - category: positive
       note: a figurative fall is a change of state
       text: "The price fell."
       instances:
-        - {t: witness, id: x1, kind: price, definite: true}
+        - {t: witness, id: x1, class: price, definite: true}
         - {t: change-of-state, id: c1, verb: fall, undergoer: "@x1", tense: past}
     - category: positive
       text: "Lamine melted the wax."
       instances:
         - {t: named-entity, id: n1, name: "Lamine"}
-        - {t: witness, id: x1, kind: wax, definite: true}
+        - {t: witness, id: x1, class: wax, definite: true}
         - {t: change-of-state, id: c1, verb: melt, agent: "@n1", undergoer: "@x1", tense: past}
     - category: contrast
       note: the same change on its own — the instance must differ in the agent only
       text: "The wax melted."
       instances:
-        - {t: witness, id: x1, kind: wax, definite: true}
+        - {t: witness, id: x1, class: wax, definite: true}
         - {t: change-of-state, id: c1, verb: melt, undergoer: "@x1", tense: past}
     - category: positive
       note: get with a property as the result
       text: "The ladder got wet."
       instances:
-        - {t: witness, id: x1, kind: ladder, definite: true}
+        - {t: witness, id: x1, class: ladder, definite: true}
         - {t: change-of-state, id: c1, verb: get, undergoer: "@x1", result: wet, tense: past}
     - category: positive
       note: get with a property as the result, on a name
@@ -179,40 +179,40 @@ examples:
       note: turn with a property as the result
       text: "The quilt turned red."
       instances:
-        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: witness, id: x1, class: quilt, definite: true}
         - {t: change-of-state, id: c1, verb: turn, undergoer: "@x1", result: red, tense: past}
     - category: positive
       note: make with a predicate on its object — the maker is the agent, the predicate the result
       text: "Lamine made the wax soft."
       instances:
         - {t: named-entity, id: n1, name: "Lamine"}
-        - {t: witness, id: x1, kind: wax, definite: true}
+        - {t: witness, id: x1, class: wax, definite: true}
         - {t: change-of-state, id: c1, verb: make, agent: "@n1", undergoer: "@x1", result: soft, tense: past}
     - category: positive
       note: an event noun beginning
       text: "The audit began."
       instances:
-        - {t: witness, id: x1, kind: audit, definite: true}
+        - {t: witness, id: x1, class: audit, definite: true}
         - {t: change-of-state, id: c1, verb: begin, undergoer: "@x1", tense: past}
     - category: scoped
       note: under clausal negation
       text: "The ladder did not break."
       instances:
-        - {t: witness, id: x1, kind: ladder, definite: true}
+        - {t: witness, id: x1, class: ladder, definite: true}
         - {t: change-of-state, id: c1, verb: break, undergoer: "@x1", tense: past}
         - {t: negation, id: s1, over: ["@c1"]}
     - category: scoped
       note: under a modal
       text: "The thermos might crack."
       instances:
-        - {t: witness, id: x1, kind: thermos, definite: true}
+        - {t: witness, id: x1, class: thermos, definite: true}
         - {t: change-of-state, id: c1, verb: crack, undergoer: "@x1", tense: present}
         - {t: modal, id: s1, over: ["@c1"], head: Might, surface: might}
     - category: optional
       note: perfect aspect
       text: "The wax has melted."
       instances:
-        - {t: witness, id: x1, kind: wax, definite: true}
+        - {t: witness, id: x1, class: wax, definite: true}
         - {t: change-of-state, id: c1, verb: melt, undergoer: "@x1", tense: present, aspect: perfect}
     - category: abstain
       text: "Teodor built a shed."

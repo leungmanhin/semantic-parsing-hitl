@@ -277,7 +277,7 @@
       ],
       "out": "Proposition",
       "opaque": true,
-      "gloss": "A kind-level property restricted to a place, a time or a circumstance: the kind as found there has the property (otters are rare in Norfolk; cranes are rare in winter). Order: (ConditionalProperty kind property restriction); the restriction is an entity (a place, a thing) or a class (a time, a circumstance). Opaque like KindProperty: distributes to no member. A member-level property under a condition is a parser-emitted rule instead, never this atom."
+      "gloss": "A class-level property restricted to a place, a time or a circumstance: the class as found there has the property (otters are rare in Norfolk; cranes are rare in winter). Order: (ConditionalProperty class property restriction); the restriction is an entity (a place, a thing) or a class (a time, a circumstance). Opaque like KindProperty: distributes to no member. A member-level property under a condition is a parser-emitted rule instead, never this atom."
     },
     "Consequently": {
       "kind": "discourse",
@@ -337,7 +337,7 @@
       ],
       "out": "Proposition",
       "opaque": false,
-      "gloss": "Intensity level of a property on an entity. Order: (Degree entity scale level); the level is the degree word as written, declared Level (very, slightly, too, enough, almost), or (forKind class) for a comparison class. Whether the property's positive atom is asserted beside it is the parse's decision: an intensifier, a downtoner, too and enough keep it; almost, nearly, all_but and forKind do not."
+      "gloss": "Intensity level of a property on an entity. Order: (Degree entity scale level); the level is the degree word as written, declared Level (very, slightly, too, enough, almost), or (forClass class) for a comparison class. Whether the property's positive atom is asserted beside it is the parse's decision: an intensifier, a downtoner, too and enough keep it; almost, nearly, all_but and forClass do not."
     },
     "Despite": {
       "kind": "discourse",
@@ -550,7 +550,7 @@
       ],
       "out": "Proposition",
       "opaque": false,
-      "gloss": "The members of this group individual are of that kind."
+      "gloss": "The members of this group individual are of that class."
     },
     "Holder": {
       "kind": "role",
@@ -648,6 +648,17 @@
         "(: Interpretation (-> String Atom Proposition))"
       ]
     },
+    "ClassProperty": {
+      "kind": "relation",
+      "arity": 2,
+      "arg_types": [
+        "Class",
+        "Class"
+      ],
+      "out": "Proposition",
+      "opaque": true,
+      "gloss": "Non-distributing property of a class/population as a whole. Order: (ClassProperty class property). Opaque: distributes to no member. Emitted by the class-property template; the frozen prompt line writes it as KindProperty."
+    },
     "KindProperty": {
       "kind": "relation",
       "arity": 2,
@@ -657,7 +668,8 @@
       ],
       "out": "Proposition",
       "opaque": true,
-      "gloss": "Non-distributing property of a kind/population as a whole. Order: (KindProperty kind property)."
+      "gloss": "The legacy name of ClassProperty (the frozen prompt line and its corpora write it); kept until the re-parse so those parses still type-check. Order: (KindProperty class property).",
+      "status": "retire"
     },
     "LikelihoodPhrase": {
       "kind": "surface-record",
@@ -852,7 +864,7 @@
       ],
       "out": "Proposition",
       "opaque": false,
-      "gloss": "X exceeds Y on a scale (reified comparative ordering). Order: (More scale X Y) = X exceeds Y. X and Y are instances, or classes in a kind-level comparison ((More hard basalt chalk))."
+      "gloss": "X exceeds Y on a scale (reified comparative ordering). Order: (More scale X Y) = X exceeds Y. X and Y are instances, or classes in a class-level comparison ((More hard basalt chalk))."
     },
     "MoreBy": {
       "kind": "measure",
@@ -866,7 +878,7 @@
       ],
       "out": "Proposition",
       "opaque": false,
-      "gloss": "Comparative with a measured gap: X exceeds Y by n units. Order: (MoreBy scale X Y magnitude unit). X and Y are instances, or classes in a kind-level comparison ((More hard basalt chalk))."
+      "gloss": "Comparative with a measured gap: X exceeds Y by n units. Order: (MoreBy scale X Y magnitude unit). X and Y are instances, or classes in a class-level comparison ((More hard basalt chalk))."
     },
     "Most": {
       "kind": "measure",
@@ -1176,7 +1188,7 @@
       ],
       "out": "Proposition",
       "opaque": false,
-      "gloss": "Equative: X is as ADJ as Y. Order: (SameDegree scale X Y). X and Y are instances, or classes in a kind-level comparison ((More hard basalt chalk))."
+      "gloss": "Equative: X is as ADJ as Y. Order: (SameDegree scale X Y). X and Y are instances, or classes in a class-level comparison ((More hard basalt chalk))."
     },
     "ScaleOpposite": {
       "kind": "lexicon",
@@ -1375,7 +1387,7 @@
       ],
       "out": "Proposition",
       "opaque": false,
-      "gloss": "Multiplicative comparative: X is <factor> times as ADJ as Y. Order: (TimesAs scale X Y factor). X and Y are instances, or classes in a kind-level comparison ((More hard basalt chalk))."
+      "gloss": "Multiplicative comparative: X is <factor> times as ADJ as Y. Order: (TimesAs scale X Y factor). X and Y are instances, or classes in a class-level comparison ((More hard basalt chalk))."
     },
     "TimesPer": {
       "kind": "temporal",
@@ -1497,7 +1509,7 @@
       "opaque": false,
       "gloss": "Builds the reified capability property term from a verb lemma; a class-valued term kept nested: (Inheritance bird (can fly)), (Inheritance swimmer (can swim)); on an individual, (Member x (can fly)) is the inherited form."
     },
-    "forKind": {
+    "forClass": {
       "kind": "measure",
       "arity": 1,
       "arg_types": [
@@ -1505,7 +1517,7 @@
       ],
       "out": "Level",
       "opaque": false,
-      "gloss": "Comparison-class marker: ADJ relative to the norm for a kind. A value term, not a statement: stands in the level slot of Degree."
+      "gloss": "Comparison-class marker: ADJ relative to the norm for a class. A value term, not a statement: stands in the level slot of Degree."
     },
     "obligated": {
       "kind": "property-constructor",
@@ -1525,15 +1537,15 @@
       ],
       "out": "Class",
       "opaque": false,
-      "gloss": "Builds the reified permission property term from an action; a class-valued term kept nested: (Inheritance visitor (permitted enter)); a kind-level prohibition is the same term at strength 0.0."
+      "gloss": "Builds the reified permission property term from an action; a class-valued term kept nested: (Inheritance visitor (permitted enter)); a class-level prohibition is the same term at strength 0.0."
     }
   },
   "open_class": {
-    "policy": "Lexical relation heads the prompt licenses generically rather than enumerating: kind-level relations, symmetric/reciprocal relations, nominalization relations. They cannot be checked by name — the validator checks position and arity only. Never frozen: these are the primary consolidation targets. Obliques are ALSO open class: prompt.txt attaches an oblique under a head named after its own preposition/adverb, so the head set cannot be enumerated in advance. `oblique_prepositions` lists the English prepositions that may therefore appear as an arity-2 head; an UpperCamelCase head that is NOT one of them is still flagged.",
+    "policy": "Lexical relation heads the prompt licenses generically rather than enumerating: class-level relations, symmetric/reciprocal relations, nominalization relations. They cannot be checked by name — the validator checks position and arity only. Never frozen: these are the primary consolidation targets. Obliques are ALSO open class: prompt.txt attaches an oblique under a head named after its own preposition/adverb, so the head set cannot be enumerated in advance. `oblique_prepositions` lists the English prepositions that may therefore appear as an arity-2 head; an UpperCamelCase head that is NOT one of them is still flagged.",
     "positions": [
-      "head of a kind-level relation atom, e.g. (Carry mosquito malaria)",
+      "head of a class-level relation atom, e.g. (Carry mosquito malaria)",
       "head of a symmetric relation atom accompanied by (Symmetric <head>)",
-      "head of a nominalization kind-relation, e.g. (Build dam_builder dam)",
+      "head of a nominalization class-relation, e.g. (Build dam_builder dam)",
       "skolem-function head (sk_<verb>) in a scope construction, e.g. (sk_y $x)"
     ],
     "oblique_prepositions": [

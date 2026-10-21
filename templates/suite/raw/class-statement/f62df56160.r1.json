@@ -1,0 +1,71 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "30136217c8a53b070f76fabaf4ca8fa6bd9b79b46900954e11cd22896106c271",
+  "item": {
+    "id": "sf62df56160",
+    "text": "Most herons are patient."
+  },
+  "usage": {
+    "input": 19698,
+    "output": 84,
+    "thinking": null,
+    "total": 19782,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 19698,
+    "candidatesTokenCount": 84,
+    "totalTokenCount": 19782,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 19698
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 84
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sf62df56160\", \"instances\": [{\"t\": \"kind-statement\", \"id\": \"k1\", \"subject\": \"heron\", \"predicate\": \"patient\", \"form\": \"adjective\", \"definitional\": false, \"quantifier\": \"most\", \"tense\": \"present\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sf62df56160",
+    "instances": [
+      {
+        "t": "class-statement",
+        "id": "k1",
+        "subject": "heron",
+        "predicate": "patient",
+        "form": "adjective",
+        "definitional": false,
+        "quantifier": "most",
+        "tense": "present"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "ae90abe12b2d4b21b84088798d51cf84ec4ff071897448fde41cb8d910734e20",
+  "run": 1,
+  "case": {
+    "template": "class-statement",
+    "section": "held_out",
+    "index": 7,
+    "category": "positive",
+    "text": "Most herons are patient.",
+    "key": "f62df56160"
+  }
+}

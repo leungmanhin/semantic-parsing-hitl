@@ -12,7 +12,7 @@
 
 id: causative
 family: predication
-kind: verb-class
+shape: verb-class
 title: A causer brings about an action of someone or something else
 status: draft
 
@@ -154,7 +154,7 @@ examples:
       instances:
         - {t: named-entity, id: n1, name: "Lamine"}
         - {t: named-entity, id: n2, name: "Yusra"}
-        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: witness, id: x1, class: quilt, definite: true}
         - {t: transfer, id: e2, verb: send, giver: "@n2", object: "@x1", tense: present}
         - {t: causative, id: e1, verb: make, causer: "@n1", complement: ["@e2"], implication: positive, tense: past}
     - category: positive
@@ -170,7 +170,7 @@ examples:
       text: "Teodor had the quilt washed."
       instances:
         - {t: named-entity, id: n1, name: "Teodor"}
-        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: witness, id: x1, class: quilt, definite: true}
         - {t: activity, id: v1, verb: wash, patient: "@x1", tense: present}
         - {t: causative, id: e1, verb: have, causer: "@n1", complement: ["@v1"], implication: positive, tense: past}
     - category: positive
@@ -179,7 +179,7 @@ examples:
       instances:
         - {t: named-entity, id: n1, name: "Yusra"}
         - {t: named-entity, id: n2, name: "Lamine"}
-        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: witness, id: x1, class: quilt, definite: true}
         - {t: transfer, id: e2, verb: send, giver: "@n2", object: "@x1", tense: present}
         - {t: causative, id: e1, verb: get, causer: "@n1", complement: ["@e2"], implication: positive, tense: past}
     - category: positive
@@ -188,7 +188,7 @@ examples:
       instances:
         - {t: named-entity, id: n1, name: "Ottoline"}
         - {t: named-entity, id: n2, name: "Yusra"}
-        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: witness, id: x1, class: quilt, definite: true}
         - {t: activity, id: v1, verb: wash, actor: "@n2", patient: "@x1", tense: present}
         - {t: causative, id: e1, verb: help, causer: "@n1", complement: ["@v1"], implication: positive, tense: past}
     - category: positive

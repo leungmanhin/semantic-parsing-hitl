@@ -10,7 +10,7 @@
 
 id: extent
 family: attachment
-kind: attachment
+shape: attachment
 title: How much an event holds
 status: draft
 
@@ -77,7 +77,7 @@ examples:
       note: a magnitude adverb on a change
       text: "The price fell sharply."
       instances:
-        - {t: witness, id: x1, kind: price, definite: true}
+        - {t: witness, id: x1, class: price, definite: true}
         - {t: change-of-state, id: c1, verb: fall, undergoer: "@x1", tense: past}
         - {t: extent, id: a1, event: "@c1", level: sharply}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
@@ -97,7 +97,7 @@ examples:
       text: "Teodor really likes the quilt."
       instances:
         - {t: named-entity, id: n1, name: "Teodor"}
-        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: witness, id: x1, class: quilt, definite: true}
         - {t: psych, id: p1, verb: like, experiencer: "@n1", stimulus: "@x1", tense: present}
         - {t: extent, id: a1, event: "@p1", level: really}
     - category: abstain
@@ -127,14 +127,14 @@ examples:
       text: "Teodor thoroughly cleaned the shed."
       instances:
         - {t: named-entity, id: n1, name: "Teodor"}
-        - {t: witness, id: x1, kind: shed, definite: true}
+        - {t: witness, id: x1, class: shed, definite: true}
         - {t: activity, id: v1, verb: clean, actor: "@n1", patient: "@x1", tense: past}
         - {t: extent, id: a1, event: "@v1", level: thoroughly}
     - category: positive
       note: on a frighten-type state
       text: "The audit greatly annoyed Yusra."
       instances:
-        - {t: witness, id: x1, kind: audit, definite: true}
+        - {t: witness, id: x1, class: audit, definite: true}
         - {t: named-entity, id: n1, name: "Yusra"}
         - {t: psych, id: p1, verb: annoy, experiencer: "@n1", stimulus: "@x1", tense: past}
         - {t: extent, id: a1, event: "@p1", level: greatly}
@@ -143,14 +143,14 @@ examples:
       text: "Lamine likes the quilt a lot."
       instances:
         - {t: named-entity, id: n1, name: "Lamine"}
-        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: witness, id: x1, class: quilt, definite: true}
         - {t: psych, id: p1, verb: like, experiencer: "@n1", stimulus: "@x1", tense: present}
         - {t: extent, id: a1, event: "@p1", level: a_lot}
     - category: positive
       note: a downtoner on a change
       text: "The price rose slightly."
       instances:
-        - {t: witness, id: x1, kind: price, definite: true}
+        - {t: witness, id: x1, class: price, definite: true}
         - {t: change-of-state, id: c1, verb: rise, undergoer: "@x1", tense: past}
         - {t: extent, id: a1, event: "@c1", level: slightly}
     - category: scoped
@@ -166,7 +166,7 @@ examples:
       note: under a modal
       text: "The price might fall sharply."
       instances:
-        - {t: witness, id: x1, kind: price, definite: true}
+        - {t: witness, id: x1, class: price, definite: true}
         - {t: change-of-state, id: c1, verb: fall, undergoer: "@x1", tense: present}
         - {t: extent, id: a1, event: "@c1", level: sharply}
         - {t: modal, id: s1, over: ["@c1"], head: Might, surface: might}
@@ -174,7 +174,7 @@ examples:
       note: inside a generalization
       text: "Every ferret hardly moved."
       instances:
-        - {t: range, id: q1, kind: ferret, quantifier: every, predicate: move}
+        - {t: range, id: q1, class: ferret, quantifier: every, predicate: move}
         - {t: motion, id: m1, verb: move, mover: "@q1", tense: past}
         - {t: extent, id: a1, event: "@m1", level: hardly}
         - {t: generic, id: r1, ranges: ["@q1"], over: ["@m1"]}
@@ -183,7 +183,7 @@ examples:
       text: "Lamine much prefers the quilt."
       instances:
         - {t: named-entity, id: n1, name: "Lamine"}
-        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: witness, id: x1, class: quilt, definite: true}
         - {t: psych, id: p1, verb: prefer, experiencer: "@n1", stimulus: "@x1", tense: present}
         - {t: extent, id: a1, event: "@p1", level: much}
     - category: abstain

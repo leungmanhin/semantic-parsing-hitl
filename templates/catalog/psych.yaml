@@ -8,7 +8,7 @@
 
 id: psych
 family: predication
-kind: verb-class
+shape: verb-class
 title: An emotional or evaluative state towards a stimulus
 status: draft
 
@@ -115,7 +115,7 @@ examples:
       note: frighten-type, experiencer as object — the same roles
       text: "The ferret frightens Teodor."
       instances:
-        - {t: witness, id: x1, kind: ferret, definite: true}
+        - {t: witness, id: x1, class: ferret, definite: true}
         - {t: named-entity, id: n1, name: "Teodor"}
         - {t: psych, id: p1, verb: frighten, experiencer: "@n1", stimulus: "@x1", tense: present}
     - category: abstain
@@ -147,13 +147,13 @@ examples:
       text: "Yusra fears the ferret."
       instances:
         - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: witness, id: x1, kind: ferret, definite: true}
+        - {t: witness, id: x1, class: ferret, definite: true}
         - {t: psych, id: p1, verb: fear, experiencer: "@n1", stimulus: "@x1", tense: present}
     - category: contrast
       note: class flip — subject and object swap positions, the roles do not; only the verb differs
       text: "The ferret frightens Yusra."
       instances:
-        - {t: witness, id: x1, kind: ferret, definite: true}
+        - {t: witness, id: x1, class: ferret, definite: true}
         - {t: named-entity, id: n1, name: "Yusra"}
         - {t: psych, id: p1, verb: frighten, experiencer: "@n1", stimulus: "@x1", tense: present}
     - category: positive
@@ -161,7 +161,7 @@ examples:
       text: "Teodor dreaded the audit."
       instances:
         - {t: named-entity, id: n1, name: "Teodor"}
-        - {t: witness, id: x1, kind: audit, definite: true}
+        - {t: witness, id: x1, class: audit, definite: true}
         - {t: psych, id: p1, verb: dread, experiencer: "@n1", stimulus: "@x1", tense: past}
     - category: scoped
       note: under clausal negation
@@ -176,7 +176,7 @@ examples:
       text: "Ottoline might like the quilt."
       instances:
         - {t: named-entity, id: n1, name: "Ottoline"}
-        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: witness, id: x1, class: quilt, definite: true}
         - {t: psych, id: p1, verb: like, experiencer: "@n1", stimulus: "@x1", tense: present}
         - {t: modal, id: s1, over: ["@p1"], head: Might, surface: might}
     - category: optional

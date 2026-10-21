@@ -8,7 +8,7 @@
 
 id: manner
 family: attachment
-kind: attachment
+shape: attachment
 title: How an event is done
 status: draft
 
@@ -93,7 +93,7 @@ examples:
       text: "Teodor read the letter with care."
       instances:
         - {t: named-entity, id: n1, name: "Teodor"}
-        - {t: witness, id: x1, kind: letter, definite: true}
+        - {t: witness, id: x1, class: letter, definite: true}
         - {t: activity, id: v1, verb: read, actor: "@n1", patient: "@x1", tense: past}
         - {t: manner, id: a1, event: "@v1", manner: care}
     - category: abstain
@@ -122,14 +122,14 @@ examples:
       text: "Teodor walked slowly to the market."
       instances:
         - {t: named-entity, id: n1, name: "Teodor"}
-        - {t: witness, id: x1, kind: market, definite: true}
+        - {t: witness, id: x1, class: market, definite: true}
         - {t: motion, id: m1, verb: walk, mover: "@n1", goal: "@x1", tense: past}
         - {t: manner, id: a1, event: "@m1", manner: slowly}
     - category: positive
       note: alone is a manner word
       text: "The ferret slept alone."
       instances:
-        - {t: witness, id: x1, kind: ferret, definite: true}
+        - {t: witness, id: x1, class: ferret, definite: true}
         - {t: activity, id: v1, verb: sleep, actor: "@x1", tense: past}
         - {t: manner, id: a1, event: "@v1", manner: alone}
     - category: positive
@@ -137,7 +137,7 @@ examples:
       text: "Yusra built the shed quickly."
       instances:
         - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: witness, id: x1, kind: shed, definite: true}
+        - {t: witness, id: x1, class: shed, definite: true}
         - {t: creation, id: e1, verb: build, creator: "@n1", product: "@x1", tense: past}
         - {t: manner, id: a1, event: "@e1", manner: quickly}
     - category: scoped
@@ -160,7 +160,7 @@ examples:
       note: inside a generalization
       text: "Every ferret slept quietly."
       instances:
-        - {t: range, id: q1, kind: ferret, quantifier: every, predicate: sleep}
+        - {t: range, id: q1, class: ferret, quantifier: every, predicate: sleep}
         - {t: activity, id: v1, verb: sleep, actor: "@q1", tense: past}
         - {t: manner, id: a1, event: "@v1", manner: quietly}
         - {t: generic, id: r1, ranges: ["@q1"], over: ["@v1"]}
@@ -168,7 +168,7 @@ examples:
       note: a fronted adverb
       text: "Quietly, the ferret slept."
       instances:
-        - {t: witness, id: x1, kind: ferret, definite: true}
+        - {t: witness, id: x1, class: ferret, definite: true}
         - {t: activity, id: v1, verb: sleep, actor: "@x1", tense: past}
         - {t: manner, id: a1, event: "@v1", manner: quietly}
     - category: abstain

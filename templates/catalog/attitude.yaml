@@ -10,7 +10,7 @@
 
 id: attitude
 family: predication
-kind: verb-class
+shape: verb-class
 title: A propositional attitude towards a complement clause
 status: draft
 
@@ -112,7 +112,7 @@ examples:
         - {t: named-entity, id: n1, name: "Teodor"}
         - {t: named-entity, id: n2, name: "Lamine"}
         - {t: named-entity, id: n3, name: "Ottoline"}
-        - {t: witness, id: x1, kind: trowel, definite: true}
+        - {t: witness, id: x1, class: trowel, definite: true}
         - {t: transfer, id: e1, verb: lend, giver: "@n2", recipient: "@n3", object: "@x1", tense: past}
         - {t: attitude, id: a1, verb: believe, holder: "@n1", content: ["@e1"], factive: false,
            tense: present}
@@ -140,7 +140,7 @@ examples:
       instances:
         - {t: named-entity, id: n1, name: "Yusra"}
         - {t: named-entity, id: n2, name: "Teodor"}
-        - {t: witness, id: x1, kind: spindle, definite: true}
+        - {t: witness, id: x1, class: spindle, definite: true}
         - {t: transfer, id: e1, verb: sell, giver: "@n2", object: "@x1", tense: past}
         - {t: attitude, id: a1, verb: know, holder: "@n1", content: ["@e1"], factive: true,
            tense: present}
@@ -150,7 +150,7 @@ examples:
       instances:
         - {t: named-entity, id: n1, name: "Teodor"}
         - {t: named-entity, id: n2, name: "Lamine"}
-        - {t: witness, id: x1, kind: spindle, definite: true}
+        - {t: witness, id: x1, class: spindle, definite: true}
         - {t: transfer, id: e1, verb: sell, giver: "@n2", object: "@x1", tense: past}
         - {t: attitude, id: a1, verb: say, holder: "@n1", content: ["@e1"], factive: false,
            tense: past}
@@ -160,7 +160,7 @@ examples:
       instances:
         - {t: named-entity, id: n1, name: "Teodor"}
         - {t: named-entity, id: n2, name: "Lamine"}
-        - {t: witness, id: x1, kind: spindle, definite: true}
+        - {t: witness, id: x1, class: spindle, definite: true}
         - {t: transfer, id: e1, verb: sell, giver: "@n2", object: "@x1", tense: past}
         - {t: attitude, id: a1, verb: see, holder: "@n1", content: ["@e1"], factive: true,
            tense: past}
@@ -175,7 +175,7 @@ examples:
       text: "Ottoline wants to send the quilt."
       instances:
         - {t: named-entity, id: n1, name: "Ottoline"}
-        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: witness, id: x1, class: quilt, definite: true}
         - {t: transfer, id: e1, verb: send, giver: "@n1", object: "@x1", tense: present}
         - {t: attitude, id: a1, verb: want, holder: "@n1", content: ["@e1"], factive: false, tense: present}
 
@@ -186,7 +186,7 @@ examples:
       instances:
         - {t: named-entity, id: n1, name: "Teodor"}
         - {t: named-entity, id: n2, name: "Lamine"}
-        - {t: witness, id: x1, kind: spindle}
+        - {t: witness, id: x1, class: spindle}
         - {t: transfer, id: e1, verb: sell, giver: "@n2", object: "@x1", tense: past}
         - {t: attitude, id: a1, verb: suspect, holder: "@n1", content: ["@e1"], factive: false,
            tense: present}
@@ -196,7 +196,7 @@ examples:
       instances:
         - {t: named-entity, id: n1, name: "Lamine"}
         - {t: named-entity, id: n2, name: "Teodor"}
-        - {t: witness, id: x1, kind: spindle}
+        - {t: witness, id: x1, class: spindle}
         - {t: transfer, id: e1, verb: sell, giver: "@n2", object: "@x1", tense: past}
         - {t: attitude, id: a1, verb: suspect, holder: "@n1", content: ["@e1"], factive: false,
            tense: present}
@@ -207,7 +207,7 @@ examples:
         - {t: named-entity, id: n1, name: "Ottoline"}
         - {t: named-entity, id: n2, name: "Yusra"}
         - {t: named-entity, id: n3, name: "Lamine"}
-        - {t: witness, id: x1, kind: envelope}
+        - {t: witness, id: x1, class: envelope}
         - {t: transfer, id: e1, verb: hand, giver: "@n2", recipient: "@n3", object: "@x1", tense: past}
         - {t: attitude, id: a1, verb: think, holder: "@n1", content: ["@e1"], factive: false,
            tense: past}
@@ -218,7 +218,7 @@ examples:
         - {t: named-entity, id: n1, name: "Ottoline"}
         - {t: named-entity, id: n2, name: "Yusra"}
         - {t: named-entity, id: n3, name: "Lamine"}
-        - {t: witness, id: x1, kind: envelope}
+        - {t: witness, id: x1, class: envelope}
         - {t: transfer, id: e1, verb: hand, giver: "@n2", recipient: "@n3", object: "@x1", tense: past}
         - {t: attitude, id: a1, verb: realize, holder: "@n1", content: ["@e1"], factive: true,
            tense: past}
@@ -228,7 +228,7 @@ examples:
       instances:
         - {t: named-entity, id: n1, name: "Teodor"}
         - {t: named-entity, id: n2, name: "Lamine"}
-        - {t: witness, id: x1, kind: spindle, definite: true}
+        - {t: witness, id: x1, class: spindle, definite: true}
         - {t: transfer, id: e1, verb: sell, giver: "@n2", object: "@x1", tense: past}
         - {t: attitude, id: a1, verb: believe, holder: "@n1", content: ["@e1"], factive: false,
            tense: present}
@@ -239,7 +239,7 @@ examples:
       instances:
         - {t: named-entity, id: n1, name: "Yusra"}
         - {t: named-entity, id: n2, name: "Teodor"}
-        - {t: witness, id: x1, kind: spindle, definite: true}
+        - {t: witness, id: x1, class: spindle, definite: true}
         - {t: transfer, id: e1, verb: sell, giver: "@n2", object: "@x1", tense: past}
         - {t: attitude, id: a1, verb: know, holder: "@n1", content: ["@e1"], factive: true,
            tense: present}
@@ -251,7 +251,7 @@ examples:
         - {t: named-entity, id: n1, name: "Teodor"}
         - {t: named-entity, id: n2, name: "Lamine"}
         - {t: named-entity, id: n3, name: "Ottoline"}
-        - {t: witness, id: x1, kind: trowel, definite: true}
+        - {t: witness, id: x1, class: trowel, definite: true}
         - {t: transfer, id: e1, verb: lend, giver: "@n2", recipient: "@n3", object: "@x1", tense: present}
         - {t: modal, id: s1, over: ["@e1"], head: Might, surface: might}
         - {t: attitude, id: a1, verb: believe, holder: "@n1", content: ["@s1"], factive: false,
@@ -262,7 +262,7 @@ examples:
       instances:
         - {t: named-entity, id: n1, name: "Teodor"}
         - {t: named-entity, id: n2, name: "Lamine"}
-        - {t: witness, id: x1, kind: spindle, definite: true}
+        - {t: witness, id: x1, class: spindle, definite: true}
         - {t: transfer, id: e1, verb: sell, giver: "@n2", object: "@x1", tense: past}
         - {t: negation, id: s1, over: ["@e1"]}
         - {t: attitude, id: a1, verb: believe, holder: "@n1", content: ["@s1"], factive: false,
@@ -273,7 +273,7 @@ examples:
       instances:
         - {t: named-entity, id: n1, name: "Lamine"}
         - {t: named-entity, id: n2, name: "Ottoline"}
-        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: witness, id: x1, class: quilt, definite: true}
         - {t: transfer, id: e1, verb: send, giver: "@n2", object: "@x1", tense: past}
         - {t: attitude, id: a1, verb: assume, holder: "@n1", content: ["@e1"], factive: false,
            tense: past, aspect: perfect}
@@ -283,7 +283,7 @@ examples:
       instances:
         - {t: named-entity, id: n1, name: "Yusra"}
         - {t: named-entity, id: n2, name: "Lamine"}
-        - {t: witness, id: x1, kind: spindle, definite: true}
+        - {t: witness, id: x1, class: spindle, definite: true}
         - {t: transfer, id: e1, verb: sell, giver: "@n2", object: "@x1", tense: past}
         - {t: attitude, id: a1, verb: fear, holder: "@n1", content: ["@e1"], factive: false,
            tense: present}

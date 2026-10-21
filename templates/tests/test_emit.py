@@ -57,9 +57,9 @@ class CatalogTests(unittest.TestCase):
     def test_when_conditions_are_checked_by_slot_type(self):
         """A ``when`` clause compares a slot with one of its values (enum), true / false (bool) or
         any lowercase word (lemma, string); an unknown slot or value is a problem."""
-        slots = {"level": {"type": "lemma", "class": "Level"}, "for_kind": {"type": "lemma", "class": "Class"},
+        slots = {"level": {"type": "lemma", "class": "Level"}, "for_class": {"type": "lemma", "class": "Class"},
                  "tense": {"type": "enum", "values": ["past", "present"]}, "definite": {"type": "bool"}}
-        self.assertEqual(CAT.check_when("not for_kind and level != almost and tense == past or definite == true", slots), [])
+        self.assertEqual(CAT.check_when("not for_class and level != almost and tense == past or definite == true", slots), [])
         self.assertTrue(CAT.check_when("tense == sometime", slots))
         self.assertTrue(CAT.check_when("definite == yes", slots))
         self.assertTrue(CAT.check_when("mood == past", slots))
@@ -121,7 +121,7 @@ class EmitTests(unittest.TestCase):
         """A negation or a modal over one statement carries that statement's truth value (the
         operand's dial survives the operator); over an event bundle, or over several statements,
         the default stands."""
-        empirical = [{"t": "kind-statement", "id": "k1", "subject": "ferret", "predicate": "curious", "form": "adjective",
+        empirical = [{"t": "class-statement", "id": "k1", "subject": "ferret", "predicate": "curious", "form": "adjective",
                       "definitional": False, "tense": "present"}, {"t": "negation", "id": "s1", "over": ["@k1"]}]
         self.assertEqual(E.emit({"id": "t", "instances": empirical}, CATALOG)["statements"],
                          ["(: s1_not (Not (Inheritance ferret curious)) (STV 0.9 0.7))"])
@@ -129,10 +129,10 @@ class EmitTests(unittest.TestCase):
         out = E.emit({"id": "t", "instances": most}, CATALOG)["statements"]
         self.assertIn("(: s1_not (Not (Inheritance ferret curious)) (STV 0.9 0.9))", out)
         self.assertIn('(: k1_quantifierphrase (QuantifierPhrase ferret curious "most") (STV 1.0 0.99))', out)   # the record stays outside the Not
-        modal = [{"t": "kind-property", "id": "k1", "subject": "newt", "property": "endangered", "tense": "present"},
+        modal = [{"t": "class-property", "id": "k1", "subject": "newt", "property": "endangered", "tense": "present"},
                  {"t": "modal", "id": "s1", "over": ["@k1"], "head": "Might", "surface": "might"}]
         self.assertEqual(E.emit({"id": "t", "instances": modal}, CATALOG)["statements"],
-                         ["(: s1_might (Might (KindProperty newt endangered)) (STV 1.0 0.9))"])
+                         ["(: s1_might (Might (ClassProperty newt endangered)) (STV 1.0 0.9))"])
         nested = empirical + [{"t": "modal", "id": "s2", "over": ["@s1"], "head": "Might", "surface": "might"}]
         self.assertTrue(E.emit({"id": "t", "instances": nested}, CATALOG)["statements"][0].endswith("(STV 0.9 0.7))"))
         event = [{"t": "named-entity", "id": "n1", "name": "Yusra"},
@@ -241,8 +241,8 @@ class EmitTests(unittest.TestCase):
         rule = E.emit({"id": "r", "instances": example("location", "Every ferret slept in the barn.")["instances"]}, CATALOG)
         ratoms = atoms_of(rule["statements"])
         self.assertTrue(any(a.startswith("(Implication") and "(Location (sk_sleep $x) sk_barn_1)" in a for a in ratoms))
-        indef = [{"t": "range", "id": "q1", "kind": "ferret", "quantifier": "every", "predicate": "sleep"},
-                 {"t": "witness", "id": "x1", "kind": "barn"},
+        indef = [{"t": "range", "id": "q1", "class": "ferret", "quantifier": "every", "predicate": "sleep"},
+                 {"t": "witness", "id": "x1", "class": "barn"},
                  {"t": "activity", "id": "v1", "verb": "sleep", "actor": "@q1", "tense": "past"},
                  {"t": "location", "id": "l1", "event": "@v1", "place": "@x1", "head": "Location", "preposition": "in"},
                  {"t": "generic", "id": "r1", "ranges": ["@q1"], "over": ["@v1"]}]
@@ -253,8 +253,8 @@ class EmitTests(unittest.TestCase):
                                               "head": "Location", "preposition": "in"}]}, CATALOG)
 
     def test_yaml_booleans_are_refused_where_words_belong(self):
-        bad = [{"t": "witness", "id": "x1", "kind": "ledger", "definite": True},
-               {"t": "witness", "id": "x2", "kind": "workbench", "definite": True},
+        bad = [{"t": "witness", "id": "x1", "class": "ledger", "definite": True},
+               {"t": "witness", "id": "x2", "class": "workbench", "definite": True},
                {"t": "locative", "id": "l1", "thing": "@x1", "place": "@x2", "head": True, "preposition": True, "tense": "present"}]
         with self.assertRaises(E.EmitError) as cm:
             E.emit({"id": "b", "instances": bad}, CATALOG)
@@ -331,7 +331,7 @@ class EmitTests(unittest.TestCase):
         property graded inside a noun phrase has no tense and still renders flat (the default of a
         slot that only ``when`` clauses mention is applied); a degree needs a word or a class."""
         def degree(**slots):
-            inst = [{"t": "witness", "id": "x1", "kind": "ladder", "definite": True},
+            inst = [{"t": "witness", "id": "x1", "class": "ladder", "definite": True},
                     dict({"t": "degree", "id": "d1", "bearer": "@x1", "scale": "tall"}, **slots)]
             return E.emit({"id": "d", "instances": inst}, CATALOG)
         very = degree(level="very", tense="present")
@@ -341,19 +341,19 @@ class EmitTests(unittest.TestCase):
         almost = atoms_of(degree(level="almost", tense="past")["statements"])
         self.assertIn("(Past (Degree sk_ladder_1 tall almost))", almost)
         self.assertFalse(any("(Member sk_ladder_1 tall)" in a for a in almost))
-        kind = atoms_of(degree(for_kind="stepladder", tense="present")["statements"])
-        self.assertIn("(Degree sk_ladder_1 tall (forKind stepladder))", kind)
+        kind = atoms_of(degree(for_class="stepladder", tense="present")["statements"])
+        self.assertIn("(Degree sk_ladder_1 tall (forClass stepladder))", kind)
         self.assertFalse(any("(Member sk_ladder_1 tall)" in a for a in kind))
-        both = atoms_of(degree(level="very", for_kind="stepladder", tense="present")["statements"])
+        both = atoms_of(degree(level="very", for_class="stepladder", tense="present")["statements"])
         self.assertIn("(Degree sk_ladder_1 tall very)", both)
-        self.assertIn("(Degree sk_ladder_1 tall (forKind stepladder))", both)
+        self.assertIn("(Degree sk_ladder_1 tall (forClass stepladder))", both)
         self.assertFalse(any("(Member sk_ladder_1 tall)" in a for a in both))
         attributive = atoms_of(degree(level="very")["statements"])
         self.assertIn("(Member sk_ladder_1 tall)", attributive)
         self.assertIn("(Degree sk_ladder_1 tall very)", attributive)
         with self.assertRaises(E.EmitError) as cm:
             degree(tense="present")
-        self.assertTrue(any("at least one of level, for_kind" in p for p in cm.exception.args[0]))
+        self.assertTrue(any("at least one of level, for_class" in p for p in cm.exception.args[0]))
 
     def test_extent_attaches_to_its_event(self):
         inst = [{"t": "named-entity", "id": "n1", "name": "Lamine"},
@@ -371,7 +371,7 @@ class EmitTests(unittest.TestCase):
         the directive over the negation; a vocative's name stays at the top level while its Agent
         role is sealed; an indefinite object lives only inside the directive."""
         inst = [{"t": "named-entity", "id": "n1", "name": "Lamine"},
-                {"t": "witness", "id": "x1", "kind": "ladder"},
+                {"t": "witness", "id": "x1", "class": "ladder"},
                 {"t": "motion", "id": "m1", "verb": "bring", "mover": "@n1", "moved": "@x1", "tense": "present"},
                 {"t": "negation", "id": "s1", "over": ["@m1"]},
                 {"t": "imperative", "id": "s2", "over": ["@s1"]}]
@@ -389,7 +389,7 @@ class EmitTests(unittest.TestCase):
         background rules, and the marker sits inside a negation over the matrix clause."""
         def control(verb, implication, negated=False):
             inst = [{"t": "named-entity", "id": "n1", "name": "Lamine"},
-                    {"t": "witness", "id": "x1", "kind": "shed", "definite": True},
+                    {"t": "witness", "id": "x1", "class": "shed", "definite": True},
                     {"t": "change-of-state", "id": "c1", "verb": "open", "agent": "@n1", "undergoer": "@x1", "tense": "present"},
                     {"t": "control", "id": "e1", "verb": verb, "subject": "@n1", "complement": ["@c1"],
                      "implication": implication, "tense": "past"}]
@@ -415,7 +415,7 @@ class EmitTests(unittest.TestCase):
         """A link is one top-level atom over the two clauses' event symbols, whatever scope a clause
         sits in; a purpose seals the aim as one term, its indefinite inside, nothing asserted."""
         inst = [{"t": "named-entity", "id": "n1", "name": "Lamine"},
-                {"t": "witness", "id": "x1", "kind": "ferret", "definite": True},
+                {"t": "witness", "id": "x1", "class": "ferret", "definite": True},
                 {"t": "activity", "id": "v1", "verb": "sing", "actor": "@n1", "tense": "past"},
                 {"t": "activity", "id": "v2", "verb": "sleep", "actor": "@x1", "tense": "past"},
                 {"t": "negation", "id": "s1", "over": ["@v2"]},
@@ -425,7 +425,7 @@ class EmitTests(unittest.TestCase):
         self.assertEqual(sum(a.startswith("(Not (And (Member sk_sleep_1 sleep)") for a in atoms), 1)
         self.assertIn("(Past sk_sing_1)", atoms)
         aim = [{"t": "named-entity", "id": "n1", "name": "Lamine"},
-               {"t": "witness", "id": "x1", "kind": "spindle"},
+               {"t": "witness", "id": "x1", "class": "spindle"},
                {"t": "activity", "id": "v1", "verb": "work", "actor": "@n1", "tense": "past"},
                {"t": "acquisition", "id": "e1", "verb": "buy", "acquirer": "@n1", "object": "@x1", "tense": "present"},
                {"t": "purpose", "id": "k1", "head": "To", "action": "@v1", "aim": ["@e1"]}]
@@ -458,7 +458,7 @@ class EmitTests(unittest.TestCase):
         noun phrase is bound inside the negation that mentions it, its phrase rendered with it;
         an oblique's indefinite object is bound inside the scope of the oblique's event."""
         book = [{"t": "named-entity", "id": "n1", "name": "Yusra"},
-                {"t": "witness", "id": "x1", "kind": "book"},
+                {"t": "witness", "id": "x1", "class": "book"},
                 {"t": "postmodifier", "id": "a1", "noun": "@x1", "head": "About", "object": "ferret"},
                 {"t": "activity", "id": "v1", "verb": "read", "actor": "@n1", "patient": "@x1", "tense": "past"},
                 {"t": "negation", "id": "s1", "over": ["@v1"]}]
@@ -466,7 +466,7 @@ class EmitTests(unittest.TestCase):
         self.assertFalse(any(a.startswith(("(Member sk_book_1", "(About sk_book_1")) for a in atoms))
         self.assertEqual(sum(a.startswith("(Not (And") and "(About sk_book_1 ferret)" in a and "(Member sk_book_1 book)" in a for a in atoms), 1)
         audit = [{"t": "named-entity", "id": "n1", "name": "Yusra"},
-                 {"t": "witness", "id": "x1", "kind": "audit"},
+                 {"t": "witness", "id": "x1", "class": "audit"},
                  {"t": "activity", "id": "v1", "verb": "talk", "actor": "@n1", "tense": "past"},
                  {"t": "oblique", "id": "a1", "event": "@v1", "head": "About", "object": "@x1"},
                  {"t": "negation", "id": "s1", "over": ["@v1"]}]
@@ -475,23 +475,23 @@ class EmitTests(unittest.TestCase):
         self.assertFalse(any(a.startswith("(Member sk_audit_1") for a in atoms))
 
     def test_kind_level_claims(self):
-        """A kind-level property is one opaque KindProperty atom, a restricted one a ConditionalProperty
+        """A kind-level property is one opaque ClassProperty atom, a restricted one a ConditionalProperty
         atom with the restriction (a referent or a lemma), wrapped by tense; a member-level property
         under a condition is a rule whose premises are the kind and the condition predication over
         the range, with a quantifier word setting the strength beside its companion; a generic
         takes the same condition."""
         out = E.emit({"id": "t", "instances": [
-            {"t": "kind-property", "id": "k1", "subject": "heron", "property": "widespread", "tense": "present"}]}, CATALOG)
-        self.assertEqual(out["statements"], ["(: k1_kindproperty (KindProperty heron widespread) (STV 1.0 0.9))"])
+            {"t": "class-property", "id": "k1", "subject": "heron", "property": "widespread", "tense": "present"}]}, CATALOG)
+        self.assertEqual(out["statements"], ["(: k1_classproperty (ClassProperty heron widespread) (STV 1.0 0.9))"])
         out = E.emit({"id": "t", "instances": [
             {"t": "named-entity", "id": "n1", "name": "Norfolk"},
-            {"t": "kind-property", "id": "k1", "subject": "crane", "property": "common", "restriction": "@n1", "tense": "past"}]}, CATALOG)
+            {"t": "class-property", "id": "k1", "subject": "crane", "property": "common", "restriction": "@n1", "tense": "past"}]}, CATALOG)
         self.assertEqual(atoms_of(out["statements"]), ['(Name sk_norfolk_1 "Norfolk")', "(Past (ConditionalProperty crane common sk_norfolk_1))"])
         out = E.emit({"id": "t", "instances": [
-            {"t": "kind-property", "id": "k1", "subject": "crane", "property": "rare", "restriction": "winter", "tense": "present"}]}, CATALOG)
+            {"t": "class-property", "id": "k1", "subject": "crane", "property": "rare", "restriction": "winter", "tense": "present"}]}, CATALOG)
         self.assertEqual(atoms_of(out["statements"]), ["(ConditionalProperty crane rare winter)"])
         self.assertIn("(: winter Class)", out["declarations"])
-        rule = [{"t": "range", "id": "q1", "kind": "alloy", "quantifier": "all", "predicate": "brittle"},
+        rule = [{"t": "range", "id": "q1", "class": "alloy", "quantifier": "all", "predicate": "brittle"},
                 {"t": "copular", "id": "c1", "subject": "@q1", "predicate": "brittle", "form": "adjective", "tense": "present"},
                 {"t": "copular", "id": "c2", "subject": "@q1", "predicate": "cold", "form": "adjective", "tense": "present"},
                 {"t": "conditional-property", "id": "r1", "ranges": ["@q1"], "condition": ["@c2"], "over": ["@c1"]}]
@@ -508,7 +508,7 @@ class EmitTests(unittest.TestCase):
         out = E.emit({"id": "t", "instances": two}, CATALOG)                      # a shape's conjunction absorbs the bundles
         self.assertIn("(Implication (And (Member $x alloy) (Member $x cold) (Member $x dry)) (Member $x brittle))", atoms_of(out["statements"]))
         out = E.emit({"id": "t", "instances": [
-            {"t": "range", "id": "q1", "kind": "ferret"},
+            {"t": "range", "id": "q1", "class": "ferret"},
             {"t": "activity", "id": "v1", "verb": "bite", "actor": "@q1", "tense": "present"},
             {"t": "copular", "id": "c1", "subject": "@q1", "predicate": "cornered", "form": "adjective", "tense": "present"},
             {"t": "generic", "id": "r1", "ranges": ["@q1"], "condition": ["@c1"], "over": ["@v1"]}]}, CATALOG)

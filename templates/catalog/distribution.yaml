@@ -10,7 +10,7 @@
 
 id: distribution
 family: rule
-kind: rule
+shape: rule
 title: A predication over a group holds of each member
 status: draft
 
@@ -30,7 +30,7 @@ trigger:
       a size or a measure of the group — are three in number, weigh ten kilos together: a
       property of the whole
     - >-
-      a kind as the subject — ferrets are curious: a statement about the kind, there is no group
+      a class as the subject — ferrets are curious: a statement about the class, there is no group
 
 slots:
   id:    {type: id, required: true, doc: "your label for the rule"}
@@ -60,7 +60,7 @@ examples:
     - category: positive
       text: "Several students laughed."
       instances:
-        - {t: group, id: g1, kind: student, quantity: several}
+        - {t: group, id: g1, class: student, quantity: several}
         - {t: activity, id: v1, verb: laugh, actor: "@g1", tense: past}
         - {t: distribution, id: d1, group: "@g1", over: ["@v1"]}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
@@ -84,21 +84,21 @@ examples:
     - category: positive
       text: "A few students waited."
       instances:
-        - {t: group, id: g1, kind: student, quantity: a few}
+        - {t: group, id: g1, class: student, quantity: a few}
         - {t: activity, id: v1, verb: wait, actor: "@g1", tense: past}
         - {t: distribution, id: d1, group: "@g1", over: ["@v1"]}
     - category: positive
       note: a copular predicate distributed
       text: "The ladders are crooked."
       instances:
-        - {t: group, id: g1, kind: ladder, definite: true}
+        - {t: group, id: g1, class: ladder, definite: true}
         - {t: copular, id: c1, subject: "@g1", predicate: crooked, form: adjective, tense: present}
         - {t: distribution, id: d1, group: "@g1", over: ["@c1"]}
     - category: scoped
       note: negation distributed — the rule is over the negation
       text: "The students did not laugh."
       instances:
-        - {t: group, id: g1, kind: student, definite: true}
+        - {t: group, id: g1, class: student, definite: true}
         - {t: activity, id: v1, verb: laugh, actor: "@g1", tense: past}
         - {t: negation, id: s1, over: ["@v1"]}
         - {t: distribution, id: d1, group: "@g1", over: ["@s1"]}
@@ -106,7 +106,7 @@ examples:
       note: a modal distributed — the rule is over the modal
       text: "The ladders might be crooked."
       instances:
-        - {t: group, id: g1, kind: ladder, definite: true}
+        - {t: group, id: g1, class: ladder, definite: true}
         - {t: copular, id: c1, subject: "@g1", predicate: crooked, form: adjective, tense: present}
         - {t: modal, id: s1, over: ["@c1"], head: Might, surface: might}
         - {t: distribution, id: d1, group: "@g1", over: ["@s1"]}
@@ -115,4 +115,4 @@ examples:
       expected: {abstain: true, template: group}                      # collective: no distribution
     - category: abstain
       text: "Herons are patient."
-      expected: {abstain: true, template: kind-statement}             # a kind, not a group
+      expected: {abstain: true, template: class-statement}             # a class, not a group

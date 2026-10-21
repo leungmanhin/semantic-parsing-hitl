@@ -1,6 +1,6 @@
-# Template: conditional-property  (a kind's property under a condition: "Clay is soft when wet", "All alloys are brittle when cold")
+# Template: conditional-property  (a class's property under a condition: "Clay is soft when wet", "All alloys are brittle when cold")
 #
-# A statement about a kind whose property holds of a member only under a stated condition is a
+# A statement about a class whose property holds of a member only under a stated condition is a
 # rule over the members — if x is clay and x is wet, then x is soft:
 #   (Implication (And (Member $x clay) (Member $x wet)) (Member $x soft))
 # The range stands for an arbitrary member; the condition and the property are predications
@@ -8,17 +8,17 @@
 # 1.0, most 0.9, few 0.1, no 0.0) at confidence 0.9 under an explicit quantifier word and 0.7
 # for a bare statement, the quantifier word kept by the range's companion record. The condition is essential: nothing asserts the bare property. A
 # restriction on a KIND-LEVEL property (otters are rare in Norfolk) is not a rule over members:
-# that is the kind-property template.
+# that is the class-property template.
 
 id: conditional-property
 family: rule
-kind: rule
-title: A kind's property under a condition
+shape: rule
+title: A class's property under a condition
 status: draft
 
 trigger:
   construction: >
-    A clause with "be" as its main verb whose subject names a kind — a bare plural (alloys), a
+    A clause with "be" as its main verb whose subject names a class — a bare plural (alloys), a
     mass noun (clay) or a generic indefinite singular — and whose predicate adjective holds of
     a member only under a stated condition: an adjective after when / if / while / once (soft
     when wet, brittle if cold, sticky once heated), or a place where the property holds of the
@@ -26,25 +26,25 @@ trigger:
     instance over the range, listed in `over`; the condition is a predication over the same
     range — a copular instance for a state (wet, cold, heated), a locative instance for a
     place — listed in `condition`; several conditions are several instances. A pronoun in the
-    condition that refers back to the kind (if they are healthy) is the range itself: the
+    condition that refers back to the class (if they are healthy) is the range itself: the
     copular's subject is the range's id. A quantifier word on the subject (all, most, few, no)
     is recorded on the range as written, with the property's lemma as its predicate. One
     instance per clause.
   surface_forms:
-    - "<kind>s are <ADJ> when / if <ADJ>"      # clay is soft when wet
-    - "<kind>s are <ADJ> in <place>"           # ferrets are tame in Calderwick
-    - "all / most / few / no <kind>s are <ADJ> when <ADJ>"   # the quantifier word on the range
+    - "<class>s are <ADJ> when / if <ADJ>"      # clay is soft when wet
+    - "<class>s are <ADJ> in <place>"           # ferrets are tame in Calderwick
+    - "all / most / few / no <class>s are <ADJ> when <ADJ>"   # the quantifier word on the range
   boundary:                   # looks like a conditional property but is not one
     - >-
-      no condition — clay is soft, ferrets are curious: a kind statement; otters are rare: a
-      kind-level property
+      no condition — clay is soft, ferrets are curious: a class statement; otters are rare: a
+      class-level property
     - >-
       a property no member holds, restricted to a place or a time — otters are rare in
-      Norfolk, cranes are rare in winter: a kind-level property with a restriction, not a rule
+      Norfolk, cranes are rare in winter: a class-level property with a restriction, not a rule
       over the members
     - >-
       an individual as the subject — the ladder is brittle when cold, Teodor is grumpy when
-      tired: not a kind; report the clause as unmapped (G11)
+      tired: not a class; report the clause as unmapped (G11)
     - >-
       a verbal predicate under a condition — clay softens when wet, ferrets bite when
       cornered: a generic with a condition
@@ -63,7 +63,7 @@ trigger:
 slots:
   id:        {type: id, required: true, doc: "your label for the rule"}
   ranges:    {type: refs, class: Proposition, required: true,
-              doc: "the range instance for the kind (one, as a rule): the arbitrary member the condition and the property are about"}
+              doc: "the range instance for the class (one, as a rule): the arbitrary member the condition and the property are about"}
   condition: {type: refs, class: Proposition, required: true,
               doc: "the predication(s) that must hold of the member: a copular instance over the range for a state (wet), a locative instance for a place; their ids; a pronoun bound by the range is the range (subject @q1)"}
   over:      {type: refs, class: Proposition, required: true, skolemize: true,
@@ -103,7 +103,7 @@ examples:
       note: an adjective after when — the condition is a copular predication over the range
       text: "Clay is soft when wet."
       instances:
-        - {t: range, id: q1, kind: clay}
+        - {t: range, id: q1, class: clay}
         - {t: copular, id: c1, subject: "@q1", predicate: soft, form: adjective, tense: present}
         - {t: copular, id: c2, subject: "@q1", predicate: wet, form: adjective, tense: present}
         - {t: conditional-property, id: r1, ranges: ["@q1"], condition: ["@c2"], over: ["@c1"]}
@@ -117,29 +117,29 @@ examples:
       note: a quantifier word — on the range, with the property as its predicate
       text: "All alloys are brittle when cold."
       instances:
-        - {t: range, id: q1, kind: alloy, quantifier: all, predicate: brittle}
+        - {t: range, id: q1, class: alloy, quantifier: all, predicate: brittle}
         - {t: copular, id: c1, subject: "@q1", predicate: brittle, form: adjective, tense: present}
         - {t: copular, id: c2, subject: "@q1", predicate: cold, form: adjective, tense: present}
         - {t: conditional-property, id: r1, ranges: ["@q1"], condition: ["@c2"], over: ["@c1"]}
     - category: abstain
       text: "Otters are rare in Norfolk."
-      expected: {abstain: true, template: kind-property}              # a kind-level property, restricted
+      expected: {abstain: true, template: class-property}              # a class-level property, restricted
     - category: abstain
       text: "Ferrets are curious."
-      expected: {abstain: true, template: kind-statement}             # no condition
+      expected: {abstain: true, template: class-statement}             # no condition
 
   held_out:                  # tests; never rendered into the prompt
     - category: positive
       text: "Wax is soft when warm."
       instances:
-        - {t: range, id: q1, kind: wax}
+        - {t: range, id: q1, class: wax}
         - {t: copular, id: c1, subject: "@q1", predicate: soft, form: adjective, tense: present}
         - {t: copular, id: c2, subject: "@q1", predicate: warm, form: adjective, tense: present}
         - {t: conditional-property, id: r1, ranges: ["@q1"], condition: ["@c2"], over: ["@c1"]}
     - category: positive
       text: "Tin is brittle when cold."
       instances:
-        - {t: range, id: q1, kind: tin}
+        - {t: range, id: q1, class: tin}
         - {t: copular, id: c1, subject: "@q1", predicate: brittle, form: adjective, tense: present}
         - {t: copular, id: c2, subject: "@q1", predicate: cold, form: adjective, tense: present}
         - {t: conditional-property, id: r1, ranges: ["@q1"], condition: ["@c2"], over: ["@c1"]}
@@ -147,7 +147,7 @@ examples:
       note: a place as the condition — a locative over the range
       text: "Ferrets are tame in Calderwick."
       instances:
-        - {t: range, id: q1, kind: ferret}
+        - {t: range, id: q1, class: ferret}
         - {t: named-entity, id: n1, name: "Calderwick"}
         - {t: copular, id: c1, subject: "@q1", predicate: tame, form: adjective, tense: present}
         - {t: locative, id: l1, thing: "@q1", place: "@n1", head: LocatedIn, preposition: in, tense: present}
@@ -156,7 +156,7 @@ examples:
       note: two conditions, the pronoun bound by the range — two copular instances over the range
       text: "Herons are patient when they are healthy and warm."
       instances:
-        - {t: range, id: q1, kind: heron}
+        - {t: range, id: q1, class: heron}
         - {t: copular, id: c1, subject: "@q1", predicate: patient, form: adjective, tense: present}
         - {t: copular, id: c2, subject: "@q1", predicate: healthy, form: adjective, tense: present}
         - {t: copular, id: c3, subject: "@q1", predicate: warm, form: adjective, tense: present}
@@ -165,7 +165,7 @@ examples:
       note: a graded quantifier — strength 0.9, the word kept
       text: "Most alloys are brittle when cold."
       instances:
-        - {t: range, id: q1, kind: alloy, quantifier: most, predicate: brittle}
+        - {t: range, id: q1, class: alloy, quantifier: most, predicate: brittle}
         - {t: copular, id: c1, subject: "@q1", predicate: brittle, form: adjective, tense: present}
         - {t: copular, id: c2, subject: "@q1", predicate: cold, form: adjective, tense: present}
         - {t: conditional-property, id: r1, ranges: ["@q1"], condition: ["@c2"], over: ["@c1"]}
@@ -173,7 +173,7 @@ examples:
       note: a negated conclusion — the rule is over the negation
       text: "Clay is not soft when dry."
       instances:
-        - {t: range, id: q1, kind: clay}
+        - {t: range, id: q1, class: clay}
         - {t: copular, id: c1, subject: "@q1", predicate: soft, form: adjective, tense: present}
         - {t: copular, id: c2, subject: "@q1", predicate: dry, form: adjective, tense: present}
         - {t: negation, id: s1, over: ["@c1"]}
@@ -182,17 +182,17 @@ examples:
       note: a modal conclusion
       text: "Tin might be brittle when cold."
       instances:
-        - {t: range, id: q1, kind: tin}
+        - {t: range, id: q1, class: tin}
         - {t: copular, id: c1, subject: "@q1", predicate: brittle, form: adjective, tense: present}
         - {t: copular, id: c2, subject: "@q1", predicate: cold, form: adjective, tense: present}
         - {t: modal, id: s1, over: ["@c1"], head: Might, surface: might}
         - {t: conditional-property, id: r1, ranges: ["@q1"], condition: ["@c2"], over: ["@s1"]}
     - category: abstain
       text: "Otters are rare."
-      expected: {abstain: true, template: kind-property}              # no condition
+      expected: {abstain: true, template: class-property}              # no condition
     - category: abstain
       text: "Herons are patient."
-      expected: {abstain: true, template: kind-statement}             # no condition
+      expected: {abstain: true, template: class-statement}             # no condition
     - category: abstain
       text: "Clay softens when wet."
       expected: {abstain: true, template: generic}                    # a verbal predicate: a generic with a condition

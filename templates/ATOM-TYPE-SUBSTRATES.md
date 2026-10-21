@@ -2,7 +2,7 @@
 
 Generated from `templates/atom-type-substrates.json` (schema `atom-type-substrates/1`) by `templates/tmpl/gen_substrate.py`, together with `templates/generated/atom-types.metta`. Do not edit by hand; regenerate with `cd templates && python -m tmpl.gen_substrate`.
 
-132 heads in 13 kinds (7 proposed; 132 with a reviewed type declaration so far). `type-def` is the PeTTa declaration emitted for the head; `?` as the output type means the head is not yet reviewed and is absent from the `.metta` file; `%Undefined%` marks a position the head takes but the JSON does not type.
+133 heads in 13 kinds (7 proposed; 133 with a reviewed type declaration so far). `type-def` is the PeTTa declaration emitted for the head; `?` as the output type means the head is not yet reviewed and is absent from the `.metta` file; `%Undefined%` marks a position the head takes but the JSON does not type.
 
 Every atom is carried as a statement (: <proof-name> <atom> <tv>), tv = (STV strength confidence) or another engine truth value. The carrier is not an atom kind: ':' is never type-declared (it is also PeTTa's type-declaration head) and the truth value is declared by the engine, not by this substrate.
 
@@ -504,13 +504,20 @@ legacy: (: Year (-> Number TimeTerm))  ; kept until the re-parse
 gloss: Calendar year of a time instance: (Year t 2026). Legacy constructor form (Year 2026) kept until the re-parse.
 
 
-## relation (14)
+## relation (15)
+
+head: ClassProperty
+kind: relation
+arity: 2
+type-def: (: ClassProperty (-> Class Class Proposition))
+gloss: Non-distributing property of a class/population as a whole. Order: (ClassProperty class property). Opaque: distributes to no member. Emitted by the class-property template; the frozen prompt line writes it as KindProperty.
+
 
 head: ConditionalProperty
 kind: relation
 arity: 3
 type-def: (: ConditionalProperty (-> Class Class Class Proposition))  ; and 1 more (per arity / per union alternative)
-gloss: A kind-level property restricted to a place, a time or a circumstance: the kind as found there has the property (otters are rare in Norfolk; cranes are rare in winter). Order: (ConditionalProperty kind property restriction); the restriction is an entity (a place, a thing) or a class (a time, a circumstance). Opaque like KindProperty: distributes to no member. A member-level property under a condition is a parser-emitted rule instead, never this atom.
+gloss: A class-level property restricted to a place, a time or a circumstance: the class as found there has the property (otters are rare in Norfolk; cranes are rare in winter). Order: (ConditionalProperty class property restriction); the restriction is an entity (a place, a thing) or a class (a time, a circumstance). Opaque like KindProperty: distributes to no member. A member-level property under a condition is a parser-emitted rule instead, never this atom.
 
 
 head: Entails
@@ -524,14 +531,15 @@ head: GroupOf
 kind: relation
 arity: 2
 type-def: (: GroupOf (-> Entity Class Proposition))
-gloss: The members of this group individual are of that kind.
+gloss: The members of this group individual are of that class.
 
 
 head: KindProperty
 kind: relation
 arity: 2
 type-def: (: KindProperty (-> Class Class Proposition))
-gloss: Non-distributing property of a kind/population as a whole. Order: (KindProperty kind property).
+gloss: The legacy name of ClassProperty (the frozen prompt line and its corpora write it); kept until the re-parse so those parses still type-check. Order: (KindProperty class property).
+status: retire
 
 
 head: LocatedIn
@@ -638,7 +646,7 @@ head: Degree
 kind: measure
 arity: 3
 type-def: (: Degree (-> Instance Class Level Proposition))
-gloss: Intensity level of a property on an entity. Order: (Degree entity scale level); the level is the degree word as written, declared Level (very, slightly, too, enough, almost), or (forKind class) for a comparison class. Whether the property's positive atom is asserted beside it is the parse's decision: an intensifier, a downtoner, too and enough keep it; almost, nearly, all_but and forKind do not.
+gloss: Intensity level of a property on an entity. Order: (Degree entity scale level); the level is the degree word as written, declared Level (very, slightly, too, enough, almost), or (forClass class) for a comparison class. Whether the property's positive atom is asserted beside it is the parse's decision: an intensifier, a downtoner, too and enough keep it; almost, nearly, all_but and forClass do not.
 
 
 head: Extent
@@ -701,14 +709,14 @@ head: More
 kind: measure
 arity: 3
 type-def: (: More (-> Class Instance Instance Proposition))  ; and 3 more (per arity / per union alternative)
-gloss: X exceeds Y on a scale (reified comparative ordering). Order: (More scale X Y) = X exceeds Y. X and Y are instances, or classes in a kind-level comparison ((More hard basalt chalk)).
+gloss: X exceeds Y on a scale (reified comparative ordering). Order: (More scale X Y) = X exceeds Y. X and Y are instances, or classes in a class-level comparison ((More hard basalt chalk)).
 
 
 head: MoreBy
 kind: measure
 arity: 5
 type-def: (: MoreBy (-> Class Instance Instance Number Class Proposition))  ; and 7 more (per arity / per union alternative)
-gloss: Comparative with a measured gap: X exceeds Y by n units. Order: (MoreBy scale X Y magnitude unit). X and Y are instances, or classes in a kind-level comparison ((More hard basalt chalk)).
+gloss: Comparative with a measured gap: X exceeds Y by n units. Order: (MoreBy scale X Y magnitude unit). X and Y are instances, or classes in a class-level comparison ((More hard basalt chalk)).
 
 
 head: Most
@@ -729,21 +737,21 @@ head: SameDegree
 kind: measure
 arity: 3
 type-def: (: SameDegree (-> Class Instance Instance Proposition))  ; and 3 more (per arity / per union alternative)
-gloss: Equative: X is as ADJ as Y. Order: (SameDegree scale X Y). X and Y are instances, or classes in a kind-level comparison ((More hard basalt chalk)).
+gloss: Equative: X is as ADJ as Y. Order: (SameDegree scale X Y). X and Y are instances, or classes in a class-level comparison ((More hard basalt chalk)).
 
 
 head: TimesAs
 kind: measure
 arity: 4
 type-def: (: TimesAs (-> Class Instance Instance Number Proposition))  ; and 3 more (per arity / per union alternative)
-gloss: Multiplicative comparative: X is <factor> times as ADJ as Y. Order: (TimesAs scale X Y factor). X and Y are instances, or classes in a kind-level comparison ((More hard basalt chalk)).
+gloss: Multiplicative comparative: X is <factor> times as ADJ as Y. Order: (TimesAs scale X Y factor). X and Y are instances, or classes in a class-level comparison ((More hard basalt chalk)).
 
 
-head: forKind
+head: forClass
 kind: measure
 arity: 1
-type-def: (: forKind (-> Class Level))
-gloss: Comparison-class marker: ADJ relative to the norm for a kind. A value term, not a statement: stands in the level slot of Degree.
+type-def: (: forClass (-> Class Level))
+gloss: Comparison-class marker: ADJ relative to the norm for a class. A value term, not a statement: stands in the level slot of Degree.
 
 
 ## lexicon (4)
@@ -904,7 +912,7 @@ head: permitted
 kind: property-constructor
 arity: 1
 type-def: (: permitted (-> Class Class))
-gloss: Builds the reified permission property term from an action; a class-valued term kept nested: (Inheritance visitor (permitted enter)); a kind-level prohibition is the same term at strength 0.0.
+gloss: Builds the reified permission property term from an action; a class-valued term kept nested: (Inheritance visitor (permitted enter)); a class-level prohibition is the same term at strength 0.0.
 
 
 ## surface-record (4)
@@ -984,9 +992,9 @@ gloss: Approximate magnitude as a normal distribution: mean and sigma. Generic m
 
 Heads the prompt licenses generically; the validator checks position and arity only. Licensed positions:
 
-- head of a kind-level relation atom, e.g. (Carry mosquito malaria)
+- head of a class-level relation atom, e.g. (Carry mosquito malaria)
 - head of a symmetric relation atom accompanied by (Symmetric <head>)
-- head of a nominalization kind-relation, e.g. (Build dam_builder dam)
+- head of a nominalization class-relation, e.g. (Build dam_builder dam)
 - skolem-function head (sk_<verb>) in a scope construction, e.g. (sk_y $x)
 
 Oblique prepositions (62), all declared `(-> Instance|Class Instance Proposition)`: About, Above, Across, After, Against, Along, Among, Around, As, At, Before, Behind, Below, Beneath, Beside, Besides, Between, Beyond, But, By, Concerning, Despite, Down, During, Except, For, From, In, Inside, Into, Like, Near, Of, Off, On, Onto, Opposite, Out, Outside, Over, Past, Per, Regarding, Round, Since, Than, Through, Throughout, Till, To, Toward, Towards, Under, Underneath, Unlike, Until, Up, Upon, Via, With, Within, Without.
@@ -994,4 +1002,4 @@ Oblique prepositions (62), all declared `(-> Instance|Class Instance Proposition
 ## notes
 
 - Proposed, not yet emitted by any template: Coref, Equivalence, InContext, LikelihoodPhrase, Not, Pending, Similarity.
-- To retire at the re-parse (declaration kept until then so today's parses still type-check): Forbid, Probably.
+- To retire at the re-parse (declaration kept until then so today's parses still type-check): Forbid, KindProperty, Probably.

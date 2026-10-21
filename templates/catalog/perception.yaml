@@ -8,7 +8,7 @@
 
 id: perception
 family: predication
-kind: verb-class
+shape: verb-class
 title: Perception of a thing or an event
 status: draft
 
@@ -99,7 +99,7 @@ examples:
       text: "Teodor saw the ferret."
       instances:
         - {t: named-entity, id: n1, name: "Teodor"}
-        - {t: witness, id: x1, kind: ferret, definite: true}
+        - {t: witness, id: x1, class: ferret, definite: true}
         - {t: perception, id: p1, verb: see, perceiver: "@n1", stimulus: "@x1", tense: past}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
         - "(Name sk_teodor_1 \"Teodor\")"
@@ -121,7 +121,7 @@ examples:
         - {t: named-entity, id: n1, name: "Yusra"}
         - {t: named-entity, id: n2, name: "Lamine"}
         - {t: named-entity, id: n3, name: "Teodor"}
-        - {t: witness, id: x1, kind: envelope}
+        - {t: witness, id: x1, class: envelope}
         - {t: transfer, id: e1, verb: hand, giver: "@n2", recipient: "@n3", object: "@x1", tense: past}
         - {t: perception, id: p1, verb: see, perceiver: "@n1", event: "@e1", tense: past}
     - category: abstain
@@ -136,7 +136,7 @@ examples:
       text: "Teodor heard the news."
       instances:
         - {t: named-entity, id: n1, name: "Teodor"}
-        - {t: witness, id: x1, kind: news, definite: true}
+        - {t: witness, id: x1, class: news, definite: true}
         - {t: perception, id: p1, verb: hear, perceiver: "@n1", stimulus: "@x1", tense: past}
     - category: positive
       text: "Ottoline noticed Lamine."
@@ -157,7 +157,7 @@ examples:
       instances:
         - {t: named-entity, id: n1, name: "Teodor"}
         - {t: named-entity, id: n2, name: "Yusra"}
-        - {t: witness, id: x1, kind: ferret, possessor: "@n2"}
+        - {t: witness, id: x1, class: ferret, possessor: "@n2"}
         - {t: perception, id: p1, verb: see, perceiver: "@n1", stimulus: "@x1", tense: past}
     - category: positive
       note: an event perceived in progress — the participle is progressive aspect on the event
@@ -166,7 +166,7 @@ examples:
         - {t: named-entity, id: n1, name: "Ottoline"}
         - {t: named-entity, id: n2, name: "Lamine"}
         - {t: named-entity, id: n3, name: "Yusra"}
-        - {t: witness, id: x1, kind: envelope}
+        - {t: witness, id: x1, class: envelope}
         - {t: transfer, id: e1, verb: hand, giver: "@n2", recipient: "@n3", object: "@x1", tense: past,
            aspect: progressive}
         - {t: perception, id: p1, verb: see, perceiver: "@n1", event: "@e1", tense: past}
@@ -175,14 +175,14 @@ examples:
       text: "Yusra listened to the news."
       instances:
         - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: witness, id: x1, kind: news, definite: true}
+        - {t: witness, id: x1, class: news, definite: true}
         - {t: perception, id: p1, verb: listen, perceiver: "@n1", stimulus: "@x1", tense: past}
     - category: scoped
       note: under clausal negation
       text: "Teodor did not see the ferret."
       instances:
         - {t: named-entity, id: n1, name: "Teodor"}
-        - {t: witness, id: x1, kind: ferret, definite: true}
+        - {t: witness, id: x1, class: ferret, definite: true}
         - {t: perception, id: p1, verb: see, perceiver: "@n1", stimulus: "@x1", tense: past}
         - {t: negation, id: s1, over: ["@p1"]}
     - category: scoped
@@ -190,14 +190,14 @@ examples:
       text: "Lamine might hear the news."
       instances:
         - {t: named-entity, id: n1, name: "Lamine"}
-        - {t: witness, id: x1, kind: news, definite: true}
+        - {t: witness, id: x1, class: news, definite: true}
         - {t: perception, id: p1, verb: hear, perceiver: "@n1", stimulus: "@x1", tense: present}
         - {t: modal, id: s1, over: ["@p1"], head: Might, surface: might}
     - category: optional
       note: agentless passive — no perceiver
       text: "The ferret was seen."
       instances:
-        - {t: witness, id: x1, kind: ferret, definite: true}
+        - {t: witness, id: x1, class: ferret, definite: true}
         - {t: perception, id: p1, verb: see, stimulus: "@x1", tense: past}
     - category: abstain
       text: "Yusra fears the ferret."

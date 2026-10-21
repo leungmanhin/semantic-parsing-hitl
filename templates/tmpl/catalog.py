@@ -6,7 +6,7 @@ invariants the emitter and the suite runner rely on, and returns ``{id: template
 
 Structural invariants checked here (content is reviewed by people, not checked here):
 
-* ``id`` matches the file name; ``family`` and ``kind`` present;
+* ``id`` matches the file name; ``family`` and ``shape`` present;
 * every slot has a ``type`` from the known set, and every ``filler`` / ``lemma`` / ``refs``
   slot has a substrate ``class``;
 * every ``emits`` entry has an ``atom`` whose placeholders name a slot of the template (or
@@ -78,7 +78,7 @@ def check_template(t: dict, path: str) -> list[str]:
     name = os.path.splitext(os.path.basename(path))[0]
     if t.get("id") != name:
         problems.append(f"id {t.get('id')!r} does not match file name {name!r}")
-    for key in ("family", "kind", "trigger", "slots", "emits", "examples"):
+    for key in ("family", "shape", "trigger", "slots", "emits", "examples"):
         if key not in t:
             problems.append(f"missing section {key}")
     slots = t.get("slots") or {}

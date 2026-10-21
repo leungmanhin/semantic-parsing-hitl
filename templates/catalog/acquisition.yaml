@@ -8,7 +8,7 @@
 
 id: acquisition
 family: predication
-kind: verb-class
+shape: verb-class
 title: Acquisition of an object by the party who comes to have it
 status: draft
 
@@ -99,7 +99,7 @@ examples:
       text: "Ottoline took the envelope from Lamine."
       instances:
         - {t: named-entity, id: n1, name: "Ottoline"}
-        - {t: witness, id: x1, kind: envelope, definite: true}
+        - {t: witness, id: x1, class: envelope, definite: true}
         - {t: named-entity, id: n2, name: "Lamine"}
         - {t: acquisition, id: q1, verb: take, acquirer: "@n1", object: "@x1", source: "@n2",
            tense: past}
@@ -124,7 +124,7 @@ examples:
       text: "Yusra received a thermos."
       instances:
         - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: witness, id: x1, kind: thermos}
+        - {t: witness, id: x1, class: thermos}
         - {t: acquisition, id: q1, verb: receive, acquirer: "@n1", object: "@x1", tense: past}
     - category: abstain
       text: "Teodor gave Yusra a thermos."
@@ -138,7 +138,7 @@ examples:
       text: "Teodor bought the spindle from Yusra."
       instances:
         - {t: named-entity, id: n1, name: "Teodor"}
-        - {t: witness, id: x1, kind: spindle, definite: true}
+        - {t: witness, id: x1, class: spindle, definite: true}
         - {t: named-entity, id: n2, name: "Yusra"}
         - {t: acquisition, id: q1, verb: buy, acquirer: "@n1", object: "@x1", source: "@n2",
            tense: past}
@@ -147,7 +147,7 @@ examples:
       text: "Yusra bought the spindle from Teodor."
       instances:
         - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: witness, id: x1, kind: spindle, definite: true}
+        - {t: witness, id: x1, class: spindle, definite: true}
         - {t: named-entity, id: n2, name: "Teodor"}
         - {t: acquisition, id: q1, verb: buy, acquirer: "@n1", object: "@x1", source: "@n2",
            tense: past}
@@ -156,14 +156,14 @@ examples:
       text: "Lamine picked up the trowel."
       instances:
         - {t: named-entity, id: n1, name: "Lamine"}
-        - {t: witness, id: x1, kind: trowel, definite: true}
+        - {t: witness, id: x1, class: trowel, definite: true}
         - {t: acquisition, id: q1, verb: pick_up, acquirer: "@n1", object: "@x1", tense: past}
     - category: positive
       note: the price is an attachment with no slot — the acquisition is parsed, the amount reported
       text: "Ottoline bought the quilt for forty euros."
       instances:
         - {t: named-entity, id: n1, name: "Ottoline"}
-        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: witness, id: x1, class: quilt, definite: true}
         - {t: acquisition, id: q1, verb: buy, acquirer: "@n1", object: "@x1", tense: past}
       unmapped:
         - {code: G00, span: "for forty euros"}
@@ -172,7 +172,7 @@ examples:
       text: "Yusra did not accept the envelope."
       instances:
         - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: witness, id: x1, kind: envelope, definite: true}
+        - {t: witness, id: x1, class: envelope, definite: true}
         - {t: acquisition, id: q1, verb: accept, acquirer: "@n1", object: "@x1", tense: past}
         - {t: negation, id: s1, over: ["@q1"]}
     - category: scoped
@@ -180,21 +180,21 @@ examples:
       text: "Teodor might inherit the quilt."
       instances:
         - {t: named-entity, id: n1, name: "Teodor"}
-        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: witness, id: x1, class: quilt, definite: true}
         - {t: acquisition, id: q1, verb: inherit, acquirer: "@n1", object: "@x1", tense: present}
         - {t: modal, id: s1, over: ["@q1"], head: Might, surface: might}
     - category: optional
       note: agentless passive — no acquirer
       text: "The envelope was taken."
       instances:
-        - {t: witness, id: x1, kind: envelope, definite: true}
+        - {t: witness, id: x1, class: envelope, definite: true}
         - {t: acquisition, id: q1, verb: take, object: "@x1", tense: past}
     - category: optional
       note: perfect aspect
       text: "Ottoline had obtained a trowel."
       instances:
         - {t: named-entity, id: n1, name: "Ottoline"}
-        - {t: witness, id: x1, kind: trowel}
+        - {t: witness, id: x1, class: trowel}
         - {t: acquisition, id: q1, verb: obtain, acquirer: "@n1", object: "@x1", tense: past,
            aspect: perfect}
     - category: abstain

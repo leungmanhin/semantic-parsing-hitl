@@ -51,6 +51,7 @@
 (: CardinalityAtMost (-> Entity Number Proposition))
 (: CardinalityAtMost (-> Entity Distribution Proposition))
 (: CardinalityPhrase (-> Entity String Proposition))
+(: ClassProperty (-> Class Class Proposition))
 (: Cleft (-> Instance Event Proposition))
 (: Cleft (-> Class Event Proposition))
 (: CoAgent (-> Event Entity Proposition))
@@ -224,7 +225,7 @@
 (: Yet (-> Event Proposition))
 (: Yet (-> Proposition Proposition))
 (: can (-> Class Class))
-(: forKind (-> Class Level))
+(: forClass (-> Class Level))
 (: obligated (-> Class Class))
 (: permitted (-> Class Class))
 

@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 eb1dbd6be23f4cb4 · 41 templates
+catalog sha256 2fc08b0836dcfd38 · 41 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -16,7 +16,7 @@ parse everything else.
 
 State only what the text states. World knowledge picks the reading; it never adds content. Every
 instance and every slot value must be traceable to words in the TEXT: point at the words that
-put it there; if you cannot, leave it out. No unstated kind, property, possessor, location,
+put it there; if you cannot, leave it out. No unstated class, property, possessor, location,
 part-whole or causal link, however obvious.
 
 A stated restriction, hedge or qualifier is never silently dropped, because omitting it widens
@@ -63,10 +63,10 @@ fences.
   of a rule — holds a list of ids: the clause's predication, or the scope operator over it when
   it has one (`["@s1"]` for a negated or modalised clause); never the referents the clause
   mentions.
-- A slot that holds a kind, property, verb, scale or unit holds the bare LEMMA, for example
-  `"kind": "book"`.
+- A slot that holds a class, property, verb, scale or unit holds the bare LEMMA, for example
+  `"class": "book"`.
 - A participant slot holds either one: `"@x1"` for a specific referent, or a bare lemma for a
-  non-specific or kind-level filler ("pays tax", "cooked dinner" gives `"Patient": "dinner"`).
+  non-specific or class-level filler ("pays tax", "cooked dinner" gives `"Patient": "dinner"`).
   Reserve the bare lemma for a non-specific filler; a specific definite or indefinite thing is
   always an instance.
 - ONE instance per MENTION, and the identity stated. The first mention of a person, thing, group
@@ -91,7 +91,7 @@ fences.
 
 ## Lemmas and symbols
 
-- Lemmatize every kind, property and verb to its dictionary base form: verbs to the base (ran,
+- Lemmatize every class, property and verb to its dictionary base form: verbs to the base (ran,
   running → run), nouns to the singular (ravens, mice → raven, mouse), adjectives to the base
   (taller → tall). All lemmas are lowercase snake_case.
 - Inflection only, never derivation: a word derived into another part of speech is a different
@@ -146,7 +146,7 @@ Codes:
 - G01: a comparative with no stated standard ('a sturdier bracket', 'prices ended lower')
 - G02: an adverb with no slot: sequence (initially, eventually, finally), scope or domain
   (nationally, locally), frequency (often, always, twice), a degree word on a manner adverb or
-  on a kind-level statement (laughed very loudly; ferrets are very curious)
+  on a class-level statement (laughed very loudly; ferrets are very curious)
 - G03: a post-nominal tag on a name (a party or district tag, a ticker, a bracketed code)
 - G04: an irrealis relative clause or a lone would-have consequent ('the bridge that would have
   collapsed')
@@ -158,7 +158,7 @@ Codes:
 - G09: stay / remain / keep with a locative continuation ('stayed in the hall')
 - G10: the verbatim wording of a quotation (its content is parsed; the wording itself is not
   kept)
-- G11: an individual's property under a condition ('the ladder is brittle when cold'); a kind's
+- G11: an individual's property under a condition ('the ladder is brittle when cold'); a class's
   is the conditional-property template
 
 ## Reporting a problem with the instructions
@@ -183,11 +183,11 @@ span, not an issue.
 
 When: A plural noun phrase headed by a common noun — the ferrets, several students, three
 ladders, a few children, dozens of protesters, both ladders, Yusra's ferrets — introducing a
-group of individuals of that kind. The group gets one witness symbol. Its size is recorded as an
-exact count when a numeral or "both" states it (three → 3, both → 2) and as the vague phrase as
-written otherwise (several, a few, dozens). A definite group ("the", "these", "those", "both")
-is marked definite; a possessed group (Yusra's ferrets) records its possessor and needs no
-definite mark — the possessor presupposes it.
+group of individuals of that class. The group gets one witness symbol. Its size is recorded as
+an exact count when a numeral or "both" states it (three → 3, both → 2) and as the vague phrase
+as written otherwise (several, a few, dozens). A definite group ("the", "these", "those",
+"both") is marked definite; a possessed group (Yusra's ferrets) records its possessor and needs
+no definite mark — the possessor presupposes it.
 
 Forms:
 - the <N>s
@@ -199,7 +199,7 @@ Forms:
 Not this template:
 - coordinated names or referents — Teodor and Yusra, the ladder and the quilt: one instance per
   conjunct, no group
-- a bare plural read generically — ferrets are curious: a statement about the kind
+- a bare plural read generically — ferrets are curious: a statement about the class
 - a quantifier word — all ferrets, every ferret, each ferret, most ferrets, no ferret: a
   quantified generalization, not a group
 - a singular noun phrase — the ferret, a ladder: a witness
@@ -208,7 +208,7 @@ Slots:
 
 - `t` (required): "group"
 - `id` (required; your label for this instance): your label for the group.
-- `kind` (required; a lemma): the head noun's lemma, singular (ferret).
+- `class` (required; a lemma): the head noun's lemma, singular (ferret).
 - `definite` (optional; true / false): true for the / these / those / both; absent for a
   possessed group (the possessor presupposes it) and otherwise.
 - `count` (optional; a number): the exact size when a numeral or both states it (three → 3; both
@@ -224,7 +224,7 @@ Example (a vague size; the sleeping distributes to each ferret). TEXT: Several f
 Instances:
 
     [
-      {"t": "group", "id": "g1", "kind": "ferret", "quantity": "several"},
+      {"t": "group", "id": "g1", "class": "ferret", "quantity": "several"},
       {"t": "activity", "id": "v1", "verb": "sleep", "actor": "@g1", "tense": "past"},
       {"t": "distribution", "id": "d1", "group": "@g1", "over": ["@v1"]}
     ]
@@ -243,8 +243,8 @@ Example (an exact count; a collective predicate — no distribution). TEXT: Thre
 Instances:
 
     [
-      {"t": "group", "id": "g1", "kind": "ferret", "count": 3},
-      {"t": "witness", "id": "x1", "kind": "barn", "definite": true},
+      {"t": "group", "id": "g1", "class": "ferret", "count": 3},
+      {"t": "witness", "id": "x1", "class": "barn", "definite": true},
       {"t": "activity", "id": "v1", "verb": "surround", "actor": "@g1", "patient": "@x1", "tense": "past"}
     ]
 
@@ -258,7 +258,7 @@ The program renders these instances as:
     (Patient sk_surround_1 sk_barn_1)
     (Past sk_surround_1)
 
-Not this template. TEXT: Ferrets are curious. — use `kind-statement`.
+Not this template. TEXT: Ferrets are curious. — use `class-statement`.
 
 ### mention — A pronoun or a demonstrative standing for an earlier referent
 
@@ -312,7 +312,7 @@ Slots:
 - `id` (required; your label for this instance).
 - `name` (required; a string): the surface name, capitalised as written.
 - `title` (optional; a string): a leading title, if any.
-- `kind` (optional; a lemma): the kind an appositive or a title phrase states for the name
+- `class` (optional; a lemma): the class an appositive or a title phrase states for the name
   (Lamine, a glazier); a predicative is a N is a copular instance, not this slot.
 
 Example. TEXT: Teodor
@@ -329,11 +329,11 @@ The program renders these instances as:
 
 ### range — The quantified variable of a verbal generalization
 
-When: The subject or object of a verbal generalization over a kind: a quantifier word with a
-kind noun (every ferret, each student, all ferrets, most students, many herons, few ferrets, no
+When: The subject or object of a verbal generalization over a class: a quantifier word with a
+class noun (every ferret, each student, all ferrets, most students, many herons, few ferrets, no
 ferret, none of the ferrets) or a bare plural read generically (ferrets sleep). It stands for an
-arbitrary member of the kind, not for a particular individual or a particular group. One range
-per quantified kind noun: "every ferret feared every heron" has two.
+arbitrary member of the class, not for a particular individual or a particular group. One range
+per quantified class noun: "every ferret feared every heron" has two.
 
 Forms:
 - every / each / all <N>(s)
@@ -344,7 +344,7 @@ Forms:
 Not this template:
 - a specific group — the ferrets, several ferrets, three students, some students: a group
   referent, and what is said of its members is a distribution
-- a bare plural with "be" — ferrets are curious: a kind statement, which carries its own
+- a bare plural with "be" — ferrets are curious: a class statement, which carries its own
   quantifier
 - an existential singular — some ferret slept, a ferret slept: an indefinite witness
 
@@ -352,7 +352,7 @@ Slots:
 
 - `t` (required): "range"
 - `id` (required; your label for this instance): your label for the range (q1, q2 …).
-- `kind` (required; a lemma): the kind, lemmatized to the singular (ferret).
+- `class` (required; a lemma): the class, lemmatized to the singular (ferret).
 - `quantifier` (optional; a string): the quantifier word as written (every, each, all, most,
   many, few, no, none); absent for a bare generic.
 - `predicate` (optional; a lemma): the lemma of the predication the range takes part in, as its
@@ -383,7 +383,7 @@ Slots:
 ### witness — A common-noun phrase introducing an individual
 
 When: A noun phrase headed by a common noun with a determiner or a modifier — a thermos, the
-quilt, this spindle, two envelopes' member — introducing an individual of that kind. The
+quilt, this spindle, two envelopes' member — introducing an individual of that class. The
 individual gets a numbered witness symbol; whether the phrase is definite is recorded. A
 possessive phrase (Yusra's quilt, the quilt of Yusra, her quilt) is a witness with its possessor
 recorded: the possessor is a referent — a name, a witness, or for a possessive pronoun (her
@@ -401,7 +401,7 @@ Forms:
 - the <N> of <possessor>
 
 Not this template:
-- a bare plural read generically — dogs bark: a kind-level statement, not a witness
+- a bare plural read generically — dogs bark: a class-level statement, not a witness
 - a plural noun phrase — the ferrets, two envelopes: a group of individuals, not one witness
 - a proper name — Teodor: a named entity
 
@@ -409,7 +409,7 @@ Slots:
 
 - `t` (required): "witness"
 - `id` (required; your label for this instance).
-- `kind` (required; a lemma): the head noun's lemma.
+- `class` (required; a lemma): the head noun's lemma.
 - `definite` (optional; true / false): true for the / this / that; absent for a / an and for a
   possessed phrase (the possessor presupposes it).
 - `props` (optional; a list of lemmas): adjectival properties stated in the phrase; a property
@@ -418,7 +418,7 @@ Slots:
 - `possessor` (optional; "@id" of a referent instance, or a bare lemma for a non-specific
   filler): the possessor of a possessive phrase: Yusra's quilt, the quilt of Yusra, her quilt; a
   referent id (for a possessive pronoun, the id of its mention instance), or a bare lemma for a
-  kind-level possessor.
+  class-level possessor.
 - `eventive` (optional; true / false): true when the noun names an event or a period and the
   clause puts the noun itself in time (the meeting is at noon); absent otherwise.
 
@@ -427,7 +427,7 @@ Example. TEXT: a thermos
 Instances:
 
     [
-      {"t": "witness", "id": "n1", "kind": "thermos"}
+      {"t": "witness", "id": "n1", "class": "thermos"}
     ]
 
 The program renders these instances as:
@@ -440,7 +440,7 @@ Instances:
 
     [
       {"t": "named-entity", "id": "n1", "name": "Yusra"},
-      {"t": "witness", "id": "x1", "kind": "quilt", "possessor": "@n1"}
+      {"t": "witness", "id": "x1", "class": "quilt", "possessor": "@n1"}
     ]
 
 The program renders these instances as:
@@ -506,7 +506,7 @@ Instances:
 
     [
       {"t": "named-entity", "id": "n1", "name": "Ottoline"},
-      {"t": "witness", "id": "x1", "kind": "envelope", "definite": true},
+      {"t": "witness", "id": "x1", "class": "envelope", "definite": true},
       {"t": "named-entity", "id": "n2", "name": "Lamine"},
       {"t": "acquisition", "id": "q1", "verb": "take", "acquirer": "@n1", "object": "@x1", "source": "@n2", "tense": "past"}
     ]
@@ -528,7 +528,7 @@ Instances:
 
     [
       {"t": "named-entity", "id": "n1", "name": "Yusra"},
-      {"t": "witness", "id": "x1", "kind": "thermos"},
+      {"t": "witness", "id": "x1", "class": "thermos"},
       {"t": "acquisition", "id": "q1", "verb": "receive", "acquirer": "@n1", "object": "@x1", "tense": "past"}
     ]
 
@@ -702,7 +702,7 @@ Example (the subject undergoes the action — no agent anywhere). TEXT: The pric
 Instances:
 
     [
-      {"t": "witness", "id": "x1", "kind": "price", "definite": true},
+      {"t": "witness", "id": "x1", "class": "price", "definite": true},
       {"t": "change-of-state", "id": "c1", "verb": "fall", "undergoer": "@x1", "tense": "present"},
       {"t": "aspectual", "id": "e1", "verb": "start", "complement": ["@c1"], "tense": "past"}
     ]
@@ -786,7 +786,7 @@ Instances:
       {"t": "named-entity", "id": "n1", "name": "Teodor"},
       {"t": "named-entity", "id": "n2", "name": "Lamine"},
       {"t": "named-entity", "id": "n3", "name": "Ottoline"},
-      {"t": "witness", "id": "x1", "kind": "trowel", "definite": true},
+      {"t": "witness", "id": "x1", "class": "trowel", "definite": true},
       {"t": "transfer", "id": "e1", "verb": "lend", "giver": "@n2", "recipient": "@n3", "object": "@x1", "tense": "past"},
       {"t": "attitude", "id": "a1", "verb": "believe", "holder": "@n1", "content": ["@e1"], "factive": false, "tense": "present"}
     ]
@@ -808,7 +808,7 @@ Instances:
     [
       {"t": "named-entity", "id": "n1", "name": "Yusra"},
       {"t": "named-entity", "id": "n2", "name": "Teodor"},
-      {"t": "witness", "id": "x1", "kind": "spindle", "definite": true},
+      {"t": "witness", "id": "x1", "class": "spindle", "definite": true},
       {"t": "transfer", "id": "e1", "verb": "sell", "giver": "@n2", "object": "@x1", "tense": "past"},
       {"t": "attitude", "id": "a1", "verb": "know", "holder": "@n1", "content": ["@e1"], "factive": true, "tense": "present"}
     ]
@@ -833,7 +833,7 @@ Instances:
     [
       {"t": "named-entity", "id": "n1", "name": "Teodor"},
       {"t": "named-entity", "id": "n2", "name": "Lamine"},
-      {"t": "witness", "id": "x1", "kind": "spindle", "definite": true},
+      {"t": "witness", "id": "x1", "class": "spindle", "definite": true},
       {"t": "transfer", "id": "e1", "verb": "sell", "giver": "@n2", "object": "@x1", "tense": "past"},
       {"t": "attitude", "id": "a1", "verb": "say", "holder": "@n1", "content": ["@e1"], "factive": false, "tense": "past"}
     ]
@@ -855,7 +855,7 @@ Instances:
     [
       {"t": "named-entity", "id": "n1", "name": "Teodor"},
       {"t": "named-entity", "id": "n2", "name": "Lamine"},
-      {"t": "witness", "id": "x1", "kind": "spindle", "definite": true},
+      {"t": "witness", "id": "x1", "class": "spindle", "definite": true},
       {"t": "transfer", "id": "e1", "verb": "sell", "giver": "@n2", "object": "@x1", "tense": "past"},
       {"t": "attitude", "id": "a1", "verb": "see", "holder": "@n1", "content": ["@e1"], "factive": true, "tense": "past"}
     ]
@@ -885,7 +885,7 @@ Instances:
 
     [
       {"t": "named-entity", "id": "n1", "name": "Ottoline"},
-      {"t": "witness", "id": "x1", "kind": "quilt", "definite": true},
+      {"t": "witness", "id": "x1", "class": "quilt", "definite": true},
       {"t": "transfer", "id": "e1", "verb": "send", "giver": "@n1", "object": "@x1", "tense": "present"},
       {"t": "attitude", "id": "a1", "verb": "want", "holder": "@n1", "content": ["@e1"], "factive": false, "tense": "present"}
     ]
@@ -1055,7 +1055,7 @@ Slots:
   filler): the thing that comes to be in the new state: the subject of an intransitive use, the
   object of a transitive one.
 - `result` (optional; a lemma): the state the undergoer comes to be in, when the text names it:
-  a kind (became a locksmith → locksmith) or a property (got wet → wet, turned red → red).
+  a class (became a locksmith → locksmith) or a property (got wet → wet, turned red → red).
 - `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
   not inferred.
 - `aspect` (optional; one of: simple, progressive, perfect).
@@ -1065,7 +1065,7 @@ Example (a change on its own). TEXT: The thermos cracked.
 Instances:
 
     [
-      {"t": "witness", "id": "x1", "kind": "thermos", "definite": true},
+      {"t": "witness", "id": "x1", "class": "thermos", "definite": true},
       {"t": "change-of-state", "id": "c1", "verb": "crack", "undergoer": "@x1", "tense": "past"}
     ]
 
@@ -1099,7 +1099,7 @@ Instances:
 
     [
       {"t": "named-entity", "id": "n1", "name": "Yusra"},
-      {"t": "witness", "id": "x1", "kind": "ladder", "definite": true},
+      {"t": "witness", "id": "x1", "class": "ladder", "definite": true},
       {"t": "change-of-state", "id": "c1", "verb": "break", "agent": "@n1", "undergoer": "@x1", "tense": "past"}
     ]
 
@@ -1115,6 +1115,174 @@ The program renders these instances as:
 Not this template. TEXT: Yusra went to the market. — use `motion`.
 
 Not this template. TEXT: Lamine baked a loaf. — use `creation`.
+
+### class-property — A property of a class as a whole
+
+When: A clause with "be" as its main verb whose subject names a class — a bare plural (herons),
+a mass noun (lichen) or a definite singular naming the class (the quagga, the great auk) — and
+whose predicate adjective is a property only a class as a whole can have: extinct, endangered,
+widespread, common, rare, scarce, abundant, numerous, plentiful, ubiquitous, prevalent. The
+test: could one individual be it? A single heron cannot be widespread or rare; it can be patient
+or grey, and those are class statements. The property is lemmatized. A definite singular with
+such a property can only name the class: no witness. A phrase restricting the claim to a place
+(rare in Norfolk, common in the marsh), a time (rare in winter) or a circumstance goes in
+`restriction`: the claim holds there, not at large.
+
+Forms:
+- <class>s are <ADJ>
+- the <class> is <ADJ>
+- <mass noun> is <ADJ>
+- <class>s are <ADJ> in <place / time>
+
+Not this template:
+- a property a member can hold — herons are patient, ferrets are curious, granite is hard: a
+  class statement, which generalizes over the members
+- a property a member can hold, under a condition — clay is soft when wet, ferrets are tame in
+  Calderwick: a conditional property, a rule over the members
+- a verbal predicate — ferrets are dying out, herons are declining: no slot; report the clause
+  as unmapped
+- a specific group — the ferrets are numerous, these herons are rare: a group as the subject of
+  a copular predication
+- a class as a class — ferrets are mustelids, the quagga was a zebra: a class statement
+
+Slots:
+
+- `t` (required): "class-property"
+- `id` (required; your label for this instance): your label for the statement.
+- `subject` (required; a lemma): the class, lemmatized to the singular (heron, quagga, lichen).
+- `property` (required; a lemma): the property, lemmatized (widespread, extinct, rare).
+- `restriction` (optional; "@id" of a referent instance, or a bare lemma for a non-specific
+  filler): a restriction of the claim to a place, a time or a circumstance: the id of a referent
+  instance for a place or a thing (@n1 for Norfolk, @x1 for the marsh), or a lemma for a time or
+  circumstance (winter, night); absent for a claim at large.
+- `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
+  not inferred.
+
+Example (a property no single heron can have). TEXT: Herons are widespread.
+
+Instances:
+
+    [
+      {"t": "class-property", "id": "k1", "subject": "heron", "property": "widespread", "tense": "present"}
+    ]
+
+The program renders these instances as:
+
+    (ClassProperty heron widespread)
+
+Example (a definite singular naming the class — no witness). TEXT: The quagga is extinct.
+
+Instances:
+
+    [
+      {"t": "class-property", "id": "k1", "subject": "quagga", "property": "extinct", "tense": "present"}
+    ]
+
+The program renders these instances as:
+
+    (ClassProperty quagga extinct)
+
+Example (a place restricting the claim — kept in the atom, still about the class). TEXT: Otters are rare in Norfolk.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Norfolk"},
+      {"t": "class-property", "id": "k1", "subject": "otter", "property": "rare", "restriction": "@n1", "tense": "present"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_norfolk_1 "Norfolk")
+    (ConditionalProperty otter rare sk_norfolk_1)
+
+Not this template. TEXT: Ferrets are curious. — use `class-statement`.
+
+### class-statement — A class is a class or has a property
+
+When: A clause with "be" as its main verb whose subject names a class rather than an individual
+— a bare plural (ferrets, herons), a mass noun (granite) or a generic indefinite singular (a
+spindle is a tool) — and whose predicate is an indefinite noun phrase or an adjective. The
+statement is definitional when it states what the class is by definition or taxonomy (ferrets
+are mustelids, a spindle is a tool) and empirical when it generalizes over the class's members
+(ferrets are curious). A quantifier word on the subject (all, every, most, many, few, no)
+belongs to the statement: record it as written; the program sets the strength from it and keeps
+the word beside the statement.
+
+Forms:
+- <class>s are <N>s
+- <class>s are <ADJ>
+- <mass noun> is a <N>
+- a <class> is a <N>
+- all / most / few / no <class>s are <N or ADJ>
+
+Not this template:
+- an individual as the subject — Teodor is a locksmith, the ladder is crooked: a predication
+  about one individual
+- a definite plural — the ferrets are curious: a specific group of individuals, not the class
+- a property of the class as a whole that no member holds — ferrets are widespread, the dodo is
+  extinct, herons are common: a class-level property, not a generalization
+- a property under a condition — clay is soft when wet, ferrets are tame in Calderwick: a
+  conditional property, a rule over the members; a class-level property restricted to a place or
+  a time — otters are rare in Norfolk: a class-level property
+- a copular verb other than be — herons seem patient, ferrets became popular: evidential, or a
+  change of state
+
+Slots:
+
+- `t` (required): "class-statement"
+- `id` (required; your label for this instance): your label for the statement.
+- `subject` (required; a lemma): the class, lemmatized to the singular (ferret, granite,
+  spindle).
+- `predicate` (required; a lemma): the class (mustelid) or the property (curious), lemmatized.
+- `form` (required; one of: noun, adjective): noun for a class predicate, adjective for a
+  property.
+- `definitional` (required; true / false): true for a definitional or taxonomic claim (ferrets
+  are mustelids), false for an empirical generalization (ferrets are curious).
+- `quantifier` (optional; a string): the quantifier word on the subject as written (all, every,
+  most, many, few, no, none); absent for a bare class statement.
+- `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
+  not inferred.
+- `aspect` (optional; one of: simple, progressive, perfect).
+
+Example (definitional). TEXT: Ferrets are mustelids.
+
+Instances:
+
+    [
+      {"t": "class-statement", "id": "k1", "subject": "ferret", "predicate": "mustelid", "form": "noun", "definitional": true, "tense": "present"}
+    ]
+
+The program renders these instances as:
+
+    (Inheritance ferret mustelid)
+
+Example (empirical and bare — the program lowers the confidence to 0.7). TEXT: Ferrets are curious.
+
+Instances:
+
+    [
+      {"t": "class-statement", "id": "k1", "subject": "ferret", "predicate": "curious", "form": "adjective", "definitional": false, "tense": "present"}
+    ]
+
+The program renders these instances as:
+
+    (Inheritance ferret curious)
+
+Not this template. TEXT: Teodor is a locksmith. — use `copular`.
+
+Example (a quantifier word — strength 1.0 at empirical confidence, the word kept). TEXT: All ferrets are curious.
+
+Instances:
+
+    [
+      {"t": "class-statement", "id": "k1", "subject": "ferret", "predicate": "curious", "form": "adjective", "definitional": false, "quantifier": "all", "tense": "present"}
+    ]
+
+The program renders these instances as:
+
+    (Inheritance ferret curious)
+    (QuantifierPhrase ferret curious "all")
 
 ### communication — Communication of a message to an addressee
 
@@ -1183,7 +1351,7 @@ Instances:
     [
       {"t": "named-entity", "id": "n1", "name": "Ottoline"},
       {"t": "named-entity", "id": "n2", "name": "Teodor"},
-      {"t": "witness", "id": "x1", "kind": "news", "definite": true},
+      {"t": "witness", "id": "x1", "class": "news", "definite": true},
       {"t": "communication", "id": "c1", "verb": "tell", "speaker": "@n1", "addressee": "@n2", "message": "@x1", "tense": "past"}
     ]
 
@@ -1206,7 +1374,7 @@ Instances:
       {"t": "named-entity", "id": "n1", "name": "Teodor"},
       {"t": "named-entity", "id": "n2", "name": "Ottoline"},
       {"t": "named-entity", "id": "n3", "name": "Lamine"},
-      {"t": "witness", "id": "x1", "kind": "spindle", "definite": true},
+      {"t": "witness", "id": "x1", "class": "spindle", "definite": true},
       {"t": "transfer", "id": "e1", "verb": "sell", "giver": "@n3", "object": "@x1", "tense": "past"},
       {"t": "communication", "id": "c1", "verb": "tell", "speaker": "@n1", "addressee": "@n2", "content": ["@e1"], "tense": "past"}
     ]
@@ -1311,7 +1479,7 @@ Instances:
 
     [
       {"t": "named-entity", "id": "n1", "name": "Lamine"},
-      {"t": "witness", "id": "x1", "kind": "shed", "definite": true},
+      {"t": "witness", "id": "x1", "class": "shed", "definite": true},
       {"t": "change-of-state", "id": "c1", "verb": "open", "agent": "@n1", "undergoer": "@x1", "tense": "present"},
       {"t": "control", "id": "e1", "verb": "manage", "subject": "@n1", "complement": ["@c1"], "implication": "positive", "tense": "past"}
     ]
@@ -1349,14 +1517,14 @@ Not this template. TEXT: Ottoline wants to send the quilt. — use `attitude`.
 
 Not this template. TEXT: Yusra made Teodor laugh. — use `causative`.
 
-### copular — An individual is a kind or has a property
+### copular — An individual is a class or has a property
 
 When: A clause with "be" as its main verb whose subject is a referent instance — a name, a
 witness, a group (the ferrets), a resolved pronoun, or a range inside a rule (the arbitrary
 member of a conditional property or a generic's condition) — and whose predicate is an
 indefinite noun phrase (is a locksmith) or an adjective (is crooked). A group as the subject
 takes the predicate as a group; whether it also holds of each member is the distribution
-template's business. The predicate's head is the kind or the property; an adjective inside a
+template's business. The predicate's head is the class or the property; an adjective inside a
 predicate noun phrase (is a careful weaver) is a second copular instance with the adjective as
 its predicate. Tense is the clause's; present is recorded and emits nothing.
 
@@ -1366,8 +1534,8 @@ Forms:
 - <subject> was / will be <N or ADJ>
 
 Not this template:
-- a kind as the subject — ferrets are mustelids, granite is a rock, a spindle is a tool: a
-  statement about a kind, not an individual (a range instance, "@q1", is not a kind: it is the
+- a class as the subject — ferrets are mustelids, granite is a rock, a spindle is a tool: a
+  statement about a class, not an individual (a range instance, "@q1", is not a class: it is the
   member a rule ranges over, and takes this template)
 - a quantifier word on the subject — all ferrets are curious, most herons are patient: a
   quantified generalization
@@ -1376,7 +1544,7 @@ Not this template:
 - an adjective with a complement — afraid of the ferret, fond of Lamine, full of water: the
   complement is part of the predication; report the whole predicate as a gap
 - a definite or a name as the predicate — is the locksmith, is Teodor: an identity statement,
-  not a kind or a property
+  not a class or a property
 - a non-intersective modifier in the predicate — a former weaver, an alleged thief: the
   adjective does not hold of the individual on its own
 - "there is / there are" — there is a thermos: an existential, which is the referent alone
@@ -1389,14 +1557,14 @@ Slots:
 - `id` (required; your label for this instance): your label for the predication.
 - `subject` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
   the subject: a referent id (a name, a witness, a group, a resolved pronoun).
-- `predicate` (required; a lemma): the kind (locksmith) or the property (crooked), lemmatized.
-- `form` (required; one of: noun, adjective): noun for a kind (is a locksmith), adjective for a
+- `predicate` (required; a lemma): the class (locksmith) or the property (crooked), lemmatized.
+- `form` (required; one of: noun, adjective): noun for a class (is a locksmith), adjective for a
   property (is crooked).
 - `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
   not inferred.
 - `aspect` (optional; one of: simple, progressive, perfect).
 
-Example (a kind). TEXT: Teodor is a locksmith.
+Example (a class). TEXT: Teodor is a locksmith.
 
 Instances:
 
@@ -1415,7 +1583,7 @@ Example (a property, past tense — the tense wraps the atom). TEXT: The audit w
 Instances:
 
     [
-      {"t": "witness", "id": "x1", "kind": "audit", "definite": true},
+      {"t": "witness", "id": "x1", "class": "audit", "definite": true},
       {"t": "copular", "id": "c1", "subject": "@x1", "predicate": "difficult", "form": "adjective", "tense": "past"}
     ]
 
@@ -1424,7 +1592,7 @@ The program renders these instances as:
     (Member sk_audit_1 audit)
     (Past (Member sk_audit_1 difficult))
 
-Not this template. TEXT: Ferrets are mustelids. — use `kind-statement`.
+Not this template. TEXT: Ferrets are mustelids. — use `class-statement`.
 
 Not this template. TEXT: Teodor became a locksmith. — use `change-of-state`.
 
@@ -1494,7 +1662,7 @@ Instances:
 
     [
       {"t": "named-entity", "id": "n1", "name": "Lamine"},
-      {"t": "witness", "id": "x1", "kind": "loaf"},
+      {"t": "witness", "id": "x1", "class": "loaf"},
       {"t": "creation", "id": "e1", "verb": "bake", "creator": "@n1", "product": "@x1", "tense": "past"}
     ]
 
@@ -1513,7 +1681,7 @@ Instances:
 
     [
       {"t": "named-entity", "id": "n1", "name": "Ottoline"},
-      {"t": "witness", "id": "x1", "kind": "portrait"},
+      {"t": "witness", "id": "x1", "class": "portrait"},
       {"t": "creation", "id": "e1", "verb": "paint", "creator": "@n1", "product": "@x1", "tense": "past"}
     ]
 
@@ -1532,7 +1700,7 @@ Instances:
 
     [
       {"t": "named-entity", "id": "n1", "name": "Yusra"},
-      {"t": "witness", "id": "x1", "kind": "school"},
+      {"t": "witness", "id": "x1", "class": "school"},
       {"t": "creation", "id": "e1", "verb": "found", "creator": "@n1", "product": "@x1", "tense": "past"}
     ]
 
@@ -1574,11 +1742,11 @@ Not this template:
   event
 - a comparative or a superlative — taller than Yusra, the tallest weaver, as tall as Teodor: a
   comparison, with no template here; report the span as unmapped — for a superlative the whole
-  definite predicate (the tallest weaver), which is no plain kind predication either
+  definite predicate (the tallest weaver), which is no plain class predication either
 - a degree on a quantity — too much salt, enough water, a lot of ferrets: no slot here; report
   the span as unmapped
-- a kind as the bearer — ferrets are very curious: a kind statement; the degree word is reported
-  as unmapped (G02)
+- a class as the bearer — ferrets are very curious: a class statement; the degree word is
+  reported as unmapped (G02)
 - a degree word on a manner adverb — laughed very loudly: the manner is recorded, the degree
   word reported (G02)
 - an adjective with a complement — too fond of Yusra, very afraid of the ferret: the complement
@@ -1597,19 +1765,19 @@ Slots:
 - `level` (optional; a lemma): the degree word as written, lowercase (very, extremely, slightly,
   too, enough, almost, nearly, so); a multi-word expression as one snake_case symbol (a_bit,
   a_little, all_but, far_too).
-- `for_kind` (optional; a lemma): the comparison class of "ADJ for a N", lemmatized to the
+- `for_class` (optional; a lemma): the comparison class of "ADJ for a N", lemmatized to the
   singular (tall for a weaver → weaver).
 - `tense` (optional; one of: past, present, future): the clause's tense for a predicative use
   (is / was / will be very crooked); omit it for a property graded inside a noun phrase (a very
   old spindle), which has no tense.
-- At least one of `level`, `for_kind` is filled.
+- At least one of `level`, `for_class` is filled.
 
 Example (an intensifier — the property stays asserted, the degree beside it). TEXT: The ladder is very crooked.
 
 Instances:
 
     [
-      {"t": "witness", "id": "x1", "kind": "ladder", "definite": true},
+      {"t": "witness", "id": "x1", "class": "ladder", "definite": true},
       {"t": "degree", "id": "d1", "bearer": "@x1", "scale": "crooked", "level": "very", "tense": "present"}
     ]
 
@@ -1624,7 +1792,7 @@ Example (an approximator — the property is not asserted, only its degree). TEX
 Instances:
 
     [
-      {"t": "witness", "id": "x1", "kind": "thermos", "definite": true},
+      {"t": "witness", "id": "x1", "class": "thermos", "definite": true},
       {"t": "degree", "id": "d1", "bearer": "@x1", "scale": "full", "level": "almost", "tense": "past"}
     ]
 
@@ -1633,191 +1801,23 @@ The program renders these instances as:
     (Member sk_thermos_1 thermos)
     (Past (Degree sk_thermos_1 full almost))
 
-Example (a comparison class — relative to the kind's norm, no positive). TEXT: Yusra is tall for a weaver.
+Example (a comparison class — relative to the class's norm, no positive). TEXT: Yusra is tall for a weaver.
 
 Instances:
 
     [
       {"t": "named-entity", "id": "n1", "name": "Yusra"},
-      {"t": "degree", "id": "d1", "bearer": "@n1", "scale": "tall", "for_kind": "weaver", "tense": "present"}
+      {"t": "degree", "id": "d1", "bearer": "@n1", "scale": "tall", "for_class": "weaver", "tense": "present"}
     ]
 
 The program renders these instances as:
 
     (Name sk_yusra_1 "Yusra")
-    (Degree sk_yusra_1 tall (forKind weaver))
+    (Degree sk_yusra_1 tall (forClass weaver))
 
 Not this template. TEXT: The audit was difficult. — use `copular`.
 
 Not this template. TEXT: The price fell sharply. — use `extent`.
-
-### kind-property — A property of a kind as a whole
-
-When: A clause with "be" as its main verb whose subject names a kind — a bare plural (herons), a
-mass noun (lichen) or a definite singular naming the kind (the quagga, the great auk) — and
-whose predicate adjective is a property only a kind as a whole can have: extinct, endangered,
-widespread, common, rare, scarce, abundant, numerous, plentiful, ubiquitous, prevalent. The
-test: could one individual be it? A single heron cannot be widespread or rare; it can be patient
-or grey, and those are kind statements. The property is lemmatized. A definite singular with
-such a property can only name the kind: no witness. A phrase restricting the claim to a place
-(rare in Norfolk, common in the marsh), a time (rare in winter) or a circumstance goes in
-`restriction`: the claim holds there, not at large.
-
-Forms:
-- <kind>s are <ADJ>
-- the <kind> is <ADJ>
-- <mass noun> is <ADJ>
-- <kind>s are <ADJ> in <place / time>
-
-Not this template:
-- a property a member can hold — herons are patient, ferrets are curious, granite is hard: a
-  kind statement, which generalizes over the members
-- a property a member can hold, under a condition — clay is soft when wet, ferrets are tame in
-  Calderwick: a conditional property, a rule over the members
-- a verbal predicate — ferrets are dying out, herons are declining: no slot; report the clause
-  as unmapped
-- a specific group — the ferrets are numerous, these herons are rare: a group as the subject of
-  a copular predication
-- a kind as a kind — ferrets are mustelids, the quagga was a zebra: a kind statement
-
-Slots:
-
-- `t` (required): "kind-property"
-- `id` (required; your label for this instance): your label for the statement.
-- `subject` (required; a lemma): the kind, lemmatized to the singular (heron, quagga, lichen).
-- `property` (required; a lemma): the property, lemmatized (widespread, extinct, rare).
-- `restriction` (optional; "@id" of a referent instance, or a bare lemma for a non-specific
-  filler): a restriction of the claim to a place, a time or a circumstance: the id of a referent
-  instance for a place or a thing (@n1 for Norfolk, @x1 for the marsh), or a lemma for a time or
-  circumstance (winter, night); absent for a claim at large.
-- `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
-  not inferred.
-
-Example (a property no single heron can have). TEXT: Herons are widespread.
-
-Instances:
-
-    [
-      {"t": "kind-property", "id": "k1", "subject": "heron", "property": "widespread", "tense": "present"}
-    ]
-
-The program renders these instances as:
-
-    (KindProperty heron widespread)
-
-Example (a definite singular naming the kind — no witness). TEXT: The quagga is extinct.
-
-Instances:
-
-    [
-      {"t": "kind-property", "id": "k1", "subject": "quagga", "property": "extinct", "tense": "present"}
-    ]
-
-The program renders these instances as:
-
-    (KindProperty quagga extinct)
-
-Example (a place restricting the claim — kept in the atom, still about the kind). TEXT: Otters are rare in Norfolk.
-
-Instances:
-
-    [
-      {"t": "named-entity", "id": "n1", "name": "Norfolk"},
-      {"t": "kind-property", "id": "k1", "subject": "otter", "property": "rare", "restriction": "@n1", "tense": "present"}
-    ]
-
-The program renders these instances as:
-
-    (Name sk_norfolk_1 "Norfolk")
-    (ConditionalProperty otter rare sk_norfolk_1)
-
-Not this template. TEXT: Ferrets are curious. — use `kind-statement`.
-
-### kind-statement — A kind is a kind or has a property
-
-When: A clause with "be" as its main verb whose subject names a kind rather than an individual —
-a bare plural (ferrets, herons), a mass noun (granite) or a generic indefinite singular (a
-spindle is a tool) — and whose predicate is an indefinite noun phrase or an adjective. The
-statement is definitional when it states what the kind is by definition or taxonomy (ferrets are
-mustelids, a spindle is a tool) and empirical when it generalizes over the kind's members
-(ferrets are curious). A quantifier word on the subject (all, every, most, many, few, no)
-belongs to the statement: record it as written; the program sets the strength from it and keeps
-the word beside the statement.
-
-Forms:
-- <kind>s are <N>s
-- <kind>s are <ADJ>
-- <mass noun> is a <N>
-- a <kind> is a <N>
-- all / most / few / no <kind>s are <N or ADJ>
-
-Not this template:
-- an individual as the subject — Teodor is a locksmith, the ladder is crooked: a predication
-  about one individual
-- a definite plural — the ferrets are curious: a specific group of individuals, not the kind
-- a property of the kind as a whole that no member holds — ferrets are widespread, the dodo is
-  extinct, herons are common: a kind-level property, not a generalization
-- a property under a condition — clay is soft when wet, ferrets are tame in Calderwick: a
-  conditional property, a rule over the members; a kind-level property restricted to a place or
-  a time — otters are rare in Norfolk: a kind-level property
-- a copular verb other than be — herons seem patient, ferrets became popular: evidential, or a
-  change of state
-
-Slots:
-
-- `t` (required): "kind-statement"
-- `id` (required; your label for this instance): your label for the statement.
-- `subject` (required; a lemma): the kind, lemmatized to the singular (ferret, granite,
-  spindle).
-- `predicate` (required; a lemma): the kind (mustelid) or the property (curious), lemmatized.
-- `form` (required; one of: noun, adjective): noun for a kind predicate, adjective for a
-  property.
-- `definitional` (required; true / false): true for a definitional or taxonomic claim (ferrets
-  are mustelids), false for an empirical generalization (ferrets are curious).
-- `quantifier` (optional; a string): the quantifier word on the subject as written (all, every,
-  most, many, few, no, none); absent for a bare kind statement.
-- `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
-  not inferred.
-- `aspect` (optional; one of: simple, progressive, perfect).
-
-Example (definitional). TEXT: Ferrets are mustelids.
-
-Instances:
-
-    [
-      {"t": "kind-statement", "id": "k1", "subject": "ferret", "predicate": "mustelid", "form": "noun", "definitional": true, "tense": "present"}
-    ]
-
-The program renders these instances as:
-
-    (Inheritance ferret mustelid)
-
-Example (empirical and bare — the program lowers the confidence to 0.7). TEXT: Ferrets are curious.
-
-Instances:
-
-    [
-      {"t": "kind-statement", "id": "k1", "subject": "ferret", "predicate": "curious", "form": "adjective", "definitional": false, "tense": "present"}
-    ]
-
-The program renders these instances as:
-
-    (Inheritance ferret curious)
-
-Not this template. TEXT: Teodor is a locksmith. — use `copular`.
-
-Example (a quantifier word — strength 1.0 at empirical confidence, the word kept). TEXT: All ferrets are curious.
-
-Instances:
-
-    [
-      {"t": "kind-statement", "id": "k1", "subject": "ferret", "predicate": "curious", "form": "adjective", "definitional": false, "quantifier": "all", "tense": "present"}
-    ]
-
-The program renders these instances as:
-
-    (Inheritance ferret curious)
-    (QuantifierPhrase ferret curious "all")
 
 ### locative — Where a thing is
 
@@ -1841,8 +1841,8 @@ Not this template:
   the verb's own event with a location attachment
 - a destination or an origin of a motion — went to the market, came from the barn: the motion's
   goal or source
-- a kind predicate — Calderwick is a village: a copular predication; "Calderwick is a village in
-  Norfolk" is a copular predication and a locative on the same subject
+- a class predicate — Calderwick is a village: a copular predication; "Calderwick is a village
+  in Norfolk" is a copular predication and a locative on the same subject
 - a time — the meeting is at noon, the audit is in May: a time, not a place
 - a non-spatial in / on / at — in trouble, in love, on alert, at war: a state, not a place;
   report the phrase as unmapped
@@ -1857,7 +1857,7 @@ Slots:
   the thing located: a referent id (a name, a witness, a group).
 - `place` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
   the place: a referent id (a witness for the workbench, a name for Norfolk) or a bare lemma for
-  a kind-level place.
+  a class-level place.
 - `head` (required; one of: LocatedIn, On, Near, By, Under, Over, Above, Below, Behind, Beside,
   Outside, Opposite, From): LocatedIn for in / at / inside / within; otherwise the preposition
   itself, capitalized (on → On, under → Under); From for an origin (is from).
@@ -1871,8 +1871,8 @@ Example (on keeps its own head). TEXT: The ledger is on the workbench.
 Instances:
 
     [
-      {"t": "witness", "id": "x1", "kind": "ledger", "definite": true},
-      {"t": "witness", "id": "x2", "kind": "workbench", "definite": true},
+      {"t": "witness", "id": "x1", "class": "ledger", "definite": true},
+      {"t": "witness", "id": "x2", "class": "workbench", "definite": true},
       {"t": "locative", "id": "l1", "thing": "@x1", "place": "@x2", "head": "On", "preposition": "on", "tense": "present"}
     ]
 
@@ -1967,7 +1967,7 @@ Instances:
 
     [
       {"t": "named-entity", "id": "n1", "name": "Yusra"},
-      {"t": "witness", "id": "x1", "kind": "market", "definite": true},
+      {"t": "witness", "id": "x1", "class": "market", "definite": true},
       {"t": "motion", "id": "m1", "verb": "go", "mover": "@n1", "goal": "@x1", "tense": "past"}
     ]
 
@@ -1986,8 +1986,8 @@ Instances:
 
     [
       {"t": "named-entity", "id": "n1", "name": "Lamine"},
-      {"t": "witness", "id": "x1", "kind": "ladder", "definite": true},
-      {"t": "witness", "id": "x2", "kind": "shed", "definite": true},
+      {"t": "witness", "id": "x1", "class": "ladder", "definite": true},
+      {"t": "witness", "id": "x2", "class": "shed", "definite": true},
       {"t": "motion", "id": "m1", "verb": "carry", "mover": "@n1", "moved": "@x1", "goal": "@x2", "tense": "past"}
     ]
 
@@ -2060,7 +2060,7 @@ Instances:
 
     [
       {"t": "named-entity", "id": "n1", "name": "Teodor"},
-      {"t": "witness", "id": "x1", "kind": "ferret", "definite": true},
+      {"t": "witness", "id": "x1", "class": "ferret", "definite": true},
       {"t": "perception", "id": "p1", "verb": "see", "perceiver": "@n1", "stimulus": "@x1", "tense": "past"}
     ]
 
@@ -2081,7 +2081,7 @@ Instances:
       {"t": "named-entity", "id": "n1", "name": "Yusra"},
       {"t": "named-entity", "id": "n2", "name": "Lamine"},
       {"t": "named-entity", "id": "n3", "name": "Teodor"},
-      {"t": "witness", "id": "x1", "kind": "envelope"},
+      {"t": "witness", "id": "x1", "class": "envelope"},
       {"t": "transfer", "id": "e1", "verb": "hand", "giver": "@n2", "recipient": "@n3", "object": "@x1", "tense": "past"},
       {"t": "perception", "id": "p1", "verb": "see", "perceiver": "@n1", "event": "@e1", "tense": "past"}
     ]
@@ -2154,7 +2154,7 @@ Instances:
 
     [
       {"t": "named-entity", "id": "n1", "name": "Teodor"},
-      {"t": "witness", "id": "x1", "kind": "trowel"},
+      {"t": "witness", "id": "x1", "class": "trowel"},
       {"t": "possession", "id": "p1", "verb": "have", "holder": "@n1", "possessed": "@x1", "tense": "present"}
     ]
 
@@ -2171,7 +2171,7 @@ Example (belong — the subject is the thing held; the roles do not change). TEX
 Instances:
 
     [
-      {"t": "witness", "id": "x1", "kind": "ladder", "definite": true},
+      {"t": "witness", "id": "x1", "class": "ladder", "definite": true},
       {"t": "named-entity", "id": "n1", "name": "Lamine"},
       {"t": "possession", "id": "p1", "verb": "belong", "holder": "@n1", "possessed": "@x1", "tense": "present"}
     ]
@@ -2266,7 +2266,7 @@ Example (frighten-type, experiencer as object — the same roles). TEXT: The fer
 Instances:
 
     [
-      {"t": "witness", "id": "x1", "kind": "ferret", "definite": true},
+      {"t": "witness", "id": "x1", "class": "ferret", "definite": true},
       {"t": "named-entity", "id": "n1", "name": "Teodor"},
       {"t": "psych", "id": "p1", "verb": "frighten", "experiencer": "@n1", "stimulus": "@x1", "tense": "present"}
     ]
@@ -2351,7 +2351,7 @@ Instances:
     [
       {"t": "named-entity", "id": "n1", "name": "Teodor"},
       {"t": "named-entity", "id": "n2", "name": "Yusra"},
-      {"t": "witness", "id": "x1", "kind": "thermos"},
+      {"t": "witness", "id": "x1", "class": "thermos"},
       {"t": "transfer", "id": "e1", "verb": "give", "giver": "@n1", "recipient": "@n2", "object": "@x1", "tense": "past"}
     ]
 
@@ -2372,7 +2372,7 @@ Instances:
 
     [
       {"t": "named-entity", "id": "n1", "name": "Lamine"},
-      {"t": "witness", "id": "x1", "kind": "quilt", "definite": true},
+      {"t": "witness", "id": "x1", "class": "quilt", "definite": true},
       {"t": "named-entity", "id": "n3", "name": "Ottoline"},
       {"t": "transfer", "id": "e1", "verb": "send", "giver": "@n1", "recipient": "@n3", "object": "@x1", "tense": "future"}
     ]
@@ -2394,7 +2394,7 @@ Instances:
 
     [
       {"t": "named-entity", "id": "n1", "name": "Yusra"},
-      {"t": "witness", "id": "x1", "kind": "spindle", "definite": true},
+      {"t": "witness", "id": "x1", "class": "spindle", "definite": true},
       {"t": "transfer", "id": "e1", "verb": "sell", "giver": "@n1", "object": "@x1", "tense": "past"}
     ]
 
@@ -2461,7 +2461,7 @@ Example (the commanded event is sealed, tenseless and without an actor; the defi
 Instances:
 
     [
-      {"t": "witness", "id": "x1", "kind": "gate", "definite": true},
+      {"t": "witness", "id": "x1", "class": "gate", "definite": true},
       {"t": "change-of-state", "id": "c1", "verb": "close", "undergoer": "@x1", "tense": "present"},
       {"t": "imperative", "id": "s1", "over": ["@c1"]}
     ]
@@ -2476,7 +2476,7 @@ Example (a negative imperative — the directive over the negation). TEXT: Don't
 Instances:
 
     [
-      {"t": "witness", "id": "x1", "kind": "spindle", "definite": true},
+      {"t": "witness", "id": "x1", "class": "spindle", "definite": true},
       {"t": "activity", "id": "v1", "verb": "touch", "patient": "@x1", "tense": "present"},
       {"t": "negation", "id": "s1", "over": ["@v1"]},
       {"t": "imperative", "id": "s2", "over": ["@s1"]}
@@ -2493,7 +2493,7 @@ Instances:
 
     [
       {"t": "named-entity", "id": "n1", "name": "Teodor"},
-      {"t": "witness", "id": "x1", "kind": "quilt", "definite": true},
+      {"t": "witness", "id": "x1", "class": "quilt", "definite": true},
       {"t": "activity", "id": "v1", "verb": "wash", "actor": "@n1", "patient": "@x1", "tense": "present"},
       {"t": "imperative", "id": "s1", "over": ["@v1"]}
     ]
@@ -2567,7 +2567,7 @@ Instances:
 
     [
       {"t": "named-entity", "id": "n1", "name": "Teodor"},
-      {"t": "witness", "id": "x1", "kind": "quilt", "definite": true},
+      {"t": "witness", "id": "x1", "class": "quilt", "definite": true},
       {"t": "transfer", "id": "e1", "verb": "send", "giver": "@n1", "object": "@x1", "tense": "past"},
       {"t": "negation", "id": "s1", "over": ["@e1"]}
     ]
@@ -2621,7 +2621,7 @@ Slots:
   phrase attaches to: the id of the clause's event instance.
 - `participant` (required; "@id" of a referent instance, or a bare lemma for a non-specific
   filler): the added participant: a referent id (a witness for a knife, a name for Yusra) or a
-  bare lemma for a kind-level one (by train, with soap).
+  bare lemma for a class-level one (by train, with soap).
 - `head` (required; one of: Instrument, CoAgent, Beneficiary): Instrument for a tool, substance
   or means; CoAgent for a person or animal taking part; Beneficiary for the party the event is
   done for.
@@ -2634,8 +2634,8 @@ Instances:
 
     [
       {"t": "named-entity", "id": "n1", "name": "Lamine"},
-      {"t": "witness", "id": "x1", "kind": "loaf", "definite": true},
-      {"t": "witness", "id": "x2", "kind": "knife"},
+      {"t": "witness", "id": "x1", "class": "loaf", "definite": true},
+      {"t": "witness", "id": "x2", "class": "knife"},
       {"t": "activity", "id": "v1", "verb": "cut", "actor": "@n1", "patient": "@x1", "tense": "past"},
       {"t": "adjunct", "id": "a1", "event": "@v1", "participant": "@x2", "head": "Instrument", "preposition": "with"}
     ]
@@ -2677,7 +2677,7 @@ Instances:
 
     [
       {"t": "named-entity", "id": "n1", "name": "Yusra"},
-      {"t": "witness", "id": "x1", "kind": "loaf"},
+      {"t": "witness", "id": "x1", "class": "loaf"},
       {"t": "named-entity", "id": "n2", "name": "Teodor"},
       {"t": "creation", "id": "e1", "verb": "bake", "creator": "@n1", "product": "@x1", "tense": "past"},
       {"t": "adjunct", "id": "a1", "event": "@e1", "participant": "@n2", "head": "Beneficiary", "preposition": "for"}
@@ -2743,7 +2743,7 @@ Example (a magnitude adverb on a change). TEXT: The price fell sharply.
 Instances:
 
     [
-      {"t": "witness", "id": "x1", "kind": "price", "definite": true},
+      {"t": "witness", "id": "x1", "class": "price", "definite": true},
       {"t": "change-of-state", "id": "c1", "verb": "fall", "undergoer": "@x1", "tense": "past"},
       {"t": "extent", "id": "a1", "event": "@c1", "level": "sharply"}
     ]
@@ -2762,7 +2762,7 @@ Instances:
 
     [
       {"t": "named-entity", "id": "n1", "name": "Teodor"},
-      {"t": "witness", "id": "x1", "kind": "quilt", "definite": true},
+      {"t": "witness", "id": "x1", "class": "quilt", "definite": true},
       {"t": "psych", "id": "p1", "verb": "like", "experiencer": "@n1", "stimulus": "@x1", "tense": "present"},
       {"t": "extent", "id": "a1", "event": "@p1", "level": "really"}
     ]
@@ -2818,7 +2818,7 @@ Slots:
   place attaches to: the id of the clause's event instance.
 - `place` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
   the place: a referent id (a witness for the barn, a name for Calderwick) or a bare lemma for a
-  kind-level place (in burrows).
+  class-level place (in burrows).
 - `head` (required; one of: Location, Near, By, Under, Over, Above, Below, Behind, Beside,
   Outside, Opposite): Location for in / at / on / inside / within; otherwise the preposition
   itself, capitalized (under → Under).
@@ -2830,7 +2830,7 @@ Instances:
 
     [
       {"t": "named-entity", "id": "n1", "name": "Yusra"},
-      {"t": "witness", "id": "x1", "kind": "barn", "definite": true},
+      {"t": "witness", "id": "x1", "class": "barn", "definite": true},
       {"t": "activity", "id": "v1", "verb": "laugh", "actor": "@n1", "tense": "past"},
       {"t": "location", "id": "l1", "event": "@v1", "place": "@x1", "head": "Location", "preposition": "in"}
     ]
@@ -2849,8 +2849,8 @@ Example (a preposition other than in / at / on keeps its own head). TEXT: The fe
 Instances:
 
     [
-      {"t": "witness", "id": "x1", "kind": "ferret", "definite": true},
-      {"t": "witness", "id": "x2", "kind": "ladder", "definite": true},
+      {"t": "witness", "id": "x1", "class": "ferret", "definite": true},
+      {"t": "witness", "id": "x2", "class": "ladder", "definite": true},
       {"t": "activity", "id": "v1", "verb": "sleep", "actor": "@x1", "tense": "past"},
       {"t": "location", "id": "l1", "event": "@v1", "place": "@x2", "head": "Under", "preposition": "under"}
     ]
@@ -2932,7 +2932,7 @@ Instances:
 
     [
       {"t": "named-entity", "id": "n1", "name": "Teodor"},
-      {"t": "witness", "id": "x1", "kind": "letter", "definite": true},
+      {"t": "witness", "id": "x1", "class": "letter", "definite": true},
       {"t": "activity", "id": "v1", "verb": "read", "actor": "@n1", "patient": "@x1", "tense": "past"},
       {"t": "manner", "id": "a1", "event": "@v1", "manner": "care"}
     ]
@@ -3009,7 +3009,7 @@ Slots:
   Without); never a synonym.
 - `object` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
   the phrase's object: a referent id (a witness, a name) for a specific thing, or a bare lemma
-  for a non-specific or kind-level one (as a weaver → weaver, without a quilt → quilt, like a
+  for a non-specific or class-level one (as a weaver → weaver, without a quilt → quilt, like a
   bird → bird).
 
 Example (what the action is about — the preposition is the head). TEXT: Yusra talked about the audit.
@@ -3018,7 +3018,7 @@ Instances:
 
     [
       {"t": "named-entity", "id": "n1", "name": "Yusra"},
-      {"t": "witness", "id": "x1", "kind": "audit", "definite": true},
+      {"t": "witness", "id": "x1", "class": "audit", "definite": true},
       {"t": "activity", "id": "v1", "verb": "talk", "actor": "@n1", "tense": "past"},
       {"t": "oblique", "id": "a1", "event": "@v1", "head": "About", "object": "@x1"}
     ]
@@ -3098,8 +3098,8 @@ Not this template:
 - a measure or a container — a cup of tea, three metres of cloth: the substance is the verb's
   object as a bare lemma (tea, cloth); the measure phrase is reported as unmapped
 - a place phrase inside a noun phrase — the ferret in the barn, the ledger on the workbench: a
-  locative predication of that thing (in, at, on, near, under …), not a phrase of this kind; and
-  a place predicated of a thing — the ledger is on the workbench — likewise
+  locative predication of that thing (in, at, on, near, under …), not a phrase of this class;
+  and a place predicated of a thing — the ledger is on the workbench — likewise
 - a reduced relative clause — the rules concerning the levy, a skiff moored at the jetty: an
   event with the noun in its role, not a phrase; report it as unmapped
 
@@ -3117,16 +3117,16 @@ Slots:
   never a synonym.
 - `object` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
   the phrase's object: a referent id (a witness, a name) for a specific thing, or a bare lemma
-  for a non-specific or kind-level one (a book about ferrets → ferret, a thermos without a lid →
-  lid).
+  for a non-specific or class-level one (a book about ferrets → ferret, a thermos without a lid
+  → lid).
 
 Example (the phrase picks out the referent; no possession is stated). TEXT: The man with the hat laughed.
 
 Instances:
 
     [
-      {"t": "witness", "id": "x1", "kind": "man", "definite": true},
-      {"t": "witness", "id": "x2", "kind": "hat", "definite": true},
+      {"t": "witness", "id": "x1", "class": "man", "definite": true},
+      {"t": "witness", "id": "x2", "class": "hat", "definite": true},
       {"t": "postmodifier", "id": "a1", "noun": "@x1", "head": "With", "object": "@x2"},
       {"t": "activity", "id": "v1", "verb": "laugh", "actor": "@x1", "tense": "past"}
     ]
@@ -3140,13 +3140,13 @@ The program renders these instances as:
     (Agent sk_laugh_1 sk_man_1)
     (Past sk_laugh_1)
 
-Example (what a thing is about — a kind-level object as a bare lemma). TEXT: Yusra read a book about ferrets.
+Example (what a thing is about — a class-level object as a bare lemma). TEXT: Yusra read a book about ferrets.
 
 Instances:
 
     [
       {"t": "named-entity", "id": "n1", "name": "Yusra"},
-      {"t": "witness", "id": "x1", "kind": "book"},
+      {"t": "witness", "id": "x1", "class": "book"},
       {"t": "postmodifier", "id": "a1", "noun": "@x1", "head": "About", "object": "ferret"},
       {"t": "activity", "id": "v1", "verb": "read", "actor": "@n1", "patient": "@x1", "tense": "past"}
     ]
@@ -3257,7 +3257,7 @@ Instances:
 
     [
       {"t": "named-entity", "id": "n1", "name": "Lamine"},
-      {"t": "witness", "id": "x1", "kind": "spindle", "definite": true},
+      {"t": "witness", "id": "x1", "class": "spindle", "definite": true},
       {"t": "transfer", "id": "e1", "verb": "sell", "giver": "@n1", "object": "@x1", "tense": "past"},
       {"t": "time", "id": "t1", "event": "@e1", "weekday": "monday"}
     ]
@@ -3280,33 +3280,33 @@ Not this template. TEXT: Yusra laughed in the barn. — use `location`.
 
 ## Rules — generic and quantified statements
 
-### conditional-property — A kind's property under a condition
+### conditional-property — A class's property under a condition
 
-When: A clause with "be" as its main verb whose subject names a kind — a bare plural (alloys), a
-mass noun (clay) or a generic indefinite singular — and whose predicate adjective holds of a
+When: A clause with "be" as its main verb whose subject names a class — a bare plural (alloys),
+a mass noun (clay) or a generic indefinite singular — and whose predicate adjective holds of a
 member only under a stated condition: an adjective after when / if / while / once (soft when
 wet, brittle if cold, sticky once heated), or a place where the property holds of the members
 (tame in Calderwick). The subject is a range instance; the property is a copular instance over
 the range, listed in `over`; the condition is a predication over the same range — a copular
 instance for a state (wet, cold, heated), a locative instance for a place — listed in
 `condition`; several conditions are several instances. A pronoun in the condition that refers
-back to the kind (if they are healthy) is the range itself: the copular's subject is the range's
-id. A quantifier word on the subject (all, most, few, no) is recorded on the range as written,
-with the property's lemma as its predicate. One instance per clause.
+back to the class (if they are healthy) is the range itself: the copular's subject is the
+range's id. A quantifier word on the subject (all, most, few, no) is recorded on the range as
+written, with the property's lemma as its predicate. One instance per clause.
 
 Forms:
-- <kind>s are <ADJ> when / if <ADJ>
-- <kind>s are <ADJ> in <place>
-- all / most / few / no <kind>s are <ADJ> when <ADJ>
+- <class>s are <ADJ> when / if <ADJ>
+- <class>s are <ADJ> in <place>
+- all / most / few / no <class>s are <ADJ> when <ADJ>
 
 Not this template:
-- no condition — clay is soft, ferrets are curious: a kind statement; otters are rare: a
-  kind-level property
+- no condition — clay is soft, ferrets are curious: a class statement; otters are rare: a
+  class-level property
 - a property no member holds, restricted to a place or a time — otters are rare in Norfolk,
-  cranes are rare in winter: a kind-level property with a restriction, not a rule over the
+  cranes are rare in winter: a class-level property with a restriction, not a rule over the
   members
 - an individual as the subject — the ladder is brittle when cold, Teodor is grumpy when tired:
-  not a kind; report the clause as unmapped (G11)
+  not a class; report the clause as unmapped (G11)
 - a verbal predicate under a condition — clay softens when wet, ferrets bite when cornered: a
   generic with a condition
 - a condition about something other than the member — herons are patient if the weather is
@@ -3323,7 +3323,7 @@ Slots:
 - `t` (required): "conditional-property"
 - `id` (required; your label for this instance): your label for the rule.
 - `ranges` (required; a list of "@id" of the instances that state the clause): the range
-  instance for the kind (one, as a rule): the arbitrary member the condition and the property
+  instance for the class (one, as a rule): the arbitrary member the condition and the property
   are about.
 - `condition` (required; a list of "@id" of the instances that state the clause): the
   predication(s) that must hold of the member: a copular instance over the range for a state
@@ -3338,7 +3338,7 @@ Example (an adjective after when — the condition is a copular predication over
 Instances:
 
     [
-      {"t": "range", "id": "q1", "kind": "clay"},
+      {"t": "range", "id": "q1", "class": "clay"},
       {"t": "copular", "id": "c1", "subject": "@q1", "predicate": "soft", "form": "adjective", "tense": "present"},
       {"t": "copular", "id": "c2", "subject": "@q1", "predicate": "wet", "form": "adjective", "tense": "present"},
       {"t": "conditional-property", "id": "r1", "ranges": ["@q1"], "condition": ["@c2"], "over": ["@c1"]}
@@ -3353,7 +3353,7 @@ Example (a quantifier word — on the range, with the property as its predicate)
 Instances:
 
     [
-      {"t": "range", "id": "q1", "kind": "alloy", "quantifier": "all", "predicate": "brittle"},
+      {"t": "range", "id": "q1", "class": "alloy", "quantifier": "all", "predicate": "brittle"},
       {"t": "copular", "id": "c1", "subject": "@q1", "predicate": "brittle", "form": "adjective", "tense": "present"},
       {"t": "copular", "id": "c2", "subject": "@q1", "predicate": "cold", "form": "adjective", "tense": "present"},
       {"t": "conditional-property", "id": "r1", "ranges": ["@q1"], "condition": ["@c2"], "over": ["@c1"]}
@@ -3364,9 +3364,9 @@ The program renders these instances as:
     (Implication (And (Member $x alloy) (Member $x cold)) (Member $x brittle))
     (QuantifierPhrase alloy brittle "all")
 
-Not this template. TEXT: Otters are rare in Norfolk. — use `kind-property`.
+Not this template. TEXT: Otters are rare in Norfolk. — use `class-property`.
 
-Not this template. TEXT: Ferrets are curious. — use `kind-statement`.
+Not this template. TEXT: Ferrets are curious. — use `class-statement`.
 
 ### distribution — A predication over a group holds of each member
 
@@ -3382,7 +3382,7 @@ Not this template:
   the group as a whole, not of each member
 - a size or a measure of the group — are three in number, weigh ten kilos together: a property
   of the whole
-- a kind as the subject — ferrets are curious: a statement about the kind, there is no group
+- a class as the subject — ferrets are curious: a statement about the class, there is no group
 
 Slots:
 
@@ -3398,7 +3398,7 @@ Example. TEXT: Several students laughed.
 Instances:
 
     [
-      {"t": "group", "id": "g1", "kind": "student", "quantity": "several"},
+      {"t": "group", "id": "g1", "class": "student", "quantity": "several"},
       {"t": "activity", "id": "v1", "verb": "laugh", "actor": "@g1", "tense": "past"},
       {"t": "distribution", "id": "d1", "group": "@g1", "over": ["@v1"]}
     ]
@@ -3414,26 +3414,26 @@ The program renders these instances as:
 
 Not this template. TEXT: Three ferrets surrounded the barn. — use `group`.
 
-### generic — A verbal generalization over a kind
+### generic — A verbal generalization over a class
 
-When: A clause whose subject (or another argument) is a range — a quantified kind noun or a bare
-plural read generically — and whose predicate is a verb other than "be": every ferret slept,
-ferrets sleep, most students laugh, few herons migrate, no ferret slept. The predication is
-parsed with its own template, with the range as its filler; the generic instance names the
+When: A clause whose subject (or another argument) is a range — a quantified class noun or a
+bare plural read generically — and whose predicate is a verb other than "be": every ferret
+slept, ferrets sleep, most students laugh, few herons migrate, no ferret slept. The predication
+is parsed with its own template, with the range as its filler; the generic instance names the
 range(s) and the predication (or the negation / modal over it) and nothing else. One generic per
-clause, however many ranges it has. An object that is itself a bare kind (ferrets eat mice,
+clause, however many ranges it has. An object that is itself a bare class (ferrets eat mice,
 spiders spin webs) is a bare lemma filler of the predication: the rule says an arbitrary ferret
 eats mice. A condition under which the generalization holds (ferrets bite when cornered, clay
 softens when wet) is a predication over the range — a copular instance for the state — listed in
 `condition`.
 
 Not this template:
-- a copular predicate — all ferrets are curious, most herons are patient: a kind statement,
+- a copular predicate — all ferrets are curious, most herons are patient: a class statement,
   which carries the quantifier itself
 - a specific group — the ferrets slept, several students laughed, some students waited: a group
-  and a distribution, not a rule over a kind
-- a modal or a capability on a kind — ferrets can climb, citizens must pay tax: a property of
-  the kind, not an event rule
+  and a distribution, not a rule over a class
+- a modal or a capability on a class — ferrets can climb, citizens must pay tax: a property of
+  the class, not an event rule
 - "every time" or "whenever" with a clause — every time the bell rings: a frequency conditional
   over occasions, not a quantifier on a subject
 - an existential singular — some ferret slept, a ferret slept: a particular witness
@@ -3445,7 +3445,7 @@ Slots:
 - `t` (required): "generic"
 - `id` (required; your label for this instance): your label for the rule.
 - `ranges` (required; a list of "@id" of the instances that state the clause): the range
-  instance(s) the rule quantifies over, in text order: one per quantified kind noun.
+  instance(s) the rule quantifies over, in text order: one per quantified class noun.
 - `over` (required; a list of "@id" of the instances that state the clause): the predication
   over the range(s), or the negation / modal over that predication: its id, nothing else.
 - `condition` (optional; a list of "@id" of the instances that state the clause): a predication
@@ -3457,7 +3457,7 @@ Example (a bare generic — no quantifier word, strength 0.9 at confidence 0.7, 
 Instances:
 
     [
-      {"t": "range", "id": "q1", "kind": "ferret"},
+      {"t": "range", "id": "q1", "class": "ferret"},
       {"t": "activity", "id": "v1", "verb": "sleep", "actor": "@q1", "tense": "present"},
       {"t": "generic", "id": "r1", "ranges": ["@q1"], "over": ["@v1"]}
     ]
@@ -3471,7 +3471,7 @@ Example (a graded quantifier — the word sets the strength and is kept beside t
 Instances:
 
     [
-      {"t": "range", "id": "q1", "kind": "student", "quantifier": "most", "predicate": "laugh"},
+      {"t": "range", "id": "q1", "class": "student", "quantifier": "most", "predicate": "laugh"},
       {"t": "activity", "id": "v1", "verb": "laugh", "actor": "@q1", "tense": "present"},
       {"t": "generic", "id": "r1", "ranges": ["@q1"], "over": ["@v1"]}
     ]
@@ -3483,7 +3483,7 @@ The program renders these instances as:
 
 Not this template. TEXT: Several ferrets slept. — use `group`.
 
-Not this template. TEXT: All ferrets are curious. — use `kind-statement`.
+Not this template. TEXT: All ferrets are curious. — use `class-statement`.
 
 ## Links — connectives between clauses
 
@@ -3505,7 +3505,7 @@ Forms:
 
 Not this template:
 - a first mention — Yusra laughed: nothing to link; the referent's own instance suffices
-- two different referents with the same kind — a ferret and another ferret: no link
+- two different referents with the same class — a ferret and another ferret: no link
 - a relative pronoun — the clerk who laughed: a different construction, reported as unmapped
 - an expletive or a generic pronoun — it rained, one never knows: no referent, no link
 
@@ -3528,7 +3528,7 @@ Instances:
 
     [
       {"t": "named-entity", "id": "n1", "name": "Lamine"},
-      {"t": "witness", "id": "x1", "kind": "loaf"},
+      {"t": "witness", "id": "x1", "class": "loaf"},
       {"t": "creation", "id": "e1", "verb": "bake", "creator": "@n1", "product": "@x1", "tense": "past"},
       {"t": "mention", "id": "m1", "word": "she"},
       {"t": "mention", "id": "m2", "word": "it"},
@@ -3639,7 +3639,7 @@ Example (the main clause first, the connective's clause second; both events asse
 Instances:
 
     [
-      {"t": "witness", "id": "x1", "kind": "ferret", "definite": true},
+      {"t": "witness", "id": "x1", "class": "ferret", "definite": true},
       {"t": "named-entity", "id": "n1", "name": "Yusra"},
       {"t": "activity", "id": "v1", "verb": "sleep", "actor": "@x1", "tense": "past"},
       {"t": "activity", "id": "v2", "verb": "sing", "actor": "@n1", "tense": "past"},
@@ -3759,7 +3759,7 @@ Instances:
 
     [
       {"t": "named-entity", "id": "n1", "name": "Lamine"},
-      {"t": "witness", "id": "x1", "kind": "spindle"},
+      {"t": "witness", "id": "x1", "class": "spindle"},
       {"t": "activity", "id": "v1", "verb": "work", "actor": "@n1", "tense": "past"},
       {"t": "acquisition", "id": "e1", "verb": "buy", "acquirer": "@n1", "object": "@x1", "tense": "present"},
       {"t": "purpose", "id": "k1", "head": "To", "action": "@v1", "aim": ["@e1"]}
@@ -3778,8 +3778,8 @@ Example (in order to, with the aim's actor the action's subject). TEXT: The ferr
 Instances:
 
     [
-      {"t": "witness", "id": "x1", "kind": "ferret", "definite": true},
-      {"t": "witness", "id": "x2", "kind": "barn", "definite": true},
+      {"t": "witness", "id": "x1", "class": "ferret", "definite": true},
+      {"t": "witness", "id": "x2", "class": "barn", "definite": true},
       {"t": "motion", "id": "m1", "verb": "leave", "mover": "@x1", "source": "@x2", "tense": "past"},
       {"t": "activity", "id": "v1", "verb": "sleep", "actor": "@x1", "tense": "present"},
       {"t": "purpose", "id": "k1", "head": "InOrderTo", "action": "@m1", "aim": ["@v1"]}

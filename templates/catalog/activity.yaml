@@ -8,7 +8,7 @@
 
 id: activity
 family: predication
-kind: verb-class
+shape: verb-class
 title: An action by an actor, with or without a patient
 status: draft
 
@@ -134,7 +134,7 @@ examples:
       text: "Teodor read the letter."
       instances:
         - {t: named-entity, id: n1, name: "Teodor"}
-        - {t: witness, id: x1, kind: letter, definite: true}
+        - {t: witness, id: x1, class: letter, definite: true}
         - {t: activity, id: v1, verb: read, actor: "@n1", patient: "@x1", tense: past}
     - category: positive
       text: "Ottoline helped Lamine."
@@ -161,7 +161,7 @@ examples:
       note: a passive with a by-phrase — the by-phrase is the actor, not an instrument
       text: "The quilt was washed by Yusra."
       instances:
-        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: witness, id: x1, class: quilt, definite: true}
         - {t: named-entity, id: n1, name: "Yusra"}
         - {t: activity, id: v1, verb: wash, actor: "@n1", patient: "@x1", tense: past}
     - category: scoped
@@ -188,7 +188,7 @@ examples:
       note: agentless passive — no actor
       text: "The quilt was washed."
       instances:
-        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: witness, id: x1, class: quilt, definite: true}
         - {t: activity, id: v1, verb: wash, patient: "@x1", tense: past}
     - category: positive
       note: coordinated names — one instance per conjunct, no group
@@ -202,14 +202,14 @@ examples:
       note: a singular definite subject is a witness
       text: "The ferret slept."
       instances:
-        - {t: witness, id: x1, kind: ferret, definite: true}
+        - {t: witness, id: x1, class: ferret, definite: true}
         - {t: activity, id: v1, verb: sleep, actor: "@x1", tense: past}
     - category: positive
       note: paint with a thing already there as the object — coated, not brought into being
       text: "Ottoline painted the shed."
       instances:
         - {t: named-entity, id: n1, name: "Ottoline"}
-        - {t: witness, id: x1, kind: shed, definite: true}
+        - {t: witness, id: x1, class: shed, definite: true}
         - {t: activity, id: v1, verb: paint, actor: "@n1", patient: "@x1", tense: past}
     - category: abstain
       text: "Teodor arrived."

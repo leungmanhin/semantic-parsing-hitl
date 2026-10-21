@@ -9,7 +9,7 @@
 
 id: coref
 family: link
-kind: link
+shape: link
 title: A later mention stands for an earlier referent
 status: draft
 
@@ -31,7 +31,7 @@ trigger:
     - >-
       a first mention — Yusra laughed: nothing to link; the referent's own instance suffices
     - >-
-      two different referents with the same kind — a ferret and another ferret: no link
+      two different referents with the same class — a ferret and another ferret: no link
     - >-
       a relative pronoun — the clerk who laughed: a different construction, reported as unmapped
     - >-
@@ -75,7 +75,7 @@ examples:
       text: "Lamine baked a loaf and she ate it."
       instances:
         - {t: named-entity, id: n1, name: "Lamine"}
-        - {t: witness, id: x1, kind: loaf}
+        - {t: witness, id: x1, class: loaf}
         - {t: creation, id: e1, verb: bake, creator: "@n1", product: "@x1", tense: past}
         - {t: mention, id: m1, word: she}
         - {t: mention, id: m2, word: it}
@@ -123,7 +123,7 @@ examples:
       text: "Teodor ate the loaf and he liked it."
       instances:
         - {t: named-entity, id: n1, name: "Teodor"}
-        - {t: witness, id: x1, kind: loaf, definite: true}
+        - {t: witness, id: x1, class: loaf, definite: true}
         - {t: activity, id: v1, verb: eat, actor: "@n1", patient: "@x1", tense: past}
         - {t: mention, id: m1, word: he}
         - {t: mention, id: m2, word: it}
@@ -134,9 +134,9 @@ examples:
       note: an anaphoric definite is a second witness, linked
       text: "A ferret arrived. The ferret slept."
       instances:
-        - {t: witness, id: x1, kind: ferret}
+        - {t: witness, id: x1, class: ferret}
         - {t: motion, id: e1, verb: arrive, mover: "@x1", tense: past}
-        - {t: witness, id: x2, kind: ferret, definite: true}
+        - {t: witness, id: x2, class: ferret, definite: true}
         - {t: activity, id: v1, verb: sleep, actor: "@x2", tense: past}
         - {t: coref, id: c1, mention: "@x2", antecedent: "@x1", certainty: certain}
     - category: positive
@@ -145,7 +145,7 @@ examples:
       instances:
         - {t: named-entity, id: n1, name: "Yusra"}
         - {t: mention, id: m1, word: her}
-        - {t: witness, id: x1, kind: spindle, possessor: "@m1"}
+        - {t: witness, id: x1, class: spindle, possessor: "@m1"}
         - {t: transfer, id: e1, verb: sell, giver: "@n1", object: "@x1", tense: past}
         - {t: coref, id: c1, mention: "@m1", antecedent: "@n1", certainty: certain}
     - category: positive
@@ -165,7 +165,7 @@ examples:
       text: "Yusra baked a loaf. She did not eat it."
       instances:
         - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: witness, id: x1, kind: loaf}
+        - {t: witness, id: x1, class: loaf}
         - {t: creation, id: e1, verb: bake, creator: "@n1", product: "@x1", tense: past}
         - {t: mention, id: m1, word: she}
         - {t: mention, id: m2, word: it}

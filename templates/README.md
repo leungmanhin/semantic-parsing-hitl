@@ -50,7 +50,7 @@ Nothing here changes `prompt.txt`, the briefs under `fusenf/briefs/`, or any pip
 - `catalog/<id>.yaml` is a whole template: trigger (construction, boundary), slots with their
   substrate class (`attaches: true` on a filler makes the instance an attachment rendered wherever its head is, never listed in a scope's `over`;
   `bare_content: true` on a refs slot lets the clause under it fill no participant, as under an imperative;
-  `participant: false` on an optional filler keeps it out of the bare-predication lint, as kind-property's restriction),
+  `participant: false` on an optional filler keeps it out of the bare-predication lint, as class-property's restriction),
   `mints` (`stem` / `literal` / `symbol: <slot>` with `constant` / `variable`; `also` for extra classes), `emits` shapes
   (`if_filled`, `each`, `when`, `project`), `one_of` / `any_of` slot groups, notes,
   `examples.shown` / `examples.held_out`. A sentence another template abstains on is claimed in the SAME
@@ -127,7 +127,7 @@ Nothing here changes `prompt.txt`, the briefs under `fusenf/briefs/`, or any pip
   quantifier word and 0.7 when bare, since a bare generic states no proportion). Both are set by the
   emitter from the slots. A scope atom (negation, modal) carries the truth value of the one statement
   it scopes over; the operator asserts nothing of its own. The parser's only judgments are readings of the text
-  (a kind or a group, taxonomic or empirical, which template fires); it never estimates a proportion
+  (a class or a group, taxonomic or empirical, which template fires); it never estimates a proportion
   or a likelihood. "Every mosquito carries malaria" is strength 1.0 although false. Contradictory
   inputs are recorded as stated, each with its provenance; weighing them is the reasoner's job.
 - Freeze before collect: never regenerate the instruction set while a collect is in flight (the scorer

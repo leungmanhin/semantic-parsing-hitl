@@ -3,13 +3,13 @@
 # A place phrase on a clause attaches to the clause's event: (Location event place) for in / at /
 # on / inside / within, the preposition's own head for the others ((Under event place), (Near …)).
 # The place is a referent like any other — a witness (the barn), a name (Calderwick) or a bare
-# lemma for a kind-level place (in burrows). The attachment is part of the clause: it is negated,
+# lemma for a class-level place (in burrows). The attachment is part of the clause: it is negated,
 # modalised and generalised together with the event it attaches to. A phrase that locates a thing
 # rather than an event (the ledger is on the workbench) is a locative predication instead.
 
 id: location
 family: attachment
-kind: attachment
+shape: attachment
 title: The place where an event takes place
 status: draft
 
@@ -54,7 +54,7 @@ slots:
   event:       {type: filler, class: Event, attaches: true, required: true,
                 doc: "the predication the place attaches to: the id of the clause's event instance"}
   place:       {type: filler, class: Entity, required: true,
-                doc: "the place: a referent id (a witness for the barn, a name for Calderwick) or a bare lemma for a kind-level place (in burrows)"}
+                doc: "the place: a referent id (a witness for the barn, a name for Calderwick) or a bare lemma for a class-level place (in burrows)"}
   head:        {type: enum, values: [Location, Near, By, Under, Over, Above, Below, Behind, Beside, Outside, Opposite], required: true,
                 doc: "Location for in / at / on / inside / within; otherwise the preposition itself, capitalized (under → Under)"}
   preposition: {type: string, required: true, doc: "the preposition as written (in, at, under …)"}
@@ -82,7 +82,7 @@ examples:
       text: "Yusra laughed in the barn."
       instances:
         - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: witness, id: x1, kind: barn, definite: true}
+        - {t: witness, id: x1, class: barn, definite: true}
         - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past}
         - {t: location, id: l1, event: "@v1", place: "@x1", head: Location, preposition: in}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
@@ -102,8 +102,8 @@ examples:
       note: a preposition other than in / at / on keeps its own head
       text: "The ferret slept under the ladder."
       instances:
-        - {t: witness, id: x1, kind: ferret, definite: true}
-        - {t: witness, id: x2, kind: ladder, definite: true}
+        - {t: witness, id: x1, class: ferret, definite: true}
+        - {t: witness, id: x2, class: ladder, definite: true}
         - {t: activity, id: v1, verb: sleep, actor: "@x1", tense: past}
         - {t: location, id: l1, event: "@v1", place: "@x2", head: Under, preposition: under}
     - category: abstain
@@ -121,8 +121,8 @@ examples:
       text: "Teodor read the letter in the barn."
       instances:
         - {t: named-entity, id: n1, name: "Teodor"}
-        - {t: witness, id: x1, kind: letter, definite: true}
-        - {t: witness, id: x2, kind: barn, definite: true}
+        - {t: witness, id: x1, class: letter, definite: true}
+        - {t: witness, id: x2, class: barn, definite: true}
         - {t: activity, id: v1, verb: read, actor: "@n1", patient: "@x1", tense: past}
         - {t: location, id: l1, event: "@v1", place: "@x2", head: Location, preposition: in}
     - category: positive
@@ -130,29 +130,29 @@ examples:
       text: "Lamine waited at the market."
       instances:
         - {t: named-entity, id: n1, name: "Lamine"}
-        - {t: witness, id: x1, kind: market, definite: true}
+        - {t: witness, id: x1, class: market, definite: true}
         - {t: activity, id: v1, verb: wait, actor: "@n1", tense: past}
         - {t: location, id: l1, event: "@v1", place: "@x1", head: Location, preposition: at}
     - category: positive
       note: on renders as Location
       text: "The ferret slept on the quilt."
       instances:
-        - {t: witness, id: x1, kind: ferret, definite: true}
-        - {t: witness, id: x2, kind: quilt, definite: true}
+        - {t: witness, id: x1, class: ferret, definite: true}
+        - {t: witness, id: x2, class: quilt, definite: true}
         - {t: activity, id: v1, verb: sleep, actor: "@x1", tense: past}
         - {t: location, id: l1, event: "@v1", place: "@x2", head: Location, preposition: "on"}
     - category: positive
       text: "Yusra laughed behind the shed."
       instances:
         - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: witness, id: x1, kind: shed, definite: true}
+        - {t: witness, id: x1, class: shed, definite: true}
         - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past}
         - {t: location, id: l1, event: "@v1", place: "@x1", head: Behind, preposition: behind}
     - category: positive
       text: "Ottoline sang near the barn."
       instances:
         - {t: named-entity, id: n1, name: "Ottoline"}
-        - {t: witness, id: x1, kind: barn, definite: true}
+        - {t: witness, id: x1, class: barn, definite: true}
         - {t: activity, id: v1, verb: sing, actor: "@n1", tense: past}
         - {t: location, id: l1, event: "@v1", place: "@x1", head: Near, preposition: near}
     - category: positive
@@ -168,7 +168,7 @@ examples:
       text: "Teodor works in a bakery."
       instances:
         - {t: named-entity, id: n1, name: "Teodor"}
-        - {t: witness, id: x1, kind: bakery}
+        - {t: witness, id: x1, class: bakery}
         - {t: activity, id: v1, verb: work, actor: "@n1", tense: present}
         - {t: location, id: l1, event: "@v1", place: "@x1", head: Location, preposition: in}
     - category: positive
@@ -176,8 +176,8 @@ examples:
       text: "Yusra built a shed in the garden."
       instances:
         - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: witness, id: x1, kind: shed}
-        - {t: witness, id: x2, kind: garden, definite: true}
+        - {t: witness, id: x1, class: shed}
+        - {t: witness, id: x2, class: garden, definite: true}
         - {t: creation, id: e1, verb: build, creator: "@n1", product: "@x1", tense: past}
         - {t: location, id: l1, event: "@e1", place: "@x2", head: Location, preposition: in}
     - category: scoped
@@ -185,7 +185,7 @@ examples:
       text: "Teodor did not laugh in the barn."
       instances:
         - {t: named-entity, id: n1, name: "Teodor"}
-        - {t: witness, id: x1, kind: barn, definite: true}
+        - {t: witness, id: x1, class: barn, definite: true}
         - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past}
         - {t: location, id: l1, event: "@v1", place: "@x1", head: Location, preposition: in}
         - {t: negation, id: s1, over: ["@v1"]}
@@ -194,7 +194,7 @@ examples:
       text: "Lamine might wait in the barn."
       instances:
         - {t: named-entity, id: n1, name: "Lamine"}
-        - {t: witness, id: x1, kind: barn, definite: true}
+        - {t: witness, id: x1, class: barn, definite: true}
         - {t: activity, id: v1, verb: wait, actor: "@n1", tense: present}
         - {t: location, id: l1, event: "@v1", place: "@x1", head: Location, preposition: in}
         - {t: modal, id: s1, over: ["@v1"], head: Might, surface: might}
@@ -202,8 +202,8 @@ examples:
       note: inside a generalization — each member's sleeping is in the one barn
       text: "Every ferret slept in the barn."
       instances:
-        - {t: range, id: q1, kind: ferret, quantifier: every, predicate: sleep}
-        - {t: witness, id: x1, kind: barn, definite: true}
+        - {t: range, id: q1, class: ferret, quantifier: every, predicate: sleep}
+        - {t: witness, id: x1, class: barn, definite: true}
         - {t: activity, id: v1, verb: sleep, actor: "@q1", tense: past}
         - {t: location, id: l1, event: "@v1", place: "@x1", head: Location, preposition: in}
         - {t: generic, id: r1, ranges: ["@q1"], over: ["@v1"]}
@@ -212,7 +212,7 @@ examples:
       text: "In the barn, Yusra laughed."
       instances:
         - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: witness, id: x1, kind: barn, definite: true}
+        - {t: witness, id: x1, class: barn, definite: true}
         - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past}
         - {t: location, id: l1, event: "@v1", place: "@x1", head: Location, preposition: in}
     - category: abstain

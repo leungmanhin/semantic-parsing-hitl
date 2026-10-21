@@ -9,7 +9,7 @@
 
 id: postmodifier
 family: attachment
-kind: attachment
+shape: attachment
 title: A prepositional phrase inside a noun phrase, by its own preposition
 status: draft
 
@@ -41,7 +41,7 @@ trigger:
     - >-
       a place phrase inside a noun phrase — the ferret in the barn, the ledger on the workbench:
       a locative predication of that thing (in, at, on, near, under …), not a phrase of this
-      kind; and a place predicated of a thing — the ledger is on the workbench — likewise
+      class; and a place predicated of a thing — the ledger is on the workbench — likewise
     - >-
       a reduced relative clause — the rules concerning the levy, a skiff moored at the jetty: an
       event with the noun in its role, not a phrase; report it as unmapped
@@ -53,7 +53,7 @@ slots:
   head:   {type: enum, values: [About, Above, Across, Against, Along, Among, Around, As, At, Behind, Below, Beneath, Beside, Besides, Between, Beyond, By, Concerning, Despite, Down, Except, For, From, In, Inside, Into, Like, Near, Of, Off, On, Onto, Opposite, Out, Outside, Over, Past, Per, Regarding, Round, Through, To, Toward, Towards, Under, Underneath, Unlike, Up, Upon, Via, With, Within, Without],
            required: true, doc: "the preposition as written, capitalized (with → With, about → About); never a synonym"}
   object: {type: filler, class: Entity, required: true,
-           doc: "the phrase's object: a referent id (a witness, a name) for a specific thing, or a bare lemma for a non-specific or kind-level one (a book about ferrets → ferret, a thermos without a lid → lid)"}
+           doc: "the phrase's object: a referent id (a witness, a name) for a specific thing, or a bare lemma for a non-specific or class-level one (a book about ferrets → ferret, a thermos without a lid → lid)"}
 
 emits:
   - atom: "({head} {noun} {object})"
@@ -76,8 +76,8 @@ examples:
       note: the phrase picks out the referent; no possession is stated
       text: "The man with the hat laughed."
       instances:
-        - {t: witness, id: x1, kind: man, definite: true}
-        - {t: witness, id: x2, kind: hat, definite: true}
+        - {t: witness, id: x1, class: man, definite: true}
+        - {t: witness, id: x2, class: hat, definite: true}
         - {t: postmodifier, id: a1, noun: "@x1", head: With, object: "@x2"}
         - {t: activity, id: v1, verb: laugh, actor: "@x1", tense: past}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
@@ -95,11 +95,11 @@ examples:
         - "(: sk_laugh_1 Event)"
         - "(: sk_man_1 Entity)"
     - category: positive
-      note: what a thing is about — a kind-level object as a bare lemma
+      note: what a thing is about — a class-level object as a bare lemma
       text: "Yusra read a book about ferrets."
       instances:
         - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: witness, id: x1, kind: book}
+        - {t: witness, id: x1, class: book}
         - {t: postmodifier, id: a1, noun: "@x1", head: About, object: ferret}
         - {t: activity, id: v1, verb: read, actor: "@n1", patient: "@x1", tense: past}
     - category: abstain
@@ -113,7 +113,7 @@ examples:
     - category: positive
       text: "A letter from Yusra arrived."
       instances:
-        - {t: witness, id: x1, kind: letter}
+        - {t: witness, id: x1, class: letter}
         - {t: named-entity, id: n1, name: "Yusra"}
         - {t: postmodifier, id: a1, noun: "@x1", head: From, object: "@n1"}
         - {t: motion, id: m1, verb: arrive, moved: "@x1", tense: past}
@@ -122,27 +122,27 @@ examples:
       text: "Lamine found the key to the shed."
       instances:
         - {t: named-entity, id: n1, name: "Lamine"}
-        - {t: witness, id: x1, kind: key, definite: true}
-        - {t: witness, id: x2, kind: shed, definite: true}
+        - {t: witness, id: x1, class: key, definite: true}
+        - {t: witness, id: x2, class: shed, definite: true}
         - {t: postmodifier, id: a1, noun: "@x1", head: To, object: "@x2"}
         - {t: acquisition, id: e1, verb: find, acquirer: "@n1", object: "@x1", tense: past}
     - category: abstain
       text: "The ferret in the barn slept."
       expected: {abstain: true, template: locative}                   # a place phrase inside a noun phrase
     - category: positive
-      note: an indefinite with a kind-level object inside — without any lid, a bare lemma
+      note: an indefinite with a class-level object inside — without any lid, a bare lemma
       text: "Teodor bought a thermos without a lid."
       instances:
         - {t: named-entity, id: n1, name: "Teodor"}
-        - {t: witness, id: x1, kind: thermos}
+        - {t: witness, id: x1, class: thermos}
         - {t: postmodifier, id: a1, noun: "@x1", head: Without, object: lid}
         - {t: acquisition, id: e1, verb: buy, acquirer: "@n1", object: "@x1", tense: past}
     - category: positive
       note: the object of an event noun
       text: "The destruction of the shed upset Teodor."
       instances:
-        - {t: witness, id: x1, kind: destruction, definite: true}
-        - {t: witness, id: x2, kind: shed, definite: true}
+        - {t: witness, id: x1, class: destruction, definite: true}
+        - {t: witness, id: x2, class: shed, definite: true}
         - {t: named-entity, id: n1, name: "Teodor"}
         - {t: postmodifier, id: a1, noun: "@x1", head: Of, object: "@x2"}
         - {t: psych, id: p1, verb: upset, experiencer: "@n1", stimulus: "@x1", tense: past}
@@ -151,8 +151,8 @@ examples:
       text: "Yusra saw the man with the hat."
       instances:
         - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: witness, id: x1, kind: man, definite: true}
-        - {t: witness, id: x2, kind: hat, definite: true}
+        - {t: witness, id: x1, class: man, definite: true}
+        - {t: witness, id: x2, class: hat, definite: true}
         - {t: postmodifier, id: a1, noun: "@x1", head: With, object: "@x2"}
         - {t: perception, id: p1, verb: see, perceiver: "@n1", stimulus: "@x1", tense: past}
     - category: scoped
@@ -160,7 +160,7 @@ examples:
       text: "Yusra did not read a book about ferrets."
       instances:
         - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: witness, id: x1, kind: book}
+        - {t: witness, id: x1, class: book}
         - {t: postmodifier, id: a1, noun: "@x1", head: About, object: ferret}
         - {t: activity, id: v1, verb: read, actor: "@n1", patient: "@x1", tense: past}
         - {t: negation, id: s1, over: ["@v1"]}

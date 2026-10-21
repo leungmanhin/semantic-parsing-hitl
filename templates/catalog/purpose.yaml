@@ -11,7 +11,7 @@
 
 id: purpose
 family: link
-kind: link
+shape: link
 title: An action's stated aim
 status: draft
 
@@ -82,7 +82,7 @@ examples:
       text: "Lamine worked to buy a spindle."
       instances:
         - {t: named-entity, id: n1, name: "Lamine"}
-        - {t: witness, id: x1, kind: spindle}
+        - {t: witness, id: x1, class: spindle}
         - {t: activity, id: v1, verb: work, actor: "@n1", tense: past}
         - {t: acquisition, id: e1, verb: buy, acquirer: "@n1", object: "@x1", tense: present}
         - {t: purpose, id: k1, head: To, action: "@v1", aim: ["@e1"]}
@@ -104,8 +104,8 @@ examples:
       note: in order to, with the aim's actor the action's subject
       text: "The ferret left the barn in order to sleep."
       instances:
-        - {t: witness, id: x1, kind: ferret, definite: true}
-        - {t: witness, id: x2, kind: barn, definite: true}
+        - {t: witness, id: x1, class: ferret, definite: true}
+        - {t: witness, id: x2, class: barn, definite: true}
         - {t: motion, id: m1, verb: leave, mover: "@x1", source: "@x2", tense: past}
         - {t: activity, id: v1, verb: sleep, actor: "@x1", tense: present}
         - {t: purpose, id: k1, head: InOrderTo, action: "@m1", aim: ["@v1"]}
@@ -121,8 +121,8 @@ examples:
       text: "Yusra went to the market to buy a thermos."
       instances:
         - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: witness, id: x1, kind: market, definite: true}
-        - {t: witness, id: x2, kind: thermos}
+        - {t: witness, id: x1, class: market, definite: true}
+        - {t: witness, id: x2, class: thermos}
         - {t: motion, id: m1, verb: go, mover: "@n1", goal: "@x1", tense: past}
         - {t: acquisition, id: e1, verb: buy, acquirer: "@n1", object: "@x2", tense: present}
         - {t: purpose, id: k1, head: To, action: "@m1", aim: ["@e1"]}
@@ -156,8 +156,8 @@ examples:
       note: a motion as the aim
       text: "The ferret ran to reach the barn."
       instances:
-        - {t: witness, id: x1, kind: ferret, definite: true}
-        - {t: witness, id: x2, kind: barn, definite: true}
+        - {t: witness, id: x1, class: ferret, definite: true}
+        - {t: witness, id: x2, class: barn, definite: true}
         - {t: motion, id: m1, verb: run, mover: "@x1", tense: past}
         - {t: motion, id: m2, verb: reach, mover: "@x1", goal: "@x2", tense: present}
         - {t: purpose, id: k1, head: To, action: "@m1", aim: ["@m2"]}
@@ -166,7 +166,7 @@ examples:
       text: "Lamine might work to buy a spindle."
       instances:
         - {t: named-entity, id: n1, name: "Lamine"}
-        - {t: witness, id: x1, kind: spindle}
+        - {t: witness, id: x1, class: spindle}
         - {t: activity, id: v1, verb: work, actor: "@n1", tense: present}
         - {t: acquisition, id: e1, verb: buy, acquirer: "@n1", object: "@x1", tense: present}
         - {t: modal, id: s1, over: ["@v1"], head: Might, surface: might}

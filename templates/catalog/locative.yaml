@@ -8,7 +8,7 @@
 
 id: locative
 family: predication
-kind: copular
+shape: copular
 title: Where a thing is
 status: draft
 
@@ -36,7 +36,7 @@ trigger:
       a destination or an origin of a motion — went to the market, came from the barn: the
       motion's goal or source
     - >-
-      a kind predicate — Calderwick is a village: a copular predication; "Calderwick is a village
+      a class predicate — Calderwick is a village: a copular predication; "Calderwick is a village
       in Norfolk" is a copular predication and a locative on the same subject
     - >-
       a time — the meeting is at noon, the audit is in May: a time, not a place
@@ -53,7 +53,7 @@ slots:
   thing:       {type: filler, class: Entity, required: true,
                 doc: "the thing located: a referent id (a name, a witness, a group)"}
   place:       {type: filler, class: Entity, required: true,
-                doc: "the place: a referent id (a witness for the workbench, a name for Norfolk) or a bare lemma for a kind-level place"}
+                doc: "the place: a referent id (a witness for the workbench, a name for Norfolk) or a bare lemma for a class-level place"}
   head:        {type: enum, values: [LocatedIn, "On", Near, By, Under, Over, Above, Below, Behind, Beside, Outside, Opposite, From], required: true,
                 doc: "LocatedIn for in / at / inside / within; otherwise the preposition itself, capitalized (on → On, under → Under); From for an origin (is from)"}
   preposition: {type: string, required: true, doc: "the preposition as written (in, on, under, from …)"}
@@ -90,8 +90,8 @@ examples:
       note: on keeps its own head
       text: "The ledger is on the workbench."
       instances:
-        - {t: witness, id: x1, kind: ledger, definite: true}
-        - {t: witness, id: x2, kind: workbench, definite: true}
+        - {t: witness, id: x1, class: ledger, definite: true}
+        - {t: witness, id: x2, class: workbench, definite: true}
         - {t: locative, id: l1, thing: "@x1", place: "@x2", head: "On", preposition: "on", tense: present}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
         - "(Member sk_ledger_1 ledger)"
@@ -114,37 +114,37 @@ examples:
       expected: {abstain: true, template: location}                   # the place of an event
     - category: abstain
       text: "Teodor is a locksmith."
-      expected: {abstain: true, template: copular}                    # a kind predicate
+      expected: {abstain: true, template: copular}                    # a class predicate
 
   held_out:                  # tests; never rendered into the prompt
     - category: positive
       note: a place phrase inside a noun phrase — a locative of that thing, in the present
       text: "The ferret in the barn slept."
       instances:
-        - {t: witness, id: x1, kind: ferret, definite: true}
-        - {t: witness, id: x2, kind: barn, definite: true}
+        - {t: witness, id: x1, class: ferret, definite: true}
+        - {t: witness, id: x2, class: barn, definite: true}
         - {t: locative, id: l1, thing: "@x1", place: "@x2", head: LocatedIn, preposition: in, tense: present}
         - {t: activity, id: v1, verb: sleep, actor: "@x1", tense: past}
     - category: positive
       note: an existential — the thing is an indefinite witness
       text: "There is a ledger on the workbench."
       instances:
-        - {t: witness, id: x1, kind: ledger}
-        - {t: witness, id: x2, kind: workbench, definite: true}
+        - {t: witness, id: x1, class: ledger}
+        - {t: witness, id: x2, class: workbench, definite: true}
         - {t: locative, id: l1, thing: "@x1", place: "@x2", head: "On", preposition: "on", tense: present}
     - category: positive
       note: past tense, under
       text: "The key was under the mat."
       instances:
-        - {t: witness, id: x1, kind: key, definite: true}
-        - {t: witness, id: x2, kind: mat, definite: true}
+        - {t: witness, id: x1, class: key, definite: true}
+        - {t: witness, id: x2, class: mat, definite: true}
         - {t: locative, id: l1, thing: "@x1", place: "@x2", head: Under, preposition: under, tense: past}
     - category: contrast
       note: the preposition — the instances differ in the head and the word only
       text: "The key was on the mat."
       instances:
-        - {t: witness, id: x1, kind: key, definite: true}
-        - {t: witness, id: x2, kind: mat, definite: true}
+        - {t: witness, id: x1, class: key, definite: true}
+        - {t: witness, id: x2, class: mat, definite: true}
         - {t: locative, id: l1, thing: "@x1", place: "@x2", head: "On", preposition: "on", tense: past}
     - category: positive
       note: an origin
@@ -157,32 +157,32 @@ examples:
       note: be located
       text: "The barn is located in Calderwick."
       instances:
-        - {t: witness, id: x1, kind: barn, definite: true}
+        - {t: witness, id: x1, class: barn, definite: true}
         - {t: named-entity, id: n1, name: "Calderwick"}
         - {t: locative, id: l1, thing: "@x1", place: "@n1", head: LocatedIn, preposition: in, tense: present}
     - category: positive
       text: "The barn is near the market."
       instances:
-        - {t: witness, id: x1, kind: barn, definite: true}
-        - {t: witness, id: x2, kind: market, definite: true}
+        - {t: witness, id: x1, class: barn, definite: true}
+        - {t: witness, id: x2, class: market, definite: true}
         - {t: locative, id: l1, thing: "@x1", place: "@x2", head: Near, preposition: near, tense: present}
     - category: positive
       note: a named thing
       text: "Teodor is in the barn."
       instances:
         - {t: named-entity, id: n1, name: "Teodor"}
-        - {t: witness, id: x1, kind: barn, definite: true}
+        - {t: witness, id: x1, class: barn, definite: true}
         - {t: locative, id: l1, thing: "@n1", place: "@x1", head: LocatedIn, preposition: in, tense: present}
     - category: positive
       note: a possessed thing
       text: "Lamine's quilt is in the shed."
       instances:
         - {t: named-entity, id: n1, name: "Lamine"}
-        - {t: witness, id: x1, kind: quilt, possessor: "@n1"}
-        - {t: witness, id: x2, kind: shed, definite: true}
+        - {t: witness, id: x1, class: quilt, possessor: "@n1"}
+        - {t: witness, id: x2, class: shed, definite: true}
         - {t: locative, id: l1, thing: "@x1", place: "@x2", head: LocatedIn, preposition: in, tense: present}
     - category: positive
-      note: a kind predicate and a locative on the same subject
+      note: a class predicate and a locative on the same subject
       text: "Calderwick is a village in Norfolk."
       instances:
         - {t: named-entity, id: n1, name: "Calderwick"}
@@ -193,16 +193,16 @@ examples:
       note: under clausal negation
       text: "The thermos is not in the barn."
       instances:
-        - {t: witness, id: x1, kind: thermos, definite: true}
-        - {t: witness, id: x2, kind: barn, definite: true}
+        - {t: witness, id: x1, class: thermos, definite: true}
+        - {t: witness, id: x2, class: barn, definite: true}
         - {t: locative, id: l1, thing: "@x1", place: "@x2", head: LocatedIn, preposition: in, tense: present}
         - {t: negation, id: s1, over: ["@l1"]}
     - category: scoped
       note: under a modal
       text: "The ferret might be in the shed."
       instances:
-        - {t: witness, id: x1, kind: ferret, definite: true}
-        - {t: witness, id: x2, kind: shed, definite: true}
+        - {t: witness, id: x1, class: ferret, definite: true}
+        - {t: witness, id: x2, class: shed, definite: true}
         - {t: locative, id: l1, thing: "@x1", place: "@x2", head: LocatedIn, preposition: in, tense: present}
         - {t: modal, id: s1, over: ["@l1"], head: Might, surface: might}
     - category: abstain

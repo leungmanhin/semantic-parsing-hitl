@@ -1,44 +1,44 @@
-# Template: generic  (a verbal generalization over a kind: a rule with its own event per member)
+# Template: generic  (a verbal generalization over a class: a rule with its own event per member)
 #
 # "Every ferret slept", "ferrets sleep", "most students laugh", "no ferret slept": the
-# predication is about an arbitrary member of a kind, so it becomes a rule — if x is a ferret,
+# predication is about an arbitrary member of a class, so it becomes a rule — if x is a ferret,
 # then x has its own sleeping event:
 #   (Implication (Member $x ferret) (And (Member (sk_sleep $x) sleep) (Agent (sk_sleep $x) $x) (Past (sk_sleep $x))))
 # The strength is the quantifier's (every / all 1.0, most 0.9, many 0.7, few 0.1, no / none 0.0,
 # a bare generic 0.9); the confidence is 0.9 under an explicit quantifier word and 0.7 for a bare
 # generic, which states no proportion; the quantifier word itself is kept by the range's
-# companion record. Two quantified kinds give one rule with two premises; an indefinite inside
+# companion record. Two quantified classes give one rule with two premises; an indefinite inside
 # the predication depends on the member (every student read a letter: each their own letter); a
 # definite or a name is a shared constant.
 
 id: generic
 family: rule
-kind: rule
-title: A verbal generalization over a kind
+shape: rule
+title: A verbal generalization over a class
 status: draft
 
 trigger:
   construction: >
-    A clause whose subject (or another argument) is a range — a quantified kind noun or a bare
+    A clause whose subject (or another argument) is a range — a quantified class noun or a bare
     plural read generically — and whose predicate is a verb other than "be": every ferret slept,
     ferrets sleep, most students laugh, few herons migrate, no ferret slept. The predication is
     parsed with its own template, with the range as its filler; the generic instance names the
     range(s) and the predication (or the negation / modal over it) and nothing else. One
-    generic per clause, however many ranges it has. An object that is itself a bare kind
+    generic per clause, however many ranges it has. An object that is itself a bare class
     (ferrets eat mice, spiders spin webs) is a bare lemma filler of the predication: the rule
     says an arbitrary ferret eats mice. A condition under which the generalization holds
     (ferrets bite when cornered, clay softens when wet) is a predication over the range — a
     copular instance for the state — listed in `condition`.
   boundary:                   # looks like a generalization but is not one
     - >-
-      a copular predicate — all ferrets are curious, most herons are patient: a kind statement,
+      a copular predicate — all ferrets are curious, most herons are patient: a class statement,
       which carries the quantifier itself
     - >-
       a specific group — the ferrets slept, several students laughed, some students waited: a
-      group and a distribution, not a rule over a kind
+      group and a distribution, not a rule over a class
     - >-
-      a modal or a capability on a kind — ferrets can climb, citizens must pay tax: a property
-      of the kind, not an event rule
+      a modal or a capability on a class — ferrets can climb, citizens must pay tax: a property
+      of the class, not an event rule
     - >-
       "every time" or "whenever" with a clause — every time the bell rings: a frequency
       conditional over occasions, not a quantifier on a subject
@@ -51,7 +51,7 @@ trigger:
 slots:
   id:     {type: id, required: true, doc: "your label for the rule"}
   ranges: {type: refs, class: Proposition, required: true,
-           doc: "the range instance(s) the rule quantifies over, in text order: one per quantified kind noun"}
+           doc: "the range instance(s) the rule quantifies over, in text order: one per quantified class noun"}
   over:   {type: refs, class: Proposition, required: true, skolemize: true,
            doc: "the predication over the range(s), or the negation / modal over that predication: its id, nothing else"}
   condition: {type: refs, class: Proposition, required: false,
@@ -95,14 +95,14 @@ examples:
       note: a bare generic — no quantifier word, strength 0.9 at confidence 0.7, no companion
       text: "Ferrets sleep."
       instances:
-        - {t: range, id: q1, kind: ferret}
+        - {t: range, id: q1, class: ferret}
         - {t: activity, id: v1, verb: sleep, actor: "@q1", tense: present}
         - {t: generic, id: r1, ranges: ["@q1"], over: ["@v1"]}
     - category: positive
       note: a graded quantifier — the word sets the strength and is kept beside the rule
       text: "Most students laugh."
       instances:
-        - {t: range, id: q1, kind: student, quantifier: most, predicate: laugh}
+        - {t: range, id: q1, class: student, quantifier: most, predicate: laugh}
         - {t: activity, id: v1, verb: laugh, actor: "@q1", tense: present}
         - {t: generic, id: r1, ranges: ["@q1"], over: ["@v1"]}
     - category: abstain
@@ -110,87 +110,87 @@ examples:
       expected: {abstain: true, template: group}                      # a specific group
     - category: abstain
       text: "All ferrets are curious."
-      expected: {abstain: true, template: kind-statement}             # a copular predicate
+      expected: {abstain: true, template: class-statement}             # a copular predicate
 
   held_out:                  # tests; never rendered into the prompt
     - category: positive
       note: a universal, past
       text: "Every ferret slept."
       instances:
-        - {t: range, id: q1, kind: ferret, quantifier: every, predicate: sleep}
+        - {t: range, id: q1, class: ferret, quantifier: every, predicate: sleep}
         - {t: activity, id: v1, verb: sleep, actor: "@q1", tense: past}
         - {t: generic, id: r1, ranges: ["@q1"], over: ["@v1"]}
     - category: positive
       text: "Most ferrets slept."
       instances:
-        - {t: range, id: q1, kind: ferret, quantifier: most, predicate: sleep}
+        - {t: range, id: q1, class: ferret, quantifier: most, predicate: sleep}
         - {t: activity, id: v1, verb: sleep, actor: "@q1", tense: past}
         - {t: generic, id: r1, ranges: ["@q1"], over: ["@v1"]}
     - category: contrast
       note: the quantifier word — the instances differ in the word only; the strength follows
       text: "Few ferrets slept."
       instances:
-        - {t: range, id: q1, kind: ferret, quantifier: few, predicate: sleep}
+        - {t: range, id: q1, class: ferret, quantifier: few, predicate: sleep}
         - {t: activity, id: v1, verb: sleep, actor: "@q1", tense: past}
         - {t: generic, id: r1, ranges: ["@q1"], over: ["@v1"]}
     - category: positive
       note: the negative universal — strength 0 with the word kept
       text: "No ferret slept."
       instances:
-        - {t: range, id: q1, kind: ferret, quantifier: "no", predicate: sleep}
+        - {t: range, id: q1, class: ferret, quantifier: "no", predicate: sleep}
         - {t: activity, id: v1, verb: sleep, actor: "@q1", tense: past}
         - {t: generic, id: r1, ranges: ["@q1"], over: ["@v1"]}
     - category: positive
       note: an indefinite object depends on the member — each student their own letter
       text: "Every student read a letter."
       instances:
-        - {t: range, id: q1, kind: student, quantifier: every, predicate: read}
-        - {t: witness, id: x1, kind: letter}
+        - {t: range, id: q1, class: student, quantifier: every, predicate: read}
+        - {t: witness, id: x1, class: letter}
         - {t: activity, id: v1, verb: read, actor: "@q1", patient: "@x1", tense: past}
         - {t: generic, id: r1, ranges: ["@q1"], over: ["@v1"]}
     - category: positive
       note: a definite object is one shared constant
       text: "Every student read the letter."
       instances:
-        - {t: range, id: q1, kind: student, quantifier: every, predicate: read}
-        - {t: witness, id: x1, kind: letter, definite: true}
+        - {t: range, id: q1, class: student, quantifier: every, predicate: read}
+        - {t: witness, id: x1, class: letter, definite: true}
         - {t: activity, id: v1, verb: read, actor: "@q1", patient: "@x1", tense: past}
         - {t: generic, id: r1, ranges: ["@q1"], over: ["@v1"]}
     - category: positive
       note: two ranges — one rule with two premises, the event a function of both
       text: "Every ferret feared every heron."
       instances:
-        - {t: range, id: q1, kind: ferret, quantifier: every, predicate: fear}
-        - {t: range, id: q2, kind: heron, quantifier: every, predicate: fear}
+        - {t: range, id: q1, class: ferret, quantifier: every, predicate: fear}
+        - {t: range, id: q2, class: heron, quantifier: every, predicate: fear}
         - {t: psych, id: p1, verb: fear, experiencer: "@q1", stimulus: "@q2", tense: past}
         - {t: generic, id: r1, ranges: ["@q1", "@q2"], over: ["@p1"]}
     - category: positive
-      note: a quantifier word with a kind-level object — a rule, the object a bare lemma
+      note: a quantifier word with a class-level object — a rule, the object a bare lemma
       text: "Every ferret eats mice."
       instances:
-        - {t: range, id: q1, kind: ferret, quantifier: every, predicate: eat}
+        - {t: range, id: q1, class: ferret, quantifier: every, predicate: eat}
         - {t: activity, id: v1, verb: eat, actor: "@q1", patient: mouse, tense: present}
         - {t: generic, id: r1, ranges: ["@q1"], over: ["@v1"]}
     - category: positive
       note: a bare generic with a named object — a rule, the name a shared constant
       text: "Ferrets fear Teodor."
       instances:
-        - {t: range, id: q1, kind: ferret}
+        - {t: range, id: q1, class: ferret}
         - {t: named-entity, id: n1, name: "Teodor"}
         - {t: psych, id: p1, verb: fear, experiencer: "@q1", stimulus: "@n1", tense: present}
         - {t: generic, id: r1, ranges: ["@q1"], over: ["@p1"]}
     - category: positive
-      note: a bare kind as the object — a bare lemma inside the rule
+      note: a bare class as the object — a bare lemma inside the rule
       text: "Herons eat frogs."
       instances:
-        - {t: range, id: q1, kind: heron}
+        - {t: range, id: q1, class: heron}
         - {t: activity, id: v1, verb: eat, actor: "@q1", patient: frog, tense: present}
         - {t: generic, id: r1, ranges: ["@q1"], over: ["@v1"]}
     - category: positive
-      note: a condition — a copular predication over the range, a premise beside the kind
+      note: a condition — a copular predication over the range, a premise beside the class
       text: "Ferrets bite when cornered."
       instances:
-        - {t: range, id: q1, kind: ferret}
+        - {t: range, id: q1, class: ferret}
         - {t: activity, id: v1, verb: bite, actor: "@q1", tense: present}
         - {t: copular, id: c1, subject: "@q1", predicate: cornered, form: adjective, tense: present}
         - {t: generic, id: r1, ranges: ["@q1"], condition: ["@c1"], over: ["@v1"]}
@@ -198,7 +198,7 @@ examples:
       note: a change of state under a condition
       text: "Clay softens when wet."
       instances:
-        - {t: range, id: q1, kind: clay}
+        - {t: range, id: q1, class: clay}
         - {t: change-of-state, id: e1, verb: soften, undergoer: "@q1", tense: present}
         - {t: copular, id: c1, subject: "@q1", predicate: wet, form: adjective, tense: present}
         - {t: generic, id: r1, ranges: ["@q1"], condition: ["@c1"], over: ["@e1"]}
@@ -206,7 +206,7 @@ examples:
       note: a negated generalization — the rule is over the negation
       text: "Ferrets do not sleep."
       instances:
-        - {t: range, id: q1, kind: ferret}
+        - {t: range, id: q1, class: ferret}
         - {t: activity, id: v1, verb: sleep, actor: "@q1", tense: present}
         - {t: negation, id: s1, over: ["@v1"]}
         - {t: generic, id: r1, ranges: ["@q1"], over: ["@s1"]}
@@ -215,7 +215,7 @@ examples:
       expected: {abstain: true, template: group}                      # a specific group
     - category: abstain
       text: "Most herons are patient."
-      expected: {abstain: true, template: kind-statement}             # a copular predicate
+      expected: {abstain: true, template: class-statement}             # a copular predicate
     - category: abstain
       text: "Ferrets can climb."
       expected: {abstain: true, gap: G00, span: "Ferrets can climb."}  # a capability on a kind

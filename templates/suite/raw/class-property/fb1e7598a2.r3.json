@@ -1,0 +1,82 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "a9e1ed5a7114de2bedee96ae4010964a4aa69ba1a78b19fae57121290e52e164",
+  "item": {
+    "id": "sfb1e7598a2",
+    "text": "Cranes were common in Norfolk."
+  },
+  "usage": {
+    "input": 51785,
+    "output": 94,
+    "thinking": null,
+    "total": 51879,
+    "cached": 49736,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 51785,
+    "candidatesTokenCount": 94,
+    "totalTokenCount": 51879,
+    "cachedContentTokenCount": 49736,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 51785
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 49736
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 94
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sfb1e7598a2\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Norfolk\"}, {\"t\": \"kind-property\", \"id\": \"k1\", \"subject\": \"crane\", \"property\": \"common\", \"restriction\": \"@n1\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sfb1e7598a2",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Norfolk"
+      },
+      {
+        "t": "class-property",
+        "id": "k1",
+        "subject": "crane",
+        "property": "common",
+        "restriction": "@n1",
+        "tense": "past"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "e818417b50e53224000dbbfbcf86feb0d70114df739431722ad3ad866d0b6d57",
+  "run": 3,
+  "case": {
+    "template": "class-property",
+    "section": "held_out",
+    "index": 8,
+    "category": "positive",
+    "text": "Cranes were common in Norfolk.",
+    "key": "fb1e7598a2"
+  }
+}

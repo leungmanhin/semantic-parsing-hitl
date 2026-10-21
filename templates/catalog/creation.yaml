@@ -10,7 +10,7 @@
 
 id: creation
 family: predication
-kind: verb-class
+shape: verb-class
 title: Something comes into being through an action
 status: draft
 
@@ -107,7 +107,7 @@ examples:
       text: "Lamine baked a loaf."
       instances:
         - {t: named-entity, id: n1, name: "Lamine"}
-        - {t: witness, id: x1, kind: loaf}
+        - {t: witness, id: x1, class: loaf}
         - {t: creation, id: e1, verb: bake, creator: "@n1", product: "@x1", tense: past}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
         - "(Name sk_lamine_1 \"Lamine\")"
@@ -127,14 +127,14 @@ examples:
       text: "Ottoline painted a portrait."
       instances:
         - {t: named-entity, id: n1, name: "Ottoline"}
-        - {t: witness, id: x1, kind: portrait}
+        - {t: witness, id: x1, class: portrait}
         - {t: creation, id: e1, verb: paint, creator: "@n1", product: "@x1", tense: past}
     - category: positive
       note: an institution comes into being
       text: "Yusra founded a school."
       instances:
         - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: witness, id: x1, kind: school}
+        - {t: witness, id: x1, class: school}
         - {t: creation, id: e1, verb: found, creator: "@n1", product: "@x1", tense: past}
     - category: abstain
       text: "Lamine made a decision."
@@ -148,21 +148,21 @@ examples:
       text: "Teodor built a shed."
       instances:
         - {t: named-entity, id: n1, name: "Teodor"}
-        - {t: witness, id: x1, kind: shed}
+        - {t: witness, id: x1, class: shed}
         - {t: creation, id: e1, verb: build, creator: "@n1", product: "@x1", tense: past}
     - category: contrast
       note: a definite product is a presupposed referent — the instances differ in the witness only
       text: "Teodor built the shed."
       instances:
         - {t: named-entity, id: n1, name: "Teodor"}
-        - {t: witness, id: x1, kind: shed, definite: true}
+        - {t: witness, id: x1, class: shed, definite: true}
         - {t: creation, id: e1, verb: build, creator: "@n1", product: "@x1", tense: past}
     - category: positive
       note: write with no addressee — the object is the text produced
       text: "Yusra wrote a letter."
       instances:
         - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: witness, id: x1, kind: letter}
+        - {t: witness, id: x1, class: letter}
         - {t: creation, id: e1, verb: write, creator: "@n1", product: "@x1", tense: past}
     - category: positive
       note: a non-specific product as a bare lemma
@@ -174,21 +174,21 @@ examples:
       note: a witness as the maker; an abstract product
       text: "The council formed a committee."
       instances:
-        - {t: witness, id: x1, kind: council, definite: true}
-        - {t: witness, id: x2, kind: committee}
+        - {t: witness, id: x1, class: council, definite: true}
+        - {t: witness, id: x2, class: committee}
         - {t: creation, id: e1, verb: form, creator: "@x1", product: "@x2", tense: past}
     - category: positive
       text: "Yusra drew a map."
       instances:
         - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: witness, id: x1, kind: map}
+        - {t: witness, id: x1, class: map}
         - {t: creation, id: e1, verb: draw, creator: "@n1", product: "@x1", tense: past}
     - category: positive
       note: a material — an oblique (From) on the creation
       text: "Teodor built a shed from planks."
       instances:
         - {t: named-entity, id: n1, name: "Teodor"}
-        - {t: witness, id: x1, kind: shed}
+        - {t: witness, id: x1, class: shed}
         - {t: creation, id: e1, verb: build, creator: "@n1", product: "@x1", tense: past}
         - {t: oblique, id: a1, event: "@e1", head: From, object: plank}
     - category: scoped
@@ -196,7 +196,7 @@ examples:
       text: "Teodor did not build a shed."
       instances:
         - {t: named-entity, id: n1, name: "Teodor"}
-        - {t: witness, id: x1, kind: shed}
+        - {t: witness, id: x1, class: shed}
         - {t: creation, id: e1, verb: build, creator: "@n1", product: "@x1", tense: past}
         - {t: negation, id: s1, over: ["@e1"]}
     - category: scoped
@@ -204,7 +204,7 @@ examples:
       text: "Lamine might bake a loaf."
       instances:
         - {t: named-entity, id: n1, name: "Lamine"}
-        - {t: witness, id: x1, kind: loaf}
+        - {t: witness, id: x1, class: loaf}
         - {t: creation, id: e1, verb: bake, creator: "@n1", product: "@x1", tense: present}
         - {t: modal, id: s1, over: ["@e1"], head: Might, surface: might}
     - category: optional
@@ -212,20 +212,20 @@ examples:
       text: "Yusra has written a letter."
       instances:
         - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: witness, id: x1, kind: letter}
+        - {t: witness, id: x1, class: letter}
         - {t: creation, id: e1, verb: write, creator: "@n1", product: "@x1", tense: present, aspect: perfect}
     - category: optional
       note: agentless passive — no creator
       text: "A shed was built."
       instances:
-        - {t: witness, id: x1, kind: shed}
+        - {t: witness, id: x1, class: shed}
         - {t: creation, id: e1, verb: build, product: "@x1", tense: past}
     - category: optional
       note: progressive — the product is recorded although the work is not finished
       text: "Teodor is building the shed."
       instances:
         - {t: named-entity, id: n1, name: "Teodor"}
-        - {t: witness, id: x1, kind: shed, definite: true}
+        - {t: witness, id: x1, class: shed, definite: true}
         - {t: creation, id: e1, verb: build, creator: "@n1", product: "@x1", tense: present, aspect: progressive}
     - category: abstain
       text: "Ottoline painted the shed."

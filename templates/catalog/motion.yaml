@@ -10,7 +10,7 @@
 
 id: motion
 family: predication
-kind: verb-class
+shape: verb-class
 title: A change of place
 status: draft
 
@@ -114,7 +114,7 @@ examples:
       text: "Yusra went to the market."
       instances:
         - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: witness, id: x1, kind: market, definite: true}
+        - {t: witness, id: x1, class: market, definite: true}
         - {t: motion, id: m1, verb: go, mover: "@n1", goal: "@x1", tense: past}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
         - "(Name sk_yusra_1 \"Yusra\")"
@@ -134,8 +134,8 @@ examples:
       text: "Lamine carried the ladder to the shed."
       instances:
         - {t: named-entity, id: n1, name: "Lamine"}
-        - {t: witness, id: x1, kind: ladder, definite: true}
-        - {t: witness, id: x2, kind: shed, definite: true}
+        - {t: witness, id: x1, class: ladder, definite: true}
+        - {t: witness, id: x2, class: shed, definite: true}
         - {t: motion, id: m1, verb: carry, mover: "@n1", moved: "@x1", goal: "@x2", tense: past}
     - category: abstain
       text: "Teodor gave Yusra a thermos."
@@ -154,42 +154,42 @@ examples:
       note: a thing that moves without acting is the moved, not the mover
       text: "The crate arrived."
       instances:
-        - {t: witness, id: x1, kind: crate, definite: true}
+        - {t: witness, id: x1, class: crate, definite: true}
         - {t: motion, id: m1, verb: arrive, moved: "@x1", tense: past}
     - category: positive
       note: origin and destination
       text: "Ottoline walked from the barn to the shed."
       instances:
         - {t: named-entity, id: n1, name: "Ottoline"}
-        - {t: witness, id: x1, kind: barn, definite: true}
-        - {t: witness, id: x2, kind: shed, definite: true}
+        - {t: witness, id: x1, class: barn, definite: true}
+        - {t: witness, id: x2, class: shed, definite: true}
         - {t: motion, id: m1, verb: walk, mover: "@n1", source: "@x1", goal: "@x2", tense: past}
     - category: positive
       note: the object of leave is the source
       text: "Yusra left the market."
       instances:
         - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: witness, id: x1, kind: market, definite: true}
+        - {t: witness, id: x1, class: market, definite: true}
         - {t: motion, id: m1, verb: leave, mover: "@n1", source: "@x1", tense: past}
     - category: positive
       note: the object of enter is the goal
       text: "Lamine entered the shed."
       instances:
         - {t: named-entity, id: n1, name: "Lamine"}
-        - {t: witness, id: x1, kind: shed, definite: true}
+        - {t: witness, id: x1, class: shed, definite: true}
         - {t: motion, id: m1, verb: enter, mover: "@n1", goal: "@x1", tense: past}
     - category: positive
       note: a fall — the subject moves without acting
       text: "The ladder fell."
       instances:
-        - {t: witness, id: x1, kind: ladder, definite: true}
+        - {t: witness, id: x1, class: ladder, definite: true}
         - {t: motion, id: m1, verb: fall, moved: "@x1", tense: past}
     - category: positive
       note: a path phrase — an oblique on the motion
       text: "Teodor ran across the field."
       instances:
         - {t: named-entity, id: n1, name: "Teodor"}
-        - {t: witness, id: x1, kind: field, definite: true}
+        - {t: witness, id: x1, class: field, definite: true}
         - {t: motion, id: m1, verb: run, mover: "@n1", tense: past}
         - {t: oblique, id: a1, event: "@m1", head: Across, object: "@x1"}
     - category: scoped
@@ -197,7 +197,7 @@ examples:
       text: "Yusra did not go to the market."
       instances:
         - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: witness, id: x1, kind: market, definite: true}
+        - {t: witness, id: x1, class: market, definite: true}
         - {t: motion, id: m1, verb: go, mover: "@n1", goal: "@x1", tense: past}
         - {t: negation, id: s1, over: ["@m1"]}
     - category: scoped
@@ -205,7 +205,7 @@ examples:
       text: "Lamine might leave the market."
       instances:
         - {t: named-entity, id: n1, name: "Lamine"}
-        - {t: witness, id: x1, kind: market, definite: true}
+        - {t: witness, id: x1, class: market, definite: true}
         - {t: motion, id: m1, verb: leave, mover: "@n1", source: "@x1", tense: present}
         - {t: modal, id: s1, over: ["@m1"], head: Might, surface: might}
     - category: optional
@@ -213,14 +213,14 @@ examples:
       text: "Ottoline is walking to the shed."
       instances:
         - {t: named-entity, id: n1, name: "Ottoline"}
-        - {t: witness, id: x1, kind: shed, definite: true}
+        - {t: witness, id: x1, class: shed, definite: true}
         - {t: motion, id: m1, verb: walk, mover: "@n1", goal: "@x1", tense: present, aspect: progressive}
     - category: optional
       note: agentless passive of a caused motion — no mover
       text: "The crate was carried to the shed."
       instances:
-        - {t: witness, id: x1, kind: crate, definite: true}
-        - {t: witness, id: x2, kind: shed, definite: true}
+        - {t: witness, id: x1, class: crate, definite: true}
+        - {t: witness, id: x2, class: shed, definite: true}
         - {t: motion, id: m1, verb: carry, moved: "@x1", goal: "@x2", tense: past}
     - category: abstain
       text: "The price fell."

@@ -10,7 +10,7 @@
 
 id: adjunct
 family: attachment
-kind: attachment
+shape: attachment
 title: An instrument, a companion or a beneficiary of an event
 status: draft
 
@@ -59,7 +59,7 @@ slots:
   event:       {type: filler, class: Event, attaches: true, required: true,
                 doc: "the predication the phrase attaches to: the id of the clause's event instance"}
   participant: {type: filler, class: Entity, required: true,
-                doc: "the added participant: a referent id (a witness for a knife, a name for Yusra) or a bare lemma for a kind-level one (by train, with soap)"}
+                doc: "the added participant: a referent id (a witness for a knife, a name for Yusra) or a bare lemma for a class-level one (by train, with soap)"}
   head:        {type: enum, values: [Instrument, CoAgent, Beneficiary], required: true,
                 doc: "Instrument for a tool, substance or means; CoAgent for a person or animal taking part; Beneficiary for the party the event is done for"}
   preposition: {type: string, required: true, doc: "the preposition as written (with, by, for, using, together_with, on_behalf_of)"}
@@ -85,8 +85,8 @@ examples:
       text: "Lamine cut the loaf with a knife."
       instances:
         - {t: named-entity, id: n1, name: "Lamine"}
-        - {t: witness, id: x1, kind: loaf, definite: true}
-        - {t: witness, id: x2, kind: knife}
+        - {t: witness, id: x1, class: loaf, definite: true}
+        - {t: witness, id: x2, class: knife}
         - {t: activity, id: v1, verb: cut, actor: "@n1", patient: "@x1", tense: past}
         - {t: adjunct, id: a1, event: "@v1", participant: "@x2", head: Instrument, preposition: with}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
@@ -119,7 +119,7 @@ examples:
       text: "Yusra baked a loaf for Teodor."
       instances:
         - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: witness, id: x1, kind: loaf}
+        - {t: witness, id: x1, class: loaf}
         - {t: named-entity, id: n2, name: "Teodor"}
         - {t: creation, id: e1, verb: bake, creator: "@n1", product: "@x1", tense: past}
         - {t: adjunct, id: a1, event: "@e1", participant: "@n2", head: Beneficiary, preposition: for}
@@ -142,7 +142,7 @@ examples:
         - {t: activity, id: v1, verb: dance, actor: "@n1", tense: past}
         - {t: adjunct, id: a1, event: "@v1", participant: "@n2", head: CoAgent, preposition: with}
     - category: positive
-      note: a means by "by" — a kind-level participant as a bare lemma
+      note: a means by "by" — a class-level participant as a bare lemma
       text: "Teodor travelled by train."
       instances:
         - {t: named-entity, id: n1, name: "Teodor"}
@@ -152,7 +152,7 @@ examples:
       note: a substance is an instrument
       text: "The quilt was washed with soap."
       instances:
-        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: witness, id: x1, class: quilt, definite: true}
         - {t: activity, id: v1, verb: wash, patient: "@x1", tense: past}
         - {t: adjunct, id: a1, event: "@v1", participant: soap, head: Instrument, preposition: with}
     - category: positive
@@ -160,8 +160,8 @@ examples:
       text: "Ottoline wrote the letter with a pen."
       instances:
         - {t: named-entity, id: n1, name: "Ottoline"}
-        - {t: witness, id: x1, kind: letter, definite: true}
-        - {t: witness, id: x2, kind: pen}
+        - {t: witness, id: x1, class: letter, definite: true}
+        - {t: witness, id: x2, class: pen}
         - {t: creation, id: e1, verb: write, creator: "@n1", product: "@x1", tense: past}
         - {t: adjunct, id: a1, event: "@e1", participant: "@x2", head: Instrument, preposition: with}
     - category: positive
@@ -169,7 +169,7 @@ examples:
       text: "Lamine sold the spindle to Teodor for Yusra."
       instances:
         - {t: named-entity, id: n1, name: "Lamine"}
-        - {t: witness, id: x1, kind: spindle, definite: true}
+        - {t: witness, id: x1, class: spindle, definite: true}
         - {t: named-entity, id: n2, name: "Teodor"}
         - {t: named-entity, id: n3, name: "Yusra"}
         - {t: transfer, id: e1, verb: sell, giver: "@n1", object: "@x1", recipient: "@n2", tense: past}
@@ -179,8 +179,8 @@ examples:
       text: "Lamine did not cut the loaf with a knife."
       instances:
         - {t: named-entity, id: n1, name: "Lamine"}
-        - {t: witness, id: x1, kind: loaf, definite: true}
-        - {t: witness, id: x2, kind: knife}
+        - {t: witness, id: x1, class: loaf, definite: true}
+        - {t: witness, id: x2, class: knife}
         - {t: activity, id: v1, verb: cut, actor: "@n1", patient: "@x1", tense: past}
         - {t: adjunct, id: a1, event: "@v1", participant: "@x2", head: Instrument, preposition: with}
         - {t: negation, id: s1, over: ["@v1"]}
@@ -198,8 +198,8 @@ examples:
       text: "With a knife, Lamine cut the loaf."
       instances:
         - {t: named-entity, id: n1, name: "Lamine"}
-        - {t: witness, id: x1, kind: knife}
-        - {t: witness, id: x2, kind: loaf, definite: true}
+        - {t: witness, id: x1, class: knife}
+        - {t: witness, id: x2, class: loaf, definite: true}
         - {t: activity, id: v1, verb: cut, actor: "@n1", patient: "@x2", tense: past}
         - {t: adjunct, id: a1, event: "@v1", participant: "@x1", head: Instrument, preposition: with}
     - category: abstain

@@ -54,11 +54,11 @@ def kinds(res):
 
 class ContractTests(unittest.TestCase):
     def test_optional_non_participant_filler_is_not_bare(self):
-        """A predication whose only filler is marked participant: false (kind-property's restriction)
+        """A predication whose only filler is marked participant: false (class-property's restriction)
         trips no bare-predication lint when the filler is empty; a verb-class predication with no
         participant still does."""
         ok = V.inspect({"id": "t", "instances": [
-            {"t": "kind-property", "id": "k1", "subject": "heron", "property": "widespread", "tense": "present"}],
+            {"t": "class-property", "id": "k1", "subject": "heron", "property": "widespread", "tense": "present"}],
             "unmapped": [], "issues": []}, CATALOG)
         self.assertFalse([f for f in ok["findings"] if f["kind"] == "bare-predication"], ok["findings"])
         bare = V.inspect({"id": "t", "instances": [
@@ -128,7 +128,7 @@ class LintTests(unittest.TestCase):
         gap = [{"span": "gave up", "code": "G00"}]
         res = V.inspect(reply(names, unmapped=gap), CATALOG)
         self.assertEqual(kinds(res), [])
-        with_witness = names + [{"t": "witness", "id": "x1", "kind": "quilt", "definite": True}]
+        with_witness = names + [{"t": "witness", "id": "x1", "class": "quilt", "definite": True}]
         res = V.inspect(reply(with_witness, unmapped=[{"span": "wants to send the quilt", "code": "G00"}]), CATALOG)
         self.assertEqual(kinds(res), ["dangling-referent"])
         self.assertIn("witness x1", res["findings"][0]["detail"])

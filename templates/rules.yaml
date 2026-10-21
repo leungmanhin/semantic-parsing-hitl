@@ -102,7 +102,7 @@ rules:
     semantics: deductive
     reads: [coref]
   - id: coref_member
-    meaning: a mention's kind or property holds of its antecedent
+    meaning: a mention's class or property holds of its antecedent
     premises: ["(Coref $m $a)", "(Member $m $k)"]
     conclusion: "(Member $a $k)"
     truth: {strength: 1.0, confidence: 0.99}

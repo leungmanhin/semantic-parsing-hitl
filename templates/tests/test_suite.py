@@ -86,7 +86,7 @@ class MatchTests(unittest.TestCase):
         self.assertFalse(d["shape"])
 
     def test_swapped_witness_identity_is_shape_equal_but_not_the_same(self):
-        a = [{"t": "witness", "id": "x1", "kind": "clerk"}, {"t": "witness", "id": "x2", "kind": "clerk", "definite": True},
+        a = [{"t": "witness", "id": "x1", "class": "clerk"}, {"t": "witness", "id": "x2", "class": "clerk", "definite": True},
              {"t": "transfer", "id": "e1", "verb": "hand", "giver": "@x1", "recipient": "@x2", "object": "@x1", "tense": "past"}]
         b = copy.deepcopy(a)
         b[2]["object"] = "@x2"
@@ -95,8 +95,8 @@ class MatchTests(unittest.TestCase):
         self.assertTrue(S.diff(ua, ub, HEADS)["shape"])
 
     def test_different_stems_never_unify(self):
-        a = [{"t": "witness", "id": "x1", "kind": "quilt"}]
-        b = [{"t": "witness", "id": "x1", "kind": "thermos"}]
+        a = [{"t": "witness", "id": "x1", "class": "quilt"}]
+        b = [{"t": "witness", "id": "x1", "class": "thermos"}]
         self.assertFalse(S.same(units(a), units(b)))
 
 
@@ -129,7 +129,7 @@ class CheckTests(unittest.TestCase):
         self.assertEqual(kinds, ["unclaimed"])
 
     def test_claim_that_fires_the_abstaining_template_conflicts(self):
-        insts = [{"t": "named-entity", "id": "n1", "name": "Zed"}, {"t": "witness", "id": "x1", "kind": "zither", "definite": True},
+        insts = [{"t": "named-entity", "id": "n1", "name": "Zed"}, {"t": "witness", "id": "x1", "class": "zither", "definite": True},
                  {"t": "named-entity", "id": "n2", "name": "Quill"},
                  {"t": "transfer", "id": "e1", "verb": "take", "giver": "@n2", "recipient": "@n1", "object": "@x1", "tense": "past"}]
         kinds = [f["kind"] for f in S.catalog_checks(self._with_mirror(insts), freshness=False)["findings"]]
@@ -220,7 +220,7 @@ class ScoreTests(unittest.TestCase):
         self.assertFalse(row["pass"])
         row = self.score(self.abst_gap, reply(names))
         self.assertEqual(row["outcome"], "silent_drop")
-        fire = names + [{"t": "witness", "id": "x1", "kind": "visit"},
+        fire = names + [{"t": "witness", "id": "x1", "class": "visit"},
                         {"t": "transfer", "id": "e1", "verb": "pay", "giver": "@n1", "recipient": "@n2", "object": "@x1", "tense": "past"}]
         row = self.score(self.abst_gap, reply(fire))
         self.assertEqual(row["outcome"], "false_fire")
@@ -228,7 +228,7 @@ class ScoreTests(unittest.TestCase):
         row = self.score(self.abst_pending, reply(names[:1], unmapped=[{"span": "gave up", "code": "G00"}]))
         self.assertEqual(row["outcome"], "pending_unmapped")
         self.assertTrue(row["pass"])
-        stray = names[:1] + [{"t": "witness", "id": "x1", "kind": "quilt", "definite": True}]
+        stray = names[:1] + [{"t": "witness", "id": "x1", "class": "quilt", "definite": True}]
         row = self.score(self.abst_pending, reply(stray, unmapped=[{"span": "gave up", "code": "G00"}]))
         self.assertEqual(row["outcome"], "pending_unmapped")
         self.assertFalse(row["pass"])                                     # a witness from unmapped words is a lint

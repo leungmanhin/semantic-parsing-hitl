@@ -1,0 +1,77 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "a425dddb507554c71fb4c88aec8fc84118920b43204deae9960577427454e8da",
+  "item": {
+    "id": "s40ca94cebe",
+    "text": "Herons are birds."
+  },
+  "usage": {
+    "input": 16515,
+    "output": 76,
+    "thinking": null,
+    "total": 16591,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 16515,
+    "candidatesTokenCount": 76,
+    "totalTokenCount": 16591,
+    "cachedContentTokenCount": 14466,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 16515
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 14466
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 76
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s40ca94cebe\", \"instances\": [{\"t\": \"kind-statement\", \"id\": \"k1\", \"subject\": \"heron\", \"predicate\": \"bird\", \"form\": \"noun\", \"definitional\": true, \"tense\": \"present\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s40ca94cebe",
+    "instances": [
+      {
+        "t": "class-statement",
+        "id": "k1",
+        "subject": "heron",
+        "predicate": "bird",
+        "form": "noun",
+        "definitional": true,
+        "tense": "present"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "120b60a17e82d50d47855b28fe77e98ae4c75e431ab78838d5db2b4f83cfa873",
+  "run": 3,
+  "case": {
+    "template": "class-statement",
+    "section": "held_out",
+    "index": 0,
+    "category": "positive",
+    "text": "Herons are birds.",
+    "key": "40ca94cebe"
+  }
+}

@@ -1,6 +1,6 @@
 # Suite report
 
-prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 68cf58b9dac44c79) · type check: ran
+prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 9b7e293f463ab8b2) · type check: ran
 
 ## Catalog checks
 
@@ -204,6 +204,60 @@ Abstain cases (what the parser did, per run):
 
 Mismatches: none
 
+## class-property — held_out
+
+16 cases, 48 records (ok 48; stale prompt 48) · gemini-4-argon effort=low
+
+| category | cases | runs | fired | exact | pass |
+|---|---|---|---|---|---|
+| positive | 9 | 27 | 27 | 27 | 27 |
+| contrast | 1 | 3 | 3 | 3 | 3 |
+| scoped | 2 | 6 | 6 | 6 | 6 |
+| optional | 1 | 3 | 3 | 3 | 3 |
+| abstain | 3 | 9 | 0 (false fires) | – | 9 |
+
+- selection: fire cases fired 39/39 · abstain cases false fires 0/9
+- fill: exact 39/39 among fires
+- stability: pairwise agreement 1.0 (16 cases, 48 pairs), unanimous 16/16
+- type check: 45/45 emitted parses type
+- graph lints: none
+- usage: 48 calls · in 2,485,647 · cached 2,337,492 (94% of the input) · out 4,006 · thinking 0 (calls with thought tokens: 0)
+- issues reported by the parser: none
+
+Abstain cases (what the parser did, per run):
+- "Ferrets are dying out." (gap G00): r1 gap_reported [nothing fired; unmapped G00] · r2 gap_reported [nothing fired; unmapped G00] · r3 gap_reported [nothing fired; unmapped G00]
+- "Herons are patient." (target `class-statement`): r1 target_fired [class-statement×1] · r2 target_fired [class-statement×1] · r3 target_fired [class-statement×1]
+- "Tin is brittle when cold." (target `conditional-property`): r1 target_fired [conditional-property×1, copular×2, range×1] · r2 target_fired [conditional-property×1, copular×2, range×1] · r3 target_fired [conditional-property×1, copular×2, range×1]
+
+Mismatches: none
+
+## class-statement — held_out
+
+13 cases, 39 records (ok 39; stale prompt 39) · gemini-4-argon effort=low
+
+| category | cases | runs | fired | exact | pass |
+|---|---|---|---|---|---|
+| positive | 6 | 18 | 18 | 18 | 18 |
+| contrast | 1 | 3 | 3 | 3 | 3 |
+| scoped | 2 | 6 | 6 | 6 | 6 |
+| abstain | 4 | 12 | 0 (false fires) | – | 12 |
+
+- selection: fire cases fired 27/27 · abstain cases false fires 0/12
+- fill: exact 27/27 among fires
+- stability: pairwise agreement 1.0 (13 cases, 39 pairs), unanimous 13/13
+- type check: 39/39 emitted parses type
+- graph lints: none
+- usage: 39 calls · in 880,347 · cached 298,339 (34% of the input) · out 3,627 · thinking 0 (calls with thought tokens: 0)
+- issues reported by the parser: none
+
+Abstain cases (what the parser did, per run):
+- "The ferrets are curious." (target `group`): r1 target_fired [copular×1, distribution×1, group×1] · r2 target_fired [copular×1, distribution×1, group×1] · r3 target_fired [copular×1, distribution×1, group×1]
+- "Yusra is a weaver." (target `copular`): r1 target_fired [copular×1, named-entity×1] · r2 target_fired [copular×1, named-entity×1] · r3 target_fired [copular×1, named-entity×1]
+- "Ferrets are widespread." (target `class-property`): r1 target_fired [class-property×1] · r2 target_fired [class-property×1] · r3 target_fired [class-property×1]
+- "Wax is soft when warm." (target `conditional-property`): r1 target_fired [conditional-property×1, copular×2, range×1] · r2 target_fired [conditional-property×1, copular×2, range×1] · r3 target_fired [conditional-property×1, copular×2, range×1]
+
+Mismatches: none
+
 ## communication — held_out
 
 13 cases, 39 records (ok 39; stale prompt 39) · gemini-4-argon effort=low
@@ -254,8 +308,8 @@ Abstain cases (what the parser did, per run):
 - "Herons are patient if the weather is sunny." (gap G00): r1 gap_reported [nothing fired; unmapped G00] · r2 gap_reported [nothing fired; unmapped G00] · r3 gap_reported [nothing fired; unmapped G00]
 - "Pewter is solid at room temperature." (gap G00): r1 gap_reported [nothing fired; unmapped G00] · r2 gap_reported [nothing fired; unmapped G00] · r3 gap_reported [nothing fired; unmapped G00]
 - "Clay softens when wet." (target `generic`): r1 target_fired [change-of-state×1, copular×1, generic×1, range×1] · r2 target_fired [change-of-state×1, copular×1, generic×1, range×1] · r3 target_fired [change-of-state×1, copular×1, generic×1, range×1]
-- "Herons are patient." (target `kind-statement`): r1 target_fired [kind-statement×1] · r2 target_fired [kind-statement×1] · r3 target_fired [kind-statement×1]
-- "Otters are rare." (target `kind-property`): r1 target_fired [kind-property×1] · r2 target_fired [kind-property×1] · r3 target_fired [kind-property×1]
+- "Herons are patient." (target `class-statement`): r1 target_fired [class-statement×1] · r2 target_fired [class-statement×1] · r3 target_fired [class-statement×1]
+- "Otters are rare." (target `class-property`): r1 target_fired [class-property×1] · r2 target_fired [class-property×1] · r3 target_fired [class-property×1]
 
 Mismatches: none
 
@@ -307,7 +361,7 @@ Mismatches: none
 - issues reported by the parser: none
 
 Abstain cases (what the parser did, per run):
-- "Herons are birds." (target `kind-statement`): r1 target_fired [kind-statement×1] · r2 target_fired [kind-statement×1] · r3 target_fired [kind-statement×1]
+- "Herons are birds." (target `class-statement`): r1 target_fired [class-statement×1] · r2 target_fired [class-statement×1] · r3 target_fired [class-statement×1]
 - "Teodor is the locksmith." (gap G00): r1 gap_reported [named-entity×1; unmapped G00] · r2 gap_reported [named-entity×1; unmapped G00] · r3 gap_reported [named-entity×1; unmapped G00]
 - "Teodor seems tired." (gap G00): r1 gap_reported [named-entity×1; unmapped G00] · r2 gap_reported [named-entity×1; unmapped G00] · r3 gap_reported [named-entity×1; unmapped G00]
 - "Lamine is fond of Yusra." (gap G00): r1 gap_reported [named-entity×2; unmapped G00] · r2 gap_reported [named-entity×2; unmapped G00] · r3 gap_reported [named-entity×2; unmapped G00]
@@ -393,7 +447,7 @@ Abstain cases (what the parser did, per run):
 - "The ladder is crooked." (target `copular`): r1 target_fired [copular×1, witness×1] · r2 target_fired [copular×1, witness×1] · r3 target_fired [copular×1, witness×1]
 - "Teodor added too much salt." (gap G00): r1 gap_reported [activity×1, named-entity×1; unmapped G00] · r2 gap_reported [activity×1, named-entity×1; unmapped G00] · r3 gap_reported [activity×1, named-entity×1; unmapped G00]
 - "Lamine barely moved." (target `extent`): r1 target_fired [extent×1, motion×1, named-entity×1] · r2 target_fired [extent×1, motion×1, named-entity×1] · r3 target_fired [extent×1, motion×1, named-entity×1]
-- "Ferrets are very curious." (gap G02): r1 gap_reported [kind-statement×1; unmapped G02] · r2 gap_reported [kind-statement×1; unmapped G02] · r3 gap_reported [kind-statement×1; unmapped G02]
+- "Ferrets are very curious." (gap G02): r1 gap_reported [class-statement×1; unmapped G02] · r2 gap_reported [class-statement×1; unmapped G02] · r3 gap_reported [class-statement×1; unmapped G02]
 - "Teodor is taller than Yusra." (gap G00): r1 gap_reported [named-entity×2; unmapped G00] · r2 gap_reported [named-entity×2; unmapped G00] · r3 gap_reported [named-entity×2; unmapped G00]
 - "Yusra is the tallest weaver." (gap G00): r1 gap_reported [copular×1, named-entity×1; unmapped G00] · r2 gap_reported [copular×1, named-entity×1; unmapped G00] · r3 gap_reported [named-entity×1; unmapped G00]
 
@@ -419,7 +473,7 @@ Mismatches: none
 
 Abstain cases (what the parser did, per run):
 - "The ferrets surrounded the barn." (target `group`): r1 target_fired [activity×1, group×1, witness×1] · r2 target_fired [activity×1, group×1, witness×1] · r3 target_fired [activity×1, group×1, witness×1]
-- "Herons are patient." (target `kind-statement`): r1 target_fired [kind-statement×1] · r2 target_fired [kind-statement×1] · r3 target_fired [kind-statement×1]
+- "Herons are patient." (target `class-statement`): r1 target_fired [class-statement×1] · r2 target_fired [class-statement×1] · r3 target_fired [class-statement×1]
 
 Mismatches: none
 
@@ -473,7 +527,7 @@ Mismatches: none
 Abstain cases (what the parser did, per run):
 - "Ferrets can climb." (gap G00): r1 gap_reported [nothing fired; unmapped G00] · r2 gap_reported [nothing fired; unmapped G00] · r3 gap_reported [nothing fired; unmapped G00]
 - "A few students laughed." (target `group`): r1 target_fired [activity×1, distribution×1, group×1] · r2 target_fired [activity×1, distribution×1, group×1] · r3 target_fired [activity×1, distribution×1, group×1]
-- "Most herons are patient." (target `kind-statement`): r1 target_fired [kind-statement×1] · r2 target_fired [kind-statement×1] · r3 target_fired [kind-statement×1]
+- "Most herons are patient." (target `class-statement`): r1 target_fired [class-statement×1] · r2 target_fired [class-statement×1] · r3 target_fired [class-statement×1]
 - "Wax is soft when warm." (target `conditional-property`): r1 target_fired [conditional-property×1, copular×2, range×1] · r2 target_fired [conditional-property×1, copular×2, range×1] · r3 target_fired [conditional-property×1, copular×2, range×1]
 
 Mismatches: none
@@ -533,60 +587,6 @@ Abstain cases (what the parser did, per run):
 - "Could you lock the shed?" (gap G00): r1 gap_reported [nothing fired; unmapped G00] · r2 gap_reported [nothing fired; unmapped G00] · r3 gap_reported [nothing fired; unmapped G00]
 - "The quilt was washed." (target `activity`): r1 target_fired [activity×1, witness×1] · r2 target_fired [activity×1, witness×1] · r3 target_fired [activity×1, witness×1]
 - "Yusra has to send the quilt." (target `modal`): r1 target_fired [modal×1, named-entity×1, transfer×1, witness×1] · r2 target_fired [modal×1, named-entity×1, transfer×1, witness×1] · r3 target_fired [modal×1, named-entity×1, transfer×1, witness×1]
-
-Mismatches: none
-
-## kind-property — held_out
-
-16 cases, 48 records (ok 48; stale prompt 48) · gemini-4-argon effort=low
-
-| category | cases | runs | fired | exact | pass |
-|---|---|---|---|---|---|
-| positive | 9 | 27 | 27 | 27 | 27 |
-| contrast | 1 | 3 | 3 | 3 | 3 |
-| scoped | 2 | 6 | 6 | 6 | 6 |
-| optional | 1 | 3 | 3 | 3 | 3 |
-| abstain | 3 | 9 | 0 (false fires) | – | 9 |
-
-- selection: fire cases fired 39/39 · abstain cases false fires 0/9
-- fill: exact 39/39 among fires
-- stability: pairwise agreement 1.0 (16 cases, 48 pairs), unanimous 16/16
-- type check: 45/45 emitted parses type
-- graph lints: none
-- usage: 48 calls · in 2,485,647 · cached 2,337,492 (94% of the input) · out 4,006 · thinking 0 (calls with thought tokens: 0)
-- issues reported by the parser: none
-
-Abstain cases (what the parser did, per run):
-- "Ferrets are dying out." (gap G00): r1 gap_reported [nothing fired; unmapped G00] · r2 gap_reported [nothing fired; unmapped G00] · r3 gap_reported [nothing fired; unmapped G00]
-- "Herons are patient." (target `kind-statement`): r1 target_fired [kind-statement×1] · r2 target_fired [kind-statement×1] · r3 target_fired [kind-statement×1]
-- "Tin is brittle when cold." (target `conditional-property`): r1 target_fired [conditional-property×1, copular×2, range×1] · r2 target_fired [conditional-property×1, copular×2, range×1] · r3 target_fired [conditional-property×1, copular×2, range×1]
-
-Mismatches: none
-
-## kind-statement — held_out
-
-13 cases, 39 records (ok 39; stale prompt 39) · gemini-4-argon effort=low
-
-| category | cases | runs | fired | exact | pass |
-|---|---|---|---|---|---|
-| positive | 6 | 18 | 18 | 18 | 18 |
-| contrast | 1 | 3 | 3 | 3 | 3 |
-| scoped | 2 | 6 | 6 | 6 | 6 |
-| abstain | 4 | 12 | 0 (false fires) | – | 12 |
-
-- selection: fire cases fired 27/27 · abstain cases false fires 0/12
-- fill: exact 27/27 among fires
-- stability: pairwise agreement 1.0 (13 cases, 39 pairs), unanimous 13/13
-- type check: 39/39 emitted parses type
-- graph lints: none
-- usage: 39 calls · in 880,347 · cached 298,339 (34% of the input) · out 3,627 · thinking 0 (calls with thought tokens: 0)
-- issues reported by the parser: none
-
-Abstain cases (what the parser did, per run):
-- "The ferrets are curious." (target `group`): r1 target_fired [copular×1, distribution×1, group×1] · r2 target_fired [copular×1, distribution×1, group×1] · r3 target_fired [copular×1, distribution×1, group×1]
-- "Yusra is a weaver." (target `copular`): r1 target_fired [copular×1, named-entity×1] · r2 target_fired [copular×1, named-entity×1] · r3 target_fired [copular×1, named-entity×1]
-- "Ferrets are widespread." (target `kind-property`): r1 target_fired [kind-property×1] · r2 target_fired [kind-property×1] · r3 target_fired [kind-property×1]
-- "Wax is soft when warm." (target `conditional-property`): r1 target_fired [conditional-property×1, copular×2, range×1] · r2 target_fired [conditional-property×1, copular×2, range×1] · r3 target_fired [conditional-property×1, copular×2, range×1]
 
 Mismatches: none
 

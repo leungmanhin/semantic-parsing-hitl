@@ -13,7 +13,7 @@
 
 id: control
 family: predication
-kind: verb-class
+shape: verb-class
 title: A verb whose complement is an action of its own subject
 status: draft
 
@@ -137,7 +137,7 @@ examples:
       text: "Lamine managed to open the shed."
       instances:
         - {t: named-entity, id: n1, name: "Lamine"}
-        - {t: witness, id: x1, kind: shed, definite: true}
+        - {t: witness, id: x1, class: shed, definite: true}
         - {t: change-of-state, id: c1, verb: open, agent: "@n1", undergoer: "@x1", tense: present}
         - {t: control, id: e1, verb: manage, subject: "@n1", complement: ["@c1"], implication: positive, tense: past}
     - category: positive
@@ -166,7 +166,7 @@ examples:
       text: "Lamine remembered to send the letter."
       instances:
         - {t: named-entity, id: n1, name: "Lamine"}
-        - {t: witness, id: x1, kind: letter, definite: true}
+        - {t: witness, id: x1, class: letter, definite: true}
         - {t: transfer, id: e2, verb: send, giver: "@n1", object: "@x1", tense: present}
         - {t: control, id: e1, verb: remember, subject: "@n1", complement: ["@e2"], implication: positive, tense: past}
     - category: positive
@@ -174,7 +174,7 @@ examples:
       text: "Yusra forgot to lock the shed."
       instances:
         - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: witness, id: x1, kind: shed, definite: true}
+        - {t: witness, id: x1, class: shed, definite: true}
         - {t: activity, id: v1, verb: lock, actor: "@n1", patient: "@x1", tense: present}
         - {t: control, id: e1, verb: forget, subject: "@n1", complement: ["@v1"], implication: negative, tense: past}
     - category: positive
@@ -188,7 +188,7 @@ examples:
       text: "Lamine attempted to open the gate."
       instances:
         - {t: named-entity, id: n1, name: "Lamine"}
-        - {t: witness, id: x1, kind: gate, definite: true}
+        - {t: witness, id: x1, class: gate, definite: true}
         - {t: change-of-state, id: c1, verb: open, agent: "@n1", undergoer: "@x1", tense: present}
         - {t: control, id: e1, verb: attempt, subject: "@n1", complement: ["@c1"], implication: none, tense: past}
     - category: scoped
@@ -204,7 +204,7 @@ examples:
       text: "Teodor did not manage to open the shed."
       instances:
         - {t: named-entity, id: n1, name: "Teodor"}
-        - {t: witness, id: x1, kind: shed, definite: true}
+        - {t: witness, id: x1, class: shed, definite: true}
         - {t: change-of-state, id: c1, verb: open, agent: "@n1", undergoer: "@x1", tense: present}
         - {t: control, id: e1, verb: manage, subject: "@n1", complement: ["@c1"], implication: positive, tense: past}
         - {t: negation, id: s1, over: ["@e1"]}

@@ -1,15 +1,15 @@
-# Template: copular  (an individual is a kind or has a property: "X is a N", "X is ADJ")
+# Template: copular  (an individual is a class or has a property: "X is a N", "X is ADJ")
 #
 # The predication is the flat atom (Member <subject> <predicate>); tense, negation and modality
 # are operators over it ((Past (Member …)), (Not (Member …)), (Might (Member …))). No state
 # eventuality is minted for a plain copular clause. The subject is a referent instance (a name,
-# a witness, a resolved pronoun); the predicate is a kind or a property lemma. A bare-plural or
-# mass-noun subject makes a kind statement, not this template.
+# a witness, a resolved pronoun); the predicate is a class or a property lemma. A bare-plural or
+# mass-noun subject makes a class statement, not this template.
 
 id: copular
 family: predication
-kind: copular
-title: An individual is a kind or has a property
+shape: copular
+title: An individual is a class or has a property
 status: draft
 
 trigger:
@@ -20,7 +20,7 @@ trigger:
     is an indefinite noun phrase (is a locksmith) or an adjective (is crooked). A group as the subject takes the
     predicate as a group; whether it also holds of each member is the distribution template's
     business. The
-    predicate's head is the kind or the property; an adjective inside a predicate noun phrase
+    predicate's head is the class or the property; an adjective inside a predicate noun phrase
     (is a careful weaver) is a second copular instance with the adjective as its predicate.
     Tense is the clause's; present is recorded and emits nothing.
   surface_forms:
@@ -29,8 +29,8 @@ trigger:
     - "<subject> was / will be <N or ADJ>"     # the tense wraps the atom
   boundary:                   # looks like a copular clause but is not one
     - >-
-      a kind as the subject — ferrets are mustelids, granite is a rock, a spindle is a tool:
-      a statement about a kind, not an individual (a range instance, "@q1", is not a kind: it
+      a class as the subject — ferrets are mustelids, granite is a rock, a spindle is a tool:
+      a statement about a class, not an individual (a range instance, "@q1", is not a class: it
       is the member a rule ranges over, and takes this template)
     - >-
       a quantifier word on the subject — all ferrets are curious, most herons are patient:
@@ -43,7 +43,7 @@ trigger:
       complement is part of the predication; report the whole predicate as a gap
     - >-
       a definite or a name as the predicate — is the locksmith, is Teodor: an identity
-      statement, not a kind or a property
+      statement, not a class or a property
     - >-
       a non-intersective modifier in the predicate — a former weaver, an alleged thief: the
       adjective does not hold of the individual on its own
@@ -58,9 +58,9 @@ slots:
   subject:   {type: filler, class: Entity, required: true,
               doc: "the subject: a referent id (a name, a witness, a group, a resolved pronoun)"}
   predicate: {type: lemma, class: Class, required: true,
-              doc: "the kind (locksmith) or the property (crooked), lemmatized"}
+              doc: "the class (locksmith) or the property (crooked), lemmatized"}
   form:      {type: enum, values: [noun, adjective], required: true,
-              doc: "noun for a kind (is a locksmith), adjective for a property (is crooked)"}
+              doc: "noun for a class (is a locksmith), adjective for a property (is crooked)"}
   tense:     {type: enum, values: [past, present, future], required: true,
               doc: "the clause's tense; present is recorded, not inferred"}
   aspect:    {type: enum, values: [simple, progressive, perfect], required: false, default: simple}
@@ -81,7 +81,7 @@ notes:
     eventuality for a copular clause is minted only when something must attach to it (a time,
     a duration, a place), which is a matter for the attachment templates.
   - >-
-    A kind and a property take the same atom, as the substrate treats properties as classes;
+    A class and a property take the same atom, as the substrate treats properties as classes;
     the form slot records which the text used, for later normalization.
 
 depends_on: [named-entity, witness]
@@ -90,7 +90,7 @@ composes_with: [negation, modal, time]
 examples:
   shown:                     # rendered into the prompt
     - category: positive
-      note: a kind
+      note: a class
       text: "Teodor is a locksmith."
       instances:
         - {t: named-entity, id: n1, name: "Teodor"}
@@ -105,11 +105,11 @@ examples:
       note: a property, past tense — the tense wraps the atom
       text: "The audit was difficult."
       instances:
-        - {t: witness, id: x1, kind: audit, definite: true}
+        - {t: witness, id: x1, class: audit, definite: true}
         - {t: copular, id: c1, subject: "@x1", predicate: difficult, form: adjective, tense: past}
     - category: abstain
       text: "Ferrets are mustelids."
-      expected: {abstain: true, template: kind-statement}             # a kind as the subject
+      expected: {abstain: true, template: class-statement}             # a class as the subject
     - category: abstain
       text: "Teodor became a locksmith."
       expected: {abstain: true, template: change-of-state}            # a change of state
@@ -133,7 +133,7 @@ examples:
       note: a property of a witness
       text: "The ladder is crooked."
       instances:
-        - {t: witness, id: x1, kind: ladder, definite: true}
+        - {t: witness, id: x1, class: ladder, definite: true}
         - {t: copular, id: c1, subject: "@x1", predicate: crooked, form: adjective, tense: present}
     - category: positive
       note: future
@@ -159,14 +159,14 @@ examples:
       note: under a modal
       text: "The ladder might be crooked."
       instances:
-        - {t: witness, id: x1, kind: ladder, definite: true}
+        - {t: witness, id: x1, class: ladder, definite: true}
         - {t: copular, id: c1, subject: "@x1", predicate: crooked, form: adjective, tense: present}
         - {t: modal, id: s1, over: ["@c1"], head: Might, surface: might}
     - category: scoped
       note: negation over a past predication — the negation wraps the tensed atom
       text: "The audit was not difficult."
       instances:
-        - {t: witness, id: x1, kind: audit, definite: true}
+        - {t: witness, id: x1, class: audit, definite: true}
         - {t: copular, id: c1, subject: "@x1", predicate: difficult, form: adjective, tense: past}
         - {t: negation, id: s1, over: ["@c1"]}
     - category: optional
@@ -178,7 +178,7 @@ examples:
            aspect: perfect}
     - category: abstain
       text: "Herons are birds."
-      expected: {abstain: true, template: kind-statement}             # a kind as the subject
+      expected: {abstain: true, template: class-statement}             # a class as the subject
     - category: abstain
       text: "Teodor seems tired."
       expected: {abstain: true, gap: G00, span: "seems tired"}        # a copular verb other than be

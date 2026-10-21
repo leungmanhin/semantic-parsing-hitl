@@ -11,7 +11,7 @@
 
 id: time
 family: attachment
-kind: attachment
+shape: attachment
 title: The time at which an event takes place
 status: draft
 
@@ -190,7 +190,7 @@ examples:
       text: "Lamine sold the spindle on Monday."
       instances:
         - {t: named-entity, id: n1, name: "Lamine"}
-        - {t: witness, id: x1, kind: spindle, definite: true}
+        - {t: witness, id: x1, class: spindle, definite: true}
         - {t: transfer, id: e1, verb: sell, giver: "@n1", object: "@x1", tense: past}
         - {t: time, id: t1, event: "@e1", weekday: monday}
     - category: abstain
@@ -212,14 +212,14 @@ examples:
       note: a time predicated of an event noun — the witness is eventive, the clause's tense recorded here
       text: "The meeting is at noon."
       instances:
-        - {t: witness, id: x1, kind: meeting, definite: true, eventive: true}
+        - {t: witness, id: x1, class: meeting, definite: true, eventive: true}
         - {t: time, id: t1, event: "@x1", hour: 12, tense: present}
     - category: positive
       note: a full date — one instance, three fields
       text: "Lamine baked a loaf on 3 May 2019."
       instances:
         - {t: named-entity, id: n1, name: "Lamine"}
-        - {t: witness, id: x1, kind: loaf}
+        - {t: witness, id: x1, class: loaf}
         - {t: creation, id: e1, verb: bake, creator: "@n1", product: "@x1", tense: past}
         - {t: time, id: t1, event: "@e1", year: 2019, month: may, day: 3}
     - category: positive
@@ -249,7 +249,7 @@ examples:
       text: "Ottoline sold the quilt last week."
       instances:
         - {t: named-entity, id: n1, name: "Ottoline"}
-        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: witness, id: x1, class: quilt, definite: true}
         - {t: transfer, id: e1, verb: sell, giver: "@n1", object: "@x1", tense: past}
         - {t: time, id: t1, event: "@e1", deictic: last_week, anchor: "@now"}
     - category: positive
@@ -278,7 +278,7 @@ examples:
       note: an event noun in the past — the tense lands on the eventive witness
       text: "The audit was on Monday."
       instances:
-        - {t: witness, id: x1, kind: audit, definite: true, eventive: true}
+        - {t: witness, id: x1, class: audit, definite: true, eventive: true}
         - {t: time, id: t1, event: "@x1", weekday: monday, tense: past}
     - category: optional
       note: a fronted time
@@ -307,7 +307,7 @@ examples:
       note: inside a generalization — the named time is a constant in the rule
       text: "Every ferret slept at night."
       instances:
-        - {t: range, id: q1, kind: ferret, quantifier: every, predicate: sleep}
+        - {t: range, id: q1, class: ferret, quantifier: every, predicate: sleep}
         - {t: activity, id: v1, verb: sleep, actor: "@q1", tense: past}
         - {t: time, id: t1, event: "@v1", name: night}
         - {t: generic, id: r1, ranges: ["@q1"], over: ["@v1"]}

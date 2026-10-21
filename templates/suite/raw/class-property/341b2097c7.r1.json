@@ -1,0 +1,76 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "a9e1ed5a7114de2bedee96ae4010964a4aa69ba1a78b19fae57121290e52e164",
+  "item": {
+    "id": "s341b2097c7",
+    "text": "The aurochs is extinct."
+  },
+  "usage": {
+    "input": 51787,
+    "output": 68,
+    "thinking": null,
+    "total": 51855,
+    "cached": 49734,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 51787,
+    "candidatesTokenCount": 68,
+    "totalTokenCount": 51855,
+    "cachedContentTokenCount": 49734,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 51787
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 49734
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 68
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s341b2097c7\", \"instances\": [{\"t\": \"kind-property\", \"id\": \"k1\", \"subject\": \"aurochs\", \"property\": \"extinct\", \"tense\": \"present\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s341b2097c7",
+    "instances": [
+      {
+        "t": "class-property",
+        "id": "k1",
+        "subject": "aurochs",
+        "property": "extinct",
+        "tense": "present"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "e818417b50e53224000dbbfbcf86feb0d70114df739431722ad3ad866d0b6d57",
+  "run": 1,
+  "case": {
+    "template": "class-property",
+    "section": "held_out",
+    "index": 4,
+    "category": "positive",
+    "text": "The aurochs is extinct.",
+    "key": "341b2097c7"
+  }
+}

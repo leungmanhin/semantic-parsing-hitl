@@ -28,7 +28,7 @@
 (: coref_source (Implication (And (Coref $m $a) (Source $e $m)) (Source $e $a)) (CTV (STV 1.0 0.99) (STV 0.0 1.0)))
 ;; coref_location: a mention's Location role holds of its antecedent (reads: coref)
 (: coref_location (Implication (And (Coref $m $a) (Location $e $m)) (Location $e $a)) (CTV (STV 1.0 0.99) (STV 0.0 1.0)))
-;; coref_member: a mention's kind or property holds of its antecedent (reads: coref)
+;; coref_member: a mention's class or property holds of its antecedent (reads: coref)
 (: coref_member (Implication (And (Coref $m $a) (Member $m $k)) (Member $a $k)) (CTV (STV 1.0 0.99) (STV 0.0 1.0)))
 ;; coref_possession: what a mention possesses, its antecedent possesses (reads: coref)
 (: coref_possession (Implication (And (Coref $m $a) (Possession $x $m)) (Possession $x $a)) (CTV (STV 1.0 0.99) (STV 0.0 1.0)))

@@ -17,7 +17,7 @@ intro:
 - >-
   State only what the text states. World knowledge picks the reading; it never adds content. Every instance
   and every slot value must be traceable to words in the TEXT: point at the words that put it there; if
-  you cannot, leave it out. No unstated kind, property, possessor, location, part-whole or causal link,
+  you cannot, leave it out. No unstated class, property, possessor, location, part-whole or causal link,
   however obvious.
 - >-
   A stated restriction, hedge or qualifier is never silently dropped, because omitting it widens the claim.
@@ -61,10 +61,10 @@ identifiers:
   the clause's predication, or the scope operator over it when it has one (`["@s1"]` for a negated or
   modalised clause); never the referents the clause mentions.
 - >-
-  A slot that holds a kind, property, verb, scale or unit holds the bare LEMMA, for example `"kind": "book"`.
+  A slot that holds a class, property, verb, scale or unit holds the bare LEMMA, for example `"class": "book"`.
 - >-
   A participant slot holds either one: `"@x1"` for a specific referent, or a bare lemma for a non-specific
-  or kind-level filler ("pays tax", "cooked dinner" gives `"Patient": "dinner"`). Reserve the bare lemma
+  or class-level filler ("pays tax", "cooked dinner" gives `"Patient": "dinner"`). Reserve the bare lemma
   for a non-specific filler; a specific definite or indefinite thing is always an instance.
 - >-
   ONE instance per MENTION, and the identity stated. The first mention of a person, thing, group or event
@@ -89,7 +89,7 @@ identifiers:
   conjuncts together (met, argued, shared a thermos), no instance fits: report the clause as unmapped.
 lemmas:
 - >-
-  Lemmatize every kind, property and verb to its dictionary base form: verbs to the base (ran, running
+  Lemmatize every class, property and verb to its dictionary base form: verbs to the base (ran, running
   → run), nouns to the singular (ravens, mice → raven, mouse), adjectives to the base (taller → tall).
   All lemmas are lowercase snake_case.
 - >-
@@ -137,7 +137,7 @@ gap_codes:
     a comparative with no stated standard ('a sturdier bracket', 'prices ended lower')
   G02: >-
     an adverb with no slot: sequence (initially, eventually, finally), scope or domain (nationally, locally),
-    frequency (often, always, twice), a degree word on a manner adverb or on a kind-level statement
+    frequency (often, always, twice), a degree word on a manner adverb or on a class-level statement
     (laughed very loudly; ferrets are very curious)
   G03: >-
     a post-nominal tag on a name (a party or district tag, a ticker, a bracketed code)
@@ -152,7 +152,7 @@ gap_codes:
   G10: >-
     the verbatim wording of a quotation (its content is parsed; the wording itself is not kept)
   G11: >-
-    an individual's property under a condition ('the ladder is brittle when cold'); a kind's is the
+    an individual's property under a condition ('the ladder is brittle when cold'); a class's is the
     conditional-property template
 issues:
 - >-

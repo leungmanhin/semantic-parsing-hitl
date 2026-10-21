@@ -2,14 +2,14 @@
 
 id: witness
 family: referent
-kind: referent
+shape: referent
 title: A common-noun phrase introducing an individual
 status: stub
 
 trigger:
   construction: >
     A noun phrase headed by a common noun with a determiner or a modifier — a thermos, the
-    quilt, this spindle, two envelopes' member — introducing an individual of that kind. The
+    quilt, this spindle, two envelopes' member — introducing an individual of that class. The
     individual gets a numbered witness symbol; whether the phrase is definite is recorded. A
     possessive phrase (Yusra's quilt, the quilt of Yusra, her quilt) is a witness with its
     possessor recorded: the possessor is a referent — a name, a witness, or for a possessive
@@ -21,12 +21,12 @@ trigger:
   surface_forms:
     - "a <N>"                       # indefinite
     - "the <N>"                     # definite
-    - "<Adj> <N>"                   # the property is recorded beside the kind
+    - "<Adj> <N>"                   # the property is recorded beside the class
     - "<possessor>'s <N>"           # the possessor is recorded; definite
     - "the <N> of <possessor>"      # the same
   boundary:
     - >-
-      a bare plural read generically — dogs bark: a kind-level statement, not a witness
+      a bare plural read generically — dogs bark: a class-level statement, not a witness
     - >-
       a plural noun phrase — the ferrets, two envelopes: a group of individuals, not one
       witness
@@ -35,21 +35,21 @@ trigger:
 
 slots:
   id:       {type: id, required: true}
-  kind:     {type: lemma, class: Class, required: true, doc: "the head noun's lemma"}
+  class:     {type: lemma, class: Class, required: true, doc: "the head noun's lemma"}
   definite: {type: bool, required: false, doc: "true for the / this / that; absent for a / an and for a possessed phrase (the possessor presupposes it)"}
   props:    {type: list, class: Class, required: false,
              doc: "adjectival properties stated in the phrase; a property with a degree word (a very old spindle) is a degree instance beside the witness, not a property here"}
   possessor: {type: filler, class: Entity, required: false,
-              doc: "the possessor of a possessive phrase: Yusra's quilt, the quilt of Yusra, her quilt; a referent id (for a possessive pronoun, the id of its mention instance), or a bare lemma for a kind-level possessor"}
+              doc: "the possessor of a possessive phrase: Yusra's quilt, the quilt of Yusra, her quilt; a referent id (for a possessive pronoun, the id of its mention instance), or a bare lemma for a class-level possessor"}
   eventive: {type: bool, required: false,
              doc: "true when the noun names an event or a period and the clause puts the noun itself in time (the meeting is at noon); absent otherwise"}
 
-mints: {id: Entity, stem: kind, also: {Event: eventive}}      # an eventive witness is an Event too
+mints: {id: Entity, stem: class, also: {Event: eventive}}      # an eventive witness is an Event too
 
 presupposed: [definite, possessor]      # a definite or possessed witness exists whatever scope mentions it
 
 emits:
-  - atom: "(Member @id {kind})"
+  - atom: "(Member @id {class})"
   - atom: "(Member @id {props})"
     each: props
   - atom: "(Possession @id {possessor})"
@@ -60,20 +60,20 @@ examples:
     - category: positive
       text: "a thermos"
       instances:
-        - {t: witness, id: n1, kind: thermos}
+        - {t: witness, id: n1, class: thermos}
     - category: positive
       note: a possessive phrase — the possessor is a referent of its own
       text: "Yusra's quilt"
       instances:
         - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: witness, id: x1, kind: quilt, possessor: "@n1"}
+        - {t: witness, id: x1, class: quilt, possessor: "@n1"}
   held_out:
     - category: positive
       note: a property stated in the phrase
       text: "Lamine washed the old quilt."
       instances:
         - {t: named-entity, id: n1, name: "Lamine"}
-        - {t: witness, id: x1, kind: quilt, definite: true, props: [old]}
+        - {t: witness, id: x1, class: quilt, definite: true, props: [old]}
         - {t: activity, id: v1, verb: wash, actor: "@n1", patient: "@x1", tense: past}
     - category: positive
       note: a possessive of-phrase — the possessor, not a postmodifier; no definite mark
@@ -81,5 +81,5 @@ examples:
       instances:
         - {t: named-entity, id: n1, name: "Lamine"}
         - {t: named-entity, id: n2, name: "Teodor"}
-        - {t: witness, id: x1, kind: quilt, possessor: "@n2"}
+        - {t: witness, id: x1, class: quilt, possessor: "@n2"}
         - {t: activity, id: v1, verb: wash, actor: "@n1", patient: "@x1", tense: past}

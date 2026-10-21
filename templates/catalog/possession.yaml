@@ -8,7 +8,7 @@
 
 id: possession
 family: predication
-kind: verb-class
+shape: verb-class
 title: A state of having
 status: draft
 
@@ -87,7 +87,7 @@ examples:
       text: "Teodor has a trowel."
       instances:
         - {t: named-entity, id: n1, name: "Teodor"}
-        - {t: witness, id: x1, kind: trowel}
+        - {t: witness, id: x1, class: trowel}
         - {t: possession, id: p1, verb: have, holder: "@n1", possessed: "@x1", tense: present}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
         - "(Name sk_teodor_1 \"Teodor\")"
@@ -105,7 +105,7 @@ examples:
       note: belong — the subject is the thing held; the roles do not change
       text: "The ladder belongs to Lamine."
       instances:
-        - {t: witness, id: x1, kind: ladder, definite: true}
+        - {t: witness, id: x1, class: ladder, definite: true}
         - {t: named-entity, id: n1, name: "Lamine"}
         - {t: possession, id: p1, verb: belong, holder: "@n1", possessed: "@x1", tense: present}
     - category: abstain
@@ -120,19 +120,19 @@ examples:
       text: "Ottoline owns the quilt."
       instances:
         - {t: named-entity, id: n1, name: "Ottoline"}
-        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: witness, id: x1, class: quilt, definite: true}
         - {t: possession, id: p1, verb: own, holder: "@n1", possessed: "@x1", tense: present}
     - category: positive
       text: "Yusra owns the spindle."
       instances:
         - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: witness, id: x1, kind: spindle, definite: true}
+        - {t: witness, id: x1, class: spindle, definite: true}
         - {t: possession, id: p1, verb: own, holder: "@n1", possessed: "@x1", tense: present}
     - category: contrast
       note: surface flip — subject and object swap positions, the roles do not; only the verb differs
       text: "The spindle belongs to Yusra."
       instances:
-        - {t: witness, id: x1, kind: spindle, definite: true}
+        - {t: witness, id: x1, class: spindle, definite: true}
         - {t: named-entity, id: n1, name: "Yusra"}
         - {t: possession, id: p1, verb: belong, holder: "@n1", possessed: "@x1", tense: present}
     - category: positive
@@ -140,21 +140,21 @@ examples:
       text: "Lamine had a ladder."
       instances:
         - {t: named-entity, id: n1, name: "Lamine"}
-        - {t: witness, id: x1, kind: ladder}
+        - {t: witness, id: x1, class: ladder}
         - {t: possession, id: p1, verb: have, holder: "@n1", possessed: "@x1", tense: past}
     - category: positive
       note: lack keeps its lemma
       text: "Teodor lacks a trowel."
       instances:
         - {t: named-entity, id: n1, name: "Teodor"}
-        - {t: witness, id: x1, kind: trowel}
+        - {t: witness, id: x1, class: trowel}
         - {t: possession, id: p1, verb: lack, holder: "@n1", possessed: "@x1", tense: present}
     - category: scoped
       note: under clausal negation
       text: "Ottoline does not own the quilt."
       instances:
         - {t: named-entity, id: n1, name: "Ottoline"}
-        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: witness, id: x1, class: quilt, definite: true}
         - {t: possession, id: p1, verb: own, holder: "@n1", possessed: "@x1", tense: present}
         - {t: negation, id: s1, over: ["@p1"]}
     - category: scoped
@@ -162,7 +162,7 @@ examples:
       text: "Teodor might keep the envelope."
       instances:
         - {t: named-entity, id: n1, name: "Teodor"}
-        - {t: witness, id: x1, kind: envelope, definite: true}
+        - {t: witness, id: x1, class: envelope, definite: true}
         - {t: possession, id: p1, verb: keep, holder: "@n1", possessed: "@x1", tense: present}
         - {t: modal, id: s1, over: ["@p1"], head: Might, surface: might}
     - category: optional
@@ -170,7 +170,7 @@ examples:
       text: "Yusra had owned the spindle."
       instances:
         - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: witness, id: x1, kind: spindle, definite: true}
+        - {t: witness, id: x1, class: spindle, definite: true}
         - {t: possession, id: p1, verb: own, holder: "@n1", possessed: "@x1", tense: past,
            aspect: perfect}
     - category: abstain

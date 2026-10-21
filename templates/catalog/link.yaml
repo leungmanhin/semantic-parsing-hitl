@@ -11,7 +11,7 @@
 
 id: link
 family: link
-kind: link
+shape: link
 title: A stated relation between two clauses
 status: draft
 
@@ -95,7 +95,7 @@ examples:
       note: the main clause first, the connective's clause second; both events asserted
       text: "The ferret slept because Yusra sang."
       instances:
-        - {t: witness, id: x1, kind: ferret, definite: true}
+        - {t: witness, id: x1, class: ferret, definite: true}
         - {t: named-entity, id: n1, name: "Yusra"}
         - {t: activity, id: v1, verb: sleep, actor: "@x1", tense: past}
         - {t: activity, id: v2, verb: sing, actor: "@n1", tense: past}
@@ -156,7 +156,7 @@ examples:
       note: causal since, fronted — the main clause first
       text: "Since the ferret slept, Yusra sang."
       instances:
-        - {t: witness, id: x1, kind: ferret, definite: true}
+        - {t: witness, id: x1, class: ferret, definite: true}
         - {t: named-entity, id: n1, name: "Yusra"}
         - {t: activity, id: v1, verb: sleep, actor: "@x1", tense: past}
         - {t: activity, id: v2, verb: sing, actor: "@n1", tense: past}
@@ -182,7 +182,7 @@ examples:
       note: a connective opening the next sentence — the previous sentence's event is the main one
       text: "The ferret slept. Therefore Yusra sang."
       instances:
-        - {t: witness, id: x1, kind: ferret, definite: true}
+        - {t: witness, id: x1, class: ferret, definite: true}
         - {t: named-entity, id: n1, name: "Yusra"}
         - {t: activity, id: v1, verb: sleep, actor: "@x1", tense: past}
         - {t: activity, id: v2, verb: sing, actor: "@n1", tense: past}
@@ -220,7 +220,7 @@ examples:
       text: "Because Lamine sang, the ferret did not sleep."
       instances:
         - {t: named-entity, id: n1, name: "Lamine"}
-        - {t: witness, id: x1, kind: ferret, definite: true}
+        - {t: witness, id: x1, class: ferret, definite: true}
         - {t: activity, id: v1, verb: sing, actor: "@n1", tense: past}
         - {t: activity, id: v2, verb: sleep, actor: "@x1", tense: past}
         - {t: negation, id: s1, over: ["@v2"]}

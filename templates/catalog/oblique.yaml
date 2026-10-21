@@ -12,7 +12,7 @@
 
 id: oblique
 family: attachment
-kind: attachment
+shape: attachment
 title: A prepositional phrase on a clause, by its own preposition
 status: draft
 
@@ -77,7 +77,7 @@ slots:
   head:   {type: enum, values: [About, Above, Across, Against, Along, Among, Around, As, At, Behind, Below, Beneath, Beside, Besides, Between, Beyond, By, Concerning, Despite, Down, Except, For, From, In, Inside, Into, Like, Near, Of, Off, On, Onto, Opposite, Out, Outside, Over, Past, Per, Regarding, Round, Through, To, Toward, Towards, Under, Underneath, Unlike, Up, Upon, Via, With, Within, Without],
            required: true, doc: "the preposition as written, capitalized (about → About, without → Without); never a synonym"}
   object: {type: filler, class: Entity, required: true,
-           doc: "the phrase's object: a referent id (a witness, a name) for a specific thing, or a bare lemma for a non-specific or kind-level one (as a weaver → weaver, without a quilt → quilt, like a bird → bird)"}
+           doc: "the phrase's object: a referent id (a witness, a name) for a specific thing, or a bare lemma for a non-specific or class-level one (as a weaver → weaver, without a quilt → quilt, like a bird → bird)"}
 
 emits:
   - atom: "({head} {event} {object})"
@@ -102,7 +102,7 @@ examples:
       text: "Yusra talked about the audit."
       instances:
         - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: witness, id: x1, kind: audit, definite: true}
+        - {t: witness, id: x1, class: audit, definite: true}
         - {t: activity, id: v1, verb: talk, actor: "@n1", tense: past}
         - {t: oblique, id: a1, event: "@v1", head: About, object: "@x1"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
@@ -145,14 +145,14 @@ examples:
       text: "Teodor voted against the plan."
       instances:
         - {t: named-entity, id: n1, name: "Teodor"}
-        - {t: witness, id: x1, kind: plan, definite: true}
+        - {t: witness, id: x1, class: plan, definite: true}
         - {t: activity, id: v1, verb: vote, actor: "@n1", tense: past}
         - {t: oblique, id: a1, event: "@v1", head: Against, object: "@x1"}
     - category: positive
       text: "Lamine argued over the quilt."
       instances:
         - {t: named-entity, id: n1, name: "Lamine"}
-        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: witness, id: x1, class: quilt, definite: true}
         - {t: activity, id: v1, verb: argue, actor: "@n1", tense: past}
         - {t: oblique, id: a1, event: "@v1", head: Over, object: "@x1"}
     - category: positive
@@ -160,11 +160,11 @@ examples:
       text: "Teodor left without the quilt."
       instances:
         - {t: named-entity, id: n1, name: "Teodor"}
-        - {t: witness, id: x1, kind: quilt, definite: true}
+        - {t: witness, id: x1, class: quilt, definite: true}
         - {t: motion, id: m1, verb: leave, mover: "@n1", tense: past}
         - {t: oblique, id: a1, event: "@m1", head: Without, object: "@x1"}
     - category: positive
-      note: a likeness — the object is kind-level, a bare lemma
+      note: a likeness — the object is class-level, a bare lemma
       text: "Yusra sang like a bird."
       instances:
         - {t: named-entity, id: n1, name: "Yusra"}
@@ -175,7 +175,7 @@ examples:
       text: "Lamine walked through the barn."
       instances:
         - {t: named-entity, id: n1, name: "Lamine"}
-        - {t: witness, id: x1, kind: barn, definite: true}
+        - {t: witness, id: x1, class: barn, definite: true}
         - {t: motion, id: m1, verb: walk, mover: "@n1", tense: past}
         - {t: oblique, id: a1, event: "@m1", head: Through, object: "@x1"}
     - category: positive
@@ -183,7 +183,7 @@ examples:
       text: "Teodor ran across the field."
       instances:
         - {t: named-entity, id: n1, name: "Teodor"}
-        - {t: witness, id: x1, kind: field, definite: true}
+        - {t: witness, id: x1, class: field, definite: true}
         - {t: motion, id: m1, verb: run, mover: "@n1", tense: past}
         - {t: oblique, id: a1, event: "@m1", head: Across, object: "@x1"}
     - category: positive
@@ -191,7 +191,7 @@ examples:
       text: "Teodor dealt with the audit."
       instances:
         - {t: named-entity, id: n1, name: "Teodor"}
-        - {t: witness, id: x1, kind: audit, definite: true}
+        - {t: witness, id: x1, class: audit, definite: true}
         - {t: activity, id: v1, verb: deal, actor: "@n1", tense: past}
         - {t: oblique, id: a1, event: "@v1", head: With, object: "@x1"}
     - category: positive
@@ -199,7 +199,7 @@ examples:
       text: "Yusra sang despite the rain."
       instances:
         - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: witness, id: x1, kind: rain, definite: true}
+        - {t: witness, id: x1, class: rain, definite: true}
         - {t: activity, id: v1, verb: sing, actor: "@n1", tense: past}
         - {t: oblique, id: a1, event: "@v1", head: Despite, object: "@x1"}
     - category: scoped
@@ -207,7 +207,7 @@ examples:
       text: "Yusra did not talk about the audit."
       instances:
         - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: witness, id: x1, kind: audit, definite: true}
+        - {t: witness, id: x1, class: audit, definite: true}
         - {t: activity, id: v1, verb: talk, actor: "@n1", tense: past}
         - {t: oblique, id: a1, event: "@v1", head: About, object: "@x1"}
         - {t: negation, id: s1, over: ["@v1"]}
@@ -216,7 +216,7 @@ examples:
       text: "Lamine did not argue over a quilt."
       instances:
         - {t: named-entity, id: n1, name: "Lamine"}
-        - {t: witness, id: x1, kind: quilt}
+        - {t: witness, id: x1, class: quilt}
         - {t: activity, id: v1, verb: argue, actor: "@n1", tense: past}
         - {t: oblique, id: a1, event: "@v1", head: Over, object: "@x1"}
         - {t: negation, id: s1, over: ["@v1"]}
@@ -233,7 +233,7 @@ examples:
       note: inside a generalization — without any quilt, so the object is a bare lemma
       text: "Every ferret slept without a quilt."
       instances:
-        - {t: range, id: q1, kind: ferret, quantifier: every, predicate: sleep}
+        - {t: range, id: q1, class: ferret, quantifier: every, predicate: sleep}
         - {t: activity, id: v1, verb: sleep, actor: "@q1", tense: past}
         - {t: oblique, id: a1, event: "@v1", head: Without, object: quilt}
         - {t: generic, id: r1, ranges: ["@q1"], over: ["@v1"]}
@@ -242,8 +242,8 @@ examples:
       text: "Teodor voted against the plan despite the rain."
       instances:
         - {t: named-entity, id: n1, name: "Teodor"}
-        - {t: witness, id: x1, kind: plan, definite: true}
-        - {t: witness, id: x2, kind: rain, definite: true}
+        - {t: witness, id: x1, class: plan, definite: true}
+        - {t: witness, id: x2, class: rain, definite: true}
         - {t: activity, id: v1, verb: vote, actor: "@n1", tense: past}
         - {t: oblique, id: a1, event: "@v1", head: Against, object: "@x1"}
         - {t: oblique, id: a2, event: "@v1", head: Despite, object: "@x2"}
