@@ -1,0 +1,95 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "f4d17abe47ce0097d01f189e549c2f7270adfee30060ea503bfb81f323e1bd63",
+  "item": {
+    "id": "sedb76b6d98",
+    "text": "It was the spindle that Yusra sold."
+  },
+  "usage": {
+    "input": 53466,
+    "output": 152,
+    "thinking": null,
+    "total": 53618,
+    "cached": 51414,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 53466,
+    "candidatesTokenCount": 152,
+    "totalTokenCount": 53618,
+    "cachedContentTokenCount": 51414,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 53466
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 51414
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 152
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sedb76b6d98\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"spindle\", \"definite\": true}, {\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"sell\", \"giver\": \"@n1\", \"object\": \"@x1\", \"tense\": \"past\"}, {\"t\": \"focus\", \"id\": \"f1\", \"head\": \"Cleft\", \"filler\": \"@x1\", \"event\": \"@e1\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sedb76b6d98",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "spindle",
+        "definite": true
+      },
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra"
+      },
+      {
+        "t": "transfer",
+        "id": "e1",
+        "verb": "sell",
+        "giver": "@n1",
+        "object": "@x1",
+        "tense": "past"
+      },
+      {
+        "t": "focus",
+        "id": "f1",
+        "head": "Cleft",
+        "filler": "@x1",
+        "event": "@e1"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "e9f273b0d2bdaff9e725ba8f0d2aaf8c4c5cb64dbb039e1e790e5251d9ea1298",
+  "run": 1,
+  "case": {
+    "template": "focus",
+    "section": "held_out",
+    "index": 8,
+    "category": "positive",
+    "text": "It was the spindle that Yusra sold.",
+    "key": "edb76b6d98"
+  }
+}

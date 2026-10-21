@@ -1,0 +1,98 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "f4d17abe47ce0097d01f189e549c2f7270adfee30060ea503bfb81f323e1bd63",
+  "item": {
+    "id": "sa09d5c61bf",
+    "text": "Only Yusra might laugh."
+  },
+  "usage": {
+    "input": 53463,
+    "output": 157,
+    "thinking": null,
+    "total": 53620,
+    "cached": 51414,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 53463,
+    "candidatesTokenCount": 157,
+    "totalTokenCount": 53620,
+    "cachedContentTokenCount": 51414,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 53463
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 51414
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 157
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sa09d5c61bf\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"laugh\", \"actor\": \"@n1\", \"tense\": \"present\"}, {\"t\": \"modal\", \"id\": \"s1\", \"over\": [\"@e1\"], \"head\": \"Might\", \"surface\": \"might\"}, {\"t\": \"focus\", \"id\": \"f1\", \"head\": \"Only\", \"filler\": \"@n1\", \"event\": \"@e1\", \"surface\": \"only\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sa09d5c61bf",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "laugh",
+        "actor": "@n1",
+        "tense": "present"
+      },
+      {
+        "t": "modal",
+        "id": "s1",
+        "over": [
+          "@e1"
+        ],
+        "head": "Might",
+        "surface": "might"
+      },
+      {
+        "t": "focus",
+        "id": "f1",
+        "head": "Only",
+        "filler": "@n1",
+        "event": "@e1",
+        "surface": "only"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "e9f273b0d2bdaff9e725ba8f0d2aaf8c4c5cb64dbb039e1e790e5251d9ea1298",
+  "run": 2,
+  "case": {
+    "template": "focus",
+    "section": "held_out",
+    "index": 15,
+    "category": "scoped",
+    "text": "Only Yusra might laugh.",
+    "key": "a09d5c61bf"
+  }
+}

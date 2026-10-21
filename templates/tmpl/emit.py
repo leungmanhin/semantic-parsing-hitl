@@ -375,11 +375,13 @@ class _Emitter:
                 if spec["type"] == "filler" and is_ref(r.get(sname)) and not spec.get("attaches"):
                     mentions.setdefault(r[sname][1:], []).append(r["id"])
         self.mentions = mentions
-        # referent instance -> the innermost scope enclosing every mention, or None (top level)
+        # referent instance -> the innermost scope enclosing every mention, or None (top level);
+        # only a REFERENT is placed by its mentions: a predication named by a link or a focus atom
+        # stays where its own scope puts it (a negated focus leaves the prejacent asserted)
         self.home: dict[str, str | None] = {}
         for r in self.insts:
             iid = r["id"]
-            if iid in self.scope_of or not mentions.get(iid) or self.is_rigid(iid):
+            if iid in self.scope_of or not mentions.get(iid) or self.is_rigid(iid) or self.cat[r["t"]].get("family") != "referent":
                 self.home[iid] = None
                 continue
             chains = [enclosing(m) for m in mentions[iid]]

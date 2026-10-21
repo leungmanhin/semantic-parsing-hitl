@@ -1,0 +1,268 @@
+# Template: focus  (a focus particle or a cleft on a clause: "Only Yusra laughed", "It was Lamine who washed the quilt")
+#
+# A focus particle — only / just / solely / alone (exclusive), even (scalar), also / too / as
+# well (additive; either / neither are their forms under negation) — or an it-cleft adds a
+# focus-sensitive claim on top of an ordinary clause. The clause with the particle removed (the
+# prejacent) is parsed with its own template and asserted normally; the focus is one opaque
+# top-level atom naming the focused constituent and the clause's event:
+# (Only sk_yusra_1 sk_laugh_1). No exclusion rule ("nobody else laughed") and no presupposition
+# ("someone else laughed") is asserted: the atom records the claim, the reasoner draws the rest.
+# Under negation the particle decides what is denied: "not only X" denies the focus (the
+# negation scopes over the focus instance); "only X did not", "not even X", "X did not either"
+# deny the prejacent (the negation scopes over the clause; the focus atom stays outside).
+
+id: focus
+family: link
+shape: link
+title: A focus particle or a cleft on a clause
+status: draft
+
+trigger:
+  construction: >
+    A focus particle on a constituent of a verbal clause — only, just, solely, alone
+    (exclusive); even (scalar); also, too, as well (additive), with either and neither as their
+    forms under negation — or an it-cleft (it was Lamine who washed the quilt) or a
+    pseudo-cleft (what Teodor read was the letter). The clause is parsed with its own template
+    as if the particle were absent; the focus instance names the head, the focused constituent
+    — the referent id of the subject or object the particle sits on, or the verb's lemma for a
+    focus on the verb phrase (Teodor only slept → sleep) — and the clause's event. A
+    clause-final too / as well / either focuses the subject unless the text says otherwise.
+    One instance per particle or cleft.
+  surface_forms:
+    - "only / even / also <subject> V …"           # only Yusra laughed; even Ottoline laughed
+    - "<subject> V only <object>"                  # Teodor read only the letter
+    - "<subject> only / even V"                    # Teodor only slept: the verb phrase
+    - "<subject> V … too / as well / either"       # Lamine laughed too
+    - "it was <X> who / that <clause>"             # it was Lamine who washed the quilt
+    - "what <clause> was <X>"                      # what Teodor read was the letter
+  boundary:                   # looks like a focus but is not one
+    - >-
+      a particle on a count — only one ferret, only three letters: no carrier for the
+      exclusivity on a number; report the particle under G07
+    - >-
+      a particle on a copular or a class statement — only the ladder is crooked, herons are
+      also common: the clause has no event for the atom to name; keep the predication and
+      report the particle as unmapped
+    - >-
+      a particle on a generalization — only ferrets sleep in burrows: the event is a rule's
+      variable, no top-level atom can name it; report the clause as unmapped
+    - >-
+      "even though", "even if" — a connective or a conditional, not a scalar particle
+    - >-
+      "just" meaning recently — has just arrived: a time adverb with no slot (G02); "alone"
+      meaning without company — slept alone: a manner
+    - >-
+      "also" or "too" opening a sentence as a discourse connective — Also, Teodor left: a
+      connective with no clause to relate here (G05)
+    - >-
+      a negated cleft — it was not Lamine who washed the quilt: the backgrounded clause would
+      need an actorless predication; report the clause as unmapped
+    - >-
+      "the only N" — the only locksmith: an adjective inside the noun phrase, not a particle;
+      report it as unmapped
+
+slots:
+  id:      {type: id, required: true, doc: "your label for the focus (f1, f2 …)"}
+  head:    {type: enum, values: [Only, Even, Also, Cleft], required: true,
+            doc: "Only for only / just / solely / alone; Even for even; Also for also / too / as well / either / neither; Cleft for an it-cleft or a pseudo-cleft"}
+  filler:  {type: filler, class: Class, required: true,
+            doc: "the focused constituent: the referent id of the subject or object the particle sits on (@n1, @x1), or the verb's lemma for a focus on the verb phrase (sleep)"}
+  event:   {type: filler, class: Event, required: true,
+            doc: "the clause's event: the id of its predication instance — never the id of a negation or modal over it"}
+  surface: {type: string, required: false,
+            doc: "the particle as written (only, just, solely, alone, even, also, too, as well, either, neither); absent for a cleft"}
+
+emits:
+  - atom: "({head} {filler} {event})"
+
+notes:
+  - >-
+    A top-level record at full confidence, like a link: the prejacent is asserted on its own
+    and the atom adds the claim about the constituent. The parse infers nothing from it — not
+    that nobody else laughed, not that someone else did.
+  - >-
+    Under negation, what "not" targets decides which instance the negation scopes over: the
+    focus instance for "not only" (the prejacent stays asserted, the exclusivity is denied),
+    the clause for "only … not", "not even", "… not … either" (the clause is denied, the
+    focus atom stays outside the negation and names the denied event).
+  - >-
+    A focus on the verb phrase names the verb's lemma, the same class symbol the event is a
+    member of.
+
+depends_on: [activity, transfer, motion, psych, communication]
+composes_with: [negation, modal, time, location]
+
+examples:
+  shown:                     # rendered into the prompt
+    - category: positive
+      note: subject focus — the prejacent asserted, one atom on top
+      text: "Only Yusra laughed."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past}
+        - {t: focus, id: f1, head: Only, filler: "@n1", event: "@v1", surface: only}
+      emitted:               # what the emitter produces (illustration; the emitter is the authority)
+        - "(Name sk_yusra_1 \"Yusra\")"
+        - "(Member sk_laugh_1 laugh)"
+        - "(Agent sk_laugh_1 sk_yusra_1)"
+        - "(Past sk_laugh_1)"
+        - "(Only sk_yusra_1 sk_laugh_1)"
+      declarations:
+        - "(: laugh Class)"
+        - "(: sk_laugh_1 Event)"
+        - "(: sk_yusra_1 Entity)"
+    - category: positive
+      note: object focus — the particle sits on the object
+      text: "Teodor read only the letter."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, class: letter, definite: true}
+        - {t: activity, id: v1, verb: read, actor: "@n1", patient: "@x1", tense: past}
+        - {t: focus, id: f1, head: Only, filler: "@x1", event: "@v1", surface: only}
+    - category: positive
+      note: an it-cleft — the backgrounded clause is the prejacent, the clefted phrase the focus
+      text: "It was Lamine who washed the quilt."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: x1, class: quilt, definite: true}
+        - {t: activity, id: v1, verb: wash, actor: "@n1", patient: "@x1", tense: past}
+        - {t: focus, id: f1, head: Cleft, filler: "@n1", event: "@v1"}
+    - category: abstain
+      text: "Only one ferret slept."
+      expected: {abstain: true, gap: G07, span: "only"}                # a particle on a count
+
+  held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      text: "Only Lamine waited."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: activity, id: v1, verb: wait, actor: "@n1", tense: past}
+        - {t: focus, id: f1, head: Only, filler: "@n1", event: "@v1", surface: only}
+    - category: positive
+      note: object focus
+      text: "Yusra sold only the spindle."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, class: spindle, definite: true}
+        - {t: transfer, id: e1, verb: sell, giver: "@n1", object: "@x1", tense: past}
+        - {t: focus, id: f1, head: Only, filler: "@x1", event: "@e1", surface: only}
+    - category: positive
+      note: a focus on the verb phrase — the verb's lemma
+      text: "Teodor only slept."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: activity, id: v1, verb: sleep, actor: "@n1", tense: past}
+        - {t: focus, id: f1, head: Only, filler: sleep, event: "@v1", surface: only}
+    - category: positive
+      note: scalar
+      text: "Even Ottoline laughed."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past}
+        - {t: focus, id: f1, head: Even, filler: "@n1", event: "@v1", surface: even}
+    - category: positive
+      note: additive, clause-final — the subject is the focus
+      text: "Lamine laughed too."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past}
+        - {t: focus, id: f1, head: Also, filler: "@n1", event: "@v1", surface: too}
+    - category: positive
+      text: "Ottoline waited as well."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: activity, id: v1, verb: wait, actor: "@n1", tense: past}
+        - {t: focus, id: f1, head: Also, filler: "@n1", event: "@v1", surface: as well}
+    - category: positive
+      note: just as the exclusive particle
+      text: "Just Teodor waited."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: activity, id: v1, verb: wait, actor: "@n1", tense: past}
+        - {t: focus, id: f1, head: Only, filler: "@n1", event: "@v1", surface: just}
+    - category: positive
+      note: alone after the subject is the exclusive particle
+      text: "Yusra alone laughed."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past}
+        - {t: focus, id: f1, head: Only, filler: "@n1", event: "@v1", surface: alone}
+    - category: positive
+      note: an object cleft
+      text: "It was the spindle that Yusra sold."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, class: spindle, definite: true}
+        - {t: transfer, id: e1, verb: sell, giver: "@n1", object: "@x1", tense: past}
+        - {t: focus, id: f1, head: Cleft, filler: "@x1", event: "@e1"}
+    - category: positive
+      note: a pseudo-cleft
+      text: "What Teodor read was the letter."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, class: letter, definite: true}
+        - {t: activity, id: v1, verb: read, actor: "@n1", patient: "@x1", tense: past}
+        - {t: focus, id: f1, head: Cleft, filler: "@x1", event: "@v1"}
+    - category: scoped
+      note: not only — the negation scopes over the focus; the prejacent stays asserted
+      text: "Not only Yusra laughed."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past}
+        - {t: focus, id: f1, head: Only, filler: "@n1", event: "@v1", surface: only}
+        - {t: negation, id: s1, over: ["@f1"]}
+    - category: scoped
+      note: only … not — the clause is denied, the focus atom stays outside
+      text: "Only Lamine did not wait."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: activity, id: v1, verb: wait, actor: "@n1", tense: past}
+        - {t: negation, id: s1, over: ["@v1"]}
+        - {t: focus, id: f1, head: Only, filler: "@n1", event: "@v1", surface: only}
+    - category: scoped
+      note: not even — the clause is denied
+      text: "Not even Teodor laughed."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past}
+        - {t: negation, id: s1, over: ["@v1"]}
+        - {t: focus, id: f1, head: Even, filler: "@n1", event: "@v1", surface: even}
+    - category: scoped
+      note: either — the additive particle under negation
+      text: "Yusra did not laugh either."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past}
+        - {t: negation, id: s1, over: ["@v1"]}
+        - {t: focus, id: f1, head: Also, filler: "@n1", event: "@v1", surface: either}
+    - category: scoped
+      note: not even on the verb phrase
+      text: "Lamine did not even wait."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: activity, id: v1, verb: wait, actor: "@n1", tense: past}
+        - {t: negation, id: s1, over: ["@v1"]}
+        - {t: focus, id: f1, head: Even, filler: wait, event: "@v1", surface: even}
+    - category: scoped
+      note: under a modal — the focus atom names the event inside the modal
+      text: "Only Yusra might laugh."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: present}
+        - {t: modal, id: s1, over: ["@v1"], head: Might, surface: might}
+        - {t: focus, id: f1, head: Only, filler: "@n1", event: "@v1", surface: only}
+    - category: abstain
+      text: "The ferret slept alone."
+      expected: {abstain: true, template: manner}                      # alone as without company
+    - category: abstain
+      text: "Even though Lamine waited, Teodor left."
+      expected: {abstain: true, template: link}                        # a connective
+    - category: abstain
+      text: "Only the ladder is crooked."
+      expected: {abstain: true, gap: G00, span: "Only"}                # no event to name: the particle is reported
+    - category: abstain
+      text: "Also, Teodor left."
+      expected: {abstain: true, gap: G05, span: "Also"}                # a discourse connective
+    - category: abstain
+      text: "Teodor has just arrived."
+      expected: {abstain: true, gap: G02, span: "just"}                # recently: a time adverb

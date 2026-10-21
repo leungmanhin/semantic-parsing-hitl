@@ -1,0 +1,95 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "f4d17abe47ce0097d01f189e549c2f7270adfee30060ea503bfb81f323e1bd63",
+  "item": {
+    "id": "s51e4b9bc66",
+    "text": "What Teodor read was the letter."
+  },
+  "usage": {
+    "input": 53466,
+    "output": 151,
+    "thinking": null,
+    "total": 53617,
+    "cached": 51417,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 53466,
+    "candidatesTokenCount": 151,
+    "totalTokenCount": 53617,
+    "cachedContentTokenCount": 51417,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 53466
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 51417
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 151
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s51e4b9bc66\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"letter\", \"definite\": true}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"read\", \"actor\": \"@n1\", \"patient\": \"@x1\", \"tense\": \"past\"}, {\"t\": \"focus\", \"id\": \"f1\", \"head\": \"Cleft\", \"filler\": \"@x1\", \"event\": \"@e1\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s51e4b9bc66",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "letter",
+        "definite": true
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "read",
+        "actor": "@n1",
+        "patient": "@x1",
+        "tense": "past"
+      },
+      {
+        "t": "focus",
+        "id": "f1",
+        "head": "Cleft",
+        "filler": "@x1",
+        "event": "@e1"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "e9f273b0d2bdaff9e725ba8f0d2aaf8c4c5cb64dbb039e1e790e5251d9ea1298",
+  "run": 3,
+  "case": {
+    "template": "focus",
+    "section": "held_out",
+    "index": 9,
+    "category": "positive",
+    "text": "What Teodor read was the letter.",
+    "key": "51e4b9bc66"
+  }
+}

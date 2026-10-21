@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 2fc08b0836dcfd38 · 41 templates
+catalog sha256 b97df3a1e97594be · 42 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -52,7 +52,7 @@ fences.
 - Every instance carries an `id`: a short lowercase label you choose, unique within the item.
   Suggested prefixes: `n` named individual, `x` witness, `g` group, `e` event, `s` scope
   operator (negation, modal), `c` copular predication, `l` location, `q` quantified range, `r`
-  rule, `d` comparison or degree, `m` measure, `t` time, `k` link (n1, x1, e1, s1 …).
+  rule, `d` comparison or degree, `m` measure, `t` time, `k` link, `f` focus (n1, x1, e1, s1 …).
 - A slot that points to another instance holds `"@<id>"`, for example `"Agent": "@n1"`.
 - The id `now` is reserved for the text's REFERENCE TIME (the moment the text speaks from). You
   never write its instance; a deictic time (yesterday, tomorrow, last week) refers to it as its
@@ -2549,7 +2549,9 @@ Forms:
 - <S> never <V> …
 
 Not this template:
-- not only — a focus particle, not negation
+- not only — the negation scopes over the FOCUS instance ("not only Yusra laughed" denies the
+  exclusivity, the clause stays asserted); "only … not", "not even", "not … either" scope over
+  the clause, with the focus atom outside
 - no as a quantifier — no clerk arrived: a quantified statement at strength 0, not a scope
 - must not / may not / need not — the modal template decides the scope order; this template
   provides the negation instance it scopes over or under
@@ -3577,6 +3579,121 @@ The program renders these instances as:
     (Coref sk_yusra_2 sk_yusra_1)
 
 Not this template. TEXT: Yusra laughed. — use `activity`.
+
+### focus — A focus particle or a cleft on a clause
+
+When: A focus particle on a constituent of a verbal clause — only, just, solely, alone
+(exclusive); even (scalar); also, too, as well (additive), with either and neither as their
+forms under negation — or an it-cleft (it was Lamine who washed the quilt) or a pseudo-cleft
+(what Teodor read was the letter). The clause is parsed with its own template as if the particle
+were absent; the focus instance names the head, the focused constituent — the referent id of the
+subject or object the particle sits on, or the verb's lemma for a focus on the verb phrase
+(Teodor only slept → sleep) — and the clause's event. A clause-final too / as well / either
+focuses the subject unless the text says otherwise. One instance per particle or cleft.
+
+Forms:
+- only / even / also <subject> V …
+- <subject> V only <object>
+- <subject> only / even V
+- <subject> V … too / as well / either
+- it was <X> who / that <clause>
+- what <clause> was <X>
+
+Not this template:
+- a particle on a count — only one ferret, only three letters: no carrier for the exclusivity on
+  a number; report the particle under G07
+- a particle on a copular or a class statement — only the ladder is crooked, herons are also
+  common: the clause has no event for the atom to name; keep the predication and report the
+  particle as unmapped
+- a particle on a generalization — only ferrets sleep in burrows: the event is a rule's
+  variable, no top-level atom can name it; report the clause as unmapped
+- "even though", "even if" — a connective or a conditional, not a scalar particle
+- "just" meaning recently — has just arrived: a time adverb with no slot (G02); "alone" meaning
+  without company — slept alone: a manner
+- "also" or "too" opening a sentence as a discourse connective — Also, Teodor left: a connective
+  with no clause to relate here (G05)
+- a negated cleft — it was not Lamine who washed the quilt: the backgrounded clause would need
+  an actorless predication; report the clause as unmapped
+- "the only N" — the only locksmith: an adjective inside the noun phrase, not a particle; report
+  it as unmapped
+
+Slots:
+
+- `t` (required): "focus"
+- `id` (required; your label for this instance): your label for the focus (f1, f2 …).
+- `head` (required; one of: Only, Even, Also, Cleft): Only for only / just / solely / alone;
+  Even for even; Also for also / too / as well / either / neither; Cleft for an it-cleft or a
+  pseudo-cleft.
+- `filler` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
+  the focused constituent: the referent id of the subject or object the particle sits on (@n1,
+  @x1), or the verb's lemma for a focus on the verb phrase (sleep).
+- `event` (required; "@id" of a predication instance (the clause's event)): the clause's event:
+  the id of its predication instance — never the id of a negation or modal over it.
+- `surface` (optional; a string): the particle as written (only, just, solely, alone, even,
+  also, too, as well, either, neither); absent for a cleft.
+
+Example (subject focus — the prejacent asserted, one atom on top). TEXT: Only Yusra laughed.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Yusra"},
+      {"t": "activity", "id": "v1", "verb": "laugh", "actor": "@n1", "tense": "past"},
+      {"t": "focus", "id": "f1", "head": "Only", "filler": "@n1", "event": "@v1", "surface": "only"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_yusra_1 "Yusra")
+    (Member sk_laugh_1 laugh)
+    (Agent sk_laugh_1 sk_yusra_1)
+    (Past sk_laugh_1)
+    (Only sk_yusra_1 sk_laugh_1)
+
+Example (object focus — the particle sits on the object). TEXT: Teodor read only the letter.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Teodor"},
+      {"t": "witness", "id": "x1", "class": "letter", "definite": true},
+      {"t": "activity", "id": "v1", "verb": "read", "actor": "@n1", "patient": "@x1", "tense": "past"},
+      {"t": "focus", "id": "f1", "head": "Only", "filler": "@x1", "event": "@v1", "surface": "only"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_teodor_1 "Teodor")
+    (Member sk_letter_1 letter)
+    (Member sk_read_1 read)
+    (Agent sk_read_1 sk_teodor_1)
+    (Patient sk_read_1 sk_letter_1)
+    (Past sk_read_1)
+    (Only sk_letter_1 sk_read_1)
+
+Example (an it-cleft — the backgrounded clause is the prejacent, the clefted phrase the focus). TEXT: It was Lamine who washed the quilt.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Lamine"},
+      {"t": "witness", "id": "x1", "class": "quilt", "definite": true},
+      {"t": "activity", "id": "v1", "verb": "wash", "actor": "@n1", "patient": "@x1", "tense": "past"},
+      {"t": "focus", "id": "f1", "head": "Cleft", "filler": "@n1", "event": "@v1"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_lamine_1 "Lamine")
+    (Member sk_quilt_1 quilt)
+    (Member sk_wash_1 wash)
+    (Agent sk_wash_1 sk_lamine_1)
+    (Patient sk_wash_1 sk_quilt_1)
+    (Past sk_wash_1)
+    (Cleft sk_lamine_1 sk_wash_1)
+
+Not this template. TEXT: Only one ferret slept. — report it as unmapped: {"span": "only",
+"code": "G07"}.
 
 ### link — A stated relation between two clauses
 

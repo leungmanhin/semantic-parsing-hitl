@@ -515,6 +515,31 @@ class EmitTests(unittest.TestCase):
         self.assertEqual(atoms_of(out["statements"]),
                          ["(Implication (And (Member $x ferret) (Member $x cornered)) (And (Member (sk_bite $x) bite) (Agent (sk_bite $x) $x)))"])
 
+    def test_focus_is_a_top_level_atom_and_negation_targets_the_focus_or_the_prejacent(self):
+        """A focus particle is one top-level atom over the clause's event; "not only" negates the
+        focus instance and leaves the prejacent asserted (a predication is never pulled into a scope
+        by the atom that names it); "only … not" negates the clause with the atom outside; a
+        verb-phrase focus names the verb lemma."""
+        base = [{"t": "named-entity", "id": "n1", "name": "Yusra"},
+                {"t": "activity", "id": "v1", "verb": "laugh", "actor": "@n1", "tense": "past"}]
+        only = base + [{"t": "focus", "id": "f1", "head": "Only", "filler": "@n1", "event": "@v1", "surface": "only"}]
+        atoms = atoms_of(E.emit({"id": "t", "instances": only}, CATALOG)["statements"])
+        self.assertIn("(Only sk_yusra_1 sk_laugh_1)", atoms)
+        self.assertIn("(Agent sk_laugh_1 sk_yusra_1)", atoms)
+        notonly = only + [{"t": "negation", "id": "s1", "over": ["@f1"]}]
+        atoms = atoms_of(E.emit({"id": "t", "instances": notonly}, CATALOG)["statements"])
+        self.assertIn("(Not (Only sk_yusra_1 sk_laugh_1))", atoms)
+        self.assertIn("(Past sk_laugh_1)", atoms)                                        # the prejacent stays asserted
+        self.assertFalse(any(a.startswith("(Not (And") for a in atoms))
+        onlynot = only + [{"t": "negation", "id": "s1", "over": ["@v1"]}]
+        atoms = atoms_of(E.emit({"id": "t", "instances": onlynot}, CATALOG)["statements"])
+        self.assertIn("(Only sk_yusra_1 sk_laugh_1)", atoms)                             # outside the denial
+        self.assertTrue(any(a.startswith("(Not (And (Member sk_laugh_1 laugh)") for a in atoms))
+        vp = base + [{"t": "focus", "id": "f1", "head": "Even", "filler": "laugh", "event": "@v1", "surface": "even"}]
+        out = E.emit({"id": "t", "instances": vp}, CATALOG)
+        self.assertIn("(Even laugh sk_laugh_1)", atoms_of(out["statements"]))
+        self.assertIn("(: laugh Class)", out["declarations"])
+
     def test_malformed_instances_are_refused(self):
         bad = [{"t": "transfer", "id": "e1", "verb": "give", "giver": "@n9", "object": "x", "tense": "past"}]
         with self.assertRaises(E.EmitError) as cm:

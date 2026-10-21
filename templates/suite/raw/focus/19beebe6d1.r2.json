@@ -1,0 +1,89 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "f4d17abe47ce0097d01f189e549c2f7270adfee30060ea503bfb81f323e1bd63",
+  "item": {
+    "id": "s19beebe6d1",
+    "text": "Only the ladder is crooked."
+  },
+  "usage": {
+    "input": 53462,
+    "output": 186,
+    "thinking": null,
+    "total": 53648,
+    "cached": 51413,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 53462,
+    "candidatesTokenCount": 186,
+    "totalTokenCount": 53648,
+    "cachedContentTokenCount": 51413,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 53462
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 51413
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 186
+      }
+    ]
+  },
+  "raw_text": "{\n  \"id\": \"s19beebe6d1\",\n  \"instances\": [\n    {\n      \"t\": \"witness\",\n      \"id\": \"x1\",\n      \"class\": \"ladder\",\n      \"definite\": true\n    },\n    {\n      \"t\": \"copular\",\n      \"id\": \"c1\",\n      \"subject\": \"@x1\",\n      \"predicate\": \"crooked\",\n      \"form\": \"adjective\",\n      \"tense\": \"present\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"span\": \"Only\",\n      \"code\": \"G00\",\n      \"construction\": \"An exclusive focus particle on the subject of a copular clause.\"\n    }\n  ],\n  \"issues\": []\n}",
+  "response": {
+    "id": "s19beebe6d1",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "ladder",
+        "definite": true
+      },
+      {
+        "t": "copular",
+        "id": "c1",
+        "subject": "@x1",
+        "predicate": "crooked",
+        "form": "adjective",
+        "tense": "present"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "Only",
+        "code": "G00",
+        "construction": "An exclusive focus particle on the subject of a copular clause."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "e9f273b0d2bdaff9e725ba8f0d2aaf8c4c5cb64dbb039e1e790e5251d9ea1298",
+  "run": 2,
+  "case": {
+    "template": "focus",
+    "section": "held_out",
+    "index": 18,
+    "category": "abstain",
+    "text": "Only the ladder is crooked.",
+    "key": "19beebe6d1"
+  }
+}

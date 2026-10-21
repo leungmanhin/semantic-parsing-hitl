@@ -1,0 +1,96 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "f4d17abe47ce0097d01f189e549c2f7270adfee30060ea503bfb81f323e1bd63",
+  "item": {
+    "id": "s37d178186f",
+    "text": "Lamine did not even wait."
+  },
+  "usage": {
+    "input": 53466,
+    "output": 146,
+    "thinking": null,
+    "total": 53612,
+    "cached": 51417,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 53466,
+    "candidatesTokenCount": 146,
+    "totalTokenCount": 53612,
+    "cachedContentTokenCount": 51417,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 53466
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 51417
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 146
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s37d178186f\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"wait\", \"actor\": \"@n1\", \"tense\": \"past\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@v1\"]}, {\"t\": \"focus\", \"id\": \"f1\", \"head\": \"Even\", \"filler\": \"wait\", \"event\": \"@v1\", \"surface\": \"even\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s37d178186f",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "wait",
+        "actor": "@n1",
+        "tense": "past"
+      },
+      {
+        "t": "negation",
+        "id": "s1",
+        "over": [
+          "@v1"
+        ]
+      },
+      {
+        "t": "focus",
+        "id": "f1",
+        "head": "Even",
+        "filler": "wait",
+        "event": "@v1",
+        "surface": "even"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "e9f273b0d2bdaff9e725ba8f0d2aaf8c4c5cb64dbb039e1e790e5251d9ea1298",
+  "run": 2,
+  "case": {
+    "template": "focus",
+    "section": "held_out",
+    "index": 14,
+    "category": "scoped",
+    "text": "Lamine did not even wait.",
+    "key": "37d178186f"
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "f4d17abe47ce0097d01f189e549c2f7270adfee30060ea503bfb81f323e1bd63",
+  "item": {
+    "id": "s19beebe6d1",
+    "text": "Only the ladder is crooked."
+  },
+  "usage": {
+    "input": 53462,
+    "output": 122,
+    "thinking": null,
+    "total": 53584,
+    "cached": 51413,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 53462,
+    "candidatesTokenCount": 122,
+    "totalTokenCount": 53584,
+    "cachedContentTokenCount": 51413,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 53462
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 51413
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 122
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s19beebe6d1\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"ladder\", \"definite\": true}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@x1\", \"predicate\": \"crooked\", \"form\": \"adjective\", \"tense\": \"present\"}], \"unmapped\": [{\"span\": \"Only\", \"code\": \"G00\", \"construction\": \"A focus particle on a copular predication.\"}], \"issues\": []}",
+  "response": {
+    "id": "s19beebe6d1",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "ladder",
+        "definite": true
+      },
+      {
+        "t": "copular",
+        "id": "c1",
+        "subject": "@x1",
+        "predicate": "crooked",
+        "form": "adjective",
+        "tense": "present"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "Only",
+        "code": "G00",
+        "construction": "A focus particle on a copular predication."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "e9f273b0d2bdaff9e725ba8f0d2aaf8c4c5cb64dbb039e1e790e5251d9ea1298",
+  "run": 1,
+  "case": {
+    "template": "focus",
+    "section": "held_out",
+    "index": 18,
+    "category": "abstain",
+    "text": "Only the ladder is crooked.",
+    "key": "19beebe6d1"
+  }
+}

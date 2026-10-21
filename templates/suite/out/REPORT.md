@@ -1,10 +1,10 @@
 # Suite report
 
-prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 9b7e293f463ab8b2) · type check: ran
+prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 e9f273b0d2bdaff9) · type check: ran
 
 ## Catalog checks
 
-622 examples checked; findings: 0
+647 examples checked; findings: 0
 
 Sentences two templates claim with the same expected atoms (composition, fine):
 - "Lamine danced with Yusra." — activity, adjunct
@@ -502,6 +502,33 @@ Abstain cases (what the parser did, per run):
 - "Lamine waited patiently." (target `manner`): r1 target_fired [activity×1, manner×1, named-entity×1] · r2 target_fired [activity×1, manner×1, named-entity×1] · r3 target_fired [activity×1, manner×1, named-entity×1]
 - "Lamine often laughed." (gap G02): r1 gap_reported [activity×1, named-entity×1; unmapped G02] · r2 gap_reported [activity×1, named-entity×1; unmapped G02] · r3 gap_reported [activity×1, named-entity×1; unmapped G02]
 - "Teodor is extremely tired." (target `degree`): r1 target_fired [degree×1, named-entity×1] · r2 target_fired [degree×1, named-entity×1] · r3 target_fired [degree×1, named-entity×1]
+
+Mismatches: none
+
+## focus — held_out
+
+21 cases, 63 records (ok 63; stale prompt 0) · gemini-4-argon effort=low
+
+| category | cases | runs | fired | exact | pass |
+|---|---|---|---|---|---|
+| positive | 10 | 30 | 30 | 30 | 30 |
+| scoped | 6 | 18 | 18 | 18 | 18 |
+| abstain | 5 | 15 | 0 (false fires) | – | 15 |
+
+- selection: fire cases fired 48/48 · abstain cases false fires 0/15
+- fill: exact 48/48 among fires
+- stability: pairwise agreement 1.0 (21 cases, 63 pairs), unanimous 21/21
+- type check: 63/63 emitted parses type
+- graph lints: none
+- usage: 63 calls · in 3,368,208 · cached 3,185,270 (95% of the input) · out 8,544 · thinking 0 (calls with thought tokens: 0)
+- issues reported by the parser: none
+
+Abstain cases (what the parser did, per run):
+- "Only the ladder is crooked." (gap G00): r1 gap_reported [copular×1, witness×1; unmapped G00] · r2 gap_reported [copular×1, witness×1; unmapped G00] · r3 gap_reported [copular×1, witness×1; unmapped G00]
+- "The ferret slept alone." (target `manner`): r1 target_fired [activity×1, manner×1, witness×1] · r2 target_fired [activity×1, manner×1, witness×1] · r3 target_fired [activity×1, manner×1, witness×1]
+- "Also, Teodor left." (gap G05): r1 gap_reported [motion×1, named-entity×1; unmapped G05] · r2 gap_reported [motion×1, named-entity×1; unmapped G05] · r3 gap_reported [motion×1, named-entity×1; unmapped G05]
+- "Teodor has just arrived." (gap G02): r1 gap_reported [motion×1, named-entity×1; unmapped G02] · r2 gap_reported [motion×1, named-entity×1; unmapped G02] · r3 gap_reported [motion×1, named-entity×1; unmapped G02]
+- "Even though Lamine waited, Teodor left." (target `link`): r1 target_fired [activity×1, link×1, motion×1, named-entity×2] · r2 target_fired [activity×1, link×1, motion×1, named-entity×2] · r3 target_fired [activity×1, link×1, motion×1, named-entity×2]
 
 Mismatches: none
 

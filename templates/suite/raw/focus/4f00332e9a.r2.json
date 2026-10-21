@@ -1,0 +1,89 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "f4d17abe47ce0097d01f189e549c2f7270adfee30060ea503bfb81f323e1bd63",
+  "item": {
+    "id": "s4f00332e9a",
+    "text": "Only Lamine waited."
+  },
+  "usage": {
+    "input": 53464,
+    "output": 126,
+    "thinking": null,
+    "total": 53590,
+    "cached": 51415,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 53464,
+    "candidatesTokenCount": 126,
+    "totalTokenCount": 53590,
+    "cachedContentTokenCount": 51415,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 53464
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 51415
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 126
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s4f00332e9a\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"wait\", \"actor\": \"@n1\", \"tense\": \"past\"}, {\"t\": \"focus\", \"id\": \"f1\", \"head\": \"Only\", \"filler\": \"@n1\", \"event\": \"@v1\", \"surface\": \"only\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s4f00332e9a",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "wait",
+        "actor": "@n1",
+        "tense": "past"
+      },
+      {
+        "t": "focus",
+        "id": "f1",
+        "head": "Only",
+        "filler": "@n1",
+        "event": "@v1",
+        "surface": "only"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "e9f273b0d2bdaff9e725ba8f0d2aaf8c4c5cb64dbb039e1e790e5251d9ea1298",
+  "run": 2,
+  "case": {
+    "template": "focus",
+    "section": "held_out",
+    "index": 0,
+    "category": "positive",
+    "text": "Only Lamine waited.",
+    "key": "4f00332e9a"
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "f4d17abe47ce0097d01f189e549c2f7270adfee30060ea503bfb81f323e1bd63",
+  "item": {
+    "id": "sa1b7d12255",
+    "text": "Yusra did not laugh either."
+  },
+  "usage": {
+    "input": 53465,
+    "output": 112,
+    "thinking": null,
+    "total": 53577,
+    "cached": 51416,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 53465,
+    "candidatesTokenCount": 112,
+    "totalTokenCount": 53577,
+    "cachedContentTokenCount": 51416,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 53465
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 51416
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 112
+      }
+    ]
+  },
+  "raw_text": "{\"id\":\"sa1b7d12255\",\"instances\":[{\"t\":\"named-entity\",\"id\":\"n1\",\"name\":\"Yusra\"},{\"t\":\"activity\",\"id\":\"v1\",\"verb\":\"laugh\",\"actor\":\"@n1\",\"tense\":\"past\"},{\"t\":\"negation\",\"id\":\"s1\",\"over\":[\"@v1\"]},{\"t\":\"focus\",\"id\":\"f1\",\"head\":\"Also\",\"filler\":\"@n1\",\"event\":\"@v1\",\"surface\":\"either\"}],\"unmapped\":[],\"issues\":[]}",
+  "response": {
+    "id": "sa1b7d12255",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "laugh",
+        "actor": "@n1",
+        "tense": "past"
+      },
+      {
+        "t": "negation",
+        "id": "s1",
+        "over": [
+          "@v1"
+        ]
+      },
+      {
+        "t": "focus",
+        "id": "f1",
+        "head": "Also",
+        "filler": "@n1",
+        "event": "@v1",
+        "surface": "either"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "e9f273b0d2bdaff9e725ba8f0d2aaf8c4c5cb64dbb039e1e790e5251d9ea1298",
+  "run": 2,
+  "case": {
+    "template": "focus",
+    "section": "held_out",
+    "index": 13,
+    "category": "scoped",
+    "text": "Yusra did not laugh either.",
+    "key": "a1b7d12255"
+  }
+}

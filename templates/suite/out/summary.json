@@ -1,9 +1,9 @@
 {
   "prompt": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_body_sha256": "9b7e293f463ab8b2a0a0615fae8856d9c43fad5486a77aadf9a5b4043c6e0727",
+  "prompt_body_sha256": "e9f273b0d2bdaff9e725ba8f0d2aaf8c4c5cb64dbb039e1e790e5251d9ea1298",
   "typecheck": "ran",
   "checks": {
-    "examples": 622,
+    "examples": 647,
     "findings": [],
     "pending": {},
     "shared": [
@@ -1553,6 +1553,79 @@
           "total": 1621264,
           "cached": 1489113,
           "calls": 45,
+          "thinking_calls": 0
+        },
+        "issues": [],
+        "null_slots": 0,
+        "lints": {},
+        "models": [
+          "gemini-4-argon effort=low"
+        ]
+      }
+    },
+    "focus": {
+      "held_out": {
+        "records": 63,
+        "cases": 21,
+        "status": {
+          "ok": 63
+        },
+        "stale_prompt": 0,
+        "by_category": {
+          "positive": {
+            "cases": 10,
+            "runs": 30,
+            "pass": 30,
+            "fired": 30,
+            "exact": 30
+          },
+          "scoped": {
+            "cases": 6,
+            "runs": 18,
+            "pass": 18,
+            "fired": 18,
+            "exact": 18
+          },
+          "abstain": {
+            "cases": 5,
+            "runs": 15,
+            "pass": 15,
+            "false_fires": 0,
+            "outcomes": {
+              "gap_reported": 9,
+              "target_fired": 6
+            }
+          }
+        },
+        "pass": 63,
+        "selection": {
+          "fire_runs": 48,
+          "fired": 48,
+          "abstain_runs": 15,
+          "false_fires": 0
+        },
+        "fill": {
+          "fired": 48,
+          "exact": 48,
+          "rate": 1.0
+        },
+        "stability": {
+          "cases": 21,
+          "pairs": 63,
+          "pairwise_agreement": 1.0,
+          "unanimous": 21
+        },
+        "typecheck": {
+          "checked": 63,
+          "passed": 63
+        },
+        "usage": {
+          "input": 3368208,
+          "output": 8544,
+          "thinking": 0,
+          "total": 3376752,
+          "cached": 3185270,
+          "calls": 63,
           "thinking_calls": 0
         },
         "issues": [],
