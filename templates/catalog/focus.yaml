@@ -98,9 +98,9 @@ examples:
       note: subject focus — the prejacent asserted, one atom on top
       text: "Only Yusra laughed."
       instances:
-        - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past}
-        - {t: focus, id: f1, head: Only, filler: "@n1", event: "@v1", surface: only}
+        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
+        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past, span: "Yusra laughed"}
+        - {t: focus, id: f1, head: Only, filler: "@n1", event: "@v1", surface: only, span: "Only"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
         - "(Name sk_yusra_1 \"Yusra\")"
         - "(Member sk_laugh_1 laugh)"
@@ -115,18 +115,18 @@ examples:
       note: object focus — the particle sits on the object
       text: "Teodor read only the letter."
       instances:
-        - {t: named-entity, id: n1, name: "Teodor"}
-        - {t: witness, id: x1, class: letter, definite: true}
-        - {t: activity, id: v1, verb: read, actor: "@n1", patient: "@x1", tense: past}
-        - {t: focus, id: f1, head: Only, filler: "@x1", event: "@v1", surface: only}
+        - {t: named-entity, id: n1, name: "Teodor", span: "Teodor"}
+        - {t: witness, id: x1, class: letter, definite: true, span: "the letter"}
+        - {t: activity, id: v1, verb: read, actor: "@n1", patient: "@x1", tense: past, span: "Teodor read only the letter"}
+        - {t: focus, id: f1, head: Only, filler: "@x1", event: "@v1", surface: only, span: "only"}
     - category: positive
       note: an it-cleft — the backgrounded clause is the prejacent, the clefted phrase the focus
       text: "It was Lamine who washed the quilt."
       instances:
-        - {t: named-entity, id: n1, name: "Lamine"}
-        - {t: witness, id: x1, class: quilt, definite: true}
-        - {t: activity, id: v1, verb: wash, actor: "@n1", patient: "@x1", tense: past}
-        - {t: focus, id: f1, head: Cleft, filler: "@n1", event: "@v1"}
+        - {t: named-entity, id: n1, name: "Lamine", span: "Lamine"}
+        - {t: witness, id: x1, class: quilt, definite: true, span: "the quilt"}
+        - {t: activity, id: v1, verb: wash, actor: "@n1", patient: "@x1", tense: past, span: "Lamine who washed the quilt"}
+        - {t: focus, id: f1, head: Cleft, filler: "@n1", event: "@v1", span: ["It was", "who"]}
     - category: abstain
       text: "Only one ferret slept."
       expected: {abstain: true, gap: G07, span: "only"}                # a particle on a count

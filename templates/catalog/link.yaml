@@ -95,11 +95,11 @@ examples:
       note: the main clause first, the connective's clause second; both events asserted
       text: "The ferret slept because Yusra sang."
       instances:
-        - {t: witness, id: x1, class: ferret, definite: true}
-        - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: activity, id: v1, verb: sleep, actor: "@x1", tense: past}
-        - {t: activity, id: v2, verb: sing, actor: "@n1", tense: past}
-        - {t: link, id: k1, head: Because, main: "@v1", sub: "@v2"}
+        - {t: witness, id: x1, class: ferret, definite: true, span: "The ferret"}
+        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
+        - {t: activity, id: v1, verb: sleep, actor: "@x1", tense: past, span: "The ferret slept"}
+        - {t: activity, id: v2, verb: sing, actor: "@n1", tense: past, span: "Yusra sang"}
+        - {t: link, id: k1, head: Because, main: "@v1", sub: "@v2", span: "because"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
         - "(Member sk_ferret_1 ferret)"
         - "(Name sk_yusra_1 \"Yusra\")"
@@ -122,20 +122,20 @@ examples:
       note: a coordinating connective — the first clause is the main one
       text: "Lamine laughed, so Teodor left."
       instances:
-        - {t: named-entity, id: n1, name: "Lamine"}
-        - {t: named-entity, id: n2, name: "Teodor"}
-        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past}
-        - {t: motion, id: m1, verb: leave, mover: "@n2", tense: past}
-        - {t: link, id: k1, head: So, main: "@v1", sub: "@m1"}
+        - {t: named-entity, id: n1, name: "Lamine", span: "Lamine"}
+        - {t: named-entity, id: n2, name: "Teodor", span: "Teodor"}
+        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past, span: "Lamine laughed"}
+        - {t: motion, id: m1, verb: leave, mover: "@n2", tense: past, span: "Teodor left"}
+        - {t: link, id: k1, head: So, main: "@v1", sub: "@m1", span: "so"}
     - category: positive
       note: a fronted concessive — the main clause is still first
       text: "Although Ottoline waited, Lamine left."
       instances:
-        - {t: named-entity, id: n1, name: "Ottoline"}
-        - {t: named-entity, id: n2, name: "Lamine"}
-        - {t: activity, id: v1, verb: wait, actor: "@n1", tense: past}
-        - {t: motion, id: m1, verb: leave, mover: "@n2", tense: past}
-        - {t: link, id: k1, head: Although, main: "@m1", sub: "@v1"}
+        - {t: named-entity, id: n1, name: "Ottoline", span: "Ottoline"}
+        - {t: named-entity, id: n2, name: "Lamine", span: "Lamine"}
+        - {t: activity, id: v1, verb: wait, actor: "@n1", tense: past, span: "Ottoline waited"}
+        - {t: motion, id: m1, verb: leave, mover: "@n2", tense: past, span: "Lamine left"}
+        - {t: link, id: k1, head: Although, main: "@m1", sub: "@v1", span: "Although"}
     - category: abstain
       text: "Yusra laughed after Lamine sang."
       expected: {abstain: true, gap: G00, span: "after"}             # a temporal connective

@@ -168,9 +168,9 @@ examples:
       note: a deictic — an offset from the reference time, which the program supplies as `now`
       text: "Yusra laughed yesterday."
       instances:
-        - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past}
-        - {t: time, id: t1, event: "@v1", deictic: yesterday, anchor: "@now"}
+        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
+        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past, span: "Yusra laughed"}
+        - {t: time, id: t1, event: "@v1", deictic: yesterday, anchor: "@now", span: "yesterday"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
         - "(Name sk_yusra_1 \"Yusra\")"
         - "(Member sk_laugh_1 laugh)"
@@ -189,10 +189,10 @@ examples:
       note: a weekday — a time instance described by a field
       text: "Lamine sold the spindle on Monday."
       instances:
-        - {t: named-entity, id: n1, name: "Lamine"}
-        - {t: witness, id: x1, class: spindle, definite: true}
-        - {t: transfer, id: e1, verb: sell, giver: "@n1", object: "@x1", tense: past}
-        - {t: time, id: t1, event: "@e1", weekday: monday}
+        - {t: named-entity, id: n1, name: "Lamine", span: "Lamine"}
+        - {t: witness, id: x1, class: spindle, definite: true, span: "the spindle"}
+        - {t: transfer, id: e1, verb: sell, giver: "@n1", object: "@x1", tense: past, span: "Lamine sold the spindle"}
+        - {t: time, id: t1, event: "@e1", weekday: monday, span: "on Monday"}
     - category: abstain
       text: "Three days ago, Yusra left."
       expected: {abstain: true, gap: G00, span: "Three days ago"}     # a relation to now

@@ -74,9 +74,9 @@ examples:
       note: an adverb attaches to the clause's event
       text: "Yusra laughed loudly."
       instances:
-        - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past}
-        - {t: manner, id: a1, event: "@v1", manner: loudly}
+        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
+        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past, span: "Yusra laughed"}
+        - {t: manner, id: a1, event: "@v1", manner: loudly, span: "loudly"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
         - "(Name sk_yusra_1 \"Yusra\")"
         - "(Member sk_laugh_1 laugh)"
@@ -92,10 +92,10 @@ examples:
       note: a manner phrase by its head word
       text: "Teodor read the letter with care."
       instances:
-        - {t: named-entity, id: n1, name: "Teodor"}
-        - {t: witness, id: x1, class: letter, definite: true}
-        - {t: activity, id: v1, verb: read, actor: "@n1", patient: "@x1", tense: past}
-        - {t: manner, id: a1, event: "@v1", manner: care}
+        - {t: named-entity, id: n1, name: "Teodor", span: "Teodor"}
+        - {t: witness, id: x1, class: letter, definite: true, span: "the letter"}
+        - {t: activity, id: v1, verb: read, actor: "@n1", patient: "@x1", tense: past, span: "Teodor read the letter"}
+        - {t: manner, id: a1, event: "@v1", manner: care, span: "with care"}
     - category: abstain
       text: "Yusra laughed in the barn."
       expected: {abstain: true, template: location}                   # where, not how

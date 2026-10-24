@@ -82,9 +82,9 @@ examples:
       note: the commanded event is sealed, tenseless and without an actor; the definite object stays a top-level referent
       text: "Close the gate."
       instances:
-        - {t: witness, id: x1, class: gate, definite: true}
-        - {t: change-of-state, id: c1, verb: close, undergoer: "@x1", tense: present}
-        - {t: imperative, id: s1, over: ["@c1"]}
+        - {t: witness, id: x1, class: gate, definite: true, span: "the gate"}
+        - {t: change-of-state, id: c1, verb: close, undergoer: "@x1", tense: present, span: "Close the gate"}
+        - {t: imperative, id: s1, over: ["@c1"], span: "Close the gate"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
         - "(Member sk_gate_1 gate)"
         - "(Directive (And (Member sk_close_1 close) (Patient sk_close_1 sk_gate_1)))"
@@ -97,18 +97,18 @@ examples:
       note: a negative imperative — the directive over the negation
       text: "Don't touch the spindle."
       instances:
-        - {t: witness, id: x1, class: spindle, definite: true}
-        - {t: activity, id: v1, verb: touch, patient: "@x1", tense: present}
-        - {t: negation, id: s1, over: ["@v1"]}
-        - {t: imperative, id: s2, over: ["@s1"]}
+        - {t: witness, id: x1, class: spindle, definite: true, span: "the spindle"}
+        - {t: activity, id: v1, verb: touch, patient: "@x1", tense: present, span: "touch the spindle"}
+        - {t: negation, id: s1, over: ["@v1"], span: "Don't"}
+        - {t: imperative, id: s2, over: ["@s1"], span: "Don't touch the spindle"}
     - category: positive
       note: a vocative — the named addressee fills the actor slot
       text: "Teodor, wash the quilt."
       instances:
-        - {t: named-entity, id: n1, name: "Teodor"}
-        - {t: witness, id: x1, class: quilt, definite: true}
-        - {t: activity, id: v1, verb: wash, actor: "@n1", patient: "@x1", tense: present}
-        - {t: imperative, id: s1, over: ["@v1"]}
+        - {t: named-entity, id: n1, name: "Teodor", span: "Teodor"}
+        - {t: witness, id: x1, class: quilt, definite: true, span: "the quilt"}
+        - {t: activity, id: v1, verb: wash, actor: "@n1", patient: "@x1", tense: present, span: "Teodor, wash the quilt"}
+        - {t: imperative, id: s1, over: ["@v1"], span: "Teodor, wash the quilt"}
     - category: abstain
       text: "Yusra laughed."
       expected: {abstain: true, template: activity}                   # a declarative, asserted

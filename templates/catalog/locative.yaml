@@ -90,9 +90,9 @@ examples:
       note: on keeps its own head
       text: "The ledger is on the workbench."
       instances:
-        - {t: witness, id: x1, class: ledger, definite: true}
-        - {t: witness, id: x2, class: workbench, definite: true}
-        - {t: locative, id: l1, thing: "@x1", place: "@x2", head: "On", preposition: "on", tense: present}
+        - {t: witness, id: x1, class: ledger, definite: true, span: "The ledger"}
+        - {t: witness, id: x2, class: workbench, definite: true, span: "the workbench"}
+        - {t: locative, id: l1, thing: "@x1", place: "@x2", head: "On", preposition: "on", tense: present, span: "The ledger is on the workbench"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
         - "(Member sk_ledger_1 ledger)"
         - "(Member sk_workbench_1 workbench)"
@@ -106,9 +106,9 @@ examples:
       note: in renders as LocatedIn; two names
       text: "Calderwick is in Norfolk."
       instances:
-        - {t: named-entity, id: n1, name: "Calderwick"}
-        - {t: named-entity, id: n2, name: "Norfolk"}
-        - {t: locative, id: l1, thing: "@n1", place: "@n2", head: LocatedIn, preposition: in, tense: present}
+        - {t: named-entity, id: n1, name: "Calderwick", span: "Calderwick"}
+        - {t: named-entity, id: n2, name: "Norfolk", span: "Norfolk"}
+        - {t: locative, id: l1, thing: "@n1", place: "@n2", head: LocatedIn, preposition: in, tense: present, span: "Calderwick is in Norfolk"}
     - category: abstain
       text: "Yusra laughed in the barn."
       expected: {abstain: true, template: location}                   # the place of an event

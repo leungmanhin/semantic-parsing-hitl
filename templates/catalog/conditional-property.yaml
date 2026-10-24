@@ -103,10 +103,10 @@ examples:
       note: an adjective after when — the condition is a copular predication over the range
       text: "Clay is soft when wet."
       instances:
-        - {t: range, id: q1, class: clay}
-        - {t: copular, id: c1, subject: "@q1", predicate: soft, form: adjective, tense: present}
-        - {t: copular, id: c2, subject: "@q1", predicate: wet, form: adjective, tense: present}
-        - {t: conditional-property, id: r1, ranges: ["@q1"], condition: ["@c2"], over: ["@c1"]}
+        - {t: range, id: q1, class: clay, span: "Clay"}
+        - {t: copular, id: c1, subject: "@q1", predicate: soft, form: adjective, tense: present, span: "Clay is soft"}
+        - {t: copular, id: c2, subject: "@q1", predicate: wet, form: adjective, tense: present, span: "wet"}
+        - {t: conditional-property, id: r1, ranges: ["@q1"], condition: ["@c2"], over: ["@c1"], span: "Clay is soft when wet"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
         - "(Implication (And (Member $x clay) (Member $x wet)) (Member $x soft))"
       declarations:
@@ -117,10 +117,10 @@ examples:
       note: a quantifier word — on the range, with the property as its predicate
       text: "All alloys are brittle when cold."
       instances:
-        - {t: range, id: q1, class: alloy, quantifier: all, predicate: brittle}
-        - {t: copular, id: c1, subject: "@q1", predicate: brittle, form: adjective, tense: present}
-        - {t: copular, id: c2, subject: "@q1", predicate: cold, form: adjective, tense: present}
-        - {t: conditional-property, id: r1, ranges: ["@q1"], condition: ["@c2"], over: ["@c1"]}
+        - {t: range, id: q1, class: alloy, quantifier: all, predicate: brittle, span: "All alloys"}
+        - {t: copular, id: c1, subject: "@q1", predicate: brittle, form: adjective, tense: present, span: "All alloys are brittle"}
+        - {t: copular, id: c2, subject: "@q1", predicate: cold, form: adjective, tense: present, span: "cold"}
+        - {t: conditional-property, id: r1, ranges: ["@q1"], condition: ["@c2"], over: ["@c1"], span: "All alloys are brittle when cold"}
     - category: abstain
       text: "Otters are rare in Norfolk."
       expected: {abstain: true, template: class-property}              # a class-level property, restricted

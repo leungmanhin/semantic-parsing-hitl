@@ -6,7 +6,7 @@ interprets those declarations.  Same instances in, byte-identical statements out
 no randomness, no set iteration reaching the output.
 
 Instances.  An item is ``{"id": …, "instances": [...], "unmapped": [...]}``; an instance is
-``{"t": <template id>, "id": <label>, <slot>: <value>, …}`` — every instance has an id.  A
+``{"t": <template id>, "id": <label>, <slot>: <value>, …}`` — every instance has an id and may carry a ``span`` (the words of the text it is built from: provenance the emitter ignores).  A
 filler value is a reference ``"@<label>"`` to another instance, a bare lemma, a number or a
 string.  A ``refs`` slot holds a list of references to instances whose atoms the shape SCOPES
 OVER (negation, modality, sealed complements): those instances' atoms are rendered inside the
@@ -254,7 +254,7 @@ class _Emitter:
                     elif spec["type"] == "refs" and self.is_attachment(target):
                         problems.append(f"{where}: {sname} lists {ref}, an attachment, which follows its head into a scope and is never listed in one")
             for sname in r:
-                if sname not in ("t", "id") and sname not in (t.get("slots") or {}):
+                if sname not in ("t", "id", "span") and sname not in (t.get("slots") or {}):
                     problems.append(f"{where}: unknown slot {sname}")
             for group in t.get("one_of") or []:
                 filled = [s for s in group if r.get(s) not in (None, [], "")]

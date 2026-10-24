@@ -98,11 +98,11 @@ examples:
       note: with the source stated
       text: "Ottoline took the envelope from Lamine."
       instances:
-        - {t: named-entity, id: n1, name: "Ottoline"}
-        - {t: witness, id: x1, class: envelope, definite: true}
-        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: named-entity, id: n1, name: "Ottoline", span: "Ottoline"}
+        - {t: witness, id: x1, class: envelope, definite: true, span: "the envelope"}
+        - {t: named-entity, id: n2, name: "Lamine", span: "Lamine"}
         - {t: acquisition, id: q1, verb: take, acquirer: "@n1", object: "@x1", source: "@n2",
-           tense: past}
+           tense: past, span: "Ottoline took the envelope from Lamine"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
         - "(Name sk_ottoline_1 \"Ottoline\")"
         - "(Member sk_envelope_1 envelope)"
@@ -123,9 +123,9 @@ examples:
       note: by receiving, no source stated
       text: "Yusra received a thermos."
       instances:
-        - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: witness, id: x1, class: thermos}
-        - {t: acquisition, id: q1, verb: receive, acquirer: "@n1", object: "@x1", tense: past}
+        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
+        - {t: witness, id: x1, class: thermos, span: "a thermos"}
+        - {t: acquisition, id: q1, verb: receive, acquirer: "@n1", object: "@x1", tense: past, span: "Yusra received a thermos"}
     - category: abstain
       text: "Teodor gave Yusra a thermos."
       expected: {abstain: true, template: transfer}                   # the giver's side

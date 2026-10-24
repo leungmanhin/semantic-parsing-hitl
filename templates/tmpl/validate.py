@@ -19,6 +19,9 @@ Checks, in order:
   content, directly or through another scope, of a scope whose refs slot declares
   ``bare_content`` (an imperative's addressee is implicit), an optional
   scope with an empty ``refs`` list (``empty-scope``);
+* span lints, when the caller supplies the TEXT: an instance without ``span`` (``span-missing``), a
+  span that is not a string or a list of strings (``span-malformed``), a span that is not a verbatim
+  substring of the text (``span-not-verbatim``); spans are provenance and never affect emission;
 * C9 — every emitted statement types against the substrate with the emitter's declarations
   (needs the ``petta`` package, otherwise ``typecheck`` is ``skipped``).
 
@@ -43,7 +46,7 @@ def _is_list(x) -> bool:
     return isinstance(x, list)
 
 
-def inspect(reply, catalog: dict | None = None, reference_time=None) -> dict:
+def inspect(reply, catalog: dict | None = None, reference_time=None, text: str | None = None) -> dict:
     """Contract + emission + lints for one reply; never raises on a malformed reply."""
     if catalog is None:
         catalog = CAT.load()
@@ -90,6 +93,8 @@ def inspect(reply, catalog: dict | None = None, reference_time=None) -> dict:
         return res
     res["statements"], res["declarations"], res["detail"] = out["statements"], out["declarations"], out["detail"]
     res["findings"].extend(lints(cleaned, catalog, res["unmapped"]))
+    if text is not None:
+        res["findings"].extend(span_lints(cleaned, text))
     return res
 
 
@@ -153,6 +158,27 @@ def lints(insts: list, catalog: dict, unmapped: list) -> list:
     return out
 
 
+def span_lints(insts: list, text: str) -> list:
+    """Every instance carries a span that is verbatim in the text (needs the text; report only)."""
+    out = []
+    for r in insts:
+        if "span" not in r:
+            out.append({"kind": "span-missing", "instance": r.get("id"),
+                        "detail": f"{r.get('t')} {r.get('id')} has no span"})
+            continue
+        sp = r["span"]
+        parts = sp if isinstance(sp, list) else [sp]
+        if not parts or not all(isinstance(p, str) and p.strip() for p in parts):
+            out.append({"kind": "span-malformed", "instance": r.get("id"),
+                        "detail": f"{r.get('t')} {r.get('id')}: span must be a non-empty string or a list of them, got {sp!r}"})
+            continue
+        bad = [p for p in parts if not CAT.span_in_text(p, text)]
+        if bad:
+            out.append({"kind": "span-not-verbatim", "instance": r.get("id"),
+                        "detail": f"{r.get('t')} {r.get('id')}: span {bad[0]!r} is not verbatim in the text"})
+    return out
+
+
 def typecheck_records(records: list[dict]):
     """C9 over ``[{"statements": [...], "declarations": [...]}, ...]`` in one engine session.
     Returns ``{index: [findings]}`` (only records with hard findings appear), or ``None`` when
@@ -187,9 +213,10 @@ def typecheck_records(records: list[dict]):
     return by
 
 
-def validate(reply, catalog: dict | None = None, typecheck: bool = True, reference_time=None) -> dict:
-    """Everything for one reply: contract, emission, lints and C9."""
-    res = inspect(reply, catalog, reference_time)
+def validate(reply, catalog: dict | None = None, typecheck: bool = True, reference_time=None,
+             text: str | None = None) -> dict:
+    """Everything for one reply: contract, emission, lints (span lints when the text is given) and C9."""
+    res = inspect(reply, catalog, reference_time, text)
     if typecheck and res["statements"]:
         typed = typecheck_records([res])
         if typed is None:

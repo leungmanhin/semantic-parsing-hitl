@@ -76,10 +76,10 @@ examples:
       note: the phrase picks out the referent; no possession is stated
       text: "The man with the hat laughed."
       instances:
-        - {t: witness, id: x1, class: man, definite: true}
-        - {t: witness, id: x2, class: hat, definite: true}
-        - {t: postmodifier, id: a1, noun: "@x1", head: With, object: "@x2"}
-        - {t: activity, id: v1, verb: laugh, actor: "@x1", tense: past}
+        - {t: witness, id: x1, class: man, definite: true, span: "The man"}
+        - {t: witness, id: x2, class: hat, definite: true, span: "the hat"}
+        - {t: postmodifier, id: a1, noun: "@x1", head: With, object: "@x2", span: "with the hat"}
+        - {t: activity, id: v1, verb: laugh, actor: "@x1", tense: past, span: "The man with the hat laughed"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
         - "(Member sk_man_1 man)"
         - "(With sk_man_1 sk_hat_1)"
@@ -98,10 +98,10 @@ examples:
       note: what a thing is about — a class-level object as a bare lemma
       text: "Yusra read a book about ferrets."
       instances:
-        - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: witness, id: x1, class: book}
-        - {t: postmodifier, id: a1, noun: "@x1", head: About, object: ferret}
-        - {t: activity, id: v1, verb: read, actor: "@n1", patient: "@x1", tense: past}
+        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
+        - {t: witness, id: x1, class: book, span: "a book"}
+        - {t: postmodifier, id: a1, noun: "@x1", head: About, object: ferret, span: "about ferrets"}
+        - {t: activity, id: v1, verb: read, actor: "@n1", patient: "@x1", tense: past, span: "Yusra read a book about ferrets"}
     - category: abstain
       text: "Yusra's quilt"
       expected: {abstain: true, template: witness}                    # a possessive: the witness's possessor

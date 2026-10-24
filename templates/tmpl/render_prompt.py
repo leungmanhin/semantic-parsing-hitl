@@ -179,6 +179,7 @@ def generate(catalog: dict, general: dict, directory: str = CAT.CATALOG_DIR) -> 
 
     section("Output", general["output_contract"])
     section("Identifiers and fillers", general["identifiers"], bullets=True)
+    section("Spans", general.get("spans") or [], bullets=True)
     section("Lemmas and symbols", general["lemmas"], bullets=True)
     section("Choosing a template", general.get("abstain") or [])
     section("Unmapped spans", general["unmapped"])

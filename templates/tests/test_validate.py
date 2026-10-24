@@ -167,6 +167,42 @@ class LintTests(unittest.TestCase):
 
 
 @unittest.skipUnless(HAVE_PETTA, "petta package not importable")
+class SpanTests(unittest.TestCase):
+    """Span lints run only when the text is supplied; the live example's spans are verbatim."""
+
+    def test_no_text_no_span_lints(self):
+        insts = copy.deepcopy(EXAMPLE["instances"])
+        del insts[0]["span"]
+        self.assertEqual(kinds(V.inspect(reply(insts), CATALOG)), [])
+
+    def test_live_example_spans_are_verbatim(self):
+        res = V.inspect(reply(copy.deepcopy(EXAMPLE["instances"])), CATALOG, text=EXAMPLE["text"])
+        self.assertEqual(res["status"], "ok")
+        self.assertEqual(kinds(res), [])
+
+    def test_missing_malformed_and_non_verbatim(self):
+        insts = copy.deepcopy(EXAMPLE["instances"])
+        del insts[0]["span"]
+        insts[1]["span"] = 42
+        insts[2]["span"] = ["a thermos", "the moon"]
+        res = V.inspect(reply(insts), CATALOG, text=EXAMPLE["text"])
+        self.assertEqual(res["status"], "ok")                       # spans never stop the record
+        self.assertEqual(kinds(res), ["span-malformed", "span-missing", "span-not-verbatim"])
+        self.assertIsNotNone(res["statements"])
+
+    def test_verbatim_tolerates_whitespace_and_curly_apostrophes(self):
+        self.assertTrue(CAT.span_in_text("Yusra’s  quilt", "Yusra's quilt"))
+        self.assertFalse(CAT.span_in_text("", "Yusra's quilt"))
+
+    def test_catalog_check_insists_on_shown_spans(self):
+        t = copy.deepcopy(CATALOG["transfer"])
+        del t["examples"]["shown"][0]["instances"][0]["span"]
+        t["examples"]["shown"][0]["instances"][1]["span"] = "not in the text"
+        problems = CAT.check_template(t, "/anywhere/transfer.yaml")
+        self.assertTrue(any("has no span" in p for p in problems), problems)
+        self.assertTrue(any("is not verbatim" in p for p in problems), problems)
+
+
 class TypecheckTests(unittest.TestCase):
     def test_live_example_validates_clean(self):
         res = V.validate(reply(EXAMPLE["instances"]), CATALOG)

@@ -60,9 +60,9 @@ examples:
     - category: positive
       text: "Several students laughed."
       instances:
-        - {t: group, id: g1, class: student, quantity: several}
-        - {t: activity, id: v1, verb: laugh, actor: "@g1", tense: past}
-        - {t: distribution, id: d1, group: "@g1", over: ["@v1"]}
+        - {t: group, id: g1, class: student, quantity: several, span: "Several students"}
+        - {t: activity, id: v1, verb: laugh, actor: "@g1", tense: past, span: "Several students laughed"}
+        - {t: distribution, id: d1, group: "@g1", over: ["@v1"], span: "Several students laughed"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
         - "(GroupOf sk_group_1 student)"
         - "(CardinalityPhrase sk_group_1 \"several\")"

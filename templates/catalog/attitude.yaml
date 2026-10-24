@@ -109,13 +109,13 @@ examples:
     - category: positive
       text: "Teodor believes that Lamine lent Ottoline the trowel."
       instances:
-        - {t: named-entity, id: n1, name: "Teodor"}
-        - {t: named-entity, id: n2, name: "Lamine"}
-        - {t: named-entity, id: n3, name: "Ottoline"}
-        - {t: witness, id: x1, class: trowel, definite: true}
-        - {t: transfer, id: e1, verb: lend, giver: "@n2", recipient: "@n3", object: "@x1", tense: past}
+        - {t: named-entity, id: n1, name: "Teodor", span: "Teodor"}
+        - {t: named-entity, id: n2, name: "Lamine", span: "Lamine"}
+        - {t: named-entity, id: n3, name: "Ottoline", span: "Ottoline"}
+        - {t: witness, id: x1, class: trowel, definite: true, span: "the trowel"}
+        - {t: transfer, id: e1, verb: lend, giver: "@n2", recipient: "@n3", object: "@x1", tense: past, span: "Lamine lent Ottoline the trowel"}
         - {t: attitude, id: a1, verb: believe, holder: "@n1", content: ["@e1"], factive: false,
-           tense: present}
+           tense: present, span: "Teodor believes that Lamine lent Ottoline the trowel"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
         - "(Name sk_teodor_1 \"Teodor\")"
         - "(Name sk_lamine_1 \"Lamine\")"
@@ -138,32 +138,32 @@ examples:
       note: factive — the complement is also stated flat
       text: "Yusra knows that Teodor sold the spindle."
       instances:
-        - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: named-entity, id: n2, name: "Teodor"}
-        - {t: witness, id: x1, class: spindle, definite: true}
-        - {t: transfer, id: e1, verb: sell, giver: "@n2", object: "@x1", tense: past}
+        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
+        - {t: named-entity, id: n2, name: "Teodor", span: "Teodor"}
+        - {t: witness, id: x1, class: spindle, definite: true, span: "the spindle"}
+        - {t: transfer, id: e1, verb: sell, giver: "@n2", object: "@x1", tense: past, span: "Teodor sold the spindle"}
         - {t: attitude, id: a1, verb: know, holder: "@n1", content: ["@e1"], factive: true,
-           tense: present}
+           tense: present, span: "Yusra knows that Teodor sold the spindle"}
     - category: positive
       note: a reporting verb with no addressee is an attitude
       text: "Teodor said that Lamine sold the spindle."
       instances:
-        - {t: named-entity, id: n1, name: "Teodor"}
-        - {t: named-entity, id: n2, name: "Lamine"}
-        - {t: witness, id: x1, class: spindle, definite: true}
-        - {t: transfer, id: e1, verb: sell, giver: "@n2", object: "@x1", tense: past}
+        - {t: named-entity, id: n1, name: "Teodor", span: "Teodor"}
+        - {t: named-entity, id: n2, name: "Lamine", span: "Lamine"}
+        - {t: witness, id: x1, class: spindle, definite: true, span: "the spindle"}
+        - {t: transfer, id: e1, verb: sell, giver: "@n2", object: "@x1", tense: past, span: "Lamine sold the spindle"}
         - {t: attitude, id: a1, verb: say, holder: "@n1", content: ["@e1"], factive: false,
-           tense: past}
+           tense: past, span: "Teodor said that Lamine sold the spindle"}
     - category: positive
       note: a perception verb with a that-clause is a factive attitude
       text: "Teodor saw that Lamine sold the spindle."
       instances:
-        - {t: named-entity, id: n1, name: "Teodor"}
-        - {t: named-entity, id: n2, name: "Lamine"}
-        - {t: witness, id: x1, class: spindle, definite: true}
-        - {t: transfer, id: e1, verb: sell, giver: "@n2", object: "@x1", tense: past}
+        - {t: named-entity, id: n1, name: "Teodor", span: "Teodor"}
+        - {t: named-entity, id: n2, name: "Lamine", span: "Lamine"}
+        - {t: witness, id: x1, class: spindle, definite: true, span: "the spindle"}
+        - {t: transfer, id: e1, verb: sell, giver: "@n2", object: "@x1", tense: past, span: "Lamine sold the spindle"}
         - {t: attitude, id: a1, verb: see, holder: "@n1", content: ["@e1"], factive: true,
-           tense: past}
+           tense: past, span: "Teodor saw that Lamine sold the spindle"}
     - category: abstain
       text: "Teodor told Ottoline that Lamine sold the spindle."
       expected: {abstain: true, template: communication}             # an addressee
@@ -174,10 +174,10 @@ examples:
       note: an infinitival complement — the holder acts in it; nothing is asserted about the sending
       text: "Ottoline wants to send the quilt."
       instances:
-        - {t: named-entity, id: n1, name: "Ottoline"}
-        - {t: witness, id: x1, class: quilt, definite: true}
-        - {t: transfer, id: e1, verb: send, giver: "@n1", object: "@x1", tense: present}
-        - {t: attitude, id: a1, verb: want, holder: "@n1", content: ["@e1"], factive: false, tense: present}
+        - {t: named-entity, id: n1, name: "Ottoline", span: "Ottoline"}
+        - {t: witness, id: x1, class: quilt, definite: true, span: "the quilt"}
+        - {t: transfer, id: e1, verb: send, giver: "@n1", object: "@x1", tense: present, span: "to send the quilt"}
+        - {t: attitude, id: a1, verb: want, holder: "@n1", content: ["@e1"], factive: false, tense: present, span: "Ottoline wants to send the quilt"}
 
   held_out:                  # tests; never rendered into the prompt
     - category: positive

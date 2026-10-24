@@ -40,8 +40,8 @@ examples:
     - category: positive
       text: "Teodor did not send the quilt."
       instances:
-        - {t: named-entity, id: n1, name: "Teodor"}
-        - {t: witness, id: x1, class: quilt, definite: true}
-        - {t: transfer, id: e1, verb: send, giver: "@n1", object: "@x1", tense: past}
-        - {t: negation, id: s1, over: ["@e1"]}
+        - {t: named-entity, id: n1, name: "Teodor", span: "Teodor"}
+        - {t: witness, id: x1, class: quilt, definite: true, span: "the quilt"}
+        - {t: transfer, id: e1, verb: send, giver: "@n1", object: "@x1", tense: past, span: "Teodor did not send the quilt"}
+        - {t: negation, id: s1, over: ["@e1"], span: "did not"}
   held_out: []

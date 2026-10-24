@@ -183,6 +183,27 @@ class ScoreTests(unittest.TestCase):
         self.assertTrue(row["exact"] and row["fired_template"])
         self.assertEqual(row["fired"], {"named-entity": 2, "witness": 1, "transfer": 1})
 
+    def test_spans_are_counted_but_never_decide_pass(self):
+        """A record without spans (every record stored before the field existed) still passes on its
+        atoms and is counted as all-missing; a record with verbatim spans counts clean; a non-verbatim
+        span is a count, not a failure."""
+        row = self.score(self.pos, reply(copy.deepcopy(self.pos["instances"])))
+        self.assertTrue(row["pass"], row["reasons"])
+        self.assertEqual(row["spans"], {"instances": 4, "with_span": 0, "missing": 4, "not_verbatim": 0, "malformed": 0})
+        self.assertEqual(row["lints"], [])
+        spanned = copy.deepcopy(self.pos["instances"])
+        words = {"named-entity": lambda r: r["name"], "witness": lambda r: "an envelope", "transfer": lambda r: self.pos["text"].rstrip(".")}
+        for r in spanned:
+            r["span"] = words[r["t"]](r)
+        row = self.score(self.pos, reply(spanned))
+        self.assertTrue(row["pass"], row["reasons"])
+        self.assertEqual(row["spans"]["missing"] + row["spans"]["not_verbatim"], 0)
+        spanned[0]["span"] = "the moon"
+        row = self.score(self.pos, reply(spanned))
+        self.assertTrue(row["pass"])
+        self.assertEqual(row["spans"]["not_verbatim"], 1)
+        self.assertEqual([f["kind"] for f in row["span_lints"]], ["span-not-verbatim"])
+
     def test_positive_with_wrong_slot_fails_with_diff(self):
         insts = copy.deepcopy(self.pos["instances"])
         insts[3]["giver"], insts[3]["recipient"] = insts[3]["recipient"], insts[3]["giver"]

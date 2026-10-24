@@ -113,9 +113,9 @@ examples:
       note: a self-mover and a destination
       text: "Yusra went to the market."
       instances:
-        - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: witness, id: x1, class: market, definite: true}
-        - {t: motion, id: m1, verb: go, mover: "@n1", goal: "@x1", tense: past}
+        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
+        - {t: witness, id: x1, class: market, definite: true, span: "the market"}
+        - {t: motion, id: m1, verb: go, mover: "@n1", goal: "@x1", tense: past, span: "Yusra went to the market"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
         - "(Name sk_yusra_1 \"Yusra\")"
         - "(Member sk_market_1 market)"
@@ -133,10 +133,10 @@ examples:
       note: a caused motion — the causer is the mover, the thing moved is the moved
       text: "Lamine carried the ladder to the shed."
       instances:
-        - {t: named-entity, id: n1, name: "Lamine"}
-        - {t: witness, id: x1, class: ladder, definite: true}
-        - {t: witness, id: x2, class: shed, definite: true}
-        - {t: motion, id: m1, verb: carry, mover: "@n1", moved: "@x1", goal: "@x2", tense: past}
+        - {t: named-entity, id: n1, name: "Lamine", span: "Lamine"}
+        - {t: witness, id: x1, class: ladder, definite: true, span: "the ladder"}
+        - {t: witness, id: x2, class: shed, definite: true, span: "the shed"}
+        - {t: motion, id: m1, verb: carry, mover: "@n1", moved: "@x1", goal: "@x2", tense: past, span: "Lamine carried the ladder to the shed"}
     - category: abstain
       text: "Teodor gave Yusra a thermos."
       expected: {abstain: true, template: transfer}                   # a change of hands

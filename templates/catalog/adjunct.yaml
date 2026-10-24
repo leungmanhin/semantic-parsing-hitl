@@ -84,11 +84,11 @@ examples:
       note: a tool is an instrument
       text: "Lamine cut the loaf with a knife."
       instances:
-        - {t: named-entity, id: n1, name: "Lamine"}
-        - {t: witness, id: x1, class: loaf, definite: true}
-        - {t: witness, id: x2, class: knife}
-        - {t: activity, id: v1, verb: cut, actor: "@n1", patient: "@x1", tense: past}
-        - {t: adjunct, id: a1, event: "@v1", participant: "@x2", head: Instrument, preposition: with}
+        - {t: named-entity, id: n1, name: "Lamine", span: "Lamine"}
+        - {t: witness, id: x1, class: loaf, definite: true, span: "the loaf"}
+        - {t: witness, id: x2, class: knife, span: "a knife"}
+        - {t: activity, id: v1, verb: cut, actor: "@n1", patient: "@x1", tense: past, span: "Lamine cut the loaf"}
+        - {t: adjunct, id: a1, event: "@v1", participant: "@x2", head: Instrument, preposition: with, span: "with a knife"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
         - "(Name sk_lamine_1 \"Lamine\")"
         - "(Member sk_loaf_1 loaf)"
@@ -110,19 +110,19 @@ examples:
       note: a person taking part is a companion
       text: "Teodor sang with Ottoline."
       instances:
-        - {t: named-entity, id: n1, name: "Teodor"}
-        - {t: named-entity, id: n2, name: "Ottoline"}
-        - {t: activity, id: v1, verb: sing, actor: "@n1", tense: past}
-        - {t: adjunct, id: a1, event: "@v1", participant: "@n2", head: CoAgent, preposition: with}
+        - {t: named-entity, id: n1, name: "Teodor", span: "Teodor"}
+        - {t: named-entity, id: n2, name: "Ottoline", span: "Ottoline"}
+        - {t: activity, id: v1, verb: sing, actor: "@n1", tense: past, span: "Teodor sang"}
+        - {t: adjunct, id: a1, event: "@v1", participant: "@n2", head: CoAgent, preposition: with, span: "with Ottoline"}
     - category: positive
       note: the party something is done for
       text: "Yusra baked a loaf for Teodor."
       instances:
-        - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: witness, id: x1, class: loaf}
-        - {t: named-entity, id: n2, name: "Teodor"}
-        - {t: creation, id: e1, verb: bake, creator: "@n1", product: "@x1", tense: past}
-        - {t: adjunct, id: a1, event: "@e1", participant: "@n2", head: Beneficiary, preposition: for}
+        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
+        - {t: witness, id: x1, class: loaf, span: "a loaf"}
+        - {t: named-entity, id: n2, name: "Teodor", span: "Teodor"}
+        - {t: creation, id: e1, verb: bake, creator: "@n1", product: "@x1", tense: past, span: "Yusra baked a loaf"}
+        - {t: adjunct, id: a1, event: "@e1", participant: "@n2", head: Beneficiary, preposition: for, span: "for Teodor"}
     - category: abstain
       text: "Teodor gave Yusra a thermos."
       expected: {abstain: true, template: transfer}                   # a recipient, not a beneficiary

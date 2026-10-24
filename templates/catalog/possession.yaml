@@ -86,9 +86,9 @@ examples:
       note: have as a main verb
       text: "Teodor has a trowel."
       instances:
-        - {t: named-entity, id: n1, name: "Teodor"}
-        - {t: witness, id: x1, class: trowel}
-        - {t: possession, id: p1, verb: have, holder: "@n1", possessed: "@x1", tense: present}
+        - {t: named-entity, id: n1, name: "Teodor", span: "Teodor"}
+        - {t: witness, id: x1, class: trowel, span: "a trowel"}
+        - {t: possession, id: p1, verb: have, holder: "@n1", possessed: "@x1", tense: present, span: "Teodor has a trowel"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
         - "(Name sk_teodor_1 \"Teodor\")"
         - "(Member sk_trowel_1 trowel)"
@@ -105,9 +105,9 @@ examples:
       note: belong — the subject is the thing held; the roles do not change
       text: "The ladder belongs to Lamine."
       instances:
-        - {t: witness, id: x1, class: ladder, definite: true}
-        - {t: named-entity, id: n1, name: "Lamine"}
-        - {t: possession, id: p1, verb: belong, holder: "@n1", possessed: "@x1", tense: present}
+        - {t: witness, id: x1, class: ladder, definite: true, span: "The ladder"}
+        - {t: named-entity, id: n1, name: "Lamine", span: "Lamine"}
+        - {t: possession, id: p1, verb: belong, holder: "@n1", possessed: "@x1", tense: present, span: "The ladder belongs to Lamine"}
     - category: abstain
       text: "Yusra received a thermos."
       expected: {abstain: true, template: acquisition}                # coming to have

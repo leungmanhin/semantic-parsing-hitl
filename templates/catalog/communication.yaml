@@ -106,11 +106,11 @@ examples:
       note: the message as a thing
       text: "Ottoline told Teodor the news."
       instances:
-        - {t: named-entity, id: n1, name: "Ottoline"}
-        - {t: named-entity, id: n2, name: "Teodor"}
-        - {t: witness, id: x1, class: news, definite: true}
+        - {t: named-entity, id: n1, name: "Ottoline", span: "Ottoline"}
+        - {t: named-entity, id: n2, name: "Teodor", span: "Teodor"}
+        - {t: witness, id: x1, class: news, definite: true, span: "the news"}
         - {t: communication, id: c1, verb: tell, speaker: "@n1", addressee: "@n2", message: "@x1",
-           tense: past}
+           tense: past, span: "Ottoline told Teodor the news"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
         - "(Name sk_ottoline_1 \"Ottoline\")"
         - "(Name sk_teodor_1 \"Teodor\")"
@@ -131,13 +131,13 @@ examples:
       note: the message as a clause, sealed
       text: "Teodor told Ottoline that Lamine sold the spindle."
       instances:
-        - {t: named-entity, id: n1, name: "Teodor"}
-        - {t: named-entity, id: n2, name: "Ottoline"}
-        - {t: named-entity, id: n3, name: "Lamine"}
-        - {t: witness, id: x1, class: spindle, definite: true}
-        - {t: transfer, id: e1, verb: sell, giver: "@n3", object: "@x1", tense: past}
+        - {t: named-entity, id: n1, name: "Teodor", span: "Teodor"}
+        - {t: named-entity, id: n2, name: "Ottoline", span: "Ottoline"}
+        - {t: named-entity, id: n3, name: "Lamine", span: "Lamine"}
+        - {t: witness, id: x1, class: spindle, definite: true, span: "the spindle"}
+        - {t: transfer, id: e1, verb: sell, giver: "@n3", object: "@x1", tense: past, span: "Lamine sold the spindle"}
         - {t: communication, id: c1, verb: tell, speaker: "@n1", addressee: "@n2", content: ["@e1"],
-           tense: past}
+           tense: past, span: "Teodor told Ottoline that Lamine sold the spindle"}
     - category: abstain
       text: "Teodor said that Lamine sold the spindle."
       expected: {abstain: true, template: attitude}                  # no addressee

@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 b97df3a1e97594be · 42 templates
+catalog sha256 1f9e02a6eff6836c · 42 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -32,11 +32,12 @@ For each item write ONE JSON object and nothing else:
      "unmapped":  [ <unmapped span>, ... ],
      "issues":    [ <issue>, ... ]}
 
-`instances` is a list of records `{"t": "<template id>", ...slots}`. Give referents first, in
-order of first mention, then predications in text order, then the scope operators (negation,
-modals, directives, sealed complements), attachments (times, places, particles), rules and
-links. Every instance carries an `id`. Use exactly the slot names defined for each template;
-omit an optional slot that does not apply (never write null for it).
+`instances` is a list of records `{"t": "<template id>", "id": "<label>", ...slots, "span":
+"<words, verbatim>"}`. Give referents first, in order of first mention, then predications in
+text order, then the scope operators (negation, modals, directives, sealed complements),
+attachments (times, places, particles), rules and links. Every instance carries an `id` and a
+`span` (see *Spans*). Use exactly the slot names defined for each template; omit an optional
+slot that does not apply (never write null for it).
 
 `issues` is a list (usually empty) of problems with THESE INSTRUCTIONS that the item exposed —
 see *Reporting a problem with the instructions*. Parse the item as the instructions say in any
@@ -88,6 +89,29 @@ fences.
   one predication instance per conjunct, each with its own event, never a group. When the
   predicate holds only of the conjuncts together (met, argued, shared a thermos), no instance
   fits: report the clause as unmapped.
+
+## Spans
+
+- Every instance carries `span`: the words of the TEXT it is built from, copied verbatim — one
+  string, or a list of strings when the words are not contiguous. Spans may overlap; together
+  with the unmapped spans they should account for every content word of the TEXT.
+- What a span covers. A REFERENT: its phrase as written — the name (`"Lamine"`), the noun phrase
+  with its determiner or possessor (`"the envelope"`, `"Yusra's quilt"`), the pronoun (`"she"`),
+  the quantified phrase (`"All alloys"`). A PREDICATION: the stretch from the first to the last
+  word of its verb and its own arguments as written (`"Ottoline took the envelope from Lamine"`,
+  `"Yusra laughed"`); words of an operator or attachment that fall inside that stretch are
+  included (`"Teodor read only the letter"`), those outside it are not (`"Lamine cut the loaf"`
+  beside the adjunct `"with a knife"`). An EMBEDDED clause: the clause's own words only
+  (`"Lamine lent Ottoline the trowel"` under *believes that*, `"to sing"` under *began*,
+  `"Teodor laugh"` under *made*). A SCOPE OPERATOR, FOCUS or LINK: the word or words that signal
+  it (`"did not"`, `"Don't"`, `"might"`, `"Only"`, `"because"`, `"in order to"`; `["It was",
+  "who"]` for a cleft); an imperative with no marker word spans its clause. An ATTACHMENT: its
+  phrase with its preposition (`"with a knife"`, `"in the barn"`, `"on Monday"`, `"loudly"`,
+  `"with care"`, `"about ferrets"`). A COREF: the two mentions' words as a list (`["Lamine",
+  "she"]`). A RULE (a generalization, a conditional property, a distribution) or a class
+  statement: the whole clause it generalizes (`"Clay is soft when wet"`).
+- A span is provenance, not meaning: it says which words licensed the instance, so that every
+  fact can be traced to the TEXT and checked. It never changes what the instance states.
 
 ## Lemmas and symbols
 
@@ -224,9 +248,9 @@ Example (a vague size; the sleeping distributes to each ferret). TEXT: Several f
 Instances:
 
     [
-      {"t": "group", "id": "g1", "class": "ferret", "quantity": "several"},
-      {"t": "activity", "id": "v1", "verb": "sleep", "actor": "@g1", "tense": "past"},
-      {"t": "distribution", "id": "d1", "group": "@g1", "over": ["@v1"]}
+      {"t": "group", "id": "g1", "class": "ferret", "quantity": "several", "span": "Several ferrets"},
+      {"t": "activity", "id": "v1", "verb": "sleep", "actor": "@g1", "tense": "past", "span": "Several ferrets slept"},
+      {"t": "distribution", "id": "d1", "group": "@g1", "over": ["@v1"], "span": "Several ferrets slept"}
     ]
 
 The program renders these instances as:
@@ -243,9 +267,9 @@ Example (an exact count; a collective predicate — no distribution). TEXT: Thre
 Instances:
 
     [
-      {"t": "group", "id": "g1", "class": "ferret", "count": 3},
-      {"t": "witness", "id": "x1", "class": "barn", "definite": true},
-      {"t": "activity", "id": "v1", "verb": "surround", "actor": "@g1", "patient": "@x1", "tense": "past"}
+      {"t": "group", "id": "g1", "class": "ferret", "count": 3, "span": "Three ferrets"},
+      {"t": "witness", "id": "x1", "class": "barn", "definite": true, "span": "the barn"},
+      {"t": "activity", "id": "v1", "verb": "surround", "actor": "@g1", "patient": "@x1", "tense": "past", "span": "Three ferrets surrounded the barn"}
     ]
 
 The program renders these instances as:
@@ -320,7 +344,7 @@ Example. TEXT: Teodor
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Teodor"}
+      {"t": "named-entity", "id": "n1", "name": "Teodor", "span": "Teodor"}
     ]
 
 The program renders these instances as:
@@ -427,7 +451,7 @@ Example. TEXT: a thermos
 Instances:
 
     [
-      {"t": "witness", "id": "n1", "class": "thermos"}
+      {"t": "witness", "id": "n1", "class": "thermos", "span": "a thermos"}
     ]
 
 The program renders these instances as:
@@ -439,8 +463,8 @@ Example (a possessive phrase — the possessor is a referent of its own). TEXT: 
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Yusra"},
-      {"t": "witness", "id": "x1", "class": "quilt", "possessor": "@n1"}
+      {"t": "named-entity", "id": "n1", "name": "Yusra", "span": "Yusra"},
+      {"t": "witness", "id": "x1", "class": "quilt", "possessor": "@n1", "span": "Yusra's quilt"}
     ]
 
 The program renders these instances as:
@@ -505,10 +529,10 @@ Example (with the source stated). TEXT: Ottoline took the envelope from Lamine.
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Ottoline"},
-      {"t": "witness", "id": "x1", "class": "envelope", "definite": true},
-      {"t": "named-entity", "id": "n2", "name": "Lamine"},
-      {"t": "acquisition", "id": "q1", "verb": "take", "acquirer": "@n1", "object": "@x1", "source": "@n2", "tense": "past"}
+      {"t": "named-entity", "id": "n1", "name": "Ottoline", "span": "Ottoline"},
+      {"t": "witness", "id": "x1", "class": "envelope", "definite": true, "span": "the envelope"},
+      {"t": "named-entity", "id": "n2", "name": "Lamine", "span": "Lamine"},
+      {"t": "acquisition", "id": "q1", "verb": "take", "acquirer": "@n1", "object": "@x1", "source": "@n2", "tense": "past", "span": "Ottoline took the envelope from Lamine"}
     ]
 
 The program renders these instances as:
@@ -527,9 +551,9 @@ Example (by receiving, no source stated). TEXT: Yusra received a thermos.
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Yusra"},
-      {"t": "witness", "id": "x1", "class": "thermos"},
-      {"t": "acquisition", "id": "q1", "verb": "receive", "acquirer": "@n1", "object": "@x1", "tense": "past"}
+      {"t": "named-entity", "id": "n1", "name": "Yusra", "span": "Yusra"},
+      {"t": "witness", "id": "x1", "class": "thermos", "span": "a thermos"},
+      {"t": "acquisition", "id": "q1", "verb": "receive", "acquirer": "@n1", "object": "@x1", "tense": "past", "span": "Yusra received a thermos"}
     ]
 
 The program renders these instances as:
@@ -602,8 +626,8 @@ Example (intransitive). TEXT: Yusra laughed.
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Yusra"},
-      {"t": "activity", "id": "v1", "verb": "laugh", "actor": "@n1", "tense": "past"}
+      {"t": "named-entity", "id": "n1", "name": "Yusra", "span": "Yusra"},
+      {"t": "activity", "id": "v1", "verb": "laugh", "actor": "@n1", "tense": "past", "span": "Yusra laughed"}
     ]
 
 The program renders these instances as:
@@ -618,8 +642,8 @@ Example (a non-specific patient as a bare lemma). TEXT: Lamine cooked dinner.
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Lamine"},
-      {"t": "activity", "id": "v1", "verb": "cook", "actor": "@n1", "patient": "dinner", "tense": "past"}
+      {"t": "named-entity", "id": "n1", "name": "Lamine", "span": "Lamine"},
+      {"t": "activity", "id": "v1", "verb": "cook", "actor": "@n1", "patient": "dinner", "tense": "past", "span": "Lamine cooked dinner"}
     ]
 
 The program renders these instances as:
@@ -684,9 +708,9 @@ Example (the phase event has no role of its own; the action is sealed as its The
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Teodor"},
-      {"t": "activity", "id": "v1", "verb": "sing", "actor": "@n1", "tense": "present"},
-      {"t": "aspectual", "id": "e1", "verb": "begin", "complement": ["@v1"], "tense": "past"}
+      {"t": "named-entity", "id": "n1", "name": "Teodor", "span": "Teodor"},
+      {"t": "activity", "id": "v1", "verb": "sing", "actor": "@n1", "tense": "present", "span": "to sing"},
+      {"t": "aspectual", "id": "e1", "verb": "begin", "complement": ["@v1"], "tense": "past", "span": "Teodor began to sing"}
     ]
 
 The program renders these instances as:
@@ -702,9 +726,9 @@ Example (the subject undergoes the action — no agent anywhere). TEXT: The pric
 Instances:
 
     [
-      {"t": "witness", "id": "x1", "class": "price", "definite": true},
-      {"t": "change-of-state", "id": "c1", "verb": "fall", "undergoer": "@x1", "tense": "present"},
-      {"t": "aspectual", "id": "e1", "verb": "start", "complement": ["@c1"], "tense": "past"}
+      {"t": "witness", "id": "x1", "class": "price", "definite": true, "span": "The price"},
+      {"t": "change-of-state", "id": "c1", "verb": "fall", "undergoer": "@x1", "tense": "present", "span": "to fall"},
+      {"t": "aspectual", "id": "e1", "verb": "start", "complement": ["@c1"], "tense": "past", "span": "The price started to fall"}
     ]
 
 The program renders these instances as:
@@ -783,12 +807,12 @@ Example. TEXT: Teodor believes that Lamine lent Ottoline the trowel.
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Teodor"},
-      {"t": "named-entity", "id": "n2", "name": "Lamine"},
-      {"t": "named-entity", "id": "n3", "name": "Ottoline"},
-      {"t": "witness", "id": "x1", "class": "trowel", "definite": true},
-      {"t": "transfer", "id": "e1", "verb": "lend", "giver": "@n2", "recipient": "@n3", "object": "@x1", "tense": "past"},
-      {"t": "attitude", "id": "a1", "verb": "believe", "holder": "@n1", "content": ["@e1"], "factive": false, "tense": "present"}
+      {"t": "named-entity", "id": "n1", "name": "Teodor", "span": "Teodor"},
+      {"t": "named-entity", "id": "n2", "name": "Lamine", "span": "Lamine"},
+      {"t": "named-entity", "id": "n3", "name": "Ottoline", "span": "Ottoline"},
+      {"t": "witness", "id": "x1", "class": "trowel", "definite": true, "span": "the trowel"},
+      {"t": "transfer", "id": "e1", "verb": "lend", "giver": "@n2", "recipient": "@n3", "object": "@x1", "tense": "past", "span": "Lamine lent Ottoline the trowel"},
+      {"t": "attitude", "id": "a1", "verb": "believe", "holder": "@n1", "content": ["@e1"], "factive": false, "tense": "present", "span": "Teodor believes that Lamine lent Ottoline the trowel"}
     ]
 
 The program renders these instances as:
@@ -806,11 +830,11 @@ Example (factive — the complement is also stated flat). TEXT: Yusra knows that
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Yusra"},
-      {"t": "named-entity", "id": "n2", "name": "Teodor"},
-      {"t": "witness", "id": "x1", "class": "spindle", "definite": true},
-      {"t": "transfer", "id": "e1", "verb": "sell", "giver": "@n2", "object": "@x1", "tense": "past"},
-      {"t": "attitude", "id": "a1", "verb": "know", "holder": "@n1", "content": ["@e1"], "factive": true, "tense": "present"}
+      {"t": "named-entity", "id": "n1", "name": "Yusra", "span": "Yusra"},
+      {"t": "named-entity", "id": "n2", "name": "Teodor", "span": "Teodor"},
+      {"t": "witness", "id": "x1", "class": "spindle", "definite": true, "span": "the spindle"},
+      {"t": "transfer", "id": "e1", "verb": "sell", "giver": "@n2", "object": "@x1", "tense": "past", "span": "Teodor sold the spindle"},
+      {"t": "attitude", "id": "a1", "verb": "know", "holder": "@n1", "content": ["@e1"], "factive": true, "tense": "present", "span": "Yusra knows that Teodor sold the spindle"}
     ]
 
 The program renders these instances as:
@@ -831,11 +855,11 @@ Example (a reporting verb with no addressee is an attitude). TEXT: Teodor said t
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Teodor"},
-      {"t": "named-entity", "id": "n2", "name": "Lamine"},
-      {"t": "witness", "id": "x1", "class": "spindle", "definite": true},
-      {"t": "transfer", "id": "e1", "verb": "sell", "giver": "@n2", "object": "@x1", "tense": "past"},
-      {"t": "attitude", "id": "a1", "verb": "say", "holder": "@n1", "content": ["@e1"], "factive": false, "tense": "past"}
+      {"t": "named-entity", "id": "n1", "name": "Teodor", "span": "Teodor"},
+      {"t": "named-entity", "id": "n2", "name": "Lamine", "span": "Lamine"},
+      {"t": "witness", "id": "x1", "class": "spindle", "definite": true, "span": "the spindle"},
+      {"t": "transfer", "id": "e1", "verb": "sell", "giver": "@n2", "object": "@x1", "tense": "past", "span": "Lamine sold the spindle"},
+      {"t": "attitude", "id": "a1", "verb": "say", "holder": "@n1", "content": ["@e1"], "factive": false, "tense": "past", "span": "Teodor said that Lamine sold the spindle"}
     ]
 
 The program renders these instances as:
@@ -853,11 +877,11 @@ Example (a perception verb with a that-clause is a factive attitude). TEXT: Teod
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Teodor"},
-      {"t": "named-entity", "id": "n2", "name": "Lamine"},
-      {"t": "witness", "id": "x1", "class": "spindle", "definite": true},
-      {"t": "transfer", "id": "e1", "verb": "sell", "giver": "@n2", "object": "@x1", "tense": "past"},
-      {"t": "attitude", "id": "a1", "verb": "see", "holder": "@n1", "content": ["@e1"], "factive": true, "tense": "past"}
+      {"t": "named-entity", "id": "n1", "name": "Teodor", "span": "Teodor"},
+      {"t": "named-entity", "id": "n2", "name": "Lamine", "span": "Lamine"},
+      {"t": "witness", "id": "x1", "class": "spindle", "definite": true, "span": "the spindle"},
+      {"t": "transfer", "id": "e1", "verb": "sell", "giver": "@n2", "object": "@x1", "tense": "past", "span": "Lamine sold the spindle"},
+      {"t": "attitude", "id": "a1", "verb": "see", "holder": "@n1", "content": ["@e1"], "factive": true, "tense": "past", "span": "Teodor saw that Lamine sold the spindle"}
     ]
 
 The program renders these instances as:
@@ -884,10 +908,10 @@ Example (an infinitival complement — the holder acts in it; nothing is asserte
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Ottoline"},
-      {"t": "witness", "id": "x1", "class": "quilt", "definite": true},
-      {"t": "transfer", "id": "e1", "verb": "send", "giver": "@n1", "object": "@x1", "tense": "present"},
-      {"t": "attitude", "id": "a1", "verb": "want", "holder": "@n1", "content": ["@e1"], "factive": false, "tense": "present"}
+      {"t": "named-entity", "id": "n1", "name": "Ottoline", "span": "Ottoline"},
+      {"t": "witness", "id": "x1", "class": "quilt", "definite": true, "span": "the quilt"},
+      {"t": "transfer", "id": "e1", "verb": "send", "giver": "@n1", "object": "@x1", "tense": "present", "span": "to send the quilt"},
+      {"t": "attitude", "id": "a1", "verb": "want", "holder": "@n1", "content": ["@e1"], "factive": false, "tense": "present", "span": "Ottoline wants to send the quilt"}
     ]
 
 The program renders these instances as:
@@ -964,10 +988,10 @@ Example (the causee is the actor of the caused clause; make says it happened —
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Yusra"},
-      {"t": "named-entity", "id": "n2", "name": "Teodor"},
-      {"t": "activity", "id": "v1", "verb": "laugh", "actor": "@n2", "tense": "present"},
-      {"t": "causative", "id": "e1", "verb": "make", "causer": "@n1", "complement": ["@v1"], "implication": "positive", "tense": "past"}
+      {"t": "named-entity", "id": "n1", "name": "Yusra", "span": "Yusra"},
+      {"t": "named-entity", "id": "n2", "name": "Teodor", "span": "Teodor"},
+      {"t": "activity", "id": "v1", "verb": "laugh", "actor": "@n2", "tense": "present", "span": "Teodor laugh"},
+      {"t": "causative", "id": "e1", "verb": "make", "causer": "@n1", "complement": ["@v1"], "implication": "positive", "tense": "past", "span": "Yusra made Teodor laugh"}
     ]
 
 The program renders these instances as:
@@ -985,10 +1009,10 @@ Example (a negative implication — the action did not happen). TEXT: Lamine pre
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Lamine"},
-      {"t": "named-entity", "id": "n2", "name": "Teodor"},
-      {"t": "motion", "id": "m1", "verb": "leave", "mover": "@n2", "tense": "present"},
-      {"t": "causative", "id": "e1", "verb": "prevent", "causer": "@n1", "complement": ["@m1"], "implication": "negative", "tense": "past"}
+      {"t": "named-entity", "id": "n1", "name": "Lamine", "span": "Lamine"},
+      {"t": "named-entity", "id": "n2", "name": "Teodor", "span": "Teodor"},
+      {"t": "motion", "id": "m1", "verb": "leave", "mover": "@n2", "tense": "present", "span": "leaving"},
+      {"t": "causative", "id": "e1", "verb": "prevent", "causer": "@n1", "complement": ["@m1"], "implication": "negative", "tense": "past", "span": "Lamine prevented Teodor from leaving"}
     ]
 
 The program renders these instances as:
@@ -1065,8 +1089,8 @@ Example (a change on its own). TEXT: The thermos cracked.
 Instances:
 
     [
-      {"t": "witness", "id": "x1", "class": "thermos", "definite": true},
-      {"t": "change-of-state", "id": "c1", "verb": "crack", "undergoer": "@x1", "tense": "past"}
+      {"t": "witness", "id": "x1", "class": "thermos", "definite": true, "span": "The thermos"},
+      {"t": "change-of-state", "id": "c1", "verb": "crack", "undergoer": "@x1", "tense": "past", "span": "The thermos cracked"}
     ]
 
 The program renders these instances as:
@@ -1081,8 +1105,8 @@ Example (becoming — the result is named). TEXT: Teodor became a locksmith.
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Teodor"},
-      {"t": "change-of-state", "id": "c1", "verb": "become", "undergoer": "@n1", "result": "locksmith", "tense": "past"}
+      {"t": "named-entity", "id": "n1", "name": "Teodor", "span": "Teodor"},
+      {"t": "change-of-state", "id": "c1", "verb": "become", "undergoer": "@n1", "result": "locksmith", "tense": "past", "span": "Teodor became a locksmith"}
     ]
 
 The program renders these instances as:
@@ -1098,9 +1122,9 @@ Example (brought about by someone). TEXT: Yusra broke the ladder.
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Yusra"},
-      {"t": "witness", "id": "x1", "class": "ladder", "definite": true},
-      {"t": "change-of-state", "id": "c1", "verb": "break", "agent": "@n1", "undergoer": "@x1", "tense": "past"}
+      {"t": "named-entity", "id": "n1", "name": "Yusra", "span": "Yusra"},
+      {"t": "witness", "id": "x1", "class": "ladder", "definite": true, "span": "the ladder"},
+      {"t": "change-of-state", "id": "c1", "verb": "break", "agent": "@n1", "undergoer": "@x1", "tense": "past", "span": "Yusra broke the ladder"}
     ]
 
 The program renders these instances as:
@@ -1163,7 +1187,7 @@ Example (a property no single heron can have). TEXT: Herons are widespread.
 Instances:
 
     [
-      {"t": "class-property", "id": "k1", "subject": "heron", "property": "widespread", "tense": "present"}
+      {"t": "class-property", "id": "k1", "subject": "heron", "property": "widespread", "tense": "present", "span": "Herons are widespread"}
     ]
 
 The program renders these instances as:
@@ -1175,7 +1199,7 @@ Example (a definite singular naming the class — no witness). TEXT: The quagga 
 Instances:
 
     [
-      {"t": "class-property", "id": "k1", "subject": "quagga", "property": "extinct", "tense": "present"}
+      {"t": "class-property", "id": "k1", "subject": "quagga", "property": "extinct", "tense": "present", "span": "The quagga is extinct"}
     ]
 
 The program renders these instances as:
@@ -1187,8 +1211,8 @@ Example (a place restricting the claim — kept in the atom, still about the cla
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Norfolk"},
-      {"t": "class-property", "id": "k1", "subject": "otter", "property": "rare", "restriction": "@n1", "tense": "present"}
+      {"t": "named-entity", "id": "n1", "name": "Norfolk", "span": "Norfolk"},
+      {"t": "class-property", "id": "k1", "subject": "otter", "property": "rare", "restriction": "@n1", "tense": "present", "span": "Otters are rare in Norfolk"}
     ]
 
 The program renders these instances as:
@@ -1250,7 +1274,7 @@ Example (definitional). TEXT: Ferrets are mustelids.
 Instances:
 
     [
-      {"t": "class-statement", "id": "k1", "subject": "ferret", "predicate": "mustelid", "form": "noun", "definitional": true, "tense": "present"}
+      {"t": "class-statement", "id": "k1", "subject": "ferret", "predicate": "mustelid", "form": "noun", "definitional": true, "tense": "present", "span": "Ferrets are mustelids"}
     ]
 
 The program renders these instances as:
@@ -1262,7 +1286,7 @@ Example (empirical and bare — the program lowers the confidence to 0.7). TEXT:
 Instances:
 
     [
-      {"t": "class-statement", "id": "k1", "subject": "ferret", "predicate": "curious", "form": "adjective", "definitional": false, "tense": "present"}
+      {"t": "class-statement", "id": "k1", "subject": "ferret", "predicate": "curious", "form": "adjective", "definitional": false, "tense": "present", "span": "Ferrets are curious"}
     ]
 
 The program renders these instances as:
@@ -1276,7 +1300,7 @@ Example (a quantifier word — strength 1.0 at empirical confidence, the word ke
 Instances:
 
     [
-      {"t": "class-statement", "id": "k1", "subject": "ferret", "predicate": "curious", "form": "adjective", "definitional": false, "quantifier": "all", "tense": "present"}
+      {"t": "class-statement", "id": "k1", "subject": "ferret", "predicate": "curious", "form": "adjective", "definitional": false, "quantifier": "all", "tense": "present", "span": "All ferrets are curious"}
     ]
 
 The program renders these instances as:
@@ -1349,10 +1373,10 @@ Example (the message as a thing). TEXT: Ottoline told Teodor the news.
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Ottoline"},
-      {"t": "named-entity", "id": "n2", "name": "Teodor"},
-      {"t": "witness", "id": "x1", "class": "news", "definite": true},
-      {"t": "communication", "id": "c1", "verb": "tell", "speaker": "@n1", "addressee": "@n2", "message": "@x1", "tense": "past"}
+      {"t": "named-entity", "id": "n1", "name": "Ottoline", "span": "Ottoline"},
+      {"t": "named-entity", "id": "n2", "name": "Teodor", "span": "Teodor"},
+      {"t": "witness", "id": "x1", "class": "news", "definite": true, "span": "the news"},
+      {"t": "communication", "id": "c1", "verb": "tell", "speaker": "@n1", "addressee": "@n2", "message": "@x1", "tense": "past", "span": "Ottoline told Teodor the news"}
     ]
 
 The program renders these instances as:
@@ -1371,12 +1395,12 @@ Example (the message as a clause, sealed). TEXT: Teodor told Ottoline that Lamin
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Teodor"},
-      {"t": "named-entity", "id": "n2", "name": "Ottoline"},
-      {"t": "named-entity", "id": "n3", "name": "Lamine"},
-      {"t": "witness", "id": "x1", "class": "spindle", "definite": true},
-      {"t": "transfer", "id": "e1", "verb": "sell", "giver": "@n3", "object": "@x1", "tense": "past"},
-      {"t": "communication", "id": "c1", "verb": "tell", "speaker": "@n1", "addressee": "@n2", "content": ["@e1"], "tense": "past"}
+      {"t": "named-entity", "id": "n1", "name": "Teodor", "span": "Teodor"},
+      {"t": "named-entity", "id": "n2", "name": "Ottoline", "span": "Ottoline"},
+      {"t": "named-entity", "id": "n3", "name": "Lamine", "span": "Lamine"},
+      {"t": "witness", "id": "x1", "class": "spindle", "definite": true, "span": "the spindle"},
+      {"t": "transfer", "id": "e1", "verb": "sell", "giver": "@n3", "object": "@x1", "tense": "past", "span": "Lamine sold the spindle"},
+      {"t": "communication", "id": "c1", "verb": "tell", "speaker": "@n1", "addressee": "@n2", "content": ["@e1"], "tense": "past", "span": "Teodor told Ottoline that Lamine sold the spindle"}
     ]
 
 The program renders these instances as:
@@ -1460,9 +1484,9 @@ Example (no implication — the complement is sealed, nothing is said about the 
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Yusra"},
-      {"t": "activity", "id": "v1", "verb": "sleep", "actor": "@n1", "tense": "present"},
-      {"t": "control", "id": "e1", "verb": "try", "subject": "@n1", "complement": ["@v1"], "implication": "none", "tense": "past"}
+      {"t": "named-entity", "id": "n1", "name": "Yusra", "span": "Yusra"},
+      {"t": "activity", "id": "v1", "verb": "sleep", "actor": "@n1", "tense": "present", "span": "to sleep"},
+      {"t": "control", "id": "e1", "verb": "try", "subject": "@n1", "complement": ["@v1"], "implication": "none", "tense": "past", "span": "Yusra tried to sleep"}
     ]
 
 The program renders these instances as:
@@ -1478,10 +1502,10 @@ Example (a positive implication — the marker lets a background rule derive the
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Lamine"},
-      {"t": "witness", "id": "x1", "class": "shed", "definite": true},
-      {"t": "change-of-state", "id": "c1", "verb": "open", "agent": "@n1", "undergoer": "@x1", "tense": "present"},
-      {"t": "control", "id": "e1", "verb": "manage", "subject": "@n1", "complement": ["@c1"], "implication": "positive", "tense": "past"}
+      {"t": "named-entity", "id": "n1", "name": "Lamine", "span": "Lamine"},
+      {"t": "witness", "id": "x1", "class": "shed", "definite": true, "span": "the shed"},
+      {"t": "change-of-state", "id": "c1", "verb": "open", "agent": "@n1", "undergoer": "@x1", "tense": "present", "span": "to open the shed"},
+      {"t": "control", "id": "e1", "verb": "manage", "subject": "@n1", "complement": ["@c1"], "implication": "positive", "tense": "past", "span": "Lamine managed to open the shed"}
     ]
 
 The program renders these instances as:
@@ -1499,9 +1523,9 @@ Example (a negative implication — the marker lets a background rule derive tha
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Teodor"},
-      {"t": "motion", "id": "m1", "verb": "arrive", "mover": "@n1", "tense": "present"},
-      {"t": "control", "id": "e1", "verb": "fail", "subject": "@n1", "complement": ["@m1"], "implication": "negative", "tense": "past"}
+      {"t": "named-entity", "id": "n1", "name": "Teodor", "span": "Teodor"},
+      {"t": "motion", "id": "m1", "verb": "arrive", "mover": "@n1", "tense": "present", "span": "to arrive"},
+      {"t": "control", "id": "e1", "verb": "fail", "subject": "@n1", "complement": ["@m1"], "implication": "negative", "tense": "past", "span": "Teodor failed to arrive"}
     ]
 
 The program renders these instances as:
@@ -1569,8 +1593,8 @@ Example (a class). TEXT: Teodor is a locksmith.
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Teodor"},
-      {"t": "copular", "id": "c1", "subject": "@n1", "predicate": "locksmith", "form": "noun", "tense": "present"}
+      {"t": "named-entity", "id": "n1", "name": "Teodor", "span": "Teodor"},
+      {"t": "copular", "id": "c1", "subject": "@n1", "predicate": "locksmith", "form": "noun", "tense": "present", "span": "Teodor is a locksmith"}
     ]
 
 The program renders these instances as:
@@ -1583,8 +1607,8 @@ Example (a property, past tense — the tense wraps the atom). TEXT: The audit w
 Instances:
 
     [
-      {"t": "witness", "id": "x1", "class": "audit", "definite": true},
-      {"t": "copular", "id": "c1", "subject": "@x1", "predicate": "difficult", "form": "adjective", "tense": "past"}
+      {"t": "witness", "id": "x1", "class": "audit", "definite": true, "span": "The audit"},
+      {"t": "copular", "id": "c1", "subject": "@x1", "predicate": "difficult", "form": "adjective", "tense": "past", "span": "The audit was difficult"}
     ]
 
 The program renders these instances as:
@@ -1661,9 +1685,9 @@ Example (the thing made is an indefinite witness). TEXT: Lamine baked a loaf.
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Lamine"},
-      {"t": "witness", "id": "x1", "class": "loaf"},
-      {"t": "creation", "id": "e1", "verb": "bake", "creator": "@n1", "product": "@x1", "tense": "past"}
+      {"t": "named-entity", "id": "n1", "name": "Lamine", "span": "Lamine"},
+      {"t": "witness", "id": "x1", "class": "loaf", "span": "a loaf"},
+      {"t": "creation", "id": "e1", "verb": "bake", "creator": "@n1", "product": "@x1", "tense": "past", "span": "Lamine baked a loaf"}
     ]
 
 The program renders these instances as:
@@ -1680,9 +1704,9 @@ Example (paint in the creation sense — the object is the picture). TEXT: Ottol
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Ottoline"},
-      {"t": "witness", "id": "x1", "class": "portrait"},
-      {"t": "creation", "id": "e1", "verb": "paint", "creator": "@n1", "product": "@x1", "tense": "past"}
+      {"t": "named-entity", "id": "n1", "name": "Ottoline", "span": "Ottoline"},
+      {"t": "witness", "id": "x1", "class": "portrait", "span": "a portrait"},
+      {"t": "creation", "id": "e1", "verb": "paint", "creator": "@n1", "product": "@x1", "tense": "past", "span": "Ottoline painted a portrait"}
     ]
 
 The program renders these instances as:
@@ -1699,9 +1723,9 @@ Example (an institution comes into being). TEXT: Yusra founded a school.
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Yusra"},
-      {"t": "witness", "id": "x1", "class": "school"},
-      {"t": "creation", "id": "e1", "verb": "found", "creator": "@n1", "product": "@x1", "tense": "past"}
+      {"t": "named-entity", "id": "n1", "name": "Yusra", "span": "Yusra"},
+      {"t": "witness", "id": "x1", "class": "school", "span": "a school"},
+      {"t": "creation", "id": "e1", "verb": "found", "creator": "@n1", "product": "@x1", "tense": "past", "span": "Yusra founded a school"}
     ]
 
 The program renders these instances as:
@@ -1777,8 +1801,8 @@ Example (an intensifier — the property stays asserted, the degree beside it). 
 Instances:
 
     [
-      {"t": "witness", "id": "x1", "class": "ladder", "definite": true},
-      {"t": "degree", "id": "d1", "bearer": "@x1", "scale": "crooked", "level": "very", "tense": "present"}
+      {"t": "witness", "id": "x1", "class": "ladder", "definite": true, "span": "The ladder"},
+      {"t": "degree", "id": "d1", "bearer": "@x1", "scale": "crooked", "level": "very", "tense": "present", "span": "The ladder is very crooked"}
     ]
 
 The program renders these instances as:
@@ -1792,8 +1816,8 @@ Example (an approximator — the property is not asserted, only its degree). TEX
 Instances:
 
     [
-      {"t": "witness", "id": "x1", "class": "thermos", "definite": true},
-      {"t": "degree", "id": "d1", "bearer": "@x1", "scale": "full", "level": "almost", "tense": "past"}
+      {"t": "witness", "id": "x1", "class": "thermos", "definite": true, "span": "The thermos"},
+      {"t": "degree", "id": "d1", "bearer": "@x1", "scale": "full", "level": "almost", "tense": "past", "span": "The thermos was almost full"}
     ]
 
 The program renders these instances as:
@@ -1806,8 +1830,8 @@ Example (a comparison class — relative to the class's norm, no positive). TEXT
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Yusra"},
-      {"t": "degree", "id": "d1", "bearer": "@n1", "scale": "tall", "for_class": "weaver", "tense": "present"}
+      {"t": "named-entity", "id": "n1", "name": "Yusra", "span": "Yusra"},
+      {"t": "degree", "id": "d1", "bearer": "@n1", "scale": "tall", "for_class": "weaver", "tense": "present", "span": "Yusra is tall for a weaver"}
     ]
 
 The program renders these instances as:
@@ -1871,9 +1895,9 @@ Example (on keeps its own head). TEXT: The ledger is on the workbench.
 Instances:
 
     [
-      {"t": "witness", "id": "x1", "class": "ledger", "definite": true},
-      {"t": "witness", "id": "x2", "class": "workbench", "definite": true},
-      {"t": "locative", "id": "l1", "thing": "@x1", "place": "@x2", "head": "On", "preposition": "on", "tense": "present"}
+      {"t": "witness", "id": "x1", "class": "ledger", "definite": true, "span": "The ledger"},
+      {"t": "witness", "id": "x2", "class": "workbench", "definite": true, "span": "the workbench"},
+      {"t": "locative", "id": "l1", "thing": "@x1", "place": "@x2", "head": "On", "preposition": "on", "tense": "present", "span": "The ledger is on the workbench"}
     ]
 
 The program renders these instances as:
@@ -1887,9 +1911,9 @@ Example (in renders as LocatedIn; two names). TEXT: Calderwick is in Norfolk.
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Calderwick"},
-      {"t": "named-entity", "id": "n2", "name": "Norfolk"},
-      {"t": "locative", "id": "l1", "thing": "@n1", "place": "@n2", "head": "LocatedIn", "preposition": "in", "tense": "present"}
+      {"t": "named-entity", "id": "n1", "name": "Calderwick", "span": "Calderwick"},
+      {"t": "named-entity", "id": "n2", "name": "Norfolk", "span": "Norfolk"},
+      {"t": "locative", "id": "l1", "thing": "@n1", "place": "@n2", "head": "LocatedIn", "preposition": "in", "tense": "present", "span": "Calderwick is in Norfolk"}
     ]
 
 The program renders these instances as:
@@ -1966,9 +1990,9 @@ Example (a self-mover and a destination). TEXT: Yusra went to the market.
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Yusra"},
-      {"t": "witness", "id": "x1", "class": "market", "definite": true},
-      {"t": "motion", "id": "m1", "verb": "go", "mover": "@n1", "goal": "@x1", "tense": "past"}
+      {"t": "named-entity", "id": "n1", "name": "Yusra", "span": "Yusra"},
+      {"t": "witness", "id": "x1", "class": "market", "definite": true, "span": "the market"},
+      {"t": "motion", "id": "m1", "verb": "go", "mover": "@n1", "goal": "@x1", "tense": "past", "span": "Yusra went to the market"}
     ]
 
 The program renders these instances as:
@@ -1985,10 +2009,10 @@ Example (a caused motion — the causer is the mover, the thing moved is the mov
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Lamine"},
-      {"t": "witness", "id": "x1", "class": "ladder", "definite": true},
-      {"t": "witness", "id": "x2", "class": "shed", "definite": true},
-      {"t": "motion", "id": "m1", "verb": "carry", "mover": "@n1", "moved": "@x1", "goal": "@x2", "tense": "past"}
+      {"t": "named-entity", "id": "n1", "name": "Lamine", "span": "Lamine"},
+      {"t": "witness", "id": "x1", "class": "ladder", "definite": true, "span": "the ladder"},
+      {"t": "witness", "id": "x2", "class": "shed", "definite": true, "span": "the shed"},
+      {"t": "motion", "id": "m1", "verb": "carry", "mover": "@n1", "moved": "@x1", "goal": "@x2", "tense": "past", "span": "Lamine carried the ladder to the shed"}
     ]
 
 The program renders these instances as:
@@ -2059,9 +2083,9 @@ Example (a thing perceived). TEXT: Teodor saw the ferret.
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Teodor"},
-      {"t": "witness", "id": "x1", "class": "ferret", "definite": true},
-      {"t": "perception", "id": "p1", "verb": "see", "perceiver": "@n1", "stimulus": "@x1", "tense": "past"}
+      {"t": "named-entity", "id": "n1", "name": "Teodor", "span": "Teodor"},
+      {"t": "witness", "id": "x1", "class": "ferret", "definite": true, "span": "the ferret"},
+      {"t": "perception", "id": "p1", "verb": "see", "perceiver": "@n1", "stimulus": "@x1", "tense": "past", "span": "Teodor saw the ferret"}
     ]
 
 The program renders these instances as:
@@ -2078,12 +2102,12 @@ Example (an event perceived — the transfer is parsed and asserted, the percept
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Yusra"},
-      {"t": "named-entity", "id": "n2", "name": "Lamine"},
-      {"t": "named-entity", "id": "n3", "name": "Teodor"},
-      {"t": "witness", "id": "x1", "class": "envelope"},
-      {"t": "transfer", "id": "e1", "verb": "hand", "giver": "@n2", "recipient": "@n3", "object": "@x1", "tense": "past"},
-      {"t": "perception", "id": "p1", "verb": "see", "perceiver": "@n1", "event": "@e1", "tense": "past"}
+      {"t": "named-entity", "id": "n1", "name": "Yusra", "span": "Yusra"},
+      {"t": "named-entity", "id": "n2", "name": "Lamine", "span": "Lamine"},
+      {"t": "named-entity", "id": "n3", "name": "Teodor", "span": "Teodor"},
+      {"t": "witness", "id": "x1", "class": "envelope", "span": "an envelope"},
+      {"t": "transfer", "id": "e1", "verb": "hand", "giver": "@n2", "recipient": "@n3", "object": "@x1", "tense": "past", "span": "Lamine hand Teodor an envelope"},
+      {"t": "perception", "id": "p1", "verb": "see", "perceiver": "@n1", "event": "@e1", "tense": "past", "span": "Yusra saw Lamine hand Teodor an envelope"}
     ]
 
 The program renders these instances as:
@@ -2153,9 +2177,9 @@ Example (have as a main verb). TEXT: Teodor has a trowel.
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Teodor"},
-      {"t": "witness", "id": "x1", "class": "trowel"},
-      {"t": "possession", "id": "p1", "verb": "have", "holder": "@n1", "possessed": "@x1", "tense": "present"}
+      {"t": "named-entity", "id": "n1", "name": "Teodor", "span": "Teodor"},
+      {"t": "witness", "id": "x1", "class": "trowel", "span": "a trowel"},
+      {"t": "possession", "id": "p1", "verb": "have", "holder": "@n1", "possessed": "@x1", "tense": "present", "span": "Teodor has a trowel"}
     ]
 
 The program renders these instances as:
@@ -2171,9 +2195,9 @@ Example (belong — the subject is the thing held; the roles do not change). TEX
 Instances:
 
     [
-      {"t": "witness", "id": "x1", "class": "ladder", "definite": true},
-      {"t": "named-entity", "id": "n1", "name": "Lamine"},
-      {"t": "possession", "id": "p1", "verb": "belong", "holder": "@n1", "possessed": "@x1", "tense": "present"}
+      {"t": "witness", "id": "x1", "class": "ladder", "definite": true, "span": "The ladder"},
+      {"t": "named-entity", "id": "n1", "name": "Lamine", "span": "Lamine"},
+      {"t": "possession", "id": "p1", "verb": "belong", "holder": "@n1", "possessed": "@x1", "tense": "present", "span": "The ladder belongs to Lamine"}
     ]
 
 The program renders these instances as:
@@ -2248,9 +2272,9 @@ Example (fear-type, experiencer as subject). TEXT: Yusra distrusts Lamine.
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Yusra"},
-      {"t": "named-entity", "id": "n2", "name": "Lamine"},
-      {"t": "psych", "id": "p1", "verb": "distrust", "experiencer": "@n1", "stimulus": "@n2", "tense": "present"}
+      {"t": "named-entity", "id": "n1", "name": "Yusra", "span": "Yusra"},
+      {"t": "named-entity", "id": "n2", "name": "Lamine", "span": "Lamine"},
+      {"t": "psych", "id": "p1", "verb": "distrust", "experiencer": "@n1", "stimulus": "@n2", "tense": "present", "span": "Yusra distrusts Lamine"}
     ]
 
 The program renders these instances as:
@@ -2266,9 +2290,9 @@ Example (frighten-type, experiencer as object — the same roles). TEXT: The fer
 Instances:
 
     [
-      {"t": "witness", "id": "x1", "class": "ferret", "definite": true},
-      {"t": "named-entity", "id": "n1", "name": "Teodor"},
-      {"t": "psych", "id": "p1", "verb": "frighten", "experiencer": "@n1", "stimulus": "@x1", "tense": "present"}
+      {"t": "witness", "id": "x1", "class": "ferret", "definite": true, "span": "The ferret"},
+      {"t": "named-entity", "id": "n1", "name": "Teodor", "span": "Teodor"},
+      {"t": "psych", "id": "p1", "verb": "frighten", "experiencer": "@n1", "stimulus": "@x1", "tense": "present", "span": "The ferret frightens Teodor"}
     ]
 
 The program renders these instances as:
@@ -2286,9 +2310,9 @@ Example (an action as the stimulus — the clause is sealed, the experiencer act
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Yusra"},
-      {"t": "transfer", "id": "e1", "verb": "send", "giver": "@n1", "object": "quilt", "tense": "present"},
-      {"t": "psych", "id": "p1", "verb": "like", "experiencer": "@n1", "complement": ["@e1"], "tense": "present"}
+      {"t": "named-entity", "id": "n1", "name": "Yusra", "span": "Yusra"},
+      {"t": "transfer", "id": "e1", "verb": "send", "giver": "@n1", "object": "quilt", "tense": "present", "span": "to send quilts"},
+      {"t": "psych", "id": "p1", "verb": "like", "experiencer": "@n1", "complement": ["@e1"], "tense": "present", "span": "Yusra likes to send quilts"}
     ]
 
 The program renders these instances as:
@@ -2349,10 +2373,10 @@ Example. TEXT: Teodor gave Yusra a thermos.
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Teodor"},
-      {"t": "named-entity", "id": "n2", "name": "Yusra"},
-      {"t": "witness", "id": "x1", "class": "thermos"},
-      {"t": "transfer", "id": "e1", "verb": "give", "giver": "@n1", "recipient": "@n2", "object": "@x1", "tense": "past"}
+      {"t": "named-entity", "id": "n1", "name": "Teodor", "span": "Teodor"},
+      {"t": "named-entity", "id": "n2", "name": "Yusra", "span": "Yusra"},
+      {"t": "witness", "id": "x1", "class": "thermos", "span": "a thermos"},
+      {"t": "transfer", "id": "e1", "verb": "give", "giver": "@n1", "recipient": "@n2", "object": "@x1", "tense": "past", "span": "Teodor gave Yusra a thermos"}
     ]
 
 The program renders these instances as:
@@ -2371,10 +2395,10 @@ Example (the to-dative is the same instance as the double object). TEXT: Lamine 
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Lamine"},
-      {"t": "witness", "id": "x1", "class": "quilt", "definite": true},
-      {"t": "named-entity", "id": "n3", "name": "Ottoline"},
-      {"t": "transfer", "id": "e1", "verb": "send", "giver": "@n1", "recipient": "@n3", "object": "@x1", "tense": "future"}
+      {"t": "named-entity", "id": "n1", "name": "Lamine", "span": "Lamine"},
+      {"t": "witness", "id": "x1", "class": "quilt", "definite": true, "span": "the quilt"},
+      {"t": "named-entity", "id": "n3", "name": "Ottoline", "span": "Ottoline"},
+      {"t": "transfer", "id": "e1", "verb": "send", "giver": "@n1", "recipient": "@n3", "object": "@x1", "tense": "future", "span": "Lamine will send the quilt to Ottoline"}
     ]
 
 The program renders these instances as:
@@ -2393,9 +2417,9 @@ Example (no recipient stated). TEXT: Yusra sold the spindle.
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Yusra"},
-      {"t": "witness", "id": "x1", "class": "spindle", "definite": true},
-      {"t": "transfer", "id": "e1", "verb": "sell", "giver": "@n1", "object": "@x1", "tense": "past"}
+      {"t": "named-entity", "id": "n1", "name": "Yusra", "span": "Yusra"},
+      {"t": "witness", "id": "x1", "class": "spindle", "definite": true, "span": "the spindle"},
+      {"t": "transfer", "id": "e1", "verb": "sell", "giver": "@n1", "object": "@x1", "tense": "past", "span": "Yusra sold the spindle"}
     ]
 
 The program renders these instances as:
@@ -2461,9 +2485,9 @@ Example (the commanded event is sealed, tenseless and without an actor; the defi
 Instances:
 
     [
-      {"t": "witness", "id": "x1", "class": "gate", "definite": true},
-      {"t": "change-of-state", "id": "c1", "verb": "close", "undergoer": "@x1", "tense": "present"},
-      {"t": "imperative", "id": "s1", "over": ["@c1"]}
+      {"t": "witness", "id": "x1", "class": "gate", "definite": true, "span": "the gate"},
+      {"t": "change-of-state", "id": "c1", "verb": "close", "undergoer": "@x1", "tense": "present", "span": "Close the gate"},
+      {"t": "imperative", "id": "s1", "over": ["@c1"], "span": "Close the gate"}
     ]
 
 The program renders these instances as:
@@ -2476,10 +2500,10 @@ Example (a negative imperative — the directive over the negation). TEXT: Don't
 Instances:
 
     [
-      {"t": "witness", "id": "x1", "class": "spindle", "definite": true},
-      {"t": "activity", "id": "v1", "verb": "touch", "patient": "@x1", "tense": "present"},
-      {"t": "negation", "id": "s1", "over": ["@v1"]},
-      {"t": "imperative", "id": "s2", "over": ["@s1"]}
+      {"t": "witness", "id": "x1", "class": "spindle", "definite": true, "span": "the spindle"},
+      {"t": "activity", "id": "v1", "verb": "touch", "patient": "@x1", "tense": "present", "span": "touch the spindle"},
+      {"t": "negation", "id": "s1", "over": ["@v1"], "span": "Don't"},
+      {"t": "imperative", "id": "s2", "over": ["@s1"], "span": "Don't touch the spindle"}
     ]
 
 The program renders these instances as:
@@ -2492,10 +2516,10 @@ Example (a vocative — the named addressee fills the actor slot). TEXT: Teodor,
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Teodor"},
-      {"t": "witness", "id": "x1", "class": "quilt", "definite": true},
-      {"t": "activity", "id": "v1", "verb": "wash", "actor": "@n1", "patient": "@x1", "tense": "present"},
-      {"t": "imperative", "id": "s1", "over": ["@v1"]}
+      {"t": "named-entity", "id": "n1", "name": "Teodor", "span": "Teodor"},
+      {"t": "witness", "id": "x1", "class": "quilt", "definite": true, "span": "the quilt"},
+      {"t": "activity", "id": "v1", "verb": "wash", "actor": "@n1", "patient": "@x1", "tense": "present", "span": "Teodor, wash the quilt"},
+      {"t": "imperative", "id": "s1", "over": ["@v1"], "span": "Teodor, wash the quilt"}
     ]
 
 The program renders these instances as:
@@ -2568,10 +2592,10 @@ Example. TEXT: Teodor did not send the quilt.
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Teodor"},
-      {"t": "witness", "id": "x1", "class": "quilt", "definite": true},
-      {"t": "transfer", "id": "e1", "verb": "send", "giver": "@n1", "object": "@x1", "tense": "past"},
-      {"t": "negation", "id": "s1", "over": ["@e1"]}
+      {"t": "named-entity", "id": "n1", "name": "Teodor", "span": "Teodor"},
+      {"t": "witness", "id": "x1", "class": "quilt", "definite": true, "span": "the quilt"},
+      {"t": "transfer", "id": "e1", "verb": "send", "giver": "@n1", "object": "@x1", "tense": "past", "span": "Teodor did not send the quilt"},
+      {"t": "negation", "id": "s1", "over": ["@e1"], "span": "did not"}
     ]
 
 The program renders these instances as:
@@ -2635,11 +2659,11 @@ Example (a tool is an instrument). TEXT: Lamine cut the loaf with a knife.
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Lamine"},
-      {"t": "witness", "id": "x1", "class": "loaf", "definite": true},
-      {"t": "witness", "id": "x2", "class": "knife"},
-      {"t": "activity", "id": "v1", "verb": "cut", "actor": "@n1", "patient": "@x1", "tense": "past"},
-      {"t": "adjunct", "id": "a1", "event": "@v1", "participant": "@x2", "head": "Instrument", "preposition": "with"}
+      {"t": "named-entity", "id": "n1", "name": "Lamine", "span": "Lamine"},
+      {"t": "witness", "id": "x1", "class": "loaf", "definite": true, "span": "the loaf"},
+      {"t": "witness", "id": "x2", "class": "knife", "span": "a knife"},
+      {"t": "activity", "id": "v1", "verb": "cut", "actor": "@n1", "patient": "@x1", "tense": "past", "span": "Lamine cut the loaf"},
+      {"t": "adjunct", "id": "a1", "event": "@v1", "participant": "@x2", "head": "Instrument", "preposition": "with", "span": "with a knife"}
     ]
 
 The program renders these instances as:
@@ -2658,10 +2682,10 @@ Example (a person taking part is a companion). TEXT: Teodor sang with Ottoline.
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Teodor"},
-      {"t": "named-entity", "id": "n2", "name": "Ottoline"},
-      {"t": "activity", "id": "v1", "verb": "sing", "actor": "@n1", "tense": "past"},
-      {"t": "adjunct", "id": "a1", "event": "@v1", "participant": "@n2", "head": "CoAgent", "preposition": "with"}
+      {"t": "named-entity", "id": "n1", "name": "Teodor", "span": "Teodor"},
+      {"t": "named-entity", "id": "n2", "name": "Ottoline", "span": "Ottoline"},
+      {"t": "activity", "id": "v1", "verb": "sing", "actor": "@n1", "tense": "past", "span": "Teodor sang"},
+      {"t": "adjunct", "id": "a1", "event": "@v1", "participant": "@n2", "head": "CoAgent", "preposition": "with", "span": "with Ottoline"}
     ]
 
 The program renders these instances as:
@@ -2678,11 +2702,11 @@ Example (the party something is done for). TEXT: Yusra baked a loaf for Teodor.
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Yusra"},
-      {"t": "witness", "id": "x1", "class": "loaf"},
-      {"t": "named-entity", "id": "n2", "name": "Teodor"},
-      {"t": "creation", "id": "e1", "verb": "bake", "creator": "@n1", "product": "@x1", "tense": "past"},
-      {"t": "adjunct", "id": "a1", "event": "@e1", "participant": "@n2", "head": "Beneficiary", "preposition": "for"}
+      {"t": "named-entity", "id": "n1", "name": "Yusra", "span": "Yusra"},
+      {"t": "witness", "id": "x1", "class": "loaf", "span": "a loaf"},
+      {"t": "named-entity", "id": "n2", "name": "Teodor", "span": "Teodor"},
+      {"t": "creation", "id": "e1", "verb": "bake", "creator": "@n1", "product": "@x1", "tense": "past", "span": "Yusra baked a loaf"},
+      {"t": "adjunct", "id": "a1", "event": "@e1", "participant": "@n2", "head": "Beneficiary", "preposition": "for", "span": "for Teodor"}
     ]
 
 The program renders these instances as:
@@ -2745,9 +2769,9 @@ Example (a magnitude adverb on a change). TEXT: The price fell sharply.
 Instances:
 
     [
-      {"t": "witness", "id": "x1", "class": "price", "definite": true},
-      {"t": "change-of-state", "id": "c1", "verb": "fall", "undergoer": "@x1", "tense": "past"},
-      {"t": "extent", "id": "a1", "event": "@c1", "level": "sharply"}
+      {"t": "witness", "id": "x1", "class": "price", "definite": true, "span": "The price"},
+      {"t": "change-of-state", "id": "c1", "verb": "fall", "undergoer": "@x1", "tense": "past", "span": "The price fell"},
+      {"t": "extent", "id": "a1", "event": "@c1", "level": "sharply", "span": "sharply"}
     ]
 
 The program renders these instances as:
@@ -2763,10 +2787,10 @@ Example (an intensifier on a state). TEXT: Teodor really likes the quilt.
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Teodor"},
-      {"t": "witness", "id": "x1", "class": "quilt", "definite": true},
-      {"t": "psych", "id": "p1", "verb": "like", "experiencer": "@n1", "stimulus": "@x1", "tense": "present"},
-      {"t": "extent", "id": "a1", "event": "@p1", "level": "really"}
+      {"t": "named-entity", "id": "n1", "name": "Teodor", "span": "Teodor"},
+      {"t": "witness", "id": "x1", "class": "quilt", "definite": true, "span": "the quilt"},
+      {"t": "psych", "id": "p1", "verb": "like", "experiencer": "@n1", "stimulus": "@x1", "tense": "present", "span": "Teodor really likes the quilt"},
+      {"t": "extent", "id": "a1", "event": "@p1", "level": "really", "span": "really"}
     ]
 
 The program renders these instances as:
@@ -2831,10 +2855,10 @@ Example (the place attaches to the clause's event). TEXT: Yusra laughed in the b
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Yusra"},
-      {"t": "witness", "id": "x1", "class": "barn", "definite": true},
-      {"t": "activity", "id": "v1", "verb": "laugh", "actor": "@n1", "tense": "past"},
-      {"t": "location", "id": "l1", "event": "@v1", "place": "@x1", "head": "Location", "preposition": "in"}
+      {"t": "named-entity", "id": "n1", "name": "Yusra", "span": "Yusra"},
+      {"t": "witness", "id": "x1", "class": "barn", "definite": true, "span": "the barn"},
+      {"t": "activity", "id": "v1", "verb": "laugh", "actor": "@n1", "tense": "past", "span": "Yusra laughed"},
+      {"t": "location", "id": "l1", "event": "@v1", "place": "@x1", "head": "Location", "preposition": "in", "span": "in the barn"}
     ]
 
 The program renders these instances as:
@@ -2851,10 +2875,10 @@ Example (a preposition other than in / at / on keeps its own head). TEXT: The fe
 Instances:
 
     [
-      {"t": "witness", "id": "x1", "class": "ferret", "definite": true},
-      {"t": "witness", "id": "x2", "class": "ladder", "definite": true},
-      {"t": "activity", "id": "v1", "verb": "sleep", "actor": "@x1", "tense": "past"},
-      {"t": "location", "id": "l1", "event": "@v1", "place": "@x2", "head": "Under", "preposition": "under"}
+      {"t": "witness", "id": "x1", "class": "ferret", "definite": true, "span": "The ferret"},
+      {"t": "witness", "id": "x2", "class": "ladder", "definite": true, "span": "the ladder"},
+      {"t": "activity", "id": "v1", "verb": "sleep", "actor": "@x1", "tense": "past", "span": "The ferret slept"},
+      {"t": "location", "id": "l1", "event": "@v1", "place": "@x2", "head": "Under", "preposition": "under", "span": "under the ladder"}
     ]
 
 The program renders these instances as:
@@ -2915,9 +2939,9 @@ Example (an adverb attaches to the clause's event). TEXT: Yusra laughed loudly.
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Yusra"},
-      {"t": "activity", "id": "v1", "verb": "laugh", "actor": "@n1", "tense": "past"},
-      {"t": "manner", "id": "a1", "event": "@v1", "manner": "loudly"}
+      {"t": "named-entity", "id": "n1", "name": "Yusra", "span": "Yusra"},
+      {"t": "activity", "id": "v1", "verb": "laugh", "actor": "@n1", "tense": "past", "span": "Yusra laughed"},
+      {"t": "manner", "id": "a1", "event": "@v1", "manner": "loudly", "span": "loudly"}
     ]
 
 The program renders these instances as:
@@ -2933,10 +2957,10 @@ Example (a manner phrase by its head word). TEXT: Teodor read the letter with ca
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Teodor"},
-      {"t": "witness", "id": "x1", "class": "letter", "definite": true},
-      {"t": "activity", "id": "v1", "verb": "read", "actor": "@n1", "patient": "@x1", "tense": "past"},
-      {"t": "manner", "id": "a1", "event": "@v1", "manner": "care"}
+      {"t": "named-entity", "id": "n1", "name": "Teodor", "span": "Teodor"},
+      {"t": "witness", "id": "x1", "class": "letter", "definite": true, "span": "the letter"},
+      {"t": "activity", "id": "v1", "verb": "read", "actor": "@n1", "patient": "@x1", "tense": "past", "span": "Teodor read the letter"},
+      {"t": "manner", "id": "a1", "event": "@v1", "manner": "care", "span": "with care"}
     ]
 
 The program renders these instances as:
@@ -3019,10 +3043,10 @@ Example (what the action is about — the preposition is the head). TEXT: Yusra 
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Yusra"},
-      {"t": "witness", "id": "x1", "class": "audit", "definite": true},
-      {"t": "activity", "id": "v1", "verb": "talk", "actor": "@n1", "tense": "past"},
-      {"t": "oblique", "id": "a1", "event": "@v1", "head": "About", "object": "@x1"}
+      {"t": "named-entity", "id": "n1", "name": "Yusra", "span": "Yusra"},
+      {"t": "witness", "id": "x1", "class": "audit", "definite": true, "span": "the audit"},
+      {"t": "activity", "id": "v1", "verb": "talk", "actor": "@n1", "tense": "past", "span": "Yusra talked"},
+      {"t": "oblique", "id": "a1", "event": "@v1", "head": "About", "object": "@x1", "span": "about the audit"}
     ]
 
 The program renders these instances as:
@@ -3039,10 +3063,10 @@ Example (a prepositional verb's object — not a beneficiary, not a direct objec
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Lamine"},
-      {"t": "named-entity", "id": "n2", "name": "Teodor"},
-      {"t": "activity", "id": "v1", "verb": "wait", "actor": "@n1", "tense": "past"},
-      {"t": "oblique", "id": "a1", "event": "@v1", "head": "For", "object": "@n2"}
+      {"t": "named-entity", "id": "n1", "name": "Lamine", "span": "Lamine"},
+      {"t": "named-entity", "id": "n2", "name": "Teodor", "span": "Teodor"},
+      {"t": "activity", "id": "v1", "verb": "wait", "actor": "@n1", "tense": "past", "span": "Lamine waited"},
+      {"t": "oblique", "id": "a1", "event": "@v1", "head": "For", "object": "@n2", "span": "for Teodor"}
     ]
 
 The program renders these instances as:
@@ -3059,9 +3083,9 @@ Example (a capacity — the object is a bare lemma). TEXT: Teodor worked as a we
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Teodor"},
-      {"t": "activity", "id": "v1", "verb": "work", "actor": "@n1", "tense": "past"},
-      {"t": "oblique", "id": "a1", "event": "@v1", "head": "As", "object": "weaver"}
+      {"t": "named-entity", "id": "n1", "name": "Teodor", "span": "Teodor"},
+      {"t": "activity", "id": "v1", "verb": "work", "actor": "@n1", "tense": "past", "span": "Teodor worked"},
+      {"t": "oblique", "id": "a1", "event": "@v1", "head": "As", "object": "weaver", "span": "as a weaver"}
     ]
 
 The program renders these instances as:
@@ -3127,10 +3151,10 @@ Example (the phrase picks out the referent; no possession is stated). TEXT: The 
 Instances:
 
     [
-      {"t": "witness", "id": "x1", "class": "man", "definite": true},
-      {"t": "witness", "id": "x2", "class": "hat", "definite": true},
-      {"t": "postmodifier", "id": "a1", "noun": "@x1", "head": "With", "object": "@x2"},
-      {"t": "activity", "id": "v1", "verb": "laugh", "actor": "@x1", "tense": "past"}
+      {"t": "witness", "id": "x1", "class": "man", "definite": true, "span": "The man"},
+      {"t": "witness", "id": "x2", "class": "hat", "definite": true, "span": "the hat"},
+      {"t": "postmodifier", "id": "a1", "noun": "@x1", "head": "With", "object": "@x2", "span": "with the hat"},
+      {"t": "activity", "id": "v1", "verb": "laugh", "actor": "@x1", "tense": "past", "span": "The man with the hat laughed"}
     ]
 
 The program renders these instances as:
@@ -3147,10 +3171,10 @@ Example (what a thing is about — a class-level object as a bare lemma). TEXT: 
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Yusra"},
-      {"t": "witness", "id": "x1", "class": "book"},
-      {"t": "postmodifier", "id": "a1", "noun": "@x1", "head": "About", "object": "ferret"},
-      {"t": "activity", "id": "v1", "verb": "read", "actor": "@n1", "patient": "@x1", "tense": "past"}
+      {"t": "named-entity", "id": "n1", "name": "Yusra", "span": "Yusra"},
+      {"t": "witness", "id": "x1", "class": "book", "span": "a book"},
+      {"t": "postmodifier", "id": "a1", "noun": "@x1", "head": "About", "object": "ferret", "span": "about ferrets"},
+      {"t": "activity", "id": "v1", "verb": "read", "actor": "@n1", "patient": "@x1", "tense": "past", "span": "Yusra read a book about ferrets"}
     ]
 
 The program renders these instances as:
@@ -3239,9 +3263,9 @@ Example (a deictic — an offset from the reference time, which the program supp
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Yusra"},
-      {"t": "activity", "id": "v1", "verb": "laugh", "actor": "@n1", "tense": "past"},
-      {"t": "time", "id": "t1", "event": "@v1", "deictic": "yesterday", "anchor": "@now"}
+      {"t": "named-entity", "id": "n1", "name": "Yusra", "span": "Yusra"},
+      {"t": "activity", "id": "v1", "verb": "laugh", "actor": "@n1", "tense": "past", "span": "Yusra laughed"},
+      {"t": "time", "id": "t1", "event": "@v1", "deictic": "yesterday", "anchor": "@now", "span": "yesterday"}
     ]
 
 The program renders these instances as:
@@ -3258,10 +3282,10 @@ Example (a weekday — a time instance described by a field). TEXT: Lamine sold 
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Lamine"},
-      {"t": "witness", "id": "x1", "class": "spindle", "definite": true},
-      {"t": "transfer", "id": "e1", "verb": "sell", "giver": "@n1", "object": "@x1", "tense": "past"},
-      {"t": "time", "id": "t1", "event": "@e1", "weekday": "monday"}
+      {"t": "named-entity", "id": "n1", "name": "Lamine", "span": "Lamine"},
+      {"t": "witness", "id": "x1", "class": "spindle", "definite": true, "span": "the spindle"},
+      {"t": "transfer", "id": "e1", "verb": "sell", "giver": "@n1", "object": "@x1", "tense": "past", "span": "Lamine sold the spindle"},
+      {"t": "time", "id": "t1", "event": "@e1", "weekday": "monday", "span": "on Monday"}
     ]
 
 The program renders these instances as:
@@ -3340,10 +3364,10 @@ Example (an adjective after when — the condition is a copular predication over
 Instances:
 
     [
-      {"t": "range", "id": "q1", "class": "clay"},
-      {"t": "copular", "id": "c1", "subject": "@q1", "predicate": "soft", "form": "adjective", "tense": "present"},
-      {"t": "copular", "id": "c2", "subject": "@q1", "predicate": "wet", "form": "adjective", "tense": "present"},
-      {"t": "conditional-property", "id": "r1", "ranges": ["@q1"], "condition": ["@c2"], "over": ["@c1"]}
+      {"t": "range", "id": "q1", "class": "clay", "span": "Clay"},
+      {"t": "copular", "id": "c1", "subject": "@q1", "predicate": "soft", "form": "adjective", "tense": "present", "span": "Clay is soft"},
+      {"t": "copular", "id": "c2", "subject": "@q1", "predicate": "wet", "form": "adjective", "tense": "present", "span": "wet"},
+      {"t": "conditional-property", "id": "r1", "ranges": ["@q1"], "condition": ["@c2"], "over": ["@c1"], "span": "Clay is soft when wet"}
     ]
 
 The program renders these instances as:
@@ -3355,10 +3379,10 @@ Example (a quantifier word — on the range, with the property as its predicate)
 Instances:
 
     [
-      {"t": "range", "id": "q1", "class": "alloy", "quantifier": "all", "predicate": "brittle"},
-      {"t": "copular", "id": "c1", "subject": "@q1", "predicate": "brittle", "form": "adjective", "tense": "present"},
-      {"t": "copular", "id": "c2", "subject": "@q1", "predicate": "cold", "form": "adjective", "tense": "present"},
-      {"t": "conditional-property", "id": "r1", "ranges": ["@q1"], "condition": ["@c2"], "over": ["@c1"]}
+      {"t": "range", "id": "q1", "class": "alloy", "quantifier": "all", "predicate": "brittle", "span": "All alloys"},
+      {"t": "copular", "id": "c1", "subject": "@q1", "predicate": "brittle", "form": "adjective", "tense": "present", "span": "All alloys are brittle"},
+      {"t": "copular", "id": "c2", "subject": "@q1", "predicate": "cold", "form": "adjective", "tense": "present", "span": "cold"},
+      {"t": "conditional-property", "id": "r1", "ranges": ["@q1"], "condition": ["@c2"], "over": ["@c1"], "span": "All alloys are brittle when cold"}
     ]
 
 The program renders these instances as:
@@ -3400,9 +3424,9 @@ Example. TEXT: Several students laughed.
 Instances:
 
     [
-      {"t": "group", "id": "g1", "class": "student", "quantity": "several"},
-      {"t": "activity", "id": "v1", "verb": "laugh", "actor": "@g1", "tense": "past"},
-      {"t": "distribution", "id": "d1", "group": "@g1", "over": ["@v1"]}
+      {"t": "group", "id": "g1", "class": "student", "quantity": "several", "span": "Several students"},
+      {"t": "activity", "id": "v1", "verb": "laugh", "actor": "@g1", "tense": "past", "span": "Several students laughed"},
+      {"t": "distribution", "id": "d1", "group": "@g1", "over": ["@v1"], "span": "Several students laughed"}
     ]
 
 The program renders these instances as:
@@ -3459,9 +3483,9 @@ Example (a bare generic — no quantifier word, strength 0.9 at confidence 0.7, 
 Instances:
 
     [
-      {"t": "range", "id": "q1", "class": "ferret"},
-      {"t": "activity", "id": "v1", "verb": "sleep", "actor": "@q1", "tense": "present"},
-      {"t": "generic", "id": "r1", "ranges": ["@q1"], "over": ["@v1"]}
+      {"t": "range", "id": "q1", "class": "ferret", "span": "Ferrets"},
+      {"t": "activity", "id": "v1", "verb": "sleep", "actor": "@q1", "tense": "present", "span": "Ferrets sleep"},
+      {"t": "generic", "id": "r1", "ranges": ["@q1"], "over": ["@v1"], "span": "Ferrets sleep"}
     ]
 
 The program renders these instances as:
@@ -3473,9 +3497,9 @@ Example (a graded quantifier — the word sets the strength and is kept beside t
 Instances:
 
     [
-      {"t": "range", "id": "q1", "class": "student", "quantifier": "most", "predicate": "laugh"},
-      {"t": "activity", "id": "v1", "verb": "laugh", "actor": "@q1", "tense": "present"},
-      {"t": "generic", "id": "r1", "ranges": ["@q1"], "over": ["@v1"]}
+      {"t": "range", "id": "q1", "class": "student", "quantifier": "most", "predicate": "laugh", "span": "Most students"},
+      {"t": "activity", "id": "v1", "verb": "laugh", "actor": "@q1", "tense": "present", "span": "Most students laugh"},
+      {"t": "generic", "id": "r1", "ranges": ["@q1"], "over": ["@v1"], "span": "Most students laugh"}
     ]
 
 The program renders these instances as:
@@ -3529,14 +3553,14 @@ Example (two pronouns, each its own mention, each linked to the first instance o
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Lamine"},
-      {"t": "witness", "id": "x1", "class": "loaf"},
-      {"t": "creation", "id": "e1", "verb": "bake", "creator": "@n1", "product": "@x1", "tense": "past"},
-      {"t": "mention", "id": "m1", "word": "she"},
-      {"t": "mention", "id": "m2", "word": "it"},
-      {"t": "activity", "id": "v1", "verb": "eat", "actor": "@m1", "patient": "@m2", "tense": "past"},
-      {"t": "coref", "id": "c1", "mention": "@m1", "antecedent": "@n1", "certainty": "certain"},
-      {"t": "coref", "id": "c2", "mention": "@m2", "antecedent": "@x1", "certainty": "certain"}
+      {"t": "named-entity", "id": "n1", "name": "Lamine", "span": "Lamine"},
+      {"t": "witness", "id": "x1", "class": "loaf", "span": "a loaf"},
+      {"t": "creation", "id": "e1", "verb": "bake", "creator": "@n1", "product": "@x1", "tense": "past", "span": "Lamine baked a loaf"},
+      {"t": "mention", "id": "m1", "word": "she", "span": "she"},
+      {"t": "mention", "id": "m2", "word": "it", "span": "it"},
+      {"t": "activity", "id": "v1", "verb": "eat", "actor": "@m1", "patient": "@m2", "tense": "past", "span": "she ate it"},
+      {"t": "coref", "id": "c1", "mention": "@m1", "antecedent": "@n1", "certainty": "certain", "span": ["Lamine", "she"]},
+      {"t": "coref", "id": "c2", "mention": "@m2", "antecedent": "@x1", "certainty": "certain", "span": ["a loaf", "it"]}
     ]
 
 The program renders these instances as:
@@ -3559,11 +3583,11 @@ Example (a repeated name is a second instance, linked). TEXT: Yusra laughed. Yus
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Yusra"},
-      {"t": "activity", "id": "v1", "verb": "laugh", "actor": "@n1", "tense": "past"},
-      {"t": "named-entity", "id": "n2", "name": "Yusra"},
-      {"t": "motion", "id": "m1", "verb": "leave", "mover": "@n2", "tense": "past"},
-      {"t": "coref", "id": "c1", "mention": "@n2", "antecedent": "@n1", "certainty": "certain"}
+      {"t": "named-entity", "id": "n1", "name": "Yusra", "span": "Yusra"},
+      {"t": "activity", "id": "v1", "verb": "laugh", "actor": "@n1", "tense": "past", "span": "Yusra laughed"},
+      {"t": "named-entity", "id": "n2", "name": "Yusra", "span": "Yusra"},
+      {"t": "motion", "id": "m1", "verb": "leave", "mover": "@n2", "tense": "past", "span": "Yusra left"},
+      {"t": "coref", "id": "c1", "mention": "@n2", "antecedent": "@n1", "certainty": "certain", "span": ["Yusra", "Yusra"]}
     ]
 
 The program renders these instances as:
@@ -3637,9 +3661,9 @@ Example (subject focus — the prejacent asserted, one atom on top). TEXT: Only 
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Yusra"},
-      {"t": "activity", "id": "v1", "verb": "laugh", "actor": "@n1", "tense": "past"},
-      {"t": "focus", "id": "f1", "head": "Only", "filler": "@n1", "event": "@v1", "surface": "only"}
+      {"t": "named-entity", "id": "n1", "name": "Yusra", "span": "Yusra"},
+      {"t": "activity", "id": "v1", "verb": "laugh", "actor": "@n1", "tense": "past", "span": "Yusra laughed"},
+      {"t": "focus", "id": "f1", "head": "Only", "filler": "@n1", "event": "@v1", "surface": "only", "span": "Only"}
     ]
 
 The program renders these instances as:
@@ -3655,10 +3679,10 @@ Example (object focus — the particle sits on the object). TEXT: Teodor read on
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Teodor"},
-      {"t": "witness", "id": "x1", "class": "letter", "definite": true},
-      {"t": "activity", "id": "v1", "verb": "read", "actor": "@n1", "patient": "@x1", "tense": "past"},
-      {"t": "focus", "id": "f1", "head": "Only", "filler": "@x1", "event": "@v1", "surface": "only"}
+      {"t": "named-entity", "id": "n1", "name": "Teodor", "span": "Teodor"},
+      {"t": "witness", "id": "x1", "class": "letter", "definite": true, "span": "the letter"},
+      {"t": "activity", "id": "v1", "verb": "read", "actor": "@n1", "patient": "@x1", "tense": "past", "span": "Teodor read only the letter"},
+      {"t": "focus", "id": "f1", "head": "Only", "filler": "@x1", "event": "@v1", "surface": "only", "span": "only"}
     ]
 
 The program renders these instances as:
@@ -3676,10 +3700,10 @@ Example (an it-cleft — the backgrounded clause is the prejacent, the clefted p
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Lamine"},
-      {"t": "witness", "id": "x1", "class": "quilt", "definite": true},
-      {"t": "activity", "id": "v1", "verb": "wash", "actor": "@n1", "patient": "@x1", "tense": "past"},
-      {"t": "focus", "id": "f1", "head": "Cleft", "filler": "@n1", "event": "@v1"}
+      {"t": "named-entity", "id": "n1", "name": "Lamine", "span": "Lamine"},
+      {"t": "witness", "id": "x1", "class": "quilt", "definite": true, "span": "the quilt"},
+      {"t": "activity", "id": "v1", "verb": "wash", "actor": "@n1", "patient": "@x1", "tense": "past", "span": "Lamine who washed the quilt"},
+      {"t": "focus", "id": "f1", "head": "Cleft", "filler": "@n1", "event": "@v1", "span": ["It was", "who"]}
     ]
 
 The program renders these instances as:
@@ -3756,11 +3780,11 @@ Example (the main clause first, the connective's clause second; both events asse
 Instances:
 
     [
-      {"t": "witness", "id": "x1", "class": "ferret", "definite": true},
-      {"t": "named-entity", "id": "n1", "name": "Yusra"},
-      {"t": "activity", "id": "v1", "verb": "sleep", "actor": "@x1", "tense": "past"},
-      {"t": "activity", "id": "v2", "verb": "sing", "actor": "@n1", "tense": "past"},
-      {"t": "link", "id": "k1", "head": "Because", "main": "@v1", "sub": "@v2"}
+      {"t": "witness", "id": "x1", "class": "ferret", "definite": true, "span": "The ferret"},
+      {"t": "named-entity", "id": "n1", "name": "Yusra", "span": "Yusra"},
+      {"t": "activity", "id": "v1", "verb": "sleep", "actor": "@x1", "tense": "past", "span": "The ferret slept"},
+      {"t": "activity", "id": "v2", "verb": "sing", "actor": "@n1", "tense": "past", "span": "Yusra sang"},
+      {"t": "link", "id": "k1", "head": "Because", "main": "@v1", "sub": "@v2", "span": "because"}
     ]
 
 The program renders these instances as:
@@ -3780,11 +3804,11 @@ Example (a coordinating connective — the first clause is the main one). TEXT: 
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Lamine"},
-      {"t": "named-entity", "id": "n2", "name": "Teodor"},
-      {"t": "activity", "id": "v1", "verb": "laugh", "actor": "@n1", "tense": "past"},
-      {"t": "motion", "id": "m1", "verb": "leave", "mover": "@n2", "tense": "past"},
-      {"t": "link", "id": "k1", "head": "So", "main": "@v1", "sub": "@m1"}
+      {"t": "named-entity", "id": "n1", "name": "Lamine", "span": "Lamine"},
+      {"t": "named-entity", "id": "n2", "name": "Teodor", "span": "Teodor"},
+      {"t": "activity", "id": "v1", "verb": "laugh", "actor": "@n1", "tense": "past", "span": "Lamine laughed"},
+      {"t": "motion", "id": "m1", "verb": "leave", "mover": "@n2", "tense": "past", "span": "Teodor left"},
+      {"t": "link", "id": "k1", "head": "So", "main": "@v1", "sub": "@m1", "span": "so"}
     ]
 
 The program renders these instances as:
@@ -3804,11 +3828,11 @@ Example (a fronted concessive — the main clause is still first). TEXT: Althoug
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Ottoline"},
-      {"t": "named-entity", "id": "n2", "name": "Lamine"},
-      {"t": "activity", "id": "v1", "verb": "wait", "actor": "@n1", "tense": "past"},
-      {"t": "motion", "id": "m1", "verb": "leave", "mover": "@n2", "tense": "past"},
-      {"t": "link", "id": "k1", "head": "Although", "main": "@m1", "sub": "@v1"}
+      {"t": "named-entity", "id": "n1", "name": "Ottoline", "span": "Ottoline"},
+      {"t": "named-entity", "id": "n2", "name": "Lamine", "span": "Lamine"},
+      {"t": "activity", "id": "v1", "verb": "wait", "actor": "@n1", "tense": "past", "span": "Ottoline waited"},
+      {"t": "motion", "id": "m1", "verb": "leave", "mover": "@n2", "tense": "past", "span": "Lamine left"},
+      {"t": "link", "id": "k1", "head": "Although", "main": "@m1", "sub": "@v1", "span": "Although"}
     ]
 
 The program renders these instances as:
@@ -3875,11 +3899,11 @@ Example (the action asserted, the aim sealed — the spindle exists only inside 
 Instances:
 
     [
-      {"t": "named-entity", "id": "n1", "name": "Lamine"},
-      {"t": "witness", "id": "x1", "class": "spindle"},
-      {"t": "activity", "id": "v1", "verb": "work", "actor": "@n1", "tense": "past"},
-      {"t": "acquisition", "id": "e1", "verb": "buy", "acquirer": "@n1", "object": "@x1", "tense": "present"},
-      {"t": "purpose", "id": "k1", "head": "To", "action": "@v1", "aim": ["@e1"]}
+      {"t": "named-entity", "id": "n1", "name": "Lamine", "span": "Lamine"},
+      {"t": "witness", "id": "x1", "class": "spindle", "span": "a spindle"},
+      {"t": "activity", "id": "v1", "verb": "work", "actor": "@n1", "tense": "past", "span": "Lamine worked"},
+      {"t": "acquisition", "id": "e1", "verb": "buy", "acquirer": "@n1", "object": "@x1", "tense": "present", "span": "to buy a spindle"},
+      {"t": "purpose", "id": "k1", "head": "To", "action": "@v1", "aim": ["@e1"], "span": "to"}
     ]
 
 The program renders these instances as:
@@ -3895,11 +3919,11 @@ Example (in order to, with the aim's actor the action's subject). TEXT: The ferr
 Instances:
 
     [
-      {"t": "witness", "id": "x1", "class": "ferret", "definite": true},
-      {"t": "witness", "id": "x2", "class": "barn", "definite": true},
-      {"t": "motion", "id": "m1", "verb": "leave", "mover": "@x1", "source": "@x2", "tense": "past"},
-      {"t": "activity", "id": "v1", "verb": "sleep", "actor": "@x1", "tense": "present"},
-      {"t": "purpose", "id": "k1", "head": "InOrderTo", "action": "@m1", "aim": ["@v1"]}
+      {"t": "witness", "id": "x1", "class": "ferret", "definite": true, "span": "The ferret"},
+      {"t": "witness", "id": "x2", "class": "barn", "definite": true, "span": "the barn"},
+      {"t": "motion", "id": "m1", "verb": "leave", "mover": "@x1", "source": "@x2", "tense": "past", "span": "The ferret left the barn"},
+      {"t": "activity", "id": "v1", "verb": "sleep", "actor": "@x1", "tense": "present", "span": "to sleep"},
+      {"t": "purpose", "id": "k1", "head": "InOrderTo", "action": "@m1", "aim": ["@v1"], "span": "in order to"}
     ]
 
 The program renders these instances as:

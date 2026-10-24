@@ -81,10 +81,10 @@ examples:
       note: the place attaches to the clause's event
       text: "Yusra laughed in the barn."
       instances:
-        - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: witness, id: x1, class: barn, definite: true}
-        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past}
-        - {t: location, id: l1, event: "@v1", place: "@x1", head: Location, preposition: in}
+        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
+        - {t: witness, id: x1, class: barn, definite: true, span: "the barn"}
+        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past, span: "Yusra laughed"}
+        - {t: location, id: l1, event: "@v1", place: "@x1", head: Location, preposition: in, span: "in the barn"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
         - "(Name sk_yusra_1 \"Yusra\")"
         - "(Member sk_barn_1 barn)"
@@ -102,10 +102,10 @@ examples:
       note: a preposition other than in / at / on keeps its own head
       text: "The ferret slept under the ladder."
       instances:
-        - {t: witness, id: x1, class: ferret, definite: true}
-        - {t: witness, id: x2, class: ladder, definite: true}
-        - {t: activity, id: v1, verb: sleep, actor: "@x1", tense: past}
-        - {t: location, id: l1, event: "@v1", place: "@x2", head: Under, preposition: under}
+        - {t: witness, id: x1, class: ferret, definite: true, span: "The ferret"}
+        - {t: witness, id: x2, class: ladder, definite: true, span: "the ladder"}
+        - {t: activity, id: v1, verb: sleep, actor: "@x1", tense: past, span: "The ferret slept"}
+        - {t: location, id: l1, event: "@v1", place: "@x2", head: Under, preposition: under, span: "under the ladder"}
     - category: abstain
       text: "Yusra went to the market."
       expected: {abstain: true, template: motion}                     # a destination

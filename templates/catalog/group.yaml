@@ -82,9 +82,9 @@ examples:
       note: a vague size; the sleeping distributes to each ferret
       text: "Several ferrets slept."
       instances:
-        - {t: group, id: g1, class: ferret, quantity: several}
-        - {t: activity, id: v1, verb: sleep, actor: "@g1", tense: past}
-        - {t: distribution, id: d1, group: "@g1", over: ["@v1"]}
+        - {t: group, id: g1, class: ferret, quantity: several, span: "Several ferrets"}
+        - {t: activity, id: v1, verb: sleep, actor: "@g1", tense: past, span: "Several ferrets slept"}
+        - {t: distribution, id: d1, group: "@g1", over: ["@v1"], span: "Several ferrets slept"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
         - "(GroupOf sk_group_1 ferret)"
         - "(CardinalityPhrase sk_group_1 \"several\")"
@@ -102,9 +102,9 @@ examples:
       note: an exact count; a collective predicate — no distribution
       text: "Three ferrets surrounded the barn."
       instances:
-        - {t: group, id: g1, class: ferret, count: 3}
-        - {t: witness, id: x1, class: barn, definite: true}
-        - {t: activity, id: v1, verb: surround, actor: "@g1", patient: "@x1", tense: past}
+        - {t: group, id: g1, class: ferret, count: 3, span: "Three ferrets"}
+        - {t: witness, id: x1, class: barn, definite: true, span: "the barn"}
+        - {t: activity, id: v1, verb: surround, actor: "@g1", patient: "@x1", tense: past, span: "Three ferrets surrounded the barn"}
     - category: abstain
       text: "Ferrets are curious."
       expected: {abstain: true, template: class-statement}             # a bare plural: the class

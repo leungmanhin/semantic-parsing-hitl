@@ -103,7 +103,7 @@ examples:
       note: a property no single heron can have
       text: "Herons are widespread."
       instances:
-        - {t: class-property, id: k1, subject: heron, property: widespread, tense: present}
+        - {t: class-property, id: k1, subject: heron, property: widespread, tense: present, span: "Herons are widespread"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
         - "(ClassProperty heron widespread)"
       declarations:
@@ -113,13 +113,13 @@ examples:
       note: a definite singular naming the class — no witness
       text: "The quagga is extinct."
       instances:
-        - {t: class-property, id: k1, subject: quagga, property: extinct, tense: present}
+        - {t: class-property, id: k1, subject: quagga, property: extinct, tense: present, span: "The quagga is extinct"}
     - category: positive
       note: a place restricting the claim — kept in the atom, still about the class
       text: "Otters are rare in Norfolk."
       instances:
-        - {t: named-entity, id: n1, name: "Norfolk"}
-        - {t: class-property, id: k1, subject: otter, property: rare, restriction: "@n1", tense: present}
+        - {t: named-entity, id: n1, name: "Norfolk", span: "Norfolk"}
+        - {t: class-property, id: k1, subject: otter, property: rare, restriction: "@n1", tense: present, span: "Otters are rare in Norfolk"}
     - category: abstain
       text: "Ferrets are curious."
       expected: {abstain: true, template: class-statement}             # a property a member can hold

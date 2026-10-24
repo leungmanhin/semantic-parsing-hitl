@@ -90,9 +90,9 @@ examples:
       note: the phase event has no role of its own; the action is sealed as its Theme and marked as entailed
       text: "Teodor began to sing."
       instances:
-        - {t: named-entity, id: n1, name: "Teodor"}
-        - {t: activity, id: v1, verb: sing, actor: "@n1", tense: present}
-        - {t: aspectual, id: e1, verb: begin, complement: ["@v1"], tense: past}
+        - {t: named-entity, id: n1, name: "Teodor", span: "Teodor"}
+        - {t: activity, id: v1, verb: sing, actor: "@n1", tense: present, span: "to sing"}
+        - {t: aspectual, id: e1, verb: begin, complement: ["@v1"], tense: past, span: "Teodor began to sing"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
         - "(Name sk_teodor_1 \"Teodor\")"
         - "(Member sk_begin_1 begin)"
@@ -109,9 +109,9 @@ examples:
       note: the subject undergoes the action — no agent anywhere
       text: "The price started to fall."
       instances:
-        - {t: witness, id: x1, class: price, definite: true}
-        - {t: change-of-state, id: c1, verb: fall, undergoer: "@x1", tense: present}
-        - {t: aspectual, id: e1, verb: start, complement: ["@c1"], tense: past}
+        - {t: witness, id: x1, class: price, definite: true, span: "The price"}
+        - {t: change-of-state, id: c1, verb: fall, undergoer: "@x1", tense: present, span: "to fall"}
+        - {t: aspectual, id: e1, verb: start, complement: ["@c1"], tense: past, span: "The price started to fall"}
     - category: abstain
       text: "Yusra tried to sleep."
       expected: {abstain: true, template: control}                    # an effort, not a phase

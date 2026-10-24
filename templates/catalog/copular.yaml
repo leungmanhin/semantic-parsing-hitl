@@ -93,8 +93,8 @@ examples:
       note: a class
       text: "Teodor is a locksmith."
       instances:
-        - {t: named-entity, id: n1, name: "Teodor"}
-        - {t: copular, id: c1, subject: "@n1", predicate: locksmith, form: noun, tense: present}
+        - {t: named-entity, id: n1, name: "Teodor", span: "Teodor"}
+        - {t: copular, id: c1, subject: "@n1", predicate: locksmith, form: noun, tense: present, span: "Teodor is a locksmith"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
         - "(Name sk_teodor_1 \"Teodor\")"
         - "(Member sk_teodor_1 locksmith)"
@@ -105,8 +105,8 @@ examples:
       note: a property, past tense — the tense wraps the atom
       text: "The audit was difficult."
       instances:
-        - {t: witness, id: x1, class: audit, definite: true}
-        - {t: copular, id: c1, subject: "@x1", predicate: difficult, form: adjective, tense: past}
+        - {t: witness, id: x1, class: audit, definite: true, span: "The audit"}
+        - {t: copular, id: c1, subject: "@x1", predicate: difficult, form: adjective, tense: past, span: "The audit was difficult"}
     - category: abstain
       text: "Ferrets are mustelids."
       expected: {abstain: true, template: class-statement}             # a class as the subject

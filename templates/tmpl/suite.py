@@ -483,6 +483,16 @@ def collect(args, catalog: dict) -> int:
 # --------------------------------------------------------------------------
 
 
+def span_counts(instances: list, span_lints: list) -> dict:
+    """Per record: how many instances carry a span, and the span lints by kind. Spans are provenance
+    and never decide ``pass``; a record parsed before the field existed scores on its atoms and shows
+    up here as all-missing."""
+    kinds = collections.Counter(f["kind"] for f in span_lints)
+    return {"instances": len(instances), "with_span": sum(1 for r in instances if "span" in r),
+            "missing": kinds.get("span-missing", 0), "not_verbatim": kinds.get("span-not-verbatim", 0),
+            "malformed": kinds.get("span-malformed", 0)}
+
+
 def score_record(case: dict, rec: dict, catalog: dict, heads: dict, body_sha: str | None) -> dict:
     tid, category = case["template"], case["category"]
     row = {"template": tid, "section": case["section"], "category": category, "text": case["text"],
@@ -496,9 +506,11 @@ def score_record(case: dict, rec: dict, catalog: dict, heads: dict, body_sha: st
         row["status"] = "no_json" if "not valid JSON" in err else "failed"
         row["reasons"].append(err)
         return row
-    ins = V.inspect(resp, catalog, case.get("reference_time"))
+    ins = V.inspect(resp, catalog, case.get("reference_time"), text=case["text"])
     row["unmapped"], row["issues"], row["fired"], row["null_slots"] = ins["unmapped"], ins["issues"], ins["fired"], ins["null_slots"]
-    row["lints"] = [f for f in ins["findings"] if f["kind"] not in ("instance", "contract")]
+    row["lints"] = [f for f in ins["findings"] if f["kind"] not in ("instance", "contract") and not f["kind"].startswith("span-")]
+    row["span_lints"] = [f for f in ins["findings"] if f["kind"].startswith("span-")]
+    row["spans"] = span_counts(ins["instances"], row["span_lints"])
     fired_t = tid in row["fired"]
     units = None
     if ins["status"] != "ok":
@@ -629,6 +641,8 @@ def summarize(rows: list[dict]) -> dict:
         "issues": issues,
         "null_slots": sum(r.get("null_slots") or 0 for r in rows),
         "lints": dict(collections.Counter(f["kind"] for r in rows for f in (r.get("lints") or []))),
+        "spans": {k: sum((r.get("spans") or {}).get(k, 0) for r in rows)
+                  for k in ("instances", "with_span", "missing", "not_verbatim", "malformed")},
         "models": sorted({f"{r.get('model')} effort={r.get('effort')}" for r in rows if r.get("model")}),
     }
 
@@ -760,6 +774,10 @@ def render_report(summary: dict, rows: list[dict]) -> str:
                 f"unanimous {stab['unanimous']}/{stab['cases']}")
             add(f"- type check: {tc['passed']}/{tc['checked']} emitted parses type")
             add("- graph lints: " + (", ".join(f"{k} {v}" for k, v in sorted(s["lints"].items())) or "none"))
+            sp = s.get("spans") or {}
+            if sp.get("instances"):
+                add(f"- spans: {sp['with_span']}/{sp['instances']} instances carry one · missing {sp['missing']} · "
+                    f"not verbatim {sp['not_verbatim']} · malformed {sp['malformed']} (provenance; never decides pass)")
             cached = f" · cached {u['cached']:,} ({u['cached'] / u['input']:.0%} of the input)" if u.get("cached") and u["input"] else ""
             add(f"- usage: {u['calls']} calls · in {u['input']:,}{cached} · out {u['output']:,} · thinking {u['thinking']:,} "
                 f"(calls with thought tokens: {u['thinking_calls']})" + (f" · null slots {s['null_slots']}" if s["null_slots"] else ""))

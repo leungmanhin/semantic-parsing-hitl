@@ -74,14 +74,14 @@ examples:
       note: two pronouns, each its own mention, each linked to the first instance of its referent
       text: "Lamine baked a loaf and she ate it."
       instances:
-        - {t: named-entity, id: n1, name: "Lamine"}
-        - {t: witness, id: x1, class: loaf}
-        - {t: creation, id: e1, verb: bake, creator: "@n1", product: "@x1", tense: past}
-        - {t: mention, id: m1, word: she}
-        - {t: mention, id: m2, word: it}
-        - {t: activity, id: v1, verb: eat, actor: "@m1", patient: "@m2", tense: past}
-        - {t: coref, id: c1, mention: "@m1", antecedent: "@n1", certainty: certain}
-        - {t: coref, id: c2, mention: "@m2", antecedent: "@x1", certainty: certain}
+        - {t: named-entity, id: n1, name: "Lamine", span: "Lamine"}
+        - {t: witness, id: x1, class: loaf, span: "a loaf"}
+        - {t: creation, id: e1, verb: bake, creator: "@n1", product: "@x1", tense: past, span: "Lamine baked a loaf"}
+        - {t: mention, id: m1, word: she, span: "she"}
+        - {t: mention, id: m2, word: it, span: "it"}
+        - {t: activity, id: v1, verb: eat, actor: "@m1", patient: "@m2", tense: past, span: "she ate it"}
+        - {t: coref, id: c1, mention: "@m1", antecedent: "@n1", certainty: certain, span: ["Lamine", "she"]}
+        - {t: coref, id: c2, mention: "@m2", antecedent: "@x1", certainty: certain, span: ["a loaf", "it"]}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
         - "(Name sk_lamine_1 \"Lamine\")"
         - "(Member sk_loaf_1 loaf)"
@@ -109,11 +109,11 @@ examples:
       note: a repeated name is a second instance, linked
       text: "Yusra laughed. Yusra left."
       instances:
-        - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past}
-        - {t: named-entity, id: n2, name: "Yusra"}
-        - {t: motion, id: m1, verb: leave, mover: "@n2", tense: past}
-        - {t: coref, id: c1, mention: "@n2", antecedent: "@n1", certainty: certain}
+        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
+        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past, span: "Yusra laughed"}
+        - {t: named-entity, id: n2, name: "Yusra", span: "Yusra"}
+        - {t: motion, id: m1, verb: leave, mover: "@n2", tense: past, span: "Yusra left"}
+        - {t: coref, id: c1, mention: "@n2", antecedent: "@n1", certainty: certain, span: ["Yusra", "Yusra"]}
     - category: abstain
       text: "Yusra laughed."
       expected: {abstain: true, template: activity}                   # a first mention: nothing to link

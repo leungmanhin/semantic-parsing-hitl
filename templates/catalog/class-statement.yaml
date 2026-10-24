@@ -109,7 +109,7 @@ examples:
       text: "Ferrets are mustelids."
       instances:
         - {t: class-statement, id: k1, subject: ferret, predicate: mustelid, form: noun,
-           definitional: true, tense: present}
+           definitional: true, tense: present, span: "Ferrets are mustelids"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
         - "(Inheritance ferret mustelid)"
       declarations:
@@ -120,7 +120,7 @@ examples:
       text: "Ferrets are curious."
       instances:
         - {t: class-statement, id: k1, subject: ferret, predicate: curious, form: adjective,
-           definitional: false, tense: present}
+           definitional: false, tense: present, span: "Ferrets are curious"}
     - category: abstain
       text: "Teodor is a locksmith."
       expected: {abstain: true, template: copular}                     # an individual as the subject
@@ -129,7 +129,7 @@ examples:
       text: "All ferrets are curious."
       instances:
         - {t: class-statement, id: k1, subject: ferret, predicate: curious, form: adjective,
-           definitional: false, quantifier: all, tense: present}
+           definitional: false, quantifier: all, tense: present, span: "All ferrets are curious"}
 
   held_out:                  # tests; never rendered into the prompt
     - category: positive

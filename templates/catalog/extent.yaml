@@ -77,9 +77,9 @@ examples:
       note: a magnitude adverb on a change
       text: "The price fell sharply."
       instances:
-        - {t: witness, id: x1, class: price, definite: true}
-        - {t: change-of-state, id: c1, verb: fall, undergoer: "@x1", tense: past}
-        - {t: extent, id: a1, event: "@c1", level: sharply}
+        - {t: witness, id: x1, class: price, definite: true, span: "The price"}
+        - {t: change-of-state, id: c1, verb: fall, undergoer: "@x1", tense: past, span: "The price fell"}
+        - {t: extent, id: a1, event: "@c1", level: sharply, span: "sharply"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
         - "(Member sk_price_1 price)"
         - "(Member sk_fall_1 fall)"
@@ -96,10 +96,10 @@ examples:
       note: an intensifier on a state
       text: "Teodor really likes the quilt."
       instances:
-        - {t: named-entity, id: n1, name: "Teodor"}
-        - {t: witness, id: x1, class: quilt, definite: true}
-        - {t: psych, id: p1, verb: like, experiencer: "@n1", stimulus: "@x1", tense: present}
-        - {t: extent, id: a1, event: "@p1", level: really}
+        - {t: named-entity, id: n1, name: "Teodor", span: "Teodor"}
+        - {t: witness, id: x1, class: quilt, definite: true, span: "the quilt"}
+        - {t: psych, id: p1, verb: like, experiencer: "@n1", stimulus: "@x1", tense: present, span: "Teodor really likes the quilt"}
+        - {t: extent, id: a1, event: "@p1", level: really, span: "really"}
     - category: abstain
       text: "Yusra laughed loudly."
       expected: {abstain: true, template: manner}                     # how, not how much

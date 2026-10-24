@@ -97,9 +97,9 @@ examples:
       note: fear-type, experiencer as subject
       text: "Yusra distrusts Lamine."
       instances:
-        - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: named-entity, id: n2, name: "Lamine"}
-        - {t: psych, id: p1, verb: distrust, experiencer: "@n1", stimulus: "@n2", tense: present}
+        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
+        - {t: named-entity, id: n2, name: "Lamine", span: "Lamine"}
+        - {t: psych, id: p1, verb: distrust, experiencer: "@n1", stimulus: "@n2", tense: present, span: "Yusra distrusts Lamine"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
         - "(Name sk_yusra_1 \"Yusra\")"
         - "(Name sk_lamine_1 \"Lamine\")"
@@ -115,9 +115,9 @@ examples:
       note: frighten-type, experiencer as object — the same roles
       text: "The ferret frightens Teodor."
       instances:
-        - {t: witness, id: x1, class: ferret, definite: true}
-        - {t: named-entity, id: n1, name: "Teodor"}
-        - {t: psych, id: p1, verb: frighten, experiencer: "@n1", stimulus: "@x1", tense: present}
+        - {t: witness, id: x1, class: ferret, definite: true, span: "The ferret"}
+        - {t: named-entity, id: n1, name: "Teodor", span: "Teodor"}
+        - {t: psych, id: p1, verb: frighten, experiencer: "@n1", stimulus: "@x1", tense: present, span: "The ferret frightens Teodor"}
     - category: abstain
       text: "Teodor saw the ferret."
       expected: {abstain: true, template: perception}                 # perception, not a feeling
@@ -125,9 +125,9 @@ examples:
       note: an action as the stimulus — the clause is sealed, the experiencer acts in it
       text: "Yusra likes to send quilts."
       instances:
-        - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: transfer, id: e1, verb: send, giver: "@n1", object: quilt, tense: present}
-        - {t: psych, id: p1, verb: like, experiencer: "@n1", complement: ["@e1"], tense: present}
+        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
+        - {t: transfer, id: e1, verb: send, giver: "@n1", object: quilt, tense: present, span: "to send quilts"}
+        - {t: psych, id: p1, verb: like, experiencer: "@n1", complement: ["@e1"], tense: present, span: "Yusra likes to send quilts"}
 
   held_out:                  # tests; never rendered into the prompt
     - category: positive

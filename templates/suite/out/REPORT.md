@@ -1,6 +1,6 @@
 # Suite report
 
-prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 e9f273b0d2bdaff9) · type check: ran
+prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 79893629ea5a1b2b) · type check: ran
 
 ## Catalog checks
 
@@ -30,6 +30,7 @@ Stored records whose sentence is no longer in the catalog (ignored): suite/raw/a
 - stability: pairwise agreement 1.0 (12 cases, 36 pairs), unanimous 12/12
 - type check: 36/36 emitted parses type
 - graph lints: none
+- spans: 0/111 instances carry one · missing 111 · not verbatim 0 · malformed 0 (provenance; never decides pass)
 - usage: 36 calls · in 502,629 · cached 121,917 (24% of the input) · out 4,561 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
@@ -58,6 +59,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (16 cases, 48 pairs), unanimous 16/16
 - type check: 48/48 emitted parses type
 - graph lints: none
+- spans: 0/126 instances carry one · missing 126 · not verbatim 0 · malformed 0 (provenance; never decides pass)
 - usage: 48 calls · in 890,913 · cached 94,312 (11% of the input) · out 5,100 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
@@ -85,6 +87,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (11 cases, 33 pairs), unanimous 11/11
 - type check: 33/33 emitted parses type
 - graph lints: none
+- spans: 0/135 instances carry one · missing 135 · not verbatim 0 · malformed 0 (provenance; never decides pass)
 - usage: 33 calls · in 1,105,677 · cached 975,314 (88% of the input) · out 5,212 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
@@ -111,6 +114,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (11 cases, 33 pairs), unanimous 11/11
 - type check: 33/33 emitted parses type
 - graph lints: none
+- spans: 0/114 instances carry one · missing 114 · not verbatim 0 · malformed 0 (provenance; never decides pass)
 - usage: 33 calls · in 1,408,757 · cached 1,256,081 (89% of the input) · out 4,551 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: 1
   - P00 · aspectual · r3 "Yusra no longer works.": The boundary case for 'no longer V-s' says to report the aspectual words as unmapped, leaving it ambiguous whether to parse the negated present clause or report the whole clause as unmapped under the entailment rule.
@@ -139,6 +143,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (13 cases, 39 pairs), unanimous 13/13
 - type check: 39/39 emitted parses type
 - graph lints: none
+- spans: 0/201 instances carry one · missing 201 · not verbatim 0 · malformed 0 (provenance; never decides pass)
 - usage: 39 calls · in 321,159 · out 7,311 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
@@ -165,6 +170,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (14 cases, 42 pairs), unanimous 14/14
 - type check: 39/39 emitted parses type
 - graph lints: none
+- spans: 0/156 instances carry one · missing 156 · not verbatim 0 · malformed 0 (provenance; never decides pass)
 - usage: 42 calls · in 1,793,025 · cached 1,666,317 (93% of the input) · out 6,319 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
@@ -193,6 +199,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (15 cases, 45 pairs), unanimous 15/15
 - type check: 45/45 emitted parses type
 - graph lints: none
+- spans: 0/111 instances carry one · missing 111 · not verbatim 0 · malformed 0 (provenance; never decides pass)
 - usage: 45 calls · in 1,082,283 · cached 121,919 (11% of the input) · out 4,801 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
@@ -221,6 +228,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (16 cases, 48 pairs), unanimous 16/16
 - type check: 45/45 emitted parses type
 - graph lints: none
+- spans: 0/66 instances carry one · missing 66 · not verbatim 0 · malformed 0 (provenance; never decides pass)
 - usage: 48 calls · in 2,485,647 · cached 2,337,492 (94% of the input) · out 4,006 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
@@ -247,6 +255,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (13 cases, 39 pairs), unanimous 13/13
 - type check: 39/39 emitted parses type
 - graph lints: none
+- spans: 0/63 instances carry one · missing 63 · not verbatim 0 · malformed 0 (provenance; never decides pass)
 - usage: 39 calls · in 880,347 · cached 298,339 (34% of the input) · out 3,627 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
@@ -275,6 +284,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (13 cases, 39 pairs), unanimous 13/13
 - type check: 39/39 emitted parses type
 - graph lints: none
+- spans: 0/198 instances carry one · missing 198 · not verbatim 0 · malformed 0 (provenance; never decides pass)
 - usage: 39 calls · in 478,620 · cached 121,924 (25% of the input) · out 7,133 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: 1
   - P00 · transfer · r1 "Yusra told Teodor that Lamine might lend Ottoline the trowel.": The tense slot is required on predications, but the instructions do not specify which tense value to use when the clause is governed by a modal auxiliary like 'might'.
@@ -300,6 +310,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (13 cases, 39 pairs), unanimous 13/13
 - type check: 30/30 emitted parses type
 - graph lints: none
+- spans: 0/114 instances carry one · missing 114 · not verbatim 0 · malformed 0 (provenance; never decides pass)
 - usage: 39 calls · in 2,019,645 · cached 1,939,716 (96% of the input) · out 5,457 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
@@ -329,6 +340,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (14 cases, 42 pairs), unanimous 14/14
 - type check: 42/42 emitted parses type
 - graph lints: none
+- spans: 0/153 instances carry one · missing 153 · not verbatim 0 · malformed 0 (provenance; never decides pass)
 - usage: 42 calls · in 1,802,577 · cached 1,635,173 (91% of the input) · out 6,320 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
@@ -357,6 +369,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (13 cases, 39 pairs), unanimous 13/13
 - type check: 39/39 emitted parses type
 - graph lints: none
+- spans: 0/81 instances carry one · missing 81 · not verbatim 0 · malformed 0 (provenance; never decides pass)
 - usage: 39 calls · in 644,202 · out 3,971 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
@@ -384,6 +397,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (8 cases, 24 pairs), unanimous 8/8
 - type check: 24/24 emitted parses type
 - graph lints: none
+- spans: 0/135 instances carry one · missing 135 · not verbatim 0 · malformed 0 (provenance; never decides pass)
 - usage: 24 calls · in 726,012 · out 4,855 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: 2
   - P00 · witness · r2 "Yusra sold her spindle.": The mention template says a possessive pronoun gets its own mention instance that fills the possessor slot of a witness, whereas the witness template says a possessive pronoun resolves to its antecedent's id.
@@ -412,6 +426,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (15 cases, 45 pairs), unanimous 15/15
 - type check: 45/45 emitted parses type
 - graph lints: none
+- spans: 0/141 instances carry one · missing 141 · not verbatim 0 · malformed 0 (provenance; never decides pass)
 - usage: 45 calls · in 1,444,134 · cached 1,322,991 (92% of the input) · out 5,403 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
@@ -439,6 +454,7 @@ Mismatches: none
 - stability: pairwise agreement 0.963 (18 cases, 54 pairs), unanimous 17/18
 - type check: 54/54 emitted parses type
 - graph lints: none
+- spans: 0/119 instances carry one · missing 119 · not verbatim 0 · malformed 0 (provenance; never decides pass)
 - usage: 54 calls · in 1,938,240 · cached 1,788,403 (92% of the input) · out 5,781 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: 1
   - P00 · copular / degree · r2 "Yusra is the tallest weaver.": The instructions say to report 'the tallest weaver' as unmapped under degree, while copular forbids a definite predicate ('is the locksmith') unless licensed by the superlative, leaving it unclear whether the entailed kind predication ('weaver') should be kept as a copular instance or the whole predicate reported as unmapped.
@@ -468,6 +484,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (6 cases, 18 pairs), unanimous 6/6
 - type check: 18/18 emitted parses type
 - graph lints: none
+- spans: 0/54 instances carry one · missing 54 · not verbatim 0 · malformed 0 (provenance; never decides pass)
 - usage: 18 calls · in 329,586 · out 2,193 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
@@ -493,6 +510,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (15 cases, 45 pairs), unanimous 15/15
 - type check: 42/42 emitted parses type
 - graph lints: none
+- spans: 0/147 instances carry one · missing 147 · not verbatim 0 · malformed 0 (provenance; never decides pass)
 - usage: 45 calls · in 1,615,176 · cached 1,489,113 (92% of the input) · out 6,088 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
@@ -507,7 +525,7 @@ Mismatches: none
 
 ## focus — held_out
 
-21 cases, 63 records (ok 63; stale prompt 0) · gemini-4-argon effort=low
+21 cases, 63 records (ok 63; stale prompt 63) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -520,6 +538,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (21 cases, 63 pairs), unanimous 21/21
 - type check: 63/63 emitted parses type
 - graph lints: none
+- spans: 0/213 instances carry one · missing 213 · not verbatim 0 · malformed 0 (provenance; never decides pass)
 - usage: 63 calls · in 3,368,208 · cached 3,185,270 (95% of the input) · out 8,544 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
@@ -548,6 +567,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (17 cases, 51 pairs), unanimous 17/17
 - type check: 48/48 emitted parses type
 - graph lints: none
+- spans: 0/162 instances carry one · missing 162 · not verbatim 0 · malformed 0 (provenance; never decides pass)
 - usage: 51 calls · in 1,581,894 · cached 840,800 (53% of the input) · out 6,804 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
@@ -575,6 +595,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (11 cases, 33 pairs), unanimous 11/11
 - type check: 33/33 emitted parses type
 - graph lints: none
+- spans: 0/105 instances carry one · missing 105 · not verbatim 0 · malformed 0 (provenance; never decides pass)
 - usage: 33 calls · in 603,855 · out 4,432 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: 5
   - P00 · group · r1 "Yusra's ferrets slept.": The prose states that a possessed group is presupposed to exist (which marks definite: true in witness), while the definite slot description for group only lists 'the / these / those / both'.
@@ -606,6 +627,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (18 cases, 54 pairs), unanimous 18/18
 - type check: 48/48 emitted parses type
 - graph lints: none
+- spans: 0/180 instances carry one · missing 180 · not verbatim 0 · malformed 0 (provenance; never decides pass)
 - usage: 54 calls · in 2,023,248 · cached 1,910,084 (94% of the input) · out 6,803 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
@@ -633,6 +655,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (15 cases, 45 pairs), unanimous 15/15
 - type check: 45/45 emitted parses type
 - graph lints: none
+- spans: 0/222 instances carry one · missing 222 · not verbatim 0 · malformed 0 (provenance; never decides pass)
 - usage: 45 calls · in 2,064,759 · cached 1,925,678 (93% of the input) · out 8,167 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
@@ -661,6 +684,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (15 cases, 45 pairs), unanimous 15/15
 - type check: 45/45 emitted parses type
 - graph lints: none
+- spans: 0/177 instances carry one · missing 177 · not verbatim 0 · malformed 0 (provenance; never decides pass)
 - usage: 45 calls · in 1,201,650 · out 6,749 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
@@ -687,6 +711,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (15 cases, 45 pairs), unanimous 15/15
 - type check: 45/45 emitted parses type
 - graph lints: none
+- spans: 0/141 instances carry one · missing 141 · not verbatim 0 · malformed 0 (provenance; never decides pass)
 - usage: 45 calls · in 1,269,573 · cached 141,140 (11% of the input) · out 6,013 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: 2
   - P00 · location · r1 "The ferret in the barn slept.": The location boundary calls a place phrase inside a noun phrase 'a postmodifier of that noun', whereas locative and postmodifier say it is a locative predication of that thing.
@@ -715,6 +740,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (13 cases, 39 pairs), unanimous 13/13
 - type check: 39/39 emitted parses type
 - graph lints: none
+- spans: 0/126 instances carry one · missing 126 · not verbatim 0 · malformed 0 (provenance; never decides pass)
 - usage: 39 calls · in 1,313,835 · cached 1,233,815 (94% of the input) · out 5,063 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
@@ -739,6 +765,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (1 cases, 3 pairs), unanimous 1/1
 - type check: 3/3 emitted parses type
 - graph lints: none
+- spans: 0/12 instances carry one · missing 12 · not verbatim 0 · malformed 0 (provenance; never decides pass)
 - usage: 3 calls · in 54,939 · out 459 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
@@ -761,6 +788,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (15 cases, 45 pairs), unanimous 15/15
 - type check: 45/45 emitted parses type
 - graph lints: none
+- spans: 0/135 instances carry one · missing 135 · not verbatim 0 · malformed 0 (provenance; never decides pass)
 - usage: 45 calls · in 1,102,314 · cached 262,850 (24% of the input) · out 5,373 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
@@ -788,6 +816,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (19 cases, 57 pairs), unanimous 19/19
 - type check: 57/57 emitted parses type
 - graph lints: none
+- spans: 0/213 instances carry one · missing 213 · not verbatim 0 · malformed 0 (provenance; never decides pass)
 - usage: 57 calls · in 2,794,383 · cached 2,677,521 (96% of the input) · out 7,878 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
@@ -818,6 +847,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (12 cases, 36 pairs), unanimous 12/12
 - type check: 36/36 emitted parses type
 - graph lints: none
+- spans: 0/111 instances carry one · missing 111 · not verbatim 0 · malformed 0 (provenance; never decides pass)
 - usage: 36 calls · in 497,493 · out 4,489 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
@@ -845,6 +875,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (12 cases, 36 pairs), unanimous 12/12
 - type check: 36/36 emitted parses type
 - graph lints: none
+- spans: 0/114 instances carry one · missing 114 · not verbatim 0 · malformed 0 (provenance; never decides pass)
 - usage: 36 calls · in 426,216 · out 4,518 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
@@ -871,6 +902,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (10 cases, 30 pairs), unanimous 10/10
 - type check: 30/30 emitted parses type
 - graph lints: none
+- spans: 0/126 instances carry one · missing 126 · not verbatim 0 · malformed 0 (provenance; never decides pass)
 - usage: 30 calls · in 1,471,182 · cached 1,409,702 (96% of the input) · out 4,693 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: 3
   - P00 · location · r1 "The ferret in the barn slept.": The location template boundary says 'the ferret in the barn slept: a postmodifier of that noun', whereas locative and postmodifier say a place phrase inside a noun phrase is a locative predication, not a postmodifier.
@@ -902,6 +934,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (13 cases, 39 pairs), unanimous 13/13
 - type check: 39/39 emitted parses type
 - graph lints: none
+- spans: 0/123 instances carry one · missing 123 · not verbatim 0 · malformed 0 (provenance; never decides pass)
 - usage: 39 calls · in 574,830 · cached 223,458 (39% of the input) · out 4,940 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
@@ -927,6 +960,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (11 cases, 33 pairs), unanimous 11/11
 - type check: 33/33 emitted parses type
 - graph lints: none
+- spans: 0/132 instances carry one · missing 132 · not verbatim 0 · malformed 0 (provenance; never decides pass)
 - usage: 33 calls · in 1,514,256 · cached 1,446,578 (96% of the input) · out 5,548 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
@@ -955,6 +989,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (16 cases, 48 pairs), unanimous 16/16
 - type check: 48/48 emitted parses type
 - graph lints: none
+- spans: 0/150 instances carry one · missing 150 · not verbatim 0 · malformed 0 (provenance; never decides pass)
 - usage: 48 calls · in 1,353,144 · out 5,931 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
@@ -982,6 +1017,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (11 cases, 33 pairs), unanimous 11/11
 - type check: 33/33 emitted parses type
 - graph lints: none
+- spans: 0/120 instances carry one · missing 120 · not verbatim 0 · malformed 0 (provenance; never decides pass)
 - usage: 33 calls · in 318,927 · out 4,502 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
@@ -1005,6 +1041,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (2 cases, 6 pairs), unanimous 2/2
 - type check: 6/6 emitted parses type
 - graph lints: none
+- spans: 0/21 instances carry one · missing 21 · not verbatim 0 · malformed 0 (provenance; never decides pass)
 - usage: 6 calls · in 294,573 · cached 282,219 (96% of the input) · out 798 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 

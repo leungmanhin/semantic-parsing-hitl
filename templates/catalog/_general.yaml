@@ -31,9 +31,10 @@ output_contract:
    "unmapped":  [ <unmapped span>, ... ],
    "issues":    [ <issue>, ... ]}
 - >-
-  `instances` is a list of records `{"t": "<template id>", ...slots}`. Give referents first, in order
-  of first mention, then predications in text order, then the scope operators (negation, modals, directives, sealed
-  complements), attachments (times, places, particles), rules and links. Every instance carries an `id`.
+  `instances` is a list of records `{"t": "<template id>", "id": "<label>", ...slots, "span": "<words, verbatim>"}`.
+  Give referents first, in order of first mention, then predications in text order, then the scope operators
+  (negation, modals, directives, sealed complements), attachments (times, places, particles), rules and links.
+  Every instance carries an `id` and a `span` (see *Spans*).
   Use exactly the slot names defined for each template; omit an optional slot that does not apply (never
   write null for it).
 - >-
@@ -87,6 +88,28 @@ identifiers:
   A coordinated subject or object (Teodor and Yusra laughed; read the letter and the note) is one predication
   instance per conjunct, each with its own event, never a group. When the predicate holds only of the
   conjuncts together (met, argued, shared a thermos), no instance fits: report the clause as unmapped.
+spans:
+- >-
+  Every instance carries `span`: the words of the TEXT it is built from, copied verbatim — one string, or a
+  list of strings when the words are not contiguous. Spans may overlap; together with the unmapped spans
+  they should account for every content word of the TEXT.
+- >-
+  What a span covers. A REFERENT: its phrase as written — the name (`"Lamine"`), the noun phrase with its
+  determiner or possessor (`"the envelope"`, `"Yusra's quilt"`), the pronoun (`"she"`), the quantified phrase
+  (`"All alloys"`). A PREDICATION: the stretch from the first to the last word of its verb and its own
+  arguments as written (`"Ottoline took the envelope from Lamine"`, `"Yusra laughed"`); words of an operator
+  or attachment that fall inside that stretch are included (`"Teodor read only the letter"`), those outside it
+  are not (`"Lamine cut the loaf"` beside the adjunct `"with a knife"`). An EMBEDDED clause: the clause's own
+  words only (`"Lamine lent Ottoline the trowel"` under *believes that*, `"to sing"` under *began*,
+  `"Teodor laugh"` under *made*). A SCOPE OPERATOR, FOCUS or LINK: the word or words that signal it
+  (`"did not"`, `"Don't"`, `"might"`, `"Only"`, `"because"`, `"in order to"`; `["It was", "who"]` for a cleft);
+  an imperative with no marker word spans its clause. An ATTACHMENT: its phrase with its preposition
+  (`"with a knife"`, `"in the barn"`, `"on Monday"`, `"loudly"`, `"with care"`, `"about ferrets"`). A COREF: the
+  two mentions' words as a list (`["Lamine", "she"]`). A RULE (a generalization, a conditional property, a
+  distribution) or a class statement: the whole clause it generalizes (`"Clay is soft when wet"`).
+- >-
+  A span is provenance, not meaning: it says which words licensed the instance, so that every fact can be
+  traced to the TEXT and checked. It never changes what the instance states.
 lemmas:
 - >-
   Lemmatize every class, property and verb to its dictionary base form: verbs to the base (ran, running

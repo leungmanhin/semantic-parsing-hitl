@@ -8,6 +8,7 @@ Run from ``templates/``: ``python tests/test_render_prompt.py``
 from __future__ import annotations
 
 import hashlib
+import json
 import os
 import re
 import sys
@@ -65,9 +66,14 @@ class RenderTests(unittest.TestCase):
                     self.assertIn(f'"code": "{e["expected"]["gap"]}"', re.sub(r"\s+", " ", self.text))
 
     def test_general_sections_present(self):
-        for title in ("## Output", "## Identifiers and fillers", "## Lemmas and symbols",
+        for title in ("## Output", "## Identifiers and fillers", "## Spans", "## Lemmas and symbols",
                       "## Choosing a template", "## Unmapped spans", "## Templates"):
             self.assertIn(title, self.text)
+
+    def test_shown_instances_render_their_spans(self):
+        ex = CATALOG["transfer"]["examples"]["shown"][0]
+        for r in ex["instances"]:
+            self.assertIn(f'"span": {json.dumps(r["span"], ensure_ascii=False)}', self.text, r)
         for code in (GENERAL.get("gap_codes") or {}):
             self.assertIn(f"- {code}:", self.text)
 

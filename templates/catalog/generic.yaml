@@ -95,16 +95,16 @@ examples:
       note: a bare generic — no quantifier word, strength 0.9 at confidence 0.7, no companion
       text: "Ferrets sleep."
       instances:
-        - {t: range, id: q1, class: ferret}
-        - {t: activity, id: v1, verb: sleep, actor: "@q1", tense: present}
-        - {t: generic, id: r1, ranges: ["@q1"], over: ["@v1"]}
+        - {t: range, id: q1, class: ferret, span: "Ferrets"}
+        - {t: activity, id: v1, verb: sleep, actor: "@q1", tense: present, span: "Ferrets sleep"}
+        - {t: generic, id: r1, ranges: ["@q1"], over: ["@v1"], span: "Ferrets sleep"}
     - category: positive
       note: a graded quantifier — the word sets the strength and is kept beside the rule
       text: "Most students laugh."
       instances:
-        - {t: range, id: q1, class: student, quantifier: most, predicate: laugh}
-        - {t: activity, id: v1, verb: laugh, actor: "@q1", tense: present}
-        - {t: generic, id: r1, ranges: ["@q1"], over: ["@v1"]}
+        - {t: range, id: q1, class: student, quantifier: most, predicate: laugh, span: "Most students"}
+        - {t: activity, id: v1, verb: laugh, actor: "@q1", tense: present, span: "Most students laugh"}
+        - {t: generic, id: r1, ranges: ["@q1"], over: ["@v1"], span: "Most students laugh"}
     - category: abstain
       text: "Several ferrets slept."
       expected: {abstain: true, template: group}                      # a specific group

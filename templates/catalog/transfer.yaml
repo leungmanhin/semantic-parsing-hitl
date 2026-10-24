@@ -101,11 +101,11 @@ examples:
     - category: positive
       text: "Teodor gave Yusra a thermos."
       instances:
-        - {t: named-entity, id: n1, name: "Teodor"}
-        - {t: named-entity, id: n2, name: "Yusra"}
-        - {t: witness, id: x1, class: thermos}
+        - {t: named-entity, id: n1, name: "Teodor", span: "Teodor"}
+        - {t: named-entity, id: n2, name: "Yusra", span: "Yusra"}
+        - {t: witness, id: x1, class: thermos, span: "a thermos"}
         - {t: transfer, id: e1, verb: give, giver: "@n1", recipient: "@n2", object: "@x1",
-           tense: past}
+           tense: past, span: "Teodor gave Yusra a thermos"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
         - "(Name sk_teodor_1 \"Teodor\")"
         - "(Name sk_yusra_1 \"Yusra\")"
@@ -126,18 +126,18 @@ examples:
       note: the to-dative is the same instance as the double object
       text: "Lamine will send the quilt to Ottoline."
       instances:
-        - {t: named-entity, id: n1, name: "Lamine"}
-        - {t: witness, id: x1, class: quilt, definite: true}
-        - {t: named-entity, id: n3, name: "Ottoline"}
+        - {t: named-entity, id: n1, name: "Lamine", span: "Lamine"}
+        - {t: witness, id: x1, class: quilt, definite: true, span: "the quilt"}
+        - {t: named-entity, id: n3, name: "Ottoline", span: "Ottoline"}
         - {t: transfer, id: e1, verb: send, giver: "@n1", recipient: "@n3", object: "@x1",
-           tense: future}
+           tense: future, span: "Lamine will send the quilt to Ottoline"}
     - category: optional
       note: no recipient stated
       text: "Yusra sold the spindle."
       instances:
-        - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: witness, id: x1, class: spindle, definite: true}
-        - {t: transfer, id: e1, verb: sell, giver: "@n1", object: "@x1", tense: past}
+        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
+        - {t: witness, id: x1, class: spindle, definite: true, span: "the spindle"}
+        - {t: transfer, id: e1, verb: sell, giver: "@n1", object: "@x1", tense: past, span: "Yusra sold the spindle"}
     - category: abstain
       text: "Teodor gave a speech."
       expected: {abstain: true, gap: G00, span: "gave a speech"}      # light-verb construction

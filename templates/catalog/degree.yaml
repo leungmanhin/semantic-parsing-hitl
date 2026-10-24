@@ -123,8 +123,8 @@ examples:
       note: an intensifier — the property stays asserted, the degree beside it
       text: "The ladder is very crooked."
       instances:
-        - {t: witness, id: x1, class: ladder, definite: true}
-        - {t: degree, id: d1, bearer: "@x1", scale: crooked, level: very, tense: present}
+        - {t: witness, id: x1, class: ladder, definite: true, span: "The ladder"}
+        - {t: degree, id: d1, bearer: "@x1", scale: crooked, level: very, tense: present, span: "The ladder is very crooked"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
         - "(Member sk_ladder_1 ladder)"
         - "(Member sk_ladder_1 crooked)"
@@ -138,14 +138,14 @@ examples:
       note: an approximator — the property is not asserted, only its degree
       text: "The thermos was almost full."
       instances:
-        - {t: witness, id: x1, class: thermos, definite: true}
-        - {t: degree, id: d1, bearer: "@x1", scale: full, level: almost, tense: past}
+        - {t: witness, id: x1, class: thermos, definite: true, span: "The thermos"}
+        - {t: degree, id: d1, bearer: "@x1", scale: full, level: almost, tense: past, span: "The thermos was almost full"}
     - category: positive
       note: a comparison class — relative to the class's norm, no positive
       text: "Yusra is tall for a weaver."
       instances:
-        - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: degree, id: d1, bearer: "@n1", scale: tall, for_class: weaver, tense: present}
+        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
+        - {t: degree, id: d1, bearer: "@n1", scale: tall, for_class: weaver, tense: present, span: "Yusra is tall for a weaver"}
     - category: abstain
       text: "The audit was difficult."
       expected: {abstain: true, template: copular}                    # a plain adjective

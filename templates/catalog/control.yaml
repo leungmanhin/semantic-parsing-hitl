@@ -117,9 +117,9 @@ examples:
       note: no implication — the complement is sealed, nothing is said about the sleeping
       text: "Yusra tried to sleep."
       instances:
-        - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: activity, id: v1, verb: sleep, actor: "@n1", tense: present}
-        - {t: control, id: e1, verb: try, subject: "@n1", complement: ["@v1"], implication: none, tense: past}
+        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
+        - {t: activity, id: v1, verb: sleep, actor: "@n1", tense: present, span: "to sleep"}
+        - {t: control, id: e1, verb: try, subject: "@n1", complement: ["@v1"], implication: none, tense: past, span: "Yusra tried to sleep"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
         - "(Name sk_yusra_1 \"Yusra\")"
         - "(Member sk_try_1 try)"
@@ -136,17 +136,17 @@ examples:
       note: a positive implication — the marker lets a background rule derive the opening, in the past
       text: "Lamine managed to open the shed."
       instances:
-        - {t: named-entity, id: n1, name: "Lamine"}
-        - {t: witness, id: x1, class: shed, definite: true}
-        - {t: change-of-state, id: c1, verb: open, agent: "@n1", undergoer: "@x1", tense: present}
-        - {t: control, id: e1, verb: manage, subject: "@n1", complement: ["@c1"], implication: positive, tense: past}
+        - {t: named-entity, id: n1, name: "Lamine", span: "Lamine"}
+        - {t: witness, id: x1, class: shed, definite: true, span: "the shed"}
+        - {t: change-of-state, id: c1, verb: open, agent: "@n1", undergoer: "@x1", tense: present, span: "to open the shed"}
+        - {t: control, id: e1, verb: manage, subject: "@n1", complement: ["@c1"], implication: positive, tense: past, span: "Lamine managed to open the shed"}
     - category: positive
       note: a negative implication — the marker lets a background rule derive that no arriving happened
       text: "Teodor failed to arrive."
       instances:
-        - {t: named-entity, id: n1, name: "Teodor"}
-        - {t: motion, id: m1, verb: arrive, mover: "@n1", tense: present}
-        - {t: control, id: e1, verb: fail, subject: "@n1", complement: ["@m1"], implication: negative, tense: past}
+        - {t: named-entity, id: n1, name: "Teodor", span: "Teodor"}
+        - {t: motion, id: m1, verb: arrive, mover: "@n1", tense: present, span: "to arrive"}
+        - {t: control, id: e1, verb: fail, subject: "@n1", complement: ["@m1"], implication: negative, tense: past, span: "Teodor failed to arrive"}
     - category: abstain
       text: "Ottoline wants to send the quilt."
       expected: {abstain: true, template: attitude}                   # a desire

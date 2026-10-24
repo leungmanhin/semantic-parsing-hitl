@@ -361,14 +361,14 @@ def add_provider_args(ap: argparse.ArgumentParser) -> None:
                     help="send the catalog alone once before the call, so the catalog is served from the implicit cache (the suite runner primes by itself)")
 
 
-def validate_reply(reply: dict, reference_time=None) -> dict:
+def validate_reply(reply: dict, reference_time=None, text: str | None = None) -> dict:
     """Run the catalog's validator on the parsed reply and return its result (report only)."""
     sys.path.insert(0, os.path.join(ROOT, "templates"))
     try:
         from tmpl import validate as V
     except Exception as exc:  # no pyyaml, or the templates tree is missing
         return {"status": "skipped", "summary": f"validation skipped: {exc}", "findings": [], "typecheck": "not run"}
-    res = V.validate(reply, reference_time=reference_time)
+    res = V.validate(reply, reference_time=reference_time, text=text)
     keep = {k: res.get(k) for k in ("status", "findings", "typecheck", "statements", "declarations", "fired", "null_slots")}
     keep["summary"] = V.summary(res)
     return keep
@@ -401,7 +401,7 @@ def main(argv=None) -> int:
         print(f"error: {exc}", file=sys.stderr)
         return 1
     if not args.dry_run and not args.no_validate and record.get("response") is not None:
-        record["validation"] = validate_reply(record["response"], args.reference_time)
+        record["validation"] = validate_reply(record["response"], args.reference_time, args.text)
     if args.out:
         with open(args.out, "w", encoding="utf-8") as fh:
             json.dump(record, fh, indent=2, ensure_ascii=False)

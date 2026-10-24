@@ -81,11 +81,11 @@ examples:
       note: the action asserted, the aim sealed — the spindle exists only inside the aim
       text: "Lamine worked to buy a spindle."
       instances:
-        - {t: named-entity, id: n1, name: "Lamine"}
-        - {t: witness, id: x1, class: spindle}
-        - {t: activity, id: v1, verb: work, actor: "@n1", tense: past}
-        - {t: acquisition, id: e1, verb: buy, acquirer: "@n1", object: "@x1", tense: present}
-        - {t: purpose, id: k1, head: To, action: "@v1", aim: ["@e1"]}
+        - {t: named-entity, id: n1, name: "Lamine", span: "Lamine"}
+        - {t: witness, id: x1, class: spindle, span: "a spindle"}
+        - {t: activity, id: v1, verb: work, actor: "@n1", tense: past, span: "Lamine worked"}
+        - {t: acquisition, id: e1, verb: buy, acquirer: "@n1", object: "@x1", tense: present, span: "to buy a spindle"}
+        - {t: purpose, id: k1, head: To, action: "@v1", aim: ["@e1"], span: "to"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
         - "(Name sk_lamine_1 \"Lamine\")"
         - "(Member sk_work_1 work)"
@@ -104,11 +104,11 @@ examples:
       note: in order to, with the aim's actor the action's subject
       text: "The ferret left the barn in order to sleep."
       instances:
-        - {t: witness, id: x1, class: ferret, definite: true}
-        - {t: witness, id: x2, class: barn, definite: true}
-        - {t: motion, id: m1, verb: leave, mover: "@x1", source: "@x2", tense: past}
-        - {t: activity, id: v1, verb: sleep, actor: "@x1", tense: present}
-        - {t: purpose, id: k1, head: InOrderTo, action: "@m1", aim: ["@v1"]}
+        - {t: witness, id: x1, class: ferret, definite: true, span: "The ferret"}
+        - {t: witness, id: x2, class: barn, definite: true, span: "the barn"}
+        - {t: motion, id: m1, verb: leave, mover: "@x1", source: "@x2", tense: past, span: "The ferret left the barn"}
+        - {t: activity, id: v1, verb: sleep, actor: "@x1", tense: present, span: "to sleep"}
+        - {t: purpose, id: k1, head: InOrderTo, action: "@m1", aim: ["@v1"], span: "in order to"}
     - category: abstain
       text: "Yusra tried to sleep."
       expected: {abstain: true, template: control}                    # the verb's complement, not an aim

@@ -101,10 +101,10 @@ examples:
       note: what the action is about — the preposition is the head
       text: "Yusra talked about the audit."
       instances:
-        - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: witness, id: x1, class: audit, definite: true}
-        - {t: activity, id: v1, verb: talk, actor: "@n1", tense: past}
-        - {t: oblique, id: a1, event: "@v1", head: About, object: "@x1"}
+        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
+        - {t: witness, id: x1, class: audit, definite: true, span: "the audit"}
+        - {t: activity, id: v1, verb: talk, actor: "@n1", tense: past, span: "Yusra talked"}
+        - {t: oblique, id: a1, event: "@v1", head: About, object: "@x1", span: "about the audit"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
         - "(Name sk_yusra_1 \"Yusra\")"
         - "(Member sk_audit_1 audit)"
@@ -122,17 +122,17 @@ examples:
       note: a prepositional verb's object — not a beneficiary, not a direct object
       text: "Lamine waited for Teodor."
       instances:
-        - {t: named-entity, id: n1, name: "Lamine"}
-        - {t: named-entity, id: n2, name: "Teodor"}
-        - {t: activity, id: v1, verb: wait, actor: "@n1", tense: past}
-        - {t: oblique, id: a1, event: "@v1", head: For, object: "@n2"}
+        - {t: named-entity, id: n1, name: "Lamine", span: "Lamine"}
+        - {t: named-entity, id: n2, name: "Teodor", span: "Teodor"}
+        - {t: activity, id: v1, verb: wait, actor: "@n1", tense: past, span: "Lamine waited"}
+        - {t: oblique, id: a1, event: "@v1", head: For, object: "@n2", span: "for Teodor"}
     - category: positive
       note: a capacity — the object is a bare lemma
       text: "Teodor worked as a weaver."
       instances:
-        - {t: named-entity, id: n1, name: "Teodor"}
-        - {t: activity, id: v1, verb: work, actor: "@n1", tense: past}
-        - {t: oblique, id: a1, event: "@v1", head: As, object: weaver}
+        - {t: named-entity, id: n1, name: "Teodor", span: "Teodor"}
+        - {t: activity, id: v1, verb: work, actor: "@n1", tense: past, span: "Teodor worked"}
+        - {t: oblique, id: a1, event: "@v1", head: As, object: weaver, span: "as a weaver"}
     - category: abstain
       text: "Yusra laughed in the barn."
       expected: {abstain: true, template: location}                   # where

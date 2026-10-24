@@ -98,8 +98,8 @@ examples:
       note: intransitive
       text: "Yusra laughed."
       instances:
-        - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past}
+        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
+        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past, span: "Yusra laughed"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
         - "(Name sk_yusra_1 \"Yusra\")"
         - "(Member sk_laugh_1 laugh)"
@@ -113,8 +113,8 @@ examples:
       note: a non-specific patient as a bare lemma
       text: "Lamine cooked dinner."
       instances:
-        - {t: named-entity, id: n1, name: "Lamine"}
-        - {t: activity, id: v1, verb: cook, actor: "@n1", patient: dinner, tense: past}
+        - {t: named-entity, id: n1, name: "Lamine", span: "Lamine"}
+        - {t: activity, id: v1, verb: cook, actor: "@n1", patient: dinner, tense: past, span: "Lamine cooked dinner"}
     - category: abstain
       text: "Teodor gave Yusra a thermos."
       expected: {abstain: true, template: transfer}                   # a change of hands

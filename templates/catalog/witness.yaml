@@ -60,13 +60,13 @@ examples:
     - category: positive
       text: "a thermos"
       instances:
-        - {t: witness, id: n1, class: thermos}
+        - {t: witness, id: n1, class: thermos, span: "a thermos"}
     - category: positive
       note: a possessive phrase — the possessor is a referent of its own
       text: "Yusra's quilt"
       instances:
-        - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: witness, id: x1, class: quilt, possessor: "@n1"}
+        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
+        - {t: witness, id: x1, class: quilt, possessor: "@n1", span: "Yusra's quilt"}
   held_out:
     - category: positive
       note: a property stated in the phrase

@@ -106,9 +106,9 @@ examples:
       note: the thing made is an indefinite witness
       text: "Lamine baked a loaf."
       instances:
-        - {t: named-entity, id: n1, name: "Lamine"}
-        - {t: witness, id: x1, class: loaf}
-        - {t: creation, id: e1, verb: bake, creator: "@n1", product: "@x1", tense: past}
+        - {t: named-entity, id: n1, name: "Lamine", span: "Lamine"}
+        - {t: witness, id: x1, class: loaf, span: "a loaf"}
+        - {t: creation, id: e1, verb: bake, creator: "@n1", product: "@x1", tense: past, span: "Lamine baked a loaf"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
         - "(Name sk_lamine_1 \"Lamine\")"
         - "(Member sk_loaf_1 loaf)"
@@ -126,16 +126,16 @@ examples:
       note: paint in the creation sense — the object is the picture
       text: "Ottoline painted a portrait."
       instances:
-        - {t: named-entity, id: n1, name: "Ottoline"}
-        - {t: witness, id: x1, class: portrait}
-        - {t: creation, id: e1, verb: paint, creator: "@n1", product: "@x1", tense: past}
+        - {t: named-entity, id: n1, name: "Ottoline", span: "Ottoline"}
+        - {t: witness, id: x1, class: portrait, span: "a portrait"}
+        - {t: creation, id: e1, verb: paint, creator: "@n1", product: "@x1", tense: past, span: "Ottoline painted a portrait"}
     - category: positive
       note: an institution comes into being
       text: "Yusra founded a school."
       instances:
-        - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: witness, id: x1, class: school}
-        - {t: creation, id: e1, verb: found, creator: "@n1", product: "@x1", tense: past}
+        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
+        - {t: witness, id: x1, class: school, span: "a school"}
+        - {t: creation, id: e1, verb: found, creator: "@n1", product: "@x1", tense: past, span: "Yusra founded a school"}
     - category: abstain
       text: "Lamine made a decision."
       expected: {abstain: true, gap: G00, span: "made a decision"}    # light-verb construction

@@ -98,9 +98,9 @@ examples:
       note: a thing perceived
       text: "Teodor saw the ferret."
       instances:
-        - {t: named-entity, id: n1, name: "Teodor"}
-        - {t: witness, id: x1, class: ferret, definite: true}
-        - {t: perception, id: p1, verb: see, perceiver: "@n1", stimulus: "@x1", tense: past}
+        - {t: named-entity, id: n1, name: "Teodor", span: "Teodor"}
+        - {t: witness, id: x1, class: ferret, definite: true, span: "the ferret"}
+        - {t: perception, id: p1, verb: see, perceiver: "@n1", stimulus: "@x1", tense: past, span: "Teodor saw the ferret"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
         - "(Name sk_teodor_1 \"Teodor\")"
         - "(Member sk_ferret_1 ferret)"
@@ -118,12 +118,12 @@ examples:
       note: an event perceived — the transfer is parsed and asserted, the perception points at it
       text: "Yusra saw Lamine hand Teodor an envelope."
       instances:
-        - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: named-entity, id: n2, name: "Lamine"}
-        - {t: named-entity, id: n3, name: "Teodor"}
-        - {t: witness, id: x1, class: envelope}
-        - {t: transfer, id: e1, verb: hand, giver: "@n2", recipient: "@n3", object: "@x1", tense: past}
-        - {t: perception, id: p1, verb: see, perceiver: "@n1", event: "@e1", tense: past}
+        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
+        - {t: named-entity, id: n2, name: "Lamine", span: "Lamine"}
+        - {t: named-entity, id: n3, name: "Teodor", span: "Teodor"}
+        - {t: witness, id: x1, class: envelope, span: "an envelope"}
+        - {t: transfer, id: e1, verb: hand, giver: "@n2", recipient: "@n3", object: "@x1", tense: past, span: "Lamine hand Teodor an envelope"}
+        - {t: perception, id: p1, verb: see, perceiver: "@n1", event: "@e1", tense: past, span: "Yusra saw Lamine hand Teodor an envelope"}
     - category: abstain
       text: "Teodor saw that Lamine sold the spindle."
       expected: {abstain: true, template: attitude}                   # a that-clause: a factive attitude

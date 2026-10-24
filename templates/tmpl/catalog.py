@@ -16,7 +16,9 @@ Structural invariants checked here (content is reviewed by people, not checked h
   slots each; ``truth`` gives ``strength`` / ``confidence``
   clause lists (numbers, or ``{slot, values}`` / ``{from, slot, values}``); a shape's ``stv`` is a
   pair of numbers; ``presupposed`` lists slots of the template;
-* examples carry a ``category`` and either ``instances`` or an ``expected`` abstain target.
+* examples carry a ``category`` and either ``instances`` or an ``expected`` abstain target; every
+  shown instance carries a ``span`` that is verbatim in the example's text (the prompt demonstrates
+  the field through them); a held-out instance may carry one, checked the same way.
 """
 from __future__ import annotations
 
@@ -43,6 +45,17 @@ class CatalogError(Exception):
 
 def placeholders(atom: str) -> set[str]:
     return set(_PLACEHOLDER.findall(atom))
+
+
+def norm_span(s: str) -> str:
+    """Whitespace collapsed, curly apostrophes and quotes straightened: the tolerance of 'verbatim'."""
+    return " ".join(str(s).replace("\u2019", "'").replace("\u2018", "'").replace("\u201c", '"').replace("\u201d", '"').split())
+
+
+def span_in_text(span: str, text: str) -> bool:
+    """A span is verbatim when, normalized, it is a substring of the normalized text."""
+    s = norm_span(span)
+    return bool(s) and s in norm_span(text)
 
 
 def check_when(cond: str, slots: dict) -> list[str]:
@@ -160,6 +173,20 @@ def check_template(t: dict, path: str) -> list[str]:
                     problems.append(f"examples.{section}[{j}]: an abstain example needs expected: {{abstain: true, …}}")
             elif not ex.get("instances"):
                 problems.append(f"examples.{section}[{j}]: no instances")
+            else:
+                for r in ex["instances"]:
+                    if not isinstance(r, dict):
+                        continue
+                    sp = r.get("span")
+                    if sp is None:
+                        if section == "shown":
+                            problems.append(f"examples.{section}[{j}]: instance {r.get('id')} has no span (a shown instance demonstrates the field)")
+                        continue
+                    parts = sp if isinstance(sp, list) else [sp]
+                    if not parts or not all(isinstance(p, str) and p.strip() for p in parts):
+                        problems.append(f"examples.{section}[{j}]: instance {r.get('id')}: span must be a non-empty string or a list of them")
+                    elif not all(span_in_text(p, ex.get("text") or "") for p in parts):
+                        problems.append(f"examples.{section}[{j}]: instance {r.get('id')}: span {sp!r} is not verbatim in the text")
     return problems
 
 

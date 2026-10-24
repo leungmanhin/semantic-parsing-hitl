@@ -107,8 +107,8 @@ examples:
       note: a change on its own
       text: "The thermos cracked."
       instances:
-        - {t: witness, id: x1, class: thermos, definite: true}
-        - {t: change-of-state, id: c1, verb: crack, undergoer: "@x1", tense: past}
+        - {t: witness, id: x1, class: thermos, definite: true, span: "The thermos"}
+        - {t: change-of-state, id: c1, verb: crack, undergoer: "@x1", tense: past, span: "The thermos cracked"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
         - "(Member sk_thermos_1 thermos)"
         - "(Member sk_crack_1 crack)"
@@ -123,15 +123,15 @@ examples:
       note: becoming — the result is named
       text: "Teodor became a locksmith."
       instances:
-        - {t: named-entity, id: n1, name: "Teodor"}
-        - {t: change-of-state, id: c1, verb: become, undergoer: "@n1", result: locksmith, tense: past}
+        - {t: named-entity, id: n1, name: "Teodor", span: "Teodor"}
+        - {t: change-of-state, id: c1, verb: become, undergoer: "@n1", result: locksmith, tense: past, span: "Teodor became a locksmith"}
     - category: positive
       note: brought about by someone
       text: "Yusra broke the ladder."
       instances:
-        - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: witness, id: x1, class: ladder, definite: true}
-        - {t: change-of-state, id: c1, verb: break, agent: "@n1", undergoer: "@x1", tense: past}
+        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
+        - {t: witness, id: x1, class: ladder, definite: true, span: "the ladder"}
+        - {t: change-of-state, id: c1, verb: break, agent: "@n1", undergoer: "@x1", tense: past, span: "Yusra broke the ladder"}
     - category: abstain
       text: "Yusra went to the market."
       expected: {abstain: true, template: motion}                     # a change of place

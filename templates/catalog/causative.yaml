@@ -113,10 +113,10 @@ examples:
       note: the causee is the actor of the caused clause; make says it happened — the marker, not the parse, carries that
       text: "Yusra made Teodor laugh."
       instances:
-        - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: named-entity, id: n2, name: "Teodor"}
-        - {t: activity, id: v1, verb: laugh, actor: "@n2", tense: present}
-        - {t: causative, id: e1, verb: make, causer: "@n1", complement: ["@v1"], implication: positive, tense: past}
+        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
+        - {t: named-entity, id: n2, name: "Teodor", span: "Teodor"}
+        - {t: activity, id: v1, verb: laugh, actor: "@n2", tense: present, span: "Teodor laugh"}
+        - {t: causative, id: e1, verb: make, causer: "@n1", complement: ["@v1"], implication: positive, tense: past, span: "Yusra made Teodor laugh"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
         - "(Name sk_yusra_1 \"Yusra\")"
         - "(Name sk_teodor_1 \"Teodor\")"
@@ -136,10 +136,10 @@ examples:
       note: a negative implication — the action did not happen
       text: "Lamine prevented Teodor from leaving."
       instances:
-        - {t: named-entity, id: n1, name: "Lamine"}
-        - {t: named-entity, id: n2, name: "Teodor"}
-        - {t: motion, id: m1, verb: leave, mover: "@n2", tense: present}
-        - {t: causative, id: e1, verb: prevent, causer: "@n1", complement: ["@m1"], implication: negative, tense: past}
+        - {t: named-entity, id: n1, name: "Lamine", span: "Lamine"}
+        - {t: named-entity, id: n2, name: "Teodor", span: "Teodor"}
+        - {t: motion, id: m1, verb: leave, mover: "@n2", tense: present, span: "leaving"}
+        - {t: causative, id: e1, verb: prevent, causer: "@n1", complement: ["@m1"], implication: negative, tense: past, span: "Lamine prevented Teodor from leaving"}
     - category: abstain
       text: "Yusra broke the ladder."
       expected: {abstain: true, template: change-of-state}            # a lexical causative: one event
