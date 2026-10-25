@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "ecb9313bbef541ec29940699dad9a1b36a9780334e6b77fdb8e31663cca0597f",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "scbb705209d",
     "text": "Every ferret slept in the barn."
   },
   "usage": {
-    "input": 26449,
-    "output": 188,
+    "input": 56506,
+    "output": 228,
     "thinking": null,
-    "total": 26637,
+    "total": 56734,
+    "cached": 54456,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,23 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 26449,
-    "candidatesTokenCount": 188,
-    "totalTokenCount": 26637,
+    "promptTokenCount": 56506,
+    "candidatesTokenCount": 228,
+    "totalTokenCount": 56734,
+    "cachedContentTokenCount": 54456,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 26449
+        "tokenCount": 56506
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 54456
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 188
+        "tokenCount": 228
       }
     ]
   },
-  "raw_text": "{\"id\": \"scbb705209d\", \"instances\": [{\"t\": \"range\", \"id\": \"q1\", \"kind\": \"ferret\", \"quantifier\": \"every\", \"predicate\": \"sleep\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"barn\", \"definite\": true}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"sleep\", \"actor\": \"@q1\", \"tense\": \"past\"}, {\"t\": \"location\", \"id\": \"l1\", \"event\": \"@e1\", \"place\": \"@x1\", \"head\": \"Location\", \"preposition\": \"in\"}, {\"t\": \"generic\", \"id\": \"r1\", \"ranges\": [\"@q1\"], \"over\": [\"@e1\"]}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"scbb705209d\", \"instances\": [{\"t\": \"range\", \"id\": \"q1\", \"class\": \"ferret\", \"quantifier\": \"every\", \"predicate\": \"sleep\", \"span\": \"Every ferret\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"barn\", \"definite\": true, \"span\": \"the barn\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"sleep\", \"actor\": \"@q1\", \"tense\": \"past\", \"span\": \"Every ferret slept\"}, {\"t\": \"location\", \"id\": \"l1\", \"event\": \"@v1\", \"place\": \"@x1\", \"head\": \"Location\", \"preposition\": \"in\", \"span\": \"in the barn\"}, {\"t\": \"generic\", \"id\": \"r1\", \"ranges\": [\"@q1\"], \"over\": [\"@v1\"], \"span\": \"Every ferret slept in the barn\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "scbb705209d",
     "instances": [
@@ -49,28 +57,32 @@
         "id": "q1",
         "class": "ferret",
         "quantifier": "every",
-        "predicate": "sleep"
+        "predicate": "sleep",
+        "span": "Every ferret"
       },
       {
         "t": "witness",
         "id": "x1",
         "class": "barn",
-        "definite": true
+        "definite": true,
+        "span": "the barn"
       },
       {
         "t": "activity",
-        "id": "e1",
+        "id": "v1",
         "verb": "sleep",
         "actor": "@q1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Every ferret slept"
       },
       {
         "t": "location",
         "id": "l1",
-        "event": "@e1",
+        "event": "@v1",
         "place": "@x1",
         "head": "Location",
-        "preposition": "in"
+        "preposition": "in",
+        "span": "in the barn"
       },
       {
         "t": "generic",
@@ -79,14 +91,15 @@
           "@q1"
         ],
         "over": [
-          "@e1"
-        ]
+          "@v1"
+        ],
+        "span": "Every ferret slept in the barn"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "fe66913c81da38dc9d9e0ba589cc774123d4719abb4eec09e23557bfcfde237f",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "location",

@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "aea0dc69d24f92b4e9fc854261540ae45969c539482a78ca709b17321fd141f1",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sc405e7e4c6",
     "text": "Teodor believed that Yusra sang, so Lamine left."
   },
   "usage": {
-    "input": 45879,
-    "output": 243,
+    "input": 56513,
+    "output": 300,
     "thinking": null,
-    "total": 46122,
-    "cached": 43830,
+    "total": 56813,
+    "cached": 54464,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,85 +25,92 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 45879,
-    "candidatesTokenCount": 243,
-    "totalTokenCount": 46122,
-    "cachedContentTokenCount": 43830,
+    "promptTokenCount": 56513,
+    "candidatesTokenCount": 300,
+    "totalTokenCount": 56813,
+    "cachedContentTokenCount": 54464,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 45879
+        "tokenCount": 56513
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 43830
+        "tokenCount": 54464
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 243
+        "tokenCount": 300
       }
     ]
   },
-  "raw_text": "{\"id\": \"sc405e7e4c6\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n3\", \"name\": \"Lamine\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"sing\", \"actor\": \"@n2\", \"tense\": \"past\"}, {\"t\": \"attitude\", \"id\": \"a1\", \"verb\": \"believe\", \"holder\": \"@n1\", \"content\": [\"@v1\"], \"factive\": false, \"tense\": \"past\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n3\", \"tense\": \"past\"}, {\"t\": \"link\", \"id\": \"k1\", \"head\": \"So\", \"main\": \"@a1\", \"sub\": \"@m1\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sc405e7e4c6\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n3\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"sing\", \"actor\": \"@n2\", \"tense\": \"past\", \"span\": \"Yusra sang\"}, {\"t\": \"attitude\", \"id\": \"e2\", \"verb\": \"believe\", \"holder\": \"@n1\", \"content\": [\"@e1\"], \"factive\": false, \"tense\": \"past\", \"span\": \"Teodor believed that Yusra sang\"}, {\"t\": \"motion\", \"id\": \"e3\", \"verb\": \"leave\", \"mover\": \"@n3\", \"tense\": \"past\", \"span\": \"Lamine left\"}, {\"t\": \"link\", \"id\": \"k1\", \"head\": \"So\", \"main\": \"@e2\", \"sub\": \"@e3\", \"span\": \"so\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sc405e7e4c6",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Teodor"
+        "name": "Teodor",
+        "span": "Teodor"
       },
       {
         "t": "named-entity",
         "id": "n2",
-        "name": "Yusra"
+        "name": "Yusra",
+        "span": "Yusra"
       },
       {
         "t": "named-entity",
         "id": "n3",
-        "name": "Lamine"
+        "name": "Lamine",
+        "span": "Lamine"
       },
       {
         "t": "activity",
-        "id": "v1",
+        "id": "e1",
         "verb": "sing",
         "actor": "@n2",
-        "tense": "past"
+        "tense": "past",
+        "span": "Yusra sang"
       },
       {
         "t": "attitude",
-        "id": "a1",
+        "id": "e2",
         "verb": "believe",
         "holder": "@n1",
         "content": [
-          "@v1"
+          "@e1"
         ],
         "factive": false,
-        "tense": "past"
+        "tense": "past",
+        "span": "Teodor believed that Yusra sang"
       },
       {
         "t": "motion",
-        "id": "m1",
+        "id": "e3",
         "verb": "leave",
         "mover": "@n3",
-        "tense": "past"
+        "tense": "past",
+        "span": "Lamine left"
       },
       {
         "t": "link",
         "id": "k1",
         "head": "So",
-        "main": "@a1",
-        "sub": "@m1"
+        "main": "@e2",
+        "sub": "@e3",
+        "span": "so"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "667366f56ac295f7c22279b3bdae00b28653ebaf94bfcee3f5443b9887b2e7ea",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "link",

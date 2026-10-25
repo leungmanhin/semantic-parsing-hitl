@@ -484,9 +484,9 @@ def collect(args, catalog: dict) -> int:
 
 
 def span_counts(instances: list, span_lints: list) -> dict:
-    """Per record: how many instances carry a span, and the span lints by kind. Spans are provenance
-    and never decide ``pass``; a record parsed before the field existed scores on its atoms and shows
-    up here as all-missing."""
+    """Per record: how many instances carry a span, and the span lints by kind. A missing, malformed
+    or non-verbatim span fails the record (strict since the first collect under the span prompt came
+    back 100 % verbatim); the counts here are the report's span line."""
     kinds = collections.Counter(f["kind"] for f in span_lints)
     return {"instances": len(instances), "with_span": sum(1 for r in instances if "span" in r),
             "missing": kinds.get("span-missing", 0), "not_verbatim": kinds.get("span-not-verbatim", 0),
@@ -570,6 +570,9 @@ def score_record(case: dict, rec: dict, catalog: dict, heads: dict, body_sha: st
     if row.get("lints"):
         row["pass"] = False
         row["reasons"].append("graph lints: " + ", ".join(f["kind"] for f in row["lints"]))
+    if row.get("span_lints"):                       # strict since the first collect under the span prompt came back 100 % verbatim
+        row["pass"] = False
+        row["reasons"].append("span lints: " + ", ".join(f["kind"] for f in row["span_lints"]))
     return row
 
 
@@ -777,7 +780,7 @@ def render_report(summary: dict, rows: list[dict]) -> str:
             sp = s.get("spans") or {}
             if sp.get("instances"):
                 add(f"- spans: {sp['with_span']}/{sp['instances']} instances carry one · missing {sp['missing']} · "
-                    f"not verbatim {sp['not_verbatim']} · malformed {sp['malformed']} (provenance; never decides pass)")
+                    f"not verbatim {sp['not_verbatim']} · malformed {sp['malformed']} (a missing or non-verbatim span fails the record)")
             cached = f" · cached {u['cached']:,} ({u['cached'] / u['input']:.0%} of the input)" if u.get("cached") and u["input"] else ""
             add(f"- usage: {u['calls']} calls · in {u['input']:,}{cached} · out {u['output']:,} · thinking {u['thinking']:,} "
                 f"(calls with thought tokens: {u['thinking_calls']})" + (f" · null slots {s['null_slots']}" if s["null_slots"] else ""))

@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "036261b67cffbb04273fa6353b6fe9d8a5bd7044375e91f3934b29dcd44ae2e8",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s0d0876dcb3",
     "text": "The price might fall sharply."
   },
   "usage": {
-    "input": 35892,
-    "output": 153,
+    "input": 56505,
+    "output": 182,
     "thinking": null,
-    "total": 36045,
-    "cached": 33843,
+    "total": 56687,
+    "cached": 54456,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 35892,
-    "candidatesTokenCount": 153,
-    "totalTokenCount": 36045,
-    "cachedContentTokenCount": 33843,
+    "promptTokenCount": 56505,
+    "candidatesTokenCount": 182,
+    "totalTokenCount": 56687,
+    "cachedContentTokenCount": 54456,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 35892
+        "tokenCount": 56505
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 33843
+        "tokenCount": 54456
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 153
+        "tokenCount": 182
       }
     ]
   },
-  "raw_text": "{\"id\": \"s0d0876dcb3\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"price\", \"definite\": true}, {\"t\": \"change-of-state\", \"id\": \"e1\", \"verb\": \"fall\", \"undergoer\": \"@x1\", \"tense\": \"present\"}, {\"t\": \"modal\", \"id\": \"s1\", \"over\": [\"@e1\"], \"head\": \"Might\", \"surface\": \"might\"}, {\"t\": \"extent\", \"id\": \"a1\", \"event\": \"@e1\", \"level\": \"sharply\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s0d0876dcb3\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"price\", \"definite\": true, \"span\": \"The price\"}, {\"t\": \"change-of-state\", \"id\": \"c1\", \"verb\": \"fall\", \"undergoer\": \"@x1\", \"tense\": \"present\", \"span\": \"The price might fall\"}, {\"t\": \"modal\", \"id\": \"s1\", \"over\": [\"@c1\"], \"head\": \"Might\", \"surface\": \"might\", \"span\": \"might\"}, {\"t\": \"extent\", \"id\": \"a1\", \"event\": \"@c1\", \"level\": \"sharply\", \"span\": \"sharply\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s0d0876dcb3",
     "instances": [
@@ -56,35 +56,39 @@
         "t": "witness",
         "id": "x1",
         "class": "price",
-        "definite": true
+        "definite": true,
+        "span": "The price"
       },
       {
         "t": "change-of-state",
-        "id": "e1",
+        "id": "c1",
         "verb": "fall",
         "undergoer": "@x1",
-        "tense": "present"
+        "tense": "present",
+        "span": "The price might fall"
       },
       {
         "t": "modal",
         "id": "s1",
         "over": [
-          "@e1"
+          "@c1"
         ],
         "head": "Might",
-        "surface": "might"
+        "surface": "might",
+        "span": "might"
       },
       {
         "t": "extent",
         "id": "a1",
-        "event": "@e1",
-        "level": "sharply"
+        "event": "@c1",
+        "level": "sharply",
+        "span": "sharply"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "107542897d74ba7ca217f1d5c88d49a7531f59530bec65a2f2b7b7200334e22e",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "extent",

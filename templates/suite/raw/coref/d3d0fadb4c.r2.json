@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "9ef7be016fe9c94587147da8ab8e32dc10a36598db3616736ec4f119204faeb4",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sd3d0fadb4c",
     "text": "Yusra sold her spindle."
   },
   "usage": {
-    "input": 30247,
-    "output": 231,
+    "input": 56504,
+    "output": 219,
     "thinking": null,
-    "total": 30478,
+    "total": 56723,
+    "cached": 54455,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,48 +25,51 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 30247,
-    "candidatesTokenCount": 231,
-    "totalTokenCount": 30478,
-    "cachedContentTokenCount": 28198,
+    "promptTokenCount": 56504,
+    "candidatesTokenCount": 219,
+    "totalTokenCount": 56723,
+    "cachedContentTokenCount": 54455,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 30247
+        "tokenCount": 56504
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 28198
+        "tokenCount": 54455
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 231
+        "tokenCount": 219
       }
     ]
   },
-  "raw_text": "{\"id\": \"sd3d0fadb4c\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"mention\", \"id\": \"m1\", \"word\": \"her\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"spindle\", \"possessor\": \"@m1\"}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"sell\", \"giver\": \"@n1\", \"object\": \"@x1\", \"tense\": \"past\"}, {\"t\": \"coref\", \"id\": \"c1\", \"mention\": \"@m1\", \"antecedent\": \"@n1\", \"certainty\": \"certain\"}], \"unmapped\": [], \"issues\": [{\"code\": \"P00\", \"where\": \"witness\", \"text\": \"The mention template says a possessive pronoun gets its own mention instance that fills the possessor slot of a witness, whereas the witness template says a possessive pronoun resolves to its antecedent's id.\"}]}",
+  "raw_text": "{\"id\": \"sd3d0fadb4c\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"mention\", \"id\": \"m1\", \"word\": \"her\", \"span\": \"her\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"spindle\", \"possessor\": \"@m1\", \"span\": \"her spindle\"}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"sell\", \"giver\": \"@n1\", \"object\": \"@x1\", \"tense\": \"past\", \"span\": \"Yusra sold her spindle\"}, {\"t\": \"coref\", \"id\": \"c1\", \"mention\": \"@m1\", \"antecedent\": \"@n1\", \"certainty\": \"certain\", \"span\": [\"Yusra\", \"her\"]}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sd3d0fadb4c",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Yusra"
+        "name": "Yusra",
+        "span": "Yusra"
       },
       {
         "t": "mention",
         "id": "m1",
-        "word": "her"
+        "word": "her",
+        "span": "her"
       },
       {
         "t": "witness",
         "id": "x1",
         "class": "spindle",
-        "possessor": "@m1"
+        "possessor": "@m1",
+        "span": "her spindle"
       },
       {
         "t": "transfer",
@@ -73,26 +77,25 @@
         "verb": "sell",
         "giver": "@n1",
         "object": "@x1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Yusra sold her spindle"
       },
       {
         "t": "coref",
         "id": "c1",
         "mention": "@m1",
         "antecedent": "@n1",
-        "certainty": "certain"
+        "certainty": "certain",
+        "span": [
+          "Yusra",
+          "her"
+        ]
       }
     ],
     "unmapped": [],
-    "issues": [
-      {
-        "code": "P00",
-        "where": "witness",
-        "text": "The mention template says a possessive pronoun gets its own mention instance that fills the possessor slot of a witness, whereas the witness template says a possessive pronoun resolves to its antecedent's id."
-      }
-    ]
+    "issues": []
   },
-  "prompt_body_sha256": "8ec71bbffe57aa54f5eb1dc051643ad73943df5ef3964188a68d8dd96a4babd4",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "coref",

@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "f131d9909123f262f22649f1d0a661fcd2875712cc42a57ee96b4987f17f15ff",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s5f105e3b12",
     "text": "Ferrets can climb."
   },
   "usage": {
-    "input": 19691,
+    "input": 56506,
     "output": 62,
     "thinking": null,
-    "total": 19753,
+    "total": 56568,
+    "cached": 54456,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,13 +25,20 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 19691,
+    "promptTokenCount": 56506,
     "candidatesTokenCount": 62,
-    "totalTokenCount": 19753,
+    "totalTokenCount": 56568,
+    "cachedContentTokenCount": 54456,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 19691
+        "tokenCount": 56506
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 54456
       }
     ],
     "candidatesTokensDetails": [
@@ -40,25 +48,25 @@
       }
     ]
   },
-  "raw_text": "{\"id\": \"s5f105e3b12\", \"instances\": [], \"unmapped\": [{\"span\": \"Ferrets can climb.\", \"code\": \"G00\", \"construction\": \"A modal capability statement over a kind.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"s5f105e3b12\", \"instances\": [], \"unmapped\": [{\"span\": \"Ferrets can climb\", \"code\": \"G00\", \"construction\": \"A modal capability statement over a class.\"}], \"issues\": []}",
   "response": {
     "id": "s5f105e3b12",
     "instances": [],
     "unmapped": [
       {
-        "span": "Ferrets can climb.",
+        "span": "Ferrets can climb",
         "code": "G00",
-        "construction": "A modal capability statement over a kind."
+        "construction": "A modal capability statement over a class."
       }
     ],
     "issues": []
   },
-  "prompt_body_sha256": "1d1d69fff405c91e41b45cfd40fd9da93832112f9edce8f3b99dca62a91fe348",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "generic",
     "section": "held_out",
-    "index": 10,
+    "index": 15,
     "category": "abstain",
     "text": "Ferrets can climb.",
     "key": "5f105e3b12"

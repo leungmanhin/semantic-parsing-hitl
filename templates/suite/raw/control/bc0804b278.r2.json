@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "1e3a0e7b653d644ba66513f0d0e707b1cc9b81d1cb008f3f969832c0fde71796",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sbc0804b278",
     "text": "Yusra is trying to sleep."
   },
   "usage": {
-    "input": 42691,
-    "output": 139,
+    "input": 56507,
+    "output": 166,
     "thinking": null,
-    "total": 42830,
-    "cached": 40642,
+    "total": 56673,
+    "cached": 54458,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,44 +25,46 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 42691,
-    "candidatesTokenCount": 139,
-    "totalTokenCount": 42830,
-    "cachedContentTokenCount": 40642,
+    "promptTokenCount": 56507,
+    "candidatesTokenCount": 166,
+    "totalTokenCount": 56673,
+    "cachedContentTokenCount": 54458,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 42691
+        "tokenCount": 56507
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 40642
+        "tokenCount": 54458
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 139
+        "tokenCount": 166
       }
     ]
   },
-  "raw_text": "{\"id\": \"sbc0804b278\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"sleep\", \"actor\": \"@n1\", \"tense\": \"present\"}, {\"t\": \"control\", \"id\": \"e1\", \"verb\": \"try\", \"subject\": \"@n1\", \"complement\": [\"@v1\"], \"implication\": \"none\", \"tense\": \"present\", \"aspect\": \"progressive\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sbc0804b278\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"sleep\", \"actor\": \"@n1\", \"tense\": \"present\", \"span\": \"to sleep\"}, {\"t\": \"control\", \"id\": \"e1\", \"verb\": \"try\", \"subject\": \"@n1\", \"complement\": [\"@v1\"], \"implication\": \"none\", \"tense\": \"present\", \"aspect\": \"progressive\", \"span\": \"Yusra is trying to sleep\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sbc0804b278",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Yusra"
+        "name": "Yusra",
+        "span": "Yusra"
       },
       {
         "t": "activity",
         "id": "v1",
         "verb": "sleep",
         "actor": "@n1",
-        "tense": "present"
+        "tense": "present",
+        "span": "to sleep"
       },
       {
         "t": "control",
@@ -74,13 +76,14 @@
         ],
         "implication": "none",
         "tense": "present",
-        "aspect": "progressive"
+        "aspect": "progressive",
+        "span": "Yusra is trying to sleep"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "550b5adae738e98b3a45e1fd666b1c271958eedeeddaca6a18b6db34c69a06c7",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "control",

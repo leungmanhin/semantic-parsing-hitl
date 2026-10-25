@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "ecb9313bbef541ec29940699dad9a1b36a9780334e6b77fdb8e31663cca0597f",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sb6e326384f",
     "text": "Calderwick is a village in Norfolk."
   },
   "usage": {
-    "input": 26451,
-    "output": 164,
+    "input": 56508,
+    "output": 196,
     "thinking": null,
-    "total": 26615,
+    "total": 56704,
+    "cached": 54459,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,35 +25,44 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 26451,
-    "candidatesTokenCount": 164,
-    "totalTokenCount": 26615,
+    "promptTokenCount": 56508,
+    "candidatesTokenCount": 196,
+    "totalTokenCount": 56704,
+    "cachedContentTokenCount": 54459,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 26451
+        "tokenCount": 56508
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 54459
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 164
+        "tokenCount": 196
       }
     ]
   },
-  "raw_text": "{\"id\": \"sb6e326384f\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Calderwick\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Norfolk\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@n1\", \"predicate\": \"village\", \"form\": \"noun\", \"tense\": \"present\"}, {\"t\": \"locative\", \"id\": \"l1\", \"thing\": \"@n1\", \"place\": \"@n2\", \"head\": \"LocatedIn\", \"preposition\": \"in\", \"tense\": \"present\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sb6e326384f\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Calderwick\", \"span\": \"Calderwick\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Norfolk\", \"span\": \"Norfolk\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@n1\", \"predicate\": \"village\", \"form\": \"noun\", \"tense\": \"present\", \"span\": \"Calderwick is a village\"}, {\"t\": \"locative\", \"id\": \"l1\", \"thing\": \"@n1\", \"place\": \"@n2\", \"head\": \"LocatedIn\", \"preposition\": \"in\", \"tense\": \"present\", \"span\": \"in Norfolk\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sb6e326384f",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Calderwick"
+        "name": "Calderwick",
+        "span": "Calderwick"
       },
       {
         "t": "named-entity",
         "id": "n2",
-        "name": "Norfolk"
+        "name": "Norfolk",
+        "span": "Norfolk"
       },
       {
         "t": "copular",
@@ -60,7 +70,8 @@
         "subject": "@n1",
         "predicate": "village",
         "form": "noun",
-        "tense": "present"
+        "tense": "present",
+        "span": "Calderwick is a village"
       },
       {
         "t": "locative",
@@ -69,18 +80,19 @@
         "place": "@n2",
         "head": "LocatedIn",
         "preposition": "in",
-        "tense": "present"
+        "tense": "present",
+        "span": "in Norfolk"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "fe66913c81da38dc9d9e0ba589cc774123d4719abb4eec09e23557bfcfde237f",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "locative",
     "section": "held_out",
-    "index": 8,
+    "index": 9,
     "category": "positive",
     "text": "Calderwick is a village in Norfolk.",
     "key": "b6e326384f"

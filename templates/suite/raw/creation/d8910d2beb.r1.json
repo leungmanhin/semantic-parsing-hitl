@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "00bbb6f7068a2a54f33bfc0111df472edb2130448e8fb8c84b7c32a1afde3448",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sd8910d2beb",
     "text": "Yusra wrote a letter."
   },
   "usage": {
-    "input": 30876,
-    "output": 111,
+    "input": 56504,
+    "output": 137,
     "thinking": null,
-    "total": 30987,
-    "cached": 28781,
+    "total": 56641,
+    "cached": 54455,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,42 +25,44 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 30876,
-    "candidatesTokenCount": 111,
-    "totalTokenCount": 30987,
-    "cachedContentTokenCount": 28781,
+    "promptTokenCount": 56504,
+    "candidatesTokenCount": 137,
+    "totalTokenCount": 56641,
+    "cachedContentTokenCount": 54455,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 30876
+        "tokenCount": 56504
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 28781
+        "tokenCount": 54455
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 111
+        "tokenCount": 137
       }
     ]
   },
-  "raw_text": "{\"id\": \"sd8910d2beb\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"letter\"}, {\"t\": \"creation\", \"id\": \"e1\", \"verb\": \"write\", \"creator\": \"@n1\", \"product\": \"@x1\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sd8910d2beb\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"letter\", \"span\": \"a letter\"}, {\"t\": \"creation\", \"id\": \"e1\", \"verb\": \"write\", \"creator\": \"@n1\", \"product\": \"@x1\", \"tense\": \"past\", \"span\": \"Yusra wrote a letter\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sd8910d2beb",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Yusra"
+        "name": "Yusra",
+        "span": "Yusra"
       },
       {
         "t": "witness",
         "id": "x1",
-        "class": "letter"
+        "class": "letter",
+        "span": "a letter"
       },
       {
         "t": "creation",
@@ -68,13 +70,14 @@
         "verb": "write",
         "creator": "@n1",
         "product": "@x1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Yusra wrote a letter"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "c0d47baf69c87fd1005101d2c3752c57d83adb2f730ed1199fdb9b6546502fa7",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "creation",

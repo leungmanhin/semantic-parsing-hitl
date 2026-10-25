@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "aea0dc69d24f92b4e9fc854261540ae45969c539482a78ca709b17321fd141f1",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sc147d3d225",
     "text": "Teodor left because Yusra laughed."
   },
   "usage": {
-    "input": 45874,
-    "output": 175,
+    "input": 56508,
+    "output": 213,
     "thinking": null,
-    "total": 46049,
-    "cached": 43825,
+    "total": 56721,
+    "cached": 54459,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,69 +25,74 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 45874,
-    "candidatesTokenCount": 175,
-    "totalTokenCount": 46049,
-    "cachedContentTokenCount": 43825,
+    "promptTokenCount": 56508,
+    "candidatesTokenCount": 213,
+    "totalTokenCount": 56721,
+    "cachedContentTokenCount": 54459,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 45874
+        "tokenCount": 56508
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 43825
+        "tokenCount": 54459
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 175
+        "tokenCount": 213
       }
     ]
   },
-  "raw_text": "{\"id\": \"sc147d3d225\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Yusra\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n1\", \"tense\": \"past\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"laugh\", \"actor\": \"@n2\", \"tense\": \"past\"}, {\"t\": \"link\", \"id\": \"k1\", \"head\": \"Because\", \"main\": \"@m1\", \"sub\": \"@v1\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sc147d3d225\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n1\", \"tense\": \"past\", \"span\": \"Teodor left\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"laugh\", \"actor\": \"@n2\", \"tense\": \"past\", \"span\": \"Yusra laughed\"}, {\"t\": \"link\", \"id\": \"k1\", \"head\": \"Because\", \"main\": \"@m1\", \"sub\": \"@v1\", \"span\": \"because\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sc147d3d225",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Teodor"
+        "name": "Teodor",
+        "span": "Teodor"
       },
       {
         "t": "named-entity",
         "id": "n2",
-        "name": "Yusra"
+        "name": "Yusra",
+        "span": "Yusra"
       },
       {
         "t": "motion",
         "id": "m1",
         "verb": "leave",
         "mover": "@n1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Teodor left"
       },
       {
         "t": "activity",
         "id": "v1",
         "verb": "laugh",
         "actor": "@n2",
-        "tense": "past"
+        "tense": "past",
+        "span": "Yusra laughed"
       },
       {
         "t": "link",
         "id": "k1",
         "head": "Because",
         "main": "@m1",
-        "sub": "@v1"
+        "sub": "@v1",
+        "span": "because"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "667366f56ac295f7c22279b3bdae00b28653ebaf94bfcee3f5443b9887b2e7ea",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "link",

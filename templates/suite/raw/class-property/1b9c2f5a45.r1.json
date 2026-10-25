@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "a9e1ed5a7114de2bedee96ae4010964a4aa69ba1a78b19fae57121290e52e164",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s1b9c2f5a45",
     "text": "Newts might be endangered."
   },
   "usage": {
-    "input": 51786,
-    "output": 100,
+    "input": 56507,
+    "output": 116,
     "thinking": null,
-    "total": 51886,
-    "cached": 49735,
+    "total": 56623,
+    "cached": 54456,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 51786,
-    "candidatesTokenCount": 100,
-    "totalTokenCount": 51886,
-    "cachedContentTokenCount": 49735,
+    "promptTokenCount": 56507,
+    "candidatesTokenCount": 116,
+    "totalTokenCount": 56623,
+    "cachedContentTokenCount": 54456,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 51786
+        "tokenCount": 56507
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 49735
+        "tokenCount": 54456
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 100
+        "tokenCount": 116
       }
     ]
   },
-  "raw_text": "{\"id\": \"s1b9c2f5a45\", \"instances\": [{\"t\": \"kind-property\", \"id\": \"k1\", \"subject\": \"newt\", \"property\": \"endangered\", \"tense\": \"present\"}, {\"t\": \"modal\", \"id\": \"s1\", \"over\": [\"@k1\"], \"head\": \"Might\", \"surface\": \"might\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s1b9c2f5a45\", \"instances\": [{\"t\": \"class-property\", \"id\": \"k1\", \"subject\": \"newt\", \"property\": \"endangered\", \"tense\": \"present\", \"span\": \"Newts might be endangered\"}, {\"t\": \"modal\", \"id\": \"s1\", \"over\": [\"@k1\"], \"head\": \"Might\", \"surface\": \"might\", \"span\": \"might\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s1b9c2f5a45",
     "instances": [
@@ -57,7 +57,8 @@
         "id": "k1",
         "subject": "newt",
         "property": "endangered",
-        "tense": "present"
+        "tense": "present",
+        "span": "Newts might be endangered"
       },
       {
         "t": "modal",
@@ -66,13 +67,14 @@
           "@k1"
         ],
         "head": "Might",
-        "surface": "might"
+        "surface": "might",
+        "span": "might"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "e818417b50e53224000dbbfbcf86feb0d70114df739431722ad3ad866d0b6d57",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "class-property",

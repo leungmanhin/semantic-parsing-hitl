@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "ecb9313bbef541ec29940699dad9a1b36a9780334e6b77fdb8e31663cca0597f",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s0e47691452",
     "text": "The ferret might be in the shed."
   },
   "usage": {
-    "input": 26452,
-    "output": 162,
+    "input": 56509,
+    "output": 194,
     "thinking": null,
-    "total": 26614,
+    "total": 56703,
+    "cached": 54459,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,23 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 26452,
-    "candidatesTokenCount": 162,
-    "totalTokenCount": 26614,
+    "promptTokenCount": 56509,
+    "candidatesTokenCount": 194,
+    "totalTokenCount": 56703,
+    "cachedContentTokenCount": 54459,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 26452
+        "tokenCount": 56509
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 54459
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 162
+        "tokenCount": 194
       }
     ]
   },
-  "raw_text": "{\"id\": \"s0e47691452\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"ferret\", \"definite\": true}, {\"t\": \"witness\", \"id\": \"x2\", \"kind\": \"shed\", \"definite\": true}, {\"t\": \"locative\", \"id\": \"l1\", \"thing\": \"@x1\", \"place\": \"@x2\", \"head\": \"LocatedIn\", \"preposition\": \"in\", \"tense\": \"present\"}, {\"t\": \"modal\", \"id\": \"s1\", \"over\": [\"@l1\"], \"head\": \"Might\", \"surface\": \"might\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s0e47691452\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"ferret\", \"definite\": true, \"span\": \"The ferret\"}, {\"t\": \"witness\", \"id\": \"x2\", \"class\": \"shed\", \"definite\": true, \"span\": \"the shed\"}, {\"t\": \"locative\", \"id\": \"l1\", \"thing\": \"@x1\", \"place\": \"@x2\", \"head\": \"LocatedIn\", \"preposition\": \"in\", \"tense\": \"present\", \"span\": \"The ferret might be in the shed\"}, {\"t\": \"modal\", \"id\": \"s1\", \"over\": [\"@l1\"], \"head\": \"Might\", \"surface\": \"might\", \"span\": \"might\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s0e47691452",
     "instances": [
@@ -48,13 +56,15 @@
         "t": "witness",
         "id": "x1",
         "class": "ferret",
-        "definite": true
+        "definite": true,
+        "span": "The ferret"
       },
       {
         "t": "witness",
         "id": "x2",
         "class": "shed",
-        "definite": true
+        "definite": true,
+        "span": "the shed"
       },
       {
         "t": "locative",
@@ -63,7 +73,8 @@
         "place": "@x2",
         "head": "LocatedIn",
         "preposition": "in",
-        "tense": "present"
+        "tense": "present",
+        "span": "The ferret might be in the shed"
       },
       {
         "t": "modal",
@@ -72,18 +83,19 @@
           "@l1"
         ],
         "head": "Might",
-        "surface": "might"
+        "surface": "might",
+        "span": "might"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "fe66913c81da38dc9d9e0ba589cc774123d4719abb4eec09e23557bfcfde237f",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "locative",
     "section": "held_out",
-    "index": 10,
+    "index": 11,
     "category": "scoped",
     "text": "The ferret might be in the shed.",
     "key": "0e47691452"

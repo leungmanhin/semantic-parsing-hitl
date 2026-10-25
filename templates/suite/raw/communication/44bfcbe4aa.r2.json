@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "4e0b46810b988ce05e1f517f3a6d2747555679ded22ea0a5d060190513c50586",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s44bfcbe4aa",
     "text": "Lamine handed Teodor an envelope."
   },
   "usage": {
-    "input": 8425,
-    "output": 138,
+    "input": 56505,
+    "output": 171,
     "thinking": null,
-    "total": 8563,
+    "total": 56676,
+    "cached": 54456,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,47 +25,50 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 8425,
-    "candidatesTokenCount": 138,
-    "totalTokenCount": 8563,
-    "cachedContentTokenCount": 6376,
+    "promptTokenCount": 56505,
+    "candidatesTokenCount": 171,
+    "totalTokenCount": 56676,
+    "cachedContentTokenCount": 54456,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 8425
+        "tokenCount": 56505
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 6376
+        "tokenCount": 54456
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 138
+        "tokenCount": 171
       }
     ]
   },
-  "raw_text": "{\"id\": \"s44bfcbe4aa\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"envelope\"}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"hand\", \"giver\": \"@n1\", \"recipient\": \"@n2\", \"object\": \"@x1\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s44bfcbe4aa\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"envelope\", \"span\": \"an envelope\"}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"hand\", \"giver\": \"@n1\", \"recipient\": \"@n2\", \"object\": \"@x1\", \"tense\": \"past\", \"span\": \"Lamine handed Teodor an envelope\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s44bfcbe4aa",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Lamine"
+        "name": "Lamine",
+        "span": "Lamine"
       },
       {
         "t": "named-entity",
         "id": "n2",
-        "name": "Teodor"
+        "name": "Teodor",
+        "span": "Teodor"
       },
       {
         "t": "witness",
         "id": "x1",
-        "class": "envelope"
+        "class": "envelope",
+        "span": "an envelope"
       },
       {
         "t": "transfer",
@@ -73,18 +77,19 @@
         "giver": "@n1",
         "recipient": "@n2",
         "object": "@x1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Lamine handed Teodor an envelope"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "e3d200dab1a94aef009e77e2e5738e5fb8713fdb47b96afd97dbe6f48a10d909",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "communication",
     "section": "held_out",
-    "index": 11,
+    "index": 12,
     "category": "abstain",
     "text": "Lamine handed Teodor an envelope.",
     "key": "44bfcbe4aa"

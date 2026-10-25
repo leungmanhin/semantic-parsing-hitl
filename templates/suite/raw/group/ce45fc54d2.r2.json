@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "e2b973ee776d149578b24ed0b89eebd7611ca803b1694eeec798000b403d85d1",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sce45fc54d2",
     "text": "The ferrets did not sleep."
   },
   "usage": {
-    "input": 18159,
-    "output": 136,
+    "input": 56505,
+    "output": 172,
     "thinking": null,
-    "total": 18295,
+    "total": 56677,
+    "cached": 54456,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 18159,
-    "candidatesTokenCount": 136,
-    "totalTokenCount": 18295,
-    "cachedContentTokenCount": 16110,
+    "promptTokenCount": 56505,
+    "candidatesTokenCount": 172,
+    "totalTokenCount": 56677,
+    "cachedContentTokenCount": 54456,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 18159
+        "tokenCount": 56505
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 16110
+        "tokenCount": 54456
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 136
+        "tokenCount": 172
       }
     ]
   },
-  "raw_text": "{\"id\": \"sce45fc54d2\", \"instances\": [{\"t\": \"group\", \"id\": \"g1\", \"kind\": \"ferret\", \"definite\": true}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"sleep\", \"actor\": \"@g1\", \"tense\": \"past\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@e1\"]}, {\"t\": \"distribution\", \"id\": \"d1\", \"group\": \"@g1\", \"over\": [\"@s1\"]}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sce45fc54d2\", \"instances\": [{\"t\": \"group\", \"id\": \"g1\", \"class\": \"ferret\", \"definite\": true, \"span\": \"The ferrets\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"sleep\", \"actor\": \"@g1\", \"tense\": \"past\", \"span\": \"The ferrets did not sleep\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@v1\"], \"span\": \"did not\"}, {\"t\": \"distribution\", \"id\": \"d1\", \"group\": \"@g1\", \"over\": [\"@s1\"], \"span\": \"The ferrets did not sleep\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sce45fc54d2",
     "instances": [
@@ -55,21 +56,24 @@
         "t": "group",
         "id": "g1",
         "class": "ferret",
-        "definite": true
+        "definite": true,
+        "span": "The ferrets"
       },
       {
         "t": "activity",
-        "id": "e1",
+        "id": "v1",
         "verb": "sleep",
         "actor": "@g1",
-        "tense": "past"
+        "tense": "past",
+        "span": "The ferrets did not sleep"
       },
       {
         "t": "negation",
         "id": "s1",
         "over": [
-          "@e1"
-        ]
+          "@v1"
+        ],
+        "span": "did not"
       },
       {
         "t": "distribution",
@@ -77,13 +81,14 @@
         "group": "@g1",
         "over": [
           "@s1"
-        ]
+        ],
+        "span": "The ferrets did not sleep"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "14b00737838e1675ab4e788a994c47c68a9bee0ef066c52422d3b5da5e8f650a",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "group",

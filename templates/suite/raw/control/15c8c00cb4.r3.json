@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "1e3a0e7b653d644ba66513f0d0e707b1cc9b81d1cb008f3f969832c0fde71796",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s15c8c00cb4",
     "text": "Try to sleep."
   },
   "usage": {
-    "input": 42688,
-    "output": 119,
+    "input": 56504,
+    "output": 141,
     "thinking": null,
-    "total": 42807,
-    "cached": 40639,
+    "total": 56645,
+    "cached": 54455,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 42688,
-    "candidatesTokenCount": 119,
-    "totalTokenCount": 42807,
-    "cachedContentTokenCount": 40639,
+    "promptTokenCount": 56504,
+    "candidatesTokenCount": 141,
+    "totalTokenCount": 56645,
+    "cachedContentTokenCount": 54455,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 42688
+        "tokenCount": 56504
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 40639
+        "tokenCount": 54455
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 119
+        "tokenCount": 141
       }
     ]
   },
-  "raw_text": "{\"id\": \"s15c8c00cb4\", \"instances\": [{\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"sleep\", \"tense\": \"present\"}, {\"t\": \"control\", \"id\": \"e1\", \"verb\": \"try\", \"complement\": [\"@v1\"], \"implication\": \"none\", \"tense\": \"present\"}, {\"t\": \"imperative\", \"id\": \"s1\", \"over\": [\"@e1\"]}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s15c8c00cb4\", \"instances\": [{\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"sleep\", \"tense\": \"present\", \"span\": \"to sleep\"}, {\"t\": \"control\", \"id\": \"e1\", \"verb\": \"try\", \"complement\": [\"@v1\"], \"implication\": \"none\", \"tense\": \"present\", \"span\": \"Try to sleep\"}, {\"t\": \"imperative\", \"id\": \"s1\", \"over\": [\"@e1\"], \"span\": \"Try to sleep\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s15c8c00cb4",
     "instances": [
@@ -56,7 +56,8 @@
         "t": "activity",
         "id": "v1",
         "verb": "sleep",
-        "tense": "present"
+        "tense": "present",
+        "span": "to sleep"
       },
       {
         "t": "control",
@@ -66,20 +67,22 @@
           "@v1"
         ],
         "implication": "none",
-        "tense": "present"
+        "tense": "present",
+        "span": "Try to sleep"
       },
       {
         "t": "imperative",
         "id": "s1",
         "over": [
           "@e1"
-        ]
+        ],
+        "span": "Try to sleep"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "550b5adae738e98b3a45e1fd666b1c271958eedeeddaca6a18b6db34c69a06c7",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "control",

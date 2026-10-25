@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "ed7e5be12a09f9e5947e50cfa5d2b849bc8b16ea94ad2bdefa98a0592d434d3f",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sf7fe43f696",
     "text": "Lamine did not argue over a quilt."
   },
   "usage": {
-    "input": 49025,
-    "output": 121,
+    "input": 56508,
+    "output": 199,
     "thinking": null,
-    "total": 49146,
-    "cached": 46976,
+    "total": 56707,
+    "cached": 54459,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,69 +25,74 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 49025,
-    "candidatesTokenCount": 121,
-    "totalTokenCount": 49146,
-    "cachedContentTokenCount": 46976,
+    "promptTokenCount": 56508,
+    "candidatesTokenCount": 199,
+    "totalTokenCount": 56707,
+    "cachedContentTokenCount": 54459,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 49025
+        "tokenCount": 56508
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 46976
+        "tokenCount": 54459
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 121
+        "tokenCount": 199
       }
     ]
   },
-  "raw_text": "{\"id\":\"sf7fe43f696\",\"instances\":[{\"t\":\"named-entity\",\"id\":\"n1\",\"name\":\"Lamine\"},{\"t\":\"witness\",\"id\":\"x1\",\"kind\":\"quilt\"},{\"t\":\"activity\",\"id\":\"e1\",\"verb\":\"argue\",\"actor\":\"@n1\",\"tense\":\"past\"},{\"t\":\"negation\",\"id\":\"s1\",\"over\":[\"@e1\"]},{\"t\":\"oblique\",\"id\":\"a1\",\"event\":\"@e1\",\"head\":\"Over\",\"object\":\"@x1\"}],\"unmapped\":[],\"issues\":[]}",
+  "raw_text": "{\"id\": \"sf7fe43f696\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"quilt\", \"span\": \"a quilt\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"argue\", \"actor\": \"@n1\", \"tense\": \"past\", \"span\": \"Lamine did not argue\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@v1\"], \"span\": \"did not\"}, {\"t\": \"oblique\", \"id\": \"a1\", \"event\": \"@v1\", \"head\": \"Over\", \"object\": \"@x1\", \"span\": \"over a quilt\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sf7fe43f696",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Lamine"
+        "name": "Lamine",
+        "span": "Lamine"
       },
       {
         "t": "witness",
         "id": "x1",
-        "class": "quilt"
+        "class": "quilt",
+        "span": "a quilt"
       },
       {
         "t": "activity",
-        "id": "e1",
+        "id": "v1",
         "verb": "argue",
         "actor": "@n1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Lamine did not argue"
       },
       {
         "t": "negation",
         "id": "s1",
         "over": [
-          "@e1"
-        ]
+          "@v1"
+        ],
+        "span": "did not"
       },
       {
         "t": "oblique",
         "id": "a1",
-        "event": "@e1",
+        "event": "@v1",
         "head": "Over",
-        "object": "@x1"
+        "object": "@x1",
+        "span": "over a quilt"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "7ea5b5bb86c29718a2936a9c64163dc82790d7b8ea4be586be12417680d153a7",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "oblique",

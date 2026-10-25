@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "f4d17abe47ce0097d01f189e549c2f7270adfee30060ea503bfb81f323e1bd63",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s78194c370a",
     "text": "Also, Teodor left."
   },
   "usage": {
-    "input": 53465,
-    "output": 121,
+    "input": 56507,
+    "output": 136,
     "thinking": null,
-    "total": 53586,
-    "cached": 51413,
+    "total": 56643,
+    "cached": 54456,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,44 +25,46 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 53465,
-    "candidatesTokenCount": 121,
-    "totalTokenCount": 53586,
-    "cachedContentTokenCount": 51413,
+    "promptTokenCount": 56507,
+    "candidatesTokenCount": 136,
+    "totalTokenCount": 56643,
+    "cachedContentTokenCount": 54456,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 53465
+        "tokenCount": 56507
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 51413
+        "tokenCount": 54456
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 121
+        "tokenCount": 136
       }
     ]
   },
-  "raw_text": "{\"id\": \"s78194c370a\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n1\", \"tense\": \"past\"}], \"unmapped\": [{\"span\": \"Also\", \"code\": \"G05\", \"construction\": \"A discourse connective at the start of the text with no preceding clause to relate.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"s78194c370a\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n1\", \"tense\": \"past\", \"span\": \"Teodor left\"}], \"unmapped\": [{\"span\": \"Also\", \"code\": \"G05\", \"construction\": \"A discourse connective at the start of the text with no preceding clause to relate.\"}], \"issues\": []}",
   "response": {
     "id": "s78194c370a",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Teodor"
+        "name": "Teodor",
+        "span": "Teodor"
       },
       {
         "t": "motion",
         "id": "m1",
         "verb": "leave",
         "mover": "@n1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Teodor left"
       }
     ],
     "unmapped": [
@@ -74,7 +76,7 @@
     ],
     "issues": []
   },
-  "prompt_body_sha256": "e9f273b0d2bdaff9e725ba8f0d2aaf8c4c5cb64dbb039e1e790e5251d9ea1298",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "focus",

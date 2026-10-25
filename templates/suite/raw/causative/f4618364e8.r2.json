@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "1e3a0e7b653d644ba66513f0d0e707b1cc9b81d1cb008f3f969832c0fde71796",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sf4618364e8",
     "text": "Ottoline helped Yusra wash the quilt."
   },
   "usage": {
-    "input": 42693,
-    "output": 190,
+    "input": 56509,
+    "output": 236,
     "thinking": null,
-    "total": 42883,
-    "cached": 40644,
+    "total": 56745,
+    "cached": 54460,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,48 +25,51 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 42693,
-    "candidatesTokenCount": 190,
-    "totalTokenCount": 42883,
-    "cachedContentTokenCount": 40644,
+    "promptTokenCount": 56509,
+    "candidatesTokenCount": 236,
+    "totalTokenCount": 56745,
+    "cachedContentTokenCount": 54460,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 42693
+        "tokenCount": 56509
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 40644
+        "tokenCount": 54460
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 190
+        "tokenCount": 236
       }
     ]
   },
-  "raw_text": "{\"id\": \"sf4618364e8\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"quilt\", \"definite\": true}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"wash\", \"actor\": \"@n2\", \"patient\": \"@x1\", \"tense\": \"present\"}, {\"t\": \"causative\", \"id\": \"e1\", \"verb\": \"help\", \"causer\": \"@n1\", \"complement\": [\"@v1\"], \"implication\": \"positive\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sf4618364e8\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"quilt\", \"definite\": true, \"span\": \"the quilt\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"wash\", \"actor\": \"@n2\", \"patient\": \"@x1\", \"tense\": \"present\", \"span\": \"Yusra wash the quilt\"}, {\"t\": \"causative\", \"id\": \"e1\", \"verb\": \"help\", \"causer\": \"@n1\", \"complement\": [\"@v1\"], \"implication\": \"positive\", \"tense\": \"past\", \"span\": \"Ottoline helped Yusra wash the quilt\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sf4618364e8",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Ottoline"
+        "name": "Ottoline",
+        "span": "Ottoline"
       },
       {
         "t": "named-entity",
         "id": "n2",
-        "name": "Yusra"
+        "name": "Yusra",
+        "span": "Yusra"
       },
       {
         "t": "witness",
         "id": "x1",
         "class": "quilt",
-        "definite": true
+        "definite": true,
+        "span": "the quilt"
       },
       {
         "t": "activity",
@@ -74,7 +77,8 @@
         "verb": "wash",
         "actor": "@n2",
         "patient": "@x1",
-        "tense": "present"
+        "tense": "present",
+        "span": "Yusra wash the quilt"
       },
       {
         "t": "causative",
@@ -85,13 +89,14 @@
           "@v1"
         ],
         "implication": "positive",
-        "tense": "past"
+        "tense": "past",
+        "span": "Ottoline helped Yusra wash the quilt"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "550b5adae738e98b3a45e1fd666b1c271958eedeeddaca6a18b6db34c69a06c7",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "causative",

@@ -1,0 +1,76 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
+  "item": {
+    "id": "s2a9270d32a",
+    "text": "Yusra, a locksmith"
+  },
+  "usage": {
+    "input": 56506,
+    "output": 73,
+    "thinking": null,
+    "total": 56579,
+    "cached": 54457,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 56506,
+    "candidatesTokenCount": 73,
+    "totalTokenCount": 56579,
+    "cachedContentTokenCount": 54457,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 56506
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 54457
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 73
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s2a9270d32a\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"class\": \"locksmith\", \"span\": \"Yusra, a locksmith\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s2a9270d32a",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "class": "locksmith",
+        "span": "Yusra, a locksmith"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
+  "run": 2,
+  "case": {
+    "template": "named-entity",
+    "section": "held_out",
+    "index": 0,
+    "category": "positive",
+    "text": "Yusra, a locksmith",
+    "key": "2a9270d32a"
+  }
+}

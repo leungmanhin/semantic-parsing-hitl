@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "9ef7be016fe9c94587147da8ab8e32dc10a36598db3616736ec4f119204faeb4",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sdef7c09c53",
     "text": "Yusra baked a loaf. She did not eat it."
   },
   "usage": {
-    "input": 30254,
-    "output": 283,
+    "input": 56511,
+    "output": 542,
     "thinking": null,
-    "total": 30537,
+    "total": 57053,
+    "cached": 54462,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,52 +25,56 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 30254,
-    "candidatesTokenCount": 283,
-    "totalTokenCount": 30537,
-    "cachedContentTokenCount": 28205,
+    "promptTokenCount": 56511,
+    "candidatesTokenCount": 542,
+    "totalTokenCount": 57053,
+    "cachedContentTokenCount": 54462,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 30254
+        "tokenCount": 56511
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 28205
+        "tokenCount": 54462
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 283
+        "tokenCount": 542
       }
     ]
   },
-  "raw_text": "{\"id\": \"sdef7c09c53\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"loaf\"}, {\"t\": \"mention\", \"id\": \"m1\", \"word\": \"she\"}, {\"t\": \"mention\", \"id\": \"m2\", \"word\": \"it\"}, {\"t\": \"creation\", \"id\": \"e1\", \"verb\": \"bake\", \"creator\": \"@n1\", \"product\": \"@x1\", \"tense\": \"past\"}, {\"t\": \"activity\", \"id\": \"e2\", \"verb\": \"eat\", \"actor\": \"@m1\", \"patient\": \"@m2\", \"tense\": \"past\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@e2\"]}, {\"t\": \"coref\", \"id\": \"c1\", \"mention\": \"@m1\", \"antecedent\": \"@n1\", \"certainty\": \"certain\"}, {\"t\": \"coref\", \"id\": \"c2\", \"mention\": \"@m2\", \"antecedent\": \"@x1\", \"certainty\": \"certain\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\n  \"id\": \"sdef7c09c53\",\n  \"instances\": [\n    {\n      \"t\": \"named-entity\",\n      \"id\": \"n1\",\n      \"name\": \"Yusra\",\n      \"span\": \"Yusra\"\n    },\n    {\n      \"t\": \"witness\",\n      \"id\": \"x1\",\n      \"class\": \"loaf\",\n      \"span\": \"a loaf\"\n    },\n    {\n      \"t\": \"mention\",\n      \"id\": \"m1\",\n      \"word\": \"she\",\n      \"span\": \"She\"\n    },\n    {\n      \"t\": \"mention\",\n      \"id\": \"m2\",\n      \"word\": \"it\",\n      \"span\": \"it\"\n    },\n    {\n      \"t\": \"creation\",\n      \"id\": \"e1\",\n      \"verb\": \"bake\",\n      \"creator\": \"@n1\",\n      \"product\": \"@x1\",\n      \"tense\": \"past\",\n      \"span\": \"Yusra baked a loaf\"\n    },\n    {\n      \"t\": \"activity\",\n      \"id\": \"e2\",\n      \"verb\": \"eat\",\n      \"actor\": \"@m1\",\n      \"patient\": \"@m2\",\n      \"tense\": \"past\",\n      \"span\": \"She did not eat it\"\n    },\n    {\n      \"t\": \"negation\",\n      \"id\": \"s1\",\n      \"over\": [\n        \"@e2\"\n      ],\n      \"span\": \"did not\"\n    },\n    {\n      \"t\": \"coref\",\n      \"id\": \"k1\",\n      \"mention\": \"@m1\",\n      \"antecedent\": \"@n1\",\n      \"certainty\": \"certain\",\n      \"span\": [\n        \"Yusra\",\n        \"She\"\n      ]\n    },\n    {\n      \"t\": \"coref\",\n      \"id\": \"k2\",\n      \"mention\": \"@m2\",\n      \"antecedent\": \"@x1\",\n      \"certainty\": \"certain\",\n      \"span\": [\n        \"a loaf\",\n        \"it\"\n      ]\n    }\n  ],\n  \"unmapped\": [],\n  \"issues\": []\n}",
   "response": {
     "id": "sdef7c09c53",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Yusra"
+        "name": "Yusra",
+        "span": "Yusra"
       },
       {
         "t": "witness",
         "id": "x1",
-        "class": "loaf"
+        "class": "loaf",
+        "span": "a loaf"
       },
       {
         "t": "mention",
         "id": "m1",
-        "word": "she"
+        "word": "she",
+        "span": "She"
       },
       {
         "t": "mention",
         "id": "m2",
-        "word": "it"
+        "word": "it",
+        "span": "it"
       },
       {
         "t": "creation",
@@ -77,7 +82,8 @@
         "verb": "bake",
         "creator": "@n1",
         "product": "@x1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Yusra baked a loaf"
       },
       {
         "t": "activity",
@@ -85,34 +91,44 @@
         "verb": "eat",
         "actor": "@m1",
         "patient": "@m2",
-        "tense": "past"
+        "tense": "past",
+        "span": "She did not eat it"
       },
       {
         "t": "negation",
         "id": "s1",
         "over": [
           "@e2"
+        ],
+        "span": "did not"
+      },
+      {
+        "t": "coref",
+        "id": "k1",
+        "mention": "@m1",
+        "antecedent": "@n1",
+        "certainty": "certain",
+        "span": [
+          "Yusra",
+          "She"
         ]
       },
       {
         "t": "coref",
-        "id": "c1",
-        "mention": "@m1",
-        "antecedent": "@n1",
-        "certainty": "certain"
-      },
-      {
-        "t": "coref",
-        "id": "c2",
+        "id": "k2",
         "mention": "@m2",
         "antecedent": "@x1",
-        "certainty": "certain"
+        "certainty": "certain",
+        "span": [
+          "a loaf",
+          "it"
+        ]
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "8ec71bbffe57aa54f5eb1dc051643ad73943df5ef3964188a68d8dd96a4babd4",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "coref",

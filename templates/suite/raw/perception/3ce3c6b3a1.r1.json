@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "3cf1c657d278c5f88cd86233811adb01fd7b99c43b58fc7e7f270c08f8532885",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s3ce3c6b3a1",
     "text": "Yusra saw the point."
   },
   "usage": {
-    "input": 13819,
-    "output": 94,
+    "input": 56506,
+    "output": 86,
     "thinking": null,
-    "total": 13913,
+    "total": 56592,
+    "cached": 54457,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,42 +25,50 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 13819,
-    "candidatesTokenCount": 94,
-    "totalTokenCount": 13913,
+    "promptTokenCount": 56506,
+    "candidatesTokenCount": 86,
+    "totalTokenCount": 56592,
+    "cachedContentTokenCount": 54457,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 13819
+        "tokenCount": 56506
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 54457
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 94
+        "tokenCount": 86
       }
     ]
   },
-  "raw_text": "{\"id\": \"s3ce3c6b3a1\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}], \"unmapped\": [{\"span\": \"saw the point\", \"code\": \"G00\", \"construction\": \"Idiomatic use of 'see the point' meaning to understand, not literal perception of a thing.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"s3ce3c6b3a1\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}], \"unmapped\": [{\"span\": \"saw the point\", \"code\": \"G00\", \"construction\": \"idiomatic cognitive expression\"}], \"issues\": []}",
   "response": {
     "id": "s3ce3c6b3a1",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Yusra"
+        "name": "Yusra",
+        "span": "Yusra"
       }
     ],
     "unmapped": [
       {
         "span": "saw the point",
         "code": "G00",
-        "construction": "Idiomatic use of 'see the point' meaning to understand, not literal perception of a thing."
+        "construction": "idiomatic cognitive expression"
       }
     ],
     "issues": []
   },
-  "prompt_body_sha256": "4045b2ad4809e7e7e07e9faa62e508fb7a2daeb033c9f5aedf2c8aef30067522",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "perception",

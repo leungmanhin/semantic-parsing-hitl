@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "00bbb6f7068a2a54f33bfc0111df472edb2130448e8fb8c84b7c32a1afde3448",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sce7f971474",
     "text": "Yusra drew a map."
   },
   "usage": {
-    "input": 30877,
-    "output": 112,
+    "input": 56505,
+    "output": 138,
     "thinking": null,
-    "total": 30989,
-    "cached": 28828,
+    "total": 56643,
+    "cached": 54456,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,42 +25,44 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 30877,
-    "candidatesTokenCount": 112,
-    "totalTokenCount": 30989,
-    "cachedContentTokenCount": 28828,
+    "promptTokenCount": 56505,
+    "candidatesTokenCount": 138,
+    "totalTokenCount": 56643,
+    "cachedContentTokenCount": 54456,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 30877
+        "tokenCount": 56505
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 28828
+        "tokenCount": 54456
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 112
+        "tokenCount": 138
       }
     ]
   },
-  "raw_text": "{\"id\": \"sce7f971474\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"map\"}, {\"t\": \"creation\", \"id\": \"e1\", \"verb\": \"draw\", \"creator\": \"@n1\", \"product\": \"@x1\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sce7f971474\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"map\", \"span\": \"a map\"}, {\"t\": \"creation\", \"id\": \"e1\", \"verb\": \"draw\", \"creator\": \"@n1\", \"product\": \"@x1\", \"tense\": \"past\", \"span\": \"Yusra drew a map\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sce7f971474",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Yusra"
+        "name": "Yusra",
+        "span": "Yusra"
       },
       {
         "t": "witness",
         "id": "x1",
-        "class": "map"
+        "class": "map",
+        "span": "a map"
       },
       {
         "t": "creation",
@@ -68,13 +70,14 @@
         "verb": "draw",
         "creator": "@n1",
         "product": "@x1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Yusra drew a map"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "c0d47baf69c87fd1005101d2c3752c57d83adb2f730ed1199fdb9b6546502fa7",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "creation",

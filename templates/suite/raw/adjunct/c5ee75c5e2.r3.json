@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "57c0a2cf118bc64251ee1dc4f10535ec1900e8fb5354bff54b546c18457f758b",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sc5ee75c5e2",
     "text": "Yusra might dance with Lamine."
   },
   "usage": {
-    "input": 33504,
-    "output": 182,
+    "input": 56507,
+    "output": 221,
     "thinking": null,
-    "total": 33686,
-    "cached": 31455,
+    "total": 56728,
+    "cached": 54458,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,49 +25,52 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 33504,
-    "candidatesTokenCount": 182,
-    "totalTokenCount": 33686,
-    "cachedContentTokenCount": 31455,
+    "promptTokenCount": 56507,
+    "candidatesTokenCount": 221,
+    "totalTokenCount": 56728,
+    "cachedContentTokenCount": 54458,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 33504
+        "tokenCount": 56507
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 31455
+        "tokenCount": 54458
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 182
+        "tokenCount": 221
       }
     ]
   },
-  "raw_text": "{\"id\": \"sc5ee75c5e2\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Lamine\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"dance\", \"actor\": \"@n1\", \"tense\": \"present\"}, {\"t\": \"modal\", \"id\": \"s1\", \"over\": [\"@e1\"], \"head\": \"Might\", \"surface\": \"might\"}, {\"t\": \"adjunct\", \"id\": \"a1\", \"event\": \"@e1\", \"participant\": \"@n2\", \"head\": \"CoAgent\", \"preposition\": \"with\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sc5ee75c5e2\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"dance\", \"actor\": \"@n1\", \"tense\": \"present\", \"span\": \"Yusra might dance\"}, {\"t\": \"modal\", \"id\": \"s1\", \"over\": [\"@e1\"], \"head\": \"Might\", \"surface\": \"might\", \"span\": \"might\"}, {\"t\": \"adjunct\", \"id\": \"a1\", \"event\": \"@e1\", \"participant\": \"@n2\", \"head\": \"CoAgent\", \"preposition\": \"with\", \"span\": \"with Lamine\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sc5ee75c5e2",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Yusra"
+        "name": "Yusra",
+        "span": "Yusra"
       },
       {
         "t": "named-entity",
         "id": "n2",
-        "name": "Lamine"
+        "name": "Lamine",
+        "span": "Lamine"
       },
       {
         "t": "activity",
         "id": "e1",
         "verb": "dance",
         "actor": "@n1",
-        "tense": "present"
+        "tense": "present",
+        "span": "Yusra might dance"
       },
       {
         "t": "modal",
@@ -76,7 +79,8 @@
           "@e1"
         ],
         "head": "Might",
-        "surface": "might"
+        "surface": "might",
+        "span": "might"
       },
       {
         "t": "adjunct",
@@ -84,13 +88,14 @@
         "event": "@e1",
         "participant": "@n2",
         "head": "CoAgent",
-        "preposition": "with"
+        "preposition": "with",
+        "span": "with Lamine"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "55732af26869bbaa55169fc16db0ed85110798ac0721bfbdda732a93ff4b5fd0",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "adjunct",

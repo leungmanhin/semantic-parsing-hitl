@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "036261b67cffbb04273fa6353b6fe9d8a5bd7044375e91f3934b29dcd44ae2e8",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s8997800101",
     "text": "Ferrets are very curious."
   },
   "usage": {
-    "input": 35894,
-    "output": 111,
+    "input": 56507,
+    "output": 116,
     "thinking": null,
-    "total": 36005,
-    "cached": 33845,
+    "total": 56623,
+    "cached": 54458,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 35894,
-    "candidatesTokenCount": 111,
-    "totalTokenCount": 36005,
-    "cachedContentTokenCount": 33845,
+    "promptTokenCount": 56507,
+    "candidatesTokenCount": 116,
+    "totalTokenCount": 56623,
+    "cachedContentTokenCount": 54458,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 35894
+        "tokenCount": 56507
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 33845
+        "tokenCount": 54458
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 111
+        "tokenCount": 116
       }
     ]
   },
-  "raw_text": "{\"id\": \"s8997800101\", \"instances\": [{\"t\": \"kind-statement\", \"id\": \"k1\", \"subject\": \"ferret\", \"predicate\": \"curious\", \"form\": \"adjective\", \"definitional\": false, \"tense\": \"present\"}], \"unmapped\": [{\"span\": \"very\", \"code\": \"G02\", \"construction\": \"A degree word modifying the predicate of a kind-level statement.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"s8997800101\", \"instances\": [{\"t\": \"class-statement\", \"id\": \"k1\", \"subject\": \"ferret\", \"predicate\": \"curious\", \"form\": \"adjective\", \"definitional\": false, \"tense\": \"present\", \"span\": \"Ferrets are very curious\"}], \"unmapped\": [{\"span\": \"very\", \"code\": \"G02\", \"construction\": \"degree word on a class-level statement\"}], \"issues\": []}",
   "response": {
     "id": "s8997800101",
     "instances": [
@@ -59,19 +59,20 @@
         "predicate": "curious",
         "form": "adjective",
         "definitional": false,
-        "tense": "present"
+        "tense": "present",
+        "span": "Ferrets are very curious"
       }
     ],
     "unmapped": [
       {
         "span": "very",
         "code": "G02",
-        "construction": "A degree word modifying the predicate of a kind-level statement."
+        "construction": "degree word on a class-level statement"
       }
     ],
     "issues": []
   },
-  "prompt_body_sha256": "107542897d74ba7ca217f1d5c88d49a7531f59530bec65a2f2b7b7200334e22e",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "degree",

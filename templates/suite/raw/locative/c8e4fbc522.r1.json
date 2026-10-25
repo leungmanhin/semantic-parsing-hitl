@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "ecb9313bbef541ec29940699dad9a1b36a9780334e6b77fdb8e31663cca0597f",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sc8e4fbc522",
     "text": "The key was on the mat."
   },
   "usage": {
-    "input": 26448,
-    "output": 125,
+    "input": 56505,
+    "output": 150,
     "thinking": null,
-    "total": 26573,
+    "total": 56655,
+    "cached": 54456,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,23 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 26448,
-    "candidatesTokenCount": 125,
-    "totalTokenCount": 26573,
+    "promptTokenCount": 56505,
+    "candidatesTokenCount": 150,
+    "totalTokenCount": 56655,
+    "cachedContentTokenCount": 54456,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 26448
+        "tokenCount": 56505
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 54456
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 125
+        "tokenCount": 150
       }
     ]
   },
-  "raw_text": "{\"id\": \"sc8e4fbc522\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"key\", \"definite\": true}, {\"t\": \"witness\", \"id\": \"x2\", \"kind\": \"mat\", \"definite\": true}, {\"t\": \"locative\", \"id\": \"l1\", \"thing\": \"@x1\", \"place\": \"@x2\", \"head\": \"On\", \"preposition\": \"on\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sc8e4fbc522\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"key\", \"definite\": true, \"span\": \"The key\"}, {\"t\": \"witness\", \"id\": \"x2\", \"class\": \"mat\", \"definite\": true, \"span\": \"the mat\"}, {\"t\": \"locative\", \"id\": \"l1\", \"thing\": \"@x1\", \"place\": \"@x2\", \"head\": \"On\", \"preposition\": \"on\", \"tense\": \"past\", \"span\": \"The key was on the mat\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sc8e4fbc522",
     "instances": [
@@ -48,13 +56,15 @@
         "t": "witness",
         "id": "x1",
         "class": "key",
-        "definite": true
+        "definite": true,
+        "span": "The key"
       },
       {
         "t": "witness",
         "id": "x2",
         "class": "mat",
-        "definite": true
+        "definite": true,
+        "span": "the mat"
       },
       {
         "t": "locative",
@@ -63,18 +73,19 @@
         "place": "@x2",
         "head": "On",
         "preposition": "on",
-        "tense": "past"
+        "tense": "past",
+        "span": "The key was on the mat"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "fe66913c81da38dc9d9e0ba589cc774123d4719abb4eec09e23557bfcfde237f",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "locative",
     "section": "held_out",
-    "index": 2,
+    "index": 3,
     "category": "contrast",
     "text": "The key was on the mat.",
     "key": "c8e4fbc522"

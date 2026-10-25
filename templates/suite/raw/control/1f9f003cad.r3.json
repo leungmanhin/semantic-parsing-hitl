@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "1e3a0e7b653d644ba66513f0d0e707b1cc9b81d1cb008f3f969832c0fde71796",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s1f9f003cad",
     "text": "Lamine remembered to send the letter."
   },
   "usage": {
-    "input": 42691,
-    "output": 163,
+    "input": 56507,
+    "output": 198,
     "thinking": null,
-    "total": 42854,
-    "cached": 40642,
+    "total": 56705,
+    "cached": 54458,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,43 +25,45 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 42691,
-    "candidatesTokenCount": 163,
-    "totalTokenCount": 42854,
-    "cachedContentTokenCount": 40642,
+    "promptTokenCount": 56507,
+    "candidatesTokenCount": 198,
+    "totalTokenCount": 56705,
+    "cachedContentTokenCount": 54458,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 42691
+        "tokenCount": 56507
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 40642
+        "tokenCount": 54458
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 163
+        "tokenCount": 198
       }
     ]
   },
-  "raw_text": "{\"id\": \"s1f9f003cad\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"letter\", \"definite\": true}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"send\", \"giver\": \"@n1\", \"object\": \"@x1\", \"tense\": \"present\"}, {\"t\": \"control\", \"id\": \"e2\", \"verb\": \"remember\", \"subject\": \"@n1\", \"complement\": [\"@e1\"], \"implication\": \"positive\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s1f9f003cad\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"letter\", \"definite\": true, \"span\": \"the letter\"}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"send\", \"giver\": \"@n1\", \"object\": \"@x1\", \"tense\": \"present\", \"span\": \"to send the letter\"}, {\"t\": \"control\", \"id\": \"e2\", \"verb\": \"remember\", \"subject\": \"@n1\", \"complement\": [\"@e1\"], \"implication\": \"positive\", \"tense\": \"past\", \"span\": \"Lamine remembered to send the letter\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s1f9f003cad",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Lamine"
+        "name": "Lamine",
+        "span": "Lamine"
       },
       {
         "t": "witness",
         "id": "x1",
         "class": "letter",
-        "definite": true
+        "definite": true,
+        "span": "the letter"
       },
       {
         "t": "transfer",
@@ -69,7 +71,8 @@
         "verb": "send",
         "giver": "@n1",
         "object": "@x1",
-        "tense": "present"
+        "tense": "present",
+        "span": "to send the letter"
       },
       {
         "t": "control",
@@ -80,13 +83,14 @@
           "@e1"
         ],
         "implication": "positive",
-        "tense": "past"
+        "tense": "past",
+        "span": "Lamine remembered to send the letter"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "550b5adae738e98b3a45e1fd666b1c271958eedeeddaca6a18b6db34c69a06c7",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "control",

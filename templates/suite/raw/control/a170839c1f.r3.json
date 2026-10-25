@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "1e3a0e7b653d644ba66513f0d0e707b1cc9b81d1cb008f3f969832c0fde71796",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sa170839c1f",
     "text": "Yusra did not try to sleep."
   },
   "usage": {
-    "input": 42692,
-    "output": 119,
+    "input": 56508,
+    "output": 190,
     "thinking": null,
-    "total": 42811,
-    "cached": 40643,
+    "total": 56698,
+    "cached": 54459,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,44 +25,46 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 42692,
-    "candidatesTokenCount": 119,
-    "totalTokenCount": 42811,
-    "cachedContentTokenCount": 40643,
+    "promptTokenCount": 56508,
+    "candidatesTokenCount": 190,
+    "totalTokenCount": 56698,
+    "cachedContentTokenCount": 54459,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 42692
+        "tokenCount": 56508
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 40643
+        "tokenCount": 54459
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 119
+        "tokenCount": 190
       }
     ]
   },
-  "raw_text": "{\"id\":\"sa170839c1f\",\"instances\":[{\"t\":\"named-entity\",\"id\":\"n1\",\"name\":\"Yusra\"},{\"t\":\"activity\",\"id\":\"v1\",\"verb\":\"sleep\",\"actor\":\"@n1\",\"tense\":\"present\"},{\"t\":\"control\",\"id\":\"e1\",\"verb\":\"try\",\"subject\":\"@n1\",\"complement\":[\"@v1\"],\"implication\":\"none\",\"tense\":\"past\"},{\"t\":\"negation\",\"id\":\"s1\",\"over\":[\"@e1\"]}],\"unmapped\":[],\"issues\":[]}",
+  "raw_text": "{\"id\": \"sa170839c1f\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"sleep\", \"actor\": \"@n1\", \"tense\": \"present\", \"span\": \"to sleep\"}, {\"t\": \"control\", \"id\": \"e1\", \"verb\": \"try\", \"subject\": \"@n1\", \"complement\": [\"@v1\"], \"implication\": \"none\", \"tense\": \"past\", \"span\": \"Yusra did not try to sleep\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@e1\"], \"span\": \"did not\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sa170839c1f",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Yusra"
+        "name": "Yusra",
+        "span": "Yusra"
       },
       {
         "t": "activity",
         "id": "v1",
         "verb": "sleep",
         "actor": "@n1",
-        "tense": "present"
+        "tense": "present",
+        "span": "to sleep"
       },
       {
         "t": "control",
@@ -73,20 +75,22 @@
           "@v1"
         ],
         "implication": "none",
-        "tense": "past"
+        "tense": "past",
+        "span": "Yusra did not try to sleep"
       },
       {
         "t": "negation",
         "id": "s1",
         "over": [
           "@e1"
-        ]
+        ],
+        "span": "did not"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "550b5adae738e98b3a45e1fd666b1c271958eedeeddaca6a18b6db34c69a06c7",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "control",

@@ -120,6 +120,17 @@ class InstanceTests(unittest.TestCase):
 
 
 class LintTests(unittest.TestCase):
+    def test_bare_phrase_text_is_its_referent_alone(self):
+        """A text that is only a noun phrase parses to a referent nothing mentions; when its span
+        covers the whole text nothing was dropped, so it is not dangling. A lone name whose span
+        leaves words of the text uncovered (a dropped clause) still is; so is the same reply with
+        no text to check against."""
+        alone = [{"t": "named-entity", "id": "n1", "name": "Yusra", "class": "locksmith", "span": "Yusra, a locksmith"}]
+        self.assertEqual(kinds(V.inspect(reply(alone), CATALOG, text="Yusra, a locksmith")), [])
+        self.assertEqual(kinds(V.inspect(reply(alone), CATALOG)), ["dangling-referent"])
+        dropped = [{"t": "named-entity", "id": "n1", "name": "Yusra", "span": "Yusra"}]
+        self.assertEqual(kinds(V.inspect(reply(dropped), CATALOG, text="Yusra laughed.")), ["dangling-referent"])
+
     def test_dangling_name_only_when_nothing_is_unmapped_but_a_witness_always(self):
         names = [{"t": "named-entity", "id": "n1", "name": "Yusra"}]
         res = V.inspect(reply(names), CATALOG)

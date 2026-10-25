@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "ed7e5be12a09f9e5947e50cfa5d2b849bc8b16ea94ad2bdefa98a0592d434d3f",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s7f78130b7c",
     "text": "Yusra saw the man with the hat."
   },
   "usage": {
-    "input": 49027,
-    "output": 135,
+    "input": 56510,
+    "output": 222,
     "thinking": null,
-    "total": 49162,
-    "cached": 46978,
+    "total": 56732,
+    "cached": 54461,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,56 +25,52 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 49027,
-    "candidatesTokenCount": 135,
-    "totalTokenCount": 49162,
-    "cachedContentTokenCount": 46978,
+    "promptTokenCount": 56510,
+    "candidatesTokenCount": 222,
+    "totalTokenCount": 56732,
+    "cachedContentTokenCount": 54461,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 49027
+        "tokenCount": 56510
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 46978
+        "tokenCount": 54461
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 135
+        "tokenCount": 222
       }
     ]
   },
-  "raw_text": "{\"id\":\"s7f78130b7c\",\"instances\":[{\"t\":\"named-entity\",\"id\":\"n1\",\"name\":\"Yusra\"},{\"t\":\"witness\",\"id\":\"x1\",\"kind\":\"man\",\"definite\":true},{\"t\":\"witness\",\"id\":\"x2\",\"kind\":\"hat\",\"definite\":true},{\"t\":\"postmodifier\",\"id\":\"a1\",\"noun\":\"@x1\",\"head\":\"With\",\"object\":\"@x2\"},{\"t\":\"perception\",\"id\":\"p1\",\"verb\":\"see\",\"perceiver\":\"@n1\",\"stimulus\":\"@x1\",\"tense\":\"past\"}],\"unmapped\":[],\"issues\":[]}",
+  "raw_text": "{\"id\": \"s7f78130b7c\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"man\", \"definite\": true, \"span\": \"the man\"}, {\"t\": \"witness\", \"id\": \"x2\", \"class\": \"hat\", \"definite\": true, \"span\": \"the hat\"}, {\"t\": \"perception\", \"id\": \"p1\", \"verb\": \"see\", \"perceiver\": \"@n1\", \"stimulus\": \"@x1\", \"tense\": \"past\", \"span\": \"Yusra saw the man with the hat\"}, {\"t\": \"postmodifier\", \"id\": \"a1\", \"noun\": \"@x1\", \"head\": \"With\", \"object\": \"@x2\", \"span\": \"with the hat\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s7f78130b7c",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Yusra"
+        "name": "Yusra",
+        "span": "Yusra"
       },
       {
         "t": "witness",
         "id": "x1",
         "class": "man",
-        "definite": true
+        "definite": true,
+        "span": "the man"
       },
       {
         "t": "witness",
         "id": "x2",
         "class": "hat",
-        "definite": true
-      },
-      {
-        "t": "postmodifier",
-        "id": "a1",
-        "noun": "@x1",
-        "head": "With",
-        "object": "@x2"
+        "definite": true,
+        "span": "the hat"
       },
       {
         "t": "perception",
@@ -82,13 +78,22 @@
         "verb": "see",
         "perceiver": "@n1",
         "stimulus": "@x1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Yusra saw the man with the hat"
+      },
+      {
+        "t": "postmodifier",
+        "id": "a1",
+        "noun": "@x1",
+        "head": "With",
+        "object": "@x2",
+        "span": "with the hat"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "7ea5b5bb86c29718a2936a9c64163dc82790d7b8ea4be586be12417680d153a7",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "postmodifier",

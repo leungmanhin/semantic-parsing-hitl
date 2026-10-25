@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "a9e1ed5a7114de2bedee96ae4010964a4aa69ba1a78b19fae57121290e52e164",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s149295addc",
     "text": "Cranes are rare in winter."
   },
   "usage": {
-    "input": 51784,
-    "output": 71,
+    "input": 56505,
+    "output": 82,
     "thinking": null,
-    "total": 51855,
-    "cached": 49735,
+    "total": 56587,
+    "cached": 54456,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 51784,
-    "candidatesTokenCount": 71,
-    "totalTokenCount": 51855,
-    "cachedContentTokenCount": 49735,
+    "promptTokenCount": 56505,
+    "candidatesTokenCount": 82,
+    "totalTokenCount": 56587,
+    "cachedContentTokenCount": 54456,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 51784
+        "tokenCount": 56505
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 49735
+        "tokenCount": 54456
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 71
+        "tokenCount": 82
       }
     ]
   },
-  "raw_text": "{\"id\": \"s149295addc\", \"instances\": [{\"t\": \"kind-property\", \"id\": \"k1\", \"subject\": \"crane\", \"property\": \"rare\", \"restriction\": \"winter\", \"tense\": \"present\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s149295addc\", \"instances\": [{\"t\": \"class-property\", \"id\": \"k1\", \"subject\": \"crane\", \"property\": \"rare\", \"restriction\": \"winter\", \"tense\": \"present\", \"span\": \"Cranes are rare in winter\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s149295addc",
     "instances": [
@@ -58,13 +58,14 @@
         "subject": "crane",
         "property": "rare",
         "restriction": "winter",
-        "tense": "present"
+        "tense": "present",
+        "span": "Cranes are rare in winter"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "e818417b50e53224000dbbfbcf86feb0d70114df739431722ad3ad866d0b6d57",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "class-property",

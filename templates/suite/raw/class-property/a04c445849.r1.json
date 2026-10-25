@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "a9e1ed5a7114de2bedee96ae4010964a4aa69ba1a78b19fae57121290e52e164",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sa04c445849",
     "text": "Herons are very common."
   },
   "usage": {
-    "input": 51785,
-    "output": 94,
+    "input": 56506,
+    "output": 105,
     "thinking": null,
-    "total": 51879,
-    "cached": 49735,
+    "total": 56611,
+    "cached": 54456,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 51785,
-    "candidatesTokenCount": 94,
-    "totalTokenCount": 51879,
-    "cachedContentTokenCount": 49735,
+    "promptTokenCount": 56506,
+    "candidatesTokenCount": 105,
+    "totalTokenCount": 56611,
+    "cachedContentTokenCount": 54456,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 51785
+        "tokenCount": 56506
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 49735
+        "tokenCount": 54456
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 94
+        "tokenCount": 105
       }
     ]
   },
-  "raw_text": "{\"id\": \"sa04c445849\", \"instances\": [{\"t\": \"kind-property\", \"id\": \"k1\", \"subject\": \"heron\", \"property\": \"common\", \"tense\": \"present\"}], \"unmapped\": [{\"span\": \"very\", \"code\": \"G02\", \"construction\": \"A degree word on a kind-level statement.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"sa04c445849\", \"instances\": [{\"t\": \"class-property\", \"id\": \"k1\", \"subject\": \"heron\", \"property\": \"common\", \"tense\": \"present\", \"span\": \"Herons are very common\"}], \"unmapped\": [{\"span\": \"very\", \"code\": \"G02\", \"construction\": \"A degree word on a class-level property statement.\"}], \"issues\": []}",
   "response": {
     "id": "sa04c445849",
     "instances": [
@@ -57,19 +57,20 @@
         "id": "k1",
         "subject": "heron",
         "property": "common",
-        "tense": "present"
+        "tense": "present",
+        "span": "Herons are very common"
       }
     ],
     "unmapped": [
       {
         "span": "very",
         "code": "G02",
-        "construction": "A degree word on a kind-level statement."
+        "construction": "A degree word on a class-level property statement."
       }
     ],
     "issues": []
   },
-  "prompt_body_sha256": "e818417b50e53224000dbbfbcf86feb0d70114df739431722ad3ad866d0b6d57",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "class-property",

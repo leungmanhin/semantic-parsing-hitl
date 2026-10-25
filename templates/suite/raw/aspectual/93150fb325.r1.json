@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "7b971397645436659b47229c67b5e18427eb894e0e6cbf0b176ccc7db0eed480",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s93150fb325",
     "text": "The audit began."
   },
   "usage": {
-    "input": 42687,
-    "output": 95,
+    "input": 56504,
+    "output": 110,
     "thinking": null,
-    "total": 42782,
-    "cached": 36864,
+    "total": 56614,
+    "cached": 53248,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 42687,
-    "candidatesTokenCount": 95,
-    "totalTokenCount": 42782,
-    "cachedContentTokenCount": 36864,
+    "promptTokenCount": 56504,
+    "candidatesTokenCount": 110,
+    "totalTokenCount": 56614,
+    "cachedContentTokenCount": 53248,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 42687
+        "tokenCount": 56504
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 36864
+        "tokenCount": 53248
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 95
+        "tokenCount": 110
       }
     ]
   },
-  "raw_text": "{\"id\": \"s93150fb325\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"audit\", \"definite\": true}, {\"t\": \"change-of-state\", \"id\": \"c1\", \"verb\": \"begin\", \"undergoer\": \"@x1\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s93150fb325\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"audit\", \"definite\": true, \"span\": \"The audit\"}, {\"t\": \"change-of-state\", \"id\": \"c1\", \"verb\": \"begin\", \"undergoer\": \"@x1\", \"tense\": \"past\", \"span\": \"The audit began\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s93150fb325",
     "instances": [
@@ -56,20 +56,22 @@
         "t": "witness",
         "id": "x1",
         "class": "audit",
-        "definite": true
+        "definite": true,
+        "span": "The audit"
       },
       {
         "t": "change-of-state",
         "id": "c1",
         "verb": "begin",
         "undergoer": "@x1",
-        "tense": "past"
+        "tense": "past",
+        "span": "The audit began"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "550b5adae738e98b3a45e1fd666b1c271958eedeeddaca6a18b6db34c69a06c7",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "aspectual",

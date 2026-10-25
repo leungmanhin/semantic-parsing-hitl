@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "036261b67cffbb04273fa6353b6fe9d8a5bd7044375e91f3934b29dcd44ae2e8",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "se20ecbb796",
     "text": "Yusra is the tallest weaver."
   },
   "usage": {
-    "input": 35892,
-    "output": 122,
+    "input": 56505,
+    "output": 93,
     "thinking": null,
-    "total": 36014,
-    "cached": 33842,
+    "total": 56598,
+    "cached": 54456,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,57 +25,50 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 35892,
-    "candidatesTokenCount": 122,
-    "totalTokenCount": 36014,
-    "cachedContentTokenCount": 33842,
+    "promptTokenCount": 56505,
+    "candidatesTokenCount": 93,
+    "totalTokenCount": 56598,
+    "cachedContentTokenCount": 54456,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 35892
+        "tokenCount": 56505
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 33842
+        "tokenCount": 54456
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 122
+        "tokenCount": 93
       }
     ]
   },
-  "raw_text": "{\"id\": \"se20ecbb796\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@n1\", \"predicate\": \"weaver\", \"form\": \"noun\", \"tense\": \"present\"}], \"unmapped\": [{\"span\": \"the tallest weaver\", \"code\": \"G00\", \"construction\": \"A superlative adjective modifying a predicate noun phrase.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"se20ecbb796\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}], \"unmapped\": [{\"span\": \"the tallest weaver\", \"code\": \"G00\", \"construction\": \"A superlative definite noun phrase used as a copular predicate.\"}], \"issues\": []}",
   "response": {
     "id": "se20ecbb796",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Yusra"
-      },
-      {
-        "t": "copular",
-        "id": "c1",
-        "subject": "@n1",
-        "predicate": "weaver",
-        "form": "noun",
-        "tense": "present"
+        "name": "Yusra",
+        "span": "Yusra"
       }
     ],
     "unmapped": [
       {
         "span": "the tallest weaver",
         "code": "G00",
-        "construction": "A superlative adjective modifying a predicate noun phrase."
+        "construction": "A superlative definite noun phrase used as a copular predicate."
       }
     ],
     "issues": []
   },
-  "prompt_body_sha256": "107542897d74ba7ca217f1d5c88d49a7531f59530bec65a2f2b7b7200334e22e",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "degree",

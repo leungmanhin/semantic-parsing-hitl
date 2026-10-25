@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "00bbb6f7068a2a54f33bfc0111df472edb2130448e8fb8c84b7c32a1afde3448",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sd3747ee920",
     "text": "A shed was built."
   },
   "usage": {
-    "input": 30876,
-    "output": 62,
+    "input": 56504,
+    "output": 98,
     "thinking": null,
-    "total": 30938,
-    "cached": 89,
+    "total": 56602,
+    "cached": 54455,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,50 +25,52 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 30876,
-    "candidatesTokenCount": 62,
-    "totalTokenCount": 30938,
-    "cachedContentTokenCount": 89,
+    "promptTokenCount": 56504,
+    "candidatesTokenCount": 98,
+    "totalTokenCount": 56602,
+    "cachedContentTokenCount": 54455,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 30876
+        "tokenCount": 56504
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 89
+        "tokenCount": 54455
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 62
+        "tokenCount": 98
       }
     ]
   },
-  "raw_text": "{\"id\":\"sd3747ee920\",\"instances\":[{\"t\":\"witness\",\"id\":\"x1\",\"kind\":\"shed\"},{\"t\":\"creation\",\"id\":\"e1\",\"verb\":\"build\",\"product\":\"@x1\",\"tense\":\"past\"}],\"unmapped\":[],\"issues\":[]}",
+  "raw_text": "{\"id\": \"sd3747ee920\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"shed\", \"span\": \"A shed\"}, {\"t\": \"creation\", \"id\": \"e1\", \"verb\": \"build\", \"product\": \"@x1\", \"tense\": \"past\", \"span\": \"A shed was built\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sd3747ee920",
     "instances": [
       {
         "t": "witness",
         "id": "x1",
-        "class": "shed"
+        "class": "shed",
+        "span": "A shed"
       },
       {
         "t": "creation",
         "id": "e1",
         "verb": "build",
         "product": "@x1",
-        "tense": "past"
+        "tense": "past",
+        "span": "A shed was built"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "c0d47baf69c87fd1005101d2c3752c57d83adb2f730ed1199fdb9b6546502fa7",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "creation",

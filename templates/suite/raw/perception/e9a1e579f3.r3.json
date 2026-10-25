@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "3cf1c657d278c5f88cd86233811adb01fd7b99c43b58fc7e7f270c08f8532885",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "se9a1e579f3",
     "text": "Yusra fears the ferret."
   },
   "usage": {
-    "input": 13819,
-    "output": 121,
+    "input": 56506,
+    "output": 147,
     "thinking": null,
-    "total": 13940,
+    "total": 56653,
+    "cached": 54457,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,43 +25,45 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 13819,
-    "candidatesTokenCount": 121,
-    "totalTokenCount": 13940,
-    "cachedContentTokenCount": 11770,
+    "promptTokenCount": 56506,
+    "candidatesTokenCount": 147,
+    "totalTokenCount": 56653,
+    "cachedContentTokenCount": 54457,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 13819
+        "tokenCount": 56506
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 11770
+        "tokenCount": 54457
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 121
+        "tokenCount": 147
       }
     ]
   },
-  "raw_text": "{\"id\": \"se9a1e579f3\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"ferret\", \"definite\": true}, {\"t\": \"psych\", \"id\": \"p1\", \"verb\": \"fear\", \"experiencer\": \"@n1\", \"stimulus\": \"@x1\", \"tense\": \"present\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"se9a1e579f3\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"ferret\", \"definite\": true, \"span\": \"the ferret\"}, {\"t\": \"psych\", \"id\": \"p1\", \"verb\": \"fear\", \"experiencer\": \"@n1\", \"stimulus\": \"@x1\", \"tense\": \"present\", \"span\": \"Yusra fears the ferret\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "se9a1e579f3",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Yusra"
+        "name": "Yusra",
+        "span": "Yusra"
       },
       {
         "t": "witness",
         "id": "x1",
         "class": "ferret",
-        "definite": true
+        "definite": true,
+        "span": "the ferret"
       },
       {
         "t": "psych",
@@ -68,13 +71,14 @@
         "verb": "fear",
         "experiencer": "@n1",
         "stimulus": "@x1",
-        "tense": "present"
+        "tense": "present",
+        "span": "Yusra fears the ferret"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "4045b2ad4809e7e7e07e9faa62e508fb7a2daeb033c9f5aedf2c8aef30067522",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "perception",

@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "036261b67cffbb04273fa6353b6fe9d8a5bd7044375e91f3934b29dcd44ae2e8",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "se20ecbb796",
     "text": "Yusra is the tallest weaver."
   },
   "usage": {
-    "input": 35892,
-    "output": 206,
+    "input": 56505,
+    "output": 91,
     "thinking": null,
-    "total": 36098,
-    "cached": 33843,
+    "total": 56596,
+    "cached": 54456,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,63 +25,50 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 35892,
-    "candidatesTokenCount": 206,
-    "totalTokenCount": 36098,
-    "cachedContentTokenCount": 33843,
+    "promptTokenCount": 56505,
+    "candidatesTokenCount": 91,
+    "totalTokenCount": 56596,
+    "cachedContentTokenCount": 54456,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 35892
+        "tokenCount": 56505
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 33843
+        "tokenCount": 54456
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 206
+        "tokenCount": 91
       }
     ]
   },
-  "raw_text": "{\"id\": \"se20ecbb796\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@n1\", \"predicate\": \"weaver\", \"form\": \"noun\", \"tense\": \"present\"}], \"unmapped\": [{\"span\": \"the tallest\", \"code\": \"G00\", \"construction\": \"A superlative adjective in a predicate noun phrase.\"}], \"issues\": [{\"code\": \"P00\", \"where\": \"copular / degree\", \"text\": \"The instructions say to report 'the tallest weaver' as unmapped under degree, while copular forbids a definite predicate ('is the locksmith') unless licensed by the superlative, leaving it unclear whether the entailed kind predication ('weaver') should be kept as a copular instance or the whole predicate reported as unmapped.\"}]}",
+  "raw_text": "{\"id\": \"se20ecbb796\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}], \"unmapped\": [{\"span\": \"the tallest weaver\", \"code\": \"G00\", \"construction\": \"A superlative definite noun phrase used as a predicate.\"}], \"issues\": []}",
   "response": {
     "id": "se20ecbb796",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Yusra"
-      },
-      {
-        "t": "copular",
-        "id": "c1",
-        "subject": "@n1",
-        "predicate": "weaver",
-        "form": "noun",
-        "tense": "present"
+        "name": "Yusra",
+        "span": "Yusra"
       }
     ],
     "unmapped": [
       {
-        "span": "the tallest",
+        "span": "the tallest weaver",
         "code": "G00",
-        "construction": "A superlative adjective in a predicate noun phrase."
+        "construction": "A superlative definite noun phrase used as a predicate."
       }
     ],
-    "issues": [
-      {
-        "code": "P00",
-        "where": "copular / degree",
-        "text": "The instructions say to report 'the tallest weaver' as unmapped under degree, while copular forbids a definite predicate ('is the locksmith') unless licensed by the superlative, leaving it unclear whether the entailed kind predication ('weaver') should be kept as a copular instance or the whole predicate reported as unmapped."
-      }
-    ]
+    "issues": []
   },
-  "prompt_body_sha256": "107542897d74ba7ca217f1d5c88d49a7531f59530bec65a2f2b7b7200334e22e",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "degree",

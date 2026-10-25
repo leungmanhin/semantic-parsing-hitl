@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "9e1db0997dbb17ae70fb35b09cad0a93ecd8ebeab47d506a264555a1a9d7b5ae",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s4b29b95c6c",
     "text": "Teodor did not laugh."
   },
   "usage": {
-    "input": 14851,
-    "output": 109,
+    "input": 56507,
+    "output": 132,
     "thinking": null,
-    "total": 14960,
+    "total": 56639,
+    "cached": 54457,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,55 +25,65 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 14851,
-    "candidatesTokenCount": 109,
-    "totalTokenCount": 14960,
+    "promptTokenCount": 56507,
+    "candidatesTokenCount": 132,
+    "totalTokenCount": 56639,
+    "cachedContentTokenCount": 54457,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 14851
+        "tokenCount": 56507
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 54457
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 109
+        "tokenCount": 132
       }
     ]
   },
-  "raw_text": "{\"id\": \"s4b29b95c6c\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"laugh\", \"actor\": \"@n1\", \"tense\": \"past\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@e1\"]}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s4b29b95c6c\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"laugh\", \"actor\": \"@n1\", \"tense\": \"past\", \"span\": \"Teodor did not laugh\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@e1\"], \"span\": \"did not\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s4b29b95c6c",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Teodor"
+        "name": "Teodor",
+        "span": "Teodor"
       },
       {
         "t": "activity",
         "id": "e1",
         "verb": "laugh",
         "actor": "@n1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Teodor did not laugh"
       },
       {
         "t": "negation",
         "id": "s1",
         "over": [
           "@e1"
-        ]
+        ],
+        "span": "did not"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "7ebc2160e3f1d78f6205db12ef42b449428c7fa0394c1c3609f66a739cb62694",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "activity",
     "section": "held_out",
-    "index": 5,
+    "index": 6,
     "category": "scoped",
     "text": "Teodor did not laugh.",
     "key": "4b29b95c6c"

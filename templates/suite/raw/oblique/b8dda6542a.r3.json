@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "ed7e5be12a09f9e5947e50cfa5d2b849bc8b16ea94ad2bdefa98a0592d434d3f",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sb8dda6542a",
     "text": "The quilt was washed by Yusra."
   },
   "usage": {
-    "input": 49023,
-    "output": 117,
+    "input": 56506,
+    "output": 110,
     "thinking": null,
-    "total": 49140,
-    "cached": 46974,
+    "total": 56616,
+    "cached": 54457,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 49023,
-    "candidatesTokenCount": 117,
-    "totalTokenCount": 49140,
-    "cachedContentTokenCount": 46974,
+    "promptTokenCount": 56506,
+    "candidatesTokenCount": 110,
+    "totalTokenCount": 56616,
+    "cachedContentTokenCount": 54457,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 49023
+        "tokenCount": 56506
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 46974
+        "tokenCount": 54457
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 117
+        "tokenCount": 110
       }
     ]
   },
-  "raw_text": "{\"id\": \"sb8dda6542a\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"quilt\", \"definite\": true}, {\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"wash\", \"actor\": \"@n1\", \"patient\": \"@x1\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\":\"sb8dda6542a\",\"instances\":[{\"t\":\"witness\",\"id\":\"x1\",\"class\":\"quilt\",\"definite\":true,\"span\":\"The quilt\"},{\"t\":\"named-entity\",\"id\":\"n1\",\"name\":\"Yusra\",\"span\":\"Yusra\"},{\"t\":\"activity\",\"id\":\"e1\",\"verb\":\"wash\",\"actor\":\"@n1\",\"patient\":\"@x1\",\"tense\":\"past\",\"span\":\"The quilt was washed by Yusra\"}],\"unmapped\":[],\"issues\":[]}",
   "response": {
     "id": "sb8dda6542a",
     "instances": [
@@ -56,26 +56,29 @@
         "t": "witness",
         "id": "x1",
         "class": "quilt",
-        "definite": true
+        "definite": true,
+        "span": "The quilt"
       },
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Yusra"
+        "name": "Yusra",
+        "span": "Yusra"
       },
       {
         "t": "activity",
-        "id": "v1",
+        "id": "e1",
         "verb": "wash",
         "actor": "@n1",
         "patient": "@x1",
-        "tense": "past"
+        "tense": "past",
+        "span": "The quilt was washed by Yusra"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "7ea5b5bb86c29718a2936a9c64163dc82790d7b8ea4be586be12417680d153a7",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "oblique",

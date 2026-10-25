@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "57c0a2cf118bc64251ee1dc4f10535ec1900e8fb5354bff54b546c18457f758b",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s2801d25f7c",
     "text": "Every ferret slept quietly."
   },
   "usage": {
-    "input": 33503,
-    "output": 239,
+    "input": 56506,
+    "output": 183,
     "thinking": null,
-    "total": 33742,
-    "cached": 31453,
+    "total": 56689,
+    "cached": 54456,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 33503,
-    "candidatesTokenCount": 239,
-    "totalTokenCount": 33742,
-    "cachedContentTokenCount": 31453,
+    "promptTokenCount": 56506,
+    "candidatesTokenCount": 183,
+    "totalTokenCount": 56689,
+    "cachedContentTokenCount": 54456,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 33503
+        "tokenCount": 56506
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 31453
+        "tokenCount": 54456
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 239
+        "tokenCount": 183
       }
     ]
   },
-  "raw_text": "{\n  \"id\": \"s2801d25f7c\",\n  \"instances\": [\n    {\n      \"t\": \"range\",\n      \"id\": \"q1\",\n      \"kind\": \"ferret\",\n      \"quantifier\": \"every\",\n      \"predicate\": \"sleep\"\n    },\n    {\n      \"t\": \"activity\",\n      \"id\": \"e1\",\n      \"verb\": \"sleep\",\n      \"actor\": \"@q1\",\n      \"tense\": \"past\"\n    },\n    {\n      \"t\": \"manner\",\n      \"id\": \"a1\",\n      \"event\": \"@e1\",\n      \"manner\": \"quietly\"\n    },\n    {\n      \"t\": \"generic\",\n      \"id\": \"r1\",\n      \"ranges\": [\n        \"@q1\"\n      ],\n      \"over\": [\n        \"@e1\"\n      ]\n    }\n  ],\n  \"unmapped\": [],\n  \"issues\": []\n}",
+  "raw_text": "{\"id\": \"s2801d25f7c\", \"instances\": [{\"t\": \"range\", \"id\": \"q1\", \"class\": \"ferret\", \"quantifier\": \"every\", \"predicate\": \"sleep\", \"span\": \"Every ferret\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"sleep\", \"actor\": \"@q1\", \"tense\": \"past\", \"span\": \"Every ferret slept\"}, {\"t\": \"manner\", \"id\": \"a1\", \"event\": \"@v1\", \"manner\": \"quietly\", \"span\": \"quietly\"}, {\"t\": \"generic\", \"id\": \"r1\", \"ranges\": [\"@q1\"], \"over\": [\"@v1\"], \"span\": \"Every ferret slept quietly\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s2801d25f7c",
     "instances": [
@@ -57,20 +57,23 @@
         "id": "q1",
         "class": "ferret",
         "quantifier": "every",
-        "predicate": "sleep"
+        "predicate": "sleep",
+        "span": "Every ferret"
       },
       {
         "t": "activity",
-        "id": "e1",
+        "id": "v1",
         "verb": "sleep",
         "actor": "@q1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Every ferret slept"
       },
       {
         "t": "manner",
         "id": "a1",
-        "event": "@e1",
-        "manner": "quietly"
+        "event": "@v1",
+        "manner": "quietly",
+        "span": "quietly"
       },
       {
         "t": "generic",
@@ -79,14 +82,15 @@
           "@q1"
         ],
         "over": [
-          "@e1"
-        ]
+          "@v1"
+        ],
+        "span": "Every ferret slept quietly"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "55732af26869bbaa55169fc16db0ed85110798ac0721bfbdda732a93ff4b5fd0",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "manner",

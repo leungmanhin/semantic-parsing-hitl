@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "3cf1c657d278c5f88cd86233811adb01fd7b99c43b58fc7e7f270c08f8532885",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s6fe67fb946",
     "text": "Teodor felt tired."
   },
   "usage": {
-    "input": 13817,
-    "output": 83,
+    "input": 56504,
+    "output": 155,
     "thinking": null,
-    "total": 13900,
+    "total": 56659,
+    "cached": 54455,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,49 +25,56 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 13817,
-    "candidatesTokenCount": 83,
-    "totalTokenCount": 13900,
-    "cachedContentTokenCount": 11768,
+    "promptTokenCount": 56504,
+    "candidatesTokenCount": 155,
+    "totalTokenCount": 56659,
+    "cachedContentTokenCount": 54455,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 13817
+        "tokenCount": 56504
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 11768
+        "tokenCount": 54455
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 83
+        "tokenCount": 155
       }
     ]
   },
-  "raw_text": "{\"id\": \"s6fe67fb946\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}], \"unmapped\": [{\"span\": \"felt tired\", \"code\": \"G00\", \"construction\": \"A copular sensation clause with an adjectival predicate.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"s6fe67fb946\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}], \"unmapped\": [{\"span\": \"Teodor felt tired\", \"code\": \"G00\", \"construction\": \"A copular sensation verb ('feel') with an adjectival predicate.\"}], \"issues\": [{\"code\": \"P00\", \"where\": \"copular\", \"text\": \"The perception template classifies 'felt tired' as 'a copular clause with a property', while the copular template requires 'be' as the main verb and excludes copular verbs other than 'be'.\"}]}",
   "response": {
     "id": "s6fe67fb946",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Teodor"
+        "name": "Teodor",
+        "span": "Teodor"
       }
     ],
     "unmapped": [
       {
-        "span": "felt tired",
+        "span": "Teodor felt tired",
         "code": "G00",
-        "construction": "A copular sensation clause with an adjectival predicate."
+        "construction": "A copular sensation verb ('feel') with an adjectival predicate."
       }
     ],
-    "issues": []
+    "issues": [
+      {
+        "code": "P00",
+        "where": "copular",
+        "text": "The perception template classifies 'felt tired' as 'a copular clause with a property', while the copular template requires 'be' as the main verb and excludes copular verbs other than 'be'."
+      }
+    ]
   },
-  "prompt_body_sha256": "4045b2ad4809e7e7e07e9faa62e508fb7a2daeb033c9f5aedf2c8aef30067522",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "perception",

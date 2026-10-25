@@ -169,7 +169,14 @@ class ScoreTests(unittest.TestCase):
         self.abst_pending = dict(case("transfer", "held_out", "Yusra gave up."),
                                  expected={"abstain": True, "template": "never-written"})
 
-    def score(self, c, rec):
+    def score(self, c, rec, fill_spans=True):
+        """Score a fake reply; by default instances lacking a span get the case text as a placeholder
+        span (verbatim, so the strict span lints stay quiet and the test can be about something else)."""
+        resp = rec.get("response")
+        if fill_spans and isinstance(resp, dict) and isinstance(resp.get("instances"), list):
+            insts = [dict(r, span=r.get("span", c["text"].rstrip(".?!"))) if isinstance(r, dict) else r
+                     for r in resp["instances"]]                        # copies: the case instances are the catalog's own
+            rec = {**rec, "response": {**resp, "instances": insts}}
         return S.score_record(c, rec, CATALOG, HEADS, None)
 
     def test_positive_exact_passes(self):
@@ -183,24 +190,27 @@ class ScoreTests(unittest.TestCase):
         self.assertTrue(row["exact"] and row["fired_template"])
         self.assertEqual(row["fired"], {"named-entity": 2, "witness": 1, "transfer": 1})
 
-    def test_spans_are_counted_but_never_decide_pass(self):
-        """A record without spans (every record stored before the field existed) still passes on its
-        atoms and is counted as all-missing; a record with verbatim spans counts clean; a non-verbatim
-        span is a count, not a failure."""
-        row = self.score(self.pos, reply(copy.deepcopy(self.pos["instances"])))
-        self.assertTrue(row["pass"], row["reasons"])
+    def test_spans_are_counted_and_decide_pass(self):
+        """A record without spans fails (span lints are strict) and is counted as all-missing, with the
+        atoms still scored; a record with verbatim spans passes and counts clean; a non-verbatim span
+        fails the record on its own."""
+        row = self.score(self.pos, reply(copy.deepcopy(self.pos["instances"])), fill_spans=False)
+        self.assertFalse(row["pass"])
+        self.assertTrue(row["exact"] and row["fired_template"])
+        self.assertEqual(row["reasons"], ["span lints: span-missing, span-missing, span-missing, span-missing"])
         self.assertEqual(row["spans"], {"instances": 4, "with_span": 0, "missing": 4, "not_verbatim": 0, "malformed": 0})
         self.assertEqual(row["lints"], [])
         spanned = copy.deepcopy(self.pos["instances"])
         words = {"named-entity": lambda r: r["name"], "witness": lambda r: "an envelope", "transfer": lambda r: self.pos["text"].rstrip(".")}
         for r in spanned:
             r["span"] = words[r["t"]](r)
-        row = self.score(self.pos, reply(spanned))
+        row = self.score(self.pos, reply(spanned), fill_spans=False)
         self.assertTrue(row["pass"], row["reasons"])
         self.assertEqual(row["spans"]["missing"] + row["spans"]["not_verbatim"], 0)
         spanned[0]["span"] = "the moon"
-        row = self.score(self.pos, reply(spanned))
-        self.assertTrue(row["pass"])
+        row = self.score(self.pos, reply(spanned), fill_spans=False)
+        self.assertFalse(row["pass"])
+        self.assertEqual(row["reasons"], ["span lints: span-not-verbatim"])
         self.assertEqual(row["spans"]["not_verbatim"], 1)
         self.assertEqual([f["kind"] for f in row["span_lints"]], ["span-not-verbatim"])
 
@@ -250,9 +260,9 @@ class ScoreTests(unittest.TestCase):
         self.assertEqual(row["outcome"], "pending_unmapped")
         self.assertTrue(row["pass"])
         stray = names[:1] + [{"t": "witness", "id": "x1", "class": "quilt", "definite": True}]
-        row = self.score(self.abst_pending, reply(stray, unmapped=[{"span": "gave up", "code": "G00"}]))
-        self.assertEqual(row["outcome"], "pending_unmapped")
-        self.assertFalse(row["pass"])                                     # a witness from unmapped words is a lint
+        row = self.score(self.abst_pending, reply(stray, unmapped=[{"span": "gave up", "code": "G00"}]), fill_spans=False)
+        self.assertEqual(row["outcome"], "pending_unmapped")              # no placeholder spans here: a whole-text span would
+        self.assertFalse(row["pass"])                                     # cover the text and exempt the stray witness
         self.assertTrue(any(r.startswith("graph lints: dangling-referent") for r in row["reasons"]))
 
     def test_expected_unmapped_on_a_firing_case(self):
@@ -301,7 +311,8 @@ FAKE_SCRIPT = textwrap.dedent('''
             raise ProviderError("unknown sentence")
         ex = next((m for m in matches if m.get("instances")), matches[0])   # a claim beats an abstain
         if ex.get("instances"):
-            resp = {"id": item_id, "instances": ex["instances"], "unmapped": ex.get("unmapped") or [], "issues": []}
+            insts = [dict(r, span=r.get("span", text.rstrip(".?!"))) for r in ex["instances"]]   # held-out expectations carry no spans
+            resp = {"id": item_id, "instances": insts, "unmapped": ex.get("unmapped") or [], "issues": []}
         else:
             exp = ex["expected"]
             resp = {"id": item_id, "instances": [], "issues": [],

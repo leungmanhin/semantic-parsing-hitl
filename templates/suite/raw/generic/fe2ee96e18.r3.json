@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "a9e1ed5a7114de2bedee96ae4010964a4aa69ba1a78b19fae57121290e52e164",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sfe2ee96e18",
     "text": "Every ferret eats mice."
   },
   "usage": {
-    "input": 51783,
-    "output": 130,
+    "input": 56504,
+    "output": 154,
     "thinking": null,
-    "total": 51913,
-    "cached": 49734,
+    "total": 56658,
+    "cached": 54455,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 51783,
-    "candidatesTokenCount": 130,
-    "totalTokenCount": 51913,
-    "cachedContentTokenCount": 49734,
+    "promptTokenCount": 56504,
+    "candidatesTokenCount": 154,
+    "totalTokenCount": 56658,
+    "cachedContentTokenCount": 54455,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 51783
+        "tokenCount": 56504
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 49734
+        "tokenCount": 54455
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 130
+        "tokenCount": 154
       }
     ]
   },
-  "raw_text": "{\"id\": \"sfe2ee96e18\", \"instances\": [{\"t\": \"range\", \"id\": \"q1\", \"kind\": \"ferret\", \"quantifier\": \"every\", \"predicate\": \"eat\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"eat\", \"actor\": \"@q1\", \"patient\": \"mouse\", \"tense\": \"present\"}, {\"t\": \"generic\", \"id\": \"r1\", \"ranges\": [\"@q1\"], \"over\": [\"@v1\"]}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sfe2ee96e18\", \"instances\": [{\"t\": \"range\", \"id\": \"q1\", \"class\": \"ferret\", \"quantifier\": \"every\", \"predicate\": \"eat\", \"span\": \"Every ferret\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"eat\", \"actor\": \"@q1\", \"patient\": \"mouse\", \"tense\": \"present\", \"span\": \"Every ferret eats mice\"}, {\"t\": \"generic\", \"id\": \"r1\", \"ranges\": [\"@q1\"], \"over\": [\"@e1\"], \"span\": \"Every ferret eats mice\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sfe2ee96e18",
     "instances": [
@@ -57,15 +57,17 @@
         "id": "q1",
         "class": "ferret",
         "quantifier": "every",
-        "predicate": "eat"
+        "predicate": "eat",
+        "span": "Every ferret"
       },
       {
         "t": "activity",
-        "id": "v1",
+        "id": "e1",
         "verb": "eat",
         "actor": "@q1",
         "patient": "mouse",
-        "tense": "present"
+        "tense": "present",
+        "span": "Every ferret eats mice"
       },
       {
         "t": "generic",
@@ -74,14 +76,15 @@
           "@q1"
         ],
         "over": [
-          "@v1"
-        ]
+          "@e1"
+        ],
+        "span": "Every ferret eats mice"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "e818417b50e53224000dbbfbcf86feb0d70114df739431722ad3ad866d0b6d57",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "generic",

@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "cc7e0b382b3c88b92960aff69d15e7c4dc9e6408a3e908184046b5a4a058efae",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sc394597e4d",
     "text": "Yusra told Teodor that Ottoline sent the quilt."
   },
   "usage": {
-    "input": 16571,
-    "output": 212,
+    "input": 56512,
+    "output": 268,
     "thinking": null,
-    "total": 16783,
+    "total": 56780,
+    "cached": 54457,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,46 +25,57 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 16571,
-    "candidatesTokenCount": 212,
-    "totalTokenCount": 16783,
+    "promptTokenCount": 56512,
+    "candidatesTokenCount": 268,
+    "totalTokenCount": 56780,
+    "cachedContentTokenCount": 54457,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 16571
+        "tokenCount": 56512
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 54457
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 212
+        "tokenCount": 268
       }
     ]
   },
-  "raw_text": "{\"id\": \"sc394597e4d\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\"}, {\"t\": \"named-entity\", \"id\": \"n3\", \"name\": \"Ottoline\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"quilt\", \"definite\": true}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"send\", \"giver\": \"@n3\", \"object\": \"@x1\", \"tense\": \"past\"}, {\"t\": \"communication\", \"id\": \"e2\", \"verb\": \"tell\", \"speaker\": \"@n1\", \"addressee\": \"@n2\", \"content\": [\"@e1\"], \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sc394597e4d\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"named-entity\", \"id\": \"n3\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"quilt\", \"definite\": true, \"span\": \"the quilt\"}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"send\", \"giver\": \"@n3\", \"object\": \"@x1\", \"tense\": \"past\", \"span\": \"Ottoline sent the quilt\"}, {\"t\": \"communication\", \"id\": \"c1\", \"verb\": \"tell\", \"speaker\": \"@n1\", \"addressee\": \"@n2\", \"content\": [\"@e1\"], \"tense\": \"past\", \"span\": \"Yusra told Teodor that Ottoline sent the quilt\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sc394597e4d",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Yusra"
+        "name": "Yusra",
+        "span": "Yusra"
       },
       {
         "t": "named-entity",
         "id": "n2",
-        "name": "Teodor"
+        "name": "Teodor",
+        "span": "Teodor"
       },
       {
         "t": "named-entity",
         "id": "n3",
-        "name": "Ottoline"
+        "name": "Ottoline",
+        "span": "Ottoline"
       },
       {
         "t": "witness",
         "id": "x1",
         "class": "quilt",
-        "definite": true
+        "definite": true,
+        "span": "the quilt"
       },
       {
         "t": "transfer",
@@ -71,29 +83,31 @@
         "verb": "send",
         "giver": "@n3",
         "object": "@x1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Ottoline sent the quilt"
       },
       {
         "t": "communication",
-        "id": "e2",
+        "id": "c1",
         "verb": "tell",
         "speaker": "@n1",
         "addressee": "@n2",
         "content": [
           "@e1"
         ],
-        "tense": "past"
+        "tense": "past",
+        "span": "Yusra told Teodor that Ottoline sent the quilt"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "88394b9b4a867520005bf2fd41df21e828da1b70d76a826de44c9a2ccd2dbd87",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "attitude",
     "section": "held_out",
-    "index": 13,
+    "index": 14,
     "category": "abstain",
     "text": "Yusra told Teodor that Ottoline sent the quilt.",
     "key": "c394597e4d"

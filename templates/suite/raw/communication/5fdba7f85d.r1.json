@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "4e0b46810b988ce05e1f517f3a6d2747555679ded22ea0a5d060190513c50586",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s5fdba7f85d",
     "text": "Yusra told Teodor that Lamine might lend Ottoline the trowel."
   },
   "usage": {
-    "input": 8434,
-    "output": 324,
+    "input": 56514,
+    "output": 348,
     "thinking": null,
-    "total": 8758,
+    "total": 56862,
+    "cached": 54461,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,51 +25,63 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 8434,
-    "candidatesTokenCount": 324,
-    "totalTokenCount": 8758,
+    "promptTokenCount": 56514,
+    "candidatesTokenCount": 348,
+    "totalTokenCount": 56862,
+    "cachedContentTokenCount": 54461,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 8434
+        "tokenCount": 56514
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 54461
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 324
+        "tokenCount": 348
       }
     ]
   },
-  "raw_text": "{\"id\": \"s5fdba7f85d\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\"}, {\"t\": \"named-entity\", \"id\": \"n3\", \"name\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n4\", \"name\": \"Ottoline\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"trowel\", \"definite\": true}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"lend\", \"giver\": \"@n3\", \"recipient\": \"@n4\", \"object\": \"@x1\", \"tense\": \"present\"}, {\"t\": \"modal\", \"id\": \"s1\", \"over\": [\"@e1\"], \"head\": \"Might\", \"surface\": \"might\"}, {\"t\": \"communication\", \"id\": \"c1\", \"verb\": \"tell\", \"speaker\": \"@n1\", \"addressee\": \"@n2\", \"content\": [\"@s1\"], \"tense\": \"past\"}], \"unmapped\": [], \"issues\": [{\"code\": \"P00\", \"where\": \"transfer\", \"text\": \"The tense slot is required on predications, but the instructions do not specify which tense value to use when the clause is governed by a modal auxiliary like 'might'.\"}]}",
+  "raw_text": "{\"id\": \"s5fdba7f85d\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"named-entity\", \"id\": \"n3\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n4\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"trowel\", \"definite\": true, \"span\": \"the trowel\"}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"lend\", \"giver\": \"@n3\", \"recipient\": \"@n4\", \"object\": \"@x1\", \"tense\": \"present\", \"span\": \"Lamine might lend Ottoline the trowel\"}, {\"t\": \"modal\", \"id\": \"s1\", \"over\": [\"@e1\"], \"head\": \"Might\", \"surface\": \"might\", \"span\": \"might\"}, {\"t\": \"communication\", \"id\": \"e2\", \"verb\": \"tell\", \"speaker\": \"@n1\", \"addressee\": \"@n2\", \"content\": [\"@s1\"], \"tense\": \"past\", \"span\": \"Yusra told Teodor that Lamine might lend Ottoline the trowel\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s5fdba7f85d",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Yusra"
+        "name": "Yusra",
+        "span": "Yusra"
       },
       {
         "t": "named-entity",
         "id": "n2",
-        "name": "Teodor"
+        "name": "Teodor",
+        "span": "Teodor"
       },
       {
         "t": "named-entity",
         "id": "n3",
-        "name": "Lamine"
+        "name": "Lamine",
+        "span": "Lamine"
       },
       {
         "t": "named-entity",
         "id": "n4",
-        "name": "Ottoline"
+        "name": "Ottoline",
+        "span": "Ottoline"
       },
       {
         "t": "witness",
         "id": "x1",
         "class": "trowel",
-        "definite": true
+        "definite": true,
+        "span": "the trowel"
       },
       {
         "t": "transfer",
@@ -77,7 +90,8 @@
         "giver": "@n3",
         "recipient": "@n4",
         "object": "@x1",
-        "tense": "present"
+        "tense": "present",
+        "span": "Lamine might lend Ottoline the trowel"
       },
       {
         "t": "modal",
@@ -86,35 +100,31 @@
           "@e1"
         ],
         "head": "Might",
-        "surface": "might"
+        "surface": "might",
+        "span": "might"
       },
       {
         "t": "communication",
-        "id": "c1",
+        "id": "e2",
         "verb": "tell",
         "speaker": "@n1",
         "addressee": "@n2",
         "content": [
           "@s1"
         ],
-        "tense": "past"
+        "tense": "past",
+        "span": "Yusra told Teodor that Lamine might lend Ottoline the trowel"
       }
     ],
     "unmapped": [],
-    "issues": [
-      {
-        "code": "P00",
-        "where": "transfer",
-        "text": "The tense slot is required on predications, but the instructions do not specify which tense value to use when the clause is governed by a modal auxiliary like 'might'."
-      }
-    ]
+    "issues": []
   },
-  "prompt_body_sha256": "e3d200dab1a94aef009e77e2e5738e5fb8713fdb47b96afd97dbe6f48a10d909",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "communication",
     "section": "held_out",
-    "index": 7,
+    "index": 8,
     "category": "scoped",
     "text": "Yusra told Teodor that Lamine might lend Ottoline the trowel.",
     "key": "5fdba7f85d"

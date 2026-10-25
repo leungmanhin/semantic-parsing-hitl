@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "f4d17abe47ce0097d01f189e549c2f7270adfee30060ea503bfb81f323e1bd63",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s19beebe6d1",
     "text": "Only the ladder is crooked."
   },
   "usage": {
-    "input": 53462,
-    "output": 122,
+    "input": 56504,
+    "output": 137,
     "thinking": null,
-    "total": 53584,
-    "cached": 51413,
+    "total": 56641,
+    "cached": null,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,30 +25,23 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 53462,
-    "candidatesTokenCount": 122,
-    "totalTokenCount": 53584,
-    "cachedContentTokenCount": 51413,
+    "promptTokenCount": 56504,
+    "candidatesTokenCount": 137,
+    "totalTokenCount": 56641,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 53462
-      }
-    ],
-    "cacheTokensDetails": [
-      {
-        "modality": "TEXT",
-        "tokenCount": 51413
+        "tokenCount": 56504
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 122
+        "tokenCount": 137
       }
     ]
   },
-  "raw_text": "{\"id\": \"s19beebe6d1\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"ladder\", \"definite\": true}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@x1\", \"predicate\": \"crooked\", \"form\": \"adjective\", \"tense\": \"present\"}], \"unmapped\": [{\"span\": \"Only\", \"code\": \"G00\", \"construction\": \"A focus particle on a copular predication.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"s19beebe6d1\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"ladder\", \"definite\": true, \"span\": \"the ladder\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@x1\", \"predicate\": \"crooked\", \"form\": \"adjective\", \"tense\": \"present\", \"span\": \"the ladder is crooked\"}], \"unmapped\": [{\"span\": \"Only\", \"code\": \"G00\", \"construction\": \"A focus particle on a copular statement.\"}], \"issues\": []}",
   "response": {
     "id": "s19beebe6d1",
     "instances": [
@@ -56,7 +49,8 @@
         "t": "witness",
         "id": "x1",
         "class": "ladder",
-        "definite": true
+        "definite": true,
+        "span": "the ladder"
       },
       {
         "t": "copular",
@@ -64,19 +58,20 @@
         "subject": "@x1",
         "predicate": "crooked",
         "form": "adjective",
-        "tense": "present"
+        "tense": "present",
+        "span": "the ladder is crooked"
       }
     ],
     "unmapped": [
       {
         "span": "Only",
         "code": "G00",
-        "construction": "A focus particle on a copular predication."
+        "construction": "A focus particle on a copular statement."
       }
     ],
     "issues": []
   },
-  "prompt_body_sha256": "e9f273b0d2bdaff9e725ba8f0d2aaf8c4c5cb64dbb039e1e790e5251d9ea1298",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "focus",

@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "57c0a2cf118bc64251ee1dc4f10535ec1900e8fb5354bff54b546c18457f758b",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s0461ccde64",
     "text": "Teodor arrived in 2019."
   },
   "usage": {
-    "input": 33506,
-    "output": 114,
+    "input": 56509,
+    "output": 140,
     "thinking": null,
-    "total": 33620,
-    "cached": 31457,
+    "total": 56649,
+    "cached": 54460,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,56 +25,59 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 33506,
-    "candidatesTokenCount": 114,
-    "totalTokenCount": 33620,
-    "cachedContentTokenCount": 31457,
+    "promptTokenCount": 56509,
+    "candidatesTokenCount": 140,
+    "totalTokenCount": 56649,
+    "cachedContentTokenCount": 54460,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 33506
+        "tokenCount": 56509
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 31457
+        "tokenCount": 54460
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 114
+        "tokenCount": 140
       }
     ]
   },
-  "raw_text": "{\"id\": \"s0461ccde64\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"motion\", \"id\": \"e1\", \"verb\": \"arrive\", \"mover\": \"@n1\", \"tense\": \"past\"}, {\"t\": \"time\", \"id\": \"t1\", \"event\": \"@e1\", \"year\": 2019}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s0461ccde64\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"arrive\", \"mover\": \"@n1\", \"tense\": \"past\", \"span\": \"Teodor arrived\"}, {\"t\": \"time\", \"id\": \"t1\", \"event\": \"@m1\", \"year\": 2019, \"span\": \"in 2019\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s0461ccde64",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Teodor"
+        "name": "Teodor",
+        "span": "Teodor"
       },
       {
         "t": "motion",
-        "id": "e1",
+        "id": "m1",
         "verb": "arrive",
         "mover": "@n1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Teodor arrived"
       },
       {
         "t": "time",
         "id": "t1",
-        "event": "@e1",
-        "year": 2019
+        "event": "@m1",
+        "year": 2019,
+        "span": "in 2019"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "55732af26869bbaa55169fc16db0ed85110798ac0721bfbdda732a93ff4b5fd0",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "manner",

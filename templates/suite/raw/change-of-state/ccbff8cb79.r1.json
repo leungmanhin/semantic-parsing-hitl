@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "8b94d53524c908c3b49c07b327d4f63b7de7791f1c8a4da1645e4578624a27da",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sccbff8cb79",
     "text": "The quilt turned red."
   },
   "usage": {
-    "input": 22484,
-    "output": 98,
+    "input": 56502,
+    "output": 114,
     "thinking": null,
-    "total": 22582,
+    "total": 56616,
+    "cached": null,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,23 +25,23 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 22484,
-    "candidatesTokenCount": 98,
-    "totalTokenCount": 22582,
+    "promptTokenCount": 56502,
+    "candidatesTokenCount": 114,
+    "totalTokenCount": 56616,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 22484
+        "tokenCount": 56502
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 98
+        "tokenCount": 114
       }
     ]
   },
-  "raw_text": "{\"id\": \"sccbff8cb79\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"quilt\", \"definite\": true}, {\"t\": \"change-of-state\", \"id\": \"c1\", \"verb\": \"turn\", \"undergoer\": \"@x1\", \"result\": \"red\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sccbff8cb79\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"quilt\", \"definite\": true, \"span\": \"The quilt\"}, {\"t\": \"change-of-state\", \"id\": \"c1\", \"verb\": \"turn\", \"undergoer\": \"@x1\", \"result\": \"red\", \"tense\": \"past\", \"span\": \"The quilt turned red\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sccbff8cb79",
     "instances": [
@@ -48,7 +49,8 @@
         "t": "witness",
         "id": "x1",
         "class": "quilt",
-        "definite": true
+        "definite": true,
+        "span": "The quilt"
       },
       {
         "t": "change-of-state",
@@ -56,18 +58,19 @@
         "verb": "turn",
         "undergoer": "@x1",
         "result": "red",
-        "tense": "past"
+        "tense": "past",
+        "span": "The quilt turned red"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "2cc3e8f061d7bfce34a1f4404efb88ede552d8e0464511d138418685ffc1221b",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "change-of-state",
     "section": "held_out",
-    "index": 5,
+    "index": 6,
     "category": "positive",
     "text": "The quilt turned red.",
     "key": "ccbff8cb79"

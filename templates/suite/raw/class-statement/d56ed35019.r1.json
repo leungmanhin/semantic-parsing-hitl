@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "a425dddb507554c71fb4c88aec8fc84118920b43204deae9960577427454e8da",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sd56ed35019",
     "text": "Ferrets are not rodents."
   },
   "usage": {
-    "input": 16517,
-    "output": 100,
+    "input": 56505,
+    "output": 115,
     "thinking": null,
-    "total": 16617,
+    "total": 56620,
+    "cached": 54456,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,23 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 16517,
-    "candidatesTokenCount": 100,
-    "totalTokenCount": 16617,
+    "promptTokenCount": 56505,
+    "candidatesTokenCount": 115,
+    "totalTokenCount": 56620,
+    "cachedContentTokenCount": 54456,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 16517
+        "tokenCount": 56505
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 54456
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 100
+        "tokenCount": 115
       }
     ]
   },
-  "raw_text": "{\"id\": \"sd56ed35019\", \"instances\": [{\"t\": \"kind-statement\", \"id\": \"k1\", \"subject\": \"ferret\", \"predicate\": \"rodent\", \"form\": \"noun\", \"definitional\": true, \"tense\": \"present\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@k1\"]}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sd56ed35019\", \"instances\": [{\"t\": \"class-statement\", \"id\": \"k1\", \"subject\": \"ferret\", \"predicate\": \"rodent\", \"form\": \"noun\", \"definitional\": true, \"tense\": \"present\", \"span\": \"Ferrets are not rodents\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@k1\"], \"span\": \"not\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sd56ed35019",
     "instances": [
@@ -51,20 +59,22 @@
         "predicate": "rodent",
         "form": "noun",
         "definitional": true,
-        "tense": "present"
+        "tense": "present",
+        "span": "Ferrets are not rodents"
       },
       {
         "t": "negation",
         "id": "s1",
         "over": [
           "@k1"
-        ]
+        ],
+        "span": "not"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "120b60a17e82d50d47855b28fe77e98ae4c75e431ab78838d5db2b4f83cfa873",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "class-statement",

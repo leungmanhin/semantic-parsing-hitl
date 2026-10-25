@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "8c00a5b1e0a3e9bf07dd0d7ee0b05eda890e9ced0c007552a084053d71915f5d",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s260f0c0303",
     "text": "The students did not laugh."
   },
   "usage": {
-    "input": 18312,
-    "output": 138,
+    "input": 56507,
+    "output": 171,
     "thinking": null,
-    "total": 18450,
+    "total": 56678,
+    "cached": 54458,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 18312,
-    "candidatesTokenCount": 138,
-    "totalTokenCount": 18450,
-    "cachedContentTokenCount": 16263,
+    "promptTokenCount": 56507,
+    "candidatesTokenCount": 171,
+    "totalTokenCount": 56678,
+    "cachedContentTokenCount": 54458,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 18312
+        "tokenCount": 56507
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 16263
+        "tokenCount": 54458
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 138
+        "tokenCount": 171
       }
     ]
   },
-  "raw_text": "{\"id\": \"s260f0c0303\", \"instances\": [{\"t\": \"group\", \"id\": \"g1\", \"kind\": \"student\", \"definite\": true}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"laugh\", \"actor\": \"@g1\", \"tense\": \"past\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@e1\"]}, {\"t\": \"distribution\", \"id\": \"r1\", \"group\": \"@g1\", \"over\": [\"@s1\"]}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s260f0c0303\", \"instances\": [{\"t\": \"group\", \"id\": \"g1\", \"class\": \"student\", \"definite\": true, \"span\": \"The students\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"laugh\", \"actor\": \"@g1\", \"tense\": \"past\", \"span\": \"The students did not laugh\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@v1\"], \"span\": \"did not\"}, {\"t\": \"distribution\", \"id\": \"d1\", \"group\": \"@g1\", \"over\": [\"@s1\"], \"span\": \"The students did not laugh\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s260f0c0303",
     "instances": [
@@ -55,35 +56,39 @@
         "t": "group",
         "id": "g1",
         "class": "student",
-        "definite": true
+        "definite": true,
+        "span": "The students"
       },
       {
         "t": "activity",
-        "id": "e1",
+        "id": "v1",
         "verb": "laugh",
         "actor": "@g1",
-        "tense": "past"
+        "tense": "past",
+        "span": "The students did not laugh"
       },
       {
         "t": "negation",
         "id": "s1",
         "over": [
-          "@e1"
-        ]
+          "@v1"
+        ],
+        "span": "did not"
       },
       {
         "t": "distribution",
-        "id": "r1",
+        "id": "d1",
         "group": "@g1",
         "over": [
           "@s1"
-        ]
+        ],
+        "span": "The students did not laugh"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "1f1bd4be275047a20fd04619f6974c72a5121f21242054798635c1cd6fa89c28",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "distribution",

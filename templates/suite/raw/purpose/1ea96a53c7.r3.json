@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "aea0dc69d24f92b4e9fc854261540ae45969c539482a78ca709b17321fd141f1",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s1ea96a53c7",
     "text": "Lamine left so that Yusra could sleep."
   },
   "usage": {
-    "input": 45876,
-    "output": 142,
+    "input": 56510,
+    "output": 165,
     "thinking": null,
-    "total": 46018,
-    "cached": 43827,
+    "total": 56675,
+    "cached": 54461,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,49 +25,52 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 45876,
-    "candidatesTokenCount": 142,
-    "totalTokenCount": 46018,
-    "cachedContentTokenCount": 43827,
+    "promptTokenCount": 56510,
+    "candidatesTokenCount": 165,
+    "totalTokenCount": 56675,
+    "cachedContentTokenCount": 54461,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 45876
+        "tokenCount": 56510
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 43827
+        "tokenCount": 54461
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 142
+        "tokenCount": 165
       }
     ]
   },
-  "raw_text": "{\"id\": \"s1ea96a53c7\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Yusra\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n1\", \"tense\": \"past\"}], \"unmapped\": [{\"span\": \"so that Yusra could sleep\", \"code\": \"G00\", \"construction\": \"A finite purpose clause introduced by 'so that'.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"s1ea96a53c7\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n1\", \"tense\": \"past\", \"span\": \"Lamine left\"}], \"unmapped\": [{\"span\": \"so that Yusra could sleep\", \"code\": \"G00\", \"construction\": \"A finite purpose clause introduced by 'so that'.\"}], \"issues\": []}",
   "response": {
     "id": "s1ea96a53c7",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Lamine"
+        "name": "Lamine",
+        "span": "Lamine"
       },
       {
         "t": "named-entity",
         "id": "n2",
-        "name": "Yusra"
+        "name": "Yusra",
+        "span": "Yusra"
       },
       {
         "t": "motion",
         "id": "m1",
         "verb": "leave",
         "mover": "@n1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Lamine left"
       }
     ],
     "unmapped": [
@@ -79,7 +82,7 @@
     ],
     "issues": []
   },
-  "prompt_body_sha256": "667366f56ac295f7c22279b3bdae00b28653ebaf94bfcee3f5443b9887b2e7ea",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "purpose",

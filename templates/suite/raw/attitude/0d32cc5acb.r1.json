@@ -1,0 +1,101 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
+  "item": {
+    "id": "s0d32cc5acb",
+    "text": "Teodor expects Lamine to come."
+  },
+  "usage": {
+    "input": 56506,
+    "output": 187,
+    "thinking": null,
+    "total": 56693,
+    "cached": 54457,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 56506,
+    "candidatesTokenCount": 187,
+    "totalTokenCount": 56693,
+    "cachedContentTokenCount": 54457,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 56506
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 54457
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 187
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s0d32cc5acb\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"come\", \"mover\": \"@n2\", \"tense\": \"present\", \"span\": \"Lamine to come\"}, {\"t\": \"attitude\", \"id\": \"a1\", \"verb\": \"expect\", \"holder\": \"@n1\", \"content\": [\"@m1\"], \"factive\": false, \"tense\": \"present\", \"span\": \"Teodor expects Lamine to come\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s0d32cc5acb",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "motion",
+        "id": "m1",
+        "verb": "come",
+        "mover": "@n2",
+        "tense": "present",
+        "span": "Lamine to come"
+      },
+      {
+        "t": "attitude",
+        "id": "a1",
+        "verb": "expect",
+        "holder": "@n1",
+        "content": [
+          "@m1"
+        ],
+        "factive": false,
+        "tense": "present",
+        "span": "Teodor expects Lamine to come"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
+  "run": 1,
+  "case": {
+    "template": "attitude",
+    "section": "held_out",
+    "index": 12,
+    "category": "positive",
+    "text": "Teodor expects Lamine to come.",
+    "key": "0d32cc5acb"
+  }
+}

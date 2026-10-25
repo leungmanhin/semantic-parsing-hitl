@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "a9e1ed5a7114de2bedee96ae4010964a4aa69ba1a78b19fae57121290e52e164",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sfb1e7598a2",
     "text": "Cranes were common in Norfolk."
   },
   "usage": {
-    "input": 51785,
-    "output": 94,
+    "input": 56506,
+    "output": 111,
     "thinking": null,
-    "total": 51879,
-    "cached": 49735,
+    "total": 56617,
+    "cached": 54456,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,51 +25,53 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 51785,
-    "candidatesTokenCount": 94,
-    "totalTokenCount": 51879,
-    "cachedContentTokenCount": 49735,
+    "promptTokenCount": 56506,
+    "candidatesTokenCount": 111,
+    "totalTokenCount": 56617,
+    "cachedContentTokenCount": 54456,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 51785
+        "tokenCount": 56506
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 49735
+        "tokenCount": 54456
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 94
+        "tokenCount": 111
       }
     ]
   },
-  "raw_text": "{\"id\": \"sfb1e7598a2\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Norfolk\"}, {\"t\": \"kind-property\", \"id\": \"k1\", \"subject\": \"crane\", \"property\": \"common\", \"restriction\": \"@n1\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sfb1e7598a2\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Norfolk\", \"span\": \"Norfolk\"}, {\"t\": \"class-property\", \"id\": \"c1\", \"subject\": \"crane\", \"property\": \"common\", \"restriction\": \"@n1\", \"tense\": \"past\", \"span\": \"Cranes were common in Norfolk\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sfb1e7598a2",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Norfolk"
+        "name": "Norfolk",
+        "span": "Norfolk"
       },
       {
         "t": "class-property",
-        "id": "k1",
+        "id": "c1",
         "subject": "crane",
         "property": "common",
         "restriction": "@n1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Cranes were common in Norfolk"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "e818417b50e53224000dbbfbcf86feb0d70114df739431722ad3ad866d0b6d57",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "class-property",

@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "ecb9313bbef541ec29940699dad9a1b36a9780334e6b77fdb8e31663cca0597f",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sc7d6c8661c",
     "text": "Lamine was modest in his demands."
   },
   "usage": {
-    "input": 26451,
-    "output": 90,
+    "input": 56508,
+    "output": 174,
     "thinking": null,
-    "total": 26541,
+    "total": 56682,
+    "cached": 54459,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,49 +25,56 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 26451,
-    "candidatesTokenCount": 90,
-    "totalTokenCount": 26541,
-    "cachedContentTokenCount": 24402,
+    "promptTokenCount": 56508,
+    "candidatesTokenCount": 174,
+    "totalTokenCount": 56682,
+    "cachedContentTokenCount": 54459,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 26451
+        "tokenCount": 56508
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 24402
+        "tokenCount": 54459
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 90
+        "tokenCount": 174
       }
     ]
   },
-  "raw_text": "{\"id\": \"sc7d6c8661c\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}], \"unmapped\": [{\"span\": \"was modest in his demands\", \"code\": \"G00\", \"construction\": \"A copular adjective restricted to a specific domain by a prepositional phrase.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"sc7d6c8661c\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}], \"unmapped\": [{\"span\": \"was modest in his demands\", \"code\": \"G00\", \"construction\": \"An adjectival predicate restricted to a domain by a prepositional complement ('modest in his demands').\"}], \"issues\": [{\"code\": \"P00\", \"where\": \"copular\", \"text\": \"The location boundary note classifies 'in its demands' as an oblique on an event, but a copular predication renders no event symbol for an oblique to attach to, and the copular boundary note treats an adjective with a complement as an unmapped predicate.\"}]}",
   "response": {
     "id": "sc7d6c8661c",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Lamine"
+        "name": "Lamine",
+        "span": "Lamine"
       }
     ],
     "unmapped": [
       {
         "span": "was modest in his demands",
         "code": "G00",
-        "construction": "A copular adjective restricted to a specific domain by a prepositional phrase."
+        "construction": "An adjectival predicate restricted to a domain by a prepositional complement ('modest in his demands')."
       }
     ],
-    "issues": []
+    "issues": [
+      {
+        "code": "P00",
+        "where": "copular",
+        "text": "The location boundary note classifies 'in its demands' as an oblique on an event, but a copular predication renders no event symbol for an oblique to attach to, and the copular boundary note treats an adjective with a complement as an unmapped predicate."
+      }
+    ]
   },
-  "prompt_body_sha256": "fe66913c81da38dc9d9e0ba589cc774123d4719abb4eec09e23557bfcfde237f",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "location",

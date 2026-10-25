@@ -1,0 +1,99 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
+  "item": {
+    "id": "sb9f041e525",
+    "text": "Ottoline sold the quilt last week."
+  },
+  "usage": {
+    "input": 56508,
+    "output": 185,
+    "thinking": null,
+    "total": 56693,
+    "cached": 54459,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 56508,
+    "candidatesTokenCount": 185,
+    "totalTokenCount": 56693,
+    "cachedContentTokenCount": 54459,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 56508
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 54459
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 185
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sb9f041e525\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"quilt\", \"definite\": true, \"span\": \"the quilt\"}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"sell\", \"giver\": \"@n1\", \"object\": \"@x1\", \"tense\": \"past\", \"span\": \"Ottoline sold the quilt\"}, {\"t\": \"time\", \"id\": \"t1\", \"event\": \"@e1\", \"deictic\": \"last_week\", \"anchor\": \"@now\", \"span\": \"last week\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sb9f041e525",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Ottoline",
+        "span": "Ottoline"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "quilt",
+        "definite": true,
+        "span": "the quilt"
+      },
+      {
+        "t": "transfer",
+        "id": "e1",
+        "verb": "sell",
+        "giver": "@n1",
+        "object": "@x1",
+        "tense": "past",
+        "span": "Ottoline sold the quilt"
+      },
+      {
+        "t": "time",
+        "id": "t1",
+        "event": "@e1",
+        "deictic": "last_week",
+        "anchor": "@now",
+        "span": "last week"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
+  "run": 2,
+  "case": {
+    "template": "time",
+    "section": "held_out",
+    "index": 6,
+    "category": "positive",
+    "text": "Ottoline sold the quilt last week.",
+    "key": "b9f041e525"
+  }
+}

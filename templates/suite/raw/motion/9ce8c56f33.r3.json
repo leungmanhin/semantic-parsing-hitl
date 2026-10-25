@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "f5f1e44762d5f71f92cba2959b585298e51bf895cfccd7dae6d6503648dc8ffe",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s9ce8c56f33",
     "text": "Lamine entered the shed."
   },
   "usage": {
-    "input": 21103,
-    "output": 117,
+    "input": 56506,
+    "output": 141,
     "thinking": null,
-    "total": 21220,
+    "total": 56647,
+    "cached": 54457,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,57 +25,60 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 21103,
-    "candidatesTokenCount": 117,
-    "totalTokenCount": 21220,
-    "cachedContentTokenCount": 19054,
+    "promptTokenCount": 56506,
+    "candidatesTokenCount": 141,
+    "totalTokenCount": 56647,
+    "cachedContentTokenCount": 54457,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 21103
+        "tokenCount": 56506
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 19054
+        "tokenCount": 54457
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 117
+        "tokenCount": 141
       }
     ]
   },
-  "raw_text": "{\"id\": \"s9ce8c56f33\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"shed\", \"definite\": true}, {\"t\": \"motion\", \"id\": \"e1\", \"verb\": \"enter\", \"mover\": \"@n1\", \"goal\": \"@x1\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s9ce8c56f33\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"shed\", \"definite\": true, \"span\": \"the shed\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"enter\", \"mover\": \"@n1\", \"goal\": \"@x1\", \"tense\": \"past\", \"span\": \"Lamine entered the shed\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s9ce8c56f33",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Lamine"
+        "name": "Lamine",
+        "span": "Lamine"
       },
       {
         "t": "witness",
         "id": "x1",
         "class": "shed",
-        "definite": true
+        "definite": true,
+        "span": "the shed"
       },
       {
         "t": "motion",
-        "id": "e1",
+        "id": "m1",
         "verb": "enter",
         "mover": "@n1",
         "goal": "@x1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Lamine entered the shed"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "000098f3bba489804dab742a00fbb307c4c7cc7edbe3c2d93bcc7ed7118790ae",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "motion",

@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "f4d17abe47ce0097d01f189e549c2f7270adfee30060ea503bfb81f323e1bd63",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sc9fb92b173",
     "text": "Not only Yusra laughed."
   },
   "usage": {
-    "input": 53463,
-    "output": 147,
+    "input": 56505,
+    "output": 175,
     "thinking": null,
-    "total": 53610,
-    "cached": 51414,
+    "total": 56680,
+    "cached": 54456,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,65 +25,69 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 53463,
-    "candidatesTokenCount": 147,
-    "totalTokenCount": 53610,
-    "cachedContentTokenCount": 51414,
+    "promptTokenCount": 56505,
+    "candidatesTokenCount": 175,
+    "totalTokenCount": 56680,
+    "cachedContentTokenCount": 54456,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 53463
+        "tokenCount": 56505
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 51414
+        "tokenCount": 54456
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 147
+        "tokenCount": 175
       }
     ]
   },
-  "raw_text": "{\"id\": \"sc9fb92b173\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"laugh\", \"actor\": \"@n1\", \"tense\": \"past\"}, {\"t\": \"focus\", \"id\": \"f1\", \"head\": \"Only\", \"filler\": \"@n1\", \"event\": \"@e1\", \"surface\": \"only\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@f1\"]}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sc9fb92b173\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"laugh\", \"actor\": \"@n1\", \"tense\": \"past\", \"span\": \"Yusra laughed\"}, {\"t\": \"focus\", \"id\": \"f1\", \"head\": \"Only\", \"filler\": \"@n1\", \"event\": \"@v1\", \"surface\": \"only\", \"span\": \"only\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@f1\"], \"span\": \"Not\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sc9fb92b173",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Yusra"
+        "name": "Yusra",
+        "span": "Yusra"
       },
       {
         "t": "activity",
-        "id": "e1",
+        "id": "v1",
         "verb": "laugh",
         "actor": "@n1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Yusra laughed"
       },
       {
         "t": "focus",
         "id": "f1",
         "head": "Only",
         "filler": "@n1",
-        "event": "@e1",
-        "surface": "only"
+        "event": "@v1",
+        "surface": "only",
+        "span": "only"
       },
       {
         "t": "negation",
         "id": "s1",
         "over": [
           "@f1"
-        ]
+        ],
+        "span": "Not"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "e9f273b0d2bdaff9e725ba8f0d2aaf8c4c5cb64dbb039e1e790e5251d9ea1298",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "focus",

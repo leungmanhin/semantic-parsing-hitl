@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "0ab3a7d71dae93dd6b6d88b219ab39b150a88bdeccc614969d05d33ac8fef5aa",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s1b52f60f02",
     "text": "Lamine baked a loaf on 3 May 2019."
   },
   "usage": {
-    "input": 28020,
-    "output": 154,
+    "input": 56516,
+    "output": 192,
     "thinking": null,
-    "total": 28174,
+    "total": 56708,
+    "cached": 54467,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,42 +25,44 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 28020,
-    "candidatesTokenCount": 154,
-    "totalTokenCount": 28174,
-    "cachedContentTokenCount": 25971,
+    "promptTokenCount": 56516,
+    "candidatesTokenCount": 192,
+    "totalTokenCount": 56708,
+    "cachedContentTokenCount": 54467,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 28020
+        "tokenCount": 56516
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 25971
+        "tokenCount": 54467
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 154
+        "tokenCount": 192
       }
     ]
   },
-  "raw_text": "{\"id\": \"s1b52f60f02\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"loaf\"}, {\"t\": \"creation\", \"id\": \"e1\", \"verb\": \"bake\", \"creator\": \"@n1\", \"product\": \"@x1\", \"tense\": \"past\"}, {\"t\": \"time\", \"id\": \"t1\", \"event\": \"@e1\", \"year\": 2019, \"month\": \"may\", \"day\": 3}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s1b52f60f02\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"loaf\", \"span\": \"a loaf\"}, {\"t\": \"creation\", \"id\": \"e1\", \"verb\": \"bake\", \"creator\": \"@n1\", \"product\": \"@x1\", \"tense\": \"past\", \"span\": \"Lamine baked a loaf\"}, {\"t\": \"time\", \"id\": \"t1\", \"event\": \"@e1\", \"year\": 2019, \"month\": \"may\", \"day\": 3, \"span\": \"on 3 May 2019\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s1b52f60f02",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Lamine"
+        "name": "Lamine",
+        "span": "Lamine"
       },
       {
         "t": "witness",
         "id": "x1",
-        "class": "loaf"
+        "class": "loaf",
+        "span": "a loaf"
       },
       {
         "t": "creation",
@@ -67,7 +70,8 @@
         "verb": "bake",
         "creator": "@n1",
         "product": "@x1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Lamine baked a loaf"
       },
       {
         "t": "time",
@@ -75,13 +79,14 @@
         "event": "@e1",
         "year": 2019,
         "month": "may",
-        "day": 3
+        "day": 3,
+        "span": "on 3 May 2019"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "488ea14d008681814e98d240e401daa13109b112674f8d3a1d6bef8927a15fdd",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "time",

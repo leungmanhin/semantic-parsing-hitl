@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "517fa33db1e726e201b1348c24b85866cf55bad518e4a4cbb5add28a521e2750",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sc20e64bde5",
     "text": "Lamine had a ladder."
   },
   "usage": {
-    "input": 11837,
-    "output": 111,
+    "input": 56504,
+    "output": 135,
     "thinking": null,
-    "total": 11948,
+    "total": 56639,
+    "cached": 54455,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,42 +25,44 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 11837,
-    "candidatesTokenCount": 111,
-    "totalTokenCount": 11948,
-    "cachedContentTokenCount": 9788,
+    "promptTokenCount": 56504,
+    "candidatesTokenCount": 135,
+    "totalTokenCount": 56639,
+    "cachedContentTokenCount": 54455,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 11837
+        "tokenCount": 56504
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 9788
+        "tokenCount": 54455
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 111
+        "tokenCount": 135
       }
     ]
   },
-  "raw_text": "{\"id\": \"sc20e64bde5\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"ladder\"}, {\"t\": \"possession\", \"id\": \"p1\", \"verb\": \"have\", \"holder\": \"@n1\", \"possessed\": \"@x1\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sc20e64bde5\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"ladder\", \"span\": \"a ladder\"}, {\"t\": \"possession\", \"id\": \"p1\", \"verb\": \"have\", \"holder\": \"@n1\", \"possessed\": \"@x1\", \"tense\": \"past\", \"span\": \"Lamine had a ladder\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sc20e64bde5",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Lamine"
+        "name": "Lamine",
+        "span": "Lamine"
       },
       {
         "t": "witness",
         "id": "x1",
-        "class": "ladder"
+        "class": "ladder",
+        "span": "a ladder"
       },
       {
         "t": "possession",
@@ -67,13 +70,14 @@
         "verb": "have",
         "holder": "@n1",
         "possessed": "@x1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Lamine had a ladder"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "41b1c076c80ab3ff14e8e47da03ff29f11a94fdce1398936f1eb2cbe9cb1a5e7",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "possession",

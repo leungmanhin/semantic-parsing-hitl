@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "549a9f7ae5e71c64cad5c2d1abc2482ac27640f2496235a0ac72afe79e5b0f08",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s811ef80812",
     "text": "The envelope was taken."
   },
   "usage": {
-    "input": 10827,
-    "output": 88,
+    "input": 56505,
+    "output": 153,
     "thinking": null,
-    "total": 10915,
+    "total": 56658,
+    "cached": 54456,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,23 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 10827,
-    "candidatesTokenCount": 88,
-    "totalTokenCount": 10915,
+    "promptTokenCount": 56505,
+    "candidatesTokenCount": 153,
+    "totalTokenCount": 56658,
+    "cachedContentTokenCount": 54456,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 10827
+        "tokenCount": 56505
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 54456
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 88
+        "tokenCount": 153
       }
     ]
   },
-  "raw_text": "{\"id\": \"s811ef80812\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"envelope\", \"definite\": true}, {\"t\": \"acquisition\", \"id\": \"e1\", \"verb\": \"take\", \"object\": \"@x1\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\n  \"id\": \"s811ef80812\",\n  \"instances\": [\n    {\n      \"t\": \"witness\",\n      \"id\": \"x1\",\n      \"class\": \"envelope\",\n      \"definite\": true,\n      \"span\": \"The envelope\"\n    },\n    {\n      \"t\": \"acquisition\",\n      \"id\": \"e1\",\n      \"verb\": \"take\",\n      \"object\": \"@x1\",\n      \"tense\": \"past\",\n      \"span\": \"The envelope was taken\"\n    }\n  ],\n  \"unmapped\": [],\n  \"issues\": []\n}",
   "response": {
     "id": "s811ef80812",
     "instances": [
@@ -48,20 +56,22 @@
         "t": "witness",
         "id": "x1",
         "class": "envelope",
-        "definite": true
+        "definite": true,
+        "span": "The envelope"
       },
       {
         "t": "acquisition",
         "id": "e1",
         "verb": "take",
         "object": "@x1",
-        "tense": "past"
+        "tense": "past",
+        "span": "The envelope was taken"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "6cf313445a0a101e1fc3416cc18e201b1014c1ed7339419f511094ac6b3ffbd5",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "acquisition",

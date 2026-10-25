@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "8b94d53524c908c3b49c07b327d4f63b7de7791f1c8a4da1645e4578624a27da",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s5377ba407d",
     "text": "The ladder did not break."
   },
   "usage": {
-    "input": 22488,
-    "output": 117,
+    "input": 56506,
+    "output": 140,
     "thinking": null,
-    "total": 22605,
+    "total": 56646,
+    "cached": 54457,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 22488,
-    "candidatesTokenCount": 117,
-    "totalTokenCount": 22605,
-    "cachedContentTokenCount": 20439,
+    "promptTokenCount": 56506,
+    "candidatesTokenCount": 140,
+    "totalTokenCount": 56646,
+    "cachedContentTokenCount": 54457,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 22488
+        "tokenCount": 56506
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 20439
+        "tokenCount": 54457
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 117
+        "tokenCount": 140
       }
     ]
   },
-  "raw_text": "{\"id\": \"s5377ba407d\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"ladder\", \"definite\": true}, {\"t\": \"change-of-state\", \"id\": \"e1\", \"verb\": \"break\", \"undergoer\": \"@x1\", \"tense\": \"past\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@e1\"]}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s5377ba407d\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"ladder\", \"definite\": true, \"span\": \"The ladder\"}, {\"t\": \"change-of-state\", \"id\": \"c1\", \"verb\": \"break\", \"undergoer\": \"@x1\", \"tense\": \"past\", \"span\": \"The ladder did not break\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@c1\"], \"span\": \"did not\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s5377ba407d",
     "instances": [
@@ -55,32 +56,35 @@
         "t": "witness",
         "id": "x1",
         "class": "ladder",
-        "definite": true
+        "definite": true,
+        "span": "The ladder"
       },
       {
         "t": "change-of-state",
-        "id": "e1",
+        "id": "c1",
         "verb": "break",
         "undergoer": "@x1",
-        "tense": "past"
+        "tense": "past",
+        "span": "The ladder did not break"
       },
       {
         "t": "negation",
         "id": "s1",
         "over": [
-          "@e1"
-        ]
+          "@c1"
+        ],
+        "span": "did not"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "2cc3e8f061d7bfce34a1f4404efb88ede552d8e0464511d138418685ffc1221b",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "change-of-state",
     "section": "held_out",
-    "index": 7,
+    "index": 9,
     "category": "scoped",
     "text": "The ladder did not break.",
     "key": "5377ba407d"

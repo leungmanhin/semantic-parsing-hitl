@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "f4d17abe47ce0097d01f189e549c2f7270adfee30060ea503bfb81f323e1bd63",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s77a3ed2fe6",
     "text": "Ottoline waited as well."
   },
   "usage": {
-    "input": 53463,
-    "output": 125,
+    "input": 56505,
+    "output": 147,
     "thinking": null,
-    "total": 53588,
-    "cached": 51414,
+    "total": 56652,
+    "cached": 54456,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,44 +25,46 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 53463,
-    "candidatesTokenCount": 125,
-    "totalTokenCount": 53588,
-    "cachedContentTokenCount": 51414,
+    "promptTokenCount": 56505,
+    "candidatesTokenCount": 147,
+    "totalTokenCount": 56652,
+    "cachedContentTokenCount": 54456,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 53463
+        "tokenCount": 56505
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 51414
+        "tokenCount": 54456
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 125
+        "tokenCount": 147
       }
     ]
   },
-  "raw_text": "{\"id\": \"s77a3ed2fe6\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"wait\", \"actor\": \"@n1\", \"tense\": \"past\"}, {\"t\": \"focus\", \"id\": \"f1\", \"head\": \"Also\", \"filler\": \"@n1\", \"event\": \"@v1\", \"surface\": \"as well\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s77a3ed2fe6\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"wait\", \"actor\": \"@n1\", \"tense\": \"past\", \"span\": \"Ottoline waited\"}, {\"t\": \"focus\", \"id\": \"f1\", \"head\": \"Also\", \"filler\": \"@n1\", \"event\": \"@v1\", \"surface\": \"as well\", \"span\": \"as well\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s77a3ed2fe6",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Ottoline"
+        "name": "Ottoline",
+        "span": "Ottoline"
       },
       {
         "t": "activity",
         "id": "v1",
         "verb": "wait",
         "actor": "@n1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Ottoline waited"
       },
       {
         "t": "focus",
@@ -70,13 +72,14 @@
         "head": "Also",
         "filler": "@n1",
         "event": "@v1",
-        "surface": "as well"
+        "surface": "as well",
+        "span": "as well"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "e9f273b0d2bdaff9e725ba8f0d2aaf8c4c5cb64dbb039e1e790e5251d9ea1298",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "focus",

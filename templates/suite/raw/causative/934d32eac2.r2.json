@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "1e3a0e7b653d644ba66513f0d0e707b1cc9b81d1cb008f3f969832c0fde71796",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s934d32eac2",
     "text": "Lamine made the wax soft."
   },
   "usage": {
-    "input": 42690,
-    "output": 129,
+    "input": 56506,
+    "output": 154,
     "thinking": null,
-    "total": 42819,
-    "cached": 40641,
+    "total": 56660,
+    "cached": 54457,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,43 +25,45 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 42690,
-    "candidatesTokenCount": 129,
-    "totalTokenCount": 42819,
-    "cachedContentTokenCount": 40641,
+    "promptTokenCount": 56506,
+    "candidatesTokenCount": 154,
+    "totalTokenCount": 56660,
+    "cachedContentTokenCount": 54457,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 42690
+        "tokenCount": 56506
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 40641
+        "tokenCount": 54457
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 129
+        "tokenCount": 154
       }
     ]
   },
-  "raw_text": "{\"id\": \"s934d32eac2\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"wax\", \"definite\": true}, {\"t\": \"change-of-state\", \"id\": \"c1\", \"verb\": \"make\", \"agent\": \"@n1\", \"undergoer\": \"@x1\", \"result\": \"soft\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s934d32eac2\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"wax\", \"definite\": true, \"span\": \"the wax\"}, {\"t\": \"change-of-state\", \"id\": \"c1\", \"verb\": \"make\", \"agent\": \"@n1\", \"undergoer\": \"@x1\", \"result\": \"soft\", \"tense\": \"past\", \"span\": \"Lamine made the wax soft\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s934d32eac2",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Lamine"
+        "name": "Lamine",
+        "span": "Lamine"
       },
       {
         "t": "witness",
         "id": "x1",
         "class": "wax",
-        "definite": true
+        "definite": true,
+        "span": "the wax"
       },
       {
         "t": "change-of-state",
@@ -70,13 +72,14 @@
         "agent": "@n1",
         "undergoer": "@x1",
         "result": "soft",
-        "tense": "past"
+        "tense": "past",
+        "span": "Lamine made the wax soft"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "550b5adae738e98b3a45e1fd666b1c271958eedeeddaca6a18b6db34c69a06c7",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "causative",

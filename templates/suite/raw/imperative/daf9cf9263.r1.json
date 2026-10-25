@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "011859ef1641de9eb20fbd0ff4c90d8a33b97940ed06b1a0de5d9191af6f2f3e",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sdaf9cf9263",
     "text": "Wash the quilt carefully."
   },
   "usage": {
-    "input": 37158,
-    "output": 135,
+    "input": 56503,
+    "output": 166,
     "thinking": null,
-    "total": 37293,
-    "cached": 35109,
+    "total": 56669,
+    "cached": null,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,30 +25,23 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 37158,
-    "candidatesTokenCount": 135,
-    "totalTokenCount": 37293,
-    "cachedContentTokenCount": 35109,
+    "promptTokenCount": 56503,
+    "candidatesTokenCount": 166,
+    "totalTokenCount": 56669,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 37158
-      }
-    ],
-    "cacheTokensDetails": [
-      {
-        "modality": "TEXT",
-        "tokenCount": 35109
+        "tokenCount": 56503
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 135
+        "tokenCount": 166
       }
     ]
   },
-  "raw_text": "{\"id\": \"sdaf9cf9263\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"quilt\", \"definite\": true}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"wash\", \"patient\": \"@x1\", \"tense\": \"present\"}, {\"t\": \"imperative\", \"id\": \"s1\", \"over\": [\"@v1\"]}, {\"t\": \"manner\", \"id\": \"a1\", \"event\": \"@v1\", \"manner\": \"carefully\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sdaf9cf9263\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"quilt\", \"definite\": true, \"span\": \"the quilt\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"wash\", \"patient\": \"@x1\", \"tense\": \"present\", \"span\": \"Wash the quilt\"}, {\"t\": \"imperative\", \"id\": \"s1\", \"over\": [\"@v1\"], \"span\": \"Wash the quilt carefully\"}, {\"t\": \"manner\", \"id\": \"a1\", \"event\": \"@v1\", \"manner\": \"carefully\", \"span\": \"carefully\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sdaf9cf9263",
     "instances": [
@@ -56,33 +49,37 @@
         "t": "witness",
         "id": "x1",
         "class": "quilt",
-        "definite": true
+        "definite": true,
+        "span": "the quilt"
       },
       {
         "t": "activity",
         "id": "v1",
         "verb": "wash",
         "patient": "@x1",
-        "tense": "present"
+        "tense": "present",
+        "span": "Wash the quilt"
       },
       {
         "t": "imperative",
         "id": "s1",
         "over": [
           "@v1"
-        ]
+        ],
+        "span": "Wash the quilt carefully"
       },
       {
         "t": "manner",
         "id": "a1",
         "event": "@v1",
-        "manner": "carefully"
+        "manner": "carefully",
+        "span": "carefully"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "86006c1331646959e618205dae5c6fd6c614cc473b5b0769d0ff87669d0897c5",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "imperative",

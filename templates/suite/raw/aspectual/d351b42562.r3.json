@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "7b971397645436659b47229c67b5e18427eb894e0e6cbf0b176ccc7db0eed480",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sd351b42562",
     "text": "Teodor might begin to sing."
   },
   "usage": {
-    "input": 42690,
-    "output": 152,
+    "input": 56507,
+    "output": 278,
     "thinking": null,
-    "total": 42842,
-    "cached": 40641,
+    "total": 56785,
+    "cached": 54458,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,44 +25,46 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 42690,
-    "candidatesTokenCount": 152,
-    "totalTokenCount": 42842,
-    "cachedContentTokenCount": 40641,
+    "promptTokenCount": 56507,
+    "candidatesTokenCount": 278,
+    "totalTokenCount": 56785,
+    "cachedContentTokenCount": 54458,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 42690
+        "tokenCount": 56507
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 40641
+        "tokenCount": 54458
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 152
+        "tokenCount": 278
       }
     ]
   },
-  "raw_text": "{\"id\": \"sd351b42562\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"sing\", \"actor\": \"@n1\", \"tense\": \"present\"}, {\"t\": \"aspectual\", \"id\": \"e1\", \"verb\": \"begin\", \"complement\": [\"@v1\"], \"tense\": \"present\"}, {\"t\": \"modal\", \"id\": \"s1\", \"over\": [\"@e1\"], \"head\": \"Might\", \"surface\": \"might\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\n  \"id\": \"sd351b42562\",\n  \"instances\": [\n    {\n      \"t\": \"named-entity\",\n      \"id\": \"n1\",\n      \"name\": \"Teodor\",\n      \"span\": \"Teodor\"\n    },\n    {\n      \"t\": \"activity\",\n      \"id\": \"v1\",\n      \"verb\": \"sing\",\n      \"actor\": \"@n1\",\n      \"tense\": \"present\",\n      \"span\": \"to sing\"\n    },\n    {\n      \"t\": \"aspectual\",\n      \"id\": \"e1\",\n      \"verb\": \"begin\",\n      \"complement\": [\n        \"@v1\"\n      ],\n      \"tense\": \"present\",\n      \"span\": \"Teodor might begin to sing\"\n    },\n    {\n      \"t\": \"modal\",\n      \"id\": \"s1\",\n      \"over\": [\n        \"@e1\"\n      ],\n      \"head\": \"Might\",\n      \"surface\": \"might\",\n      \"span\": \"might\"\n    }\n  ],\n  \"unmapped\": [],\n  \"issues\": []\n}",
   "response": {
     "id": "sd351b42562",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Teodor"
+        "name": "Teodor",
+        "span": "Teodor"
       },
       {
         "t": "activity",
         "id": "v1",
         "verb": "sing",
         "actor": "@n1",
-        "tense": "present"
+        "tense": "present",
+        "span": "to sing"
       },
       {
         "t": "aspectual",
@@ -71,7 +73,8 @@
         "complement": [
           "@v1"
         ],
-        "tense": "present"
+        "tense": "present",
+        "span": "Teodor might begin to sing"
       },
       {
         "t": "modal",
@@ -80,13 +83,14 @@
           "@e1"
         ],
         "head": "Might",
-        "surface": "might"
+        "surface": "might",
+        "span": "might"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "550b5adae738e98b3a45e1fd666b1c271958eedeeddaca6a18b6db34c69a06c7",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "aspectual",

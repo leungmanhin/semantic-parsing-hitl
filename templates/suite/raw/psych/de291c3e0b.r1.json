@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "7b971397645436659b47229c67b5e18427eb894e0e6cbf0b176ccc7db0eed480",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sde291c3e0b",
     "text": "Lamine enjoys sending quilts."
   },
   "usage": {
-    "input": 42689,
-    "output": 135,
+    "input": 56506,
+    "output": 159,
     "thinking": null,
-    "total": 42824,
-    "cached": 40640,
+    "total": 56665,
+    "cached": 54457,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,37 +25,38 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 42689,
-    "candidatesTokenCount": 135,
-    "totalTokenCount": 42824,
-    "cachedContentTokenCount": 40640,
+    "promptTokenCount": 56506,
+    "candidatesTokenCount": 159,
+    "totalTokenCount": 56665,
+    "cachedContentTokenCount": 54457,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 42689
+        "tokenCount": 56506
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 40640
+        "tokenCount": 54457
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 135
+        "tokenCount": 159
       }
     ]
   },
-  "raw_text": "{\"id\": \"sde291c3e0b\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"send\", \"giver\": \"@n1\", \"object\": \"quilt\", \"tense\": \"present\"}, {\"t\": \"psych\", \"id\": \"p1\", \"verb\": \"enjoy\", \"experiencer\": \"@n1\", \"complement\": [\"@e1\"], \"tense\": \"present\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sde291c3e0b\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"send\", \"giver\": \"@n1\", \"object\": \"quilt\", \"tense\": \"present\", \"span\": \"sending quilts\"}, {\"t\": \"psych\", \"id\": \"p1\", \"verb\": \"enjoy\", \"experiencer\": \"@n1\", \"complement\": [\"@e1\"], \"tense\": \"present\", \"span\": \"Lamine enjoys sending quilts\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sde291c3e0b",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Lamine"
+        "name": "Lamine",
+        "span": "Lamine"
       },
       {
         "t": "transfer",
@@ -63,7 +64,8 @@
         "verb": "send",
         "giver": "@n1",
         "object": "quilt",
-        "tense": "present"
+        "tense": "present",
+        "span": "sending quilts"
       },
       {
         "t": "psych",
@@ -73,13 +75,14 @@
         "complement": [
           "@e1"
         ],
-        "tense": "present"
+        "tense": "present",
+        "span": "Lamine enjoys sending quilts"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "550b5adae738e98b3a45e1fd666b1c271958eedeeddaca6a18b6db34c69a06c7",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "psych",

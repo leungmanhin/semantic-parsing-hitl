@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "549a9f7ae5e71c64cad5c2d1abc2482ac27640f2496235a0ac72afe79e5b0f08",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s72d070cb57",
     "text": "Teodor won the race."
   },
   "usage": {
-    "input": 10828,
-    "output": 85,
+    "input": 56506,
+    "output": 100,
     "thinking": null,
-    "total": 10913,
+    "total": 56606,
+    "cached": 54457,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,49 +25,50 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 10828,
-    "candidatesTokenCount": 85,
-    "totalTokenCount": 10913,
-    "cachedContentTokenCount": 8779,
+    "promptTokenCount": 56506,
+    "candidatesTokenCount": 100,
+    "totalTokenCount": 56606,
+    "cachedContentTokenCount": 54457,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 10828
+        "tokenCount": 56506
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 8779
+        "tokenCount": 54457
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 85
+        "tokenCount": 100
       }
     ]
   },
-  "raw_text": "{\"id\": \"s72d070cb57\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}], \"unmapped\": [{\"span\": \"won the race\", \"code\": \"G00\", \"construction\": \"A transitive clause with win and a contest as the object.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"s72d070cb57\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}], \"unmapped\": [{\"span\": \"won the race\", \"code\": \"G00\", \"construction\": \"Winning a contest or activity, where no object is acquired and no action is done to a patient.\"}], \"issues\": []}",
   "response": {
     "id": "s72d070cb57",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Teodor"
+        "name": "Teodor",
+        "span": "Teodor"
       }
     ],
     "unmapped": [
       {
         "span": "won the race",
         "code": "G00",
-        "construction": "A transitive clause with win and a contest as the object."
+        "construction": "Winning a contest or activity, where no object is acquired and no action is done to a patient."
       }
     ],
     "issues": []
   },
-  "prompt_body_sha256": "6cf313445a0a101e1fc3416cc18e201b1014c1ed7339419f511094ac6b3ffbd5",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "acquisition",

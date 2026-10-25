@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "0ab3a7d71dae93dd6b6d88b219ab39b150a88bdeccc614969d05d33ac8fef5aa",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sed9a3c4eb1",
     "text": "Yusra left at 3 pm."
   },
   "usage": {
-    "input": 28010,
-    "output": 112,
+    "input": 56506,
+    "output": 138,
     "thinking": null,
-    "total": 28122,
+    "total": 56644,
+    "cached": 54456,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,54 +25,64 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 28010,
-    "candidatesTokenCount": 112,
-    "totalTokenCount": 28122,
+    "promptTokenCount": 56506,
+    "candidatesTokenCount": 138,
+    "totalTokenCount": 56644,
+    "cachedContentTokenCount": 54456,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 28010
+        "tokenCount": 56506
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 54456
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 112
+        "tokenCount": 138
       }
     ]
   },
-  "raw_text": "{\"id\": \"sed9a3c4eb1\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n1\", \"tense\": \"past\"}, {\"t\": \"time\", \"id\": \"t1\", \"event\": \"@m1\", \"hour\": 15}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sed9a3c4eb1\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n1\", \"tense\": \"past\", \"span\": \"Yusra left\"}, {\"t\": \"time\", \"id\": \"t1\", \"event\": \"@m1\", \"hour\": 15, \"span\": \"at 3 pm\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sed9a3c4eb1",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Yusra"
+        "name": "Yusra",
+        "span": "Yusra"
       },
       {
         "t": "motion",
         "id": "m1",
         "verb": "leave",
         "mover": "@n1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Yusra left"
       },
       {
         "t": "time",
         "id": "t1",
         "event": "@m1",
-        "hour": 15
+        "hour": 15,
+        "span": "at 3 pm"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "488ea14d008681814e98d240e401daa13109b112674f8d3a1d6bef8927a15fdd",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "time",
     "section": "held_out",
-    "index": 5,
+    "index": 7,
     "category": "positive",
     "text": "Yusra left at 3 pm.",
     "key": "ed9a3c4eb1"

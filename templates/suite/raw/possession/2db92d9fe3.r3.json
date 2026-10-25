@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "517fa33db1e726e201b1348c24b85866cf55bad518e4a4cbb5add28a521e2750",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s2db92d9fe3",
     "text": "Ottoline owns the quilt."
   },
   "usage": {
-    "input": 11838,
-    "output": 118,
+    "input": 56505,
+    "output": 142,
     "thinking": null,
-    "total": 11956,
+    "total": 56647,
+    "cached": 54456,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,43 +25,45 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 11838,
-    "candidatesTokenCount": 118,
-    "totalTokenCount": 11956,
-    "cachedContentTokenCount": 9789,
+    "promptTokenCount": 56505,
+    "candidatesTokenCount": 142,
+    "totalTokenCount": 56647,
+    "cachedContentTokenCount": 54456,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 11838
+        "tokenCount": 56505
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 9789
+        "tokenCount": 54456
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 118
+        "tokenCount": 142
       }
     ]
   },
-  "raw_text": "{\"id\": \"s2db92d9fe3\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"quilt\", \"definite\": true}, {\"t\": \"possession\", \"id\": \"p1\", \"verb\": \"own\", \"holder\": \"@n1\", \"possessed\": \"@x1\", \"tense\": \"present\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s2db92d9fe3\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"quilt\", \"definite\": true, \"span\": \"the quilt\"}, {\"t\": \"possession\", \"id\": \"p1\", \"verb\": \"own\", \"holder\": \"@n1\", \"possessed\": \"@x1\", \"tense\": \"present\", \"span\": \"Ottoline owns the quilt\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s2db92d9fe3",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Ottoline"
+        "name": "Ottoline",
+        "span": "Ottoline"
       },
       {
         "t": "witness",
         "id": "x1",
         "class": "quilt",
-        "definite": true
+        "definite": true,
+        "span": "the quilt"
       },
       {
         "t": "possession",
@@ -68,13 +71,14 @@
         "verb": "own",
         "holder": "@n1",
         "possessed": "@x1",
-        "tense": "present"
+        "tense": "present",
+        "span": "Ottoline owns the quilt"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "41b1c076c80ab3ff14e8e47da03ff29f11a94fdce1398936f1eb2cbe9cb1a5e7",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "possession",

@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "a425dddb507554c71fb4c88aec8fc84118920b43204deae9960577427454e8da",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s997b90e859",
     "text": "Teodor seems tired."
   },
   "usage": {
-    "input": 16518,
-    "output": 86,
+    "input": 56506,
+    "output": 175,
     "thinking": null,
-    "total": 16604,
+    "total": 56681,
+    "cached": 54457,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,49 +25,56 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 16518,
-    "candidatesTokenCount": 86,
-    "totalTokenCount": 16604,
-    "cachedContentTokenCount": 14469,
+    "promptTokenCount": 56506,
+    "candidatesTokenCount": 175,
+    "totalTokenCount": 56681,
+    "cachedContentTokenCount": 54457,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 16518
+        "tokenCount": 56506
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 14469
+        "tokenCount": 54457
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 86
+        "tokenCount": 175
       }
     ]
   },
-  "raw_text": "{\"id\": \"s997b90e859\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}], \"unmapped\": [{\"span\": \"seems tired\", \"code\": \"G00\", \"construction\": \"An evidential copular verb with an adjectival predicate.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"s997b90e859\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}], \"unmapped\": [{\"span\": \"seems tired\", \"code\": \"G00\", \"construction\": \"Evidential copular verb 'seem' with an adjectival predicate.\"}], \"issues\": [{\"code\": \"P00\", \"where\": \"copular / perception\", \"text\": \"The 'Not this template' section of 'copular' excludes 'seems tired' as an evidential verb, while 'perception' says 'looks tired... a copular clause with a property', creating a contradiction about whether non-be copular verbs with adjectives are covered or unmapped.\"}]}",
   "response": {
     "id": "s997b90e859",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Teodor"
+        "name": "Teodor",
+        "span": "Teodor"
       }
     ],
     "unmapped": [
       {
         "span": "seems tired",
         "code": "G00",
-        "construction": "An evidential copular verb with an adjectival predicate."
+        "construction": "Evidential copular verb 'seem' with an adjectival predicate."
       }
     ],
-    "issues": []
+    "issues": [
+      {
+        "code": "P00",
+        "where": "copular / perception",
+        "text": "The 'Not this template' section of 'copular' excludes 'seems tired' as an evidential verb, while 'perception' says 'looks tired... a copular clause with a property', creating a contradiction about whether non-be copular verbs with adjectives are covered or unmapped."
+      }
+    ]
   },
-  "prompt_body_sha256": "120b60a17e82d50d47855b28fe77e98ae4c75e431ab78838d5db2b4f83cfa873",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "copular",

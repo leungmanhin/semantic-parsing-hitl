@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "036261b67cffbb04273fa6353b6fe9d8a5bd7044375e91f3934b29dcd44ae2e8",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s2b6173e7d9",
     "text": "Teodor added too much salt."
   },
   "usage": {
-    "input": 35895,
-    "output": 120,
+    "input": 56508,
+    "output": 143,
     "thinking": null,
-    "total": 36015,
-    "cached": 33846,
+    "total": 56651,
+    "cached": 54456,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,57 +25,59 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 35895,
-    "candidatesTokenCount": 120,
-    "totalTokenCount": 36015,
-    "cachedContentTokenCount": 33846,
+    "promptTokenCount": 56508,
+    "candidatesTokenCount": 143,
+    "totalTokenCount": 56651,
+    "cachedContentTokenCount": 54456,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 35895
+        "tokenCount": 56508
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 33846
+        "tokenCount": 54456
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 120
+        "tokenCount": 143
       }
     ]
   },
-  "raw_text": "{\"id\": \"s2b6173e7d9\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"add\", \"actor\": \"@n1\", \"patient\": \"salt\", \"tense\": \"past\"}], \"unmapped\": [{\"span\": \"too much\", \"code\": \"G00\", \"construction\": \"A degree expression on a mass quantity.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"s2b6173e7d9\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"add\", \"actor\": \"@n1\", \"patient\": \"salt\", \"tense\": \"past\", \"span\": \"Teodor added too much salt\"}], \"unmapped\": [{\"span\": \"too much\", \"code\": \"G00\", \"construction\": \"A degree expression modifying a quantity determiner on a mass noun.\"}], \"issues\": []}",
   "response": {
     "id": "s2b6173e7d9",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Teodor"
+        "name": "Teodor",
+        "span": "Teodor"
       },
       {
         "t": "activity",
-        "id": "e1",
+        "id": "v1",
         "verb": "add",
         "actor": "@n1",
         "patient": "salt",
-        "tense": "past"
+        "tense": "past",
+        "span": "Teodor added too much salt"
       }
     ],
     "unmapped": [
       {
         "span": "too much",
         "code": "G00",
-        "construction": "A degree expression on a mass quantity."
+        "construction": "A degree expression modifying a quantity determiner on a mass noun."
       }
     ],
     "issues": []
   },
-  "prompt_body_sha256": "107542897d74ba7ca217f1d5c88d49a7531f59530bec65a2f2b7b7200334e22e",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "degree",

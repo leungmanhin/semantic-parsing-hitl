@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "0ab3a7d71dae93dd6b6d88b219ab39b150a88bdeccc614969d05d33ac8fef5aa",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sd09d930a4a",
     "text": "Teodor arrived on Monday morning."
   },
   "usage": {
-    "input": 28011,
-    "output": 138,
+    "input": 56507,
+    "output": 166,
     "thinking": null,
-    "total": 28149,
+    "total": 56673,
+    "cached": 54457,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,60 +25,71 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 28011,
-    "candidatesTokenCount": 138,
-    "totalTokenCount": 28149,
+    "promptTokenCount": 56507,
+    "candidatesTokenCount": 166,
+    "totalTokenCount": 56673,
+    "cachedContentTokenCount": 54457,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 28011
+        "tokenCount": 56507
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 54457
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 138
+        "tokenCount": 166
       }
     ]
   },
-  "raw_text": "{\"id\": \"sd09d930a4a\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"motion\", \"id\": \"e1\", \"verb\": \"arrive\", \"mover\": \"@n1\", \"tense\": \"past\"}, {\"t\": \"time\", \"id\": \"t1\", \"event\": \"@e1\", \"weekday\": \"monday\"}, {\"t\": \"time\", \"id\": \"t2\", \"event\": \"@e1\", \"name\": \"morning\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sd09d930a4a\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"arrive\", \"mover\": \"@n1\", \"tense\": \"past\", \"span\": \"Teodor arrived\"}, {\"t\": \"time\", \"id\": \"t1\", \"event\": \"@m1\", \"weekday\": \"monday\", \"span\": \"on Monday\"}, {\"t\": \"time\", \"id\": \"t2\", \"event\": \"@m1\", \"name\": \"morning\", \"span\": \"morning\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sd09d930a4a",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Teodor"
+        "name": "Teodor",
+        "span": "Teodor"
       },
       {
         "t": "motion",
-        "id": "e1",
+        "id": "m1",
         "verb": "arrive",
         "mover": "@n1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Teodor arrived"
       },
       {
         "t": "time",
         "id": "t1",
-        "event": "@e1",
-        "weekday": "monday"
+        "event": "@m1",
+        "weekday": "monday",
+        "span": "on Monday"
       },
       {
         "t": "time",
         "id": "t2",
-        "event": "@e1",
-        "name": "morning"
+        "event": "@m1",
+        "name": "morning",
+        "span": "morning"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "488ea14d008681814e98d240e401daa13109b112674f8d3a1d6bef8927a15fdd",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "time",
     "section": "held_out",
-    "index": 7,
+    "index": 9,
     "category": "positive",
     "text": "Teodor arrived on Monday morning.",
     "key": "d09d930a4a"

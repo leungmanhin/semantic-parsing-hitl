@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "6c7ab265c2f61fbc6ee9a1e7fb5e2f38e4bc5b305b4b1d71e184078c71738a99",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sd731be4aba",
     "text": "Teodor believes that Lamine might lend Ottoline the trowel."
   },
   "usage": {
-    "input": 6544,
-    "output": 245,
+    "input": 56510,
+    "output": 309,
     "thinking": null,
-    "total": 6789,
+    "total": 56819,
+    "cached": 54461,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,46 +25,57 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 6544,
-    "candidatesTokenCount": 245,
-    "totalTokenCount": 6789,
+    "promptTokenCount": 56510,
+    "candidatesTokenCount": 309,
+    "totalTokenCount": 56819,
+    "cachedContentTokenCount": 54461,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 6544
+        "tokenCount": 56510
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 54461
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 245
+        "tokenCount": 309
       }
     ]
   },
-  "raw_text": "{\"id\": \"sd731be4aba\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n3\", \"name\": \"Ottoline\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"trowel\", \"definite\": true}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"lend\", \"giver\": \"@n2\", \"recipient\": \"@n3\", \"object\": \"@x1\", \"tense\": \"present\"}, {\"t\": \"modal\", \"id\": \"s1\", \"over\": [\"@e1\"], \"head\": \"Might\", \"surface\": \"might\"}, {\"t\": \"attitude\", \"id\": \"a1\", \"verb\": \"believe\", \"holder\": \"@n1\", \"content\": [\"@s1\"], \"factive\": false, \"tense\": \"present\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sd731be4aba\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n3\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"trowel\", \"definite\": true, \"span\": \"the trowel\"}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"lend\", \"giver\": \"@n2\", \"recipient\": \"@n3\", \"object\": \"@x1\", \"tense\": \"present\", \"span\": \"Lamine might lend Ottoline the trowel\"}, {\"t\": \"modal\", \"id\": \"s1\", \"over\": [\"@e1\"], \"head\": \"Might\", \"surface\": \"might\", \"span\": \"might\"}, {\"t\": \"attitude\", \"id\": \"a1\", \"verb\": \"believe\", \"holder\": \"@n1\", \"content\": [\"@s1\"], \"factive\": false, \"tense\": \"present\", \"span\": \"Teodor believes that Lamine might lend Ottoline the trowel\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sd731be4aba",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Teodor"
+        "name": "Teodor",
+        "span": "Teodor"
       },
       {
         "t": "named-entity",
         "id": "n2",
-        "name": "Lamine"
+        "name": "Lamine",
+        "span": "Lamine"
       },
       {
         "t": "named-entity",
         "id": "n3",
-        "name": "Ottoline"
+        "name": "Ottoline",
+        "span": "Ottoline"
       },
       {
         "t": "witness",
         "id": "x1",
         "class": "trowel",
-        "definite": true
+        "definite": true,
+        "span": "the trowel"
       },
       {
         "t": "transfer",
@@ -72,7 +84,8 @@
         "giver": "@n2",
         "recipient": "@n3",
         "object": "@x1",
-        "tense": "present"
+        "tense": "present",
+        "span": "Lamine might lend Ottoline the trowel"
       },
       {
         "t": "modal",
@@ -81,7 +94,8 @@
           "@e1"
         ],
         "head": "Might",
-        "surface": "might"
+        "surface": "might",
+        "span": "might"
       },
       {
         "t": "attitude",
@@ -92,13 +106,14 @@
           "@s1"
         ],
         "factive": false,
-        "tense": "present"
+        "tense": "present",
+        "span": "Teodor believes that Lamine might lend Ottoline the trowel"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "5fb090d7583e264955ec31adb74c438bcda9224778c39d2a4d5c690a235e86c4",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "attitude",

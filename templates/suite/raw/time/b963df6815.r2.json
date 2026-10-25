@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "0ab3a7d71dae93dd6b6d88b219ab39b150a88bdeccc614969d05d33ac8fef5aa",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sb963df6815",
     "text": "Ottoline sang at dawn."
   },
   "usage": {
-    "input": 28009,
-    "output": 111,
+    "input": 56505,
+    "output": 133,
     "thinking": null,
-    "total": 28120,
+    "total": 56638,
+    "cached": 54456,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,56 +25,59 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 28009,
-    "candidatesTokenCount": 111,
-    "totalTokenCount": 28120,
-    "cachedContentTokenCount": 25960,
+    "promptTokenCount": 56505,
+    "candidatesTokenCount": 133,
+    "totalTokenCount": 56638,
+    "cachedContentTokenCount": 54456,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 28009
+        "tokenCount": 56505
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 25960
+        "tokenCount": 54456
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 111
+        "tokenCount": 133
       }
     ]
   },
-  "raw_text": "{\"id\": \"sb963df6815\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"sing\", \"actor\": \"@n1\", \"tense\": \"past\"}, {\"t\": \"time\", \"id\": \"t1\", \"event\": \"@e1\", \"name\": \"dawn\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sb963df6815\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"sing\", \"actor\": \"@n1\", \"tense\": \"past\", \"span\": \"Ottoline sang\"}, {\"t\": \"time\", \"id\": \"t1\", \"event\": \"@v1\", \"name\": \"dawn\", \"span\": \"at dawn\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sb963df6815",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Ottoline"
+        "name": "Ottoline",
+        "span": "Ottoline"
       },
       {
         "t": "activity",
-        "id": "e1",
+        "id": "v1",
         "verb": "sing",
         "actor": "@n1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Ottoline sang"
       },
       {
         "t": "time",
         "id": "t1",
-        "event": "@e1",
-        "name": "dawn"
+        "event": "@v1",
+        "name": "dawn",
+        "span": "at dawn"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "488ea14d008681814e98d240e401daa13109b112674f8d3a1d6bef8927a15fdd",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "time",

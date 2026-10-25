@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "1e3a0e7b653d644ba66513f0d0e707b1cc9b81d1cb008f3f969832c0fde71796",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s4dd956d334",
     "text": "Yusra did not make Teodor laugh."
   },
   "usage": {
-    "input": 42693,
-    "output": 180,
+    "input": 56509,
+    "output": 223,
     "thinking": null,
-    "total": 42873,
-    "cached": 40644,
+    "total": 56732,
+    "cached": 54460,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,49 +25,52 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 42693,
-    "candidatesTokenCount": 180,
-    "totalTokenCount": 42873,
-    "cachedContentTokenCount": 40644,
+    "promptTokenCount": 56509,
+    "candidatesTokenCount": 223,
+    "totalTokenCount": 56732,
+    "cachedContentTokenCount": 54460,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 42693
+        "tokenCount": 56509
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 40644
+        "tokenCount": 54460
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 180
+        "tokenCount": 223
       }
     ]
   },
-  "raw_text": "{\"id\": \"s4dd956d334\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"laugh\", \"actor\": \"@n2\", \"tense\": \"present\"}, {\"t\": \"causative\", \"id\": \"e1\", \"verb\": \"make\", \"causer\": \"@n1\", \"complement\": [\"@v1\"], \"implication\": \"positive\", \"tense\": \"past\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@e1\"]}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s4dd956d334\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"laugh\", \"actor\": \"@n2\", \"tense\": \"present\", \"span\": \"Teodor laugh\"}, {\"t\": \"causative\", \"id\": \"e1\", \"verb\": \"make\", \"causer\": \"@n1\", \"complement\": [\"@v1\"], \"implication\": \"positive\", \"tense\": \"past\", \"span\": \"Yusra did not make Teodor laugh\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@e1\"], \"span\": \"did not\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s4dd956d334",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Yusra"
+        "name": "Yusra",
+        "span": "Yusra"
       },
       {
         "t": "named-entity",
         "id": "n2",
-        "name": "Teodor"
+        "name": "Teodor",
+        "span": "Teodor"
       },
       {
         "t": "activity",
         "id": "v1",
         "verb": "laugh",
         "actor": "@n2",
-        "tense": "present"
+        "tense": "present",
+        "span": "Teodor laugh"
       },
       {
         "t": "causative",
@@ -78,20 +81,22 @@
           "@v1"
         ],
         "implication": "positive",
-        "tense": "past"
+        "tense": "past",
+        "span": "Yusra did not make Teodor laugh"
       },
       {
         "t": "negation",
         "id": "s1",
         "over": [
           "@e1"
-        ]
+        ],
+        "span": "did not"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "550b5adae738e98b3a45e1fd666b1c271958eedeeddaca6a18b6db34c69a06c7",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "causative",

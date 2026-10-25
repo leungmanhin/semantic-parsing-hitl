@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "3cf1c657d278c5f88cd86233811adb01fd7b99c43b58fc7e7f270c08f8532885",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s56174a355b",
     "text": "Teodor saw Yusra's ferret."
   },
   "usage": {
-    "input": 13823,
-    "output": 151,
+    "input": 56510,
+    "output": 185,
     "thinking": null,
-    "total": 13974,
+    "total": 56695,
+    "cached": 54461,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,63 +25,66 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 13823,
-    "candidatesTokenCount": 151,
-    "totalTokenCount": 13974,
-    "cachedContentTokenCount": 11774,
+    "promptTokenCount": 56510,
+    "candidatesTokenCount": 185,
+    "totalTokenCount": 56695,
+    "cachedContentTokenCount": 54461,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 13823
+        "tokenCount": 56510
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 11774
+        "tokenCount": 54461
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 151
+        "tokenCount": 185
       }
     ]
   },
-  "raw_text": "{\"id\": \"s56174a355b\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"ferret\", \"definite\": true, \"possessor\": \"@n2\"}, {\"t\": \"perception\", \"id\": \"e1\", \"verb\": \"see\", \"perceiver\": \"@n1\", \"stimulus\": \"@x1\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s56174a355b\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"ferret\", \"possessor\": \"@n2\", \"span\": \"Yusra's ferret\"}, {\"t\": \"perception\", \"id\": \"p1\", \"verb\": \"see\", \"perceiver\": \"@n1\", \"stimulus\": \"@x1\", \"tense\": \"past\", \"span\": \"Teodor saw Yusra's ferret\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s56174a355b",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Teodor"
+        "name": "Teodor",
+        "span": "Teodor"
       },
       {
         "t": "named-entity",
         "id": "n2",
-        "name": "Yusra"
+        "name": "Yusra",
+        "span": "Yusra"
       },
       {
         "t": "witness",
         "id": "x1",
         "class": "ferret",
-        "definite": true,
-        "possessor": "@n2"
+        "possessor": "@n2",
+        "span": "Yusra's ferret"
       },
       {
         "t": "perception",
-        "id": "e1",
+        "id": "p1",
         "verb": "see",
         "perceiver": "@n1",
         "stimulus": "@x1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Teodor saw Yusra's ferret"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "4045b2ad4809e7e7e07e9faa62e508fb7a2daeb033c9f5aedf2c8aef30067522",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "perception",

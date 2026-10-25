@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "ed7e5be12a09f9e5947e50cfa5d2b849bc8b16ea94ad2bdefa98a0592d434d3f",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s550f9450b9",
     "text": "Every ferret slept without a quilt."
   },
   "usage": {
-    "input": 49025,
-    "output": 160,
+    "input": 56508,
+    "output": 193,
     "thinking": null,
-    "total": 49185,
-    "cached": 46976,
+    "total": 56701,
+    "cached": 54459,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 49025,
-    "candidatesTokenCount": 160,
-    "totalTokenCount": 49185,
-    "cachedContentTokenCount": 46976,
+    "promptTokenCount": 56508,
+    "candidatesTokenCount": 193,
+    "totalTokenCount": 56701,
+    "cachedContentTokenCount": 54459,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 49025
+        "tokenCount": 56508
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 46976
+        "tokenCount": 54459
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 160
+        "tokenCount": 193
       }
     ]
   },
-  "raw_text": "{\"id\": \"s550f9450b9\", \"instances\": [{\"t\": \"range\", \"id\": \"q1\", \"kind\": \"ferret\", \"quantifier\": \"every\", \"predicate\": \"sleep\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"sleep\", \"actor\": \"@q1\", \"tense\": \"past\"}, {\"t\": \"oblique\", \"id\": \"a1\", \"event\": \"@e1\", \"head\": \"Without\", \"object\": \"quilt\"}, {\"t\": \"generic\", \"id\": \"r1\", \"ranges\": [\"@q1\"], \"over\": [\"@e1\"]}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s550f9450b9\", \"instances\": [{\"t\": \"range\", \"id\": \"q1\", \"class\": \"ferret\", \"quantifier\": \"every\", \"predicate\": \"sleep\", \"span\": \"Every ferret\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"sleep\", \"actor\": \"@q1\", \"tense\": \"past\", \"span\": \"Every ferret slept\"}, {\"t\": \"oblique\", \"id\": \"a1\", \"event\": \"@e1\", \"head\": \"Without\", \"object\": \"quilt\", \"span\": \"without a quilt\"}, {\"t\": \"generic\", \"id\": \"r1\", \"ranges\": [\"@q1\"], \"over\": [\"@e1\"], \"span\": \"Every ferret slept without a quilt\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s550f9450b9",
     "instances": [
@@ -57,21 +57,24 @@
         "id": "q1",
         "class": "ferret",
         "quantifier": "every",
-        "predicate": "sleep"
+        "predicate": "sleep",
+        "span": "Every ferret"
       },
       {
         "t": "activity",
         "id": "e1",
         "verb": "sleep",
         "actor": "@q1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Every ferret slept"
       },
       {
         "t": "oblique",
         "id": "a1",
         "event": "@e1",
         "head": "Without",
-        "object": "quilt"
+        "object": "quilt",
+        "span": "without a quilt"
       },
       {
         "t": "generic",
@@ -81,13 +84,14 @@
         ],
         "over": [
           "@e1"
-        ]
+        ],
+        "span": "Every ferret slept without a quilt"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "7ea5b5bb86c29718a2936a9c64163dc82790d7b8ea4be586be12417680d153a7",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "oblique",

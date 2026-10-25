@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "a9e1ed5a7114de2bedee96ae4010964a4aa69ba1a78b19fae57121290e52e164",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sfae1cea129",
     "text": "Wax is soft when warm."
   },
   "usage": {
-    "input": 51782,
-    "output": 164,
+    "input": 56503,
+    "output": 193,
     "thinking": null,
-    "total": 51946,
-    "cached": 49732,
+    "total": 56696,
+    "cached": null,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,37 +25,31 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 51782,
-    "candidatesTokenCount": 164,
-    "totalTokenCount": 51946,
-    "cachedContentTokenCount": 49732,
+    "promptTokenCount": 56503,
+    "candidatesTokenCount": 193,
+    "totalTokenCount": 56696,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 51782
-      }
-    ],
-    "cacheTokensDetails": [
-      {
-        "modality": "TEXT",
-        "tokenCount": 49732
+        "tokenCount": 56503
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 164
+        "tokenCount": 193
       }
     ]
   },
-  "raw_text": "{\"id\": \"sfae1cea129\", \"instances\": [{\"t\": \"range\", \"id\": \"q1\", \"kind\": \"wax\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@q1\", \"predicate\": \"soft\", \"form\": \"adjective\", \"tense\": \"present\"}, {\"t\": \"copular\", \"id\": \"c2\", \"subject\": \"@q1\", \"predicate\": \"warm\", \"form\": \"adjective\", \"tense\": \"present\"}, {\"t\": \"conditional-property\", \"id\": \"r1\", \"ranges\": [\"@q1\"], \"condition\": [\"@c2\"], \"over\": [\"@c1\"]}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sfae1cea129\", \"instances\": [{\"t\": \"range\", \"id\": \"q1\", \"class\": \"wax\", \"span\": \"Wax\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@q1\", \"predicate\": \"soft\", \"form\": \"adjective\", \"tense\": \"present\", \"span\": \"Wax is soft\"}, {\"t\": \"copular\", \"id\": \"c2\", \"subject\": \"@q1\", \"predicate\": \"warm\", \"form\": \"adjective\", \"tense\": \"present\", \"span\": \"warm\"}, {\"t\": \"conditional-property\", \"id\": \"r1\", \"ranges\": [\"@q1\"], \"condition\": [\"@c2\"], \"over\": [\"@c1\"], \"span\": \"Wax is soft when warm\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sfae1cea129",
     "instances": [
       {
         "t": "range",
         "id": "q1",
-        "class": "wax"
+        "class": "wax",
+        "span": "Wax"
       },
       {
         "t": "copular",
@@ -63,7 +57,8 @@
         "subject": "@q1",
         "predicate": "soft",
         "form": "adjective",
-        "tense": "present"
+        "tense": "present",
+        "span": "Wax is soft"
       },
       {
         "t": "copular",
@@ -71,7 +66,8 @@
         "subject": "@q1",
         "predicate": "warm",
         "form": "adjective",
-        "tense": "present"
+        "tense": "present",
+        "span": "warm"
       },
       {
         "t": "conditional-property",
@@ -84,13 +80,14 @@
         ],
         "over": [
           "@c1"
-        ]
+        ],
+        "span": "Wax is soft when warm"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "e818417b50e53224000dbbfbcf86feb0d70114df739431722ad3ad866d0b6d57",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "generic",

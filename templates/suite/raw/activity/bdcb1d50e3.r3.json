@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "9e1db0997dbb17ae70fb35b09cad0a93ecd8ebeab47d506a264555a1a9d7b5ae",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sbdcb1d50e3",
     "text": "The quilt was washed."
   },
   "usage": {
-    "input": 14848,
-    "output": 88,
+    "input": 56504,
+    "output": 104,
     "thinking": null,
-    "total": 14936,
+    "total": 56608,
+    "cached": 54455,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 14848,
-    "candidatesTokenCount": 88,
-    "totalTokenCount": 14936,
-    "cachedContentTokenCount": 12799,
+    "promptTokenCount": 56504,
+    "candidatesTokenCount": 104,
+    "totalTokenCount": 56608,
+    "cachedContentTokenCount": 54455,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 14848
+        "tokenCount": 56504
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 12799
+        "tokenCount": 54455
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 88
+        "tokenCount": 104
       }
     ]
   },
-  "raw_text": "{\"id\": \"sbdcb1d50e3\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"quilt\", \"definite\": true}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"wash\", \"patient\": \"@x1\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sbdcb1d50e3\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"quilt\", \"definite\": true, \"span\": \"The quilt\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"wash\", \"patient\": \"@x1\", \"tense\": \"past\", \"span\": \"The quilt was washed\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sbdcb1d50e3",
     "instances": [
@@ -55,25 +56,27 @@
         "t": "witness",
         "id": "x1",
         "class": "quilt",
-        "definite": true
+        "definite": true,
+        "span": "The quilt"
       },
       {
         "t": "activity",
         "id": "e1",
         "verb": "wash",
         "patient": "@x1",
-        "tense": "past"
+        "tense": "past",
+        "span": "The quilt was washed"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "7ebc2160e3f1d78f6205db12ef42b449428c7fa0394c1c3609f66a739cb62694",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "activity",
     "section": "held_out",
-    "index": 8,
+    "index": 9,
     "category": "optional",
     "text": "The quilt was washed.",
     "key": "bdcb1d50e3"

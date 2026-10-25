@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "1e3a0e7b653d644ba66513f0d0e707b1cc9b81d1cb008f3f969832c0fde71796",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s3d8dfbee40",
     "text": "Teodor made a trip."
   },
   "usage": {
-    "input": 42688,
-    "output": 84,
+    "input": 56504,
+    "output": 90,
     "thinking": null,
-    "total": 42772,
-    "cached": 40639,
+    "total": 56594,
+    "cached": 54455,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,49 +25,50 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 42688,
-    "candidatesTokenCount": 84,
-    "totalTokenCount": 42772,
-    "cachedContentTokenCount": 40639,
+    "promptTokenCount": 56504,
+    "candidatesTokenCount": 90,
+    "totalTokenCount": 56594,
+    "cachedContentTokenCount": 54455,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 42688
+        "tokenCount": 56504
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 40639
+        "tokenCount": 54455
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 84
+        "tokenCount": 90
       }
     ]
   },
-  "raw_text": "{\"id\": \"s3d8dfbee40\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}], \"unmapped\": [{\"span\": \"made a trip\", \"code\": \"G00\", \"construction\": \"A light-verb construction in which the noun carries the event.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"s3d8dfbee40\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}], \"unmapped\": [{\"span\": \"made a trip\", \"code\": \"G00\", \"construction\": \"A light-verb construction where the noun carries the event.\"}], \"issues\": []}",
   "response": {
     "id": "s3d8dfbee40",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Teodor"
+        "name": "Teodor",
+        "span": "Teodor"
       }
     ],
     "unmapped": [
       {
         "span": "made a trip",
         "code": "G00",
-        "construction": "A light-verb construction in which the noun carries the event."
+        "construction": "A light-verb construction where the noun carries the event."
       }
     ],
     "issues": []
   },
-  "prompt_body_sha256": "550b5adae738e98b3a45e1fd666b1c271958eedeeddaca6a18b6db34c69a06c7",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "causative",

@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "036261b67cffbb04273fa6353b6fe9d8a5bd7044375e91f3934b29dcd44ae2e8",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s0de3c916db",
     "text": "The audit greatly annoyed Yusra."
   },
   "usage": {
-    "input": 35893,
-    "output": 147,
+    "input": 56506,
+    "output": 180,
     "thinking": null,
-    "total": 36040,
-    "cached": 33844,
+    "total": 56686,
+    "cached": 54457,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 35893,
-    "candidatesTokenCount": 147,
-    "totalTokenCount": 36040,
-    "cachedContentTokenCount": 33844,
+    "promptTokenCount": 56506,
+    "candidatesTokenCount": 180,
+    "totalTokenCount": 56686,
+    "cachedContentTokenCount": 54457,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 35893
+        "tokenCount": 56506
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 33844
+        "tokenCount": 54457
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 147
+        "tokenCount": 180
       }
     ]
   },
-  "raw_text": "{\"id\": \"s0de3c916db\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"audit\", \"definite\": true}, {\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"psych\", \"id\": \"p1\", \"verb\": \"annoy\", \"experiencer\": \"@n1\", \"stimulus\": \"@x1\", \"tense\": \"past\"}, {\"t\": \"extent\", \"id\": \"a1\", \"event\": \"@p1\", \"level\": \"greatly\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s0de3c916db\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"audit\", \"definite\": true, \"span\": \"The audit\"}, {\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"psych\", \"id\": \"p1\", \"verb\": \"annoy\", \"experiencer\": \"@n1\", \"stimulus\": \"@x1\", \"tense\": \"past\", \"span\": \"The audit greatly annoyed Yusra\"}, {\"t\": \"extent\", \"id\": \"a1\", \"event\": \"@p1\", \"level\": \"greatly\", \"span\": \"greatly\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s0de3c916db",
     "instances": [
@@ -56,12 +56,14 @@
         "t": "witness",
         "id": "x1",
         "class": "audit",
-        "definite": true
+        "definite": true,
+        "span": "The audit"
       },
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Yusra"
+        "name": "Yusra",
+        "span": "Yusra"
       },
       {
         "t": "psych",
@@ -69,19 +71,21 @@
         "verb": "annoy",
         "experiencer": "@n1",
         "stimulus": "@x1",
-        "tense": "past"
+        "tense": "past",
+        "span": "The audit greatly annoyed Yusra"
       },
       {
         "t": "extent",
         "id": "a1",
         "event": "@p1",
-        "level": "greatly"
+        "level": "greatly",
+        "span": "greatly"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "107542897d74ba7ca217f1d5c88d49a7531f59530bec65a2f2b7b7200334e22e",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "extent",

@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "ed7e5be12a09f9e5947e50cfa5d2b849bc8b16ea94ad2bdefa98a0592d434d3f",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sad8a7b5b90",
     "text": "Lamine found the key to the shed."
   },
   "usage": {
-    "input": 49025,
-    "output": 175,
+    "input": 56508,
+    "output": 217,
     "thinking": null,
-    "total": 49200,
-    "cached": 46976,
+    "total": 56725,
+    "cached": 54459,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,56 +25,60 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 49025,
-    "candidatesTokenCount": 175,
-    "totalTokenCount": 49200,
-    "cachedContentTokenCount": 46976,
+    "promptTokenCount": 56508,
+    "candidatesTokenCount": 217,
+    "totalTokenCount": 56725,
+    "cachedContentTokenCount": 54459,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 49025
+        "tokenCount": 56508
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 46976
+        "tokenCount": 54459
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 175
+        "tokenCount": 217
       }
     ]
   },
-  "raw_text": "{\"id\": \"sad8a7b5b90\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"key\", \"definite\": true}, {\"t\": \"witness\", \"id\": \"x2\", \"kind\": \"shed\", \"definite\": true}, {\"t\": \"postmodifier\", \"id\": \"a1\", \"noun\": \"@x1\", \"head\": \"To\", \"object\": \"@x2\"}, {\"t\": \"acquisition\", \"id\": \"e1\", \"verb\": \"find\", \"acquirer\": \"@n1\", \"object\": \"@x1\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sad8a7b5b90\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"key\", \"definite\": true, \"span\": \"the key\"}, {\"t\": \"witness\", \"id\": \"x2\", \"class\": \"shed\", \"definite\": true, \"span\": \"the shed\"}, {\"t\": \"postmodifier\", \"id\": \"a1\", \"noun\": \"@x1\", \"head\": \"To\", \"object\": \"@x2\", \"span\": \"to the shed\"}, {\"t\": \"acquisition\", \"id\": \"e1\", \"verb\": \"find\", \"acquirer\": \"@n1\", \"object\": \"@x1\", \"tense\": \"past\", \"span\": \"Lamine found the key to the shed\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sad8a7b5b90",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Lamine"
+        "name": "Lamine",
+        "span": "Lamine"
       },
       {
         "t": "witness",
         "id": "x1",
         "class": "key",
-        "definite": true
+        "definite": true,
+        "span": "the key"
       },
       {
         "t": "witness",
         "id": "x2",
         "class": "shed",
-        "definite": true
+        "definite": true,
+        "span": "the shed"
       },
       {
         "t": "postmodifier",
         "id": "a1",
         "noun": "@x1",
         "head": "To",
-        "object": "@x2"
+        "object": "@x2",
+        "span": "to the shed"
       },
       {
         "t": "acquisition",
@@ -82,13 +86,14 @@
         "verb": "find",
         "acquirer": "@n1",
         "object": "@x1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Lamine found the key to the shed"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "7ea5b5bb86c29718a2936a9c64163dc82790d7b8ea4be586be12417680d153a7",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "postmodifier",

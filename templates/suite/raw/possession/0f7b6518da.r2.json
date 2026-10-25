@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "517fa33db1e726e201b1348c24b85866cf55bad518e4a4cbb5add28a521e2750",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s0f7b6518da",
     "text": "Teodor bought the spindle from Yusra."
   },
   "usage": {
-    "input": 11842,
-    "output": 149,
+    "input": 56509,
+    "output": 265,
     "thinking": null,
-    "total": 11991,
+    "total": 56774,
+    "cached": 54460,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,48 +25,51 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 11842,
-    "candidatesTokenCount": 149,
-    "totalTokenCount": 11991,
-    "cachedContentTokenCount": 9793,
+    "promptTokenCount": 56509,
+    "candidatesTokenCount": 265,
+    "totalTokenCount": 56774,
+    "cachedContentTokenCount": 54460,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 11842
+        "tokenCount": 56509
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 9793
+        "tokenCount": 54460
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 149
+        "tokenCount": 265
       }
     ]
   },
-  "raw_text": "{\"id\": \"s0f7b6518da\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"spindle\", \"definite\": true}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Yusra\"}, {\"t\": \"acquisition\", \"id\": \"e1\", \"verb\": \"buy\", \"acquirer\": \"@n1\", \"object\": \"@x1\", \"source\": \"@n2\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\n  \"id\": \"s0f7b6518da\",\n  \"instances\": [\n    {\n      \"t\": \"named-entity\",\n      \"id\": \"n1\",\n      \"name\": \"Teodor\",\n      \"span\": \"Teodor\"\n    },\n    {\n      \"t\": \"witness\",\n      \"id\": \"x1\",\n      \"class\": \"spindle\",\n      \"definite\": true,\n      \"span\": \"the spindle\"\n    },\n    {\n      \"t\": \"named-entity\",\n      \"id\": \"n2\",\n      \"name\": \"Yusra\",\n      \"span\": \"Yusra\"\n    },\n    {\n      \"t\": \"acquisition\",\n      \"id\": \"e1\",\n      \"verb\": \"buy\",\n      \"acquirer\": \"@n1\",\n      \"object\": \"@x1\",\n      \"source\": \"@n2\",\n      \"tense\": \"past\",\n      \"span\": \"Teodor bought the spindle from Yusra\"\n    }\n  ],\n  \"unmapped\": [],\n  \"issues\": []\n}",
   "response": {
     "id": "s0f7b6518da",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Teodor"
+        "name": "Teodor",
+        "span": "Teodor"
       },
       {
         "t": "witness",
         "id": "x1",
         "class": "spindle",
-        "definite": true
+        "definite": true,
+        "span": "the spindle"
       },
       {
         "t": "named-entity",
         "id": "n2",
-        "name": "Yusra"
+        "name": "Yusra",
+        "span": "Yusra"
       },
       {
         "t": "acquisition",
@@ -74,13 +78,14 @@
         "acquirer": "@n1",
         "object": "@x1",
         "source": "@n2",
-        "tense": "past"
+        "tense": "past",
+        "span": "Teodor bought the spindle from Yusra"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "41b1c076c80ab3ff14e8e47da03ff29f11a94fdce1398936f1eb2cbe9cb1a5e7",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "possession",

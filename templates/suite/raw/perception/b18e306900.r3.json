@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "3cf1c657d278c5f88cd86233811adb01fd7b99c43b58fc7e7f270c08f8532885",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sb18e306900",
     "text": "Ottoline saw Lamine handing Yusra an envelope."
   },
   "usage": {
-    "input": 13824,
-    "output": 211,
+    "input": 56511,
+    "output": 267,
     "thinking": null,
-    "total": 14035,
+    "total": 56778,
+    "cached": 54462,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,52 +25,56 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 13824,
-    "candidatesTokenCount": 211,
-    "totalTokenCount": 14035,
-    "cachedContentTokenCount": 11775,
+    "promptTokenCount": 56511,
+    "candidatesTokenCount": 267,
+    "totalTokenCount": 56778,
+    "cachedContentTokenCount": 54462,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 13824
+        "tokenCount": 56511
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 11775
+        "tokenCount": 54462
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 211
+        "tokenCount": 267
       }
     ]
   },
-  "raw_text": "{\"id\": \"sb18e306900\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n3\", \"name\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"envelope\"}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"hand\", \"giver\": \"@n2\", \"recipient\": \"@n3\", \"object\": \"@x1\", \"tense\": \"past\", \"aspect\": \"progressive\"}, {\"t\": \"perception\", \"id\": \"p1\", \"verb\": \"see\", \"perceiver\": \"@n1\", \"event\": \"@e1\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sb18e306900\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n3\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"envelope\", \"span\": \"an envelope\"}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"hand\", \"giver\": \"@n2\", \"recipient\": \"@n3\", \"object\": \"@x1\", \"tense\": \"past\", \"aspect\": \"progressive\", \"span\": \"Lamine handing Yusra an envelope\"}, {\"t\": \"perception\", \"id\": \"p1\", \"verb\": \"see\", \"perceiver\": \"@n1\", \"event\": \"@e1\", \"tense\": \"past\", \"span\": \"Ottoline saw Lamine handing Yusra an envelope\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sb18e306900",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Ottoline"
+        "name": "Ottoline",
+        "span": "Ottoline"
       },
       {
         "t": "named-entity",
         "id": "n2",
-        "name": "Lamine"
+        "name": "Lamine",
+        "span": "Lamine"
       },
       {
         "t": "named-entity",
         "id": "n3",
-        "name": "Yusra"
+        "name": "Yusra",
+        "span": "Yusra"
       },
       {
         "t": "witness",
         "id": "x1",
-        "class": "envelope"
+        "class": "envelope",
+        "span": "an envelope"
       },
       {
         "t": "transfer",
@@ -79,7 +84,8 @@
         "recipient": "@n3",
         "object": "@x1",
         "tense": "past",
-        "aspect": "progressive"
+        "aspect": "progressive",
+        "span": "Lamine handing Yusra an envelope"
       },
       {
         "t": "perception",
@@ -87,13 +93,14 @@
         "verb": "see",
         "perceiver": "@n1",
         "event": "@e1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Ottoline saw Lamine handing Yusra an envelope"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "4045b2ad4809e7e7e07e9faa62e508fb7a2daeb033c9f5aedf2c8aef30067522",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "perception",

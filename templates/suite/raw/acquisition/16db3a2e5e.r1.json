@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "549a9f7ae5e71c64cad5c2d1abc2482ac27640f2496235a0ac72afe79e5b0f08",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s16db3a2e5e",
     "text": "Yusra did not accept the envelope."
   },
   "usage": {
-    "input": 10830,
-    "output": 141,
+    "input": 56508,
+    "output": 260,
     "thinking": null,
-    "total": 10971,
+    "total": 56768,
+    "cached": 54457,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,36 +25,45 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 10830,
-    "candidatesTokenCount": 141,
-    "totalTokenCount": 10971,
+    "promptTokenCount": 56508,
+    "candidatesTokenCount": 260,
+    "totalTokenCount": 56768,
+    "cachedContentTokenCount": 54457,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 10830
+        "tokenCount": 56508
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 54457
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 141
+        "tokenCount": 260
       }
     ]
   },
-  "raw_text": "{\"id\": \"s16db3a2e5e\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"envelope\", \"definite\": true}, {\"t\": \"acquisition\", \"id\": \"e1\", \"verb\": \"accept\", \"acquirer\": \"@n1\", \"object\": \"@x1\", \"tense\": \"past\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@e1\"]}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\n  \"id\": \"s16db3a2e5e\",\n  \"instances\": [\n    {\n      \"t\": \"named-entity\",\n      \"id\": \"n1\",\n      \"name\": \"Yusra\",\n      \"span\": \"Yusra\"\n    },\n    {\n      \"t\": \"witness\",\n      \"id\": \"x1\",\n      \"class\": \"envelope\",\n      \"definite\": true,\n      \"span\": \"the envelope\"\n    },\n    {\n      \"t\": \"acquisition\",\n      \"id\": \"e1\",\n      \"verb\": \"accept\",\n      \"acquirer\": \"@n1\",\n      \"object\": \"@x1\",\n      \"tense\": \"past\",\n      \"span\": \"Yusra did not accept the envelope\"\n    },\n    {\n      \"t\": \"negation\",\n      \"id\": \"s1\",\n      \"over\": [\n        \"@e1\"\n      ],\n      \"span\": \"did not\"\n    }\n  ],\n  \"unmapped\": [],\n  \"issues\": []\n}",
   "response": {
     "id": "s16db3a2e5e",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Yusra"
+        "name": "Yusra",
+        "span": "Yusra"
       },
       {
         "t": "witness",
         "id": "x1",
         "class": "envelope",
-        "definite": true
+        "definite": true,
+        "span": "the envelope"
       },
       {
         "t": "acquisition",
@@ -61,20 +71,22 @@
         "verb": "accept",
         "acquirer": "@n1",
         "object": "@x1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Yusra did not accept the envelope"
       },
       {
         "t": "negation",
         "id": "s1",
         "over": [
           "@e1"
-        ]
+        ],
+        "span": "did not"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "6cf313445a0a101e1fc3416cc18e201b1014c1ed7339419f511094ac6b3ffbd5",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "acquisition",

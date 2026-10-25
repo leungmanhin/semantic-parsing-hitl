@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "8c00a5b1e0a3e9bf07dd0d7ee0b05eda890e9ced0c007552a084053d71915f5d",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s8dfa61f69a",
     "text": "The ferrets surrounded the barn."
   },
   "usage": {
-    "input": 18311,
-    "output": 119,
+    "input": 56506,
+    "output": 145,
     "thinking": null,
-    "total": 18430,
+    "total": 56651,
+    "cached": 54457,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 18311,
-    "candidatesTokenCount": 119,
-    "totalTokenCount": 18430,
-    "cachedContentTokenCount": 16262,
+    "promptTokenCount": 56506,
+    "candidatesTokenCount": 145,
+    "totalTokenCount": 56651,
+    "cachedContentTokenCount": 54457,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 18311
+        "tokenCount": 56506
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 16262
+        "tokenCount": 54457
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 119
+        "tokenCount": 145
       }
     ]
   },
-  "raw_text": "{\"id\": \"s8dfa61f69a\", \"instances\": [{\"t\": \"group\", \"id\": \"g1\", \"kind\": \"ferret\", \"definite\": true}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"barn\", \"definite\": true}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"surround\", \"actor\": \"@g1\", \"patient\": \"@x1\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s8dfa61f69a\", \"instances\": [{\"t\": \"group\", \"id\": \"g1\", \"class\": \"ferret\", \"definite\": true, \"span\": \"The ferrets\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"barn\", \"definite\": true, \"span\": \"the barn\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"surround\", \"actor\": \"@g1\", \"patient\": \"@x1\", \"tense\": \"past\", \"span\": \"The ferrets surrounded the barn\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s8dfa61f69a",
     "instances": [
@@ -55,13 +56,15 @@
         "t": "group",
         "id": "g1",
         "class": "ferret",
-        "definite": true
+        "definite": true,
+        "span": "The ferrets"
       },
       {
         "t": "witness",
         "id": "x1",
         "class": "barn",
-        "definite": true
+        "definite": true,
+        "span": "the barn"
       },
       {
         "t": "activity",
@@ -69,13 +72,14 @@
         "verb": "surround",
         "actor": "@g1",
         "patient": "@x1",
-        "tense": "past"
+        "tense": "past",
+        "span": "The ferrets surrounded the barn"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "1f1bd4be275047a20fd04619f6974c72a5121f21242054798635c1cd6fa89c28",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "distribution",

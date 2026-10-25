@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "30136217c8a53b070f76fabaf4ca8fa6bd9b79b46900954e11cd22896106c271",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sd440a71351",
     "text": "Every ferret feared every heron."
   },
   "usage": {
-    "input": 19699,
-    "output": 171,
+    "input": 56506,
+    "output": 204,
     "thinking": null,
-    "total": 19870,
+    "total": 56710,
+    "cached": 54456,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,23 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 19699,
-    "candidatesTokenCount": 171,
-    "totalTokenCount": 19870,
+    "promptTokenCount": 56506,
+    "candidatesTokenCount": 204,
+    "totalTokenCount": 56710,
+    "cachedContentTokenCount": 54456,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 19699
+        "tokenCount": 56506
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 54456
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 171
+        "tokenCount": 204
       }
     ]
   },
-  "raw_text": "{\"id\": \"sd440a71351\", \"instances\": [{\"t\": \"range\", \"id\": \"q1\", \"kind\": \"ferret\", \"quantifier\": \"every\", \"predicate\": \"fear\"}, {\"t\": \"range\", \"id\": \"q2\", \"kind\": \"heron\", \"quantifier\": \"every\", \"predicate\": \"fear\"}, {\"t\": \"psych\", \"id\": \"p1\", \"verb\": \"fear\", \"experiencer\": \"@q1\", \"stimulus\": \"@q2\", \"tense\": \"past\"}, {\"t\": \"generic\", \"id\": \"r1\", \"ranges\": [\"@q1\", \"@q2\"], \"over\": [\"@p1\"]}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sd440a71351\", \"instances\": [{\"t\": \"range\", \"id\": \"q1\", \"class\": \"ferret\", \"quantifier\": \"every\", \"predicate\": \"fear\", \"span\": \"Every ferret\"}, {\"t\": \"range\", \"id\": \"q2\", \"class\": \"heron\", \"quantifier\": \"every\", \"predicate\": \"fear\", \"span\": \"every heron\"}, {\"t\": \"psych\", \"id\": \"p1\", \"verb\": \"fear\", \"experiencer\": \"@q1\", \"stimulus\": \"@q2\", \"tense\": \"past\", \"span\": \"Every ferret feared every heron\"}, {\"t\": \"generic\", \"id\": \"r1\", \"ranges\": [\"@q1\", \"@q2\"], \"over\": [\"@p1\"], \"span\": \"Every ferret feared every heron\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sd440a71351",
     "instances": [
@@ -49,14 +57,16 @@
         "id": "q1",
         "class": "ferret",
         "quantifier": "every",
-        "predicate": "fear"
+        "predicate": "fear",
+        "span": "Every ferret"
       },
       {
         "t": "range",
         "id": "q2",
         "class": "heron",
         "quantifier": "every",
-        "predicate": "fear"
+        "predicate": "fear",
+        "span": "every heron"
       },
       {
         "t": "psych",
@@ -64,7 +74,8 @@
         "verb": "fear",
         "experiencer": "@q1",
         "stimulus": "@q2",
-        "tense": "past"
+        "tense": "past",
+        "span": "Every ferret feared every heron"
       },
       {
         "t": "generic",
@@ -75,13 +86,14 @@
         ],
         "over": [
           "@p1"
-        ]
+        ],
+        "span": "Every ferret feared every heron"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "ae90abe12b2d4b21b84088798d51cf84ec4ff071897448fde41cb8d910734e20",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "generic",

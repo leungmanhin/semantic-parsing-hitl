@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "aea0dc69d24f92b4e9fc854261540ae45969c539482a78ca709b17321fd141f1",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s739fc631eb",
     "text": "Ottoline waited, but Teodor left."
   },
   "usage": {
-    "input": 45874,
-    "output": 173,
+    "input": 56508,
+    "output": 209,
     "thinking": null,
-    "total": 46047,
-    "cached": 43823,
+    "total": 56717,
+    "cached": 54459,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,69 +25,74 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 45874,
-    "candidatesTokenCount": 173,
-    "totalTokenCount": 46047,
-    "cachedContentTokenCount": 43823,
+    "promptTokenCount": 56508,
+    "candidatesTokenCount": 209,
+    "totalTokenCount": 56717,
+    "cachedContentTokenCount": 54459,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 45874
+        "tokenCount": 56508
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 43823
+        "tokenCount": 54459
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 173
+        "tokenCount": 209
       }
     ]
   },
-  "raw_text": "{\"id\": \"s739fc631eb\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"wait\", \"actor\": \"@n1\", \"tense\": \"past\"}, {\"t\": \"motion\", \"id\": \"e2\", \"verb\": \"leave\", \"mover\": \"@n2\", \"tense\": \"past\"}, {\"t\": \"link\", \"id\": \"k1\", \"head\": \"But\", \"main\": \"@e1\", \"sub\": \"@e2\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s739fc631eb\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"wait\", \"actor\": \"@n1\", \"tense\": \"past\", \"span\": \"Ottoline waited\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n2\", \"tense\": \"past\", \"span\": \"Teodor left\"}, {\"t\": \"link\", \"id\": \"k1\", \"head\": \"But\", \"main\": \"@v1\", \"sub\": \"@m1\", \"span\": \"but\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s739fc631eb",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Ottoline"
+        "name": "Ottoline",
+        "span": "Ottoline"
       },
       {
         "t": "named-entity",
         "id": "n2",
-        "name": "Teodor"
+        "name": "Teodor",
+        "span": "Teodor"
       },
       {
         "t": "activity",
-        "id": "e1",
+        "id": "v1",
         "verb": "wait",
         "actor": "@n1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Ottoline waited"
       },
       {
         "t": "motion",
-        "id": "e2",
+        "id": "m1",
         "verb": "leave",
         "mover": "@n2",
-        "tense": "past"
+        "tense": "past",
+        "span": "Teodor left"
       },
       {
         "t": "link",
         "id": "k1",
         "head": "But",
-        "main": "@e1",
-        "sub": "@e2"
+        "main": "@v1",
+        "sub": "@m1",
+        "span": "but"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "667366f56ac295f7c22279b3bdae00b28653ebaf94bfcee3f5443b9887b2e7ea",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "link",

@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "7b971397645436659b47229c67b5e18427eb894e0e6cbf0b176ccc7db0eed480",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s54916abfe5",
     "text": "Yusra no longer works."
   },
   "usage": {
-    "input": 42688,
-    "output": 212,
+    "input": 56505,
+    "output": 101,
     "thinking": null,
-    "total": 42900,
-    "cached": 40639,
+    "total": 56606,
+    "cached": 54456,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,69 +25,50 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 42688,
-    "candidatesTokenCount": 212,
-    "totalTokenCount": 42900,
-    "cachedContentTokenCount": 40639,
+    "promptTokenCount": 56505,
+    "candidatesTokenCount": 101,
+    "totalTokenCount": 56606,
+    "cachedContentTokenCount": 54456,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 42688
+        "tokenCount": 56505
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 40639
+        "tokenCount": 54456
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 212
+        "tokenCount": 101
       }
     ]
   },
-  "raw_text": "{\"id\": \"s54916abfe5\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"work\", \"actor\": \"@n1\", \"tense\": \"present\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@v1\"]}], \"unmapped\": [{\"span\": \"no longer\", \"code\": \"G00\", \"construction\": \"Aspectual adverbial 'no longer' presupposing a prior state while negating the present one.\"}], \"issues\": [{\"code\": \"P00\", \"where\": \"aspectual\", \"text\": \"The boundary case for 'no longer V-s' says to report the aspectual words as unmapped, leaving it ambiguous whether to parse the negated present clause or report the whole clause as unmapped under the entailment rule.\"}]}",
+  "raw_text": "{\"id\": \"s54916abfe5\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}], \"unmapped\": [{\"span\": \"Yusra no longer works\", \"code\": \"G00\", \"construction\": \"A 'no longer' aspectual adverbial negating the continuation of an activity.\"}], \"issues\": []}",
   "response": {
     "id": "s54916abfe5",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Yusra"
-      },
-      {
-        "t": "activity",
-        "id": "v1",
-        "verb": "work",
-        "actor": "@n1",
-        "tense": "present"
-      },
-      {
-        "t": "negation",
-        "id": "s1",
-        "over": [
-          "@v1"
-        ]
+        "name": "Yusra",
+        "span": "Yusra"
       }
     ],
     "unmapped": [
       {
-        "span": "no longer",
+        "span": "Yusra no longer works",
         "code": "G00",
-        "construction": "Aspectual adverbial 'no longer' presupposing a prior state while negating the present one."
+        "construction": "A 'no longer' aspectual adverbial negating the continuation of an activity."
       }
     ],
-    "issues": [
-      {
-        "code": "P00",
-        "where": "aspectual",
-        "text": "The boundary case for 'no longer V-s' says to report the aspectual words as unmapped, leaving it ambiguous whether to parse the negated present clause or report the whole clause as unmapped under the entailment rule."
-      }
-    ]
+    "issues": []
   },
-  "prompt_body_sha256": "550b5adae738e98b3a45e1fd666b1c271958eedeeddaca6a18b6db34c69a06c7",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "aspectual",

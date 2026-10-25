@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "036261b67cffbb04273fa6353b6fe9d8a5bd7044375e91f3934b29dcd44ae2e8",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s5f0d5e48ef",
     "text": "Teodor thoroughly cleaned the shed."
   },
   "usage": {
-    "input": 35894,
-    "output": 217,
+    "input": 56507,
+    "output": 178,
     "thinking": null,
-    "total": 36111,
-    "cached": 33845,
+    "total": 56685,
+    "cached": 54458,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,63 +25,67 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 35894,
-    "candidatesTokenCount": 217,
-    "totalTokenCount": 36111,
-    "cachedContentTokenCount": 33845,
+    "promptTokenCount": 56507,
+    "candidatesTokenCount": 178,
+    "totalTokenCount": 56685,
+    "cachedContentTokenCount": 54458,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 35894
+        "tokenCount": 56507
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 33845
+        "tokenCount": 54458
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 217
+        "tokenCount": 178
       }
     ]
   },
-  "raw_text": "{\n  \"id\": \"s5f0d5e48ef\",\n  \"instances\": [\n    {\n      \"t\": \"named-entity\",\n      \"id\": \"n1\",\n      \"name\": \"Teodor\"\n    },\n    {\n      \"t\": \"witness\",\n      \"id\": \"x1\",\n      \"kind\": \"shed\",\n      \"definite\": true\n    },\n    {\n      \"t\": \"activity\",\n      \"id\": \"e1\",\n      \"verb\": \"clean\",\n      \"actor\": \"@n1\",\n      \"patient\": \"@x1\",\n      \"tense\": \"past\"\n    },\n    {\n      \"t\": \"extent\",\n      \"id\": \"a1\",\n      \"event\": \"@e1\",\n      \"level\": \"thoroughly\"\n    }\n  ],\n  \"unmapped\": [],\n  \"issues\": []\n}",
+  "raw_text": "{\"id\": \"s5f0d5e48ef\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"shed\", \"definite\": true, \"span\": \"the shed\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"clean\", \"actor\": \"@n1\", \"patient\": \"@x1\", \"tense\": \"past\", \"span\": \"Teodor thoroughly cleaned the shed\"}, {\"t\": \"extent\", \"id\": \"a1\", \"event\": \"@v1\", \"level\": \"thoroughly\", \"span\": \"thoroughly\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s5f0d5e48ef",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Teodor"
+        "name": "Teodor",
+        "span": "Teodor"
       },
       {
         "t": "witness",
         "id": "x1",
         "class": "shed",
-        "definite": true
+        "definite": true,
+        "span": "the shed"
       },
       {
         "t": "activity",
-        "id": "e1",
+        "id": "v1",
         "verb": "clean",
         "actor": "@n1",
         "patient": "@x1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Teodor thoroughly cleaned the shed"
       },
       {
         "t": "extent",
         "id": "a1",
-        "event": "@e1",
-        "level": "thoroughly"
+        "event": "@v1",
+        "level": "thoroughly",
+        "span": "thoroughly"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "107542897d74ba7ca217f1d5c88d49a7531f59530bec65a2f2b7b7200334e22e",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "extent",

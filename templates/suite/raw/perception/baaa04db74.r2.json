@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "3cf1c657d278c5f88cd86233811adb01fd7b99c43b58fc7e7f270c08f8532885",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sbaaa04db74",
     "text": "Lamine noticed Ottoline."
   },
   "usage": {
-    "input": 13817,
-    "output": 114,
+    "input": 56504,
+    "output": 138,
     "thinking": null,
-    "total": 13931,
+    "total": 56642,
+    "cached": 54455,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,42 +25,44 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 13817,
-    "candidatesTokenCount": 114,
-    "totalTokenCount": 13931,
-    "cachedContentTokenCount": 11768,
+    "promptTokenCount": 56504,
+    "candidatesTokenCount": 138,
+    "totalTokenCount": 56642,
+    "cachedContentTokenCount": 54455,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 13817
+        "tokenCount": 56504
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 11768
+        "tokenCount": 54455
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 114
+        "tokenCount": 138
       }
     ]
   },
-  "raw_text": "{\"id\": \"sbaaa04db74\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Ottoline\"}, {\"t\": \"perception\", \"id\": \"p1\", \"verb\": \"notice\", \"perceiver\": \"@n1\", \"stimulus\": \"@n2\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sbaaa04db74\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"perception\", \"id\": \"p1\", \"verb\": \"notice\", \"perceiver\": \"@n1\", \"stimulus\": \"@n2\", \"tense\": \"past\", \"span\": \"Lamine noticed Ottoline\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sbaaa04db74",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Lamine"
+        "name": "Lamine",
+        "span": "Lamine"
       },
       {
         "t": "named-entity",
         "id": "n2",
-        "name": "Ottoline"
+        "name": "Ottoline",
+        "span": "Ottoline"
       },
       {
         "t": "perception",
@@ -67,13 +70,14 @@
         "verb": "notice",
         "perceiver": "@n1",
         "stimulus": "@n2",
-        "tense": "past"
+        "tense": "past",
+        "span": "Lamine noticed Ottoline"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "4045b2ad4809e7e7e07e9faa62e508fb7a2daeb033c9f5aedf2c8aef30067522",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "perception",

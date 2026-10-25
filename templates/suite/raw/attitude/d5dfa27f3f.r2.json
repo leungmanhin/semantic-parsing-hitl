@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "6c7ab265c2f61fbc6ee9a1e7fb5e2f38e4bc5b305b4b1d71e184078c71738a99",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sd5dfa27f3f",
     "text": "Lamine had assumed that Ottoline sent the quilt."
   },
   "usage": {
-    "input": 6543,
-    "output": 190,
+    "input": 56509,
+    "output": 236,
     "thinking": null,
-    "total": 6733,
+    "total": 56745,
+    "cached": 54460,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,41 +25,51 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 6543,
-    "candidatesTokenCount": 190,
-    "totalTokenCount": 6733,
+    "promptTokenCount": 56509,
+    "candidatesTokenCount": 236,
+    "totalTokenCount": 56745,
+    "cachedContentTokenCount": 54460,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 6543
+        "tokenCount": 56509
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 54460
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 190
+        "tokenCount": 236
       }
     ]
   },
-  "raw_text": "{\"id\": \"sd5dfa27f3f\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Ottoline\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"quilt\", \"definite\": true}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"send\", \"giver\": \"@n2\", \"object\": \"@x1\", \"tense\": \"past\"}, {\"t\": \"attitude\", \"id\": \"a1\", \"verb\": \"assume\", \"holder\": \"@n1\", \"content\": [\"@e1\"], \"factive\": false, \"tense\": \"past\", \"aspect\": \"perfect\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sd5dfa27f3f\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"quilt\", \"definite\": true, \"span\": \"the quilt\"}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"send\", \"giver\": \"@n2\", \"object\": \"@x1\", \"tense\": \"past\", \"span\": \"Ottoline sent the quilt\"}, {\"t\": \"attitude\", \"id\": \"a1\", \"verb\": \"assume\", \"holder\": \"@n1\", \"content\": [\"@e1\"], \"factive\": false, \"tense\": \"past\", \"aspect\": \"perfect\", \"span\": \"Lamine had assumed that Ottoline sent the quilt\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sd5dfa27f3f",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Lamine"
+        "name": "Lamine",
+        "span": "Lamine"
       },
       {
         "t": "named-entity",
         "id": "n2",
-        "name": "Ottoline"
+        "name": "Ottoline",
+        "span": "Ottoline"
       },
       {
         "t": "witness",
         "id": "x1",
         "class": "quilt",
-        "definite": true
+        "definite": true,
+        "span": "the quilt"
       },
       {
         "t": "transfer",
@@ -66,7 +77,8 @@
         "verb": "send",
         "giver": "@n2",
         "object": "@x1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Ottoline sent the quilt"
       },
       {
         "t": "attitude",
@@ -78,13 +90,14 @@
         ],
         "factive": false,
         "tense": "past",
-        "aspect": "perfect"
+        "aspect": "perfect",
+        "span": "Lamine had assumed that Ottoline sent the quilt"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "5fb090d7583e264955ec31adb74c438bcda9224778c39d2a4d5c690a235e86c4",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "attitude",

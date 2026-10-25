@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "57c0a2cf118bc64251ee1dc4f10535ec1900e8fb5354bff54b546c18457f758b",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s644e93aa7f",
     "text": "Teodor travelled by train."
   },
   "usage": {
-    "input": 33503,
-    "output": 126,
+    "input": 56506,
+    "output": 148,
     "thinking": null,
-    "total": 33629,
-    "cached": 31453,
+    "total": 56654,
+    "cached": 54456,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,58 +25,61 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 33503,
-    "candidatesTokenCount": 126,
-    "totalTokenCount": 33629,
-    "cachedContentTokenCount": 31453,
+    "promptTokenCount": 56506,
+    "candidatesTokenCount": 148,
+    "totalTokenCount": 56654,
+    "cachedContentTokenCount": 54456,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 33503
+        "tokenCount": 56506
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 31453
+        "tokenCount": 54456
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 126
+        "tokenCount": 148
       }
     ]
   },
-  "raw_text": "{\"id\": \"s644e93aa7f\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"motion\", \"id\": \"e1\", \"verb\": \"travel\", \"mover\": \"@n1\", \"tense\": \"past\"}, {\"t\": \"adjunct\", \"id\": \"a1\", \"event\": \"@e1\", \"participant\": \"train\", \"head\": \"Instrument\", \"preposition\": \"by\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s644e93aa7f\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"travel\", \"mover\": \"@n1\", \"tense\": \"past\", \"span\": \"Teodor travelled\"}, {\"t\": \"adjunct\", \"id\": \"a1\", \"event\": \"@m1\", \"participant\": \"train\", \"head\": \"Instrument\", \"preposition\": \"by\", \"span\": \"by train\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s644e93aa7f",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Teodor"
+        "name": "Teodor",
+        "span": "Teodor"
       },
       {
         "t": "motion",
-        "id": "e1",
+        "id": "m1",
         "verb": "travel",
         "mover": "@n1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Teodor travelled"
       },
       {
         "t": "adjunct",
         "id": "a1",
-        "event": "@e1",
+        "event": "@m1",
         "participant": "train",
         "head": "Instrument",
-        "preposition": "by"
+        "preposition": "by",
+        "span": "by train"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "55732af26869bbaa55169fc16db0ed85110798ac0721bfbdda732a93ff4b5fd0",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "adjunct",

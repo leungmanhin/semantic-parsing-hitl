@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "036261b67cffbb04273fa6353b6fe9d8a5bd7044375e91f3934b29dcd44ae2e8",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s5ca394c478",
     "text": "The stew might be too hot."
   },
   "usage": {
-    "input": 35894,
-    "output": 127,
+    "input": 56507,
+    "output": 151,
     "thinking": null,
-    "total": 36021,
-    "cached": 33845,
+    "total": 56658,
+    "cached": 54458,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 35894,
-    "candidatesTokenCount": 127,
-    "totalTokenCount": 36021,
-    "cachedContentTokenCount": 33845,
+    "promptTokenCount": 56507,
+    "candidatesTokenCount": 151,
+    "totalTokenCount": 56658,
+    "cachedContentTokenCount": 54458,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 35894
+        "tokenCount": 56507
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 33845
+        "tokenCount": 54458
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 127
+        "tokenCount": 151
       }
     ]
   },
-  "raw_text": "{\"id\": \"s5ca394c478\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"stew\", \"definite\": true}, {\"t\": \"degree\", \"id\": \"d1\", \"bearer\": \"@x1\", \"scale\": \"hot\", \"level\": \"too\", \"tense\": \"present\"}, {\"t\": \"modal\", \"id\": \"s1\", \"over\": [\"@d1\"], \"head\": \"Might\", \"surface\": \"might\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s5ca394c478\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"stew\", \"definite\": true, \"span\": \"The stew\"}, {\"t\": \"degree\", \"id\": \"d1\", \"bearer\": \"@x1\", \"scale\": \"hot\", \"level\": \"too\", \"tense\": \"present\", \"span\": \"The stew might be too hot\"}, {\"t\": \"modal\", \"id\": \"s1\", \"over\": [\"@d1\"], \"head\": \"Might\", \"surface\": \"might\", \"span\": \"might\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s5ca394c478",
     "instances": [
@@ -56,7 +56,8 @@
         "t": "witness",
         "id": "x1",
         "class": "stew",
-        "definite": true
+        "definite": true,
+        "span": "The stew"
       },
       {
         "t": "degree",
@@ -64,7 +65,8 @@
         "bearer": "@x1",
         "scale": "hot",
         "level": "too",
-        "tense": "present"
+        "tense": "present",
+        "span": "The stew might be too hot"
       },
       {
         "t": "modal",
@@ -73,13 +75,14 @@
           "@d1"
         ],
         "head": "Might",
-        "surface": "might"
+        "surface": "might",
+        "span": "might"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "107542897d74ba7ca217f1d5c88d49a7531f59530bec65a2f2b7b7200334e22e",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "degree",

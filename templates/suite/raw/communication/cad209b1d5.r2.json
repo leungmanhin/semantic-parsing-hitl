@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "4e0b46810b988ce05e1f517f3a6d2747555679ded22ea0a5d060190513c50586",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "scad209b1d5",
     "text": "Lamine is telling Yusra the news."
   },
   "usage": {
-    "input": 8428,
-    "output": 154,
+    "input": 56508,
+    "output": 189,
     "thinking": null,
-    "total": 8582,
+    "total": 56697,
+    "cached": 54459,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,48 +25,51 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 8428,
-    "candidatesTokenCount": 154,
-    "totalTokenCount": 8582,
-    "cachedContentTokenCount": 6379,
+    "promptTokenCount": 56508,
+    "candidatesTokenCount": 189,
+    "totalTokenCount": 56697,
+    "cachedContentTokenCount": 54459,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 8428
+        "tokenCount": 56508
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 6379
+        "tokenCount": 54459
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 154
+        "tokenCount": 189
       }
     ]
   },
-  "raw_text": "{\"id\": \"scad209b1d5\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"news\", \"definite\": true}, {\"t\": \"communication\", \"id\": \"c1\", \"verb\": \"tell\", \"speaker\": \"@n1\", \"addressee\": \"@n2\", \"message\": \"@x1\", \"tense\": \"present\", \"aspect\": \"progressive\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"scad209b1d5\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"news\", \"definite\": true, \"span\": \"the news\"}, {\"t\": \"communication\", \"id\": \"c1\", \"verb\": \"tell\", \"speaker\": \"@n1\", \"addressee\": \"@n2\", \"message\": \"@x1\", \"tense\": \"present\", \"aspect\": \"progressive\", \"span\": \"Lamine is telling Yusra the news\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "scad209b1d5",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Lamine"
+        "name": "Lamine",
+        "span": "Lamine"
       },
       {
         "t": "named-entity",
         "id": "n2",
-        "name": "Yusra"
+        "name": "Yusra",
+        "span": "Yusra"
       },
       {
         "t": "witness",
         "id": "x1",
         "class": "news",
-        "definite": true
+        "definite": true,
+        "span": "the news"
       },
       {
         "t": "communication",
@@ -75,18 +79,19 @@
         "addressee": "@n2",
         "message": "@x1",
         "tense": "present",
-        "aspect": "progressive"
+        "aspect": "progressive",
+        "span": "Lamine is telling Yusra the news"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "e3d200dab1a94aef009e77e2e5738e5fb8713fdb47b96afd97dbe6f48a10d909",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "communication",
     "section": "held_out",
-    "index": 8,
+    "index": 9,
     "category": "optional",
     "text": "Lamine is telling Yusra the news.",
     "key": "cad209b1d5"

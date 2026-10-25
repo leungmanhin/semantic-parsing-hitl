@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "036261b67cffbb04273fa6353b6fe9d8a5bd7044375e91f3934b29dcd44ae2e8",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sc45f97a602",
     "text": "Yusra bought a very old spindle."
   },
   "usage": {
-    "input": 35895,
-    "output": 147,
+    "input": 56508,
+    "output": 184,
     "thinking": null,
-    "total": 36042,
-    "cached": 33841,
+    "total": 56692,
+    "cached": 54456,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,49 +25,52 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 35895,
-    "candidatesTokenCount": 147,
-    "totalTokenCount": 36042,
-    "cachedContentTokenCount": 33841,
+    "promptTokenCount": 56508,
+    "candidatesTokenCount": 184,
+    "totalTokenCount": 56692,
+    "cachedContentTokenCount": 54456,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 35895
+        "tokenCount": 56508
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 33841
+        "tokenCount": 54456
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 147
+        "tokenCount": 184
       }
     ]
   },
-  "raw_text": "{\"id\": \"sc45f97a602\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"spindle\"}, {\"t\": \"degree\", \"id\": \"d1\", \"bearer\": \"@x1\", \"scale\": \"old\", \"level\": \"very\"}, {\"t\": \"acquisition\", \"id\": \"e1\", \"verb\": \"buy\", \"acquirer\": \"@n1\", \"object\": \"@x1\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sc45f97a602\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"spindle\", \"span\": \"a very old spindle\"}, {\"t\": \"degree\", \"id\": \"d1\", \"bearer\": \"@x1\", \"scale\": \"old\", \"level\": \"very\", \"span\": \"very old\"}, {\"t\": \"acquisition\", \"id\": \"e1\", \"verb\": \"buy\", \"acquirer\": \"@n1\", \"object\": \"@x1\", \"tense\": \"past\", \"span\": \"Yusra bought a very old spindle\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sc45f97a602",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Yusra"
+        "name": "Yusra",
+        "span": "Yusra"
       },
       {
         "t": "witness",
         "id": "x1",
-        "class": "spindle"
+        "class": "spindle",
+        "span": "a very old spindle"
       },
       {
         "t": "degree",
         "id": "d1",
         "bearer": "@x1",
         "scale": "old",
-        "level": "very"
+        "level": "very",
+        "span": "very old"
       },
       {
         "t": "acquisition",
@@ -75,13 +78,14 @@
         "verb": "buy",
         "acquirer": "@n1",
         "object": "@x1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Yusra bought a very old spindle"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "107542897d74ba7ca217f1d5c88d49a7531f59530bec65a2f2b7b7200334e22e",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "degree",

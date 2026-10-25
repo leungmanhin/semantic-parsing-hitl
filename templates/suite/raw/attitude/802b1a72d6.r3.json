@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "8c00a5b1e0a3e9bf07dd0d7ee0b05eda890e9ced0c007552a084053d71915f5d",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s802b1a72d6",
     "text": "Yusra fears that Lamine sold the spindle."
   },
   "usage": {
-    "input": 18316,
-    "output": 188,
+    "input": 56511,
+    "output": 235,
     "thinking": null,
-    "total": 18504,
+    "total": 56746,
+    "cached": 54462,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,48 +25,51 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 18316,
-    "candidatesTokenCount": 188,
-    "totalTokenCount": 18504,
-    "cachedContentTokenCount": 16267,
+    "promptTokenCount": 56511,
+    "candidatesTokenCount": 235,
+    "totalTokenCount": 56746,
+    "cachedContentTokenCount": 54462,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 18316
+        "tokenCount": 56511
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 16267
+        "tokenCount": 54462
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 188
+        "tokenCount": 235
       }
     ]
   },
-  "raw_text": "{\"id\": \"s802b1a72d6\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"spindle\", \"definite\": true}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"sell\", \"giver\": \"@n2\", \"object\": \"@x1\", \"tense\": \"past\"}, {\"t\": \"attitude\", \"id\": \"a1\", \"verb\": \"fear\", \"holder\": \"@n1\", \"content\": [\"@e1\"], \"factive\": false, \"tense\": \"present\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s802b1a72d6\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"spindle\", \"definite\": true, \"span\": \"the spindle\"}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"sell\", \"giver\": \"@n2\", \"object\": \"@x1\", \"tense\": \"past\", \"span\": \"Lamine sold the spindle\"}, {\"t\": \"attitude\", \"id\": \"a1\", \"verb\": \"fear\", \"holder\": \"@n1\", \"content\": [\"@e1\"], \"factive\": false, \"tense\": \"present\", \"span\": \"Yusra fears that Lamine sold the spindle\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s802b1a72d6",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Yusra"
+        "name": "Yusra",
+        "span": "Yusra"
       },
       {
         "t": "named-entity",
         "id": "n2",
-        "name": "Lamine"
+        "name": "Lamine",
+        "span": "Lamine"
       },
       {
         "t": "witness",
         "id": "x1",
         "class": "spindle",
-        "definite": true
+        "definite": true,
+        "span": "the spindle"
       },
       {
         "t": "transfer",
@@ -73,7 +77,8 @@
         "verb": "sell",
         "giver": "@n2",
         "object": "@x1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Lamine sold the spindle"
       },
       {
         "t": "attitude",
@@ -84,13 +89,14 @@
           "@e1"
         ],
         "factive": false,
-        "tense": "present"
+        "tense": "present",
+        "span": "Yusra fears that Lamine sold the spindle"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "1f1bd4be275047a20fd04619f6974c72a5121f21242054798635c1cd6fa89c28",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "attitude",

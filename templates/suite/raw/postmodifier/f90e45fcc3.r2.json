@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "afbcddcd8dd2d137cd347ff80a5aeef60f93abe4404e394982b0af310b9aa5d7",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sf90e45fcc3",
     "text": "Lamine washed the quilt of Teodor."
   },
   "usage": {
-    "input": 49095,
-    "output": 141,
+    "input": 56507,
+    "output": 178,
     "thinking": null,
-    "total": 49236,
-    "cached": 47046,
+    "total": 56685,
+    "cached": 54458,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,62 +25,66 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 49095,
-    "candidatesTokenCount": 141,
-    "totalTokenCount": 49236,
-    "cachedContentTokenCount": 47046,
+    "promptTokenCount": 56507,
+    "candidatesTokenCount": 178,
+    "totalTokenCount": 56685,
+    "cachedContentTokenCount": 54458,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 49095
+        "tokenCount": 56507
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 47046
+        "tokenCount": 54458
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 141
+        "tokenCount": 178
       }
     ]
   },
-  "raw_text": "{\"id\": \"sf90e45fcc3\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"quilt\", \"possessor\": \"@n2\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"wash\", \"actor\": \"@n1\", \"patient\": \"@x1\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sf90e45fcc3\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"quilt\", \"possessor\": \"@n2\", \"span\": \"the quilt of Teodor\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"wash\", \"actor\": \"@n1\", \"patient\": \"@x1\", \"tense\": \"past\", \"span\": \"Lamine washed the quilt of Teodor\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sf90e45fcc3",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Lamine"
+        "name": "Lamine",
+        "span": "Lamine"
       },
       {
         "t": "witness",
         "id": "x1",
         "class": "quilt",
-        "possessor": "@n2"
+        "possessor": "@n2",
+        "span": "the quilt of Teodor"
       },
       {
         "t": "named-entity",
         "id": "n2",
-        "name": "Teodor"
+        "name": "Teodor",
+        "span": "Teodor"
       },
       {
         "t": "activity",
-        "id": "v1",
+        "id": "e1",
         "verb": "wash",
         "actor": "@n1",
         "patient": "@x1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Lamine washed the quilt of Teodor"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "d6a0605f98b58473ed4af8b90ddda918c8a0fe7b5dd0f4ad33fe69a0a71e9192",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "postmodifier",

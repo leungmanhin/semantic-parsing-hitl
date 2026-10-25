@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "3cf1c657d278c5f88cd86233811adb01fd7b99c43b58fc7e7f270c08f8532885",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s9f0f8ad037",
     "text": "Teodor heard the news."
   },
   "usage": {
-    "input": 13819,
-    "output": 118,
+    "input": 56506,
+    "output": 142,
     "thinking": null,
-    "total": 13937,
+    "total": 56648,
+    "cached": 54457,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,43 +25,45 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 13819,
-    "candidatesTokenCount": 118,
-    "totalTokenCount": 13937,
-    "cachedContentTokenCount": 11770,
+    "promptTokenCount": 56506,
+    "candidatesTokenCount": 142,
+    "totalTokenCount": 56648,
+    "cachedContentTokenCount": 54457,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 13819
+        "tokenCount": 56506
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 11770
+        "tokenCount": 54457
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 118
+        "tokenCount": 142
       }
     ]
   },
-  "raw_text": "{\"id\": \"s9f0f8ad037\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"news\", \"definite\": true}, {\"t\": \"perception\", \"id\": \"p1\", \"verb\": \"hear\", \"perceiver\": \"@n1\", \"stimulus\": \"@x1\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s9f0f8ad037\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"news\", \"definite\": true, \"span\": \"the news\"}, {\"t\": \"perception\", \"id\": \"p1\", \"verb\": \"hear\", \"perceiver\": \"@n1\", \"stimulus\": \"@x1\", \"tense\": \"past\", \"span\": \"Teodor heard the news\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s9f0f8ad037",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Teodor"
+        "name": "Teodor",
+        "span": "Teodor"
       },
       {
         "t": "witness",
         "id": "x1",
         "class": "news",
-        "definite": true
+        "definite": true,
+        "span": "the news"
       },
       {
         "t": "perception",
@@ -68,13 +71,14 @@
         "verb": "hear",
         "perceiver": "@n1",
         "stimulus": "@x1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Teodor heard the news"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "4045b2ad4809e7e7e07e9faa62e508fb7a2daeb033c9f5aedf2c8aef30067522",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "perception",

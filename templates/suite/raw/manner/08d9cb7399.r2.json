@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "036261b67cffbb04273fa6353b6fe9d8a5bd7044375e91f3934b29dcd44ae2e8",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s08d9cb7399",
     "text": "Yusra deeply distrusts Lamine."
   },
   "usage": {
-    "input": 35895,
-    "output": 146,
+    "input": 56508,
+    "output": 181,
     "thinking": null,
-    "total": 36041,
-    "cached": 33846,
+    "total": 56689,
+    "cached": 54459,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,42 +25,44 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 35895,
-    "candidatesTokenCount": 146,
-    "totalTokenCount": 36041,
-    "cachedContentTokenCount": 33846,
+    "promptTokenCount": 56508,
+    "candidatesTokenCount": 181,
+    "totalTokenCount": 56689,
+    "cachedContentTokenCount": 54459,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 35895
+        "tokenCount": 56508
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 33846
+        "tokenCount": 54459
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 146
+        "tokenCount": 181
       }
     ]
   },
-  "raw_text": "{\"id\": \"s08d9cb7399\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Lamine\"}, {\"t\": \"psych\", \"id\": \"p1\", \"verb\": \"distrust\", \"experiencer\": \"@n1\", \"stimulus\": \"@n2\", \"tense\": \"present\"}, {\"t\": \"extent\", \"id\": \"a1\", \"event\": \"@p1\", \"level\": \"deeply\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s08d9cb7399\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"psych\", \"id\": \"p1\", \"verb\": \"distrust\", \"experiencer\": \"@n1\", \"stimulus\": \"@n2\", \"tense\": \"present\", \"span\": \"Yusra deeply distrusts Lamine\"}, {\"t\": \"extent\", \"id\": \"a1\", \"event\": \"@p1\", \"level\": \"deeply\", \"span\": \"deeply\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s08d9cb7399",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Yusra"
+        "name": "Yusra",
+        "span": "Yusra"
       },
       {
         "t": "named-entity",
         "id": "n2",
-        "name": "Lamine"
+        "name": "Lamine",
+        "span": "Lamine"
       },
       {
         "t": "psych",
@@ -68,19 +70,21 @@
         "verb": "distrust",
         "experiencer": "@n1",
         "stimulus": "@n2",
-        "tense": "present"
+        "tense": "present",
+        "span": "Yusra deeply distrusts Lamine"
       },
       {
         "t": "extent",
         "id": "a1",
         "event": "@p1",
-        "level": "deeply"
+        "level": "deeply",
+        "span": "deeply"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "107542897d74ba7ca217f1d5c88d49a7531f59530bec65a2f2b7b7200334e22e",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "manner",

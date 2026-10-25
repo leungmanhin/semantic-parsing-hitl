@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "1e3a0e7b653d644ba66513f0d0e707b1cc9b81d1cb008f3f969832c0fde71796",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s674ac3fecd",
     "text": "Lamine might let Ottoline leave."
   },
   "usage": {
-    "input": 42690,
-    "output": 187,
+    "input": 56506,
+    "output": 227,
     "thinking": null,
-    "total": 42877,
-    "cached": 40641,
+    "total": 56733,
+    "cached": 54457,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,49 +25,52 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 42690,
-    "candidatesTokenCount": 187,
-    "totalTokenCount": 42877,
-    "cachedContentTokenCount": 40641,
+    "promptTokenCount": 56506,
+    "candidatesTokenCount": 227,
+    "totalTokenCount": 56733,
+    "cachedContentTokenCount": 54457,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 42690
+        "tokenCount": 56506
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 40641
+        "tokenCount": 54457
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 187
+        "tokenCount": 227
       }
     ]
   },
-  "raw_text": "{\"id\": \"s674ac3fecd\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Ottoline\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n2\", \"tense\": \"present\"}, {\"t\": \"causative\", \"id\": \"e1\", \"verb\": \"let\", \"causer\": \"@n1\", \"complement\": [\"@m1\"], \"implication\": \"positive\", \"tense\": \"present\"}, {\"t\": \"modal\", \"id\": \"s1\", \"over\": [\"@e1\"], \"head\": \"Might\", \"surface\": \"might\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s674ac3fecd\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n2\", \"tense\": \"present\", \"span\": \"Ottoline leave\"}, {\"t\": \"causative\", \"id\": \"e1\", \"verb\": \"let\", \"causer\": \"@n1\", \"complement\": [\"@m1\"], \"implication\": \"positive\", \"tense\": \"present\", \"span\": \"Lamine might let Ottoline leave\"}, {\"t\": \"modal\", \"id\": \"s1\", \"over\": [\"@e1\"], \"head\": \"Might\", \"surface\": \"might\", \"span\": \"might\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s674ac3fecd",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Lamine"
+        "name": "Lamine",
+        "span": "Lamine"
       },
       {
         "t": "named-entity",
         "id": "n2",
-        "name": "Ottoline"
+        "name": "Ottoline",
+        "span": "Ottoline"
       },
       {
         "t": "motion",
         "id": "m1",
         "verb": "leave",
         "mover": "@n2",
-        "tense": "present"
+        "tense": "present",
+        "span": "Ottoline leave"
       },
       {
         "t": "causative",
@@ -78,7 +81,8 @@
           "@m1"
         ],
         "implication": "positive",
-        "tense": "present"
+        "tense": "present",
+        "span": "Lamine might let Ottoline leave"
       },
       {
         "t": "modal",
@@ -87,13 +91,14 @@
           "@e1"
         ],
         "head": "Might",
-        "surface": "might"
+        "surface": "might",
+        "span": "might"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "550b5adae738e98b3a45e1fd666b1c271958eedeeddaca6a18b6db34c69a06c7",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "causative",

@@ -1,0 +1,92 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
+  "item": {
+    "id": "sbcde6d4d6e",
+    "text": "Lamine baked bread today."
+  },
+  "usage": {
+    "input": 56505,
+    "output": 146,
+    "thinking": null,
+    "total": 56651,
+    "cached": 54456,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 56505,
+    "candidatesTokenCount": 146,
+    "totalTokenCount": 56651,
+    "cachedContentTokenCount": 54456,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 56505
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 54456
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 146
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sbcde6d4d6e\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"creation\", \"id\": \"e1\", \"verb\": \"bake\", \"creator\": \"@n1\", \"product\": \"bread\", \"tense\": \"past\", \"span\": \"Lamine baked bread\"}, {\"t\": \"time\", \"id\": \"t1\", \"event\": \"@e1\", \"deictic\": \"today\", \"anchor\": \"@now\", \"span\": \"today\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sbcde6d4d6e",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "creation",
+        "id": "e1",
+        "verb": "bake",
+        "creator": "@n1",
+        "product": "bread",
+        "tense": "past",
+        "span": "Lamine baked bread"
+      },
+      {
+        "t": "time",
+        "id": "t1",
+        "event": "@e1",
+        "deictic": "today",
+        "anchor": "@now",
+        "span": "today"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
+  "run": 3,
+  "case": {
+    "template": "time",
+    "section": "held_out",
+    "index": 5,
+    "category": "positive",
+    "text": "Lamine baked bread today.",
+    "key": "bcde6d4d6e"
+  }
+}

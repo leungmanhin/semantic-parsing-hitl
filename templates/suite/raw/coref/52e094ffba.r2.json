@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "9ef7be016fe9c94587147da8ab8e32dc10a36598db3616736ec4f119204faeb4",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s52e094ffba",
     "text": "A ferret arrived. The ferret slept."
   },
   "usage": {
-    "input": 30250,
-    "output": 177,
+    "input": 56507,
+    "output": 219,
     "thinking": null,
-    "total": 30427,
+    "total": 56726,
+    "cached": 54458,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,70 +25,78 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 30250,
-    "candidatesTokenCount": 177,
-    "totalTokenCount": 30427,
-    "cachedContentTokenCount": 28201,
+    "promptTokenCount": 56507,
+    "candidatesTokenCount": 219,
+    "totalTokenCount": 56726,
+    "cachedContentTokenCount": 54458,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 30250
+        "tokenCount": 56507
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 28201
+        "tokenCount": 54458
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 177
+        "tokenCount": 219
       }
     ]
   },
-  "raw_text": "{\"id\": \"s52e094ffba\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"ferret\"}, {\"t\": \"witness\", \"id\": \"x2\", \"kind\": \"ferret\", \"definite\": true}, {\"t\": \"motion\", \"id\": \"e1\", \"verb\": \"arrive\", \"mover\": \"@x1\", \"tense\": \"past\"}, {\"t\": \"activity\", \"id\": \"e2\", \"verb\": \"sleep\", \"actor\": \"@x2\", \"tense\": \"past\"}, {\"t\": \"coref\", \"id\": \"c1\", \"mention\": \"@x2\", \"antecedent\": \"@x1\", \"certainty\": \"certain\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s52e094ffba\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"ferret\", \"span\": \"A ferret\"}, {\"t\": \"witness\", \"id\": \"x2\", \"class\": \"ferret\", \"definite\": true, \"span\": \"The ferret\"}, {\"t\": \"motion\", \"id\": \"e1\", \"verb\": \"arrive\", \"mover\": \"@x1\", \"tense\": \"past\", \"span\": \"A ferret arrived\"}, {\"t\": \"activity\", \"id\": \"e2\", \"verb\": \"sleep\", \"actor\": \"@x2\", \"tense\": \"past\", \"span\": \"The ferret slept\"}, {\"t\": \"coref\", \"id\": \"k1\", \"mention\": \"@x2\", \"antecedent\": \"@x1\", \"certainty\": \"certain\", \"span\": [\"A ferret\", \"The ferret\"]}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s52e094ffba",
     "instances": [
       {
         "t": "witness",
         "id": "x1",
-        "class": "ferret"
+        "class": "ferret",
+        "span": "A ferret"
       },
       {
         "t": "witness",
         "id": "x2",
         "class": "ferret",
-        "definite": true
+        "definite": true,
+        "span": "The ferret"
       },
       {
         "t": "motion",
         "id": "e1",
         "verb": "arrive",
         "mover": "@x1",
-        "tense": "past"
+        "tense": "past",
+        "span": "A ferret arrived"
       },
       {
         "t": "activity",
         "id": "e2",
         "verb": "sleep",
         "actor": "@x2",
-        "tense": "past"
+        "tense": "past",
+        "span": "The ferret slept"
       },
       {
         "t": "coref",
-        "id": "c1",
+        "id": "k1",
         "mention": "@x2",
         "antecedent": "@x1",
-        "certainty": "certain"
+        "certainty": "certain",
+        "span": [
+          "A ferret",
+          "The ferret"
+        ]
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "8ec71bbffe57aa54f5eb1dc051643ad73943df5ef3964188a68d8dd96a4babd4",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "coref",

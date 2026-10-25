@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "ed7e5be12a09f9e5947e50cfa5d2b849bc8b16ea94ad2bdefa98a0592d434d3f",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s585835c821",
     "text": "Teodor voted against the plan despite the rain."
   },
   "usage": {
-    "input": 49028,
-    "output": 153,
+    "input": 56511,
+    "output": 248,
     "thinking": null,
-    "total": 49181,
-    "cached": 46979,
+    "total": 56759,
+    "cached": 54462,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,76 +25,82 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 49028,
-    "candidatesTokenCount": 153,
-    "totalTokenCount": 49181,
-    "cachedContentTokenCount": 46979,
+    "promptTokenCount": 56511,
+    "candidatesTokenCount": 248,
+    "totalTokenCount": 56759,
+    "cachedContentTokenCount": 54462,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 49028
+        "tokenCount": 56511
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 46979
+        "tokenCount": 54462
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 153
+        "tokenCount": 248
       }
     ]
   },
-  "raw_text": "{\"id\":\"s585835c821\",\"instances\":[{\"t\":\"named-entity\",\"id\":\"n1\",\"name\":\"Teodor\"},{\"t\":\"witness\",\"id\":\"x1\",\"kind\":\"plan\",\"definite\":true},{\"t\":\"witness\",\"id\":\"x2\",\"kind\":\"rain\",\"definite\":true},{\"t\":\"activity\",\"id\":\"v1\",\"verb\":\"vote\",\"actor\":\"@n1\",\"tense\":\"past\"},{\"t\":\"oblique\",\"id\":\"a1\",\"event\":\"@v1\",\"head\":\"Against\",\"object\":\"@x1\"},{\"t\":\"oblique\",\"id\":\"a2\",\"event\":\"@v1\",\"head\":\"Despite\",\"object\":\"@x2\"}],\"unmapped\":[],\"issues\":[]}",
+  "raw_text": "{\"id\": \"s585835c821\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"plan\", \"definite\": true, \"span\": \"the plan\"}, {\"t\": \"witness\", \"id\": \"x2\", \"class\": \"rain\", \"definite\": true, \"span\": \"the rain\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"vote\", \"actor\": \"@n1\", \"tense\": \"past\", \"span\": \"Teodor voted\"}, {\"t\": \"oblique\", \"id\": \"a1\", \"event\": \"@e1\", \"head\": \"Against\", \"object\": \"@x1\", \"span\": \"against the plan\"}, {\"t\": \"oblique\", \"id\": \"a2\", \"event\": \"@e1\", \"head\": \"Despite\", \"object\": \"@x2\", \"span\": \"despite the rain\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s585835c821",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Teodor"
+        "name": "Teodor",
+        "span": "Teodor"
       },
       {
         "t": "witness",
         "id": "x1",
         "class": "plan",
-        "definite": true
+        "definite": true,
+        "span": "the plan"
       },
       {
         "t": "witness",
         "id": "x2",
         "class": "rain",
-        "definite": true
+        "definite": true,
+        "span": "the rain"
       },
       {
         "t": "activity",
-        "id": "v1",
+        "id": "e1",
         "verb": "vote",
         "actor": "@n1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Teodor voted"
       },
       {
         "t": "oblique",
         "id": "a1",
-        "event": "@v1",
+        "event": "@e1",
         "head": "Against",
-        "object": "@x1"
+        "object": "@x1",
+        "span": "against the plan"
       },
       {
         "t": "oblique",
         "id": "a2",
-        "event": "@v1",
+        "event": "@e1",
         "head": "Despite",
-        "object": "@x2"
+        "object": "@x2",
+        "span": "despite the rain"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "7ea5b5bb86c29718a2936a9c64163dc82790d7b8ea4be586be12417680d153a7",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "oblique",

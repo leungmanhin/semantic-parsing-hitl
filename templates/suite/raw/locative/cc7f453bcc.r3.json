@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "ecb9313bbef541ec29940699dad9a1b36a9780334e6b77fdb8e31663cca0597f",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "scc7f453bcc",
     "text": "Lamine's quilt is in the shed."
   },
   "usage": {
-    "input": 26451,
-    "output": 151,
+    "input": 56508,
+    "output": 189,
     "thinking": null,
-    "total": 26602,
+    "total": 56697,
+    "cached": 54459,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,49 +25,52 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 26451,
-    "candidatesTokenCount": 151,
-    "totalTokenCount": 26602,
-    "cachedContentTokenCount": 24402,
+    "promptTokenCount": 56508,
+    "candidatesTokenCount": 189,
+    "totalTokenCount": 56697,
+    "cachedContentTokenCount": 54459,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 26451
+        "tokenCount": 56508
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 24402
+        "tokenCount": 54459
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 151
+        "tokenCount": 189
       }
     ]
   },
-  "raw_text": "{\"id\": \"scc7f453bcc\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"quilt\", \"possessor\": \"@n1\"}, {\"t\": \"witness\", \"id\": \"x2\", \"kind\": \"shed\", \"definite\": true}, {\"t\": \"locative\", \"id\": \"l1\", \"thing\": \"@x1\", \"place\": \"@x2\", \"head\": \"LocatedIn\", \"preposition\": \"in\", \"tense\": \"present\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"scc7f453bcc\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"quilt\", \"possessor\": \"@n1\", \"span\": \"Lamine's quilt\"}, {\"t\": \"witness\", \"id\": \"x2\", \"class\": \"shed\", \"definite\": true, \"span\": \"the shed\"}, {\"t\": \"locative\", \"id\": \"l1\", \"thing\": \"@x1\", \"place\": \"@x2\", \"head\": \"LocatedIn\", \"preposition\": \"in\", \"tense\": \"present\", \"span\": \"Lamine's quilt is in the shed\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "scc7f453bcc",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Lamine"
+        "name": "Lamine",
+        "span": "Lamine"
       },
       {
         "t": "witness",
         "id": "x1",
         "class": "quilt",
-        "possessor": "@n1"
+        "possessor": "@n1",
+        "span": "Lamine's quilt"
       },
       {
         "t": "witness",
         "id": "x2",
         "class": "shed",
-        "definite": true
+        "definite": true,
+        "span": "the shed"
       },
       {
         "t": "locative",
@@ -75,18 +79,19 @@
         "place": "@x2",
         "head": "LocatedIn",
         "preposition": "in",
-        "tense": "present"
+        "tense": "present",
+        "span": "Lamine's quilt is in the shed"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "fe66913c81da38dc9d9e0ba589cc774123d4719abb4eec09e23557bfcfde237f",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "locative",
     "section": "held_out",
-    "index": 7,
+    "index": 8,
     "category": "positive",
     "text": "Lamine's quilt is in the shed.",
     "key": "cc7f453bcc"

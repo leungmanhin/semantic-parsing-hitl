@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "00bbb6f7068a2a54f33bfc0111df472edb2130448e8fb8c84b7c32a1afde3448",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s10652952cc",
     "text": "Yusra wrote Teodor a letter."
   },
   "usage": {
-    "input": 30880,
-    "output": 144,
+    "input": 56508,
+    "output": 179,
     "thinking": null,
-    "total": 31024,
-    "cached": 28831,
+    "total": 56687,
+    "cached": 54459,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,62 +25,66 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 30880,
-    "candidatesTokenCount": 144,
-    "totalTokenCount": 31024,
-    "cachedContentTokenCount": 28831,
+    "promptTokenCount": 56508,
+    "candidatesTokenCount": 179,
+    "totalTokenCount": 56687,
+    "cachedContentTokenCount": 54459,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 30880
+        "tokenCount": 56508
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 28831
+        "tokenCount": 54459
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 144
+        "tokenCount": 179
       }
     ]
   },
-  "raw_text": "{\"id\": \"s10652952cc\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"letter\"}, {\"t\": \"communication\", \"id\": \"c1\", \"verb\": \"write\", \"speaker\": \"@n1\", \"addressee\": \"@n2\", \"message\": \"@x1\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s10652952cc\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"letter\", \"span\": \"a letter\"}, {\"t\": \"communication\", \"id\": \"e1\", \"verb\": \"write\", \"speaker\": \"@n1\", \"addressee\": \"@n2\", \"message\": \"@x1\", \"tense\": \"past\", \"span\": \"Yusra wrote Teodor a letter\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s10652952cc",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Yusra"
+        "name": "Yusra",
+        "span": "Yusra"
       },
       {
         "t": "named-entity",
         "id": "n2",
-        "name": "Teodor"
+        "name": "Teodor",
+        "span": "Teodor"
       },
       {
         "t": "witness",
         "id": "x1",
-        "class": "letter"
+        "class": "letter",
+        "span": "a letter"
       },
       {
         "t": "communication",
-        "id": "c1",
+        "id": "e1",
         "verb": "write",
         "speaker": "@n1",
         "addressee": "@n2",
         "message": "@x1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Yusra wrote Teodor a letter"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "c0d47baf69c87fd1005101d2c3752c57d83adb2f730ed1199fdb9b6546502fa7",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "creation",

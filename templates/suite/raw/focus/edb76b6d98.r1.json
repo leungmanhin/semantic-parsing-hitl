@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "f4d17abe47ce0097d01f189e549c2f7270adfee30060ea503bfb81f323e1bd63",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sedb76b6d98",
     "text": "It was the spindle that Yusra sold."
   },
   "usage": {
-    "input": 53466,
-    "output": 152,
+    "input": 56508,
+    "output": 189,
     "thinking": null,
-    "total": 53618,
-    "cached": 51414,
+    "total": 56697,
+    "cached": 54459,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 53466,
-    "candidatesTokenCount": 152,
-    "totalTokenCount": 53618,
-    "cachedContentTokenCount": 51414,
+    "promptTokenCount": 56508,
+    "candidatesTokenCount": 189,
+    "totalTokenCount": 56697,
+    "cachedContentTokenCount": 54459,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 53466
+        "tokenCount": 56508
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 51414
+        "tokenCount": 54459
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 152
+        "tokenCount": 189
       }
     ]
   },
-  "raw_text": "{\"id\": \"sedb76b6d98\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"spindle\", \"definite\": true}, {\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"sell\", \"giver\": \"@n1\", \"object\": \"@x1\", \"tense\": \"past\"}, {\"t\": \"focus\", \"id\": \"f1\", \"head\": \"Cleft\", \"filler\": \"@x1\", \"event\": \"@e1\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sedb76b6d98\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"spindle\", \"definite\": true, \"span\": \"the spindle\"}, {\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"sell\", \"giver\": \"@n1\", \"object\": \"@x1\", \"tense\": \"past\", \"span\": \"the spindle that Yusra sold\"}, {\"t\": \"focus\", \"id\": \"f1\", \"head\": \"Cleft\", \"filler\": \"@x1\", \"event\": \"@e1\", \"span\": [\"It was\", \"that\"]}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sedb76b6d98",
     "instances": [
@@ -56,12 +56,14 @@
         "t": "witness",
         "id": "x1",
         "class": "spindle",
-        "definite": true
+        "definite": true,
+        "span": "the spindle"
       },
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Yusra"
+        "name": "Yusra",
+        "span": "Yusra"
       },
       {
         "t": "transfer",
@@ -69,20 +71,25 @@
         "verb": "sell",
         "giver": "@n1",
         "object": "@x1",
-        "tense": "past"
+        "tense": "past",
+        "span": "the spindle that Yusra sold"
       },
       {
         "t": "focus",
         "id": "f1",
         "head": "Cleft",
         "filler": "@x1",
-        "event": "@e1"
+        "event": "@e1",
+        "span": [
+          "It was",
+          "that"
+        ]
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "e9f273b0d2bdaff9e725ba8f0d2aaf8c4c5cb64dbb039e1e790e5251d9ea1298",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "focus",

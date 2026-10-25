@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "f4d17abe47ce0097d01f189e549c2f7270adfee30060ea503bfb81f323e1bd63",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sfaec218cec",
     "text": "Even Ottoline laughed."
   },
   "usage": {
-    "input": 53460,
-    "output": 122,
+    "input": 56502,
+    "output": 143,
     "thinking": null,
-    "total": 53582,
-    "cached": 51411,
+    "total": 56645,
+    "cached": 54453,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,58 +25,61 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 53460,
-    "candidatesTokenCount": 122,
-    "totalTokenCount": 53582,
-    "cachedContentTokenCount": 51411,
+    "promptTokenCount": 56502,
+    "candidatesTokenCount": 143,
+    "totalTokenCount": 56645,
+    "cachedContentTokenCount": 54453,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 53460
+        "tokenCount": 56502
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 51411
+        "tokenCount": 54453
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 122
+        "tokenCount": 143
       }
     ]
   },
-  "raw_text": "{\"id\": \"sfaec218cec\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"laugh\", \"actor\": \"@n1\", \"tense\": \"past\"}, {\"t\": \"focus\", \"id\": \"f1\", \"head\": \"Even\", \"filler\": \"@n1\", \"event\": \"@v1\", \"surface\": \"even\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sfaec218cec\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"laugh\", \"actor\": \"@n1\", \"tense\": \"past\", \"span\": \"Ottoline laughed\"}, {\"t\": \"focus\", \"id\": \"f1\", \"head\": \"Even\", \"filler\": \"@n1\", \"event\": \"@e1\", \"surface\": \"even\", \"span\": \"Even\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sfaec218cec",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Ottoline"
+        "name": "Ottoline",
+        "span": "Ottoline"
       },
       {
         "t": "activity",
-        "id": "v1",
+        "id": "e1",
         "verb": "laugh",
         "actor": "@n1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Ottoline laughed"
       },
       {
         "t": "focus",
         "id": "f1",
         "head": "Even",
         "filler": "@n1",
-        "event": "@v1",
-        "surface": "even"
+        "event": "@e1",
+        "surface": "even",
+        "span": "Even"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "e9f273b0d2bdaff9e725ba8f0d2aaf8c4c5cb64dbb039e1e790e5251d9ea1298",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "focus",

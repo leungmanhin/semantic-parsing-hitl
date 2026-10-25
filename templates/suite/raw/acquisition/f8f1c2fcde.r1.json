@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "549a9f7ae5e71c64cad5c2d1abc2482ac27640f2496235a0ac72afe79e5b0f08",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sf8f1c2fcde",
     "text": "Lamine sold the spindle to Teodor."
   },
   "usage": {
-    "input": 10829,
-    "output": 145,
+    "input": 56507,
+    "output": 179,
     "thinking": null,
-    "total": 10974,
+    "total": 56686,
+    "cached": 54458,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,41 +25,51 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 10829,
-    "candidatesTokenCount": 145,
-    "totalTokenCount": 10974,
+    "promptTokenCount": 56507,
+    "candidatesTokenCount": 179,
+    "totalTokenCount": 56686,
+    "cachedContentTokenCount": 54458,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 10829
+        "tokenCount": 56507
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 54458
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 145
+        "tokenCount": 179
       }
     ]
   },
-  "raw_text": "{\"id\": \"sf8f1c2fcde\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"spindle\", \"definite\": true}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\"}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"sell\", \"giver\": \"@n1\", \"recipient\": \"@n2\", \"object\": \"@x1\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sf8f1c2fcde\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"spindle\", \"definite\": true, \"span\": \"the spindle\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"sell\", \"giver\": \"@n1\", \"recipient\": \"@n2\", \"object\": \"@x1\", \"tense\": \"past\", \"span\": \"Lamine sold the spindle to Teodor\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sf8f1c2fcde",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Lamine"
+        "name": "Lamine",
+        "span": "Lamine"
       },
       {
         "t": "witness",
         "id": "x1",
         "class": "spindle",
-        "definite": true
+        "definite": true,
+        "span": "the spindle"
       },
       {
         "t": "named-entity",
         "id": "n2",
-        "name": "Teodor"
+        "name": "Teodor",
+        "span": "Teodor"
       },
       {
         "t": "transfer",
@@ -67,13 +78,14 @@
         "giver": "@n1",
         "recipient": "@n2",
         "object": "@x1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Lamine sold the spindle to Teodor"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "6cf313445a0a101e1fc3416cc18e201b1014c1ed7339419f511094ac6b3ffbd5",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "acquisition",

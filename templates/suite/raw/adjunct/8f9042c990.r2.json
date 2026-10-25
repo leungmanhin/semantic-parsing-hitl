@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "57c0a2cf118bc64251ee1dc4f10535ec1900e8fb5354bff54b546c18457f758b",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s8f9042c990",
     "text": "With a knife, Lamine cut the loaf."
   },
   "usage": {
-    "input": 33508,
-    "output": 178,
+    "input": 56511,
+    "output": 217,
     "thinking": null,
-    "total": 33686,
-    "cached": 31459,
+    "total": 56728,
+    "cached": 54462,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,48 +25,51 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 33508,
-    "candidatesTokenCount": 178,
-    "totalTokenCount": 33686,
-    "cachedContentTokenCount": 31459,
+    "promptTokenCount": 56511,
+    "candidatesTokenCount": 217,
+    "totalTokenCount": 56728,
+    "cachedContentTokenCount": 54462,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 33508
+        "tokenCount": 56511
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 31459
+        "tokenCount": 54462
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 178
+        "tokenCount": 217
       }
     ]
   },
-  "raw_text": "{\"id\": \"s8f9042c990\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"knife\"}, {\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x2\", \"kind\": \"loaf\", \"definite\": true}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"cut\", \"actor\": \"@n1\", \"patient\": \"@x2\", \"tense\": \"past\"}, {\"t\": \"adjunct\", \"id\": \"a1\", \"event\": \"@e1\", \"participant\": \"@x1\", \"head\": \"Instrument\", \"preposition\": \"with\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s8f9042c990\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"knife\", \"span\": \"a knife\"}, {\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x2\", \"class\": \"loaf\", \"definite\": true, \"span\": \"the loaf\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"cut\", \"actor\": \"@n1\", \"patient\": \"@x2\", \"tense\": \"past\", \"span\": \"Lamine cut the loaf\"}, {\"t\": \"adjunct\", \"id\": \"a1\", \"event\": \"@e1\", \"participant\": \"@x1\", \"head\": \"Instrument\", \"preposition\": \"with\", \"span\": \"With a knife\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s8f9042c990",
     "instances": [
       {
         "t": "witness",
         "id": "x1",
-        "class": "knife"
+        "class": "knife",
+        "span": "a knife"
       },
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Lamine"
+        "name": "Lamine",
+        "span": "Lamine"
       },
       {
         "t": "witness",
         "id": "x2",
         "class": "loaf",
-        "definite": true
+        "definite": true,
+        "span": "the loaf"
       },
       {
         "t": "activity",
@@ -74,7 +77,8 @@
         "verb": "cut",
         "actor": "@n1",
         "patient": "@x2",
-        "tense": "past"
+        "tense": "past",
+        "span": "Lamine cut the loaf"
       },
       {
         "t": "adjunct",
@@ -82,13 +86,14 @@
         "event": "@e1",
         "participant": "@x1",
         "head": "Instrument",
-        "preposition": "with"
+        "preposition": "with",
+        "span": "With a knife"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "55732af26869bbaa55169fc16db0ed85110798ac0721bfbdda732a93ff4b5fd0",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "adjunct",

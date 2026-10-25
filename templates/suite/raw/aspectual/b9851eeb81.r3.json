@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "7b971397645436659b47229c67b5e18427eb894e0e6cbf0b176ccc7db0eed480",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sb9851eeb81",
     "text": "Lamine kept Teodor from leaving."
   },
   "usage": {
-    "input": 42689,
-    "output": 155,
+    "input": 56506,
+    "output": 187,
     "thinking": null,
-    "total": 42844,
-    "cached": 40640,
+    "total": 56693,
+    "cached": 54457,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,49 +25,52 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 42689,
-    "candidatesTokenCount": 155,
-    "totalTokenCount": 42844,
-    "cachedContentTokenCount": 40640,
+    "promptTokenCount": 56506,
+    "candidatesTokenCount": 187,
+    "totalTokenCount": 56693,
+    "cachedContentTokenCount": 54457,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 42689
+        "tokenCount": 56506
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 40640
+        "tokenCount": 54457
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 155
+        "tokenCount": 187
       }
     ]
   },
-  "raw_text": "{\"id\": \"sb9851eeb81\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n2\", \"tense\": \"present\"}, {\"t\": \"causative\", \"id\": \"e1\", \"verb\": \"keep\", \"causer\": \"@n1\", \"complement\": [\"@m1\"], \"implication\": \"negative\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sb9851eeb81\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n2\", \"tense\": \"present\", \"span\": \"leaving\"}, {\"t\": \"causative\", \"id\": \"e1\", \"verb\": \"keep\", \"causer\": \"@n1\", \"complement\": [\"@m1\"], \"implication\": \"negative\", \"tense\": \"past\", \"span\": \"Lamine kept Teodor from leaving\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sb9851eeb81",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Lamine"
+        "name": "Lamine",
+        "span": "Lamine"
       },
       {
         "t": "named-entity",
         "id": "n2",
-        "name": "Teodor"
+        "name": "Teodor",
+        "span": "Teodor"
       },
       {
         "t": "motion",
         "id": "m1",
         "verb": "leave",
         "mover": "@n2",
-        "tense": "present"
+        "tense": "present",
+        "span": "leaving"
       },
       {
         "t": "causative",
@@ -78,13 +81,14 @@
           "@m1"
         ],
         "implication": "negative",
-        "tense": "past"
+        "tense": "past",
+        "span": "Lamine kept Teodor from leaving"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "550b5adae738e98b3a45e1fd666b1c271958eedeeddaca6a18b6db34c69a06c7",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "aspectual",

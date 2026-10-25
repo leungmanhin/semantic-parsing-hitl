@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "f131d9909123f262f22649f1d0a661fcd2875712cc42a57ee96b4987f17f15ff",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s746d95e6e4",
     "text": "No ferret slept."
   },
   "usage": {
-    "input": 19690,
-    "output": 126,
+    "input": 56505,
+    "output": 148,
     "thinking": null,
-    "total": 19816,
+    "total": 56653,
+    "cached": 54456,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 19690,
-    "candidatesTokenCount": 126,
-    "totalTokenCount": 19816,
-    "cachedContentTokenCount": 17641,
+    "promptTokenCount": 56505,
+    "candidatesTokenCount": 148,
+    "totalTokenCount": 56653,
+    "cachedContentTokenCount": 54456,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 19690
+        "tokenCount": 56505
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 17641
+        "tokenCount": 54456
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 126
+        "tokenCount": 148
       }
     ]
   },
-  "raw_text": "{\"id\": \"s746d95e6e4\", \"instances\": [{\"t\": \"range\", \"id\": \"q1\", \"kind\": \"ferret\", \"quantifier\": \"no\", \"predicate\": \"sleep\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"sleep\", \"actor\": \"@q1\", \"tense\": \"past\"}, {\"t\": \"generic\", \"id\": \"r1\", \"ranges\": [\"@q1\"], \"over\": [\"@v1\"]}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s746d95e6e4\", \"instances\": [{\"t\": \"range\", \"id\": \"q1\", \"class\": \"ferret\", \"quantifier\": \"no\", \"predicate\": \"sleep\", \"span\": \"No ferret\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"sleep\", \"actor\": \"@q1\", \"tense\": \"past\", \"span\": \"No ferret slept\"}, {\"t\": \"generic\", \"id\": \"r1\", \"ranges\": [\"@q1\"], \"over\": [\"@e1\"], \"span\": \"No ferret slept\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s746d95e6e4",
     "instances": [
@@ -56,14 +57,16 @@
         "id": "q1",
         "class": "ferret",
         "quantifier": "no",
-        "predicate": "sleep"
+        "predicate": "sleep",
+        "span": "No ferret"
       },
       {
         "t": "activity",
-        "id": "v1",
+        "id": "e1",
         "verb": "sleep",
         "actor": "@q1",
-        "tense": "past"
+        "tense": "past",
+        "span": "No ferret slept"
       },
       {
         "t": "generic",
@@ -72,14 +75,15 @@
           "@q1"
         ],
         "over": [
-          "@v1"
-        ]
+          "@e1"
+        ],
+        "span": "No ferret slept"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "1d1d69fff405c91e41b45cfd40fd9da93832112f9edce8f3b99dca62a91fe348",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "generic",

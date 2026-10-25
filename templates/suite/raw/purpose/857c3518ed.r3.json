@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "96e661894bf32af3ef6950dd4f27fda7e7ee3757022f6ac32459bd4df569d022",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s857c3518ed",
     "text": "Lamine might work to buy a spindle."
   },
   "usage": {
-    "input": 46009,
-    "output": 213,
+    "input": 56509,
+    "output": 256,
     "thinking": null,
-    "total": 46222,
-    "cached": 43960,
+    "total": 56765,
+    "cached": 54460,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,49 +25,52 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 46009,
-    "candidatesTokenCount": 213,
-    "totalTokenCount": 46222,
-    "cachedContentTokenCount": 43960,
+    "promptTokenCount": 56509,
+    "candidatesTokenCount": 256,
+    "totalTokenCount": 56765,
+    "cachedContentTokenCount": 54460,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 46009
+        "tokenCount": 56509
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 43960
+        "tokenCount": 54460
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 213
+        "tokenCount": 256
       }
     ]
   },
-  "raw_text": "{\"id\": \"s857c3518ed\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"spindle\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"work\", \"actor\": \"@n1\", \"tense\": \"present\"}, {\"t\": \"acquisition\", \"id\": \"e1\", \"verb\": \"buy\", \"acquirer\": \"@n1\", \"object\": \"@x1\", \"tense\": \"present\"}, {\"t\": \"modal\", \"id\": \"s1\", \"over\": [\"@v1\"], \"head\": \"Might\", \"surface\": \"might\"}, {\"t\": \"purpose\", \"id\": \"k1\", \"head\": \"To\", \"action\": \"@v1\", \"aim\": [\"@e1\"]}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s857c3518ed\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"spindle\", \"span\": \"a spindle\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"work\", \"actor\": \"@n1\", \"tense\": \"present\", \"span\": \"Lamine might work\"}, {\"t\": \"acquisition\", \"id\": \"e1\", \"verb\": \"buy\", \"acquirer\": \"@n1\", \"object\": \"@x1\", \"tense\": \"present\", \"span\": \"to buy a spindle\"}, {\"t\": \"modal\", \"id\": \"s1\", \"over\": [\"@v1\"], \"head\": \"Might\", \"surface\": \"might\", \"span\": \"might\"}, {\"t\": \"purpose\", \"id\": \"k1\", \"head\": \"To\", \"action\": \"@v1\", \"aim\": [\"@e1\"], \"span\": \"to\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s857c3518ed",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Lamine"
+        "name": "Lamine",
+        "span": "Lamine"
       },
       {
         "t": "witness",
         "id": "x1",
-        "class": "spindle"
+        "class": "spindle",
+        "span": "a spindle"
       },
       {
         "t": "activity",
         "id": "v1",
         "verb": "work",
         "actor": "@n1",
-        "tense": "present"
+        "tense": "present",
+        "span": "Lamine might work"
       },
       {
         "t": "acquisition",
@@ -75,7 +78,8 @@
         "verb": "buy",
         "acquirer": "@n1",
         "object": "@x1",
-        "tense": "present"
+        "tense": "present",
+        "span": "to buy a spindle"
       },
       {
         "t": "modal",
@@ -84,7 +88,8 @@
           "@v1"
         ],
         "head": "Might",
-        "surface": "might"
+        "surface": "might",
+        "span": "might"
       },
       {
         "t": "purpose",
@@ -93,13 +98,14 @@
         "action": "@v1",
         "aim": [
           "@e1"
-        ]
+        ],
+        "span": "to"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "49ea9cf47ef53a70b2bf960950b1ce0c94ebd6a1171e41d50b9639f0536c4e3e",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "purpose",

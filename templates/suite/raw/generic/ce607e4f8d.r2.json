@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "f131d9909123f262f22649f1d0a661fcd2875712cc42a57ee96b4987f17f15ff",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sce607e4f8d",
     "text": "Ferrets do not sleep."
   },
   "usage": {
-    "input": 19690,
-    "output": 132,
+    "input": 56505,
+    "output": 165,
     "thinking": null,
-    "total": 19822,
+    "total": 56670,
+    "cached": 54456,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,51 +25,54 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 19690,
-    "candidatesTokenCount": 132,
-    "totalTokenCount": 19822,
-    "cachedContentTokenCount": 17641,
+    "promptTokenCount": 56505,
+    "candidatesTokenCount": 165,
+    "totalTokenCount": 56670,
+    "cachedContentTokenCount": 54456,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 19690
+        "tokenCount": 56505
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 17641
+        "tokenCount": 54456
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 132
+        "tokenCount": 165
       }
     ]
   },
-  "raw_text": "{\"id\": \"sce607e4f8d\", \"instances\": [{\"t\": \"range\", \"id\": \"q1\", \"kind\": \"ferret\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"sleep\", \"actor\": \"@q1\", \"tense\": \"present\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@v1\"]}, {\"t\": \"generic\", \"id\": \"r1\", \"ranges\": [\"@q1\"], \"over\": [\"@s1\"]}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sce607e4f8d\", \"instances\": [{\"t\": \"range\", \"id\": \"q1\", \"class\": \"ferret\", \"span\": \"Ferrets\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"sleep\", \"actor\": \"@q1\", \"tense\": \"present\", \"span\": \"Ferrets do not sleep\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@v1\"], \"span\": \"do not\"}, {\"t\": \"generic\", \"id\": \"r1\", \"ranges\": [\"@q1\"], \"over\": [\"@s1\"], \"span\": \"Ferrets do not sleep\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sce607e4f8d",
     "instances": [
       {
         "t": "range",
         "id": "q1",
-        "class": "ferret"
+        "class": "ferret",
+        "span": "Ferrets"
       },
       {
         "t": "activity",
         "id": "v1",
         "verb": "sleep",
         "actor": "@q1",
-        "tense": "present"
+        "tense": "present",
+        "span": "Ferrets do not sleep"
       },
       {
         "t": "negation",
         "id": "s1",
         "over": [
           "@v1"
-        ]
+        ],
+        "span": "do not"
       },
       {
         "t": "generic",
@@ -78,18 +82,19 @@
         ],
         "over": [
           "@s1"
-        ]
+        ],
+        "span": "Ferrets do not sleep"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "1d1d69fff405c91e41b45cfd40fd9da93832112f9edce8f3b99dca62a91fe348",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "generic",
     "section": "held_out",
-    "index": 7,
+    "index": 12,
     "category": "scoped",
     "text": "Ferrets do not sleep.",
     "key": "ce607e4f8d"

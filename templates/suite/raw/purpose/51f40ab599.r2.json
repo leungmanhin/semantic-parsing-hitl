@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "aea0dc69d24f92b4e9fc854261540ae45969c539482a78ca709b17321fd141f1",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s51f40ab599",
     "text": "Lamine waited to see Teodor."
   },
   "usage": {
-    "input": 45874,
-    "output": 183,
+    "input": 56508,
+    "output": 219,
     "thinking": null,
-    "total": 46057,
-    "cached": 43825,
+    "total": 56727,
+    "cached": 54459,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,49 +25,52 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 45874,
-    "candidatesTokenCount": 183,
-    "totalTokenCount": 46057,
-    "cachedContentTokenCount": 43825,
+    "promptTokenCount": 56508,
+    "candidatesTokenCount": 219,
+    "totalTokenCount": 56727,
+    "cachedContentTokenCount": 54459,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 45874
+        "tokenCount": 56508
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 43825
+        "tokenCount": 54459
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 183
+        "tokenCount": 219
       }
     ]
   },
-  "raw_text": "{\"id\": \"s51f40ab599\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"wait\", \"actor\": \"@n1\", \"tense\": \"past\"}, {\"t\": \"perception\", \"id\": \"p1\", \"verb\": \"see\", \"perceiver\": \"@n1\", \"stimulus\": \"@n2\", \"tense\": \"present\"}, {\"t\": \"purpose\", \"id\": \"k1\", \"head\": \"To\", \"action\": \"@v1\", \"aim\": [\"@p1\"]}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s51f40ab599\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"wait\", \"actor\": \"@n1\", \"tense\": \"past\", \"span\": \"Lamine waited\"}, {\"t\": \"perception\", \"id\": \"p1\", \"verb\": \"see\", \"perceiver\": \"@n1\", \"stimulus\": \"@n2\", \"tense\": \"present\", \"span\": \"to see Teodor\"}, {\"t\": \"purpose\", \"id\": \"k1\", \"head\": \"To\", \"action\": \"@v1\", \"aim\": [\"@p1\"], \"span\": \"to\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s51f40ab599",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Lamine"
+        "name": "Lamine",
+        "span": "Lamine"
       },
       {
         "t": "named-entity",
         "id": "n2",
-        "name": "Teodor"
+        "name": "Teodor",
+        "span": "Teodor"
       },
       {
         "t": "activity",
         "id": "v1",
         "verb": "wait",
         "actor": "@n1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Lamine waited"
       },
       {
         "t": "perception",
@@ -75,7 +78,8 @@
         "verb": "see",
         "perceiver": "@n1",
         "stimulus": "@n2",
-        "tense": "present"
+        "tense": "present",
+        "span": "to see Teodor"
       },
       {
         "t": "purpose",
@@ -84,13 +88,14 @@
         "action": "@v1",
         "aim": [
           "@p1"
-        ]
+        ],
+        "span": "to"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "667366f56ac295f7c22279b3bdae00b28653ebaf94bfcee3f5443b9887b2e7ea",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "purpose",

@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "8c00a5b1e0a3e9bf07dd0d7ee0b05eda890e9ced0c007552a084053d71915f5d",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s989c138e1a",
     "text": "A few students waited."
   },
   "usage": {
-    "input": 18311,
-    "output": 119,
+    "input": 56506,
+    "output": 144,
     "thinking": null,
-    "total": 18430,
+    "total": 56650,
+    "cached": 54457,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 18311,
-    "candidatesTokenCount": 119,
-    "totalTokenCount": 18430,
-    "cachedContentTokenCount": 16262,
+    "promptTokenCount": 56506,
+    "candidatesTokenCount": 144,
+    "totalTokenCount": 56650,
+    "cachedContentTokenCount": 54457,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 18311
+        "tokenCount": 56506
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 16262
+        "tokenCount": 54457
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 119
+        "tokenCount": 144
       }
     ]
   },
-  "raw_text": "{\"id\": \"s989c138e1a\", \"instances\": [{\"t\": \"group\", \"id\": \"g1\", \"kind\": \"student\", \"quantity\": \"a few\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"wait\", \"actor\": \"@g1\", \"tense\": \"past\"}, {\"t\": \"distribution\", \"id\": \"r1\", \"group\": \"@g1\", \"over\": [\"@e1\"]}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s989c138e1a\", \"instances\": [{\"t\": \"group\", \"id\": \"g1\", \"class\": \"student\", \"quantity\": \"a few\", \"span\": \"A few students\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"wait\", \"actor\": \"@g1\", \"tense\": \"past\", \"span\": \"A few students waited\"}, {\"t\": \"distribution\", \"id\": \"r1\", \"group\": \"@g1\", \"over\": [\"@e1\"], \"span\": \"A few students waited\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s989c138e1a",
     "instances": [
@@ -55,14 +56,16 @@
         "t": "group",
         "id": "g1",
         "class": "student",
-        "quantity": "a few"
+        "quantity": "a few",
+        "span": "A few students"
       },
       {
         "t": "activity",
         "id": "e1",
         "verb": "wait",
         "actor": "@g1",
-        "tense": "past"
+        "tense": "past",
+        "span": "A few students waited"
       },
       {
         "t": "distribution",
@@ -70,13 +73,14 @@
         "group": "@g1",
         "over": [
           "@e1"
-        ]
+        ],
+        "span": "A few students waited"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "1f1bd4be275047a20fd04619f6974c72a5121f21242054798635c1cd6fa89c28",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "distribution",

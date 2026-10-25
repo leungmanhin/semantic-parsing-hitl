@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "57c0a2cf118bc64251ee1dc4f10535ec1900e8fb5354bff54b546c18457f758b",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sf7d2b9479a",
     "text": "Ottoline wrote the letter with a pen."
   },
   "usage": {
-    "input": 33506,
-    "output": 177,
+    "input": 56509,
+    "output": 216,
     "thinking": null,
-    "total": 33683,
-    "cached": 31457,
+    "total": 56725,
+    "cached": 54460,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,48 +25,51 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 33506,
-    "candidatesTokenCount": 177,
-    "totalTokenCount": 33683,
-    "cachedContentTokenCount": 31457,
+    "promptTokenCount": 56509,
+    "candidatesTokenCount": 216,
+    "totalTokenCount": 56725,
+    "cachedContentTokenCount": 54460,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 33506
+        "tokenCount": 56509
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 31457
+        "tokenCount": 54460
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 177
+        "tokenCount": 216
       }
     ]
   },
-  "raw_text": "{\"id\": \"sf7d2b9479a\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"letter\", \"definite\": true}, {\"t\": \"witness\", \"id\": \"x2\", \"kind\": \"pen\"}, {\"t\": \"creation\", \"id\": \"e1\", \"verb\": \"write\", \"creator\": \"@n1\", \"product\": \"@x1\", \"tense\": \"past\"}, {\"t\": \"adjunct\", \"id\": \"a1\", \"event\": \"@e1\", \"participant\": \"@x2\", \"head\": \"Instrument\", \"preposition\": \"with\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sf7d2b9479a\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"letter\", \"definite\": true, \"span\": \"the letter\"}, {\"t\": \"witness\", \"id\": \"x2\", \"class\": \"pen\", \"span\": \"a pen\"}, {\"t\": \"creation\", \"id\": \"e1\", \"verb\": \"write\", \"creator\": \"@n1\", \"product\": \"@x1\", \"tense\": \"past\", \"span\": \"Ottoline wrote the letter\"}, {\"t\": \"adjunct\", \"id\": \"a1\", \"event\": \"@e1\", \"participant\": \"@x2\", \"head\": \"Instrument\", \"preposition\": \"with\", \"span\": \"with a pen\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sf7d2b9479a",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Ottoline"
+        "name": "Ottoline",
+        "span": "Ottoline"
       },
       {
         "t": "witness",
         "id": "x1",
         "class": "letter",
-        "definite": true
+        "definite": true,
+        "span": "the letter"
       },
       {
         "t": "witness",
         "id": "x2",
-        "class": "pen"
+        "class": "pen",
+        "span": "a pen"
       },
       {
         "t": "creation",
@@ -74,7 +77,8 @@
         "verb": "write",
         "creator": "@n1",
         "product": "@x1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Ottoline wrote the letter"
       },
       {
         "t": "adjunct",
@@ -82,13 +86,14 @@
         "event": "@e1",
         "participant": "@x2",
         "head": "Instrument",
-        "preposition": "with"
+        "preposition": "with",
+        "span": "with a pen"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "55732af26869bbaa55169fc16db0ed85110798ac0721bfbdda732a93ff4b5fd0",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "adjunct",

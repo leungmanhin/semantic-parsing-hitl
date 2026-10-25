@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "aea0dc69d24f92b4e9fc854261540ae45969c539482a78ca709b17321fd141f1",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sa6efb3b09d",
     "text": "If Lamine sings, Yusra leaves."
   },
   "usage": {
-    "input": 45873,
-    "output": 105,
+    "input": 56507,
+    "output": 126,
     "thinking": null,
-    "total": 45978,
-    "cached": 43824,
+    "total": 56633,
+    "cached": 54456,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,54 +25,56 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 45873,
-    "candidatesTokenCount": 105,
-    "totalTokenCount": 45978,
-    "cachedContentTokenCount": 43824,
+    "promptTokenCount": 56507,
+    "candidatesTokenCount": 126,
+    "totalTokenCount": 56633,
+    "cachedContentTokenCount": 54456,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 45873
+        "tokenCount": 56507
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 43824
+        "tokenCount": 54456
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 105
+        "tokenCount": 126
       }
     ]
   },
-  "raw_text": "{\"id\": \"sa6efb3b09d\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Yusra\"}], \"unmapped\": [{\"span\": \"If Lamine sings, Yusra leaves.\", \"code\": \"G00\", \"construction\": \"An if-conditional sentence.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"sa6efb3b09d\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Yusra\", \"span\": \"Yusra\"}], \"unmapped\": [{\"span\": \"If Lamine sings, Yusra leaves\", \"code\": \"G00\", \"construction\": \"A conditional sentence with 'if' relating two finite clauses.\"}], \"issues\": []}",
   "response": {
     "id": "sa6efb3b09d",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Lamine"
+        "name": "Lamine",
+        "span": "Lamine"
       },
       {
         "t": "named-entity",
         "id": "n2",
-        "name": "Yusra"
+        "name": "Yusra",
+        "span": "Yusra"
       }
     ],
     "unmapped": [
       {
-        "span": "If Lamine sings, Yusra leaves.",
+        "span": "If Lamine sings, Yusra leaves",
         "code": "G00",
-        "construction": "An if-conditional sentence."
+        "construction": "A conditional sentence with 'if' relating two finite clauses."
       }
     ],
     "issues": []
   },
-  "prompt_body_sha256": "667366f56ac295f7c22279b3bdae00b28653ebaf94bfcee3f5443b9887b2e7ea",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "link",

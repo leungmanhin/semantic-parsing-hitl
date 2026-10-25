@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "aea0dc69d24f92b4e9fc854261540ae45969c539482a78ca709b17321fd141f1",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sa06dd88fd4",
     "text": "Yusra sang in order to please Teodor."
   },
   "usage": {
-    "input": 45874,
-    "output": 185,
+    "input": 56508,
+    "output": 225,
     "thinking": null,
-    "total": 46059,
-    "cached": 43825,
+    "total": 56733,
+    "cached": 54459,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,72 +25,77 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 45874,
-    "candidatesTokenCount": 185,
-    "totalTokenCount": 46059,
-    "cachedContentTokenCount": 43825,
+    "promptTokenCount": 56508,
+    "candidatesTokenCount": 225,
+    "totalTokenCount": 56733,
+    "cachedContentTokenCount": 54459,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 45874
+        "tokenCount": 56508
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 43825
+        "tokenCount": 54459
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 185
+        "tokenCount": 225
       }
     ]
   },
-  "raw_text": "{\"id\": \"sa06dd88fd4\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"sing\", \"actor\": \"@n1\", \"tense\": \"past\"}, {\"t\": \"psych\", \"id\": \"e2\", \"verb\": \"please\", \"experiencer\": \"@n2\", \"stimulus\": \"@n1\", \"tense\": \"present\"}, {\"t\": \"purpose\", \"id\": \"k1\", \"head\": \"InOrderTo\", \"action\": \"@e1\", \"aim\": [\"@e2\"]}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sa06dd88fd4\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"sing\", \"actor\": \"@n1\", \"tense\": \"past\", \"span\": \"Yusra sang\"}, {\"t\": \"psych\", \"id\": \"p1\", \"verb\": \"please\", \"experiencer\": \"@n2\", \"stimulus\": \"@n1\", \"tense\": \"present\", \"span\": \"to please Teodor\"}, {\"t\": \"purpose\", \"id\": \"k1\", \"head\": \"InOrderTo\", \"action\": \"@v1\", \"aim\": [\"@p1\"], \"span\": \"in order to\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sa06dd88fd4",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Yusra"
+        "name": "Yusra",
+        "span": "Yusra"
       },
       {
         "t": "named-entity",
         "id": "n2",
-        "name": "Teodor"
+        "name": "Teodor",
+        "span": "Teodor"
       },
       {
         "t": "activity",
-        "id": "e1",
+        "id": "v1",
         "verb": "sing",
         "actor": "@n1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Yusra sang"
       },
       {
         "t": "psych",
-        "id": "e2",
+        "id": "p1",
         "verb": "please",
         "experiencer": "@n2",
         "stimulus": "@n1",
-        "tense": "present"
+        "tense": "present",
+        "span": "to please Teodor"
       },
       {
         "t": "purpose",
         "id": "k1",
         "head": "InOrderTo",
-        "action": "@e1",
+        "action": "@v1",
         "aim": [
-          "@e2"
-        ]
+          "@p1"
+        ],
+        "span": "in order to"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "667366f56ac295f7c22279b3bdae00b28653ebaf94bfcee3f5443b9887b2e7ea",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "purpose",

@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "036261b67cffbb04273fa6353b6fe9d8a5bd7044375e91f3934b29dcd44ae2e8",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s6af9613097",
     "text": "Yusra does not deeply distrust Lamine."
   },
   "usage": {
-    "input": 35896,
-    "output": 167,
+    "input": 56509,
+    "output": 309,
     "thinking": null,
-    "total": 36063,
-    "cached": 33847,
+    "total": 56818,
+    "cached": 54460,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,69 +25,74 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 35896,
-    "candidatesTokenCount": 167,
-    "totalTokenCount": 36063,
-    "cachedContentTokenCount": 33847,
+    "promptTokenCount": 56509,
+    "candidatesTokenCount": 309,
+    "totalTokenCount": 56818,
+    "cachedContentTokenCount": 54460,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 35896
+        "tokenCount": 56509
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 33847
+        "tokenCount": 54460
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 167
+        "tokenCount": 309
       }
     ]
   },
-  "raw_text": "{\"id\": \"s6af9613097\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Lamine\"}, {\"t\": \"psych\", \"id\": \"e1\", \"verb\": \"distrust\", \"experiencer\": \"@n1\", \"stimulus\": \"@n2\", \"tense\": \"present\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@e1\"]}, {\"t\": \"extent\", \"id\": \"a1\", \"event\": \"@e1\", \"level\": \"deeply\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\n  \"id\": \"s6af9613097\",\n  \"instances\": [\n    {\n      \"t\": \"named-entity\",\n      \"id\": \"n1\",\n      \"name\": \"Yusra\",\n      \"span\": \"Yusra\"\n    },\n    {\n      \"t\": \"named-entity\",\n      \"id\": \"n2\",\n      \"name\": \"Lamine\",\n      \"span\": \"Lamine\"\n    },\n    {\n      \"t\": \"psych\",\n      \"id\": \"p1\",\n      \"verb\": \"distrust\",\n      \"experiencer\": \"@n1\",\n      \"stimulus\": \"@n2\",\n      \"tense\": \"present\",\n      \"span\": \"Yusra does not deeply distrust Lamine\"\n    },\n    {\n      \"t\": \"negation\",\n      \"id\": \"s1\",\n      \"over\": [\n        \"@p1\"\n      ],\n      \"span\": \"does not\"\n    },\n    {\n      \"t\": \"extent\",\n      \"id\": \"a1\",\n      \"event\": \"@p1\",\n      \"level\": \"deeply\",\n      \"span\": \"deeply\"\n    }\n  ],\n  \"unmapped\": [],\n  \"issues\": []\n}",
   "response": {
     "id": "s6af9613097",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Yusra"
+        "name": "Yusra",
+        "span": "Yusra"
       },
       {
         "t": "named-entity",
         "id": "n2",
-        "name": "Lamine"
+        "name": "Lamine",
+        "span": "Lamine"
       },
       {
         "t": "psych",
-        "id": "e1",
+        "id": "p1",
         "verb": "distrust",
         "experiencer": "@n1",
         "stimulus": "@n2",
-        "tense": "present"
+        "tense": "present",
+        "span": "Yusra does not deeply distrust Lamine"
       },
       {
         "t": "negation",
         "id": "s1",
         "over": [
-          "@e1"
-        ]
+          "@p1"
+        ],
+        "span": "does not"
       },
       {
         "t": "extent",
         "id": "a1",
-        "event": "@e1",
-        "level": "deeply"
+        "event": "@p1",
+        "level": "deeply",
+        "span": "deeply"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "107542897d74ba7ca217f1d5c88d49a7531f59530bec65a2f2b7b7200334e22e",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "extent",

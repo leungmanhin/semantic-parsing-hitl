@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "f5f1e44762d5f71f92cba2959b585298e51bf895cfccd7dae6d6503648dc8ffe",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s317857497e",
     "text": "Teodor arrived."
   },
   "usage": {
-    "input": 21102,
-    "output": 87,
+    "input": 56505,
+    "output": 102,
     "thinking": null,
-    "total": 21189,
+    "total": 56607,
+    "cached": 54456,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,43 +25,52 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 21102,
-    "candidatesTokenCount": 87,
-    "totalTokenCount": 21189,
+    "promptTokenCount": 56505,
+    "candidatesTokenCount": 102,
+    "totalTokenCount": 56607,
+    "cachedContentTokenCount": 54456,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 21102
+        "tokenCount": 56505
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 54456
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 87
+        "tokenCount": 102
       }
     ]
   },
-  "raw_text": "{\"id\": \"s317857497e\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"motion\", \"id\": \"e1\", \"verb\": \"arrive\", \"mover\": \"@n1\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s317857497e\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"arrive\", \"mover\": \"@n1\", \"tense\": \"past\", \"span\": \"Teodor arrived\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s317857497e",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Teodor"
+        "name": "Teodor",
+        "span": "Teodor"
       },
       {
         "t": "motion",
-        "id": "e1",
+        "id": "m1",
         "verb": "arrive",
         "mover": "@n1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Teodor arrived"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "000098f3bba489804dab742a00fbb307c4c7cc7edbe3c2d93bcc7ed7118790ae",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "motion",

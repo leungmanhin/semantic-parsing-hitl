@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "011859ef1641de9eb20fbd0ff4c90d8a33b97940ed06b1a0de5d9191af6f2f3e",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s3de38232ab",
     "text": "Bring a ladder."
   },
   "usage": {
-    "input": 37158,
-    "output": 104,
+    "input": 56503,
+    "output": 126,
     "thinking": null,
-    "total": 37262,
-    "cached": 35109,
+    "total": 56629,
+    "cached": 54454,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,57 +25,60 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 37158,
-    "candidatesTokenCount": 104,
-    "totalTokenCount": 37262,
-    "cachedContentTokenCount": 35109,
+    "promptTokenCount": 56503,
+    "candidatesTokenCount": 126,
+    "totalTokenCount": 56629,
+    "cachedContentTokenCount": 54454,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 37158
+        "tokenCount": 56503
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 35109
+        "tokenCount": 54454
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 104
+        "tokenCount": 126
       }
     ]
   },
-  "raw_text": "{\"id\": \"s3de38232ab\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"ladder\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"bring\", \"moved\": \"@x1\", \"tense\": \"present\"}, {\"t\": \"imperative\", \"id\": \"s1\", \"over\": [\"@m1\"]}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s3de38232ab\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"ladder\", \"span\": \"a ladder\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"bring\", \"moved\": \"@x1\", \"tense\": \"present\", \"span\": \"Bring a ladder\"}, {\"t\": \"imperative\", \"id\": \"s1\", \"over\": [\"@m1\"], \"span\": \"Bring a ladder\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s3de38232ab",
     "instances": [
       {
         "t": "witness",
         "id": "x1",
-        "class": "ladder"
+        "class": "ladder",
+        "span": "a ladder"
       },
       {
         "t": "motion",
         "id": "m1",
         "verb": "bring",
         "moved": "@x1",
-        "tense": "present"
+        "tense": "present",
+        "span": "Bring a ladder"
       },
       {
         "t": "imperative",
         "id": "s1",
         "over": [
           "@m1"
-        ]
+        ],
+        "span": "Bring a ladder"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "86006c1331646959e618205dae5c6fd6c614cc473b5b0769d0ff87669d0897c5",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "imperative",

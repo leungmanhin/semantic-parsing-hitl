@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "54d8ad81ab6b6ede7a54597207657d933ded873a8d445236afc298e7c6b6743a",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "saa825eceb3",
     "text": "Teodor wonders whether Lamine sold the spindle."
   },
   "usage": {
-    "input": 6636,
-    "output": 109,
+    "input": 56507,
+    "output": 123,
     "thinking": null,
-    "total": 6745,
+    "total": 56630,
+    "cached": 54458,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,59 +25,61 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 6636,
-    "candidatesTokenCount": 109,
-    "totalTokenCount": 6745,
-    "cachedContentTokenCount": 4587,
+    "promptTokenCount": 56507,
+    "candidatesTokenCount": 123,
+    "totalTokenCount": 56630,
+    "cachedContentTokenCount": 54458,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 6636
+        "tokenCount": 56507
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 4587
+        "tokenCount": 54458
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 109
+        "tokenCount": 123
       }
     ]
   },
-  "raw_text": "{\"id\": \"saa825eceb3\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Lamine\"}], \"unmapped\": [{\"span\": \"Teodor wonders whether Lamine sold the spindle.\", \"code\": \"G00\", \"construction\": \"An attitude verb taking an interrogative complement clause.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"saa825eceb3\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Lamine\", \"span\": \"Lamine\"}], \"unmapped\": [{\"span\": \"wonders whether Lamine sold the spindle\", \"code\": \"G00\", \"construction\": \"An attitude verb taking an interrogative whether-complement.\"}], \"issues\": []}",
   "response": {
     "id": "saa825eceb3",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Teodor"
+        "name": "Teodor",
+        "span": "Teodor"
       },
       {
         "t": "named-entity",
         "id": "n2",
-        "name": "Lamine"
+        "name": "Lamine",
+        "span": "Lamine"
       }
     ],
     "unmapped": [
       {
-        "span": "Teodor wonders whether Lamine sold the spindle.",
+        "span": "wonders whether Lamine sold the spindle",
         "code": "G00",
-        "construction": "An attitude verb taking an interrogative complement clause."
+        "construction": "An attitude verb taking an interrogative whether-complement."
       }
     ],
     "issues": []
   },
-  "prompt_body_sha256": "8674bf87a4b179e17df201a06cdfa72949f5c085c9011d610b4139b838fd4f5a",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "attitude",
     "section": "held_out",
-    "index": 10,
+    "index": 11,
     "category": "abstain",
     "text": "Teodor wonders whether Lamine sold the spindle.",
     "key": "aa825eceb3"

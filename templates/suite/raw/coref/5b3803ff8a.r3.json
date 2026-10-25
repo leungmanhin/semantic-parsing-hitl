@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "9ef7be016fe9c94587147da8ab8e32dc10a36598db3616736ec4f119204faeb4",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s5b3803ff8a",
     "text": "The clerk who laughed left."
   },
   "usage": {
-    "input": 30249,
-    "output": 115,
+    "input": 56506,
+    "output": 134,
     "thinking": null,
-    "total": 30364,
+    "total": 56640,
+    "cached": 54457,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 30249,
-    "candidatesTokenCount": 115,
-    "totalTokenCount": 30364,
-    "cachedContentTokenCount": 28200,
+    "promptTokenCount": 56506,
+    "candidatesTokenCount": 134,
+    "totalTokenCount": 56640,
+    "cachedContentTokenCount": 54457,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 30249
+        "tokenCount": 56506
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 28200
+        "tokenCount": 54457
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 115
+        "tokenCount": 134
       }
     ]
   },
-  "raw_text": "{\"id\": \"s5b3803ff8a\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"clerk\", \"definite\": true}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@x1\", \"tense\": \"past\"}], \"unmapped\": [{\"span\": \"who laughed\", \"code\": \"G00\", \"construction\": \"A restrictive relative clause modifying a noun.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"s5b3803ff8a\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"clerk\", \"definite\": true, \"span\": \"The clerk\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@x1\", \"tense\": \"past\", \"span\": [\"The clerk\", \"left\"]}], \"unmapped\": [{\"span\": \"who laughed\", \"code\": \"G00\", \"construction\": \"A subject relative clause modifying the head noun.\"}], \"issues\": []}",
   "response": {
     "id": "s5b3803ff8a",
     "instances": [
@@ -55,26 +56,31 @@
         "t": "witness",
         "id": "x1",
         "class": "clerk",
-        "definite": true
+        "definite": true,
+        "span": "The clerk"
       },
       {
         "t": "motion",
         "id": "m1",
         "verb": "leave",
         "mover": "@x1",
-        "tense": "past"
+        "tense": "past",
+        "span": [
+          "The clerk",
+          "left"
+        ]
       }
     ],
     "unmapped": [
       {
         "span": "who laughed",
         "code": "G00",
-        "construction": "A restrictive relative clause modifying a noun."
+        "construction": "A subject relative clause modifying the head noun."
       }
     ],
     "issues": []
   },
-  "prompt_body_sha256": "8ec71bbffe57aa54f5eb1dc051643ad73943df5ef3964188a68d8dd96a4babd4",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "coref",

@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "57c0a2cf118bc64251ee1dc4f10535ec1900e8fb5354bff54b546c18457f758b",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s8daee80051",
     "text": "Lamine might work hard."
   },
   "usage": {
-    "input": 33502,
-    "output": 143,
+    "input": 56505,
+    "output": 171,
     "thinking": null,
-    "total": 33645,
-    "cached": 31452,
+    "total": 56676,
+    "cached": 54455,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,44 +25,46 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 33502,
-    "candidatesTokenCount": 143,
-    "totalTokenCount": 33645,
-    "cachedContentTokenCount": 31452,
+    "promptTokenCount": 56505,
+    "candidatesTokenCount": 171,
+    "totalTokenCount": 56676,
+    "cachedContentTokenCount": 54455,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 33502
+        "tokenCount": 56505
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 31452
+        "tokenCount": 54455
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 143
+        "tokenCount": 171
       }
     ]
   },
-  "raw_text": "{\"id\": \"s8daee80051\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"work\", \"actor\": \"@n1\", \"tense\": \"present\"}, {\"t\": \"modal\", \"id\": \"s1\", \"over\": [\"@e1\"], \"head\": \"Might\", \"surface\": \"might\"}, {\"t\": \"manner\", \"id\": \"a1\", \"event\": \"@e1\", \"manner\": \"hard\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s8daee80051\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"work\", \"actor\": \"@n1\", \"tense\": \"present\", \"span\": \"Lamine might work\"}, {\"t\": \"modal\", \"id\": \"s1\", \"over\": [\"@e1\"], \"head\": \"Might\", \"surface\": \"might\", \"span\": \"might\"}, {\"t\": \"manner\", \"id\": \"a1\", \"event\": \"@e1\", \"manner\": \"hard\", \"span\": \"hard\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s8daee80051",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Lamine"
+        "name": "Lamine",
+        "span": "Lamine"
       },
       {
         "t": "activity",
         "id": "e1",
         "verb": "work",
         "actor": "@n1",
-        "tense": "present"
+        "tense": "present",
+        "span": "Lamine might work"
       },
       {
         "t": "modal",
@@ -71,19 +73,21 @@
           "@e1"
         ],
         "head": "Might",
-        "surface": "might"
+        "surface": "might",
+        "span": "might"
       },
       {
         "t": "manner",
         "id": "a1",
         "event": "@e1",
-        "manner": "hard"
+        "manner": "hard",
+        "span": "hard"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "55732af26869bbaa55169fc16db0ed85110798ac0721bfbdda732a93ff4b5fd0",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "manner",

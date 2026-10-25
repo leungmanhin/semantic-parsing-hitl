@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "57c0a2cf118bc64251ee1dc4f10535ec1900e8fb5354bff54b546c18457f758b",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s62d363167e",
     "text": "Quietly, the ferret slept."
   },
   "usage": {
-    "input": 33505,
-    "output": 117,
+    "input": 56508,
+    "output": 139,
     "thinking": null,
-    "total": 33622,
-    "cached": 31456,
+    "total": 56647,
+    "cached": 54459,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 33505,
-    "candidatesTokenCount": 117,
-    "totalTokenCount": 33622,
-    "cachedContentTokenCount": 31456,
+    "promptTokenCount": 56508,
+    "candidatesTokenCount": 139,
+    "totalTokenCount": 56647,
+    "cachedContentTokenCount": 54459,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 33505
+        "tokenCount": 56508
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 31456
+        "tokenCount": 54459
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 117
+        "tokenCount": 139
       }
     ]
   },
-  "raw_text": "{\"id\": \"s62d363167e\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"ferret\", \"definite\": true}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"sleep\", \"actor\": \"@x1\", \"tense\": \"past\"}, {\"t\": \"manner\", \"id\": \"a1\", \"event\": \"@e1\", \"manner\": \"quietly\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s62d363167e\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"ferret\", \"definite\": true, \"span\": \"the ferret\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"sleep\", \"actor\": \"@x1\", \"tense\": \"past\", \"span\": \"the ferret slept\"}, {\"t\": \"manner\", \"id\": \"a1\", \"event\": \"@e1\", \"manner\": \"quietly\", \"span\": \"Quietly\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s62d363167e",
     "instances": [
@@ -56,26 +56,29 @@
         "t": "witness",
         "id": "x1",
         "class": "ferret",
-        "definite": true
+        "definite": true,
+        "span": "the ferret"
       },
       {
         "t": "activity",
         "id": "e1",
         "verb": "sleep",
         "actor": "@x1",
-        "tense": "past"
+        "tense": "past",
+        "span": "the ferret slept"
       },
       {
         "t": "manner",
         "id": "a1",
         "event": "@e1",
-        "manner": "quietly"
+        "manner": "quietly",
+        "span": "Quietly"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "55732af26869bbaa55169fc16db0ed85110798ac0721bfbdda732a93ff4b5fd0",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "manner",

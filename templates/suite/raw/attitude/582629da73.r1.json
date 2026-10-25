@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "54d8ad81ab6b6ede7a54597207657d933ded873a8d445236afc298e7c6b6743a",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s582629da73",
     "text": "Yusra knows Lamine."
   },
   "usage": {
-    "input": 6635,
-    "output": 110,
+    "input": 56506,
+    "output": 124,
     "thinking": null,
-    "total": 6745,
+    "total": 56630,
+    "cached": null,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,52 +25,54 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 6635,
-    "candidatesTokenCount": 110,
-    "totalTokenCount": 6745,
+    "promptTokenCount": 56506,
+    "candidatesTokenCount": 124,
+    "totalTokenCount": 56630,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 6635
+        "tokenCount": 56506
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 110
+        "tokenCount": 124
       }
     ]
   },
-  "raw_text": "{\"id\": \"s582629da73\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Lamine\"}], \"unmapped\": [{\"span\": \"Yusra knows Lamine.\", \"code\": \"G00\", \"construction\": \"A transitive acquaintance predication with an entity direct object.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"s582629da73\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Lamine\", \"span\": \"Lamine\"}], \"unmapped\": [{\"span\": \"knows Lamine\", \"code\": \"G00\", \"construction\": \"Acquaintance verb 'know' with an entity object.\"}], \"issues\": []}",
   "response": {
     "id": "s582629da73",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Yusra"
+        "name": "Yusra",
+        "span": "Yusra"
       },
       {
         "t": "named-entity",
         "id": "n2",
-        "name": "Lamine"
+        "name": "Lamine",
+        "span": "Lamine"
       }
     ],
     "unmapped": [
       {
-        "span": "Yusra knows Lamine.",
+        "span": "knows Lamine",
         "code": "G00",
-        "construction": "A transitive acquaintance predication with an entity direct object."
+        "construction": "Acquaintance verb 'know' with an entity object."
       }
     ],
     "issues": []
   },
-  "prompt_body_sha256": "8674bf87a4b179e17df201a06cdfa72949f5c085c9011d610b4139b838fd4f5a",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "attitude",
     "section": "held_out",
-    "index": 9,
+    "index": 10,
     "category": "abstain",
     "text": "Yusra knows Lamine.",
     "key": "582629da73"

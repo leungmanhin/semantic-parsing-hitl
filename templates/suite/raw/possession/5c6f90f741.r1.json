@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "517fa33db1e726e201b1348c24b85866cf55bad518e4a4cbb5add28a521e2750",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s5c6f90f741",
     "text": "Teodor lacks a trowel."
   },
   "usage": {
-    "input": 11840,
-    "output": 116,
+    "input": 56507,
+    "output": 107,
     "thinking": null,
-    "total": 11956,
+    "total": 56614,
+    "cached": 54455,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,35 +25,44 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 11840,
-    "candidatesTokenCount": 116,
-    "totalTokenCount": 11956,
+    "promptTokenCount": 56507,
+    "candidatesTokenCount": 107,
+    "totalTokenCount": 56614,
+    "cachedContentTokenCount": 54455,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 11840
+        "tokenCount": 56507
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 54455
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 116
+        "tokenCount": 107
       }
     ]
   },
-  "raw_text": "{\"id\": \"s5c6f90f741\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"trowel\"}, {\"t\": \"possession\", \"id\": \"p1\", \"verb\": \"lack\", \"holder\": \"@n1\", \"possessed\": \"@x1\", \"tense\": \"present\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\":\"s5c6f90f741\",\"instances\":[{\"t\":\"named-entity\",\"id\":\"n1\",\"name\":\"Teodor\",\"span\":\"Teodor\"},{\"t\":\"witness\",\"id\":\"x1\",\"class\":\"trowel\",\"span\":\"a trowel\"},{\"t\":\"possession\",\"id\":\"p1\",\"verb\":\"lack\",\"holder\":\"@n1\",\"possessed\":\"@x1\",\"tense\":\"present\",\"span\":\"Teodor lacks a trowel\"}],\"unmapped\":[],\"issues\":[]}",
   "response": {
     "id": "s5c6f90f741",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Teodor"
+        "name": "Teodor",
+        "span": "Teodor"
       },
       {
         "t": "witness",
         "id": "x1",
-        "class": "trowel"
+        "class": "trowel",
+        "span": "a trowel"
       },
       {
         "t": "possession",
@@ -60,13 +70,14 @@
         "verb": "lack",
         "holder": "@n1",
         "possessed": "@x1",
-        "tense": "present"
+        "tense": "present",
+        "span": "Teodor lacks a trowel"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "41b1c076c80ab3ff14e8e47da03ff29f11a94fdce1398936f1eb2cbe9cb1a5e7",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "possession",

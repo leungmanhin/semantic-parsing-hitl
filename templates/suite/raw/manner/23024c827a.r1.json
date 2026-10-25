@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "57c0a2cf118bc64251ee1dc4f10535ec1900e8fb5354bff54b546c18457f758b",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s23024c827a",
     "text": "Yusra probably left."
   },
   "usage": {
-    "input": 33503,
-    "output": 97,
+    "input": 56506,
+    "output": 113,
     "thinking": null,
-    "total": 33600,
-    "cached": 31453,
+    "total": 56619,
+    "cached": 54457,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,49 +25,50 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 33503,
-    "candidatesTokenCount": 97,
-    "totalTokenCount": 33600,
-    "cachedContentTokenCount": 31453,
+    "promptTokenCount": 56506,
+    "candidatesTokenCount": 113,
+    "totalTokenCount": 56619,
+    "cachedContentTokenCount": 54457,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 33503
+        "tokenCount": 56506
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 31453
+        "tokenCount": 54457
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 97
+        "tokenCount": 113
       }
     ]
   },
-  "raw_text": "{\"id\": \"s23024c827a\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}], \"unmapped\": [{\"span\": \"Yusra probably left.\", \"code\": \"G00\", \"construction\": \"A clause modified by an epistemic hedge adverb ('probably') that blocks entailment of the unqualified event.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"s23024c827a\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}], \"unmapped\": [{\"span\": \"Yusra probably left\", \"code\": \"G00\", \"construction\": \"A clause modified by an epistemic adverb ('probably') that hedges the assertion, so the whole clause is left out to avoid an unqualified claim.\"}], \"issues\": []}",
   "response": {
     "id": "s23024c827a",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Yusra"
+        "name": "Yusra",
+        "span": "Yusra"
       }
     ],
     "unmapped": [
       {
-        "span": "Yusra probably left.",
+        "span": "Yusra probably left",
         "code": "G00",
-        "construction": "A clause modified by an epistemic hedge adverb ('probably') that blocks entailment of the unqualified event."
+        "construction": "A clause modified by an epistemic adverb ('probably') that hedges the assertion, so the whole clause is left out to avoid an unqualified claim."
       }
     ],
     "issues": []
   },
-  "prompt_body_sha256": "55732af26869bbaa55169fc16db0ed85110798ac0721bfbdda732a93ff4b5fd0",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "manner",

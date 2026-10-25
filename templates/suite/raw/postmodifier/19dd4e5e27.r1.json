@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "ed7e5be12a09f9e5947e50cfa5d2b849bc8b16ea94ad2bdefa98a0592d434d3f",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s19dd4e5e27",
     "text": "Yusra did not read a book about ferrets."
   },
   "usage": {
-    "input": 49028,
-    "output": 169,
+    "input": 56511,
+    "output": 214,
     "thinking": null,
-    "total": 49197,
-    "cached": 46978,
+    "total": 56725,
+    "cached": 54461,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,49 +25,52 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 49028,
-    "candidatesTokenCount": 169,
-    "totalTokenCount": 49197,
-    "cachedContentTokenCount": 46978,
+    "promptTokenCount": 56511,
+    "candidatesTokenCount": 214,
+    "totalTokenCount": 56725,
+    "cachedContentTokenCount": 54461,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 49028
+        "tokenCount": 56511
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 46978
+        "tokenCount": 54461
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 169
+        "tokenCount": 214
       }
     ]
   },
-  "raw_text": "{\"id\": \"s19dd4e5e27\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"book\"}, {\"t\": \"postmodifier\", \"id\": \"a1\", \"noun\": \"@x1\", \"head\": \"About\", \"object\": \"ferret\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"read\", \"actor\": \"@n1\", \"patient\": \"@x1\", \"tense\": \"past\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@v1\"]}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s19dd4e5e27\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"book\", \"span\": \"a book\"}, {\"t\": \"postmodifier\", \"id\": \"a1\", \"noun\": \"@x1\", \"head\": \"About\", \"object\": \"ferret\", \"span\": \"about ferrets\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"read\", \"actor\": \"@n1\", \"patient\": \"@x1\", \"tense\": \"past\", \"span\": \"Yusra did not read a book about ferrets\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@v1\"], \"span\": \"did not\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s19dd4e5e27",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Yusra"
+        "name": "Yusra",
+        "span": "Yusra"
       },
       {
         "t": "witness",
         "id": "x1",
-        "class": "book"
+        "class": "book",
+        "span": "a book"
       },
       {
         "t": "postmodifier",
         "id": "a1",
         "noun": "@x1",
         "head": "About",
-        "object": "ferret"
+        "object": "ferret",
+        "span": "about ferrets"
       },
       {
         "t": "activity",
@@ -75,20 +78,22 @@
         "verb": "read",
         "actor": "@n1",
         "patient": "@x1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Yusra did not read a book about ferrets"
       },
       {
         "t": "negation",
         "id": "s1",
         "over": [
           "@v1"
-        ]
+        ],
+        "span": "did not"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "7ea5b5bb86c29718a2936a9c64163dc82790d7b8ea4be586be12417680d153a7",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "postmodifier",

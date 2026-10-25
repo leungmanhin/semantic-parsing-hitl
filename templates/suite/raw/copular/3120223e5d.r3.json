@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "a425dddb507554c71fb4c88aec8fc84118920b43204deae9960577427454e8da",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s3120223e5d",
     "text": "The ladder might be crooked."
   },
   "usage": {
-    "input": 16519,
-    "output": 129,
+    "input": 56507,
+    "output": 152,
     "thinking": null,
-    "total": 16648,
+    "total": 56659,
+    "cached": 54458,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 16519,
-    "candidatesTokenCount": 129,
-    "totalTokenCount": 16648,
-    "cachedContentTokenCount": 14470,
+    "promptTokenCount": 56507,
+    "candidatesTokenCount": 152,
+    "totalTokenCount": 56659,
+    "cachedContentTokenCount": 54458,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 16519
+        "tokenCount": 56507
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 14470
+        "tokenCount": 54458
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 129
+        "tokenCount": 152
       }
     ]
   },
-  "raw_text": "{\"id\": \"s3120223e5d\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"ladder\", \"definite\": true}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@x1\", \"predicate\": \"crooked\", \"form\": \"adjective\", \"tense\": \"present\"}, {\"t\": \"modal\", \"id\": \"s1\", \"over\": [\"@c1\"], \"head\": \"Might\", \"surface\": \"might\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s3120223e5d\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"ladder\", \"definite\": true, \"span\": \"The ladder\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@x1\", \"predicate\": \"crooked\", \"form\": \"adjective\", \"tense\": \"present\", \"span\": \"The ladder might be crooked\"}, {\"t\": \"modal\", \"id\": \"s1\", \"over\": [\"@c1\"], \"head\": \"Might\", \"surface\": \"might\", \"span\": \"might\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s3120223e5d",
     "instances": [
@@ -55,7 +56,8 @@
         "t": "witness",
         "id": "x1",
         "class": "ladder",
-        "definite": true
+        "definite": true,
+        "span": "The ladder"
       },
       {
         "t": "copular",
@@ -63,7 +65,8 @@
         "subject": "@x1",
         "predicate": "crooked",
         "form": "adjective",
-        "tense": "present"
+        "tense": "present",
+        "span": "The ladder might be crooked"
       },
       {
         "t": "modal",
@@ -72,13 +75,14 @@
           "@c1"
         ],
         "head": "Might",
-        "surface": "might"
+        "surface": "might",
+        "span": "might"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "120b60a17e82d50d47855b28fe77e98ae4c75e431ab78838d5db2b4f83cfa873",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "copular",

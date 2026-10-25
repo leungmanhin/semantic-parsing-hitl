@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "549a9f7ae5e71c64cad5c2d1abc2482ac27640f2496235a0ac72afe79e5b0f08",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sfa0be948ff",
     "text": "Teodor might inherit the quilt."
   },
   "usage": {
-    "input": 10827,
-    "output": 149,
+    "input": 56505,
+    "output": 180,
     "thinking": null,
-    "total": 10976,
+    "total": 56685,
+    "cached": 54456,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,43 +25,45 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 10827,
-    "candidatesTokenCount": 149,
-    "totalTokenCount": 10976,
-    "cachedContentTokenCount": 8778,
+    "promptTokenCount": 56505,
+    "candidatesTokenCount": 180,
+    "totalTokenCount": 56685,
+    "cachedContentTokenCount": 54456,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 10827
+        "tokenCount": 56505
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 8778
+        "tokenCount": 54456
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 149
+        "tokenCount": 180
       }
     ]
   },
-  "raw_text": "{\"id\": \"sfa0be948ff\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"quilt\", \"definite\": true}, {\"t\": \"acquisition\", \"id\": \"e1\", \"verb\": \"inherit\", \"acquirer\": \"@n1\", \"object\": \"@x1\", \"tense\": \"present\"}, {\"t\": \"modal\", \"id\": \"s1\", \"over\": [\"@e1\"], \"head\": \"Might\", \"surface\": \"might\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sfa0be948ff\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"quilt\", \"definite\": true, \"span\": \"the quilt\"}, {\"t\": \"acquisition\", \"id\": \"e1\", \"verb\": \"inherit\", \"acquirer\": \"@n1\", \"object\": \"@x1\", \"tense\": \"present\", \"span\": \"Teodor might inherit the quilt\"}, {\"t\": \"modal\", \"id\": \"s1\", \"over\": [\"@e1\"], \"head\": \"Might\", \"surface\": \"might\", \"span\": \"might\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sfa0be948ff",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Teodor"
+        "name": "Teodor",
+        "span": "Teodor"
       },
       {
         "t": "witness",
         "id": "x1",
         "class": "quilt",
-        "definite": true
+        "definite": true,
+        "span": "the quilt"
       },
       {
         "t": "acquisition",
@@ -68,7 +71,8 @@
         "verb": "inherit",
         "acquirer": "@n1",
         "object": "@x1",
-        "tense": "present"
+        "tense": "present",
+        "span": "Teodor might inherit the quilt"
       },
       {
         "t": "modal",
@@ -77,13 +81,14 @@
           "@e1"
         ],
         "head": "Might",
-        "surface": "might"
+        "surface": "might",
+        "span": "might"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "6cf313445a0a101e1fc3416cc18e201b1014c1ed7339419f511094ac6b3ffbd5",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "acquisition",

@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "036261b67cffbb04273fa6353b6fe9d8a5bd7044375e91f3934b29dcd44ae2e8",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s15d695fa18",
     "text": "The thermos was very full."
   },
   "usage": {
-    "input": 35893,
-    "output": 95,
+    "input": 56506,
+    "output": 112,
     "thinking": null,
-    "total": 35988,
-    "cached": 33841,
+    "total": 56618,
+    "cached": 54456,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 35893,
-    "candidatesTokenCount": 95,
-    "totalTokenCount": 35988,
-    "cachedContentTokenCount": 33841,
+    "promptTokenCount": 56506,
+    "candidatesTokenCount": 112,
+    "totalTokenCount": 56618,
+    "cachedContentTokenCount": 54456,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 35893
+        "tokenCount": 56506
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 33841
+        "tokenCount": 54456
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 95
+        "tokenCount": 112
       }
     ]
   },
-  "raw_text": "{\"id\": \"s15d695fa18\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"thermos\", \"definite\": true}, {\"t\": \"degree\", \"id\": \"d1\", \"bearer\": \"@x1\", \"scale\": \"full\", \"level\": \"very\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s15d695fa18\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"thermos\", \"definite\": true, \"span\": \"The thermos\"}, {\"t\": \"degree\", \"id\": \"d1\", \"bearer\": \"@x1\", \"scale\": \"full\", \"level\": \"very\", \"tense\": \"past\", \"span\": \"The thermos was very full\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s15d695fa18",
     "instances": [
@@ -56,7 +56,8 @@
         "t": "witness",
         "id": "x1",
         "class": "thermos",
-        "definite": true
+        "definite": true,
+        "span": "The thermos"
       },
       {
         "t": "degree",
@@ -64,13 +65,14 @@
         "bearer": "@x1",
         "scale": "full",
         "level": "very",
-        "tense": "past"
+        "tense": "past",
+        "span": "The thermos was very full"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "107542897d74ba7ca217f1d5c88d49a7531f59530bec65a2f2b7b7200334e22e",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "degree",

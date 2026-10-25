@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "ecb9313bbef541ec29940699dad9a1b36a9780334e6b77fdb8e31663cca0597f",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "saf476201a4",
     "text": "Teodor is in the barn."
   },
   "usage": {
-    "input": 26449,
-    "output": 125,
+    "input": 56506,
+    "output": 150,
     "thinking": null,
-    "total": 26574,
+    "total": 56656,
+    "cached": 54457,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,43 +25,45 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 26449,
-    "candidatesTokenCount": 125,
-    "totalTokenCount": 26574,
-    "cachedContentTokenCount": 24400,
+    "promptTokenCount": 56506,
+    "candidatesTokenCount": 150,
+    "totalTokenCount": 56656,
+    "cachedContentTokenCount": 54457,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 26449
+        "tokenCount": 56506
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 24400
+        "tokenCount": 54457
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 125
+        "tokenCount": 150
       }
     ]
   },
-  "raw_text": "{\"id\": \"saf476201a4\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"barn\", \"definite\": true}, {\"t\": \"locative\", \"id\": \"l1\", \"thing\": \"@n1\", \"place\": \"@x1\", \"head\": \"LocatedIn\", \"preposition\": \"in\", \"tense\": \"present\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"saf476201a4\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"barn\", \"definite\": true, \"span\": \"the barn\"}, {\"t\": \"locative\", \"id\": \"l1\", \"thing\": \"@n1\", \"place\": \"@x1\", \"head\": \"LocatedIn\", \"preposition\": \"in\", \"tense\": \"present\", \"span\": \"Teodor is in the barn\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "saf476201a4",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Teodor"
+        "name": "Teodor",
+        "span": "Teodor"
       },
       {
         "t": "witness",
         "id": "x1",
         "class": "barn",
-        "definite": true
+        "definite": true,
+        "span": "the barn"
       },
       {
         "t": "locative",
@@ -69,18 +72,19 @@
         "place": "@x1",
         "head": "LocatedIn",
         "preposition": "in",
-        "tense": "present"
+        "tense": "present",
+        "span": "Teodor is in the barn"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "fe66913c81da38dc9d9e0ba589cc774123d4719abb4eec09e23557bfcfde237f",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "locative",
     "section": "held_out",
-    "index": 6,
+    "index": 7,
     "category": "positive",
     "text": "Teodor is in the barn.",
     "key": "af476201a4"

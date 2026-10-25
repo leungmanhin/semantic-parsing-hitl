@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "f131d9909123f262f22649f1d0a661fcd2875712cc42a57ee96b4987f17f15ff",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sf62df56160",
     "text": "Most herons are patient."
   },
   "usage": {
-    "input": 19690,
-    "output": 84,
+    "input": 56505,
+    "output": 94,
     "thinking": null,
-    "total": 19774,
+    "total": 56599,
+    "cached": 54456,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,23 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 19690,
-    "candidatesTokenCount": 84,
-    "totalTokenCount": 19774,
+    "promptTokenCount": 56505,
+    "candidatesTokenCount": 94,
+    "totalTokenCount": 56599,
+    "cachedContentTokenCount": 54456,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 19690
+        "tokenCount": 56505
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 54456
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 84
+        "tokenCount": 94
       }
     ]
   },
-  "raw_text": "{\"id\": \"sf62df56160\", \"instances\": [{\"t\": \"kind-statement\", \"id\": \"k1\", \"subject\": \"heron\", \"predicate\": \"patient\", \"form\": \"adjective\", \"definitional\": false, \"quantifier\": \"most\", \"tense\": \"present\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sf62df56160\", \"instances\": [{\"t\": \"class-statement\", \"id\": \"k1\", \"subject\": \"heron\", \"predicate\": \"patient\", \"form\": \"adjective\", \"definitional\": false, \"quantifier\": \"most\", \"tense\": \"present\", \"span\": \"Most herons are patient\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sf62df56160",
     "instances": [
@@ -52,18 +60,19 @@
         "form": "adjective",
         "definitional": false,
         "quantifier": "most",
-        "tense": "present"
+        "tense": "present",
+        "span": "Most herons are patient"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "1d1d69fff405c91e41b45cfd40fd9da93832112f9edce8f3b99dca62a91fe348",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "generic",
     "section": "held_out",
-    "index": 9,
+    "index": 14,
     "category": "abstain",
     "text": "Most herons are patient.",
     "key": "f62df56160"

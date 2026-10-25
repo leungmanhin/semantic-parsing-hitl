@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "f4d17abe47ce0097d01f189e549c2f7270adfee30060ea503bfb81f323e1bd63",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sc89bb0061d",
     "text": "Even though Lamine waited, Teodor left."
   },
   "usage": {
-    "input": 53467,
-    "output": 174,
+    "input": 56509,
+    "output": 211,
     "thinking": null,
-    "total": 53641,
-    "cached": 51418,
+    "total": 56720,
+    "cached": 54460,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,69 +25,74 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 53467,
-    "candidatesTokenCount": 174,
-    "totalTokenCount": 53641,
-    "cachedContentTokenCount": 51418,
+    "promptTokenCount": 56509,
+    "candidatesTokenCount": 211,
+    "totalTokenCount": 56720,
+    "cachedContentTokenCount": 54460,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 53467
+        "tokenCount": 56509
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 51418
+        "tokenCount": 54460
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 174
+        "tokenCount": 211
       }
     ]
   },
-  "raw_text": "{\"id\": \"sc89bb0061d\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"wait\", \"actor\": \"@n1\", \"tense\": \"past\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n2\", \"tense\": \"past\"}, {\"t\": \"link\", \"id\": \"k1\", \"head\": \"EvenThough\", \"main\": \"@m1\", \"sub\": \"@v1\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sc89bb0061d\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"wait\", \"actor\": \"@n1\", \"tense\": \"past\", \"span\": \"Lamine waited\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n2\", \"tense\": \"past\", \"span\": \"Teodor left\"}, {\"t\": \"link\", \"id\": \"k1\", \"head\": \"EvenThough\", \"main\": \"@m1\", \"sub\": \"@v1\", \"span\": \"Even though\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sc89bb0061d",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Lamine"
+        "name": "Lamine",
+        "span": "Lamine"
       },
       {
         "t": "named-entity",
         "id": "n2",
-        "name": "Teodor"
+        "name": "Teodor",
+        "span": "Teodor"
       },
       {
         "t": "activity",
         "id": "v1",
         "verb": "wait",
         "actor": "@n1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Lamine waited"
       },
       {
         "t": "motion",
         "id": "m1",
         "verb": "leave",
         "mover": "@n2",
-        "tense": "past"
+        "tense": "past",
+        "span": "Teodor left"
       },
       {
         "t": "link",
         "id": "k1",
         "head": "EvenThough",
         "main": "@m1",
-        "sub": "@v1"
+        "sub": "@v1",
+        "span": "Even though"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "e9f273b0d2bdaff9e725ba8f0d2aaf8c4c5cb64dbb039e1e790e5251d9ea1298",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "focus",

@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "3cf1c657d278c5f88cd86233811adb01fd7b99c43b58fc7e7f270c08f8532885",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s1afff115e3",
     "text": "Teodor did not see the ferret."
   },
   "usage": {
-    "input": 13820,
-    "output": 140,
+    "input": 56507,
+    "output": 172,
     "thinking": null,
-    "total": 13960,
+    "total": 56679,
+    "cached": 54458,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,43 +25,45 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 13820,
-    "candidatesTokenCount": 140,
-    "totalTokenCount": 13960,
-    "cachedContentTokenCount": 11771,
+    "promptTokenCount": 56507,
+    "candidatesTokenCount": 172,
+    "totalTokenCount": 56679,
+    "cachedContentTokenCount": 54458,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 13820
+        "tokenCount": 56507
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 11771
+        "tokenCount": 54458
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 140
+        "tokenCount": 172
       }
     ]
   },
-  "raw_text": "{\"id\": \"s1afff115e3\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"ferret\", \"definite\": true}, {\"t\": \"perception\", \"id\": \"p1\", \"verb\": \"see\", \"perceiver\": \"@n1\", \"stimulus\": \"@x1\", \"tense\": \"past\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@p1\"]}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s1afff115e3\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"ferret\", \"definite\": true, \"span\": \"the ferret\"}, {\"t\": \"perception\", \"id\": \"p1\", \"verb\": \"see\", \"perceiver\": \"@n1\", \"stimulus\": \"@x1\", \"tense\": \"past\", \"span\": \"Teodor did not see the ferret\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@p1\"], \"span\": \"did not\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s1afff115e3",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Teodor"
+        "name": "Teodor",
+        "span": "Teodor"
       },
       {
         "t": "witness",
         "id": "x1",
         "class": "ferret",
-        "definite": true
+        "definite": true,
+        "span": "the ferret"
       },
       {
         "t": "perception",
@@ -68,20 +71,22 @@
         "verb": "see",
         "perceiver": "@n1",
         "stimulus": "@x1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Teodor did not see the ferret"
       },
       {
         "t": "negation",
         "id": "s1",
         "over": [
           "@p1"
-        ]
+        ],
+        "span": "did not"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "4045b2ad4809e7e7e07e9faa62e508fb7a2daeb033c9f5aedf2c8aef30067522",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "perception",

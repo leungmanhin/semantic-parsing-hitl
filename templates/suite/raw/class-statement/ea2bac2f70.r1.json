@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "30136217c8a53b070f76fabaf4ca8fa6bd9b79b46900954e11cd22896106c271",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sea2bac2f70",
     "text": "No ferret is a rodent."
   },
   "usage": {
-    "input": 19696,
-    "output": 83,
+    "input": 56503,
+    "output": 93,
     "thinking": null,
-    "total": 19779,
+    "total": 56596,
+    "cached": null,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,23 +25,23 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 19696,
-    "candidatesTokenCount": 83,
-    "totalTokenCount": 19779,
+    "promptTokenCount": 56503,
+    "candidatesTokenCount": 93,
+    "totalTokenCount": 56596,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 19696
+        "tokenCount": 56503
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 83
+        "tokenCount": 93
       }
     ]
   },
-  "raw_text": "{\"id\": \"sea2bac2f70\", \"instances\": [{\"t\": \"kind-statement\", \"id\": \"k1\", \"subject\": \"ferret\", \"predicate\": \"rodent\", \"form\": \"noun\", \"definitional\": true, \"quantifier\": \"no\", \"tense\": \"present\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sea2bac2f70\", \"instances\": [{\"t\": \"class-statement\", \"id\": \"k1\", \"subject\": \"ferret\", \"predicate\": \"rodent\", \"form\": \"noun\", \"definitional\": true, \"quantifier\": \"no\", \"tense\": \"present\", \"span\": \"No ferret is a rodent\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sea2bac2f70",
     "instances": [
@@ -52,13 +53,14 @@
         "form": "noun",
         "definitional": true,
         "quantifier": "no",
-        "tense": "present"
+        "tense": "present",
+        "span": "No ferret is a rodent"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "ae90abe12b2d4b21b84088798d51cf84ec4ff071897448fde41cb8d910734e20",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "class-statement",

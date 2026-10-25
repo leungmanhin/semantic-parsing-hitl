@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "ecb9313bbef541ec29940699dad9a1b36a9780334e6b77fdb8e31663cca0597f",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s685b41db5e",
     "text": "Teodor ran across the field."
   },
   "usage": {
-    "input": 26450,
-    "output": 121,
+    "input": 56507,
+    "output": 174,
     "thinking": null,
-    "total": 26571,
+    "total": 56681,
+    "cached": 54456,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,49 +25,67 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 26450,
-    "candidatesTokenCount": 121,
-    "totalTokenCount": 26571,
+    "promptTokenCount": 56507,
+    "candidatesTokenCount": 174,
+    "totalTokenCount": 56681,
+    "cachedContentTokenCount": 54456,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 26450
+        "tokenCount": 56507
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 54456
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 121
+        "tokenCount": 174
       }
     ]
   },
-  "raw_text": "{\"id\": \"s685b41db5e\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"motion\", \"id\": \"e1\", \"verb\": \"run\", \"mover\": \"@n1\", \"tense\": \"past\"}], \"unmapped\": [{\"span\": \"across the field\", \"code\": \"G00\", \"construction\": \"A path prepositional phrase with 'across' attached to a motion verb.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"s685b41db5e\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"field\", \"definite\": true, \"span\": \"the field\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"run\", \"mover\": \"@n1\", \"tense\": \"past\", \"span\": \"Teodor ran\"}, {\"t\": \"oblique\", \"id\": \"a1\", \"event\": \"@m1\", \"head\": \"Across\", \"object\": \"@x1\", \"span\": \"across the field\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s685b41db5e",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Teodor"
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "field",
+        "definite": true,
+        "span": "the field"
       },
       {
         "t": "motion",
-        "id": "e1",
+        "id": "m1",
         "verb": "run",
         "mover": "@n1",
-        "tense": "past"
-      }
-    ],
-    "unmapped": [
+        "tense": "past",
+        "span": "Teodor ran"
+      },
       {
-        "span": "across the field",
-        "code": "G00",
-        "construction": "A path prepositional phrase with 'across' attached to a motion verb."
+        "t": "oblique",
+        "id": "a1",
+        "event": "@m1",
+        "head": "Across",
+        "object": "@x1",
+        "span": "across the field"
       }
     ],
+    "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "fe66913c81da38dc9d9e0ba589cc774123d4719abb4eec09e23557bfcfde237f",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "location",

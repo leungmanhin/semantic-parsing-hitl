@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "aea0dc69d24f92b4e9fc854261540ae45969c539482a78ca709b17321fd141f1",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s4c75eda40f",
     "text": "Yusra is too tired to sing."
   },
   "usage": {
-    "input": 45873,
-    "output": 123,
+    "input": 56507,
+    "output": 211,
     "thinking": null,
-    "total": 45996,
-    "cached": 43824,
+    "total": 56718,
+    "cached": 54458,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,37 +25,38 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 45873,
-    "candidatesTokenCount": 123,
-    "totalTokenCount": 45996,
-    "cachedContentTokenCount": 43824,
+    "promptTokenCount": 56507,
+    "candidatesTokenCount": 211,
+    "totalTokenCount": 56718,
+    "cachedContentTokenCount": 54458,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 45873
+        "tokenCount": 56507
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 43824
+        "tokenCount": 54458
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 123
+        "tokenCount": 211
       }
     ]
   },
-  "raw_text": "{\"id\": \"s4c75eda40f\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"degree\", \"id\": \"d1\", \"bearer\": \"@n1\", \"scale\": \"tired\", \"level\": \"too\", \"tense\": \"present\"}], \"unmapped\": [{\"span\": \"to sing\", \"code\": \"G00\", \"construction\": \"A consequence infinitive licensed by the degree word 'too'.\"}], \"issues\": []}",
+  "raw_text": "{\n  \"id\": \"s4c75eda40f\",\n  \"instances\": [\n    {\n      \"t\": \"named-entity\",\n      \"id\": \"n1\",\n      \"name\": \"Yusra\",\n      \"span\": \"Yusra\"\n    },\n    {\n      \"t\": \"degree\",\n      \"id\": \"d1\",\n      \"bearer\": \"@n1\",\n      \"scale\": \"tired\",\n      \"level\": \"too\",\n      \"tense\": \"present\",\n      \"span\": \"Yusra is too tired\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"span\": \"to sing\",\n      \"code\": \"G00\",\n      \"construction\": \"A consequence infinitive attached to a degree expression ('too ADJ to V').\"\n    }\n  ],\n  \"issues\": []\n}",
   "response": {
     "id": "s4c75eda40f",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Yusra"
+        "name": "Yusra",
+        "span": "Yusra"
       },
       {
         "t": "degree",
@@ -63,19 +64,20 @@
         "bearer": "@n1",
         "scale": "tired",
         "level": "too",
-        "tense": "present"
+        "tense": "present",
+        "span": "Yusra is too tired"
       }
     ],
     "unmapped": [
       {
         "span": "to sing",
         "code": "G00",
-        "construction": "A consequence infinitive licensed by the degree word 'too'."
+        "construction": "A consequence infinitive attached to a degree expression ('too ADJ to V')."
       }
     ],
     "issues": []
   },
-  "prompt_body_sha256": "667366f56ac295f7c22279b3bdae00b28653ebaf94bfcee3f5443b9887b2e7ea",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "purpose",

@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "aea0dc69d24f92b4e9fc854261540ae45969c539482a78ca709b17321fd141f1",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sfb60a87410",
     "text": "Yusra went to the market to buy a thermos."
   },
   "usage": {
-    "input": 45877,
-    "output": 213,
+    "input": 56511,
+    "output": 261,
     "thinking": null,
-    "total": 46090,
-    "cached": 43827,
+    "total": 56772,
+    "cached": 54461,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,48 +25,51 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 45877,
-    "candidatesTokenCount": 213,
-    "totalTokenCount": 46090,
-    "cachedContentTokenCount": 43827,
+    "promptTokenCount": 56511,
+    "candidatesTokenCount": 261,
+    "totalTokenCount": 56772,
+    "cachedContentTokenCount": 54461,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 45877
+        "tokenCount": 56511
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 43827
+        "tokenCount": 54461
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 213
+        "tokenCount": 261
       }
     ]
   },
-  "raw_text": "{\"id\": \"sfb60a87410\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"market\", \"definite\": true}, {\"t\": \"witness\", \"id\": \"x2\", \"kind\": \"thermos\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"go\", \"mover\": \"@n1\", \"goal\": \"@x1\", \"tense\": \"past\"}, {\"t\": \"acquisition\", \"id\": \"e1\", \"verb\": \"buy\", \"acquirer\": \"@n1\", \"object\": \"@x2\", \"tense\": \"present\"}, {\"t\": \"purpose\", \"id\": \"k1\", \"head\": \"To\", \"action\": \"@m1\", \"aim\": [\"@e1\"]}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sfb60a87410\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"market\", \"definite\": true, \"span\": \"the market\"}, {\"t\": \"witness\", \"id\": \"x2\", \"class\": \"thermos\", \"span\": \"a thermos\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"go\", \"mover\": \"@n1\", \"goal\": \"@x1\", \"tense\": \"past\", \"span\": \"Yusra went to the market\"}, {\"t\": \"acquisition\", \"id\": \"e1\", \"verb\": \"buy\", \"acquirer\": \"@n1\", \"object\": \"@x2\", \"tense\": \"present\", \"span\": \"to buy a thermos\"}, {\"t\": \"purpose\", \"id\": \"k1\", \"head\": \"To\", \"action\": \"@m1\", \"aim\": [\"@e1\"], \"span\": \"to\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sfb60a87410",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Yusra"
+        "name": "Yusra",
+        "span": "Yusra"
       },
       {
         "t": "witness",
         "id": "x1",
         "class": "market",
-        "definite": true
+        "definite": true,
+        "span": "the market"
       },
       {
         "t": "witness",
         "id": "x2",
-        "class": "thermos"
+        "class": "thermos",
+        "span": "a thermos"
       },
       {
         "t": "motion",
@@ -74,7 +77,8 @@
         "verb": "go",
         "mover": "@n1",
         "goal": "@x1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Yusra went to the market"
       },
       {
         "t": "acquisition",
@@ -82,7 +86,8 @@
         "verb": "buy",
         "acquirer": "@n1",
         "object": "@x2",
-        "tense": "present"
+        "tense": "present",
+        "span": "to buy a thermos"
       },
       {
         "t": "purpose",
@@ -91,13 +96,14 @@
         "action": "@m1",
         "aim": [
           "@e1"
-        ]
+        ],
+        "span": "to"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "667366f56ac295f7c22279b3bdae00b28653ebaf94bfcee3f5443b9887b2e7ea",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "control",

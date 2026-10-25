@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "ecb9313bbef541ec29940699dad9a1b36a9780334e6b77fdb8e31663cca0597f",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s637c2cbdf7",
     "text": "The thermos is not in the barn."
   },
   "usage": {
-    "input": 26450,
-    "output": 150,
+    "input": 56507,
+    "output": 181,
     "thinking": null,
-    "total": 26600,
+    "total": 56688,
+    "cached": 54456,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,23 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 26450,
-    "candidatesTokenCount": 150,
-    "totalTokenCount": 26600,
+    "promptTokenCount": 56507,
+    "candidatesTokenCount": 181,
+    "totalTokenCount": 56688,
+    "cachedContentTokenCount": 54456,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 26450
+        "tokenCount": 56507
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 54456
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 150
+        "tokenCount": 181
       }
     ]
   },
-  "raw_text": "{\"id\": \"s637c2cbdf7\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"thermos\", \"definite\": true}, {\"t\": \"witness\", \"id\": \"x2\", \"kind\": \"barn\", \"definite\": true}, {\"t\": \"locative\", \"id\": \"l1\", \"thing\": \"@x1\", \"place\": \"@x2\", \"head\": \"LocatedIn\", \"preposition\": \"in\", \"tense\": \"present\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@l1\"]}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s637c2cbdf7\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"thermos\", \"definite\": true, \"span\": \"The thermos\"}, {\"t\": \"witness\", \"id\": \"x2\", \"class\": \"barn\", \"definite\": true, \"span\": \"the barn\"}, {\"t\": \"locative\", \"id\": \"l1\", \"thing\": \"@x1\", \"place\": \"@x2\", \"head\": \"LocatedIn\", \"preposition\": \"in\", \"tense\": \"present\", \"span\": \"The thermos is not in the barn\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@l1\"], \"span\": \"not\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s637c2cbdf7",
     "instances": [
@@ -48,13 +56,15 @@
         "t": "witness",
         "id": "x1",
         "class": "thermos",
-        "definite": true
+        "definite": true,
+        "span": "The thermos"
       },
       {
         "t": "witness",
         "id": "x2",
         "class": "barn",
-        "definite": true
+        "definite": true,
+        "span": "the barn"
       },
       {
         "t": "locative",
@@ -63,25 +73,27 @@
         "place": "@x2",
         "head": "LocatedIn",
         "preposition": "in",
-        "tense": "present"
+        "tense": "present",
+        "span": "The thermos is not in the barn"
       },
       {
         "t": "negation",
         "id": "s1",
         "over": [
           "@l1"
-        ]
+        ],
+        "span": "not"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "fe66913c81da38dc9d9e0ba589cc774123d4719abb4eec09e23557bfcfde237f",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "locative",
     "section": "held_out",
-    "index": 9,
+    "index": 10,
     "category": "scoped",
     "text": "The thermos is not in the barn.",
     "key": "637c2cbdf7"

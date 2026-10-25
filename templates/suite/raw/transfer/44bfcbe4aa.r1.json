@@ -1,64 +1,74 @@
 {
-  "provider": "gemini",
+  "provider": "google",
   "model": "gemini-4-argon",
   "effort": "low",
-  "temperature": 0.0,
+  "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "db9f01f07a93a0f671dcc116f489b584692005917106c6c946345d43e67bcd90",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s44bfcbe4aa",
     "text": "Lamine handed Teodor an envelope."
   },
   "usage": {
-    "input": 4984,
-    "output": 138,
+    "input": 56505,
+    "output": 171,
     "thinking": null,
-    "total": 5122,
+    "total": 56676,
+    "cached": 54456,
     "finish": "STOP",
     "thought_parts": 0
   },
   "request_config": {
-    "temperature": 0.0,
     "responseMimeType": "application/json",
     "thinkingConfig": {
       "thinkingLevel": "LOW"
     }
   },
   "raw_usage": {
-    "promptTokenCount": 4984,
-    "candidatesTokenCount": 138,
-    "totalTokenCount": 5122,
+    "promptTokenCount": 56505,
+    "candidatesTokenCount": 171,
+    "totalTokenCount": 56676,
+    "cachedContentTokenCount": 54456,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 4984
+        "tokenCount": 56505
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 54456
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 138
+        "tokenCount": 171
       }
     ]
   },
-  "raw_text": "{\"id\": \"s44bfcbe4aa\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"envelope\"}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"hand\", \"giver\": \"@n1\", \"recipient\": \"@n2\", \"object\": \"@x1\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s44bfcbe4aa\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"envelope\", \"span\": \"an envelope\"}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"hand\", \"giver\": \"@n1\", \"recipient\": \"@n2\", \"object\": \"@x1\", \"tense\": \"past\", \"span\": \"Lamine handed Teodor an envelope\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s44bfcbe4aa",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Lamine"
+        "name": "Lamine",
+        "span": "Lamine"
       },
       {
         "t": "named-entity",
         "id": "n2",
-        "name": "Teodor"
+        "name": "Teodor",
+        "span": "Teodor"
       },
       {
         "t": "witness",
         "id": "x1",
-        "class": "envelope"
+        "class": "envelope",
+        "span": "an envelope"
       },
       {
         "t": "transfer",
@@ -67,13 +77,14 @@
         "giver": "@n1",
         "recipient": "@n2",
         "object": "@x1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Lamine handed Teodor an envelope"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "202a40b842f6568cb8833b555ec9242b400326af8352304199f73d8f47ad39eb",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "transfer",

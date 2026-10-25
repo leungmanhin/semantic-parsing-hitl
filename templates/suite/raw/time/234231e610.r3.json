@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "00bbb6f7068a2a54f33bfc0111df472edb2130448e8fb8c84b7c32a1afde3448",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s234231e610",
     "text": "Teodor will leave tomorrow."
   },
   "usage": {
-    "input": 30867,
-    "output": 121,
+    "input": 56507,
+    "output": 143,
     "thinking": null,
-    "total": 30988,
+    "total": 56650,
+    "cached": 54458,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,57 +25,60 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 30867,
-    "candidatesTokenCount": 121,
-    "totalTokenCount": 30988,
-    "cachedContentTokenCount": 28818,
+    "promptTokenCount": 56507,
+    "candidatesTokenCount": 143,
+    "totalTokenCount": 56650,
+    "cachedContentTokenCount": 54458,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 30867
+        "tokenCount": 56507
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 28818
+        "tokenCount": 54458
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 121
+        "tokenCount": 143
       }
     ]
   },
-  "raw_text": "{\"id\": \"s234231e610\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"motion\", \"id\": \"e1\", \"verb\": \"leave\", \"mover\": \"@n1\", \"tense\": \"future\"}, {\"t\": \"time\", \"id\": \"t1\", \"event\": \"@e1\", \"deictic\": \"tomorrow\", \"anchor\": \"@now\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s234231e610\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n1\", \"tense\": \"future\", \"span\": \"Teodor will leave\"}, {\"t\": \"time\", \"id\": \"t1\", \"event\": \"@m1\", \"deictic\": \"tomorrow\", \"anchor\": \"@now\", \"span\": \"tomorrow\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s234231e610",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Teodor"
+        "name": "Teodor",
+        "span": "Teodor"
       },
       {
         "t": "motion",
-        "id": "e1",
+        "id": "m1",
         "verb": "leave",
         "mover": "@n1",
-        "tense": "future"
+        "tense": "future",
+        "span": "Teodor will leave"
       },
       {
         "t": "time",
         "id": "t1",
-        "event": "@e1",
+        "event": "@m1",
         "deictic": "tomorrow",
-        "anchor": "@now"
+        "anchor": "@now",
+        "span": "tomorrow"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "c0d47baf69c87fd1005101d2c3752c57d83adb2f730ed1199fdb9b6546502fa7",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "time",

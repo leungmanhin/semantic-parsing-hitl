@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "3cf1c657d278c5f88cd86233811adb01fd7b99c43b58fc7e7f270c08f8532885",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s9ed6db77db",
     "text": "Yusra listened to the news."
   },
   "usage": {
-    "input": 13818,
-    "output": 117,
+    "input": 56505,
+    "output": 144,
     "thinking": null,
-    "total": 13935,
+    "total": 56649,
+    "cached": 54456,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,43 +25,45 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 13818,
-    "candidatesTokenCount": 117,
-    "totalTokenCount": 13935,
-    "cachedContentTokenCount": 11769,
+    "promptTokenCount": 56505,
+    "candidatesTokenCount": 144,
+    "totalTokenCount": 56649,
+    "cachedContentTokenCount": 54456,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 13818
+        "tokenCount": 56505
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 11769
+        "tokenCount": 54456
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 117
+        "tokenCount": 144
       }
     ]
   },
-  "raw_text": "{\"id\": \"s9ed6db77db\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"news\", \"definite\": true}, {\"t\": \"perception\", \"id\": \"p1\", \"verb\": \"listen\", \"perceiver\": \"@n1\", \"stimulus\": \"@x1\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s9ed6db77db\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"news\", \"definite\": true, \"span\": \"the news\"}, {\"t\": \"perception\", \"id\": \"p1\", \"verb\": \"listen\", \"perceiver\": \"@n1\", \"stimulus\": \"@x1\", \"tense\": \"past\", \"span\": \"Yusra listened to the news\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s9ed6db77db",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Yusra"
+        "name": "Yusra",
+        "span": "Yusra"
       },
       {
         "t": "witness",
         "id": "x1",
         "class": "news",
-        "definite": true
+        "definite": true,
+        "span": "the news"
       },
       {
         "t": "perception",
@@ -68,13 +71,14 @@
         "verb": "listen",
         "perceiver": "@n1",
         "stimulus": "@x1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Yusra listened to the news"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "4045b2ad4809e7e7e07e9faa62e508fb7a2daeb033c9f5aedf2c8aef30067522",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "perception",

@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "ed7e5be12a09f9e5947e50cfa5d2b849bc8b16ea94ad2bdefa98a0592d434d3f",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s4f3269e576",
     "text": "Yusra did not talk about the audit."
   },
   "usage": {
-    "input": 49027,
-    "output": 167,
+    "input": 56510,
+    "output": 309,
     "thinking": null,
-    "total": 49194,
-    "cached": 46978,
+    "total": 56819,
+    "cached": 54461,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,70 +25,75 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 49027,
-    "candidatesTokenCount": 167,
-    "totalTokenCount": 49194,
-    "cachedContentTokenCount": 46978,
+    "promptTokenCount": 56510,
+    "candidatesTokenCount": 309,
+    "totalTokenCount": 56819,
+    "cachedContentTokenCount": 54461,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 49027
+        "tokenCount": 56510
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 46978
+        "tokenCount": 54461
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 167
+        "tokenCount": 309
       }
     ]
   },
-  "raw_text": "{\"id\": \"s4f3269e576\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"audit\", \"definite\": true}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"talk\", \"actor\": \"@n1\", \"tense\": \"past\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@v1\"]}, {\"t\": \"oblique\", \"id\": \"a1\", \"event\": \"@v1\", \"head\": \"About\", \"object\": \"@x1\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\n  \"id\": \"s4f3269e576\",\n  \"instances\": [\n    {\n      \"t\": \"named-entity\",\n      \"id\": \"n1\",\n      \"name\": \"Yusra\",\n      \"span\": \"Yusra\"\n    },\n    {\n      \"t\": \"witness\",\n      \"id\": \"x1\",\n      \"class\": \"audit\",\n      \"definite\": true,\n      \"span\": \"the audit\"\n    },\n    {\n      \"t\": \"activity\",\n      \"id\": \"v1\",\n      \"verb\": \"talk\",\n      \"actor\": \"@n1\",\n      \"tense\": \"past\",\n      \"span\": \"Yusra did not talk\"\n    },\n    {\n      \"t\": \"negation\",\n      \"id\": \"s1\",\n      \"over\": [\n        \"@v1\"\n      ],\n      \"span\": \"did not\"\n    },\n    {\n      \"t\": \"oblique\",\n      \"id\": \"a1\",\n      \"event\": \"@v1\",\n      \"head\": \"About\",\n      \"object\": \"@x1\",\n      \"span\": \"about the audit\"\n    }\n  ],\n  \"unmapped\": [],\n  \"issues\": []\n}",
   "response": {
     "id": "s4f3269e576",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Yusra"
+        "name": "Yusra",
+        "span": "Yusra"
       },
       {
         "t": "witness",
         "id": "x1",
         "class": "audit",
-        "definite": true
+        "definite": true,
+        "span": "the audit"
       },
       {
         "t": "activity",
         "id": "v1",
         "verb": "talk",
         "actor": "@n1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Yusra did not talk"
       },
       {
         "t": "negation",
         "id": "s1",
         "over": [
           "@v1"
-        ]
+        ],
+        "span": "did not"
       },
       {
         "t": "oblique",
         "id": "a1",
         "event": "@v1",
         "head": "About",
-        "object": "@x1"
+        "object": "@x1",
+        "span": "about the audit"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "7ea5b5bb86c29718a2936a9c64163dc82790d7b8ea4be586be12417680d153a7",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "oblique",

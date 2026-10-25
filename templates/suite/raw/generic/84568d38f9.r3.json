@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "a9e1ed5a7114de2bedee96ae4010964a4aa69ba1a78b19fae57121290e52e164",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s84568d38f9",
     "text": "Clay softens when wet."
   },
   "usage": {
-    "input": 51785,
-    "output": 167,
+    "input": 56506,
+    "output": 194,
     "thinking": null,
-    "total": 51952,
-    "cached": 49736,
+    "total": 56700,
+    "cached": 54457,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,52 +25,55 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 51785,
-    "candidatesTokenCount": 167,
-    "totalTokenCount": 51952,
-    "cachedContentTokenCount": 49736,
+    "promptTokenCount": 56506,
+    "candidatesTokenCount": 194,
+    "totalTokenCount": 56700,
+    "cachedContentTokenCount": 54457,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 51785
+        "tokenCount": 56506
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 49736
+        "tokenCount": 54457
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 167
+        "tokenCount": 194
       }
     ]
   },
-  "raw_text": "{\"id\": \"s84568d38f9\", \"instances\": [{\"t\": \"range\", \"id\": \"q1\", \"kind\": \"clay\"}, {\"t\": \"change-of-state\", \"id\": \"e1\", \"verb\": \"soften\", \"undergoer\": \"@q1\", \"tense\": \"present\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@q1\", \"predicate\": \"wet\", \"form\": \"adjective\", \"tense\": \"present\"}, {\"t\": \"generic\", \"id\": \"r1\", \"ranges\": [\"@q1\"], \"over\": [\"@e1\"], \"condition\": [\"@c1\"]}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s84568d38f9\", \"instances\": [{\"t\": \"range\", \"id\": \"q1\", \"class\": \"clay\", \"span\": \"Clay\"}, {\"t\": \"change-of-state\", \"id\": \"c1\", \"verb\": \"soften\", \"undergoer\": \"@q1\", \"tense\": \"present\", \"span\": \"Clay softens\"}, {\"t\": \"copular\", \"id\": \"c2\", \"subject\": \"@q1\", \"predicate\": \"wet\", \"form\": \"adjective\", \"tense\": \"present\", \"span\": \"wet\"}, {\"t\": \"generic\", \"id\": \"r1\", \"ranges\": [\"@q1\"], \"over\": [\"@c1\"], \"condition\": [\"@c2\"], \"span\": \"Clay softens when wet\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s84568d38f9",
     "instances": [
       {
         "t": "range",
         "id": "q1",
-        "class": "clay"
+        "class": "clay",
+        "span": "Clay"
       },
       {
         "t": "change-of-state",
-        "id": "e1",
+        "id": "c1",
         "verb": "soften",
         "undergoer": "@q1",
-        "tense": "present"
+        "tense": "present",
+        "span": "Clay softens"
       },
       {
         "t": "copular",
-        "id": "c1",
+        "id": "c2",
         "subject": "@q1",
         "predicate": "wet",
         "form": "adjective",
-        "tense": "present"
+        "tense": "present",
+        "span": "wet"
       },
       {
         "t": "generic",
@@ -79,17 +82,18 @@
           "@q1"
         ],
         "over": [
-          "@e1"
+          "@c1"
         ],
         "condition": [
-          "@c1"
-        ]
+          "@c2"
+        ],
+        "span": "Clay softens when wet"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "e818417b50e53224000dbbfbcf86feb0d70114df739431722ad3ad866d0b6d57",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "generic",

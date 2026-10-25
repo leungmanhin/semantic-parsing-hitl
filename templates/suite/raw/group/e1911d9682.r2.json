@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "e2b973ee776d149578b24ed0b89eebd7611ca803b1694eeec798000b403d85d1",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "se1911d9682",
     "text": "Both ladders are crooked."
   },
   "usage": {
-    "input": 18159,
-    "output": 207,
+    "input": 56505,
+    "output": 154,
     "thinking": null,
-    "total": 18366,
+    "total": 56659,
+    "cached": 54456,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 18159,
-    "candidatesTokenCount": 207,
-    "totalTokenCount": 18366,
-    "cachedContentTokenCount": 16110,
+    "promptTokenCount": 56505,
+    "candidatesTokenCount": 154,
+    "totalTokenCount": 56659,
+    "cachedContentTokenCount": 54456,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 18159
+        "tokenCount": 56505
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 16110
+        "tokenCount": 54456
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 207
+        "tokenCount": 154
       }
     ]
   },
-  "raw_text": "{\"id\": \"se1911d9682\", \"instances\": [{\"t\": \"group\", \"id\": \"g1\", \"kind\": \"ladder\", \"definite\": true, \"count\": 2}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@g1\", \"predicate\": \"crooked\", \"form\": \"adjective\", \"tense\": \"present\"}, {\"t\": \"distribution\", \"id\": \"d1\", \"group\": \"@g1\", \"over\": [\"@c1\"]}], \"unmapped\": [], \"issues\": [{\"code\": \"P00\", \"where\": \"group\", \"text\": \"The instructions for 'group' state that 'both' counts as definite with count 2 and that 'quantity' is absent when a numeral states the size, while also listing 'both' as an example under 'quantity', making it ambiguous whether 'quantity' should be omitted for 'both'.\"}]}",
+  "raw_text": "{\"id\": \"se1911d9682\", \"instances\": [{\"t\": \"group\", \"id\": \"g1\", \"class\": \"ladder\", \"definite\": true, \"count\": 2, \"span\": \"Both ladders\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@g1\", \"predicate\": \"crooked\", \"form\": \"adjective\", \"tense\": \"present\", \"span\": \"Both ladders are crooked\"}, {\"t\": \"distribution\", \"id\": \"r1\", \"group\": \"@g1\", \"over\": [\"@c1\"], \"span\": \"Both ladders are crooked\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "se1911d9682",
     "instances": [
@@ -56,7 +57,8 @@
         "id": "g1",
         "class": "ladder",
         "definite": true,
-        "count": 2
+        "count": 2,
+        "span": "Both ladders"
       },
       {
         "t": "copular",
@@ -64,27 +66,23 @@
         "subject": "@g1",
         "predicate": "crooked",
         "form": "adjective",
-        "tense": "present"
+        "tense": "present",
+        "span": "Both ladders are crooked"
       },
       {
         "t": "distribution",
-        "id": "d1",
+        "id": "r1",
         "group": "@g1",
         "over": [
           "@c1"
-        ]
+        ],
+        "span": "Both ladders are crooked"
       }
     ],
     "unmapped": [],
-    "issues": [
-      {
-        "code": "P00",
-        "where": "group",
-        "text": "The instructions for 'group' state that 'both' counts as definite with count 2 and that 'quantity' is absent when a numeral states the size, while also listing 'both' as an example under 'quantity', making it ambiguous whether 'quantity' should be omitted for 'both'."
-      }
-    ]
+    "issues": []
   },
-  "prompt_body_sha256": "14b00737838e1675ab4e788a994c47c68a9bee0ef066c52422d3b5da5e8f650a",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "group",

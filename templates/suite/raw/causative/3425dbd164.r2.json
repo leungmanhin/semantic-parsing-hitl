@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "1e3a0e7b653d644ba66513f0d0e707b1cc9b81d1cb008f3f969832c0fde71796",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s3425dbd164",
     "text": "Yusra allowed Teodor to leave."
   },
   "usage": {
-    "input": 42691,
-    "output": 157,
+    "input": 56507,
+    "output": 194,
     "thinking": null,
-    "total": 42848,
-    "cached": 40642,
+    "total": 56701,
+    "cached": 54458,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,49 +25,52 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 42691,
-    "candidatesTokenCount": 157,
-    "totalTokenCount": 42848,
-    "cachedContentTokenCount": 40642,
+    "promptTokenCount": 56507,
+    "candidatesTokenCount": 194,
+    "totalTokenCount": 56701,
+    "cachedContentTokenCount": 54458,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 42691
+        "tokenCount": 56507
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 40642
+        "tokenCount": 54458
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 157
+        "tokenCount": 194
       }
     ]
   },
-  "raw_text": "{\"id\": \"s3425dbd164\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n2\", \"tense\": \"present\"}, {\"t\": \"causative\", \"id\": \"e1\", \"verb\": \"allow\", \"causer\": \"@n1\", \"complement\": [\"@m1\"], \"implication\": \"none\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s3425dbd164\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n2\", \"tense\": \"present\", \"span\": \"Teodor to leave\"}, {\"t\": \"causative\", \"id\": \"e1\", \"verb\": \"allow\", \"causer\": \"@n1\", \"complement\": [\"@m1\"], \"implication\": \"none\", \"tense\": \"past\", \"span\": \"Yusra allowed Teodor to leave\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s3425dbd164",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Yusra"
+        "name": "Yusra",
+        "span": "Yusra"
       },
       {
         "t": "named-entity",
         "id": "n2",
-        "name": "Teodor"
+        "name": "Teodor",
+        "span": "Teodor"
       },
       {
         "t": "motion",
         "id": "m1",
         "verb": "leave",
         "mover": "@n2",
-        "tense": "present"
+        "tense": "present",
+        "span": "Teodor to leave"
       },
       {
         "t": "causative",
@@ -78,13 +81,14 @@
           "@m1"
         ],
         "implication": "none",
-        "tense": "past"
+        "tense": "past",
+        "span": "Yusra allowed Teodor to leave"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "550b5adae738e98b3a45e1fd666b1c271958eedeeddaca6a18b6db34c69a06c7",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "causative",

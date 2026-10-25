@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "00bbb6f7068a2a54f33bfc0111df472edb2130448e8fb8c84b7c32a1afde3448",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s8683b5e7ae",
     "text": "Lamine baked bread."
   },
   "usage": {
-    "input": 30877,
-    "output": 92,
+    "input": 56505,
+    "output": 108,
     "thinking": null,
-    "total": 30969,
-    "cached": 28828,
+    "total": 56613,
+    "cached": 54456,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,37 +25,38 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 30877,
-    "candidatesTokenCount": 92,
-    "totalTokenCount": 30969,
-    "cachedContentTokenCount": 28828,
+    "promptTokenCount": 56505,
+    "candidatesTokenCount": 108,
+    "totalTokenCount": 56613,
+    "cachedContentTokenCount": 54456,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 30877
+        "tokenCount": 56505
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 28828
+        "tokenCount": 54456
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 92
+        "tokenCount": 108
       }
     ]
   },
-  "raw_text": "{\"id\": \"s8683b5e7ae\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"creation\", \"id\": \"e1\", \"verb\": \"bake\", \"creator\": \"@n1\", \"product\": \"bread\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s8683b5e7ae\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"creation\", \"id\": \"e1\", \"verb\": \"bake\", \"creator\": \"@n1\", \"product\": \"bread\", \"tense\": \"past\", \"span\": \"Lamine baked bread\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s8683b5e7ae",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Lamine"
+        "name": "Lamine",
+        "span": "Lamine"
       },
       {
         "t": "creation",
@@ -63,13 +64,14 @@
         "verb": "bake",
         "creator": "@n1",
         "product": "bread",
-        "tense": "past"
+        "tense": "past",
+        "span": "Lamine baked bread"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "c0d47baf69c87fd1005101d2c3752c57d83adb2f730ed1199fdb9b6546502fa7",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "creation",

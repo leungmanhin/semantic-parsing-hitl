@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "a9e1ed5a7114de2bedee96ae4010964a4aa69ba1a78b19fae57121290e52e164",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s2d4440f25d",
     "text": "Herons are patient if the weather is sunny."
   },
   "usage": {
-    "input": 51790,
-    "output": 77,
+    "input": 56511,
+    "output": 78,
     "thinking": null,
-    "total": 51867,
-    "cached": 49741,
+    "total": 56589,
+    "cached": 54462,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 51790,
-    "candidatesTokenCount": 77,
-    "totalTokenCount": 51867,
-    "cachedContentTokenCount": 49741,
+    "promptTokenCount": 56511,
+    "candidatesTokenCount": 78,
+    "totalTokenCount": 56589,
+    "cachedContentTokenCount": 54462,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 51790
+        "tokenCount": 56511
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 49741
+        "tokenCount": 54462
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 77
+        "tokenCount": 78
       }
     ]
   },
-  "raw_text": "{\"id\": \"s2d4440f25d\", \"instances\": [], \"unmapped\": [{\"span\": \"Herons are patient if the weather is sunny\", \"code\": \"G00\", \"construction\": \"A kind's property under a condition about something other than the member (an occasion).\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"s2d4440f25d\", \"instances\": [], \"unmapped\": [{\"span\": \"Herons are patient if the weather is sunny\", \"code\": \"G00\", \"construction\": \"A conditional property of a class whose condition is about an external circumstance rather than the member itself.\"}], \"issues\": []}",
   "response": {
     "id": "s2d4440f25d",
     "instances": [],
@@ -56,12 +56,12 @@
       {
         "span": "Herons are patient if the weather is sunny",
         "code": "G00",
-        "construction": "A kind's property under a condition about something other than the member (an occasion)."
+        "construction": "A conditional property of a class whose condition is about an external circumstance rather than the member itself."
       }
     ],
     "issues": []
   },
-  "prompt_body_sha256": "e818417b50e53224000dbbfbcf86feb0d70114df739431722ad3ad866d0b6d57",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "conditional-property",

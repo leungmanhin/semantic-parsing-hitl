@@ -83,7 +83,9 @@ Nothing here changes `prompt.txt`, the briefs under `fusenf/briefs/`, or any pip
   reply's contract (object, lists, null slots counted and stripped), the emitter's instance checks
   (unknown template, ids, required slots, enum values, dangling references, a filler pointing at a
   scope, a scope cycle), graph lints (a witness nothing mentions, a name nothing mentions while nothing
-  is unmapped, bare predication, empty optional scope), span lints when the text is known (an instance
+  is unmapped — unless the text is known and the instances' spans cover all of it: a bare-phrase
+  text is its referent alone —, bare predication, empty optional scope), span lints when the text
+  is known (an instance
   without `span`, a malformed span, a span that is not a verbatim substring of the text) and C9 on the
   emitted statements (skipped without `petta`). Report only; it
   never changes a reply. `from tmpl import validate; validate.validate(reply)`. Tests:
@@ -134,9 +136,10 @@ Nothing here changes `prompt.txt`, the briefs under `fusenf/briefs/`, or any pip
 - Every instance carries a `span`: the words of the text it is built from, verbatim (a list when they
   are not contiguous). A span is provenance for every fact, never meaning: the emitter ignores it. The
   shown examples always demonstrate it (the catalog loader refuses a shown instance without a verbatim
-  span); the validator lints presence and verbatim-ness whenever it knows the text; the suite compares
-  emitted atoms, never spans, so a record parsed before the field existed still scores, with its span
-  lints counted. The rule per kind of instance is the *Spans* section of `catalog/_general.yaml`.
+  span); the validator lints presence and verbatim-ness whenever it knows the text; the suite scores
+  the emitted atoms AND fails a record whose spans are missing, malformed or not verbatim (strict since
+  the first collect under the span prompt came back 100 % verbatim; the span counts are on the
+  report's span line). The rule per kind of instance is the *Spans* section of `catalog/_general.yaml`.
 - Freeze before collect: never regenerate the instruction set while a collect is in flight (the scorer
   flags records collected under another instruction set as stale).
 - Example sentences never reuse a sentence from prompt.txt, the goldens or any corpus, and a held-out

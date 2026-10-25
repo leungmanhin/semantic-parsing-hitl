@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "57c0a2cf118bc64251ee1dc4f10535ec1900e8fb5354bff54b546c18457f758b",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s83106189f4",
     "text": "Lamine did not cut the loaf with a knife."
   },
   "usage": {
-    "input": 33509,
-    "output": 199,
+    "input": 56512,
+    "output": 247,
     "thinking": null,
-    "total": 33708,
-    "cached": 31460,
+    "total": 56759,
+    "cached": 54463,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,77 +25,83 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 33509,
-    "candidatesTokenCount": 199,
-    "totalTokenCount": 33708,
-    "cachedContentTokenCount": 31460,
+    "promptTokenCount": 56512,
+    "candidatesTokenCount": 247,
+    "totalTokenCount": 56759,
+    "cachedContentTokenCount": 54463,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 33509
+        "tokenCount": 56512
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 31460
+        "tokenCount": 54463
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 199
+        "tokenCount": 247
       }
     ]
   },
-  "raw_text": "{\"id\": \"s83106189f4\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"loaf\", \"definite\": true}, {\"t\": \"witness\", \"id\": \"x2\", \"kind\": \"knife\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"cut\", \"actor\": \"@n1\", \"patient\": \"@x1\", \"tense\": \"past\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@e1\"]}, {\"t\": \"adjunct\", \"id\": \"a1\", \"event\": \"@e1\", \"participant\": \"@x2\", \"head\": \"Instrument\", \"preposition\": \"with\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s83106189f4\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"loaf\", \"definite\": true, \"span\": \"the loaf\"}, {\"t\": \"witness\", \"id\": \"x2\", \"class\": \"knife\", \"span\": \"a knife\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"cut\", \"actor\": \"@n1\", \"patient\": \"@x1\", \"tense\": \"past\", \"span\": \"Lamine did not cut the loaf\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@v1\"], \"span\": \"did not\"}, {\"t\": \"adjunct\", \"id\": \"a1\", \"event\": \"@v1\", \"participant\": \"@x2\", \"head\": \"Instrument\", \"preposition\": \"with\", \"span\": \"with a knife\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s83106189f4",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Lamine"
+        "name": "Lamine",
+        "span": "Lamine"
       },
       {
         "t": "witness",
         "id": "x1",
         "class": "loaf",
-        "definite": true
+        "definite": true,
+        "span": "the loaf"
       },
       {
         "t": "witness",
         "id": "x2",
-        "class": "knife"
+        "class": "knife",
+        "span": "a knife"
       },
       {
         "t": "activity",
-        "id": "e1",
+        "id": "v1",
         "verb": "cut",
         "actor": "@n1",
         "patient": "@x1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Lamine did not cut the loaf"
       },
       {
         "t": "negation",
         "id": "s1",
         "over": [
-          "@e1"
-        ]
+          "@v1"
+        ],
+        "span": "did not"
       },
       {
         "t": "adjunct",
         "id": "a1",
-        "event": "@e1",
+        "event": "@v1",
         "participant": "@x2",
         "head": "Instrument",
-        "preposition": "with"
+        "preposition": "with",
+        "span": "with a knife"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "55732af26869bbaa55169fc16db0ed85110798ac0721bfbdda732a93ff4b5fd0",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "adjunct",

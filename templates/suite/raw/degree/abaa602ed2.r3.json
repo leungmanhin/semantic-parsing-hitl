@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "036261b67cffbb04273fa6353b6fe9d8a5bd7044375e91f3934b29dcd44ae2e8",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sabaa602ed2",
     "text": "The ladder is tall enough."
   },
   "usage": {
-    "input": 35890,
-    "output": 91,
+    "input": 56503,
+    "output": 108,
     "thinking": null,
-    "total": 35981,
-    "cached": 33841,
+    "total": 56611,
+    "cached": 54454,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 35890,
-    "candidatesTokenCount": 91,
-    "totalTokenCount": 35981,
-    "cachedContentTokenCount": 33841,
+    "promptTokenCount": 56503,
+    "candidatesTokenCount": 108,
+    "totalTokenCount": 56611,
+    "cachedContentTokenCount": 54454,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 35890
+        "tokenCount": 56503
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 33841
+        "tokenCount": 54454
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 91
+        "tokenCount": 108
       }
     ]
   },
-  "raw_text": "{\"id\": \"sabaa602ed2\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"ladder\", \"definite\": true}, {\"t\": \"degree\", \"id\": \"d1\", \"bearer\": \"@x1\", \"scale\": \"tall\", \"level\": \"enough\", \"tense\": \"present\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sabaa602ed2\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"ladder\", \"definite\": true, \"span\": \"The ladder\"}, {\"t\": \"degree\", \"id\": \"d1\", \"bearer\": \"@x1\", \"scale\": \"tall\", \"level\": \"enough\", \"tense\": \"present\", \"span\": \"The ladder is tall enough\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sabaa602ed2",
     "instances": [
@@ -56,7 +56,8 @@
         "t": "witness",
         "id": "x1",
         "class": "ladder",
-        "definite": true
+        "definite": true,
+        "span": "The ladder"
       },
       {
         "t": "degree",
@@ -64,13 +65,14 @@
         "bearer": "@x1",
         "scale": "tall",
         "level": "enough",
-        "tense": "present"
+        "tense": "present",
+        "span": "The ladder is tall enough"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "107542897d74ba7ca217f1d5c88d49a7531f59530bec65a2f2b7b7200334e22e",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "degree",

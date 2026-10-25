@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "036261b67cffbb04273fa6353b6fe9d8a5bd7044375e91f3934b29dcd44ae2e8",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sad9f888ee6",
     "text": "Ottoline is very tall for a weaver."
   },
   "usage": {
-    "input": 35894,
-    "output": 98,
+    "input": 56507,
+    "output": 118,
     "thinking": null,
-    "total": 35992,
-    "cached": 33845,
+    "total": 56625,
+    "cached": 54458,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,37 +25,38 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 35894,
-    "candidatesTokenCount": 98,
-    "totalTokenCount": 35992,
-    "cachedContentTokenCount": 33845,
+    "promptTokenCount": 56507,
+    "candidatesTokenCount": 118,
+    "totalTokenCount": 56625,
+    "cachedContentTokenCount": 54458,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 35894
+        "tokenCount": 56507
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 33845
+        "tokenCount": 54458
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 98
+        "tokenCount": 118
       }
     ]
   },
-  "raw_text": "{\"id\": \"sad9f888ee6\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\"}, {\"t\": \"degree\", \"id\": \"d1\", \"bearer\": \"@n1\", \"scale\": \"tall\", \"level\": \"very\", \"for_kind\": \"weaver\", \"tense\": \"present\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sad9f888ee6\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"degree\", \"id\": \"d1\", \"bearer\": \"@n1\", \"scale\": \"tall\", \"level\": \"very\", \"for_class\": \"weaver\", \"tense\": \"present\", \"span\": \"Ottoline is very tall for a weaver\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sad9f888ee6",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Ottoline"
+        "name": "Ottoline",
+        "span": "Ottoline"
       },
       {
         "t": "degree",
@@ -64,13 +65,14 @@
         "scale": "tall",
         "level": "very",
         "for_class": "weaver",
-        "tense": "present"
+        "tense": "present",
+        "span": "Ottoline is very tall for a weaver"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "107542897d74ba7ca217f1d5c88d49a7531f59530bec65a2f2b7b7200334e22e",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "degree",

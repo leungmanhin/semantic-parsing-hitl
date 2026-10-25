@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "9ef7be016fe9c94587147da8ab8e32dc10a36598db3616736ec4f119204faeb4",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sfd84d2733a",
     "text": "Teodor arrived. That frightened Yusra."
   },
   "usage": {
-    "input": 30252,
-    "output": 208,
+    "input": 56509,
+    "output": 258,
     "thinking": null,
-    "total": 30460,
+    "total": 56767,
+    "cached": 54456,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,47 +25,58 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 30252,
-    "candidatesTokenCount": 208,
-    "totalTokenCount": 30460,
+    "promptTokenCount": 56509,
+    "candidatesTokenCount": 258,
+    "totalTokenCount": 56767,
+    "cachedContentTokenCount": 54456,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 30252
+        "tokenCount": 56509
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 54456
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 208
+        "tokenCount": 258
       }
     ]
   },
-  "raw_text": "{\"id\": \"sfd84d2733a\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"mention\", \"id\": \"m1\", \"word\": \"that\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Yusra\"}, {\"t\": \"motion\", \"id\": \"e1\", \"verb\": \"arrive\", \"mover\": \"@n1\", \"tense\": \"past\"}, {\"t\": \"psych\", \"id\": \"e2\", \"verb\": \"frighten\", \"experiencer\": \"@n2\", \"stimulus\": \"@m1\", \"tense\": \"past\"}, {\"t\": \"coref\", \"id\": \"c1\", \"mention\": \"@m1\", \"antecedent\": \"@e1\", \"certainty\": \"certain\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sfd84d2733a\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"mention\", \"id\": \"m1\", \"word\": \"that\", \"span\": \"That\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"motion\", \"id\": \"e1\", \"verb\": \"arrive\", \"mover\": \"@n1\", \"tense\": \"past\", \"span\": \"Teodor arrived\"}, {\"t\": \"psych\", \"id\": \"e2\", \"verb\": \"frighten\", \"experiencer\": \"@n2\", \"stimulus\": \"@m1\", \"tense\": \"past\", \"span\": \"That frightened Yusra\"}, {\"t\": \"coref\", \"id\": \"c1\", \"mention\": \"@m1\", \"antecedent\": \"@e1\", \"certainty\": \"certain\", \"span\": [\"Teodor arrived\", \"That\"]}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sfd84d2733a",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Teodor"
+        "name": "Teodor",
+        "span": "Teodor"
       },
       {
         "t": "mention",
         "id": "m1",
-        "word": "that"
+        "word": "that",
+        "span": "That"
       },
       {
         "t": "named-entity",
         "id": "n2",
-        "name": "Yusra"
+        "name": "Yusra",
+        "span": "Yusra"
       },
       {
         "t": "motion",
         "id": "e1",
         "verb": "arrive",
         "mover": "@n1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Teodor arrived"
       },
       {
         "t": "psych",
@@ -72,20 +84,25 @@
         "verb": "frighten",
         "experiencer": "@n2",
         "stimulus": "@m1",
-        "tense": "past"
+        "tense": "past",
+        "span": "That frightened Yusra"
       },
       {
         "t": "coref",
         "id": "c1",
         "mention": "@m1",
         "antecedent": "@e1",
-        "certainty": "certain"
+        "certainty": "certain",
+        "span": [
+          "Teodor arrived",
+          "That"
+        ]
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "8ec71bbffe57aa54f5eb1dc051643ad73943df5ef3964188a68d8dd96a4babd4",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "coref",

@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "f131d9909123f262f22649f1d0a661fcd2875712cc42a57ee96b4987f17f15ff",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "se105975736",
     "text": "Every student read a letter."
   },
   "usage": {
-    "input": 19691,
-    "output": 150,
+    "input": 56506,
+    "output": 183,
     "thinking": null,
-    "total": 19841,
+    "total": 56689,
+    "cached": 54457,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 19691,
-    "candidatesTokenCount": 150,
-    "totalTokenCount": 19841,
-    "cachedContentTokenCount": 17642,
+    "promptTokenCount": 56506,
+    "candidatesTokenCount": 183,
+    "totalTokenCount": 56689,
+    "cachedContentTokenCount": 54457,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 19691
+        "tokenCount": 56506
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 17642
+        "tokenCount": 54457
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 150
+        "tokenCount": 183
       }
     ]
   },
-  "raw_text": "{\"id\": \"se105975736\", \"instances\": [{\"t\": \"range\", \"id\": \"q1\", \"kind\": \"student\", \"quantifier\": \"every\", \"predicate\": \"read\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"letter\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"read\", \"actor\": \"@q1\", \"patient\": \"@x1\", \"tense\": \"past\"}, {\"t\": \"generic\", \"id\": \"r1\", \"ranges\": [\"@q1\"], \"over\": [\"@e1\"]}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"se105975736\", \"instances\": [{\"t\": \"range\", \"id\": \"q1\", \"class\": \"student\", \"quantifier\": \"every\", \"predicate\": \"read\", \"span\": \"Every student\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"letter\", \"span\": \"a letter\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"read\", \"actor\": \"@q1\", \"patient\": \"@x1\", \"tense\": \"past\", \"span\": \"Every student read a letter\"}, {\"t\": \"generic\", \"id\": \"r1\", \"ranges\": [\"@q1\"], \"over\": [\"@e1\"], \"span\": \"Every student read a letter\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "se105975736",
     "instances": [
@@ -56,12 +57,14 @@
         "id": "q1",
         "class": "student",
         "quantifier": "every",
-        "predicate": "read"
+        "predicate": "read",
+        "span": "Every student"
       },
       {
         "t": "witness",
         "id": "x1",
-        "class": "letter"
+        "class": "letter",
+        "span": "a letter"
       },
       {
         "t": "activity",
@@ -69,7 +72,8 @@
         "verb": "read",
         "actor": "@q1",
         "patient": "@x1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Every student read a letter"
       },
       {
         "t": "generic",
@@ -79,13 +83,14 @@
         ],
         "over": [
           "@e1"
-        ]
+        ],
+        "span": "Every student read a letter"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "1d1d69fff405c91e41b45cfd40fd9da93832112f9edce8f3b99dca62a91fe348",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "generic",

@@ -14,7 +14,9 @@ Checks, in order:
   (status ``malformed``);
 * graph lints on well-formed instances: a witness no other instance mentions, or a name no
   instance mentions while nothing is reported unmapped (``dangling-referent``: a witness is
-  introduced only by a covered clause, a name may stand alone beside an unmapped span), a
+  introduced only by a covered clause, a name may stand alone beside an unmapped span; when the
+  text is known and the instances' spans cover every word of it — a bare noun phrase as the text,
+  "Yusra, a locksmith" — nothing was dropped and the lone referent is exempt), a
   predication with filler slots none of which is filled (``bare-predication``) unless it is the
   content, directly or through another scope, of a scope whose refs slot declares
   ``bare_content`` (an imperative's addressee is implicit), an optional
@@ -35,6 +37,7 @@ import contextlib
 import io
 import json
 import os
+import re
 import tempfile
 
 from . import catalog as CAT, emit as E, typecheck as T
@@ -92,13 +95,25 @@ def inspect(reply, catalog: dict | None = None, reference_time=None, text: str |
         res["status"] = "malformed"
         return res
     res["statements"], res["declarations"], res["detail"] = out["statements"], out["declarations"], out["detail"]
-    res["findings"].extend(lints(cleaned, catalog, res["unmapped"]))
+    res["findings"].extend(lints(cleaned, catalog, res["unmapped"], text))
     if text is not None:
         res["findings"].extend(span_lints(cleaned, text))
     return res
 
 
-def lints(insts: list, catalog: dict, unmapped: list) -> list:
+def _covers_text(insts: list, text: str) -> bool:
+    """Every word of the text lies inside some instance's span: nothing was dropped."""
+    words = re.findall(r"[A-Za-z0-9]+", CAT.norm_span(text))
+    have: set[str] = set()
+    for r in insts:
+        sp = r.get("span")
+        for p in (sp if isinstance(sp, list) else [sp]) if sp is not None else []:
+            if isinstance(p, str):
+                have.update(re.findall(r"[A-Za-z0-9]+", CAT.norm_span(p)))
+    return bool(words) and all(w in have for w in words)
+
+
+def lints(insts: list, catalog: dict, unmapped: list, text: str | None = None) -> list:
     """Structural lints on well-formed instances (the emitter has accepted them)."""
     mentioned: set[str] = set()
     for r in insts:
@@ -133,11 +148,12 @@ def lints(insts: list, catalog: dict, unmapped: list) -> list:
                     if E.is_ref(x):
                         bare_ok.add(x[1:])
                         bare_ok |= content_of(x[1:], set())
+    covered = text is not None and _covers_text(insts, text)   # a bare-phrase text ("Yusra, a locksmith") is its referent alone
     out = []
     for r in insts:
         t = catalog[r["t"]]
         slots = t.get("slots") or {}
-        if t.get("family") == "referent" and r["id"] not in mentioned:
+        if t.get("family") == "referent" and r["id"] not in mentioned and not covered:
             mints = t.get("mints") or {}
             is_name = mints.get("stem") == "name" or mints.get("symbol") == "name"   # a name may stand inside an unmapped span
             if not is_name:

@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "011859ef1641de9eb20fbd0ff4c90d8a33b97940ed06b1a0de5d9191af6f2f3e",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s5cc92f8ea1",
     "text": "Send the letter tomorrow."
   },
   "usage": {
-    "input": 37159,
-    "output": 142,
+    "input": 56504,
+    "output": 172,
     "thinking": null,
-    "total": 37301,
-    "cached": 35109,
+    "total": 56676,
+    "cached": 54455,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 37159,
-    "candidatesTokenCount": 142,
-    "totalTokenCount": 37301,
-    "cachedContentTokenCount": 35109,
+    "promptTokenCount": 56504,
+    "candidatesTokenCount": 172,
+    "totalTokenCount": 56676,
+    "cachedContentTokenCount": 54455,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 37159
+        "tokenCount": 56504
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 35109
+        "tokenCount": 54455
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 142
+        "tokenCount": 172
       }
     ]
   },
-  "raw_text": "{\"id\": \"s5cc92f8ea1\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"letter\", \"definite\": true}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"send\", \"object\": \"@x1\", \"tense\": \"present\"}, {\"t\": \"imperative\", \"id\": \"s1\", \"over\": [\"@e1\"]}, {\"t\": \"time\", \"id\": \"t1\", \"event\": \"@e1\", \"deictic\": \"tomorrow\", \"anchor\": \"@now\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s5cc92f8ea1\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"letter\", \"definite\": true, \"span\": \"the letter\"}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"send\", \"object\": \"@x1\", \"tense\": \"present\", \"span\": \"Send the letter\"}, {\"t\": \"imperative\", \"id\": \"s1\", \"over\": [\"@e1\"], \"span\": \"Send the letter tomorrow\"}, {\"t\": \"time\", \"id\": \"t1\", \"event\": \"@e1\", \"deictic\": \"tomorrow\", \"anchor\": \"@now\", \"span\": \"tomorrow\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s5cc92f8ea1",
     "instances": [
@@ -56,34 +56,38 @@
         "t": "witness",
         "id": "x1",
         "class": "letter",
-        "definite": true
+        "definite": true,
+        "span": "the letter"
       },
       {
         "t": "transfer",
         "id": "e1",
         "verb": "send",
         "object": "@x1",
-        "tense": "present"
+        "tense": "present",
+        "span": "Send the letter"
       },
       {
         "t": "imperative",
         "id": "s1",
         "over": [
           "@e1"
-        ]
+        ],
+        "span": "Send the letter tomorrow"
       },
       {
         "t": "time",
         "id": "t1",
         "event": "@e1",
         "deictic": "tomorrow",
-        "anchor": "@now"
+        "anchor": "@now",
+        "span": "tomorrow"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "86006c1331646959e618205dae5c6fd6c614cc473b5b0769d0ff87669d0897c5",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "imperative",

@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "517fa33db1e726e201b1348c24b85866cf55bad518e4a4cbb5add28a521e2750",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s2ed5b113d5",
     "text": "The spindle belongs to Yusra."
   },
   "usage": {
-    "input": 11840,
-    "output": 121,
+    "input": 56507,
+    "output": 147,
     "thinking": null,
-    "total": 11961,
+    "total": 56654,
+    "cached": 54456,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,23 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 11840,
-    "candidatesTokenCount": 121,
-    "totalTokenCount": 11961,
+    "promptTokenCount": 56507,
+    "candidatesTokenCount": 147,
+    "totalTokenCount": 56654,
+    "cachedContentTokenCount": 54456,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 11840
+        "tokenCount": 56507
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 54456
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 121
+        "tokenCount": 147
       }
     ]
   },
-  "raw_text": "{\"id\": \"s2ed5b113d5\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"spindle\", \"definite\": true}, {\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"possession\", \"id\": \"p1\", \"verb\": \"belong\", \"holder\": \"@n1\", \"possessed\": \"@x1\", \"tense\": \"present\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s2ed5b113d5\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"spindle\", \"definite\": true, \"span\": \"The spindle\"}, {\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"possession\", \"id\": \"p1\", \"verb\": \"belong\", \"holder\": \"@n1\", \"possessed\": \"@x1\", \"tense\": \"present\", \"span\": \"The spindle belongs to Yusra\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s2ed5b113d5",
     "instances": [
@@ -48,12 +56,14 @@
         "t": "witness",
         "id": "x1",
         "class": "spindle",
-        "definite": true
+        "definite": true,
+        "span": "The spindle"
       },
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Yusra"
+        "name": "Yusra",
+        "span": "Yusra"
       },
       {
         "t": "possession",
@@ -61,13 +71,14 @@
         "verb": "belong",
         "holder": "@n1",
         "possessed": "@x1",
-        "tense": "present"
+        "tense": "present",
+        "span": "The spindle belongs to Yusra"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "41b1c076c80ab3ff14e8e47da03ff29f11a94fdce1398936f1eb2cbe9cb1a5e7",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "possession",

@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "aea0dc69d24f92b4e9fc854261540ae45969c539482a78ca709b17321fd141f1",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s48e285cf30",
     "text": "Ottoline refused to sing."
   },
   "usage": {
-    "input": 45872,
-    "output": 134,
+    "input": 56506,
+    "output": 158,
     "thinking": null,
-    "total": 46006,
-    "cached": 43823,
+    "total": 56664,
+    "cached": 54457,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,44 +25,46 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 45872,
-    "candidatesTokenCount": 134,
-    "totalTokenCount": 46006,
-    "cachedContentTokenCount": 43823,
+    "promptTokenCount": 56506,
+    "candidatesTokenCount": 158,
+    "totalTokenCount": 56664,
+    "cachedContentTokenCount": 54457,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 45872
+        "tokenCount": 56506
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 43823
+        "tokenCount": 54457
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 134
+        "tokenCount": 158
       }
     ]
   },
-  "raw_text": "{\"id\": \"s48e285cf30\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"sing\", \"actor\": \"@n1\", \"tense\": \"present\"}, {\"t\": \"control\", \"id\": \"e1\", \"verb\": \"refuse\", \"subject\": \"@n1\", \"complement\": [\"@v1\"], \"implication\": \"none\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s48e285cf30\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"sing\", \"actor\": \"@n1\", \"tense\": \"present\", \"span\": \"to sing\"}, {\"t\": \"control\", \"id\": \"e1\", \"verb\": \"refuse\", \"subject\": \"@n1\", \"complement\": [\"@v1\"], \"implication\": \"none\", \"tense\": \"past\", \"span\": \"Ottoline refused to sing\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s48e285cf30",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Ottoline"
+        "name": "Ottoline",
+        "span": "Ottoline"
       },
       {
         "t": "activity",
         "id": "v1",
         "verb": "sing",
         "actor": "@n1",
-        "tense": "present"
+        "tense": "present",
+        "span": "to sing"
       },
       {
         "t": "control",
@@ -73,13 +75,14 @@
           "@v1"
         ],
         "implication": "none",
-        "tense": "past"
+        "tense": "past",
+        "span": "Ottoline refused to sing"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "667366f56ac295f7c22279b3bdae00b28653ebaf94bfcee3f5443b9887b2e7ea",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "purpose",

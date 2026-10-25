@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "7b971397645436659b47229c67b5e18427eb894e0e6cbf0b176ccc7db0eed480",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s04bc1e751b",
     "text": "Yusra came to like the quilt."
   },
   "usage": {
-    "input": 42691,
-    "output": 157,
+    "input": 56508,
+    "output": 193,
     "thinking": null,
-    "total": 42848,
-    "cached": 40642,
+    "total": 56701,
+    "cached": 54459,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,43 +25,45 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 42691,
-    "candidatesTokenCount": 157,
-    "totalTokenCount": 42848,
-    "cachedContentTokenCount": 40642,
+    "promptTokenCount": 56508,
+    "candidatesTokenCount": 193,
+    "totalTokenCount": 56701,
+    "cachedContentTokenCount": 54459,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 42691
+        "tokenCount": 56508
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 40642
+        "tokenCount": 54459
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 157
+        "tokenCount": 193
       }
     ]
   },
-  "raw_text": "{\"id\": \"s04bc1e751b\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"quilt\", \"definite\": true}, {\"t\": \"psych\", \"id\": \"p1\", \"verb\": \"like\", \"experiencer\": \"@n1\", \"stimulus\": \"@x1\", \"tense\": \"present\"}, {\"t\": \"aspectual\", \"id\": \"e1\", \"verb\": \"come_to\", \"complement\": [\"@p1\"], \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s04bc1e751b\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"quilt\", \"definite\": true, \"span\": \"the quilt\"}, {\"t\": \"psych\", \"id\": \"p1\", \"verb\": \"like\", \"experiencer\": \"@n1\", \"stimulus\": \"@x1\", \"tense\": \"present\", \"span\": \"like the quilt\"}, {\"t\": \"aspectual\", \"id\": \"e1\", \"verb\": \"come_to\", \"complement\": [\"@p1\"], \"tense\": \"past\", \"span\": \"Yusra came to like the quilt\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s04bc1e751b",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Yusra"
+        "name": "Yusra",
+        "span": "Yusra"
       },
       {
         "t": "witness",
         "id": "x1",
         "class": "quilt",
-        "definite": true
+        "definite": true,
+        "span": "the quilt"
       },
       {
         "t": "psych",
@@ -69,7 +71,8 @@
         "verb": "like",
         "experiencer": "@n1",
         "stimulus": "@x1",
-        "tense": "present"
+        "tense": "present",
+        "span": "like the quilt"
       },
       {
         "t": "aspectual",
@@ -78,13 +81,14 @@
         "complement": [
           "@p1"
         ],
-        "tense": "past"
+        "tense": "past",
+        "span": "Yusra came to like the quilt"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "550b5adae738e98b3a45e1fd666b1c271958eedeeddaca6a18b6db34c69a06c7",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "motion",

@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "011859ef1641de9eb20fbd0ff4c90d8a33b97940ed06b1a0de5d9191af6f2f3e",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s3175cf5c38",
     "text": "Send Yusra the quilt."
   },
   "usage": {
-    "input": 37161,
-    "output": 141,
+    "input": 56506,
+    "output": 175,
     "thinking": null,
-    "total": 37302,
-    "cached": 35112,
+    "total": 56681,
+    "cached": 54457,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,43 +25,45 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 37161,
-    "candidatesTokenCount": 141,
-    "totalTokenCount": 37302,
-    "cachedContentTokenCount": 35112,
+    "promptTokenCount": 56506,
+    "candidatesTokenCount": 175,
+    "totalTokenCount": 56681,
+    "cachedContentTokenCount": 54457,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 37161
+        "tokenCount": 56506
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 35112
+        "tokenCount": 54457
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 141
+        "tokenCount": 175
       }
     ]
   },
-  "raw_text": "{\"id\": \"s3175cf5c38\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"quilt\", \"definite\": true}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"send\", \"recipient\": \"@n1\", \"object\": \"@x1\", \"tense\": \"present\"}, {\"t\": \"imperative\", \"id\": \"s1\", \"over\": [\"@e1\"]}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s3175cf5c38\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"quilt\", \"definite\": true, \"span\": \"the quilt\"}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"send\", \"recipient\": \"@n1\", \"object\": \"@x1\", \"tense\": \"present\", \"span\": \"Send Yusra the quilt\"}, {\"t\": \"imperative\", \"id\": \"s1\", \"over\": [\"@e1\"], \"span\": \"Send Yusra the quilt\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s3175cf5c38",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Yusra"
+        "name": "Yusra",
+        "span": "Yusra"
       },
       {
         "t": "witness",
         "id": "x1",
         "class": "quilt",
-        "definite": true
+        "definite": true,
+        "span": "the quilt"
       },
       {
         "t": "transfer",
@@ -69,20 +71,22 @@
         "verb": "send",
         "recipient": "@n1",
         "object": "@x1",
-        "tense": "present"
+        "tense": "present",
+        "span": "Send Yusra the quilt"
       },
       {
         "t": "imperative",
         "id": "s1",
         "over": [
           "@e1"
-        ]
+        ],
+        "span": "Send Yusra the quilt"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "86006c1331646959e618205dae5c6fd6c614cc473b5b0769d0ff87669d0897c5",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "imperative",

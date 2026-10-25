@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "8b94d53524c908c3b49c07b327d4f63b7de7791f1c8a4da1645e4578624a27da",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sf36ee2de84",
     "text": "The thermos might crack."
   },
   "usage": {
-    "input": 22485,
-    "output": 126,
+    "input": 56503,
+    "output": 148,
     "thinking": null,
-    "total": 22611,
+    "total": 56651,
+    "cached": 54454,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 22485,
-    "candidatesTokenCount": 126,
-    "totalTokenCount": 22611,
-    "cachedContentTokenCount": 20436,
+    "promptTokenCount": 56503,
+    "candidatesTokenCount": 148,
+    "totalTokenCount": 56651,
+    "cachedContentTokenCount": 54454,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 22485
+        "tokenCount": 56503
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 20436
+        "tokenCount": 54454
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 126
+        "tokenCount": 148
       }
     ]
   },
-  "raw_text": "{\"id\": \"sf36ee2de84\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"thermos\", \"definite\": true}, {\"t\": \"change-of-state\", \"id\": \"e1\", \"verb\": \"crack\", \"undergoer\": \"@x1\", \"tense\": \"present\"}, {\"t\": \"modal\", \"id\": \"s1\", \"over\": [\"@e1\"], \"head\": \"Might\", \"surface\": \"might\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sf36ee2de84\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"thermos\", \"definite\": true, \"span\": \"The thermos\"}, {\"t\": \"change-of-state\", \"id\": \"e1\", \"verb\": \"crack\", \"undergoer\": \"@x1\", \"tense\": \"present\", \"span\": \"The thermos might crack\"}, {\"t\": \"modal\", \"id\": \"s1\", \"over\": [\"@e1\"], \"head\": \"Might\", \"surface\": \"might\", \"span\": \"might\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sf36ee2de84",
     "instances": [
@@ -55,14 +56,16 @@
         "t": "witness",
         "id": "x1",
         "class": "thermos",
-        "definite": true
+        "definite": true,
+        "span": "The thermos"
       },
       {
         "t": "change-of-state",
         "id": "e1",
         "verb": "crack",
         "undergoer": "@x1",
-        "tense": "present"
+        "tense": "present",
+        "span": "The thermos might crack"
       },
       {
         "t": "modal",
@@ -71,18 +74,19 @@
           "@e1"
         ],
         "head": "Might",
-        "surface": "might"
+        "surface": "might",
+        "span": "might"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "2cc3e8f061d7bfce34a1f4404efb88ede552d8e0464511d138418685ffc1221b",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "change-of-state",
     "section": "held_out",
-    "index": 8,
+    "index": 10,
     "category": "scoped",
     "text": "The thermos might crack.",
     "key": "f36ee2de84"

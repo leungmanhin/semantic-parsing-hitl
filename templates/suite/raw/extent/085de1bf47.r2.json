@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "036261b67cffbb04273fa6353b6fe9d8a5bd7044375e91f3934b29dcd44ae2e8",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s085de1bf47",
     "text": "Yusra laughed very loudly."
   },
   "usage": {
-    "input": 35892,
-    "output": 139,
+    "input": 56505,
+    "output": 163,
     "thinking": null,
-    "total": 36031,
-    "cached": 33843,
+    "total": 56668,
+    "cached": 54456,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,62 +25,65 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 35892,
-    "candidatesTokenCount": 139,
-    "totalTokenCount": 36031,
-    "cachedContentTokenCount": 33843,
+    "promptTokenCount": 56505,
+    "candidatesTokenCount": 163,
+    "totalTokenCount": 56668,
+    "cachedContentTokenCount": 54456,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 35892
+        "tokenCount": 56505
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 33843
+        "tokenCount": 54456
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 139
+        "tokenCount": 163
       }
     ]
   },
-  "raw_text": "{\"id\": \"s085de1bf47\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"laugh\", \"actor\": \"@n1\", \"tense\": \"past\"}, {\"t\": \"manner\", \"id\": \"a1\", \"event\": \"@e1\", \"manner\": \"loudly\"}], \"unmapped\": [{\"span\": \"very\", \"code\": \"G02\", \"construction\": \"A degree word modifying a manner adverb.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"s085de1bf47\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"laugh\", \"actor\": \"@n1\", \"tense\": \"past\", \"span\": \"Yusra laughed\"}, {\"t\": \"manner\", \"id\": \"a1\", \"event\": \"@v1\", \"manner\": \"loudly\", \"span\": \"loudly\"}], \"unmapped\": [{\"span\": \"very\", \"code\": \"G02\", \"construction\": \"A degree word on a manner adverb.\"}], \"issues\": []}",
   "response": {
     "id": "s085de1bf47",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Yusra"
+        "name": "Yusra",
+        "span": "Yusra"
       },
       {
         "t": "activity",
-        "id": "e1",
+        "id": "v1",
         "verb": "laugh",
         "actor": "@n1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Yusra laughed"
       },
       {
         "t": "manner",
         "id": "a1",
-        "event": "@e1",
-        "manner": "loudly"
+        "event": "@v1",
+        "manner": "loudly",
+        "span": "loudly"
       }
     ],
     "unmapped": [
       {
         "span": "very",
         "code": "G02",
-        "construction": "A degree word modifying a manner adverb."
+        "construction": "A degree word on a manner adverb."
       }
     ],
     "issues": []
   },
-  "prompt_body_sha256": "107542897d74ba7ca217f1d5c88d49a7531f59530bec65a2f2b7b7200334e22e",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "extent",

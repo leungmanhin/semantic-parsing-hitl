@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "9ef7be016fe9c94587147da8ab8e32dc10a36598db3616736ec4f119204faeb4",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sc3d69ce944",
     "text": "Teodor ate the loaf and he liked it."
   },
   "usage": {
-    "input": 30252,
-    "output": 268,
+    "input": 56509,
+    "output": 333,
     "thinking": null,
-    "total": 30520,
+    "total": 56842,
+    "cached": 54460,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,89 +25,103 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 30252,
-    "candidatesTokenCount": 268,
-    "totalTokenCount": 30520,
-    "cachedContentTokenCount": 28203,
+    "promptTokenCount": 56509,
+    "candidatesTokenCount": 333,
+    "totalTokenCount": 56842,
+    "cachedContentTokenCount": 54460,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 30252
+        "tokenCount": 56509
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 28203
+        "tokenCount": 54460
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 268
+        "tokenCount": 333
       }
     ]
   },
-  "raw_text": "{\"id\": \"sc3d69ce944\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"loaf\", \"definite\": true}, {\"t\": \"mention\", \"id\": \"m1\", \"word\": \"he\"}, {\"t\": \"mention\", \"id\": \"m2\", \"word\": \"it\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"eat\", \"actor\": \"@n1\", \"patient\": \"@x1\", \"tense\": \"past\"}, {\"t\": \"psych\", \"id\": \"e2\", \"verb\": \"like\", \"experiencer\": \"@m1\", \"stimulus\": \"@m2\", \"tense\": \"past\"}, {\"t\": \"coref\", \"id\": \"c1\", \"mention\": \"@m1\", \"antecedent\": \"@n1\", \"certainty\": \"certain\"}, {\"t\": \"coref\", \"id\": \"c2\", \"mention\": \"@m2\", \"antecedent\": \"@x1\", \"certainty\": \"certain\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sc3d69ce944\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"loaf\", \"definite\": true, \"span\": \"the loaf\"}, {\"t\": \"mention\", \"id\": \"m1\", \"word\": \"he\", \"span\": \"he\"}, {\"t\": \"mention\", \"id\": \"m2\", \"word\": \"it\", \"span\": \"it\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"eat\", \"actor\": \"@n1\", \"patient\": \"@x1\", \"tense\": \"past\", \"span\": \"Teodor ate the loaf\"}, {\"t\": \"psych\", \"id\": \"p1\", \"verb\": \"like\", \"experiencer\": \"@m1\", \"stimulus\": \"@m2\", \"tense\": \"past\", \"span\": \"he liked it\"}, {\"t\": \"coref\", \"id\": \"c1\", \"mention\": \"@m1\", \"antecedent\": \"@n1\", \"certainty\": \"certain\", \"span\": [\"Teodor\", \"he\"]}, {\"t\": \"coref\", \"id\": \"c2\", \"mention\": \"@m2\", \"antecedent\": \"@x1\", \"certainty\": \"certain\", \"span\": [\"the loaf\", \"it\"]}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sc3d69ce944",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Teodor"
+        "name": "Teodor",
+        "span": "Teodor"
       },
       {
         "t": "witness",
         "id": "x1",
         "class": "loaf",
-        "definite": true
+        "definite": true,
+        "span": "the loaf"
       },
       {
         "t": "mention",
         "id": "m1",
-        "word": "he"
+        "word": "he",
+        "span": "he"
       },
       {
         "t": "mention",
         "id": "m2",
-        "word": "it"
+        "word": "it",
+        "span": "it"
       },
       {
         "t": "activity",
-        "id": "e1",
+        "id": "v1",
         "verb": "eat",
         "actor": "@n1",
         "patient": "@x1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Teodor ate the loaf"
       },
       {
         "t": "psych",
-        "id": "e2",
+        "id": "p1",
         "verb": "like",
         "experiencer": "@m1",
         "stimulus": "@m2",
-        "tense": "past"
+        "tense": "past",
+        "span": "he liked it"
       },
       {
         "t": "coref",
         "id": "c1",
         "mention": "@m1",
         "antecedent": "@n1",
-        "certainty": "certain"
+        "certainty": "certain",
+        "span": [
+          "Teodor",
+          "he"
+        ]
       },
       {
         "t": "coref",
         "id": "c2",
         "mention": "@m2",
         "antecedent": "@x1",
-        "certainty": "certain"
+        "certainty": "certain",
+        "span": [
+          "the loaf",
+          "it"
+        ]
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "8ec71bbffe57aa54f5eb1dc051643ad73943df5ef3964188a68d8dd96a4babd4",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "coref",

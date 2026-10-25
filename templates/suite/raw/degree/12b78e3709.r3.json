@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "036261b67cffbb04273fa6353b6fe9d8a5bd7044375e91f3934b29dcd44ae2e8",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s12b78e3709",
     "text": "The barn is a bit cold."
   },
   "usage": {
-    "input": 35895,
-    "output": 97,
+    "input": 56508,
+    "output": 88,
     "thinking": null,
-    "total": 35992,
-    "cached": 33846,
+    "total": 56596,
+    "cached": 54459,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 35895,
-    "candidatesTokenCount": 97,
-    "totalTokenCount": 35992,
-    "cachedContentTokenCount": 33846,
+    "promptTokenCount": 56508,
+    "candidatesTokenCount": 88,
+    "totalTokenCount": 56596,
+    "cachedContentTokenCount": 54459,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 35895
+        "tokenCount": 56508
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 33846
+        "tokenCount": 54459
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 97
+        "tokenCount": 88
       }
     ]
   },
-  "raw_text": "{\"id\": \"s12b78e3709\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"barn\", \"definite\": true}, {\"t\": \"degree\", \"id\": \"d1\", \"bearer\": \"@x1\", \"scale\": \"cold\", \"level\": \"a_bit\", \"tense\": \"present\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\":\"s12b78e3709\",\"instances\":[{\"t\":\"witness\",\"id\":\"x1\",\"class\":\"barn\",\"definite\":true,\"span\":\"The barn\"},{\"t\":\"degree\",\"id\":\"d1\",\"bearer\":\"@x1\",\"scale\":\"cold\",\"level\":\"a_bit\",\"tense\":\"present\",\"span\":\"The barn is a bit cold\"}],\"unmapped\":[],\"issues\":[]}",
   "response": {
     "id": "s12b78e3709",
     "instances": [
@@ -56,7 +56,8 @@
         "t": "witness",
         "id": "x1",
         "class": "barn",
-        "definite": true
+        "definite": true,
+        "span": "The barn"
       },
       {
         "t": "degree",
@@ -64,13 +65,14 @@
         "bearer": "@x1",
         "scale": "cold",
         "level": "a_bit",
-        "tense": "present"
+        "tense": "present",
+        "span": "The barn is a bit cold"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "107542897d74ba7ca217f1d5c88d49a7531f59530bec65a2f2b7b7200334e22e",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "degree",

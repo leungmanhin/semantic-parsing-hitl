@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "3cf1c657d278c5f88cd86233811adb01fd7b99c43b58fc7e7f270c08f8532885",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "saec736bda9",
     "text": "The ferret was seen."
   },
   "usage": {
-    "input": 13815,
-    "output": 86,
+    "input": 56502,
+    "output": 102,
     "thinking": null,
-    "total": 13901,
+    "total": 56604,
+    "cached": 54453,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 13815,
-    "candidatesTokenCount": 86,
-    "totalTokenCount": 13901,
-    "cachedContentTokenCount": 11766,
+    "promptTokenCount": 56502,
+    "candidatesTokenCount": 102,
+    "totalTokenCount": 56604,
+    "cachedContentTokenCount": 54453,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 13815
+        "tokenCount": 56502
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 11766
+        "tokenCount": 54453
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 86
+        "tokenCount": 102
       }
     ]
   },
-  "raw_text": "{\"id\": \"saec736bda9\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"ferret\", \"definite\": true}, {\"t\": \"perception\", \"id\": \"e1\", \"verb\": \"see\", \"stimulus\": \"@x1\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"saec736bda9\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"ferret\", \"definite\": true, \"span\": \"The ferret\"}, {\"t\": \"perception\", \"id\": \"p1\", \"verb\": \"see\", \"stimulus\": \"@x1\", \"tense\": \"past\", \"span\": \"The ferret was seen\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "saec736bda9",
     "instances": [
@@ -55,20 +56,22 @@
         "t": "witness",
         "id": "x1",
         "class": "ferret",
-        "definite": true
+        "definite": true,
+        "span": "The ferret"
       },
       {
         "t": "perception",
-        "id": "e1",
+        "id": "p1",
         "verb": "see",
         "stimulus": "@x1",
-        "tense": "past"
+        "tense": "past",
+        "span": "The ferret was seen"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "4045b2ad4809e7e7e07e9faa62e508fb7a2daeb033c9f5aedf2c8aef30067522",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "perception",

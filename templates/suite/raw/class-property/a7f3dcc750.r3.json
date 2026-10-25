@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "a9e1ed5a7114de2bedee96ae4010964a4aa69ba1a78b19fae57121290e52e164",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sa7f3dcc750",
     "text": "Ferrets are widespread."
   },
   "usage": {
-    "input": 51782,
-    "output": 65,
+    "input": 56503,
+    "output": 74,
     "thinking": null,
-    "total": 51847,
-    "cached": 49733,
+    "total": 56577,
+    "cached": 54454,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,45 +25,46 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 51782,
-    "candidatesTokenCount": 65,
-    "totalTokenCount": 51847,
-    "cachedContentTokenCount": 49733,
+    "promptTokenCount": 56503,
+    "candidatesTokenCount": 74,
+    "totalTokenCount": 56577,
+    "cachedContentTokenCount": 54454,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 51782
+        "tokenCount": 56503
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 49733
+        "tokenCount": 54454
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 65
+        "tokenCount": 74
       }
     ]
   },
-  "raw_text": "{\"id\": \"sa7f3dcc750\", \"instances\": [{\"t\": \"kind-property\", \"id\": \"k1\", \"subject\": \"ferret\", \"property\": \"widespread\", \"tense\": \"present\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sa7f3dcc750\", \"instances\": [{\"t\": \"class-property\", \"id\": \"c1\", \"subject\": \"ferret\", \"property\": \"widespread\", \"tense\": \"present\", \"span\": \"Ferrets are widespread\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sa7f3dcc750",
     "instances": [
       {
         "t": "class-property",
-        "id": "k1",
+        "id": "c1",
         "subject": "ferret",
         "property": "widespread",
-        "tense": "present"
+        "tense": "present",
+        "span": "Ferrets are widespread"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "e818417b50e53224000dbbfbcf86feb0d70114df739431722ad3ad866d0b6d57",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "class-property",

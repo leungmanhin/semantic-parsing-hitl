@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "aea0dc69d24f92b4e9fc854261540ae45969c539482a78ca709b17321fd141f1",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s03aad442ce",
     "text": "Yusra left because the gate was open."
   },
   "usage": {
-    "input": 45873,
-    "output": 186,
+    "input": 56507,
+    "output": 219,
     "thinking": null,
-    "total": 46059,
-    "cached": 43823,
+    "total": 56726,
+    "cached": null,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,50 +25,46 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 45873,
-    "candidatesTokenCount": 186,
-    "totalTokenCount": 46059,
-    "cachedContentTokenCount": 43823,
+    "promptTokenCount": 56507,
+    "candidatesTokenCount": 219,
+    "totalTokenCount": 56726,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 45873
-      }
-    ],
-    "cacheTokensDetails": [
-      {
-        "modality": "TEXT",
-        "tokenCount": 43823
+        "tokenCount": 56507
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 186
+        "tokenCount": 219
       }
     ]
   },
-  "raw_text": "{\"id\": \"s03aad442ce\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"gate\", \"definite\": true}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n1\", \"tense\": \"past\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@x1\", \"predicate\": \"open\", \"form\": \"adjective\", \"tense\": \"past\"}], \"unmapped\": [{\"span\": \"because\", \"code\": \"G00\", \"construction\": \"A causal connective whose subordinate clause is a copular predication with no event symbol to link.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"s03aad442ce\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"gate\", \"definite\": true, \"span\": \"the gate\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n1\", \"tense\": \"past\", \"span\": \"Yusra left\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@x1\", \"predicate\": \"open\", \"form\": \"adjective\", \"tense\": \"past\", \"span\": \"the gate was open\"}], \"unmapped\": [{\"span\": \"because\", \"code\": \"G00\", \"construction\": \"A causal connective whose subordinate clause is a copular predication with no event symbol to link.\"}], \"issues\": []}",
   "response": {
     "id": "s03aad442ce",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Yusra"
+        "name": "Yusra",
+        "span": "Yusra"
       },
       {
         "t": "witness",
         "id": "x1",
         "class": "gate",
-        "definite": true
+        "definite": true,
+        "span": "the gate"
       },
       {
         "t": "motion",
         "id": "m1",
         "verb": "leave",
         "mover": "@n1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Yusra left"
       },
       {
         "t": "copular",
@@ -76,7 +72,8 @@
         "subject": "@x1",
         "predicate": "open",
         "form": "adjective",
-        "tense": "past"
+        "tense": "past",
+        "span": "the gate was open"
       }
     ],
     "unmapped": [
@@ -88,7 +85,7 @@
     ],
     "issues": []
   },
-  "prompt_body_sha256": "667366f56ac295f7c22279b3bdae00b28653ebaf94bfcee3f5443b9887b2e7ea",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "link",

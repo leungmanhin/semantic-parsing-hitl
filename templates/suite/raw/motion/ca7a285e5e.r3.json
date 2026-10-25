@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "f5f1e44762d5f71f92cba2959b585298e51bf895cfccd7dae6d6503648dc8ffe",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sca7a285e5e",
     "text": "Yusra did not go to the market."
   },
   "usage": {
-    "input": 21105,
-    "output": 139,
+    "input": 56508,
+    "output": 174,
     "thinking": null,
-    "total": 21244,
+    "total": 56682,
+    "cached": 54459,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,57 +25,68 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 21105,
-    "candidatesTokenCount": 139,
-    "totalTokenCount": 21244,
+    "promptTokenCount": 56508,
+    "candidatesTokenCount": 174,
+    "totalTokenCount": 56682,
+    "cachedContentTokenCount": 54459,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 21105
+        "tokenCount": 56508
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 54459
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 139
+        "tokenCount": 174
       }
     ]
   },
-  "raw_text": "{\"id\": \"sca7a285e5e\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"market\", \"definite\": true}, {\"t\": \"motion\", \"id\": \"e1\", \"verb\": \"go\", \"mover\": \"@n1\", \"goal\": \"@x1\", \"tense\": \"past\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@e1\"]}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sca7a285e5e\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"market\", \"definite\": true, \"span\": \"the market\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"go\", \"mover\": \"@n1\", \"goal\": \"@x1\", \"tense\": \"past\", \"span\": \"Yusra did not go to the market\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@m1\"], \"span\": \"did not\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sca7a285e5e",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Yusra"
+        "name": "Yusra",
+        "span": "Yusra"
       },
       {
         "t": "witness",
         "id": "x1",
         "class": "market",
-        "definite": true
+        "definite": true,
+        "span": "the market"
       },
       {
         "t": "motion",
-        "id": "e1",
+        "id": "m1",
         "verb": "go",
         "mover": "@n1",
         "goal": "@x1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Yusra did not go to the market"
       },
       {
         "t": "negation",
         "id": "s1",
         "over": [
-          "@e1"
-        ]
+          "@m1"
+        ],
+        "span": "did not"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "000098f3bba489804dab742a00fbb307c4c7cc7edbe3c2d93bcc7ed7118790ae",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "motion",

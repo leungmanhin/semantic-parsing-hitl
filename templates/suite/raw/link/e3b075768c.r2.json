@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "96e661894bf32af3ef6950dd4f27fda7e7ee3757022f6ac32459bd4df569d022",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "se3b075768c",
     "text": "Because Lamine sang, the ferret did not sleep."
   },
   "usage": {
-    "input": 46011,
-    "output": 198,
+    "input": 56511,
+    "output": 243,
     "thinking": null,
-    "total": 46209,
-    "cached": 43962,
+    "total": 56754,
+    "cached": 54462,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,77 +25,83 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 46011,
-    "candidatesTokenCount": 198,
-    "totalTokenCount": 46209,
-    "cachedContentTokenCount": 43962,
+    "promptTokenCount": 56511,
+    "candidatesTokenCount": 243,
+    "totalTokenCount": 56754,
+    "cachedContentTokenCount": 54462,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 46011
+        "tokenCount": 56511
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 43962
+        "tokenCount": 54462
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 198
+        "tokenCount": 243
       }
     ]
   },
-  "raw_text": "{\"id\": \"se3b075768c\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"ferret\", \"definite\": true}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"sing\", \"actor\": \"@n1\", \"tense\": \"past\"}, {\"t\": \"activity\", \"id\": \"e2\", \"verb\": \"sleep\", \"actor\": \"@x1\", \"tense\": \"past\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@e2\"]}, {\"t\": \"link\", \"id\": \"k1\", \"head\": \"Because\", \"main\": \"@e2\", \"sub\": \"@e1\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"se3b075768c\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"ferret\", \"definite\": true, \"span\": \"the ferret\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"sing\", \"actor\": \"@n1\", \"tense\": \"past\", \"span\": \"Lamine sang\"}, {\"t\": \"activity\", \"id\": \"e2\", \"verb\": \"sleep\", \"actor\": \"@x1\", \"tense\": \"past\", \"span\": \"the ferret did not sleep\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@e2\"], \"span\": \"did not\"}, {\"t\": \"link\", \"id\": \"k1\", \"head\": \"Because\", \"main\": \"@e2\", \"sub\": \"@e1\", \"span\": \"Because\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "se3b075768c",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Lamine"
+        "name": "Lamine",
+        "span": "Lamine"
       },
       {
         "t": "witness",
         "id": "x1",
         "class": "ferret",
-        "definite": true
+        "definite": true,
+        "span": "the ferret"
       },
       {
         "t": "activity",
         "id": "e1",
         "verb": "sing",
         "actor": "@n1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Lamine sang"
       },
       {
         "t": "activity",
         "id": "e2",
         "verb": "sleep",
         "actor": "@x1",
-        "tense": "past"
+        "tense": "past",
+        "span": "the ferret did not sleep"
       },
       {
         "t": "negation",
         "id": "s1",
         "over": [
           "@e2"
-        ]
+        ],
+        "span": "did not"
       },
       {
         "t": "link",
         "id": "k1",
         "head": "Because",
         "main": "@e2",
-        "sub": "@e1"
+        "sub": "@e1",
+        "span": "Because"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "49ea9cf47ef53a70b2bf960950b1ce0c94ebd6a1171e41d50b9639f0536c4e3e",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "link",

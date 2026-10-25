@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "8b94d53524c908c3b49c07b327d4f63b7de7791f1c8a4da1645e4578624a27da",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s136b9c7c8e",
     "text": "The price fell."
   },
   "usage": {
-    "input": 22487,
-    "output": 96,
+    "input": 56505,
+    "output": 111,
     "thinking": null,
-    "total": 22583,
+    "total": 56616,
+    "cached": 54456,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 22487,
-    "candidatesTokenCount": 96,
-    "totalTokenCount": 22583,
-    "cachedContentTokenCount": 20438,
+    "promptTokenCount": 56505,
+    "candidatesTokenCount": 111,
+    "totalTokenCount": 56616,
+    "cachedContentTokenCount": 54456,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 22487
+        "tokenCount": 56505
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 20438
+        "tokenCount": 54456
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 96
+        "tokenCount": 111
       }
     ]
   },
-  "raw_text": "{\"id\": \"s136b9c7c8e\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"price\", \"definite\": true}, {\"t\": \"change-of-state\", \"id\": \"e1\", \"verb\": \"fall\", \"undergoer\": \"@x1\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s136b9c7c8e\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"price\", \"definite\": true, \"span\": \"The price\"}, {\"t\": \"change-of-state\", \"id\": \"c1\", \"verb\": \"fall\", \"undergoer\": \"@x1\", \"tense\": \"past\", \"span\": \"The price fell\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s136b9c7c8e",
     "instances": [
@@ -55,20 +56,22 @@
         "t": "witness",
         "id": "x1",
         "class": "price",
-        "definite": true
+        "definite": true,
+        "span": "The price"
       },
       {
         "t": "change-of-state",
-        "id": "e1",
+        "id": "c1",
         "verb": "fall",
         "undergoer": "@x1",
-        "tense": "past"
+        "tense": "past",
+        "span": "The price fell"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "2cc3e8f061d7bfce34a1f4404efb88ede552d8e0464511d138418685ffc1221b",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "change-of-state",

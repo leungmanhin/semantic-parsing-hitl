@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "1d222d0cef42ea41597077c079a342d34e81c08048db53bf998fc833807a7753",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s690bb21a66",
     "text": "Lamine often laughed."
   },
   "usage": {
-    "input": 33518,
-    "output": 111,
+    "input": 56505,
+    "output": 130,
     "thinking": null,
-    "total": 33629,
-    "cached": 31422,
+    "total": 56635,
+    "cached": null,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,56 +25,51 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 33518,
-    "candidatesTokenCount": 111,
-    "totalTokenCount": 33629,
-    "cachedContentTokenCount": 31422,
+    "promptTokenCount": 56505,
+    "candidatesTokenCount": 130,
+    "totalTokenCount": 56635,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 33518
-      }
-    ],
-    "cacheTokensDetails": [
-      {
-        "modality": "TEXT",
-        "tokenCount": 31422
+        "tokenCount": 56505
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 111
+        "tokenCount": 130
       }
     ]
   },
-  "raw_text": "{\"id\": \"s690bb21a66\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"laugh\", \"actor\": \"@n1\", \"tense\": \"past\"}], \"unmapped\": [{\"span\": \"often\", \"code\": \"G02\", \"construction\": \"A frequency adverb modifying the verb.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"s690bb21a66\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"laugh\", \"actor\": \"@n1\", \"tense\": \"past\", \"span\": \"Lamine often laughed\"}], \"unmapped\": [{\"span\": \"often\", \"code\": \"G02\", \"construction\": \"A frequency adverb modifying the clause's verb.\"}], \"issues\": []}",
   "response": {
     "id": "s690bb21a66",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Lamine"
+        "name": "Lamine",
+        "span": "Lamine"
       },
       {
         "t": "activity",
-        "id": "e1",
+        "id": "v1",
         "verb": "laugh",
         "actor": "@n1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Lamine often laughed"
       }
     ],
     "unmapped": [
       {
         "span": "often",
         "code": "G02",
-        "construction": "A frequency adverb modifying the verb."
+        "construction": "A frequency adverb modifying the clause's verb."
       }
     ],
     "issues": []
   },
-  "prompt_body_sha256": "11f4b54bfb570c51c864b0df3d73d7ef4191fa6000e1ad5b04b5cb034e32080b",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "manner",

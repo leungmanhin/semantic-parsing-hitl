@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "9ef7be016fe9c94587147da8ab8e32dc10a36598db3616736ec4f119204faeb4",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sa7673110f8",
     "text": "Teodor and Lamine arrived. He laughed."
   },
   "usage": {
-    "input": 30253,
-    "output": 267,
+    "input": 56510,
+    "output": 334,
     "thinking": null,
-    "total": 30520,
+    "total": 56844,
+    "cached": 54461,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,88 +25,105 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 30253,
-    "candidatesTokenCount": 267,
-    "totalTokenCount": 30520,
-    "cachedContentTokenCount": 28204,
+    "promptTokenCount": 56510,
+    "candidatesTokenCount": 334,
+    "totalTokenCount": 56844,
+    "cachedContentTokenCount": 54461,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 30253
+        "tokenCount": 56510
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 28204
+        "tokenCount": 54461
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 267
+        "tokenCount": 334
       }
     ]
   },
-  "raw_text": "{\"id\": \"sa7673110f8\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Lamine\"}, {\"t\": \"mention\", \"id\": \"m1\", \"word\": \"he\"}, {\"t\": \"motion\", \"id\": \"e1\", \"verb\": \"arrive\", \"mover\": \"@n1\", \"tense\": \"past\"}, {\"t\": \"motion\", \"id\": \"e2\", \"verb\": \"arrive\", \"mover\": \"@n2\", \"tense\": \"past\"}, {\"t\": \"activity\", \"id\": \"e3\", \"verb\": \"laugh\", \"actor\": \"@m1\", \"tense\": \"past\"}, {\"t\": \"coref\", \"id\": \"c1\", \"mention\": \"@m1\", \"antecedent\": \"@n1\", \"certainty\": \"unsure\"}, {\"t\": \"coref\", \"id\": \"c2\", \"mention\": \"@m1\", \"antecedent\": \"@n2\", \"certainty\": \"unsure\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sa7673110f8\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"mention\", \"id\": \"m1\", \"word\": \"he\", \"span\": \"He\"}, {\"t\": \"motion\", \"id\": \"e1\", \"verb\": \"arrive\", \"mover\": \"@n1\", \"tense\": \"past\", \"span\": [\"Teodor\", \"arrived\"]}, {\"t\": \"motion\", \"id\": \"e2\", \"verb\": \"arrive\", \"mover\": \"@n2\", \"tense\": \"past\", \"span\": \"Lamine arrived\"}, {\"t\": \"activity\", \"id\": \"e3\", \"verb\": \"laugh\", \"actor\": \"@m1\", \"tense\": \"past\", \"span\": \"He laughed\"}, {\"t\": \"coref\", \"id\": \"k1\", \"mention\": \"@m1\", \"antecedent\": \"@n1\", \"certainty\": \"unsure\", \"span\": [\"Teodor\", \"He\"]}, {\"t\": \"coref\", \"id\": \"k2\", \"mention\": \"@m1\", \"antecedent\": \"@n2\", \"certainty\": \"unsure\", \"span\": [\"Lamine\", \"He\"]}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sa7673110f8",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Teodor"
+        "name": "Teodor",
+        "span": "Teodor"
       },
       {
         "t": "named-entity",
         "id": "n2",
-        "name": "Lamine"
+        "name": "Lamine",
+        "span": "Lamine"
       },
       {
         "t": "mention",
         "id": "m1",
-        "word": "he"
+        "word": "he",
+        "span": "He"
       },
       {
         "t": "motion",
         "id": "e1",
         "verb": "arrive",
         "mover": "@n1",
-        "tense": "past"
+        "tense": "past",
+        "span": [
+          "Teodor",
+          "arrived"
+        ]
       },
       {
         "t": "motion",
         "id": "e2",
         "verb": "arrive",
         "mover": "@n2",
-        "tense": "past"
+        "tense": "past",
+        "span": "Lamine arrived"
       },
       {
         "t": "activity",
         "id": "e3",
         "verb": "laugh",
         "actor": "@m1",
-        "tense": "past"
+        "tense": "past",
+        "span": "He laughed"
       },
       {
         "t": "coref",
-        "id": "c1",
+        "id": "k1",
         "mention": "@m1",
         "antecedent": "@n1",
-        "certainty": "unsure"
+        "certainty": "unsure",
+        "span": [
+          "Teodor",
+          "He"
+        ]
       },
       {
         "t": "coref",
-        "id": "c2",
+        "id": "k2",
         "mention": "@m1",
         "antecedent": "@n2",
-        "certainty": "unsure"
+        "certainty": "unsure",
+        "span": [
+          "Lamine",
+          "He"
+        ]
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "8ec71bbffe57aa54f5eb1dc051643ad73943df5ef3964188a68d8dd96a4babd4",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "coref",

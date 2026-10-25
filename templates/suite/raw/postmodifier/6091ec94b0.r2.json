@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "ed7e5be12a09f9e5947e50cfa5d2b849bc8b16ea94ad2bdefa98a0592d434d3f",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s6091ec94b0",
     "text": "Yusra drank a cup of tea."
   },
   "usage": {
-    "input": 49025,
-    "output": 185,
+    "input": 56508,
+    "output": 144,
     "thinking": null,
-    "total": 49210,
-    "cached": 46976,
+    "total": 56652,
+    "cached": 54459,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,37 +25,38 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 49025,
-    "candidatesTokenCount": 185,
-    "totalTokenCount": 49210,
-    "cachedContentTokenCount": 46976,
+    "promptTokenCount": 56508,
+    "candidatesTokenCount": 144,
+    "totalTokenCount": 56652,
+    "cachedContentTokenCount": 54459,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 49025
+        "tokenCount": 56508
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 46976
+        "tokenCount": 54459
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 185
+        "tokenCount": 144
       }
     ]
   },
-  "raw_text": "{\"id\": \"s6091ec94b0\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"drink\", \"actor\": \"@n1\", \"patient\": \"tea\", \"tense\": \"past\"}], \"unmapped\": [{\"span\": \"a cup of\", \"code\": \"G00\", \"construction\": \"A measure or container phrase modifying a mass noun.\"}], \"issues\": [{\"code\": \"P00\", \"where\": \"postmodifier\", \"text\": \"The instructions say to report a measure or container phrase like 'a cup of flour' as unmapped, without specifying whether the substance ('tea') or the container ('cup') fills the verb's patient slot.\"}]}",
+  "raw_text": "{\"id\": \"s6091ec94b0\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"drink\", \"actor\": \"@n1\", \"patient\": \"tea\", \"tense\": \"past\", \"span\": \"Yusra drank a cup of tea\"}], \"unmapped\": [{\"span\": \"a cup of\", \"code\": \"G00\", \"construction\": \"A container or measure phrase on a mass noun.\"}], \"issues\": []}",
   "response": {
     "id": "s6091ec94b0",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Yusra"
+        "name": "Yusra",
+        "span": "Yusra"
       },
       {
         "t": "activity",
@@ -63,25 +64,20 @@
         "verb": "drink",
         "actor": "@n1",
         "patient": "tea",
-        "tense": "past"
+        "tense": "past",
+        "span": "Yusra drank a cup of tea"
       }
     ],
     "unmapped": [
       {
         "span": "a cup of",
         "code": "G00",
-        "construction": "A measure or container phrase modifying a mass noun."
+        "construction": "A container or measure phrase on a mass noun."
       }
     ],
-    "issues": [
-      {
-        "code": "P00",
-        "where": "postmodifier",
-        "text": "The instructions say to report a measure or container phrase like 'a cup of flour' as unmapped, without specifying whether the substance ('tea') or the container ('cup') fills the verb's patient slot."
-      }
-    ]
+    "issues": []
   },
-  "prompt_body_sha256": "7ea5b5bb86c29718a2936a9c64163dc82790d7b8ea4be586be12417680d153a7",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "postmodifier",

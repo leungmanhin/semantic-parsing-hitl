@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "54d8ad81ab6b6ede7a54597207657d933ded873a8d445236afc298e7c6b6743a",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s25fa14d36f",
     "text": "Lamine paid Yusra a visit."
   },
   "usage": {
-    "input": 6637,
-    "output": 114,
+    "input": 56508,
+    "output": 125,
     "thinking": null,
-    "total": 6751,
+    "total": 56633,
+    "cached": 54455,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,52 +25,61 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 6637,
-    "candidatesTokenCount": 114,
-    "totalTokenCount": 6751,
+    "promptTokenCount": 56508,
+    "candidatesTokenCount": 125,
+    "totalTokenCount": 56633,
+    "cachedContentTokenCount": 54455,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 6637
+        "tokenCount": 56508
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 54455
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 114
+        "tokenCount": 125
       }
     ]
   },
-  "raw_text": "{\"id\": \"s25fa14d36f\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Yusra\"}], \"unmapped\": [{\"span\": \"paid Yusra a visit\", \"code\": \"G00\", \"construction\": \"A light-verb construction where the noun carries the event and nothing is transferred.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"s25fa14d36f\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Yusra\", \"span\": \"Yusra\"}], \"unmapped\": [{\"span\": \"paid Yusra a visit\", \"code\": \"G00\", \"construction\": \"A light-verb construction where the noun carries the event.\"}], \"issues\": []}",
   "response": {
     "id": "s25fa14d36f",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Lamine"
+        "name": "Lamine",
+        "span": "Lamine"
       },
       {
         "t": "named-entity",
         "id": "n2",
-        "name": "Yusra"
+        "name": "Yusra",
+        "span": "Yusra"
       }
     ],
     "unmapped": [
       {
         "span": "paid Yusra a visit",
         "code": "G00",
-        "construction": "A light-verb construction where the noun carries the event and nothing is transferred."
+        "construction": "A light-verb construction where the noun carries the event."
       }
     ],
     "issues": []
   },
-  "prompt_body_sha256": "8674bf87a4b179e17df201a06cdfa72949f5c085c9011d610b4139b838fd4f5a",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "transfer",
     "section": "held_out",
-    "index": 7,
+    "index": 9,
     "category": "abstain",
     "text": "Lamine paid Yusra a visit.",
     "key": "25fa14d36f"

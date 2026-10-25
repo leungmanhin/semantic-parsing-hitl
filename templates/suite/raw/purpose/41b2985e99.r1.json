@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "aea0dc69d24f92b4e9fc854261540ae45969c539482a78ca709b17321fd141f1",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s41b2985e99",
     "text": "Ottoline left so as to sleep."
   },
   "usage": {
-    "input": 45875,
-    "output": 156,
+    "input": 56509,
+    "output": 185,
     "thinking": null,
-    "total": 46031,
-    "cached": 43825,
+    "total": 56694,
+    "cached": 54459,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,51 +25,54 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 45875,
-    "candidatesTokenCount": 156,
-    "totalTokenCount": 46031,
-    "cachedContentTokenCount": 43825,
+    "promptTokenCount": 56509,
+    "candidatesTokenCount": 185,
+    "totalTokenCount": 56694,
+    "cachedContentTokenCount": 54459,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 45875
+        "tokenCount": 56509
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 43825
+        "tokenCount": 54459
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 156
+        "tokenCount": 185
       }
     ]
   },
-  "raw_text": "{\"id\": \"s41b2985e99\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n1\", \"tense\": \"past\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"sleep\", \"actor\": \"@n1\", \"tense\": \"present\"}, {\"t\": \"purpose\", \"id\": \"k1\", \"head\": \"SoAsTo\", \"action\": \"@m1\", \"aim\": [\"@v1\"]}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s41b2985e99\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n1\", \"tense\": \"past\", \"span\": \"Ottoline left\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"sleep\", \"actor\": \"@n1\", \"tense\": \"present\", \"span\": \"to sleep\"}, {\"t\": \"purpose\", \"id\": \"k1\", \"head\": \"SoAsTo\", \"action\": \"@m1\", \"aim\": [\"@e1\"], \"span\": \"so as to\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s41b2985e99",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Ottoline"
+        "name": "Ottoline",
+        "span": "Ottoline"
       },
       {
         "t": "motion",
         "id": "m1",
         "verb": "leave",
         "mover": "@n1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Ottoline left"
       },
       {
         "t": "activity",
-        "id": "v1",
+        "id": "e1",
         "verb": "sleep",
         "actor": "@n1",
-        "tense": "present"
+        "tense": "present",
+        "span": "to sleep"
       },
       {
         "t": "purpose",
@@ -77,14 +80,15 @@
         "head": "SoAsTo",
         "action": "@m1",
         "aim": [
-          "@v1"
-        ]
+          "@e1"
+        ],
+        "span": "so as to"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "667366f56ac295f7c22279b3bdae00b28653ebaf94bfcee3f5443b9887b2e7ea",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "purpose",

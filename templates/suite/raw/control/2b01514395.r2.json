@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "1e3a0e7b653d644ba66513f0d0e707b1cc9b81d1cb008f3f969832c0fde71796",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s2b01514395",
     "text": "Lamine attempted to open the gate."
   },
   "usage": {
-    "input": 42693,
-    "output": 172,
+    "input": 56509,
+    "output": 207,
     "thinking": null,
-    "total": 42865,
-    "cached": 40644,
+    "total": 56716,
+    "cached": 54460,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,43 +25,45 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 42693,
-    "candidatesTokenCount": 172,
-    "totalTokenCount": 42865,
-    "cachedContentTokenCount": 40644,
+    "promptTokenCount": 56509,
+    "candidatesTokenCount": 207,
+    "totalTokenCount": 56716,
+    "cachedContentTokenCount": 54460,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 42693
+        "tokenCount": 56509
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 40644
+        "tokenCount": 54460
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 172
+        "tokenCount": 207
       }
     ]
   },
-  "raw_text": "{\"id\": \"s2b01514395\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"gate\", \"definite\": true}, {\"t\": \"change-of-state\", \"id\": \"c1\", \"verb\": \"open\", \"agent\": \"@n1\", \"undergoer\": \"@x1\", \"tense\": \"present\"}, {\"t\": \"control\", \"id\": \"e1\", \"verb\": \"attempt\", \"subject\": \"@n1\", \"complement\": [\"@c1\"], \"implication\": \"none\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s2b01514395\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"gate\", \"definite\": true, \"span\": \"the gate\"}, {\"t\": \"change-of-state\", \"id\": \"c1\", \"verb\": \"open\", \"agent\": \"@n1\", \"undergoer\": \"@x1\", \"tense\": \"present\", \"span\": \"to open the gate\"}, {\"t\": \"control\", \"id\": \"e1\", \"verb\": \"attempt\", \"subject\": \"@n1\", \"complement\": [\"@c1\"], \"implication\": \"none\", \"tense\": \"past\", \"span\": \"Lamine attempted to open the gate\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s2b01514395",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Lamine"
+        "name": "Lamine",
+        "span": "Lamine"
       },
       {
         "t": "witness",
         "id": "x1",
         "class": "gate",
-        "definite": true
+        "definite": true,
+        "span": "the gate"
       },
       {
         "t": "change-of-state",
@@ -69,7 +71,8 @@
         "verb": "open",
         "agent": "@n1",
         "undergoer": "@x1",
-        "tense": "present"
+        "tense": "present",
+        "span": "to open the gate"
       },
       {
         "t": "control",
@@ -80,13 +83,14 @@
           "@c1"
         ],
         "implication": "none",
-        "tense": "past"
+        "tense": "past",
+        "span": "Lamine attempted to open the gate"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "550b5adae738e98b3a45e1fd666b1c271958eedeeddaca6a18b6db34c69a06c7",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "control",

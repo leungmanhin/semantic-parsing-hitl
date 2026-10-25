@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "83d654d351078da34843fcdd2c851cb17742d5e5b2a421b203c2fcf14b7e368c",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s3fc913997a",
     "text": "Yusra does not trust Lamine."
   },
   "usage": {
-    "input": 9647,
-    "output": 140,
+    "input": 56508,
+    "output": 174,
     "thinking": null,
-    "total": 9787,
+    "total": 56682,
+    "cached": 54459,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,42 +25,44 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 9647,
-    "candidatesTokenCount": 140,
-    "totalTokenCount": 9787,
-    "cachedContentTokenCount": 7598,
+    "promptTokenCount": 56508,
+    "candidatesTokenCount": 174,
+    "totalTokenCount": 56682,
+    "cachedContentTokenCount": 54459,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 9647
+        "tokenCount": 56508
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 7598
+        "tokenCount": 54459
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 140
+        "tokenCount": 174
       }
     ]
   },
-  "raw_text": "{\"id\": \"s3fc913997a\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Lamine\"}, {\"t\": \"psych\", \"id\": \"p1\", \"verb\": \"trust\", \"experiencer\": \"@n1\", \"stimulus\": \"@n2\", \"tense\": \"present\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@p1\"]}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s3fc913997a\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"psych\", \"id\": \"p1\", \"verb\": \"trust\", \"experiencer\": \"@n1\", \"stimulus\": \"@n2\", \"tense\": \"present\", \"span\": \"Yusra does not trust Lamine\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@p1\"], \"span\": \"does not\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s3fc913997a",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Yusra"
+        "name": "Yusra",
+        "span": "Yusra"
       },
       {
         "t": "named-entity",
         "id": "n2",
-        "name": "Lamine"
+        "name": "Lamine",
+        "span": "Lamine"
       },
       {
         "t": "psych",
@@ -67,20 +70,22 @@
         "verb": "trust",
         "experiencer": "@n1",
         "stimulus": "@n2",
-        "tense": "present"
+        "tense": "present",
+        "span": "Yusra does not trust Lamine"
       },
       {
         "t": "negation",
         "id": "s1",
         "over": [
           "@p1"
-        ]
+        ],
+        "span": "does not"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "43caf6785635a5b865bcd87326023595e1fddfa30888316f56be9574edb8e5cb",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "psych",

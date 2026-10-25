@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "57c0a2cf118bc64251ee1dc4f10535ec1900e8fb5354bff54b546c18457f758b",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s46c10b7fe3",
     "text": "Lamine sold the spindle to Teodor for Yusra."
   },
   "usage": {
-    "input": 33509,
-    "output": 212,
+    "input": 56512,
+    "output": 262,
     "thinking": null,
-    "total": 33721,
-    "cached": 31457,
+    "total": 56774,
+    "cached": 54460,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,53 +25,57 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 33509,
-    "candidatesTokenCount": 212,
-    "totalTokenCount": 33721,
-    "cachedContentTokenCount": 31457,
+    "promptTokenCount": 56512,
+    "candidatesTokenCount": 262,
+    "totalTokenCount": 56774,
+    "cachedContentTokenCount": 54460,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 33509
+        "tokenCount": 56512
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 31457
+        "tokenCount": 54460
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 212
+        "tokenCount": 262
       }
     ]
   },
-  "raw_text": "{\"id\": \"s46c10b7fe3\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"spindle\", \"definite\": true}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\"}, {\"t\": \"named-entity\", \"id\": \"n3\", \"name\": \"Yusra\"}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"sell\", \"giver\": \"@n1\", \"recipient\": \"@n2\", \"object\": \"@x1\", \"tense\": \"past\"}, {\"t\": \"adjunct\", \"id\": \"a1\", \"event\": \"@e1\", \"participant\": \"@n3\", \"head\": \"Beneficiary\", \"preposition\": \"for\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s46c10b7fe3\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"spindle\", \"definite\": true, \"span\": \"the spindle\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"named-entity\", \"id\": \"n3\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"sell\", \"giver\": \"@n1\", \"recipient\": \"@n2\", \"object\": \"@x1\", \"tense\": \"past\", \"span\": \"Lamine sold the spindle to Teodor\"}, {\"t\": \"adjunct\", \"id\": \"a1\", \"event\": \"@e1\", \"participant\": \"@n3\", \"head\": \"Beneficiary\", \"preposition\": \"for\", \"span\": \"for Yusra\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s46c10b7fe3",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Lamine"
+        "name": "Lamine",
+        "span": "Lamine"
       },
       {
         "t": "witness",
         "id": "x1",
         "class": "spindle",
-        "definite": true
+        "definite": true,
+        "span": "the spindle"
       },
       {
         "t": "named-entity",
         "id": "n2",
-        "name": "Teodor"
+        "name": "Teodor",
+        "span": "Teodor"
       },
       {
         "t": "named-entity",
         "id": "n3",
-        "name": "Yusra"
+        "name": "Yusra",
+        "span": "Yusra"
       },
       {
         "t": "transfer",
@@ -80,7 +84,8 @@
         "giver": "@n1",
         "recipient": "@n2",
         "object": "@x1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Lamine sold the spindle to Teodor"
       },
       {
         "t": "adjunct",
@@ -88,13 +93,14 @@
         "event": "@e1",
         "participant": "@n3",
         "head": "Beneficiary",
-        "preposition": "for"
+        "preposition": "for",
+        "span": "for Yusra"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "55732af26869bbaa55169fc16db0ed85110798ac0721bfbdda732a93ff4b5fd0",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "adjunct",

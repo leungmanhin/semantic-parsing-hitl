@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "ecb9313bbef541ec29940699dad9a1b36a9780334e6b77fdb8e31663cca0597f",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s125e2cbc52",
     "text": "Ottoline sang near the barn."
   },
   "usage": {
-    "input": 26449,
-    "output": 149,
+    "input": 56506,
+    "output": 262,
     "thinking": null,
-    "total": 26598,
+    "total": 56768,
+    "cached": 54457,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,50 +25,53 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 26449,
-    "candidatesTokenCount": 149,
-    "totalTokenCount": 26598,
-    "cachedContentTokenCount": 24400,
+    "promptTokenCount": 56506,
+    "candidatesTokenCount": 262,
+    "totalTokenCount": 56768,
+    "cachedContentTokenCount": 54457,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 26449
+        "tokenCount": 56506
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 24400
+        "tokenCount": 54457
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 149
+        "tokenCount": 262
       }
     ]
   },
-  "raw_text": "{\"id\": \"s125e2cbc52\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"barn\", \"definite\": true}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"sing\", \"actor\": \"@n1\", \"tense\": \"past\"}, {\"t\": \"location\", \"id\": \"l1\", \"event\": \"@e1\", \"place\": \"@x1\", \"head\": \"Near\", \"preposition\": \"near\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\n  \"id\": \"s125e2cbc52\",\n  \"instances\": [\n    {\n      \"t\": \"named-entity\",\n      \"id\": \"n1\",\n      \"name\": \"Ottoline\",\n      \"span\": \"Ottoline\"\n    },\n    {\n      \"t\": \"witness\",\n      \"id\": \"x1\",\n      \"class\": \"barn\",\n      \"definite\": true,\n      \"span\": \"the barn\"\n    },\n    {\n      \"t\": \"activity\",\n      \"id\": \"e1\",\n      \"verb\": \"sing\",\n      \"actor\": \"@n1\",\n      \"tense\": \"past\",\n      \"span\": \"Ottoline sang\"\n    },\n    {\n      \"t\": \"location\",\n      \"id\": \"l1\",\n      \"event\": \"@e1\",\n      \"place\": \"@x1\",\n      \"head\": \"Near\",\n      \"preposition\": \"near\",\n      \"span\": \"near the barn\"\n    }\n  ],\n  \"unmapped\": [],\n  \"issues\": []\n}",
   "response": {
     "id": "s125e2cbc52",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Ottoline"
+        "name": "Ottoline",
+        "span": "Ottoline"
       },
       {
         "t": "witness",
         "id": "x1",
         "class": "barn",
-        "definite": true
+        "definite": true,
+        "span": "the barn"
       },
       {
         "t": "activity",
         "id": "e1",
         "verb": "sing",
         "actor": "@n1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Ottoline sang"
       },
       {
         "t": "location",
@@ -75,13 +79,14 @@
         "event": "@e1",
         "place": "@x1",
         "head": "Near",
-        "preposition": "near"
+        "preposition": "near",
+        "span": "near the barn"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "fe66913c81da38dc9d9e0ba589cc774123d4719abb4eec09e23557bfcfde237f",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "location",

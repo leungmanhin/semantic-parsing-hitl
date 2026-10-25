@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "ecb9313bbef541ec29940699dad9a1b36a9780334e6b77fdb8e31663cca0597f",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s73127343ae",
     "text": "Lamine is in trouble."
   },
   "usage": {
-    "input": 26449,
-    "output": 89,
+    "input": 56506,
+    "output": 96,
     "thinking": null,
-    "total": 26538,
+    "total": 56602,
+    "cached": 54457,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,54 +25,55 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 26449,
-    "candidatesTokenCount": 89,
-    "totalTokenCount": 26538,
-    "cachedContentTokenCount": 24400,
+    "promptTokenCount": 56506,
+    "candidatesTokenCount": 96,
+    "totalTokenCount": 56602,
+    "cachedContentTokenCount": 54457,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 26449
+        "tokenCount": 56506
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 24400
+        "tokenCount": 54457
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 89
+        "tokenCount": 96
       }
     ]
   },
-  "raw_text": "{\"id\": \"s73127343ae\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}], \"unmapped\": [{\"span\": \"is in trouble\", \"code\": \"G00\", \"construction\": \"A copular clause with a non-spatial prepositional phrase expressing a state.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"s73127343ae\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}], \"unmapped\": [{\"span\": \"is in trouble\", \"code\": \"G00\", \"construction\": \"A copular clause with a non-spatial prepositional phrase naming a state.\"}], \"issues\": []}",
   "response": {
     "id": "s73127343ae",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Lamine"
+        "name": "Lamine",
+        "span": "Lamine"
       }
     ],
     "unmapped": [
       {
         "span": "is in trouble",
         "code": "G00",
-        "construction": "A copular clause with a non-spatial prepositional phrase expressing a state."
+        "construction": "A copular clause with a non-spatial prepositional phrase naming a state."
       }
     ],
     "issues": []
   },
-  "prompt_body_sha256": "fe66913c81da38dc9d9e0ba589cc774123d4719abb4eec09e23557bfcfde237f",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "locative",
     "section": "held_out",
-    "index": 13,
+    "index": 14,
     "category": "abstain",
     "text": "Lamine is in trouble.",
     "key": "73127343ae"

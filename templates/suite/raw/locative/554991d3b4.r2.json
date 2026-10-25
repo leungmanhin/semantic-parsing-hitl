@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "afbcddcd8dd2d137cd347ff80a5aeef60f93abe4404e394982b0af310b9aa5d7",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s554991d3b4",
     "text": "The ferret in the barn slept."
   },
   "usage": {
-    "input": 49096,
-    "output": 229,
+    "input": 56508,
+    "output": 198,
     "thinking": null,
-    "total": 49325,
-    "cached": 47047,
+    "total": 56706,
+    "cached": 54459,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 49096,
-    "candidatesTokenCount": 229,
-    "totalTokenCount": 49325,
-    "cachedContentTokenCount": 47047,
+    "promptTokenCount": 56508,
+    "candidatesTokenCount": 198,
+    "totalTokenCount": 56706,
+    "cachedContentTokenCount": 54459,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 49096
+        "tokenCount": 56508
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 47047
+        "tokenCount": 54459
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 229
+        "tokenCount": 198
       }
     ]
   },
-  "raw_text": "{\"id\": \"s554991d3b4\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"ferret\", \"definite\": true}, {\"t\": \"witness\", \"id\": \"x2\", \"kind\": \"barn\", \"definite\": true}, {\"t\": \"locative\", \"id\": \"l1\", \"thing\": \"@x1\", \"place\": \"@x2\", \"head\": \"LocatedIn\", \"preposition\": \"in\", \"tense\": \"present\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"sleep\", \"actor\": \"@x1\", \"tense\": \"past\"}], \"unmapped\": [], \"issues\": [{\"code\": \"P00\", \"where\": \"location / postmodifier\", \"text\": \"The location template says 'the ferret in the barn slept' uses a postmodifier of the noun, while the postmodifier template says a place phrase inside a noun phrase is a locative predication, not a postmodifier.\"}]}",
+  "raw_text": "{\"id\": \"s554991d3b4\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"ferret\", \"definite\": true, \"span\": \"The ferret\"}, {\"t\": \"witness\", \"id\": \"x2\", \"class\": \"barn\", \"definite\": true, \"span\": \"the barn\"}, {\"t\": \"locative\", \"id\": \"l1\", \"thing\": \"@x1\", \"place\": \"@x2\", \"head\": \"LocatedIn\", \"preposition\": \"in\", \"tense\": \"present\", \"span\": \"The ferret in the barn\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"sleep\", \"actor\": \"@x1\", \"tense\": \"past\", \"span\": \"The ferret in the barn slept\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s554991d3b4",
     "instances": [
@@ -56,13 +56,15 @@
         "t": "witness",
         "id": "x1",
         "class": "ferret",
-        "definite": true
+        "definite": true,
+        "span": "The ferret"
       },
       {
         "t": "witness",
         "id": "x2",
         "class": "barn",
-        "definite": true
+        "definite": true,
+        "span": "the barn"
       },
       {
         "t": "locative",
@@ -71,26 +73,22 @@
         "place": "@x2",
         "head": "LocatedIn",
         "preposition": "in",
-        "tense": "present"
+        "tense": "present",
+        "span": "The ferret in the barn"
       },
       {
         "t": "activity",
         "id": "e1",
         "verb": "sleep",
         "actor": "@x1",
-        "tense": "past"
+        "tense": "past",
+        "span": "The ferret in the barn slept"
       }
     ],
     "unmapped": [],
-    "issues": [
-      {
-        "code": "P00",
-        "where": "location / postmodifier",
-        "text": "The location template says 'the ferret in the barn slept' uses a postmodifier of the noun, while the postmodifier template says a place phrase inside a noun phrase is a locative predication, not a postmodifier."
-      }
-    ]
+    "issues": []
   },
-  "prompt_body_sha256": "d6a0605f98b58473ed4af8b90ddda918c8a0fe7b5dd0f4ad33fe69a0a71e9192",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "locative",

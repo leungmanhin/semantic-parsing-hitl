@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "a425dddb507554c71fb4c88aec8fc84118920b43204deae9960577427454e8da",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s46841b14bd",
     "text": "Teodor is not a locksmith."
   },
   "usage": {
-    "input": 16519,
-    "output": 116,
+    "input": 56507,
+    "output": 139,
     "thinking": null,
-    "total": 16635,
+    "total": 56646,
+    "cached": 54456,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,30 +25,38 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 16519,
-    "candidatesTokenCount": 116,
-    "totalTokenCount": 16635,
+    "promptTokenCount": 56507,
+    "candidatesTokenCount": 139,
+    "totalTokenCount": 56646,
+    "cachedContentTokenCount": 54456,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 16519
+        "tokenCount": 56507
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 54456
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 116
+        "tokenCount": 139
       }
     ]
   },
-  "raw_text": "{\"id\": \"s46841b14bd\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@n1\", \"predicate\": \"locksmith\", \"form\": \"noun\", \"tense\": \"present\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@c1\"]}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s46841b14bd\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@n1\", \"predicate\": \"locksmith\", \"form\": \"noun\", \"tense\": \"present\", \"span\": \"Teodor is not a locksmith\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@c1\"], \"span\": \"not\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s46841b14bd",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Teodor"
+        "name": "Teodor",
+        "span": "Teodor"
       },
       {
         "t": "copular",
@@ -55,20 +64,22 @@
         "subject": "@n1",
         "predicate": "locksmith",
         "form": "noun",
-        "tense": "present"
+        "tense": "present",
+        "span": "Teodor is not a locksmith"
       },
       {
         "t": "negation",
         "id": "s1",
         "over": [
           "@c1"
-        ]
+        ],
+        "span": "not"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "120b60a17e82d50d47855b28fe77e98ae4c75e431ab78838d5db2b4f83cfa873",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "copular",

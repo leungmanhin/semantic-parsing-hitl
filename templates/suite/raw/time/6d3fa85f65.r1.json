@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "0ab3a7d71dae93dd6b6d88b219ab39b150a88bdeccc614969d05d33ac8fef5aa",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s6d3fa85f65",
     "text": "Lamine left after the audit."
   },
   "usage": {
-    "input": 28011,
-    "output": 118,
+    "input": 56507,
+    "output": 136,
     "thinking": null,
-    "total": 28129,
+    "total": 56643,
+    "cached": 54456,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,54 +25,63 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 28011,
-    "candidatesTokenCount": 118,
-    "totalTokenCount": 28129,
+    "promptTokenCount": 56507,
+    "candidatesTokenCount": 136,
+    "totalTokenCount": 56643,
+    "cachedContentTokenCount": 54456,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 28011
+        "tokenCount": 56507
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 54456
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 118
+        "tokenCount": 136
       }
     ]
   },
-  "raw_text": "{\"id\": \"s6d3fa85f65\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n1\", \"tense\": \"past\"}], \"unmapped\": [{\"span\": \"after the audit\", \"code\": \"G00\", \"construction\": \"A temporal prepositional phrase relating the event to another event.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"s6d3fa85f65\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n1\", \"tense\": \"past\", \"span\": \"Lamine left\"}], \"unmapped\": [{\"span\": \"after the audit\", \"code\": \"G00\", \"construction\": \"A temporal prepositional phrase relating the clause's event to another event.\"}], \"issues\": []}",
   "response": {
     "id": "s6d3fa85f65",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Lamine"
+        "name": "Lamine",
+        "span": "Lamine"
       },
       {
         "t": "motion",
         "id": "m1",
         "verb": "leave",
         "mover": "@n1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Lamine left"
       }
     ],
     "unmapped": [
       {
         "span": "after the audit",
         "code": "G00",
-        "construction": "A temporal prepositional phrase relating the event to another event."
+        "construction": "A temporal prepositional phrase relating the clause's event to another event."
       }
     ],
     "issues": []
   },
-  "prompt_body_sha256": "488ea14d008681814e98d240e401daa13109b112674f8d3a1d6bef8927a15fdd",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "time",
     "section": "held_out",
-    "index": 13,
+    "index": 15,
     "category": "abstain",
     "text": "Lamine left after the audit.",
     "key": "6d3fa85f65"

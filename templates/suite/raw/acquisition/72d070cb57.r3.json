@@ -4,16 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "549a9f7ae5e71c64cad5c2d1abc2482ac27640f2496235a0ac72afe79e5b0f08",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "s72d070cb57",
     "text": "Teodor won the race."
   },
   "usage": {
-    "input": 10828,
-    "output": 90,
+    "input": 56506,
+    "output": 98,
     "thinking": null,
-    "total": 10918,
+    "total": 56604,
+    "cached": 54457,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -24,49 +25,50 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 10828,
-    "candidatesTokenCount": 90,
-    "totalTokenCount": 10918,
-    "cachedContentTokenCount": 8779,
+    "promptTokenCount": 56506,
+    "candidatesTokenCount": 98,
+    "totalTokenCount": 56604,
+    "cachedContentTokenCount": 54457,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 10828
+        "tokenCount": 56506
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 8779
+        "tokenCount": 54457
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 90
+        "tokenCount": 98
       }
     ]
   },
-  "raw_text": "{\"id\": \"s72d070cb57\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}], \"unmapped\": [{\"span\": \"won the race\", \"code\": \"G00\", \"construction\": \"A transitive clause with a contest as the object of win rather than an acquired prize.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"s72d070cb57\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}], \"unmapped\": [{\"span\": \"won the race\", \"code\": \"G00\", \"construction\": \"Verb 'win' with a contest or activity as the object rather than an acquired prize.\"}], \"issues\": []}",
   "response": {
     "id": "s72d070cb57",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Teodor"
+        "name": "Teodor",
+        "span": "Teodor"
       }
     ],
     "unmapped": [
       {
         "span": "won the race",
         "code": "G00",
-        "construction": "A transitive clause with a contest as the object of win rather than an acquired prize."
+        "construction": "Verb 'win' with a contest or activity as the object rather than an acquired prize."
       }
     ],
     "issues": []
   },
-  "prompt_body_sha256": "6cf313445a0a101e1fc3416cc18e201b1014c1ed7339419f511094ac6b3ffbd5",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 3,
   "case": {
     "template": "acquisition",

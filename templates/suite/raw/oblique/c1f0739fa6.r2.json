@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "ed7e5be12a09f9e5947e50cfa5d2b849bc8b16ea94ad2bdefa98a0592d434d3f",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sc1f0739fa6",
     "text": "Teodor left without the quilt."
   },
   "usage": {
-    "input": 49023,
-    "output": 144,
+    "input": 56506,
+    "output": 174,
     "thinking": null,
-    "total": 49167,
-    "cached": 46974,
+    "total": 56680,
+    "cached": 54457,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,63 +25,67 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 49023,
-    "candidatesTokenCount": 144,
-    "totalTokenCount": 49167,
-    "cachedContentTokenCount": 46974,
+    "promptTokenCount": 56506,
+    "candidatesTokenCount": 174,
+    "totalTokenCount": 56680,
+    "cachedContentTokenCount": 54457,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 49023
+        "tokenCount": 56506
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 46974
+        "tokenCount": 54457
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 144
+        "tokenCount": 174
       }
     ]
   },
-  "raw_text": "{\"id\": \"sc1f0739fa6\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"kind\": \"quilt\", \"definite\": true}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n1\", \"tense\": \"past\"}, {\"t\": \"oblique\", \"id\": \"a1\", \"event\": \"@m1\", \"head\": \"Without\", \"object\": \"@x1\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sc1f0739fa6\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"quilt\", \"definite\": true, \"span\": \"the quilt\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n1\", \"tense\": \"past\", \"span\": \"Teodor left\"}, {\"t\": \"oblique\", \"id\": \"a1\", \"event\": \"@m1\", \"head\": \"Without\", \"object\": \"@x1\", \"span\": \"without the quilt\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sc1f0739fa6",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Teodor"
+        "name": "Teodor",
+        "span": "Teodor"
       },
       {
         "t": "witness",
         "id": "x1",
         "class": "quilt",
-        "definite": true
+        "definite": true,
+        "span": "the quilt"
       },
       {
         "t": "motion",
         "id": "m1",
         "verb": "leave",
         "mover": "@n1",
-        "tense": "past"
+        "tense": "past",
+        "span": "Teodor left"
       },
       {
         "t": "oblique",
         "id": "a1",
         "event": "@m1",
         "head": "Without",
-        "object": "@x1"
+        "object": "@x1",
+        "span": "without the quilt"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "7ea5b5bb86c29718a2936a9c64163dc82790d7b8ea4be586be12417680d153a7",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 2,
   "case": {
     "template": "oblique",

@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "1e3a0e7b653d644ba66513f0d0e707b1cc9b81d1cb008f3f969832c0fde71796",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sdecf0d82a8",
     "text": "Teodor seems to be tired."
   },
   "usage": {
-    "input": 42690,
-    "output": 92,
+    "input": 56506,
+    "output": 94,
     "thinking": null,
-    "total": 42782,
-    "cached": 40641,
+    "total": 56600,
+    "cached": 54456,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,49 +25,50 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 42690,
-    "candidatesTokenCount": 92,
-    "totalTokenCount": 42782,
-    "cachedContentTokenCount": 40641,
+    "promptTokenCount": 56506,
+    "candidatesTokenCount": 94,
+    "totalTokenCount": 56600,
+    "cachedContentTokenCount": 54456,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 42690
+        "tokenCount": 56506
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 40641
+        "tokenCount": 54456
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 92
+        "tokenCount": 94
       }
     ]
   },
-  "raw_text": "{\"id\": \"sdecf0d82a8\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\"}], \"unmapped\": [{\"span\": \"Teodor seems to be tired.\", \"code\": \"G00\", \"construction\": \"A subject-raising evidential verb ('seem') hedging the embedded copular clause.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"sdecf0d82a8\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}], \"unmapped\": [{\"span\": \"Teodor seems to be tired\", \"code\": \"G00\", \"construction\": \"A raising verb (seem) hedging an infinitival complement.\"}], \"issues\": []}",
   "response": {
     "id": "sdecf0d82a8",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Teodor"
+        "name": "Teodor",
+        "span": "Teodor"
       }
     ],
     "unmapped": [
       {
-        "span": "Teodor seems to be tired.",
+        "span": "Teodor seems to be tired",
         "code": "G00",
-        "construction": "A subject-raising evidential verb ('seem') hedging the embedded copular clause."
+        "construction": "A raising verb (seem) hedging an infinitival complement."
       }
     ],
     "issues": []
   },
-  "prompt_body_sha256": "550b5adae738e98b3a45e1fd666b1c271958eedeeddaca6a18b6db34c69a06c7",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "control",

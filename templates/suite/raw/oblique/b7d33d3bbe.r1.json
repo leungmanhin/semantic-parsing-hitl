@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "ed7e5be12a09f9e5947e50cfa5d2b849bc8b16ea94ad2bdefa98a0592d434d3f",
+  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
   "item": {
     "id": "sb7d33d3bbe",
     "text": "Lamine might wait for Teodor."
   },
   "usage": {
-    "input": 49023,
-    "output": 172,
+    "input": 56506,
+    "output": 209,
     "thinking": null,
-    "total": 49195,
-    "cached": 46974,
+    "total": 56715,
+    "cached": 54457,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,71 +25,76 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 49023,
-    "candidatesTokenCount": 172,
-    "totalTokenCount": 49195,
-    "cachedContentTokenCount": 46974,
+    "promptTokenCount": 56506,
+    "candidatesTokenCount": 209,
+    "totalTokenCount": 56715,
+    "cachedContentTokenCount": 54457,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 49023
+        "tokenCount": 56506
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 46974
+        "tokenCount": 54457
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 172
+        "tokenCount": 209
       }
     ]
   },
-  "raw_text": "{\"id\": \"sb7d33d3bbe\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"wait\", \"actor\": \"@n1\", \"tense\": \"present\"}, {\"t\": \"modal\", \"id\": \"s1\", \"over\": [\"@v1\"], \"head\": \"Might\", \"surface\": \"might\"}, {\"t\": \"oblique\", \"id\": \"a1\", \"event\": \"@v1\", \"head\": \"For\", \"object\": \"@n2\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sb7d33d3bbe\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"wait\", \"actor\": \"@n1\", \"tense\": \"present\", \"span\": \"Lamine might wait\"}, {\"t\": \"modal\", \"id\": \"s1\", \"over\": [\"@e1\"], \"head\": \"Might\", \"surface\": \"might\", \"span\": \"might\"}, {\"t\": \"oblique\", \"id\": \"a1\", \"event\": \"@e1\", \"head\": \"For\", \"object\": \"@n2\", \"span\": \"for Teodor\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sb7d33d3bbe",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "Lamine"
+        "name": "Lamine",
+        "span": "Lamine"
       },
       {
         "t": "named-entity",
         "id": "n2",
-        "name": "Teodor"
+        "name": "Teodor",
+        "span": "Teodor"
       },
       {
         "t": "activity",
-        "id": "v1",
+        "id": "e1",
         "verb": "wait",
         "actor": "@n1",
-        "tense": "present"
+        "tense": "present",
+        "span": "Lamine might wait"
       },
       {
         "t": "modal",
         "id": "s1",
         "over": [
-          "@v1"
+          "@e1"
         ],
         "head": "Might",
-        "surface": "might"
+        "surface": "might",
+        "span": "might"
       },
       {
         "t": "oblique",
         "id": "a1",
-        "event": "@v1",
+        "event": "@e1",
         "head": "For",
-        "object": "@n2"
+        "object": "@n2",
+        "span": "for Teodor"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "7ea5b5bb86c29718a2936a9c64163dc82790d7b8ea4be586be12417680d153a7",
+  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
   "run": 1,
   "case": {
     "template": "oblique",
