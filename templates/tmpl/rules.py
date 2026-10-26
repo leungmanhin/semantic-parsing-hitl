@@ -22,7 +22,8 @@ Lowering for the chainer (the only target so far): ``(: id (Implication <premise
 conditional relationship; its negative branch states the deductive semantics (nothing follows from
 a failed premise). A bare ``(STV s c)`` would make the chainer estimate that branch from base rates
 over stored facts, which collapses the confidence of any conclusion drawn from a premise below
-strength 1.0. Arithmetic steps lower to the chainer's ``(Compute op (args) -> result)`` premise.
+strength 1.0. Arithmetic steps lower to the chainer's ``(Compute op (args) -> result)`` premise; a
+boolean guard (``!=``, ``>``, ``<`` with ``result: true``) is a premise that holds only when the test does.
 """
 from __future__ import annotations
 
@@ -47,7 +48,7 @@ CATALOG_DIR = os.path.join(TEMPLATES, "catalog")
 GENERATED = os.path.join(TEMPLATES, "generated", "seeded_rules.metta")
 
 SEMANTICS = ("deductive",)
-OPS = ("+", "-", "clause-event")              # arithmetic, and the event of a sealed clause
+OPS = ("+", "-", "clause-event", "!=", ">", "<")   # arithmetic, the event of a sealed clause, and boolean guards (result: true)
 TENSES = {"none": None, "past": "Past", "future": "Future"}
 CAPABILITIES = ("sealed-term-projection",)
 TARGET_CAPABILITIES = {"pettachainer": {"sealed-term-projection"}}  # what each consumer can run; grows with the consumer
@@ -161,8 +162,11 @@ def _check_one(r: dict, i: int, heads, templates, seen: set, expanded: bool = Fa
                 for a in c["args"]:
                     if isinstance(a, str) and a.startswith("$") and a not in bound:
                         problems.append(f"{cw}: argument {a} is bound by no premise")
-            if not (isinstance(c["result"], str) and c["result"].startswith("$")):
-                problems.append(f"{cw}: result must be a variable")
+            if c["result"] is True or c["result"] == "true":        # a guard: the premise holds only when the test is true
+                if c["op"] not in ("!=", ">", "<"):
+                    problems.append(f"{cw}: a true result needs a boolean op (!=, >, <)")
+            elif not (isinstance(c["result"], str) and c["result"].startswith("$")):
+                problems.append(f"{cw}: result must be a variable, or true for a guard")
             elif c["result"] in bound:
                 problems.append(f"{cw}: result {c['result']} is already bound")
             else:
@@ -222,7 +226,8 @@ def lower(rule: dict, target: str = "pettachainer") -> str:
         raise RulesError(f"no lowering for target {target!r}")
     premises = list(rule["premises"])
     for c in rule.get("computations") or []:
-        premises.append(f"(Compute {c['op']} ({' '.join(str(a) for a in c['args'])}) -> {c['result']})")
+        result = "true" if c["result"] is True else c["result"]
+        premises.append(f"(Compute {c['op']} ({' '.join(str(a) for a in c['args'])}) -> {result})")
     premise = premises[0] if len(premises) == 1 else "(And " + " ".join(premises) + ")"
     s, c = rule["truth"]["strength"], rule["truth"]["confidence"]
     tv = f"(CTV (STV {_num(s)} {_num(c)}) (STV 0.0 1.0))"      # deductive: nothing follows from a failed premise

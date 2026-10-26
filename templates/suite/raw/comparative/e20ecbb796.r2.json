@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "0adc5287ef4a2e2370e429ea2c77950ac219af92614de639ac71bae2aa152a52",
+  "prompt_sha256": "1f30f11258c608de047dbbdce2b08663c56c8276ba345966cd5bf6a3d3d2dd78",
   "item": {
     "id": "se20ecbb796",
     "text": "Yusra is the tallest weaver."
   },
   "usage": {
-    "input": 65742,
-    "output": 93,
+    "input": 68462,
+    "output": 124,
     "thinking": null,
-    "total": 65835,
-    "cached": 63693,
+    "total": 68586,
+    "cached": 66413,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 65742,
-    "candidatesTokenCount": 93,
-    "totalTokenCount": 65835,
-    "cachedContentTokenCount": 63693,
+    "promptTokenCount": 68462,
+    "candidatesTokenCount": 124,
+    "totalTokenCount": 68586,
+    "cachedContentTokenCount": 66413,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 65742
+        "tokenCount": 68462
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 63693
+        "tokenCount": 66413
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 93
+        "tokenCount": 124
       }
     ]
   },
-  "raw_text": "{\"id\": \"se20ecbb796\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}], \"unmapped\": [{\"span\": \"is the tallest weaver\", \"code\": \"G00\", \"construction\": \"A copular predicate with a superlative definite noun phrase.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"se20ecbb796\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"superlative\", \"id\": \"s1\", \"subject\": \"@n1\", \"scale\": \"tall\", \"class\": \"weaver\", \"kind\": \"most\", \"predicative\": true, \"tense\": \"present\", \"span\": \"Yusra is the tallest weaver\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "se20ecbb796",
     "instances": [
@@ -57,18 +57,23 @@
         "id": "n1",
         "name": "Yusra",
         "span": "Yusra"
-      }
-    ],
-    "unmapped": [
+      },
       {
-        "span": "is the tallest weaver",
-        "code": "G00",
-        "construction": "A copular predicate with a superlative definite noun phrase."
+        "t": "superlative",
+        "id": "s1",
+        "subject": "@n1",
+        "scale": "tall",
+        "class": "weaver",
+        "kind": "most",
+        "predicative": true,
+        "tense": "present",
+        "span": "Yusra is the tallest weaver"
       }
     ],
+    "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "c30354df8e4fc684c45690d37f85851bb984c8e5f7ac77efe6b2d0a54e51b297",
+  "prompt_body_sha256": "24bea0e4265ed7ba0cb712fe24ee9cf624dc40fbc70a5f4e56eaa2ad7f76d53a",
   "run": 2,
   "case": {
     "template": "comparative",

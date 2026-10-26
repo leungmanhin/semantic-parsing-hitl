@@ -1,0 +1,272 @@
+# Template: superlative  (the top of a class on a scale, or a rank in it: "the tallest weaver", "one of the oldest glaziers", "the first to arrive", "the third ferret")
+#
+# A superlative places one thing at the top of a class on the scale an adjective names: (Most
+# tall sk_yusra_1 weaver) says Yusra exceeds every other weaver on the scale tall; "one of the
+# ADJ-est" puts it in the top stratum, (AmongMost old x glazier); an ordinal gives its rank on an
+# ordering, (Ordinal x 3 tall) for the third tallest, (Ordinal x 1 arrive) for the first to
+# arrive, (Ordinal x 3 ferret) for the third ferret counted as the text counts them, last for the
+# last. The scale is the adjective's lemma (tallest → tall, best → good), the verb's for "the
+# first to V", the class itself for a plain ordinal. The predicative form (Yusra is the tallest
+# weaver) also asserts the membership, (Member sk_yusra_1 weaver), as a presupposition that
+# survives a negation; inside a noun phrase (the tallest weaver left) the witness carries the
+# class and the instance adds the superlative. No comparison asserts the positive property.
+
+id: superlative
+family: predication
+shape: copular
+title: The top of a class on a scale, or a rank in it
+
+trigger:
+  construction: >
+    A superlative or an ordinal with its class stated: X is the ADJ-est / the most ADJ N; X is one
+    of the ADJ-est Ns; X is the n-th ADJ-est N; X is the first / second / last to V; the n-th N
+    (the third ferret); and the same forms inside a noun phrase (the tallest weaver left, bought
+    the most expensive quilt). The subject is a referent — a name, or the witness whose phrase
+    holds the superlative — and the instance names it, the scale (tallest → tall, most careful →
+    careful, best → good, worst → bad; the verb for the first to V: arrive; the class for a plain
+    ordinal: ferret), the class (weaver, glazier, quilt — the noun of the phrase, or the of-phrase:
+    the tallest of the weavers), the kind (most, among, ordinal) and, for an ordinal, the rank or
+    last. Predicated of the subject by "be" (Yusra is the tallest weaver, Teodor was the first to
+    arrive), the instance stands in place of the copular predication: set `predicative: true` and
+    the clause's tense, and the membership in the class is asserted too. Inside a noun phrase, the
+    witness is parsed as usual (the tallest weaver: a definite witness of class weaver) and the
+    instance adds the superlative with no tense and no `predicative`. The span is the whole clause
+    for the predicative form and the superlative phrase for the attributive one.
+  surface_forms:
+    - "<X> is the ADJ-est / the most ADJ <N>"             # Lamine is the oldest glazier: kind most, predicative
+    - "<X> is one of the ADJ-est <N>s"                    # Ottoline is one of the oldest glaziers: kind among
+    - "<X> is the <n-th> ADJ-est <N>"                     # Teodor is the second tallest locksmith: kind ordinal, rank 2, scale tall
+    - "<X> was the first / last to V"                     # Teodor was the first to arrive: kind ordinal, rank 1, scale arrive
+    - "the ADJ-est <N> V-ed … / V-ed the ADJ-est <N>"     # the tallest weaver left; bought the most expensive quilt: attributive
+    - "the <n-th> <N> …"                                  # the third ferret slept: kind ordinal, rank 3, scale ferret
+  boundary:                   # looks like a superlative but is not one
+    - >-
+      a comparative with a standard — taller than Yusra, as tall as Teodor: the comparative
+      template
+    - >-
+      most as a quantifier — most students, most of the ferrets: a range of a generalization, or
+      a group; not a superlative
+    - >-
+      a bare superlative with no class stated anywhere — Teodor is the tallest, this one is the
+      best: no class to fill; report the superlative as unmapped
+    - >-
+      an adverbial superlative — Yusra runs fastest, Lamine ate the most: a comparison of events,
+      with no template yet; report the phrase as unmapped
+    - >-
+      least — the least patient glazier: the opposite pole, with no head yet; report the phrase
+      as unmapped
+    - >-
+      a degree word — very tall, too tall: a degree
+    - >-
+      a date or a numbered item — the third of May, page 34, chapter two: a time or a name, not
+      a rank in a class
+    - >-
+      a stated domain beside the class — the oldest orchard in the valley: the place is a
+      locative predication of the witness, parsed as usual; the class stays orchard
+
+slots:
+  id:          {type: id, required: true, doc: "your label for the superlative (s1, s2 …)"}
+  subject:     {type: filler, class: Entity, required: true,
+                doc: "the thing at the top or at the rank: the subject's referent id for the predicative form, the witness whose phrase holds the superlative for the attributive one"}
+  scale:       {type: lemma, class: Class, required: true,
+                doc: "what orders the class: the adjective lemmatized (tallest → tall, most careful → careful, best → good, worst → bad), the verb of the first / last to V (arrive, speak), or the class itself for a plain ordinal (the third ferret → ferret)"}
+  class:       {type: lemma, class: Class, required: false,
+                doc: "the class compared within, lemmatized to the singular: the noun of the phrase (weaver, quilt) or of the of-phrase (the tallest of the weavers → weaver); absent only for the first / last to V"}
+  kind:        {type: enum, values: [most, among, ordinal], required: true,
+                doc: "most for the ADJ-est / the most ADJ (the unique top); among for one of the ADJ-est; ordinal for a rank: the n-th, the n-th ADJ-est, the first / last to V"}
+  rank:        {type: number, required: false, doc: "the rank of an ordinal: first → 1, second → 2, third → 3; empty for last"}
+  last:        {type: bool, required: false, doc: "true for the last (the last to speak); absent otherwise"}
+  predicative: {type: bool, required: false,
+                doc: "true when the superlative is predicated of the subject by be (Yusra is the tallest weaver; Teodor was the first to arrive): the membership is asserted and the tense recorded; absent inside a noun phrase"}
+  tense:       {type: enum, values: [past, present, future], required: false, default: present,
+                doc: "the copular clause's tense for the predicative form (is / was / will be the tallest); omit inside a noun phrase"}
+
+emits:
+  # the superlative: the unique top of the class on the scale
+  - atom: "(Most {scale} {subject} {class})"
+    when: "kind == most and tense != past and tense != future"
+  - atom: "(Past (Most {scale} {subject} {class}))"
+    when: "kind == most and tense == past"
+  - atom: "(Future (Most {scale} {subject} {class}))"
+    when: "kind == most and tense == future"
+  # the top stratum: one of the ADJ-est
+  - atom: "(AmongMost {scale} {subject} {class})"
+    when: "kind == among and tense != past and tense != future"
+  - atom: "(Past (AmongMost {scale} {subject} {class}))"
+    when: "kind == among and tense == past"
+  - atom: "(Future (AmongMost {scale} {subject} {class}))"
+    when: "kind == among and tense == future"
+  # the rank: the n-th, the first to V, the last
+  - atom: "(Ordinal {subject} {rank} {scale})"
+    if_filled: rank
+    when: "kind == ordinal and not last and tense != past and tense != future"
+  - atom: "(Past (Ordinal {subject} {rank} {scale}))"
+    if_filled: rank
+    when: "kind == ordinal and not last and tense == past"
+  - atom: "(Future (Ordinal {subject} {rank} {scale}))"
+    if_filled: rank
+    when: "kind == ordinal and not last and tense == future"
+  - atom: "(Ordinal {subject} last {scale})"
+    when: "kind == ordinal and last and tense != past and tense != future"
+    declare: {last: Class}
+  - atom: "(Past (Ordinal {subject} last {scale}))"
+    when: "kind == ordinal and last and tense == past"
+    declare: {last: Class}
+  - atom: "(Future (Ordinal {subject} last {scale}))"
+    when: "kind == ordinal and last and tense == future"
+    declare: {last: Class}
+  # the membership the predicative form asserts (a presupposition: it projects through a negation)
+  - atom: "(Member {subject} {class})"
+    if_filled: class
+    when: "predicative and tense != past and tense != future"
+    project: true
+  - atom: "(Past (Member {subject} {class}))"
+    if_filled: class
+    when: "predicative and tense == past"
+    project: true
+  - atom: "(Future (Member {subject} {class}))"
+    if_filled: class
+    when: "predicative and tense == future"
+    project: true
+
+notes:
+  - >-
+    A superlative asserts a place in the class on the scale and nothing about the positive
+    property: the tallest weaver need not be tall. The scale is the adjective's own lemma, as a
+    comparative's is, so that the two kinds of comparison share one scale; the class is the one
+    the text states, never a default.
+  - >-
+    The predicative form asserts the membership too — Yusra is a weaver — as a presupposition:
+    it is rendered at the top level whatever scope the superlative sits in, so "Yusra is not the
+    tallest weaver" denies the top place and keeps her a weaver. Inside a noun phrase the witness
+    already carries the class, and the instance adds only the superlative.
+  - >-
+    An ordinal's ordering is what the text gives: the adjective for the n-th ADJ-est, the verb for
+    the first to V (the first arrival is Teodor's), the class itself when the text merely counts
+    (the third ferret). "Last" is a rank with no number and keeps its word.
+
+depends_on: [named-entity, witness, activity, motion]
+composes_with: [negation, modal, time, location]
+
+examples:
+  shown:                     # rendered into the prompt
+    - category: positive
+      note: the predicative superlative — the top of the class, and the membership as a presupposition
+      text: "Lamine is the oldest glazier."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine", span: "Lamine"}
+        - {t: superlative, id: s1, subject: "@n1", scale: old, class: glazier, kind: most, predicative: true, tense: present, span: "Lamine is the oldest glazier"}
+      emitted:               # what the emitter produces (illustration; the emitter is the authority)
+        - "(Name sk_lamine_1 \"Lamine\")"
+        - "(Most old sk_lamine_1 glazier)"
+        - "(Member sk_lamine_1 glazier)"
+      declarations:
+        - "(: glazier Class)"
+        - "(: old Class)"
+        - "(: sk_lamine_1 Entity)"
+    - category: positive
+      note: an ordinal with an event — the first arrival is Teodor's
+      text: "Teodor was the first to arrive."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor", span: "Teodor"}
+        - {t: motion, id: m1, verb: arrive, mover: "@n1", tense: past, span: "Teodor was the first to arrive"}
+        - {t: superlative, id: s1, subject: "@n1", scale: arrive, kind: ordinal, rank: 1, predicative: true, tense: past, span: "the first to arrive"}
+    - category: positive
+      note: attributive — the witness carries the class, the instance adds the superlative
+      text: "The tallest weaver left."
+      instances:
+        - {t: witness, id: x1, class: weaver, definite: true, span: "The tallest weaver"}
+        - {t: superlative, id: s1, subject: "@x1", scale: tall, class: weaver, kind: most, span: "The tallest weaver"}
+        - {t: motion, id: m1, verb: leave, mover: "@x1", tense: past, span: "The tallest weaver left"}
+    - category: abstain
+      text: "Most students laugh."
+      expected: {abstain: true, template: generic}                    # most as a quantifier
+    - category: abstain
+      text: "Lamine is older than Ottoline."
+      expected: {abstain: true, template: comparative}                # a comparative with a standard
+
+  held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      note: the predicative superlative
+      text: "Yusra is the tallest weaver."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: superlative, id: s1, subject: "@n1", scale: tall, class: weaver, kind: most, predicative: true, tense: present}
+    - category: positive
+      note: one of the ADJ-est — the top stratum
+      text: "Ottoline is one of the oldest glaziers."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: superlative, id: s1, subject: "@n1", scale: old, class: glazier, kind: among, predicative: true, tense: present}
+    - category: positive
+      note: an ordinal on a scale
+      text: "Teodor is the second tallest locksmith."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: superlative, id: s1, subject: "@n1", scale: tall, class: locksmith, kind: ordinal, rank: 2, predicative: true, tense: present}
+    - category: positive
+      note: the last to V
+      text: "Lamine was the last to speak."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: activity, id: v1, verb: speak, actor: "@n1", tense: past}
+        - {t: superlative, id: s1, subject: "@n1", scale: speak, kind: ordinal, last: true, predicative: true, tense: past}
+    - category: positive
+      note: a plain ordinal inside a noun phrase — the class is the ordering
+      text: "The third ferret slept."
+      instances:
+        - {t: witness, id: x1, class: ferret, definite: true}
+        - {t: superlative, id: s1, subject: "@x1", scale: ferret, class: ferret, kind: ordinal, rank: 3}
+        - {t: activity, id: v1, verb: sleep, actor: "@x1", tense: past}
+    - category: positive
+      note: attributive inside an object — the most ADJ
+      text: "Yusra bought the most expensive quilt."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, class: quilt, definite: true}
+        - {t: superlative, id: s1, subject: "@x1", scale: expensive, class: quilt, kind: most}
+        - {t: acquisition, id: e1, verb: buy, acquirer: "@n1", object: "@x1", tense: past}
+    - category: positive
+      note: a periphrastic superlative
+      text: "Lamine is the most careful glazier."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: superlative, id: s1, subject: "@n1", scale: careful, class: glazier, kind: most, predicative: true, tense: present}
+    - category: positive
+      note: best is good, in the past
+      text: "Ottoline was the best weaver."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: superlative, id: s1, subject: "@n1", scale: good, class: weaver, kind: most, predicative: true, tense: past}
+    - category: positive
+      note: the class from an of-phrase
+      text: "Teodor is the oldest of the locksmiths."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: superlative, id: s1, subject: "@n1", scale: old, class: locksmith, kind: most, predicative: true, tense: present}
+    - category: scoped
+      note: under negation — the top place is denied, the membership survives
+      text: "Yusra is not the tallest weaver."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: superlative, id: s1, subject: "@n1", scale: tall, class: weaver, kind: most, predicative: true, tense: present}
+        - {t: negation, id: s2, over: ["@s1"]}
+    - category: scoped
+      note: under a modal
+      text: "Lamine might be the oldest glazier."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: superlative, id: s1, subject: "@n1", scale: old, class: glazier, kind: most, predicative: true, tense: present}
+        - {t: modal, id: s2, over: ["@s1"], head: Might, surface: might}
+    - category: abstain
+      text: "Teodor is taller than Yusra."
+      expected: {abstain: true, template: comparative}                # a comparative with a standard
+    - category: abstain
+      text: "Most ferrets slept."
+      expected: {abstain: true, template: generic}                    # most as a quantifier
+    - category: abstain
+      text: "Teodor is the tallest."
+      expected: {abstain: true, gap: G00, span: "the tallest"}        # no class stated
+    - category: abstain
+      text: "Yusra runs fastest."
+      expected: {abstain: true, gap: G00, span: "fastest"}            # an adverbial superlative

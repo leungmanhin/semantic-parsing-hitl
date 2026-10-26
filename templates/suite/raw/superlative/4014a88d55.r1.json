@@ -1,0 +1,95 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "1f30f11258c608de047dbbdce2b08663c56c8276ba345966cd5bf6a3d3d2dd78",
+  "item": {
+    "id": "s4014a88d55",
+    "text": "Yusra runs fastest."
+  },
+  "usage": {
+    "input": 68463,
+    "output": 162,
+    "thinking": null,
+    "total": 68625,
+    "cached": 66412,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 68463,
+    "candidatesTokenCount": 162,
+    "totalTokenCount": 68625,
+    "cachedContentTokenCount": 66412,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 68463
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 66412
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 162
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s4014a88d55\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"run\", \"mover\": \"@n1\", \"tense\": \"present\", \"span\": \"Yusra runs\"}, {\"t\": \"habitual\", \"id\": \"h1\", \"event\": \"@m1\", \"span\": \"Yusra runs\"}], \"unmapped\": [{\"span\": \"fastest\", \"code\": \"G00\", \"construction\": \"An adverbial superlative modifying the verb.\"}], \"issues\": []}",
+  "response": {
+    "id": "s4014a88d55",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "motion",
+        "id": "m1",
+        "verb": "run",
+        "mover": "@n1",
+        "tense": "present",
+        "span": "Yusra runs"
+      },
+      {
+        "t": "habitual",
+        "id": "h1",
+        "event": "@m1",
+        "span": "Yusra runs"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "fastest",
+        "code": "G00",
+        "construction": "An adverbial superlative modifying the verb."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "24bea0e4265ed7ba0cb712fe24ee9cf624dc40fbc70a5f4e56eaa2ad7f76d53a",
+  "run": 1,
+  "case": {
+    "template": "superlative",
+    "section": "held_out",
+    "index": 14,
+    "category": "abstain",
+    "text": "Yusra runs fastest.",
+    "key": "4014a88d55"
+  }
+}

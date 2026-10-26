@@ -745,8 +745,8 @@ gloss: Superlative: X is the most ADJ member of a class. Order: (Most scale X cl
 head: Ordinal
 kind: measure
 arity: 3
-type-def: (: Ordinal (-> Instance Number Class Proposition))
-gloss: The entity's rank n on an ordering scale. Order: (Ordinal entity rank scale); the scale may be a verb lemma ("first to respond").
+type-def: (: Ordinal (-> Instance Number Class Proposition))  ; and 1 more (per arity / per union alternative)
+gloss: The entity's rank on an ordering: (Ordinal entity rank ordering), the rank a number or the symbol last; the ordering an adjective's scale (the third tallest → tall), a verb lemma (the first to respond → respond) or the counted class itself (the third ferret → ferret).
 
 
 head: SameDegree

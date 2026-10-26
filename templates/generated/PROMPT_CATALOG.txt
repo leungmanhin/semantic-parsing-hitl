@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 70440749a87e0028 · 46 templates
+catalog sha256 a053ece7f373faee · 47 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -1460,8 +1460,7 @@ Not this template:
   better: nothing fills the standard; the rest of the clause is parsed and the comparative
   reported as unmapped (G01)
 - a superlative or an ordinal — the tallest weaver, one of the oldest orchards, the third
-  climber: a comparison with a class, with no template yet; report the whole definite predicate
-  as unmapped
+  climber: the superlative template
 - a degree word with no standard — very tall, too tall, tall enough, tall for a weaver: a degree
 - a comparison of quantities — more quilts than Yusra, fewer guests than she invited, as many
   ferrets as: no slot here; parse what stands on its own (Teodor has quilts) and report the
@@ -1912,8 +1911,8 @@ Not this template:
   event
 - a comparative with a stated standard — taller than Yusra, as tall as Teodor, two years older
   than Lamine: the comparative template
-- a superlative — the tallest weaver: a comparison with a class, with no template yet; report
-  the whole definite predicate as unmapped, which is no plain class predication either
+- a superlative or an ordinal — the tallest weaver, the first to arrive: the superlative
+  template
 - a degree on a quantity — too much salt, enough water, a lot of ferrets: no slot here; report
   the span as unmapped
 - a class as the bearer — ferrets are very curious: a class statement; the degree word is
@@ -2468,6 +2467,127 @@ The program renders these instances as:
     (Member sk_like_1 like)
     (Experiencer sk_like_1 sk_yusra_1)
     (Stimulus sk_like_1 (And (Member sk_send_1 send) (Agent sk_send_1 sk_yusra_1) (Theme sk_send_1 quilt)))
+
+### superlative — The top of a class on a scale, or a rank in it
+
+When: A superlative or an ordinal with its class stated: X is the ADJ-est / the most ADJ N; X is
+one of the ADJ-est Ns; X is the n-th ADJ-est N; X is the first / second / last to V; the n-th N
+(the third ferret); and the same forms inside a noun phrase (the tallest weaver left, bought the
+most expensive quilt). The subject is a referent — a name, or the witness whose phrase holds the
+superlative — and the instance names it, the scale (tallest → tall, most careful → careful, best
+→ good, worst → bad; the verb for the first to V: arrive; the class for a plain ordinal:
+ferret), the class (weaver, glazier, quilt — the noun of the phrase, or the of-phrase: the
+tallest of the weavers), the kind (most, among, ordinal) and, for an ordinal, the rank or last.
+Predicated of the subject by "be" (Yusra is the tallest weaver, Teodor was the first to arrive),
+the instance stands in place of the copular predication: set `predicative: true` and the
+clause's tense, and the membership in the class is asserted too. Inside a noun phrase, the
+witness is parsed as usual (the tallest weaver: a definite witness of class weaver) and the
+instance adds the superlative with no tense and no `predicative`. The span is the whole clause
+for the predicative form and the superlative phrase for the attributive one.
+
+Forms:
+- <X> is the ADJ-est / the most ADJ <N>
+- <X> is one of the ADJ-est <N>s
+- <X> is the <n-th> ADJ-est <N>
+- <X> was the first / last to V
+- the ADJ-est <N> V-ed … / V-ed the ADJ-est <N>
+- the <n-th> <N> …
+
+Not this template:
+- a comparative with a standard — taller than Yusra, as tall as Teodor: the comparative template
+- most as a quantifier — most students, most of the ferrets: a range of a generalization, or a
+  group; not a superlative
+- a bare superlative with no class stated anywhere — Teodor is the tallest, this one is the
+  best: no class to fill; report the superlative as unmapped
+- an adverbial superlative — Yusra runs fastest, Lamine ate the most: a comparison of events,
+  with no template yet; report the phrase as unmapped
+- least — the least patient glazier: the opposite pole, with no head yet; report the phrase as
+  unmapped
+- a degree word — very tall, too tall: a degree
+- a date or a numbered item — the third of May, page 34, chapter two: a time or a name, not a
+  rank in a class
+- a stated domain beside the class — the oldest orchard in the valley: the place is a locative
+  predication of the witness, parsed as usual; the class stays orchard
+
+Slots:
+
+- `t` (required): "superlative"
+- `id` (required; your label for this instance): your label for the superlative (s1, s2 …).
+- `subject` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
+  the thing at the top or at the rank: the subject's referent id for the predicative form, the
+  witness whose phrase holds the superlative for the attributive one.
+- `scale` (required; a lemma): what orders the class: the adjective lemmatized (tallest → tall,
+  most careful → careful, best → good, worst → bad), the verb of the first / last to V (arrive,
+  speak), or the class itself for a plain ordinal (the third ferret → ferret).
+- `class` (optional; a lemma): the class compared within, lemmatized to the singular: the noun
+  of the phrase (weaver, quilt) or of the of-phrase (the tallest of the weavers → weaver);
+  absent only for the first / last to V.
+- `kind` (required; one of: most, among, ordinal): most for the ADJ-est / the most ADJ (the
+  unique top); among for one of the ADJ-est; ordinal for a rank: the n-th, the n-th ADJ-est, the
+  first / last to V.
+- `rank` (optional; a number): the rank of an ordinal: first → 1, second → 2, third → 3; empty
+  for last.
+- `last` (optional; true / false): true for the last (the last to speak); absent otherwise.
+- `predicative` (optional; true / false): true when the superlative is predicated of the subject
+  by be (Yusra is the tallest weaver; Teodor was the first to arrive): the membership is
+  asserted and the tense recorded; absent inside a noun phrase.
+- `tense` (optional; one of: past, present, future): the copular clause's tense for the
+  predicative form (is / was / will be the tallest); omit inside a noun phrase.
+
+Example (the predicative superlative — the top of the class, and the membership as a presupposition). TEXT: Lamine is the oldest glazier.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Lamine", "span": "Lamine"},
+      {"t": "superlative", "id": "s1", "subject": "@n1", "scale": "old", "class": "glazier", "kind": "most", "predicative": true, "tense": "present", "span": "Lamine is the oldest glazier"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_lamine_1 "Lamine")
+    (Most old sk_lamine_1 glazier)
+    (Member sk_lamine_1 glazier)
+
+Example (an ordinal with an event — the first arrival is Teodor's). TEXT: Teodor was the first to arrive.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Teodor", "span": "Teodor"},
+      {"t": "motion", "id": "m1", "verb": "arrive", "mover": "@n1", "tense": "past", "span": "Teodor was the first to arrive"},
+      {"t": "superlative", "id": "s1", "subject": "@n1", "scale": "arrive", "kind": "ordinal", "rank": 1, "predicative": true, "tense": "past", "span": "the first to arrive"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_teodor_1 "Teodor")
+    (Member sk_arrive_1 arrive)
+    (Agent sk_arrive_1 sk_teodor_1)
+    (Past sk_arrive_1)
+    (Past (Ordinal sk_teodor_1 1 arrive))
+
+Example (attributive — the witness carries the class, the instance adds the superlative). TEXT: The tallest weaver left.
+
+Instances:
+
+    [
+      {"t": "witness", "id": "x1", "class": "weaver", "definite": true, "span": "The tallest weaver"},
+      {"t": "superlative", "id": "s1", "subject": "@x1", "scale": "tall", "class": "weaver", "kind": "most", "span": "The tallest weaver"},
+      {"t": "motion", "id": "m1", "verb": "leave", "mover": "@x1", "tense": "past", "span": "The tallest weaver left"}
+    ]
+
+The program renders these instances as:
+
+    (Member sk_weaver_1 weaver)
+    (Most tall sk_weaver_1 weaver)
+    (Member sk_leave_1 leave)
+    (Agent sk_leave_1 sk_weaver_1)
+    (Past sk_leave_1)
+
+Not this template. TEXT: Most students laugh. — use `generic`.
+
+Not this template. TEXT: Lamine is older than Ottoline. — use `comparative`.
 
 ### transfer — Transfer of an object from one party to another
 

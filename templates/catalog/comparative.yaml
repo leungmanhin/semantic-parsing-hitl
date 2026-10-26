@@ -45,8 +45,7 @@ trigger:
       reported as unmapped (G01)
     - >-
       a superlative or an ordinal — the tallest weaver, one of the oldest orchards, the third
-      climber: a comparison with a class, with no template yet; report the whole definite
-      predicate as unmapped
+      climber: the superlative template
     - >-
       a degree word with no standard — very tall, too tall, tall enough, tall for a weaver: a
       degree
@@ -318,7 +317,7 @@ examples:
         - {t: modal, id: s1, over: ["@c1"], head: Might, surface: might}
     - category: abstain
       text: "Yusra is the tallest weaver."
-      expected: {abstain: true, gap: G00, span: "the tallest weaver"}  # a superlative: no template yet
+      expected: {abstain: true, template: superlative}                # a superlative
     - category: abstain
       text: "The stew is too hot."
       expected: {abstain: true, template: degree}                     # a degree, no standard

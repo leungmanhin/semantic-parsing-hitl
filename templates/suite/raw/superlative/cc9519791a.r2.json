@@ -1,0 +1,96 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "1f30f11258c608de047dbbdce2b08663c56c8276ba345966cd5bf6a3d3d2dd78",
+  "item": {
+    "id": "scc9519791a",
+    "text": "Most ferrets slept."
+  },
+  "usage": {
+    "input": 68462,
+    "output": 149,
+    "thinking": null,
+    "total": 68611,
+    "cached": 66413,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 68462,
+    "candidatesTokenCount": 149,
+    "totalTokenCount": 68611,
+    "cachedContentTokenCount": 66413,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 68462
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 66413
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 149
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"scc9519791a\", \"instances\": [{\"t\": \"range\", \"id\": \"q1\", \"class\": \"ferret\", \"quantifier\": \"most\", \"predicate\": \"sleep\", \"span\": \"Most ferrets\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"sleep\", \"actor\": \"@q1\", \"tense\": \"past\", \"span\": \"Most ferrets slept\"}, {\"t\": \"generic\", \"id\": \"r1\", \"ranges\": [\"@q1\"], \"over\": [\"@v1\"], \"span\": \"Most ferrets slept\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "scc9519791a",
+    "instances": [
+      {
+        "t": "range",
+        "id": "q1",
+        "class": "ferret",
+        "quantifier": "most",
+        "predicate": "sleep",
+        "span": "Most ferrets"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "sleep",
+        "actor": "@q1",
+        "tense": "past",
+        "span": "Most ferrets slept"
+      },
+      {
+        "t": "generic",
+        "id": "r1",
+        "ranges": [
+          "@q1"
+        ],
+        "over": [
+          "@v1"
+        ],
+        "span": "Most ferrets slept"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "24bea0e4265ed7ba0cb712fe24ee9cf624dc40fbc70a5f4e56eaa2ad7f76d53a",
+  "run": 2,
+  "case": {
+    "template": "superlative",
+    "section": "held_out",
+    "index": 12,
+    "category": "abstain",
+    "text": "Most ferrets slept.",
+    "key": "cc9519791a"
+  }
+}

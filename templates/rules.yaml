@@ -227,6 +227,46 @@ rules:
     semantics: deductive
     reads: [comparative]
 
+  - id: ratio_more_gt
+    meaning: a factor above one entails the plain ordering
+    premises: ["(TimesAs $s $x $y $f)"]
+    computations: [{result: true, op: ">", args: ["$f", 1]}]
+    conclusion: "(More $s $x $y)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [comparative]
+  - id: ratio_more_lt
+    meaning: a factor below one entails the reverse ordering
+    premises: ["(TimesAs $s $x $y $f)"]
+    computations: [{result: true, op: "<", args: ["$f", 1]}]
+    conclusion: "(More $s $y $x)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [comparative]
+
+  # Superlatives: the top of a class exceeds every other member, and no member exceeds the top. The
+  # second rule concludes a negation, which the chainer answers as the positive at strength 0 — so
+  # "is Bob older than Lamine?" gets a no, not an unknown.
+  - id: most_exceeds
+    meaning: the most ADJ member of a class exceeds every other member on the scale
+    premises: ["(Most $s $x $c)", "(Member $y $c)"]
+    computations: [{result: true, op: "!=", args: ["$x", "$y"]}]
+    conclusion: "(More $s $x $y)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [superlative, comparative]
+  - id: most_bounds
+    meaning: no member of a class exceeds its most ADJ member on the scale
+    premises: ["(Most $s $x $c)", "(Member $y $c)"]
+    conclusion: "(Not (More $s $y $x))"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [superlative, comparative]
+    notes: >-
+      "Lamine is the oldest glazier" with "Bob is a glazier": (Not (More old sk_bob_1 sk_lamine_1))
+      — the chainer answers the positive query at strength 0, which a band query reads as no. The
+      instance y = x is harmless: nothing exceeds itself.
+
   # Non-finite complements: a control, causative or aspectual verb seals its complement as its
   # Theme and the parse marks what the verb implies — (Entails e): the complement holds;
   # (Precludes e): it does not. These rules derive the complement, or its negation, with the

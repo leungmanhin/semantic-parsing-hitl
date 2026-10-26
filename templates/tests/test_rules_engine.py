@@ -196,6 +196,27 @@ class SeededRulesOnTheEngine(unittest.TestCase):
         self.assertTrue(self.query(h, "(Time sk_arrive_1 (sk_time sk_arrive_1))"))
         self.assertFalse(self.query(h, "(Hour (sk_time sk_arrive_2) $h)"))      # Yusra's arrival: not restricted
 
+    def test_a_superlative_answers_both_ways_about_another_member(self):
+        """Lamine is the oldest glazier, Bob is a glazier: Lamine is older than Bob (yes), Bob is
+        older than Lamine (no, at strength 0), nothing about Lamine against herself; and a factor
+        entails the ordering by its side of one."""
+        facts = ['(: n1 (Name sk_lamine_1 "Lamine") (STV 1.0 0.99))', '(: n2 (Name sk_bob_1 "Bob") (STV 1.0 0.99))',
+                 '(: s1 (Most old sk_lamine_1 glazier) (STV 1.0 0.99))',
+                 '(: s1m (Member sk_lamine_1 glazier) (STV 1.0 0.99))',
+                 '(: b1 (Member sk_bob_1 glazier) (STV 1.0 0.99))',
+                 '(: t1 (TimesAs tall sk_bob_1 sk_lamine_1 0.5) (STV 1.0 0.99))']
+        h = self.space(facts)
+        yes = self.query(h, "(More old sk_lamine_1 sk_bob_1)")
+        self.assertTrue(yes and "most_exceeds" in yes[0], yes)
+        self.assertAlmostEqual(tv(yes)[0], 1.0, places=2)
+        no = self.query(h, "(More old sk_bob_1 sk_lamine_1)")
+        self.assertTrue(no and "most_bounds" in no[0], no)
+        self.assertAlmostEqual(tv(no)[0], 0.0, places=2)                           # answered, as a no
+        self.assertTrue(h.query("(: $p (More old sk_bob_1 sk_lamine_1) (STV (Band 0.0 0.05) $c))", steps=400, timeout_sec=0))
+        self.assertFalse(self.query(h, "(More old sk_lamine_1 sk_lamine_1)"))     # guarded: nothing against herself
+        self.assertTrue(self.query(h, "(More tall sk_lamine_1 sk_bob_1)"))        # half as tall: the reverse ordering
+        self.assertFalse(self.query(h, "(More tall sk_bob_1 sk_lamine_1)"))
+
 
 if __name__ == "__main__":
     unittest.main()

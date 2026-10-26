@@ -1,0 +1,86 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "1f30f11258c608de047dbbdce2b08663c56c8276ba345966cd5bf6a3d3d2dd78",
+  "item": {
+    "id": "s7ddbd4d390",
+    "text": "Teodor is the oldest of the locksmiths."
+  },
+  "usage": {
+    "input": 68466,
+    "output": 126,
+    "thinking": null,
+    "total": 68592,
+    "cached": 66416,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 68466,
+    "candidatesTokenCount": 126,
+    "totalTokenCount": 68592,
+    "cachedContentTokenCount": 66416,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 68466
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 66416
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 126
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s7ddbd4d390\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"superlative\", \"id\": \"s1\", \"subject\": \"@n1\", \"scale\": \"old\", \"class\": \"locksmith\", \"kind\": \"most\", \"predicative\": true, \"tense\": \"present\", \"span\": \"Teodor is the oldest of the locksmiths\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s7ddbd4d390",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "superlative",
+        "id": "s1",
+        "subject": "@n1",
+        "scale": "old",
+        "class": "locksmith",
+        "kind": "most",
+        "predicative": true,
+        "tense": "present",
+        "span": "Teodor is the oldest of the locksmiths"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "24bea0e4265ed7ba0cb712fe24ee9cf624dc40fbc70a5f4e56eaa2ad7f76d53a",
+  "run": 1,
+  "case": {
+    "template": "superlative",
+    "section": "held_out",
+    "index": 8,
+    "category": "positive",
+    "text": "Teodor is the oldest of the locksmiths.",
+    "key": "7ddbd4d390"
+  }
+}

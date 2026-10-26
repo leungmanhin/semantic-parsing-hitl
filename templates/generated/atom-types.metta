@@ -161,6 +161,7 @@
 (: Or (-> Proposition Proposition Proposition Proposition Proposition Proposition Proposition Proposition Proposition))
 (: Or (-> Proposition Proposition Proposition Proposition Proposition Proposition Proposition Proposition Proposition Proposition))
 (: Ordinal (-> Instance Number Class Proposition))
+(: Ordinal (-> Instance Class Class Proposition))
 (: PartOf (-> Instance Instance Proposition))
 (: ParticleFromNormal (-> Number Number Distribution))
 (: Past (-> Event Proposition))

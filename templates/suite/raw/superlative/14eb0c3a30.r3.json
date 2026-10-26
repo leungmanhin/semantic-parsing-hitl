@@ -1,0 +1,87 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "1f30f11258c608de047dbbdce2b08663c56c8276ba345966cd5bf6a3d3d2dd78",
+  "item": {
+    "id": "s14eb0c3a30",
+    "text": "Teodor is the second tallest locksmith."
+  },
+  "usage": {
+    "input": 68465,
+    "output": 131,
+    "thinking": null,
+    "total": 68596,
+    "cached": 66416,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 68465,
+    "candidatesTokenCount": 131,
+    "totalTokenCount": 68596,
+    "cachedContentTokenCount": 66416,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 68465
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 66416
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 131
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s14eb0c3a30\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"superlative\", \"id\": \"s1\", \"subject\": \"@n1\", \"scale\": \"tall\", \"class\": \"locksmith\", \"kind\": \"ordinal\", \"rank\": 2, \"predicative\": true, \"tense\": \"present\", \"span\": \"Teodor is the second tallest locksmith\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s14eb0c3a30",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "superlative",
+        "id": "s1",
+        "subject": "@n1",
+        "scale": "tall",
+        "class": "locksmith",
+        "kind": "ordinal",
+        "rank": 2,
+        "predicative": true,
+        "tense": "present",
+        "span": "Teodor is the second tallest locksmith"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "24bea0e4265ed7ba0cb712fe24ee9cf624dc40fbc70a5f4e56eaa2ad7f76d53a",
+  "run": 3,
+  "case": {
+    "template": "superlative",
+    "section": "held_out",
+    "index": 2,
+    "category": "positive",
+    "text": "Teodor is the second tallest locksmith.",
+    "key": "14eb0c3a30"
+  }
+}

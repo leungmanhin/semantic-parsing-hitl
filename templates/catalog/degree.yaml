@@ -41,8 +41,8 @@ trigger:
       a comparative with a stated standard — taller than Yusra, as tall as Teodor, two years
       older than Lamine: the comparative template
     - >-
-      a superlative — the tallest weaver: a comparison with a class, with no template yet; report
-      the whole definite predicate as unmapped, which is no plain class predication either
+      a superlative or an ordinal — the tallest weaver, the first to arrive: the superlative
+      template
     - >-
       a degree on a quantity — too much salt, enough water, a lot of ferrets: no slot here; report
       the span as unmapped
@@ -245,7 +245,7 @@ examples:
       expected: {abstain: true, gap: G00, span: "too much salt"}      # a degree on a quantity
     - category: abstain
       text: "Yusra is the tallest weaver."
-      expected: {abstain: true, gap: G00, span: "the tallest weaver"} # a superlative
+      expected: {abstain: true, template: superlative}                # a superlative
     - category: abstain
       text: "Ferrets are very curious."
       expected: {abstain: true, gap: G02, span: "very"}               # a kind as the bearer: the degree word is the gap

@@ -1,0 +1,94 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "1f30f11258c608de047dbbdce2b08663c56c8276ba345966cd5bf6a3d3d2dd78",
+  "item": {
+    "id": "s494875dc7a",
+    "text": "The third ferret slept."
+  },
+  "usage": {
+    "input": 68462,
+    "output": 161,
+    "thinking": null,
+    "total": 68623,
+    "cached": 66413,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 68462,
+    "candidatesTokenCount": 161,
+    "totalTokenCount": 68623,
+    "cachedContentTokenCount": 66413,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 68462
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 66413
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 161
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s494875dc7a\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"ferret\", \"definite\": true, \"span\": \"The third ferret\"}, {\"t\": \"superlative\", \"id\": \"s1\", \"subject\": \"@x1\", \"scale\": \"ferret\", \"class\": \"ferret\", \"kind\": \"ordinal\", \"rank\": 3, \"span\": \"The third ferret\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"sleep\", \"actor\": \"@x1\", \"tense\": \"past\", \"span\": \"The third ferret slept\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s494875dc7a",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "ferret",
+        "definite": true,
+        "span": "The third ferret"
+      },
+      {
+        "t": "superlative",
+        "id": "s1",
+        "subject": "@x1",
+        "scale": "ferret",
+        "class": "ferret",
+        "kind": "ordinal",
+        "rank": 3,
+        "span": "The third ferret"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "sleep",
+        "actor": "@x1",
+        "tense": "past",
+        "span": "The third ferret slept"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "24bea0e4265ed7ba0cb712fe24ee9cf624dc40fbc70a5f4e56eaa2ad7f76d53a",
+  "run": 1,
+  "case": {
+    "template": "superlative",
+    "section": "held_out",
+    "index": 4,
+    "category": "positive",
+    "text": "The third ferret slept.",
+    "key": "494875dc7a"
+  }
+}

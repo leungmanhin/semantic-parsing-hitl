@@ -1,0 +1,81 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "1f30f11258c608de047dbbdce2b08663c56c8276ba345966cd5bf6a3d3d2dd78",
+  "item": {
+    "id": "sedae807916",
+    "text": "Teodor is the tallest."
+  },
+  "usage": {
+    "input": 68461,
+    "output": 90,
+    "thinking": null,
+    "total": 68551,
+    "cached": 66412,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 68461,
+    "candidatesTokenCount": 90,
+    "totalTokenCount": 68551,
+    "cachedContentTokenCount": 66412,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 68461
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 66412
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 90
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sedae807916\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}], \"unmapped\": [{\"span\": \"is the tallest\", \"code\": \"G00\", \"construction\": \"A bare predicative superlative with no stated comparison class.\"}], \"issues\": []}",
+  "response": {
+    "id": "sedae807916",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "is the tallest",
+        "code": "G00",
+        "construction": "A bare predicative superlative with no stated comparison class."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "24bea0e4265ed7ba0cb712fe24ee9cf624dc40fbc70a5f4e56eaa2ad7f76d53a",
+  "run": 2,
+  "case": {
+    "template": "superlative",
+    "section": "held_out",
+    "index": 13,
+    "category": "abstain",
+    "text": "Teodor is the tallest.",
+    "key": "edae807916"
+  }
+}
