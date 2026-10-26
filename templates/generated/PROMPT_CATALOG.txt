@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 d09cc11974e76715 · 43 templates
+catalog sha256 62c44e27bf801a81 · 44 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -171,8 +171,8 @@ Codes:
 - G00: anything no template here covers and no other code names
 - G01: a comparative with no stated standard ('a sturdier bracket', 'prices ended lower')
 - G02: an adverb with no slot: sequence (initially, eventually, finally), scope or domain
-  (nationally, locally), frequency (often, always, twice), a degree word on a manner adverb or
-  on a class-level statement (laughed very loudly; ferrets are very curious)
+  (nationally, locally), a degree word on a manner adverb or on a class-level statement (laughed
+  very loudly; ferrets are very curious)
 - G03: a post-nominal tag on a name (a party or district tag, a ticker, a bracketed code)
 - G04: an irrealis relative clause or a lone would-have consequent ('the bridge that would have
   collapsed')
@@ -359,13 +359,18 @@ When: The subject or object of a verbal generalization over a class: a quantifie
 class noun (every ferret, each student, all ferrets, most students, many herons, few ferrets, no
 ferret, none of the ferrets) or a bare plural read generically (ferrets sleep). It stands for an
 arbitrary member of the class, not for a particular individual or a particular group. One range
-per quantified class noun: "every ferret feared every heron" has two.
+per quantified class noun: "every ferret feared every heron" has two. A quantified TIME is a
+range too — every day, every morning, on Sundays, every Monday — over the class of the occasions
+(day, morning, sunday, monday), and a frequency adverb with no stated period (often, rarely)
+ranges over the class occasion; the frequency template builds that rule.
 
 Forms:
 - every / each / all <N>(s)
 - most / many / few <N>s
 - no <N> / none of the <N>s
 - <N>s V …
+- every <unit / day part / weekday>; on <weekday>s; daily
+- <adverb of frequency>
 
 Not this template:
 - a specific group — the ferrets, several ferrets, three students, some students: a group
@@ -378,12 +383,13 @@ Slots:
 
 - `t` (required): "range"
 - `id` (required; your label for this instance): your label for the range (q1, q2 …).
-- `class` (required; a lemma): the class, lemmatized to the singular (ferret).
+- `class` (required; a lemma): the class, lemmatized to the singular (ferret); for the occasions
+  of a frequency the unit, day part or weekday (day, morning, sunday), or occasion for a bare
+  adverb.
 - `quantifier` (optional; a string): the quantifier word as written (every, each, all, most,
   many, few, no, none); absent for a bare generic.
-- `predicate` (optional; a lemma): the lemma of the predication the range takes part in, as its
-  subject or its object (slept → sleep, feared → fear); fill it on every range that has a
-  quantifier word.
+- `predicate` (optional; a lemma): the lemma of the predication the range takes part in (slept →
+  sleep); recorded, not rendered; optional.
 
 ### reference-time — The text's reference time
 
@@ -1310,7 +1316,6 @@ Instances:
 The program renders these instances as:
 
     (Inheritance ferret curious)
-    (QuantifierPhrase ferret curious "all")
 
 ### communication — Communication of a message to an addressee
 
@@ -2746,7 +2751,7 @@ Forms:
 
 Not this template:
 - a manner adverb — loudly, carefully, slowly, well: how, not how much; a manner
-- a frequency adverb — often, always, twice: how often; reported as unmapped (G02)
+- a frequency adverb — often, always, twice: how often; a frequency
 - a degree word on an adjective — is very crooked, a very old spindle: a degree predication
 - an approximator on a verb — almost fell, nearly broke: the event did not happen; no slot here;
   report the clause as unmapped
@@ -2916,8 +2921,7 @@ Forms:
 Not this template:
 - a degree adverb — deeply distrusts, really likes, barely moved, sharply, slightly: how much,
   not how; an extent attachment on the event
-- a frequency adverb — often, always, twice, every day: how often; reported as unmapped (the
-  adverb gap)
+- a frequency adverb — often, always, twice, every day: how often; a frequency
 - a sequence or time adverb — finally, eventually, initially, later, now, yesterday: when; a
   time or a gap
 - a domain or scope adverb — nationally, internationally, locally: reported as unmapped
@@ -3236,8 +3240,9 @@ Forms:
 Not this template:
 - a relation with no measured distance — before the audit, after noon, until noon, since May, by
   Monday, during the meeting, while Yusra sang: a time relation
-- a frequency or a schedule — every day, twice a week, on Sundays as a habit: no slot here;
-  reported as unmapped
+- a frequency or a schedule — every day, every morning, on Sundays as a habit, twice a week: a
+  frequency (a period of one unit is a range over its class, not a time instance); a clock time
+  or a date beside it — at noon every day — is a time instance on the event
 - a duration — for six hours, lasted two days: a measure, not a time
 - a decade, a century or an era — in the 1990s, in the 19th century: no slot yet; reported as
   unmapped
@@ -3389,7 +3394,7 @@ Not this template:
   a relation
 - a duration — for six hours, lasted two days: a measure, with no slot here; report the phrase
   as unmapped
-- a frequency or a schedule — every day, twice a week, often: no slot here; reported as unmapped
+- a frequency or a schedule — every day, twice a week, often: a frequency
 - a causal since or as — Yusra left, since the gate was open: a reason, a link; a temporal since
   or as is this template
 - every time or whenever with a clause — whenever the bell rings: a conditional over occasions,
@@ -3580,7 +3585,6 @@ Instances:
 The program renders these instances as:
 
     (Implication (And (Member $x alloy) (Member $x cold)) (Member $x brittle))
-    (QuantifierPhrase alloy brittle "all")
 
 Not this template. TEXT: Otters are rare in Norfolk. — use `class-property`.
 
@@ -3632,6 +3636,150 @@ The program renders these instances as:
 
 Not this template. TEXT: Three ferrets surrounded the barn. — use `group`.
 
+### frequency — How often an event recurs
+
+When: An expression saying how often the clause's event recurs. Two forms. (1) A QUANTIFICATION
+OVER OCCASIONS: a period of one unit — every day, each morning, every Monday, on Sundays, every
+night, daily, weekly, monthly, yearly, annually, nightly — or a frequency adverb — always,
+usually, normally, generally, often, frequently, regularly, sometimes, occasionally, seldom,
+rarely, hardly ever, from time to time. The occasion is a range instance over the class of
+occasions (day, week, month, year; morning, night; sunday, monday; and `occasion` for an adverb
+with no stated period), the clause is parsed with its own template, and this instance names the
+range in `occasion` and the predication in `over` with `every: 1` for a period or `level` for
+the adverb; a generic subject or object (ferrets often bite, every ferret sleeps every night) is
+a range listed in `ranges`, and no generic instance is written. (2) A PATTERN RECORDED ON THE
+EVENT: a period of more than one unit (every two weeks, every other day, every three years), a
+rate (twice a week, once a year, three times a day, twice per month), or a bare count of
+occurrences (once, twice, three times): the clause's predication is named in `event` with
+`every` and `unit`, or `times` with or without `unit`. One instance per frequency expression; a
+clock time, a date or a place beside it (at noon every day) is an attachment on the event as
+always, rendered inside the rule.
+
+Forms:
+- <clause> every / each <unit, day part or weekday>
+- <clause> on <weekday>s
+- <clause> daily / weekly / monthly / yearly / nightly
+- <subject> <adverb> V … / <clause> <adverb>
+- <class>s <adverb> V … / every <class> V … every <unit>
+- <clause> every <n> <units> / every other <unit>
+- <clause> once / twice / <n> times a / per <unit>
+- <clause> once / twice / <n> times
+
+Not this template:
+- a quantifier on a non-temporal noun with no frequency — every ferret slept, most students
+  laugh: a generalization over a class, the generic template
+- never — Yusra never laughs: a negation of the clause, with no frequency instance
+- again, still, already, yet — laughed again, still waits: an aspectual particle, a
+  presupposition about an earlier state, not how often
+- a duration — all day, for years, for six hours: how long, a measure; no slot here; report the
+  phrase as unmapped
+- every time or whenever with a clause — whenever the bell rings: a conditional over occasions,
+  not a recurrence; reported as unmapped
+- a habitual past with used to — Lamine used to sing: a different construction; report the
+  clause as unmapped
+- a time the event takes place at — in 2019, on Monday, at noon, yesterday: a time; a time
+  stated once is not a recurrence (on Monday is a time, on Mondays a frequency)
+- once meaning formerly — Lamine once lived in Calderwick: a vague past time, not one
+  occurrence; report the word as unmapped
+- a vague count — several times a week, a few times a year, many times: no number to record;
+  report the phrase as unmapped
+- a rate per something that is not a time — one per person, twice per visit: a distribution, no
+  slot here; report the phrase as unmapped
+- a multiplicative comparison — twice as tall, three times the size: a degree, not a count of
+  occurrences
+
+Slots:
+
+- `t` (required): "frequency"
+- `id` (required; your label for this instance): your label for the frequency (f1, f2 …).
+- `occasion` (optional; a list of "@id" of the instances that state the clause): the range this
+  rule quantifies over: the id of a range instance whose class is the occasion — day, week,
+  month or year for a period of one unit (every day, daily, weekly), the day part or weekday for
+  every morning / every night / on Sundays / every Monday (morning, night, sunday, monday), and
+  occasion for a frequency adverb with no stated period (often); required with over.
+- `ranges` (optional; a list of "@id" of the instances that state the clause): the class
+  range(s) of a generic subject or object in the same clause (ferrets often bite, every ferret
+  sleeps every night): their ids in text order; absent otherwise.
+- `over` (optional; a list of "@id" of the instances that state the clause): the predication
+  over the occasions: its id, nothing else (a negation or a modal over the clause names THIS
+  instance instead); filled for a period of one unit or an adverb, never together with event.
+- `event` (optional; "@id" of the predication instance this attaches to): for a pattern recorded
+  on the event instead — a period of more than one unit, a rate, a bare count: the id of the
+  clause's predication instance; never together with over.
+- `every` (optional; a number): the period as a number of units: 1 with over (every day, every
+  morning, on Sundays, daily, annually); the stated number with event (every two weeks → 2,
+  every other day → 2, with unit).
+- `times` (optional; a number): with event: a count of occurrences — twice → 2, once → 1, three
+  times → 3 — per unit when a unit is stated (twice a week → 2, week), bare otherwise (knocked
+  twice).
+- `unit` (optional; a lemma): with event: the time unit of a numeric period or a rate, singular
+  and lowercase (minute, hour, day, week, month, year); with over the occasion range carries the
+  class, so leave it empty.
+- `level` (optional; a lemma): the frequency adverb as written, lowercase (always, usually,
+  normally, generally, often, frequently, regularly, sometimes, occasionally, seldom, rarely); a
+  phrase as one snake_case symbol (hardly_ever, from_time_to_time, once_in_a_while).
+- `word` (optional; a string): the frequency expression as written (every morning, on Sundays,
+  daily, twice a week, often); recorded, not rendered.
+- Exactly one of `over`, `event` is filled.
+- Exactly one of `every`, `times`, `level` is filled.
+
+Example (a period of one unit — a rule over the mornings, with the swim a function of the morning). TEXT: Yusra swims every morning.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Yusra", "span": "Yusra"},
+      {"t": "activity", "id": "v1", "verb": "swim", "actor": "@n1", "tense": "present", "span": "Yusra swims"},
+      {"t": "range", "id": "q1", "class": "morning", "quantifier": "every", "span": "every morning"},
+      {"t": "frequency", "id": "f1", "occasion": ["@q1"], "over": ["@v1"], "every": 1, "word": "every morning", "span": "every morning"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_yusra_1 "Yusra")
+    (Implication (Member $x morning) (And (Member (sk_swim $x) swim) (Agent (sk_swim $x) sk_yusra_1) (Time (sk_swim $x) $x)))
+
+Example (a frequency adverb — a rule over occasions whose strength is the adverb's). TEXT: Ottoline often laughs.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Ottoline", "span": "Ottoline"},
+      {"t": "activity", "id": "v1", "verb": "laugh", "actor": "@n1", "tense": "present", "span": "Ottoline often laughs"},
+      {"t": "range", "id": "q1", "class": "occasion", "span": "often"},
+      {"t": "frequency", "id": "f1", "occasion": ["@q1"], "over": ["@v1"], "level": "often", "word": "often", "span": "often"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_ottoline_1 "Ottoline")
+    (Implication (Member $x occasion) (And (Member (sk_laugh $x) laugh) (Agent (sk_laugh $x) sk_ottoline_1) (Time (sk_laugh $x) $x)))
+
+Example (a rate — a pattern recorded on the event, which stays a particular predication). TEXT: Lamine visits the market twice a week.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Lamine", "span": "Lamine"},
+      {"t": "witness", "id": "x1", "class": "market", "definite": true, "span": "the market"},
+      {"t": "activity", "id": "v1", "verb": "visit", "actor": "@n1", "patient": "@x1", "tense": "present", "span": "Lamine visits the market"},
+      {"t": "frequency", "id": "f1", "event": "@v1", "times": 2, "unit": "week", "word": "twice a week", "span": "twice a week"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_lamine_1 "Lamine")
+    (Member sk_market_1 market)
+    (Member sk_visit_1 visit)
+    (Agent sk_visit_1 sk_lamine_1)
+    (Patient sk_visit_1 sk_market_1)
+    (TimesPer sk_visit_1 2 week)
+
+Not this template. TEXT: Most students laugh. — use `generic`.
+
+Not this template. TEXT: Lamine waited all day. — report it as unmapped: {"span": "all day",
+"code": "G00"}.
+
 ### generic — A verbal generalization over a class
 
 When: A clause whose subject (or another argument) is a range — a quantified class noun or a
@@ -3657,6 +3805,9 @@ Not this template:
 - an existential singular — some ferret slept, a ferret slept: a particular witness
 - a copular predicate under a condition — clay is soft when wet: a conditional property, the
   same rule with "be"
+- a generalization with a frequency expression — ferrets often bite, every ferret sleeps every
+  night: the frequency template builds the one rule, with the class range listed in its ranges;
+  no generic instance beside it
 
 Slots:
 
@@ -3697,7 +3848,6 @@ Instances:
 The program renders these instances as:
 
     (Implication (Member $x student) (And (Member (sk_laugh $x) laugh) (Agent (sk_laugh $x) $x)))
-    (QuantifierPhrase student laugh "most")
 
 Not this template. TEXT: Several ferrets slept. — use `group`.
 

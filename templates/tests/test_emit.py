@@ -110,7 +110,7 @@ class EmitTests(unittest.TestCase):
         self.assertTrue(all(st.endswith("(STV 0.9 0.7))") for st in stmts("Ferrets are curious.")))   # bare: no proportion stated
         quant = stmts("All ferrets are curious.")
         self.assertIn("(: k1_inheritance (Inheritance ferret curious) (STV 1.0 0.9))", quant)
-        self.assertIn('(: k1_quantifierphrase (QuantifierPhrase ferret curious "all") (STV 1.0 0.99))', quant)
+        self.assertFalse(any("QuantifierPhrase" in st for st in quant))       # the word stays in the instance record
         neg = stmts("Ferrets are not rodents.")
         self.assertEqual(len(neg), 1)
         self.assertTrue(neg[0].startswith("(: s1_not (Not (Inheritance ferret rodent))") and neg[0].endswith("(STV 1.0 0.99))"))
@@ -127,8 +127,7 @@ class EmitTests(unittest.TestCase):
                          ["(: s1_not (Not (Inheritance ferret curious)) (STV 0.9 0.7))"])
         most = [dict(empirical[0], quantifier="most"), empirical[1]]
         out = E.emit({"id": "t", "instances": most}, CATALOG)["statements"]
-        self.assertIn("(: s1_not (Not (Inheritance ferret curious)) (STV 0.9 0.9))", out)
-        self.assertIn('(: k1_quantifierphrase (QuantifierPhrase ferret curious "most") (STV 1.0 0.99))', out)   # the record stays outside the Not
+        self.assertEqual(out, ["(: s1_not (Not (Inheritance ferret curious)) (STV 0.9 0.9))"])   # no companion atom
         modal = [{"t": "class-property", "id": "k1", "subject": "newt", "property": "endangered", "tense": "present"},
                  {"t": "modal", "id": "s1", "over": ["@k1"], "head": "Might", "surface": "might"}]
         self.assertEqual(E.emit({"id": "t", "instances": modal}, CATALOG)["statements"],
@@ -160,7 +159,7 @@ class EmitTests(unittest.TestCase):
 
         every = stmts("Every ferret slept.")
         self.assertIn("(: r1_implication (Implication (Member $x ferret) (And (Member (sk_sleep $x) sleep) (Agent (sk_sleep $x) $x) (Past (sk_sleep $x)))) (STV 1.0 0.9))", every)
-        self.assertIn('(: q1_quantifierphrase (QuantifierPhrase ferret sleep "every") (STV 1.0 0.99))', every)
+        self.assertFalse(any("QuantifierPhrase" in st for st in every))       # the word stays in the range instance
         self.assertTrue(next(st for st in stmts("Few ferrets slept.") if "Implication" in st).endswith("(STV 0.1 0.9))"))
         self.assertTrue(next(st for st in stmts("No ferret slept.") if "Implication" in st).endswith("(STV 0.0 0.9))"))
         bare = stmts("Ferrets sleep.")
@@ -497,8 +496,7 @@ class EmitTests(unittest.TestCase):
                 {"t": "conditional-property", "id": "r1", "ranges": ["@q1"], "condition": ["@c2"], "over": ["@c1"]}]
         out = E.emit({"id": "t", "instances": rule}, CATALOG)
         self.assertEqual(out["statements"], [
-            "(: r1_implication (Implication (And (Member $x alloy) (Member $x cold)) (Member $x brittle)) (STV 1.0 0.9))",
-            '(: q1_quantifierphrase (QuantifierPhrase alloy brittle "all") (STV 1.0 0.99))'])
+            "(: r1_implication (Implication (And (Member $x alloy) (Member $x cold)) (Member $x brittle)) (STV 1.0 0.9))"])
         denied = rule[:3] + [{"t": "negation", "id": "s1", "over": ["@c1"]},
                              {"t": "conditional-property", "id": "r1", "ranges": ["@q1"], "condition": ["@c2"], "over": ["@s1"]}]
         out = E.emit({"id": "t", "instances": denied}, CATALOG)

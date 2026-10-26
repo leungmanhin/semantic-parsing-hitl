@@ -4,8 +4,8 @@
 # slept — ranges over the members of a class. The range is the referent the predication is
 # about: a variable ($x) standing for an arbitrary member, with the class and the quantifier
 # word recorded. It fills the predication's slots like any referent; the generic template then
-# turns the predication into a rule over it. The quantifier word is kept in a companion record
-# beside the rule; a bare generic (ferrets sleep) has no word and no companion.
+# turns the predication into a rule over it. The quantifier word stays in the instance record —
+# provenance of the rule's strength, reachable from the rule statement — and is not an atom.
 
 id: range
 family: referent
@@ -19,12 +19,17 @@ trigger:
     noun (every ferret, each student, all ferrets, most students, many herons, few ferrets, no
     ferret, none of the ferrets) or a bare plural read generically (ferrets sleep). It stands
     for an arbitrary member of the class, not for a particular individual or a particular group.
-    One range per quantified class noun: "every ferret feared every heron" has two.
+    One range per quantified class noun: "every ferret feared every heron" has two. A quantified
+    TIME is a range too — every day, every morning, on Sundays, every Monday — over the class of
+    the occasions (day, morning, sunday, monday), and a frequency adverb with no stated period
+    (often, rarely) ranges over the class occasion; the frequency template builds that rule.
   surface_forms:
     - "every / each / all <N>(s)"                # universal
     - "most / many / few <N>s"                   # graded
     - "no <N> / none of the <N>s"                # the negative universal
     - "<N>s V …"                                 # a bare plural read generically: no word
+    - "every <unit / day part / weekday>; on <weekday>s; daily"   # the occasions of a frequency: class day, morning, sunday …
+    - "<adverb of frequency>"                    # often, rarely: a range over the class occasion
   boundary:                   # looks like a range but is not one
     - >-
       a specific group — the ferrets, several ferrets, three students, some students: a group
@@ -37,30 +42,25 @@ trigger:
 
 slots:
   id:         {type: id, required: true, doc: "your label for the range (q1, q2 …)"}
-  class:       {type: lemma, class: Class, required: true, doc: "the class, lemmatized to the singular (ferret)"}
+  class:       {type: lemma, class: Class, required: true, doc: "the class, lemmatized to the singular (ferret); for the occasions of a frequency the unit, day part or weekday (day, morning, sunday), or occasion for a bare adverb"}
   quantifier: {type: string, required: false,
                doc: "the quantifier word as written (every, each, all, most, many, few, no, none); absent for a bare generic"}
   predicate:  {type: lemma, class: Class, required: false,
-               doc: "the lemma of the predication the range takes part in, as its subject or its object (slept → sleep, feared → fear); fill it on every range that has a quantifier word"}
+               doc: "the lemma of the predication the range takes part in (slept → sleep); recorded, not rendered; optional"}
 
 mints: {id: Entity, variable: true}
 
 emits:
   - atom: "(Member @id {class})"                              # the premise: an arbitrary member of the class
-  - atom: "(QuantifierPhrase {class} {predicate} \"{quantifier}\")"   # the word, kept beside the rule
-    if_filled: quantifier
-    when: "predicate"                                          # needs the predication's lemma too
-    project: true
-    stv: [1.0, 0.99]
 
 notes:
   - >-
     The range mints a variable rather than a witness: nothing asserts that a member exists; the
     rule the generic template builds quantifies over whatever members there are.
   - >-
-    The companion is a surface record at full confidence, outside the rule, so that "most"
-    and "few" stay distinguishable from a bare generic even though the rule's strength already
-    reflects them.
+    The quantifier word is not an atom: the rule's strength carries the quantity and its
+    confidence tells an explicit word (0.9) from a bare generic (0.7); the word itself stays in
+    this instance, reachable from the rule statement, as the provenance of that strength.
 
 depends_on: []
 composes_with: [generic]

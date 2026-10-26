@@ -2,7 +2,7 @@
 
 Generated from `templates/atom-type-substrates.json` (schema `atom-type-substrates/1`) by `templates/tmpl/gen_substrate.py`, together with `templates/generated/atom-types.metta`. Do not edit by hand; regenerate with `cd templates && python -m tmpl.gen_substrate`.
 
-133 heads in 13 kinds (7 proposed; 133 with a reviewed type declaration so far). `type-def` is the PeTTa declaration emitted for the head; `?` as the output type means the head is not yet reviewed and is absent from the `.metta` file; `%Undefined%` marks a position the head takes but the JSON does not type.
+134 heads in 13 kinds (7 proposed; 134 with a reviewed type declaration so far). `type-def` is the PeTTa declaration emitted for the head; `?` as the output type means the head is not yet reviewed and is absent from the `.metta` file; `%Undefined%` marks a position the head takes but the JSON does not type.
 
 Every atom is carried as a statement (: <proof-name> <atom> <tv>), tv = (STV strength confidence) or another engine truth value. The carrier is not an atom kind: ':' is never type-declared (it is also PeTTa's type-declaration head) and the truth value is declared by the engine, not by this substrate.
 
@@ -348,7 +348,7 @@ type-def: (: Still (-> Event Proposition))  ; and 1 more (per arity / per union 
 gloss: Continuative: the eventuality still holds (positive counterpart of cessation).
 
 
-## temporal (21)
+## temporal (22)
 
 head: Before
 kind: temporal
@@ -397,7 +397,7 @@ head: Every
 kind: temporal
 arity: 3
 type-def: (: Every (-> Event Number Class Proposition))
-gloss: Periodic recurrence: the event happens every n units.
+gloss: Periodic recurrence: the eventuality recurs every n units ((Every e 1 day) for every day / daily / every morning, (Every e 2 week) for every two weeks); the slot of a schedule (morning, a weekday) is a Time on the same eventuality.
 
 
 head: Future
@@ -474,11 +474,18 @@ type-def: (: TimeAtMost (-> Event Event Proposition))  ; and 1 more (per arity /
 gloss: Upper-bounded (latest) time of an eventuality, inclusive: (TimeAtMost e r), r a time instance or an eventuality (by Monday, by the audit).
 
 
+head: Times
+kind: temporal
+arity: 2
+type-def: (: Times (-> Event Number Proposition))
+gloss: Count of occurrences of the eventuality with no unit: (Times e 2) for twice, (Times e 3) for three times. A count per unit is TimesPer, a period Every.
+
+
 head: TimesPer
 kind: temporal
 arity: 3
 type-def: (: TimesPer (-> Event Number Class Proposition))
-gloss: Rate recurrence: n times per unit.
+gloss: Rate recurrence: the eventuality recurs n times per unit (twice a week: (TimesPer e 2 week)); a bare count is Times, a period Every.
 
 
 head: Weekday
@@ -944,7 +951,8 @@ head: QuantifierPhrase
 kind: surface-record
 arity: 3
 type-def: (: QuantifierPhrase (-> Class Class String Proposition))
-gloss: Records the surface quantifier word beside the strength it set. Surface record: a literal string; excluded from the faithful mining view.
+gloss: Records the surface quantifier word beside the strength it set. Surface record: a literal string; excluded from the faithful mining view. RETIRE: the catalog no longer emits it — the word stays in the instance record (range.quantifier, class-statement.quantifier, frequency.word / level), reachable from any statement through its instance link, so it is provenance beside the knowledge base, not an atom in it; its original job (telling an explicit word from a bare generic at the same strength) is done by the confidence; declaration kept for the legacy records until the re-parse.
+status: retire
 
 
 ## meta (1)
@@ -1003,4 +1011,4 @@ Oblique prepositions (62), all declared `(-> Instance|Class Instance Proposition
 ## notes
 
 - Proposed, not yet emitted by any template: Coref, Equivalence, InContext, LikelihoodPhrase, Not, Pending, Similarity.
-- To retire at the re-parse (declaration kept until then so today's parses still type-check): Forbid, KindProperty, Probably, WithinLast.
+- To retire at the re-parse (declaration kept until then so today's parses still type-check): Forbid, KindProperty, Probably, QuantifierPhrase, WithinLast.

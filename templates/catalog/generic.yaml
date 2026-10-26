@@ -6,8 +6,8 @@
 #   (Implication (Member $x ferret) (And (Member (sk_sleep $x) sleep) (Agent (sk_sleep $x) $x) (Past (sk_sleep $x))))
 # The strength is the quantifier's (every / all 1.0, most 0.9, many 0.7, few 0.1, no / none 0.0,
 # a bare generic 0.9); the confidence is 0.9 under an explicit quantifier word and 0.7 for a bare
-# generic, which states no proportion; the quantifier word itself is kept by the range's
-# companion record. Two quantified classes give one rule with two premises; an indefinite inside
+# generic, which states no proportion; the quantifier word itself stays in the range's instance
+# record. Two quantified classes give one rule with two premises; an indefinite inside
 # the predication depends on the member (every student read a letter: each their own letter); a
 # definite or a name is a shared constant.
 
@@ -47,6 +47,10 @@ trigger:
     - >-
       a copular predicate under a condition — clay is soft when wet: a conditional property,
       the same rule with "be"
+    - >-
+      a generalization with a frequency expression — ferrets often bite, every ferret sleeps
+      every night: the frequency template builds the one rule, with the class range listed in
+      its ranges; no generic instance beside it
 
 slots:
   id:     {type: id, required: true, doc: "your label for the rule"}

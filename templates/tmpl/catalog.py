@@ -12,6 +12,7 @@ Structural invariants checked here (content is reviewed by people, not checked h
 * every ``emits`` entry has an ``atom`` whose placeholders name a slot of the template (or
   ``@id`` when the template mints a symbol); ``if_filled`` / ``each`` name a slot; ``when``
   mentions only slots, their values and ``true`` / ``false``; ``project`` is a boolean;
+  ``within`` names a refs slot (the shape is rendered inside that slot's bundle);
 * ``one_of`` (exactly one filled) and ``any_of`` (at least one filled) groups list two or more
   slots each; ``truth`` gives ``strength`` / ``confidence``
   clause lists (numbers, or ``{slot, values}`` / ``{from, slot, values}``); a shape's ``stv`` is a
@@ -162,6 +163,8 @@ def check_template(t: dict, path: str) -> list[str]:
             problems += [f"emits[{i}]: {m}" for m in check_when(e["when"], slots)]
         if "project" in e and not isinstance(e["project"], bool):
             problems.append(f"emits[{i}]: project must be true or false")
+        if "within" in e and (slots.get(e["within"]) or {}).get("type") != "refs":
+            problems.append(f"emits[{i}]: within must name a refs slot of the template")
         if "stv" in e and not (isinstance(e["stv"], list) and len(e["stv"]) == 2 and all(isinstance(x, (int, float)) for x in e["stv"])):
             problems.append(f"emits[{i}]: stv must be [strength, confidence]")
         if "declare" in e and not (isinstance(e["declare"], dict) and all(isinstance(k, str) and isinstance(v, str) for k, v in e["declare"].items())):

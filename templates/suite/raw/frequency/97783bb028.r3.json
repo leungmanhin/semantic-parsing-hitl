@@ -1,0 +1,109 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "0a4e7df19e4cd1dfa33c89986ab71053fa6df0c352d0e1a79b6ed5e92cdc13ee",
+  "item": {
+    "id": "s97783bb028",
+    "text": "Teodor always arrives at noon."
+  },
+  "usage": {
+    "input": 62301,
+    "output": 206,
+    "thinking": null,
+    "total": 62507,
+    "cached": 60252,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 62301,
+    "candidatesTokenCount": 206,
+    "totalTokenCount": 62507,
+    "cachedContentTokenCount": 60252,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 62301
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 60252
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 206
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s97783bb028\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"range\", \"id\": \"q1\", \"class\": \"occasion\", \"span\": \"always\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"arrive\", \"mover\": \"@n1\", \"tense\": \"present\", \"span\": \"Teodor always arrives\"}, {\"t\": \"time\", \"id\": \"t1\", \"event\": \"@m1\", \"hour\": 12, \"span\": \"at noon\"}, {\"t\": \"frequency\", \"id\": \"f1\", \"occasion\": [\"@q1\"], \"over\": [\"@m1\"], \"level\": \"always\", \"word\": \"always\", \"span\": \"always\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s97783bb028",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "range",
+        "id": "q1",
+        "class": "occasion",
+        "span": "always"
+      },
+      {
+        "t": "motion",
+        "id": "m1",
+        "verb": "arrive",
+        "mover": "@n1",
+        "tense": "present",
+        "span": "Teodor always arrives"
+      },
+      {
+        "t": "time",
+        "id": "t1",
+        "event": "@m1",
+        "hour": 12,
+        "span": "at noon"
+      },
+      {
+        "t": "frequency",
+        "id": "f1",
+        "occasion": [
+          "@q1"
+        ],
+        "over": [
+          "@m1"
+        ],
+        "level": "always",
+        "word": "always",
+        "span": "always"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "afb9b34e08037e4af790f15f77e7670cdf6dd9377ca25c9a470b5c7859103180",
+  "run": 3,
+  "case": {
+    "template": "frequency",
+    "section": "held_out",
+    "index": 6,
+    "category": "positive",
+    "text": "Teodor always arrives at noon.",
+    "key": "97783bb028"
+  }
+}

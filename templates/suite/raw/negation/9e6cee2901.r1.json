@@ -1,0 +1,91 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "13d65efd8590af9281f4352993392e989a5c6e903a309894fd0833b96eb5b3ca",
+  "item": {
+    "id": "s9e6cee2901",
+    "text": "Yusra never laughs."
+  },
+  "usage": {
+    "input": 61678,
+    "output": 131,
+    "thinking": null,
+    "total": 61809,
+    "cached": 59629,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 61678,
+    "candidatesTokenCount": 131,
+    "totalTokenCount": 61809,
+    "cachedContentTokenCount": 59629,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 61678
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 59629
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 131
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s9e6cee2901\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"laugh\", \"actor\": \"@n1\", \"tense\": \"present\", \"span\": \"Yusra never laughs\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@v1\"], \"span\": \"never\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s9e6cee2901",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "laugh",
+        "actor": "@n1",
+        "tense": "present",
+        "span": "Yusra never laughs"
+      },
+      {
+        "t": "negation",
+        "id": "s1",
+        "over": [
+          "@v1"
+        ],
+        "span": "never"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "e6af361d5de2bcb65212565ff9e8e2dd9b01aa00d5864b21ae0bebe17cf7ad42",
+  "run": 1,
+  "case": {
+    "template": "negation",
+    "section": "held_out",
+    "index": 0,
+    "category": "positive",
+    "text": "Yusra never laughs.",
+    "key": "9e6cee2901"
+  }
+}

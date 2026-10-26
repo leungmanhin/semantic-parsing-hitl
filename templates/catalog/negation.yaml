@@ -44,4 +44,11 @@ examples:
         - {t: witness, id: x1, class: quilt, definite: true, span: "the quilt"}
         - {t: transfer, id: e1, verb: send, giver: "@n1", object: "@x1", tense: past, span: "Teodor did not send the quilt"}
         - {t: negation, id: s1, over: ["@e1"], span: "did not"}
-  held_out: []
+  held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      note: never — a sentential negator over a habitual present
+      text: "Yusra never laughs."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: present}
+        - {t: negation, id: s1, over: ["@v1"]}

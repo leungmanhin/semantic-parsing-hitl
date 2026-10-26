@@ -447,7 +447,7 @@
       ],
       "out": "Proposition",
       "opaque": false,
-      "gloss": "Periodic recurrence: the event happens every n units."
+      "gloss": "Periodic recurrence: the eventuality recurs every n units ((Every e 1 day) for every day / daily / every morning, (Every e 2 week) for every two weeks); the slot of a schedule (morning, a weekday) is a Time on the same eventuality."
     },
     "Experiencer": {
       "kind": "role",
@@ -1107,7 +1107,8 @@
       ],
       "out": "Proposition",
       "opaque": false,
-      "gloss": "Records the surface quantifier word beside the strength it set. Surface record: a literal string; excluded from the faithful mining view."
+      "gloss": "Records the surface quantifier word beside the strength it set. Surface record: a literal string; excluded from the faithful mining view. RETIRE: the catalog no longer emits it — the word stays in the instance record (range.quantifier, class-statement.quantifier, frequency.word / level), reachable from any statement through its instance link, so it is provenance beside the knowledge base, not an atom in it; its original job (telling an explicit word from a bare generic at the same strength) is done by the confidence; declaration kept for the legacy records until the re-parse.",
+      "status": "retire"
     },
     "Quarter": {
       "kind": "temporal",
@@ -1399,7 +1400,7 @@
       ],
       "out": "Proposition",
       "opaque": false,
-      "gloss": "Rate recurrence: n times per unit."
+      "gloss": "Rate recurrence: the eventuality recurs n times per unit (twice a week: (TimesPer e 2 week)); a bare count is Times, a period Every."
     },
     "To": {
       "kind": "discourse",
@@ -1539,6 +1540,17 @@
       "out": "Class",
       "opaque": false,
       "gloss": "Builds the reified permission property term from an action; a class-valued term kept nested: (Inheritance visitor (permitted enter)); a class-level prohibition is the same term at strength 0.0."
+    },
+    "Times": {
+      "kind": "temporal",
+      "arity": 2,
+      "arg_types": [
+        "Event",
+        "Number"
+      ],
+      "out": "Proposition",
+      "opaque": false,
+      "gloss": "Count of occurrences of the eventuality with no unit: (Times e 2) for twice, (Times e 3) for three times. A count per unit is TimesPer, a period Every."
     }
   },
   "open_class": {

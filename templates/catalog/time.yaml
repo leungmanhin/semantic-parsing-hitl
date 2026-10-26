@@ -56,8 +56,9 @@ trigger:
       a relation with no measured distance — before the audit, after noon, until noon, since
       May, by Monday, during the meeting, while Yusra sang: a time relation
     - >-
-      a frequency or a schedule — every day, twice a week, on Sundays as a habit: no slot here;
-      reported as unmapped
+      a frequency or a schedule — every day, every morning, on Sundays as a habit, twice a week:
+      a frequency (a period of one unit is a range over its class, not a time instance); a clock
+      time or a date beside it — at noon every day — is a time instance on the event
     - >-
       a duration — for six hours, lasted two days: a measure, not a time
     - >-
@@ -418,7 +419,7 @@ examples:
       expected: {abstain: true, template: time-relation}              # a time relation
     - category: abstain
       text: "Teodor reads every day."
-      expected: {abstain: true, gap: G00, span: "every day"}          # a frequency
+      expected: {abstain: true, template: frequency}                  # a frequency
     - category: abstain
       text: "Lamine waited at the market."
       expected: {abstain: true, template: location}                   # a place

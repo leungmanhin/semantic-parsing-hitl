@@ -1,0 +1,102 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "0a4e7df19e4cd1dfa33c89986ab71053fa6df0c352d0e1a79b6ed5e92cdc13ee",
+  "item": {
+    "id": "s51d9a73104",
+    "text": "Ottoline swims on Sundays."
+  },
+  "usage": {
+    "input": 62301,
+    "output": 175,
+    "thinking": null,
+    "total": 62476,
+    "cached": 60252,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 62301,
+    "candidatesTokenCount": 175,
+    "totalTokenCount": 62476,
+    "cachedContentTokenCount": 60252,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 62301
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 60252
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 175
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s51d9a73104\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"range\", \"id\": \"q1\", \"class\": \"sunday\", \"span\": \"on Sundays\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"swim\", \"actor\": \"@n1\", \"tense\": \"present\", \"span\": \"Ottoline swims\"}, {\"t\": \"frequency\", \"id\": \"f1\", \"occasion\": [\"@q1\"], \"over\": [\"@v1\"], \"every\": 1, \"word\": \"on Sundays\", \"span\": \"on Sundays\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s51d9a73104",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Ottoline",
+        "span": "Ottoline"
+      },
+      {
+        "t": "range",
+        "id": "q1",
+        "class": "sunday",
+        "span": "on Sundays"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "swim",
+        "actor": "@n1",
+        "tense": "present",
+        "span": "Ottoline swims"
+      },
+      {
+        "t": "frequency",
+        "id": "f1",
+        "occasion": [
+          "@q1"
+        ],
+        "over": [
+          "@v1"
+        ],
+        "every": 1,
+        "word": "on Sundays",
+        "span": "on Sundays"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "afb9b34e08037e4af790f15f77e7670cdf6dd9377ca25c9a470b5c7859103180",
+  "run": 3,
+  "case": {
+    "template": "frequency",
+    "section": "held_out",
+    "index": 2,
+    "category": "positive",
+    "text": "Ottoline swims on Sundays.",
+    "key": "51d9a73104"
+  }
+}

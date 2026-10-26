@@ -140,6 +140,27 @@ class SeededRulesOnTheEngine(unittest.TestCase):
         self.assertTrue(any("(Day sk_time_1 19)" in r for r in self.query(after, "(Day sk_time_1 $d)")))
         self.assertFalse(self.query(self.space(facts[:2]), "(Day sk_time_1 $d)"))      # no anchor fields
 
+    def test_frequency_rule_instantiates_on_a_stated_time(self):
+        """A frequency rule quantifies over a class of times; a stated time joins it through the
+        bridge rules (a weekday field makes a day and a member of the weekday's class), and the
+        episode is a function of the occasion. A time of another class gets nothing."""
+        facts = ['(: n1 (Name sk_ottoline_1 "Ottoline") (STV 1.0 0.99))',
+                 '(: f1 (Implication (Member $x sunday) (And (Member (sk_swim $x) swim) (Agent (sk_swim $x) sk_ottoline_1) (Time (sk_swim $x) $x))) (STV 1.0 0.9))',
+                 '(: t2 (Weekday sk_time_2 sunday) (STV 1.0 0.99))',
+                 '(: t3 (Weekday sk_time_3 monday) (STV 1.0 0.99))']
+        h = self.space(facts)
+        res = self.query(h, "(Agent (sk_swim sk_time_2) sk_ottoline_1)")
+        self.assertTrue(res, res)
+        s, c = tv(res)
+        self.assertAlmostEqual(s, 1.0, places=2)
+        self.assertGreater(c, 0.8)
+        self.assertTrue(self.query(h, "(Time (sk_swim sk_time_2) sk_time_2)"))
+        self.assertFalse(self.query(h, "(Agent (sk_swim sk_time_3) sk_ottoline_1)"))     # a Monday: no occasion
+        daily = self.space(['(: n1 (Name sk_teodor_1 "Teodor") (STV 1.0 0.99))',
+                            '(: f1 (Implication (Member $x day) (And (Member (sk_read $x) read) (Agent (sk_read $x) sk_teodor_1) (Time (sk_read $x) $x))) (STV 1.0 0.9))',
+                            '(: t9 (Day sk_time_9 3) (STV 1.0 0.99))', '(: t9m (Month sk_time_9 may) (STV 1.0 0.99))'])
+        self.assertTrue(self.query(daily, "(Member (sk_read sk_time_9) read)"))          # a date is a day
+        self.assertFalse(self.query(daily, "(Member (sk_read sk_time_8) read)"))         # no such time stated
 
 if __name__ == "__main__":
     unittest.main()

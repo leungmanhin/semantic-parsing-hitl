@@ -1,0 +1,118 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "0a4e7df19e4cd1dfa33c89986ab71053fa6df0c352d0e1a79b6ed5e92cdc13ee",
+  "item": {
+    "id": "s5631f84967",
+    "text": "Ottoline sometimes waits at the gate."
+  },
+  "usage": {
+    "input": 62303,
+    "output": 252,
+    "thinking": null,
+    "total": 62555,
+    "cached": 60254,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 62303,
+    "candidatesTokenCount": 252,
+    "totalTokenCount": 62555,
+    "cachedContentTokenCount": 60254,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 62303
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 60254
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 252
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s5631f84967\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"range\", \"id\": \"q1\", \"class\": \"occasion\", \"span\": \"sometimes\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"gate\", \"definite\": true, \"span\": \"the gate\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"wait\", \"actor\": \"@n1\", \"tense\": \"present\", \"span\": \"Ottoline sometimes waits\"}, {\"t\": \"location\", \"id\": \"l1\", \"event\": \"@v1\", \"place\": \"@x1\", \"head\": \"Location\", \"preposition\": \"at\", \"span\": \"at the gate\"}, {\"t\": \"frequency\", \"id\": \"f1\", \"occasion\": [\"@q1\"], \"over\": [\"@v1\"], \"level\": \"sometimes\", \"word\": \"sometimes\", \"span\": \"sometimes\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s5631f84967",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Ottoline",
+        "span": "Ottoline"
+      },
+      {
+        "t": "range",
+        "id": "q1",
+        "class": "occasion",
+        "span": "sometimes"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "gate",
+        "definite": true,
+        "span": "the gate"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "wait",
+        "actor": "@n1",
+        "tense": "present",
+        "span": "Ottoline sometimes waits"
+      },
+      {
+        "t": "location",
+        "id": "l1",
+        "event": "@v1",
+        "place": "@x1",
+        "head": "Location",
+        "preposition": "at",
+        "span": "at the gate"
+      },
+      {
+        "t": "frequency",
+        "id": "f1",
+        "occasion": [
+          "@q1"
+        ],
+        "over": [
+          "@v1"
+        ],
+        "level": "sometimes",
+        "word": "sometimes",
+        "span": "sometimes"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "afb9b34e08037e4af790f15f77e7670cdf6dd9377ca25c9a470b5c7859103180",
+  "run": 2,
+  "case": {
+    "template": "frequency",
+    "section": "held_out",
+    "index": 7,
+    "category": "positive",
+    "text": "Ottoline sometimes waits at the gate.",
+    "key": "5631f84967"
+  }
+}

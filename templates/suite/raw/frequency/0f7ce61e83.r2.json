@@ -1,0 +1,103 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "0a4e7df19e4cd1dfa33c89986ab71053fa6df0c352d0e1a79b6ed5e92cdc13ee",
+  "item": {
+    "id": "s0f7ce61e83",
+    "text": "Lamine bakes bread daily."
+  },
+  "usage": {
+    "input": 62301,
+    "output": 179,
+    "thinking": null,
+    "total": 62480,
+    "cached": 60252,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 62301,
+    "candidatesTokenCount": 179,
+    "totalTokenCount": 62480,
+    "cachedContentTokenCount": 60252,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 62301
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 60252
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 179
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s0f7ce61e83\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"range\", \"id\": \"q1\", \"class\": \"day\", \"span\": \"daily\"}, {\"t\": \"creation\", \"id\": \"e1\", \"verb\": \"bake\", \"creator\": \"@n1\", \"product\": \"bread\", \"tense\": \"present\", \"span\": \"Lamine bakes bread\"}, {\"t\": \"frequency\", \"id\": \"f1\", \"occasion\": [\"@q1\"], \"over\": [\"@e1\"], \"every\": 1, \"word\": \"daily\", \"span\": \"daily\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s0f7ce61e83",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "range",
+        "id": "q1",
+        "class": "day",
+        "span": "daily"
+      },
+      {
+        "t": "creation",
+        "id": "e1",
+        "verb": "bake",
+        "creator": "@n1",
+        "product": "bread",
+        "tense": "present",
+        "span": "Lamine bakes bread"
+      },
+      {
+        "t": "frequency",
+        "id": "f1",
+        "occasion": [
+          "@q1"
+        ],
+        "over": [
+          "@e1"
+        ],
+        "every": 1,
+        "word": "daily",
+        "span": "daily"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "afb9b34e08037e4af790f15f77e7670cdf6dd9377ca25c9a470b5c7859103180",
+  "run": 2,
+  "case": {
+    "template": "frequency",
+    "section": "held_out",
+    "index": 3,
+    "category": "positive",
+    "text": "Lamine bakes bread daily.",
+    "key": "0f7ce61e83"
+  }
+}

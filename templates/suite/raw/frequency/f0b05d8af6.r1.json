@@ -1,0 +1,113 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "0a4e7df19e4cd1dfa33c89986ab71053fa6df0c352d0e1a79b6ed5e92cdc13ee",
+  "item": {
+    "id": "sf0b05d8af6",
+    "text": "Yusra might swim every day."
+  },
+  "usage": {
+    "input": 62300,
+    "output": 222,
+    "thinking": null,
+    "total": 62522,
+    "cached": 60251,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 62300,
+    "candidatesTokenCount": 222,
+    "totalTokenCount": 62522,
+    "cachedContentTokenCount": 60251,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 62300
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 60251
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 222
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sf0b05d8af6\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"range\", \"id\": \"q1\", \"class\": \"day\", \"quantifier\": \"every\", \"span\": \"every day\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"swim\", \"actor\": \"@n1\", \"tense\": \"present\", \"span\": \"Yusra might swim\"}, {\"t\": \"frequency\", \"id\": \"f1\", \"occasion\": [\"@q1\"], \"over\": [\"@e1\"], \"every\": 1, \"word\": \"every day\", \"span\": \"every day\"}, {\"t\": \"modal\", \"id\": \"s1\", \"over\": [\"@f1\"], \"head\": \"Might\", \"surface\": \"might\", \"span\": \"might\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sf0b05d8af6",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "range",
+        "id": "q1",
+        "class": "day",
+        "quantifier": "every",
+        "span": "every day"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "swim",
+        "actor": "@n1",
+        "tense": "present",
+        "span": "Yusra might swim"
+      },
+      {
+        "t": "frequency",
+        "id": "f1",
+        "occasion": [
+          "@q1"
+        ],
+        "over": [
+          "@e1"
+        ],
+        "every": 1,
+        "word": "every day",
+        "span": "every day"
+      },
+      {
+        "t": "modal",
+        "id": "s1",
+        "over": [
+          "@f1"
+        ],
+        "head": "Might",
+        "surface": "might",
+        "span": "might"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "afb9b34e08037e4af790f15f77e7670cdf6dd9377ca25c9a470b5c7859103180",
+  "run": 1,
+  "case": {
+    "template": "frequency",
+    "section": "held_out",
+    "index": 19,
+    "category": "scoped",
+    "text": "Yusra might swim every day.",
+    "key": "f0b05d8af6"
+  }
+}

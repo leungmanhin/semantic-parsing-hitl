@@ -28,8 +28,7 @@ trigger:
       a degree adverb — deeply distrusts, really likes, barely moved, sharply, slightly: how much,
       not how; an extent attachment on the event
     - >-
-      a frequency adverb — often, always, twice, every day: how often; reported as unmapped (the
-      adverb gap)
+      a frequency adverb — often, always, twice, every day: how often; a frequency
     - >-
       a sequence or time adverb — finally, eventually, initially, later, now, yesterday: when; a
       time or a gap
@@ -179,7 +178,7 @@ examples:
       expected: {abstain: true, template: time}                       # when, not how
     - category: abstain
       text: "Lamine often laughed."
-      expected: {abstain: true, gap: G02, span: "often"}              # a frequency adverb: the adverb gap
+      expected: {abstain: true, template: frequency}                  # a frequency adverb
     - category: abstain
       text: "Yusra probably left."
       expected: {abstain: true, gap: G00, span: "probably"}           # a hedge

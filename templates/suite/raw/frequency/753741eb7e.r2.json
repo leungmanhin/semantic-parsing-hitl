@@ -1,0 +1,98 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "13d65efd8590af9281f4352993392e989a5c6e903a309894fd0833b96eb5b3ca",
+  "item": {
+    "id": "s753741eb7e",
+    "text": "Teodor visits Yusra once a month."
+  },
+  "usage": {
+    "input": 61683,
+    "output": 181,
+    "thinking": null,
+    "total": 61864,
+    "cached": 59634,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 61683,
+    "candidatesTokenCount": 181,
+    "totalTokenCount": 61864,
+    "cachedContentTokenCount": 59634,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 61683
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 59634
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 181
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s753741eb7e\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"visit\", \"actor\": \"@n1\", \"patient\": \"@n2\", \"tense\": \"present\", \"span\": \"Teodor visits Yusra\"}, {\"t\": \"frequency\", \"id\": \"f1\", \"event\": \"@v1\", \"times\": 1, \"unit\": \"month\", \"span\": \"once a month\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s753741eb7e",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "visit",
+        "actor": "@n1",
+        "patient": "@n2",
+        "tense": "present",
+        "span": "Teodor visits Yusra"
+      },
+      {
+        "t": "frequency",
+        "id": "f1",
+        "event": "@v1",
+        "times": 1,
+        "unit": "month",
+        "span": "once a month"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "e6af361d5de2bcb65212565ff9e8e2dd9b01aa00d5864b21ae0bebe17cf7ad42",
+  "run": 2,
+  "case": {
+    "template": "frequency",
+    "section": "held_out",
+    "index": 9,
+    "category": "positive",
+    "text": "Teodor visits Yusra once a month.",
+    "key": "753741eb7e"
+  }
+}

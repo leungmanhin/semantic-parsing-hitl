@@ -30,7 +30,7 @@ trigger:
     - >-
       a manner adverb — loudly, carefully, slowly, well: how, not how much; a manner
     - >-
-      a frequency adverb — often, always, twice: how often; reported as unmapped (G02)
+      a frequency adverb — often, always, twice: how often; a frequency
     - >-
       a degree word on an adjective — is very crooked, a very old spindle: a degree predication
     - >-
@@ -191,7 +191,7 @@ examples:
       expected: {abstain: true, template: manner}                     # how, not how much
     - category: abstain
       text: "Lamine often laughed."
-      expected: {abstain: true, gap: G02, span: "often"}              # a frequency adverb
+      expected: {abstain: true, template: frequency}                  # a frequency adverb
     - category: abstain
       text: "Teodor is extremely tired."
       expected: {abstain: true, template: degree}                     # a degree word on an adjective

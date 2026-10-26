@@ -1,0 +1,90 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "13d65efd8590af9281f4352993392e989a5c6e903a309894fd0833b96eb5b3ca",
+  "item": {
+    "id": "sc71ac355f4",
+    "text": "Teodor knocked twice."
+  },
+  "usage": {
+    "input": 61678,
+    "output": 132,
+    "thinking": null,
+    "total": 61810,
+    "cached": 59629,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 61678,
+    "candidatesTokenCount": 132,
+    "totalTokenCount": 61810,
+    "cachedContentTokenCount": 59629,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 61678
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 59629
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 132
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sc71ac355f4\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"knock\", \"actor\": \"@n1\", \"tense\": \"past\", \"span\": \"Teodor knocked\"}, {\"t\": \"frequency\", \"id\": \"f1\", \"event\": \"@v1\", \"times\": 2, \"span\": \"twice\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sc71ac355f4",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "knock",
+        "actor": "@n1",
+        "tense": "past",
+        "span": "Teodor knocked"
+      },
+      {
+        "t": "frequency",
+        "id": "f1",
+        "event": "@v1",
+        "times": 2,
+        "span": "twice"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "e6af361d5de2bcb65212565ff9e8e2dd9b01aa00d5864b21ae0bebe17cf7ad42",
+  "run": 3,
+  "case": {
+    "template": "frequency",
+    "section": "held_out",
+    "index": 7,
+    "category": "positive",
+    "text": "Teodor knocked twice.",
+    "key": "c71ac355f4"
+  }
+}

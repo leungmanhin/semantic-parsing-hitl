@@ -173,6 +173,56 @@ rules:
     semantics: deductive
     reads: [time, reference-time]
 
+  # Occasions: a frequency rule quantifies over a class of times — (Member $t day), (Member $t
+  # sunday) — while a stated time carries fields (Weekday, Day, an offset in days). These rules
+  # put a stated time into the classes its fields name, so a rule over the days or the Sundays
+  # instantiates at it; nothing is asserted of a time the text does not state.
+  - id: day_from_day_field
+    meaning: a time instance with a day-of-month field is a day
+    premises: ["(Day $t $d)"]
+    conclusion: "(Member $t day)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [time]
+  - id: day_from_weekday
+    meaning: a time instance with a weekday field is a day
+    premises: ["(Weekday $t $w)"]
+    conclusion: "(Member $t day)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [time]
+  - id: weekday_class
+    meaning: a time instance with a weekday field is a member of that weekday's class
+    premises: ["(Weekday $t $w)"]
+    conclusion: "(Member $t $w)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [time]
+    notes: >-
+      "Ottoline swims on Sundays" is a rule over (Member $t sunday); a stated Sunday carries
+      (Weekday sk_time_9 sunday) and joins the rule through this congruence.
+  - id: month_class
+    meaning: a time instance with a month field is a member of that month's class
+    premises: ["(Month $t $m)"]
+    conclusion: "(Member $t $m)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [time]
+  - id: day_from_offset_before
+    meaning: a time at an offset counted in days before its anchor is a day
+    premises: ["(BeforeBy $t $a $n day)"]
+    conclusion: "(Member $t day)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [time, reference-time]
+  - id: day_from_offset_after
+    meaning: a time at an offset counted in days after its anchor is a day
+    premises: ["(BeforeBy $a $t $n day)"]
+    conclusion: "(Member $t day)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [time, reference-time]
+
   # Non-finite complements: a control, causative or aspectual verb seals its complement as its
   # Theme and the parse marks what the verb implies — (Entails e): the complement holds;
   # (Precludes e): it does not. These rules derive the complement, or its negation, with the

@@ -213,6 +213,7 @@
 (: TimeAtLeast (-> Event TimeTerm Proposition))
 (: TimeAtMost (-> Event Event Proposition))
 (: TimeAtMost (-> Event TimeTerm Proposition))
+(: Times (-> Event Number Proposition))
 (: TimesAs (-> Class Instance Instance Number Proposition))
 (: TimesAs (-> Class Instance Class Number Proposition))
 (: TimesAs (-> Class Class Instance Number Proposition))

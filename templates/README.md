@@ -52,7 +52,8 @@ Nothing here changes `prompt.txt`, the briefs under `fusenf/briefs/`, or any pip
   `bare_content: true` on a refs slot lets the clause under it fill no participant, as under an imperative;
   `participant: false` on an optional filler keeps it out of the bare-predication lint, as class-property's restriction),
   `mints` (`stem` / `literal` / `symbol: <slot>` with `constant` / `variable`; `also` for extra classes), `emits` shapes
-  (`if_filled`, `each`, `when`, `project`), `one_of` / `any_of` slot groups, notes,
+  (`if_filled`, `each`, `when`, `project`, `within: <refs slot>` for a shape rendered inside that slot's bundle under its
+  skolem substitution — a rule's consequent gaining `(Time (sk_swim $t) $t)`), `one_of` / `any_of` slot groups, notes,
   `examples.shown` / `examples.held_out`. A sentence another template abstains on is claimed in the SAME
   section (shown or held-out), or `check` reports a leak.
   `python -c "from tmpl import catalog; catalog.load()"` checks the structural invariants.
@@ -140,6 +141,11 @@ Nothing here changes `prompt.txt`, the briefs under `fusenf/briefs/`, or any pip
   the emitted atoms AND fails a record whose spans are missing, malformed or not verbatim (strict since
   the first collect under the span prompt came back 100 % verbatim; the span counts are on the
   report's span line). The rule per kind of instance is the *Spans* section of `catalog/_general.yaml`.
+- Surface words are provenance, not atoms: a quantifier word (`every`, `most`), a frequency word (`often`,
+  `daily`) or any other wording the emitter abstracts into a truth value or a head stays in the INSTANCE
+  record, and every emitted statement links back to its instance (`detail[].inst`), so the wording is
+  recoverable without a second source for the same quantity inside the knowledge base. The legacy
+  `QuantifierPhrase` companion is retired for that reason.
 - Freeze before collect: never regenerate the instruction set while a collect is in flight (the scorer
   flags records collected under another instruction set as stale).
 - Example sentences never reuse a sentence from prompt.txt, the goldens or any corpus, and a held-out

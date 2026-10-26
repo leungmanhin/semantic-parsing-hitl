@@ -80,10 +80,6 @@ emits:
     when: "tense == future"
   - atom: "(Ongoing (Inheritance {subject} {predicate}))"
     when: "aspect == progressive"
-  - atom: "(QuantifierPhrase {subject} {predicate} \"{quantifier}\")"   # the word, kept beside the statement
-    if_filled: quantifier
-    project: true                                                     # a surface record: top level, outside any scope
-    stv: [1.0, 0.99]
 
 notes:
   - >-
@@ -91,8 +87,9 @@ notes:
     hold by definition (confidence 0.99), empirical ones admit exceptions (0.9 with an explicit
     quantifier word, 0.7 for a bare statement, which states no proportion); a bare
     empirical statement has strength 0.9, and a quantifier word sets it (all 1.0, most 0.9,
-    many 0.7, few 0.1, no 0.0). "No" as a quantifier is a strength-0 generalization with its
-    word kept, not a negation operator.
+    many 0.7, few 0.1, no 0.0). "No" as a quantifier is a strength-0 generalization, not a
+    negation operator. The word itself stays in the instance record as the provenance of the
+    strength; it is not an atom.
   - >-
     Class-level properties that no member holds (extinct, widespread, common) are not
     generalizations over members and would be wrong as Inheritance; they have their own

@@ -1,0 +1,105 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "0a4e7df19e4cd1dfa33c89986ab71053fa6df0c352d0e1a79b6ed5e92cdc13ee",
+  "item": {
+    "id": "saa335ad5cc",
+    "text": "Ferrets often bite."
+  },
+  "usage": {
+    "input": 62296,
+    "output": 175,
+    "thinking": null,
+    "total": 62471,
+    "cached": 60247,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 62296,
+    "candidatesTokenCount": 175,
+    "totalTokenCount": 62471,
+    "cachedContentTokenCount": 60247,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 62296
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 60247
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 175
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"saa335ad5cc\", \"instances\": [{\"t\": \"range\", \"id\": \"q1\", \"class\": \"ferret\", \"span\": \"Ferrets\"}, {\"t\": \"range\", \"id\": \"q2\", \"class\": \"occasion\", \"span\": \"often\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"bite\", \"actor\": \"@q1\", \"tense\": \"present\", \"span\": \"Ferrets often bite\"}, {\"t\": \"frequency\", \"id\": \"f1\", \"occasion\": [\"@q2\"], \"ranges\": [\"@q1\"], \"over\": [\"@v1\"], \"level\": \"often\", \"word\": \"often\", \"span\": \"often\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "saa335ad5cc",
+    "instances": [
+      {
+        "t": "range",
+        "id": "q1",
+        "class": "ferret",
+        "span": "Ferrets"
+      },
+      {
+        "t": "range",
+        "id": "q2",
+        "class": "occasion",
+        "span": "often"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "bite",
+        "actor": "@q1",
+        "tense": "present",
+        "span": "Ferrets often bite"
+      },
+      {
+        "t": "frequency",
+        "id": "f1",
+        "occasion": [
+          "@q2"
+        ],
+        "ranges": [
+          "@q1"
+        ],
+        "over": [
+          "@v1"
+        ],
+        "level": "often",
+        "word": "often",
+        "span": "often"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "afb9b34e08037e4af790f15f77e7670cdf6dd9377ca25c9a470b5c7859103180",
+  "run": 2,
+  "case": {
+    "template": "frequency",
+    "section": "held_out",
+    "index": 12,
+    "category": "positive",
+    "text": "Ferrets often bite.",
+    "key": "aa335ad5cc"
+  }
+}

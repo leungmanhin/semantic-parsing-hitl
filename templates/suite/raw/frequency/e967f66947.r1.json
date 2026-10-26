@@ -1,0 +1,81 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "13d65efd8590af9281f4352993392e989a5c6e903a309894fd0833b96eb5b3ca",
+  "item": {
+    "id": "se967f66947",
+    "text": "Lamine used to sing."
+  },
+  "usage": {
+    "input": 61680,
+    "output": 91,
+    "thinking": null,
+    "total": 61771,
+    "cached": 59629,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 61680,
+    "candidatesTokenCount": 91,
+    "totalTokenCount": 61771,
+    "cachedContentTokenCount": 59629,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 61680
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 59629
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 91
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"se967f66947\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}], \"unmapped\": [{\"span\": \"Lamine used to sing\", \"code\": \"G00\", \"construction\": \"Habitual past construction with 'used to'.\"}], \"issues\": []}",
+  "response": {
+    "id": "se967f66947",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "Lamine used to sing",
+        "code": "G00",
+        "construction": "Habitual past construction with 'used to'."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "e6af361d5de2bcb65212565ff9e8e2dd9b01aa00d5864b21ae0bebe17cf7ad42",
+  "run": 1,
+  "case": {
+    "template": "frequency",
+    "section": "held_out",
+    "index": 22,
+    "category": "abstain",
+    "text": "Lamine used to sing.",
+    "key": "e967f66947"
+  }
+}

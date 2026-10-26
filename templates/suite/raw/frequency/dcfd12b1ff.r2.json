@@ -1,0 +1,98 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "13d65efd8590af9281f4352993392e989a5c6e903a309894fd0833b96eb5b3ca",
+  "item": {
+    "id": "sdcfd12b1ff",
+    "text": "Yusra visits Lamine every two weeks."
+  },
+  "usage": {
+    "input": 61680,
+    "output": 179,
+    "thinking": null,
+    "total": 61859,
+    "cached": 59631,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 61680,
+    "candidatesTokenCount": 179,
+    "totalTokenCount": 61859,
+    "cachedContentTokenCount": 59631,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 61680
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 59631
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 179
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sdcfd12b1ff\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"visit\", \"actor\": \"@n1\", \"patient\": \"@n2\", \"tense\": \"present\", \"span\": \"Yusra visits Lamine\"}, {\"t\": \"frequency\", \"id\": \"f1\", \"event\": \"@v1\", \"every\": 2, \"unit\": \"week\", \"span\": \"every two weeks\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sdcfd12b1ff",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "visit",
+        "actor": "@n1",
+        "patient": "@n2",
+        "tense": "present",
+        "span": "Yusra visits Lamine"
+      },
+      {
+        "t": "frequency",
+        "id": "f1",
+        "event": "@v1",
+        "every": 2,
+        "unit": "week",
+        "span": "every two weeks"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "e6af361d5de2bcb65212565ff9e8e2dd9b01aa00d5864b21ae0bebe17cf7ad42",
+  "run": 2,
+  "case": {
+    "template": "frequency",
+    "section": "held_out",
+    "index": 2,
+    "category": "positive",
+    "text": "Yusra visits Lamine every two weeks.",
+    "key": "dcfd12b1ff"
+  }
+}

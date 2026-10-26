@@ -1,0 +1,109 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "0a4e7df19e4cd1dfa33c89986ab71053fa6df0c352d0e1a79b6ed5e92cdc13ee",
+  "item": {
+    "id": "sd3729cd9a9",
+    "text": "Yusra usually sleeps at night."
+  },
+  "usage": {
+    "input": 62300,
+    "output": 207,
+    "thinking": null,
+    "total": 62507,
+    "cached": 60251,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 62300,
+    "candidatesTokenCount": 207,
+    "totalTokenCount": 62507,
+    "cachedContentTokenCount": 60251,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 62300
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 60251
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 207
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sd3729cd9a9\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"range\", \"id\": \"q1\", \"class\": \"occasion\", \"span\": \"usually\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"sleep\", \"actor\": \"@n1\", \"tense\": \"present\", \"span\": \"Yusra usually sleeps\"}, {\"t\": \"time\", \"id\": \"t1\", \"event\": \"@v1\", \"name\": \"night\", \"span\": \"at night\"}, {\"t\": \"frequency\", \"id\": \"f1\", \"occasion\": [\"@q1\"], \"over\": [\"@v1\"], \"level\": \"usually\", \"word\": \"usually\", \"span\": \"usually\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sd3729cd9a9",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "range",
+        "id": "q1",
+        "class": "occasion",
+        "span": "usually"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "sleep",
+        "actor": "@n1",
+        "tense": "present",
+        "span": "Yusra usually sleeps"
+      },
+      {
+        "t": "time",
+        "id": "t1",
+        "event": "@v1",
+        "name": "night",
+        "span": "at night"
+      },
+      {
+        "t": "frequency",
+        "id": "f1",
+        "occasion": [
+          "@q1"
+        ],
+        "over": [
+          "@v1"
+        ],
+        "level": "usually",
+        "word": "usually",
+        "span": "usually"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "afb9b34e08037e4af790f15f77e7670cdf6dd9377ca25c9a470b5c7859103180",
+  "run": 2,
+  "case": {
+    "template": "frequency",
+    "section": "held_out",
+    "index": 8,
+    "category": "positive",
+    "text": "Yusra usually sleeps at night.",
+    "key": "d3729cd9a9"
+  }
+}

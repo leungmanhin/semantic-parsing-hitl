@@ -1,0 +1,81 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "13d65efd8590af9281f4352993392e989a5c6e903a309894fd0833b96eb5b3ca",
+  "item": {
+    "id": "sd359d308e4",
+    "text": "Whenever Yusra sang, the ferret hid."
+  },
+  "usage": {
+    "input": 61683,
+    "output": 140,
+    "thinking": null,
+    "total": 61823,
+    "cached": 59634,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 61683,
+    "candidatesTokenCount": 140,
+    "totalTokenCount": 61823,
+    "cachedContentTokenCount": 59634,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 61683
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 59634
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 140
+      }
+    ]
+  },
+  "raw_text": "{\n  \"id\": \"sd359d308e4\",\n  \"instances\": [\n    {\n      \"t\": \"named-entity\",\n      \"id\": \"n1\",\n      \"name\": \"Yusra\",\n      \"span\": \"Yusra\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"span\": \"Whenever Yusra sang, the ferret hid.\",\n      \"code\": \"G00\",\n      \"construction\": \"A conditional over occasions introduced by 'whenever'.\"\n    }\n  ],\n  \"issues\": []\n}",
+  "response": {
+    "id": "sd359d308e4",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "Whenever Yusra sang, the ferret hid.",
+        "code": "G00",
+        "construction": "A conditional over occasions introduced by 'whenever'."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "e6af361d5de2bcb65212565ff9e8e2dd9b01aa00d5864b21ae0bebe17cf7ad42",
+  "run": 2,
+  "case": {
+    "template": "frequency",
+    "section": "held_out",
+    "index": 21,
+    "category": "abstain",
+    "text": "Whenever Yusra sang, the ferret hid.",
+    "key": "d359d308e4"
+  }
+}

@@ -27,7 +27,10 @@ conjuncts of the scoped bundle, so a sealed clause can also be stated flat), ``w
 slot values with ``slot == value`` / ``slot != value`` clauses joined by ``and`` / ``or``
 (case-insensitive, so ``factive == true`` tests a boolean), ``project: true`` emits the shape
 at the top level whatever scope the instance sits in (a presupposition projects through
-negation).
+negation), and ``within: <refs slot>`` renders the shape INSIDE that slot's bundle, under the
+same variable / skolem substitution as the bundle (a rule over occasions adds ``(Time
+(sk_swim $t) $t)`` to its consequent); in such a shape a refs-slot placeholder stands for the
+symbol of the first instance the slot names, not for the bundle.
 
 Symbols.  A template that ``mints`` a symbol says its class and how it is named:
 ``symbol: name`` derives the symbol from the ``name`` slot (``"Ilse Varga"`` -> ``ilse_varga``,
@@ -392,19 +395,22 @@ class _Emitter:
                 self.homed_in.setdefault(h, []).append(iid)
 
     # ---------------------------------------------------------------- rendering
-    def fill(self, inst: dict, slot: str, spec: dict, element=None):
+    def fill(self, inst: dict, slot: str, spec: dict, element=None, within: bool = False):
         v = element if element is not None else inst.get(slot)
         if spec["type"] == "refs":
-            return element if element is not None else self.bundle(v, inst["id"], spec)
+            if within:                                   # inside a bundle: the first referenced instance's symbol
+                first = next((x for x in (v or []) if is_ref(x)), None)
+                return self.sym[first[1:]] if first else None
+            return element if element is not None else self.bundle(v, inst["id"], spec, slot)
         if is_ref(v):
             return self.sym[v[1:]]
         if spec["type"] == "string":
             return Str(str(v))
         return v
 
-    def substitute(self, expr, inst: dict, slots: dict, element_slot=None, element=None):
+    def substitute(self, expr, inst: dict, slots: dict, element_slot=None, element=None, within: bool = False):
         if isinstance(expr, list):
-            out = [self.substitute(x, inst, slots, element_slot, element) for x in expr]
+            out = [self.substitute(x, inst, slots, element_slot, element, within) for x in expr]
             if out and out[0] == "And":                 # a shape's own conjunction absorbs a bundle that is one
                 flat = ["And"]
                 for x in out[1:]:
@@ -422,7 +428,7 @@ class _Emitter:
         m = CAT._PLACEHOLDER.fullmatch(tok)
         if m:
             s = m.group(1)
-            return self.fill(inst, s, slots[s], element if s == element_slot else None)
+            return self.fill(inst, s, slots[s], element if s == element_slot else None, within)
         return tok
 
     def atoms_of(self, iid: str, projecting: bool = False) -> list:
@@ -446,6 +452,8 @@ class _Emitter:
         t = self.cat[r["t"]]
         terms = []
         for e in t.get("emits") or []:
+            if e.get("within"):                          # rendered inside that slot's bundle, see within_terms
+                continue
             if bool(e.get("project")) != projecting:
                 continue
             if "if_filled" in e and r.get(e["if_filled"]) in (None, [], ""):
@@ -466,6 +474,24 @@ class _Emitter:
                     terms.append((self.substitute(shape, r, t["slots"], slot, element), e))
             else:
                 terms.append((self.substitute(shape, r, t["slots"]), e))
+        return terms
+
+    def within_terms(self, iid: str, slot: str) -> list:
+        """The instance's ``within: <slot>`` shapes, rendered while that slot's bundle is being
+        built (the caller has the bundle's overlay in place)."""
+        r = self.by_id[iid]
+        t = self.cat[r["t"]]
+        terms = []
+        for e in t.get("emits") or []:
+            if e.get("within") != slot:
+                continue
+            if "if_filled" in e and r.get(e["if_filled"]) in (None, [], ""):
+                continue
+            if "when" in e and not holds(e["when"], r):
+                continue
+            for sym, cls in (e.get("declare") or {}).items():
+                self.declare(sym, cls)
+            terms.append(self.substitute(parse_shape(e["atom"]), r, t["slots"], within=True))
         return terms
 
     def attached(self, refs: list, scope_iid: str) -> list[str]:
@@ -499,9 +525,10 @@ class _Emitter:
             todo.extend(self.attachments_of.get(iid, []))
         return out
 
-    def bundle(self, refs: list, scope_iid: str, spec: dict | None = None):
-        """The content of a scope: its referenced instances' atoms plus the referents homed here.
-        With ``bind`` / ``skolemize`` on the slot, symbols are overlaid while rendering."""
+    def bundle(self, refs: list, scope_iid: str, spec: dict | None = None, slot: str | None = None):
+        """The content of a scope: its referenced instances' atoms plus the referents homed here,
+        plus the scope instance's own ``within: <slot>`` shapes. With ``bind`` / ``skolemize`` on
+        the slot, symbols are overlaid while rendering."""
         overlay = None
         if spec and (spec.get("bind") or spec.get("skolemize")):
             overlay = dict(self.sym)
@@ -535,6 +562,8 @@ class _Emitter:
                 terms.extend(self.atoms_of(ref[1:]))
             for iid in self.attached(refs, scope_iid):
                 terms.extend(self.atoms_of(iid))
+            if slot:
+                terms.extend(self.within_terms(scope_iid, slot))
         finally:
             self.sym = saved
         return terms[0] if len(terms) == 1 else ["And"] + terms

@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
+  "prompt_sha256": "13d65efd8590af9281f4352993392e989a5c6e903a309894fd0833b96eb5b3ca",
   "item": {
     "id": "s47bd308e53",
     "text": "Teodor reads every day."
   },
   "usage": {
-    "input": 56506,
-    "output": 131,
+    "input": 61680,
+    "output": 140,
     "thinking": null,
-    "total": 56637,
-    "cached": 54457,
+    "total": 61820,
+    "cached": 59631,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 56506,
-    "candidatesTokenCount": 131,
-    "totalTokenCount": 56637,
-    "cachedContentTokenCount": 54457,
+    "promptTokenCount": 61680,
+    "candidatesTokenCount": 140,
+    "totalTokenCount": 61820,
+    "cachedContentTokenCount": 59631,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 56506
+        "tokenCount": 61680
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 54457
+        "tokenCount": 59631
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 131
+        "tokenCount": 140
       }
     ]
   },
-  "raw_text": "{\"id\": \"s47bd308e53\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"read\", \"actor\": \"@n1\", \"tense\": \"present\", \"span\": \"Teodor reads\"}], \"unmapped\": [{\"span\": \"every day\", \"code\": \"G00\", \"construction\": \"A frequency noun phrase stating how often the event occurs.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"s47bd308e53\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"read\", \"actor\": \"@n1\", \"tense\": \"present\", \"span\": \"Teodor reads\"}, {\"t\": \"frequency\", \"id\": \"f1\", \"event\": \"@v1\", \"every\": 1, \"unit\": \"day\", \"span\": \"every day\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s47bd308e53",
     "instances": [
@@ -60,28 +60,30 @@
       },
       {
         "t": "activity",
-        "id": "e1",
+        "id": "v1",
         "verb": "read",
         "actor": "@n1",
         "tense": "present",
         "span": "Teodor reads"
-      }
-    ],
-    "unmapped": [
+      },
       {
-        "span": "every day",
-        "code": "G00",
-        "construction": "A frequency noun phrase stating how often the event occurs."
+        "t": "frequency",
+        "id": "f1",
+        "event": "@v1",
+        "every": 1,
+        "unit": "day",
+        "span": "every day"
       }
     ],
+    "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
+  "prompt_body_sha256": "e6af361d5de2bcb65212565ff9e8e2dd9b01aa00d5864b21ae0bebe17cf7ad42",
   "run": 3,
   "case": {
     "template": "time",
     "section": "held_out",
-    "index": 16,
+    "index": 23,
     "category": "abstain",
     "text": "Teodor reads every day.",
     "key": "47bd308e53"

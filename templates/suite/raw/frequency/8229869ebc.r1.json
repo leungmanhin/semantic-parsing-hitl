@@ -1,0 +1,103 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "0a4e7df19e4cd1dfa33c89986ab71053fa6df0c352d0e1a79b6ed5e92cdc13ee",
+  "item": {
+    "id": "s8229869ebc",
+    "text": "Lamine sang every night."
+  },
+  "usage": {
+    "input": 62299,
+    "output": 180,
+    "thinking": null,
+    "total": 62479,
+    "cached": 60250,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 62299,
+    "candidatesTokenCount": 180,
+    "totalTokenCount": 62479,
+    "cachedContentTokenCount": 60250,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 62299
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 60250
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 180
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s8229869ebc\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"range\", \"id\": \"q1\", \"class\": \"night\", \"quantifier\": \"every\", \"span\": \"every night\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"sing\", \"actor\": \"@n1\", \"tense\": \"past\", \"span\": \"Lamine sang\"}, {\"t\": \"frequency\", \"id\": \"f1\", \"occasion\": [\"@q1\"], \"over\": [\"@v1\"], \"every\": 1, \"word\": \"every night\", \"span\": \"every night\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s8229869ebc",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "range",
+        "id": "q1",
+        "class": "night",
+        "quantifier": "every",
+        "span": "every night"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "sing",
+        "actor": "@n1",
+        "tense": "past",
+        "span": "Lamine sang"
+      },
+      {
+        "t": "frequency",
+        "id": "f1",
+        "occasion": [
+          "@q1"
+        ],
+        "over": [
+          "@v1"
+        ],
+        "every": 1,
+        "word": "every night",
+        "span": "every night"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "afb9b34e08037e4af790f15f77e7670cdf6dd9377ca25c9a470b5c7859103180",
+  "run": 1,
+  "case": {
+    "template": "frequency",
+    "section": "held_out",
+    "index": 5,
+    "category": "positive",
+    "text": "Lamine sang every night.",
+    "key": "8229869ebc"
+  }
+}
