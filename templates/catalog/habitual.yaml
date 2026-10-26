@@ -1,0 +1,188 @@
+# Template: habitual  (a clause read as a habit, not as one occurrence: "Yusra swims", "Teodor reads", "Lamine used to sing")
+#
+# A dynamic verb in the simple present with no frequency expression describes what its subject
+# habitually does, not one occurrence: "Yusra swims" asserts a habit. The clause is parsed with
+# its own template and its event symbol denotes the HABIT — the sum of its occurrences, a
+# characterizing state that holds over a stretch of time — which this instance marks: (Habitual
+# sk_swim_1). A top-level event is an eventuality the text asserts: an occurrence, or, when
+# marked, a habit. "Used to" is the same mark on a past clause. A stated frequency (every day,
+# often) builds a rule over occasions instead — the frequency template — and marks nothing.
+
+id: habitual
+family: attachment
+shape: attachment
+title: A clause read as a habit
+
+trigger:
+  construction: >
+    A clause whose dynamic verb is in the simple present and that carries no frequency expression
+    — Yusra swims, Teodor reads, Lamine bakes bread, Ottoline visits the market: the subject's
+    habit, not one occurrence. Parse the clause with its own template (tense present) and add
+    this instance on its event; the event's symbol then denotes the habit. The habitual past with
+    "used to" — Lamine used to sing — is the same mark on a clause parsed in the past tense, with
+    the words recorded. The reading is the text's: a story told in the present tense, stage
+    directions, a running commentary or a headline makes each clause one occurrence, and then no
+    instance is written; a simple past with no "used to" is one occurrence as well.
+  surface_forms:
+    - "<subject> V-s …"                              # Yusra swims; Teodor reads the paper: a habit
+    - "<subject> used to V …"                        # Lamine used to sing: a past habit, word recorded
+  boundary:                   # looks like a habit but is not one
+    - >-
+      a frequency expression on the clause — every day, on Sundays, often, twice a week: a rule
+      over occasions, the frequency template; no mark
+    - >-
+      the progressive — Yusra is swimming: one occurrence under way, the clause's own aspect
+    - >-
+      a stative verb — knows, likes, lives, owns, needs: a state, which holds rather than
+      recurs; no mark
+    - >-
+      a narrative or reportive present — Yusra swims to the shore and climbs out; Teodor enters
+      and sits: each clause one occurrence; no mark
+    - >-
+      a simple past with no used to — Yusra swam, the ferret slept: one occurrence
+    - >-
+      a generic subject — ferrets swim, herons eat frogs: a generalization over the class, the
+      generic template; the rule already generalizes, no mark
+    - >-
+      an ability — Yusra can swim: a modal, not a habit
+    - >-
+      be used to with a noun or a gerund — Yusra is used to the cold, used to waking early: a
+      copular predication of accustomedness, not the habitual past
+    - >-
+      a clause the text presents as a fact about one occasion through a time or a place — Yusra
+      swims at noon today: one occurrence; a habitual present with a time (Yusra swims at noon)
+      keeps the mark and the time
+
+slots:
+  id:    {type: id, required: true, doc: "your label for the mark (h1, h2 …)"}
+  event: {type: filler, class: Event, attaches: true, required: true,
+          doc: "the clause's predication instance: the id of the event this marks as a habit"}
+  word:  {type: string, required: false, doc: "used to, when the habit is marked by it; absent for a bare present"}
+
+emits:
+  - atom: "(Habitual {event})"
+
+notes:
+  - >-
+    The mark changes what the event's symbol denotes, not what the clause's own atoms say: with
+    (Habitual sk_swim_1), (Member sk_swim_1 swim) says the habit is of the swim kind and (Agent
+    sk_swim_1 sk_yusra_1) whose habit it is. A consumer that wants occurrences leaves marked
+    events out; one that asks whether Yusra swims matches the fact directly. What a habit says
+    about any one occasion — that on a suitable occasion Yusra swims — is a generalization a
+    consumer may derive from the mark; the parse does not state it, since the sentence gives no
+    occasions and no proportion.
+  - >-
+    An attachment has no symbol of its own: it is rendered wherever its event is rendered, so
+    "Yusra does not swim" denies the habit as a whole, (Not (And (Member sk_swim_1 swim) (Agent
+    sk_swim_1 sk_yusra_1) (Habitual sk_swim_1))), the way a generic is denied; "never" is a
+    negation too and marks nothing.
+  - >-
+    Whether an unmarked present is habitual or narrative is a reading of the text, like a
+    distributive or a collective reading of a plural; the default is habitual, the narrative
+    present is recognisable by its sequence of occurrences.
+
+depends_on: [activity, creation, motion]
+composes_with: [negation, modal, time, location]
+
+examples:
+  shown:                     # rendered into the prompt
+    - category: positive
+      note: a bare habitual present — the event denotes the habit
+      text: "Yusra swims."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
+        - {t: activity, id: v1, verb: swim, actor: "@n1", tense: present, span: "Yusra swims"}
+        - {t: habitual, id: h1, event: "@v1", span: "Yusra swims"}
+      emitted:               # what the emitter produces (illustration; the emitter is the authority)
+        - "(Name sk_yusra_1 \"Yusra\")"
+        - "(Member sk_swim_1 swim)"
+        - "(Agent sk_swim_1 sk_yusra_1)"
+        - "(Habitual sk_swim_1)"
+      declarations:
+        - "(: sk_swim_1 Event)"
+        - "(: sk_yusra_1 Entity)"
+        - "(: swim Class)"
+    - category: positive
+      note: the habitual past — a past clause with the mark and the words recorded
+      text: "Teodor used to visit Yusra."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor", span: "Teodor"}
+        - {t: named-entity, id: n2, name: "Yusra", span: "Yusra"}
+        - {t: activity, id: v1, verb: visit, actor: "@n1", patient: "@n2", tense: past, span: "Teodor used to visit Yusra"}
+        - {t: habitual, id: h1, event: "@v1", word: "used to", span: "used to"}
+    - category: abstain
+      text: "Yusra laughed."
+      expected: {abstain: true, template: activity}                   # a simple past: one occurrence
+    - category: abstain
+      text: "Ferrets sleep."
+      expected: {abstain: true, template: generic}                    # a generic subject: a rule
+
+  held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      note: a bare habitual present
+      text: "Teodor reads."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: activity, id: v1, verb: read, actor: "@n1", tense: present}
+        - {t: habitual, id: h1, event: "@v1"}
+    - category: positive
+      note: a habit on a creation
+      text: "Lamine bakes bread."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: creation, id: e1, verb: bake, creator: "@n1", product: bread, tense: present}
+        - {t: habitual, id: h1, event: "@e1"}
+    - category: positive
+      note: a habit with an object
+      text: "Ottoline visits the market."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: witness, id: x1, class: market, definite: true}
+        - {t: activity, id: v1, verb: visit, actor: "@n1", patient: "@x1", tense: present}
+        - {t: habitual, id: h1, event: "@v1"}
+    - category: positive
+      note: a habitual present with a time — the habit keeps its time
+      text: "Yusra swims at noon."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: activity, id: v1, verb: swim, actor: "@n1", tense: present}
+        - {t: time, id: t1, event: "@v1", hour: 12}
+        - {t: habitual, id: h1, event: "@v1"}
+    - category: positive
+      note: the habitual past
+      text: "Lamine used to sing."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: activity, id: v1, verb: sing, actor: "@n1", tense: past}
+        - {t: habitual, id: h1, event: "@v1", word: "used to"}
+    - category: positive
+      note: the habitual past of a motion
+      text: "Yusra used to walk to the market."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, class: market, definite: true}
+        - {t: motion, id: m1, verb: walk, mover: "@n1", goal: "@x1", tense: past}
+        - {t: habitual, id: h1, event: "@m1", word: "used to"}
+    - category: scoped
+      note: under clausal negation — the habit is denied as a whole
+      text: "Yusra does not swim."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: activity, id: v1, verb: swim, actor: "@n1", tense: present}
+        - {t: habitual, id: h1, event: "@v1"}
+        - {t: negation, id: s1, over: ["@v1"]}
+    - category: abstain
+      text: "Yusra is sleeping."
+      expected: {abstain: true, template: activity}                   # the progressive: one occurrence under way
+    - category: abstain
+      text: "The ferret slept."
+      expected: {abstain: true, template: activity}                   # a simple past: one occurrence
+    - category: abstain
+      text: "Teodor reads every day."
+      expected: {abstain: true, template: frequency}                  # a frequency: a rule, no mark
+    - category: abstain
+      text: "Lamine often laughed."
+      expected: {abstain: true, template: frequency}                  # an adverb: a rule, no mark
+    - category: abstain
+      text: "Herons eat frogs."
+      expected: {abstain: true, template: generic}                    # a generic subject

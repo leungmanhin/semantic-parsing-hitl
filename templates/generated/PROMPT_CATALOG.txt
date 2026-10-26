@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 62c44e27bf801a81 · 44 templates
+catalog sha256 41807a07a4a1353d · 45 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -696,8 +696,9 @@ Not this template:
   continued the audit: an action on a thing, parsed by that action's template
 - stop, keep or prevent with an object and a verb — stopped Teodor from leaving, kept Lamine
   from leaving: a causative
-- used to V, no longer V-s, V-s again, still V-s: a different construction, and the words change
-  the claim (no longer works does not say works); report the whole clause as unmapped
+- no longer V-s, V-s again, still V-s: a different construction, and the words change the claim
+  (no longer works does not say works); report the whole clause as unmapped
+- used to V — Lamine used to sing: a past habit, the habitual template
 - begin or start as the motion of setting off — started for the market: a motion
 
 Slots:
@@ -2815,6 +2816,90 @@ Not this template. TEXT: Yusra laughed loudly. — use `manner`.
 
 Not this template. TEXT: The ladder is very crooked. — use `degree`.
 
+### habitual — A clause read as a habit
+
+When: A clause whose dynamic verb is in the simple present and that carries no frequency
+expression — Yusra swims, Teodor reads, Lamine bakes bread, Ottoline visits the market: the
+subject's habit, not one occurrence. Parse the clause with its own template (tense present) and
+add this instance on its event; the event's symbol then denotes the habit. The habitual past
+with "used to" — Lamine used to sing — is the same mark on a clause parsed in the past tense,
+with the words recorded. The reading is the text's: a story told in the present tense, stage
+directions, a running commentary or a headline makes each clause one occurrence, and then no
+instance is written; a simple past with no "used to" is one occurrence as well.
+
+Forms:
+- <subject> V-s …
+- <subject> used to V …
+
+Not this template:
+- a frequency expression on the clause — every day, on Sundays, often, twice a week: a rule over
+  occasions, the frequency template; no mark
+- the progressive — Yusra is swimming: one occurrence under way, the clause's own aspect
+- a stative verb — knows, likes, lives, owns, needs: a state, which holds rather than recurs; no
+  mark
+- a narrative or reportive present — Yusra swims to the shore and climbs out; Teodor enters and
+  sits: each clause one occurrence; no mark
+- a simple past with no used to — Yusra swam, the ferret slept: one occurrence
+- a generic subject — ferrets swim, herons eat frogs: a generalization over the class, the
+  generic template; the rule already generalizes, no mark
+- an ability — Yusra can swim: a modal, not a habit
+- be used to with a noun or a gerund — Yusra is used to the cold, used to waking early: a
+  copular predication of accustomedness, not the habitual past
+- a clause the text presents as a fact about one occasion through a time or a place — Yusra
+  swims at noon today: one occurrence; a habitual present with a time (Yusra swims at noon)
+  keeps the mark and the time
+
+Slots:
+
+- `t` (required): "habitual"
+- `id` (required; your label for this instance): your label for the mark (h1, h2 …).
+- `event` (required; "@id" of the predication instance this attaches to): the clause's
+  predication instance: the id of the event this marks as a habit.
+- `word` (optional; a string): used to, when the habit is marked by it; absent for a bare
+  present.
+
+Example (a bare habitual present — the event denotes the habit). TEXT: Yusra swims.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Yusra", "span": "Yusra"},
+      {"t": "activity", "id": "v1", "verb": "swim", "actor": "@n1", "tense": "present", "span": "Yusra swims"},
+      {"t": "habitual", "id": "h1", "event": "@v1", "span": "Yusra swims"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_yusra_1 "Yusra")
+    (Member sk_swim_1 swim)
+    (Agent sk_swim_1 sk_yusra_1)
+    (Habitual sk_swim_1)
+
+Example (the habitual past — a past clause with the mark and the words recorded). TEXT: Teodor used to visit Yusra.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Teodor", "span": "Teodor"},
+      {"t": "named-entity", "id": "n2", "name": "Yusra", "span": "Yusra"},
+      {"t": "activity", "id": "v1", "verb": "visit", "actor": "@n1", "patient": "@n2", "tense": "past", "span": "Teodor used to visit Yusra"},
+      {"t": "habitual", "id": "h1", "event": "@v1", "word": "used to", "span": "used to"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_teodor_1 "Teodor")
+    (Name sk_yusra_1 "Yusra")
+    (Member sk_visit_1 visit)
+    (Agent sk_visit_1 sk_teodor_1)
+    (Patient sk_visit_1 sk_yusra_1)
+    (Past sk_visit_1)
+    (Habitual sk_visit_1)
+
+Not this template. TEXT: Yusra laughed. — use `activity`.
+
+Not this template. TEXT: Ferrets sleep. — use `generic`.
+
 ### location — The place where an event takes place
 
 When: A prepositional phrase naming the place where the clause's event takes place: in / at / on
@@ -3310,6 +3395,7 @@ The program renders these instances as:
     (Past sk_laugh_1)
     (Time sk_laugh_1 sk_time_1)
     (BeforeBy sk_time_1 sk_now_1 1 day)
+    (Member sk_time_1 day)
 
 Example (a weekday — a time instance described by a field). TEXT: Lamine sold the spindle on Monday.
 
@@ -3332,6 +3418,7 @@ The program renders these instances as:
     (Past sk_sell_1)
     (Time sk_sell_1 sk_time_1)
     (Weekday sk_time_1 monday)
+    (Member sk_time_1 day)
 
 Example (a measured distance from the reference time — a deictic with a number). TEXT: Three days ago, Yusra left.
 
@@ -3351,6 +3438,7 @@ The program renders these instances as:
     (Past sk_leave_1)
     (Time sk_leave_1 sk_time_1)
     (BeforeBy sk_time_1 sk_now_1 3 day)
+    (Member sk_time_1 day)
 
 Not this template. TEXT: Yusra laughed in the barn. — use `location`.
 
@@ -3640,20 +3728,21 @@ Not this template. TEXT: Three ferrets surrounded the barn. — use `group`.
 
 When: An expression saying how often the clause's event recurs. Two forms. (1) A QUANTIFICATION
 OVER OCCASIONS: a period of one unit — every day, each morning, every Monday, on Sundays, every
-night, daily, weekly, monthly, yearly, annually, nightly — or a frequency adverb — always,
-usually, normally, generally, often, frequently, regularly, sometimes, occasionally, seldom,
-rarely, hardly ever, from time to time. The occasion is a range instance over the class of
-occasions (day, week, month, year; morning, night; sunday, monday; and `occasion` for an adverb
-with no stated period), the clause is parsed with its own template, and this instance names the
-range in `occasion` and the predication in `over` with `every: 1` for a period or `level` for
-the adverb; a generic subject or object (ferrets often bite, every ferret sleeps every night) is
-a range listed in `ranges`, and no generic instance is written. (2) A PATTERN RECORDED ON THE
-EVENT: a period of more than one unit (every two weeks, every other day, every three years), a
-rate (twice a week, once a year, three times a day, twice per month), or a bare count of
-occurrences (once, twice, three times): the clause's predication is named in `event` with
-`every` and `unit`, or `times` with or without `unit`. One instance per frequency expression; a
-clock time, a date or a place beside it (at noon every day) is an attachment on the event as
-always, rendered inside the rule.
+night, daily, weekly, monthly, yearly, annually, nightly — a rate — twice a week, three times a
+day, once a year, twice per month — or a frequency adverb — always, usually, normally,
+generally, often, frequently, regularly, sometimes, occasionally, seldom, rarely, hardly ever,
+from time to time. The occasion is a range instance over the class of occasions (day, week,
+month, year; morning, night; sunday, monday; and `occasion` for an adverb with no stated
+period), the clause is parsed with its own template, and this instance names the range in
+`occasion` and the predication in `over`, with `every: 1` for a period, `times` for a rate (the
+count in each occasion: twice a week → 2 with a range over week) or `level` for the adverb; a
+generic subject or object (ferrets often bite, every ferret sleeps every night) is a range
+listed in `ranges`, and no generic instance is written. (2) A PATTERN RECORDED ON THE EVENT: a
+period of more than one unit (every two weeks, every other day, every three years) or a bare
+count of occurrences (once, twice, three times): the clause's predication is named in `event`
+with `every` and `unit`, or with `times`. One instance per frequency expression; a clock time, a
+date or a place beside it (at noon every day) is an attachment on the event as always, rendered
+inside the rule.
 
 Forms:
 - <clause> every / each <unit, day part or weekday>
@@ -3661,8 +3750,8 @@ Forms:
 - <clause> daily / weekly / monthly / yearly / nightly
 - <subject> <adverb> V … / <clause> <adverb>
 - <class>s <adverb> V … / every <class> V … every <unit>
-- <clause> every <n> <units> / every other <unit>
 - <clause> once / twice / <n> times a / per <unit>
+- <clause> every <n> <units> / every other <unit>
 - <clause> once / twice / <n> times
 
 Not this template:
@@ -3675,8 +3764,8 @@ Not this template:
   phrase as unmapped
 - every time or whenever with a clause — whenever the bell rings: a conditional over occasions,
   not a recurrence; reported as unmapped
-- a habitual past with used to — Lamine used to sing: a different construction; report the
-  clause as unmapped
+- a habit with no frequency expression — Yusra swims, Lamine used to sing: the habitual template
+  marks the clause's event; no rule, no range
 - a time the event takes place at — in 2019, on Monday, at noon, yesterday: a time; a time
   stated once is not a recurrence (on Monday is a time, on Mondays a frequency)
 - once meaning formerly — Lamine once lived in Calderwick: a vague past time, not one
@@ -3702,19 +3791,20 @@ Slots:
   sleeps every night): their ids in text order; absent otherwise.
 - `over` (optional; a list of "@id" of the instances that state the clause): the predication
   over the occasions: its id, nothing else (a negation or a modal over the clause names THIS
-  instance instead); filled for a period of one unit or an adverb, never together with event.
+  instance instead); filled for a period of one unit, a rate or an adverb, never together with
+  event.
 - `event` (optional; "@id" of the predication instance this attaches to): for a pattern recorded
-  on the event instead — a period of more than one unit, a rate, a bare count: the id of the
-  clause's predication instance; never together with over.
+  on the event instead — a period of more than one unit, or a bare count: the id of the clause's
+  predication instance; never together with over.
 - `every` (optional; a number): the period as a number of units: 1 with over (every day, every
   morning, on Sundays, daily, annually); the stated number with event (every two weeks → 2,
   every other day → 2, with unit).
-- `times` (optional; a number): with event: a count of occurrences — twice → 2, once → 1, three
-  times → 3 — per unit when a unit is stated (twice a week → 2, week), bare otherwise (knocked
-  twice).
-- `unit` (optional; a lemma): with event: the time unit of a numeric period or a rate, singular
-  and lowercase (minute, hour, day, week, month, year); with over the occasion range carries the
-  class, so leave it empty.
+- `times` (optional; a number): a count of occurrences — twice → 2, once → 1, three times → 3:
+  with over, the count in each occasion of the range (twice a week → 2 with a range over week;
+  once a year → 1 with a range over year); with event, a bare count (knocked twice).
+- `unit` (optional; a lemma): with event only: the time unit of a numeric period, singular and
+  lowercase (every two weeks → week, every other day → day); with over the occasion range
+  carries the class, so leave it empty.
 - `level` (optional; a lemma): the frequency adverb as written, lowercase (always, usually,
   normally, generally, often, frequently, regularly, sometimes, occasionally, seldom, rarely); a
   phrase as one snake_case symbol (hardly_ever, from_time_to_time, once_in_a_while).
@@ -3755,7 +3845,7 @@ The program renders these instances as:
     (Name sk_ottoline_1 "Ottoline")
     (Implication (Member $x occasion) (And (Member (sk_laugh $x) laugh) (Agent (sk_laugh $x) sk_ottoline_1) (Time (sk_laugh $x) $x)))
 
-Example (a rate — a pattern recorded on the event, which stays a particular predication). TEXT: Lamine visits the market twice a week.
+Example (a rate — a rule over the weeks, each week's episode carrying the count). TEXT: Lamine visits the market twice a week.
 
 Instances:
 
@@ -3763,17 +3853,15 @@ Instances:
       {"t": "named-entity", "id": "n1", "name": "Lamine", "span": "Lamine"},
       {"t": "witness", "id": "x1", "class": "market", "definite": true, "span": "the market"},
       {"t": "activity", "id": "v1", "verb": "visit", "actor": "@n1", "patient": "@x1", "tense": "present", "span": "Lamine visits the market"},
-      {"t": "frequency", "id": "f1", "event": "@v1", "times": 2, "unit": "week", "word": "twice a week", "span": "twice a week"}
+      {"t": "range", "id": "q1", "class": "week", "span": "a week"},
+      {"t": "frequency", "id": "f1", "occasion": ["@q1"], "over": ["@v1"], "times": 2, "word": "twice a week", "span": "twice a week"}
     ]
 
 The program renders these instances as:
 
     (Name sk_lamine_1 "Lamine")
     (Member sk_market_1 market)
-    (Member sk_visit_1 visit)
-    (Agent sk_visit_1 sk_lamine_1)
-    (Patient sk_visit_1 sk_market_1)
-    (TimesPer sk_visit_1 2 week)
+    (Implication (Member $x week) (And (Member (sk_visit $x) visit) (Agent (sk_visit $x) sk_lamine_1) (Patient (sk_visit $x) sk_market_1) (Time (sk_visit $x) $x) (Times (sk_visit $x) 2)))
 
 Not this template. TEXT: Most students laugh. — use `generic`.
 

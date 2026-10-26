@@ -6,11 +6,14 @@
 # with its own event per occasion, exactly as a generalization over a class does:
 #   (Implication (Member $t morning) (And (Member (sk_swim $t) swim) (Agent (sk_swim $t) sk_yusra_1) (Time (sk_swim $t) $t)))
 # The sentence asserts no particular swim, so no top-level swim is minted; the strength is the
-# quantifier's (every / always 1.0, usually / often 0.8, sometimes 0.5, rarely 0.1) at confidence
-# 0.9, and the range's instance record keeps the word. A pattern no single occasion carries
-# — a period of more than one unit (every two weeks), a rate (twice a week) — and a bare count of
-# occurrences (knocked twice) stay a tag on the event: (Every e 2 week), (TimesPer e 2 week),
-# (Times e 2). The parser records the words; what "usually" amounts to is the program's dial.
+# quantifier's, on the one dial the noun quantifiers use (every / always 1.0, usually 0.9 like
+# most, often 0.7 like many, rarely 0.1 like few) at confidence 0.9; an existential adverb
+# (sometimes) states no proportion and gets 0.5 at confidence 0.7, as a bare generic does. The
+# range's instance record keeps the word. A rate (twice a week) is the same rule
+# over the weeks, each week's episode carrying the count: (Times (sk_visit $w) 2). A pattern no
+# single occasion carries — a period of more than one unit (every two weeks) — and a bare count
+# of occurrences (knocked twice) stay a tag on the event: (Every e 2 week), (Times e 2). The
+# parser records the words; what "usually" amounts to is the program's dial.
 
 id: frequency
 family: rule
@@ -22,28 +25,29 @@ trigger:
   construction: >
     An expression saying how often the clause's event recurs. Two forms. (1) A QUANTIFICATION
     OVER OCCASIONS: a period of one unit — every day, each morning, every Monday, on Sundays,
-    every night, daily, weekly, monthly, yearly, annually, nightly — or a frequency adverb —
-    always, usually, normally, generally, often, frequently, regularly, sometimes, occasionally,
-    seldom, rarely, hardly ever, from time to time. The occasion is a range instance over the
-    class of occasions (day, week, month, year; morning, night; sunday, monday; and `occasion`
-    for an adverb with no stated period), the clause is parsed with its own template, and this
-    instance names the range in `occasion` and the predication in `over` with `every: 1` for a
-    period or `level` for the adverb; a generic subject or object (ferrets often bite, every
-    ferret sleeps every night) is a range listed in `ranges`, and no generic instance is written.
-    (2) A PATTERN RECORDED ON THE EVENT: a period of more than one unit (every two weeks, every
-    other day, every three years), a rate (twice a week, once a year, three times a day, twice per
-    month), or a bare count of occurrences (once, twice, three times): the clause's predication is
-    named in `event` with `every` and `unit`, or `times` with or without `unit`. One instance per
-    frequency expression; a clock time, a date or a place beside it (at noon every day) is an
-    attachment on the event as always, rendered inside the rule.
+    every night, daily, weekly, monthly, yearly, annually, nightly — a rate — twice a week, three
+    times a day, once a year, twice per month — or a frequency adverb — always, usually, normally,
+    generally, often, frequently, regularly, sometimes, occasionally, seldom, rarely, hardly ever,
+    from time to time. The occasion is a range instance over the class of occasions (day, week,
+    month, year; morning, night; sunday, monday; and `occasion` for an adverb with no stated
+    period), the clause is parsed with its own template, and this instance names the range in
+    `occasion` and the predication in `over`, with `every: 1` for a period, `times` for a rate
+    (the count in each occasion: twice a week → 2 with a range over week) or `level` for the
+    adverb; a generic subject or object (ferrets often bite, every ferret sleeps every night) is
+    a range listed in `ranges`, and no generic instance is written. (2) A PATTERN RECORDED ON
+    THE EVENT: a period of more than one unit (every two weeks, every other day, every three
+    years) or a bare count of occurrences (once, twice, three times): the clause's predication is
+    named in `event` with `every` and `unit`, or with `times`. One instance per frequency
+    expression; a clock time, a date or a place beside it (at noon every day) is an attachment
+    on the event as always, rendered inside the rule.
   surface_forms:
     - "<clause> every / each <unit, day part or weekday>"    # swims every morning: a range over morning; every: 1
     - "<clause> on <weekday>s"                                # swims on Sundays: a range over sunday; every: 1
     - "<clause> daily / weekly / monthly / yearly / nightly"   # bakes bread daily: a range over day; every: 1
     - "<subject> <adverb> V … / <clause> <adverb>"             # often laughs: a range over occasion; level: often
     - "<class>s <adverb> V … / every <class> V … every <unit>"   # ferrets often bite: the class range in ranges
+    - "<clause> once / twice / <n> times a / per <unit>"       # visits the market twice a week: a range over week; times: 2
     - "<clause> every <n> <units> / every other <unit>"        # visits every two weeks: event, every: 2, unit: week
-    - "<clause> once / twice / <n> times a / per <unit>"       # visits the market twice a week: event, times: 2, unit: week
     - "<clause> once / twice / <n> times"                      # knocked twice: event, times: 2
   boundary:                   # looks like a frequency but is not one
     - >-
@@ -61,8 +65,8 @@ trigger:
       every time or whenever with a clause — whenever the bell rings: a conditional over
       occasions, not a recurrence; reported as unmapped
     - >-
-      a habitual past with used to — Lamine used to sing: a different construction; report the
-      clause as unmapped
+      a habit with no frequency expression — Yusra swims, Lamine used to sing: the habitual
+      template marks the clause's event; no rule, no range
     - >-
       a time the event takes place at — in 2019, on Monday, at noon, yesterday: a time; a time
       stated once is not a recurrence (on Monday is a time, on Mondays a frequency)
@@ -86,15 +90,15 @@ slots:
   ranges:   {type: refs, class: Proposition, required: false,
              doc: "the class range(s) of a generic subject or object in the same clause (ferrets often bite, every ferret sleeps every night): their ids in text order; absent otherwise"}
   over:     {type: refs, class: Proposition, required: false, skolemize: true,
-             doc: "the predication over the occasions: its id, nothing else (a negation or a modal over the clause names THIS instance instead); filled for a period of one unit or an adverb, never together with event"}
+             doc: "the predication over the occasions: its id, nothing else (a negation or a modal over the clause names THIS instance instead); filled for a period of one unit, a rate or an adverb, never together with event"}
   event:    {type: filler, class: Event, attaches: true, required: false,
-             doc: "for a pattern recorded on the event instead — a period of more than one unit, a rate, a bare count: the id of the clause's predication instance; never together with over"}
+             doc: "for a pattern recorded on the event instead — a period of more than one unit, or a bare count: the id of the clause's predication instance; never together with over"}
   every:    {type: number, required: false,
              doc: "the period as a number of units: 1 with over (every day, every morning, on Sundays, daily, annually); the stated number with event (every two weeks → 2, every other day → 2, with unit)"}
   times:    {type: number, required: false,
-             doc: "with event: a count of occurrences — twice → 2, once → 1, three times → 3 — per unit when a unit is stated (twice a week → 2, week), bare otherwise (knocked twice)"}
+             doc: "a count of occurrences — twice → 2, once → 1, three times → 3: with over, the count in each occasion of the range (twice a week → 2 with a range over week; once a year → 1 with a range over year); with event, a bare count (knocked twice)"}
   unit:     {type: lemma, class: Class, required: false,
-             doc: "with event: the time unit of a numeric period or a rate, singular and lowercase (minute, hour, day, week, month, year); with over the occasion range carries the class, so leave it empty"}
+             doc: "with event only: the time unit of a numeric period, singular and lowercase (every two weeks → week, every other day → day); with over the occasion range carries the class, so leave it empty"}
   level:    {type: lemma, class: Level, required: false,
              doc: "the frequency adverb as written, lowercase (always, usually, normally, generally, often, frequently, regularly, sometimes, occasionally, seldom, rarely); a phrase as one snake_case symbol (hardly_ever, from_time_to_time, once_in_a_while)"}
   word:     {type: string, required: false,
@@ -104,10 +108,11 @@ one_of: [[over, event], [every, times, level]]
 
 truth:
   strength:                    # the quantifier over occasions: the adverb's dial, else a graded class range, else every
-    - {slot: level, values: {always: 1.0, usually: 0.8, normally: 0.8, generally: 0.8, often: 0.8, frequently: 0.8, regularly: 0.8, sometimes: 0.5, occasionally: 0.5, seldom: 0.1, rarely: 0.1, hardly_ever: 0.1, from_time_to_time: 0.5, once_in_a_while: 0.5}}
+    - {slot: level, values: {always: 1.0, usually: 0.9, normally: 0.9, generally: 0.9, often: 0.7, frequently: 0.7, regularly: 0.7, sometimes: 0.5, occasionally: 0.5, from_time_to_time: 0.5, once_in_a_while: 0.5, seldom: 0.1, rarely: 0.1, hardly_ever: 0.1}}
     - {from: ranges, slot: quantifier, values: {most: 0.9, many: 0.7, few: 0.1, "no": 0.0, none: 0.0}}
     - 1.0
-  confidence:                  # an explicit frequency word states a proportion over occasions
+  confidence:                  # an explicit frequency word states a proportion over occasions (0.9); an existential one — sometimes — states none (0.7)
+    - {slot: level, values: {sometimes: 0.7, occasionally: 0.7, from_time_to_time: 0.7, once_in_a_while: 0.7}}
     - 0.9
 
 emits:
@@ -120,18 +125,17 @@ emits:
     when: "ranges"
   - atom: "(Time {over} {occasion})"                     # inside the consequent: the episode's time is the occasion
     within: over
+  - atom: "(Times {over} {times})"                       # a rate: the count in each occasion, on that occasion's episode
+    within: over
+    if_filled: times
   # a pattern recorded on the event
   - atom: "(Every {event} {every} {unit})"
     if_filled: event
     when: "every"
     stv: [1.0, 0.99]
-  - atom: "(TimesPer {event} {times} {unit})"
-    if_filled: event
-    when: "times and unit"
-    stv: [1.0, 0.99]
   - atom: "(Times {event} {times})"
     if_filled: event
-    when: "times and not unit"
+    when: "times"
     stv: [1.0, 0.99]
 
 notes:
@@ -144,7 +148,11 @@ notes:
     indefinite inside it depends on the occasion, a name or a definite stays a constant.
   - >-
     The frequency adverbs are quantifiers over occasions — always, usually, often, sometimes,
-    rarely — and set the rule's strength as most, many and few do for a class, by the same dial;
+    rarely — and set the rule's strength on the one dial the noun quantifiers use: always as
+    every (1.0), usually as most (0.9), often as many (0.7), rarely as few (0.1); an existential
+    adverb — sometimes, occasionally, from time to time — states that occasions exist and no
+    proportion, so it gets the midpoint 0.5 at the no-proportion confidence 0.7, as a bare
+    generic does;
     the confidence 0.9 is an explicit quantifier word's. "Never" is not a level but a negation of
     the clause. A negation or a modal over a clause with a frequency scopes over this rule:
     "Lamine does not laugh often" denies the frequent laughing, "Yusra might swim every day"
@@ -156,10 +164,11 @@ notes:
     the rule through its class: a time instance with a weekday or a day-of-month field is a day,
     and a Sunday, by the background rules.
   - >-
-    A numeric period, a rate and a bare count are recorded on the event: "every two weeks" is not
-    a quantifier over weeks, "twice a week" states two episodes in each week, "knocked twice"
-    states two particular knocks (a plural episode, like a group of participants); the first two
-    are patterns a later representation may unfold, the record keeps them as stated.
+    A rate is the rule over the unit with the count on each occasion's episode: "twice a week"
+    says that in every week the visits number two, (Times (sk_visit $w) 2) — a plural episode per
+    week, counted as "knocked twice" counts its two particular knocks, (Times e 2). A numeric
+    period, "every two weeks", is not a quantifier over weeks and is recorded on the event as
+    stated, (Every e 2 week): a pattern a later view may unfold.
 
 depends_on: [range, time, activity]
 composes_with: [negation, modal, time, location]
@@ -192,13 +201,14 @@ examples:
         - {t: range, id: q1, class: occasion, span: "often"}
         - {t: frequency, id: f1, occasion: ["@q1"], over: ["@v1"], level: often, word: often, span: "often"}
     - category: positive
-      note: a rate — a pattern recorded on the event, which stays a particular predication
+      note: a rate — a rule over the weeks, each week's episode carrying the count
       text: "Lamine visits the market twice a week."
       instances:
         - {t: named-entity, id: n1, name: "Lamine", span: "Lamine"}
         - {t: witness, id: x1, class: market, definite: true, span: "the market"}
         - {t: activity, id: v1, verb: visit, actor: "@n1", patient: "@x1", tense: present, span: "Lamine visits the market"}
-        - {t: frequency, id: f1, event: "@v1", times: 2, unit: week, word: "twice a week", span: "twice a week"}
+        - {t: range, id: q1, class: week, span: "a week"}
+        - {t: frequency, id: f1, occasion: ["@q1"], over: ["@v1"], times: 2, word: "twice a week", span: "twice a week"}
     - category: abstain
       text: "Most students laugh."
       expected: {abstain: true, template: generic}                    # a quantifier over a class, no frequency
@@ -339,21 +349,23 @@ examples:
         - {t: activity, id: v1, verb: knock, actor: "@n1", tense: past}
         - {t: frequency, id: f1, event: "@v1", times: 2, word: twice}
     - category: positive
-      note: a rate of three per day
+      note: a rate of three per day — a rule over the days with the count on each day's episode
       text: "Yusra feeds the ferret three times a day."
       instances:
         - {t: named-entity, id: n1, name: "Yusra"}
         - {t: witness, id: x1, class: ferret, definite: true}
         - {t: activity, id: v1, verb: feed, actor: "@n1", patient: "@x1", tense: present}
-        - {t: frequency, id: f1, event: "@v1", times: 3, unit: day, word: "three times a day"}
+        - {t: range, id: q1, class: day}
+        - {t: frequency, id: f1, occasion: ["@q1"], over: ["@v1"], times: 3, word: "three times a day"}
     - category: positive
-      note: once a month
+      note: once a month — a count of one keeps it apart from a bare monthly period
       text: "Teodor visits Yusra once a month."
       instances:
         - {t: named-entity, id: n1, name: "Teodor"}
         - {t: named-entity, id: n2, name: "Yusra"}
         - {t: activity, id: v1, verb: visit, actor: "@n1", patient: "@n2", tense: present}
-        - {t: frequency, id: f1, event: "@v1", times: 1, unit: month, word: "once a month"}
+        - {t: range, id: q1, class: month}
+        - {t: frequency, id: f1, occasion: ["@q1"], over: ["@v1"], times: 1, word: "once a month"}
     - category: scoped
       note: a negation over the frequency — not often
       text: "Lamine does not laugh often."
@@ -383,4 +395,4 @@ examples:
       expected: {abstain: true, gap: G00, span: "Whenever"}           # a conditional over occasions
     - category: abstain
       text: "Lamine used to sing."
-      expected: {abstain: true, gap: G00, span: "used to"}            # a habitual past construction
+      expected: {abstain: true, template: habitual}                   # a habit with no frequency: the mark

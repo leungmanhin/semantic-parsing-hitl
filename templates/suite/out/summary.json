@@ -1,9 +1,9 @@
 {
   "prompt": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_body_sha256": "afb9b34e08037e4af790f15f77e7670cdf6dd9377ca25c9a470b5c7859103180",
+  "prompt_body_sha256": "329284e72809bde1aeb9eb785ce7b166682dbaf29862c6db666f4102dc42e6d8",
   "typecheck": "ran",
   "checks": {
-    "examples": 715,
+    "examples": 731,
     "findings": [],
     "pending": {},
     "shared": [
@@ -1760,7 +1760,7 @@
         "status": {
           "ok": 69
         },
-        "stale_prompt": 27,
+        "stale_prompt": 60,
         "by_category": {
           "positive": {
             "cases": 17,
@@ -1782,8 +1782,8 @@
             "pass": 12,
             "false_fires": 0,
             "outcomes": {
-              "target_fired": 6,
-              "gap_reported": 6
+              "target_fired": 9,
+              "gap_reported": 3
             }
           }
         },
@@ -1810,11 +1810,11 @@
           "passed": 69
         },
         "usage": {
-          "input": 4281972,
-          "output": 12226,
+          "input": 4299162,
+          "output": 12439,
           "thinking": 0,
-          "total": 4294198,
-          "cached": 4020582,
+          "total": 4311601,
+          "cached": 4037766,
           "calls": 69,
           "thinking_calls": 0
         },
@@ -1822,8 +1822,8 @@
         "null_slots": 0,
         "lints": {},
         "spans": {
-          "instances": 267,
-          "with_span": 267,
+          "instances": 279,
+          "with_span": 279,
           "missing": 0,
           "not_verbatim": 0,
           "malformed": 0
@@ -2012,6 +2012,85 @@
         "spans": {
           "instances": 105,
           "with_span": 105,
+          "missing": 0,
+          "not_verbatim": 0,
+          "malformed": 0
+        },
+        "models": [
+          "gemini-4-argon effort=low"
+        ]
+      }
+    },
+    "habitual": {
+      "held_out": {
+        "records": 36,
+        "cases": 12,
+        "status": {
+          "ok": 36
+        },
+        "stale_prompt": 0,
+        "by_category": {
+          "positive": {
+            "cases": 6,
+            "runs": 18,
+            "pass": 18,
+            "fired": 18,
+            "exact": 18
+          },
+          "scoped": {
+            "cases": 1,
+            "runs": 3,
+            "pass": 3,
+            "fired": 3,
+            "exact": 3
+          },
+          "abstain": {
+            "cases": 5,
+            "runs": 15,
+            "pass": 15,
+            "false_fires": 0,
+            "outcomes": {
+              "target_fired": 15
+            }
+          }
+        },
+        "pass": 36,
+        "selection": {
+          "fire_runs": 21,
+          "fired": 21,
+          "abstain_runs": 15,
+          "false_fires": 0
+        },
+        "fill": {
+          "fired": 21,
+          "exact": 21,
+          "rate": 1.0
+        },
+        "stability": {
+          "cases": 12,
+          "pairs": 36,
+          "pairwise_agreement": 1.0,
+          "unanimous": 12
+        },
+        "typecheck": {
+          "checked": 36,
+          "passed": 36
+        },
+        "usage": {
+          "input": 2289198,
+          "output": 5577,
+          "thinking": 0,
+          "total": 2294775,
+          "cached": 2092246,
+          "calls": 36,
+          "thinking_calls": 0
+        },
+        "issues": [],
+        "null_slots": 0,
+        "lints": {},
+        "spans": {
+          "instances": 120,
+          "with_span": 120,
           "missing": 0,
           "not_verbatim": 0,
           "malformed": 0

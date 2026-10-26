@@ -91,6 +91,7 @@
 (: GreaterThan (-> Distribution Number Proposition))
 (: GreaterThan (-> Distribution Distribution Proposition))
 (: GroupOf (-> Entity Class Proposition))
+(: Habitual (-> Event Proposition))
 (: Holder (-> Event Entity Proposition))
 (: Hour (-> TimeTerm Number Proposition))
 (: Hour (-> TimeTerm Distribution Proposition))

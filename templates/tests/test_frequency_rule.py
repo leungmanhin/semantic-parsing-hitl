@@ -42,8 +42,12 @@ class FrequencyRuleForm(unittest.TestCase):
         out = E.emit({"id": "t", "instances": [dict(i) for i in ex["instances"]]}, CATALOG)
         rule = [s for s in out["statements"] if "(Implication" in s]
         self.assertEqual(len(rule), 1)
-        self.assertTrue(rule[0].endswith("(STV 0.8 0.9))"), rule[0])
+        self.assertTrue(rule[0].endswith("(STV 0.7 0.9))"), rule[0])                 # often = many
         self.assertIn("(Member $x occasion)", rule[0])
+        ex = example("frequency", "Ottoline sometimes waits at the gate.")
+        out = E.emit({"id": "t", "instances": [dict(i) for i in ex["instances"]]}, CATALOG)
+        rule = [s for s in out["statements"] if "(Implication" in s]
+        self.assertTrue(rule[0].endswith("(STV 0.5 0.7))"), rule[0])                 # existential: no proportion stated
 
     def test_two_ranges_give_a_function_of_both(self):
         terms = emit("Every ferret sleeps every night.")
@@ -60,10 +64,17 @@ class FrequencyRuleForm(unittest.TestCase):
         night = [t for t in emit("Yusra usually sleeps at night.") if t.startswith("(Implication")][0]
         self.assertIn("(Time (sk_sleep $x) night)", night)                    # a named time stays a constant
 
-    def test_a_pattern_stays_a_tag_on_a_top_level_event(self):
+    def test_a_rate_is_a_rule_with_the_count_on_each_occasion(self):
         terms = emit("Lamine visits the market twice a week.")
-        self.assertIn("(Member sk_visit_1 visit)", terms)
-        self.assertIn("(TimesPer sk_visit_1 2 week)", terms)
+        rule = [t for t in terms if t.startswith("(Implication")]
+        self.assertEqual(len(rule), 1, terms)
+        self.assertIn("(Member $x week)", rule[0])
+        self.assertIn("(Times (sk_visit $x) 2)", rule[0])
+        self.assertIn("(Time (sk_visit $x) $x)", rule[0])
+        self.assertNotIn("(Member sk_visit_1 visit)", terms)                     # no top-level episode
+        self.assertIn("(Member sk_market_1 market)", terms)                      # the definite stays outside
+
+    def test_a_pattern_stays_a_tag_on_a_top_level_event(self):
         self.assertIn("(Times sk_knock_1 2)", emit("Teodor knocked twice."))
         self.assertIn("(Every sk_visit_1 2 week)", emit("Yusra visits Lamine every two weeks."))
 

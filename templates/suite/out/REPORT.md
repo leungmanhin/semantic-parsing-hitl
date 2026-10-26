@@ -1,10 +1,10 @@
 # Suite report
 
-prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 afb9b34e08037e4a) · type check: ran
+prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 329284e72809bde1) · type check: ran
 
 ## Catalog checks
 
-715 examples checked; findings: 0
+731 examples checked; findings: 0
 
 Sentences two templates claim with the same expected atoms (composition, fine):
 - "Lamine danced with Yusra." — activity, adjunct
@@ -553,7 +553,7 @@ Mismatches: none
 
 ## frequency — held_out
 
-23 cases, 69 records (ok 69; stale prompt 27) · gemini-4-argon effort=low
+23 cases, 69 records (ok 69; stale prompt 60) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -566,15 +566,15 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (23 cases, 69 pairs), unanimous 23/23
 - type check: 69/69 emitted parses type
 - graph lints: none
-- spans: 267/267 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
-- usage: 69 calls · in 4,281,972 · cached 4,020,582 (94% of the input) · out 12,226 · thinking 0 (calls with thought tokens: 0)
+- spans: 279/279 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
+- usage: 69 calls · in 4,299,162 · cached 4,037,766 (94% of the input) · out 12,439 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
 Abstain cases (what the parser did, per run):
 - "Every ferret slept." (target `generic`): r1 target_fired [activity×1, generic×1, range×1] · r2 target_fired [activity×1, generic×1, range×1] · r3 target_fired [activity×1, generic×1, range×1]
 - "Yusra never laughs." (target `negation`): r1 target_fired [activity×1, named-entity×1, negation×1] · r2 target_fired [activity×1, named-entity×1, negation×1] · r3 target_fired [activity×1, named-entity×1, negation×1]
 - "Whenever Yusra sang, the ferret hid." (gap G00): r1 gap_reported [named-entity×1; unmapped G00] · r2 gap_reported [named-entity×1; unmapped G00] · r3 gap_reported [named-entity×1; unmapped G00]
-- "Lamine used to sing." (gap G00): r1 gap_reported [named-entity×1; unmapped G00] · r2 gap_reported [named-entity×1; unmapped G00] · r3 gap_reported [named-entity×1; unmapped G00]
+- "Lamine used to sing." (target `habitual`): r1 target_fired [activity×1, habitual×1, named-entity×1] · r2 target_fired [activity×1, habitual×1, named-entity×1] · r3 target_fired [activity×1, habitual×1, named-entity×1]
 
 Mismatches: none
 
@@ -632,6 +632,34 @@ Abstain cases (what the parser did, per run):
 - "The ferret slept." (target `activity`): r1 target_fired [activity×1, witness×1] · r2 target_fired [activity×1, witness×1] · r3 target_fired [activity×1, witness×1]
 - "Every ferret slept." (target `generic`): r1 target_fired [activity×1, generic×1, range×1] · r2 target_fired [activity×1, generic×1, range×1] · r3 target_fired [activity×1, generic×1, range×1]
 - "Teodor and Yusra laughed." (target `activity`): r1 target_fired [activity×2, named-entity×2] · r2 target_fired [activity×2, named-entity×2] · r3 target_fired [activity×2, named-entity×2]
+
+Mismatches: none
+
+## habitual — held_out
+
+12 cases, 36 records (ok 36; stale prompt 0) · gemini-4-argon effort=low
+
+| category | cases | runs | fired | exact | pass |
+|---|---|---|---|---|---|
+| positive | 6 | 18 | 18 | 18 | 18 |
+| scoped | 1 | 3 | 3 | 3 | 3 |
+| abstain | 5 | 15 | 0 (false fires) | – | 15 |
+
+- selection: fire cases fired 21/21 · abstain cases false fires 0/15
+- fill: exact 21/21 among fires
+- stability: pairwise agreement 1.0 (12 cases, 36 pairs), unanimous 12/12
+- type check: 36/36 emitted parses type
+- graph lints: none
+- spans: 120/120 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
+- usage: 36 calls · in 2,289,198 · cached 2,092,246 (91% of the input) · out 5,577 · thinking 0 (calls with thought tokens: 0)
+- issues reported by the parser: none
+
+Abstain cases (what the parser did, per run):
+- "Herons eat frogs." (target `generic`): r1 target_fired [activity×1, generic×1, range×1] · r2 target_fired [activity×1, generic×1, range×1] · r3 target_fired [activity×1, generic×1, range×1]
+- "Teodor reads every day." (target `frequency`): r1 target_fired [activity×1, frequency×1, named-entity×1, range×1] · r2 target_fired [activity×1, frequency×1, named-entity×1, range×1] · r3 target_fired [activity×1, frequency×1, named-entity×1, range×1]
+- "Yusra is sleeping." (target `activity`): r1 target_fired [activity×1, named-entity×1] · r2 target_fired [activity×1, named-entity×1] · r3 target_fired [activity×1, named-entity×1]
+- "Lamine often laughed." (target `frequency`): r1 target_fired [activity×1, frequency×1, named-entity×1, range×1] · r2 target_fired [activity×1, frequency×1, named-entity×1, range×1] · r3 target_fired [activity×1, frequency×1, named-entity×1, range×1]
+- "The ferret slept." (target `activity`): r1 target_fired [activity×1, witness×1] · r2 target_fired [activity×1, witness×1] · r3 target_fired [activity×1, witness×1]
 
 Mismatches: none
 

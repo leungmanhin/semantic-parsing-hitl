@@ -164,6 +164,20 @@ emits:
   - atom: "(BeforeBy {anchor} @id {offset} {unit})"       # in two weeks, a week later: the anchor precedes the time
     if_filled: offset
     when: "direction == after"
+  - atom: "(Member @id day)"                               # the stated granularity: a calendar day, a weekday, a day deictic
+    when: "day or weekday or deictic == today or deictic == tonight or deictic == yesterday or deictic == tomorrow"
+    declare: {day: Class}
+  - atom: "(Member @id week)"
+    when: "deictic == last_week or deictic == this_week or deictic == next_week"
+    declare: {week: Class}
+  - atom: "(Member @id month)"                             # a month with no day
+    when: "month and not day and not weekday or deictic == last_month or deictic == this_month or deictic == next_month"
+    declare: {month: Class}
+  - atom: "(Member @id year)"                              # a bare year
+    when: "year and not month and not day and not weekday or deictic == last_year or deictic == this_year or deictic == next_year"
+    declare: {year: Class}
+  - atom: "(Member @id {unit})"                            # an offset: the unit it is counted in
+    if_filled: offset
   - atom: "(Past {event})"
     if_filled: event
     when: "tense == past"
@@ -188,6 +202,12 @@ notes:
     two days after the audit is a time two days after that event, (BeforeBy sk_audit_1 t 2 day).
     The event sits at the time, (Time e t), so how long before now, or before another event, an
     event took place is a question over the times.
+  - >-
+    A time instance states its granularity as a class — (Member t day) for a date, a weekday or
+    a day deictic, (Member t week) for a week deictic, (Member t month) for a month alone,
+    (Member t year) for a bare year, the offset's unit for an offset — so that a rule over the
+    days or the weeks (every day, twice a week) instantiates at a stated time. Nothing is
+    computed: the class is read off the fields the text gives.
   - >-
     An anaphoric phrase is the same offset from its antecedent: that evening is 0 days from the
     previous clause's event with evening as a second instance, the following morning 1 day after
@@ -216,6 +236,7 @@ examples:
         - "(Past sk_laugh_1)"
         - "(Time sk_laugh_1 sk_time_1)"
         - "(BeforeBy sk_time_1 sk_now_1 1 day)"
+        - "(Member sk_time_1 day)"
       declarations:
         - "(: day Class)"
         - "(: laugh Class)"

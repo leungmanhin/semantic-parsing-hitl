@@ -1,0 +1,84 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "d6e86e0646f1b555ce3df0e9d98541722cfd9b8cffdb247a7830e5adcb2ef748",
+  "item": {
+    "id": "s706d19a08e",
+    "text": "The ferret slept."
+  },
+  "usage": {
+    "input": 63589,
+    "output": 105,
+    "thinking": null,
+    "total": 63694,
+    "cached": 61540,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 63589,
+    "candidatesTokenCount": 105,
+    "totalTokenCount": 63694,
+    "cachedContentTokenCount": 61540,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 63589
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 61540
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 105
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s706d19a08e\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"ferret\", \"definite\": true, \"span\": \"The ferret\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"sleep\", \"actor\": \"@x1\", \"tense\": \"past\", \"span\": \"The ferret slept\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s706d19a08e",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "ferret",
+        "definite": true,
+        "span": "The ferret"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "sleep",
+        "actor": "@x1",
+        "tense": "past",
+        "span": "The ferret slept"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "329284e72809bde1aeb9eb785ce7b166682dbaf29862c6db666f4102dc42e6d8",
+  "run": 3,
+  "case": {
+    "template": "habitual",
+    "section": "held_out",
+    "index": 8,
+    "category": "abstain",
+    "text": "The ferret slept.",
+    "key": "706d19a08e"
+  }
+}

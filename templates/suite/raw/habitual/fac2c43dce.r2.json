@@ -1,0 +1,97 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "d6e86e0646f1b555ce3df0e9d98541722cfd9b8cffdb247a7830e5adcb2ef748",
+  "item": {
+    "id": "sfac2c43dce",
+    "text": "Ottoline visits the market."
+  },
+  "usage": {
+    "input": 63587,
+    "output": 169,
+    "thinking": null,
+    "total": 63756,
+    "cached": 61538,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 63587,
+    "candidatesTokenCount": 169,
+    "totalTokenCount": 63756,
+    "cachedContentTokenCount": 61538,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 63587
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 61538
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 169
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sfac2c43dce\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"market\", \"definite\": true, \"span\": \"the market\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"visit\", \"actor\": \"@n1\", \"patient\": \"@x1\", \"tense\": \"present\", \"span\": \"Ottoline visits the market\"}, {\"t\": \"habitual\", \"id\": \"h1\", \"event\": \"@v1\", \"span\": \"Ottoline visits the market\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sfac2c43dce",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Ottoline",
+        "span": "Ottoline"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "market",
+        "definite": true,
+        "span": "the market"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "visit",
+        "actor": "@n1",
+        "patient": "@x1",
+        "tense": "present",
+        "span": "Ottoline visits the market"
+      },
+      {
+        "t": "habitual",
+        "id": "h1",
+        "event": "@v1",
+        "span": "Ottoline visits the market"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "329284e72809bde1aeb9eb785ce7b166682dbaf29862c6db666f4102dc42e6d8",
+  "run": 2,
+  "case": {
+    "template": "habitual",
+    "section": "held_out",
+    "index": 2,
+    "category": "positive",
+    "text": "Ottoline visits the market.",
+    "key": "fac2c43dce"
+  }
+}

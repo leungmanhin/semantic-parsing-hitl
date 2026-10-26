@@ -142,8 +142,9 @@ class SeededRulesOnTheEngine(unittest.TestCase):
 
     def test_frequency_rule_instantiates_on_a_stated_time(self):
         """A frequency rule quantifies over a class of times; a stated time joins it through the
-        bridge rules (a weekday field makes a day and a member of the weekday's class), and the
-        episode is a function of the occasion. A time of another class gets nothing."""
+        weekday_class bridge (a weekday field puts the time in the weekday's class) or its stated
+        granularity, and the episode is a function of the occasion. A time of another class gets
+        nothing."""
         facts = ['(: n1 (Name sk_ottoline_1 "Ottoline") (STV 1.0 0.99))',
                  '(: f1 (Implication (Member $x sunday) (And (Member (sk_swim $x) swim) (Agent (sk_swim $x) sk_ottoline_1) (Time (sk_swim $x) $x))) (STV 1.0 0.9))',
                  '(: t2 (Weekday sk_time_2 sunday) (STV 1.0 0.99))',
@@ -158,7 +159,8 @@ class SeededRulesOnTheEngine(unittest.TestCase):
         self.assertFalse(self.query(h, "(Agent (sk_swim sk_time_3) sk_ottoline_1)"))     # a Monday: no occasion
         daily = self.space(['(: n1 (Name sk_teodor_1 "Teodor") (STV 1.0 0.99))',
                             '(: f1 (Implication (Member $x day) (And (Member (sk_read $x) read) (Agent (sk_read $x) sk_teodor_1) (Time (sk_read $x) $x))) (STV 1.0 0.9))',
-                            '(: t9 (Day sk_time_9 3) (STV 1.0 0.99))', '(: t9m (Month sk_time_9 may) (STV 1.0 0.99))'])
+                            '(: t9 (Day sk_time_9 3) (STV 1.0 0.99))', '(: t9m (Month sk_time_9 may) (STV 1.0 0.99))',
+                            '(: t9c (Member sk_time_9 day) (STV 1.0 0.99))'])          # the time template states the granularity
         self.assertTrue(self.query(daily, "(Member (sk_read sk_time_9) read)"))          # a date is a day
         self.assertFalse(self.query(daily, "(Member (sk_read sk_time_8) read)"))         # no such time stated
 

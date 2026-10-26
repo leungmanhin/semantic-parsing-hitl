@@ -1400,7 +1400,8 @@
       ],
       "out": "Proposition",
       "opaque": false,
-      "gloss": "Rate recurrence: the eventuality recurs n times per unit (twice a week: (TimesPer e 2 week)); a bare count is Times, a period Every."
+      "gloss": "Rate recurrence: the eventuality recurs n times per unit. RETIRE: the catalog renders a rate as the rule over the unit with the count on each occasion's episode — (Implication (Member $w week) (And … (Times (sk_visit $w) 2))) — so no top-level habit carries a rate tag; declaration kept for the 6 legacy atoms until the re-parse.",
+      "status": "retire"
     },
     "To": {
       "kind": "discourse",
@@ -1550,7 +1551,17 @@
       ],
       "out": "Proposition",
       "opaque": false,
-      "gloss": "Count of occurrences of the eventuality with no unit: (Times e 2) for twice, (Times e 3) for three times. A count per unit is TimesPer, a period Every."
+      "gloss": "Count of occurrences of a plural episode: (Times e 2) for two particular knocks, and on an occasion's episode inside a rate rule, (Times (sk_visit $w) 2) for twice a week. A numeric period is Every."
+    },
+    "Habitual": {
+      "kind": "temporal",
+      "arity": 1,
+      "arg_types": [
+        "Event"
+      ],
+      "out": "Proposition",
+      "opaque": false,
+      "gloss": "Marks an eventuality as a habit: the sum of its occurrences, a characterizing state, rather than one occurrence — (Habitual sk_swim_1) for a bare habitual present (Yusra swims) and, with (Past e), for the habitual past (used to). A top-level Event is an asserted eventuality: an occurrence or, when marked, a habit; a stated frequency builds a rule over occasions instead and marks nothing."
     }
   },
   "open_class": {

@@ -2,7 +2,7 @@
 
 Generated from `templates/atom-type-substrates.json` (schema `atom-type-substrates/1`) by `templates/tmpl/gen_substrate.py`, together with `templates/generated/atom-types.metta`. Do not edit by hand; regenerate with `cd templates && python -m tmpl.gen_substrate`.
 
-134 heads in 13 kinds (7 proposed; 134 with a reviewed type declaration so far). `type-def` is the PeTTa declaration emitted for the head; `?` as the output type means the head is not yet reviewed and is absent from the `.metta` file; `%Undefined%` marks a position the head takes but the JSON does not type.
+135 heads in 13 kinds (7 proposed; 135 with a reviewed type declaration so far). `type-def` is the PeTTa declaration emitted for the head; `?` as the output type means the head is not yet reviewed and is absent from the `.metta` file; `%Undefined%` marks a position the head takes but the JSON does not type.
 
 Every atom is carried as a statement (: <proof-name> <atom> <tv>), tv = (STV strength confidence) or another engine truth value. The carrier is not an atom kind: ':' is never type-declared (it is also PeTTa's type-declaration head) and the truth value is declared by the engine, not by this substrate.
 
@@ -348,7 +348,7 @@ type-def: (: Still (-> Event Proposition))  ; and 1 more (per arity / per union 
 gloss: Continuative: the eventuality still holds (positive counterpart of cessation).
 
 
-## temporal (22)
+## temporal (23)
 
 head: Before
 kind: temporal
@@ -405,6 +405,13 @@ kind: temporal
 arity: 1
 type-def: (: Future (-> Event Proposition))  ; and 1 more (per arity / per union alternative)
 gloss: Future tense on an eventuality.
+
+
+head: Habitual
+kind: temporal
+arity: 1
+type-def: (: Habitual (-> Event Proposition))
+gloss: Marks an eventuality as a habit: the sum of its occurrences, a characterizing state, rather than one occurrence — (Habitual sk_swim_1) for a bare habitual present (Yusra swims) and, with (Past e), for the habitual past (used to). A top-level Event is an asserted eventuality: an occurrence or, when marked, a habit; a stated frequency builds a rule over occasions instead and marks nothing.
 
 
 head: Hour
@@ -478,14 +485,15 @@ head: Times
 kind: temporal
 arity: 2
 type-def: (: Times (-> Event Number Proposition))
-gloss: Count of occurrences of the eventuality with no unit: (Times e 2) for twice, (Times e 3) for three times. A count per unit is TimesPer, a period Every.
+gloss: Count of occurrences of a plural episode: (Times e 2) for two particular knocks, and on an occasion's episode inside a rate rule, (Times (sk_visit $w) 2) for twice a week. A numeric period is Every.
 
 
 head: TimesPer
 kind: temporal
 arity: 3
 type-def: (: TimesPer (-> Event Number Class Proposition))
-gloss: Rate recurrence: the eventuality recurs n times per unit (twice a week: (TimesPer e 2 week)); a bare count is Times, a period Every.
+gloss: Rate recurrence: the eventuality recurs n times per unit. RETIRE: the catalog renders a rate as the rule over the unit with the count on each occasion's episode — (Implication (Member $w week) (And … (Times (sk_visit $w) 2))) — so no top-level habit carries a rate tag; declaration kept for the 6 legacy atoms until the re-parse.
+status: retire
 
 
 head: Weekday
@@ -1011,4 +1019,4 @@ Oblique prepositions (62), all declared `(-> Instance|Class Instance Proposition
 ## notes
 
 - Proposed, not yet emitted by any template: Coref, Equivalence, InContext, LikelihoodPhrase, Not, Pending, Similarity.
-- To retire at the re-parse (declaration kept until then so today's parses still type-check): Forbid, KindProperty, Probably, QuantifierPhrase, WithinLast.
+- To retire at the re-parse (declaration kept until then so today's parses still type-check): Forbid, KindProperty, Probably, QuantifierPhrase, TimesPer, WithinLast.

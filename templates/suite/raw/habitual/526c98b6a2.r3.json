@@ -1,0 +1,84 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "d6e86e0646f1b555ce3df0e9d98541722cfd9b8cffdb247a7830e5adcb2ef748",
+  "item": {
+    "id": "s526c98b6a2",
+    "text": "Yusra is sleeping."
+  },
+  "usage": {
+    "input": 63590,
+    "output": 112,
+    "thinking": null,
+    "total": 63702,
+    "cached": 61541,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 63590,
+    "candidatesTokenCount": 112,
+    "totalTokenCount": 63702,
+    "cachedContentTokenCount": 61541,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 63590
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 61541
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 112
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s526c98b6a2\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"sleep\", \"actor\": \"@n1\", \"tense\": \"present\", \"aspect\": \"progressive\", \"span\": \"Yusra is sleeping\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s526c98b6a2",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "sleep",
+        "actor": "@n1",
+        "tense": "present",
+        "aspect": "progressive",
+        "span": "Yusra is sleeping"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "329284e72809bde1aeb9eb785ce7b166682dbaf29862c6db666f4102dc42e6d8",
+  "run": 3,
+  "case": {
+    "template": "habitual",
+    "section": "held_out",
+    "index": 7,
+    "category": "abstain",
+    "text": "Yusra is sleeping.",
+    "key": "526c98b6a2"
+  }
+}

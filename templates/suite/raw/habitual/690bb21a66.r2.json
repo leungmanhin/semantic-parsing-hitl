@@ -1,0 +1,102 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "d6e86e0646f1b555ce3df0e9d98541722cfd9b8cffdb247a7830e5adcb2ef748",
+  "item": {
+    "id": "s690bb21a66",
+    "text": "Lamine often laughed."
+  },
+  "usage": {
+    "input": 63589,
+    "output": 128,
+    "thinking": null,
+    "total": 63717,
+    "cached": 61540,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 63589,
+    "candidatesTokenCount": 128,
+    "totalTokenCount": 63717,
+    "cachedContentTokenCount": 61540,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 63589
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 61540
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 128
+      }
+    ]
+  },
+  "raw_text": "{\"id\":\"s690bb21a66\",\"instances\":[{\"t\":\"named-entity\",\"id\":\"n1\",\"name\":\"Lamine\",\"span\":\"Lamine\"},{\"t\":\"range\",\"id\":\"q1\",\"class\":\"occasion\",\"span\":\"often\"},{\"t\":\"activity\",\"id\":\"v1\",\"verb\":\"laugh\",\"actor\":\"@n1\",\"tense\":\"past\",\"span\":\"Lamine often laughed\"},{\"t\":\"frequency\",\"id\":\"f1\",\"occasion\":[\"@q1\"],\"over\":[\"@v1\"],\"level\":\"often\",\"word\":\"often\",\"span\":\"often\"}],\"unmapped\":[],\"issues\":[]}",
+  "response": {
+    "id": "s690bb21a66",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "range",
+        "id": "q1",
+        "class": "occasion",
+        "span": "often"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "laugh",
+        "actor": "@n1",
+        "tense": "past",
+        "span": "Lamine often laughed"
+      },
+      {
+        "t": "frequency",
+        "id": "f1",
+        "occasion": [
+          "@q1"
+        ],
+        "over": [
+          "@v1"
+        ],
+        "level": "often",
+        "word": "often",
+        "span": "often"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "329284e72809bde1aeb9eb785ce7b166682dbaf29862c6db666f4102dc42e6d8",
+  "run": 2,
+  "case": {
+    "template": "habitual",
+    "section": "held_out",
+    "index": 10,
+    "category": "abstain",
+    "text": "Lamine often laughed.",
+    "key": "690bb21a66"
+  }
+}

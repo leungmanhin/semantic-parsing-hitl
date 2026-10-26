@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "13d65efd8590af9281f4352993392e989a5c6e903a309894fd0833b96eb5b3ca",
+  "prompt_sha256": "d6e86e0646f1b555ce3df0e9d98541722cfd9b8cffdb247a7830e5adcb2ef748",
   "item": {
     "id": "sfe4865f810",
     "text": "Yusra feeds the ferret three times a day."
   },
   "usage": {
-    "input": 61684,
-    "output": 186,
+    "input": 63594,
+    "output": 222,
     "thinking": null,
-    "total": 61870,
-    "cached": 59635,
+    "total": 63816,
+    "cached": 61545,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 61684,
-    "candidatesTokenCount": 186,
-    "totalTokenCount": 61870,
-    "cachedContentTokenCount": 59635,
+    "promptTokenCount": 63594,
+    "candidatesTokenCount": 222,
+    "totalTokenCount": 63816,
+    "cachedContentTokenCount": 61545,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 61684
+        "tokenCount": 63594
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 59635
+        "tokenCount": 61545
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 186
+        "tokenCount": 222
       }
     ]
   },
-  "raw_text": "{\"id\": \"sfe4865f810\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"ferret\", \"definite\": true, \"span\": \"the ferret\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"feed\", \"actor\": \"@n1\", \"patient\": \"@x1\", \"tense\": \"present\", \"span\": \"Yusra feeds the ferret\"}, {\"t\": \"frequency\", \"id\": \"f1\", \"event\": \"@v1\", \"times\": 3, \"unit\": \"day\", \"span\": \"three times a day\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sfe4865f810\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"ferret\", \"definite\": true, \"span\": \"the ferret\"}, {\"t\": \"range\", \"id\": \"q1\", \"class\": \"day\", \"span\": \"a day\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"feed\", \"actor\": \"@n1\", \"patient\": \"@x1\", \"tense\": \"present\", \"span\": \"Yusra feeds the ferret\"}, {\"t\": \"frequency\", \"id\": \"f1\", \"occasion\": [\"@q1\"], \"over\": [\"@v1\"], \"times\": 3, \"word\": \"three times a day\", \"span\": \"three times a day\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sfe4865f810",
     "instances": [
@@ -66,6 +66,12 @@
         "span": "the ferret"
       },
       {
+        "t": "range",
+        "id": "q1",
+        "class": "day",
+        "span": "a day"
+      },
+      {
         "t": "activity",
         "id": "v1",
         "verb": "feed",
@@ -77,21 +83,26 @@
       {
         "t": "frequency",
         "id": "f1",
-        "event": "@v1",
+        "occasion": [
+          "@q1"
+        ],
+        "over": [
+          "@v1"
+        ],
         "times": 3,
-        "unit": "day",
+        "word": "three times a day",
         "span": "three times a day"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "e6af361d5de2bcb65212565ff9e8e2dd9b01aa00d5864b21ae0bebe17cf7ad42",
+  "prompt_body_sha256": "329284e72809bde1aeb9eb785ce7b166682dbaf29862c6db666f4102dc42e6d8",
   "run": 2,
   "case": {
     "template": "frequency",
     "section": "held_out",
-    "index": 8,
+    "index": 16,
     "category": "positive",
     "text": "Yusra feeds the ferret three times a day.",
     "key": "fe4865f810"
