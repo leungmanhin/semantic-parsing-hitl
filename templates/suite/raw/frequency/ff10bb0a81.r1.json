@@ -1,0 +1,100 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "7c4daaf87bba969034a6e7a88126b1a44c027e9fbe23903ddb071573f3bec958",
+  "item": {
+    "id": "sff10bb0a81",
+    "text": "Teodor never arrives late."
+  },
+  "usage": {
+    "input": 66581,
+    "output": 172,
+    "thinking": null,
+    "total": 66753,
+    "cached": 64480,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 66581,
+    "candidatesTokenCount": 172,
+    "totalTokenCount": 66753,
+    "cachedContentTokenCount": 64480,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 66581
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 64480
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 172
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sff10bb0a81\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"arrive\", \"mover\": \"@n1\", \"tense\": \"present\", \"span\": \"Teodor never arrives\"}, {\"t\": \"manner\", \"id\": \"a1\", \"event\": \"@m1\", \"manner\": \"late\", \"span\": \"late\"}, {\"t\": \"frequency\", \"id\": \"f1\", \"restrictor\": [\"@m1\"], \"level\": \"never\", \"word\": \"never\", \"span\": \"never\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sff10bb0a81",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "motion",
+        "id": "m1",
+        "verb": "arrive",
+        "mover": "@n1",
+        "tense": "present",
+        "span": "Teodor never arrives"
+      },
+      {
+        "t": "manner",
+        "id": "a1",
+        "event": "@m1",
+        "manner": "late",
+        "span": "late"
+      },
+      {
+        "t": "frequency",
+        "id": "f1",
+        "restrictor": [
+          "@m1"
+        ],
+        "level": "never",
+        "word": "never",
+        "span": "never"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "93473aba6006eb665d675ae2a698158dee5aa3c2ac834cde7f752eeb05810701",
+  "run": 1,
+  "case": {
+    "template": "frequency",
+    "section": "held_out",
+    "index": 10,
+    "category": "positive",
+    "text": "Teodor never arrives late.",
+    "key": "ff10bb0a81"
+  }
+}

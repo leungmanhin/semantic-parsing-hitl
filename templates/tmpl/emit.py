@@ -32,6 +32,13 @@ same variable / skolem substitution as the bundle (a rule over occasions adds ``
 (sk_swim $t) $t)`` to its consequent); in such a shape a refs-slot placeholder stands for the
 symbol of the first instance the slot names, not for the bundle.
 
+A refs slot with ``as_variable: true`` names a predication whose EVENT becomes the bound
+variable ``$e`` wherever the scope instance renders it, and whose non-rigid participants (an
+indefinite object) become variables too; ``{slot|own}`` renders that predication's own atoms
+and its participants' (the restrictor of a rule over the clause's events: ``(And (Member $e
+arrive) (Agent $e sk_teodor_1))``), ``{slot|attachments}`` renders its attachments, skolemized
+over ``$e`` (the nuclear scope: ``(And (Time $e (sk_time $e)) (Hour (sk_time $e) 12))``).
+
 Symbols.  A template that ``mints`` a symbol says its class and how it is named:
 ``symbol: name`` derives the symbol from the ``name`` slot (``"Ilse Varga"`` -> ``ilse_varga``,
 duplicates numbered), otherwise a witness ``sk_<stem>_<n>`` whose stem is the ``stem`` slot's value, or the
@@ -395,13 +402,13 @@ class _Emitter:
                 self.homed_in.setdefault(h, []).append(iid)
 
     # ---------------------------------------------------------------- rendering
-    def fill(self, inst: dict, slot: str, spec: dict, element=None, within: bool = False):
+    def fill(self, inst: dict, slot: str, spec: dict, element=None, within: bool = False, part: str | None = None):
         v = element if element is not None else inst.get(slot)
         if spec["type"] == "refs":
             if within:                                   # inside a bundle: the first referenced instance's symbol
                 first = next((x for x in (v or []) if is_ref(x)), None)
                 return self.sym[first[1:]] if first else None
-            return element if element is not None else self.bundle(v, inst["id"], spec, slot)
+            return element if element is not None else self.bundle(v, inst["id"], spec, slot, part)
         if is_ref(v):
             return self.sym[v[1:]]
         if spec["type"] == "string":
@@ -428,7 +435,7 @@ class _Emitter:
         m = CAT._PLACEHOLDER.fullmatch(tok)
         if m:
             s = m.group(1)
-            return self.fill(inst, s, slots[s], element if s == element_slot else None, within)
+            return self.fill(inst, s, slots[s], element if s == element_slot else None, within, m.group(2))
         return tok
 
     def atoms_of(self, iid: str, projecting: bool = False) -> list:
@@ -525,21 +532,54 @@ class _Emitter:
             todo.extend(self.attachments_of.get(iid, []))
         return out
 
-    def bundle(self, refs: list, scope_iid: str, spec: dict | None = None, slot: str | None = None):
+    def event_variables(self, scope_iid: str) -> tuple[dict, list]:
+        """The scope instance's ``as_variable`` predications mapped to the event variables ``$e``,
+        ``$e2`` …, and their non-rigid participants (an indefinite object, a group) mapped to free
+        variables: the universally bound terms of a rule restricted to the clause's events. The
+        predication's attachments are not participants; they are skolemized over the event."""
+        inst = self.by_id[scope_iid]
+        mapping: dict[str, str] = {}
+        evars: list[str] = []
+        used = {str(s) for s in self.sym.values() if isinstance(s, str) and s.startswith("$")}
+        free = [v for v in VARIABLES if v not in used]
+        for sname, sp in (self.cat[inst["t"]].get("slots") or {}).items():
+            if sp["type"] != "refs" or not sp.get("as_variable"):
+                continue
+            for ref in inst.get(sname) or []:
+                if not is_ref(ref) or ref[1:] not in self.sym:
+                    continue
+                rid = ref[1:]
+                ev = "$e" if not evars else f"$e{len(evars) + 1}"
+                mapping[rid] = ev
+                evars.append(ev)
+                r = self.by_id[rid]
+                for s2, sp2 in (self.cat[r["t"]].get("slots") or {}).items():
+                    if sp2["type"] == "filler" and is_ref(r.get(s2)) and not sp2.get("attaches"):
+                        pid = r[s2][1:]
+                        if pid in self.sym and pid not in mapping and not self.is_rigid(pid):
+                            mapping[pid] = free.pop(0) if free else f"$p{len(mapping)}"
+        return mapping, evars
+
+    def bundle(self, refs: list, scope_iid: str, spec: dict | None = None, slot: str | None = None, part: str | None = None):
         """The content of a scope: its referenced instances' atoms plus the referents homed here,
         plus the scope instance's own ``within: <slot>`` shapes. With ``bind`` / ``skolemize`` on
-        the slot, symbols are overlaid while rendering."""
+        the slot, symbols are overlaid while rendering; with ``as_variable`` predications in the
+        scope, their events are variables, and ``part`` selects a predication's own atoms or its
+        attachments (skolemized over the event)."""
         overlay = None
-        if spec and (spec.get("bind") or spec.get("skolemize")):
+        mapping, evars = self.event_variables(scope_iid)
+        skolemize = bool(spec and spec.get("skolemize")) or part == "attachments"
+        if mapping or (spec and (spec.get("bind") or skolemize)):
             overlay = dict(self.sym)
+            overlay.update(mapping)
             inst = self.by_id[scope_iid]
             if spec.get("bind"):
                 target = inst.get(spec["bind"])
                 if is_ref(target):
                     overlay[target[1:]] = "$x"
-            if spec.get("skolemize"):
+            if skolemize:
                 variables = []
-                if spec.get("bind") and is_ref(inst.get(spec["bind"])):
+                if spec and spec.get("bind") and is_ref(inst.get(spec["bind"])):
                     variables.append("$x")
                 slots = self.cat[inst["t"]].get("slots") or {}
                 all_refs = [x for s2, sp2 in slots.items() if sp2["type"] == "refs" for x in (inst.get(s2) or []) if is_ref(x)]
@@ -547,9 +587,10 @@ class _Emitter:
                 for r2 in self.insts:
                     if r2["id"] in reached and (self.cat[r2["t"]].get("mints") or {}).get("variable"):
                         variables.append(self.sym[r2["id"]])
+                variables.extend(evars)
                 for iid in self.inside(refs, scope_iid):
                     m = self.cat[self.by_id[iid]["t"]].get("mints") or {}
-                    if m and iid in self.sym and not self.is_rigid(iid):
+                    if m and iid in self.sym and not self.is_rigid(iid) and iid not in mapping:
                         stem = self.sym[iid].rsplit("_", 1)[0]
                         overlay[iid] = [stem] + variables
                         self.sk_functions[(stem, len(variables))] = m.get("id", "Entity")
@@ -558,11 +599,26 @@ class _Emitter:
             self.sym = overlay
         try:
             terms = []
-            for ref in refs:
-                terms.extend(self.atoms_of(ref[1:]))
-            for iid in self.attached(refs, scope_iid):
-                terms.extend(self.atoms_of(iid))
-            if slot:
+            ref_ids = [ref[1:] for ref in refs if is_ref(ref)]
+            if part == "own":                            # the predication's own atoms and its participants'
+                for rid in ref_ids:
+                    terms.extend(term for term, _e in self.shapes_of(rid))
+                for pid in mapping:
+                    if pid not in ref_ids and pid in self.homed_in.get(scope_iid, []):
+                        terms.extend(self.atoms_of(pid))
+            elif part == "attachments":                  # the predication's attachments, and what only they mention
+                for rid in ref_ids:
+                    for a in self.attachments_of.get(rid, []):
+                        terms.extend(self.atoms_of(a))
+                for iid in self.attached(refs, scope_iid):
+                    if iid not in mapping:
+                        terms.extend(self.atoms_of(iid))
+            else:
+                for ref in refs:
+                    terms.extend(self.atoms_of(ref[1:]))
+                for iid in self.attached(refs, scope_iid):
+                    terms.extend(self.atoms_of(iid))
+            if slot and part is None:
                 terms.extend(self.within_terms(scope_iid, slot))
         finally:
             self.sym = saved

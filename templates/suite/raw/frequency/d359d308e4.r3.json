@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "13d65efd8590af9281f4352993392e989a5c6e903a309894fd0833b96eb5b3ca",
+  "prompt_sha256": "7c4daaf87bba969034a6e7a88126b1a44c027e9fbe23903ddb071573f3bec958",
   "item": {
     "id": "sd359d308e4",
     "text": "Whenever Yusra sang, the ferret hid."
   },
   "usage": {
-    "input": 61683,
-    "output": 96,
+    "input": 66585,
+    "output": 230,
     "thinking": null,
-    "total": 61779,
-    "cached": 59634,
+    "total": 66815,
+    "cached": 64536,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 61683,
-    "candidatesTokenCount": 96,
-    "totalTokenCount": 61779,
-    "cachedContentTokenCount": 59634,
+    "promptTokenCount": 66585,
+    "candidatesTokenCount": 230,
+    "totalTokenCount": 66815,
+    "cachedContentTokenCount": 64536,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 61683
+        "tokenCount": 66585
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 59634
+        "tokenCount": 64536
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 96
+        "tokenCount": 230
       }
     ]
   },
-  "raw_text": "{\"id\": \"sd359d308e4\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}], \"unmapped\": [{\"span\": \"Whenever Yusra sang, the ferret hid.\", \"code\": \"G00\", \"construction\": \"A conditional over occasions introduced by 'whenever'.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"sd359d308e4\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"ferret\", \"definite\": true, \"span\": \"the ferret\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"sing\", \"actor\": \"@n1\", \"tense\": \"past\", \"span\": \"Yusra sang\"}, {\"t\": \"activity\", \"id\": \"v2\", \"verb\": \"hide\", \"actor\": \"@x1\", \"tense\": \"past\", \"span\": \"the ferret hid\"}, {\"t\": \"frequency\", \"id\": \"f1\", \"restrictor\": [\"@v1\"], \"over\": [\"@v2\"], \"every\": 1, \"word\": \"whenever\", \"span\": \"Whenever Yusra sang, the ferret hid\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sd359d308e4",
     "instances": [
@@ -57,24 +57,54 @@
         "id": "n1",
         "name": "Yusra",
         "span": "Yusra"
-      }
-    ],
-    "unmapped": [
+      },
       {
-        "span": "Whenever Yusra sang, the ferret hid.",
-        "code": "G00",
-        "construction": "A conditional over occasions introduced by 'whenever'."
+        "t": "witness",
+        "id": "x1",
+        "class": "ferret",
+        "definite": true,
+        "span": "the ferret"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "sing",
+        "actor": "@n1",
+        "tense": "past",
+        "span": "Yusra sang"
+      },
+      {
+        "t": "activity",
+        "id": "v2",
+        "verb": "hide",
+        "actor": "@x1",
+        "tense": "past",
+        "span": "the ferret hid"
+      },
+      {
+        "t": "frequency",
+        "id": "f1",
+        "restrictor": [
+          "@v1"
+        ],
+        "over": [
+          "@v2"
+        ],
+        "every": 1,
+        "word": "whenever",
+        "span": "Whenever Yusra sang, the ferret hid"
       }
     ],
+    "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "e6af361d5de2bcb65212565ff9e8e2dd9b01aa00d5864b21ae0bebe17cf7ad42",
+  "prompt_body_sha256": "93473aba6006eb665d675ae2a698158dee5aa3c2ac834cde7f752eeb05810701",
   "run": 3,
   "case": {
     "template": "frequency",
     "section": "held_out",
-    "index": 21,
-    "category": "abstain",
+    "index": 12,
+    "category": "positive",
     "text": "Whenever Yusra sang, the ferret hid.",
     "key": "d359d308e4"
   }

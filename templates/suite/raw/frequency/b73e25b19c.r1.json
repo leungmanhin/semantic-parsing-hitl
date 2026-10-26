@@ -1,0 +1,100 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "7c4daaf87bba969034a6e7a88126b1a44c027e9fbe23903ddb071573f3bec958",
+  "item": {
+    "id": "sb73e25b19c",
+    "text": "Lamine often sings loudly."
+  },
+  "usage": {
+    "input": 66582,
+    "output": 175,
+    "thinking": null,
+    "total": 66757,
+    "cached": 64480,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 66582,
+    "candidatesTokenCount": 175,
+    "totalTokenCount": 66757,
+    "cachedContentTokenCount": 64480,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 66582
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 64480
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 175
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sb73e25b19c\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"sing\", \"actor\": \"@n1\", \"tense\": \"present\", \"span\": \"Lamine often sings\"}, {\"t\": \"manner\", \"id\": \"a1\", \"event\": \"@v1\", \"manner\": \"loudly\", \"span\": \"loudly\"}, {\"t\": \"frequency\", \"id\": \"f1\", \"restrictor\": [\"@v1\"], \"level\": \"often\", \"word\": \"often\", \"span\": \"often\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sb73e25b19c",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "sing",
+        "actor": "@n1",
+        "tense": "present",
+        "span": "Lamine often sings"
+      },
+      {
+        "t": "manner",
+        "id": "a1",
+        "event": "@v1",
+        "manner": "loudly",
+        "span": "loudly"
+      },
+      {
+        "t": "frequency",
+        "id": "f1",
+        "restrictor": [
+          "@v1"
+        ],
+        "level": "often",
+        "word": "often",
+        "span": "often"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "93473aba6006eb665d675ae2a698158dee5aa3c2ac834cde7f752eeb05810701",
+  "run": 1,
+  "case": {
+    "template": "frequency",
+    "section": "held_out",
+    "index": 9,
+    "category": "positive",
+    "text": "Lamine often sings loudly.",
+    "key": "b73e25b19c"
+  }
+}

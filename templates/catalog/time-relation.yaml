@@ -63,8 +63,8 @@ trigger:
       a causal since or as — Yusra left, since the gate was open: a reason, a link; a temporal
       since or as is this template
     - >-
-      every time or whenever with a clause — whenever the bell rings: a conditional over
-      occasions, not a relation between two particular events; reported as unmapped
+      every time or whenever with a clause — whenever the bell rings: a generalization over the
+      when-clause's events, the frequency template; not a relation between two particular events
     - >-
       a main clause with no event of its own — the ladder was crooked until Monday, Yusra was in
       the barn during the audit: a copular, locative or degree clause mints no event; parse the
@@ -376,7 +376,7 @@ examples:
       expected: {abstain: true, template: link}                       # a causal since
     - category: abstain
       text: "Whenever Yusra sang, the ferret hid."
-      expected: {abstain: true, gap: G00, span: "Whenever"}           # a conditional over occasions
+      expected: {abstain: true, template: frequency}                  # a generalization over the when-clause's events
     - category: abstain
       text: "The ladder was crooked until Monday."
       expected: {abstain: true, gap: G00, span: "until Monday"}       # the main clause mints no event

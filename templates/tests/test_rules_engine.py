@@ -180,6 +180,22 @@ class SeededRulesOnTheEngine(unittest.TestCase):
         self.assertTrue(gap and "5 year" in gap[0], gap)
         self.assertFalse(self.query(h, "(Member sk_teodor_1 tall)"))                 # no positive
 
+    def test_a_restricted_rule_fires_on_a_stated_event(self):
+        """An adverb with an attachment restricts to the clause's own events: a stated arrival
+        gets the noon time, by instantiation of the skolemized time instance."""
+        facts = ['(: n1 (Name sk_teodor_1 "Teodor") (STV 1.0 0.99))',
+                 '(: f1 (Implication (And (Member $e arrive) (Agent $e sk_teodor_1)) (And (Time $e (sk_time $e)) (Hour (sk_time $e) 12))) (STV 1.0 0.9))',
+                 '(: m1 (Member sk_arrive_1 arrive) (STV 1.0 0.99))',
+                 '(: m1a (Agent sk_arrive_1 sk_teodor_1) (STV 1.0 0.99))',
+                 '(: m1p (Past sk_arrive_1) (STV 1.0 0.99))',
+                 '(: m2 (Member sk_arrive_2 arrive) (STV 1.0 0.99))',
+                 '(: m2a (Agent sk_arrive_2 sk_yusra_1) (STV 1.0 0.99))']
+        h = self.space(facts)
+        res = self.query(h, "(Hour (sk_time sk_arrive_1) $h)")
+        self.assertTrue(res and "12" in res[0], res)
+        self.assertTrue(self.query(h, "(Time sk_arrive_1 (sk_time sk_arrive_1))"))
+        self.assertFalse(self.query(h, "(Hour (sk_time sk_arrive_2) $h)"))      # Yusra's arrival: not restricted
+
 
 if __name__ == "__main__":
     unittest.main()

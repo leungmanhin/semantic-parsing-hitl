@@ -56,13 +56,33 @@ class FrequencyRuleForm(unittest.TestCase):
         self.assertIn("(sk_sleep $x $y)", rule)
         self.assertIn("(Time (sk_sleep $x $y) $y)", rule)
 
-    def test_a_time_attachment_is_skolemized_inside_the_rule(self):
+    def test_an_adverb_with_an_attachment_restricts_to_the_clauses_events(self):
         terms = emit("Teodor always arrives at noon.")
-        rule = [t for t in terms if t.startswith("(Implication")][0]
-        self.assertIn("(Time (sk_arrive $x) (sk_time $x))", rule)
-        self.assertIn("(Hour (sk_time $x) 12)", rule)
+        rule = [t for t in terms if t.startswith("(Implication")]
+        self.assertEqual(rule, ["(Implication (And (Member $e arrive) (Agent $e sk_teodor_1)) (And (Time $e (sk_time $e)) (Hour (sk_time $e) 12)))"], terms)
+        self.assertNotIn("(Member sk_arrive_1 arrive)", terms)                  # no top-level arrival
         night = [t for t in emit("Yusra usually sleeps at night.") if t.startswith("(Implication")][0]
-        self.assertIn("(Time (sk_sleep $x) night)", night)                    # a named time stays a constant
+        self.assertEqual(night, "(Implication (And (Member $e sleep) (Agent $e sk_yusra_1)) (Time $e night))")
+        gate = emit("Ottoline sometimes waits at the gate.")
+        self.assertIn("(Implication (And (Member $e wait) (Agent $e sk_ottoline_1)) (Location $e sk_gate_1))", gate)
+        self.assertIn("(Member sk_gate_1 gate)", gate)                          # the definite stays outside
+
+    def test_never_with_a_restrictor_is_the_rule_at_zero(self):
+        ex = example("frequency", "Teodor never arrives late.")
+        out = E.emit({"id": "t", "instances": [dict(i) for i in ex["instances"]]}, CATALOG)
+        rule = [s for s in out["statements"] if "(Implication" in s][0]
+        self.assertIn("(Implication (And (Member $e arrive) (Agent $e sk_teodor_1)) (Manner $e late))", rule)
+        self.assertTrue(rule.endswith("(STV 0.0 0.9))"), rule)
+
+    def test_a_when_clause_is_the_restrictor(self):
+        terms = emit("When Lamine sings, Yusra usually leaves.")
+        rule = [t for t in terms if t.startswith("(Implication")][0]
+        self.assertIn("(Implication (And (Member $e sing) (Agent $e sk_lamine_1))", rule)
+        self.assertIn("(Member (sk_leave $e) leave)", rule)
+        self.assertIn("(During (sk_leave $e) $e)", rule)
+        whenever = [t for t in emit("Whenever Yusra sang, the ferret hid.") if t.startswith("(Implication")][0]
+        self.assertIn("(Past $e)", whenever)                                    # the restrictor keeps its tense
+        self.assertIn("(Past (sk_hide $e))", whenever)
 
     def test_a_rate_is_a_rule_with_the_count_on_each_occasion(self):
         terms = emit("Lamine visits the market twice a week.")

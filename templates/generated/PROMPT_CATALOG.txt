@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 71f44e72da175e8c · 46 templates
+catalog sha256 70440749a87e0028 · 46 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -3623,8 +3623,8 @@ Not this template:
 - a frequency or a schedule — every day, twice a week, often: a frequency
 - a causal since or as — Yusra left, since the gate was open: a reason, a link; a temporal since
   or as is this template
-- every time or whenever with a clause — whenever the bell rings: a conditional over occasions,
-  not a relation between two particular events; reported as unmapped
+- every time or whenever with a clause — whenever the bell rings: a generalization over the
+  when-clause's events, the frequency template; not a relation between two particular events
 - a main clause with no event of its own — the ladder was crooked until Monday, Yusra was in the
   barn during the audit: a copular, locative or degree clause mints no event; parse the clause
   and the time, report the relation phrase as unmapped
@@ -3875,18 +3875,29 @@ period), the clause is parsed with its own template, and this instance names the
 `occasion` and the predication in `over`, with `every: 1` for a period, `times` for a rate (the
 count in each occasion: twice a week → 2 with a range over week) or `level` for the adverb; a
 generic subject or object (ferrets often bite, every ferret sleeps every night) is a range
-listed in `ranges`, and no generic instance is written. (2) A PATTERN RECORDED ON THE EVENT: a
-period of more than one unit (every two weeks, every other day, every three years) or a bare
-count of occurrences (once, twice, three times): the clause's predication is named in `event`
-with `every` and `unit`, or with `times`. One instance per frequency expression; a clock time, a
-date or a place beside it (at noon every day) is an attachment on the event as always, rendered
-inside the rule.
+listed in `ranges`, and no generic instance is written. Two cases take their restrictor from the
+sentence instead of an occasion range. (1b) An ADVERB ON A CLAUSE WITH AN ATTACHMENT — Teodor
+always arrives at noon, Yusra usually swims in the lake, Lamine often sings loudly: the rule
+ranges over the clause's own events and asserts the attachment of them; name the predication in
+`restrictor` (no `occasion`, no `over`) and leave its time, place or manner attached to it as
+usual; "never" here is the same rule at strength 0 (Teodor never arrives late). (1c) A WHEN /
+WHENEVER / EVERY TIME CLAUSE — when Lamine sings, Yusra usually leaves; whenever the bell rang,
+the ferret hid: the when-clause's predication is the restrictor, named in `restrictor`, and the
+main clause's predication is named in `over`; `every: 1` for whenever / every time / each time,
+`level` for an adverb in the main clause, and `every: 1` again for a bare "when" clause read as
+a generalization. (2) A PATTERN RECORDED ON THE EVENT: a period of more than one unit (every two
+weeks, every other day, every three years) or a bare count of occurrences (once, twice, three
+times): the clause's predication is named in `event` with `every` and `unit`, or with `times`.
+One instance per frequency expression; a clock time, a date or a place beside it (at noon every
+day) is an attachment on the event as always, rendered inside the rule.
 
 Forms:
 - <clause> every / each <unit, day part or weekday>
 - <clause> on <weekday>s
 - <clause> daily / weekly / monthly / yearly / nightly
 - <subject> <adverb> V … / <clause> <adverb>
+- <subject> <adverb> V … <attachment>
+- When / Whenever / Every time <clause>, <clause> [<adverb>]
 - <class>s <adverb> V … / every <class> V … every <unit>
 - <clause> once / twice / <n> times a / per <unit>
 - <clause> every <n> <units> / every other <unit>
@@ -3895,13 +3906,15 @@ Forms:
 Not this template:
 - a quantifier on a non-temporal noun with no frequency — every ferret slept, most students
   laugh: a generalization over a class, the generic template
-- never — Yusra never laughs: a negation of the clause, with no frequency instance
+- never on a bare clause — Yusra never laughs: a negation of the clause, with no frequency
+  instance; never with an attachment or a when-clause (never arrives late) is this template's
+  rule at strength 0
 - again, still, already, yet — laughed again, still waits: an aspectual particle, a
   presupposition about an earlier state, not how often
 - a duration — all day, for years, for six hours: how long, a measure; no slot here; report the
   phrase as unmapped
-- every time or whenever with a clause — whenever the bell rings: a conditional over occasions,
-  not a recurrence; reported as unmapped
+- a bare if-clause — if the bell rings, the ferret hides: a conditional, not a frequency;
+  reported as unmapped
 - a habit with no frequency expression — Yusra swims, Lamine used to sing: the habitual template
   marks the clause's event; no rule, no range
 - a time the event takes place at — in 2019, on Monday, at noon, yesterday: a time; a time
@@ -3924,19 +3937,26 @@ Slots:
   month or year for a period of one unit (every day, daily, weekly), the day part or weekday for
   every morning / every night / on Sundays / every Monday (morning, night, sunday, monday), and
   occasion for a frequency adverb with no stated period (often); required with over.
+- `restrictor` (optional; a list of "@id" of the instances that state the clause): the
+  predication the rule ranges over when the sentence states it: the clause's own predication for
+  an adverb on a clause with an attachment (Teodor always arrives at noon — the attachment stays
+  on it), or the when / whenever clause's predication (whenever the bell rang, …); its id; never
+  together with occasion.
 - `ranges` (optional; a list of "@id" of the instances that state the clause): the class
   range(s) of a generic subject or object in the same clause (ferrets often bite, every ferret
   sleeps every night): their ids in text order; absent otherwise.
 - `over` (optional; a list of "@id" of the instances that state the clause): the predication
   over the occasions: its id, nothing else (a negation or a modal over the clause names THIS
-  instance instead); filled for a period of one unit, a rate or an adverb, never together with
-  event.
+  instance instead); filled with occasion for a period of one unit, a rate or an adverb, and
+  with restrictor for the main clause of a when-clause; empty for an adverb on a clause with an
+  attachment; never together with event.
 - `event` (optional; "@id" of the predication instance this attaches to): for a pattern recorded
   on the event instead — a period of more than one unit, or a bare count: the id of the clause's
   predication instance; never together with over.
-- `every` (optional; a number): the period as a number of units: 1 with over (every day, every
-  morning, on Sundays, daily, annually); the stated number with event (every two weeks → 2,
-  every other day → 2, with unit).
+- `every` (optional; a number): the period as a number of units: 1 with occasion (every day,
+  every morning, on Sundays, daily, annually) and for whenever / every time / each time with
+  restrictor; the stated number with event (every two weeks → 2, every other day → 2, with
+  unit).
 - `times` (optional; a number): a count of occurrences — twice → 2, once → 1, three times → 3:
   with over, the count in each occasion of the range (twice a week → 2 with a range over week;
   once a year → 1 with a range over year); with event, a bare count (knocked twice).
@@ -3945,10 +3965,11 @@ Slots:
   carries the class, so leave it empty.
 - `level` (optional; a lemma): the frequency adverb as written, lowercase (always, usually,
   normally, generally, often, frequently, regularly, sometimes, occasionally, seldom, rarely); a
-  phrase as one snake_case symbol (hardly_ever, from_time_to_time, once_in_a_while).
+  phrase as one snake_case symbol (hardly_ever, from_time_to_time, once_in_a_while); never only
+  with restrictor (never arrives late).
 - `word` (optional; a string): the frequency expression as written (every morning, on Sundays,
   daily, twice a week, often); recorded, not rendered.
-- Exactly one of `over`, `event` is filled.
+- Exactly one of `occasion`, `restrictor`, `event` is filled.
 - Exactly one of `every`, `times`, `level` is filled.
 
 Example (a period of one unit — a rule over the mornings, with the swim a function of the morning). TEXT: Yusra swims every morning.
@@ -3982,6 +4003,24 @@ The program renders these instances as:
 
     (Name sk_ottoline_1 "Ottoline")
     (Implication (Member $x occasion) (And (Member (sk_laugh $x) laugh) (Agent (sk_laugh $x) sk_ottoline_1) (Time (sk_laugh $x) $x)))
+
+Example (an adverb on a clause with a place — the restrictor is the clause's own events, the place is asserted of them). TEXT: Yusra usually swims in the lake.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Yusra", "span": "Yusra"},
+      {"t": "witness", "id": "x1", "class": "lake", "definite": true, "span": "the lake"},
+      {"t": "activity", "id": "v1", "verb": "swim", "actor": "@n1", "tense": "present", "span": "Yusra usually swims"},
+      {"t": "location", "id": "l1", "event": "@v1", "place": "@x1", "head": "Location", "preposition": "in", "span": "in the lake"},
+      {"t": "frequency", "id": "f1", "restrictor": ["@v1"], "level": "usually", "word": "usually", "span": "usually"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_yusra_1 "Yusra")
+    (Member sk_lake_1 lake)
+    (Implication (And (Member $e swim) (Agent $e sk_yusra_1)) (Location $e sk_lake_1))
 
 Example (a rate — a rule over the weeks, each week's episode carrying the count). TEXT: Lamine visits the market twice a week.
 
@@ -4026,8 +4065,8 @@ Not this template:
   and a distribution, not a rule over a class
 - a modal or a capability on a class — ferrets can climb, citizens must pay tax: a property of
   the class, not an event rule
-- "every time" or "whenever" with a clause — every time the bell rings: a frequency conditional
-  over occasions, not a quantifier on a subject
+- "every time" or "whenever" with a clause — every time the bell rings: the frequency template's
+  when-clause form, not a quantifier on a subject
 - an existential singular — some ferret slept, a ferret slept: a particular witness
 - a copular predicate under a condition — clay is soft when wet: a conditional property, the
   same rule with "be"

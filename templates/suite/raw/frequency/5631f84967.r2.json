@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "0a4e7df19e4cd1dfa33c89986ab71053fa6df0c352d0e1a79b6ed5e92cdc13ee",
+  "prompt_sha256": "7c4daaf87bba969034a6e7a88126b1a44c027e9fbe23903ddb071573f3bec958",
   "item": {
     "id": "s5631f84967",
     "text": "Ottoline sometimes waits at the gate."
   },
   "usage": {
-    "input": 62303,
-    "output": 252,
+    "input": 66585,
+    "output": 221,
     "thinking": null,
-    "total": 62555,
-    "cached": 60254,
+    "total": 66806,
+    "cached": 64536,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 62303,
-    "candidatesTokenCount": 252,
-    "totalTokenCount": 62555,
-    "cachedContentTokenCount": 60254,
+    "promptTokenCount": 66585,
+    "candidatesTokenCount": 221,
+    "totalTokenCount": 66806,
+    "cachedContentTokenCount": 64536,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 62303
+        "tokenCount": 66585
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 60254
+        "tokenCount": 64536
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 252
+        "tokenCount": 221
       }
     ]
   },
-  "raw_text": "{\"id\": \"s5631f84967\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"range\", \"id\": \"q1\", \"class\": \"occasion\", \"span\": \"sometimes\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"gate\", \"definite\": true, \"span\": \"the gate\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"wait\", \"actor\": \"@n1\", \"tense\": \"present\", \"span\": \"Ottoline sometimes waits\"}, {\"t\": \"location\", \"id\": \"l1\", \"event\": \"@v1\", \"place\": \"@x1\", \"head\": \"Location\", \"preposition\": \"at\", \"span\": \"at the gate\"}, {\"t\": \"frequency\", \"id\": \"f1\", \"occasion\": [\"@q1\"], \"over\": [\"@v1\"], \"level\": \"sometimes\", \"word\": \"sometimes\", \"span\": \"sometimes\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s5631f84967\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"gate\", \"definite\": true, \"span\": \"the gate\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"wait\", \"actor\": \"@n1\", \"tense\": \"present\", \"span\": \"Ottoline sometimes waits\"}, {\"t\": \"location\", \"id\": \"l1\", \"event\": \"@v1\", \"place\": \"@x1\", \"head\": \"Location\", \"preposition\": \"at\", \"span\": \"at the gate\"}, {\"t\": \"frequency\", \"id\": \"f1\", \"restrictor\": [\"@v1\"], \"level\": \"sometimes\", \"word\": \"sometimes\", \"span\": \"sometimes\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s5631f84967",
     "instances": [
@@ -57,12 +57,6 @@
         "id": "n1",
         "name": "Ottoline",
         "span": "Ottoline"
-      },
-      {
-        "t": "range",
-        "id": "q1",
-        "class": "occasion",
-        "span": "sometimes"
       },
       {
         "t": "witness",
@@ -91,10 +85,7 @@
       {
         "t": "frequency",
         "id": "f1",
-        "occasion": [
-          "@q1"
-        ],
-        "over": [
+        "restrictor": [
           "@v1"
         ],
         "level": "sometimes",
@@ -105,7 +96,7 @@
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "afb9b34e08037e4af790f15f77e7670cdf6dd9377ca25c9a470b5c7859103180",
+  "prompt_body_sha256": "93473aba6006eb665d675ae2a698158dee5aa3c2ac834cde7f752eeb05810701",
   "run": 2,
   "case": {
     "template": "frequency",

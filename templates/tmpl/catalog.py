@@ -12,7 +12,9 @@ Structural invariants checked here (content is reviewed by people, not checked h
 * every ``emits`` entry has an ``atom`` whose placeholders name a slot of the template (or
   ``@id`` when the template mints a symbol); ``if_filled`` / ``each`` name a slot; ``when``
   mentions only slots, their values and ``true`` / ``false``; ``project`` is a boolean;
-  ``within`` names a refs slot (the shape is rendered inside that slot's bundle);
+  ``within`` names a refs slot (the shape is rendered inside that slot's bundle); a refs
+  placeholder may carry ``|own`` or ``|attachments`` (the referenced predication's own atoms,
+  or its attachments' — the two halves of a rule restricted to the clause's events);
 * ``one_of`` (exactly one filled) and ``any_of`` (at least one filled) groups list two or more
   slots each; ``truth`` gives ``strength`` / ``confidence``
   clause lists (numbers, or ``{slot, values}`` / ``{from, slot, values}``); a shape's ``stv`` is a
@@ -35,9 +37,9 @@ CATALOG_DIR = os.path.abspath(os.path.join(HERE, os.pardir, "catalog"))
 SLOT_TYPES = {"id", "lemma", "filler", "refs", "enum", "bool", "string", "number", "int", "list"}
 CLASSED = {"lemma", "filler", "refs"}
 CATEGORIES = {"positive", "contrast", "scoped", "optional", "abstain"}
-SLOT_KEYS = {"type", "class", "role", "required", "default", "values", "doc", "consumes", "bind", "skolemize", "attaches", "bare_content", "participant"}
+SLOT_KEYS = {"type", "class", "role", "required", "default", "values", "doc", "consumes", "bind", "skolemize", "attaches", "bare_content", "participant", "as_variable"}
 
-_PLACEHOLDER = re.compile(r"\{([a-z_]+)\}")
+_PLACEHOLDER = re.compile(r"\{([a-z_]+)(?:\|(own|attachments))?\}")   # {slot}, or {slot|own} / {slot|attachments} for a refs slot
 
 
 class CatalogError(Exception):
@@ -45,7 +47,7 @@ class CatalogError(Exception):
 
 
 def placeholders(atom: str) -> set[str]:
-    return set(_PLACEHOLDER.findall(atom))
+    return {m.group(1) for m in _PLACEHOLDER.finditer(atom)}
 
 
 def norm_span(s: str) -> str:
@@ -109,7 +111,7 @@ def check_template(t: dict, path: str) -> list[str]:
             problems.append(f"slot {sname}: a {spec['type']} slot needs a substrate class")
         if spec["type"] == "enum" and not spec.get("values"):
             problems.append(f"slot {sname}: an enum slot needs values")
-        for key in ("consumes", "bind", "skolemize", "bare_content"):
+        for key in ("consumes", "bind", "skolemize", "bare_content", "as_variable"):
             if key in spec and spec["type"] != "refs":
                 problems.append(f"slot {sname}: {key} applies to refs slots only")
         if spec.get("bind") and (slots.get(spec["bind"]) or {}).get("type") != "filler":

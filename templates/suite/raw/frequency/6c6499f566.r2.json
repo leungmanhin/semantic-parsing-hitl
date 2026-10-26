@@ -1,0 +1,110 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "7c4daaf87bba969034a6e7a88126b1a44c027e9fbe23903ddb071573f3bec958",
+  "item": {
+    "id": "s6c6499f566",
+    "text": "When Lamine sings, Yusra usually leaves."
+  },
+  "usage": {
+    "input": 66587,
+    "output": 230,
+    "thinking": null,
+    "total": 66817,
+    "cached": 64538,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 66587,
+    "candidatesTokenCount": 230,
+    "totalTokenCount": 66817,
+    "cachedContentTokenCount": 64538,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 66587
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 64538
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 230
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s6c6499f566\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"sing\", \"actor\": \"@n1\", \"tense\": \"present\", \"span\": \"Lamine sings\"}, {\"t\": \"motion\", \"id\": \"e2\", \"verb\": \"leave\", \"mover\": \"@n2\", \"tense\": \"present\", \"span\": \"Yusra usually leaves\"}, {\"t\": \"frequency\", \"id\": \"r1\", \"restrictor\": [\"@e1\"], \"over\": [\"@e2\"], \"level\": \"usually\", \"word\": \"usually\", \"span\": \"When Lamine sings, Yusra usually leaves\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s6c6499f566",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "sing",
+        "actor": "@n1",
+        "tense": "present",
+        "span": "Lamine sings"
+      },
+      {
+        "t": "motion",
+        "id": "e2",
+        "verb": "leave",
+        "mover": "@n2",
+        "tense": "present",
+        "span": "Yusra usually leaves"
+      },
+      {
+        "t": "frequency",
+        "id": "r1",
+        "restrictor": [
+          "@e1"
+        ],
+        "over": [
+          "@e2"
+        ],
+        "level": "usually",
+        "word": "usually",
+        "span": "When Lamine sings, Yusra usually leaves"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "93473aba6006eb665d675ae2a698158dee5aa3c2ac834cde7f752eeb05810701",
+  "run": 2,
+  "case": {
+    "template": "frequency",
+    "section": "held_out",
+    "index": 11,
+    "category": "positive",
+    "text": "When Lamine sings, Yusra usually leaves.",
+    "key": "6c6499f566"
+  }
+}

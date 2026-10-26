@@ -1,0 +1,108 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "7c4daaf87bba969034a6e7a88126b1a44c027e9fbe23903ddb071573f3bec958",
+  "item": {
+    "id": "s20384f0b2a",
+    "text": "Every ferret sleeps every night."
+  },
+  "usage": {
+    "input": 66583,
+    "output": 200,
+    "thinking": null,
+    "total": 66783,
+    "cached": 64534,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 66583,
+    "candidatesTokenCount": 200,
+    "totalTokenCount": 66783,
+    "cachedContentTokenCount": 64534,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 66583
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 64534
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 200
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s20384f0b2a\", \"instances\": [{\"t\": \"range\", \"id\": \"q1\", \"class\": \"ferret\", \"quantifier\": \"every\", \"predicate\": \"sleep\", \"span\": \"Every ferret\"}, {\"t\": \"range\", \"id\": \"q2\", \"class\": \"night\", \"quantifier\": \"every\", \"span\": \"every night\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"sleep\", \"actor\": \"@q1\", \"tense\": \"present\", \"span\": \"Every ferret sleeps\"}, {\"t\": \"frequency\", \"id\": \"f1\", \"occasion\": [\"@q2\"], \"ranges\": [\"@q1\"], \"over\": [\"@e1\"], \"every\": 1, \"word\": \"every night\", \"span\": \"every night\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s20384f0b2a",
+    "instances": [
+      {
+        "t": "range",
+        "id": "q1",
+        "class": "ferret",
+        "quantifier": "every",
+        "predicate": "sleep",
+        "span": "Every ferret"
+      },
+      {
+        "t": "range",
+        "id": "q2",
+        "class": "night",
+        "quantifier": "every",
+        "span": "every night"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "sleep",
+        "actor": "@q1",
+        "tense": "present",
+        "span": "Every ferret sleeps"
+      },
+      {
+        "t": "frequency",
+        "id": "f1",
+        "occasion": [
+          "@q2"
+        ],
+        "ranges": [
+          "@q1"
+        ],
+        "over": [
+          "@e1"
+        ],
+        "every": 1,
+        "word": "every night",
+        "span": "every night"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "93473aba6006eb665d675ae2a698158dee5aa3c2ac834cde7f752eeb05810701",
+  "run": 2,
+  "case": {
+    "template": "frequency",
+    "section": "held_out",
+    "index": 15,
+    "category": "positive",
+    "text": "Every ferret sleeps every night.",
+    "key": "20384f0b2a"
+  }
+}
