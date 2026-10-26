@@ -1,0 +1,118 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "0f5c78c3edeb6928c0c0773d62ad354f653de35e630fd30c3fab377604d30403",
+  "item": {
+    "id": "s18128ca1f8",
+    "text": "If Teodor arrives, Ottoline might leave."
+  },
+  "usage": {
+    "input": 70924,
+    "output": 251,
+    "thinking": null,
+    "total": 71175,
+    "cached": 68875,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 70924,
+    "candidatesTokenCount": 251,
+    "totalTokenCount": 71175,
+    "cachedContentTokenCount": 68875,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 70924
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 68875
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 251
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s18128ca1f8\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"arrive\", \"mover\": \"@n1\", \"tense\": \"present\", \"span\": \"Teodor arrives\"}, {\"t\": \"motion\", \"id\": \"m2\", \"verb\": \"leave\", \"mover\": \"@n2\", \"tense\": \"present\", \"span\": \"Ottoline might leave\"}, {\"t\": \"modal\", \"id\": \"s1\", \"over\": [\"@m2\"], \"head\": \"Might\", \"surface\": \"might\", \"span\": \"might\"}, {\"t\": \"conditional\", \"id\": \"r1\", \"condition\": [\"@m1\"], \"over\": [\"@s1\"], \"span\": \"If Teodor arrives, Ottoline might leave\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s18128ca1f8",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Ottoline",
+        "span": "Ottoline"
+      },
+      {
+        "t": "motion",
+        "id": "m1",
+        "verb": "arrive",
+        "mover": "@n1",
+        "tense": "present",
+        "span": "Teodor arrives"
+      },
+      {
+        "t": "motion",
+        "id": "m2",
+        "verb": "leave",
+        "mover": "@n2",
+        "tense": "present",
+        "span": "Ottoline might leave"
+      },
+      {
+        "t": "modal",
+        "id": "s1",
+        "over": [
+          "@m2"
+        ],
+        "head": "Might",
+        "surface": "might",
+        "span": "might"
+      },
+      {
+        "t": "conditional",
+        "id": "r1",
+        "condition": [
+          "@m1"
+        ],
+        "over": [
+          "@s1"
+        ],
+        "span": "If Teodor arrives, Ottoline might leave"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "214cffae01faae1eb1ee844ca5f812b5698e08abff9e2d6daa703d5373c09a78",
+  "run": 3,
+  "case": {
+    "template": "conditional",
+    "section": "held_out",
+    "index": 8,
+    "category": "scoped",
+    "text": "If Teodor arrives, Ottoline might leave.",
+    "key": "18128ca1f8"
+  }
+}

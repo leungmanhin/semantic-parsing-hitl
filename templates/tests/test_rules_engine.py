@@ -217,6 +217,19 @@ class SeededRulesOnTheEngine(unittest.TestCase):
         self.assertTrue(self.query(h, "(More tall sk_lamine_1 sk_bob_1)"))        # half as tall: the reverse ordering
         self.assertFalse(self.query(h, "(More tall sk_bob_1 sk_lamine_1)"))
 
+    def test_a_counterfactual_denies_its_antecedent(self):
+        """The sealed antecedent of a counterfactual is derived denied as a whole — the catalog's
+        own form for a denied past clause — while neither clause is asserted. The engine does not
+        project a negated bundle's conjuncts at strength 0, so the denial is queried as the bundle."""
+        facts = ['(: n1 (Name sk_lamine_1 "Lamine") (STV 1.0 0.99))',
+                 '(: k1 (Counterfactual (And (Member sk_sing_1 sing) (Agent sk_sing_1 sk_lamine_1) (Past sk_sing_1)) (And (Member sk_leave_1 leave) (Agent sk_leave_1 sk_yusra_1) (Past sk_leave_1))) (STV 1.0 0.99))']
+        h = self.space(facts)
+        denied = self.query(h, "(Not (And (Member sk_sing_1 sing) (Agent sk_sing_1 sk_lamine_1) (Past sk_sing_1)))")
+        self.assertTrue(denied and "counterfactual_antecedent_false" in denied[0], denied)
+        self.assertGreater(tv(denied)[1], 0.8)
+        self.assertFalse(self.query(h, "(Member sk_sing_1 sing)"))                  # not asserted
+        self.assertFalse(self.query(h, "(Member sk_leave_1 leave)"))                 # nor the consequent
+
 
 if __name__ == "__main__":
     unittest.main()

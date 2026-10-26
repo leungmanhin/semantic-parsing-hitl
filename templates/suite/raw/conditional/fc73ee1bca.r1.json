@@ -1,0 +1,100 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "0f5c78c3edeb6928c0c0773d62ad354f653de35e630fd30c3fab377604d30403",
+  "item": {
+    "id": "sfc73ee1bca",
+    "text": "Tin is brittle when cold."
+  },
+  "usage": {
+    "input": 70917,
+    "output": 193,
+    "thinking": null,
+    "total": 71110,
+    "cached": null,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 70917,
+    "candidatesTokenCount": 193,
+    "totalTokenCount": 71110,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 70917
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 193
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sfc73ee1bca\", \"instances\": [{\"t\": \"range\", \"id\": \"q1\", \"class\": \"tin\", \"span\": \"Tin\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@q1\", \"predicate\": \"brittle\", \"form\": \"adjective\", \"tense\": \"present\", \"span\": \"Tin is brittle\"}, {\"t\": \"copular\", \"id\": \"c2\", \"subject\": \"@q1\", \"predicate\": \"cold\", \"form\": \"adjective\", \"tense\": \"present\", \"span\": \"cold\"}, {\"t\": \"conditional-property\", \"id\": \"r1\", \"ranges\": [\"@q1\"], \"condition\": [\"@c2\"], \"over\": [\"@c1\"], \"span\": \"Tin is brittle when cold\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sfc73ee1bca",
+    "instances": [
+      {
+        "t": "range",
+        "id": "q1",
+        "class": "tin",
+        "span": "Tin"
+      },
+      {
+        "t": "copular",
+        "id": "c1",
+        "subject": "@q1",
+        "predicate": "brittle",
+        "form": "adjective",
+        "tense": "present",
+        "span": "Tin is brittle"
+      },
+      {
+        "t": "copular",
+        "id": "c2",
+        "subject": "@q1",
+        "predicate": "cold",
+        "form": "adjective",
+        "tense": "present",
+        "span": "cold"
+      },
+      {
+        "t": "conditional-property",
+        "id": "r1",
+        "ranges": [
+          "@q1"
+        ],
+        "condition": [
+          "@c2"
+        ],
+        "over": [
+          "@c1"
+        ],
+        "span": "Tin is brittle when cold"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "214cffae01faae1eb1ee844ca5f812b5698e08abff9e2d6daa703d5373c09a78",
+  "run": 1,
+  "case": {
+    "template": "conditional",
+    "section": "held_out",
+    "index": 10,
+    "category": "abstain",
+    "text": "Tin is brittle when cold.",
+    "key": "fc73ee1bca"
+  }
+}

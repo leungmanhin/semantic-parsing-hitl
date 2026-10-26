@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 a053ece7f373faee · 47 templates
+catalog sha256 6cb244a24851ba6b · 49 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -156,9 +156,9 @@ Decide what to keep by ENTAILMENT. When the sentence still entails the rest with
 part, keep the instances the templates license and report just that part: an added time, date
 bound, duration, place, manner, amount or tag leaves the event itself true ("was demolished
 before 1960" still says it was demolished). When the rest would NOT follow without the unmapped
-part, leave the whole claim out and report the whole clause: a condition on an individual ("the
-ladder is brittle when cold"), a hedge ("supposedly full"), a proportion or partitive ("12.5% of
-the applicants").
+part, leave the whole claim out and report the whole clause: a negated condition ("unless it
+rains, Lamine sings"), a hedge ("supposedly full"), a proportion or partitive ("12.5% of the
+applicants").
 
 Referents inside an unmapped span: a NAME still gets its instance (a name is rigid, the same
 individual wherever it appears in the text), but a common-noun phrase or a pronoun does not. A
@@ -184,8 +184,6 @@ Codes:
 - G09: stay / remain / keep with a locative continuation ('stayed in the hall')
 - G10: the verbatim wording of a quotation (its content is parsed; the wording itself is not
   kept)
-- G11: an individual's property under a condition ('the ladder is brittle when cold'); a class's
-  is the conditional-property template
 
 ## Reporting a problem with the instructions
 
@@ -2705,6 +2703,60 @@ Not this template. TEXT: Ottoline took the envelope from Lamine. — use `acquis
 
 ## Scope operators — negation, modality, sealed content
 
+### counterfactual — A subjunctive conditional
+
+When: A conditional in the subjunctive: a past-perfect antecedent with a would-have consequent
+(if Lamine had sung, Yusra would have left; had Lamine sung, …), or a past-tense antecedent with
+a would / could / might consequent about the present (if Yusra sang, Teodor would leave; if the
+gate were open, the ferret would leave). Parse both clauses with their own templates — tense
+past for both, the modal of the consequent not written as a modal instance — and name them in
+`antecedent` and `consequent`. Nothing is asserted: both clauses are sealed. The span is the
+whole sentence.
+
+Forms:
+- If <X> had V-ed, <Y> would have V-ed
+- Had <X> V-ed, <Y> would have V-ed
+- If <X> V-ed / were ADJ, <Y> would V
+
+Not this template:
+- an indicative conditional — if Lamine sings, Yusra leaves; if Yusra arrives, Teodor will
+  leave: a rule, the conditional template
+- a lone would-have consequent — Yusra would have left; the bridge that would have collapsed: no
+  antecedent to seal; report the clause as unmapped (G04)
+- a wish or a polite would — Yusra would like a thermos; Lamine would often sing: not a
+  conditional; the clause's own template, the modal as a modal
+- an embedded question with if — asked if Yusra had left: a sealed question under the verb
+
+Slots:
+
+- `t` (required): "counterfactual"
+- `id` (required; your label for this instance): your label for the counterfactual (k1, k2 …).
+- `antecedent` (required; a list of "@id" of the instances this one scopes over): the
+  if-clause's predication, or the negation over it: its id, nothing else.
+- `consequent` (required; a list of "@id" of the instances this one scopes over): the
+  would-clause's predication, or the negation over it: its id, nothing else; the would itself is
+  not a modal instance.
+
+Example (the past counterfactual — both clauses sealed, neither asserted). TEXT: If Teodor had arrived, Lamine would have stayed.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Teodor", "span": "Teodor"},
+      {"t": "named-entity", "id": "n2", "name": "Lamine", "span": "Lamine"},
+      {"t": "motion", "id": "m1", "verb": "arrive", "mover": "@n1", "tense": "past", "span": "Teodor had arrived"},
+      {"t": "activity", "id": "v1", "verb": "stay", "actor": "@n2", "tense": "past", "span": "Lamine would have stayed"},
+      {"t": "counterfactual", "id": "k1", "antecedent": ["@m1"], "consequent": ["@v1"], "span": "If Teodor had arrived, Lamine would have stayed"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_teodor_1 "Teodor")
+    (Name sk_lamine_1 "Lamine")
+    (Counterfactual (And (Member sk_arrive_1 arrive) (Agent sk_arrive_1 sk_teodor_1) (Past sk_arrive_1)) (And (Member sk_stay_1 stay) (Agent sk_stay_1 sk_lamine_1) (Past sk_stay_1)))
+
+Not this template. TEXT: If Teodor arrives, Ottoline leaves. — use `conditional`.
+
 ### imperative — A command or a request to the addressee
 
 When: A clause in the imperative mood: a bare verb with no subject, addressed to the hearer —
@@ -3849,6 +3901,102 @@ hours", "code": "G00"}.
 
 ## Rules — generic and quantified statements
 
+### conditional — An indicative conditional
+
+When: "If P, Q" and its kin — if … then, provided that, as long as, in case, even if — and a
+stative when-clause (the ladder is brittle when cold; Teodor is grumpy when tired). Parse the
+condition with its own template (a predication for an event — Lamine sings; a copular instance
+for a state — cold, open, tired, with the subject it is said of) and the consequence with its
+own (a predication, or a negation or modal over it, or a copular instance for a state), and name
+them in `condition` and `over`. With an eventive condition the rule ranges over the condition's
+events, and the consequence's event is a function of each; with a stative condition the rule
+holds between the states as stated. When the subject is a class — herons are patient if the
+weather is sunny — it is a range instance listed in `ranges`, the consequence a copular instance
+over it, and `generic: true` marks a bare plural (no quantifier word). The mood is indicative:
+the clauses are real possibilities; a subjunctive (if Lamine had sung, Yusra would have left; if
+Yusra sang, Teodor would leave) is a counterfactual. The span is the whole sentence.
+
+Forms:
+- If <P>, <Q> / <Q> if <P>
+- <X> is ADJ when / if ADJ
+- <class>s are ADJ if <P>
+- Provided that / as long as / in case <P>, <Q>
+
+Not this template:
+- a counterfactual or a hypothetical with would — if Lamine had sung, Yusra would have left; if
+  Yusra sang, Teodor would leave: the counterfactual template
+- unless, or if not — unless it rains, Lamine sings; if Yusra does not sing, Lamine leaves: a
+  negated condition, with no form yet; report the clause as unmapped (G08)
+- an eventive when-clause — when Lamine sings, Yusra leaves; whenever the bell rang: a
+  generalization over the when-clause's events, the frequency template
+- a class's property under a state of its members — clay is soft when wet, all alloys are
+  brittle when cold: the conditional-property template; here the subject is an individual, or
+  the condition is about something else than the member
+- a causal connective — because, since, so: a link between two asserted clauses, not a condition
+- "if" introducing an embedded question — asked if Yusra had left: a sealed question under the
+  verb, not a condition
+- a purpose or a result infinitive — left to sleep, woke to find the door open: not a condition
+
+Slots:
+
+- `t` (required): "conditional"
+- `id` (required; your label for this instance): your label for the rule (r1, r2 …).
+- `condition` (required; a list of "@id" of the instances that state the clause): the if-clause:
+  the id of its predication (its event becomes the rule's variable) or of its copular / locative
+  instance for a state (the copular for cold, its subject the thing it is said of); several
+  conditions are several ids.
+- `over` (required; a list of "@id" of the instances that state the clause): the consequence:
+  the id of its predication, or of the negation or modal over it, or of its copular instance for
+  a state; nothing else.
+- `ranges` (optional; a list of "@id" of the instances that state the clause): the range
+  instance of a class subject (herons are patient if the weather is sunny): its id; absent
+  otherwise.
+- `generic` (optional; true / false): true when the subject is a bare plural or mass noun read
+  generically, with no quantifier word (herons are …): a bare generalization; absent otherwise.
+- `word` (optional; a string): the conditional word as written when it is not if (provided that,
+  as long as, in case, even if, when); recorded, not rendered.
+
+Example (an eventive condition — the rule ranges over Teodor's arrivals, Ottoline's leaving a function of each). TEXT: If Teodor arrives, Ottoline leaves.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Teodor", "span": "Teodor"},
+      {"t": "named-entity", "id": "n2", "name": "Ottoline", "span": "Ottoline"},
+      {"t": "motion", "id": "m1", "verb": "arrive", "mover": "@n1", "tense": "present", "span": "Teodor arrives"},
+      {"t": "motion", "id": "m2", "verb": "leave", "mover": "@n2", "tense": "present", "span": "Ottoline leaves"},
+      {"t": "conditional", "id": "r1", "condition": ["@m1"], "over": ["@m2"], "span": "If Teodor arrives, Ottoline leaves"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_teodor_1 "Teodor")
+    (Name sk_ottoline_1 "Ottoline")
+    (Implication (And (Member $e arrive) (Agent $e sk_teodor_1)) (And (Member (sk_leave $e) leave) (Agent (sk_leave $e) sk_ottoline_1)))
+
+Example (a stative condition on an individual — the rule holds between the two states). TEXT: The barn is cold when the door is open.
+
+Instances:
+
+    [
+      {"t": "witness", "id": "x1", "class": "barn", "definite": true, "span": "The barn"},
+      {"t": "witness", "id": "x2", "class": "door", "definite": true, "span": "the door"},
+      {"t": "copular", "id": "c1", "subject": "@x1", "predicate": "cold", "form": "adjective", "tense": "present", "span": "The barn is cold"},
+      {"t": "copular", "id": "c2", "subject": "@x2", "predicate": "open", "form": "adjective", "tense": "present", "span": "the door is open"},
+      {"t": "conditional", "id": "r1", "condition": ["@c2"], "over": ["@c1"], "word": "when", "span": "The barn is cold when the door is open"}
+    ]
+
+The program renders these instances as:
+
+    (Member sk_barn_1 barn)
+    (Member sk_door_1 door)
+    (Implication (Member sk_door_1 open) (Member sk_barn_1 cold))
+
+Not this template. TEXT: All alloys are brittle when cold. — use `conditional-property`.
+
+Not this template. TEXT: Unless it rains, Lamine sings. — report it as unmapped: {"span":
+"Unless it rains", "code": "G08"}.
+
 ### conditional-property — A class's property under a condition
 
 When: A clause with "be" as its main verb whose subject names a class — a bare plural (alloys),
@@ -3875,12 +4023,12 @@ Not this template:
   cranes are rare in winter: a class-level property with a restriction, not a rule over the
   members
 - an individual as the subject — the ladder is brittle when cold, Teodor is grumpy when tired:
-  not a class; report the clause as unmapped (G11)
+  not a class; the conditional template
 - a verbal predicate under a condition — clay softens when wet, ferrets bite when cornered: a
   generic with a condition
 - a condition about something other than the member — herons are patient if the weather is
-  sunny, bread is cheap when the harvest is good: the condition names an occasion, not a state
-  of the member, and has no slot yet; report the whole clause as unmapped
+  sunny, bread is cheap when the harvest is good: the conditional template, with the class range
+  in its ranges
 - a circumstance phrase that no template states of a member — solid at room temperature, active
   at night, soft under heat: the condition cannot be carried, so neither can the claim; report
   the whole clause as unmapped
@@ -4033,8 +4181,8 @@ Not this template:
   presupposition about an earlier state, not how often
 - a duration — all day, for years, for six hours: how long, a measure; no slot here; report the
   phrase as unmapped
-- a bare if-clause — if the bell rings, the ferret hides: a conditional, not a frequency;
-  reported as unmapped
+- an if-clause — if the bell rings, the ferret hides: the conditional template; a stative
+  when-clause — the ladder is brittle when cold — is a condition there too, not a frequency
 - a habit with no frequency expression — Yusra swims, Lamine used to sing: the habitual template
   marks the clause's event; no rule, no range
 - a time the event takes place at — in 2019, on Monday, at noon, yesterday: a time; a time
@@ -4475,8 +4623,8 @@ Not this template:
 - a clause with no event of its own as an endpoint — the ladder is crooked because it is old,
   Yusra left because the gate was open: a copular, locative or degree clause has no event symbol
   to link; both clauses are parsed and the connective reported as unmapped
-- a conditional — if Lamine sings, Yusra leaves; unless it rains: a condition, not a stated
-  relation between two asserted clauses; report it as unmapped (G08 for unless)
+- a conditional — if Lamine sings, Yusra leaves: the conditional template; a subjunctive (if
+  Lamine had sung, …): the counterfactual template; unless / if not: still unmapped (G08)
 - an exception to a generalization — ferrets sleep, but this one works: the but introduces a
   defeasible exception, a different construction; report the clause as unmapped
 - a purpose — went to the market to buy a thermos, in order to sleep: a purpose link

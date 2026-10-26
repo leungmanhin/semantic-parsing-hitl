@@ -1,9 +1,9 @@
 {
   "prompt": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_body_sha256": "24bea0e4265ed7ba0cb712fe24ee9cf624dc40fbc70a5f4e56eaa2ad7f76d53a",
+  "prompt_body_sha256": "214cffae01faae1eb1ee844ca5f812b5698e08abff9e2d6daa703d5373c09a78",
   "typecheck": "ran",
   "checks": {
-    "examples": 780,
+    "examples": 805,
     "findings": [],
     "pending": {},
     "shared": [
@@ -956,7 +956,7 @@
         "status": {
           "ok": 60
         },
-        "stale_prompt": 57,
+        "stale_prompt": 60,
         "by_category": {
           "positive": {
             "cases": 13,
@@ -1051,6 +1051,94 @@
         ]
       }
     },
+    "conditional": {
+      "held_out": {
+        "records": 39,
+        "cases": 13,
+        "status": {
+          "ok": 39
+        },
+        "stale_prompt": 0,
+        "by_category": {
+          "positive": {
+            "cases": 7,
+            "runs": 21,
+            "pass": 21,
+            "fired": 21,
+            "exact": 21
+          },
+          "scoped": {
+            "cases": 2,
+            "runs": 6,
+            "pass": 6,
+            "fired": 6,
+            "exact": 6
+          },
+          "abstain": {
+            "cases": 4,
+            "runs": 12,
+            "pass": 12,
+            "false_fires": 0,
+            "outcomes": {
+              "target_fired": 9,
+              "gap_reported": 3
+            }
+          }
+        },
+        "pass": 39,
+        "selection": {
+          "fire_runs": 27,
+          "fired": 27,
+          "abstain_runs": 12,
+          "false_fires": 0
+        },
+        "fill": {
+          "fired": 27,
+          "exact": 27,
+          "rate": 1.0
+        },
+        "stability": {
+          "cases": 13,
+          "pairs": 39,
+          "pairwise_agreement": 1.0,
+          "unanimous": 13
+        },
+        "typecheck": {
+          "checked": 39,
+          "passed": 39
+        },
+        "usage": {
+          "input": 2765991,
+          "output": 8635,
+          "thinking": 0,
+          "total": 2774626,
+          "cached": 2617092,
+          "calls": 39,
+          "thinking_calls": 0
+        },
+        "issues": [
+          {
+            "code": "P00",
+            "where": "Unmapped spans",
+            "text": "The 'Unmapped spans' section lists a condition on an individual ('the ladder is brittle when cold') as an example of a whole clause to report as unmapped, whereas the 'conditional' template explicitly covers '<X> is ADJ when / if ADJ' with the example 'Teodor is grumpy when tired'.",
+            "sentence": "Teodor is grumpy when tired.",
+            "run": 2
+          }
+        ],
+        "null_slots": 0,
+        "lints": {},
+        "spans": {
+          "instances": 183,
+          "with_span": 183,
+          "missing": 0,
+          "not_verbatim": 0,
+          "malformed": 0
+        },
+        "models": [
+          "gemini-4-argon effort=low"
+        ]
+      }
+    },
     "conditional-property": {
       "held_out": {
         "records": 39,
@@ -1058,7 +1146,7 @@
         "status": {
           "ok": 39
         },
-        "stale_prompt": 39,
+        "stale_prompt": 33,
         "by_category": {
           "positive": {
             "cases": 5,
@@ -1080,8 +1168,8 @@
             "pass": 18,
             "false_fires": 0,
             "outcomes": {
-              "gap_reported": 9,
-              "target_fired": 9
+              "target_fired": 15,
+              "gap_reported": 3
             }
           }
         },
@@ -1104,24 +1192,32 @@
           "unanimous": 13
         },
         "typecheck": {
-          "checked": 30,
-          "passed": 30
+          "checked": 36,
+          "passed": 36
         },
         "usage": {
-          "input": 2203764,
-          "output": 6702,
+          "input": 2290248,
+          "output": 7759,
           "thinking": 0,
-          "total": 2210466,
-          "cached": 2014928,
+          "total": 2298007,
+          "cached": 2032542,
           "calls": 39,
           "thinking_calls": 0
         },
-        "issues": [],
+        "issues": [
+          {
+            "code": "P00",
+            "where": "Unmapped spans",
+            "text": "The Unmapped spans section lists 'the ladder is brittle when cold' as an example to leave out, contradicting the conditional and conditional-property templates which explicitly specify using the conditional template for 'the ladder is brittle when cold'.",
+            "sentence": "The ladder is brittle when cold.",
+            "run": 3
+          }
+        ],
         "null_slots": 0,
         "lints": {},
         "spans": {
-          "instances": 114,
-          "with_span": 114,
+          "instances": 141,
+          "with_span": 141,
           "missing": 0,
           "not_verbatim": 0,
           "malformed": 0
@@ -1422,6 +1518,86 @@
         ]
       }
     },
+    "counterfactual": {
+      "held_out": {
+        "records": 18,
+        "cases": 6,
+        "status": {
+          "ok": 18
+        },
+        "stale_prompt": 0,
+        "by_category": {
+          "positive": {
+            "cases": 3,
+            "runs": 9,
+            "pass": 9,
+            "fired": 9,
+            "exact": 9
+          },
+          "scoped": {
+            "cases": 1,
+            "runs": 3,
+            "pass": 3,
+            "fired": 3,
+            "exact": 3
+          },
+          "abstain": {
+            "cases": 2,
+            "runs": 6,
+            "pass": 6,
+            "false_fires": 0,
+            "outcomes": {
+              "target_fired": 3,
+              "gap_reported": 3
+            }
+          }
+        },
+        "pass": 18,
+        "selection": {
+          "fire_runs": 12,
+          "fired": 12,
+          "abstain_runs": 6,
+          "false_fires": 0
+        },
+        "fill": {
+          "fired": 12,
+          "exact": 12,
+          "rate": 1.0
+        },
+        "stability": {
+          "cases": 6,
+          "pairs": 18,
+          "pairwise_agreement": 1.0,
+          "unanimous": 6
+        },
+        "typecheck": {
+          "checked": 18,
+          "passed": 18
+        },
+        "usage": {
+          "input": 1276629,
+          "output": 3787,
+          "thinking": 0,
+          "total": 1280416,
+          "cached": 1102000,
+          "calls": 18,
+          "thinking_calls": 0
+        },
+        "issues": [],
+        "null_slots": 0,
+        "lints": {},
+        "spans": {
+          "instances": 84,
+          "with_span": 84,
+          "missing": 0,
+          "not_verbatim": 0,
+          "malformed": 0
+        },
+        "models": [
+          "gemini-4-argon effort=low"
+        ]
+      }
+    },
     "creation": {
       "held_out": {
         "records": 48,
@@ -1522,7 +1698,7 @@
         "status": {
           "ok": 54
         },
-        "stale_prompt": 51,
+        "stale_prompt": 54,
         "by_category": {
           "positive": {
             "cases": 7,
@@ -2295,7 +2471,7 @@
         "status": {
           "ok": 45
         },
-        "stale_prompt": 45,
+        "stale_prompt": 42,
         "by_category": {
           "positive": {
             "cases": 8,
@@ -2324,8 +2500,8 @@
             "pass": 15,
             "false_fires": 0,
             "outcomes": {
-              "gap_reported": 9,
-              "target_fired": 6
+              "gap_reported": 6,
+              "target_fired": 9
             }
           }
         },
@@ -2352,11 +2528,11 @@
           "passed": 45
         },
         "usage": {
-          "input": 2552613,
-          "output": 9939,
+          "input": 2595855,
+          "output": 10200,
           "thinking": 0,
-          "total": 2562552,
-          "cached": 2348230,
+          "total": 2606055,
+          "cached": 2391474,
           "calls": 45,
           "thinking_calls": 0
         },
@@ -2364,8 +2540,8 @@
         "null_slots": 0,
         "lints": {},
         "spans": {
-          "instances": 225,
-          "with_span": 225,
+          "instances": 234,
+          "with_span": 234,
           "missing": 0,
           "not_verbatim": 0,
           "malformed": 0
@@ -3514,7 +3690,7 @@
         "status": {
           "ok": 45
         },
-        "stale_prompt": 0,
+        "stale_prompt": 45,
         "by_category": {
           "positive": {
             "cases": 9,

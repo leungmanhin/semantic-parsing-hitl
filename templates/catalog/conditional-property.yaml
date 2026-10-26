@@ -44,14 +44,14 @@ trigger:
       over the members
     - >-
       an individual as the subject — the ladder is brittle when cold, Teodor is grumpy when
-      tired: not a class; report the clause as unmapped (G11)
+      tired: not a class; the conditional template
     - >-
       a verbal predicate under a condition — clay softens when wet, ferrets bite when
       cornered: a generic with a condition
     - >-
       a condition about something other than the member — herons are patient if the weather
-      is sunny, bread is cheap when the harvest is good: the condition names an occasion, not a
-      state of the member, and has no slot yet; report the whole clause as unmapped
+      is sunny, bread is cheap when the harvest is good: the conditional template, with the
+      class range in its ranges
     - >-
       a circumstance phrase that no template states of a member — solid at room temperature,
       active at night, soft under heat: the condition cannot be carried, so neither can the
@@ -198,10 +198,10 @@ examples:
       expected: {abstain: true, template: generic}                    # a verbal predicate: a generic with a condition
     - category: abstain
       text: "The ladder is brittle when cold."
-      expected: {abstain: true, gap: G11, span: "The ladder is brittle when cold."}   # an individual
+      expected: {abstain: true, template: conditional}                # an individual
     - category: abstain
       text: "Pewter is solid at room temperature."
       expected: {abstain: true, gap: G00, span: "Pewter is solid at room temperature."}   # a circumstance no template states
     - category: abstain
       text: "Herons are patient if the weather is sunny."
-      expected: {abstain: true, gap: G00, span: "Herons are patient if the weather is sunny."}   # a condition about an occasion, not the member
+      expected: {abstain: true, template: conditional}                # a condition about something other than the member

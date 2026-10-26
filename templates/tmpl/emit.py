@@ -590,8 +590,8 @@ class _Emitter:
                 variables.extend(evars)
                 for iid in self.inside(refs, scope_iid):
                     m = self.cat[self.by_id[iid]["t"]].get("mints") or {}
-                    if m and iid in self.sym and not self.is_rigid(iid) and iid not in mapping:
-                        stem = self.sym[iid].rsplit("_", 1)[0]
+                    if m and iid in self.sym and not self.is_rigid(iid) and iid not in mapping and variables:
+                        stem = self.sym[iid].rsplit("_", 1)[0]     # no variable in scope: the constant stays
                         overlay[iid] = [stem] + variables
                         self.sk_functions[(stem, len(variables))] = m.get("id", "Entity")
         saved = self.sym

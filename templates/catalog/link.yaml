@@ -48,8 +48,8 @@ trigger:
       old, Yusra left because the gate was open: a copular, locative or degree clause has no
       event symbol to link; both clauses are parsed and the connective reported as unmapped
     - >-
-      a conditional — if Lamine sings, Yusra leaves; unless it rains: a condition, not a stated
-      relation between two asserted clauses; report it as unmapped (G08 for unless)
+      a conditional — if Lamine sings, Yusra leaves: the conditional template; a subjunctive (if
+      Lamine had sung, …): the counterfactual template; unless / if not: still unmapped (G08)
     - >-
       an exception to a generalization — ferrets sleep, but this one works: the but introduces
       a defeasible exception, a different construction; report the clause as unmapped
@@ -247,7 +247,7 @@ examples:
       expected: {abstain: true, template: time-relation}              # a temporal connective
     - category: abstain
       text: "If Lamine sings, Yusra leaves."
-      expected: {abstain: true, gap: G00, span: "If Lamine sings"}   # a conditional
+      expected: {abstain: true, template: conditional}                # a conditional
     - category: abstain
       text: "Yusra went to the market to buy a thermos."
       expected: {abstain: true, template: purpose}                   # a purpose

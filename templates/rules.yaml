@@ -267,6 +267,20 @@ rules:
       — the chainer answers the positive query at strength 0, which a band query reads as no. The
       instance y = x is harmless: nothing exceeds itself.
 
+  # Counterfactuals: the antecedent of a subjunctive conditional is presupposed false; the rule
+  # derives it from the sealed term (the chainer projects the term's conjuncts, denied).
+  - id: counterfactual_antecedent_false
+    meaning: a counterfactual's antecedent did not happen
+    requires: sealed-term-projection
+    premises: ["(Counterfactual $p $q)"]
+    conclusion: "(Not $p)"
+    truth: {strength: 1.0, confidence: 0.9}
+    semantics: deductive
+    reads: [counterfactual]
+    notes: >-
+      "If Lamine had sung, Yusra would have left" seals both clauses; the form presupposes that
+      Lamine did not sing, which this rule states as the denial of the antecedent's conjuncts.
+
   # Non-finite complements: a control, causative or aspectual verb seals its complement as its
   # Theme and the parse marks what the verb implies — (Entails e): the complement holds;
   # (Precludes e): it does not. These rules derive the complement, or its negation, with the

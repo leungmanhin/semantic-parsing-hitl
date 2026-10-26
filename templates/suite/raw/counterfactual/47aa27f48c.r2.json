@@ -1,0 +1,116 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "0f5c78c3edeb6928c0c0773d62ad354f653de35e630fd30c3fab377604d30403",
+  "item": {
+    "id": "s47aa27f48c",
+    "text": "If Lamine had sung, Yusra would not have left."
+  },
+  "usage": {
+    "input": 70927,
+    "output": 252,
+    "thinking": null,
+    "total": 71179,
+    "cached": 68878,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 70927,
+    "candidatesTokenCount": 252,
+    "totalTokenCount": 71179,
+    "cachedContentTokenCount": 68878,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 70927
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 68878
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 252
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s47aa27f48c\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"sing\", \"actor\": \"@n1\", \"tense\": \"past\", \"span\": \"Lamine had sung\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n2\", \"tense\": \"past\", \"span\": \"Yusra would not have left\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@m1\"], \"span\": \"not\"}, {\"t\": \"counterfactual\", \"id\": \"k1\", \"antecedent\": [\"@v1\"], \"consequent\": [\"@s1\"], \"span\": \"If Lamine had sung, Yusra would not have left\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s47aa27f48c",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "sing",
+        "actor": "@n1",
+        "tense": "past",
+        "span": "Lamine had sung"
+      },
+      {
+        "t": "motion",
+        "id": "m1",
+        "verb": "leave",
+        "mover": "@n2",
+        "tense": "past",
+        "span": "Yusra would not have left"
+      },
+      {
+        "t": "negation",
+        "id": "s1",
+        "over": [
+          "@m1"
+        ],
+        "span": "not"
+      },
+      {
+        "t": "counterfactual",
+        "id": "k1",
+        "antecedent": [
+          "@v1"
+        ],
+        "consequent": [
+          "@s1"
+        ],
+        "span": "If Lamine had sung, Yusra would not have left"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "214cffae01faae1eb1ee844ca5f812b5698e08abff9e2d6daa703d5373c09a78",
+  "run": 2,
+  "case": {
+    "template": "counterfactual",
+    "section": "held_out",
+    "index": 3,
+    "category": "scoped",
+    "text": "If Lamine had sung, Yusra would not have left.",
+    "key": "47aa27f48c"
+  }
+}

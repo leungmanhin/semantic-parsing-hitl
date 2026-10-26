@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
+  "prompt_sha256": "0f5c78c3edeb6928c0c0773d62ad354f653de35e630fd30c3fab377604d30403",
   "item": {
     "id": "s112de30ce4",
     "text": "The ladder is brittle when cold."
   },
   "usage": {
-    "input": 56506,
-    "output": 94,
+    "input": 70920,
+    "output": 382,
     "thinking": null,
-    "total": 56600,
-    "cached": 54457,
+    "total": 71302,
+    "cached": 68871,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,43 +25,81 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 56506,
-    "candidatesTokenCount": 94,
-    "totalTokenCount": 56600,
-    "cachedContentTokenCount": 54457,
+    "promptTokenCount": 70920,
+    "candidatesTokenCount": 382,
+    "totalTokenCount": 71302,
+    "cachedContentTokenCount": 68871,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 56506
+        "tokenCount": 70920
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 54457
+        "tokenCount": 68871
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 94
+        "tokenCount": 382
       }
     ]
   },
-  "raw_text": "{\n  \"id\": \"s112de30ce4\",\n  \"instances\": [],\n  \"unmapped\": [\n    {\n      \"span\": \"The ladder is brittle when cold\",\n      \"code\": \"G11\",\n      \"construction\": \"An adjectival property predicated of an individual under a stated condition.\"\n    }\n  ],\n  \"issues\": []\n}",
+  "raw_text": "{\n  \"id\": \"s112de30ce4\",\n  \"instances\": [\n    {\n      \"t\": \"witness\",\n      \"id\": \"x1\",\n      \"class\": \"ladder\",\n      \"definite\": true,\n      \"span\": \"The ladder\"\n    },\n    {\n      \"t\": \"copular\",\n      \"id\": \"c1\",\n      \"subject\": \"@x1\",\n      \"predicate\": \"brittle\",\n      \"form\": \"adjective\",\n      \"tense\": \"present\",\n      \"span\": \"The ladder is brittle\"\n    },\n    {\n      \"t\": \"copular\",\n      \"id\": \"c2\",\n      \"subject\": \"@x1\",\n      \"predicate\": \"cold\",\n      \"form\": \"adjective\",\n      \"tense\": \"present\",\n      \"span\": \"cold\"\n    },\n    {\n      \"t\": \"conditional\",\n      \"id\": \"r1\",\n      \"condition\": [\n        \"@c2\"\n      ],\n      \"over\": [\n        \"@c1\"\n      ],\n      \"word\": \"when\",\n      \"span\": \"The ladder is brittle when cold\"\n    }\n  ],\n  \"unmapped\": [],\n  \"issues\": [\n    {\n      \"code\": \"P00\",\n      \"where\": \"Unmapped spans\",\n      \"text\": \"The Unmapped spans section lists 'the ladder is brittle when cold' as an example to leave out, contradicting the conditional and conditional-property templates which explicitly specify using the conditional template for 'the ladder is brittle when cold'.\"\n    }\n  ]\n}",
   "response": {
     "id": "s112de30ce4",
-    "instances": [],
-    "unmapped": [
+    "instances": [
       {
-        "span": "The ladder is brittle when cold",
-        "code": "G11",
-        "construction": "An adjectival property predicated of an individual under a stated condition."
+        "t": "witness",
+        "id": "x1",
+        "class": "ladder",
+        "definite": true,
+        "span": "The ladder"
+      },
+      {
+        "t": "copular",
+        "id": "c1",
+        "subject": "@x1",
+        "predicate": "brittle",
+        "form": "adjective",
+        "tense": "present",
+        "span": "The ladder is brittle"
+      },
+      {
+        "t": "copular",
+        "id": "c2",
+        "subject": "@x1",
+        "predicate": "cold",
+        "form": "adjective",
+        "tense": "present",
+        "span": "cold"
+      },
+      {
+        "t": "conditional",
+        "id": "r1",
+        "condition": [
+          "@c2"
+        ],
+        "over": [
+          "@c1"
+        ],
+        "word": "when",
+        "span": "The ladder is brittle when cold"
       }
     ],
-    "issues": []
+    "unmapped": [],
+    "issues": [
+      {
+        "code": "P00",
+        "where": "Unmapped spans",
+        "text": "The Unmapped spans section lists 'the ladder is brittle when cold' as an example to leave out, contradicting the conditional and conditional-property templates which explicitly specify using the conditional template for 'the ladder is brittle when cold'."
+      }
+    ]
   },
-  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
+  "prompt_body_sha256": "214cffae01faae1eb1ee844ca5f812b5698e08abff9e2d6daa703d5373c09a78",
   "run": 3,
   "case": {
     "template": "conditional-property",

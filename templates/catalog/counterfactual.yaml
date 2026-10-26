@@ -1,0 +1,134 @@
+# Template: counterfactual  (a subjunctive conditional: "If Lamine had sung, Yusra would have left", "If Yusra sang, Teodor would leave")
+#
+# A subjunctive conditional states what would follow from something that is not the case: both
+# clauses are sealed under one atom and neither is asserted: (Counterfactual (And (Member
+# sk_sing_1 sing) (Agent sk_sing_1 sk_lamine_1) (Past sk_sing_1)) (And (Member sk_leave_1 leave)
+# (Agent sk_leave_1 sk_yusra_1) (Past sk_leave_1))). The antecedent's falsity is the
+# construction's presupposition — a background rule derives it; the parse does not assert it.
+# An indicative conditional (if Lamine sings, Yusra leaves) is a rule, the conditional template.
+
+id: counterfactual
+family: scope
+shape: scope
+title: A subjunctive conditional
+
+trigger:
+  construction: >
+    A conditional in the subjunctive: a past-perfect antecedent with a would-have consequent (if
+    Lamine had sung, Yusra would have left; had Lamine sung, …), or a past-tense antecedent with
+    a would / could / might consequent about the present (if Yusra sang, Teodor would leave; if
+    the gate were open, the ferret would leave). Parse both clauses with their own templates —
+    tense past for both, the modal of the consequent not written as a modal instance — and name
+    them in `antecedent` and `consequent`. Nothing is asserted: both clauses are sealed. The span
+    is the whole sentence.
+  surface_forms:
+    - "If <X> had V-ed, <Y> would have V-ed"               # the past counterfactual
+    - "Had <X> V-ed, <Y> would have V-ed"                   # inverted
+    - "If <X> V-ed / were ADJ, <Y> would V"                 # the hypothetical about the present
+  boundary:                   # looks like a counterfactual but is not one
+    - >-
+      an indicative conditional — if Lamine sings, Yusra leaves; if Yusra arrives, Teodor will
+      leave: a rule, the conditional template
+    - >-
+      a lone would-have consequent — Yusra would have left; the bridge that would have collapsed:
+      no antecedent to seal; report the clause as unmapped (G04)
+    - >-
+      a wish or a polite would — Yusra would like a thermos; Lamine would often sing: not a
+      conditional; the clause's own template, the modal as a modal
+    - >-
+      an embedded question with if — asked if Yusra had left: a sealed question under the verb
+
+slots:
+  id:         {type: id, required: true, doc: "your label for the counterfactual (k1, k2 …)"}
+  antecedent: {type: refs, class: Proposition, required: true,
+               doc: "the if-clause's predication, or the negation over it: its id, nothing else"}
+  consequent: {type: refs, class: Proposition, required: true,
+               doc: "the would-clause's predication, or the negation over it: its id, nothing else; the would itself is not a modal instance"}
+
+emits:
+  - atom: "(Counterfactual {antecedent} {consequent})"
+
+notes:
+  - >-
+    Both clauses are sealed: the parse states the dependence and asserts neither the singing nor
+    the leaving. That the antecedent did not happen is a presupposition of the form, derived by a
+    background rule from the sealed term, not stated by the parse. A name inside stays a constant
+    outside the seal; an indefinite inside stays inside.
+  - >-
+    The subjunctive is read off the verb forms — had V-ed with would have, a past form or were
+    with would — not from the plausibility of the clauses.
+
+depends_on: [activity, motion]
+composes_with: [negation]
+
+examples:
+  shown:                     # rendered into the prompt
+    - category: positive
+      note: the past counterfactual — both clauses sealed, neither asserted
+      text: "If Teodor had arrived, Lamine would have stayed."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor", span: "Teodor"}
+        - {t: named-entity, id: n2, name: "Lamine", span: "Lamine"}
+        - {t: motion, id: m1, verb: arrive, mover: "@n1", tense: past, span: "Teodor had arrived"}
+        - {t: activity, id: v1, verb: stay, actor: "@n2", tense: past, span: "Lamine would have stayed"}
+        - {t: counterfactual, id: k1, antecedent: ["@m1"], consequent: ["@v1"], span: "If Teodor had arrived, Lamine would have stayed"}
+      emitted:               # what the emitter produces (illustration; the emitter is the authority)
+        - "(Name sk_teodor_1 \"Teodor\")"
+        - "(Name sk_lamine_1 \"Lamine\")"
+        - "(Counterfactual (And (Member sk_arrive_1 arrive) (Agent sk_arrive_1 sk_teodor_1) (Past sk_arrive_1)) (And (Member sk_stay_1 stay) (Agent sk_stay_1 sk_lamine_1) (Past sk_stay_1)))"
+      declarations:
+        - "(: arrive Class)"
+        - "(: sk_arrive_1 Event)"
+        - "(: sk_lamine_1 Entity)"
+        - "(: sk_stay_1 Event)"
+        - "(: sk_teodor_1 Entity)"
+        - "(: stay Class)"
+    - category: abstain
+      text: "If Teodor arrives, Ottoline leaves."
+      expected: {abstain: true, template: conditional}                # an indicative conditional
+
+  held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      note: the past counterfactual
+      text: "If Lamine had sung, Yusra would have left."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: named-entity, id: n2, name: "Yusra"}
+        - {t: activity, id: v1, verb: sing, actor: "@n1", tense: past}
+        - {t: motion, id: m1, verb: leave, mover: "@n2", tense: past}
+        - {t: counterfactual, id: k1, antecedent: ["@v1"], consequent: ["@m1"]}
+    - category: positive
+      note: a hypothetical about the present
+      text: "If Yusra sang, Teodor would leave."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: named-entity, id: n2, name: "Teodor"}
+        - {t: activity, id: v1, verb: sing, actor: "@n1", tense: past}
+        - {t: motion, id: m1, verb: leave, mover: "@n2", tense: past}
+        - {t: counterfactual, id: k1, antecedent: ["@v1"], consequent: ["@m1"]}
+    - category: positive
+      note: inverted, with a definite inside
+      text: "Had Ottoline sold the quilt, Lamine would have laughed."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: witness, id: x1, class: quilt, definite: true}
+        - {t: transfer, id: e1, verb: sell, giver: "@n1", object: "@x1", tense: past}
+        - {t: activity, id: v1, verb: laugh, actor: "@n2", tense: past}
+        - {t: counterfactual, id: k1, antecedent: ["@e1"], consequent: ["@v1"]}
+    - category: scoped
+      note: a negated consequent inside the seal
+      text: "If Lamine had sung, Yusra would not have left."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: named-entity, id: n2, name: "Yusra"}
+        - {t: activity, id: v1, verb: sing, actor: "@n1", tense: past}
+        - {t: motion, id: m1, verb: leave, mover: "@n2", tense: past}
+        - {t: negation, id: s1, over: ["@m1"]}
+        - {t: counterfactual, id: k1, antecedent: ["@v1"], consequent: ["@s1"]}
+    - category: abstain
+      text: "If Lamine sings, Yusra leaves."
+      expected: {abstain: true, template: conditional}                # indicative
+    - category: abstain
+      text: "Yusra would have left."
+      expected: {abstain: true, gap: G04, span: "would have left"}    # a lone would-have consequent

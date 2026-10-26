@@ -1,0 +1,87 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "0f5c78c3edeb6928c0c0773d62ad354f653de35e630fd30c3fab377604d30403",
+  "item": {
+    "id": "se1ca16ca12",
+    "text": "Unless Yusra sings, Lamine leaves."
+  },
+  "usage": {
+    "input": 70921,
+    "output": 124,
+    "thinking": null,
+    "total": 71045,
+    "cached": 68872,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 70921,
+    "candidatesTokenCount": 124,
+    "totalTokenCount": 71045,
+    "cachedContentTokenCount": 68872,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 70921
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 68872
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 124
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"se1ca16ca12\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Lamine\", \"span\": \"Lamine\"}], \"unmapped\": [{\"span\": \"Unless Yusra sings, Lamine leaves\", \"code\": \"G08\", \"construction\": \"An 'unless' conditional restricting the consequent clause.\"}], \"issues\": []}",
+  "response": {
+    "id": "se1ca16ca12",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Lamine",
+        "span": "Lamine"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "Unless Yusra sings, Lamine leaves",
+        "code": "G08",
+        "construction": "An 'unless' conditional restricting the consequent clause."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "214cffae01faae1eb1ee844ca5f812b5698e08abff9e2d6daa703d5373c09a78",
+  "run": 2,
+  "case": {
+    "template": "conditional",
+    "section": "held_out",
+    "index": 12,
+    "category": "abstain",
+    "text": "Unless Yusra sings, Lamine leaves.",
+    "key": "e1ca16ca12"
+  }
+}

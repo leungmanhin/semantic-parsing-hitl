@@ -1,0 +1,111 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "0f5c78c3edeb6928c0c0773d62ad354f653de35e630fd30c3fab377604d30403",
+  "item": {
+    "id": "sd359d308e4",
+    "text": "Whenever Yusra sang, the ferret hid."
+  },
+  "usage": {
+    "input": 70923,
+    "output": 230,
+    "thinking": null,
+    "total": 71153,
+    "cached": 68874,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 70923,
+    "candidatesTokenCount": 230,
+    "totalTokenCount": 71153,
+    "cachedContentTokenCount": 68874,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 70923
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 68874
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 230
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sd359d308e4\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"ferret\", \"definite\": true, \"span\": \"the ferret\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"sing\", \"actor\": \"@n1\", \"tense\": \"past\", \"span\": \"Yusra sang\"}, {\"t\": \"activity\", \"id\": \"v2\", \"verb\": \"hide\", \"actor\": \"@x1\", \"tense\": \"past\", \"span\": \"the ferret hid\"}, {\"t\": \"frequency\", \"id\": \"f1\", \"restrictor\": [\"@v1\"], \"over\": [\"@v2\"], \"every\": 1, \"word\": \"whenever\", \"span\": \"Whenever Yusra sang, the ferret hid\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sd359d308e4",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "ferret",
+        "definite": true,
+        "span": "the ferret"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "sing",
+        "actor": "@n1",
+        "tense": "past",
+        "span": "Yusra sang"
+      },
+      {
+        "t": "activity",
+        "id": "v2",
+        "verb": "hide",
+        "actor": "@x1",
+        "tense": "past",
+        "span": "the ferret hid"
+      },
+      {
+        "t": "frequency",
+        "id": "f1",
+        "restrictor": [
+          "@v1"
+        ],
+        "over": [
+          "@v2"
+        ],
+        "every": 1,
+        "word": "whenever",
+        "span": "Whenever Yusra sang, the ferret hid"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "214cffae01faae1eb1ee844ca5f812b5698e08abff9e2d6daa703d5373c09a78",
+  "run": 3,
+  "case": {
+    "template": "conditional",
+    "section": "held_out",
+    "index": 9,
+    "category": "abstain",
+    "text": "Whenever Yusra sang, the ferret hid.",
+    "key": "d359d308e4"
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "0f5c78c3edeb6928c0c0773d62ad354f653de35e630fd30c3fab377604d30403",
+  "item": {
+    "id": "sba112d28a5",
+    "text": "Teodor is grumpy when tired."
+  },
+  "usage": {
+    "input": 70921,
+    "output": 200,
+    "thinking": null,
+    "total": 71121,
+    "cached": 68871,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 70921,
+    "candidatesTokenCount": 200,
+    "totalTokenCount": 71121,
+    "cachedContentTokenCount": 68871,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 70921
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 68871
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 200
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sba112d28a5\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@n1\", \"predicate\": \"grumpy\", \"form\": \"adjective\", \"tense\": \"present\", \"span\": \"Teodor is grumpy\"}, {\"t\": \"copular\", \"id\": \"c2\", \"subject\": \"@n1\", \"predicate\": \"tired\", \"form\": \"adjective\", \"tense\": \"present\", \"span\": \"tired\"}, {\"t\": \"conditional\", \"id\": \"r1\", \"condition\": [\"@c2\"], \"over\": [\"@c1\"], \"word\": \"when\", \"span\": \"Teodor is grumpy when tired\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sba112d28a5",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "copular",
+        "id": "c1",
+        "subject": "@n1",
+        "predicate": "grumpy",
+        "form": "adjective",
+        "tense": "present",
+        "span": "Teodor is grumpy"
+      },
+      {
+        "t": "copular",
+        "id": "c2",
+        "subject": "@n1",
+        "predicate": "tired",
+        "form": "adjective",
+        "tense": "present",
+        "span": "tired"
+      },
+      {
+        "t": "conditional",
+        "id": "r1",
+        "condition": [
+          "@c2"
+        ],
+        "over": [
+          "@c1"
+        ],
+        "word": "when",
+        "span": "Teodor is grumpy when tired"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "214cffae01faae1eb1ee844ca5f812b5698e08abff9e2d6daa703d5373c09a78",
+  "run": 1,
+  "case": {
+    "template": "conditional",
+    "section": "held_out",
+    "index": 2,
+    "category": "positive",
+    "text": "Teodor is grumpy when tired.",
+    "key": "ba112d28a5"
+  }
+}

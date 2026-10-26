@@ -1,0 +1,116 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "0f5c78c3edeb6928c0c0773d62ad354f653de35e630fd30c3fab377604d30403",
+  "item": {
+    "id": "s9111b713c4",
+    "text": "If Lamine sings, Yusra does not leave."
+  },
+  "usage": {
+    "input": 70926,
+    "output": 247,
+    "thinking": null,
+    "total": 71173,
+    "cached": 68877,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 70926,
+    "candidatesTokenCount": 247,
+    "totalTokenCount": 71173,
+    "cachedContentTokenCount": 68877,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 70926
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 68877
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 247
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s9111b713c4\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"sing\", \"actor\": \"@n1\", \"tense\": \"present\", \"span\": \"Lamine sings\"}, {\"t\": \"motion\", \"id\": \"e2\", \"verb\": \"leave\", \"mover\": \"@n2\", \"tense\": \"present\", \"span\": \"Yusra does not leave\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@e2\"], \"span\": \"does not\"}, {\"t\": \"conditional\", \"id\": \"r1\", \"condition\": [\"@e1\"], \"over\": [\"@s1\"], \"span\": \"If Lamine sings, Yusra does not leave\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s9111b713c4",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "sing",
+        "actor": "@n1",
+        "tense": "present",
+        "span": "Lamine sings"
+      },
+      {
+        "t": "motion",
+        "id": "e2",
+        "verb": "leave",
+        "mover": "@n2",
+        "tense": "present",
+        "span": "Yusra does not leave"
+      },
+      {
+        "t": "negation",
+        "id": "s1",
+        "over": [
+          "@e2"
+        ],
+        "span": "does not"
+      },
+      {
+        "t": "conditional",
+        "id": "r1",
+        "condition": [
+          "@e1"
+        ],
+        "over": [
+          "@s1"
+        ],
+        "span": "If Lamine sings, Yusra does not leave"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "214cffae01faae1eb1ee844ca5f812b5698e08abff9e2d6daa703d5373c09a78",
+  "run": 1,
+  "case": {
+    "template": "conditional",
+    "section": "held_out",
+    "index": 7,
+    "category": "scoped",
+    "text": "If Lamine sings, Yusra does not leave.",
+    "key": "9111b713c4"
+  }
+}

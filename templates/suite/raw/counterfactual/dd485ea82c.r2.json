@@ -1,0 +1,81 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "0f5c78c3edeb6928c0c0773d62ad354f653de35e630fd30c3fab377604d30403",
+  "item": {
+    "id": "sdd485ea82c",
+    "text": "Yusra would have left."
+  },
+  "usage": {
+    "input": 70919,
+    "output": 95,
+    "thinking": null,
+    "total": 71014,
+    "cached": 68870,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 70919,
+    "candidatesTokenCount": 95,
+    "totalTokenCount": 71014,
+    "cachedContentTokenCount": 68870,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 70919
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 68870
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 95
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sdd485ea82c\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}], \"unmapped\": [{\"span\": \"Yusra would have left\", \"code\": \"G04\", \"construction\": \"A lone would-have consequent with no antecedent clause.\"}], \"issues\": []}",
+  "response": {
+    "id": "sdd485ea82c",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "Yusra would have left",
+        "code": "G04",
+        "construction": "A lone would-have consequent with no antecedent clause."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "214cffae01faae1eb1ee844ca5f812b5698e08abff9e2d6daa703d5373c09a78",
+  "run": 2,
+  "case": {
+    "template": "counterfactual",
+    "section": "held_out",
+    "index": 5,
+    "category": "abstain",
+    "text": "Yusra would have left.",
+    "key": "dd485ea82c"
+  }
+}

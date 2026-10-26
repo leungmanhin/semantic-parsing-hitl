@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
+  "prompt_sha256": "0f5c78c3edeb6928c0c0773d62ad354f653de35e630fd30c3fab377604d30403",
   "item": {
     "id": "s2d4440f25d",
     "text": "Herons are patient if the weather is sunny."
   },
   "usage": {
-    "input": 56511,
-    "output": 75,
+    "input": 70925,
+    "output": 241,
     "thinking": null,
-    "total": 56586,
-    "cached": 54462,
+    "total": 71166,
+    "cached": 68876,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,43 +25,84 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 56511,
-    "candidatesTokenCount": 75,
-    "totalTokenCount": 56586,
-    "cachedContentTokenCount": 54462,
+    "promptTokenCount": 70925,
+    "candidatesTokenCount": 241,
+    "totalTokenCount": 71166,
+    "cachedContentTokenCount": 68876,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 56511
+        "tokenCount": 70925
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 54462
+        "tokenCount": 68876
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 75
+        "tokenCount": 241
       }
     ]
   },
-  "raw_text": "{\"id\": \"s2d4440f25d\", \"instances\": [], \"unmapped\": [{\"span\": \"Herons are patient if the weather is sunny\", \"code\": \"G00\", \"construction\": \"A conditional property of a class whose condition is about something other than the member.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"s2d4440f25d\", \"instances\": [{\"t\": \"range\", \"id\": \"q1\", \"class\": \"heron\", \"span\": \"Herons\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"weather\", \"definite\": true, \"span\": \"the weather\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@q1\", \"predicate\": \"patient\", \"form\": \"adjective\", \"tense\": \"present\", \"span\": \"Herons are patient\"}, {\"t\": \"copular\", \"id\": \"c2\", \"subject\": \"@x1\", \"predicate\": \"sunny\", \"form\": \"adjective\", \"tense\": \"present\", \"span\": \"the weather is sunny\"}, {\"t\": \"conditional\", \"id\": \"r1\", \"condition\": [\"@c2\"], \"over\": [\"@c1\"], \"ranges\": [\"@q1\"], \"generic\": true, \"span\": \"Herons are patient if the weather is sunny\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s2d4440f25d",
-    "instances": [],
-    "unmapped": [
+    "instances": [
       {
-        "span": "Herons are patient if the weather is sunny",
-        "code": "G00",
-        "construction": "A conditional property of a class whose condition is about something other than the member."
+        "t": "range",
+        "id": "q1",
+        "class": "heron",
+        "span": "Herons"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "weather",
+        "definite": true,
+        "span": "the weather"
+      },
+      {
+        "t": "copular",
+        "id": "c1",
+        "subject": "@q1",
+        "predicate": "patient",
+        "form": "adjective",
+        "tense": "present",
+        "span": "Herons are patient"
+      },
+      {
+        "t": "copular",
+        "id": "c2",
+        "subject": "@x1",
+        "predicate": "sunny",
+        "form": "adjective",
+        "tense": "present",
+        "span": "the weather is sunny"
+      },
+      {
+        "t": "conditional",
+        "id": "r1",
+        "condition": [
+          "@c2"
+        ],
+        "over": [
+          "@c1"
+        ],
+        "ranges": [
+          "@q1"
+        ],
+        "generic": true,
+        "span": "Herons are patient if the weather is sunny"
       }
     ],
+    "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
+  "prompt_body_sha256": "214cffae01faae1eb1ee844ca5f812b5698e08abff9e2d6daa703d5373c09a78",
   "run": 2,
   "case": {
     "template": "conditional-property",

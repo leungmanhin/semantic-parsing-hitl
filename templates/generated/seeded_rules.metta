@@ -66,6 +66,8 @@
 (: most_exceeds (Implication (And (Most $s $x $c) (Member $y $c) (Compute != ($x $y) -> true)) (More $s $x $y)) (CTV (STV 1.0 0.99) (STV 0.0 1.0)))
 ;; most_bounds: no member of a class exceeds its most ADJ member on the scale (reads: superlative, comparative)
 (: most_bounds (Implication (And (Most $s $x $c) (Member $y $c)) (Not (More $s $y $x))) (CTV (STV 1.0 0.99) (STV 0.0 1.0)))
+;; counterfactual_antecedent_false: a counterfactual's antecedent did not happen (reads: counterfactual)
+(: counterfactual_antecedent_false (Implication (Counterfactual $p $q) (Not $p)) (CTV (STV 1.0 0.9) (STV 0.0 1.0)))
 ;; theme_entailed: an entailing event's sealed Theme holds, at the event's tense (reads: control, causative, aspectual) — 3 variants, by the matrix event's tense
 (: theme_entailed (Implication (And (Entails $m) (Theme $m $c) (Compute clause-event ($c) -> $o)) $c) (CTV (STV 1.0 0.9) (STV 0.0 1.0)))
 (: theme_entailed_past (Implication (And (Entails $m) (Theme $m $c) (Past $m) (Compute clause-event ($c) -> $o)) (And $c (Past $o))) (CTV (STV 1.0 0.9) (STV 0.0 1.0)))

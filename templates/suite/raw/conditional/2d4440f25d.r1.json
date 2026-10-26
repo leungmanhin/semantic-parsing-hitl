@@ -1,0 +1,115 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "0f5c78c3edeb6928c0c0773d62ad354f653de35e630fd30c3fab377604d30403",
+  "item": {
+    "id": "s2d4440f25d",
+    "text": "Herons are patient if the weather is sunny."
+  },
+  "usage": {
+    "input": 70925,
+    "output": 241,
+    "thinking": null,
+    "total": 71166,
+    "cached": 68872,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 70925,
+    "candidatesTokenCount": 241,
+    "totalTokenCount": 71166,
+    "cachedContentTokenCount": 68872,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 70925
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 68872
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 241
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s2d4440f25d\", \"instances\": [{\"t\": \"range\", \"id\": \"q1\", \"class\": \"heron\", \"span\": \"Herons\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"weather\", \"definite\": true, \"span\": \"the weather\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@q1\", \"predicate\": \"patient\", \"form\": \"adjective\", \"tense\": \"present\", \"span\": \"Herons are patient\"}, {\"t\": \"copular\", \"id\": \"c2\", \"subject\": \"@x1\", \"predicate\": \"sunny\", \"form\": \"adjective\", \"tense\": \"present\", \"span\": \"the weather is sunny\"}, {\"t\": \"conditional\", \"id\": \"r1\", \"condition\": [\"@c2\"], \"over\": [\"@c1\"], \"ranges\": [\"@q1\"], \"generic\": true, \"span\": \"Herons are patient if the weather is sunny\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s2d4440f25d",
+    "instances": [
+      {
+        "t": "range",
+        "id": "q1",
+        "class": "heron",
+        "span": "Herons"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "weather",
+        "definite": true,
+        "span": "the weather"
+      },
+      {
+        "t": "copular",
+        "id": "c1",
+        "subject": "@q1",
+        "predicate": "patient",
+        "form": "adjective",
+        "tense": "present",
+        "span": "Herons are patient"
+      },
+      {
+        "t": "copular",
+        "id": "c2",
+        "subject": "@x1",
+        "predicate": "sunny",
+        "form": "adjective",
+        "tense": "present",
+        "span": "the weather is sunny"
+      },
+      {
+        "t": "conditional",
+        "id": "r1",
+        "condition": [
+          "@c2"
+        ],
+        "over": [
+          "@c1"
+        ],
+        "ranges": [
+          "@q1"
+        ],
+        "generic": true,
+        "span": "Herons are patient if the weather is sunny"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "214cffae01faae1eb1ee844ca5f812b5698e08abff9e2d6daa703d5373c09a78",
+  "run": 1,
+  "case": {
+    "template": "conditional",
+    "section": "held_out",
+    "index": 3,
+    "category": "positive",
+    "text": "Herons are patient if the weather is sunny.",
+    "key": "2d4440f25d"
+  }
+}
