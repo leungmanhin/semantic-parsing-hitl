@@ -194,6 +194,39 @@ rules:
     truth: {strength: 1.0, confidence: 0.99}
     semantics: deductive
     reads: [time]
+  # Comparison: the parse emits the most specific atom (More, MoreBy, SameDegree, TimesAs) on the
+  # surface pole; these derive the rest. A pole lexicon (ScaleOpposite: short / tall) would let a
+  # consumer chain across poles — background facts, not rules; not seeded yet.
+  - id: more_trans
+    meaning: exceeding is transitive on a scale
+    premises: ["(More $s $x $y)", "(More $s $y $z)"]
+    conclusion: "(More $s $x $z)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [comparative]
+  - id: samedegree_sym
+    meaning: an equative holds in both directions
+    premises: ["(SameDegree $s $x $y)"]
+    conclusion: "(SameDegree $s $y $x)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [comparative]
+  - id: morebydiff
+    meaning: a measured gap entails the plain ordering
+    premises: ["(MoreBy $s $x $y $n $u)"]
+    conclusion: "(More $s $x $y)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [comparative]
+  - id: morebydiff_trans
+    meaning: measured gaps add along a chain in one unit
+    premises: ["(MoreBy $s $x $y $a $u)", "(MoreBy $s $y $z $b $u)"]
+    computations: [{result: "$c", op: "+", args: ["$a", "$b"]}]
+    conclusion: "(MoreBy $s $x $z $c $u)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [comparative]
+
   # Non-finite complements: a control, causative or aspectual verb seals its complement as its
   # Theme and the parse marks what the verb implies — (Entails e): the complement holds;
   # (Precludes e): it does not. These rules derive the complement, or its negation, with the

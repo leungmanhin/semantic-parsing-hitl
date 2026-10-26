@@ -38,9 +38,11 @@ trigger:
       a degree adverb on a verb — deeply distrusts, barely moved, fell sharply: an extent on the
       event
     - >-
-      a comparative or a superlative — taller than Yusra, the tallest weaver, as tall as Teodor: a
-      comparison, with no template here; report the span as unmapped — for a superlative the
-      whole definite predicate (the tallest weaver), which is no plain class predication either
+      a comparative with a stated standard — taller than Yusra, as tall as Teodor, two years
+      older than Lamine: the comparative template
+    - >-
+      a superlative — the tallest weaver: a comparison with a class, with no template yet; report
+      the whole definite predicate as unmapped, which is no plain class predication either
     - >-
       a degree on a quantity — too much salt, enough water, a lot of ferrets: no slot here; report
       the span as unmapped
@@ -237,7 +239,7 @@ examples:
       expected: {abstain: true, template: extent}                     # a degree adverb on a verb
     - category: abstain
       text: "Teodor is taller than Yusra."
-      expected: {abstain: true, gap: G00, span: "taller than Yusra"}  # a comparison
+      expected: {abstain: true, template: comparative}                # a comparison with a standard
     - category: abstain
       text: "Teodor added too much salt."
       expected: {abstain: true, gap: G00, span: "too much salt"}      # a degree on a quantity

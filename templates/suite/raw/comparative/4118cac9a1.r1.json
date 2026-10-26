@@ -1,0 +1,86 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "0adc5287ef4a2e2370e429ea2c77950ac219af92614de639ac71bae2aa152a52",
+  "item": {
+    "id": "s4118cac9a1",
+    "text": "The ferret is smaller than a cat."
+  },
+  "usage": {
+    "input": 65744,
+    "output": 120,
+    "thinking": null,
+    "total": 65864,
+    "cached": 63694,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 65744,
+    "candidatesTokenCount": 120,
+    "totalTokenCount": 65864,
+    "cachedContentTokenCount": 63694,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 65744
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 63694
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 120
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s4118cac9a1\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"ferret\", \"definite\": true, \"span\": \"The ferret\"}, {\"t\": \"comparative\", \"id\": \"c1\", \"subject\": \"@x1\", \"standard\": \"cat\", \"scale\": \"small\", \"relation\": \"more\", \"tense\": \"present\", \"span\": \"The ferret is smaller than a cat\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s4118cac9a1",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "ferret",
+        "definite": true,
+        "span": "The ferret"
+      },
+      {
+        "t": "comparative",
+        "id": "c1",
+        "subject": "@x1",
+        "standard": "cat",
+        "scale": "small",
+        "relation": "more",
+        "tense": "present",
+        "span": "The ferret is smaller than a cat"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "c30354df8e4fc684c45690d37f85851bb984c8e5f7ac77efe6b2d0a54e51b297",
+  "run": 1,
+  "case": {
+    "template": "comparative",
+    "section": "held_out",
+    "index": 11,
+    "category": "positive",
+    "text": "The ferret is smaller than a cat.",
+    "key": "4118cac9a1"
+  }
+}

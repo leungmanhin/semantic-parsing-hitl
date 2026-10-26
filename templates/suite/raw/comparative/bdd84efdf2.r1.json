@@ -1,0 +1,94 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "0adc5287ef4a2e2370e429ea2c77950ac219af92614de639ac71bae2aa152a52",
+  "item": {
+    "id": "sbdd84efdf2",
+    "text": "Yusra might be taller than Lamine."
+  },
+  "usage": {
+    "input": 65743,
+    "output": 187,
+    "thinking": null,
+    "total": 65930,
+    "cached": null,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 65743,
+    "candidatesTokenCount": 187,
+    "totalTokenCount": 65930,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 65743
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 187
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sbdd84efdf2\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"comparative\", \"id\": \"d1\", \"subject\": \"@n1\", \"standard\": \"@n2\", \"scale\": \"tall\", \"relation\": \"more\", \"tense\": \"present\", \"span\": \"Yusra might be taller than Lamine\"}, {\"t\": \"modal\", \"id\": \"s1\", \"over\": [\"@d1\"], \"head\": \"Might\", \"surface\": \"might\", \"span\": \"might\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sbdd84efdf2",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "comparative",
+        "id": "d1",
+        "subject": "@n1",
+        "standard": "@n2",
+        "scale": "tall",
+        "relation": "more",
+        "tense": "present",
+        "span": "Yusra might be taller than Lamine"
+      },
+      {
+        "t": "modal",
+        "id": "s1",
+        "over": [
+          "@d1"
+        ],
+        "head": "Might",
+        "surface": "might",
+        "span": "might"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "c30354df8e4fc684c45690d37f85851bb984c8e5f7ac77efe6b2d0a54e51b297",
+  "run": 1,
+  "case": {
+    "template": "comparative",
+    "section": "held_out",
+    "index": 14,
+    "category": "scoped",
+    "text": "Yusra might be taller than Lamine.",
+    "key": "bdd84efdf2"
+  }
+}

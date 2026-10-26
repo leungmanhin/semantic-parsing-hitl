@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 41807a07a4a1353d · 45 templates
+catalog sha256 71f44e72da175e8c · 46 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -1430,6 +1430,142 @@ Not this template. TEXT: Teodor said that Lamine sold the spindle. — use `atti
 Not this template. TEXT: Teodor asked Ottoline whether Lamine sold the spindle. — report it as
 unmapped: {"span": "asked Ottoline whether Lamine sold the spindle", "code": "G00"}.
 
+### comparative — A comparison of two things on a scale
+
+When: A comparison with a STATED standard: X is ADJ-er / more ADJ / less ADJ than Y; X is as ADJ
+as Y; X is N units ADJ-er than Y; X is twice / half / N times as ADJ as Y; and the adverbial
+form, X Vs ADV-er / more ADV than Y. The two sides are referents — a name, a witness, or a bare
+lemma for a non-specific or a class-level standard (smaller than a cat; basalt is harder than
+chalk) — or, in the adverbial form, two events: the clause's own and an elliptical second one
+with the same verb and the standard as its participant, both parsed with the clause's template.
+The instance names the two sides, the scale (the adjective or adverb lemmatized to its base:
+taller → tall, more careful → careful, faster → fast, more loudly → loud, better → good), the
+relation as read (more; less; as for an equative), and a measured gap with its unit or a factor
+when stated. For a copular comparison the instance stands in place of the copular predication
+and records the clause's tense; for an adverbial one the events carry the tense. The span is the
+whole clause for a copular comparison and the comparative phrase for an adverbial one (faster
+than Lamine).
+
+Forms:
+- <X> is ADJ-er / more ADJ than <Y>
+- <X> is less ADJ than <Y>
+- <X> is as ADJ as <Y>
+- <X> is <n> <units> ADJ-er than <Y>
+- <X> is twice / half / <n> times as ADJ as <Y>
+- <X> Vs ADV-er / more ADV than <Y>
+- <class> is ADJ-er than <class>
+
+Not this template:
+- a comparative with no stated standard — a sturdier bracket, prices ended lower, this one is
+  better: nothing fills the standard; the rest of the clause is parsed and the comparative
+  reported as unmapped (G01)
+- a superlative or an ordinal — the tallest weaver, one of the oldest orchards, the third
+  climber: a comparison with a class, with no template yet; report the whole definite predicate
+  as unmapped
+- a degree word with no standard — very tall, too tall, tall enough, tall for a weaver: a degree
+- a comparison of quantities — more quilts than Yusra, fewer guests than she invited, as many
+  ferrets as: no slot here; parse what stands on its own (Teodor has quilts) and report the
+  comparative phrase as unmapped
+- a standard that is a clause — taller than Yusra was, older than she looks: no slot here, and
+  with no standard the comparative cannot be encoded at all; report the whole comparative clause
+  as unmapped (Ottoline is taller than Yusra was)
+- a correlative — the older the wine, the better: a covariation, not a comparison; reported as
+  unmapped
+- a comparison with a measure — taller than two metres, older than thirty: a threshold on a
+  measure, not a comparison of two things; report the phrase as unmapped
+- a bound on a count — more than three ferrets, fewer than ten: a count on a group, not a
+  comparison; no slot here
+- than after a non-gradable word — other than Yusra, rather than wait: not a comparison; an
+  oblique, or reported as unmapped
+- the positive property alone — Teodor is tall: a copular predication
+
+Slots:
+
+- `t` (required): "comparative"
+- `id` (required; your label for this instance): your label for the comparison (c1, c2 …).
+- `subject` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
+  the side that is compared: the subject's referent id (a name, a witness), or the clause's
+  event for an adverbial comparison, or a bare lemma for a class (basalt).
+- `standard` (required; "@id" of a referent instance, or a bare lemma for a non-specific
+  filler): the than-phrase or as-phrase: a referent id, the elliptical second event for an
+  adverbial comparison, or a bare lemma for a non-specific or a class-level standard (smaller
+  than a cat; harder than chalk).
+- `scale` (required; a lemma): the adjective or adverb lemmatized to its base form (taller →
+  tall, more careful → careful, faster → fast, more loudly → loud, better → good, worse → bad);
+  the pole as written, never its opposite (shorter → short).
+- `relation` (required; one of: more, less, as): more for ADJ-er / more ADJ than; less for less
+  ADJ than (the same ordering read from the other side); as for as ADJ as, with or without a
+  factor.
+- `gap` (optional; a number): a measured gap: two years older → 2, three centimetres longer → 3;
+  fill unit with it.
+- `unit` (optional; a lemma): the gap's unit, singular and lowercase (year, centimetre,
+  kilogram).
+- `factor` (optional; a number): a multiplicative comparison: twice as tall → 2, half as old →
+  0.5, three times as far → 3.
+- `classes` (optional; true / false): true when both sides are classes, a kind-level comparison
+  (basalt is harder than chalk; ferrets are faster than herons); absent otherwise.
+- `tense` (optional; one of: past, present, future): the copular clause's tense (is / was / will
+  be taller); omit for an adverbial comparison, whose events carry the tense.
+
+Example (a comparative — the scale is the adjective's lemma, the positive is not asserted). TEXT: Lamine is older than Ottoline.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Lamine", "span": "Lamine"},
+      {"t": "named-entity", "id": "n2", "name": "Ottoline", "span": "Ottoline"},
+      {"t": "comparative", "id": "c1", "subject": "@n1", "standard": "@n2", "scale": "old", "relation": "more", "tense": "present", "span": "Lamine is older than Ottoline"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_lamine_1 "Lamine")
+    (Name sk_ottoline_1 "Ottoline")
+    (More old sk_lamine_1 sk_ottoline_1)
+
+Example (an equative). TEXT: The ladder is as long as the beam.
+
+Instances:
+
+    [
+      {"t": "witness", "id": "x1", "class": "ladder", "definite": true, "span": "The ladder"},
+      {"t": "witness", "id": "x2", "class": "beam", "definite": true, "span": "the beam"},
+      {"t": "comparative", "id": "c1", "subject": "@x1", "standard": "@x2", "scale": "long", "relation": "as", "tense": "present", "span": "The ladder is as long as the beam"}
+    ]
+
+The program renders these instances as:
+
+    (Member sk_ladder_1 ladder)
+    (Member sk_beam_1 beam)
+    (SameDegree long sk_ladder_1 sk_beam_1)
+
+Example (an adverbial comparative — two events, the second elliptical, compared on the adverb's scale). TEXT: Yusra swims faster than Lamine.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Yusra", "span": "Yusra"},
+      {"t": "named-entity", "id": "n2", "name": "Lamine", "span": "Lamine"},
+      {"t": "activity", "id": "v1", "verb": "swim", "actor": "@n1", "tense": "present", "span": "Yusra swims"},
+      {"t": "activity", "id": "v2", "verb": "swim", "actor": "@n2", "tense": "present", "span": "Lamine"},
+      {"t": "comparative", "id": "c1", "subject": "@v1", "standard": "@v2", "scale": "fast", "relation": "more", "span": "faster than Lamine"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_yusra_1 "Yusra")
+    (Name sk_lamine_1 "Lamine")
+    (Member sk_swim_1 swim)
+    (Agent sk_swim_1 sk_yusra_1)
+    (Member sk_swim_2 swim)
+    (Agent sk_swim_2 sk_lamine_1)
+    (More fast sk_swim_1 sk_swim_2)
+
+Not this template. TEXT: The ladder is very crooked. — use `degree`.
+
+Not this template. TEXT: Lamine bought a sturdier bracket. — report it as unmapped: {"span":
+"sturdier", "code": "G01"}.
+
 ### control — A verb whose complement is an action of its own subject
 
 When: A verbal clause whose verb takes a to-infinitive naming an action of the clause's own
@@ -1774,9 +1910,10 @@ Not this template:
   no degree
 - a degree adverb on a verb — deeply distrusts, barely moved, fell sharply: an extent on the
   event
-- a comparative or a superlative — taller than Yusra, the tallest weaver, as tall as Teodor: a
-  comparison, with no template here; report the span as unmapped — for a superlative the whole
-  definite predicate (the tallest weaver), which is no plain class predication either
+- a comparative with a stated standard — taller than Yusra, as tall as Teodor, two years older
+  than Lamine: the comparative template
+- a superlative — the tallest weaver: a comparison with a class, with no template yet; report
+  the whole definite predicate as unmapped, which is no plain class predication either
 - a degree on a quantity — too much salt, enough water, a lot of ferrets: no slot here; report
   the span as unmapped
 - a class as the bearer — ferrets are very curious: a class statement; the degree word is
@@ -3105,7 +3242,8 @@ Not this template:
   phrase
 - a prepositional phrase inside a noun phrase — the man with the hat, a book about ferrets: a
   postmodifier of that noun, not an attachment to the event
-- a comparison — taller than Yusra, as tall as Teodor: no slot here; report the span as unmapped
+- a comparison — taller than Yusra, as tall as Teodor: the comparative template; a than-phrase
+  is never an oblique
 - a gerund clause as the object — without saying a word, by working hard: not yet (without
   denies the event, by asserts it: a scope question); report the phrase as unmapped; a gerund
   after a temporal preposition — after leaving: a time relation

@@ -1,9 +1,9 @@
 {
   "prompt": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_body_sha256": "329284e72809bde1aeb9eb785ce7b166682dbaf29862c6db666f4102dc42e6d8",
+  "prompt_body_sha256": "c30354df8e4fc684c45690d37f85851bb984c8e5f7ac77efe6b2d0a54e51b297",
   "typecheck": "ran",
   "checks": {
-    "examples": 731,
+    "examples": 756,
     "findings": [],
     "pending": {},
     "shared": [
@@ -949,6 +949,108 @@
         ]
       }
     },
+    "comparative": {
+      "held_out": {
+        "records": 60,
+        "cases": 20,
+        "status": {
+          "ok": 60
+        },
+        "stale_prompt": 0,
+        "by_category": {
+          "positive": {
+            "cases": 13,
+            "runs": 39,
+            "pass": 39,
+            "fired": 39,
+            "exact": 39
+          },
+          "scoped": {
+            "cases": 2,
+            "runs": 6,
+            "pass": 6,
+            "fired": 6,
+            "exact": 6
+          },
+          "abstain": {
+            "cases": 5,
+            "runs": 15,
+            "pass": 15,
+            "false_fires": 0,
+            "outcomes": {
+              "target_fired": 3,
+              "gap_reported": 12
+            }
+          }
+        },
+        "pass": 60,
+        "selection": {
+          "fire_runs": 45,
+          "fired": 45,
+          "abstain_runs": 15,
+          "false_fires": 0
+        },
+        "fill": {
+          "fired": 45,
+          "exact": 45,
+          "rate": 1.0
+        },
+        "stability": {
+          "cases": 20,
+          "pairs": 60,
+          "pairwise_agreement": 0.967,
+          "unanimous": 19
+        },
+        "typecheck": {
+          "checked": 57,
+          "passed": 57
+        },
+        "usage": {
+          "input": 3944697,
+          "output": 8883,
+          "thinking": 0,
+          "total": 3953580,
+          "cached": 3692035,
+          "calls": 60,
+          "thinking_calls": 0
+        },
+        "issues": [
+          {
+            "code": "P00",
+            "where": "comparative",
+            "text": "The template says 'a standard that is a clause — taller than Yusra was, older than she looks: no slot here; report the than-phrase as unmapped', but reporting only the than-phrase as unmapped leaves 'Ottoline is taller' with no standard, which cannot be encoded as a comparative without a standard.",
+            "sentence": "Ottoline is taller than Yusra was.",
+            "run": 1
+          },
+          {
+            "code": "P00",
+            "where": "comparative",
+            "text": "The boundary case 'a standard that is a clause — taller than Yusra was, older than she looks: no slot here; report the than-phrase as unmapped' says to report the than-phrase as unmapped, but the positive property ('is tall') is not entailed and 'comparative' requires 'standard', so the whole comparative clause must be reported as unmapped.",
+            "sentence": "Ottoline is taller than Yusra was.",
+            "run": 2
+          },
+          {
+            "code": "P00",
+            "where": "comparative",
+            "text": "The boundary case 'a standard that is a clause — taller than Yusra was' instructs to report the than-phrase as unmapped, but the comparative template requires the `standard` slot to be filled, making it impossible to encode the rest of the clause without violating the G01 boundary.",
+            "sentence": "Ottoline is taller than Yusra was.",
+            "run": 3
+          }
+        ],
+        "null_slots": 0,
+        "lints": {},
+        "spans": {
+          "instances": 160,
+          "with_span": 160,
+          "missing": 0,
+          "not_verbatim": 0,
+          "malformed": 0
+        },
+        "models": [
+          "gemini-4-argon effort=low"
+        ]
+      }
+    },
     "conditional-property": {
       "held_out": {
         "records": 39,
@@ -1420,7 +1522,7 @@
         "status": {
           "ok": 54
         },
-        "stale_prompt": 54,
+        "stale_prompt": 51,
         "by_category": {
           "positive": {
             "cases": 7,
@@ -1456,8 +1558,8 @@
             "pass": 18,
             "false_fires": 0,
             "outcomes": {
-              "target_fired": 6,
-              "gap_reported": 12
+              "target_fired": 9,
+              "gap_reported": 9
             }
           }
         },
@@ -1484,11 +1586,11 @@
           "passed": 54
         },
         "usage": {
-          "input": 3051342,
-          "output": 6543,
+          "input": 3079053,
+          "output": 6615,
           "thinking": 0,
-          "total": 3057885,
-          "cached": 2886217,
+          "total": 3085668,
+          "cached": 2913928,
           "calls": 54,
           "thinking_calls": 0
         },
@@ -1496,8 +1598,8 @@
         "null_slots": 0,
         "lints": {},
         "spans": {
-          "instances": 117,
-          "with_span": 117,
+          "instances": 120,
+          "with_span": 120,
           "missing": 0,
           "not_verbatim": 0,
           "malformed": 0
@@ -1760,7 +1862,7 @@
         "status": {
           "ok": 69
         },
-        "stale_prompt": 60,
+        "stale_prompt": 69,
         "by_category": {
           "positive": {
             "cases": 17,
@@ -2028,7 +2130,7 @@
         "status": {
           "ok": 36
         },
-        "stale_prompt": 0,
+        "stale_prompt": 36,
         "by_category": {
           "positive": {
             "cases": 6,
@@ -2847,7 +2949,7 @@
         "status": {
           "ok": 57
         },
-        "stale_prompt": 57,
+        "stale_prompt": 54,
         "by_category": {
           "positive": {
             "cases": 8,
@@ -2876,8 +2978,8 @@
             "pass": 18,
             "false_fires": 0,
             "outcomes": {
-              "target_fired": 12,
-              "gap_reported": 6
+              "target_fired": 15,
+              "gap_reported": 3
             }
           }
         },
@@ -2904,11 +3006,11 @@
           "passed": 57
         },
         "usage": {
-          "input": 3230640,
-          "output": 10279,
+          "input": 3258351,
+          "output": 10317,
           "thinking": 0,
-          "total": 3240919,
-          "cached": 3113835,
+          "total": 3268668,
+          "cached": 3141546,
           "calls": 57,
           "thinking_calls": 0
         },
@@ -2916,8 +3018,8 @@
         "null_slots": 0,
         "lints": {},
         "spans": {
-          "instances": 219,
-          "with_span": 219,
+          "instances": 222,
+          "with_span": 222,
           "missing": 0,
           "not_verbatim": 0,
           "malformed": 0

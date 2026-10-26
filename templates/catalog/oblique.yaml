@@ -57,8 +57,8 @@ trigger:
       a prepositional phrase inside a noun phrase — the man with the hat, a book about ferrets:
       a postmodifier of that noun, not an attachment to the event
     - >-
-      a comparison — taller than Yusra, as tall as Teodor: no slot here; report the span as
-      unmapped
+      a comparison — taller than Yusra, as tall as Teodor: the comparative template; a than-phrase
+      is never an oblique
     - >-
       a gerund clause as the object — without saying a word, by working hard: not yet (without
       denies the event, by asserts it: a scope question); report the phrase as unmapped; a gerund
@@ -265,4 +265,4 @@ examples:
       expected: {abstain: true, gap: G00, span: "without saying a word"}   # a gerund as the object
     - category: abstain
       text: "Teodor is taller than Yusra."
-      expected: {abstain: true, gap: G00, span: "taller than Yusra"}  # a comparison
+      expected: {abstain: true, template: comparative}                # a comparison with a standard

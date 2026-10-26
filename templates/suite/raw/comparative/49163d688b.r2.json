@@ -1,0 +1,99 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "0adc5287ef4a2e2370e429ea2c77950ac219af92614de639ac71bae2aa152a52",
+  "item": {
+    "id": "s49163d688b",
+    "text": "Lamine is not as tall as Yusra."
+  },
+  "usage": {
+    "input": 65748,
+    "output": 180,
+    "thinking": null,
+    "total": 65928,
+    "cached": 63699,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 65748,
+    "candidatesTokenCount": 180,
+    "totalTokenCount": 65928,
+    "cachedContentTokenCount": 63699,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 65748
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 63699
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 180
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s49163d688b\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"comparative\", \"id\": \"d1\", \"subject\": \"@n1\", \"standard\": \"@n2\", \"scale\": \"tall\", \"relation\": \"as\", \"tense\": \"present\", \"span\": \"Lamine is not as tall as Yusra\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@d1\"], \"span\": \"not\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s49163d688b",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "comparative",
+        "id": "d1",
+        "subject": "@n1",
+        "standard": "@n2",
+        "scale": "tall",
+        "relation": "as",
+        "tense": "present",
+        "span": "Lamine is not as tall as Yusra"
+      },
+      {
+        "t": "negation",
+        "id": "s1",
+        "over": [
+          "@d1"
+        ],
+        "span": "not"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "c30354df8e4fc684c45690d37f85851bb984c8e5f7ac77efe6b2d0a54e51b297",
+  "run": 2,
+  "case": {
+    "template": "comparative",
+    "section": "held_out",
+    "index": 13,
+    "category": "scoped",
+    "text": "Lamine is not as tall as Yusra.",
+    "key": "49163d688b"
+  }
+}

@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
+  "prompt_sha256": "0adc5287ef4a2e2370e429ea2c77950ac219af92614de639ac71bae2aa152a52",
   "item": {
     "id": "scc76dfd422",
     "text": "Teodor is taller than Yusra."
   },
   "usage": {
-    "input": 56506,
-    "output": 124,
+    "input": 65743,
+    "output": 147,
     "thinking": null,
-    "total": 56630,
-    "cached": 54457,
+    "total": 65890,
+    "cached": 63694,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 56506,
-    "candidatesTokenCount": 124,
-    "totalTokenCount": 56630,
-    "cachedContentTokenCount": 54457,
+    "promptTokenCount": 65743,
+    "candidatesTokenCount": 147,
+    "totalTokenCount": 65890,
+    "cachedContentTokenCount": 63694,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 56506
+        "tokenCount": 65743
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 54457
+        "tokenCount": 63694
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 124
+        "tokenCount": 147
       }
     ]
   },
-  "raw_text": "{\"id\": \"scc76dfd422\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Yusra\", \"span\": \"Yusra\"}], \"unmapped\": [{\"span\": \"Teodor is taller than Yusra\", \"code\": \"G00\", \"construction\": \"A comparative copular clause with an explicit standard of comparison.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"scc76dfd422\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"comparative\", \"id\": \"c1\", \"subject\": \"@n1\", \"standard\": \"@n2\", \"scale\": \"tall\", \"relation\": \"more\", \"tense\": \"present\", \"span\": \"Teodor is taller than Yusra\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "scc76dfd422",
     "instances": [
@@ -63,18 +63,22 @@
         "id": "n2",
         "name": "Yusra",
         "span": "Yusra"
-      }
-    ],
-    "unmapped": [
+      },
       {
-        "span": "Teodor is taller than Yusra",
-        "code": "G00",
-        "construction": "A comparative copular clause with an explicit standard of comparison."
+        "t": "comparative",
+        "id": "c1",
+        "subject": "@n1",
+        "standard": "@n2",
+        "scale": "tall",
+        "relation": "more",
+        "tense": "present",
+        "span": "Teodor is taller than Yusra"
       }
     ],
+    "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
+  "prompt_body_sha256": "c30354df8e4fc684c45690d37f85851bb984c8e5f7ac77efe6b2d0a54e51b297",
   "run": 2,
   "case": {
     "template": "oblique",

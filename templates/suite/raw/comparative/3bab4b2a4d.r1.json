@@ -1,0 +1,80 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "0adc5287ef4a2e2370e429ea2c77950ac219af92614de639ac71bae2aa152a52",
+  "item": {
+    "id": "s3bab4b2a4d",
+    "text": "Basalt is harder than chalk."
+  },
+  "usage": {
+    "input": 65743,
+    "output": 92,
+    "thinking": null,
+    "total": 65835,
+    "cached": 63694,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 65743,
+    "candidatesTokenCount": 92,
+    "totalTokenCount": 65835,
+    "cachedContentTokenCount": 63694,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 65743
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 63694
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 92
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s3bab4b2a4d\", \"instances\": [{\"t\": \"comparative\", \"id\": \"d1\", \"subject\": \"basalt\", \"standard\": \"chalk\", \"scale\": \"hard\", \"relation\": \"more\", \"classes\": true, \"tense\": \"present\", \"span\": \"Basalt is harder than chalk\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s3bab4b2a4d",
+    "instances": [
+      {
+        "t": "comparative",
+        "id": "d1",
+        "subject": "basalt",
+        "standard": "chalk",
+        "scale": "hard",
+        "relation": "more",
+        "classes": true,
+        "tense": "present",
+        "span": "Basalt is harder than chalk"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "c30354df8e4fc684c45690d37f85851bb984c8e5f7ac77efe6b2d0a54e51b297",
+  "run": 1,
+  "case": {
+    "template": "comparative",
+    "section": "held_out",
+    "index": 10,
+    "category": "positive",
+    "text": "Basalt is harder than chalk.",
+    "key": "3bab4b2a4d"
+  }
+}

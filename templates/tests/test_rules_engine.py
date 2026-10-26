@@ -163,6 +163,23 @@ class SeededRulesOnTheEngine(unittest.TestCase):
                             '(: t9c (Member sk_time_9 day) (STV 1.0 0.99))'])          # the time template states the granularity
         self.assertTrue(self.query(daily, "(Member (sk_read sk_time_9) read)"))          # a date is a day
         self.assertFalse(self.query(daily, "(Member (sk_read sk_time_8) read)"))         # no such time stated
+    def test_comparisons_chain_and_a_gap_entails_the_ordering(self):
+        """More is transitive, an equative is symmetric, a measured gap entails the plain ordering
+        and gaps add along a chain; nothing is derived about the positive property."""
+        facts = ['(: c1 (More tall sk_teodor_1 sk_yusra_1) (STV 1.0 0.99))',
+                 '(: c2 (More tall sk_yusra_1 sk_lamine_1) (STV 1.0 0.99))',
+                 '(: c3 (SameDegree strong sk_yusra_1 sk_lamine_1) (STV 1.0 0.99))',
+                 '(: c4 (MoreBy old sk_yusra_1 sk_teodor_1 2 year) (STV 1.0 0.99))',
+                 '(: c5 (MoreBy old sk_teodor_1 sk_lamine_1 3 year) (STV 1.0 0.99))']
+        h = self.space(facts)
+        res = self.query(h, "(More tall sk_teodor_1 sk_lamine_1)")
+        self.assertTrue(res and "more_trans" in res[0], res)
+        self.assertTrue(self.query(h, "(SameDegree strong sk_lamine_1 sk_yusra_1)"))
+        self.assertTrue(self.query(h, "(More old sk_yusra_1 sk_teodor_1)"))
+        gap = self.query(h, "(MoreBy old sk_yusra_1 sk_lamine_1 $n year)")
+        self.assertTrue(gap and "5 year" in gap[0], gap)
+        self.assertFalse(self.query(h, "(Member sk_teodor_1 tall)"))                 # no positive
+
 
 if __name__ == "__main__":
     unittest.main()

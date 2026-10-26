@@ -1,0 +1,85 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "0adc5287ef4a2e2370e429ea2c77950ac219af92614de639ac71bae2aa152a52",
+  "item": {
+    "id": "sf29ddd3cda",
+    "text": "Lamine is twice as tall as Ottoline."
+  },
+  "usage": {
+    "input": 65743,
+    "output": 152,
+    "thinking": null,
+    "total": 65895,
+    "cached": null,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 65743,
+    "candidatesTokenCount": 152,
+    "totalTokenCount": 65895,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 65743
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 152
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sf29ddd3cda\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"comparative\", \"id\": \"d1\", \"subject\": \"@n1\", \"standard\": \"@n2\", \"scale\": \"tall\", \"relation\": \"as\", \"factor\": 2, \"tense\": \"present\", \"span\": \"Lamine is twice as tall as Ottoline\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sf29ddd3cda",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Ottoline",
+        "span": "Ottoline"
+      },
+      {
+        "t": "comparative",
+        "id": "d1",
+        "subject": "@n1",
+        "standard": "@n2",
+        "scale": "tall",
+        "relation": "as",
+        "factor": 2,
+        "tense": "present",
+        "span": "Lamine is twice as tall as Ottoline"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "c30354df8e4fc684c45690d37f85851bb984c8e5f7ac77efe6b2d0a54e51b297",
+  "run": 1,
+  "case": {
+    "template": "comparative",
+    "section": "held_out",
+    "index": 5,
+    "category": "positive",
+    "text": "Lamine is twice as tall as Ottoline.",
+    "key": "f29ddd3cda"
+  }
+}

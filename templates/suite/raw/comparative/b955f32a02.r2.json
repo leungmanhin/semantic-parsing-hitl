@@ -1,0 +1,93 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "0adc5287ef4a2e2370e429ea2c77950ac219af92614de639ac71bae2aa152a52",
+  "item": {
+    "id": "sb955f32a02",
+    "text": "The quilt is heavier than the rug."
+  },
+  "usage": {
+    "input": 65745,
+    "output": 153,
+    "thinking": null,
+    "total": 65898,
+    "cached": 63696,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 65745,
+    "candidatesTokenCount": 153,
+    "totalTokenCount": 65898,
+    "cachedContentTokenCount": 63696,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 65745
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 63696
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 153
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sb955f32a02\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"quilt\", \"definite\": true, \"span\": \"The quilt\"}, {\"t\": \"witness\", \"id\": \"x2\", \"class\": \"rug\", \"definite\": true, \"span\": \"the rug\"}, {\"t\": \"comparative\", \"id\": \"d1\", \"subject\": \"@x1\", \"standard\": \"@x2\", \"scale\": \"heavy\", \"relation\": \"more\", \"tense\": \"present\", \"span\": \"The quilt is heavier than the rug\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sb955f32a02",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "quilt",
+        "definite": true,
+        "span": "The quilt"
+      },
+      {
+        "t": "witness",
+        "id": "x2",
+        "class": "rug",
+        "definite": true,
+        "span": "the rug"
+      },
+      {
+        "t": "comparative",
+        "id": "d1",
+        "subject": "@x1",
+        "standard": "@x2",
+        "scale": "heavy",
+        "relation": "more",
+        "tense": "present",
+        "span": "The quilt is heavier than the rug"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "c30354df8e4fc684c45690d37f85851bb984c8e5f7ac77efe6b2d0a54e51b297",
+  "run": 2,
+  "case": {
+    "template": "comparative",
+    "section": "held_out",
+    "index": 2,
+    "category": "positive",
+    "text": "The quilt is heavier than the rug.",
+    "key": "b955f32a02"
+  }
+}

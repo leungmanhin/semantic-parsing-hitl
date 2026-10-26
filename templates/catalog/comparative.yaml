@@ -1,0 +1,333 @@
+# Template: comparative  (a comparison of two things on a scale: "Lamine is older than Ottoline", "as long as the beam", "two years older than", "twice as tall as", "swims faster than Lamine")
+#
+# A comparative orders two things on the scale an adjective names: (More old sk_lamine_1
+# sk_ottoline_1) says Lamine exceeds Ottoline on the scale old. The scale is the adjective as
+# written, lemmatized (taller → tall, shorter → short: the surface pole, never flipped to its
+# opposite); "less ADJ than" is the same ordering read from the other side and swaps the pair;
+# "as ADJ as" is an equative, (SameDegree long x y); a measured gap is (MoreBy old x y 2 year); a
+# ratio is (TimesAs tall x y 2). No comparison asserts the positive property: taller than Yusra
+# does not make Teodor tall. An adverbial comparative (swims faster than Lamine) compares two
+# events, the second elliptical, on the adverb's scale. Like a copular predication, the comparison
+# is wrapped by its tense, (Past (More …)), and takes a negation or a modal over it.
+
+id: comparative
+family: predication
+shape: copular
+title: A comparison of two things on a scale
+
+trigger:
+  construction: >
+    A comparison with a STATED standard: X is ADJ-er / more ADJ / less ADJ than Y; X is as ADJ as
+    Y; X is N units ADJ-er than Y; X is twice / half / N times as ADJ as Y; and the adverbial
+    form, X Vs ADV-er / more ADV than Y. The two sides are referents — a name, a witness, or a
+    bare lemma for a non-specific or a class-level standard (smaller than a cat; basalt is harder
+    than chalk) — or, in the adverbial form, two events: the clause's own and an elliptical
+    second one with the same verb and the standard as its participant, both parsed with the
+    clause's template. The instance names the two sides, the scale (the adjective or adverb
+    lemmatized to its base: taller → tall, more careful → careful, faster → fast, more loudly →
+    loud, better → good), the relation as read (more; less; as for an equative), and a measured
+    gap with its unit or a factor when stated. For a copular comparison the instance stands in
+    place of the copular predication and records the clause's tense; for an adverbial one the
+    events carry the tense. The span is the whole clause for a copular comparison and the
+    comparative phrase for an adverbial one (faster than Lamine).
+  surface_forms:
+    - "<X> is ADJ-er / more ADJ than <Y>"                  # Lamine is older than Ottoline: relation more
+    - "<X> is less ADJ than <Y>"                           # Ottoline is less patient than Lamine: relation less, the pair swapped
+    - "<X> is as ADJ as <Y>"                               # the ladder is as long as the beam: relation as
+    - "<X> is <n> <units> ADJ-er than <Y>"                 # Yusra is two years older than Teodor: gap 2, unit year
+    - "<X> is twice / half / <n> times as ADJ as <Y>"      # Lamine is twice as tall as Ottoline: factor 2
+    - "<X> Vs ADV-er / more ADV than <Y>"                  # Yusra swims faster than Lamine: two events, scale fast
+    - "<class> is ADJ-er than <class>"                     # basalt is harder than chalk: bare lemmas, classes true
+  boundary:                   # looks like a comparison but is not one
+    - >-
+      a comparative with no stated standard — a sturdier bracket, prices ended lower, this one is
+      better: nothing fills the standard; the rest of the clause is parsed and the comparative
+      reported as unmapped (G01)
+    - >-
+      a superlative or an ordinal — the tallest weaver, one of the oldest orchards, the third
+      climber: a comparison with a class, with no template yet; report the whole definite
+      predicate as unmapped
+    - >-
+      a degree word with no standard — very tall, too tall, tall enough, tall for a weaver: a
+      degree
+    - >-
+      a comparison of quantities — more quilts than Yusra, fewer guests than she invited, as many
+      ferrets as: no slot here; parse what stands on its own (Teodor has quilts) and report the
+      comparative phrase as unmapped
+    - >-
+      a standard that is a clause — taller than Yusra was, older than she looks: no slot here,
+      and with no standard the comparative cannot be encoded at all; report the whole
+      comparative clause as unmapped (Ottoline is taller than Yusra was)
+    - >-
+      a correlative — the older the wine, the better: a covariation, not a comparison; reported
+      as unmapped
+    - >-
+      a comparison with a measure — taller than two metres, older than thirty: a threshold on a
+      measure, not a comparison of two things; report the phrase as unmapped
+    - >-
+      a bound on a count — more than three ferrets, fewer than ten: a count on a group, not a
+      comparison; no slot here
+    - >-
+      than after a non-gradable word — other than Yusra, rather than wait: not a comparison; an
+      oblique, or reported as unmapped
+    - >-
+      the positive property alone — Teodor is tall: a copular predication
+
+slots:
+  id:       {type: id, required: true, doc: "your label for the comparison (c1, c2 …)"}
+  subject:  {type: filler, class: Class, required: true,
+             doc: "the side that is compared: the subject's referent id (a name, a witness), or the clause's event for an adverbial comparison, or a bare lemma for a class (basalt)"}
+  standard: {type: filler, class: Class, required: true,
+             doc: "the than-phrase or as-phrase: a referent id, the elliptical second event for an adverbial comparison, or a bare lemma for a non-specific or a class-level standard (smaller than a cat; harder than chalk)"}
+  scale:    {type: lemma, class: Class, required: true,
+             doc: "the adjective or adverb lemmatized to its base form (taller → tall, more careful → careful, faster → fast, more loudly → loud, better → good, worse → bad); the pole as written, never its opposite (shorter → short)"}
+  relation: {type: enum, values: [more, less, as], required: true,
+             doc: "more for ADJ-er / more ADJ than; less for less ADJ than (the same ordering read from the other side); as for as ADJ as, with or without a factor"}
+  gap:      {type: number, required: false, doc: "a measured gap: two years older → 2, three centimetres longer → 3; fill unit with it"}
+  unit:     {type: lemma, class: Class, required: false, doc: "the gap's unit, singular and lowercase (year, centimetre, kilogram)"}
+  factor:   {type: number, required: false, doc: "a multiplicative comparison: twice as tall → 2, half as old → 0.5, three times as far → 3"}
+  classes:  {type: bool, required: false,
+             doc: "true when both sides are classes, a kind-level comparison (basalt is harder than chalk; ferrets are faster than herons); absent otherwise"}
+  tense:    {type: enum, values: [past, present, future], required: false, default: present,
+             doc: "the copular clause's tense (is / was / will be taller); omit for an adverbial comparison, whose events carry the tense"}
+
+truth:
+  strength:                    # an individual comparison is a fact; a class-level one is a bare generalization
+    - {slot: classes, values: {"true": 0.9}}
+    - 1.0
+  confidence:
+    - {slot: classes, values: {"true": 0.7}}
+    - 0.99
+
+emits:
+  # the plain ordering: more, and less read from the other side
+  - atom: "(More {scale} {subject} {standard})"
+    when: "relation == more and not gap and not factor and tense != past and tense != future"
+  - atom: "(Past (More {scale} {subject} {standard}))"
+    when: "relation == more and not gap and not factor and tense == past"
+  - atom: "(Future (More {scale} {subject} {standard}))"
+    when: "relation == more and not gap and not factor and tense == future"
+  - atom: "(More {scale} {standard} {subject})"
+    when: "relation == less and not gap and not factor and tense != past and tense != future"
+  - atom: "(Past (More {scale} {standard} {subject}))"
+    when: "relation == less and not gap and not factor and tense == past"
+  - atom: "(Future (More {scale} {standard} {subject}))"
+    when: "relation == less and not gap and not factor and tense == future"
+  # the equative
+  - atom: "(SameDegree {scale} {subject} {standard})"
+    when: "relation == as and not factor and tense != past and tense != future"
+  - atom: "(Past (SameDegree {scale} {subject} {standard}))"
+    when: "relation == as and not factor and tense == past"
+  - atom: "(Future (SameDegree {scale} {subject} {standard}))"
+    when: "relation == as and not factor and tense == future"
+  # a measured gap
+  - atom: "(MoreBy {scale} {subject} {standard} {gap} {unit})"
+    if_filled: gap
+    when: "relation == more and tense != past and tense != future"
+  - atom: "(Past (MoreBy {scale} {subject} {standard} {gap} {unit}))"
+    if_filled: gap
+    when: "relation == more and tense == past"
+  - atom: "(Future (MoreBy {scale} {subject} {standard} {gap} {unit}))"
+    if_filled: gap
+    when: "relation == more and tense == future"
+  - atom: "(MoreBy {scale} {standard} {subject} {gap} {unit})"
+    if_filled: gap
+    when: "relation == less and tense != past and tense != future"
+  - atom: "(Past (MoreBy {scale} {standard} {subject} {gap} {unit}))"
+    if_filled: gap
+    when: "relation == less and tense == past"
+  - atom: "(Future (MoreBy {scale} {standard} {subject} {gap} {unit}))"
+    if_filled: gap
+    when: "relation == less and tense == future"
+  # a factor
+  - atom: "(TimesAs {scale} {subject} {standard} {factor})"
+    if_filled: factor
+    when: "tense != past and tense != future"
+  - atom: "(Past (TimesAs {scale} {subject} {standard} {factor}))"
+    if_filled: factor
+    when: "tense == past"
+  - atom: "(Future (TimesAs {scale} {subject} {standard} {factor}))"
+    if_filled: factor
+    when: "tense == future"
+
+notes:
+  - >-
+    No comparison asserts the positive: (More tall x y) leaves (Member x tall) unsaid, as the text
+    does. The scale is the adjective's own lemma on the pole the text uses — short stays short —
+    so that a question worded with the same adjective matches; the seeded rules derive the plain
+    ordering from a measured gap or a factor, the transitivity of More and the symmetry of
+    SameDegree, so the parse emits only the most specific atom.
+  - >-
+    An individual comparison is a fact (1.0 at 0.99); a class-level one — basalt is harder than
+    chalk — is a bare generalization over the two classes (0.9 at 0.7), as a class statement is.
+  - >-
+    The standard may be elliptical. "Swims faster than Lamine" compares Yusra's swimming with
+    Lamine's: a second event with the same verb and the standard as its actor, a predication of
+    its own, and the comparison holds between the two events. "Smaller than a cat" compares with
+    the class, a bare lemma; "than the cat" with the witness.
+
+depends_on: [named-entity, witness, activity]
+composes_with: [negation, modal, time]
+
+examples:
+  shown:                     # rendered into the prompt
+    - category: positive
+      note: a comparative — the scale is the adjective's lemma, the positive is not asserted
+      text: "Lamine is older than Ottoline."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine", span: "Lamine"}
+        - {t: named-entity, id: n2, name: "Ottoline", span: "Ottoline"}
+        - {t: comparative, id: c1, subject: "@n1", standard: "@n2", scale: old, relation: more, tense: present, span: "Lamine is older than Ottoline"}
+      emitted:               # what the emitter produces (illustration; the emitter is the authority)
+        - "(Name sk_lamine_1 \"Lamine\")"
+        - "(Name sk_ottoline_1 \"Ottoline\")"
+        - "(More old sk_lamine_1 sk_ottoline_1)"
+      declarations:
+        - "(: old Class)"
+        - "(: sk_lamine_1 Entity)"
+        - "(: sk_ottoline_1 Entity)"
+    - category: positive
+      note: an equative
+      text: "The ladder is as long as the beam."
+      instances:
+        - {t: witness, id: x1, class: ladder, definite: true, span: "The ladder"}
+        - {t: witness, id: x2, class: beam, definite: true, span: "the beam"}
+        - {t: comparative, id: c1, subject: "@x1", standard: "@x2", scale: long, relation: as, tense: present, span: "The ladder is as long as the beam"}
+    - category: positive
+      note: an adverbial comparative — two events, the second elliptical, compared on the adverb's scale
+      text: "Yusra swims faster than Lamine."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
+        - {t: named-entity, id: n2, name: "Lamine", span: "Lamine"}
+        - {t: activity, id: v1, verb: swim, actor: "@n1", tense: present, span: "Yusra swims"}
+        - {t: activity, id: v2, verb: swim, actor: "@n2", tense: present, span: "Lamine"}
+        - {t: comparative, id: c1, subject: "@v1", standard: "@v2", scale: fast, relation: more, span: "faster than Lamine"}
+    - category: abstain
+      text: "The ladder is very crooked."
+      expected: {abstain: true, template: degree}                     # a degree word, no standard
+    - category: abstain
+      text: "Lamine bought a sturdier bracket."
+      expected: {abstain: true, gap: G01, span: "sturdier"}           # no stated standard
+
+  held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      note: a comparative between two names
+      text: "Teodor is taller than Yusra."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: named-entity, id: n2, name: "Yusra"}
+        - {t: comparative, id: c1, subject: "@n1", standard: "@n2", scale: tall, relation: more, tense: present}
+    - category: positive
+      note: less — the same ordering read from the other side
+      text: "Ottoline is less patient than Lamine."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: comparative, id: c1, subject: "@n1", standard: "@n2", scale: patient, relation: less, tense: present}
+    - category: positive
+      note: two witnesses
+      text: "The quilt is heavier than the rug."
+      instances:
+        - {t: witness, id: x1, class: quilt, definite: true}
+        - {t: witness, id: x2, class: rug, definite: true}
+        - {t: comparative, id: c1, subject: "@x1", standard: "@x2", scale: heavy, relation: more, tense: present}
+    - category: positive
+      note: a measured gap
+      text: "Yusra is two years older than Teodor."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: named-entity, id: n2, name: "Teodor"}
+        - {t: comparative, id: c1, subject: "@n1", standard: "@n2", scale: old, relation: more, gap: 2, unit: year, tense: present}
+    - category: positive
+      note: a measured gap between witnesses
+      text: "The beam is three centimetres longer than the ladder."
+      instances:
+        - {t: witness, id: x1, class: beam, definite: true}
+        - {t: witness, id: x2, class: ladder, definite: true}
+        - {t: comparative, id: c1, subject: "@x1", standard: "@x2", scale: long, relation: more, gap: 3, unit: centimetre, tense: present}
+    - category: positive
+      note: a factor
+      text: "Lamine is twice as tall as Ottoline."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: named-entity, id: n2, name: "Ottoline"}
+        - {t: comparative, id: c1, subject: "@n1", standard: "@n2", scale: tall, relation: as, factor: 2, tense: present}
+    - category: positive
+      note: a factor below one
+      text: "Teodor is half as old as Yusra."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: named-entity, id: n2, name: "Yusra"}
+        - {t: comparative, id: c1, subject: "@n1", standard: "@n2", scale: old, relation: as, factor: 0.5, tense: present}
+    - category: positive
+      note: an equative between names
+      text: "Yusra is as strong as Lamine."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: comparative, id: c1, subject: "@n1", standard: "@n2", scale: strong, relation: as, tense: present}
+    - category: positive
+      note: a periphrastic comparative
+      text: "Teodor is more careful than Lamine."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: comparative, id: c1, subject: "@n1", standard: "@n2", scale: careful, relation: more, tense: present}
+    - category: positive
+      note: a past comparison
+      text: "Ottoline was taller than Lamine."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: comparative, id: c1, subject: "@n1", standard: "@n2", scale: tall, relation: more, tense: past}
+    - category: positive
+      note: a class-level comparison — bare lemmas, a bare generalization
+      text: "Basalt is harder than chalk."
+      instances:
+        - {t: comparative, id: c1, subject: basalt, standard: chalk, scale: hard, relation: more, classes: true, tense: present}
+    - category: positive
+      note: a non-specific standard — a bare lemma
+      text: "The ferret is smaller than a cat."
+      instances:
+        - {t: witness, id: x1, class: ferret, definite: true}
+        - {t: comparative, id: c1, subject: "@x1", standard: cat, scale: small, relation: more, tense: present}
+    - category: positive
+      note: an adverbial comparative with a periphrastic adverb — the adverb's adjective is the scale
+      text: "Lamine sings more loudly than Yusra."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: named-entity, id: n2, name: "Yusra"}
+        - {t: activity, id: v1, verb: sing, actor: "@n1", tense: present}
+        - {t: activity, id: v2, verb: sing, actor: "@n2", tense: present}
+        - {t: comparative, id: c1, subject: "@v1", standard: "@v2", scale: loud, relation: more}
+    - category: scoped
+      note: a negated equative
+      text: "Lamine is not as tall as Yusra."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: named-entity, id: n2, name: "Yusra"}
+        - {t: comparative, id: c1, subject: "@n1", standard: "@n2", scale: tall, relation: as, tense: present}
+        - {t: negation, id: s1, over: ["@c1"]}
+    - category: scoped
+      note: under a modal
+      text: "Yusra might be taller than Lamine."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: comparative, id: c1, subject: "@n1", standard: "@n2", scale: tall, relation: more, tense: present}
+        - {t: modal, id: s1, over: ["@c1"], head: Might, surface: might}
+    - category: abstain
+      text: "Yusra is the tallest weaver."
+      expected: {abstain: true, gap: G00, span: "the tallest weaver"}  # a superlative: no template yet
+    - category: abstain
+      text: "The stew is too hot."
+      expected: {abstain: true, template: degree}                     # a degree, no standard
+    - category: abstain
+      text: "The bracket is sturdier."
+      expected: {abstain: true, gap: G01, span: "sturdier"}           # no stated standard
+    - category: abstain
+      text: "Teodor has more quilts than Yusra."
+      expected: {abstain: true, gap: G00, span: "more quilts than Yusra"}   # a comparison of quantities
+    - category: abstain
+      text: "Ottoline is taller than Yusra was."
+      expected: {abstain: true, gap: G00, span: "than Yusra was"}     # a clausal standard

@@ -1,0 +1,87 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "0adc5287ef4a2e2370e429ea2c77950ac219af92614de639ac71bae2aa152a52",
+  "item": {
+    "id": "s76f6556603",
+    "text": "Teodor has more quilts than Yusra."
+  },
+  "usage": {
+    "input": 65747,
+    "output": 135,
+    "thinking": null,
+    "total": 65882,
+    "cached": 63698,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 65747,
+    "candidatesTokenCount": 135,
+    "totalTokenCount": 65882,
+    "cachedContentTokenCount": 63698,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 65747
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 63698
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 135
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s76f6556603\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Yusra\", \"span\": \"Yusra\"}], \"unmapped\": [{\"span\": \"Teodor has more quilts than Yusra.\", \"code\": \"G00\", \"construction\": \"A comparison of quantities ('more quilts than Yusra') on which the possession claim depends.\"}], \"issues\": []}",
+  "response": {
+    "id": "s76f6556603",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Yusra",
+        "span": "Yusra"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "Teodor has more quilts than Yusra.",
+        "code": "G00",
+        "construction": "A comparison of quantities ('more quilts than Yusra') on which the possession claim depends."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "c30354df8e4fc684c45690d37f85851bb984c8e5f7ac77efe6b2d0a54e51b297",
+  "run": 2,
+  "case": {
+    "template": "comparative",
+    "section": "held_out",
+    "index": 18,
+    "category": "abstain",
+    "text": "Teodor has more quilts than Yusra.",
+    "key": "76f6556603"
+  }
+}

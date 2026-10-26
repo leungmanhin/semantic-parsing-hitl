@@ -1,0 +1,93 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "0adc5287ef4a2e2370e429ea2c77950ac219af92614de639ac71bae2aa152a52",
+  "item": {
+    "id": "s96fb48e2a9",
+    "text": "Ottoline is taller than Yusra was."
+  },
+  "usage": {
+    "input": 65746,
+    "output": 226,
+    "thinking": null,
+    "total": 65972,
+    "cached": 63697,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 65746,
+    "candidatesTokenCount": 226,
+    "totalTokenCount": 65972,
+    "cachedContentTokenCount": 63697,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 65746
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 63697
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 226
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s96fb48e2a9\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Yusra\", \"span\": \"Yusra\"}], \"unmapped\": [{\"span\": \"Ottoline is taller than Yusra was\", \"code\": \"G00\", \"construction\": \"A comparative whose standard is a clause ('than Yusra was').\"}], \"issues\": [{\"code\": \"P00\", \"where\": \"comparative\", \"text\": \"The boundary case 'a standard that is a clause — taller than Yusra was, older than she looks: no slot here; report the than-phrase as unmapped' says to report the than-phrase as unmapped, but the positive property ('is tall') is not entailed and 'comparative' requires 'standard', so the whole comparative clause must be reported as unmapped.\"}]}",
+  "response": {
+    "id": "s96fb48e2a9",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Ottoline",
+        "span": "Ottoline"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Yusra",
+        "span": "Yusra"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "Ottoline is taller than Yusra was",
+        "code": "G00",
+        "construction": "A comparative whose standard is a clause ('than Yusra was')."
+      }
+    ],
+    "issues": [
+      {
+        "code": "P00",
+        "where": "comparative",
+        "text": "The boundary case 'a standard that is a clause — taller than Yusra was, older than she looks: no slot here; report the than-phrase as unmapped' says to report the than-phrase as unmapped, but the positive property ('is tall') is not entailed and 'comparative' requires 'standard', so the whole comparative clause must be reported as unmapped."
+      }
+    ]
+  },
+  "prompt_body_sha256": "c30354df8e4fc684c45690d37f85851bb984c8e5f7ac77efe6b2d0a54e51b297",
+  "run": 2,
+  "case": {
+    "template": "comparative",
+    "section": "held_out",
+    "index": 19,
+    "category": "abstain",
+    "text": "Ottoline is taller than Yusra was.",
+    "key": "96fb48e2a9"
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "0adc5287ef4a2e2370e429ea2c77950ac219af92614de639ac71bae2aa152a52",
+  "item": {
+    "id": "s41faee59c4",
+    "text": "Yusra is two years older than Teodor."
+  },
+  "usage": {
+    "input": 65746,
+    "output": 164,
+    "thinking": null,
+    "total": 65910,
+    "cached": 63696,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 65746,
+    "candidatesTokenCount": 164,
+    "totalTokenCount": 65910,
+    "cachedContentTokenCount": 63696,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 65746
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 63696
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 164
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s41faee59c4\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"comparative\", \"id\": \"d1\", \"subject\": \"@n1\", \"standard\": \"@n2\", \"scale\": \"old\", \"relation\": \"more\", \"gap\": 2, \"unit\": \"year\", \"tense\": \"present\", \"span\": \"Yusra is two years older than Teodor\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s41faee59c4",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "comparative",
+        "id": "d1",
+        "subject": "@n1",
+        "standard": "@n2",
+        "scale": "old",
+        "relation": "more",
+        "gap": 2,
+        "unit": "year",
+        "tense": "present",
+        "span": "Yusra is two years older than Teodor"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "c30354df8e4fc684c45690d37f85851bb984c8e5f7ac77efe6b2d0a54e51b297",
+  "run": 1,
+  "case": {
+    "template": "comparative",
+    "section": "held_out",
+    "index": 3,
+    "category": "positive",
+    "text": "Yusra is two years older than Teodor.",
+    "key": "41faee59c4"
+  }
+}

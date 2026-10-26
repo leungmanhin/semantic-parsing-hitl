@@ -1,10 +1,10 @@
 # Suite report
 
-prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 329284e72809bde1) · type check: ran
+prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 c30354df8e4fc684) · type check: ran
 
 ## Catalog checks
 
-731 examples checked; findings: 0
+756 examples checked; findings: 0
 
 Sentences two templates claim with the same expected atoms (composition, fine):
 - "Lamine danced with Yusra." — activity, adjunct
@@ -293,6 +293,37 @@ Abstain cases (what the parser did, per run):
 
 Mismatches: none
 
+## comparative — held_out
+
+20 cases, 60 records (ok 60; stale prompt 0) · gemini-4-argon effort=low
+
+| category | cases | runs | fired | exact | pass |
+|---|---|---|---|---|---|
+| positive | 13 | 39 | 39 | 39 | 39 |
+| scoped | 2 | 6 | 6 | 6 | 6 |
+| abstain | 5 | 15 | 0 (false fires) | – | 15 |
+
+- selection: fire cases fired 45/45 · abstain cases false fires 0/15
+- fill: exact 45/45 among fires
+- stability: pairwise agreement 0.967 (20 cases, 60 pairs), unanimous 19/20
+- type check: 57/57 emitted parses type
+- graph lints: none
+- spans: 160/160 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
+- usage: 60 calls · in 3,944,697 · cached 3,692,035 (94% of the input) · out 8,883 · thinking 0 (calls with thought tokens: 0)
+- issues reported by the parser: 3
+  - P00 · comparative · r1 "Ottoline is taller than Yusra was.": The template says 'a standard that is a clause — taller than Yusra was, older than she looks: no slot here; report the than-phrase as unmapped', but reporting only the than-phrase as unmapped leaves 'Ottoline is taller' with no standard, which cannot be encoded as a comparative without a standard.
+  - P00 · comparative · r2 "Ottoline is taller than Yusra was.": The boundary case 'a standard that is a clause — taller than Yusra was, older than she looks: no slot here; report the than-phrase as unmapped' says to report the than-phrase as unmapped, but the positive property ('is tall') is not entailed and 'comparative' requires 'standard', so the whole comparative clause must be reported as unmapped.
+  - P00 · comparative · r3 "Ottoline is taller than Yusra was.": The boundary case 'a standard that is a clause — taller than Yusra was' instructs to report the than-phrase as unmapped, but the comparative template requires the `standard` slot to be filled, making it impossible to encode the rest of the clause without violating the G01 boundary.
+
+Abstain cases (what the parser did, per run):
+- "The stew is too hot." (target `degree`): r1 target_fired [degree×1, witness×1] · r2 target_fired [degree×1, witness×1] · r3 target_fired [degree×1, witness×1]
+- "Teodor has more quilts than Yusra." (gap G00): r1 gap_reported [named-entity×2, possession×1; unmapped G00] · r2 gap_reported [named-entity×2; unmapped G00] · r3 gap_reported [named-entity×2; unmapped G00]
+- "The bracket is sturdier." (gap G01): r1 gap_reported [nothing fired; unmapped G01] · r2 gap_reported [nothing fired; unmapped G01] · r3 gap_reported [nothing fired; unmapped G01]
+- "Ottoline is taller than Yusra was." (gap G00): r1 gap_reported [named-entity×2; unmapped G00] · r2 gap_reported [named-entity×2; unmapped G00] · r3 gap_reported [named-entity×2; unmapped G00]
+- "Yusra is the tallest weaver." (gap G00): r1 gap_reported [named-entity×1; unmapped G00] · r2 gap_reported [named-entity×1; unmapped G00] · r3 gap_reported [named-entity×1; unmapped G00]
+
+Mismatches: none
+
 ## conditional-property — held_out
 
 13 cases, 39 records (ok 39; stale prompt 39) · gemini-4-argon effort=low
@@ -440,7 +471,7 @@ Mismatches: none
 
 ## degree — held_out
 
-18 cases, 54 records (ok 54; stale prompt 54) · gemini-4-argon effort=low
+18 cases, 54 records (ok 54; stale prompt 51) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -455,8 +486,8 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (18 cases, 54 pairs), unanimous 18/18
 - type check: 54/54 emitted parses type
 - graph lints: none
-- spans: 117/117 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
-- usage: 54 calls · in 3,051,342 · cached 2,886,217 (95% of the input) · out 6,543 · thinking 0 (calls with thought tokens: 0)
+- spans: 120/120 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
+- usage: 54 calls · in 3,079,053 · cached 2,913,928 (95% of the input) · out 6,615 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
 Abstain cases (what the parser did, per run):
@@ -464,7 +495,7 @@ Abstain cases (what the parser did, per run):
 - "Teodor added too much salt." (gap G00): r1 gap_reported [activity×1, named-entity×1; unmapped G00] · r2 gap_reported [activity×1, named-entity×1; unmapped G00] · r3 gap_reported [activity×1, named-entity×1; unmapped G00]
 - "Lamine barely moved." (target `extent`): r1 target_fired [extent×1, motion×1, named-entity×1] · r2 target_fired [extent×1, motion×1, named-entity×1] · r3 target_fired [extent×1, motion×1, named-entity×1]
 - "Ferrets are very curious." (gap G02): r1 gap_reported [class-statement×1; unmapped G02] · r2 gap_reported [class-statement×1; unmapped G02] · r3 gap_reported [class-statement×1; unmapped G02]
-- "Teodor is taller than Yusra." (gap G00): r1 gap_reported [named-entity×2; unmapped G00] · r2 gap_reported [named-entity×2; unmapped G00] · r3 gap_reported [named-entity×2; unmapped G00]
+- "Teodor is taller than Yusra." (target `comparative`): r1 target_fired [comparative×1, named-entity×2] · r2 target_fired [comparative×1, named-entity×2] · r3 target_fired [comparative×1, named-entity×2]
 - "Yusra is the tallest weaver." (gap G00): r1 gap_reported [named-entity×1; unmapped G00] · r2 gap_reported [named-entity×1; unmapped G00] · r3 gap_reported [named-entity×1; unmapped G00]
 
 Mismatches: none
@@ -553,7 +584,7 @@ Mismatches: none
 
 ## frequency — held_out
 
-23 cases, 69 records (ok 69; stale prompt 60) · gemini-4-argon effort=low
+23 cases, 69 records (ok 69; stale prompt 69) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -637,7 +668,7 @@ Mismatches: none
 
 ## habitual — held_out
 
-12 cases, 36 records (ok 36; stale prompt 0) · gemini-4-argon effort=low
+12 cases, 36 records (ok 36; stale prompt 36) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -893,7 +924,7 @@ Mismatches: none
 
 ## oblique — held_out
 
-19 cases, 57 records (ok 57; stale prompt 57) · gemini-4-argon effort=low
+19 cases, 57 records (ok 57; stale prompt 54) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -907,8 +938,8 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (19 cases, 57 pairs), unanimous 19/19
 - type check: 57/57 emitted parses type
 - graph lints: none
-- spans: 219/219 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
-- usage: 57 calls · in 3,230,640 · cached 3,113,835 (96% of the input) · out 10,279 · thinking 0 (calls with thought tokens: 0)
+- spans: 222/222 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
+- usage: 57 calls · in 3,258,351 · cached 3,141,546 (96% of the input) · out 10,317 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
 Abstain cases (what the parser did, per run):
@@ -917,7 +948,7 @@ Abstain cases (what the parser did, per run):
 - "Yusra left after the audit." (target `time-relation`): r1 target_fired [motion×1, named-entity×1, time-relation×1, witness×1] · r2 target_fired [motion×1, named-entity×1, time-relation×1, witness×1] · r3 target_fired [motion×1, named-entity×1, time-relation×1, witness×1]
 - "Lamine entered the shed." (target `motion`): r1 target_fired [motion×1, named-entity×1, witness×1] · r2 target_fired [motion×1, named-entity×1, witness×1] · r3 target_fired [motion×1, named-entity×1, witness×1]
 - "The quilt was washed by Yusra." (target `activity`): r1 target_fired [activity×1, named-entity×1, witness×1] · r2 target_fired [activity×1, named-entity×1, witness×1] · r3 target_fired [activity×1, named-entity×1, witness×1]
-- "Teodor is taller than Yusra." (gap G00): r1 gap_reported [named-entity×2; unmapped G00] · r2 gap_reported [named-entity×2; unmapped G00] · r3 gap_reported [named-entity×2; unmapped G00]
+- "Teodor is taller than Yusra." (target `comparative`): r1 target_fired [comparative×1, named-entity×2] · r2 target_fired [comparative×1, named-entity×2] · r3 target_fired [comparative×1, named-entity×2]
 
 Mismatches: none
 

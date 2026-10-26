@@ -1,0 +1,91 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "0adc5287ef4a2e2370e429ea2c77950ac219af92614de639ac71bae2aa152a52",
+  "item": {
+    "id": "sa03155d6c2",
+    "text": "Teodor is more careful than Lamine."
+  },
+  "usage": {
+    "input": 65746,
+    "output": 150,
+    "thinking": null,
+    "total": 65896,
+    "cached": 63697,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 65746,
+    "candidatesTokenCount": 150,
+    "totalTokenCount": 65896,
+    "cachedContentTokenCount": 63697,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 65746
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 63697
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 150
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sa03155d6c2\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"comparative\", \"id\": \"d1\", \"subject\": \"@n1\", \"standard\": \"@n2\", \"scale\": \"careful\", \"relation\": \"more\", \"tense\": \"present\", \"span\": \"Teodor is more careful than Lamine\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sa03155d6c2",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "comparative",
+        "id": "d1",
+        "subject": "@n1",
+        "standard": "@n2",
+        "scale": "careful",
+        "relation": "more",
+        "tense": "present",
+        "span": "Teodor is more careful than Lamine"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "c30354df8e4fc684c45690d37f85851bb984c8e5f7ac77efe6b2d0a54e51b297",
+  "run": 2,
+  "case": {
+    "template": "comparative",
+    "section": "held_out",
+    "index": 8,
+    "category": "positive",
+    "text": "Teodor is more careful than Lamine.",
+    "key": "a03155d6c2"
+  }
+}
