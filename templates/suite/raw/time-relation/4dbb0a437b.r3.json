@@ -1,0 +1,115 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "e576504c89d5c800dbe9fdc3baab9dbbd0397acfd8cf64f6021104e23b31a9b7",
+  "item": {
+    "id": "s4dbb0a437b",
+    "text": "Yusra has worked at the mill since 2019."
+  },
+  "usage": {
+    "input": 59755,
+    "output": 272,
+    "thinking": null,
+    "total": 60027,
+    "cached": 57706,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 59755,
+    "candidatesTokenCount": 272,
+    "totalTokenCount": 60027,
+    "cachedContentTokenCount": 57706,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 59755
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 57706
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 272
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s4dbb0a437b\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"mill\", \"definite\": true, \"span\": \"the mill\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"work\", \"actor\": \"@n1\", \"tense\": \"present\", \"aspect\": \"perfect\", \"span\": \"Yusra has worked\"}, {\"t\": \"location\", \"id\": \"l1\", \"event\": \"@v1\", \"place\": \"@x1\", \"head\": \"Location\", \"preposition\": \"at\", \"span\": \"at the mill\"}, {\"t\": \"time\", \"id\": \"t1\", \"year\": 2019, \"span\": \"2019\"}, {\"t\": \"time-relation\", \"id\": \"r1\", \"event\": \"@v1\", \"reference\": \"@t1\", \"head\": \"Start\", \"word\": \"since\", \"span\": \"since 2019\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s4dbb0a437b",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "mill",
+        "definite": true,
+        "span": "the mill"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "work",
+        "actor": "@n1",
+        "tense": "present",
+        "aspect": "perfect",
+        "span": "Yusra has worked"
+      },
+      {
+        "t": "location",
+        "id": "l1",
+        "event": "@v1",
+        "place": "@x1",
+        "head": "Location",
+        "preposition": "at",
+        "span": "at the mill"
+      },
+      {
+        "t": "time",
+        "id": "t1",
+        "year": 2019,
+        "span": "2019"
+      },
+      {
+        "t": "time-relation",
+        "id": "r1",
+        "event": "@v1",
+        "reference": "@t1",
+        "head": "Start",
+        "word": "since",
+        "span": "since 2019"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "2a9a3fa258cdad2d747fdcbe0ebd8b0e2a17a87d7fd135bcf030ae79618d3563",
+  "run": 3,
+  "case": {
+    "template": "time-relation",
+    "section": "held_out",
+    "index": 5,
+    "category": "positive",
+    "text": "Yusra has worked at the mill since 2019.",
+    "key": "4dbb0a437b"
+  }
+}

@@ -1,0 +1,383 @@
+# Template: time-relation  (when an event takes place relative to another event or a time: "left after the audit", "waited until dawn", "laughed while Yusra sang", "will arrive by Monday")
+#
+# A temporal preposition or connective places the clause's event relative to a reference: another
+# event — a clause of its own or an event noun — or a time. The relation is one atom over the event
+# and the reference, and the reference's own instance says what it is: (Before sk_leave_1 sk_audit_1),
+# (During sk_laugh_1 sk_sing_1), (End sk_wait_1 dawn), (TimeAtMost sk_arrive_1 sk_time_1). "After" is
+# the same ordering read from the other side and renders as Before with the arguments swapped; the
+# word actually used is kept in the instance. Like a time or a location, the relation is part of the
+# clause: negated, modalised and generalised with the event, while the reference stands on its own.
+# A measured distance (three days ago, two weeks after the audit) is a time point: the time template.
+
+id: time-relation
+family: attachment
+shape: attachment
+title: When an event takes place relative to another event or a time
+status: draft
+
+trigger:
+  construction: >
+    A temporal preposition or connective that places the clause's event relative to a reference:
+    before, after, during, while, when, until, since, by, from … to. The reference is another
+    event — a clause of its own (after Lamine sang, while Yusra waited), parsed with its own
+    template, or an event noun (after the audit, during the meeting), a witness marked eventive —
+    or a time: a date, a clock time or a named time (before noon, since 2019, until dawn), a time
+    instance with no event of its own. The clause's event is parsed with its own template; the
+    relation instance names that event, the reference and the relation as read, and keeps the
+    word. One instance per temporal phrase or connective; "from 2015 to 2019" is two, a start and
+    an end. When the relation is predicated of an event noun by "be" (the audit was before the
+    meeting), the noun is a witness marked eventive, the relation attaches to it, and the instance
+    records the clause's tense. A gerund clause after a temporal preposition (after leaving the
+    barn, before eating) is a clause of its own: parse it with its verb's template, its actor the
+    main clause's subject unless the phrase states one (after Yusra's leaving), its tense the main
+    clause's, and name its event as the reference. A window — within three days, in the past six
+    months, in the last two years — is a bound on a time at an offset: a time instance with no
+    event, offset from its anchor (three days after now; six months before now), and the relation
+    TimeAtMost (within) or TimeAtLeast (in the past / last) on it. The span is the connective alone
+    when the reference is a clause (the clause's words have their own span), the whole phrase when
+    the reference is a noun phrase or a time (after the audit, until dawn, by Monday, within three
+    days).
+  surface_forms:
+    - "<clause> before / after / until / since / by / during <event noun or time>"       # left after the audit; waited until dawn; will arrive by Monday
+    - "<clause> before / after / while / when / until / since / once / as soon as <clause>"   # laughed after Lamine sang; waited while Yusra sang
+    - "Before / After / While / When / Until / Once <clause>, <clause>"                 # When Yusra sang, Lamine laughed
+    - "<clause>, then <clause>"                                                        # Lamine sang, then Yusra left
+    - "<clause> from <time> to / until <time>"                                          # worked from 2015 to 2019: two instances
+    - "<event noun> is / was before / after / during <event noun or time>"              # the audit was before the meeting
+    - "<clause> after / before / while / since / until <V-ing …>"                       # laughed after leaving the barn: a clause of its own
+    - "<clause> within <n> <units>"                                                     # will leave within three days: TimeAtMost on the time at the offset
+    - "<clause> in the past / last <n> <units>"                                         # arrived in the past six months: TimeAtLeast on the time at the offset
+  boundary:                   # looks like a time relation but is not one
+    - >-
+      a measured distance — three days ago, in two weeks, two days after the audit, a week later:
+      a time point at an offset from its anchor; a time
+    - >-
+      a time the event takes place at — in 2019, on Monday, at noon, yesterday, at dawn: a time,
+      not a relation
+    - >-
+      a duration — for six hours, lasted two days: a measure, with no slot here; report the
+      phrase as unmapped
+    - >-
+      a frequency or a schedule — every day, twice a week, often: no slot here; reported as
+      unmapped
+    - >-
+      a causal since or as — Yusra left, since the gate was open: a reason, a link; a temporal
+      since or as is this template
+    - >-
+      every time or whenever with a clause — whenever the bell rings: a conditional over
+      occasions, not a relation between two particular events; reported as unmapped
+    - >-
+      a main clause with no event of its own — the ladder was crooked until Monday, Yusra was in
+      the barn during the audit: a copular, locative or degree clause mints no event; parse the
+      clause and the time, report the relation phrase as unmapped
+    - >-
+      a gerund after a non-temporal preposition — without saying a word, by working hard, instead
+      of leaving: not a relation in time; an oblique's business, reported as unmapped there
+    - >-
+      an ordering only the tense implies, with no connective — Lamine had left. Yusra arrived.:
+      the perfect is the clause's own aspect; no relation is stated
+    - >-
+      a vague distance beside the relation — long before the audit, shortly after noon, just
+      before dawn: record the relation; report the adverb as unmapped (G02)
+
+slots:
+  id:        {type: id, required: true, doc: "your label for the relation (r1, r2 …)"}
+  event:     {type: filler, class: Event, attaches: true, required: true,
+              doc: "the event placed in time: the id of the clause's predication instance, or of an eventive witness when the relation is predicated of an event noun (the audit was before the meeting)"}
+  reference: {type: filler, class: Instance, required: true,
+              doc: "what the event is placed relative to: the id of the other clause's predication instance (after Lamine sang), of an eventive witness (after the audit), or of a time instance with no event of its own (before noon, since 2019, until dawn, the edge of a window: within three days); never a bare lemma"}
+  head:      {type: enum, values: [Before, After, During, Start, End, TimeAtMost, TimeAtLeast], required: true,
+              doc: "the relation as read: Before for before / prior to / ahead of; After for after / following / once / as soon as / then; During for during / while / as / when / throughout / amid; Start for since / from / as of / starting; End for until / till / through / up to and the to of from … to; TimeAtMost for by / no later than / at the latest and for within n units (on the time at the offset); TimeAtLeast for not before / no earlier than / at the earliest and for in the past / last n units (on the time at the offset)"}
+  word:      {type: string, required: true, doc: "the preposition or connective as written (after, while, until, as soon as …)"}
+  tense:     {type: enum, values: [past, present, future], required: false,
+              doc: "only when the relation is predicated of an event noun by be (the audit was before the meeting): the clause's tense; otherwise absent, the event's own template records it"}
+
+emits:
+  - atom: "({head} {event} {reference})"
+    when: "head != After"
+  - atom: "(Before {reference} {event})"                  # after: the same ordering, read from the other side
+    when: "head == After"
+  - atom: "(Past {event})"
+    when: "tense == past"
+  - atom: "(Future {event})"
+    when: "tense == future"
+
+notes:
+  - >-
+    The relation has no symbol of its own: its atom is rendered wherever its event is rendered —
+    inside a negation or a modal over the clause, inside the rule a generalization builds — so
+    "Lamine did not leave after Yusra sang" denies the leaving-after-the-singing as a whole, while
+    the reference stands on its own: the singing stays asserted, a definite event noun keeps its
+    existence, a time instance its fields.
+  - >-
+    The heads are the substrate's temporal relations, not the words: before and after are one
+    ordering, Before, read from either side, so that two events ordered by either word answer the
+    same question; the word is kept in the instance. During nests the event inside the reference's
+    time; Start and End bound it by where it begins or stops; TimeAtMost and TimeAtLeast are
+    inclusive bounds (by Monday includes Monday; before Monday does not).
+  - >-
+    When renders as During: the event falls within the time of the reference. Whether it also
+    follows it (when Yusra arrived, Lamine left) is a consumer's inference over the word, which
+    the instance keeps.
+  - >-
+    A window is two instances that compose: the time template places a bare time instance at the
+    stated offset from its anchor — (BeforeBy now t 3 day) for within three days — and the
+    relation bounds the event by it, (TimeAtMost e t); in the past six months is (BeforeBy t now 6
+    month) with (TimeAtLeast e t). No head of its own is needed; the legacy WithinLast is retired.
+
+depends_on: [time, witness, activity, motion]
+composes_with: [negation, modal, generic, time, location]
+
+examples:
+  shown:                     # rendered into the prompt
+    - category: positive
+      note: after a clause — the same ordering as before, read from the other side; both events asserted
+      text: "Yusra laughed after Lamine sang."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
+        - {t: named-entity, id: n2, name: "Lamine", span: "Lamine"}
+        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past, span: "Yusra laughed"}
+        - {t: activity, id: v2, verb: sing, actor: "@n2", tense: past, span: "Lamine sang"}
+        - {t: time-relation, id: r1, event: "@v1", reference: "@v2", head: After, word: after, span: "after"}
+      emitted:               # what the emitter produces (illustration; the emitter is the authority)
+        - "(Name sk_yusra_1 \"Yusra\")"
+        - "(Name sk_lamine_1 \"Lamine\")"
+        - "(Member sk_laugh_1 laugh)"
+        - "(Agent sk_laugh_1 sk_yusra_1)"
+        - "(Past sk_laugh_1)"
+        - "(Before sk_sing_1 sk_laugh_1)"
+        - "(Member sk_sing_1 sing)"
+        - "(Agent sk_sing_1 sk_lamine_1)"
+        - "(Past sk_sing_1)"
+      declarations:
+        - "(: laugh Class)"
+        - "(: sing Class)"
+        - "(: sk_lamine_1 Entity)"
+        - "(: sk_laugh_1 Event)"
+        - "(: sk_sing_1 Event)"
+        - "(: sk_yusra_1 Entity)"
+    - category: positive
+      note: before an event noun — the witness is eventive
+      text: "Ottoline left before the audit."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline", span: "Ottoline"}
+        - {t: witness, id: x1, class: audit, definite: true, eventive: true, span: "the audit"}
+        - {t: motion, id: m1, verb: leave, mover: "@n1", tense: past, span: "Ottoline left"}
+        - {t: time-relation, id: r1, event: "@m1", reference: "@x1", head: Before, word: before, span: "before the audit"}
+    - category: positive
+      note: until a named time — a time instance with no event of its own
+      text: "Teodor waited until dawn."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor", span: "Teodor"}
+        - {t: activity, id: v1, verb: wait, actor: "@n1", tense: past, span: "Teodor waited"}
+        - {t: time, id: t1, name: dawn, span: "dawn"}
+        - {t: time-relation, id: r1, event: "@v1", reference: "@t1", head: End, word: until, span: "until dawn"}
+    - category: abstain
+      text: "Three days ago, Yusra left."
+      expected: {abstain: true, template: time}                       # a measured distance: a time point
+    - category: abstain
+      text: "Lamine waited for six hours."
+      expected: {abstain: true, gap: G00, span: "for six hours"}      # a duration
+
+  held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      note: after an event noun
+      text: "Lamine left after the audit."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: x1, class: audit, definite: true, eventive: true}
+        - {t: motion, id: m1, verb: leave, mover: "@n1", tense: past}
+        - {t: time-relation, id: r1, event: "@m1", reference: "@x1", head: After, word: after}
+    - category: positive
+      note: after an event noun, another subject
+      text: "Yusra left after the audit."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, class: audit, definite: true, eventive: true}
+        - {t: motion, id: m1, verb: leave, mover: "@n1", tense: past}
+        - {t: time-relation, id: r1, event: "@m1", reference: "@x1", head: After, word: after}
+    - category: positive
+      note: while a clause — nested in the reference's time
+      text: "Lamine waited while Yusra sang."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: named-entity, id: n2, name: "Yusra"}
+        - {t: activity, id: v1, verb: wait, actor: "@n1", tense: past}
+        - {t: activity, id: v2, verb: sing, actor: "@n2", tense: past}
+        - {t: time-relation, id: r1, event: "@v1", reference: "@v2", head: During, word: while}
+    - category: positive
+      note: during an event noun
+      text: "Ottoline slept during the meeting."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: witness, id: x1, class: meeting, definite: true, eventive: true}
+        - {t: activity, id: v1, verb: sleep, actor: "@n1", tense: past}
+        - {t: time-relation, id: r1, event: "@v1", reference: "@x1", head: During, word: during}
+    - category: positive
+      note: a fronted when-clause — the main clause's event is the one placed
+      text: "When Yusra sang, Lamine laughed."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: activity, id: v1, verb: sing, actor: "@n1", tense: past}
+        - {t: activity, id: v2, verb: laugh, actor: "@n2", tense: past}
+        - {t: time-relation, id: r1, event: "@v2", reference: "@v1", head: During, word: when}
+    - category: positive
+      note: since a year — the start; the perfect is the activity's own aspect
+      text: "Yusra has worked at the mill since 2019."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, class: mill, definite: true}
+        - {t: activity, id: v1, verb: work, actor: "@n1", tense: present, aspect: perfect}
+        - {t: location, id: l1, event: "@v1", place: "@x1", head: Location, preposition: at}
+        - {t: time, id: t1, year: 2019}
+        - {t: time-relation, id: r1, event: "@v1", reference: "@t1", head: Start, word: since}
+    - category: positive
+      note: by a weekday — an inclusive latest time
+      text: "Lamine will arrive by Monday."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: motion, id: m1, verb: arrive, mover: "@n1", tense: future}
+        - {t: time, id: t1, weekday: monday}
+        - {t: time-relation, id: r1, event: "@m1", reference: "@t1", head: TimeAtMost, word: by}
+    - category: positive
+      note: from one year to another — two instances, a start and an end
+      text: "Ottoline worked from 2015 to 2019."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: activity, id: v1, verb: work, actor: "@n1", tense: past}
+        - {t: time, id: t1, year: 2015}
+        - {t: time, id: t2, year: 2019}
+        - {t: time-relation, id: r1, event: "@v1", reference: "@t1", head: Start, word: from}
+        - {t: time-relation, id: r2, event: "@v1", reference: "@t2", head: End, word: to}
+    - category: positive
+      note: before a clock time — a strict ordering, not a bound
+      text: "Yusra left before noon."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: motion, id: m1, verb: leave, mover: "@n1", tense: past}
+        - {t: time, id: t1, hour: 12}
+        - {t: time-relation, id: r1, event: "@m1", reference: "@t1", head: Before, word: before}
+    - category: positive
+      note: an inclusive earliest time
+      text: "Teodor will leave no earlier than Monday."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: motion, id: m1, verb: leave, mover: "@n1", tense: future}
+        - {t: time, id: t1, weekday: monday}
+        - {t: time-relation, id: r1, event: "@m1", reference: "@t1", head: TimeAtLeast, word: "no earlier than"}
+    - category: positive
+      note: then — the second clause's event follows the first's
+      text: "Lamine sang, then Yusra left."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: named-entity, id: n2, name: "Yusra"}
+        - {t: activity, id: v1, verb: sing, actor: "@n1", tense: past}
+        - {t: motion, id: m1, verb: leave, mover: "@n2", tense: past}
+        - {t: time-relation, id: r1, event: "@m1", reference: "@v1", head: After, word: then}
+    - category: positive
+      note: as soon as — an ordering; the immediacy stays in the word
+      text: "Teodor left as soon as Yusra arrived."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: named-entity, id: n2, name: "Yusra"}
+        - {t: motion, id: m1, verb: leave, mover: "@n1", tense: past}
+        - {t: motion, id: m2, verb: arrive, mover: "@n2", tense: past}
+        - {t: time-relation, id: r1, event: "@m1", reference: "@m2", head: After, word: "as soon as"}
+    - category: positive
+      note: a fronted once-clause
+      text: "Once Yusra arrived, Lamine left."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: motion, id: m1, verb: arrive, mover: "@n1", tense: past}
+        - {t: motion, id: m2, verb: leave, mover: "@n2", tense: past}
+        - {t: time-relation, id: r1, event: "@m2", reference: "@m1", head: After, word: once}
+    - category: positive
+      note: the relation predicated of an event noun — both witnesses eventive, the tense recorded here
+      text: "The audit was before the meeting."
+      instances:
+        - {t: witness, id: x1, class: audit, definite: true, eventive: true}
+        - {t: witness, id: x2, class: meeting, definite: true, eventive: true}
+        - {t: time-relation, id: r1, event: "@x1", reference: "@x2", head: Before, word: before, tense: past}
+    - category: positive
+      note: a gerund clause after a temporal preposition — its actor is the main clause's subject, its event the reference
+      text: "Teodor laughed after leaving the barn."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, class: barn, definite: true}
+        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past}
+        - {t: motion, id: m1, verb: leave, mover: "@n1", source: "@x1", tense: past}
+        - {t: time-relation, id: r1, event: "@v1", reference: "@m1", head: After, word: after}
+    - category: positive
+      note: a gerund clause with before
+      text: "Ottoline sang before eating."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: activity, id: v1, verb: sing, actor: "@n1", tense: past}
+        - {t: activity, id: v2, verb: eat, actor: "@n1", tense: past}
+        - {t: time-relation, id: r1, event: "@v1", reference: "@v2", head: Before, word: before}
+    - category: positive
+      note: a window — a bare time instance at the offset, bounded from above
+      text: "Lamine will leave within three days."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: motion, id: m1, verb: leave, mover: "@n1", tense: future}
+        - {t: time, id: t1, offset: 3, unit: day, direction: after, anchor: "@now"}
+        - {t: time-relation, id: r1, event: "@m1", reference: "@t1", head: TimeAtMost, word: within}
+    - category: positive
+      note: a backward window — the time six months before now, bounded from below
+      text: "Teodor arrived in the past six months."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: motion, id: m1, verb: arrive, mover: "@n1", tense: past}
+        - {t: time, id: t1, offset: 6, unit: month, direction: before, anchor: "@now"}
+        - {t: time-relation, id: r1, event: "@m1", reference: "@t1", head: TimeAtLeast, word: "in the past"}
+    - category: optional
+      note: a fronted phrase
+      text: "After the audit, Lamine left."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: x1, class: audit, definite: true, eventive: true}
+        - {t: motion, id: m1, verb: leave, mover: "@n1", tense: past}
+        - {t: time-relation, id: r1, event: "@m1", reference: "@x1", head: After, word: after}
+    - category: scoped
+      note: under clausal negation — the ordered leaving is denied as a whole, the singing stays asserted
+      text: "Lamine did not leave after Yusra sang."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: named-entity, id: n2, name: "Yusra"}
+        - {t: motion, id: m1, verb: leave, mover: "@n1", tense: past}
+        - {t: activity, id: v1, verb: sing, actor: "@n2", tense: past}
+        - {t: time-relation, id: r1, event: "@m1", reference: "@v1", head: After, word: after}
+        - {t: negation, id: s1, over: ["@m1"]}
+    - category: scoped
+      note: under a modal — the definite event noun keeps its existence outside
+      text: "Teodor might leave before the audit."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, class: audit, definite: true, eventive: true}
+        - {t: motion, id: m1, verb: leave, mover: "@n1", tense: present}
+        - {t: time-relation, id: r1, event: "@m1", reference: "@x1", head: Before, word: before}
+        - {t: modal, id: s1, over: ["@m1"], head: Might, surface: might}
+    - category: scoped
+      note: inside a generalization — the named time is a constant in the rule
+      text: "Every ferret slept until dawn."
+      instances:
+        - {t: range, id: q1, class: ferret, quantifier: every, predicate: sleep}
+        - {t: activity, id: v1, verb: sleep, actor: "@q1", tense: past}
+        - {t: time, id: t1, name: dawn}
+        - {t: time-relation, id: r1, event: "@v1", reference: "@t1", head: End, word: until}
+        - {t: generic, id: r2, ranges: ["@q1"], over: ["@v1"]}
+    - category: abstain
+      text: "Teodor will leave tomorrow."
+      expected: {abstain: true, template: time}                       # a deictic time, not a relation
+    - category: abstain
+      text: "Since the ferret slept, Yusra sang."
+      expected: {abstain: true, template: link}                       # a causal since
+    - category: abstain
+      text: "Whenever Yusra sang, the ferret hid."
+      expected: {abstain: true, gap: G00, span: "Whenever"}           # a conditional over occasions
+    - category: abstain
+      text: "The ladder was crooked until Monday."
+      expected: {abstain: true, gap: G00, span: "until Monday"}       # the main clause mints no event

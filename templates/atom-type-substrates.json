@@ -136,11 +136,11 @@
       "arity": 2,
       "arg_types": [
         "Event",
-        "Event"
+        "Event|TimeTerm"
       ],
       "out": "Proposition",
       "opaque": false,
-      "gloss": "Canonical ordering: the first eventuality precedes the second."
+      "gloss": "Canonical ordering: the first eventuality precedes the second, an eventuality or a time instance (the catalog renders after as Before with the arguments swapped)."
     },
     "BeforeBy": {
       "kind": "temporal",
@@ -376,22 +376,22 @@
       "arity": 2,
       "arg_types": [
         "Event",
-        "Event"
+        "Event|TimeTerm"
       ],
       "out": "Proposition",
       "opaque": false,
-      "gloss": "The inner eventuality is nested inside the outer one."
+      "gloss": "The inner eventuality is nested inside the outer one, an eventuality or a time period (during the meeting, while Yusra sang, until dawn is End)."
     },
     "End": {
       "kind": "temporal",
       "arity": 2,
       "arg_types": [
         "Event",
-        "TimeTerm"
+        "Event|TimeTerm"
       ],
       "out": "Proposition",
       "opaque": false,
-      "gloss": "Interval end point of an eventuality: (End e t), t a time instance."
+      "gloss": "Interval end point of an eventuality: (End e r), r a time instance or the eventuality it stops with (until Yusra arrived)."
     },
     "Entails": {
       "kind": "relation",
@@ -1262,11 +1262,11 @@
       "arity": 2,
       "arg_types": [
         "Event",
-        "TimeTerm"
+        "Event|TimeTerm"
       ],
       "out": "Proposition",
       "opaque": false,
-      "gloss": "Interval start point of an eventuality: (Start e t) with the time instance t described by Day / Hour / Year … atoms."
+      "gloss": "Interval start point of an eventuality: (Start e r), r a time instance described by Day / Hour / Year … atoms, or the eventuality it starts with (since the audit)."
     },
     "Still": {
       "kind": "particle",
@@ -1359,22 +1359,22 @@
       "arity": 2,
       "arg_types": [
         "Event",
-        "TimeTerm"
+        "Event|TimeTerm"
       ],
       "out": "Proposition",
       "opaque": false,
-      "gloss": "Lower-bounded (earliest) time of an eventuality: (TimeAtLeast e t), t a time instance."
+      "gloss": "Lower-bounded (earliest) time of an eventuality, inclusive: (TimeAtLeast e r), r a time instance or an eventuality (no earlier than Monday)."
     },
     "TimeAtMost": {
       "kind": "temporal",
       "arity": 2,
       "arg_types": [
         "Event",
-        "TimeTerm"
+        "Event|TimeTerm"
       ],
       "out": "Proposition",
       "opaque": false,
-      "gloss": "Upper-bounded (latest) time of an eventuality: (TimeAtMost e t), t a time instance."
+      "gloss": "Upper-bounded (latest) time of an eventuality, inclusive: (TimeAtMost e r), r a time instance or an eventuality (by Monday, by the audit)."
     },
     "TimesAs": {
       "kind": "measure",
@@ -1457,7 +1457,8 @@
       ],
       "out": "Proposition",
       "opaque": false,
-      "gloss": "Backward window: the eventuality falls within the last n units."
+      "gloss": "Backward window: the eventuality falls within the last n units. RETIRE: the catalog composes it from a time instance at the offset and a bound — (BeforeBy t now n unit) (TimeAtLeast e t) — and the forward window (within n units) the same way with TimeAtMost; no stored parse uses it; declaration kept only until the re-parse.",
+      "status": "retire"
     },
     "Xor": {
       "kind": "core-link",

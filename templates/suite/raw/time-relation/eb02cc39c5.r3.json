@@ -1,0 +1,106 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "e576504c89d5c800dbe9fdc3baab9dbbd0397acfd8cf64f6021104e23b31a9b7",
+  "item": {
+    "id": "seb02cc39c5",
+    "text": "Lamine waited while Yusra sang."
+  },
+  "usage": {
+    "input": 59748,
+    "output": 219,
+    "thinking": null,
+    "total": 59967,
+    "cached": 57699,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 59748,
+    "candidatesTokenCount": 219,
+    "totalTokenCount": 59967,
+    "cachedContentTokenCount": 57699,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 59748
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 57699
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 219
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"seb02cc39c5\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"wait\", \"actor\": \"@n1\", \"tense\": \"past\", \"span\": \"Lamine waited\"}, {\"t\": \"activity\", \"id\": \"v2\", \"verb\": \"sing\", \"actor\": \"@n2\", \"tense\": \"past\", \"span\": \"Yusra sang\"}, {\"t\": \"time-relation\", \"id\": \"r1\", \"event\": \"@v1\", \"reference\": \"@v2\", \"head\": \"During\", \"word\": \"while\", \"span\": \"while\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "seb02cc39c5",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "wait",
+        "actor": "@n1",
+        "tense": "past",
+        "span": "Lamine waited"
+      },
+      {
+        "t": "activity",
+        "id": "v2",
+        "verb": "sing",
+        "actor": "@n2",
+        "tense": "past",
+        "span": "Yusra sang"
+      },
+      {
+        "t": "time-relation",
+        "id": "r1",
+        "event": "@v1",
+        "reference": "@v2",
+        "head": "During",
+        "word": "while",
+        "span": "while"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "2a9a3fa258cdad2d747fdcbe0ebd8b0e2a17a87d7fd135bcf030ae79618d3563",
+  "run": 3,
+  "case": {
+    "template": "time-relation",
+    "section": "held_out",
+    "index": 2,
+    "category": "positive",
+    "text": "Lamine waited while Yusra sang.",
+    "key": "eb02cc39c5"
+  }
+}

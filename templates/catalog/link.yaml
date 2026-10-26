@@ -34,9 +34,8 @@ trigger:
     - "<X>. Therefore / As a result / Consequently, <Y>."  # across sentences: the same
   boundary:                   # looks like a link but is not one
     - >-
-      a temporal connective — after, before, when, while, until, as soon as, since (a time):
-      a relation in time, not a reason or a contrast; no slot here; both clauses are parsed and
-      the connective reported as unmapped
+      a temporal connective — after, before, when, while, until, once, as soon as, then, since
+      (a time): a time relation, not a reason or a contrast
     - >-
       a connective with a noun phrase, not a clause — despite the storm: an oblique (Despite)
       on the event; because of the rain, due to the audit: no head; report the phrase as
@@ -138,7 +137,7 @@ examples:
         - {t: link, id: k1, head: Although, main: "@m1", sub: "@v1", span: "Although"}
     - category: abstain
       text: "Yusra laughed after Lamine sang."
-      expected: {abstain: true, gap: G00, span: "after"}             # a temporal connective
+      expected: {abstain: true, template: time-relation}              # a temporal connective
     - category: abstain
       text: "But Lamine left."
       expected: {abstain: true, gap: G05, span: "But"}               # a connective opening the text
@@ -245,7 +244,7 @@ examples:
       expected: {abstain: true, gap: G00, span: "because of the rain"}   # a noun phrase, not a clause
     - category: abstain
       text: "Lamine waited while Yusra sang."
-      expected: {abstain: true, gap: G00, span: "while"}             # a temporal connective
+      expected: {abstain: true, template: time-relation}              # a temporal connective
     - category: abstain
       text: "If Lamine sings, Yusra leaves."
       expected: {abstain: true, gap: G00, span: "If Lamine sings"}   # a conditional

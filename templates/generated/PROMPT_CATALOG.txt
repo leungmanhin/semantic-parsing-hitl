@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 1f9e02a6eff6836c · 42 templates
+catalog sha256 d09cc11974e76715 · 43 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -107,9 +107,11 @@ fences.
   it (`"did not"`, `"Don't"`, `"might"`, `"Only"`, `"because"`, `"in order to"`; `["It was",
   "who"]` for a cleft); an imperative with no marker word spans its clause. An ATTACHMENT: its
   phrase with its preposition (`"with a knife"`, `"in the barn"`, `"on Monday"`, `"loudly"`,
-  `"with care"`, `"about ferrets"`). A COREF: the two mentions' words as a list (`["Lamine",
-  "she"]`). A RULE (a generalization, a conditional property, a distribution) or a class
-  statement: the whole clause it generalizes (`"Clay is soft when wet"`).
+  `"with care"`, `"about ferrets"`); a time relation whose reference is a clause spans its
+  connective alone (`"after"`, `"while"`), the clause having its own span. A COREF: the two
+  mentions' words as a list (`["Lamine", "she"]`). A RULE (a generalization, a conditional
+  property, a distribution) or a class statement: the whole clause it generalizes (`"Clay is
+  soft when wet"`).
 - A span is provenance, not meaning: it says which words licensed the instance, so that every
   fact can be traced to the TEXT and checked. It never changes what the instance states.
 
@@ -414,8 +416,9 @@ recorded: the possessor is a referent — a name, a witness, or for a possessive
 quilt) a mention instance of its own, linked to its antecedent by a coref instance; the
 possessor presupposes the witness, so no definite mark is needed. A noun that names an event or
 a period (meeting, audit, war, trip, storm) is a witness like any other; when the clause puts
-the noun itself in time (the meeting is at noon, the audit was on Monday), mark it eventive so
-that the time can attach to it.
+the noun itself in time (the meeting is at noon, the audit was on Monday) or places another
+event relative to it (left after the audit, slept during the meeting), mark it eventive so that
+the time or the relation can attach to it.
 
 Forms:
 - a <N>
@@ -444,7 +447,8 @@ Slots:
   referent id (for a possessive pronoun, the id of its mention instance), or a bare lemma for a
   class-level possessor.
 - `eventive` (optional; true / false): true when the noun names an event or a period and the
-  clause puts the noun itself in time (the meeting is at noon); absent otherwise.
+  clause puts the noun itself in time (the meeting is at noon) or places another event relative
+  to it (after the audit, during the meeting); absent otherwise.
 
 Example. TEXT: a thermos
 
@@ -3004,7 +3008,7 @@ Not this template:
 - a destination or an origin — went to the market, came from the barn, into the shed, out of the
   barn: the motion's goal or source; the source of a transfer or an acquisition
 - when — in 2019, on Monday, at noon: a time; after / before / during / until / since an event
-  or a time: a relation in time, with no slot here; report the phrase as unmapped
+  or a time: a time relation
 - a means, a companion or a beneficiary — with a knife, by train, with Yusra, for Teodor's
   benefit: an adjunct; the by-phrase of a passive — washed by Yusra: the clause's own actor
 - how — with care, in a hurry: a manner
@@ -3013,8 +3017,9 @@ Not this template:
 - a prepositional phrase inside a noun phrase — the man with the hat, a book about ferrets: a
   postmodifier of that noun, not an attachment to the event
 - a comparison — taller than Yusra, as tall as Teodor: no slot here; report the span as unmapped
-- a gerund or a clause as the object — without saying a word, by working hard, after leaving: no
-  slot here; report the phrase as unmapped
+- a gerund clause as the object — without saying a word, by working hard: not yet (without
+  denies the event, by asserts it: a scope question); report the phrase as unmapped; a gerund
+  after a temporal preposition — after leaving: a time relation
 - a multi-word preposition with no head of its own — because of the rain, due to the audit,
   instead of Lamine, on behalf of Yusra, in spite of the storm: report the phrase as unmapped
   (in spite of is not despite)
@@ -3196,14 +3201,23 @@ Not this template. TEXT: Yusra talked about the audit. — use `oblique`.
 When: A time expression saying when the clause's event takes place: a calendar date or any part
 of one (in 2019, in May, on 3 May 2019, on Monday), a clock time (at 3 pm, at 2:30 pm, at noon,
 at midnight), a deictic relative to the moment the text speaks from (now, today, tonight,
-yesterday, tomorrow, last / this / next week, month or year), or a time named by a word (at
-dawn, at night, in autumn, later, this morning). The event is parsed with its own template; the
-time instance names that event and describes the time: a date or a clock time by its fields
-(year, month, day, weekday, hour, minute), a deictic by the `deictic` word with the reference
-time as its anchor, a named time by its name. One instance per time expression; a day part
-beside a date (Monday morning) is a second instance. When the time is predicated of an event
-noun by "be" (the meeting is at noon, the audit was on Monday), the noun is a witness marked
-eventive, the time attaches to it, and this instance records the clause's tense.
+yesterday, tomorrow, last / this / next week, month or year), a time named by a word (at dawn,
+at night, in autumn, later, this morning), a measured distance from an anchor (three days ago, a
+year ago, in two weeks, two days after the audit, a week later), or an anaphoric phrase naming a
+time by one the text stated before it (that evening, the same day, the next day, the following
+morning, the week after). The event is parsed with its own template; the time instance names
+that event and describes the time: a date or a clock time by its fields (year, month, day,
+weekday, hour, minute), a deictic by the `deictic` word with the reference time as its anchor, a
+measured distance by its `offset`, `unit` and `direction` from its anchor (the reference time
+for ago / from now / in n units; a stated event or time for before / after it and for later /
+earlier), an anaphoric phrase likewise from the antecedent event or time (offset 0 for that /
+the same, 1 for next / following / after, a day part as a second instance), a named time by its
+name. One instance per time expression; a day part beside a date or an offset (Monday morning,
+the following morning) is a second instance. A time no clause places an event at — the reference
+of a time relation (before noon), the edge of a window (within three days) — is an instance with
+no event. When the time is predicated of an event noun by "be" (the meeting is at noon, the
+audit was on Monday), the noun is a witness marked eventive, the time attaches to it, and this
+instance records the clause's tense.
 
 Forms:
 - <clause> in <year / month>
@@ -3213,11 +3227,15 @@ Forms:
 - <clause> <named time>
 - <time>, <clause>
 - <event noun> is / was at / on <time>
+- <clause> <n> <units> ago / later / earlier
+- <clause> in <n> <units>
+- <clause> <n> <units> before / after <event or time>
+- <clause>. That / the same <day part or unit>, <clause>
+- <clause>. The next / following <unit or day part>, <clause>
 
 Not this template:
-- a relation between two times or events — before the audit, after noon, until noon, since May,
-  by Monday, during the meeting, three days ago, two weeks later: no slot here; the event is
-  parsed, the phrase reported as unmapped
+- a relation with no measured distance — before the audit, after noon, until noon, since May, by
+  Monday, during the meeting, while Yusra sang: a time relation
 - a frequency or a schedule — every day, twice a week, on Sundays as a habit: no slot here;
   reported as unmapped
 - a duration — for six hours, lasted two days: a measure, not a time
@@ -3242,11 +3260,22 @@ Slots:
   relative to the moment the text speaks from, as one of the listed words (last Tuesday or two
   days ago are not deictics here); fill no field beside it.
 - `anchor` (optional; "@id" of a referent instance, or a bare lemma for a non-specific filler):
-  the reference time a deictic is relative to: always "@now" (the reserved id); the program
-  supplies the instance.
+  what a deictic or an offset is relative to: "@now" (the reserved id; the program supplies the
+  instance) for a deictic and for ago / from now / in n units; the id of a time instance or of
+  an event (a predication, an eventive witness) for an offset before / after it or for later /
+  earlier, when the text states the anchor; the antecedent event or stated time of an anaphoric
+  phrase (that evening: the previous clause's event).
 - `name` (optional; a lemma): a time named by a word or a fixed phrase that no deictic word
   covers, lowercase, joined with underscores: dawn, dusk, morning, afternoon, evening, night,
   spring, summer, autumn, winter, later, this_morning; fill no field beside it.
+- `offset` (optional; a number): a measured distance from the anchor: the number of units (three
+  days ago → 3, a week later → 1, that evening → 0 day); fill unit and direction with it, no
+  calendar field.
+- `unit` (optional; a lemma): the unit of the offset, singular and lowercase: minute, hour, day,
+  week, month, year.
+- `direction` (optional; one of: before, after): before when the time precedes its anchor (ago,
+  earlier, before it), after when it follows (from now, in n units, later, after it) and for the
+  same period as the anchor (that evening, the same day: offset 0).
 - `year` (optional; an integer): the calendar year (2019).
 - `month` (optional; a lemma): the month name, lowercase (may).
 - `day` (optional; an integer): the day of the month (3).
@@ -3299,10 +3328,173 @@ The program renders these instances as:
     (Time sk_sell_1 sk_time_1)
     (Weekday sk_time_1 monday)
 
-Not this template. TEXT: Three days ago, Yusra left. — report it as unmapped: {"span": "Three
-days ago", "code": "G00"}.
+Example (a measured distance from the reference time — a deictic with a number). TEXT: Three days ago, Yusra left.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Yusra", "span": "Yusra"},
+      {"t": "motion", "id": "m1", "verb": "leave", "mover": "@n1", "tense": "past", "span": "Yusra left"},
+      {"t": "time", "id": "t1", "event": "@m1", "offset": 3, "unit": "day", "direction": "before", "anchor": "@now", "span": "Three days ago"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_yusra_1 "Yusra")
+    (Member sk_leave_1 leave)
+    (Agent sk_leave_1 sk_yusra_1)
+    (Past sk_leave_1)
+    (Time sk_leave_1 sk_time_1)
+    (BeforeBy sk_time_1 sk_now_1 3 day)
 
 Not this template. TEXT: Yusra laughed in the barn. — use `location`.
+
+### time-relation — When an event takes place relative to another event or a time
+
+When: A temporal preposition or connective that places the clause's event relative to a
+reference: before, after, during, while, when, until, since, by, from … to. The reference is
+another event — a clause of its own (after Lamine sang, while Yusra waited), parsed with its own
+template, or an event noun (after the audit, during the meeting), a witness marked eventive — or
+a time: a date, a clock time or a named time (before noon, since 2019, until dawn), a time
+instance with no event of its own. The clause's event is parsed with its own template; the
+relation instance names that event, the reference and the relation as read, and keeps the word.
+One instance per temporal phrase or connective; "from 2015 to 2019" is two, a start and an end.
+When the relation is predicated of an event noun by "be" (the audit was before the meeting), the
+noun is a witness marked eventive, the relation attaches to it, and the instance records the
+clause's tense. A gerund clause after a temporal preposition (after leaving the barn, before
+eating) is a clause of its own: parse it with its verb's template, its actor the main clause's
+subject unless the phrase states one (after Yusra's leaving), its tense the main clause's, and
+name its event as the reference. A window — within three days, in the past six months, in the
+last two years — is a bound on a time at an offset: a time instance with no event, offset from
+its anchor (three days after now; six months before now), and the relation TimeAtMost (within)
+or TimeAtLeast (in the past / last) on it. The span is the connective alone when the reference
+is a clause (the clause's words have their own span), the whole phrase when the reference is a
+noun phrase or a time (after the audit, until dawn, by Monday, within three days).
+
+Forms:
+- <clause> before / after / until / since / by / during <event noun or time>
+- <clause> before / after / while / when / until / since / once / as soon as <clause>
+- Before / After / While / When / Until / Once <clause>, <clause>
+- <clause>, then <clause>
+- <clause> from <time> to / until <time>
+- <event noun> is / was before / after / during <event noun or time>
+- <clause> after / before / while / since / until <V-ing …>
+- <clause> within <n> <units>
+- <clause> in the past / last <n> <units>
+
+Not this template:
+- a measured distance — three days ago, in two weeks, two days after the audit, a week later: a
+  time point at an offset from its anchor; a time
+- a time the event takes place at — in 2019, on Monday, at noon, yesterday, at dawn: a time, not
+  a relation
+- a duration — for six hours, lasted two days: a measure, with no slot here; report the phrase
+  as unmapped
+- a frequency or a schedule — every day, twice a week, often: no slot here; reported as unmapped
+- a causal since or as — Yusra left, since the gate was open: a reason, a link; a temporal since
+  or as is this template
+- every time or whenever with a clause — whenever the bell rings: a conditional over occasions,
+  not a relation between two particular events; reported as unmapped
+- a main clause with no event of its own — the ladder was crooked until Monday, Yusra was in the
+  barn during the audit: a copular, locative or degree clause mints no event; parse the clause
+  and the time, report the relation phrase as unmapped
+- a gerund after a non-temporal preposition — without saying a word, by working hard, instead of
+  leaving: not a relation in time; an oblique's business, reported as unmapped there
+- an ordering only the tense implies, with no connective — Lamine had left. Yusra arrived.: the
+  perfect is the clause's own aspect; no relation is stated
+- a vague distance beside the relation — long before the audit, shortly after noon, just before
+  dawn: record the relation; report the adverb as unmapped (G02)
+
+Slots:
+
+- `t` (required): "time-relation"
+- `id` (required; your label for this instance): your label for the relation (r1, r2 …).
+- `event` (required; "@id" of the predication instance this attaches to): the event placed in
+  time: the id of the clause's predication instance, or of an eventive witness when the relation
+  is predicated of an event noun (the audit was before the meeting).
+- `reference` (required; "@id" of an instance, of the kinds the slot names): what the event is
+  placed relative to: the id of the other clause's predication instance (after Lamine sang), of
+  an eventive witness (after the audit), or of a time instance with no event of its own (before
+  noon, since 2019, until dawn, the edge of a window: within three days); never a bare lemma.
+- `head` (required; one of: Before, After, During, Start, End, TimeAtMost, TimeAtLeast): the
+  relation as read: Before for before / prior to / ahead of; After for after / following / once
+  / as soon as / then; During for during / while / as / when / throughout / amid; Start for
+  since / from / as of / starting; End for until / till / through / up to and the to of from …
+  to; TimeAtMost for by / no later than / at the latest and for within n units (on the time at
+  the offset); TimeAtLeast for not before / no earlier than / at the earliest and for in the
+  past / last n units (on the time at the offset).
+- `word` (required; a string): the preposition or connective as written (after, while, until, as
+  soon as …).
+- `tense` (optional; one of: past, present, future): only when the relation is predicated of an
+  event noun by be (the audit was before the meeting): the clause's tense; otherwise absent, the
+  event's own template records it.
+
+Example (after a clause — the same ordering as before, read from the other side; both events asserted). TEXT: Yusra laughed after Lamine sang.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Yusra", "span": "Yusra"},
+      {"t": "named-entity", "id": "n2", "name": "Lamine", "span": "Lamine"},
+      {"t": "activity", "id": "v1", "verb": "laugh", "actor": "@n1", "tense": "past", "span": "Yusra laughed"},
+      {"t": "activity", "id": "v2", "verb": "sing", "actor": "@n2", "tense": "past", "span": "Lamine sang"},
+      {"t": "time-relation", "id": "r1", "event": "@v1", "reference": "@v2", "head": "After", "word": "after", "span": "after"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_yusra_1 "Yusra")
+    (Name sk_lamine_1 "Lamine")
+    (Member sk_laugh_1 laugh)
+    (Agent sk_laugh_1 sk_yusra_1)
+    (Past sk_laugh_1)
+    (Before sk_sing_1 sk_laugh_1)
+    (Member sk_sing_1 sing)
+    (Agent sk_sing_1 sk_lamine_1)
+    (Past sk_sing_1)
+
+Example (before an event noun — the witness is eventive). TEXT: Ottoline left before the audit.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Ottoline", "span": "Ottoline"},
+      {"t": "witness", "id": "x1", "class": "audit", "definite": true, "eventive": true, "span": "the audit"},
+      {"t": "motion", "id": "m1", "verb": "leave", "mover": "@n1", "tense": "past", "span": "Ottoline left"},
+      {"t": "time-relation", "id": "r1", "event": "@m1", "reference": "@x1", "head": "Before", "word": "before", "span": "before the audit"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_ottoline_1 "Ottoline")
+    (Member sk_audit_1 audit)
+    (Member sk_leave_1 leave)
+    (Agent sk_leave_1 sk_ottoline_1)
+    (Past sk_leave_1)
+    (Before sk_leave_1 sk_audit_1)
+
+Example (until a named time — a time instance with no event of its own). TEXT: Teodor waited until dawn.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Teodor", "span": "Teodor"},
+      {"t": "activity", "id": "v1", "verb": "wait", "actor": "@n1", "tense": "past", "span": "Teodor waited"},
+      {"t": "time", "id": "t1", "name": "dawn", "span": "dawn"},
+      {"t": "time-relation", "id": "r1", "event": "@v1", "reference": "@t1", "head": "End", "word": "until", "span": "until dawn"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_teodor_1 "Teodor")
+    (Member sk_wait_1 wait)
+    (Agent sk_wait_1 sk_teodor_1)
+    (Past sk_wait_1)
+    (End sk_wait_1 dawn)
+
+Not this template. TEXT: Three days ago, Yusra left. — use `time`.
+
+Not this template. TEXT: Lamine waited for six hours. — report it as unmapped: {"span": "for six
+hours", "code": "G00"}.
 
 ## Rules — generic and quantified statements
 
@@ -3739,9 +3931,8 @@ Forms:
 - <X>. Therefore / As a result / Consequently, <Y>.
 
 Not this template:
-- a temporal connective — after, before, when, while, until, as soon as, since (a time): a
-  relation in time, not a reason or a contrast; no slot here; both clauses are parsed and the
-  connective reported as unmapped
+- a temporal connective — after, before, when, while, until, once, as soon as, then, since (a
+  time): a time relation, not a reason or a contrast
 - a connective with a noun phrase, not a clause — despite the storm: an oblique (Despite) on the
   event; because of the rain, due to the audit: no head; report the phrase as unmapped
 - a connective opening the text with nothing before it — "But Lamine left.": no first clause to
@@ -3847,8 +4038,7 @@ The program renders these instances as:
     (Past sk_leave_1)
     (Although sk_leave_1 sk_wait_1)
 
-Not this template. TEXT: Yusra laughed after Lamine sang. — report it as unmapped: {"span":
-"after", "code": "G00"}.
+Not this template. TEXT: Yusra laughed after Lamine sang. — use `time-relation`.
 
 Not this template. TEXT: But Lamine left. — report it as unmapped: {"span": "But", "code":
 "G05"}.

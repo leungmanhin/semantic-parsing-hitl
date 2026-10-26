@@ -1,0 +1,114 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "e576504c89d5c800dbe9fdc3baab9dbbd0397acfd8cf64f6021104e23b31a9b7",
+  "item": {
+    "id": "sc79972671d",
+    "text": "Lamine did not leave after Yusra sang."
+  },
+  "usage": {
+    "input": 59752,
+    "output": 251,
+    "thinking": null,
+    "total": 60003,
+    "cached": 57700,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 59752,
+    "candidatesTokenCount": 251,
+    "totalTokenCount": 60003,
+    "cachedContentTokenCount": 57700,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 59752
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 57700
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 251
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sc79972671d\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n1\", \"tense\": \"past\", \"span\": \"Lamine did not leave\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"sing\", \"actor\": \"@n2\", \"tense\": \"past\", \"span\": \"Yusra sang\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@m1\"], \"span\": \"did not\"}, {\"t\": \"time-relation\", \"id\": \"r1\", \"event\": \"@m1\", \"reference\": \"@v1\", \"head\": \"After\", \"word\": \"after\", \"span\": \"after\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sc79972671d",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "motion",
+        "id": "m1",
+        "verb": "leave",
+        "mover": "@n1",
+        "tense": "past",
+        "span": "Lamine did not leave"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "sing",
+        "actor": "@n2",
+        "tense": "past",
+        "span": "Yusra sang"
+      },
+      {
+        "t": "negation",
+        "id": "s1",
+        "over": [
+          "@m1"
+        ],
+        "span": "did not"
+      },
+      {
+        "t": "time-relation",
+        "id": "r1",
+        "event": "@m1",
+        "reference": "@v1",
+        "head": "After",
+        "word": "after",
+        "span": "after"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "2a9a3fa258cdad2d747fdcbe0ebd8b0e2a17a87d7fd135bcf030ae79618d3563",
+  "run": 1,
+  "case": {
+    "template": "time-relation",
+    "section": "held_out",
+    "index": 19,
+    "category": "scoped",
+    "text": "Lamine did not leave after Yusra sang.",
+    "key": "c79972671d"
+  }
+}

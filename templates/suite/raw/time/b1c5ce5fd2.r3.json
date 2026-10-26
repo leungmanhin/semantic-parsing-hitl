@@ -1,0 +1,93 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "e576504c89d5c800dbe9fdc3baab9dbbd0397acfd8cf64f6021104e23b31a9b7",
+  "item": {
+    "id": "sb1c5ce5fd2",
+    "text": "Ottoline left a year ago."
+  },
+  "usage": {
+    "input": 59747,
+    "output": 151,
+    "thinking": null,
+    "total": 59898,
+    "cached": 57698,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 59747,
+    "candidatesTokenCount": 151,
+    "totalTokenCount": 59898,
+    "cachedContentTokenCount": 57698,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 59747
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 57698
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 151
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sb1c5ce5fd2\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"motion\", \"id\": \"e1\", \"verb\": \"leave\", \"mover\": \"@n1\", \"tense\": \"past\", \"span\": \"Ottoline left\"}, {\"t\": \"time\", \"id\": \"t1\", \"event\": \"@e1\", \"offset\": 1, \"unit\": \"year\", \"direction\": \"before\", \"anchor\": \"@now\", \"span\": \"a year ago\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sb1c5ce5fd2",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Ottoline",
+        "span": "Ottoline"
+      },
+      {
+        "t": "motion",
+        "id": "e1",
+        "verb": "leave",
+        "mover": "@n1",
+        "tense": "past",
+        "span": "Ottoline left"
+      },
+      {
+        "t": "time",
+        "id": "t1",
+        "event": "@e1",
+        "offset": 1,
+        "unit": "year",
+        "direction": "before",
+        "anchor": "@now",
+        "span": "a year ago"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "2a9a3fa258cdad2d747fdcbe0ebd8b0e2a17a87d7fd135bcf030ae79618d3563",
+  "run": 3,
+  "case": {
+    "template": "time",
+    "section": "held_out",
+    "index": 18,
+    "category": "positive",
+    "text": "Ottoline left a year ago.",
+    "key": "b1c5ce5fd2"
+  }
+}

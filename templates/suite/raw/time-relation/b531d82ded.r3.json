@@ -1,0 +1,95 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "e576504c89d5c800dbe9fdc3baab9dbbd0397acfd8cf64f6021104e23b31a9b7",
+  "item": {
+    "id": "sb531d82ded",
+    "text": "The audit was before the meeting."
+  },
+  "usage": {
+    "input": 59747,
+    "output": 162,
+    "thinking": null,
+    "total": 59909,
+    "cached": 57698,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 59747,
+    "candidatesTokenCount": 162,
+    "totalTokenCount": 59909,
+    "cachedContentTokenCount": 57698,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 59747
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 57698
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 162
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sb531d82ded\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"audit\", \"definite\": true, \"eventive\": true, \"span\": \"The audit\"}, {\"t\": \"witness\", \"id\": \"x2\", \"class\": \"meeting\", \"definite\": true, \"eventive\": true, \"span\": \"the meeting\"}, {\"t\": \"time-relation\", \"id\": \"r1\", \"event\": \"@x1\", \"reference\": \"@x2\", \"head\": \"Before\", \"word\": \"before\", \"tense\": \"past\", \"span\": \"The audit was before the meeting\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sb531d82ded",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "audit",
+        "definite": true,
+        "eventive": true,
+        "span": "The audit"
+      },
+      {
+        "t": "witness",
+        "id": "x2",
+        "class": "meeting",
+        "definite": true,
+        "eventive": true,
+        "span": "the meeting"
+      },
+      {
+        "t": "time-relation",
+        "id": "r1",
+        "event": "@x1",
+        "reference": "@x2",
+        "head": "Before",
+        "word": "before",
+        "tense": "past",
+        "span": "The audit was before the meeting"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "2a9a3fa258cdad2d747fdcbe0ebd8b0e2a17a87d7fd135bcf030ae79618d3563",
+  "run": 3,
+  "case": {
+    "template": "time-relation",
+    "section": "held_out",
+    "index": 13,
+    "category": "positive",
+    "text": "The audit was before the meeting.",
+    "key": "b531d82ded"
+  }
+}

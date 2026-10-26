@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
+  "prompt_sha256": "e576504c89d5c800dbe9fdc3baab9dbbd0397acfd8cf64f6021104e23b31a9b7",
   "item": {
     "id": "s974e76f188",
     "text": "Yusra left after the audit."
   },
   "usage": {
-    "input": 56508,
-    "output": 140,
+    "input": 59750,
+    "output": 191,
     "thinking": null,
-    "total": 56648,
-    "cached": 54459,
+    "total": 59941,
+    "cached": 57701,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 56508,
-    "candidatesTokenCount": 140,
-    "totalTokenCount": 56648,
-    "cachedContentTokenCount": 54459,
+    "promptTokenCount": 59750,
+    "candidatesTokenCount": 191,
+    "totalTokenCount": 59941,
+    "cachedContentTokenCount": 57701,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 56508
+        "tokenCount": 59750
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 54459
+        "tokenCount": 57701
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 140
+        "tokenCount": 191
       }
     ]
   },
-  "raw_text": "{\"id\": \"s974e76f188\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"motion\", \"id\": \"e1\", \"verb\": \"leave\", \"mover\": \"@n1\", \"tense\": \"past\", \"span\": \"Yusra left\"}], \"unmapped\": [{\"span\": \"after the audit\", \"code\": \"G00\", \"construction\": \"A temporal prepositional phrase relating the clause's event to another event.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"s974e76f188\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"audit\", \"definite\": true, \"eventive\": true, \"span\": \"the audit\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n1\", \"tense\": \"past\", \"span\": \"Yusra left\"}, {\"t\": \"time-relation\", \"id\": \"r1\", \"event\": \"@m1\", \"reference\": \"@x1\", \"head\": \"After\", \"word\": \"after\", \"span\": \"after the audit\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s974e76f188",
     "instances": [
@@ -59,24 +59,35 @@
         "span": "Yusra"
       },
       {
+        "t": "witness",
+        "id": "x1",
+        "class": "audit",
+        "definite": true,
+        "eventive": true,
+        "span": "the audit"
+      },
+      {
         "t": "motion",
-        "id": "e1",
+        "id": "m1",
         "verb": "leave",
         "mover": "@n1",
         "tense": "past",
         "span": "Yusra left"
-      }
-    ],
-    "unmapped": [
+      },
       {
-        "span": "after the audit",
-        "code": "G00",
-        "construction": "A temporal prepositional phrase relating the clause's event to another event."
+        "t": "time-relation",
+        "id": "r1",
+        "event": "@m1",
+        "reference": "@x1",
+        "head": "After",
+        "word": "after",
+        "span": "after the audit"
       }
     ],
+    "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
+  "prompt_body_sha256": "2a9a3fa258cdad2d747fdcbe0ebd8b0e2a17a87d7fd135bcf030ae79618d3563",
   "run": 3,
   "case": {
     "template": "oblique",

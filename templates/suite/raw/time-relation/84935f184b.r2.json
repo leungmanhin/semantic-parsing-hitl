@@ -1,0 +1,101 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "e576504c89d5c800dbe9fdc3baab9dbbd0397acfd8cf64f6021104e23b31a9b7",
+  "item": {
+    "id": "s84935f184b",
+    "text": "Lamine will leave within three days."
+  },
+  "usage": {
+    "input": 59751,
+    "output": 198,
+    "thinking": null,
+    "total": 59949,
+    "cached": 57702,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 59751,
+    "candidatesTokenCount": 198,
+    "totalTokenCount": 59949,
+    "cachedContentTokenCount": 57702,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 59751
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 57702
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 198
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s84935f184b\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n1\", \"tense\": \"future\", \"span\": \"Lamine will leave\"}, {\"t\": \"time\", \"id\": \"t1\", \"offset\": 3, \"unit\": \"day\", \"direction\": \"after\", \"anchor\": \"@now\", \"span\": \"three days\"}, {\"t\": \"time-relation\", \"id\": \"r1\", \"event\": \"@m1\", \"reference\": \"@t1\", \"head\": \"TimeAtMost\", \"word\": \"within\", \"span\": \"within three days\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s84935f184b",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "motion",
+        "id": "m1",
+        "verb": "leave",
+        "mover": "@n1",
+        "tense": "future",
+        "span": "Lamine will leave"
+      },
+      {
+        "t": "time",
+        "id": "t1",
+        "offset": 3,
+        "unit": "day",
+        "direction": "after",
+        "anchor": "@now",
+        "span": "three days"
+      },
+      {
+        "t": "time-relation",
+        "id": "r1",
+        "event": "@m1",
+        "reference": "@t1",
+        "head": "TimeAtMost",
+        "word": "within",
+        "span": "within three days"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "2a9a3fa258cdad2d747fdcbe0ebd8b0e2a17a87d7fd135bcf030ae79618d3563",
+  "run": 2,
+  "case": {
+    "template": "time-relation",
+    "section": "held_out",
+    "index": 16,
+    "category": "positive",
+    "text": "Lamine will leave within three days.",
+    "key": "84935f184b"
+  }
+}

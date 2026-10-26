@@ -353,8 +353,8 @@ gloss: Continuative: the eventuality still holds (positive counterpart of cessat
 head: Before
 kind: temporal
 arity: 2
-type-def: (: Before (-> Event Event Proposition))
-gloss: Canonical ordering: the first eventuality precedes the second.
+type-def: (: Before (-> Event Event Proposition))  ; and 1 more (per arity / per union alternative)
+gloss: Canonical ordering: the first eventuality precedes the second, an eventuality or a time instance (the catalog renders after as Before with the arguments swapped).
 
 
 head: BeforeBy
@@ -382,15 +382,15 @@ gloss: Licensed duration-adverb slot: the surface adverb lemma on an eventuality
 head: During
 kind: temporal
 arity: 2
-type-def: (: During (-> Event Event Proposition))
-gloss: The inner eventuality is nested inside the outer one.
+type-def: (: During (-> Event Event Proposition))  ; and 1 more (per arity / per union alternative)
+gloss: The inner eventuality is nested inside the outer one, an eventuality or a time period (during the meeting, while Yusra sang, until dawn is End).
 
 
 head: End
 kind: temporal
 arity: 2
-type-def: (: End (-> Event TimeTerm Proposition))
-gloss: Interval end point of an eventuality: (End e t), t a time instance.
+type-def: (: End (-> Event Event Proposition))  ; and 1 more (per arity / per union alternative)
+gloss: Interval end point of an eventuality: (End e r), r a time instance or the eventuality it stops with (until Yusra arrived).
 
 
 head: Every
@@ -456,22 +456,22 @@ gloss: Calendar / fiscal quarter of a time instance: (Quarter t 3) beside (Year 
 head: Start
 kind: temporal
 arity: 2
-type-def: (: Start (-> Event TimeTerm Proposition))
-gloss: Interval start point of an eventuality: (Start e t) with the time instance t described by Day / Hour / Year … atoms.
+type-def: (: Start (-> Event Event Proposition))  ; and 1 more (per arity / per union alternative)
+gloss: Interval start point of an eventuality: (Start e r), r a time instance described by Day / Hour / Year … atoms, or the eventuality it starts with (since the audit).
 
 
 head: TimeAtLeast
 kind: temporal
 arity: 2
-type-def: (: TimeAtLeast (-> Event TimeTerm Proposition))
-gloss: Lower-bounded (earliest) time of an eventuality: (TimeAtLeast e t), t a time instance.
+type-def: (: TimeAtLeast (-> Event Event Proposition))  ; and 1 more (per arity / per union alternative)
+gloss: Lower-bounded (earliest) time of an eventuality, inclusive: (TimeAtLeast e r), r a time instance or an eventuality (no earlier than Monday).
 
 
 head: TimeAtMost
 kind: temporal
 arity: 2
-type-def: (: TimeAtMost (-> Event TimeTerm Proposition))
-gloss: Upper-bounded (latest) time of an eventuality: (TimeAtMost e t), t a time instance.
+type-def: (: TimeAtMost (-> Event Event Proposition))  ; and 1 more (per arity / per union alternative)
+gloss: Upper-bounded (latest) time of an eventuality, inclusive: (TimeAtMost e r), r a time instance or an eventuality (by Monday, by the audit).
 
 
 head: TimesPer
@@ -493,7 +493,8 @@ head: WithinLast
 kind: temporal
 arity: 3
 type-def: (: WithinLast (-> Event Number Class Proposition))
-gloss: Backward window: the eventuality falls within the last n units.
+gloss: Backward window: the eventuality falls within the last n units. RETIRE: the catalog composes it from a time instance at the offset and a bound — (BeforeBy t now n unit) (TimeAtLeast e t) — and the forward window (within n units) the same way with TimeAtMost; no stored parse uses it; declaration kept only until the re-parse.
+status: retire
 
 
 head: Year
@@ -1002,4 +1003,4 @@ Oblique prepositions (62), all declared `(-> Instance|Class Instance Proposition
 ## notes
 
 - Proposed, not yet emitted by any template: Coref, Equivalence, InContext, LikelihoodPhrase, Not, Pending, Similarity.
-- To retire at the re-parse (declaration kept until then so today's parses still type-check): Forbid, KindProperty, Probably.
+- To retire at the re-parse (declaration kept until then so today's parses still type-check): Forbid, KindProperty, Probably, WithinLast.

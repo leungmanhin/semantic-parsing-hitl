@@ -1,0 +1,106 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "e576504c89d5c800dbe9fdc3baab9dbbd0397acfd8cf64f6021104e23b31a9b7",
+  "item": {
+    "id": "s9ddc97bde2",
+    "text": "Since the ferret slept, Yusra sang."
+  },
+  "usage": {
+    "input": 59748,
+    "output": 213,
+    "thinking": null,
+    "total": 59961,
+    "cached": 57699,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 59748,
+    "candidatesTokenCount": 213,
+    "totalTokenCount": 59961,
+    "cachedContentTokenCount": 57699,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 59748
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 57699
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 213
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s9ddc97bde2\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"ferret\", \"definite\": true, \"span\": \"the ferret\"}, {\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"sleep\", \"actor\": \"@x1\", \"tense\": \"past\", \"span\": \"the ferret slept\"}, {\"t\": \"activity\", \"id\": \"v2\", \"verb\": \"sing\", \"actor\": \"@n1\", \"tense\": \"past\", \"span\": \"Yusra sang\"}, {\"t\": \"link\", \"id\": \"k1\", \"head\": \"Since\", \"main\": \"@v2\", \"sub\": \"@v1\", \"span\": \"Since\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s9ddc97bde2",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "ferret",
+        "definite": true,
+        "span": "the ferret"
+      },
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "sleep",
+        "actor": "@x1",
+        "tense": "past",
+        "span": "the ferret slept"
+      },
+      {
+        "t": "activity",
+        "id": "v2",
+        "verb": "sing",
+        "actor": "@n1",
+        "tense": "past",
+        "span": "Yusra sang"
+      },
+      {
+        "t": "link",
+        "id": "k1",
+        "head": "Since",
+        "main": "@v2",
+        "sub": "@v1",
+        "span": "Since"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "2a9a3fa258cdad2d747fdcbe0ebd8b0e2a17a87d7fd135bcf030ae79618d3563",
+  "run": 3,
+  "case": {
+    "template": "time-relation",
+    "section": "held_out",
+    "index": 23,
+    "category": "abstain",
+    "text": "Since the ferret slept, Yusra sang.",
+    "key": "9ddc97bde2"
+  }
+}

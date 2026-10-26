@@ -1,0 +1,100 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "e576504c89d5c800dbe9fdc3baab9dbbd0397acfd8cf64f6021104e23b31a9b7",
+  "item": {
+    "id": "s6d3fa85f65",
+    "text": "Lamine left after the audit."
+  },
+  "usage": {
+    "input": 59749,
+    "output": 187,
+    "thinking": null,
+    "total": 59936,
+    "cached": 57646,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 59749,
+    "candidatesTokenCount": 187,
+    "totalTokenCount": 59936,
+    "cachedContentTokenCount": 57646,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 59749
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 57646
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 187
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s6d3fa85f65\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"audit\", \"definite\": true, \"eventive\": true, \"span\": \"the audit\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n1\", \"tense\": \"past\", \"span\": \"Lamine left\"}, {\"t\": \"time-relation\", \"id\": \"r1\", \"event\": \"@m1\", \"reference\": \"@x1\", \"head\": \"After\", \"word\": \"after\", \"span\": \"after the audit\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s6d3fa85f65",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "audit",
+        "definite": true,
+        "eventive": true,
+        "span": "the audit"
+      },
+      {
+        "t": "motion",
+        "id": "m1",
+        "verb": "leave",
+        "mover": "@n1",
+        "tense": "past",
+        "span": "Lamine left"
+      },
+      {
+        "t": "time-relation",
+        "id": "r1",
+        "event": "@m1",
+        "reference": "@x1",
+        "head": "After",
+        "word": "after",
+        "span": "after the audit"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "2a9a3fa258cdad2d747fdcbe0ebd8b0e2a17a87d7fd135bcf030ae79618d3563",
+  "run": 1,
+  "case": {
+    "template": "time-relation",
+    "section": "held_out",
+    "index": 0,
+    "category": "positive",
+    "text": "Lamine left after the audit.",
+    "key": "6d3fa85f65"
+  }
+}

@@ -77,10 +77,12 @@ def check_when(cond: str, slots: dict) -> list[str]:
             spec = slots.get(name)
             if spec is None:
                 problems.append(f"when mentions {name!r}, not a slot")
-            elif spec["type"] == "enum" and value not in [str(v) for v in spec.get("values") or []]:
-                problems.append(f"when compares {name} with {value!r}, not one of its values")
-            elif spec["type"] == "bool" and value not in ("true", "false"):
-                problems.append(f"when compares {name} with {value!r}, not true / false")
+            elif spec["type"] == "enum":
+                if value not in [str(v) for v in spec.get("values") or []]:
+                    problems.append(f"when compares {name} with {value!r}, not one of its values")
+            elif spec["type"] == "bool":
+                if value not in ("true", "false"):
+                    problems.append(f"when compares {name} with {value!r}, not true / false")
             elif not re.fullmatch(r"[a-z_][a-z0-9_]*", value):
                 problems.append(f"when compares {name} with {value!r}, not a word")
     return problems

@@ -1,0 +1,106 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "e576504c89d5c800dbe9fdc3baab9dbbd0397acfd8cf64f6021104e23b31a9b7",
+  "item": {
+    "id": "s03322af269",
+    "text": "When Yusra sang, Lamine laughed."
+  },
+  "usage": {
+    "input": 59751,
+    "output": 221,
+    "thinking": null,
+    "total": 59972,
+    "cached": 57701,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 59751,
+    "candidatesTokenCount": 221,
+    "totalTokenCount": 59972,
+    "cachedContentTokenCount": 57701,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 59751
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 57701
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 221
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s03322af269\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"sing\", \"actor\": \"@n1\", \"tense\": \"past\", \"span\": \"Yusra sang\"}, {\"t\": \"activity\", \"id\": \"e2\", \"verb\": \"laugh\", \"actor\": \"@n2\", \"tense\": \"past\", \"span\": \"Lamine laughed\"}, {\"t\": \"time-relation\", \"id\": \"r1\", \"event\": \"@e2\", \"reference\": \"@e1\", \"head\": \"During\", \"word\": \"When\", \"span\": \"When\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s03322af269",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "sing",
+        "actor": "@n1",
+        "tense": "past",
+        "span": "Yusra sang"
+      },
+      {
+        "t": "activity",
+        "id": "e2",
+        "verb": "laugh",
+        "actor": "@n2",
+        "tense": "past",
+        "span": "Lamine laughed"
+      },
+      {
+        "t": "time-relation",
+        "id": "r1",
+        "event": "@e2",
+        "reference": "@e1",
+        "head": "During",
+        "word": "When",
+        "span": "When"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "2a9a3fa258cdad2d747fdcbe0ebd8b0e2a17a87d7fd135bcf030ae79618d3563",
+  "run": 1,
+  "case": {
+    "template": "time-relation",
+    "section": "held_out",
+    "index": 4,
+    "category": "positive",
+    "text": "When Yusra sang, Lamine laughed.",
+    "key": "03322af269"
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "e576504c89d5c800dbe9fdc3baab9dbbd0397acfd8cf64f6021104e23b31a9b7",
+  "item": {
+    "id": "s5d2cec6612",
+    "text": "Teodor arrived in the past six months."
+  },
+  "usage": {
+    "input": 59750,
+    "output": 199,
+    "thinking": null,
+    "total": 59949,
+    "cached": 57701,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 59750,
+    "candidatesTokenCount": 199,
+    "totalTokenCount": 59949,
+    "cachedContentTokenCount": 57701,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 59750
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 57701
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 199
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s5d2cec6612\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"arrive\", \"mover\": \"@n1\", \"tense\": \"past\", \"span\": \"Teodor arrived\"}, {\"t\": \"time\", \"id\": \"t1\", \"offset\": 6, \"unit\": \"month\", \"direction\": \"before\", \"anchor\": \"@now\", \"span\": \"six months\"}, {\"t\": \"time-relation\", \"id\": \"r1\", \"event\": \"@m1\", \"reference\": \"@t1\", \"head\": \"TimeAtLeast\", \"word\": \"in the past\", \"span\": \"in the past six months\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s5d2cec6612",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "motion",
+        "id": "m1",
+        "verb": "arrive",
+        "mover": "@n1",
+        "tense": "past",
+        "span": "Teodor arrived"
+      },
+      {
+        "t": "time",
+        "id": "t1",
+        "offset": 6,
+        "unit": "month",
+        "direction": "before",
+        "anchor": "@now",
+        "span": "six months"
+      },
+      {
+        "t": "time-relation",
+        "id": "r1",
+        "event": "@m1",
+        "reference": "@t1",
+        "head": "TimeAtLeast",
+        "word": "in the past",
+        "span": "in the past six months"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "2a9a3fa258cdad2d747fdcbe0ebd8b0e2a17a87d7fd135bcf030ae79618d3563",
+  "run": 2,
+  "case": {
+    "template": "time-relation",
+    "section": "held_out",
+    "index": 17,
+    "category": "positive",
+    "text": "Teodor arrived in the past six months.",
+    "key": "5d2cec6612"
+  }
+}

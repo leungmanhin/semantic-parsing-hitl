@@ -1,0 +1,108 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "e576504c89d5c800dbe9fdc3baab9dbbd0397acfd8cf64f6021104e23b31a9b7",
+  "item": {
+    "id": "sa08a848288",
+    "text": "Teodor laughed after leaving the barn."
+  },
+  "usage": {
+    "input": 59750,
+    "output": 227,
+    "thinking": null,
+    "total": 59977,
+    "cached": 57701,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 59750,
+    "candidatesTokenCount": 227,
+    "totalTokenCount": 59977,
+    "cachedContentTokenCount": 57701,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 59750
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 57701
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 227
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sa08a848288\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"barn\", \"definite\": true, \"span\": \"the barn\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"laugh\", \"actor\": \"@n1\", \"tense\": \"past\", \"span\": \"Teodor laughed\"}, {\"t\": \"motion\", \"id\": \"e2\", \"verb\": \"leave\", \"mover\": \"@n1\", \"source\": \"@x1\", \"tense\": \"past\", \"span\": \"leaving the barn\"}, {\"t\": \"time-relation\", \"id\": \"t1\", \"event\": \"@e1\", \"reference\": \"@e2\", \"head\": \"After\", \"word\": \"after\", \"span\": \"after\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sa08a848288",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "barn",
+        "definite": true,
+        "span": "the barn"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "laugh",
+        "actor": "@n1",
+        "tense": "past",
+        "span": "Teodor laughed"
+      },
+      {
+        "t": "motion",
+        "id": "e2",
+        "verb": "leave",
+        "mover": "@n1",
+        "source": "@x1",
+        "tense": "past",
+        "span": "leaving the barn"
+      },
+      {
+        "t": "time-relation",
+        "id": "t1",
+        "event": "@e1",
+        "reference": "@e2",
+        "head": "After",
+        "word": "after",
+        "span": "after"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "2a9a3fa258cdad2d747fdcbe0ebd8b0e2a17a87d7fd135bcf030ae79618d3563",
+  "run": 3,
+  "case": {
+    "template": "time-relation",
+    "section": "held_out",
+    "index": 14,
+    "category": "positive",
+    "text": "Teodor laughed after leaving the barn.",
+    "key": "a08a848288"
+  }
+}

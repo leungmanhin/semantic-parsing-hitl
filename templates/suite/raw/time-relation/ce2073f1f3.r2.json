@@ -1,0 +1,97 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "e576504c89d5c800dbe9fdc3baab9dbbd0397acfd8cf64f6021104e23b31a9b7",
+  "item": {
+    "id": "sce2073f1f3",
+    "text": "The ladder was crooked until Monday."
+  },
+  "usage": {
+    "input": 59748,
+    "output": 252,
+    "thinking": null,
+    "total": 60000,
+    "cached": 57699,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 59748,
+    "candidatesTokenCount": 252,
+    "totalTokenCount": 60000,
+    "cachedContentTokenCount": 57699,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 59748
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 57699
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 252
+      }
+    ]
+  },
+  "raw_text": "{\n  \"id\": \"sce2073f1f3\",\n  \"instances\": [\n    {\n      \"t\": \"witness\",\n      \"id\": \"x1\",\n      \"class\": \"ladder\",\n      \"definite\": true,\n      \"span\": \"The ladder\"\n    },\n    {\n      \"t\": \"copular\",\n      \"id\": \"c1\",\n      \"subject\": \"@x1\",\n      \"predicate\": \"crooked\",\n      \"form\": \"adjective\",\n      \"tense\": \"past\",\n      \"span\": \"The ladder was crooked\"\n    },\n    {\n      \"t\": \"time\",\n      \"id\": \"t1\",\n      \"weekday\": \"monday\",\n      \"span\": \"Monday\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"span\": \"until Monday\",\n      \"code\": \"G00\",\n      \"construction\": \"Temporal relation phrase on a copular clause, which has no event to attach to.\"\n    }\n  ],\n  \"issues\": []\n}",
+  "response": {
+    "id": "sce2073f1f3",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "ladder",
+        "definite": true,
+        "span": "The ladder"
+      },
+      {
+        "t": "copular",
+        "id": "c1",
+        "subject": "@x1",
+        "predicate": "crooked",
+        "form": "adjective",
+        "tense": "past",
+        "span": "The ladder was crooked"
+      },
+      {
+        "t": "time",
+        "id": "t1",
+        "weekday": "monday",
+        "span": "Monday"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "until Monday",
+        "code": "G00",
+        "construction": "Temporal relation phrase on a copular clause, which has no event to attach to."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "2a9a3fa258cdad2d747fdcbe0ebd8b0e2a17a87d7fd135bcf030ae79618d3563",
+  "run": 2,
+  "case": {
+    "template": "time-relation",
+    "section": "held_out",
+    "index": 25,
+    "category": "abstain",
+    "text": "The ladder was crooked until Monday.",
+    "key": "ce2073f1f3"
+  }
+}

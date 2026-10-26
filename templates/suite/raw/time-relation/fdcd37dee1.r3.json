@@ -1,0 +1,106 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "e576504c89d5c800dbe9fdc3baab9dbbd0397acfd8cf64f6021104e23b31a9b7",
+  "item": {
+    "id": "sfdcd37dee1",
+    "text": "Once Yusra arrived, Lamine left."
+  },
+  "usage": {
+    "input": 59748,
+    "output": 218,
+    "thinking": null,
+    "total": 59966,
+    "cached": 57699,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 59748,
+    "candidatesTokenCount": 218,
+    "totalTokenCount": 59966,
+    "cachedContentTokenCount": 57699,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 59748
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 57699
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 218
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sfdcd37dee1\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"arrive\", \"mover\": \"@n1\", \"tense\": \"past\", \"span\": \"Yusra arrived\"}, {\"t\": \"motion\", \"id\": \"m2\", \"verb\": \"leave\", \"mover\": \"@n2\", \"tense\": \"past\", \"span\": \"Lamine left\"}, {\"t\": \"time-relation\", \"id\": \"r1\", \"event\": \"@m2\", \"reference\": \"@m1\", \"head\": \"After\", \"word\": \"once\", \"span\": \"Once\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sfdcd37dee1",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "motion",
+        "id": "m1",
+        "verb": "arrive",
+        "mover": "@n1",
+        "tense": "past",
+        "span": "Yusra arrived"
+      },
+      {
+        "t": "motion",
+        "id": "m2",
+        "verb": "leave",
+        "mover": "@n2",
+        "tense": "past",
+        "span": "Lamine left"
+      },
+      {
+        "t": "time-relation",
+        "id": "r1",
+        "event": "@m2",
+        "reference": "@m1",
+        "head": "After",
+        "word": "once",
+        "span": "Once"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "2a9a3fa258cdad2d747fdcbe0ebd8b0e2a17a87d7fd135bcf030ae79618d3563",
+  "run": 3,
+  "case": {
+    "template": "time-relation",
+    "section": "held_out",
+    "index": 12,
+    "category": "positive",
+    "text": "Once Yusra arrived, Lamine left.",
+    "key": "fdcd37dee1"
+  }
+}

@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
+  "prompt_sha256": "e576504c89d5c800dbe9fdc3baab9dbbd0397acfd8cf64f6021104e23b31a9b7",
   "item": {
     "id": "seb02cc39c5",
     "text": "Lamine waited while Yusra sang."
   },
   "usage": {
-    "input": 56506,
-    "output": 291,
+    "input": 59748,
+    "output": 219,
     "thinking": null,
-    "total": 56797,
-    "cached": 54457,
+    "total": 59967,
+    "cached": 57699,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 56506,
-    "candidatesTokenCount": 291,
-    "totalTokenCount": 56797,
-    "cachedContentTokenCount": 54457,
+    "promptTokenCount": 59748,
+    "candidatesTokenCount": 219,
+    "totalTokenCount": 59967,
+    "cachedContentTokenCount": 57699,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 56506
+        "tokenCount": 59748
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 54457
+        "tokenCount": 57699
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 291
+        "tokenCount": 219
       }
     ]
   },
-  "raw_text": "{\n  \"id\": \"seb02cc39c5\",\n  \"instances\": [\n    {\n      \"t\": \"named-entity\",\n      \"id\": \"n1\",\n      \"name\": \"Lamine\",\n      \"span\": \"Lamine\"\n    },\n    {\n      \"t\": \"named-entity\",\n      \"id\": \"n2\",\n      \"name\": \"Yusra\",\n      \"span\": \"Yusra\"\n    },\n    {\n      \"t\": \"activity\",\n      \"id\": \"v1\",\n      \"verb\": \"wait\",\n      \"actor\": \"@n1\",\n      \"tense\": \"past\",\n      \"span\": \"Lamine waited\"\n    },\n    {\n      \"t\": \"activity\",\n      \"id\": \"v2\",\n      \"verb\": \"sing\",\n      \"actor\": \"@n2\",\n      \"tense\": \"past\",\n      \"span\": \"Yusra sang\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"span\": \"while\",\n      \"code\": \"G00\",\n      \"construction\": \"A temporal connective relating two clauses.\"\n    }\n  ],\n  \"issues\": []\n}",
+  "raw_text": "{\"id\": \"seb02cc39c5\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"wait\", \"actor\": \"@n1\", \"tense\": \"past\", \"span\": \"Lamine waited\"}, {\"t\": \"activity\", \"id\": \"v2\", \"verb\": \"sing\", \"actor\": \"@n2\", \"tense\": \"past\", \"span\": \"Yusra sang\"}, {\"t\": \"time-relation\", \"id\": \"r1\", \"event\": \"@v1\", \"reference\": \"@v2\", \"head\": \"During\", \"word\": \"while\", \"span\": \"while\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "seb02cc39c5",
     "instances": [
@@ -79,18 +79,21 @@
         "actor": "@n2",
         "tense": "past",
         "span": "Yusra sang"
-      }
-    ],
-    "unmapped": [
+      },
       {
-        "span": "while",
-        "code": "G00",
-        "construction": "A temporal connective relating two clauses."
+        "t": "time-relation",
+        "id": "r1",
+        "event": "@v1",
+        "reference": "@v2",
+        "head": "During",
+        "word": "while",
+        "span": "while"
       }
     ],
+    "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
+  "prompt_body_sha256": "2a9a3fa258cdad2d747fdcbe0ebd8b0e2a17a87d7fd135bcf030ae79618d3563",
   "run": 3,
   "case": {
     "template": "link",

@@ -1,10 +1,10 @@
 # Suite report
 
-prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 79893629ea5a1b2b) · type check: ran
+prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 2a9a3fa258cdad2d) · type check: ran
 
 ## Catalog checks
 
-647 examples checked; findings: 0
+685 examples checked; findings: 0
 
 Sentences two templates claim with the same expected atoms (composition, fine):
 - "Lamine danced with Yusra." — activity, adjunct
@@ -15,7 +15,7 @@ Stored records whose sentence is no longer in the catalog (ignored): suite/raw/a
 
 ## acquisition — held_out
 
-12 cases, 36 records (ok 36; stale prompt 0) · gemini-4-argon effort=low
+12 cases, 36 records (ok 36; stale prompt 36) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -44,7 +44,7 @@ Mismatches: none
 
 ## activity — held_out
 
-17 cases, 51 records (ok 51; stale prompt 0) · gemini-4-argon effort=low
+17 cases, 51 records (ok 51; stale prompt 51) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -73,7 +73,7 @@ Mismatches: none
 
 ## adjunct — held_out
 
-11 cases, 33 records (ok 33; stale prompt 0) · gemini-4-argon effort=low
+11 cases, 33 records (ok 33; stale prompt 33) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -100,7 +100,7 @@ Mismatches: none
 
 ## aspectual — held_out
 
-11 cases, 33 records (ok 33; stale prompt 0) · gemini-4-argon effort=low
+11 cases, 33 records (ok 33; stale prompt 33) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -127,7 +127,7 @@ Mismatches: none
 
 ## attitude — held_out
 
-15 cases, 45 records (ok 45; stale prompt 0) · gemini-4-argon effort=low
+15 cases, 45 records (ok 45; stale prompt 45) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -155,7 +155,7 @@ Mismatches: none
 
 ## causative — held_out
 
-14 cases, 42 records (ok 42; stale prompt 0) · gemini-4-argon effort=low
+14 cases, 42 records (ok 42; stale prompt 42) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -183,7 +183,7 @@ Mismatches: none
 
 ## change-of-state — held_out
 
-16 cases, 48 records (ok 48; stale prompt 0) · gemini-4-argon effort=low
+16 cases, 48 records (ok 48; stale prompt 48) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -212,7 +212,7 @@ Mismatches: none
 
 ## class-property — held_out
 
-16 cases, 48 records (ok 48; stale prompt 0) · gemini-4-argon effort=low
+16 cases, 48 records (ok 48; stale prompt 48) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -240,7 +240,7 @@ Mismatches: none
 
 ## class-statement — held_out
 
-13 cases, 39 records (ok 39; stale prompt 0) · gemini-4-argon effort=low
+13 cases, 39 records (ok 39; stale prompt 39) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -268,7 +268,7 @@ Mismatches: none
 
 ## communication — held_out
 
-13 cases, 39 records (ok 39; stale prompt 0) · gemini-4-argon effort=low
+13 cases, 39 records (ok 39; stale prompt 39) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -295,7 +295,7 @@ Mismatches: none
 
 ## conditional-property — held_out
 
-13 cases, 39 records (ok 39; stale prompt 0) · gemini-4-argon effort=low
+13 cases, 39 records (ok 39; stale prompt 39) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -324,7 +324,7 @@ Mismatches: none
 
 ## control — held_out
 
-14 cases, 42 records (ok 42; stale prompt 0) · gemini-4-argon effort=low
+14 cases, 42 records (ok 42; stale prompt 42) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -353,7 +353,7 @@ Mismatches: none
 
 ## copular — held_out
 
-14 cases, 42 records (ok 42; stale prompt 0) · gemini-4-argon effort=low
+14 cases, 42 records (ok 42; stale prompt 42) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -385,7 +385,7 @@ Mismatches: none
 
 ## coref — held_out
 
-8 cases, 24 records (ok 24; stale prompt 0) · gemini-4-argon effort=low
+8 cases, 24 records (ok 24; stale prompt 24) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -411,7 +411,7 @@ Mismatches: none
 
 ## creation — held_out
 
-16 cases, 48 records (ok 48; stale prompt 0) · gemini-4-argon effort=low
+16 cases, 48 records (ok 48; stale prompt 48) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -440,7 +440,7 @@ Mismatches: none
 
 ## degree — held_out
 
-18 cases, 54 records (ok 54; stale prompt 0) · gemini-4-argon effort=low
+18 cases, 54 records (ok 54; stale prompt 54) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -471,7 +471,7 @@ Mismatches: none
 
 ## distribution — held_out
 
-6 cases, 18 records (ok 18; stale prompt 0) · gemini-4-argon effort=low
+6 cases, 18 records (ok 18; stale prompt 18) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -496,7 +496,7 @@ Mismatches: none
 
 ## extent — held_out
 
-15 cases, 45 records (ok 45; stale prompt 0) · gemini-4-argon effort=low
+15 cases, 45 records (ok 45; stale prompt 45) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -525,7 +525,7 @@ Mismatches: none
 
 ## focus — held_out
 
-21 cases, 63 records (ok 63; stale prompt 0) · gemini-4-argon effort=low
+21 cases, 63 records (ok 63; stale prompt 63) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -553,7 +553,7 @@ Mismatches: none
 
 ## generic — held_out
 
-17 cases, 51 records (ok 51; stale prompt 0) · gemini-4-argon effort=low
+17 cases, 51 records (ok 51; stale prompt 51) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -583,7 +583,7 @@ Mismatches: none
 
 ## group — held_out
 
-11 cases, 33 records (ok 33; stale prompt 0) · gemini-4-argon effort=low
+11 cases, 33 records (ok 33; stale prompt 33) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -610,7 +610,7 @@ Mismatches: none
 
 ## imperative — held_out
 
-18 cases, 54 records (ok 54; stale prompt 0) · gemini-4-argon effort=low
+18 cases, 54 records (ok 54; stale prompt 54) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -638,7 +638,7 @@ Mismatches: none
 
 ## link — held_out
 
-15 cases, 45 records (ok 45; stale prompt 0) · gemini-4-argon effort=low
+15 cases, 45 records (ok 45; stale prompt 42) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -652,22 +652,22 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (15 cases, 45 pairs), unanimous 15/15
 - type check: 45/45 emitted parses type
 - graph lints: none
-- spans: 222/222 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
-- usage: 45 calls · in 2,542,887 · cached 2,396,202 (94% of the input) · out 9,967 · thinking 0 (calls with thought tokens: 0)
+- spans: 225/225 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
+- usage: 45 calls · in 2,552,613 · cached 2,348,230 (92% of the input) · out 9,939 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
 Abstain cases (what the parser did, per run):
 - "Yusra left because the gate was open." (gap G00): r1 gap_reported [copular×1, motion×1, named-entity×1, witness×1; unmapped G00] · r2 gap_reported [copular×1, motion×1, named-entity×1, witness×1; unmapped G00] · r3 gap_reported [copular×1, motion×1, named-entity×1, witness×1; unmapped G00]
 - "Yusra laughed because of the rain." (gap G00): r1 gap_reported [activity×1, named-entity×1; unmapped G00] · r2 gap_reported [activity×1, named-entity×1; unmapped G00] · r3 gap_reported [activity×1, named-entity×1; unmapped G00]
 - "If Lamine sings, Yusra leaves." (gap G00): r1 gap_reported [named-entity×2; unmapped G00] · r2 gap_reported [named-entity×2; unmapped G00] · r3 gap_reported [named-entity×2; unmapped G00]
-- "Lamine waited while Yusra sang." (gap G00): r1 gap_reported [activity×2, named-entity×2; unmapped G00] · r2 gap_reported [activity×2, named-entity×2; unmapped G00] · r3 gap_reported [activity×2, named-entity×2; unmapped G00]
+- "Lamine waited while Yusra sang." (target `time-relation`): r1 target_fired [activity×2, named-entity×2, time-relation×1] · r2 target_fired [activity×2, named-entity×2, time-relation×1] · r3 target_fired [activity×2, named-entity×2, time-relation×1]
 - "Yusra went to the market to buy a thermos." (target `purpose`): r1 target_fired [acquisition×1, motion×1, named-entity×1, purpose×1, witness×2] · r2 target_fired [acquisition×1, motion×1, named-entity×1, purpose×1, witness×2] · r3 target_fired [acquisition×1, motion×1, named-entity×1, purpose×1, witness×2]
 
 Mismatches: none
 
 ## location — held_out
 
-15 cases, 45 records (ok 45; stale prompt 0) · gemini-4-argon effort=low
+15 cases, 45 records (ok 45; stale prompt 45) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -697,7 +697,7 @@ Mismatches: none
 
 ## locative — held_out
 
-15 cases, 45 records (ok 45; stale prompt 0) · gemini-4-argon effort=low
+15 cases, 45 records (ok 45; stale prompt 45) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -724,7 +724,7 @@ Mismatches: none
 
 ## manner — held_out
 
-13 cases, 39 records (ok 39; stale prompt 0) · gemini-4-argon effort=low
+13 cases, 39 records (ok 39; stale prompt 39) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -752,7 +752,7 @@ Mismatches: none
 
 ## modal — held_out
 
-1 cases, 3 records (ok 3; stale prompt 0) · gemini-4-argon effort=low
+1 cases, 3 records (ok 3; stale prompt 3) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -771,7 +771,7 @@ Mismatches: none
 
 ## motion — held_out
 
-15 cases, 45 records (ok 45; stale prompt 0) · gemini-4-argon effort=low
+15 cases, 45 records (ok 45; stale prompt 45) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -800,7 +800,7 @@ Mismatches: none
 
 ## named-entity — held_out
 
-1 cases, 3 records (ok 3; stale prompt 0) · gemini-4-argon effort=low
+1 cases, 3 records (ok 3; stale prompt 3) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -819,7 +819,7 @@ Mismatches: none
 
 ## oblique — held_out
 
-19 cases, 57 records (ok 57; stale prompt 0) · gemini-4-argon effort=low
+19 cases, 57 records (ok 57; stale prompt 54) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -833,14 +833,14 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (19 cases, 57 pairs), unanimous 19/19
 - type check: 57/57 emitted parses type
 - graph lints: none
-- spans: 213/213 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
-- usage: 57 calls · in 3,220,914 · cached 3,104,111 (96% of the input) · out 10,126 · thinking 0 (calls with thought tokens: 0)
+- spans: 219/219 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
+- usage: 57 calls · in 3,230,640 · cached 3,113,835 (96% of the input) · out 10,279 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
 Abstain cases (what the parser did, per run):
 - "Teodor arrived in 2019." (target `time`): r1 target_fired [motion×1, named-entity×1, time×1] · r2 target_fired [motion×1, named-entity×1, time×1] · r3 target_fired [motion×1, named-entity×1, time×1]
 - "Lamine left without saying a word." (gap G00): r1 gap_reported [motion×1, named-entity×1; unmapped G00] · r2 gap_reported [motion×1, named-entity×1; unmapped G00] · r3 gap_reported [motion×1, named-entity×1; unmapped G00]
-- "Yusra left after the audit." (gap G00): r1 gap_reported [motion×1, named-entity×1; unmapped G00] · r2 gap_reported [motion×1, named-entity×1; unmapped G00] · r3 gap_reported [motion×1, named-entity×1; unmapped G00]
+- "Yusra left after the audit." (target `time-relation`): r1 target_fired [motion×1, named-entity×1, time-relation×1, witness×1] · r2 target_fired [motion×1, named-entity×1, time-relation×1, witness×1] · r3 target_fired [motion×1, named-entity×1, time-relation×1, witness×1]
 - "Lamine entered the shed." (target `motion`): r1 target_fired [motion×1, named-entity×1, witness×1] · r2 target_fired [motion×1, named-entity×1, witness×1] · r3 target_fired [motion×1, named-entity×1, witness×1]
 - "The quilt was washed by Yusra." (target `activity`): r1 target_fired [activity×1, named-entity×1, witness×1] · r2 target_fired [activity×1, named-entity×1, witness×1] · r3 target_fired [activity×1, named-entity×1, witness×1]
 - "Teodor is taller than Yusra." (gap G00): r1 gap_reported [named-entity×2; unmapped G00] · r2 gap_reported [named-entity×2; unmapped G00] · r3 gap_reported [named-entity×2; unmapped G00]
@@ -849,7 +849,7 @@ Mismatches: none
 
 ## perception — held_out
 
-12 cases, 36 records (ok 36; stale prompt 0) · gemini-4-argon effort=low
+12 cases, 36 records (ok 36; stale prompt 36) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -880,7 +880,7 @@ Mismatches: none
 
 ## possession — held_out
 
-12 cases, 36 records (ok 36; stale prompt 0) · gemini-4-argon effort=low
+12 cases, 36 records (ok 36; stale prompt 36) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -909,7 +909,7 @@ Mismatches: none
 
 ## postmodifier — held_out
 
-10 cases, 30 records (ok 30; stale prompt 0) · gemini-4-argon effort=low
+10 cases, 30 records (ok 30; stale prompt 30) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -936,7 +936,7 @@ Mismatches: none
 
 ## psych — held_out
 
-13 cases, 39 records (ok 39; stale prompt 0) · gemini-4-argon effort=low
+13 cases, 39 records (ok 39; stale prompt 39) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -966,7 +966,7 @@ Mismatches: none
 
 ## purpose — held_out
 
-11 cases, 33 records (ok 33; stale prompt 0) · gemini-4-argon effort=low
+11 cases, 33 records (ok 33; stale prompt 33) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -994,34 +994,62 @@ Mismatches: none
 
 ## time — held_out
 
-18 cases, 54 records (ok 54; stale prompt 0) · gemini-4-argon effort=low
+25 cases, 75 records (ok 75; stale prompt 51) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
-| positive | 11 | 33 | 33 | 33 | 33 |
+| positive | 18 | 54 | 54 | 54 | 54 |
 | scoped | 3 | 9 | 9 | 9 | 9 |
 | optional | 1 | 3 | 3 | 3 | 3 |
 | abstain | 3 | 9 | 0 (false fires) | – | 9 |
 
-- selection: fire cases fired 45/45 · abstain cases false fires 0/9
-- fill: exact 45/45 among fires
-- stability: pairwise agreement 1.0 (18 cases, 54 pairs), unanimous 18/18
-- type check: 54/54 emitted parses type
+- selection: fire cases fired 66/66 · abstain cases false fires 0/9
+- fill: exact 66/66 among fires
+- stability: pairwise agreement 1.0 (25 cases, 75 pairs), unanimous 25/25
+- type check: 75/75 emitted parses type
 - graph lints: none
-- spans: 171/171 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
-- usage: 54 calls · in 3,051,423 · cached 2,886,290 (95% of the input) · out 8,342 · thinking 0 (calls with thought tokens: 0)
+- spans: 276/276 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
+- usage: 75 calls · in 4,315,938 · cached 4,050,063 (94% of the input) · out 13,129 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
 Abstain cases (what the parser did, per run):
 - "Teodor reads every day." (gap G00): r1 gap_reported [activity×1, named-entity×1; unmapped G00] · r2 gap_reported [activity×1, named-entity×1; unmapped G00] · r3 gap_reported [activity×1, named-entity×1; unmapped G00]
-- "Lamine left after the audit." (gap G00): r1 gap_reported [motion×1, named-entity×1; unmapped G00] · r2 gap_reported [motion×1, named-entity×1; unmapped G00] · r3 gap_reported [motion×1, named-entity×1; unmapped G00]
+- "Lamine left after the audit." (target `time-relation`): r1 target_fired [motion×1, named-entity×1, time-relation×1, witness×1] · r2 target_fired [motion×1, named-entity×1, time-relation×1, witness×1] · r3 target_fired [motion×1, named-entity×1, time-relation×1, witness×1]
 - "Lamine waited at the market." (target `location`): r1 target_fired [activity×1, location×1, named-entity×1, witness×1] · r2 target_fired [activity×1, location×1, named-entity×1, witness×1] · r3 target_fired [activity×1, location×1, named-entity×1, witness×1]
+
+Mismatches: none
+
+## time-relation — held_out
+
+26 cases, 78 records (ok 78; stale prompt 0) · gemini-4-argon effort=low
+
+| category | cases | runs | fired | exact | pass |
+|---|---|---|---|---|---|
+| positive | 18 | 54 | 54 | 54 | 54 |
+| scoped | 3 | 9 | 9 | 9 | 9 |
+| optional | 1 | 3 | 3 | 3 | 3 |
+| abstain | 4 | 12 | 0 (false fires) | – | 12 |
+
+- selection: fire cases fired 66/66 · abstain cases false fires 0/12
+- fill: exact 66/66 among fires
+- stability: pairwise agreement 1.0 (26 cases, 78 pairs), unanimous 26/26
+- type check: 78/78 emitted parses type
+- graph lints: none
+- spans: 339/339 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
+- usage: 78 calls · in 4,660,506 · cached 4,385,138 (94% of the input) · out 16,132 · thinking 0 (calls with thought tokens: 0)
+- issues reported by the parser: none
+
+Abstain cases (what the parser did, per run):
+- "Teodor will leave tomorrow." (target `time`): r1 target_fired [motion×1, named-entity×1, time×1] · r2 target_fired [motion×1, named-entity×1, time×1] · r3 target_fired [motion×1, named-entity×1, time×1]
+- "Since the ferret slept, Yusra sang." (target `link`): r1 target_fired [activity×2, link×1, named-entity×1, witness×1] · r2 target_fired [activity×2, link×1, named-entity×1, witness×1] · r3 target_fired [activity×2, link×1, named-entity×1, witness×1]
+- "The ladder was crooked until Monday." (gap G00): r1 gap_reported [copular×1, time×1, witness×1; unmapped G00] · r2 gap_reported [copular×1, time×1, witness×1; unmapped G00] · r3 gap_reported [copular×1, time×1, witness×1; unmapped G00]
+- "Whenever Yusra sang, the ferret hid." (gap G00): r1 gap_reported [named-entity×1; unmapped G00] · r2 gap_reported [named-entity×1; unmapped G00] · r3 gap_reported [named-entity×1; unmapped G00]
 
 Mismatches: none
 
 ## transfer — held_out
 
-11 cases, 33 records (ok 33; stale prompt 0) · gemini-4-argon effort=low
+11 cases, 33 records (ok 33; stale prompt 33) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -1049,7 +1077,7 @@ Mismatches: none
 
 ## witness — held_out
 
-2 cases, 6 records (ok 6; stale prompt 0) · gemini-4-argon effort=low
+2 cases, 6 records (ok 6; stale prompt 6) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|

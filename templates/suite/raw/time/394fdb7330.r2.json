@@ -1,0 +1,101 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "e576504c89d5c800dbe9fdc3baab9dbbd0397acfd8cf64f6021104e23b31a9b7",
+  "item": {
+    "id": "s394fdb7330",
+    "text": "Yusra arrived two days after the audit."
+  },
+  "usage": {
+    "input": 59750,
+    "output": 195,
+    "thinking": null,
+    "total": 59945,
+    "cached": 57701,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 59750,
+    "candidatesTokenCount": 195,
+    "totalTokenCount": 59945,
+    "cachedContentTokenCount": 57701,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 59750
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 57701
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 195
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s394fdb7330\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"audit\", \"definite\": true, \"eventive\": true, \"span\": \"the audit\"}, {\"t\": \"motion\", \"id\": \"e1\", \"verb\": \"arrive\", \"mover\": \"@n1\", \"tense\": \"past\", \"span\": \"Yusra arrived\"}, {\"t\": \"time\", \"id\": \"t1\", \"event\": \"@e1\", \"anchor\": \"@x1\", \"offset\": 2, \"unit\": \"day\", \"direction\": \"after\", \"span\": \"two days after the audit\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s394fdb7330",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "audit",
+        "definite": true,
+        "eventive": true,
+        "span": "the audit"
+      },
+      {
+        "t": "motion",
+        "id": "e1",
+        "verb": "arrive",
+        "mover": "@n1",
+        "tense": "past",
+        "span": "Yusra arrived"
+      },
+      {
+        "t": "time",
+        "id": "t1",
+        "event": "@e1",
+        "anchor": "@x1",
+        "offset": 2,
+        "unit": "day",
+        "direction": "after",
+        "span": "two days after the audit"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "2a9a3fa258cdad2d747fdcbe0ebd8b0e2a17a87d7fd135bcf030ae79618d3563",
+  "run": 2,
+  "case": {
+    "template": "time",
+    "section": "held_out",
+    "index": 16,
+    "category": "positive",
+    "text": "Yusra arrived two days after the audit.",
+    "key": "394fdb7330"
+  }
+}

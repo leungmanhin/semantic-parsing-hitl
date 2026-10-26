@@ -5,9 +5,10 @@
 # monday), (Hour t 15), (Minute t 30) — or named by a word that is the time's own symbol ((Time
 # event dawn), (Time event night)), or, for a deictic (yesterday, tomorrow, last week), related
 # by an offset to the text's reference time, the reserved instance now: (Time event t) (BeforeBy
-# t now 1 day). Like a location, the attachment is part of the clause: negated, modalised and
-# generalised with the event. Relations between times (before, after, until, since, during, ago),
-# frequencies and durations are not this template.
+# t now 1 day) — a measured distance (three days ago, two weeks after the audit) is the same
+# offset with a number. Like a location, the attachment is part of the clause: negated, modalised
+# and generalised with the event. Relations with no measured distance (before, after, until,
+# since, during), frequencies and durations are not this template.
 
 id: time
 family: attachment
@@ -20,12 +21,21 @@ trigger:
     A time expression saying when the clause's event takes place: a calendar date or any part of
     one (in 2019, in May, on 3 May 2019, on Monday), a clock time (at 3 pm, at 2:30 pm, at noon,
     at midnight), a deictic relative to the moment the text speaks from (now, today, tonight,
-    yesterday, tomorrow, last / this / next week, month or year), or a time named by a word (at
-    dawn, at night, in autumn, later, this morning). The event is parsed with its own template;
-    the time instance names that event and describes the time: a date or a clock time by its
-    fields (year, month, day, weekday, hour, minute), a deictic by the `deictic` word with the
-    reference time as its anchor, a named time by its name. One instance per time expression; a
-    day part beside a date (Monday morning) is a second instance. When the time is predicated of
+    yesterday, tomorrow, last / this / next week, month or year), a time named by a word (at
+    dawn, at night, in autumn, later, this morning), a measured distance from an anchor (three
+    days ago, a year ago, in two weeks, two days after the audit, a week later), or an anaphoric
+    phrase naming a time by one the text stated before it (that evening, the same day, the next
+    day, the following morning, the week after). The event is parsed with its own template; the
+    time instance names that event and describes the time: a date or a clock time by its fields
+    (year, month, day, weekday, hour, minute), a deictic by the `deictic` word with the reference
+    time as its anchor, a measured distance by its `offset`, `unit` and `direction` from its
+    anchor (the reference time for ago / from now / in n units; a stated event or time for before
+    / after it and for later / earlier), an anaphoric phrase likewise from the antecedent event or
+    time (offset 0 for that / the same, 1 for next / following / after, a day part as a second
+    instance), a named time by its name. One instance per time expression; a day part beside a
+    date or an offset (Monday morning, the following morning) is a second instance. A time no
+    clause places an event at — the reference of a time relation (before noon), the edge of a
+    window (within three days) — is an instance with no event. When the time is predicated of
     an event noun by "be" (the meeting is at noon, the audit was on Monday), the noun is a witness
     marked eventive, the time attaches to it, and this instance records the clause's tense.
   surface_forms:
@@ -36,11 +46,15 @@ trigger:
     - "<clause> <named time>"                        # slept at night; sang at dawn
     - "<time>, <clause>"                             # In 2019, Teodor arrived
     - "<event noun> is / was at / on <time>"         # the meeting is at noon; the audit was on Monday
+    - "<clause> <n> <units> ago / later / earlier"   # left three days ago; a week later, Teodor left
+    - "<clause> in <n> <units>"                      # will leave in two weeks
+    - "<clause> <n> <units> before / after <event or time>"   # arrived two days after the audit
+    - "<clause>. That / the same <day part or unit>, <clause>"   # Lamine sang. That evening, Yusra left: offset 0 from the singing, plus evening
+    - "<clause>. The next / following <unit or day part>, <clause>"   # The following morning, Yusra left: offset 1 day, plus morning
   boundary:                   # looks like the time of an event but is not one
     - >-
-      a relation between two times or events — before the audit, after noon, until noon, since
-      May, by Monday, during the meeting, three days ago, two weeks later: no slot here; the
-      event is parsed, the phrase reported as unmapped
+      a relation with no measured distance — before the audit, after noon, until noon, since
+      May, by Monday, during the meeting, while Yusra sang: a time relation
     - >-
       a frequency or a schedule — every day, twice a week, on Sundays as a habit: no slot here;
       reported as unmapped
@@ -65,9 +79,15 @@ slots:
   deictic: {type: enum, values: [now, today, tonight, yesterday, tomorrow, last_week, this_week, next_week, last_month, this_month, next_month, last_year, this_year, next_year], required: false,
             doc: "a time relative to the moment the text speaks from, as one of the listed words (last Tuesday or two days ago are not deictics here); fill no field beside it"}
   anchor:  {type: filler, class: TimeTerm, required: false, default: "@now",
-            doc: "the reference time a deictic is relative to: always \"@now\" (the reserved id); the program supplies the instance"}
+            doc: "what a deictic or an offset is relative to: \"@now\" (the reserved id; the program supplies the instance) for a deictic and for ago / from now / in n units; the id of a time instance or of an event (a predication, an eventive witness) for an offset before / after it or for later / earlier, when the text states the anchor; the antecedent event or stated time of an anaphoric phrase (that evening: the previous clause's event)"}
   name:    {type: lemma, class: TimeTerm, required: false,
             doc: "a time named by a word or a fixed phrase that no deictic word covers, lowercase, joined with underscores: dawn, dusk, morning, afternoon, evening, night, spring, summer, autumn, winter, later, this_morning; fill no field beside it"}
+  offset:  {type: number, required: false,
+            doc: "a measured distance from the anchor: the number of units (three days ago → 3, a week later → 1, that evening → 0 day); fill unit and direction with it, no calendar field"}
+  unit:    {type: lemma, class: Class, required: false,
+            doc: "the unit of the offset, singular and lowercase: minute, hour, day, week, month, year"}
+  direction: {type: enum, values: [before, after], required: false,
+            doc: "before when the time precedes its anchor (ago, earlier, before it), after when it follows (from now, in n units, later, after it) and for the same period as the anchor (that evening, the same day: offset 0)"}
   year:    {type: int, required: false, doc: "the calendar year (2019)"}
   month:   {type: lemma, class: Class, required: false, doc: "the month name, lowercase (may)"}
   day:     {type: int, required: false, doc: "the day of the month (3)"}
@@ -77,7 +97,7 @@ slots:
   tense:   {type: enum, values: [past, present, future], required: false,
             doc: "only when the time is predicated of an event noun by be (the meeting was at noon): the clause's tense; otherwise absent, the event's own template records it"}
 
-mints: {id: TimeTerm, symbol: name, constant: true, literal: time}   # a named time is its word; otherwise sk_time_n (a date, a clock time, a deictic)
+mints: {id: TimeTerm, symbol: name, constant: true, literal: time}   # a named time is its word; otherwise sk_time_n (a date, a clock time, a deictic, an offset)
 
 emits:
   - atom: "(Time {event} @id)"
@@ -137,6 +157,12 @@ emits:
   - atom: "(BeforeBy {anchor} @id 1 year)"
     when: "deictic == next_year"
     declare: {year: Class}
+  - atom: "(BeforeBy @id {anchor} {offset} {unit})"       # three days ago: the time precedes its anchor by the offset
+    if_filled: offset
+    when: "direction == before"
+  - atom: "(BeforeBy {anchor} @id {offset} {unit})"       # in two weeks, a week later: the anchor precedes the time
+    if_filled: offset
+    when: "direction == after"
   - atom: "(Past {event})"
     if_filled: event
     when: "tense == past"
@@ -156,11 +182,22 @@ notes:
     it against the anchor's calendar fields, and a revised reference time revises every deictic
     at once. Two "yesterday"s are two instances with the same offset.
   - >-
+    A measured distance is a deictic with a number: three days ago is the time three days before
+    the anchor — (BeforeBy t now 3 day) — and the same rules that resolve yesterday resolve it;
+    two days after the audit is a time two days after that event, (BeforeBy sk_audit_1 t 2 day).
+    The event sits at the time, (Time e t), so how long before now, or before another event, an
+    event took place is a question over the times.
+  - >-
+    An anaphoric phrase is the same offset from its antecedent: that evening is 0 days from the
+    previous clause's event with evening as a second instance, the following morning 1 day after
+    it with morning; a stated date as the antecedent (arrived on Monday; the next day …) makes
+    that time instance the anchor.
+  - >-
     The attachment is rendered wherever its event is rendered: "Teodor did not arrive in 2019"
     denies the dated arrival as a whole, and a generalization carries the time into its rule.
 
 depends_on: [witness, reference-time]
-composes_with: [negation, modal, generic, distribution]
+composes_with: [negation, modal, generic, distribution, time-relation]
 
 examples:
   shown:                     # rendered into the prompt
@@ -193,9 +230,13 @@ examples:
         - {t: witness, id: x1, class: spindle, definite: true, span: "the spindle"}
         - {t: transfer, id: e1, verb: sell, giver: "@n1", object: "@x1", tense: past, span: "Lamine sold the spindle"}
         - {t: time, id: t1, event: "@e1", weekday: monday, span: "on Monday"}
-    - category: abstain
+    - category: positive
+      note: a measured distance from the reference time — a deictic with a number
       text: "Three days ago, Yusra left."
-      expected: {abstain: true, gap: G00, span: "Three days ago"}     # a relation to now
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
+        - {t: motion, id: m1, verb: leave, mover: "@n1", tense: past, span: "Yusra left"}
+        - {t: time, id: t1, event: "@m1", offset: 3, unit: day, direction: before, anchor: "@now", span: "Three days ago"}
     - category: abstain
       text: "Yusra laughed in the barn."
       expected: {abstain: true, template: location}                   # a place
@@ -311,9 +352,70 @@ examples:
         - {t: activity, id: v1, verb: sleep, actor: "@q1", tense: past}
         - {t: time, id: t1, event: "@v1", name: night}
         - {t: generic, id: r1, ranges: ["@q1"], over: ["@v1"]}
+    - category: positive
+      note: a distance after the reference time
+      text: "Lamine will leave in two weeks."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: motion, id: m1, verb: leave, mover: "@n1", tense: future}
+        - {t: time, id: t1, event: "@m1", offset: 2, unit: week, direction: after, anchor: "@now"}
+    - category: positive
+      note: a distance from a stated event — the anchor is the eventive witness
+      text: "Yusra arrived two days after the audit."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, class: audit, definite: true, eventive: true}
+        - {t: motion, id: m1, verb: arrive, mover: "@n1", tense: past}
+        - {t: time, id: t1, event: "@m1", offset: 2, unit: day, direction: after, anchor: "@x1"}
+    - category: positive
+      note: a distance from the previous clause's event — the anchor is that event
+      text: "Lamine sang. A week later, Teodor left."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: named-entity, id: n2, name: "Teodor"}
+        - {t: activity, id: v1, verb: sing, actor: "@n1", tense: past}
+        - {t: motion, id: m1, verb: leave, mover: "@n2", tense: past}
+        - {t: time, id: t1, event: "@m1", offset: 1, unit: week, direction: after, anchor: "@v1"}
+    - category: positive
+      note: one unit with no number word
+      text: "Ottoline left a year ago."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: motion, id: m1, verb: leave, mover: "@n1", tense: past}
+        - {t: time, id: t1, event: "@m1", offset: 1, unit: year, direction: before, anchor: "@now"}
+    - category: positive
+      note: an anaphoric phrase — the same day as the previous clause's event, a day part beside it
+      text: "Lamine sang. That evening, Yusra left."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: named-entity, id: n2, name: "Yusra"}
+        - {t: activity, id: v1, verb: sing, actor: "@n1", tense: past}
+        - {t: motion, id: m1, verb: leave, mover: "@n2", tense: past}
+        - {t: time, id: t1, event: "@m1", offset: 0, unit: day, direction: after, anchor: "@v1"}
+        - {t: time, id: t2, event: "@m1", name: evening}
+    - category: positive
+      note: the following morning — one day after the antecedent event, plus the day part
+      text: "Lamine sang. The following morning, Yusra left."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: named-entity, id: n2, name: "Yusra"}
+        - {t: activity, id: v1, verb: sing, actor: "@n1", tense: past}
+        - {t: motion, id: m1, verb: leave, mover: "@n2", tense: past}
+        - {t: time, id: t1, event: "@m1", offset: 1, unit: day, direction: after, anchor: "@v1"}
+        - {t: time, id: t2, event: "@m1", name: morning}
+    - category: positive
+      note: the next day after a stated date — the anchor is that time instance
+      text: "Teodor arrived on Monday. The next day, Lamine left."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: motion, id: m1, verb: arrive, mover: "@n1", tense: past}
+        - {t: time, id: t1, event: "@m1", weekday: monday}
+        - {t: motion, id: m2, verb: leave, mover: "@n2", tense: past}
+        - {t: time, id: t2, event: "@m2", offset: 1, unit: day, direction: after, anchor: "@t1"}
     - category: abstain
       text: "Lamine left after the audit."
-      expected: {abstain: true, gap: G00, span: "after the audit"}    # a relation between events
+      expected: {abstain: true, template: time-relation}              # a time relation
     - category: abstain
       text: "Teodor reads every day."
       expected: {abstain: true, gap: G00, span: "every day"}          # a frequency

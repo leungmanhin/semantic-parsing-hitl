@@ -1,0 +1,98 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "e576504c89d5c800dbe9fdc3baab9dbbd0397acfd8cf64f6021104e23b31a9b7",
+  "item": {
+    "id": "s84df0760b9",
+    "text": "Yusra left before noon."
+  },
+  "usage": {
+    "input": 59748,
+    "output": 178,
+    "thinking": null,
+    "total": 59926,
+    "cached": 57699,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 59748,
+    "candidatesTokenCount": 178,
+    "totalTokenCount": 59926,
+    "cachedContentTokenCount": 57699,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 59748
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 57699
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 178
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s84df0760b9\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n1\", \"tense\": \"past\", \"span\": \"Yusra left\"}, {\"t\": \"time\", \"id\": \"t1\", \"hour\": 12, \"span\": \"noon\"}, {\"t\": \"time-relation\", \"id\": \"r1\", \"event\": \"@m1\", \"reference\": \"@t1\", \"head\": \"Before\", \"word\": \"before\", \"span\": \"before noon\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s84df0760b9",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "motion",
+        "id": "m1",
+        "verb": "leave",
+        "mover": "@n1",
+        "tense": "past",
+        "span": "Yusra left"
+      },
+      {
+        "t": "time",
+        "id": "t1",
+        "hour": 12,
+        "span": "noon"
+      },
+      {
+        "t": "time-relation",
+        "id": "r1",
+        "event": "@m1",
+        "reference": "@t1",
+        "head": "Before",
+        "word": "before",
+        "span": "before noon"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "2a9a3fa258cdad2d747fdcbe0ebd8b0e2a17a87d7fd135bcf030ae79618d3563",
+  "run": 2,
+  "case": {
+    "template": "time-relation",
+    "section": "held_out",
+    "index": 8,
+    "category": "positive",
+    "text": "Yusra left before noon.",
+    "key": "84df0760b9"
+  }
+}

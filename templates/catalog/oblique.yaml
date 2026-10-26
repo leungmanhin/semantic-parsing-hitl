@@ -44,7 +44,7 @@ trigger:
       the barn: the motion's goal or source; the source of a transfer or an acquisition
     - >-
       when — in 2019, on Monday, at noon: a time; after / before / during / until / since an
-      event or a time: a relation in time, with no slot here; report the phrase as unmapped
+      event or a time: a time relation
     - >-
       a means, a companion or a beneficiary — with a knife, by train, with Yusra, for Teodor's
       benefit: an adjunct; the by-phrase of a passive — washed by Yusra: the clause's own actor
@@ -60,8 +60,9 @@ trigger:
       a comparison — taller than Yusra, as tall as Teodor: no slot here; report the span as
       unmapped
     - >-
-      a gerund or a clause as the object — without saying a word, by working hard, after
-      leaving: no slot here; report the phrase as unmapped
+      a gerund clause as the object — without saying a word, by working hard: not yet (without
+      denies the event, by asserts it: a scope question); report the phrase as unmapped; a gerund
+      after a temporal preposition — after leaving: a time relation
     - >-
       a multi-word preposition with no head of its own — because of the rain, due to the audit,
       instead of Lamine, on behalf of Yusra, in spite of the storm: report the phrase as
@@ -258,7 +259,7 @@ examples:
       expected: {abstain: true, template: activity}                   # the by-phrase of a passive
     - category: abstain
       text: "Yusra left after the audit."
-      expected: {abstain: true, gap: G00, span: "after the audit"}    # a relation in time
+      expected: {abstain: true, template: time-relation}              # a time relation
     - category: abstain
       text: "Lamine left without saying a word."
       expected: {abstain: true, gap: G00, span: "without saying a word"}   # a gerund as the object

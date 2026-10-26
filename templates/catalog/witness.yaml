@@ -17,7 +17,8 @@ trigger:
     instance; the possessor presupposes the witness, so no definite mark is needed. A
     noun that names an event or a period (meeting, audit, war, trip, storm) is a witness like any
     other; when the clause puts the noun itself in time (the meeting is at noon, the audit was on
-    Monday), mark it eventive so that the time can attach to it.
+    Monday) or places another event relative to it (left after the audit, slept during the
+    meeting), mark it eventive so that the time or the relation can attach to it.
   surface_forms:
     - "a <N>"                       # indefinite
     - "the <N>"                     # definite
@@ -42,7 +43,7 @@ slots:
   possessor: {type: filler, class: Entity, required: false,
               doc: "the possessor of a possessive phrase: Yusra's quilt, the quilt of Yusra, her quilt; a referent id (for a possessive pronoun, the id of its mention instance), or a bare lemma for a class-level possessor"}
   eventive: {type: bool, required: false,
-             doc: "true when the noun names an event or a period and the clause puts the noun itself in time (the meeting is at noon); absent otherwise"}
+             doc: "true when the noun names an event or a period and the clause puts the noun itself in time (the meeting is at noon) or places another event relative to it (after the audit, during the meeting); absent otherwise"}
 
 mints: {id: Entity, stem: class, also: {Event: eventive}}      # an eventive witness is an Event too
 

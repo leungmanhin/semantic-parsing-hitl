@@ -55,6 +55,8 @@ def _value_doc(spec: dict, family: str | None = None) -> str:
     if t == "filler":
         if spec.get("attaches"):
             return '"@id" of the predication instance this attaches to'
+        if spec.get("class") == "Instance":
+            return '"@id" of an instance, of the kinds the slot names'
         if spec.get("class") == "Event":
             return '"@id" of a predication instance (the clause\'s event)'
         return '"@id" of a referent instance, or a bare lemma for a non-specific filler'
