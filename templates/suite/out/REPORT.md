@@ -1,6 +1,6 @@
 # Suite report
 
-prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 214cffae01faae1e) · type check: ran
+prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 3ce2425e862d65e7) · type check: ran
 
 ## Catalog checks
 
@@ -326,7 +326,7 @@ Mismatches: none
 
 ## conditional — held_out
 
-13 cases, 39 records (ok 39; stale prompt 0) · gemini-4-argon effort=low
+13 cases, 39 records (ok 39; stale prompt 39) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -354,7 +354,7 @@ Mismatches: none
 
 ## conditional-property — held_out
 
-13 cases, 39 records (ok 39; stale prompt 33) · gemini-4-argon effort=low
+13 cases, 39 records (ok 39; stale prompt 39) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -471,7 +471,7 @@ Mismatches: none
 
 ## counterfactual — held_out
 
-6 cases, 18 records (ok 18; stale prompt 0) · gemini-4-argon effort=low
+6 cases, 18 records (ok 18; stale prompt 18) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -664,28 +664,25 @@ Mismatches: none
 
 ## generic — held_out
 
-17 cases, 51 records (ok 51; stale prompt 51) · gemini-4-argon effort=low
+17 cases, 51 records (ok 51; stale prompt 48) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
-| positive | 11 | 33 | 33 | 33 | 33 |
+| positive | 12 | 36 | 36 | 36 | 36 |
 | contrast | 1 | 3 | 3 | 3 | 3 |
 | scoped | 1 | 3 | 3 | 3 | 3 |
-| abstain | 4 | 12 | 0 (false fires) | – | 12 |
+| abstain | 3 | 9 | 0 (false fires) | – | 9 |
 
-- selection: fire cases fired 39/39 · abstain cases false fires 0/12
-- fill: exact 39/39 among fires
+- selection: fire cases fired 42/42 · abstain cases false fires 0/9
+- fill: exact 42/42 among fires
 - stability: pairwise agreement 1.0 (17 cases, 51 pairs), unanimous 17/17
-- type check: 48/48 emitted parses type
+- type check: 51/51 emitted parses type
 - graph lints: none
-- spans: 162/162 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
-- usage: 51 calls · in 2,881,743 · cached 2,668,333 (93% of the input) · out 8,166 · thinking 0 (calls with thought tokens: 0)
-- issues reported by the parser: 2
-  - P00 · generic · r2 "Ferrets can climb.": The generic template's 'over' slot allows a modal over the predication, but its 'Not this template' section explicitly excludes 'ferrets can climb' as a property of the class with no template covering it.
-  - P00 · generic · r3 "Ferrets can climb.": The generic template's 'over' slot allows a modal over the predication, but its 'Not this template' section explicitly excludes 'ferrets can climb' as a property of the class with no template covering that construction.
+- spans: 174/174 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
+- usage: 51 calls · in 2,925,084 · cached 2,711,622 (93% of the input) · out 8,296 · thinking 0 (calls with thought tokens: 0)
+- issues reported by the parser: none
 
 Abstain cases (what the parser did, per run):
-- "Ferrets can climb." (gap G00): r1 gap_reported [nothing fired; unmapped G00] · r2 gap_reported [nothing fired; unmapped G00] · r3 gap_reported [nothing fired; unmapped G00]
 - "A few students laughed." (target `group`): r1 target_fired [activity×1, distribution×1, group×1] · r2 target_fired [activity×1, distribution×1, group×1] · r3 target_fired [activity×1, distribution×1, group×1]
 - "Most herons are patient." (target `class-statement`): r1 target_fired [class-statement×1] · r2 target_fired [class-statement×1] · r3 target_fired [class-statement×1]
 - "Wax is soft when warm." (target `conditional-property`): r1 target_fired [conditional-property×1, copular×2, range×1] · r2 target_fired [conditional-property×1, copular×2, range×1] · r3 target_fired [conditional-property×1, copular×2, range×1]
@@ -777,7 +774,7 @@ Mismatches: none
 
 ## link — held_out
 
-15 cases, 45 records (ok 45; stale prompt 42) · gemini-4-argon effort=low
+15 cases, 45 records (ok 45; stale prompt 45) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|

@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 6cb244a24851ba6b · 49 templates
+catalog sha256 2cf7439092970603 · 49 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -2201,7 +2201,8 @@ Not this template:
 - an emotional or evaluative state — fears the ferret, likes the news: a psych state, not
   perceiving
 - appearance and sensation with an adjective — looks tired, sounds odd, feels cold, felt tired:
-  a copular clause with a property
+  an evidential copular, with no template yet (the copular template takes only be); report the
+  predicate as unmapped
 - understanding and idioms — saw the point, I see, hear from Lamine: not perceiving a thing
 
 Slots:
@@ -3232,8 +3233,11 @@ Not this template:
 - a path of a motion — ran across the field, walked along the river, went through the gate: an
   oblique on the motion, by its preposition
 - a time phrase — in 2019, at noon, on Monday: a time, not a place
-- a non-spatial in / on / at — works on the audit, good at chess, in its demands: no place; an
-  oblique on the event, by its preposition
+- a non-spatial in / on / at on an event — works on the audit: no place; an oblique on the
+  event, by its preposition
+- a non-spatial phrase on an adjective — good at chess, modest in its demands: an adjective with
+  a complement, which a copular predication cannot carry; reported as unmapped until it has a
+  template
 - a place phrase inside a noun phrase — the ferret in the barn slept: a locative predication of
   that thing, not an attachment to the clause's event
 - between two places, among a group — between the barn and the shed: no slot here; reported as
@@ -4331,8 +4335,6 @@ Not this template:
   which carries the quantifier itself
 - a specific group — the ferrets slept, several students laughed, some students waited: a group
   and a distribution, not a rule over a class
-- a modal or a capability on a class — ferrets can climb, citizens must pay tax: a property of
-  the class, not an event rule
 - "every time" or "whenever" with a clause — every time the bell rings: the frequency template's
   when-clause form, not a quantifier on a subject
 - an existential singular — some ferret slept, a ferret slept: a particular witness

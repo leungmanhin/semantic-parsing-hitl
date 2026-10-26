@@ -1,6 +1,6 @@
 {
   "prompt": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_body_sha256": "214cffae01faae1eb1ee844ca5f812b5698e08abff9e2d6daa703d5373c09a78",
+  "prompt_body_sha256": "3ce2425e862d65e7cee5195cdfd72da404a67c86508686888795b8785fbc0736",
   "typecheck": "ran",
   "checks": {
     "examples": 805,
@@ -1058,7 +1058,7 @@
         "status": {
           "ok": 39
         },
-        "stale_prompt": 0,
+        "stale_prompt": 39,
         "by_category": {
           "positive": {
             "cases": 7,
@@ -1146,7 +1146,7 @@
         "status": {
           "ok": 39
         },
-        "stale_prompt": 33,
+        "stale_prompt": 39,
         "by_category": {
           "positive": {
             "cases": 5,
@@ -1525,7 +1525,7 @@
         "status": {
           "ok": 18
         },
-        "stale_prompt": 0,
+        "stale_prompt": 18,
         "by_category": {
           "positive": {
             "cases": 3,
@@ -2117,14 +2117,14 @@
         "status": {
           "ok": 51
         },
-        "stale_prompt": 51,
+        "stale_prompt": 48,
         "by_category": {
           "positive": {
-            "cases": 11,
-            "runs": 33,
-            "pass": 33,
-            "fired": 33,
-            "exact": 33
+            "cases": 12,
+            "runs": 36,
+            "pass": 36,
+            "fired": 36,
+            "exact": 36
           },
           "contrast": {
             "cases": 1,
@@ -2141,26 +2141,25 @@
             "exact": 3
           },
           "abstain": {
-            "cases": 4,
-            "runs": 12,
-            "pass": 12,
+            "cases": 3,
+            "runs": 9,
+            "pass": 9,
             "false_fires": 0,
             "outcomes": {
-              "gap_reported": 3,
               "target_fired": 9
             }
           }
         },
         "pass": 51,
         "selection": {
-          "fire_runs": 39,
-          "fired": 39,
-          "abstain_runs": 12,
+          "fire_runs": 42,
+          "fired": 42,
+          "abstain_runs": 9,
           "false_fires": 0
         },
         "fill": {
-          "fired": 39,
-          "exact": 39,
+          "fired": 42,
+          "exact": 42,
           "rate": 1.0
         },
         "stability": {
@@ -2170,39 +2169,24 @@
           "unanimous": 17
         },
         "typecheck": {
-          "checked": 48,
-          "passed": 48
+          "checked": 51,
+          "passed": 51
         },
         "usage": {
-          "input": 2881743,
-          "output": 8166,
+          "input": 2925084,
+          "output": 8296,
           "thinking": 0,
-          "total": 2889909,
-          "cached": 2668333,
+          "total": 2933380,
+          "cached": 2711622,
           "calls": 51,
           "thinking_calls": 0
         },
-        "issues": [
-          {
-            "code": "P00",
-            "where": "generic",
-            "text": "The generic template's 'over' slot allows a modal over the predication, but its 'Not this template' section explicitly excludes 'ferrets can climb' as a property of the class with no template covering it.",
-            "sentence": "Ferrets can climb.",
-            "run": 2
-          },
-          {
-            "code": "P00",
-            "where": "generic",
-            "text": "The generic template's 'over' slot allows a modal over the predication, but its 'Not this template' section explicitly excludes 'ferrets can climb' as a property of the class with no template covering that construction.",
-            "sentence": "Ferrets can climb.",
-            "run": 3
-          }
-        ],
+        "issues": [],
         "null_slots": 0,
         "lints": {},
         "spans": {
-          "instances": 162,
-          "with_span": 162,
+          "instances": 174,
+          "with_span": 174,
           "missing": 0,
           "not_verbatim": 0,
           "malformed": 0
@@ -2471,7 +2455,7 @@
         "status": {
           "ok": 45
         },
-        "stale_prompt": 42,
+        "stale_prompt": 45,
         "by_category": {
           "positive": {
             "cases": 8,

@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
+  "prompt_sha256": "be45831e60d19e5cc9ca767ab92deb50f91812c9b30e58c2ecfdc8c405cfb4e6",
   "item": {
     "id": "s5f105e3b12",
     "text": "Ferrets can climb."
   },
   "usage": {
-    "input": 56506,
-    "output": 126,
+    "input": 70953,
+    "output": 175,
     "thinking": null,
-    "total": 56632,
-    "cached": 54457,
+    "total": 71128,
+    "cached": 68904,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,55 +25,79 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 56506,
-    "candidatesTokenCount": 126,
-    "totalTokenCount": 56632,
-    "cachedContentTokenCount": 54457,
+    "promptTokenCount": 70953,
+    "candidatesTokenCount": 175,
+    "totalTokenCount": 71128,
+    "cachedContentTokenCount": 68904,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 56506
+        "tokenCount": 70953
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 54457
+        "tokenCount": 68904
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 126
+        "tokenCount": 175
       }
     ]
   },
-  "raw_text": "{\"id\": \"s5f105e3b12\", \"instances\": [], \"unmapped\": [{\"span\": \"Ferrets can climb\", \"code\": \"G00\", \"construction\": \"A modal or capability statement on a class.\"}], \"issues\": [{\"code\": \"P00\", \"where\": \"generic\", \"text\": \"The generic template's 'over' slot allows a modal over the predication, but its 'Not this template' section explicitly excludes 'ferrets can climb' as a property of the class with no template covering it.\"}]}",
+  "raw_text": "{\"id\": \"s5f105e3b12\", \"instances\": [{\"t\": \"range\", \"id\": \"q1\", \"class\": \"ferret\", \"span\": \"Ferrets\"}, {\"t\": \"motion\", \"id\": \"e1\", \"verb\": \"climb\", \"mover\": \"@q1\", \"tense\": \"present\", \"span\": \"Ferrets can climb\"}, {\"t\": \"modal\", \"id\": \"s1\", \"over\": [\"@e1\"], \"head\": \"Can\", \"surface\": \"can\", \"span\": \"can\"}, {\"t\": \"generic\", \"id\": \"r1\", \"ranges\": [\"@q1\"], \"over\": [\"@s1\"], \"span\": \"Ferrets can climb\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s5f105e3b12",
-    "instances": [],
-    "unmapped": [
+    "instances": [
       {
-        "span": "Ferrets can climb",
-        "code": "G00",
-        "construction": "A modal or capability statement on a class."
+        "t": "range",
+        "id": "q1",
+        "class": "ferret",
+        "span": "Ferrets"
+      },
+      {
+        "t": "motion",
+        "id": "e1",
+        "verb": "climb",
+        "mover": "@q1",
+        "tense": "present",
+        "span": "Ferrets can climb"
+      },
+      {
+        "t": "modal",
+        "id": "s1",
+        "over": [
+          "@e1"
+        ],
+        "head": "Can",
+        "surface": "can",
+        "span": "can"
+      },
+      {
+        "t": "generic",
+        "id": "r1",
+        "ranges": [
+          "@q1"
+        ],
+        "over": [
+          "@s1"
+        ],
+        "span": "Ferrets can climb"
       }
     ],
-    "issues": [
-      {
-        "code": "P00",
-        "where": "generic",
-        "text": "The generic template's 'over' slot allows a modal over the predication, but its 'Not this template' section explicitly excludes 'ferrets can climb' as a property of the class with no template covering it."
-      }
-    ]
+    "unmapped": [],
+    "issues": []
   },
-  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
+  "prompt_body_sha256": "3ce2425e862d65e7cee5195cdfd72da404a67c86508686888795b8785fbc0736",
   "run": 2,
   "case": {
     "template": "generic",
     "section": "held_out",
     "index": 15,
-    "category": "abstain",
+    "category": "positive",
     "text": "Ferrets can climb.",
     "key": "5f105e3b12"
   }
