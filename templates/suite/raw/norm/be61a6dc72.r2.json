@@ -1,0 +1,81 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "317828a7580e9dd673d25c7e4b13c7b5dd5b4da9b73a0969fcd3093db8869500",
+  "item": {
+    "id": "sbe61a6dc72",
+    "text": "Teodor was allowed inside the shed."
+  },
+  "usage": {
+    "input": 73483,
+    "output": 98,
+    "thinking": null,
+    "total": 73581,
+    "cached": 71434,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 73483,
+    "candidatesTokenCount": 98,
+    "totalTokenCount": 73581,
+    "cachedContentTokenCount": 71434,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 73483
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 71434
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 98
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sbe61a6dc72\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}], \"unmapped\": [{\"span\": \"was allowed inside the shed\", \"code\": \"G00\", \"construction\": \"A permission predicate with a prepositional place or direction phrase and no verb to seal.\"}], \"issues\": []}",
+  "response": {
+    "id": "sbe61a6dc72",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "was allowed inside the shed",
+        "code": "G00",
+        "construction": "A permission predicate with a prepositional place or direction phrase and no verb to seal."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "d2077e71152ae6c16edf35bc4cc91cdec638d66c7eb0ab9ac8976254e4c8f5ac",
+  "run": 2,
+  "case": {
+    "template": "norm",
+    "section": "held_out",
+    "index": 25,
+    "category": "abstain",
+    "text": "Teodor was allowed inside the shed.",
+    "key": "be61a6dc72"
+  }
+}

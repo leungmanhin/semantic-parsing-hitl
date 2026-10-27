@@ -85,7 +85,7 @@ notes:
     the form slot records which the text used, for later normalization.
 
 depends_on: [named-entity, witness]
-composes_with: [negation, modal, time]
+composes_with: [negation, modal, norm, time]
 
 examples:
   shown:                     # rendered into the prompt
@@ -123,6 +123,12 @@ examples:
       instances:
         - {t: named-entity, id: n1, name: "Yusra"}
         - {t: copular, id: c1, subject: "@n1", predicate: weaver, form: noun, tense: present}
+    - category: positive
+      note: a legal status predicated of a thing — a property, since no action is in the text
+      text: "This spindle is illegal."
+      instances:
+        - {t: witness, id: x1, class: spindle, definite: true}
+        - {t: copular, id: c1, subject: "@x1", predicate: illegal, form: adjective, tense: present}
     - category: contrast
       note: tense marker — the instance must differ in tense only
       text: "Yusra was a weaver."

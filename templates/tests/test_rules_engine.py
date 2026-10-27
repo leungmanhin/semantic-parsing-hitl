@@ -231,5 +231,39 @@ class SeededRulesOnTheEngine(unittest.TestCase):
         self.assertFalse(self.query(h, "(Member sk_leave_1 leave)"))                 # nor the consequent
 
 
+    def test_a_norm_permits_and_a_prohibition_denies(self):
+        """An obligation permits the same sealed act (obligation_permits, at the obligation's
+        strength); a stored denial of permission answers the permission at strength 0; a class
+        norm instantiates for a stated member and chains to the permission; a class prohibition
+        answers the member's permission at 0. The sealed act is never asserted."""
+        lock = "(And (Member sk_lock_1 lock) (Agent sk_lock_1 sk_lamine_1) (Patient sk_lock_1 sk_shed_1))"
+        h = self.space(['(: n1 (Name sk_lamine_1 "Lamine") (STV 1.0 0.99))', '(: x1 (Member sk_shed_1 shed) (STV 1.0 0.99))',
+                        f'(: s1 (Obligated {lock}) (STV 1.0 0.99))'])
+        res = self.query(h, f"(Permitted {lock})")
+        self.assertTrue(res and "obligation_permits" in res[0], res)
+        self.assertAlmostEqual(tv(res)[0], 1.0, places=2)
+        self.assertFalse(self.query(h, "(Member sk_lock_1 lock)"))                      # sealed, not asserted
+        wash = "(And (Member sk_wash_1 wash) (Agent sk_wash_1 sk_teodor_1) (Patient sk_wash_1 sk_quilt_1))"
+        weak = self.query(self.space([f'(: s1 (Obligated {wash}) (STV 0.7 0.99))']), f"(Permitted {wash})")
+        self.assertAlmostEqual(tv(weak)[0], 0.7, places=2)                             # should: permits at 0.7
+        touch = "(And (Member sk_touch_1 touch) (Agent sk_touch_1 sk_lamine_1) (Patient sk_touch_1 sk_spindle_1))"
+        h = self.space([f'(: s1 (Not (Permitted {touch})) (STV 1.0 0.99))'])
+        no = self.query(h, f"(Permitted {touch})")
+        self.assertTrue(no, no)
+        self.assertAlmostEqual(tv(no)[0], 0.0, places=2)                                 # answered, as a no
+        self.assertTrue(h.query(f"(: $p (Permitted {touch}) (STV (Band 0.0 0.05) $c))", steps=400, timeout_sec=0))
+        self.assertFalse(self.query(h, f"(Obligated {touch})"))
+        wear = "(And (Member (sk_wear sk_bob_1) wear) (Agent (sk_wear sk_bob_1) sk_bob_1) (Patient (sk_wear sk_bob_1) glove))"
+        h = self.space(['(: r1 (Implication (Member $x glazier) (Obligated (And (Member (sk_wear $x) wear) (Agent (sk_wear $x) $x) (Patient (sk_wear $x) glove)))) (STV 1.0 0.99))',
+                        '(: k1 (Member sk_bob_1 glazier) (STV 1.0 0.99))'])
+        self.assertTrue(self.query(h, f"(Obligated {wear})"))                            # Bob's own obligation
+        two = self.query(h, f"(Permitted {wear})")
+        self.assertTrue(two and "obligation_permits" in two[0], two)                    # and its permission, two steps
+        enter = "(And (Member (sk_enter sk_bob_1) enter) (Agent (sk_enter sk_bob_1) sk_bob_1) (Goal (sk_enter sk_bob_1) sk_barn_1))"
+        h = self.space(['(: r1 (Implication (Member $x visitor) (Not (Permitted (And (Member (sk_enter $x) enter) (Agent (sk_enter $x) $x) (Goal (sk_enter $x) sk_barn_1))))) (STV 1.0 0.99))',
+                        '(: k1 (Member sk_bob_1 visitor) (STV 1.0 0.99))'])
+        self.assertAlmostEqual(tv(self.query(h, f"(Permitted {enter})"))[0], 0.0, places=2)   # a class prohibition: no for Bob
+
+
 if __name__ == "__main__":
     unittest.main()

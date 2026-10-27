@@ -1,0 +1,103 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "317828a7580e9dd673d25c7e4b13c7b5dd5b4da9b73a0969fcd3093db8869500",
+  "item": {
+    "id": "sb23c09cbc4",
+    "text": "Teodor should have sent the quilt."
+  },
+  "usage": {
+    "input": 73482,
+    "output": 191,
+    "thinking": null,
+    "total": 73673,
+    "cached": 71433,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 73482,
+    "candidatesTokenCount": 191,
+    "totalTokenCount": 73673,
+    "cachedContentTokenCount": 71433,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 73482
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 71433
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 191
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sb23c09cbc4\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"quilt\", \"definite\": true, \"span\": \"the quilt\"}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"send\", \"giver\": \"@n1\", \"object\": \"@x1\", \"tense\": \"past\", \"aspect\": \"perfect\", \"span\": \"Teodor should have sent the quilt\"}, {\"t\": \"norm\", \"id\": \"s1\", \"over\": [\"@e1\"], \"kind\": \"obligation\", \"weak\": true, \"word\": \"should\", \"span\": \"should\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sb23c09cbc4",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "quilt",
+        "definite": true,
+        "span": "the quilt"
+      },
+      {
+        "t": "transfer",
+        "id": "e1",
+        "verb": "send",
+        "giver": "@n1",
+        "object": "@x1",
+        "tense": "past",
+        "aspect": "perfect",
+        "span": "Teodor should have sent the quilt"
+      },
+      {
+        "t": "norm",
+        "id": "s1",
+        "over": [
+          "@e1"
+        ],
+        "kind": "obligation",
+        "weak": true,
+        "word": "should",
+        "span": "should"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "d2077e71152ae6c16edf35bc4cc91cdec638d66c7eb0ab9ac8976254e4c8f5ac",
+  "run": 2,
+  "case": {
+    "template": "norm",
+    "section": "held_out",
+    "index": 11,
+    "category": "positive",
+    "text": "Teodor should have sent the quilt.",
+    "key": "b23c09cbc4"
+  }
+}

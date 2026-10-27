@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 2cf7439092970603 · 49 templates
+catalog sha256 84a7fb0024f4bd28 · 50 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -52,8 +52,9 @@ fences.
 
 - Every instance carries an `id`: a short lowercase label you choose, unique within the item.
   Suggested prefixes: `n` named individual, `x` witness, `g` group, `e` event, `s` scope
-  operator (negation, modal), `c` copular predication, `l` location, `q` quantified range, `r`
-  rule, `d` comparison or degree, `m` measure, `t` time, `k` link, `f` focus (n1, x1, e1, s1 …).
+  operator (negation, modal, norm), `c` copular predication, `l` location, `q` quantified range,
+  `r` rule, `d` comparison or degree, `m` measure, `t` time, `k` link, `f` focus (n1, x1, e1, s1
+  …).
 - A slot that points to another instance holds `"@<id>"`, for example `"Agent": "@n1"`.
 - The id `now` is reserved for the text's REFERENCE TIME (the moment the text speaks from). You
   never write its instance; a deictic time (yesterday, tomorrow, last week) refers to it as its
@@ -2782,7 +2783,7 @@ Not this template:
 - a declarative with the same verb — Yusra closed the gate, the quilt was washed: an ordinary
   predication, asserted
 - an obligation or a permission stated of someone — Yusra must send the quilt, Lamine may leave:
-  a modal over an asserted clause, not a command
+  a norm over the clause, not a command
 - a reported command or request stands inside a communication — told Lamine to lock the shed:
   the imperative instance is the communication's content, not a top-level directive
 - a question that asks for an action — could you lock the shed?: a question; report it as
@@ -2854,23 +2855,26 @@ Not this template. TEXT: Teodor gave Yusra a thermos. — use `transfer`.
 
 ### modal — A modal auxiliary scoping over a clause
 
-When: A modal auxiliary (can, could, might, may, must, should, have to, be allowed to) applied
-to a clause. The clause is not asserted; the modal scopes over it. The head records the modality
-(capability, epistemic possibility, epistemic necessity, obligation, permission), and the
-surface word is kept. The clause under the modal keeps its own tense slot: present for a bare
+When: A modal auxiliary in its capability or epistemic reading (can, could, might, may, must,
+should) applied to a clause. The clause is not asserted; the modal scopes over it. The head
+records the modality (capability, epistemic possibility, epistemic necessity), and the surface
+word is kept; a deontic reading — an obligation, a permission, a prohibition, an exemption — is
+the norm template's. The clause under the modal keeps its own tense slot: present for a bare
 infinitive (might lend), past with aspect perfect for a perfect infinitive (might have lent);
 the modal instance carries nothing about tense.
 
 Forms:
 - <S> might <V> …
-- <S> must <V> …
-- <S> is allowed to <V> …
+- <S> must be <ADJ>
+- <S> might have <V>-ed …
 
 Not this template:
-- a modal word used epistemically vs deontically — may: permission (Permitted) or possibility
-  (Might); the sentence decides, the head records the choice
-- the ordering with negation — must not (Obligated over Not), need not (Not over Obligated), may
-  not (Not over Permitted), can't (Not over Can): the instance order follows the meaning
+- a modal word used deontically — must as an obligation, may or can as a permission, must not /
+  may not / cannot as a prohibition, need not as an exemption: the norm template; the sentence
+  decides the reading
+- the ordering with negation — can't (Not over Can), might not (Might over Not): the instance
+  order follows the meaning; a negated deontic is the norm template's prohibition or exemption,
+  with no negation instance
 
 Slots:
 
@@ -2878,8 +2882,23 @@ Slots:
 - `id` (required; your label for this instance).
 - `over` (required; a list of "@id" of the instances this one scopes over): the clause scoped
   over.
-- `head` (required; one of: Can, Might, Must, Obligated, Permitted).
+- `head` (required; one of: Can, Might, Must).
 - `surface` (optional; a string): the modal word as written.
+
+Example (epistemic must over a copular clause — an inference about what is the case, not an obligation). TEXT: Yusra must be tired.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Yusra", "span": "Yusra"},
+      {"t": "copular", "id": "c1", "subject": "@n1", "predicate": "tired", "form": "adjective", "tense": "present", "span": "Yusra must be tired"},
+      {"t": "modal", "id": "s1", "over": ["@c1"], "head": "Must", "surface": "must", "span": "must"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_yusra_1 "Yusra")
+    (Must (Member sk_yusra_1 tired))
 
 ### negation — Clausal negation
 
@@ -2897,8 +2916,9 @@ Not this template:
   exclusivity, the clause stays asserted); "only … not", "not even", "not … either" scope over
   the clause, with the focus atom outside
 - no as a quantifier — no clerk arrived: a quantified statement at strength 0, not a scope
-- must not / may not / need not — the modal template decides the scope order; this template
-  provides the negation instance it scopes over or under
+- must not / may not / cannot / need not / is not allowed to — a negated deontic is the norm
+  template's prohibition or exemption, with no negation instance; can't / might not keep a
+  negation instance under or over the modal
 
 Slots:
 
@@ -2923,6 +2943,139 @@ The program renders these instances as:
     (Name sk_teodor_1 "Teodor")
     (Member sk_quilt_1 quilt)
     (Not (And (Member sk_send_1 send) (Agent sk_send_1 sk_teodor_1) (Theme sk_send_1 sk_quilt_1) (Past sk_send_1)))
+
+### norm — A stated obligation, permission, prohibition or exemption
+
+When: A clause whose deontic status is stated: an OBLIGATION — must, has to, needs to, shall, is
+required / obliged to, is to; weaker, should, ought to, is supposed to, had better — a
+PERMISSION — may, can, could, is allowed / permitted / free to — a PROHIBITION — must not, may
+not, cannot, shall not, is not allowed to, is forbidden to, is prohibited / banned from — or an
+EXEMPTION — need not, does not have to, is not required to, is exempt from. The clause under the
+norm is parsed with its own template: its actor the subject, or empty for a passive (the ledger
+must be signed) and for a gerund with no subject (smoking is forbidden); its tense present for a
+bare infinitive (must send), past with aspect perfect for a perfect infinitive (should have
+sent); an indefinite object inside the act (wear a badge, send a letter) is a witness, as
+anywhere — it exists only inside the seal, and on a class it is a function of the member — while
+a bare plural or mass object (wear gloves, carry water) is a bare lemma. Then write the norm
+instance over it, with `kind` for the concept, `word` for the words as written and `weak: true`
+for should, ought to, supposed to, had better. Negation is never a separate instance: must not,
+may not, cannot, is not allowed to are a prohibition; need not, does not have to, is not
+required to are an exemption; should not is a weak prohibition. A deontic adjective or
+participle with "be" — forbidden, prohibited, banned, illegal, unlawful; allowed, permitted,
+permissible, legal; mandatory, compulsory, obligatory, required; optional, voluntary — is the
+same instance over the action its subject names: a gerund or an action noun (parking in the
+street is not allowed: the activity park with its location; payment is required: a transfer pay
+with no parties; it is forbidden to smoke: the activity smoke). The norm's own `tense` is past
+for had to, was allowed / required / forbidden to and could as a past permission, future for
+will have to; absent otherwise. On a class — glaziers must wear gloves, visitors may not enter
+the barn — the subject is a range and the generic template builds the rule with the norm in its
+`over`; an if-clause is the conditional template's, the norm in its `over` too; a norm over a
+class statement (weavers must be patient) is the norm over that instance.
+
+Forms:
+- <S> must / has to / needs to / shall / is required to <V> …
+- <S> should / ought to / is supposed to <V> …
+- <S> may / can / is allowed to / is permitted to <V> …
+- <S> must not / may not / cannot / is not allowed to / is forbidden to <V> …
+- <S> need not / does not have to / is not required to <V> …
+- <V>-ing (…) is forbidden / allowed / mandatory / optional
+- <S> had to / was allowed to / will have to <V> …
+
+Not this template:
+- an epistemic must, may, should or could — Yusra must be tired, it may rain, the quilt should
+  be dry by now: an inference about what is the case, the modal template; with no context to
+  decide, may or can on an agentive act (may leave, can use the kitchen) is a permission, on a
+  state or a non-agentive event (may be tired, may rain) epistemic
+- a capability — Lamine can swim, Teodor could not reach the ledge, is able to lift the crate:
+  an ability, the modal template (Can); can as a permission (visitors can use the kitchen) is a
+  norm
+- a verb of permitting, requiring or forbidding with its causer and its causee — Lamine allowed
+  Ottoline to leave, the rule requires glaziers to wear gloves, Yusra forbade Teodor to sing: a
+  causative, the norm stated by someone's act
+- a command — close the gate, don't touch the spindle: an imperative, not a stated norm
+- a reported norm — Yusra told Lamine that he must leave, Teodor believes that smoking is
+  forbidden: the norm instance is the content of the communication or the attitude
+- a deontic adjective predicated of a thing rather than an action — this spindle is illegal,
+  trailers are not permitted, a badge is required: the action is not in the text; a copular (or
+  a class statement) with the adjective as the property
+- a place or a direction with no verb to seal — Teodor was allowed inside the shed: the act is
+  not stated; report the predicate as unmapped
+- a wish, a hope, an intention or a need stated with a noun — wants to leave, hopes to win,
+  needs a ladder: an attitude or the verb's own template
+- would or could in a subjunctive conditional — if Yusra sang, Teodor could leave: the
+  counterfactual template
+
+Slots:
+
+- `t` (required): "norm"
+- `id` (required; your label for this instance): your label for the norm (s1, s2 …).
+- `over` (required; a list of "@id" of the instances this one scopes over): the clause the norm
+  is about: the id of its predication (the act with its actor, or no actor for a passive or a
+  gerund), or of a copular, class-statement or locative instance for a state (weavers must be
+  patient: the class statement); nothing else — never a negation instance, the polarity is the
+  kind.
+- `kind` (required; one of: obligation, permission, prohibition, exemption): obligation (must,
+  has to, should …), permission (may, can, is allowed to …), prohibition (must not, may not,
+  cannot, forbidden …), exemption (need not, does not have to, optional …).
+- `weak` (optional; true / false): true for should, ought to, had better, is supposed to,
+  advisable, recommended — a weak obligation, or a weak prohibition with should not; absent
+  otherwise.
+- `word` (optional; a string): the deontic expression as written, lowercase (must, has to, is
+  required to, may not, need not, forbidden, is not allowed to); recorded, not rendered.
+- `tense` (optional; one of: past, present, future): the norm's own tense: past for had to, was
+  allowed / required / forbidden to and could as a past permission; future for will have to,
+  will be allowed to; absent for must, may, should and every present form — the clause under the
+  norm keeps its own tense slot.
+
+Example (an obligation on an individual — the act sealed, the definite object at the top level). TEXT: Lamine must lock the shed.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Lamine", "span": "Lamine"},
+      {"t": "witness", "id": "x1", "class": "shed", "definite": true, "span": "the shed"},
+      {"t": "activity", "id": "v1", "verb": "lock", "actor": "@n1", "patient": "@x1", "tense": "present", "span": "Lamine must lock the shed"},
+      {"t": "norm", "id": "s1", "over": ["@v1"], "kind": "obligation", "word": "must", "span": "must"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_lamine_1 "Lamine")
+    (Member sk_shed_1 shed)
+    (Obligated (And (Member sk_lock_1 lock) (Agent sk_lock_1 sk_lamine_1) (Patient sk_lock_1 sk_shed_1)))
+
+Example (a deontic adjective on a gerund — a prohibition over an agentless act with its place). TEXT: Smoking is forbidden in the hall.
+
+Instances:
+
+    [
+      {"t": "witness", "id": "x1", "class": "hall", "definite": true, "span": "the hall"},
+      {"t": "activity", "id": "v1", "verb": "smoke", "tense": "present", "span": "Smoking"},
+      {"t": "location", "id": "l1", "event": "@v1", "place": "@x1", "head": "Location", "preposition": "in", "span": "in the hall"},
+      {"t": "norm", "id": "s1", "over": ["@v1"], "kind": "prohibition", "word": "forbidden", "span": "is forbidden"}
+    ]
+
+The program renders these instances as:
+
+    (Member sk_hall_1 hall)
+    (Not (Permitted (And (Member sk_smoke_1 smoke) (Location sk_smoke_1 sk_hall_1))))
+
+Example (a norm on a class — the generic builds the rule, the norm its conclusion). TEXT: Glaziers must wear gloves.
+
+Instances:
+
+    [
+      {"t": "range", "id": "q1", "class": "glazier", "span": "Glaziers"},
+      {"t": "activity", "id": "v1", "verb": "wear", "actor": "@q1", "patient": "glove", "tense": "present", "span": "Glaziers must wear gloves"},
+      {"t": "norm", "id": "s1", "over": ["@v1"], "kind": "obligation", "word": "must", "span": "must"},
+      {"t": "generic", "id": "r1", "ranges": ["@q1"], "over": ["@s1"], "span": "Glaziers must wear gloves"}
+    ]
+
+The program renders these instances as:
+
+    (Implication (Member $x glazier) (Obligated (And (Member (sk_wear $x) wear) (Agent (sk_wear $x) $x) (Patient (sk_wear $x) glove))))
+
+Not this template. TEXT: Yusra must be tired. — use `modal`.
 
 ## Attachments — time, place, measure, particles
 
@@ -3911,14 +4064,15 @@ When: "If P, Q" and its kin — if … then, provided that, as long as, in case,
 stative when-clause (the ladder is brittle when cold; Teodor is grumpy when tired). Parse the
 condition with its own template (a predication for an event — Lamine sings; a copular instance
 for a state — cold, open, tired, with the subject it is said of) and the consequence with its
-own (a predication, or a negation or modal over it, or a copular instance for a state), and name
-them in `condition` and `over`. With an eventive condition the rule ranges over the condition's
-events, and the consequence's event is a function of each; with a stative condition the rule
-holds between the states as stated. When the subject is a class — herons are patient if the
-weather is sunny — it is a range instance listed in `ranges`, the consequence a copular instance
-over it, and `generic: true` marks a bare plural (no quantifier word). The mood is indicative:
-the clauses are real possibilities; a subjunctive (if Lamine had sung, Yusra would have left; if
-Yusra sang, Teodor would leave) is a counterfactual. The span is the whole sentence.
+own (a predication, or a negation, modal or norm over it, or a copular instance for a state),
+and name them in `condition` and `over`. With an eventive condition the rule ranges over the
+condition's events, and the consequence's event is a function of each; with a stative condition
+the rule holds between the states as stated. When the subject is a class — herons are patient if
+the weather is sunny — it is a range instance listed in `ranges`, the consequence a copular
+instance over it, and `generic: true` marks a bare plural (no quantifier word). The mood is
+indicative: the clauses are real possibilities; a subjunctive (if Lamine had sung, Yusra would
+have left; if Yusra sang, Teodor would leave) is a counterfactual. The span is the whole
+sentence.
 
 Forms:
 - If <P>, <Q> / <Q> if <P>
@@ -3950,8 +4104,8 @@ Slots:
   instance for a state (the copular for cold, its subject the thing it is said of); several
   conditions are several ids.
 - `over` (required; a list of "@id" of the instances that state the clause): the consequence:
-  the id of its predication, or of the negation or modal over it, or of its copular instance for
-  a state; nothing else.
+  the id of its predication, or of the negation, modal or norm over it, or of its copular
+  instance for a state; nothing else.
 - `ranges` (optional; a list of "@id" of the instances that state the clause): the range
   instance of a class subject (herons are patient if the weather is sunny): its id; absent
   otherwise.
@@ -4323,12 +4477,12 @@ When: A clause whose subject (or another argument) is a range — a quantified c
 bare plural read generically — and whose predicate is a verb other than "be": every ferret
 slept, ferrets sleep, most students laugh, few herons migrate, no ferret slept. The predication
 is parsed with its own template, with the range as its filler; the generic instance names the
-range(s) and the predication (or the negation / modal over it) and nothing else. One generic per
-clause, however many ranges it has. An object that is itself a bare class (ferrets eat mice,
-spiders spin webs) is a bare lemma filler of the predication: the rule says an arbitrary ferret
-eats mice. A condition under which the generalization holds (ferrets bite when cornered, clay
-softens when wet) is a predication over the range — a copular instance for the state — listed in
-`condition`.
+range(s) and the predication (or the negation, modal or norm over it) and nothing else. One
+generic per clause, however many ranges it has. An object that is itself a bare class (ferrets
+eat mice, spiders spin webs) is a bare lemma filler of the predication: the rule says an
+arbitrary ferret eats mice. A condition under which the generalization holds (ferrets bite when
+cornered, clay softens when wet) is a predication over the range — a copular instance for the
+state — listed in `condition`.
 
 Not this template:
 - a copular predicate — all ferrets are curious, most herons are patient: a class statement,
@@ -4351,7 +4505,7 @@ Slots:
 - `ranges` (required; a list of "@id" of the instances that state the clause): the range
   instance(s) the rule quantifies over, in text order: one per quantified class noun.
 - `over` (required; a list of "@id" of the instances that state the clause): the predication
-  over the range(s), or the negation / modal over that predication: its id, nothing else.
+  over the range(s), or the negation / modal / norm over that predication: its id, nothing else.
 - `condition` (optional; a list of "@id" of the instances that state the clause): a predication
   over the range that must hold for the generalization to apply (ferrets bite when cornered: the
   copular instance for cornered, its subject the range); its id; absent as a rule.

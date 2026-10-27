@@ -1,0 +1,99 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "317828a7580e9dd673d25c7e4b13c7b5dd5b4da9b73a0969fcd3093db8869500",
+  "item": {
+    "id": "s6aab93edba",
+    "text": "Ottoline may leave."
+  },
+  "usage": {
+    "input": 73478,
+    "output": 195,
+    "thinking": null,
+    "total": 73673,
+    "cached": 71429,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 73478,
+    "candidatesTokenCount": 195,
+    "totalTokenCount": 73673,
+    "cachedContentTokenCount": 71429,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 73478
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 71429
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 195
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s6aab93edba\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n1\", \"tense\": \"present\", \"span\": \"Ottoline may leave\"}, {\"t\": \"norm\", \"id\": \"s1\", \"over\": [\"@m1\"], \"kind\": \"permission\", \"word\": \"may\", \"span\": \"may\"}], \"unmapped\": [], \"issues\": [{\"code\": \"P00\", \"where\": \"modal\", \"text\": \"The modal 'may' on an agentive verb ('Ottoline may leave') is ambiguous between permission (`norm`) and epistemic possibility (`modal`), and the sentence provides no context to decide the reading.\"}]}",
+  "response": {
+    "id": "s6aab93edba",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Ottoline",
+        "span": "Ottoline"
+      },
+      {
+        "t": "motion",
+        "id": "m1",
+        "verb": "leave",
+        "mover": "@n1",
+        "tense": "present",
+        "span": "Ottoline may leave"
+      },
+      {
+        "t": "norm",
+        "id": "s1",
+        "over": [
+          "@m1"
+        ],
+        "kind": "permission",
+        "word": "may",
+        "span": "may"
+      }
+    ],
+    "unmapped": [],
+    "issues": [
+      {
+        "code": "P00",
+        "where": "modal",
+        "text": "The modal 'may' on an agentive verb ('Ottoline may leave') is ambiguous between permission (`norm`) and epistemic possibility (`modal`), and the sentence provides no context to decide the reading."
+      }
+    ]
+  },
+  "prompt_body_sha256": "d2077e71152ae6c16edf35bc4cc91cdec638d66c7eb0ab9ac8976254e4c8f5ac",
+  "run": 3,
+  "case": {
+    "template": "norm",
+    "section": "held_out",
+    "index": 2,
+    "category": "positive",
+    "text": "Ottoline may leave.",
+    "key": "6aab93edba"
+  }
+}

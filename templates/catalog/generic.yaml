@@ -23,7 +23,7 @@ trigger:
     plural read generically — and whose predicate is a verb other than "be": every ferret slept,
     ferrets sleep, most students laugh, few herons migrate, no ferret slept. The predication is
     parsed with its own template, with the range as its filler; the generic instance names the
-    range(s) and the predication (or the negation / modal over it) and nothing else. One
+    range(s) and the predication (or the negation, modal or norm over it) and nothing else. One
     generic per clause, however many ranges it has. An object that is itself a bare class
     (ferrets eat mice, spiders spin webs) is a bare lemma filler of the predication: the rule
     says an arbitrary ferret eats mice. A condition under which the generalization holds
@@ -54,7 +54,7 @@ slots:
   ranges: {type: refs, class: Proposition, required: true,
            doc: "the range instance(s) the rule quantifies over, in text order: one per quantified class noun"}
   over:   {type: refs, class: Proposition, required: true, skolemize: true,
-           doc: "the predication over the range(s), or the negation / modal over that predication: its id, nothing else"}
+           doc: "the predication over the range(s), or the negation / modal / norm over that predication: its id, nothing else"}
   condition: {type: refs, class: Proposition, required: false,
               doc: "a predication over the range that must hold for the generalization to apply (ferrets bite when cornered: the copular instance for cornered, its subject the range); its id; absent as a rule"}
 
@@ -62,9 +62,12 @@ truth:
   strength:
     - {from: ranges, slot: quantifier,
        values: {every: 1.0, each: 1.0, all: 1.0, most: 0.9, many: 0.7, few: 0.1, "no": 0.0, none: 0.0}}
+    - {from: over, slot: weak, values: {"true": 0.7}}                   # a weak norm on the class (should)
+    - {from: over, slot: kind, values: {obligation: 1.0, permission: 1.0, prohibition: 1.0, exemption: 1.0}}   # a norm states no proportion
     - 0.9
-  confidence:                  # an explicit quantifier word 0.9; a bare generic states no proportion: 0.7
+  confidence:                  # an explicit quantifier word 0.9; a norm is a prescription 0.99; a bare generic states no proportion: 0.7
     - {from: ranges, slot: quantifier, values: {every: 0.9, each: 0.9, all: 0.9, most: 0.9, many: 0.9, few: 0.9, "no": 0.9, none: 0.9}}
+    - {from: over, slot: kind, values: {obligation: 0.99, permission: 0.99, prohibition: 0.99, exemption: 0.99}}
     - 0.7
 
 emits:
@@ -82,13 +85,16 @@ notes:
     The strength carries the quantity and the confidence the commitment: an explicit
     quantifier word states a proportion (confidence 0.9); a bare generic states none (0.7), so
     evidence about members overrides it more easily. Neither number is a judgment about the
-    world: the parser records the words, the program sets the values.
+    world: the parser records the words, the program sets the values. A norm on the class
+    (glaziers must wear gloves) is a prescription, not an observed proportion: the rule takes
+    the norm's values, 1.0 at 0.99 (0.7 for a weak one), unless a quantifier word sets the
+    strength.
   - >-
     A negated generalization (ferrets do not sleep) is the rule over the negation: the
     conclusion says that an arbitrary member does not sleep.
 
 depends_on: [range]
-composes_with: [negation, modal]
+composes_with: [negation, modal, norm]
 
 examples:
   shown:                     # rendered into the prompt

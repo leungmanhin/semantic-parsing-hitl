@@ -1,0 +1,93 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "295fa898e34c2cde341206ab8e7368024613b22e9e5295baaf6e13bc0cb3aed4",
+  "item": {
+    "id": "s597f0bed42",
+    "text": "Wearing a badge is mandatory."
+  },
+  "usage": {
+    "input": 73595,
+    "output": 136,
+    "thinking": null,
+    "total": 73731,
+    "cached": 71494,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 73595,
+    "candidatesTokenCount": 136,
+    "totalTokenCount": 73731,
+    "cachedContentTokenCount": 71494,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 73595
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 71494
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 136
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s597f0bed42\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"badge\", \"span\": \"a badge\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"wear\", \"patient\": \"@x1\", \"tense\": \"present\", \"span\": \"Wearing a badge\"}, {\"t\": \"norm\", \"id\": \"s1\", \"over\": [\"@v1\"], \"kind\": \"obligation\", \"word\": \"mandatory\", \"span\": \"is mandatory\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s597f0bed42",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "badge",
+        "span": "a badge"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "wear",
+        "patient": "@x1",
+        "tense": "present",
+        "span": "Wearing a badge"
+      },
+      {
+        "t": "norm",
+        "id": "s1",
+        "over": [
+          "@v1"
+        ],
+        "kind": "obligation",
+        "word": "mandatory",
+        "span": "is mandatory"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "9edf252bd9c6307eae0d30992ca48ecd92c65fdd978473ed3792cbdbd378be88",
+  "run": 1,
+  "case": {
+    "template": "norm",
+    "section": "held_out",
+    "index": 14,
+    "category": "positive",
+    "text": "Wearing a badge is mandatory.",
+    "key": "597f0bed42"
+  }
+}

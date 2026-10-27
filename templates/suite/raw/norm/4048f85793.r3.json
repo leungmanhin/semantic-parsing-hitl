@@ -1,0 +1,89 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "317828a7580e9dd673d25c7e4b13c7b5dd5b4da9b73a0969fcd3093db8869500",
+  "item": {
+    "id": "s4048f85793",
+    "text": "Weavers must be patient."
+  },
+  "usage": {
+    "input": 73483,
+    "output": 126,
+    "thinking": null,
+    "total": 73609,
+    "cached": 71434,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 73483,
+    "candidatesTokenCount": 126,
+    "totalTokenCount": 73609,
+    "cachedContentTokenCount": 71434,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 73483
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 71434
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 126
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s4048f85793\", \"instances\": [{\"t\": \"class-statement\", \"id\": \"c1\", \"subject\": \"weaver\", \"predicate\": \"patient\", \"form\": \"adjective\", \"definitional\": false, \"tense\": \"present\", \"span\": \"Weavers must be patient\"}, {\"t\": \"norm\", \"id\": \"s1\", \"over\": [\"@c1\"], \"kind\": \"obligation\", \"word\": \"must\", \"span\": \"must\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s4048f85793",
+    "instances": [
+      {
+        "t": "class-statement",
+        "id": "c1",
+        "subject": "weaver",
+        "predicate": "patient",
+        "form": "adjective",
+        "definitional": false,
+        "tense": "present",
+        "span": "Weavers must be patient"
+      },
+      {
+        "t": "norm",
+        "id": "s1",
+        "over": [
+          "@c1"
+        ],
+        "kind": "obligation",
+        "word": "must",
+        "span": "must"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "d2077e71152ae6c16edf35bc4cc91cdec638d66c7eb0ab9ac8976254e4c8f5ac",
+  "run": 3,
+  "case": {
+    "template": "norm",
+    "section": "held_out",
+    "index": 16,
+    "category": "scoped",
+    "text": "Weavers must be patient.",
+    "key": "4048f85793"
+  }
+}

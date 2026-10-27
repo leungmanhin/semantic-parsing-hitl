@@ -1,0 +1,112 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "295fa898e34c2cde341206ab8e7368024613b22e9e5295baaf6e13bc0cb3aed4",
+  "item": {
+    "id": "s31450c5e2b",
+    "text": "Couriers should wear a badge."
+  },
+  "usage": {
+    "input": 73598,
+    "output": 216,
+    "thinking": null,
+    "total": 73814,
+    "cached": 71549,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 73598,
+    "candidatesTokenCount": 216,
+    "totalTokenCount": 73814,
+    "cachedContentTokenCount": 71549,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 73598
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 71549
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 216
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s31450c5e2b\", \"instances\": [{\"t\": \"range\", \"id\": \"q1\", \"class\": \"courier\", \"span\": \"Couriers\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"badge\", \"span\": \"a badge\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"wear\", \"actor\": \"@q1\", \"patient\": \"@x1\", \"tense\": \"present\", \"span\": \"Couriers should wear a badge\"}, {\"t\": \"norm\", \"id\": \"s1\", \"over\": [\"@e1\"], \"kind\": \"obligation\", \"weak\": true, \"word\": \"should\", \"span\": \"should\"}, {\"t\": \"generic\", \"id\": \"r1\", \"ranges\": [\"@q1\"], \"over\": [\"@s1\"], \"span\": \"Couriers should wear a badge\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s31450c5e2b",
+    "instances": [
+      {
+        "t": "range",
+        "id": "q1",
+        "class": "courier",
+        "span": "Couriers"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "badge",
+        "span": "a badge"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "wear",
+        "actor": "@q1",
+        "patient": "@x1",
+        "tense": "present",
+        "span": "Couriers should wear a badge"
+      },
+      {
+        "t": "norm",
+        "id": "s1",
+        "over": [
+          "@e1"
+        ],
+        "kind": "obligation",
+        "weak": true,
+        "word": "should",
+        "span": "should"
+      },
+      {
+        "t": "generic",
+        "id": "r1",
+        "ranges": [
+          "@q1"
+        ],
+        "over": [
+          "@s1"
+        ],
+        "span": "Couriers should wear a badge"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "9edf252bd9c6307eae0d30992ca48ecd92c65fdd978473ed3792cbdbd378be88",
+  "run": 3,
+  "case": {
+    "template": "norm",
+    "section": "held_out",
+    "index": 17,
+    "category": "positive",
+    "text": "Couriers should wear a badge.",
+    "key": "31450c5e2b"
+  }
+}

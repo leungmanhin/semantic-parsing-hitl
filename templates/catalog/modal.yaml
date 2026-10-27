@@ -8,28 +8,31 @@ status: stub
 
 trigger:
   construction: >
-    A modal auxiliary (can, could, might, may, must, should, have to, be allowed to) applied to
-    a clause. The clause is not asserted; the modal scopes over it. The head records the
-    modality (capability, epistemic possibility, epistemic necessity, obligation, permission),
-    and the surface word is kept. The clause under the modal keeps its own tense slot: present
+    A modal auxiliary in its capability or epistemic reading (can, could, might, may, must,
+    should) applied to a clause. The clause is not asserted; the modal scopes over it. The head
+    records the modality (capability, epistemic possibility, epistemic necessity), and the
+    surface word is kept; a deontic reading — an obligation, a permission, a prohibition, an
+    exemption — is the norm template's. The clause under the modal keeps its own tense slot: present
     for a bare infinitive (might lend), past with aspect perfect for a perfect infinitive
     (might have lent); the modal instance carries nothing about tense.
   surface_forms:
     - "<S> might <V> …"
-    - "<S> must <V> …"
-    - "<S> is allowed to <V> …"
+    - "<S> must be <ADJ>"                     # epistemic must
+    - "<S> might have <V>-ed …"
   boundary:
     - >-
-      a modal word used epistemically vs deontically — may: permission (Permitted) or
-      possibility (Might); the sentence decides, the head records the choice
+      a modal word used deontically — must as an obligation, may or can as a permission, must
+      not / may not / cannot as a prohibition, need not as an exemption: the norm template; the
+      sentence decides the reading
     - >-
-      the ordering with negation — must not (Obligated over Not), need not (Not over Obligated),
-      may not (Not over Permitted), can't (Not over Can): the instance order follows the meaning
+      the ordering with negation — can't (Not over Can), might not (Might over Not): the
+      instance order follows the meaning; a negated deontic is the norm template's prohibition
+      or exemption, with no negation instance
 
 slots:
   id:      {type: id, required: true}
   over:    {type: refs, class: Proposition, required: true, doc: "the clause scoped over"}
-  head:    {type: enum, values: [Can, Might, Must, Obligated, Permitted], required: true}
+  head:    {type: enum, values: [Can, Might, Must], required: true}
   surface: {type: string, required: false, doc: "the modal word as written"}
 
 truth: {inherit: over}         # the atom carries the scoped statement's own truth value
@@ -38,13 +41,42 @@ emits:
   - atom: "({head} {over})"
 
 examples:
-  shown: []
+  shown:
+    - category: positive
+      note: epistemic must over a copular clause — an inference about what is the case, not an obligation
+      text: "Yusra must be tired."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
+        - {t: copular, id: c1, subject: "@n1", predicate: tired, form: adjective, tense: present, span: "Yusra must be tired"}
+        - {t: modal, id: s1, over: ["@c1"], head: Must, surface: must, span: "must"}
+      emitted:               # what the emitter produces (illustration; the emitter is the authority)
+        - "(Name sk_yusra_1 \"Yusra\")"
+        - "(Must (Member sk_yusra_1 tired))"
+      declarations:
+        - "(: sk_yusra_1 Entity)"
+        - "(: tired Class)"
   held_out:
     - category: positive
-      note: have to — an obligation over the clause, not a state of having
-      text: "Yusra has to send the quilt."
+      note: epistemic must over a copular clause — an inference, no tense beside it
+      text: "Teodor must be asleep."
       instances:
-        - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: witness, id: x1, class: quilt, definite: true}
-        - {t: transfer, id: e1, verb: send, giver: "@n1", object: "@x1", tense: present}
-        - {t: modal, id: s1, over: ["@e1"], head: Obligated, surface: "has to"}
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: copular, id: c1, subject: "@n1", predicate: asleep, form: adjective, tense: present}
+        - {t: modal, id: s1, over: ["@c1"], head: Must, surface: must}
+    - category: positive
+      note: epistemic must with another predicate
+      text: "Ottoline must be hungry."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: copular, id: c1, subject: "@n1", predicate: hungry, form: adjective, tense: present}
+        - {t: modal, id: s1, over: ["@c1"], head: Must, surface: must}
+    - category: positive
+      note: a capability — can over the clause, not a permission
+      text: "Lamine can swim."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: activity, id: v1, verb: swim, actor: "@n1", tense: present}
+        - {t: modal, id: s1, over: ["@v1"], head: Can, surface: can}
+    - category: abstain
+      text: "Yusra has to send the quilt."
+      expected: {abstain: true, template: norm}                       # have to: an obligation

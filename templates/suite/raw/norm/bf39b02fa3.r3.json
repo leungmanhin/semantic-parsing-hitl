@@ -1,0 +1,101 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "317828a7580e9dd673d25c7e4b13c7b5dd5b4da9b73a0969fcd3093db8869500",
+  "item": {
+    "id": "sbf39b02fa3",
+    "text": "Lamine is required to sign the ledger."
+  },
+  "usage": {
+    "input": 73484,
+    "output": 185,
+    "thinking": null,
+    "total": 73669,
+    "cached": 71435,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 73484,
+    "candidatesTokenCount": 185,
+    "totalTokenCount": 73669,
+    "cachedContentTokenCount": 71435,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 73484
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 71435
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 185
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sbf39b02fa3\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"ledger\", \"definite\": true, \"span\": \"the ledger\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"sign\", \"actor\": \"@n1\", \"patient\": \"@x1\", \"tense\": \"present\", \"span\": \"Lamine is required to sign the ledger\"}, {\"t\": \"norm\", \"id\": \"s1\", \"over\": [\"@v1\"], \"kind\": \"obligation\", \"word\": \"is required to\", \"span\": \"is required to\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sbf39b02fa3",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "ledger",
+        "definite": true,
+        "span": "the ledger"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "sign",
+        "actor": "@n1",
+        "patient": "@x1",
+        "tense": "present",
+        "span": "Lamine is required to sign the ledger"
+      },
+      {
+        "t": "norm",
+        "id": "s1",
+        "over": [
+          "@v1"
+        ],
+        "kind": "obligation",
+        "word": "is required to",
+        "span": "is required to"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "d2077e71152ae6c16edf35bc4cc91cdec638d66c7eb0ab9ac8976254e4c8f5ac",
+  "run": 3,
+  "case": {
+    "template": "norm",
+    "section": "held_out",
+    "index": 7,
+    "category": "positive",
+    "text": "Lamine is required to sign the ledger.",
+    "key": "bf39b02fa3"
+  }
+}

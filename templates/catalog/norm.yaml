@@ -1,0 +1,370 @@
+# Template: norm  (a stated obligation, permission, prohibition or exemption: "Lamine must lock the shed", "Smoking is forbidden in the hall", "Glaziers must wear gloves")
+#
+# A norm states the deontic status of an act or a state and asserts nothing about its
+# occurrence: the clause is sealed under the operator — (Obligated (And (Member sk_lock_1 lock)
+# (Agent sk_lock_1 sk_lamine_1) (Patient sk_lock_1 sk_shed_1))) — and the norm itself is the
+# fact. Four concepts, one canonical form each: an obligation (Obligated P), a permission
+# (Permitted P), a prohibition as the denial of permission (Not (Permitted P)) and an exemption
+# as the denial of obligation (Not (Obligated P)). The words — must, has to, should, may, must
+# not, need not, forbidden, mandatory — are provenance in the instance record; a weak
+# obligation (should, ought to) carries strength 0.7. On a class (glaziers must wear gloves) the
+# generic template builds the rule with the norm as its conclusion.
+
+id: norm
+family: scope
+shape: scope
+title: A stated obligation, permission, prohibition or exemption
+
+trigger:
+  construction: >
+    A clause whose deontic status is stated: an OBLIGATION — must, has to, needs to, shall, is
+    required / obliged to, is to; weaker, should, ought to, is supposed to, had better — a
+    PERMISSION — may, can, could, is allowed / permitted / free to — a PROHIBITION — must not,
+    may not, cannot, shall not, is not allowed to, is forbidden to, is prohibited / banned from —
+    or an EXEMPTION — need not, does not have to, is not required to, is exempt from. The
+    clause under the norm is parsed with its own template: its actor the subject, or empty for
+    a passive (the ledger must be signed) and for a gerund with no subject (smoking is
+    forbidden); its tense present for a bare infinitive (must send), past with aspect perfect for
+    a perfect infinitive (should have sent); an indefinite object inside the act (wear a badge,
+    send a letter) is a witness, as anywhere — it exists only inside the seal, and on a class it
+    is a function of the member — while a bare plural or mass object (wear gloves, carry water)
+    is a bare lemma. Then write the norm instance over it, with `kind`
+    for the concept, `word` for the words as written and `weak: true` for should, ought to,
+    supposed to, had better. Negation is never a separate instance: must not, may not, cannot,
+    is not allowed to are a prohibition; need not, does not have to, is not required to are an
+    exemption; should not is a weak prohibition. A deontic adjective or participle with "be" —
+    forbidden, prohibited, banned, illegal, unlawful; allowed, permitted, permissible, legal;
+    mandatory, compulsory, obligatory, required; optional, voluntary — is the same instance over
+    the action its subject names: a gerund or an action noun (parking in the street is not
+    allowed: the activity park with its location; payment is required: a transfer pay with no
+    parties; it is forbidden to smoke: the activity smoke). The norm's own `tense` is past for had
+    to, was allowed / required / forbidden to and could as a past permission, future for will
+    have to; absent otherwise. On a class — glaziers must wear gloves, visitors may not enter the
+    barn — the subject is a range and the generic template builds the rule with the norm in its
+    `over`; an if-clause is the conditional template's, the norm in its `over` too; a norm over
+    a class statement (weavers must be patient) is the norm over that instance.
+  surface_forms:
+    - "<S> must / has to / needs to / shall / is required to <V> …"          # obligation
+    - "<S> should / ought to / is supposed to <V> …"                           # weak obligation
+    - "<S> may / can / is allowed to / is permitted to <V> …"                  # permission
+    - "<S> must not / may not / cannot / is not allowed to / is forbidden to <V> …"   # prohibition
+    - "<S> need not / does not have to / is not required to <V> …"            # exemption
+    - "<V>-ing (…) is forbidden / allowed / mandatory / optional"              # a deontic adjective on an action
+    - "<S> had to / was allowed to / will have to <V> …"                       # the norm's own tense
+  boundary:                   # looks like a norm but is not one
+    - >-
+      an epistemic must, may, should or could — Yusra must be tired, it may rain, the quilt
+      should be dry by now: an inference about what is the case, the modal template; with no
+      context to decide, may or can on an agentive act (may leave, can use the kitchen) is a
+      permission, on a state or a non-agentive event (may be tired, may rain) epistemic
+    - >-
+      a capability — Lamine can swim, Teodor could not reach the ledge, is able to lift the
+      crate: an ability, the modal template (Can); can as a permission (visitors can use the
+      kitchen) is a norm
+    - >-
+      a verb of permitting, requiring or forbidding with its causer and its causee — Lamine
+      allowed Ottoline to leave, the rule requires glaziers to wear gloves, Yusra forbade Teodor
+      to sing: a causative, the norm stated by someone's act
+    - >-
+      a command — close the gate, don't touch the spindle: an imperative, not a stated norm
+    - >-
+      a reported norm — Yusra told Lamine that he must leave, Teodor believes that smoking is
+      forbidden: the norm instance is the content of the communication or the attitude
+    - >-
+      a deontic adjective predicated of a thing rather than an action — this spindle is
+      illegal, trailers are not permitted, a badge is required: the action is not in the text;
+      a copular (or a class statement) with the adjective as the property
+    - >-
+      a place or a direction with no verb to seal — Teodor was allowed inside the shed: the act
+      is not stated; report the predicate as unmapped
+    - >-
+      a wish, a hope, an intention or a need stated with a noun — wants to leave, hopes to win,
+      needs a ladder: an attitude or the verb's own template
+    - >-
+      would or could in a subjunctive conditional — if Yusra sang, Teodor could leave: the
+      counterfactual template
+
+slots:
+  id:    {type: id, required: true, doc: "your label for the norm (s1, s2 …)"}
+  over:  {type: refs, class: Proposition, required: true, bare_content: true,     # a gerund's act may fill no participant: smoking is forbidden
+          doc: "the clause the norm is about: the id of its predication (the act with its actor, or no actor for a passive or a gerund), or of a copular, class-statement or locative instance for a state (weavers must be patient: the class statement); nothing else — never a negation instance, the polarity is the kind"}
+  kind:  {type: enum, values: [obligation, permission, prohibition, exemption], required: true,
+          doc: "obligation (must, has to, should …), permission (may, can, is allowed to …), prohibition (must not, may not, cannot, forbidden …), exemption (need not, does not have to, optional …)"}
+  weak:  {type: bool, required: false,
+          doc: "true for should, ought to, had better, is supposed to, advisable, recommended — a weak obligation, or a weak prohibition with should not; absent otherwise"}
+  word:  {type: string, required: false,
+          doc: "the deontic expression as written, lowercase (must, has to, is required to, may not, need not, forbidden, is not allowed to); recorded, not rendered"}
+  tense: {type: enum, values: [past, present, future], required: false, default: present,
+          doc: "the norm's own tense: past for had to, was allowed / required / forbidden to and could as a past permission; future for will have to, will be allowed to; absent for must, may, should and every present form — the clause under the norm keeps its own tense slot"}
+
+truth:
+  strength: [{slot: weak, values: {"true": 0.7}}, 1.0]     # a stated norm commits fully; a weak one (should) 0.7
+  confidence: [0.99]                                        # prescriptive, not an empirical generalization
+
+emits:
+  - atom: "(Obligated {over})"
+    when: "kind == obligation and tense == present"
+  - atom: "(Permitted {over})"
+    when: "kind == permission and tense == present"
+  - atom: "(Not (Permitted {over}))"
+    when: "kind == prohibition and tense == present"
+  - atom: "(Not (Obligated {over}))"
+    when: "kind == exemption and tense == present"
+  - atom: "(Past (Obligated {over}))"
+    when: "kind == obligation and tense == past"
+  - atom: "(Past (Permitted {over}))"
+    when: "kind == permission and tense == past"
+  - atom: "(Past (Not (Permitted {over})))"
+    when: "kind == prohibition and tense == past"
+  - atom: "(Past (Not (Obligated {over})))"
+    when: "kind == exemption and tense == past"
+  - atom: "(Future (Obligated {over}))"
+    when: "kind == obligation and tense == future"
+  - atom: "(Future (Permitted {over}))"
+    when: "kind == permission and tense == future"
+  - atom: "(Future (Not (Permitted {over})))"
+    when: "kind == prohibition and tense == future"
+  - atom: "(Future (Not (Obligated {over})))"
+    when: "kind == exemption and tense == future"
+
+notes:
+  - >-
+    The norm asserts the deontic status and seals the act: nothing says the shed was locked or
+    the quilt sent. A definite or a name inside the seal exists at the top level (the witness's
+    own presupposition); an indefinite inside exists only inside.
+  - >-
+    One canonical form per concept, whatever the words: a prohibition is the denial of
+    permission, (Not (Permitted P)), whether the text says must not, may not, cannot or
+    forbidden, and an exemption is the denial of obligation, (Not (Obligated P)) — must-not and
+    may-not say the same thing in deontic logic. The wording stays in `word`, provenance of the
+    reading, never an atom. That an obligation implies a permission is a background rule.
+  - >-
+    The truth value is the norm's own, not the sealed clause's: a stated norm commits fully
+    (1.0 at 0.99, a prescription rather than an observed proportion); a weak one — should,
+    ought to — carries 0.7. On a class the generic's rule takes the same values from the norm
+    unless a quantifier word (most glaziers must …) sets the strength.
+  - >-
+    The sense decides, not the word: must, may, should and can each have an epistemic or a
+    capability reading that the modal template takes; here they state what someone is to do or
+    is let do.
+
+depends_on: [activity, transfer, motion]
+composes_with: [generic, conditional, negation, named-entity, witness, range, location]
+
+examples:
+  shown:                     # rendered into the prompt
+    - category: positive
+      note: an obligation on an individual — the act sealed, the definite object at the top level
+      text: "Lamine must lock the shed."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine", span: "Lamine"}
+        - {t: witness, id: x1, class: shed, definite: true, span: "the shed"}
+        - {t: activity, id: v1, verb: lock, actor: "@n1", patient: "@x1", tense: present, span: "Lamine must lock the shed"}
+        - {t: norm, id: s1, over: ["@v1"], kind: obligation, word: must, span: "must"}
+      emitted:               # what the emitter produces (illustration; the emitter is the authority)
+        - "(Name sk_lamine_1 \"Lamine\")"
+        - "(Member sk_shed_1 shed)"
+        - "(Obligated (And (Member sk_lock_1 lock) (Agent sk_lock_1 sk_lamine_1) (Patient sk_lock_1 sk_shed_1)))"
+      declarations:
+        - "(: lock Class)"
+        - "(: shed Class)"
+        - "(: sk_lamine_1 Entity)"
+        - "(: sk_lock_1 Event)"
+        - "(: sk_shed_1 Entity)"
+    - category: positive
+      note: a deontic adjective on a gerund — a prohibition over an agentless act with its place
+      text: "Smoking is forbidden in the hall."
+      instances:
+        - {t: witness, id: x1, class: hall, definite: true, span: "the hall"}
+        - {t: activity, id: v1, verb: smoke, tense: present, span: "Smoking"}
+        - {t: location, id: l1, event: "@v1", place: "@x1", head: Location, preposition: in, span: "in the hall"}
+        - {t: norm, id: s1, over: ["@v1"], kind: prohibition, word: forbidden, span: "is forbidden"}
+    - category: positive
+      note: a norm on a class — the generic builds the rule, the norm its conclusion
+      text: "Glaziers must wear gloves."
+      instances:
+        - {t: range, id: q1, class: glazier, span: "Glaziers"}
+        - {t: activity, id: v1, verb: wear, actor: "@q1", patient: glove, tense: present, span: "Glaziers must wear gloves"}
+        - {t: norm, id: s1, over: ["@v1"], kind: obligation, word: must, span: "must"}
+        - {t: generic, id: r1, ranges: ["@q1"], over: ["@s1"], span: "Glaziers must wear gloves"}
+    - category: abstain
+      text: "Yusra must be tired."
+      expected: {abstain: true, template: modal}                      # epistemic must
+
+  held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      note: have to — an obligation, the same form as must
+      text: "Yusra has to send the quilt."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, class: quilt, definite: true}
+        - {t: transfer, id: e1, verb: send, giver: "@n1", object: "@x1", tense: present}
+        - {t: norm, id: s1, over: ["@e1"], kind: obligation, word: "has to"}
+    - category: contrast
+      note: should — a weak obligation at 0.7; the instances differ from must in the flag only
+      text: "Teodor should wash the quilt."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, class: quilt, definite: true}
+        - {t: activity, id: v1, verb: wash, actor: "@n1", patient: "@x1", tense: present}
+        - {t: norm, id: s1, over: ["@v1"], kind: obligation, weak: true, word: should}
+    - category: positive
+      note: a permission
+      text: "Ottoline may leave."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: motion, id: m1, verb: leave, mover: "@n1", tense: present}
+        - {t: norm, id: s1, over: ["@m1"], kind: permission, word: may}
+    - category: positive
+      note: must not — a prohibition, the denial of permission, no negation instance
+      text: "Lamine must not touch the spindle."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: x1, class: spindle, definite: true}
+        - {t: activity, id: v1, verb: touch, actor: "@n1", patient: "@x1", tense: present}
+        - {t: norm, id: s1, over: ["@v1"], kind: prohibition, word: "must not"}
+    - category: positive
+      note: need not — an exemption, the denial of obligation
+      text: "Yusra need not wait."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: activity, id: v1, verb: wait, actor: "@n1", tense: present}
+        - {t: norm, id: s1, over: ["@v1"], kind: exemption, word: "need not"}
+    - category: positive
+      note: does not have to — the same exemption
+      text: "Teodor does not have to sing."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: activity, id: v1, verb: sing, actor: "@n1", tense: present}
+        - {t: norm, id: s1, over: ["@v1"], kind: exemption, word: "does not have to"}
+    - category: positive
+      note: a passive deontic verb, negated — a prohibition
+      text: "Ottoline is not allowed to enter the barn."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: witness, id: x1, class: barn, definite: true}
+        - {t: motion, id: m1, verb: enter, mover: "@n1", goal: "@x1", tense: present}
+        - {t: norm, id: s1, over: ["@m1"], kind: prohibition, word: "is not allowed to"}
+    - category: positive
+      note: a passive deontic verb — an obligation
+      text: "Lamine is required to sign the ledger."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: x1, class: ledger, definite: true}
+        - {t: activity, id: v1, verb: sign, actor: "@n1", patient: "@x1", tense: present}
+        - {t: norm, id: s1, over: ["@v1"], kind: obligation, word: "is required to"}
+    - category: positive
+      note: a weak obligation stated with be supposed to
+      text: "Teodor is supposed to wait."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: activity, id: v1, verb: wait, actor: "@n1", tense: present}
+        - {t: norm, id: s1, over: ["@v1"], kind: obligation, weak: true, word: "is supposed to"}
+    - category: positive
+      note: the norm's own tense — a past obligation, the act's clause present
+      text: "Yusra had to leave."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: motion, id: m1, verb: leave, mover: "@n1", tense: present}
+        - {t: norm, id: s1, over: ["@m1"], kind: obligation, word: "had to", tense: past}
+    - category: positive
+      note: a future obligation
+      text: "Lamine will have to leave."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: motion, id: m1, verb: leave, mover: "@n1", tense: present}
+        - {t: norm, id: s1, over: ["@m1"], kind: obligation, word: "will have to", tense: future}
+    - category: positive
+      note: a perfect infinitive — the act's clause past, the norm present and weak
+      text: "Teodor should have sent the quilt."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, class: quilt, definite: true}
+        - {t: transfer, id: e1, verb: send, giver: "@n1", object: "@x1", tense: past, aspect: perfect}
+        - {t: norm, id: s1, over: ["@e1"], kind: obligation, weak: true, word: should}
+    - category: positive
+      note: a deontic adjective on a gerund with a place — a prohibition over an agentless act
+      text: "Fishing is prohibited in the marsh."
+      instances:
+        - {t: witness, id: x1, class: marsh, definite: true}
+        - {t: activity, id: v1, verb: fish, tense: present}
+        - {t: location, id: l1, event: "@v1", place: "@x1", head: Location, preposition: in}
+        - {t: norm, id: s1, over: ["@v1"], kind: prohibition, word: prohibited}
+    - category: positive
+      note: optional — an exemption over an agentless act
+      text: "Tipping is optional."
+      instances:
+        - {t: activity, id: v1, verb: tip, tense: present}
+        - {t: norm, id: s1, over: ["@v1"], kind: exemption, word: optional}
+    - category: positive
+      note: mandatory — an obligation; the indefinite object exists only inside the seal
+      text: "Wearing a badge is mandatory."
+      instances:
+        - {t: witness, id: x1, class: badge}
+        - {t: activity, id: v1, verb: wear, patient: "@x1", tense: present}
+        - {t: norm, id: s1, over: ["@v1"], kind: obligation, word: mandatory}
+    - category: positive
+      note: an agentless passive under the norm — no actor, the definite object at the top level
+      text: "The ledger must be signed."
+      instances:
+        - {t: witness, id: x1, class: ledger, definite: true}
+        - {t: activity, id: v1, verb: sign, patient: "@x1", tense: present}
+        - {t: norm, id: s1, over: ["@v1"], kind: obligation, word: must}
+    - category: scoped
+      note: a norm over a class statement — the operator over the Inheritance atom
+      text: "Weavers must be patient."
+      instances:
+        - {t: class-statement, id: k1, subject: weaver, predicate: patient, form: adjective, definitional: false, tense: present}
+        - {t: norm, id: s1, over: ["@k1"], kind: obligation, word: must}
+    - category: positive
+      note: a weak norm on a class with an indefinite object — the rule at 0.7, the badge a function of the member
+      text: "Couriers should wear a badge."
+      instances:
+        - {t: range, id: q1, class: courier}
+        - {t: witness, id: x1, class: badge}
+        - {t: activity, id: v1, verb: wear, actor: "@q1", patient: "@x1", tense: present}
+        - {t: norm, id: s1, over: ["@v1"], kind: obligation, weak: true, word: should}
+        - {t: generic, id: r1, ranges: ["@q1"], over: ["@s1"]}
+    - category: positive
+      note: a prohibition on a class — the rule's conclusion the denied permission
+      text: "Visitors may not enter the barn."
+      instances:
+        - {t: range, id: q1, class: visitor}
+        - {t: witness, id: x1, class: barn, definite: true}
+        - {t: motion, id: m1, verb: enter, mover: "@q1", goal: "@x1", tense: present}
+        - {t: norm, id: s1, over: ["@m1"], kind: prohibition, word: "may not"}
+        - {t: generic, id: r1, ranges: ["@q1"], over: ["@s1"]}
+    - category: positive
+      note: an exemption on a class
+      text: "Apprentices need not sweep the hall."
+      instances:
+        - {t: range, id: q1, class: apprentice}
+        - {t: witness, id: x1, class: hall, definite: true}
+        - {t: activity, id: v1, verb: sweep, actor: "@q1", patient: "@x1", tense: present}
+        - {t: norm, id: s1, over: ["@v1"], kind: exemption, word: "need not"}
+        - {t: generic, id: r1, ranges: ["@q1"], over: ["@s1"]}
+    - category: positive
+      note: a norm as the consequence of a conditional — the conditional's over
+      text: "If Lamine arrives, Yusra must leave."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: named-entity, id: n2, name: "Yusra"}
+        - {t: motion, id: m1, verb: arrive, mover: "@n1", tense: present}
+        - {t: motion, id: m2, verb: leave, mover: "@n2", tense: present}
+        - {t: norm, id: s1, over: ["@m2"], kind: obligation, word: must}
+        - {t: conditional, id: r1, condition: ["@m1"], over: ["@s1"]}
+    - category: abstain
+      text: "Ottoline must be hungry."
+      expected: {abstain: true, template: modal}                      # epistemic must
+    - category: abstain
+      text: "Lamine can swim."
+      expected: {abstain: true, template: modal}                      # a capability
+    - category: abstain
+      text: "Ottoline permitted Lamine to leave."
+      expected: {abstain: true, template: causative}                  # someone's act of permitting
+    - category: abstain
+      text: "This spindle is illegal."
+      expected: {abstain: true, template: copular}                    # a thing's status, no action in the text
+    - category: abstain
+      text: "Teodor was allowed inside the shed."
+      expected: {abstain: true, gap: G00, span: "was allowed inside the shed"}   # no verb to seal

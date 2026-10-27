@@ -1,10 +1,10 @@
 # Suite report
 
-prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 3ce2425e862d65e7) · type check: ran
+prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 9edf252bd9c6307e) · type check: ran
 
 ## Catalog checks
 
-805 examples checked; findings: 0
+841 examples checked; findings: 0
 
 Sentences two templates claim with the same expected atoms (composition, fine):
 - "Lamine danced with Yusra." — activity, adjunct
@@ -155,22 +155,22 @@ Mismatches: none
 
 ## causative — held_out
 
-14 cases, 42 records (ok 42; stale prompt 42) · gemini-4-argon effort=low
+15 cases, 45 records (ok 45; stale prompt 45) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
-| positive | 7 | 21 | 21 | 21 | 21 |
+| positive | 8 | 24 | 24 | 24 | 24 |
 | scoped | 2 | 6 | 6 | 6 | 6 |
 | optional | 1 | 3 | 3 | 3 | 3 |
 | abstain | 4 | 12 | 0 (false fires) | – | 12 |
 
-- selection: fire cases fired 30/30 · abstain cases false fires 0/12
-- fill: exact 30/30 among fires
-- stability: pairwise agreement 1.0 (14 cases, 42 pairs), unanimous 14/14
-- type check: 39/39 emitted parses type
+- selection: fire cases fired 33/33 · abstain cases false fires 0/12
+- fill: exact 33/33 among fires
+- stability: pairwise agreement 1.0 (15 cases, 45 pairs), unanimous 15/15
+- type check: 42/42 emitted parses type
 - graph lints: none
-- spans: 156/156 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
-- usage: 42 calls · in 2,373,297 · cached 2,287,221 (96% of the input) · out 7,878 · thinking 0 (calls with thought tokens: 0)
+- spans: 168/168 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
+- usage: 45 calls · in 2,593,749 · cached 2,501,523 (96% of the input) · out 8,452 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
 Abstain cases (what the parser did, per run):
@@ -413,23 +413,23 @@ Mismatches: none
 
 ## copular — held_out
 
-14 cases, 42 records (ok 42; stale prompt 42) · gemini-4-argon effort=low
+15 cases, 45 records (ok 45; stale prompt 45) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
-| positive | 4 | 12 | 12 | 12 | 12 |
+| positive | 5 | 15 | 15 | 15 | 15 |
 | contrast | 1 | 3 | 3 | 3 | 3 |
 | scoped | 3 | 9 | 9 | 9 | 9 |
 | optional | 1 | 3 | 3 | 3 | 3 |
 | abstain | 5 | 15 | 0 (false fires) | – | 15 |
 
-- selection: fire cases fired 27/27 · abstain cases false fires 0/15
-- fill: exact 27/27 among fires
-- stability: pairwise agreement 1.0 (14 cases, 42 pairs), unanimous 14/14
-- type check: 42/42 emitted parses type
+- selection: fire cases fired 30/30 · abstain cases false fires 0/15
+- fill: exact 30/30 among fires
+- stability: pairwise agreement 1.0 (15 cases, 45 pairs), unanimous 15/15
+- type check: 45/45 emitted parses type
 - graph lints: none
-- spans: 87/87 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
-- usage: 42 calls · in 2,373,252 · cached 2,232,726 (94% of the input) · out 5,253 · thinking 0 (calls with thought tokens: 0)
+- spans: 93/93 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
+- usage: 45 calls · in 2,593,692 · cached 2,447,019 (94% of the input) · out 5,586 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: 2
   - P00 · perception · r1 "Teodor seems tired.": The perception template's 'Not this template' section says 'looks tired, sounds odd, feels cold, felt tired: a copular clause with a property', which contradicts the copular template's 'Not this template' section ('a copular verb other than be — seems tired, looks tired, remains open: an evidential or aspectual verb') and the perception template's own 'Not this template' example ('looks tired — report it as unmapped').
   - P00 · copular / perception · r3 "Teodor seems tired.": The 'Not this template' section of 'copular' excludes 'seems tired' as an evidential verb, while 'perception' says 'looks tired... a copular clause with a property', creating a contradiction about whether non-be copular verbs with adjectives are covered or unmapped.
@@ -664,7 +664,7 @@ Mismatches: none
 
 ## generic — held_out
 
-17 cases, 51 records (ok 51; stale prompt 48) · gemini-4-argon effort=low
+17 cases, 51 records (ok 51; stale prompt 51) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -761,14 +761,14 @@ Mismatches: none
 - type check: 48/48 emitted parses type
 - graph lints: none
 - spans: 180/180 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
-- usage: 54 calls · in 3,051,300 · cached 2,722,828 (89% of the input) · out 8,481 · thinking 0 (calls with thought tokens: 0)
+- usage: 54 calls · in 3,102,228 · cached 2,773,756 (89% of the input) · out 8,478 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
 Abstain cases (what the parser did, per run):
 - "Let's go to the market." (gap G00): r1 gap_reported [nothing fired; unmapped G00] · r2 gap_reported [nothing fired; unmapped G00] · r3 gap_reported [nothing fired; unmapped G00]
 - "Could you lock the shed?" (gap G00): r1 gap_reported [nothing fired; unmapped G00] · r2 gap_reported [nothing fired; unmapped G00] · r3 gap_reported [nothing fired; unmapped G00]
 - "The quilt was washed." (target `activity`): r1 target_fired [activity×1, witness×1] · r2 target_fired [activity×1, witness×1] · r3 target_fired [activity×1, witness×1]
-- "Yusra has to send the quilt." (target `modal`): r1 target_fired [modal×1, named-entity×1, transfer×1, witness×1] · r2 target_fired [modal×1, named-entity×1, transfer×1, witness×1] · r3 target_fired [modal×1, named-entity×1, transfer×1, witness×1]
+- "Yusra has to send the quilt." (target `norm`): r1 target_fired [named-entity×1, norm×1, transfer×1, witness×1] · r2 target_fired [named-entity×1, norm×1, transfer×1, witness×1] · r3 target_fired [named-entity×1, norm×1, transfer×1, witness×1]
 
 Mismatches: none
 
@@ -888,20 +888,24 @@ Mismatches: none
 
 ## modal — held_out
 
-1 cases, 3 records (ok 3; stale prompt 3) · gemini-4-argon effort=low
+4 cases, 12 records (ok 12; stale prompt 12) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
-| positive | 1 | 3 | 3 | 3 | 3 |
+| positive | 3 | 9 | 9 | 9 | 9 |
+| abstain | 1 | 3 | 0 (false fires) | – | 3 |
 
-- selection: fire cases fired 3/3 · abstain cases false fires 0/0
-- fill: exact 3/3 among fires
-- stability: pairwise agreement 1.0 (1 cases, 3 pairs), unanimous 1/1
-- type check: 3/3 emitted parses type
+- selection: fire cases fired 9/9 · abstain cases false fires 0/3
+- fill: exact 9/9 among fires
+- stability: pairwise agreement 1.0 (4 cases, 12 pairs), unanimous 4/4
+- type check: 12/12 emitted parses type
 - graph lints: none
-- spans: 12/12 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
-- usage: 3 calls · in 169,524 · cached 163,377 (96% of the input) · out 653 · thinking 0 (calls with thought tokens: 0)
+- spans: 39/39 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
+- usage: 12 calls · in 881,778 · cached 857,189 (97% of the input) · out 1,863 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
+
+Abstain cases (what the parser did, per run):
+- "Yusra has to send the quilt." (target `norm`): r1 target_fired [named-entity×1, norm×1, transfer×1, witness×1] · r2 target_fired [named-entity×1, norm×1, transfer×1, witness×1] · r3 target_fired [named-entity×1, norm×1, transfer×1, witness×1]
 
 Mismatches: none
 
@@ -969,6 +973,36 @@ Mismatches: none
 - spans: 9/9 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 3 calls · in 185,034 · cached 178,887 (97% of the input) · out 393 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
+
+Mismatches: none
+
+## norm — held_out
+
+26 cases, 78 records (ok 78; stale prompt 72) · gemini-4-argon effort=low
+
+| category | cases | runs | fired | exact | pass |
+|---|---|---|---|---|---|
+| positive | 19 | 57 | 57 | 57 | 57 |
+| contrast | 1 | 3 | 3 | 3 | 3 |
+| scoped | 1 | 3 | 3 | 3 | 3 |
+| abstain | 5 | 15 | 0 (false fires) | – | 15 |
+
+- selection: fire cases fired 63/63 · abstain cases false fires 0/15
+- fill: exact 63/63 among fires
+- stability: pairwise agreement 1.0 (26 cases, 78 pairs), unanimous 26/26
+- type check: 78/78 emitted parses type
+- graph lints: none
+- spans: 270/270 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
+- usage: 78 calls · in 5,732,310 · cached 5,499,070 (96% of the input) · out 12,858 · thinking 0 (calls with thought tokens: 0)
+- issues reported by the parser: 1
+  - P00 · modal · r3 "Ottoline may leave.": The modal 'may' on an agentive verb ('Ottoline may leave') is ambiguous between permission (`norm`) and epistemic possibility (`modal`), and the sentence provides no context to decide the reading.
+
+Abstain cases (what the parser did, per run):
+- "Ottoline permitted Lamine to leave." (target `causative`): r1 target_fired [causative×1, motion×1, named-entity×2] · r2 target_fired [causative×1, motion×1, named-entity×2] · r3 target_fired [causative×1, motion×1, named-entity×2]
+- "Ottoline must be hungry." (target `modal`): r1 target_fired [copular×1, modal×1, named-entity×1] · r2 target_fired [copular×1, modal×1, named-entity×1] · r3 target_fired [copular×1, modal×1, named-entity×1]
+- "Lamine can swim." (target `modal`): r1 target_fired [activity×1, modal×1, named-entity×1] · r2 target_fired [activity×1, modal×1, named-entity×1] · r3 target_fired [activity×1, modal×1, named-entity×1]
+- "This spindle is illegal." (target `copular`): r1 target_fired [copular×1, witness×1] · r2 target_fired [copular×1, witness×1] · r3 target_fired [copular×1, witness×1]
+- "Teodor was allowed inside the shed." (gap G00): r1 gap_reported [named-entity×1; unmapped G00] · r2 gap_reported [named-entity×1; unmapped G00] · r3 gap_reported [named-entity×1; unmapped G00]
 
 Mismatches: none
 
@@ -1051,14 +1085,14 @@ Mismatches: none
 - type check: 36/36 emitted parses type
 - graph lints: none
 - spans: 114/114 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
-- usage: 36 calls · in 2,034,228 · cached 1,960,399 (96% of the input) · out 5,778 · thinking 0 (calls with thought tokens: 0)
+- usage: 36 calls · in 2,085,156 · cached 2,011,329 (96% of the input) · out 5,686 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
 Abstain cases (what the parser did, per run):
 - "Teodor bought the spindle from Yusra." (target `acquisition`): r1 target_fired [acquisition×1, named-entity×2, witness×1] · r2 target_fired [acquisition×1, named-entity×2, witness×1] · r3 target_fired [acquisition×1, named-entity×2, witness×1]
 - "Yusra has sent the quilt." (target `transfer`): r1 target_fired [named-entity×1, transfer×1, witness×1] · r2 target_fired [named-entity×1, transfer×1, witness×1] · r3 target_fired [named-entity×1, transfer×1, witness×1]
 - "Ottoline has a brother." (gap G00): r1 gap_reported [named-entity×1; unmapped G00] · r2 gap_reported [named-entity×1; unmapped G00] · r3 gap_reported [named-entity×1; unmapped G00]
-- "Yusra has to send the quilt." (target `modal`): r1 target_fired [modal×1, named-entity×1, transfer×1, witness×1] · r2 target_fired [modal×1, named-entity×1, transfer×1, witness×1] · r3 target_fired [modal×1, named-entity×1, transfer×1, witness×1]
+- "Yusra has to send the quilt." (target `norm`): r1 target_fired [named-entity×1, norm×1, transfer×1, witness×1] · r2 target_fired [named-entity×1, norm×1, transfer×1, witness×1] · r3 target_fired [named-entity×1, norm×1, transfer×1, witness×1]
 
 Mismatches: none
 

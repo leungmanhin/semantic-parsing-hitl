@@ -1,0 +1,101 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "317828a7580e9dd673d25c7e4b13c7b5dd5b4da9b73a0969fcd3093db8869500",
+  "item": {
+    "id": "s426b4b15cd",
+    "text": "Ottoline permitted Lamine to leave."
+  },
+  "usage": {
+    "input": 73484,
+    "output": 190,
+    "thinking": null,
+    "total": 73674,
+    "cached": 71435,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 73484,
+    "candidatesTokenCount": 190,
+    "totalTokenCount": 73674,
+    "cachedContentTokenCount": 71435,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 73484
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 71435
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 190
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s426b4b15cd\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n2\", \"tense\": \"present\", \"span\": \"to leave\"}, {\"t\": \"causative\", \"id\": \"e1\", \"verb\": \"permit\", \"causer\": \"@n1\", \"complement\": [\"@m1\"], \"implication\": \"none\", \"tense\": \"past\", \"span\": \"Ottoline permitted Lamine to leave\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s426b4b15cd",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Ottoline",
+        "span": "Ottoline"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "motion",
+        "id": "m1",
+        "verb": "leave",
+        "mover": "@n2",
+        "tense": "present",
+        "span": "to leave"
+      },
+      {
+        "t": "causative",
+        "id": "e1",
+        "verb": "permit",
+        "causer": "@n1",
+        "complement": [
+          "@m1"
+        ],
+        "implication": "none",
+        "tense": "past",
+        "span": "Ottoline permitted Lamine to leave"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "d2077e71152ae6c16edf35bc4cc91cdec638d66c7eb0ab9ac8976254e4c8f5ac",
+  "run": 3,
+  "case": {
+    "template": "norm",
+    "section": "held_out",
+    "index": 23,
+    "category": "abstain",
+    "text": "Ottoline permitted Lamine to leave.",
+    "key": "426b4b15cd"
+  }
+}

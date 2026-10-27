@@ -130,7 +130,8 @@ Nothing here changes `prompt.txt`, the briefs under `fusenf/briefs/`, or any pip
   fact 0.99, a definitional or taxonomic claim 0.99, an empirical generalization 0.9 under an explicit
   quantifier word and 0.7 when bare, since a bare generic states no proportion). Both are set by the
   emitter from the slots. A scope atom (negation, modal) carries the truth value of the one statement
-  it scopes over; the operator asserts nothing of its own. The parser's only judgments are readings of the text
+  it scopes over; the operator asserts nothing of its own. A norm (must, may, must not, need not) is the
+  exception: it asserts the deontic status itself over the sealed act, 1.0 at 0.99, a weak should 0.7. The parser's only judgments are readings of the text
   (a class or a group, taxonomic or empirical, which template fires); it never estimates a proportion
   or a likelihood. "Every mosquito carries malaria" is strength 1.0 although false. Contradictory
   inputs are recorded as stated, each with its provenance; weighing them is the reasoner's job.

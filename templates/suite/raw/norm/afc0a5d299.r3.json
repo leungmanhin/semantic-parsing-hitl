@@ -1,0 +1,118 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "317828a7580e9dd673d25c7e4b13c7b5dd5b4da9b73a0969fcd3093db8869500",
+  "item": {
+    "id": "safc0a5d299",
+    "text": "If Lamine arrives, Yusra must leave."
+  },
+  "usage": {
+    "input": 73485,
+    "output": 253,
+    "thinking": null,
+    "total": 73738,
+    "cached": 71436,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 73485,
+    "candidatesTokenCount": 253,
+    "totalTokenCount": 73738,
+    "cachedContentTokenCount": 71436,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 73485
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 71436
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 253
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"safc0a5d299\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"arrive\", \"mover\": \"@n1\", \"tense\": \"present\", \"span\": \"Lamine arrives\"}, {\"t\": \"motion\", \"id\": \"m2\", \"verb\": \"leave\", \"mover\": \"@n2\", \"tense\": \"present\", \"span\": \"Yusra must leave\"}, {\"t\": \"norm\", \"id\": \"s1\", \"over\": [\"@m2\"], \"kind\": \"obligation\", \"word\": \"must\", \"span\": \"must\"}, {\"t\": \"conditional\", \"id\": \"r1\", \"condition\": [\"@m1\"], \"over\": [\"@s1\"], \"span\": \"If Lamine arrives, Yusra must leave\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "safc0a5d299",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "motion",
+        "id": "m1",
+        "verb": "arrive",
+        "mover": "@n1",
+        "tense": "present",
+        "span": "Lamine arrives"
+      },
+      {
+        "t": "motion",
+        "id": "m2",
+        "verb": "leave",
+        "mover": "@n2",
+        "tense": "present",
+        "span": "Yusra must leave"
+      },
+      {
+        "t": "norm",
+        "id": "s1",
+        "over": [
+          "@m2"
+        ],
+        "kind": "obligation",
+        "word": "must",
+        "span": "must"
+      },
+      {
+        "t": "conditional",
+        "id": "r1",
+        "condition": [
+          "@m1"
+        ],
+        "over": [
+          "@s1"
+        ],
+        "span": "If Lamine arrives, Yusra must leave"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "d2077e71152ae6c16edf35bc4cc91cdec638d66c7eb0ab9ac8976254e4c8f5ac",
+  "run": 3,
+  "case": {
+    "template": "norm",
+    "section": "held_out",
+    "index": 20,
+    "category": "positive",
+    "text": "If Lamine arrives, Yusra must leave.",
+    "key": "afc0a5d299"
+  }
+}

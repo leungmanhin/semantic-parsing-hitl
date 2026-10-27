@@ -257,14 +257,14 @@ head: Obligated
 kind: scope
 arity: 1
 type-def: (: Obligated (-> Event Proposition))  ; and 1 more (per arity / per union alternative)
-gloss: Deontic obligation on a specific act. Target form: operator over the sealed clause (-> Proposition Proposition); the tag form (-> Event Proposition) is legacy, kept only until the re-parse.
+gloss: Deontic obligation over the sealed clause: (Obligated P), the norm template's obligation (must, has to, is required to; a weak should at strength 0.7); an exemption (need not, does not have to) is (Not (Obligated P)); on a class the generic's rule concludes it. The tag form (-> Event Proposition) is legacy, kept only until the re-parse.
 
 
 head: Permitted
 kind: scope
 arity: 1
 type-def: (: Permitted (-> Event Proposition))  ; and 1 more (per arity / per union alternative)
-gloss: Deontic permission on a specific act. Target form: operator over the sealed clause (-> Proposition Proposition); the tag form (-> Event Proposition) is legacy, kept only until the re-parse.
+gloss: Deontic permission over the sealed clause: (Permitted P), the norm template's permission (may, can, is allowed to); a prohibition (must not, may not, cannot, forbidden) is (Not (Permitted P)), the denial of permission; on a class the generic's rule concludes it. The tag form (-> Event Proposition) is legacy, kept only until the re-parse.
 
 
 head: Probably

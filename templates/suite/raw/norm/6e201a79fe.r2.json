@@ -1,0 +1,93 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "317828a7580e9dd673d25c7e4b13c7b5dd5b4da9b73a0969fcd3093db8869500",
+  "item": {
+    "id": "s6e201a79fe",
+    "text": "Teodor does not have to sing."
+  },
+  "usage": {
+    "input": 73484,
+    "output": 150,
+    "thinking": null,
+    "total": 73634,
+    "cached": 71435,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 73484,
+    "candidatesTokenCount": 150,
+    "totalTokenCount": 73634,
+    "cachedContentTokenCount": 71435,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 73484
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 71435
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 150
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s6e201a79fe\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"sing\", \"actor\": \"@n1\", \"tense\": \"present\", \"span\": \"Teodor does not have to sing\"}, {\"t\": \"norm\", \"id\": \"s1\", \"over\": [\"@v1\"], \"kind\": \"exemption\", \"word\": \"does not have to\", \"span\": \"does not have to\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s6e201a79fe",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "sing",
+        "actor": "@n1",
+        "tense": "present",
+        "span": "Teodor does not have to sing"
+      },
+      {
+        "t": "norm",
+        "id": "s1",
+        "over": [
+          "@v1"
+        ],
+        "kind": "exemption",
+        "word": "does not have to",
+        "span": "does not have to"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "d2077e71152ae6c16edf35bc4cc91cdec638d66c7eb0ab9ac8976254e4c8f5ac",
+  "run": 2,
+  "case": {
+    "template": "norm",
+    "section": "held_out",
+    "index": 5,
+    "category": "positive",
+    "text": "Teodor does not have to sing.",
+    "key": "6e201a79fe"
+  }
+}

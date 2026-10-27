@@ -200,6 +200,14 @@ examples:
         - {t: motion, id: m1, verb: leave, mover: "@n2", tense: present}
         - {t: causative, id: e1, verb: allow, causer: "@n1", complement: ["@m1"], implication: none, tense: past}
     - category: positive
+      note: permit — someone's act of permitting, not a stated norm
+      text: "Ottoline permitted Lamine to leave."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: motion, id: m1, verb: leave, mover: "@n2", tense: present}
+        - {t: causative, id: e1, verb: permit, causer: "@n1", complement: ["@m1"], implication: none, tense: past}
+    - category: positive
       text: "Teodor forced Lamine to wait."
       instances:
         - {t: named-entity, id: n1, name: "Teodor"}

@@ -281,6 +281,22 @@ rules:
       "If Lamine had sung, Yusra would have left" seals both clauses; the form presupposes that
       Lamine did not sing, which this rule states as the denial of the antecedent's conjuncts.
 
+  # Norms: an obligation implies a permission. The parse states only what the text says; a
+  # prohibition and an exemption are denials (Not (Permitted P)) / (Not (Obligated P)) and need
+  # no rule to be queried at strength 0.
+  - id: obligation_permits
+    meaning: what is obligatory is permitted
+    requires: sealed-term-projection
+    premises: ["(Obligated $p)"]
+    conclusion: "(Permitted $p)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [norm]
+    notes: >-
+      "Lamine must lock the shed" answers "may Lamine lock the shed?": the permission follows from
+      the obligation over the same sealed clause. A weak obligation (should, 0.7) permits at the
+      same strength.
+
   # Non-finite complements: a control, causative or aspectual verb seals its complement as its
   # Theme and the parse marks what the verb implies — (Entails e): the complement holds;
   # (Precludes e): it does not. These rules derive the complement, or its negation, with the

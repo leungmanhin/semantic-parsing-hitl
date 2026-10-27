@@ -1,0 +1,85 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "317828a7580e9dd673d25c7e4b13c7b5dd5b4da9b73a0969fcd3093db8869500",
+  "item": {
+    "id": "sb2d82ff417",
+    "text": "This spindle is illegal."
+  },
+  "usage": {
+    "input": 73480,
+    "output": 111,
+    "thinking": null,
+    "total": 73591,
+    "cached": 71431,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 73480,
+    "candidatesTokenCount": 111,
+    "totalTokenCount": 73591,
+    "cachedContentTokenCount": 71431,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 73480
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 71431
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 111
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sb2d82ff417\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"spindle\", \"definite\": true, \"span\": \"This spindle\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@x1\", \"predicate\": \"illegal\", \"form\": \"adjective\", \"tense\": \"present\", \"span\": \"This spindle is illegal\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sb2d82ff417",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "spindle",
+        "definite": true,
+        "span": "This spindle"
+      },
+      {
+        "t": "copular",
+        "id": "c1",
+        "subject": "@x1",
+        "predicate": "illegal",
+        "form": "adjective",
+        "tense": "present",
+        "span": "This spindle is illegal"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "d2077e71152ae6c16edf35bc4cc91cdec638d66c7eb0ab9ac8976254e4c8f5ac",
+  "run": 3,
+  "case": {
+    "template": "norm",
+    "section": "held_out",
+    "index": 24,
+    "category": "abstain",
+    "text": "This spindle is illegal.",
+    "key": "b2d82ff417"
+  }
+}

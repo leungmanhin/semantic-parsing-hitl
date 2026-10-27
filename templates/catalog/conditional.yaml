@@ -21,7 +21,7 @@ trigger:
     stative when-clause (the ladder is brittle when cold; Teodor is grumpy when tired). Parse
     the condition with its own template (a predication for an event — Lamine sings; a copular
     instance for a state — cold, open, tired, with the subject it is said of) and the consequence
-    with its own (a predication, or a negation or modal over it, or a copular instance for a
+    with its own (a predication, or a negation, modal or norm over it, or a copular instance for a
     state), and name them in `condition` and `over`. With an eventive condition the rule ranges
     over the condition's events, and the consequence's event is a function of each; with a
     stative condition the rule holds between the states as stated. When the subject is a class —
@@ -64,7 +64,7 @@ slots:
   condition: {type: refs, class: Proposition, required: true, as_variable: true,
               doc: "the if-clause: the id of its predication (its event becomes the rule's variable) or of its copular / locative instance for a state (the copular for cold, its subject the thing it is said of); several conditions are several ids"}
   over:      {type: refs, class: Proposition, required: true, skolemize: true,
-              doc: "the consequence: the id of its predication, or of the negation or modal over it, or of its copular instance for a state; nothing else"}
+              doc: "the consequence: the id of its predication, or of the negation, modal or norm over it, or of its copular instance for a state; nothing else"}
   ranges:    {type: refs, class: Proposition, required: false,
               doc: "the range instance of a class subject (herons are patient if the weather is sunny): its id; absent otherwise"}
   generic:   {type: bool, required: false,
@@ -102,7 +102,7 @@ notes:
     generalization over occasions, and a stative when-clause (when cold) is a condition here.
 
 depends_on: [activity, copular, range]
-composes_with: [negation, modal]
+composes_with: [negation, modal, norm]
 
 examples:
   shown:                     # rendered into the prompt

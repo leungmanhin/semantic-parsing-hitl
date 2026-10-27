@@ -1,0 +1,101 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "317828a7580e9dd673d25c7e4b13c7b5dd5b4da9b73a0969fcd3093db8869500",
+  "item": {
+    "id": "sd794afc895",
+    "text": "Ottoline is not allowed to enter the barn."
+  },
+  "usage": {
+    "input": 73484,
+    "output": 188,
+    "thinking": null,
+    "total": 73672,
+    "cached": 71435,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 73484,
+    "candidatesTokenCount": 188,
+    "totalTokenCount": 73672,
+    "cachedContentTokenCount": 71435,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 73484
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 71435
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 188
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sd794afc895\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"barn\", \"definite\": true, \"span\": \"the barn\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"enter\", \"mover\": \"@n1\", \"goal\": \"@x1\", \"tense\": \"present\", \"span\": \"Ottoline is not allowed to enter the barn\"}, {\"t\": \"norm\", \"id\": \"s1\", \"over\": [\"@m1\"], \"kind\": \"prohibition\", \"word\": \"is not allowed to\", \"span\": \"is not allowed to\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sd794afc895",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Ottoline",
+        "span": "Ottoline"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "barn",
+        "definite": true,
+        "span": "the barn"
+      },
+      {
+        "t": "motion",
+        "id": "m1",
+        "verb": "enter",
+        "mover": "@n1",
+        "goal": "@x1",
+        "tense": "present",
+        "span": "Ottoline is not allowed to enter the barn"
+      },
+      {
+        "t": "norm",
+        "id": "s1",
+        "over": [
+          "@m1"
+        ],
+        "kind": "prohibition",
+        "word": "is not allowed to",
+        "span": "is not allowed to"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "d2077e71152ae6c16edf35bc4cc91cdec638d66c7eb0ab9ac8976254e4c8f5ac",
+  "run": 1,
+  "case": {
+    "template": "norm",
+    "section": "held_out",
+    "index": 6,
+    "category": "positive",
+    "text": "Ottoline is not allowed to enter the barn.",
+    "key": "d794afc895"
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "317828a7580e9dd673d25c7e4b13c7b5dd5b4da9b73a0969fcd3093db8869500",
+  "item": {
+    "id": "s6261dd9bb6",
+    "text": "Lamine will have to leave."
+  },
+  "usage": {
+    "input": 73482,
+    "output": 152,
+    "thinking": null,
+    "total": 73634,
+    "cached": 71433,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 73482,
+    "candidatesTokenCount": 152,
+    "totalTokenCount": 73634,
+    "cachedContentTokenCount": 71433,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 73482
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 71433
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 152
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s6261dd9bb6\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n1\", \"tense\": \"present\", \"span\": \"Lamine will have to leave\"}, {\"t\": \"norm\", \"id\": \"s1\", \"over\": [\"@m1\"], \"kind\": \"obligation\", \"word\": \"will have to\", \"tense\": \"future\", \"span\": \"will have to\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s6261dd9bb6",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "motion",
+        "id": "m1",
+        "verb": "leave",
+        "mover": "@n1",
+        "tense": "present",
+        "span": "Lamine will have to leave"
+      },
+      {
+        "t": "norm",
+        "id": "s1",
+        "over": [
+          "@m1"
+        ],
+        "kind": "obligation",
+        "word": "will have to",
+        "tense": "future",
+        "span": "will have to"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "d2077e71152ae6c16edf35bc4cc91cdec638d66c7eb0ab9ac8976254e4c8f5ac",
+  "run": 3,
+  "case": {
+    "template": "norm",
+    "section": "held_out",
+    "index": 10,
+    "category": "positive",
+    "text": "Lamine will have to leave.",
+    "key": "6261dd9bb6"
+  }
+}
