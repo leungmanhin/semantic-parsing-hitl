@@ -1,0 +1,88 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "00c1d3a38815e1ae95a32f96fad88a4afabbeb50f662bbb7d4a0cb6e9bbd0c60",
+  "item": {
+    "id": "sfafaee025a",
+    "text": "The red flag means danger."
+  },
+  "usage": {
+    "input": 76408,
+    "output": 118,
+    "thinking": null,
+    "total": 76526,
+    "cached": 74359,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 76408,
+    "candidatesTokenCount": 118,
+    "totalTokenCount": 76526,
+    "cachedContentTokenCount": 74359,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 76408
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 74359
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 118
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sfafaee025a\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"flag\", \"definite\": true, \"props\": [\"red\"], \"span\": \"The red flag\"}, {\"t\": \"stative-relation\", \"id\": \"p1\", \"relation\": \"mean\", \"subject\": \"@x1\", \"object\": \"danger\", \"tense\": \"present\", \"span\": \"The red flag means danger\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sfafaee025a",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "flag",
+        "definite": true,
+        "props": [
+          "red"
+        ],
+        "span": "The red flag"
+      },
+      {
+        "t": "stative-relation",
+        "id": "p1",
+        "relation": "mean",
+        "subject": "@x1",
+        "object": "danger",
+        "tense": "present",
+        "span": "The red flag means danger"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "8f768497029588efd8f71073a54c11b506fc67161e0952eb46812d3415cd0956",
+  "run": 2,
+  "case": {
+    "template": "stative-relation",
+    "section": "held_out",
+    "index": 15,
+    "category": "positive",
+    "text": "The red flag means danger.",
+    "key": "fafaee025a"
+  }
+}

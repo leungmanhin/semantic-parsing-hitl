@@ -78,8 +78,8 @@ trigger:
       a place or a direction with no verb to seal — Teodor was allowed inside the shed: the act
       is not stated; report the predicate as unmapped
     - >-
-      a wish, a hope, an intention or a need stated with a noun — wants to leave, hopes to win,
-      needs a ladder: an attitude or the verb's own template
+      a wish, a hope or an intention — wants to leave, hopes to win: an attitude; a need or a
+      desert stated with a noun — needs a ladder, deserves a prize: a stative relation
     - >-
       would or could in a subjunctive conditional — if Yusra sang, Teodor could leave: the
       counterfactual template
@@ -260,6 +260,13 @@ examples:
         - {t: named-entity, id: n1, name: "Teodor"}
         - {t: activity, id: v1, verb: wait, actor: "@n1", tense: present}
         - {t: norm, id: s1, over: ["@v1"], kind: obligation, weak: true, word: "is supposed to"}
+    - category: positive
+      note: needs to — an obligation stated as a need
+      text: "Yusra needs to rest."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: activity, id: v1, verb: rest, actor: "@n1", tense: present}
+        - {t: norm, id: s1, over: ["@v1"], kind: obligation, word: "needs to"}
     - category: positive
       note: the norm's own tense — a past obligation, the act's clause present
       text: "Yusra had to leave."

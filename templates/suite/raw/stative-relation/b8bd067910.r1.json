@@ -1,0 +1,90 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "00c1d3a38815e1ae95a32f96fad88a4afabbeb50f662bbb7d4a0cb6e9bbd0c60",
+  "item": {
+    "id": "sb8bd067910",
+    "text": "Lamine deserves a prize."
+  },
+  "usage": {
+    "input": 76410,
+    "output": 139,
+    "thinking": null,
+    "total": 76549,
+    "cached": 74309,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 76410,
+    "candidatesTokenCount": 139,
+    "totalTokenCount": 76549,
+    "cachedContentTokenCount": 74309,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 76410
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 74309
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 139
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sb8bd067910\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"prize\", \"span\": \"a prize\"}, {\"t\": \"stative-relation\", \"id\": \"p1\", \"relation\": \"deserve\", \"subject\": \"@n1\", \"object\": \"@x1\", \"tense\": \"present\", \"span\": \"Lamine deserves a prize\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sb8bd067910",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "prize",
+        "span": "a prize"
+      },
+      {
+        "t": "stative-relation",
+        "id": "p1",
+        "relation": "deserve",
+        "subject": "@n1",
+        "object": "@x1",
+        "tense": "present",
+        "span": "Lamine deserves a prize"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "8f768497029588efd8f71073a54c11b506fc67161e0952eb46812d3415cd0956",
+  "run": 1,
+  "case": {
+    "template": "stative-relation",
+    "section": "held_out",
+    "index": 1,
+    "category": "positive",
+    "text": "Lamine deserves a prize.",
+    "key": "b8bd067910"
+  }
+}

@@ -22,7 +22,7 @@ Nothing here changes `prompt.txt`, the briefs under `fusenf/briefs/`, or any pip
 | `tmpl/frequency.py` → `FREQUENCY.md` | which verb classes and constructions the parsed corpora contain, and what share the live templates claim |
 | `../semantic-parse.py` | one sentence → instances via an LLM, validated |
 | `rules.yaml` | the catalog's background rules in a consumer-neutral form: premises, conclusion, arithmetic steps, reliability, semantics (a change's named result holds afterwards; a coref link carries a mention's roles to its antecedent; dates from the reference time, …) |
-| `tmpl/rules.py` | validates `rules.yaml` (heads in the substrate, variables bound, truth in range) and lowers it for a consumer; a rule over a sealed clause expands per matrix tense, and a rule that `requires` a capability the consumer lacks (the chainer's sealed-term projection) is listed as pending in the generated file instead of written |
+| `tmpl/rules.py` | validates `rules.yaml` (heads in the substrate — a skolem function term such as `(sk_sym $s)` in a conclusion mints a dependent individual —, variables bound, truth in range) and lowers it for a consumer; a rule over a sealed clause expands per matrix tense, and a rule that `requires` a capability the consumer lacks (the chainer's sealed-term projection) is listed as pending in the generated file instead of written |
 | `generated/seeded_rules.metta` | the rules in the chainer's form, each an implication with an explicit conditional truth value; loaded beside the emitted statements by a consumer, never by the parser; never edited by hand; `tests/test_rules_engine.py` checks them on the chainer |
 
 ## Recipes
@@ -52,7 +52,7 @@ Nothing here changes `prompt.txt`, the briefs under `fusenf/briefs/`, or any pip
   `bare_content: true` on a refs slot lets the clause under it fill no participant, as under an imperative;
   `participant: false` on an optional filler keeps it out of the bare-predication lint, as class-property's restriction),
   `mints` (`stem` / `literal` / `symbol: <slot>` with `constant` / `variable`; `also` for extra classes), `emits` shapes
-  (`if_filled`, `each`, `when`, `project`, `within: <refs slot>` for a shape rendered inside that slot's bundle under its
+  (`if_filled`, `each`, `when` — slot tests, or `slot in name` / `slot not in name` against a list of the template's `lexicon:` section, a fact about the words applied by the emitter and never judged by the parser —, `project`, `within: <refs slot>` for a shape rendered inside that slot's bundle under its
   skolem substitution — a rule's consequent gaining `(Time (sk_swim $t) $t)`), `one_of` / `any_of` slot groups, notes,
   `examples.shown` / `examples.held_out`. A sentence another template abstains on is claimed in the SAME
   section (shown or held-out), or `check` reports a leak.

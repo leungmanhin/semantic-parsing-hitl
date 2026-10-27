@@ -11,7 +11,8 @@ Structural invariants checked here (content is reviewed by people, not checked h
   slot has a substrate ``class``;
 * every ``emits`` entry has an ``atom`` whose placeholders name a slot of the template (or
   ``@id`` when the template mints a symbol); ``if_filled`` / ``each`` name a slot; ``when``
-  mentions only slots, their values and ``true`` / ``false``; ``project`` is a boolean;
+  mentions only slots, their values and ``true`` / ``false``, or tests a slot against a list of
+  the template's ``lexicon`` (``relation in symmetric``); ``project`` is a boolean;
   ``within`` names a refs slot (the shape is rendered inside that slot's bundle); a refs
   placeholder may carry ``|own`` or ``|attachments`` (the referenced predication's own atoms,
   or its attachments' — the two halves of a rule restricted to the clause's events);
@@ -61,9 +62,10 @@ def span_in_text(span: str, text: str) -> bool:
     return bool(s) and s in norm_span(text)
 
 
-def check_when(cond: str, slots: dict) -> list[str]:
+def check_when(cond: str, slots: dict, lists: dict | None = None) -> list[str]:
     """A ``when`` condition is clauses joined by ``and`` / ``or``, each ``[not] slot``,
-    ``slot == value`` or ``slot != value``: the value is one of an enum slot's values,
+    ``slot == value``, ``slot != value``, or ``slot in name`` / ``slot not in name`` where the
+    name is a list of the template's ``lexicon``: the value is one of an enum slot's values,
     ``true`` / ``false`` for a bool slot, and any lowercase word for a lemma or string slot."""
     problems = []
     for part in cond.split(" or "):
@@ -72,6 +74,15 @@ def check_when(cond: str, slots: dict) -> list[str]:
             if clause.startswith("not "):
                 clause = clause[4:].strip()
             op = "!=" if "!=" in clause else "==" if "==" in clause else None
+            if op is None and (" not in " in clause or " in " in clause):
+                name, listname = [x.strip() for x in re.split(r" not in | in ", clause, 1)]
+                if name not in slots:
+                    problems.append(f"when mentions {name!r}, not a slot")
+                elif slots[name].get("type") not in ("lemma", "string", "enum"):
+                    problems.append(f"when tests {name} against a list, but it is not a lemma, string or enum slot")
+                if listname not in (lists or {}):
+                    problems.append(f"when tests against {listname!r}, not a list of the template's lexicon")
+                continue
             if op is None:
                 if clause not in slots:
                     problems.append(f"when mentions {clause!r}, not a slot")
@@ -147,6 +158,12 @@ def check_template(t: dict, path: str) -> list[str]:
                             problems.append(f"truth.{key}: from must name a refs slot")
                     elif c["slot"] not in slots:
                         problems.append(f"truth.{key}: {c['slot']!r} is not a slot")
+    lexicon = t.get("lexicon") or {}
+    if not isinstance(lexicon, dict) or not all(
+            re.fullmatch(r"[a-z_]+", str(k)) and isinstance(v, list) and v and all(isinstance(x, str) and re.fullmatch(r"[a-z_]+", x) for x in v)
+            for k, v in lexicon.items()):
+        problems.append("lexicon: must map names to non-empty lists of lowercase words")
+        lexicon = {}
     mints = t.get("mints") or {}
     for i, e in enumerate(t.get("emits") or []):
         atom = e.get("atom") if isinstance(e, dict) else None
@@ -162,7 +179,7 @@ def check_template(t: dict, path: str) -> list[str]:
             if key in e and e[key] not in slots:
                 problems.append(f"emits[{i}]: {key} names unknown slot {e[key]}")
         if "when" in e:
-            problems += [f"emits[{i}]: {m}" for m in check_when(e["when"], slots)]
+            problems += [f"emits[{i}]: {m}" for m in check_when(e["when"], slots, lexicon)]
         if "project" in e and not isinstance(e["project"], bool):
             problems.append(f"emits[{i}]: project must be true or false")
         if "within" in e and (slots.get(e["within"]) or {}).get("type") != "refs":

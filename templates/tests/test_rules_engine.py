@@ -265,5 +265,28 @@ class SeededRulesOnTheEngine(unittest.TestCase):
         self.assertAlmostEqual(tv(self.query(h, f"(Permitted {enter})"))[0], 0.0, places=2)   # a class prohibition: no for Bob
 
 
+    def test_a_symmetric_relation_is_one_state_with_two_bearers(self):
+        """A symmetric stative relation is one state whose two relata are both its Experiencer:
+        the yes/no question holds in either order, the wh-question names the other bearer, no
+        trivial self-binding appears, and a != guard is accepted as a query conjunct. Nothing is
+        derived: no rule is involved."""
+        h = self.space(['(: n1 (Name sk_yusra_1 "Yusra") (STV 1.0 0.99))', '(: n2 (Name sk_lamine_1 "Lamine") (STV 1.0 0.99))',
+                        '(: p1_member (Member sk_married_1 married) (STV 1.0 0.99))',
+                        '(: p1_experiencer (Experiencer sk_married_1 sk_yusra_1) (STV 1.0 0.99))',
+                        '(: p1_experiencer_2 (Experiencer sk_married_1 sk_lamine_1) (STV 1.0 0.99))'])
+        self.assertTrue(self.query(h, "(And (Member $s married) (Experiencer $s sk_lamine_1) (Experiencer $s sk_yusra_1))"))   # either order
+        who = self.query(h, "(And (Member $s married) (Experiencer $s sk_yusra_1) (Experiencer $s $y))")
+        self.assertTrue(who and "sk_lamine_1" in who[0], who)
+        self.assertEqual(len(who), 1)                                                            # no self-binding
+        self.assertAlmostEqual(tv(who)[0], 1.0, places=2)
+        guarded = self.query(h, "(And (Member $s married) (Experiencer $s sk_yusra_1) (Experiencer $s $y) (Compute != (sk_yusra_1 $y) -> true))")
+        self.assertTrue(guarded and "sk_lamine_1" in guarded[0], guarded)
+        self.assertFalse(self.query(h, "(And (Member $s married) (Experiencer $s sk_yusra_1) (Experiencer $s sk_teodor_1))"))
+        asym = self.space(['(: p1_member (Member sk_depend_1 depend) (STV 1.0 0.99))',
+                           '(: p1_experiencer (Experiencer sk_depend_1 sk_mill_1) (STV 1.0 0.99))',
+                           '(: p1_theme (Theme sk_depend_1 sk_stream_1) (STV 1.0 0.99))'])
+        self.assertFalse(self.query(asym, "(And (Member $s depend) (Experiencer $s sk_stream_1) (Theme $s $y))"))   # asymmetric: one way only
+
+
 if __name__ == "__main__":
     unittest.main()

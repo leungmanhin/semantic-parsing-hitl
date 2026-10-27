@@ -1,0 +1,102 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "00c1d3a38815e1ae95a32f96fad88a4afabbeb50f662bbb7d4a0cb6e9bbd0c60",
+  "item": {
+    "id": "s3efb1280b3",
+    "text": "The plan involves selling the barn."
+  },
+  "usage": {
+    "input": 76411,
+    "output": 188,
+    "thinking": null,
+    "total": 76599,
+    "cached": 74362,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 76411,
+    "candidatesTokenCount": 188,
+    "totalTokenCount": 76599,
+    "cachedContentTokenCount": 74362,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 76411
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 74362
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 188
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s3efb1280b3\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"plan\", \"definite\": true, \"span\": \"The plan\"}, {\"t\": \"witness\", \"id\": \"x2\", \"class\": \"barn\", \"definite\": true, \"span\": \"the barn\"}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"sell\", \"object\": \"@x2\", \"tense\": \"present\", \"span\": \"selling the barn\"}, {\"t\": \"stative-relation\", \"id\": \"p1\", \"relation\": \"involve\", \"subject\": \"@x1\", \"complement\": [\"@e1\"], \"tense\": \"present\", \"span\": \"The plan involves selling the barn\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s3efb1280b3",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "plan",
+        "definite": true,
+        "span": "The plan"
+      },
+      {
+        "t": "witness",
+        "id": "x2",
+        "class": "barn",
+        "definite": true,
+        "span": "the barn"
+      },
+      {
+        "t": "transfer",
+        "id": "e1",
+        "verb": "sell",
+        "object": "@x2",
+        "tense": "present",
+        "span": "selling the barn"
+      },
+      {
+        "t": "stative-relation",
+        "id": "p1",
+        "relation": "involve",
+        "subject": "@x1",
+        "complement": [
+          "@e1"
+        ],
+        "tense": "present",
+        "span": "The plan involves selling the barn"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "8f768497029588efd8f71073a54c11b506fc67161e0952eb46812d3415cd0956",
+  "run": 2,
+  "case": {
+    "template": "stative-relation",
+    "section": "held_out",
+    "index": 3,
+    "category": "positive",
+    "text": "The plan involves selling the barn.",
+    "key": "3efb1280b3"
+  }
+}

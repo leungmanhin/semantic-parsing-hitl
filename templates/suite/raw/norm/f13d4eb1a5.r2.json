@@ -1,0 +1,93 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "00c1d3a38815e1ae95a32f96fad88a4afabbeb50f662bbb7d4a0cb6e9bbd0c60",
+  "item": {
+    "id": "sf13d4eb1a5",
+    "text": "Yusra needs to rest."
+  },
+  "usage": {
+    "input": 76410,
+    "output": 145,
+    "thinking": null,
+    "total": 76555,
+    "cached": 74361,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 76410,
+    "candidatesTokenCount": 145,
+    "totalTokenCount": 76555,
+    "cachedContentTokenCount": 74361,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 76410
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 74361
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 145
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sf13d4eb1a5\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"rest\", \"actor\": \"@n1\", \"tense\": \"present\", \"span\": \"Yusra needs to rest\"}, {\"t\": \"norm\", \"id\": \"s1\", \"over\": [\"@v1\"], \"kind\": \"obligation\", \"word\": \"needs to\", \"span\": \"needs to\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sf13d4eb1a5",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "rest",
+        "actor": "@n1",
+        "tense": "present",
+        "span": "Yusra needs to rest"
+      },
+      {
+        "t": "norm",
+        "id": "s1",
+        "over": [
+          "@v1"
+        ],
+        "kind": "obligation",
+        "word": "needs to",
+        "span": "needs to"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "8f768497029588efd8f71073a54c11b506fc67161e0952eb46812d3415cd0956",
+  "run": 2,
+  "case": {
+    "template": "norm",
+    "section": "held_out",
+    "index": 9,
+    "category": "positive",
+    "text": "Yusra needs to rest.",
+    "key": "f13d4eb1a5"
+  }
+}

@@ -790,7 +790,7 @@ head: Symmetric
 kind: lexicon
 arity: 1
 type-def: (: Symmetric (-> Atom Proposition))
-gloss: Tags a relation head as mutual by meaning. The argument is a relation HEAD symbol (an open-class mutual predicate such as Friend); heads are not a type, so the position is unchecked. Background fact about the vocabulary.
+gloss: The legacy line's tag on an open-class relation head (Friend) read by its seeded sym_rel; never catalog output. The catalog represents a symmetric relation as ONE state with TWO bearers — (Experiencer s x) (Experiencer s y) — chosen by the stative-relation template's lexicon, so nothing is tagged or derived. Declaration kept only until the re-parse.
 
 
 head: WeekdayNumber

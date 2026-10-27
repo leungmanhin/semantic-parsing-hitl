@@ -180,6 +180,11 @@ class EmitTests(unittest.TestCase):
         self.assertFalse(E.holds("factive == true", {"factive": False}))
         self.assertTrue(E.holds("head == might", {"head": "Might"}))
         self.assertTrue(E.holds("tense == past or aspect == perfect", {"tense": "present", "aspect": "perfect"}))
+        lists = {"symmetric": ["married", "cousin"]}                      # a list of the template's lexicon
+        self.assertTrue(E.holds("relation in symmetric", {"relation": "married"}, lists))
+        self.assertFalse(E.holds("relation in symmetric", {"relation": "depend"}, lists))
+        self.assertTrue(E.holds("relation not in symmetric", {"relation": "depend"}, lists))
+        self.assertFalse(E.holds("relation in symmetric", {"relation": "married"}))         # no lexicon: no membership
 
     def test_every_example_emits_deterministically(self):
         for tid, section, ex in all_examples():

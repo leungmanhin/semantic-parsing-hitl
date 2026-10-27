@@ -1,10 +1,10 @@
 # Suite report
 
-prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 9edf252bd9c6307e) · type check: ran
+prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 8f768497029588ef) · type check: ran
 
 ## Catalog checks
 
-841 examples checked; findings: 0
+871 examples checked; findings: 0
 
 Sentences two templates claim with the same expected atoms (composition, fine):
 - "Lamine danced with Yusra." — activity, adjunct
@@ -978,22 +978,22 @@ Mismatches: none
 
 ## norm — held_out
 
-26 cases, 78 records (ok 78; stale prompt 72) · gemini-4-argon effort=low
+27 cases, 81 records (ok 81; stale prompt 78) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
-| positive | 19 | 57 | 57 | 57 | 57 |
+| positive | 20 | 60 | 60 | 60 | 60 |
 | contrast | 1 | 3 | 3 | 3 | 3 |
 | scoped | 1 | 3 | 3 | 3 | 3 |
 | abstain | 5 | 15 | 0 (false fires) | – | 15 |
 
-- selection: fire cases fired 63/63 · abstain cases false fires 0/15
-- fill: exact 63/63 among fires
-- stability: pairwise agreement 1.0 (26 cases, 78 pairs), unanimous 26/26
-- type check: 78/78 emitted parses type
+- selection: fire cases fired 66/66 · abstain cases false fires 0/15
+- fill: exact 66/66 among fires
+- stability: pairwise agreement 1.0 (27 cases, 81 pairs), unanimous 27/27
+- type check: 81/81 emitted parses type
 - graph lints: none
-- spans: 270/270 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
-- usage: 78 calls · in 5,732,310 · cached 5,499,070 (96% of the input) · out 12,858 · thinking 0 (calls with thought tokens: 0)
+- spans: 279/279 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
+- usage: 81 calls · in 5,961,540 · cached 5,722,153 (96% of the input) · out 13,293 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: 1
   - P00 · modal · r3 "Ottoline may leave.": The modal 'may' on an agentive verb ('Ottoline may leave') is ambiguous between permission (`norm`) and epistemic possibility (`modal`), and the sentence provides no context to decide the reading.
 
@@ -1178,6 +1178,34 @@ Abstain cases (what the parser did, per run):
 - "Teodor woke to find the gate open." (gap G06): r1 gap_reported [change-of-state×1, named-entity×1; unmapped G06] · r2 gap_reported [change-of-state×1, named-entity×1; unmapped G06] · r3 gap_reported [change-of-state×1, named-entity×1; unmapped G06]
 - "Ottoline refused to sing." (target `control`): r1 target_fired [activity×1, control×1, named-entity×1] · r2 target_fired [activity×1, control×1, named-entity×1] · r3 target_fired [activity×1, control×1, named-entity×1]
 - "Yusra is too tired to sing." (gap G00): r1 gap_reported [degree×1, named-entity×1; unmapped G00] · r2 gap_reported [degree×1, named-entity×1; unmapped G00] · r3 gap_reported [degree×1, named-entity×1; unmapped G00]
+
+Mismatches: none
+
+## stative-relation — held_out
+
+24 cases, 72 records (ok 72; stale prompt 0) · gemini-4-argon effort=low
+
+| category | cases | runs | fired | exact | pass |
+|---|---|---|---|---|---|
+| positive | 18 | 54 | 54 | 54 | 54 |
+| scoped | 1 | 3 | 3 | 3 | 3 |
+| abstain | 5 | 15 | 0 (false fires) | – | 15 |
+
+- selection: fire cases fired 57/57 · abstain cases false fires 0/15
+- fill: exact 57/57 among fires
+- stability: pairwise agreement 1.0 (24 cases, 72 pairs), unanimous 24/24
+- type check: 66/66 emitted parses type
+- graph lints: none
+- spans: 201/201 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
+- usage: 72 calls · in 5,501,595 · cached 5,130,872 (93% of the input) · out 10,075 · thinking 0 (calls with thought tokens: 0)
+- issues reported by the parser: none
+
+Abstain cases (what the parser did, per run):
+- "Ottoline owns the quilt." (target `possession`): r1 target_fired [named-entity×1, possession×1, witness×1] · r2 target_fired [named-entity×1, possession×1, witness×1] · r3 target_fired [named-entity×1, possession×1, witness×1]
+- "The box contains a letter." (gap G00): r1 gap_reported [nothing fired; unmapped G00] · r2 gap_reported [nothing fired; unmapped G00] · r3 gap_reported [nothing fired; unmapped G00]
+- "The parcel weighs a pound." (gap G00): r1 gap_reported [nothing fired; unmapped G00] · r2 gap_reported [nothing fired; unmapped G00] · r3 gap_reported [nothing fired; unmapped G00]
+- "Yusra fears the ferret." (target `psych`): r1 target_fired [named-entity×1, psych×1, witness×1] · r2 target_fired [named-entity×1, psych×1, witness×1] · r3 target_fired [named-entity×1, psych×1, witness×1]
+- "Yusra needs to rest." (target `norm`): r1 target_fired [activity×1, named-entity×1, norm×1] · r2 target_fired [activity×1, named-entity×1, norm×1] · r3 target_fired [activity×1, named-entity×1, norm×1]
 
 Mismatches: none
 

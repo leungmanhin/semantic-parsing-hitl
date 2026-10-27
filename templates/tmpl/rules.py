@@ -59,6 +59,9 @@ class RulesError(Exception):
     pass
 
 
+_SKOLEM = re.compile(r"sk_[a-z][a-z0-9_]*")     # a skolem function term in a conclusion: a new individual that depends on the bound ones
+
+
 def _heads(expr, out: set) -> set:
     if isinstance(expr, list) and expr:
         if isinstance(expr[0], str):
@@ -146,7 +149,7 @@ def _check_one(r: dict, i: int, heads, templates, seen: set, expanded: bool = Fa
         if heads is not None:
             for atom in parsed:
                 for h in _heads(atom, set()):
-                    if h not in heads:
+                    if h not in heads and not _SKOLEM.fullmatch(h):      # (sk_sym $s): a dependent individual, the emitter's convention
                         problems.append(f"{where}: unknown head {h!r} (not in the substrate)")
         bound = set(v for p in prem for v in _VAR.findall(p))
         for j, c in enumerate(r.get("computations") or []):

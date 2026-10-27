@@ -1,0 +1,355 @@
+# Template: stative-relation  (a relation that holds between two individuals: "Yusra resembles Lamine", "The mill depends on the stream", "Yusra and Lamine are cousins")
+#
+# A stative verb with its object (need, resemble, depend on, face, deserve) or "be" with a
+# relational adjective or noun (married to, similar to, a cousin of) states a relation between
+# two individuals and nothing happens. Like a state of having or a psych state, the relation is
+# a state with an eventuality of its own, carrying the relata as roles; tense, negation,
+# modality and a time attach to it. An asymmetric relation has a bearer and a theme: (Member
+# sk_depend_1 depend) (Experiencer sk_depend_1 sk_mill_1) (Theme sk_depend_1 sk_stream_1). A
+# relation that holds the other way round by its meaning (married, similar, cousin, resemble) is
+# ONE state with TWO bearers: (Member sk_resemble_1 resemble) (Experiencer sk_resemble_1
+# sk_yusra_1) (Experiencer sk_resemble_1 sk_lamine_1) — the subject and the complement are the
+# sentence's perspective, not the state's; the template's own list of symmetric relations
+# decides the roles, the parser does not judge it, and no reverse state is ever derived.
+
+id: stative-relation
+family: predication
+shape: verb-class
+title: A relation between two individuals that holds without anything happening
+
+trigger:
+  construction: >
+    A clause stating that a relation holds between two individuals while nothing happens: a
+    STATIVE VERB with an object or a prepositional object — need, require, deserve, merit,
+    depend on, rely on, resemble, look like, differ from, match, equal, mean, represent, stand
+    for, suit, fit, concern, involve, apply to, relate to, face, border, adjoin, surround,
+    overlook, cover, support (the beam supports the roof) — or "be" with a RELATIONAL adjective
+    or noun and its complement: married to, similar to, related to, equal to, a cousin / friend
+    / neighbour of, Lamine's cousin, friends with; also the coordinated form (Yusra and Lamine
+    are cousins / friends / married). The test is the progressive: a stative verb resists it
+    (*is resembling, *is needing); a verb that takes it is an event. Write one instance with the
+    verb or the adjective / noun as `relation`, the subject as `subject` (the bearer of the
+    state) and the other relatum as `object`, with the preposition that introduces it recorded;
+    a coordinated subject (Yusra and Lamine are cousins) gives the first conjunct as the subject
+    and the second as the object, no group; a possessive relatum (Lamine's cousin) is the
+    object, with no witness for the relational noun. A passive or participial form (is
+    surrounded by a wall, is covered with snow, is connected to the mill) keeps the active
+    roles: the by- or with-phrase is the subject and the surface subject the object. A relatum
+    that is an action or a clause (deserves to rest, involves selling the barn, means leaving
+    early) is parsed with its own template and listed in `complement`, sealed. Whether the
+    relation holds the other way round (married, similar, cousin) is not yours to judge: write
+    the subject and the object as the sentence gives them, and never a second instance for the
+    reverse. An indefinite relatum (needs a ladder) is a witness; a bare plural or mass one
+    (needs water, covered with snow) a bare lemma.
+  verbs: [need, require, deserve, merit, depend, rely, resemble, look_like, differ, match, equal,
+          mean, represent, stand_for, suit, fit, concern, involve, apply, relate, face, border,
+          adjoin, surround, overlook, cover, support, connect]
+  verbs_note: >
+    The list anchors the class; an unlisted verb that passes the progressive test and relates
+    two individuals belongs here. A verb whose preposition is part of its meaning alone (look
+    like, stand for) joins it in the lemma (look_like, stand_for); otherwise the lemma is the
+    verb and the preposition goes in `preposition` (depend + on, differ + from). The relational
+    adjectives and nouns of the copular form are open: married, similar, related, equal,
+    identical, parallel, cousin, friend, neighbour, sibling, partner, rival, colleague.
+  surface_forms:
+    - "<X> needs / deserves / resembles / faces <Y>"                     # a direct object
+    - "<X> depends on / relies on / differs from / applies to <Y>"      # a prepositional object: the preposition recorded
+    - "<X> is married to / similar to / related to <Y>"                 # a relational adjective with be
+    - "<X> is a cousin of <Y> / is <Y>'s cousin"                        # a relational noun with be
+    - "<X> and <Y> are cousins / friends / married"                     # the coordinated form: X the subject, Y the object
+    - "<Y> is surrounded by / covered with <X>"                         # passive or participial: the roles do not change
+    - "<X> deserves to <V> / involves <V>-ing …"                        # a clause as the relatum, sealed
+  boundary:                   # looks like a stative relation but is not one
+    - >-
+      a state of having — owns, has, keeps, lacks, belongs to: a possession
+    - >-
+      a psych or a perceptual state — likes, fears, admires, wants, distrusts Lamine; sees,
+      hears: a psych state or a perception; a quality adjective with a complement — afraid of
+      the ferret, fond of Lamine, full of water, good at chess: no template yet, report the
+      predicate as unmapped
+    - >-
+      a part and its whole — contains, includes, consists of, is made of, has a lid: no
+      template yet; report the clause as unmapped (G00)
+    - >-
+      a measure — costs, weighs, measures, lasts, holds forty litres: no template yet; report
+      the clause as unmapped (G00)
+    - >-
+      a mental state with a clause — knows that, believes that, hopes to: an attitude
+    - >-
+      a need or a requirement stated with a to-infinitive or a passive — needs to rest, is
+      required to sign: a norm; require with a causee — requires glaziers to wear gloves: a
+      causative
+    - >-
+      where a thing is, with be and a preposition — is beside the shed, is on the workbench, is
+      in Calderwick: a locative; a verb of position or residence — stands by the door, lives in
+      Calderwick: the verb's own event with a location
+    - >-
+      an event between two parties — met Lamine, married Lamine (the wedding), covered the
+      table with a cloth, connected the pipe: the progressive test says an act (is covering the
+      table); the event's own template
+    - >-
+      a relational adjective with no relatum stated — Yusra is married, the barn is connected:
+      a copular property
+    - >-
+      a comparison — resembles Lamine more than Teodor, is taller than Lamine, as tall as: the
+      comparative template
+    - >-
+      a class as both relata — mosquitoes carry malaria, ferrets need water: the generic
+      template builds the rule, with this template's instance as the predication over the range
+
+slots:
+  id:          {type: id, required: true, doc: "your label for the state (p1, p2 …)"}
+  relation:    {type: lemma, class: Class, required: true,
+                doc: "the verb lemma (need, resemble, depend, face), joined with its preposition only when the verb means nothing alone (look_like, stand_for); for the copular form the adjective or noun, lemmatized to the singular (married, similar, cousin, friend)"}
+  subject:     {type: filler, class: Entity, role: Experiencer, required: false,
+                doc: "the bearer of the state: the subject; the by- or with-phrase of a passive or participial form (is surrounded by a wall: the wall); the first conjunct of a coordinated subject (Yusra and Lamine are cousins: Yusra); a referent id, or a bare lemma for a class-level one (covered with snow); absent in an agentless passive"}
+  object:      {type: filler, class: Entity, role: Theme, required: false,
+                doc: "the other relatum: the object, the prepositional object (depends on the pump, married to Lamine, a cousin of Lamine), the possessor of a relational noun (Lamine's cousin: Lamine), the surface subject of a passive or participial form, or the second conjunct of a coordinated subject; a referent id, or a bare lemma for a class-level one (needs water); absent when the relatum is a clause"}
+  complement:  {type: refs, class: Proposition, required: false,
+                doc: "the other relatum as an action or a clause: the ids of the instances that state it (deserves to rest: the activity rest with the subject as its actor; involves selling the barn: the transfer); never together with object; the referents it mentions are not listed"}
+  preposition: {type: string, required: false,
+                doc: "the preposition introducing the object, as written (on, from, to, of, with, by); absent for a direct object, a possessive relatum and the coordinated form"}
+  tense:       {type: enum, values: [past, present, future], required: true,
+                doc: "the clause's tense; present is recorded, not inferred"}
+  aspect:      {type: enum, values: [simple, progressive, perfect], required: false, default: simple}
+
+any_of: [[object, complement]]
+
+lexicon:                     # the relations that hold the other way round by their meaning: one state, two bearers
+  symmetric: [married, similar, related, equal, identical, parallel, resemble, differ, match,
+              border, adjoin, friend, cousin, sibling, twin, spouse, partner, rival, colleague,
+              neighbour, neighbor]
+
+mints: {id: Event, stem: relation}
+
+emits:
+  - atom: "(Member @id {relation})"
+  - atom: "(Experiencer @id {subject})"
+    if_filled: subject
+  - atom: "(Theme @id {object})"             # an asymmetric relation: a bearer and a theme
+    if_filled: object
+    when: "relation not in symmetric"
+  - atom: "(Experiencer @id {object})"       # a symmetric relation: the other relatum is a bearer too
+    if_filled: object
+    when: "relation in symmetric"
+  - atom: "(Theme @id {complement})"        # a clause as the relatum, sealed as one term
+    if_filled: complement
+  - atom: "(Past @id)"
+    when: "tense == past or aspect == perfect"
+  - atom: "(Future @id)"
+    when: "tense == future"
+  - atom: "(Ongoing @id)"
+    when: "aspect == progressive"
+
+notes:
+  - >-
+    A state with an eventuality, as a state of having and a psych state are: the bearer is its
+    Experiencer (the entity the state holds of) and the other relatum its Theme, the same roles
+    in a statement and in a question about it; a time, a negation or a modal attaches to the
+    state. Nothing is an Agent: nobody acts.
+  - >-
+    A symmetric relation is one state with two bearers. "Yusra is married to Lamine" and
+    "Lamine is married to Yusra" describe the same marriage, so both relata are its
+    Experiencer and nothing is derived: a question names the other bearer. Which relations are
+    symmetric is a fact about the words, kept in the template's lexicon and applied by the
+    emitter; the parser only records who is the subject and who the complement.
+  - >-
+    The copular forms share the verbal ones' representation: "Yusra and Lamine are cousins",
+    "Lamine is a cousin of Yusra" and "Lamine is Yusra's cousin" are one state with relation
+    cousin — the class of the kinship state here, of a person in "a cousin arrived".
+  - >-
+    An indefinite relatum is a witness, asserted at the top level: "Teodor needs a ladder"
+    says there is a ladder he needs, as the catalog reads every indefinite.
+
+depends_on: [named-entity, witness]
+composes_with: [negation, modal, norm, generic, time, coref]
+
+examples:
+  shown:                     # rendered into the prompt
+    - category: positive
+      note: a symmetric verb — one state with two bearers; nothing is derived
+      text: "Yusra resembles Lamine."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
+        - {t: named-entity, id: n2, name: "Lamine", span: "Lamine"}
+        - {t: stative-relation, id: p1, relation: resemble, subject: "@n1", object: "@n2", tense: present, span: "Yusra resembles Lamine"}
+      emitted:               # what the emitter produces (illustration; the emitter is the authority)
+        - "(Name sk_yusra_1 \"Yusra\")"
+        - "(Name sk_lamine_1 \"Lamine\")"
+        - "(Member sk_resemble_1 resemble)"
+        - "(Experiencer sk_resemble_1 sk_yusra_1)"
+        - "(Experiencer sk_resemble_1 sk_lamine_1)"
+      declarations:
+        - "(: resemble Class)"
+        - "(: sk_lamine_1 Entity)"
+        - "(: sk_resemble_1 Event)"
+        - "(: sk_yusra_1 Entity)"
+    - category: positive
+      note: a prepositional object — the preposition recorded, no oblique; not symmetric
+      text: "The mill depends on the stream."
+      instances:
+        - {t: witness, id: x1, class: mill, definite: true, span: "The mill"}
+        - {t: witness, id: x2, class: stream, definite: true, span: "the stream"}
+        - {t: stative-relation, id: p1, relation: depend, subject: "@x1", object: "@x2", preposition: "on", tense: present, span: "The mill depends on the stream"}
+    - category: positive
+      note: the coordinated copular form — the first conjunct the subject, the second the object, no group
+      text: "Yusra and Lamine are cousins."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
+        - {t: named-entity, id: n2, name: "Lamine", span: "Lamine"}
+        - {t: stative-relation, id: p1, relation: cousin, subject: "@n1", object: "@n2", tense: present, span: "Yusra and Lamine are cousins"}
+    - category: abstain
+      text: "Teodor has a trowel."
+      expected: {abstain: true, template: possession}                 # a state of having
+    - category: abstain
+      text: "The ledger is on the workbench."
+      expected: {abstain: true, template: locative}                   # where a thing is
+
+  held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      note: an indefinite relatum — a witness at the top level
+      text: "Teodor needs a ladder."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, class: ladder}
+        - {t: stative-relation, id: p1, relation: need, subject: "@n1", object: "@x1", tense: present}
+    - category: positive
+      text: "Lamine deserves a prize."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: x1, class: prize}
+        - {t: stative-relation, id: p1, relation: deserve, subject: "@n1", object: "@x1", tense: present}
+    - category: positive
+      note: a clause as the relatum — sealed as the state's Theme
+      text: "Ottoline deserves to rest."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: activity, id: v1, verb: rest, actor: "@n1", tense: present}
+        - {t: stative-relation, id: p1, relation: deserve, subject: "@n1", complement: ["@v1"], tense: present}
+    - category: positive
+      note: a gerund clause as the relatum
+      text: "The plan involves selling the barn."
+      instances:
+        - {t: witness, id: x1, class: plan, definite: true}
+        - {t: witness, id: x2, class: barn, definite: true}
+        - {t: transfer, id: e1, verb: sell, object: "@x2", tense: present}
+        - {t: stative-relation, id: p1, relation: involve, subject: "@x1", complement: ["@e1"], tense: present}
+    - category: positive
+      note: another prepositional verb
+      text: "The mill relies on the stream."
+      instances:
+        - {t: witness, id: x1, class: mill, definite: true}
+        - {t: witness, id: x2, class: stream, definite: true}
+        - {t: stative-relation, id: p1, relation: rely, subject: "@x1", object: "@x2", preposition: "on", tense: present}
+    - category: positive
+      note: a symmetric prepositional verb — two bearers
+      text: "Yusra differs from Lamine."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: stative-relation, id: p1, relation: differ, subject: "@n1", object: "@n2", preposition: "from", tense: present}
+    - category: positive
+      note: a spatial relation stated by a verb — not a locative; not symmetric
+      text: "The barn faces the river."
+      instances:
+        - {t: witness, id: x1, class: barn, definite: true}
+        - {t: witness, id: x2, class: river, definite: true}
+        - {t: stative-relation, id: p1, relation: face, subject: "@x1", object: "@x2", tense: present}
+    - category: positive
+      note: a symmetric spatial relation — two bearers
+      text: "The field borders the marsh."
+      instances:
+        - {t: witness, id: x1, class: field, definite: true}
+        - {t: witness, id: x2, class: marsh, definite: true}
+        - {t: stative-relation, id: p1, relation: border, subject: "@x1", object: "@x2", tense: present}
+    - category: positive
+      note: a passive — the by-phrase is the subject, the surface subject the object
+      text: "The house is surrounded by a wall."
+      instances:
+        - {t: witness, id: x1, class: house, definite: true}
+        - {t: witness, id: x2, class: wall}
+        - {t: stative-relation, id: p1, relation: surround, subject: "@x2", object: "@x1", preposition: "by", tense: present}
+    - category: positive
+      note: a participial form with a mass subject — a bare lemma; past tense
+      text: "The roof was covered with snow."
+      instances:
+        - {t: witness, id: x1, class: roof, definite: true}
+        - {t: stative-relation, id: p1, relation: cover, subject: snow, object: "@x1", preposition: "with", tense: past}
+    - category: positive
+      note: a relational adjective with be
+      text: "Yusra is married to Lamine."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: stative-relation, id: p1, relation: married, subject: "@n1", object: "@n2", preposition: "to", tense: present}
+    - category: positive
+      text: "Teodor is similar to Yusra."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: named-entity, id: n2, name: "Yusra"}
+        - {t: stative-relation, id: p1, relation: similar, subject: "@n1", object: "@n2", preposition: "to", tense: present}
+    - category: positive
+      note: a relational noun with of
+      text: "Lamine is a cousin of Yusra."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: named-entity, id: n2, name: "Yusra"}
+        - {t: stative-relation, id: p1, relation: cousin, subject: "@n1", object: "@n2", preposition: "of", tense: present}
+    - category: positive
+      note: a possessive relatum — the possessor is the object, no witness for the noun
+      text: "Ottoline is Teodor's cousin."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: named-entity, id: n2, name: "Teodor"}
+        - {t: stative-relation, id: p1, relation: cousin, subject: "@n1", object: "@n2", tense: present}
+    - category: positive
+      note: the coordinated form with a relational noun
+      text: "Yusra and Teodor are friends."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: named-entity, id: n2, name: "Teodor"}
+        - {t: stative-relation, id: p1, relation: friend, subject: "@n1", object: "@n2", tense: present}
+    - category: positive
+      note: an abstract relation with a class-level relatum
+      text: "The red flag means danger."
+      instances:
+        - {t: witness, id: x1, class: flag, definite: true, props: [red]}
+        - {t: stative-relation, id: p1, relation: mean, subject: "@x1", object: danger, tense: present}
+    - category: positive
+      note: a time on the state — the eventuality carries it
+      text: "Yusra needed a ladder yesterday."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, class: ladder}
+        - {t: stative-relation, id: p1, relation: need, subject: "@n1", object: "@x1", tense: past}
+        - {t: time, id: t1, event: "@p1", deictic: yesterday, anchor: "@now"}
+    - category: positive
+      note: a class subject — the generic builds the rule, the object a bare lemma
+      text: "Ferrets need water."
+      instances:
+        - {t: range, id: q1, class: ferret}
+        - {t: stative-relation, id: p1, relation: need, subject: "@q1", object: water, tense: present}
+        - {t: generic, id: r1, ranges: ["@q1"], over: ["@p1"]}
+    - category: scoped
+      note: under negation — the one state with its two bearers is denied
+      text: "Teodor does not resemble Lamine."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: stative-relation, id: p1, relation: resemble, subject: "@n1", object: "@n2", tense: present}
+        - {t: negation, id: s1, over: ["@p1"]}
+    - category: abstain
+      text: "Ottoline owns the quilt."
+      expected: {abstain: true, template: possession}                 # a state of having
+    - category: abstain
+      text: "Yusra fears the ferret."
+      expected: {abstain: true, template: psych}                      # a psych state
+    - category: abstain
+      text: "Yusra needs to rest."
+      expected: {abstain: true, template: norm}                       # a need stated with a to-infinitive
+    - category: abstain
+      text: "The box contains a letter."
+      expected: {abstain: true, gap: G00, span: "The box contains a letter."}   # a part and its whole: no template yet
+    - category: abstain
+      text: "The parcel weighs a pound."
+      expected: {abstain: true, gap: G00, span: "The parcel weighs a pound."}   # a measure: no template yet

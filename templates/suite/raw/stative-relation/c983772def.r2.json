@@ -1,0 +1,90 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "00c1d3a38815e1ae95a32f96fad88a4afabbeb50f662bbb7d4a0cb6e9bbd0c60",
+  "item": {
+    "id": "sc983772def",
+    "text": "Ottoline is Teodor's cousin."
+  },
+  "usage": {
+    "input": 76412,
+    "output": 144,
+    "thinking": null,
+    "total": 76556,
+    "cached": 74363,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 76412,
+    "candidatesTokenCount": 144,
+    "totalTokenCount": 76556,
+    "cachedContentTokenCount": 74363,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 76412
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 74363
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 144
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sc983772def\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"stative-relation\", \"id\": \"p1\", \"relation\": \"cousin\", \"subject\": \"@n1\", \"object\": \"@n2\", \"tense\": \"present\", \"span\": \"Ottoline is Teodor's cousin\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sc983772def",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Ottoline",
+        "span": "Ottoline"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "stative-relation",
+        "id": "p1",
+        "relation": "cousin",
+        "subject": "@n1",
+        "object": "@n2",
+        "tense": "present",
+        "span": "Ottoline is Teodor's cousin"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "8f768497029588efd8f71073a54c11b506fc67161e0952eb46812d3415cd0956",
+  "run": 2,
+  "case": {
+    "template": "stative-relation",
+    "section": "held_out",
+    "index": 13,
+    "category": "positive",
+    "text": "Ottoline is Teodor's cousin.",
+    "key": "c983772def"
+  }
+}

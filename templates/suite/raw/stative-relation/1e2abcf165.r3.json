@@ -1,0 +1,95 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "00c1d3a38815e1ae95a32f96fad88a4afabbeb50f662bbb7d4a0cb6e9bbd0c60",
+  "item": {
+    "id": "s1e2abcf165",
+    "text": "Ferrets need water."
+  },
+  "usage": {
+    "input": 76409,
+    "output": 144,
+    "thinking": null,
+    "total": 76553,
+    "cached": 74360,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 76409,
+    "candidatesTokenCount": 144,
+    "totalTokenCount": 76553,
+    "cachedContentTokenCount": 74360,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 76409
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 74360
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 144
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s1e2abcf165\", \"instances\": [{\"t\": \"range\", \"id\": \"q1\", \"class\": \"ferret\", \"span\": \"Ferrets\"}, {\"t\": \"stative-relation\", \"id\": \"p1\", \"relation\": \"need\", \"subject\": \"@q1\", \"object\": \"water\", \"tense\": \"present\", \"span\": \"Ferrets need water\"}, {\"t\": \"generic\", \"id\": \"r1\", \"ranges\": [\"@q1\"], \"over\": [\"@p1\"], \"span\": \"Ferrets need water\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s1e2abcf165",
+    "instances": [
+      {
+        "t": "range",
+        "id": "q1",
+        "class": "ferret",
+        "span": "Ferrets"
+      },
+      {
+        "t": "stative-relation",
+        "id": "p1",
+        "relation": "need",
+        "subject": "@q1",
+        "object": "water",
+        "tense": "present",
+        "span": "Ferrets need water"
+      },
+      {
+        "t": "generic",
+        "id": "r1",
+        "ranges": [
+          "@q1"
+        ],
+        "over": [
+          "@p1"
+        ],
+        "span": "Ferrets need water"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "8f768497029588efd8f71073a54c11b506fc67161e0952eb46812d3415cd0956",
+  "run": 3,
+  "case": {
+    "template": "stative-relation",
+    "section": "held_out",
+    "index": 17,
+    "category": "positive",
+    "text": "Ferrets need water.",
+    "key": "1e2abcf165"
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "00c1d3a38815e1ae95a32f96fad88a4afabbeb50f662bbb7d4a0cb6e9bbd0c60",
+  "item": {
+    "id": "s16d8d43eb4",
+    "text": "Teodor needs a ladder."
+  },
+  "usage": {
+    "input": 76411,
+    "output": 139,
+    "thinking": null,
+    "total": 76550,
+    "cached": 74362,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 76411,
+    "candidatesTokenCount": 139,
+    "totalTokenCount": 76550,
+    "cachedContentTokenCount": 74362,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 76411
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 74362
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 139
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s16d8d43eb4\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"ladder\", \"span\": \"a ladder\"}, {\"t\": \"stative-relation\", \"id\": \"p1\", \"relation\": \"need\", \"subject\": \"@n1\", \"object\": \"@x1\", \"tense\": \"present\", \"span\": \"Teodor needs a ladder\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s16d8d43eb4",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "ladder",
+        "span": "a ladder"
+      },
+      {
+        "t": "stative-relation",
+        "id": "p1",
+        "relation": "need",
+        "subject": "@n1",
+        "object": "@x1",
+        "tense": "present",
+        "span": "Teodor needs a ladder"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "8f768497029588efd8f71073a54c11b506fc67161e0952eb46812d3415cd0956",
+  "run": 2,
+  "case": {
+    "template": "stative-relation",
+    "section": "held_out",
+    "index": 0,
+    "category": "positive",
+    "text": "Teodor needs a ladder.",
+    "key": "16d8d43eb4"
+  }
+}

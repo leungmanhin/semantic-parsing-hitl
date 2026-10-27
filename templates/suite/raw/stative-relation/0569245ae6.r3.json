@@ -1,0 +1,86 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "00c1d3a38815e1ae95a32f96fad88a4afabbeb50f662bbb7d4a0cb6e9bbd0c60",
+  "item": {
+    "id": "s0569245ae6",
+    "text": "The roof was covered with snow."
+  },
+  "usage": {
+    "input": 76412,
+    "output": 122,
+    "thinking": null,
+    "total": 76534,
+    "cached": 74363,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 76412,
+    "candidatesTokenCount": 122,
+    "totalTokenCount": 76534,
+    "cachedContentTokenCount": 74363,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 76412
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 74363
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 122
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s0569245ae6\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"roof\", \"definite\": true, \"span\": \"The roof\"}, {\"t\": \"stative-relation\", \"id\": \"p1\", \"relation\": \"cover\", \"subject\": \"snow\", \"object\": \"@x1\", \"preposition\": \"with\", \"tense\": \"past\", \"span\": \"The roof was covered with snow\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s0569245ae6",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "roof",
+        "definite": true,
+        "span": "The roof"
+      },
+      {
+        "t": "stative-relation",
+        "id": "p1",
+        "relation": "cover",
+        "subject": "snow",
+        "object": "@x1",
+        "preposition": "with",
+        "tense": "past",
+        "span": "The roof was covered with snow"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "8f768497029588efd8f71073a54c11b506fc67161e0952eb46812d3415cd0956",
+  "run": 3,
+  "case": {
+    "template": "stative-relation",
+    "section": "held_out",
+    "index": 9,
+    "category": "positive",
+    "text": "The roof was covered with snow.",
+    "key": "0569245ae6"
+  }
+}

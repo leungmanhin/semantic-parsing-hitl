@@ -1,0 +1,74 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "00c1d3a38815e1ae95a32f96fad88a4afabbeb50f662bbb7d4a0cb6e9bbd0c60",
+  "item": {
+    "id": "sc2fe7d46f5",
+    "text": "The parcel weighs a pound."
+  },
+  "usage": {
+    "input": 76410,
+    "output": 64,
+    "thinking": null,
+    "total": 76474,
+    "cached": 74361,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 76410,
+    "candidatesTokenCount": 64,
+    "totalTokenCount": 76474,
+    "cachedContentTokenCount": 74361,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 76410
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 74361
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 64
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sc2fe7d46f5\", \"instances\": [], \"unmapped\": [{\"span\": \"The parcel weighs a pound\", \"code\": \"G00\", \"construction\": \"A measure verb clause stating the weight of a thing.\"}], \"issues\": []}",
+  "response": {
+    "id": "sc2fe7d46f5",
+    "instances": [],
+    "unmapped": [
+      {
+        "span": "The parcel weighs a pound",
+        "code": "G00",
+        "construction": "A measure verb clause stating the weight of a thing."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "8f768497029588efd8f71073a54c11b506fc67161e0952eb46812d3415cd0956",
+  "run": 2,
+  "case": {
+    "template": "stative-relation",
+    "section": "held_out",
+    "index": 23,
+    "category": "abstain",
+    "text": "The parcel weighs a pound.",
+    "key": "c2fe7d46f5"
+  }
+}

@@ -25,7 +25,9 @@ emits the shape only when the slot is present, ``each`` emits one statement per 
 list slot (``{slot}`` then stands for the element; over a ``refs`` slot the elements are the
 conjuncts of the scoped bundle, so a sealed clause can also be stated flat), ``when`` tests
 slot values with ``slot == value`` / ``slot != value`` clauses joined by ``and`` / ``or``
-(case-insensitive, so ``factive == true`` tests a boolean), ``project: true`` emits the shape
+(case-insensitive, so ``factive == true`` tests a boolean) or a ``slot in name`` test against a
+list of the template's ``lexicon`` (a fact about the words, applied here, never judged by the
+parser), ``project: true`` emits the shape
 at the top level whatever scope the instance sits in (a presupposition projects through
 negation), and ``within: <refs slot>`` renders the shape INSIDE that slot's bundle, under the
 same variable / skolem substitution as the bundle (a rule over occasions adds ``(Time
@@ -147,8 +149,10 @@ def parse_shape(atom: str):
     return expr
 
 
-def holds(cond: str, inst: dict) -> bool:
-    """``slot == value`` clauses joined by ``and`` / ``or`` (``or`` binds loosest)."""
+def holds(cond: str, inst: dict, lists: dict | None = None) -> bool:
+    """``slot == value`` clauses joined by ``and`` / ``or`` (``or`` binds loosest); ``slot in
+    name`` / ``slot not in name`` tests the slot's value against a list of the template's
+    ``lexicon`` (``lists``), case-insensitively."""
     def clause(c: str) -> bool:
         c = c.strip()
         neg = c.startswith("not ")
@@ -160,6 +164,10 @@ def holds(cond: str, inst: dict) -> bool:
         elif "==" in c:
             k, v = [x.strip() for x in c.split("==", 1)]
             res = str(inst.get(k)).lower() == v.lower()
+        elif " not in " in c or " in " in c:
+            k, name = [x.strip() for x in re.split(r" not in | in ", c, 1)]
+            member = str(inst.get(k)).lower() in {str(x).lower() for x in (lists or {}).get(name, [])}
+            res = (not member) if " not in " in c else member
         else:
             res = inst.get(c) not in (None, False, [], "")
         return (not res) if neg else res
@@ -465,7 +473,7 @@ class _Emitter:
                 continue
             if "if_filled" in e and r.get(e["if_filled"]) in (None, [], ""):
                 continue
-            if "when" in e and not holds(e["when"], r):
+            if "when" in e and not holds(e["when"], r, t.get("lexicon")):
                 continue
             shape = parse_shape(e["atom"])
             for sym, cls in (e.get("declare") or {}).items():
@@ -494,7 +502,7 @@ class _Emitter:
                 continue
             if "if_filled" in e and r.get(e["if_filled"]) in (None, [], ""):
                 continue
-            if "when" in e and not holds(e["when"], r):
+            if "when" in e and not holds(e["when"], r, t.get("lexicon")):
                 continue
             for sym, cls in (e.get("declare") or {}).items():
                 self.declare(sym, cls)
@@ -740,7 +748,7 @@ class _Emitter:
                 continue
             if "if_filled" in e and e["if_filled"] != slot and r.get(e["if_filled"]) in (None, [], ""):
                 continue
-            if "when" in e and not holds(e["when"], filled):
+            if "when" in e and not holds(e["when"], filled, t.get("lexicon")):
                 continue
             return True
         return False

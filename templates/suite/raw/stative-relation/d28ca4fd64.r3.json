@@ -1,0 +1,91 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "00c1d3a38815e1ae95a32f96fad88a4afabbeb50f662bbb7d4a0cb6e9bbd0c60",
+  "item": {
+    "id": "sd28ca4fd64",
+    "text": "Yusra differs from Lamine."
+  },
+  "usage": {
+    "input": 76410,
+    "output": 151,
+    "thinking": null,
+    "total": 76561,
+    "cached": 74361,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 76410,
+    "candidatesTokenCount": 151,
+    "totalTokenCount": 76561,
+    "cachedContentTokenCount": 74361,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 76410
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 74361
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 151
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sd28ca4fd64\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"stative-relation\", \"id\": \"p1\", \"relation\": \"differ\", \"subject\": \"@n1\", \"object\": \"@n2\", \"preposition\": \"from\", \"tense\": \"present\", \"span\": \"Yusra differs from Lamine\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sd28ca4fd64",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "stative-relation",
+        "id": "p1",
+        "relation": "differ",
+        "subject": "@n1",
+        "object": "@n2",
+        "preposition": "from",
+        "tense": "present",
+        "span": "Yusra differs from Lamine"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "8f768497029588efd8f71073a54c11b506fc67161e0952eb46812d3415cd0956",
+  "run": 3,
+  "case": {
+    "template": "stative-relation",
+    "section": "held_out",
+    "index": 5,
+    "category": "positive",
+    "text": "Yusra differs from Lamine.",
+    "key": "d28ca4fd64"
+  }
+}
