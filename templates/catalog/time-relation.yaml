@@ -55,7 +55,7 @@ trigger:
       a time the event takes place at — in 2019, on Monday, at noon, yesterday, at dawn: a time,
       not a relation
     - >-
-      a duration — for six hours, lasted two days: a measure, with no slot here; report the
+      a duration — for six hours, lasted two days: the measure template, with no slot here; the
       phrase as unmapped
     - >-
       a frequency or a schedule — every day, twice a week, often: a frequency
@@ -176,7 +176,7 @@ examples:
       expected: {abstain: true, template: time}                       # a measured distance: a time point
     - category: abstain
       text: "Lamine waited for six hours."
-      expected: {abstain: true, gap: G00, span: "for six hours"}      # a duration
+      expected: {abstain: true, template: measure}                    # a duration: a measure on the event
 
   held_out:                  # tests; never rendered into the prompt
     - category: positive

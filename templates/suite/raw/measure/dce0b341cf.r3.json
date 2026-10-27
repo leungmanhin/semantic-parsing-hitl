@@ -1,0 +1,88 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "7d8bfa1798fa0376b9c1c50e55e87ad7829871fd7a3a6dc194889e8f4ce0ad26",
+  "item": {
+    "id": "sdce0b341cf",
+    "text": "The wall is at least 2 metres high."
+  },
+  "usage": {
+    "input": 81324,
+    "output": 101,
+    "thinking": null,
+    "total": 81425,
+    "cached": 79275,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 81324,
+    "candidatesTokenCount": 101,
+    "totalTokenCount": 81425,
+    "cachedContentTokenCount": 79275,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 81324
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 79275
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 101
+      }
+    ]
+  },
+  "raw_text": "{\"id\":\"sdce0b341cf\",\"instances\":[{\"t\":\"witness\",\"id\":\"x1\",\"class\":\"wall\",\"definite\":true,\"span\":\"The wall\"},{\"t\":\"measure\",\"id\":\"m1\",\"bearer\":\"@x1\",\"head\":\"MeasureAtLeast\",\"dimension\":\"high\",\"magnitude\":2,\"unit\":\"metre\",\"word\":\"at least\",\"tense\":\"present\",\"span\":\"The wall is at least 2 metres high\"}],\"unmapped\":[],\"issues\":[]}",
+  "response": {
+    "id": "sdce0b341cf",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "wall",
+        "definite": true,
+        "span": "The wall"
+      },
+      {
+        "t": "measure",
+        "id": "m1",
+        "bearer": "@x1",
+        "head": "MeasureAtLeast",
+        "dimension": "high",
+        "magnitude": 2,
+        "unit": "metre",
+        "word": "at least",
+        "tense": "present",
+        "span": "The wall is at least 2 metres high"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "26539430410297030aed50dd411ab29db1bdef659fdc3c6923cbb7d25f73608d",
+  "run": 3,
+  "case": {
+    "template": "measure",
+    "section": "held_out",
+    "index": 0,
+    "category": "positive",
+    "text": "The wall is at least 2 metres high.",
+    "key": "dce0b341cf"
+  }
+}

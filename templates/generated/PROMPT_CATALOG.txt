@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 2b7da55b6e2a3cfb · 52 templates
+catalog sha256 27e2e93e2b704f82 · 53 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -515,8 +515,8 @@ Not this template:
   got Lamine to send the quilt: a causative; nothing is acquired either way
 - win or earn with a contest or an activity as the object — won the race: nothing changes hands;
   with a prize or a sum as the object it is an acquisition
-- the price — bought the quilt for forty euros: the amount is never the object; it is an
-  attachment with no slot here, reported as unmapped while the acquisition is parsed
+- the price — bought the quilt for forty euros: the amount is never the object; it is a measure
+  on the event (the measure template) while the acquisition is parsed
 
 Slots:
 
@@ -1457,6 +1457,9 @@ Forms:
 - <class> is ADJ-er than <class>
 
 Not this template:
+- a comparison against a number — taller than 2 metres, more than 200 metres long, weighs over
+  20 kilograms, older than thirty: a threshold on a measure, not a comparison of two things; a
+  bounded measure (the measure template), with the unit unspecified when none is stated
 - a comparative with no stated standard — a sturdier bracket, prices ended lower, this one is
   better: nothing fills the standard; the rest of the clause is parsed and the comparative
   reported as unmapped (G01)
@@ -1471,8 +1474,6 @@ Not this template:
   as unmapped (Ottoline is taller than Yusra was)
 - a correlative — the older the wine, the better: a covariation, not a comparison; reported as
   unmapped
-- a comparison with a measure — taller than two metres, older than thirty: a threshold on a
-  measure, not a comparison of two things; report the phrase as unmapped
 - a bound on a count — more than three ferrets, fewer than ten: a count on a group, not a
   comparison; no slot here
 - than after a non-gradable word — other than Yusra, rather than wait: not a comparison; an
@@ -1909,6 +1910,8 @@ Forms:
 - a <degree word> <ADJ> <N>
 
 Not this template:
+- a number with a unit — 2 metres tall, 30 years old, about 40 kilograms: a measure, not a
+  degree
 - a plain adjective — is crooked, an old spindle: a copular predication or a witness property,
   no degree
 - a degree adverb on a verb — deeply distrusts, barely moved, fell sharply: an extent on the
@@ -2081,6 +2084,160 @@ The program renders these instances as:
 Not this template. TEXT: Yusra laughed in the barn. — use `location`.
 
 Not this template. TEXT: Teodor is a locksmith. — use `copular`.
+
+### measure — A number with a unit on a dimension of a thing or an eventuality
+
+When: A clause or a phrase stating a NUMBER WITH A UNIT on a dimension: of a THING — the rope is
+3 metres long, Lamine is 30 years old, the crate weighs 12 kilograms, the thermos costs 12
+euros, the audit took three hours, the meeting lasted an hour, the village has a population of
+3000, the crates weighed 180 kilograms, a 20 kilogram sack — or of the clause's EVENT — slept
+for eight hours (a duration), ran five kilometres (a distance), bought the quilt for forty euros
+(the price paid), travels at 30 kilometres per hour (a rate), fell by 8 percent and rose from 9
+to 12 degrees (a scalar change). With a thing, fill `bearer` with its referent: a witness, a
+name, a group (a plural bearer measures the whole, with no distribution) or an eventive witness
+(the audit took three hours); with the clause's event, fill `event` with its predication
+instance instead. `dimension` is the word the text supplies — the adjective as written (long,
+tall, high, wide, deep, old), else the noun the clause gives (weighs → weight, costs → cost,
+took / lasted / for → duration, a population of → population, the price fell → price, the
+temperature rose → temperature, bought for → price) — and `unspecified` when no word names it
+(ran five kilometres, a 20 kilogram sack); `unit` is the unit lemmatized to the singular (metre,
+kilogram, year, hour, euro, percent; a rate as kilometre_per_hour) and `unspecified` when none
+is stated (a population of 3000). `head` is Measure for a stated value; MeasureAtLeast for at
+least / more than / over / above / up from; MeasureAtMost for at most / no more than / less than
+/ under / below / up to (a strict bound uses the same head); on a change event, MeasureBy for
+the amount of the change (fell by 8 percent), MeasureFrom and MeasureTo for a start and an end
+value (rose from 9 to 12 degrees: two instances). A hedge (about, roughly, nearly) is recorded
+in `hedge`; the magnitude stays the number stated. A measure phrase inside a noun phrase (a 20
+kilogram sack) is a measure of that witness, in the present. Number words are converted (forty →
+40, three thousand → 3000, an hour → 1).
+
+Forms:
+- <X> is <n> <unit> <ADJ>
+- <X> weighs / costs / measures <n> <unit>
+- <X> took / lasted <n> <unit>
+- <X> has a <dimension> of <n> (<unit>)
+- <clause> for <n> <unit>
+- <X> is at least / more than / no more than <n> <unit> <ADJ>
+- <X> is about / roughly <n> <unit> <ADJ>
+- <change verb> by <n> <unit> / from <n> to <n> <unit>
+
+Not this template:
+- a count of things — three students, has four legs, twelve chairs: a group with its
+  cardinality, or a part-whole relation
+- a comparison with a measured gap or a factor — 6 centimetres taller than Owen, twice as heavy
+  as the crate: the comparative template; a comparison against a bare number — taller than 2
+  metres: a bounded measure, here
+- a degree word with no number — very tall, too heavy, a lot heavier: a degree or an extent
+- a proportion or a subset of a set — half of the loaf, 40 percent of the students: no template
+  here; report the phrase as unmapped (G00); a percentage as a value — unemployment is 5
+  percent, fell by 8 percent — is a measure with the unit percent
+- a time or a date — at noon, in 2019, three days ago, two weeks later: a time or a time
+  relation, not a measure
+- how often — twice a week, every two hours: a frequency; a rate with a unit — 30 kilometres per
+  hour — is a measure
+- a vague duration or amount with no number — all day, for years, a lot of water: no slot here;
+  report the phrase as unmapped (G00)
+- a bare number with neither a dimension nor a unit — Lamine is 30, the bridge is 200: no
+  dimension and no unit to record; report the clause as unmapped (G00)
+- a stated distance between a thing and a place — the hotel is 800 metres from the river: a
+  locative with a measure no template carries; report the clause as unmapped
+
+Slots:
+
+- `t` (required): "measure"
+- `id` (required; your label for this instance): your label for the measure (m1, m2 …).
+- `bearer` (optional; "@id" of an instance, of the kinds the slot names): the thing measured: a
+  referent id — a witness, a name, a group (the crates weighed 180 kilograms: the whole, no
+  distribution) or an eventive witness (the audit took three hours); absent when the measure
+  sits on the clause's event.
+- `event` (optional; "@id" of the predication instance this attaches to): the clause's
+  predication instance when the measure phrase is on the event: a duration (slept for eight
+  hours), a distance (ran five kilometres), a price paid (bought the quilt for forty euros), a
+  rate (travels at 30 kilometres per hour), a change's amount or its start / end value (fell by
+  8 percent); absent with bearer.
+- `head` (required; one of: Measure, MeasureAtLeast, MeasureAtMost, MeasureBy, MeasureFrom,
+  MeasureTo): Measure for a stated value; MeasureAtLeast for at least / more than / over /
+  above; MeasureAtMost for at most / no more than / less than / under / below / up to; MeasureBy
+  for the amount of a change, MeasureFrom / MeasureTo for its start / end value (with event
+  only).
+- `dimension` (required; a lemma): the dimension word the text supplies: the adjective as
+  written (long, tall, high, wide, deep, old) or the noun the clause gives (weight, cost,
+  duration, population, price, temperature); unspecified when no word names it.
+- `magnitude` (required; a number): the number as stated (40, 3000, 0.5, 7.5), number words
+  converted; never a range.
+- `unit` (required; a lemma): the unit, singular and lowercase (metre, foot, kilogram, year,
+  hour, euro, dollar, degree, percent); a rate as unit_per_unit (kilometre_per_hour);
+  unspecified when no unit is stated.
+- `hedge` (optional; a string): the approximation word as written (about, around, roughly,
+  approximately, nearly, almost, some, or so); recorded, not rendered.
+- `word` (optional; a string): the wording that sets a bound or a change head, as written (at
+  least, more than, over, no more than, under, up to, by, from, to); absent for a plain measure.
+- `tense` (optional; one of: past, present, future): with bearer, the clause's tense (was 200
+  metres long → past; a phrase inside a noun phrase → present); with event, leave it absent —
+  the clause's own tense is on the event.
+- Exactly one of `bearer`, `event` is filled.
+
+Example (an adjective dimension with a unit — the adjective as written, no positive entailed). TEXT: The rope is 3 metres long.
+
+Instances:
+
+    [
+      {"t": "witness", "id": "x1", "class": "rope", "definite": true, "span": "The rope"},
+      {"t": "measure", "id": "m1", "bearer": "@x1", "head": "Measure", "dimension": "long", "magnitude": 3, "unit": "metre", "tense": "present", "span": "The rope is 3 metres long"}
+    ]
+
+The program renders these instances as:
+
+    (Member sk_rope_1 rope)
+    (Measure sk_rope_1 long 3 metre)
+
+Example (a measure verb — the dimension is the noun the verb gives). TEXT: The crate weighs 12 kilograms.
+
+Instances:
+
+    [
+      {"t": "witness", "id": "x1", "class": "crate", "definite": true, "span": "The crate"},
+      {"t": "measure", "id": "m1", "bearer": "@x1", "head": "Measure", "dimension": "weight", "magnitude": 12, "unit": "kilogram", "tense": "present", "span": "The crate weighs 12 kilograms"}
+    ]
+
+The program renders these instances as:
+
+    (Member sk_crate_1 crate)
+    (Measure sk_crate_1 weight 12 kilogram)
+
+Example (an age — the adjective old, the unit year). TEXT: Lamine is 30 years old.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Lamine", "span": "Lamine"},
+      {"t": "measure", "id": "m1", "bearer": "@n1", "head": "Measure", "dimension": "old", "magnitude": 30, "unit": "year", "tense": "present", "span": "Lamine is 30 years old"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_lamine_1 "Lamine")
+    (Measure sk_lamine_1 old 30 year)
+
+Example (a duration on the clause's event — an attachment, the dimension duration). TEXT: Lamine waited for six hours.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Lamine", "span": "Lamine"},
+      {"t": "activity", "id": "v1", "verb": "wait", "actor": "@n1", "tense": "past", "span": "Lamine waited"},
+      {"t": "measure", "id": "m1", "event": "@v1", "head": "Measure", "dimension": "duration", "magnitude": 6, "unit": "hour", "span": "for six hours"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_lamine_1 "Lamine")
+    (Member sk_wait_1 wait)
+    (Agent sk_wait_1 sk_lamine_1)
+    (Past sk_wait_1)
+    (Measure sk_wait_1 duration 6 hour)
+
+Not this template. TEXT: Three days ago, Yusra left. — use `time`.
 
 ### motion — A change of place
 
@@ -3408,8 +3565,8 @@ Not this template:
 - the recipient of a transfer or a communication — gave a thermos to Yusra, told the news to
   Lamine: the template's own recipient slot
 - a for-phrase that names no beneficiary — waited for Teodor, commended for the salvage: an
-  oblique (For); a price, an exchange or a duration — bought the quilt for forty euros, worked
-  for six hours: reported as unmapped; a destination — left for the market: the motion's goal
+  oblique (For); a price paid or a duration — bought the quilt for forty euros, worked for six
+  hours: a measure on the event; a destination — left for the market: the motion's goal
 - a with-phrase that says how — with care, with difficulty: a manner
 - a with-phrase inside a noun phrase — the man with the hat, a thermos with a dent: a
   postmodifier of that noun
@@ -3527,8 +3684,8 @@ Not this template:
   report the clause as unmapped
 - a degree word on a manner adverb — laughed very loudly: the manner is recorded, the degree
   word reported (G02)
-- a measured amount of change — fell by three percent, rose two degrees: a measure, with no slot
-  here; report the phrase as unmapped
+- a measured amount of change — fell by three percent, rose two degrees: the measure template
+  (MeasureBy on the change event), with no slot here; report the phrase as unmapped
 - a comparative adverb — fell faster than the rent, works harder than Yusra: a comparison;
   report the span as unmapped
 - a quantity as the object — ate a lot, said much: the object, not a degree on the event; report
@@ -4104,7 +4261,7 @@ Not this template:
 - a frequency or a schedule — every day, every morning, on Sundays as a habit, twice a week: a
   frequency (a period of one unit is a range over its class, not a time instance); a clock time
   or a date beside it — at noon every day — is a time instance on the event
-- a duration — for six hours, lasted two days: a measure, not a time
+- a duration — for six hours, lasted two days: the measure template, not a time
 - a decade, a century or an era — in the 1990s, in the 19th century: no slot yet; reported as
   unmapped
 - an approximate time — around noon, about 3 pm: record the time, report the approximator as
@@ -4256,8 +4413,8 @@ Not this template:
   time point at an offset from its anchor; a time
 - a time the event takes place at — in 2019, on Monday, at noon, yesterday, at dawn: a time, not
   a relation
-- a duration — for six hours, lasted two days: a measure, with no slot here; report the phrase
-  as unmapped
+- a duration — for six hours, lasted two days: the measure template, with no slot here; the
+  phrase as unmapped
 - a frequency or a schedule — every day, twice a week, often: a frequency
 - a causal since or as — Yusra left, since the gate was open: a reason, a link; a temporal since
   or as is this template
@@ -4362,8 +4519,7 @@ The program renders these instances as:
 
 Not this template. TEXT: Three days ago, Yusra left. — use `time`.
 
-Not this template. TEXT: Lamine waited for six hours. — report it as unmapped: {"span": "for six
-hours", "code": "G00"}.
+Not this template. TEXT: Lamine waited for six hours. — use `measure`.
 
 ## Rules — generic and quantified statements
 
@@ -4646,8 +4802,8 @@ Not this template:
   rule at strength 0
 - again, still, already, yet — laughed again, still waits: an aspectual particle, a
   presupposition about an earlier state, not how often
-- a duration — all day, for years, for six hours: how long, a measure; no slot here; report the
-  phrase as unmapped
+- a duration — for six hours: how long, the measure template; a vague one — all day, for years:
+  no slot anywhere; report the phrase as unmapped
 - an if-clause — if the bell rings, the ferret hides: the conditional template; a stative
   when-clause — the ladder is brittle when cold — is a condition there too, not a frequency
 - a habit with no frequency expression — Yusra swims, Lamine used to sing: the habitual template

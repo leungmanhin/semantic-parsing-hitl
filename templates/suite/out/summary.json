@@ -1,12 +1,19 @@
 {
   "prompt": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_body_sha256": "b4506b321cc277ac80f5ce1aa23e5b0565215b85ccdd8fffa5bd24592c6be1a3",
+  "prompt_body_sha256": "26539430410297030aed50dd411ab29db1bdef659fdc3c6923cbb7d25f73608d",
   "typecheck": "ran",
   "checks": {
-    "examples": 895,
+    "examples": 919,
     "findings": [],
     "pending": {},
     "shared": [
+      {
+        "text": "Ottoline bought the quilt for forty euros.",
+        "templates": [
+          "acquisition",
+          "measure"
+        ]
+      },
       {
         "text": "Lamine danced with Yusra.",
         "templates": [
@@ -110,11 +117,11 @@
           "passed": 36
         },
         "usage": {
-          "input": 2034243,
-          "output": 5717,
+          "input": 2108733,
+          "output": 5777,
           "thinking": 0,
-          "total": 2039960,
-          "cached": 1960310,
+          "total": 2114510,
+          "cached": 2034802,
           "calls": 36,
           "thinking_calls": 0
         },
@@ -122,8 +129,8 @@
         "null_slots": 0,
         "lints": {},
         "spans": {
-          "instances": 111,
-          "with_span": 111,
+          "instances": 114,
+          "with_span": 114,
           "missing": 0,
           "not_verbatim": 0,
           "malformed": 0
@@ -263,8 +270,7 @@
             "pass": 9,
             "false_fires": 0,
             "outcomes": {
-              "target_fired": 6,
-              "gap_reported": 3
+              "target_fired": 9
             }
           }
         },
@@ -291,11 +297,11 @@
           "passed": 33
         },
         "usage": {
-          "input": 1864776,
-          "output": 6480,
+          "input": 1939266,
+          "output": 6552,
           "thinking": 0,
-          "total": 1871256,
-          "cached": 1737380,
+          "total": 1945818,
+          "cached": 1732583,
           "calls": 33,
           "thinking_calls": 0
         },
@@ -303,8 +309,8 @@
         "null_slots": 0,
         "lints": {},
         "spans": {
-          "instances": 135,
-          "with_span": 135,
+          "instances": 138,
+          "with_span": 138,
           "missing": 0,
           "not_verbatim": 0,
           "malformed": 0
@@ -2651,7 +2657,7 @@
         "status": {
           "ok": 48
         },
-        "stale_prompt": 45,
+        "stale_prompt": 48,
         "by_category": {
           "positive": {
             "cases": 10,
@@ -2809,6 +2815,93 @@
         "spans": {
           "instances": 129,
           "with_span": 129,
+          "missing": 0,
+          "not_verbatim": 0,
+          "malformed": 0
+        },
+        "models": [
+          "gemini-4-argon effort=low"
+        ]
+      }
+    },
+    "measure": {
+      "held_out": {
+        "records": 57,
+        "cases": 19,
+        "status": {
+          "ok": 57
+        },
+        "stale_prompt": 54,
+        "by_category": {
+          "positive": {
+            "cases": 17,
+            "runs": 51,
+            "pass": 51,
+            "fired": 51,
+            "exact": 51
+          },
+          "scoped": {
+            "cases": 1,
+            "runs": 3,
+            "pass": 3,
+            "fired": 3,
+            "exact": 3
+          },
+          "abstain": {
+            "cases": 1,
+            "runs": 3,
+            "pass": 3,
+            "false_fires": 0,
+            "outcomes": {
+              "target_fired": 3
+            }
+          }
+        },
+        "pass": 57,
+        "selection": {
+          "fire_runs": 54,
+          "fired": 54,
+          "abstain_runs": 3,
+          "false_fires": 0
+        },
+        "fill": {
+          "fired": 54,
+          "exact": 54,
+          "rate": 1.0
+        },
+        "stability": {
+          "cases": 19,
+          "pairs": 57,
+          "pairwise_agreement": 1.0,
+          "unanimous": 19
+        },
+        "typecheck": {
+          "checked": 57,
+          "passed": 57
+        },
+        "usage": {
+          "input": 4636248,
+          "output": 8776,
+          "thinking": 0,
+          "total": 4645024,
+          "cached": 4043666,
+          "calls": 57,
+          "thinking_calls": 0
+        },
+        "issues": [
+          {
+            "code": "P00",
+            "where": "comparative",
+            "text": "The comparative template says under 'Not this template' both that a comparison against a bare number such as 'more than 200 metres long' uses the measure template and, in another bullet, to report a comparison with a measure as unmapped.",
+            "sentence": "The bridge is more than 200 metres long.",
+            "run": 1
+          }
+        ],
+        "null_slots": 0,
+        "lints": {},
+        "spans": {
+          "instances": 153,
+          "with_span": 153,
           "missing": 0,
           "not_verbatim": 0,
           "malformed": 0
@@ -3299,7 +3392,7 @@
         "status": {
           "ok": 51
         },
-        "stale_prompt": 0,
+        "stale_prompt": 51,
         "by_category": {
           "positive": {
             "cases": 13,
@@ -3858,7 +3951,7 @@
         "status": {
           "ok": 72
         },
-        "stale_prompt": 69,
+        "stale_prompt": 72,
         "by_category": {
           "positive": {
             "cases": 18,

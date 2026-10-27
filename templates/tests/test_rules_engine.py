@@ -311,5 +311,24 @@ class SeededRulesOnTheEngine(unittest.TestCase):
         self.assertTrue(self.query(self.space(legs), "(PartOf sk_leg_1 sk_table_1)"))       # each member a part
 
 
+    def test_a_measure_binds_its_magnitude_and_takes_a_threshold(self):
+        """A stored measure answers a value query by binding the magnitude and the unit; a
+        threshold is a boolean Compute guard in the query; a bound (MeasureAtLeast) does not
+        answer a value query; a tensed measure answers under its operator."""
+        h = self.space(['(: x1 (Member sk_rope_1 rope) (STV 1.0 0.99))',
+                        '(: m1 (Measure sk_rope_1 long 3 metre) (STV 1.0 0.99))',
+                        '(: x2 (Member sk_wall_1 wall) (STV 1.0 0.99))',
+                        '(: m2 (MeasureAtLeast sk_wall_1 high 2 metre) (STV 1.0 0.99))',
+                        '(: x3 (Member sk_bridge_1 bridge) (STV 1.0 0.99))',
+                        '(: m3 (Past (Measure sk_bridge_1 long 200 metre)) (STV 1.0 0.99))'])
+        how = self.query(h, "(Measure sk_rope_1 long $n $u)")
+        self.assertTrue(how and " 3 " in how[0] and "metre" in how[0], how)                 # how long is the rope?
+        self.assertTrue(self.query(h, "(And (Measure sk_rope_1 long $n metre) (Compute > ($n 2) -> true))"))    # longer than 2 metres?
+        self.assertFalse(self.query(h, "(And (Measure sk_rope_1 long $n metre) (Compute > ($n 5) -> true))"))   # longer than 5?
+        self.assertFalse(self.query(h, "(Measure sk_wall_1 high $n $u)"))                    # a bound is not a value
+        self.assertTrue(self.query(h, "(MeasureAtLeast sk_wall_1 high $n $u)"))
+        self.assertTrue(self.query(h, "(Past (Measure sk_bridge_1 long $n $u))"))            # tensed: under its operator
+
+
 if __name__ == "__main__":
     unittest.main()

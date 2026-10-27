@@ -38,9 +38,9 @@ trigger:
       Lamine: the template's own recipient slot
     - >-
       a for-phrase that names no beneficiary — waited for Teodor, commended for the salvage:
-      an oblique (For); a price, an exchange or a duration — bought the quilt for forty euros,
-      worked for six hours: reported as unmapped; a destination — left for the market: the
-      motion's goal
+      an oblique (For); a price paid or a duration — bought the quilt for forty euros, worked
+      for six hours: a measure on the event; a destination — left for the market: the motion's
+      goal
     - >-
       a with-phrase that says how — with care, with difficulty: a manner
     - >-
@@ -210,4 +210,4 @@ examples:
       expected: {abstain: true, template: acquisition}                # a price, not a beneficiary
     - category: abstain
       text: "Lamine worked for six hours."
-      expected: {abstain: true, gap: G00, span: "for six hours"}      # a duration
+      expected: {abstain: true, template: measure}                    # a duration: a measure on the event

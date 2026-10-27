@@ -1,12 +1,13 @@
 # Suite report
 
-prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 b4506b321cc277ac) · type check: ran
+prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 2653943041029703) · type check: ran
 
 ## Catalog checks
 
-895 examples checked; findings: 0
+919 examples checked; findings: 0
 
 Sentences two templates claim with the same expected atoms (composition, fine):
+- "Ottoline bought the quilt for forty euros." — acquisition, measure
 - "Lamine danced with Yusra." — activity, adjunct
 - "Yusra deeply distrusts Lamine." — extent, psych
 - "Teodor ran across the field." — motion, oblique
@@ -30,8 +31,8 @@ Stored records whose sentence is no longer in the catalog (ignored): suite/raw/a
 - stability: pairwise agreement 1.0 (12 cases, 36 pairs), unanimous 12/12
 - type check: 36/36 emitted parses type
 - graph lints: none
-- spans: 111/111 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
-- usage: 36 calls · in 2,034,243 · cached 1,960,310 (96% of the input) · out 5,717 · thinking 0 (calls with thought tokens: 0)
+- spans: 114/114 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
+- usage: 36 calls · in 2,108,733 · cached 2,034,802 (96% of the input) · out 5,777 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
 Abstain cases (what the parser did, per run):
@@ -87,13 +88,13 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (11 cases, 33 pairs), unanimous 11/11
 - type check: 33/33 emitted parses type
 - graph lints: none
-- spans: 135/135 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
-- usage: 33 calls · in 1,864,776 · cached 1,737,380 (93% of the input) · out 6,480 · thinking 0 (calls with thought tokens: 0)
+- spans: 138/138 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
+- usage: 33 calls · in 1,939,266 · cached 1,732,583 (89% of the input) · out 6,552 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
 Abstain cases (what the parser did, per run):
 - "Ottoline bought the quilt for forty euros." (target `acquisition`): r1 target_fired [acquisition×1, named-entity×1, witness×1; unmapped G00] · r2 target_fired [acquisition×1, named-entity×1, witness×1; unmapped G00] · r3 target_fired [acquisition×1, named-entity×1, witness×1; unmapped G00]
-- "Lamine worked for six hours." (gap G00): r1 gap_reported [activity×1, named-entity×1; unmapped G00] · r2 gap_reported [activity×1, named-entity×1; unmapped G00] · r3 gap_reported [activity×1, named-entity×1; unmapped G00]
+- "Lamine worked for six hours." (target `measure`): r1 target_fired [activity×1, measure×1, named-entity×1] · r2 target_fired [activity×1, measure×1, named-entity×1] · r3 target_fired [activity×1, measure×1, named-entity×1]
 - "The quilt was washed by Yusra." (target `activity`): r1 target_fired [activity×1, named-entity×1, witness×1] · r2 target_fired [activity×1, named-entity×1, witness×1] · r3 target_fired [activity×1, named-entity×1, witness×1]
 
 Mismatches: none
@@ -833,7 +834,7 @@ Mismatches: none
 
 ## locative — held_out
 
-16 cases, 48 records (ok 48; stale prompt 45) · gemini-4-argon effort=low
+16 cases, 48 records (ok 48; stale prompt 48) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -883,6 +884,31 @@ Abstain cases (what the parser did, per run):
 - "Yusra deeply distrusts Lamine." (target `extent`): r1 target_fired [extent×1, named-entity×2, psych×1] · r2 target_fired [extent×1, named-entity×2, psych×1] · r3 target_fired [extent×1, named-entity×2, psych×1]
 - "Yusra probably left." (gap G00): r1 gap_reported [named-entity×1; unmapped G00] · r2 gap_reported [named-entity×1; unmapped G00] · r3 gap_reported [named-entity×1; unmapped G00]
 - "Lamine often laughed." (target `frequency`): r1 target_fired [activity×1, frequency×1, named-entity×1] · r2 target_fired [activity×1, frequency×1, named-entity×1] · r3 target_fired [activity×1, frequency×1, named-entity×1]
+
+Mismatches: none
+
+## measure — held_out
+
+19 cases, 57 records (ok 57; stale prompt 54) · gemini-4-argon effort=low
+
+| category | cases | runs | fired | exact | pass |
+|---|---|---|---|---|---|
+| positive | 17 | 51 | 51 | 51 | 51 |
+| scoped | 1 | 3 | 3 | 3 | 3 |
+| abstain | 1 | 3 | 0 (false fires) | – | 3 |
+
+- selection: fire cases fired 54/54 · abstain cases false fires 0/3
+- fill: exact 54/54 among fires
+- stability: pairwise agreement 1.0 (19 cases, 57 pairs), unanimous 19/19
+- type check: 57/57 emitted parses type
+- graph lints: none
+- spans: 153/153 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
+- usage: 57 calls · in 4,636,248 · cached 4,043,666 (87% of the input) · out 8,776 · thinking 0 (calls with thought tokens: 0)
+- issues reported by the parser: 1
+  - P00 · comparative · r1 "The bridge is more than 200 metres long.": The comparative template says under 'Not this template' both that a comparison against a bare number such as 'more than 200 metres long' uses the measure template and, in another bullet, to report a comparison with a measure as unmapped.
+
+Abstain cases (what the parser did, per run):
+- "The stew is too hot." (target `degree`): r1 target_fired [degree×1, witness×1] · r2 target_fired [degree×1, witness×1] · r3 target_fired [degree×1, witness×1]
 
 Mismatches: none
 
@@ -1038,7 +1064,7 @@ Mismatches: none
 
 ## part-whole — held_out
 
-17 cases, 51 records (ok 51; stale prompt 0) · gemini-4-argon effort=low
+17 cases, 51 records (ok 51; stale prompt 51) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -1209,7 +1235,7 @@ Mismatches: none
 
 ## stative-relation — held_out
 
-24 cases, 72 records (ok 72; stale prompt 69) · gemini-4-argon effort=low
+24 cases, 72 records (ok 72; stale prompt 72) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|

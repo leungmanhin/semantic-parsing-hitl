@@ -40,6 +40,11 @@ trigger:
     - "<class> is ADJ-er than <class>"                     # basalt is harder than chalk: bare lemmas, classes true
   boundary:                   # looks like a comparison but is not one
     - >-
+      a comparison against a number — taller than 2 metres, more than 200 metres long, weighs
+      over 20 kilograms, older than thirty: a threshold on a measure, not a comparison of two
+      things; a bounded measure (the measure template), with the unit unspecified when none is
+      stated
+    - >-
       a comparative with no stated standard — a sturdier bracket, prices ended lower, this one is
       better: nothing fills the standard; the rest of the clause is parsed and the comparative
       reported as unmapped (G01)
@@ -60,9 +65,6 @@ trigger:
     - >-
       a correlative — the older the wine, the better: a covariation, not a comparison; reported
       as unmapped
-    - >-
-      a comparison with a measure — taller than two metres, older than thirty: a threshold on a
-      measure, not a comparison of two things; report the phrase as unmapped
     - >-
       a bound on a count — more than three ferrets, fewer than ten: a count on a group, not a
       comparison; no slot here

@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
+  "prompt_sha256": "4c0efa13f8e90cf31f966c571594f3472d553bff18473fa0701a3d49d3a4d320",
   "item": {
     "id": "s2949a697ef",
     "text": "Ottoline bought the quilt for forty euros."
   },
   "usage": {
-    "input": 56509,
-    "output": 177,
+    "input": 81339,
+    "output": 196,
     "thinking": null,
-    "total": 56686,
-    "cached": 54460,
+    "total": 81535,
+    "cached": 79290,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 56509,
-    "candidatesTokenCount": 177,
-    "totalTokenCount": 56686,
-    "cachedContentTokenCount": 54460,
+    "promptTokenCount": 81339,
+    "candidatesTokenCount": 196,
+    "totalTokenCount": 81535,
+    "cachedContentTokenCount": 79290,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 56509
+        "tokenCount": 81339
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 54460
+        "tokenCount": 79290
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 177
+        "tokenCount": 196
       }
     ]
   },
-  "raw_text": "{\"id\": \"s2949a697ef\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"quilt\", \"definite\": true, \"span\": \"the quilt\"}, {\"t\": \"acquisition\", \"id\": \"e1\", \"verb\": \"buy\", \"acquirer\": \"@n1\", \"object\": \"@x1\", \"tense\": \"past\", \"span\": \"Ottoline bought the quilt\"}], \"unmapped\": [{\"span\": \"for forty euros\", \"code\": \"G00\", \"construction\": \"A prepositional phrase stating the price or exchange amount of an acquisition.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"s2949a697ef\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"quilt\", \"definite\": true, \"span\": \"the quilt\"}, {\"t\": \"acquisition\", \"id\": \"e1\", \"verb\": \"buy\", \"acquirer\": \"@n1\", \"object\": \"@x1\", \"tense\": \"past\", \"span\": \"Ottoline bought the quilt\"}, {\"t\": \"measure\", \"id\": \"m1\", \"event\": \"@e1\", \"head\": \"Measure\", \"dimension\": \"price\", \"magnitude\": 40, \"unit\": \"euro\", \"span\": \"for forty euros\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s2949a697ef",
     "instances": [
@@ -73,18 +73,22 @@
         "object": "@x1",
         "tense": "past",
         "span": "Ottoline bought the quilt"
-      }
-    ],
-    "unmapped": [
+      },
       {
-        "span": "for forty euros",
-        "code": "G00",
-        "construction": "A prepositional phrase stating the price or exchange amount of an acquisition."
+        "t": "measure",
+        "id": "m1",
+        "event": "@e1",
+        "head": "Measure",
+        "dimension": "price",
+        "magnitude": 40,
+        "unit": "euro",
+        "span": "for forty euros"
       }
     ],
+    "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
+  "prompt_body_sha256": "7666bdebee70ab0fe3be76ad55be91c3a2d5abac8231382fe59e58a836ac0ebd",
   "run": 3,
   "case": {
     "template": "acquisition",

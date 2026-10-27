@@ -1,0 +1,86 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "4c0efa13f8e90cf31f966c571594f3472d553bff18473fa0701a3d49d3a4d320",
+  "item": {
+    "id": "s8fa903733d",
+    "text": "Lamine worked for six hours."
+  },
+  "usage": {
+    "input": 81337,
+    "output": 153,
+    "thinking": null,
+    "total": 81490,
+    "cached": null,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 81337,
+    "candidatesTokenCount": 153,
+    "totalTokenCount": 81490,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 81337
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 153
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s8fa903733d\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"work\", \"actor\": \"@n1\", \"tense\": \"past\", \"span\": \"Lamine worked\"}, {\"t\": \"measure\", \"id\": \"m1\", \"event\": \"@v1\", \"head\": \"Measure\", \"dimension\": \"duration\", \"magnitude\": 6, \"unit\": \"hour\", \"span\": \"for six hours\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s8fa903733d",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "work",
+        "actor": "@n1",
+        "tense": "past",
+        "span": "Lamine worked"
+      },
+      {
+        "t": "measure",
+        "id": "m1",
+        "event": "@v1",
+        "head": "Measure",
+        "dimension": "duration",
+        "magnitude": 6,
+        "unit": "hour",
+        "span": "for six hours"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "7666bdebee70ab0fe3be76ad55be91c3a2d5abac8231382fe59e58a836ac0ebd",
+  "run": 1,
+  "case": {
+    "template": "measure",
+    "section": "held_out",
+    "index": 7,
+    "category": "positive",
+    "text": "Lamine worked for six hours.",
+    "key": "8fa903733d"
+  }
+}

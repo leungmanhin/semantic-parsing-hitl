@@ -1,0 +1,109 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "4c0efa13f8e90cf31f966c571594f3472d553bff18473fa0701a3d49d3a4d320",
+  "item": {
+    "id": "s8f5255cae0",
+    "text": "The temperature rose from 9 to 12 degrees."
+  },
+  "usage": {
+    "input": 81341,
+    "output": 233,
+    "thinking": null,
+    "total": 81574,
+    "cached": 79292,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 81341,
+    "candidatesTokenCount": 233,
+    "totalTokenCount": 81574,
+    "cachedContentTokenCount": 79292,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 81341
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 79292
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 233
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s8f5255cae0\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"temperature\", \"definite\": true, \"span\": \"The temperature\"}, {\"t\": \"change-of-state\", \"id\": \"c1\", \"verb\": \"rise\", \"undergoer\": \"@x1\", \"tense\": \"past\", \"span\": \"The temperature rose\"}, {\"t\": \"measure\", \"id\": \"m1\", \"event\": \"@c1\", \"head\": \"MeasureFrom\", \"dimension\": \"temperature\", \"magnitude\": 9, \"unit\": \"degree\", \"word\": \"from\", \"span\": [\"from 9\", \"degrees\"]}, {\"t\": \"measure\", \"id\": \"m2\", \"event\": \"@c1\", \"head\": \"MeasureTo\", \"dimension\": \"temperature\", \"magnitude\": 12, \"unit\": \"degree\", \"word\": \"to\", \"span\": \"to 12 degrees\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s8f5255cae0",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "temperature",
+        "definite": true,
+        "span": "The temperature"
+      },
+      {
+        "t": "change-of-state",
+        "id": "c1",
+        "verb": "rise",
+        "undergoer": "@x1",
+        "tense": "past",
+        "span": "The temperature rose"
+      },
+      {
+        "t": "measure",
+        "id": "m1",
+        "event": "@c1",
+        "head": "MeasureFrom",
+        "dimension": "temperature",
+        "magnitude": 9,
+        "unit": "degree",
+        "word": "from",
+        "span": [
+          "from 9",
+          "degrees"
+        ]
+      },
+      {
+        "t": "measure",
+        "id": "m2",
+        "event": "@c1",
+        "head": "MeasureTo",
+        "dimension": "temperature",
+        "magnitude": 12,
+        "unit": "degree",
+        "word": "to",
+        "span": "to 12 degrees"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "7666bdebee70ab0fe3be76ad55be91c3a2d5abac8231382fe59e58a836ac0ebd",
+  "run": 2,
+  "case": {
+    "template": "measure",
+    "section": "held_out",
+    "index": 12,
+    "category": "positive",
+    "text": "The temperature rose from 9 to 12 degrees.",
+    "key": "8f5255cae0"
+  }
+}

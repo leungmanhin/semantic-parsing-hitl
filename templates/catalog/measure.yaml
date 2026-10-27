@@ -1,0 +1,303 @@
+# Template: measure  (a number with a unit on a dimension: "The rope is 3 metres long", "Lamine is 30 years old", "Yusra slept for eight hours")
+#
+# A measure puts a magnitude and a unit on a dimension of a thing or of an eventuality:
+# (Measure sk_rope_1 long 3 metre), (Measure sk_sleep_1 duration 8 hour). The dimension is the
+# word the text supplies — the adjective (long, tall, old), else the noun the clause gives
+# (weight, cost, duration, population, price) — and never one it does not: a stated figure with
+# no dimension or no unit keeps the reserved symbol `unspecified` in that slot. A bound (at
+# least, more than, no more than, under) is a MeasureAtLeast / MeasureAtMost; a scalar change
+# carries its figures on the change event (MeasureBy, MeasureFrom, MeasureTo). Tense, negation
+# and modality are operators over the atom, as for a locative. A measure entails no positive:
+# "3 metres long" does not say long.
+
+id: measure
+family: predication
+shape: copular
+title: A number with a unit on a dimension of a thing or an eventuality
+
+trigger:
+  construction: >
+    A clause or a phrase stating a NUMBER WITH A UNIT on a dimension: of a THING — the rope is
+    3 metres long, Lamine is 30 years old, the crate weighs 12 kilograms, the thermos costs 12
+    euros, the audit took three hours, the meeting lasted an hour, the village has a population
+    of 3000, the crates weighed 180 kilograms, a 20 kilogram sack — or of the clause's EVENT —
+    slept for eight hours (a duration), ran five kilometres (a distance), bought the quilt for
+    forty euros (the price paid), travels at 30 kilometres per hour (a rate), fell by 8 percent
+    and rose from 9 to 12 degrees (a scalar change). With a thing, fill `bearer` with its
+    referent: a witness, a name, a group (a plural bearer measures the whole, with no
+    distribution) or an eventive witness (the audit took three hours); with the clause's event,
+    fill `event` with its predication instance instead. `dimension` is the word the text
+    supplies — the adjective as written (long, tall, high, wide, deep, old), else the noun the
+    clause gives (weighs → weight, costs → cost, took / lasted / for → duration, a population of
+    → population, the price fell → price, the temperature rose → temperature, bought for →
+    price) — and `unspecified` when no word names it (ran five kilometres, a 20 kilogram sack);
+    `unit` is the unit lemmatized to the singular (metre, kilogram, year, hour, euro, percent;
+    a rate as kilometre_per_hour) and `unspecified` when none is stated (a population of 3000).
+    `head` is Measure for a stated value; MeasureAtLeast for at least / more than / over / above
+    / up from; MeasureAtMost for at most / no more than / less than / under / below / up to (a
+    strict bound uses the same head); on a change event, MeasureBy for the amount of the change
+    (fell by 8 percent), MeasureFrom and MeasureTo for a start and an end value (rose from 9 to 12
+    degrees: two instances). A hedge (about, roughly, nearly) is recorded in `hedge`; the
+    magnitude stays the number stated. A measure phrase inside a noun phrase (a 20 kilogram
+    sack) is a measure of that witness, in the present. Number words are converted (forty →
+    40, three thousand → 3000, an hour → 1).
+  surface_forms:
+    - "<X> is <n> <unit> <ADJ>"                           # the rope is 3 metres long; Lamine is 30 years old
+    - "<X> weighs / costs / measures <n> <unit>"           # the crate weighs 12 kilograms: dimension weight
+    - "<X> took / lasted <n> <unit>"                       # the audit took three hours: dimension duration
+    - "<X> has a <dimension> of <n> (<unit>)"             # a population of 3000: unit unspecified
+    - "<clause> for <n> <unit>"                            # slept for eight hours: a duration on the event
+    - "<X> is at least / more than / no more than <n> <unit> <ADJ>"   # a bound: MeasureAtLeast / MeasureAtMost
+    - "<X> is about / roughly <n> <unit> <ADJ>"            # a hedge, recorded
+    - "<change verb> by <n> <unit> / from <n> to <n> <unit>"   # fell by 8 percent; rose from 9 to 12 degrees
+  boundary:                   # looks like a measure but is not one
+    - >-
+      a count of things — three students, has four legs, twelve chairs: a group with its
+      cardinality, or a part-whole relation
+    - >-
+      a comparison with a measured gap or a factor — 6 centimetres taller than Owen, twice as
+      heavy as the crate: the comparative template; a comparison against a bare number — taller
+      than 2 metres: a bounded measure, here
+    - >-
+      a degree word with no number — very tall, too heavy, a lot heavier: a degree or an extent
+    - >-
+      a proportion or a subset of a set — half of the loaf, 40 percent of the students: no
+      template here; report the phrase as unmapped (G00); a percentage as a value — unemployment
+      is 5 percent, fell by 8 percent — is a measure with the unit percent
+    - >-
+      a time or a date — at noon, in 2019, three days ago, two weeks later: a time or a time
+      relation, not a measure
+    - >-
+      how often — twice a week, every two hours: a frequency; a rate with a unit — 30
+      kilometres per hour — is a measure
+    - >-
+      a vague duration or amount with no number — all day, for years, a lot of water: no slot
+      here; report the phrase as unmapped (G00)
+    - >-
+      a bare number with neither a dimension nor a unit — Lamine is 30, the bridge is 200: no
+      dimension and no unit to record; report the clause as unmapped (G00)
+    - >-
+      a stated distance between a thing and a place — the hotel is 800 metres from the river: a
+      locative with a measure no template carries; report the clause as unmapped
+
+slots:
+  id:        {type: id, required: true, doc: "your label for the measure (m1, m2 …)"}
+  bearer:    {type: filler, class: Instance, required: false,
+              doc: "the thing measured: a referent id — a witness, a name, a group (the crates weighed 180 kilograms: the whole, no distribution) or an eventive witness (the audit took three hours); absent when the measure sits on the clause's event"}
+  event:     {type: filler, class: Event, attaches: true, required: false,
+              doc: "the clause's predication instance when the measure phrase is on the event: a duration (slept for eight hours), a distance (ran five kilometres), a price paid (bought the quilt for forty euros), a rate (travels at 30 kilometres per hour), a change's amount or its start / end value (fell by 8 percent); absent with bearer"}
+  head:      {type: enum, values: [Measure, MeasureAtLeast, MeasureAtMost, MeasureBy, MeasureFrom, MeasureTo], required: true,
+              doc: "Measure for a stated value; MeasureAtLeast for at least / more than / over / above; MeasureAtMost for at most / no more than / less than / under / below / up to; MeasureBy for the amount of a change, MeasureFrom / MeasureTo for its start / end value (with event only)"}
+  dimension: {type: lemma, class: Class, required: true,
+              doc: "the dimension word the text supplies: the adjective as written (long, tall, high, wide, deep, old) or the noun the clause gives (weight, cost, duration, population, price, temperature); unspecified when no word names it"}
+  magnitude: {type: number, required: true, doc: "the number as stated (40, 3000, 0.5, 7.5), number words converted; never a range"}
+  unit:      {type: lemma, class: Class, required: true,
+              doc: "the unit, singular and lowercase (metre, foot, kilogram, year, hour, euro, dollar, degree, percent); a rate as unit_per_unit (kilometre_per_hour); unspecified when no unit is stated"}
+  hedge:     {type: string, required: false,
+              doc: "the approximation word as written (about, around, roughly, approximately, nearly, almost, some, or so); recorded, not rendered"}
+  word:      {type: string, required: false,
+              doc: "the wording that sets a bound or a change head, as written (at least, more than, over, no more than, under, up to, by, from, to); absent for a plain measure"}
+  tense:     {type: enum, values: [past, present, future], required: false, default: present,
+              doc: "with bearer, the clause's tense (was 200 metres long → past; a phrase inside a noun phrase → present); with event, leave it absent — the clause's own tense is on the event"}
+
+one_of: [[bearer, event]]
+
+emits:
+  - atom: "({head} {bearer} {dimension} {magnitude} {unit})"
+    if_filled: bearer
+    when: "tense == present"
+  - atom: "(Past ({head} {bearer} {dimension} {magnitude} {unit}))"
+    if_filled: bearer
+    when: "tense == past"
+  - atom: "(Future ({head} {bearer} {dimension} {magnitude} {unit}))"
+    if_filled: bearer
+    when: "tense == future"
+  - atom: "({head} {event} {dimension} {magnitude} {unit})"
+    if_filled: event
+
+notes:
+  - >-
+    The dimension is the text's word, never a conversion of it: "6 feet tall" is tall and
+    "weighs 12 kilograms" is weight, so a heavy-comparative and a weight-measure do not unify
+    here (a lexicon can relate them later). A figure with no dimension word, or no unit, keeps
+    `unspecified` in that slot rather than a guess; it answers only a question that leaves the
+    slot open.
+  - >-
+    A hedge changes nothing in the atom: "about 40 years old" stores 40 with `hedge: about` in
+    the record, from which a consumer may build a distribution (the engine's
+    ParticleFromNormal); the parse states the number the text gives. A bound is its own head,
+    so "at least 2 metres high" never answers "is it 2 metres high?" as a value.
+  - >-
+    A plural bearer measures the whole (the crates weighed 180 kilograms: the group's total);
+    only "each" distributes. A measure on an event is an attachment: it sits inside whatever
+    scope the event is in, as a time or a place does.
+  - >-
+    A scalar change keeps its figures on the change event, never as the bearer's standing
+    measure: "the price fell by 8 percent" says how much it fell, not what the price is.
+
+depends_on: [witness, named-entity, group]
+composes_with: [negation, modal, generic, change-of-state, activity, motion, acquisition]
+
+examples:
+  shown:                     # rendered into the prompt
+    - category: positive
+      note: an adjective dimension with a unit — the adjective as written, no positive entailed
+      text: "The rope is 3 metres long."
+      instances:
+        - {t: witness, id: x1, class: rope, definite: true, span: "The rope"}
+        - {t: measure, id: m1, bearer: "@x1", head: Measure, dimension: long, magnitude: 3, unit: metre, tense: present, span: "The rope is 3 metres long"}
+      emitted:               # what the emitter produces (illustration; the emitter is the authority)
+        - "(Member sk_rope_1 rope)"
+        - "(Measure sk_rope_1 long 3 metre)"
+      declarations:
+        - "(: long Class)"
+        - "(: metre Class)"
+        - "(: rope Class)"
+        - "(: sk_rope_1 Entity)"
+    - category: positive
+      note: a measure verb — the dimension is the noun the verb gives
+      text: "The crate weighs 12 kilograms."
+      instances:
+        - {t: witness, id: x1, class: crate, definite: true, span: "The crate"}
+        - {t: measure, id: m1, bearer: "@x1", head: Measure, dimension: weight, magnitude: 12, unit: kilogram, tense: present, span: "The crate weighs 12 kilograms"}
+    - category: positive
+      note: an age — the adjective old, the unit year
+      text: "Lamine is 30 years old."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine", span: "Lamine"}
+        - {t: measure, id: m1, bearer: "@n1", head: Measure, dimension: old, magnitude: 30, unit: year, tense: present, span: "Lamine is 30 years old"}
+    - category: positive
+      note: a duration on the clause's event — an attachment, the dimension duration
+      text: "Lamine waited for six hours."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine", span: "Lamine"}
+        - {t: activity, id: v1, verb: wait, actor: "@n1", tense: past, span: "Lamine waited"}
+        - {t: measure, id: m1, event: "@v1", head: Measure, dimension: duration, magnitude: 6, unit: hour, span: "for six hours"}
+    - category: abstain
+      text: "Three days ago, Yusra left."
+      expected: {abstain: true, template: time}                       # a measured distance in time: a time point
+
+  held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      note: a lower bound
+      text: "The wall is at least 2 metres high."
+      instances:
+        - {t: witness, id: x1, class: wall, definite: true}
+        - {t: measure, id: m1, bearer: "@x1", head: MeasureAtLeast, dimension: high, magnitude: 2, unit: metre, word: "at least", tense: present}
+    - category: positive
+      note: an upper bound on a measure verb
+      text: "The sack weighs at most 20 kilograms."
+      instances:
+        - {t: witness, id: x1, class: sack, definite: true}
+        - {t: measure, id: m1, bearer: "@x1", head: MeasureAtMost, dimension: weight, magnitude: 20, unit: kilogram, word: "at most", tense: present}
+    - category: positive
+      note: a strict bound takes the same head
+      text: "The bridge is more than 200 metres long."
+      instances:
+        - {t: witness, id: x1, class: bridge, definite: true}
+        - {t: measure, id: m1, bearer: "@x1", head: MeasureAtLeast, dimension: long, magnitude: 200, unit: metre, word: "more than", tense: present}
+    - category: positive
+      note: a hedge — recorded, the number kept
+      text: "Ottoline is about 40 years old."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: measure, id: m1, bearer: "@n1", head: Measure, dimension: old, magnitude: 40, unit: year, hedge: about, tense: present}
+    - category: positive
+      note: a price stated by the verb
+      text: "The thermos costs 12 euros."
+      instances:
+        - {t: witness, id: x1, class: thermos, definite: true}
+        - {t: measure, id: m1, bearer: "@x1", head: Measure, dimension: cost, magnitude: 12, unit: euro, tense: present}
+    - category: positive
+      note: a duration of an eventive witness — the bearer is the event noun
+      text: "The audit took three hours."
+      instances:
+        - {t: witness, id: x1, class: audit, definite: true, eventive: true}
+        - {t: measure, id: m1, bearer: "@x1", head: Measure, dimension: duration, magnitude: 3, unit: hour, tense: past}
+    - category: positive
+      text: "The meeting lasted an hour."
+      instances:
+        - {t: witness, id: x1, class: meeting, definite: true, eventive: true}
+        - {t: measure, id: m1, bearer: "@x1", head: Measure, dimension: duration, magnitude: 1, unit: hour, tense: past}
+    - category: positive
+      note: a duration on the event
+      text: "Lamine worked for six hours."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: activity, id: v1, verb: work, actor: "@n1", tense: past}
+        - {t: measure, id: m1, event: "@v1", head: Measure, dimension: duration, magnitude: 6, unit: hour}
+    - category: positive
+      note: a duration on the event
+      text: "Yusra slept for eight hours."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: activity, id: v1, verb: sleep, actor: "@n1", tense: past}
+        - {t: measure, id: m1, event: "@v1", head: Measure, dimension: duration, magnitude: 8, unit: hour}
+    - category: positive
+      note: a distance on a motion — no dimension word, so unspecified
+      text: "Teodor ran five kilometres."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: motion, id: m1, verb: run, mover: "@n1", tense: past}
+        - {t: measure, id: m2, event: "@m1", head: Measure, dimension: unspecified, magnitude: 5, unit: kilometre}
+    - category: positive
+      note: a plural bearer — the group's total, no distribution
+      text: "The crates weighed 180 kilograms."
+      instances:
+        - {t: group, id: g1, class: crate, definite: true}
+        - {t: measure, id: m1, bearer: "@g1", head: Measure, dimension: weight, magnitude: 180, unit: kilogram, tense: past}
+    - category: positive
+      note: a change's amount on the change event — the subject noun is the dimension
+      text: "The price fell by 8 percent."
+      instances:
+        - {t: witness, id: x1, class: price, definite: true}
+        - {t: change-of-state, id: e1, verb: fall, undergoer: "@x1", tense: past}
+        - {t: measure, id: m1, event: "@e1", head: MeasureBy, dimension: price, magnitude: 8, unit: percent, word: by}
+    - category: positive
+      note: a start and an end value — two instances on the change event
+      text: "The temperature rose from 9 to 12 degrees."
+      instances:
+        - {t: witness, id: x1, class: temperature, definite: true}
+        - {t: change-of-state, id: e1, verb: rise, undergoer: "@x1", tense: past}
+        - {t: measure, id: m1, event: "@e1", head: MeasureFrom, dimension: temperature, magnitude: 9, unit: degree, word: from}
+        - {t: measure, id: m2, event: "@e1", head: MeasureTo, dimension: temperature, magnitude: 12, unit: degree, word: to}
+    - category: positive
+      note: the price paid in an acquisition — a measure on the event
+      text: "Ottoline bought the quilt for forty euros."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: witness, id: x1, class: quilt, definite: true}
+        - {t: acquisition, id: e1, verb: buy, acquirer: "@n1", object: "@x1", tense: past}
+        - {t: measure, id: m1, event: "@e1", head: Measure, dimension: price, magnitude: 40, unit: euro}
+    - category: positive
+      note: a dimension noun with no unit
+      text: "The village has a population of 3000."
+      instances:
+        - {t: witness, id: x1, class: village, definite: true}
+        - {t: measure, id: m1, bearer: "@x1", head: Measure, dimension: population, magnitude: 3000, unit: unspecified, tense: present}
+    - category: positive
+      note: a measure phrase inside a noun phrase — no dimension word
+      text: "Yusra carried a 20 kilogram sack."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, class: sack}
+        - {t: motion, id: m1, verb: carry, mover: "@n1", moved: "@x1", tense: past}
+        - {t: measure, id: m2, bearer: "@x1", head: Measure, dimension: unspecified, magnitude: 20, unit: kilogram, tense: present}
+    - category: positive
+      note: a rate as the unit — on a bare habitual present, which the habitual template marks
+      text: "The cart travels at 30 kilometres per hour."
+      instances:
+        - {t: witness, id: x1, class: cart, definite: true}
+        - {t: motion, id: m1, verb: travel, mover: "@x1", tense: present}
+        - {t: habitual, id: h1, event: "@m1"}
+        - {t: measure, id: m2, event: "@m1", head: Measure, dimension: unspecified, magnitude: 30, unit: kilometre_per_hour}
+    - category: scoped
+      note: under negation
+      text: "The rope is not 3 metres long."
+      instances:
+        - {t: witness, id: x1, class: rope, definite: true}
+        - {t: measure, id: m1, bearer: "@x1", head: Measure, dimension: long, magnitude: 3, unit: metre, tense: present}
+        - {t: negation, id: s1, over: ["@m1"]}
+    - category: abstain
+      text: "The stew is too hot."
+      expected: {abstain: true, template: degree}                     # a degree word, no number

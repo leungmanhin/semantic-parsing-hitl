@@ -1,0 +1,93 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "4c0efa13f8e90cf31f966c571594f3472d553bff18473fa0701a3d49d3a4d320",
+  "item": {
+    "id": "sfcc08a74e8",
+    "text": "Teodor ran five kilometres."
+  },
+  "usage": {
+    "input": 81335,
+    "output": 152,
+    "thinking": null,
+    "total": 81487,
+    "cached": 79286,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 81335,
+    "candidatesTokenCount": 152,
+    "totalTokenCount": 81487,
+    "cachedContentTokenCount": 79286,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 81335
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 79286
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 152
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sfcc08a74e8\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"run\", \"mover\": \"@n1\", \"tense\": \"past\", \"span\": \"Teodor ran\"}, {\"t\": \"measure\", \"id\": \"m2\", \"event\": \"@m1\", \"head\": \"Measure\", \"dimension\": \"unspecified\", \"magnitude\": 5, \"unit\": \"kilometre\", \"span\": \"five kilometres\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sfcc08a74e8",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "motion",
+        "id": "m1",
+        "verb": "run",
+        "mover": "@n1",
+        "tense": "past",
+        "span": "Teodor ran"
+      },
+      {
+        "t": "measure",
+        "id": "m2",
+        "event": "@m1",
+        "head": "Measure",
+        "dimension": "unspecified",
+        "magnitude": 5,
+        "unit": "kilometre",
+        "span": "five kilometres"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "7666bdebee70ab0fe3be76ad55be91c3a2d5abac8231382fe59e58a836ac0ebd",
+  "run": 3,
+  "case": {
+    "template": "measure",
+    "section": "held_out",
+    "index": 9,
+    "category": "positive",
+    "text": "Teodor ran five kilometres.",
+    "key": "fcc08a74e8"
+  }
+}

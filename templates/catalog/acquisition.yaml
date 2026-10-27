@@ -45,8 +45,8 @@ trigger:
       win or earn with a contest or an activity as the object — won the race: nothing changes
       hands; with a prize or a sum as the object it is an acquisition
     - >-
-      the price — bought the quilt for forty euros: the amount is never the object; it is an
-      attachment with no slot here, reported as unmapped while the acquisition is parsed
+      the price — bought the quilt for forty euros: the amount is never the object; it is a
+      measure on the event (the measure template) while the acquisition is parsed
 
 slots:
   id:       {type: id, required: true, doc: "your label for the acquisition event"}
@@ -159,14 +159,13 @@ examples:
         - {t: witness, id: x1, class: trowel, definite: true}
         - {t: acquisition, id: q1, verb: pick_up, acquirer: "@n1", object: "@x1", tense: past}
     - category: positive
-      note: the price is an attachment with no slot — the acquisition is parsed, the amount reported
+      note: the price paid is a measure on the event — no slot here
       text: "Ottoline bought the quilt for forty euros."
       instances:
         - {t: named-entity, id: n1, name: "Ottoline"}
         - {t: witness, id: x1, class: quilt, definite: true}
         - {t: acquisition, id: q1, verb: buy, acquirer: "@n1", object: "@x1", tense: past}
-      unmapped:
-        - {code: G00, span: "for forty euros"}
+        - {t: measure, id: m1, event: "@q1", head: Measure, dimension: price, magnitude: 40, unit: euro}
     - category: scoped
       note: under clausal negation
       text: "Yusra did not accept the envelope."

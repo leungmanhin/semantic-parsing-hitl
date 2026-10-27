@@ -1,0 +1,88 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "4c0efa13f8e90cf31f966c571594f3472d553bff18473fa0701a3d49d3a4d320",
+  "item": {
+    "id": "s16f4ab018b",
+    "text": "The bridge is more than 200 metres long."
+  },
+  "usage": {
+    "input": 81342,
+    "output": 140,
+    "thinking": null,
+    "total": 81482,
+    "cached": 79293,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 81342,
+    "candidatesTokenCount": 140,
+    "totalTokenCount": 81482,
+    "cachedContentTokenCount": 79293,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 81342
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 79293
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 140
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s16f4ab018b\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"bridge\", \"definite\": true, \"span\": \"The bridge\"}, {\"t\": \"measure\", \"id\": \"m1\", \"bearer\": \"@x1\", \"head\": \"MeasureAtLeast\", \"dimension\": \"long\", \"magnitude\": 200, \"unit\": \"metre\", \"word\": \"more than\", \"tense\": \"present\", \"span\": \"The bridge is more than 200 metres long\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s16f4ab018b",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "bridge",
+        "definite": true,
+        "span": "The bridge"
+      },
+      {
+        "t": "measure",
+        "id": "m1",
+        "bearer": "@x1",
+        "head": "MeasureAtLeast",
+        "dimension": "long",
+        "magnitude": 200,
+        "unit": "metre",
+        "word": "more than",
+        "tense": "present",
+        "span": "The bridge is more than 200 metres long"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "7666bdebee70ab0fe3be76ad55be91c3a2d5abac8231382fe59e58a836ac0ebd",
+  "run": 2,
+  "case": {
+    "template": "measure",
+    "section": "held_out",
+    "index": 2,
+    "category": "positive",
+    "text": "The bridge is more than 200 metres long.",
+    "key": "16f4ab018b"
+  }
+}
