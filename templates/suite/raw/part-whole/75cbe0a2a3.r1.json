@@ -1,0 +1,91 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "dbd9c0eff5cb755495bbf8a35f5fa2de8218198a6bce3644a778278f9856f53c",
+  "item": {
+    "id": "s75cbe0a2a3",
+    "text": "The car has an engine."
+  },
+  "usage": {
+    "input": 78695,
+    "output": 139,
+    "thinking": null,
+    "total": 78834,
+    "cached": 76594,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 78695,
+    "candidatesTokenCount": 139,
+    "totalTokenCount": 78834,
+    "cachedContentTokenCount": 76594,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 78695
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 76594
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 139
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s75cbe0a2a3\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"car\", \"definite\": true, \"span\": \"The car\"}, {\"t\": \"witness\", \"id\": \"x2\", \"class\": \"engine\", \"span\": \"an engine\"}, {\"t\": \"part-whole\", \"id\": \"w1\", \"part\": \"@x2\", \"whole\": \"@x1\", \"word\": \"has\", \"tense\": \"present\", \"span\": \"The car has an engine\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s75cbe0a2a3",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "car",
+        "definite": true,
+        "span": "The car"
+      },
+      {
+        "t": "witness",
+        "id": "x2",
+        "class": "engine",
+        "span": "an engine"
+      },
+      {
+        "t": "part-whole",
+        "id": "w1",
+        "part": "@x2",
+        "whole": "@x1",
+        "word": "has",
+        "tense": "present",
+        "span": "The car has an engine"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "b4506b321cc277ac80f5ce1aa23e5b0565215b85ccdd8fffa5bd24592c6be1a3",
+  "run": 1,
+  "case": {
+    "template": "part-whole",
+    "section": "held_out",
+    "index": 1,
+    "category": "positive",
+    "text": "The car has an engine.",
+    "key": "75cbe0a2a3"
+  }
+}

@@ -2,7 +2,7 @@
 
 Generated from `templates/atom-type-substrates.json` (schema `atom-type-substrates/1`) by `templates/tmpl/gen_substrate.py`, together with `templates/generated/atom-types.metta`. Do not edit by hand; regenerate with `cd templates && python -m tmpl.gen_substrate`.
 
-135 heads in 13 kinds (7 proposed; 135 with a reviewed type declaration so far). `type-def` is the PeTTa declaration emitted for the head; `?` as the output type means the head is not yet reviewed and is absent from the `.metta` file; `%Undefined%` marks a position the head takes but the JSON does not type.
+136 heads in 13 kinds (7 proposed; 136 with a reviewed type declaration so far). `type-def` is the PeTTa declaration emitted for the head; `?` as the output type means the head is not yet reviewed and is absent from the `.metta` file; `%Undefined%` marks a position the head takes but the JSON does not type.
 
 Every atom is carried as a statement (: <proof-name> <atom> <tv>), tv = (STV strength confidence) or another engine truth value. The carrier is not an atom kind: ':' is never type-declared (it is also PeTTa's type-declaration head) and the truth value is declared by the engine, not by this substrate.
 
@@ -520,7 +520,7 @@ legacy: (: Year (-> Number TimeTerm))  ; kept until the re-parse
 gloss: Calendar year of a time instance: (Year t 2026). Legacy constructor form (Year 2026) kept until the re-parse.
 
 
-## relation (15)
+## relation (16)
 
 head: ClassProperty
 kind: relation
@@ -565,11 +565,18 @@ type-def: (: LocatedIn (-> Entity Entity Proposition))
 gloss: Static location of an entity ('X is in Y') — as against the event oblique Location. Order: (LocatedIn entity place); the location of an EVENT is the role Location.
 
 
+head: MadeOf
+kind: relation
+arity: 2
+type-def: (: MadeOf (-> Entity Class Proposition))
+gloss: What a thing is made of: (MadeOf whole material), the material a class of stuff (wool, glass, oxygen). The part-whole template's constitution atom, beside (PartOf part whole) for parts, members and constituents that are individuals.
+
+
 head: PartOf
 kind: relation
 arity: 2
 type-def: (: PartOf (-> Instance Instance Proposition))
-gloss: Part/component (or named member) of a whole. Order: (PartOf part whole); eventualities may have parts.
+gloss: Part / component, member or constituent of a whole: the part-whole template's atom for every wording (is part of, has, contains, includes, consists of, a member of, the lid of the box). Order: (PartOf part whole); both are instances (a material is MadeOf); eventualities may have parts; the distribution template's premise over a group's members.
 
 
 head: Possession

@@ -68,8 +68,9 @@ trigger:
       the ferret, fond of Lamine, full of water, good at chess: no template yet, report the
       predicate as unmapped
     - >-
-      a part and its whole — contains, includes, consists of, is made of, has a lid: no
-      template yet; report the clause as unmapped (G00)
+      a part and its whole — contains, includes, consists of, is made of, has a lid, is a
+      member of: the part-whole template; a separate thing inside a container — the box
+      contains a letter: a locative
     - >-
       a measure — costs, weighs, measures, lasts, holds forty litres: no template yet; report
       the clause as unmapped (G00)
@@ -349,7 +350,7 @@ examples:
       expected: {abstain: true, template: norm}                       # a need stated with a to-infinitive
     - category: abstain
       text: "The box contains a letter."
-      expected: {abstain: true, gap: G00, span: "The box contains a letter."}   # a part and its whole: no template yet
+      expected: {abstain: true, template: locative}                   # a separate thing inside a container
     - category: abstain
       text: "The parcel weighs a pound."
       expected: {abstain: true, gap: G00, span: "The parcel weighs a pound."}   # a measure: no template yet

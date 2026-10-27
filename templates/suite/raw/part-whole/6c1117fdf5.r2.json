@@ -1,0 +1,102 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "dbd9c0eff5cb755495bbf8a35f5fa2de8218198a6bce3644a778278f9856f53c",
+  "item": {
+    "id": "s6c1117fdf5",
+    "text": "Every car has an engine."
+  },
+  "usage": {
+    "input": 78695,
+    "output": 178,
+    "thinking": null,
+    "total": 78873,
+    "cached": 76646,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 78695,
+    "candidatesTokenCount": 178,
+    "totalTokenCount": 78873,
+    "cachedContentTokenCount": 76646,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 78695
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 76646
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 178
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s6c1117fdf5\", \"instances\": [{\"t\": \"range\", \"id\": \"q1\", \"class\": \"car\", \"quantifier\": \"every\", \"span\": \"Every car\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"engine\", \"span\": \"an engine\"}, {\"t\": \"part-whole\", \"id\": \"w1\", \"part\": \"@x1\", \"whole\": \"@q1\", \"word\": \"has\", \"tense\": \"present\", \"span\": \"Every car has an engine\"}, {\"t\": \"generic\", \"id\": \"r1\", \"ranges\": [\"@q1\"], \"over\": [\"@w1\"], \"span\": \"Every car has an engine\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s6c1117fdf5",
+    "instances": [
+      {
+        "t": "range",
+        "id": "q1",
+        "class": "car",
+        "quantifier": "every",
+        "span": "Every car"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "engine",
+        "span": "an engine"
+      },
+      {
+        "t": "part-whole",
+        "id": "w1",
+        "part": "@x1",
+        "whole": "@q1",
+        "word": "has",
+        "tense": "present",
+        "span": "Every car has an engine"
+      },
+      {
+        "t": "generic",
+        "id": "r1",
+        "ranges": [
+          "@q1"
+        ],
+        "over": [
+          "@w1"
+        ],
+        "span": "Every car has an engine"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "b4506b321cc277ac80f5ce1aa23e5b0565215b85ccdd8fffa5bd24592c6be1a3",
+  "run": 2,
+  "case": {
+    "template": "part-whole",
+    "section": "held_out",
+    "index": 11,
+    "category": "positive",
+    "text": "Every car has an engine.",
+    "key": "6c1117fdf5"
+  }
+}

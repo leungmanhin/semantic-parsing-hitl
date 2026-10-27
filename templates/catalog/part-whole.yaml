@@ -1,0 +1,282 @@
+# Template: part-whole  (a part, a member or a constituent of a whole, or what a thing is made of: "The lid is part of the box", "The table has four legs", "The quilt is made of wool")
+#
+# One thing is a part, a component, a member or a constituent of another: (PartOf part whole),
+# a relation between the two referents with the wording as provenance, whether the text says
+# "is part of", "has", "contains", "includes", "consists of", "is a member of", or links them
+# inside a noun phrase ("the lid of the box", "the box's lid", "the car engine"). What a thing
+# is made of is a constitution, not a part: (MadeOf whole material), the material a class.
+# Tense, negation and modality are operators over the atom, as for a locative. A plural part
+# (four legs) is a group, and the distribution template says each member is a part; on a class
+# (every car has an engine) the generic builds the rule.
+
+id: part-whole
+family: predication
+shape: copular
+title: A part, a member or a constituent of a whole, or a material
+
+trigger:
+  construction: >
+    A clause or a phrase stating that one thing is a PART, a component, a feature, a member or
+    a constituent of another: the lid is part of the box; the box has a lid; the mill has a
+    wooden roof; the table has four legs; Yusra has blue eyes; the soup contains salt; the
+    parade included six bands; the meal consisted of five dishes; a clause was included in the
+    treaty; Lamine is a member of the guild; the top of the ladder; the barn's roof; the car
+    engine. Or what a thing is MADE OF: the quilt is made of wool; a cup made of glass; the
+    atmosphere is made up of oxygen. Write one instance per link: `part` is the part's referent
+    (a witness for the lid or for some salt, a group for four legs or six bands, a name for
+    Lamine) and `whole` the whole's referent; `material` (wool, glass, oak) is a lemma, never a
+    referent, and stands instead of `part`. The part inside a noun phrase (the lid of the box,
+    the box's lid, the top of the ladder) is a witness with NO possessor, marked definite, and
+    this instance links it to the whole. A counted or plural part (four legs, six bands, blue
+    eyes) is a group instance, and a distribution instance over the group says that each
+    member is a part. A passive keeps the link (the clause was included in the treaty: the
+    clause the part). On a class — every car has an engine, oranges contain juice — the subject
+    is a range and the generic template builds the rule with this instance as the predication
+    over it; an indefinite part is then a witness, a function of the member. `tense` is the
+    clause's; a link inside a noun phrase is present.
+  surface_forms:
+    - "<part> is (a) part of <whole>"                     # the lid is part of the box
+    - "<whole> has / contains / includes <part>"          # the box has a lid; the soup contains salt
+    - "<whole> consists of / is composed of <parts>"      # the meal consisted of five dishes
+    - "<part> is a member of <whole>"                     # Lamine is a member of the guild
+    - "the <part> of <whole> / <whole>'s <part> / <whole> <part>"   # the lid of the box; the barn's roof; the car engine
+    - "<whole> is made of / made from / made up of <material>"     # the quilt is made of wool
+  boundary:                   # looks like a part-whole relation but is not one
+    - >-
+      a separate thing inside a container — the box contains a letter, the drawer holds a key:
+      where the thing is, the locative template, the verb recorded as its preposition
+    - >-
+      ownership, kinship or a loose association — Teodor has a trowel, Yusra's quilt, Lamine's
+      cousin: a possession, a possessor on the witness, a stative relation
+    - >-
+      a place inside a place — a village in Norfolk, a district of the city: a locative, never
+      a part
+    - >-
+      a proportion, a subset or a measured portion of a whole — half of the loaf, most of the
+      students, three of the ferrets, a cup of water: no template here; report the phrase as
+      unmapped (G00); a plain portion — a piece of the loaf, the top of the ladder — is a part
+    - >-
+      a composition stated by kinds — consists of scientists and engineers, the ingredients are
+      flour and sugar: the members' kinds, which no slot carries; report the clause as unmapped
+    - >-
+      a material adjective or a quality — a wooden box, the box is red: a property of the
+      thing, recorded on the witness or by a copular
+    - >-
+      a group and its kind — the ferrets, three students: the group template, which is not a
+      part of anything by itself; a creation — formed a committee, built a shed: an event
+    - >-
+      a size, a weight or a price — has three rooms? no: that is a count of parts, here; weighs
+      a pound, costs a dollar: a measure, no template yet (G00)
+
+slots:
+  id:       {type: id, required: true, doc: "your label for the link (w1, w2 …)"}
+  part:     {type: filler, class: Entity, required: false,
+             doc: "the part, component, member or constituent: a referent id — a witness (the lid, some salt), a group (four legs), a name (Lamine) or a range; never a bare lemma; absent with material"}
+  whole:    {type: filler, class: Entity, required: true,
+             doc: "the whole: a referent id — a witness, a name, a group or a range"}
+  material: {type: lemma, class: Class, required: false,
+             doc: "what the whole is made of, lemmatized (wool, glass, oak, oxygen); stands instead of part; absent otherwise"}
+  word:     {type: string, required: false,
+             doc: "the wording as written, lowercase (part of, has, contains, included, consists of, member of, of, 's, made of); recorded, not rendered"}
+  tense:    {type: enum, values: [past, present, future], required: false, default: present,
+             doc: "the clause's tense (had a lid → past); present for a link inside a noun phrase and for every present clause"}
+
+one_of: [[part, material]]
+
+emits:
+  - atom: "(PartOf {part} {whole})"
+    if_filled: part
+    when: "tense == present"
+  - atom: "(Past (PartOf {part} {whole}))"
+    if_filled: part
+    when: "tense == past"
+  - atom: "(Future (PartOf {part} {whole}))"
+    if_filled: part
+    when: "tense == future"
+  - atom: "(MadeOf {whole} {material})"
+    if_filled: material
+    when: "tense == present"
+  - atom: "(Past (MadeOf {whole} {material}))"
+    if_filled: material
+    when: "tense == past"
+  - atom: "(Future (MadeOf {whole} {material}))"
+    if_filled: material
+    when: "tense == future"
+
+notes:
+  - >-
+    One relation for every wording: "the box has a lid", "the lid is part of the box" and "the
+    lid of the box" all say (PartOf sk_lid_1 sk_box_1); the words stay in the record. The part
+    is a referent of its own, so what is said of it (the lid is cracked) attaches to it.
+  - >-
+    A material is a kind of stuff, not an individual: (MadeOf sk_quilt_1 wool) has the class on
+    the right. A plural part is a group whose members are each a part through the distribution
+    rule, while the group itself is a part too.
+  - >-
+    Background rules carry a part's whole further: a part of a part is a part of the whole, and
+    a part is where its whole is. Membership in a group is the same relation — the distribution
+    template's own premise is (PartOf $x group).
+
+depends_on: [witness, group, named-entity]
+composes_with: [negation, modal, generic, distribution, copular]
+
+examples:
+  shown:                     # rendered into the prompt
+    - category: positive
+      note: the copular form — one relation between the two referents
+      text: "The lid is part of the box."
+      instances:
+        - {t: witness, id: x1, class: lid, definite: true, span: "The lid"}
+        - {t: witness, id: x2, class: box, definite: true, span: "the box"}
+        - {t: part-whole, id: w1, part: "@x1", whole: "@x2", word: "part of", tense: present, span: "The lid is part of the box"}
+      emitted:               # what the emitter produces (illustration; the emitter is the authority)
+        - "(Member sk_lid_1 lid)"
+        - "(Member sk_box_1 box)"
+        - "(PartOf sk_lid_1 sk_box_1)"
+      declarations:
+        - "(: box Class)"
+        - "(: lid Class)"
+        - "(: sk_box_1 Entity)"
+        - "(: sk_lid_1 Entity)"
+    - category: positive
+      note: have with a part — the same relation; the part a witness with its property
+      text: "The mill has a wooden roof."
+      instances:
+        - {t: witness, id: x1, class: mill, definite: true, span: "The mill"}
+        - {t: witness, id: x2, class: roof, props: [wooden], span: "a wooden roof"}
+        - {t: part-whole, id: w1, part: "@x2", whole: "@x1", word: has, tense: present, span: "The mill has a wooden roof"}
+    - category: positive
+      note: a material — a class, not a referent
+      text: "The quilt is made of wool."
+      instances:
+        - {t: witness, id: x1, class: quilt, definite: true, span: "The quilt"}
+        - {t: part-whole, id: w1, whole: "@x1", material: wool, word: "made of", tense: present, span: "The quilt is made of wool"}
+    - category: positive
+      note: the part inside a noun phrase — a witness with no possessor, definite, linked here
+      text: "The lid of the box is cracked."
+      instances:
+        - {t: witness, id: x1, class: lid, definite: true, span: "The lid of the box"}
+        - {t: witness, id: x2, class: box, definite: true, span: "the box"}
+        - {t: part-whole, id: w1, part: "@x1", whole: "@x2", word: of, tense: present, span: "The lid of the box"}
+        - {t: copular, id: c1, subject: "@x1", predicate: cracked, form: adjective, tense: present, span: "The lid of the box is cracked"}
+    - category: abstain
+      text: "Teodor has a trowel."
+      expected: {abstain: true, template: possession}                 # a thing owned, not a part
+    - category: abstain
+      text: "The ledger is on the workbench."
+      expected: {abstain: true, template: locative}                   # where a thing is
+
+  held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      note: have with an indefinite part
+      text: "The box has a lid."
+      instances:
+        - {t: witness, id: x1, class: box, definite: true}
+        - {t: witness, id: x2, class: lid}
+        - {t: part-whole, id: w1, part: "@x2", whole: "@x1", word: has, tense: present}
+    - category: positive
+      text: "The car has an engine."
+      instances:
+        - {t: witness, id: x1, class: car, definite: true}
+        - {t: witness, id: x2, class: engine}
+        - {t: part-whole, id: w1, part: "@x2", whole: "@x1", word: has, tense: present}
+    - category: positive
+      note: a counted part — a group, each member a part through the distribution
+      text: "The table has four legs."
+      instances:
+        - {t: witness, id: x1, class: table, definite: true}
+        - {t: group, id: g1, class: leg, count: 4}
+        - {t: part-whole, id: w1, part: "@g1", whole: "@x1", word: has, tense: present}
+        - {t: distribution, id: d1, group: "@g1", over: ["@w1"]}
+    - category: positive
+      note: a constituent stated with contain — a mass part as a witness
+      text: "The soup contains salt."
+      instances:
+        - {t: witness, id: x1, class: soup, definite: true}
+        - {t: witness, id: x2, class: salt}
+        - {t: part-whole, id: w1, part: "@x2", whole: "@x1", word: contains, tense: present}
+    - category: positive
+      note: include, past, with a counted part
+      text: "The parade included six bands."
+      instances:
+        - {t: witness, id: x1, class: parade, definite: true}
+        - {t: group, id: g1, class: band, count: 6}
+        - {t: part-whole, id: w1, part: "@g1", whole: "@x1", word: included, tense: past}
+        - {t: distribution, id: d1, group: "@g1", over: ["@w1"]}
+    - category: positive
+      note: consist of, past, with a counted part
+      text: "The meal consisted of five dishes."
+      instances:
+        - {t: witness, id: x1, class: meal, definite: true}
+        - {t: group, id: g1, class: dish, count: 5}
+        - {t: part-whole, id: w1, part: "@g1", whole: "@x1", word: "consisted of", tense: past}
+        - {t: distribution, id: d1, group: "@g1", over: ["@w1"]}
+    - category: positive
+      note: membership — a named member of an organization
+      text: "Lamine is a member of the guild."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: x1, class: guild, definite: true}
+        - {t: part-whole, id: w1, part: "@n1", whole: "@x1", word: "member of", tense: present}
+    - category: positive
+      note: a passive — the link is the same
+      text: "The clause was included in the treaty."
+      instances:
+        - {t: witness, id: x1, class: clause, definite: true}
+        - {t: witness, id: x2, class: treaty, definite: true}
+        - {t: part-whole, id: w1, part: "@x1", whole: "@x2", word: "included in", tense: past}
+    - category: positive
+      note: a material
+      text: "The cup is made of glass."
+      instances:
+        - {t: witness, id: x1, class: cup, definite: true}
+        - {t: part-whole, id: w1, whole: "@x1", material: glass, word: "made of", tense: present}
+    - category: positive
+      note: a possessive part phrase — the possessor is the whole, not an owner
+      text: "The barn's roof is red."
+      instances:
+        - {t: witness, id: x1, class: barn, definite: true}
+        - {t: witness, id: x2, class: roof, definite: true}
+        - {t: part-whole, id: w1, part: "@x2", whole: "@x1", word: "'s", tense: present}
+        - {t: copular, id: c1, subject: "@x2", predicate: red, form: adjective, tense: present}
+    - category: positive
+      note: a region as a part
+      text: "The top of the ladder is wet."
+      instances:
+        - {t: witness, id: x1, class: top, definite: true}
+        - {t: witness, id: x2, class: ladder, definite: true}
+        - {t: part-whole, id: w1, part: "@x1", whole: "@x2", word: of, tense: present}
+        - {t: copular, id: c1, subject: "@x1", predicate: wet, form: adjective, tense: present}
+    - category: positive
+      note: a universal — the generic builds the rule, the part a function of the member
+      text: "Every car has an engine."
+      instances:
+        - {t: range, id: q1, class: car, quantifier: every}
+        - {t: witness, id: x1, class: engine}
+        - {t: part-whole, id: w1, part: "@x1", whole: "@q1", word: has, tense: present}
+        - {t: generic, id: r1, ranges: ["@q1"], over: ["@w1"]}
+    - category: positive
+      note: a bare generic with contain
+      text: "Oranges contain juice."
+      instances:
+        - {t: range, id: q1, class: orange}
+        - {t: witness, id: x1, class: juice}
+        - {t: part-whole, id: w1, part: "@x1", whole: "@q1", word: contain, tense: present}
+        - {t: generic, id: r1, ranges: ["@q1"], over: ["@w1"]}
+    - category: scoped
+      note: under negation — the indefinite part inside the denial
+      text: "The box does not have a lid."
+      instances:
+        - {t: witness, id: x1, class: box, definite: true}
+        - {t: witness, id: x2, class: lid}
+        - {t: part-whole, id: w1, part: "@x2", whole: "@x1", word: have, tense: present}
+        - {t: negation, id: s1, over: ["@w1"]}
+    - category: abstain
+      text: "The box contains a letter."
+      expected: {abstain: true, template: locative}                   # a separate thing inside a container
+    - category: abstain
+      text: "Lamine had a ladder."
+      expected: {abstain: true, template: possession}                 # a thing owned
+    - category: abstain
+      text: "Half of the loaf is stale."
+      expected: {abstain: true, gap: G00, span: "Half of the loaf"}   # a proportion of a whole

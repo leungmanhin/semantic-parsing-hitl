@@ -20,7 +20,8 @@ status: draft
 trigger:
   construction: >
     A clause whose subject (or another argument) is a range — a quantified class noun or a bare
-    plural read generically — and whose predicate is a verb other than "be": every ferret slept,
+    plural read generically — and whose predicate is a verb other than "be", or a part-whole
+    relation (every car has an engine, oranges contain juice): every ferret slept,
     ferrets sleep, most students laugh, few herons migrate, no ferret slept. The predication is
     parsed with its own template, with the range as its filler; the generic instance names the
     range(s) and the predication (or the negation, modal or norm over it) and nothing else. One
@@ -54,7 +55,7 @@ slots:
   ranges: {type: refs, class: Proposition, required: true,
            doc: "the range instance(s) the rule quantifies over, in text order: one per quantified class noun"}
   over:   {type: refs, class: Proposition, required: true, skolemize: true,
-           doc: "the predication over the range(s), or the negation / modal / norm over that predication: its id, nothing else"}
+           doc: "the predication (or the part-whole relation) over the range(s), or the negation / modal / norm over that predication: its id, nothing else"}
   condition: {type: refs, class: Proposition, required: false,
               doc: "a predication over the range that must hold for the generalization to apply (ferrets bite when cornered: the copular instance for cornered, its subject the range); its id; absent as a rule"}
 

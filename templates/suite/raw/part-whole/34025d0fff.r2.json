@@ -1,0 +1,92 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "dbd9c0eff5cb755495bbf8a35f5fa2de8218198a6bce3644a778278f9856f53c",
+  "item": {
+    "id": "s34025d0fff",
+    "text": "The clause was included in the treaty."
+  },
+  "usage": {
+    "input": 78697,
+    "output": 214,
+    "thinking": null,
+    "total": 78911,
+    "cached": 76648,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 78697,
+    "candidatesTokenCount": 214,
+    "totalTokenCount": 78911,
+    "cachedContentTokenCount": 76648,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 78697
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 76648
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 214
+      }
+    ]
+  },
+  "raw_text": "{\n  \"id\": \"s34025d0fff\",\n  \"instances\": [\n    {\n      \"t\": \"witness\",\n      \"id\": \"x1\",\n      \"class\": \"clause\",\n      \"definite\": true,\n      \"span\": \"The clause\"\n    },\n    {\n      \"t\": \"witness\",\n      \"id\": \"x2\",\n      \"class\": \"treaty\",\n      \"definite\": true,\n      \"span\": \"the treaty\"\n    },\n    {\n      \"t\": \"part-whole\",\n      \"id\": \"w1\",\n      \"part\": \"@x1\",\n      \"whole\": \"@x2\",\n      \"word\": \"included\",\n      \"tense\": \"past\",\n      \"span\": \"The clause was included in the treaty\"\n    }\n  ],\n  \"unmapped\": [],\n  \"issues\": []\n}",
+  "response": {
+    "id": "s34025d0fff",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "clause",
+        "definite": true,
+        "span": "The clause"
+      },
+      {
+        "t": "witness",
+        "id": "x2",
+        "class": "treaty",
+        "definite": true,
+        "span": "the treaty"
+      },
+      {
+        "t": "part-whole",
+        "id": "w1",
+        "part": "@x1",
+        "whole": "@x2",
+        "word": "included",
+        "tense": "past",
+        "span": "The clause was included in the treaty"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "b4506b321cc277ac80f5ce1aa23e5b0565215b85ccdd8fffa5bd24592c6be1a3",
+  "run": 2,
+  "case": {
+    "template": "part-whole",
+    "section": "held_out",
+    "index": 7,
+    "category": "positive",
+    "text": "The clause was included in the treaty.",
+    "key": "34025d0fff"
+  }
+}

@@ -1,10 +1,10 @@
 # Suite report
 
-prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 8f768497029588ef) · type check: ran
+prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 b4506b321cc277ac) · type check: ran
 
 ## Catalog checks
 
-871 examples checked; findings: 0
+895 examples checked; findings: 0
 
 Sentences two templates claim with the same expected atoms (composition, fine):
 - "Lamine danced with Yusra." — activity, adjunct
@@ -833,22 +833,22 @@ Mismatches: none
 
 ## locative — held_out
 
-15 cases, 45 records (ok 45; stale prompt 45) · gemini-4-argon effort=low
+16 cases, 48 records (ok 48; stale prompt 45) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
-| positive | 9 | 27 | 27 | 27 | 27 |
+| positive | 10 | 30 | 30 | 30 | 30 |
 | contrast | 1 | 3 | 3 | 3 | 3 |
 | scoped | 2 | 6 | 6 | 6 | 6 |
 | abstain | 3 | 9 | 0 (false fires) | – | 9 |
 
-- selection: fire cases fired 36/36 · abstain cases false fires 0/9
-- fill: exact 36/36 among fires
-- stability: pairwise agreement 1.0 (15 cases, 45 pairs), unanimous 15/15
-- type check: 45/45 emitted parses type
+- selection: fire cases fired 39/39 · abstain cases false fires 0/9
+- fill: exact 39/39 among fires
+- stability: pairwise agreement 1.0 (16 cases, 48 pairs), unanimous 16/16
+- type check: 48/48 emitted parses type
 - graph lints: none
-- spans: 141/141 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
-- usage: 45 calls · in 2,542,803 · cached 2,450,586 (96% of the input) · out 7,224 · thinking 0 (calls with thought tokens: 0)
+- spans: 150/150 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
+- usage: 48 calls · in 2,778,885 · cached 2,680,521 (96% of the input) · out 7,659 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
 Abstain cases (what the parser did, per run):
@@ -978,7 +978,7 @@ Mismatches: none
 
 ## norm — held_out
 
-27 cases, 81 records (ok 81; stale prompt 78) · gemini-4-argon effort=low
+27 cases, 81 records (ok 81; stale prompt 81) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -1033,6 +1033,32 @@ Abstain cases (what the parser did, per run):
 - "Lamine entered the shed." (target `motion`): r1 target_fired [motion×1, named-entity×1, witness×1] · r2 target_fired [motion×1, named-entity×1, witness×1] · r3 target_fired [motion×1, named-entity×1, witness×1]
 - "The quilt was washed by Yusra." (target `activity`): r1 target_fired [activity×1, named-entity×1, witness×1] · r2 target_fired [activity×1, named-entity×1, witness×1] · r3 target_fired [activity×1, named-entity×1, witness×1]
 - "Teodor is taller than Yusra." (target `comparative`): r1 target_fired [comparative×1, named-entity×2] · r2 target_fired [comparative×1, named-entity×2] · r3 target_fired [comparative×1, named-entity×2]
+
+Mismatches: none
+
+## part-whole — held_out
+
+17 cases, 51 records (ok 51; stale prompt 0) · gemini-4-argon effort=low
+
+| category | cases | runs | fired | exact | pass |
+|---|---|---|---|---|---|
+| positive | 13 | 39 | 39 | 39 | 39 |
+| scoped | 1 | 3 | 3 | 3 | 3 |
+| abstain | 3 | 9 | 0 (false fires) | – | 9 |
+
+- selection: fire cases fired 42/42 · abstain cases false fires 0/9
+- fill: exact 42/42 among fires
+- stability: pairwise agreement 1.0 (17 cases, 51 pairs), unanimous 17/17
+- type check: 48/48 emitted parses type
+- graph lints: none
+- spans: 165/165 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
+- usage: 51 calls · in 4,013,511 · cached 3,755,553 (94% of the input) · out 8,543 · thinking 0 (calls with thought tokens: 0)
+- issues reported by the parser: none
+
+Abstain cases (what the parser did, per run):
+- "The box contains a letter." (target `locative`): r1 target_fired [locative×1, witness×2] · r2 target_fired [locative×1, witness×2] · r3 target_fired [locative×1, witness×2]
+- "Half of the loaf is stale." (gap G00): r1 gap_reported [nothing fired; unmapped G00] · r2 gap_reported [nothing fired; unmapped G00] · r3 gap_reported [nothing fired; unmapped G00]
+- "Lamine had a ladder." (target `possession`): r1 target_fired [named-entity×1, possession×1, witness×1] · r2 target_fired [named-entity×1, possession×1, witness×1] · r3 target_fired [named-entity×1, possession×1, witness×1]
 
 Mismatches: none
 
@@ -1183,7 +1209,7 @@ Mismatches: none
 
 ## stative-relation — held_out
 
-24 cases, 72 records (ok 72; stale prompt 0) · gemini-4-argon effort=low
+24 cases, 72 records (ok 72; stale prompt 69) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -1194,15 +1220,15 @@ Mismatches: none
 - selection: fire cases fired 57/57 · abstain cases false fires 0/15
 - fill: exact 57/57 among fires
 - stability: pairwise agreement 1.0 (24 cases, 72 pairs), unanimous 24/24
-- type check: 66/66 emitted parses type
+- type check: 69/69 emitted parses type
 - graph lints: none
-- spans: 201/201 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
-- usage: 72 calls · in 5,501,595 · cached 5,130,872 (93% of the input) · out 10,075 · thinking 0 (calls with thought tokens: 0)
+- spans: 210/210 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
+- usage: 72 calls · in 5,508,450 · cached 5,212,087 (95% of the input) · out 10,385 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
 Abstain cases (what the parser did, per run):
 - "Ottoline owns the quilt." (target `possession`): r1 target_fired [named-entity×1, possession×1, witness×1] · r2 target_fired [named-entity×1, possession×1, witness×1] · r3 target_fired [named-entity×1, possession×1, witness×1]
-- "The box contains a letter." (gap G00): r1 gap_reported [nothing fired; unmapped G00] · r2 gap_reported [nothing fired; unmapped G00] · r3 gap_reported [nothing fired; unmapped G00]
+- "The box contains a letter." (target `locative`): r1 target_fired [locative×1, witness×2] · r2 target_fired [locative×1, witness×2] · r3 target_fired [locative×1, witness×2]
 - "The parcel weighs a pound." (gap G00): r1 gap_reported [nothing fired; unmapped G00] · r2 gap_reported [nothing fired; unmapped G00] · r3 gap_reported [nothing fired; unmapped G00]
 - "Yusra fears the ferret." (target `psych`): r1 target_fired [named-entity×1, psych×1, witness×1] · r2 target_fired [named-entity×1, psych×1, witness×1] · r3 target_fired [named-entity×1, psych×1, witness×1]
 - "Yusra needs to rest." (target `norm`): r1 target_fired [activity×1, named-entity×1, norm×1] · r2 target_fired [activity×1, named-entity×1, norm×1] · r3 target_fired [activity×1, named-entity×1, norm×1]

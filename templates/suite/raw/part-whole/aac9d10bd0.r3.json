@@ -1,0 +1,74 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "dbd9c0eff5cb755495bbf8a35f5fa2de8218198a6bce3644a778278f9856f53c",
+  "item": {
+    "id": "saac9d10bd0",
+    "text": "Half of the loaf is stale."
+  },
+  "usage": {
+    "input": 78695,
+    "output": 69,
+    "thinking": null,
+    "total": 78764,
+    "cached": 76646,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 78695,
+    "candidatesTokenCount": 69,
+    "totalTokenCount": 78764,
+    "cachedContentTokenCount": 76646,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 78695
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 76646
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 69
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"saac9d10bd0\", \"instances\": [], \"unmapped\": [{\"span\": \"Half of the loaf is stale.\", \"code\": \"G00\", \"construction\": \"A copular predication whose subject is a fractional partitive of a whole.\"}], \"issues\": []}",
+  "response": {
+    "id": "saac9d10bd0",
+    "instances": [],
+    "unmapped": [
+      {
+        "span": "Half of the loaf is stale.",
+        "code": "G00",
+        "construction": "A copular predication whose subject is a fractional partitive of a whole."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "b4506b321cc277ac80f5ce1aa23e5b0565215b85ccdd8fffa5bd24592c6be1a3",
+  "run": 3,
+  "case": {
+    "template": "part-whole",
+    "section": "held_out",
+    "index": 16,
+    "category": "abstain",
+    "text": "Half of the loaf is stale.",
+    "key": "aac9d10bd0"
+  }
+}

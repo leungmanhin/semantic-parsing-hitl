@@ -1,0 +1,101 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "dbd9c0eff5cb755495bbf8a35f5fa2de8218198a6bce3644a778278f9856f53c",
+  "item": {
+    "id": "s087133402d",
+    "text": "The top of the ladder is wet."
+  },
+  "usage": {
+    "input": 78699,
+    "output": 201,
+    "thinking": null,
+    "total": 78900,
+    "cached": 76650,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 78699,
+    "candidatesTokenCount": 201,
+    "totalTokenCount": 78900,
+    "cachedContentTokenCount": 76650,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 78699
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 76650
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 201
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s087133402d\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"top\", \"definite\": true, \"span\": \"The top of the ladder\"}, {\"t\": \"witness\", \"id\": \"x2\", \"class\": \"ladder\", \"definite\": true, \"span\": \"the ladder\"}, {\"t\": \"part-whole\", \"id\": \"w1\", \"part\": \"@x1\", \"whole\": \"@x2\", \"word\": \"of\", \"tense\": \"present\", \"span\": \"The top of the ladder\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@x1\", \"predicate\": \"wet\", \"form\": \"adjective\", \"tense\": \"present\", \"span\": \"The top of the ladder is wet\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s087133402d",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "top",
+        "definite": true,
+        "span": "The top of the ladder"
+      },
+      {
+        "t": "witness",
+        "id": "x2",
+        "class": "ladder",
+        "definite": true,
+        "span": "the ladder"
+      },
+      {
+        "t": "part-whole",
+        "id": "w1",
+        "part": "@x1",
+        "whole": "@x2",
+        "word": "of",
+        "tense": "present",
+        "span": "The top of the ladder"
+      },
+      {
+        "t": "copular",
+        "id": "c1",
+        "subject": "@x1",
+        "predicate": "wet",
+        "form": "adjective",
+        "tense": "present",
+        "span": "The top of the ladder is wet"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "b4506b321cc277ac80f5ce1aa23e5b0565215b85ccdd8fffa5bd24592c6be1a3",
+  "run": 2,
+  "case": {
+    "template": "part-whole",
+    "section": "held_out",
+    "index": 10,
+    "category": "positive",
+    "text": "The top of the ladder is wet.",
+    "key": "087133402d"
+  }
+}

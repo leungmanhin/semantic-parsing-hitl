@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "00c1d3a38815e1ae95a32f96fad88a4afabbeb50f662bbb7d4a0cb6e9bbd0c60",
+  "prompt_sha256": "dbd9c0eff5cb755495bbf8a35f5fa2de8218198a6bce3644a778278f9856f53c",
   "item": {
     "id": "sa686baec13",
     "text": "The box contains a letter."
   },
   "usage": {
-    "input": 76409,
-    "output": 65,
+    "input": 78694,
+    "output": 212,
     "thinking": null,
-    "total": 76474,
-    "cached": null,
+    "total": 78906,
+    "cached": 76645,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,36 +25,61 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 76409,
-    "candidatesTokenCount": 65,
-    "totalTokenCount": 76474,
+    "promptTokenCount": 78694,
+    "candidatesTokenCount": 212,
+    "totalTokenCount": 78906,
+    "cachedContentTokenCount": 76645,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 76409
+        "tokenCount": 78694
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 76645
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 65
+        "tokenCount": 212
       }
     ]
   },
-  "raw_text": "{\"id\": \"sa686baec13\", \"instances\": [], \"unmapped\": [{\"span\": \"The box contains a letter\", \"code\": \"G00\", \"construction\": \"A containment or part-whole stative clause with 'contain'.\"}], \"issues\": []}",
+  "raw_text": "{\n  \"id\": \"sa686baec13\",\n  \"instances\": [\n    {\n      \"t\": \"witness\",\n      \"id\": \"x1\",\n      \"class\": \"box\",\n      \"definite\": true,\n      \"span\": \"The box\"\n    },\n    {\n      \"t\": \"witness\",\n      \"id\": \"x2\",\n      \"class\": \"letter\",\n      \"span\": \"a letter\"\n    },\n    {\n      \"t\": \"locative\",\n      \"id\": \"l1\",\n      \"thing\": \"@x2\",\n      \"place\": \"@x1\",\n      \"head\": \"LocatedIn\",\n      \"preposition\": \"contains\",\n      \"tense\": \"present\",\n      \"span\": \"The box contains a letter\"\n    }\n  ],\n  \"unmapped\": [],\n  \"issues\": []\n}",
   "response": {
     "id": "sa686baec13",
-    "instances": [],
-    "unmapped": [
+    "instances": [
       {
-        "span": "The box contains a letter",
-        "code": "G00",
-        "construction": "A containment or part-whole stative clause with 'contain'."
+        "t": "witness",
+        "id": "x1",
+        "class": "box",
+        "definite": true,
+        "span": "The box"
+      },
+      {
+        "t": "witness",
+        "id": "x2",
+        "class": "letter",
+        "span": "a letter"
+      },
+      {
+        "t": "locative",
+        "id": "l1",
+        "thing": "@x2",
+        "place": "@x1",
+        "head": "LocatedIn",
+        "preposition": "contains",
+        "tense": "present",
+        "span": "The box contains a letter"
       }
     ],
+    "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "8f768497029588efd8f71073a54c11b506fc67161e0952eb46812d3415cd0956",
+  "prompt_body_sha256": "b4506b321cc277ac80f5ce1aa23e5b0565215b85ccdd8fffa5bd24592c6be1a3",
   "run": 1,
   "case": {
     "template": "stative-relation",

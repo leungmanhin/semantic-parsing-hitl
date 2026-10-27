@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 1df9a46820a655ac · 51 templates
+catalog sha256 2b7da55b6e2a3cfb · 52 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -448,9 +448,11 @@ Slots:
   with a degree word (a very old spindle) is a degree instance beside the witness, not a
   property here.
 - `possessor` (optional; "@id" of a referent instance, or a bare lemma for a non-specific
-  filler): the possessor of a possessive phrase: Yusra's quilt, the quilt of Yusra, her quilt; a
-  referent id (for a possessive pronoun, the id of its mention instance), or a bare lemma for a
-  class-level possessor.
+  filler): the possessor of a possessive phrase: Yusra's quilt, the quilt of Yusra, her quilt —
+  an owner or an associate, NOT a whole the noun is a part of (the lid of the box, the box's
+  lid, the car engine, the top of the ladder: no possessor, the witness definite, and a
+  part-whole instance links the two); a referent id (for a possessive pronoun, the id of its
+  mention instance), or a bare lemma for a class-level possessor.
 - `eventive` (optional; true / false): true when the noun names an event or a period and the
   clause puts the noun itself in time (the meeting is at noon) or places another event relative
   to it (after the audit, during the meeting); absent otherwise.
@@ -1806,8 +1808,8 @@ Not this template:
   carries the event
 - make with a clause — made Teodor laugh, made Yusra send the quilt: a causative over a clause,
   a different construction
-- a state of composition or existence — the shed is made of planks, there is a shed: no event; a
-  different construction
+- a state of composition or existence — the shed is made of planks: a part-whole relation (the
+  material); there is a shed: no event; a different construction
 - an instrument, a companion or a beneficiary phrase — with a chisel, with Yusra, for Teodor: an
   adjunct attachment on the creation event; a material phrase — from planks — an oblique (From)
   on the creation event
@@ -1998,6 +2000,9 @@ place phrase: the ledger is on the workbench, Calderwick is in Norfolk, the key 
 quilt, there is a trowel on the workbench, Ottoline is from Calderwick. The subject is the thing
 located; the object of the preposition is the place. A place phrase inside a noun phrase (the
 ledger on the workbench, a village in Norfolk) is a locative of that thing too, in the present.
+A container verb with a separate thing inside — the box contains a letter, the drawer holds a
+key — locates the thing in the container: head LocatedIn, the verb recorded as the preposition,
+the thing in `thing` and the container in `place`.
 
 Forms:
 - <thing> is in / at / on / under … <place>
@@ -2020,7 +2025,8 @@ Not this template:
 - a time — the meeting is at noon, the audit is in May: a time, not a place
 - a non-spatial in / on / at — in trouble, in love, on alert, at war: a state, not a place;
   report the phrase as unmapped
-- membership — on the committee, in the guild: a group or a relation, not a place
+- membership, a part or a constituent — on the committee, a member of the guild, the lid of the
+  box, the soup contains salt: a part-whole relation, not a place
 - between two places — between the barn and the shed: no slot here; reported as unmapped
 
 Slots:
@@ -2180,6 +2186,139 @@ Not this template. TEXT: Teodor gave Yusra a thermos. — use `transfer`.
 
 Not this template. TEXT: Yusra laughed. — use `activity`.
 
+### part-whole — A part, a member or a constituent of a whole, or a material
+
+When: A clause or a phrase stating that one thing is a PART, a component, a feature, a member or
+a constituent of another: the lid is part of the box; the box has a lid; the mill has a wooden
+roof; the table has four legs; Yusra has blue eyes; the soup contains salt; the parade included
+six bands; the meal consisted of five dishes; a clause was included in the treaty; Lamine is a
+member of the guild; the top of the ladder; the barn's roof; the car engine. Or what a thing is
+MADE OF: the quilt is made of wool; a cup made of glass; the atmosphere is made up of oxygen.
+Write one instance per link: `part` is the part's referent (a witness for the lid or for some
+salt, a group for four legs or six bands, a name for Lamine) and `whole` the whole's referent;
+`material` (wool, glass, oak) is a lemma, never a referent, and stands instead of `part`. The
+part inside a noun phrase (the lid of the box, the box's lid, the top of the ladder) is a
+witness with NO possessor, marked definite, and this instance links it to the whole. A counted
+or plural part (four legs, six bands, blue eyes) is a group instance, and a distribution
+instance over the group says that each member is a part. A passive keeps the link (the clause
+was included in the treaty: the clause the part). On a class — every car has an engine, oranges
+contain juice — the subject is a range and the generic template builds the rule with this
+instance as the predication over it; an indefinite part is then a witness, a function of the
+member. `tense` is the clause's; a link inside a noun phrase is present.
+
+Forms:
+- <part> is (a) part of <whole>
+- <whole> has / contains / includes <part>
+- <whole> consists of / is composed of <parts>
+- <part> is a member of <whole>
+- the <part> of <whole> / <whole>'s <part> / <whole> <part>
+- <whole> is made of / made from / made up of <material>
+
+Not this template:
+- a separate thing inside a container — the box contains a letter, the drawer holds a key: where
+  the thing is, the locative template, the verb recorded as its preposition
+- ownership, kinship or a loose association — Teodor has a trowel, Yusra's quilt, Lamine's
+  cousin: a possession, a possessor on the witness, a stative relation
+- a place inside a place — a village in Norfolk, a district of the city: a locative, never a
+  part
+- a proportion, a subset or a measured portion of a whole — half of the loaf, most of the
+  students, three of the ferrets, a cup of water: no template here; report the phrase as
+  unmapped (G00); a plain portion — a piece of the loaf, the top of the ladder — is a part
+- a composition stated by kinds — consists of scientists and engineers, the ingredients are
+  flour and sugar: the members' kinds, which no slot carries; report the clause as unmapped
+- a material adjective or a quality — a wooden box, the box is red: a property of the thing,
+  recorded on the witness or by a copular
+- a group and its kind — the ferrets, three students: the group template, which is not a part of
+  anything by itself; a creation — formed a committee, built a shed: an event
+- a size, a weight or a price — has three rooms? no: that is a count of parts, here; weighs a
+  pound, costs a dollar: a measure, no template yet (G00)
+
+Slots:
+
+- `t` (required): "part-whole"
+- `id` (required; your label for this instance): your label for the link (w1, w2 …).
+- `part` (optional; "@id" of a referent instance, or a bare lemma for a non-specific filler):
+  the part, component, member or constituent: a referent id — a witness (the lid, some salt), a
+  group (four legs), a name (Lamine) or a range; never a bare lemma; absent with material.
+- `whole` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
+  the whole: a referent id — a witness, a name, a group or a range.
+- `material` (optional; a lemma): what the whole is made of, lemmatized (wool, glass, oak,
+  oxygen); stands instead of part; absent otherwise.
+- `word` (optional; a string): the wording as written, lowercase (part of, has, contains,
+  included, consists of, member of, of, 's, made of); recorded, not rendered.
+- `tense` (optional; one of: past, present, future): the clause's tense (had a lid → past);
+  present for a link inside a noun phrase and for every present clause.
+- Exactly one of `part`, `material` is filled.
+
+Example (the copular form — one relation between the two referents). TEXT: The lid is part of the box.
+
+Instances:
+
+    [
+      {"t": "witness", "id": "x1", "class": "lid", "definite": true, "span": "The lid"},
+      {"t": "witness", "id": "x2", "class": "box", "definite": true, "span": "the box"},
+      {"t": "part-whole", "id": "w1", "part": "@x1", "whole": "@x2", "word": "part of", "tense": "present", "span": "The lid is part of the box"}
+    ]
+
+The program renders these instances as:
+
+    (Member sk_lid_1 lid)
+    (Member sk_box_1 box)
+    (PartOf sk_lid_1 sk_box_1)
+
+Example (have with a part — the same relation; the part a witness with its property). TEXT: The mill has a wooden roof.
+
+Instances:
+
+    [
+      {"t": "witness", "id": "x1", "class": "mill", "definite": true, "span": "The mill"},
+      {"t": "witness", "id": "x2", "class": "roof", "props": ["wooden"], "span": "a wooden roof"},
+      {"t": "part-whole", "id": "w1", "part": "@x2", "whole": "@x1", "word": "has", "tense": "present", "span": "The mill has a wooden roof"}
+    ]
+
+The program renders these instances as:
+
+    (Member sk_mill_1 mill)
+    (Member sk_roof_1 roof)
+    (Member sk_roof_1 wooden)
+    (PartOf sk_roof_1 sk_mill_1)
+
+Example (a material — a class, not a referent). TEXT: The quilt is made of wool.
+
+Instances:
+
+    [
+      {"t": "witness", "id": "x1", "class": "quilt", "definite": true, "span": "The quilt"},
+      {"t": "part-whole", "id": "w1", "whole": "@x1", "material": "wool", "word": "made of", "tense": "present", "span": "The quilt is made of wool"}
+    ]
+
+The program renders these instances as:
+
+    (Member sk_quilt_1 quilt)
+    (MadeOf sk_quilt_1 wool)
+
+Example (the part inside a noun phrase — a witness with no possessor, definite, linked here). TEXT: The lid of the box is cracked.
+
+Instances:
+
+    [
+      {"t": "witness", "id": "x1", "class": "lid", "definite": true, "span": "The lid of the box"},
+      {"t": "witness", "id": "x2", "class": "box", "definite": true, "span": "the box"},
+      {"t": "part-whole", "id": "w1", "part": "@x1", "whole": "@x2", "word": "of", "tense": "present", "span": "The lid of the box"},
+      {"t": "copular", "id": "c1", "subject": "@x1", "predicate": "cracked", "form": "adjective", "tense": "present", "span": "The lid of the box is cracked"}
+    ]
+
+The program renders these instances as:
+
+    (Member sk_lid_1 lid)
+    (Member sk_box_1 box)
+    (PartOf sk_lid_1 sk_box_1)
+    (Member sk_lid_1 cracked)
+
+Not this template. TEXT: Teodor has a trowel. — use `possession`.
+
+Not this template. TEXT: The ledger is on the workbench. — use `locative`.
+
 ### perception — Perception of a thing or an event
 
 When: A verbal clause whose verb denotes perceiving: see, hear, smell, taste, feel (a
@@ -2305,9 +2444,10 @@ Not this template:
 - "have to" — has to send the quilt: an obligation; a modal over the clause
 - "have" with an event noun or in a light-verb use — had lunch, had a word, had a look: the noun
   carries the event
-- kinship, parts and attributes — has a brother, has blue eyes, has a lid: a relation or a
-  property stated with "have", not the holding of a thing (kinship with both parties named — is
-  Lamine's cousin, Yusra and Lamine are cousins — is a stative relation)
+- parts, features and members — has a lid, has four legs, has blue eyes: a part-whole relation,
+  not the holding of a thing; kinship with both parties named — is Lamine's cousin, Yusra and
+  Lamine are cousins — is a stative relation; has a brother, with no second party named: no
+  template, report the predicate as unmapped
 - the possessive inside a noun phrase — Ottoline's quilt, the quilt of Ottoline: a referent with
   a possessor, not a clause
 
@@ -2525,8 +2665,9 @@ Not this template:
   psych state or a perception; a quality adjective with a complement — afraid of the ferret,
   fond of Lamine, full of water, good at chess: no template yet, report the predicate as
   unmapped
-- a part and its whole — contains, includes, consists of, is made of, has a lid: no template
-  yet; report the clause as unmapped (G00)
+- a part and its whole — contains, includes, consists of, is made of, has a lid, is a member of:
+  the part-whole template; a separate thing inside a container — the box contains a letter: a
+  locative
 - a measure — costs, weighs, measures, lasts, holds forty litres: no template yet; report the
   clause as unmapped (G00)
 - a mental state with a clause — knows that, believes that, hopes to: an attitude
@@ -4642,15 +4783,16 @@ Not this template. TEXT: Lamine waited all day. — report it as unmapped: {"spa
 ### generic — A verbal generalization over a class
 
 When: A clause whose subject (or another argument) is a range — a quantified class noun or a
-bare plural read generically — and whose predicate is a verb other than "be": every ferret
-slept, ferrets sleep, most students laugh, few herons migrate, no ferret slept. The predication
-is parsed with its own template, with the range as its filler; the generic instance names the
-range(s) and the predication (or the negation, modal or norm over it) and nothing else. One
-generic per clause, however many ranges it has. An object that is itself a bare class (ferrets
-eat mice, spiders spin webs) is a bare lemma filler of the predication: the rule says an
-arbitrary ferret eats mice. A condition under which the generalization holds (ferrets bite when
-cornered, clay softens when wet) is a predication over the range — a copular instance for the
-state — listed in `condition`.
+bare plural read generically — and whose predicate is a verb other than "be", or a part-whole
+relation (every car has an engine, oranges contain juice): every ferret slept, ferrets sleep,
+most students laugh, few herons migrate, no ferret slept. The predication is parsed with its own
+template, with the range as its filler; the generic instance names the range(s) and the
+predication (or the negation, modal or norm over it) and nothing else. One generic per clause,
+however many ranges it has. An object that is itself a bare class (ferrets eat mice, spiders
+spin webs) is a bare lemma filler of the predication: the rule says an arbitrary ferret eats
+mice. A condition under which the generalization holds (ferrets bite when cornered, clay softens
+when wet) is a predication over the range — a copular instance for the state — listed in
+`condition`.
 
 Not this template:
 - a copular predicate — all ferrets are curious, most herons are patient: a class statement,
@@ -4672,8 +4814,9 @@ Slots:
 - `id` (required; your label for this instance): your label for the rule.
 - `ranges` (required; a list of "@id" of the instances that state the clause): the range
   instance(s) the rule quantifies over, in text order: one per quantified class noun.
-- `over` (required; a list of "@id" of the instances that state the clause): the predication
-  over the range(s), or the negation / modal / norm over that predication: its id, nothing else.
+- `over` (required; a list of "@id" of the instances that state the clause): the predication (or
+  the part-whole relation) over the range(s), or the negation / modal / norm over that
+  predication: its id, nothing else.
 - `condition` (optional; a list of "@id" of the instances that state the clause): a predication
   over the range that must hold for the generalization to apply (ferrets bite when cornered: the
   copular instance for cornered, its subject the range); its id; absent as a rule.

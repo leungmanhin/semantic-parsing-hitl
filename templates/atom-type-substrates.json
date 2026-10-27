@@ -987,7 +987,7 @@
       ],
       "out": "Proposition",
       "opaque": false,
-      "gloss": "Part/component (or named member) of a whole. Order: (PartOf part whole); eventualities may have parts."
+      "gloss": "Part / component, member or constituent of a whole: the part-whole template's atom for every wording (is part of, has, contains, includes, consists of, a member of, the lid of the box). Order: (PartOf part whole); both are instances (a material is MadeOf); eventualities may have parts; the distribution template's premise over a group's members."
     },
     "ParticleFromNormal": {
       "kind": "computation",
@@ -1562,6 +1562,17 @@
       "out": "Proposition",
       "opaque": false,
       "gloss": "Marks an eventuality as a habit: the sum of its occurrences, a characterizing state, rather than one occurrence — (Habitual sk_swim_1) for a bare habitual present (Yusra swims) and, with (Past e), for the habitual past (used to). A top-level Event is an asserted eventuality: an occurrence or, when marked, a habit; a stated frequency builds a rule over occasions instead and marks nothing."
+    },
+    "MadeOf": {
+      "kind": "relation",
+      "arity": 2,
+      "arg_types": [
+        "Entity",
+        "Class"
+      ],
+      "out": "Proposition",
+      "opaque": false,
+      "gloss": "What a thing is made of: (MadeOf whole material), the material a class of stuff (wool, glass, oxygen). The part-whole template's constitution atom, beside (PartOf part whole) for parts, members and constituents that are individuals."
     }
   },
   "open_class": {

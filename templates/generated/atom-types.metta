@@ -108,6 +108,7 @@
 (: LikelihoodPhrase (-> Event String Proposition))
 (: LocatedIn (-> Entity Entity Proposition))
 (: Location (-> Event Entity Proposition))
+(: MadeOf (-> Entity Class Proposition))
 (: Manner (-> Event Class Proposition))
 (: Measure (-> Instance Class Number Class Proposition))
 (: Measure (-> Instance Class Distribution Class Proposition))

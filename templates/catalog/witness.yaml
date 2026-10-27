@@ -41,7 +41,7 @@ slots:
   props:    {type: list, class: Class, required: false,
              doc: "adjectival properties stated in the phrase; a property with a degree word (a very old spindle) is a degree instance beside the witness, not a property here"}
   possessor: {type: filler, class: Entity, required: false,
-              doc: "the possessor of a possessive phrase: Yusra's quilt, the quilt of Yusra, her quilt; a referent id (for a possessive pronoun, the id of its mention instance), or a bare lemma for a class-level possessor"}
+              doc: "the possessor of a possessive phrase: Yusra's quilt, the quilt of Yusra, her quilt — an owner or an associate, NOT a whole the noun is a part of (the lid of the box, the box's lid, the car engine, the top of the ladder: no possessor, the witness definite, and a part-whole instance links the two); a referent id (for a possessive pronoun, the id of its mention instance), or a bare lemma for a class-level possessor"}
   eventive: {type: bool, required: false,
              doc: "true when the noun names an event or a period and the clause puts the noun itself in time (the meeting is at noon) or places another event relative to it (after the audit, during the meeting); absent otherwise"}
 

@@ -281,6 +281,28 @@ rules:
       "If Lamine had sung, Yusra would have left" seals both clauses; the form presupposes that
       Lamine did not sing, which this rule states as the denial of the antecedent's conjuncts.
 
+  # Parts and wholes: a part of a part is a part of the whole, and a part is where its whole is.
+  - id: partof_trans
+    meaning: a part of a part is a part of the whole
+    premises: ["(PartOf $x $y)", "(PartOf $y $z)"]
+    conclusion: "(PartOf $x $z)"
+    truth: {strength: 1.0, confidence: 0.9}
+    semantics: deductive
+    reads: [part-whole]
+    notes: >-
+      "The wick is part of the lantern" and "the lantern is part of the lamp" give the wick as a
+      part of the lamp. Membership is carried the same way (a member of a guild that is part of
+      a federation), at the generalization confidence rather than a definitional one.
+  - id: part_located
+    meaning: a part is where its whole is
+    premises: ["(PartOf $p $w)", "(LocatedIn $w $l)"]
+    conclusion: "(LocatedIn $p $l)"
+    truth: {strength: 1.0, confidence: 0.9}
+    semantics: deductive
+    reads: [part-whole, locative]
+    notes: >-
+      "The lid is part of the box" with "the box is in the shed" places the lid in the shed.
+
   # Stative relations need no symmetry rule: a relation that holds the other way round by its
   # meaning (married, similar, cousin) is one state with two bearers, both Experiencer; the
   # stative-relation template's lexicon decides the roles and a question names the other bearer.

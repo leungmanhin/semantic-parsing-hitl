@@ -1,0 +1,101 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "dbd9c0eff5cb755495bbf8a35f5fa2de8218198a6bce3644a778278f9856f53c",
+  "item": {
+    "id": "s9976c7e96c",
+    "text": "Oranges contain juice."
+  },
+  "usage": {
+    "input": 78696,
+    "output": 170,
+    "thinking": null,
+    "total": 78866,
+    "cached": 76646,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 78696,
+    "candidatesTokenCount": 170,
+    "totalTokenCount": 78866,
+    "cachedContentTokenCount": 76646,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 78696
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 76646
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 170
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s9976c7e96c\", \"instances\": [{\"t\": \"range\", \"id\": \"q1\", \"class\": \"orange\", \"span\": \"Oranges\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"juice\", \"span\": \"juice\"}, {\"t\": \"part-whole\", \"id\": \"w1\", \"part\": \"@x1\", \"whole\": \"@q1\", \"word\": \"contains\", \"tense\": \"present\", \"span\": \"Oranges contain juice\"}, {\"t\": \"generic\", \"id\": \"r1\", \"ranges\": [\"@q1\"], \"over\": [\"@w1\"], \"span\": \"Oranges contain juice\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s9976c7e96c",
+    "instances": [
+      {
+        "t": "range",
+        "id": "q1",
+        "class": "orange",
+        "span": "Oranges"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "juice",
+        "span": "juice"
+      },
+      {
+        "t": "part-whole",
+        "id": "w1",
+        "part": "@x1",
+        "whole": "@q1",
+        "word": "contains",
+        "tense": "present",
+        "span": "Oranges contain juice"
+      },
+      {
+        "t": "generic",
+        "id": "r1",
+        "ranges": [
+          "@q1"
+        ],
+        "over": [
+          "@w1"
+        ],
+        "span": "Oranges contain juice"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "b4506b321cc277ac80f5ce1aa23e5b0565215b85ccdd8fffa5bd24592c6be1a3",
+  "run": 1,
+  "case": {
+    "template": "part-whole",
+    "section": "held_out",
+    "index": 12,
+    "category": "positive",
+    "text": "Oranges contain juice.",
+    "key": "9976c7e96c"
+  }
+}

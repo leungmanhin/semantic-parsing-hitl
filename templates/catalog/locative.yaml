@@ -19,6 +19,9 @@ trigger:
     quilt, there is a trowel on the workbench, Ottoline is from Calderwick. The subject is the thing
     located; the object of the preposition is the place. A place phrase inside a noun phrase (the
     ledger on the workbench, a village in Norfolk) is a locative of that thing too, in the present.
+    A container verb with a separate thing inside — the box contains a letter, the drawer holds a
+    key — locates the thing in the container: head LocatedIn, the verb recorded as the
+    preposition, the thing in `thing` and the container in `place`.
   surface_forms:
     - "<thing> is in / at / on / under … <place>"     # the ledger is on the workbench
     - "there is <thing> <place phrase>"               # there is a trowel on the workbench
@@ -47,7 +50,8 @@ trigger:
       a non-spatial in / on / at — in trouble, in love, on alert, at war: a state, not a place;
       report the phrase as unmapped
     - >-
-      membership — on the committee, in the guild: a group or a relation, not a place
+      membership, a part or a constituent — on the committee, a member of the guild, the lid
+      of the box, the soup contains salt: a part-whole relation, not a place
     - >-
       between two places — between the barn and the shed: no slot here; reported as unmapped
 
@@ -120,6 +124,13 @@ examples:
       expected: {abstain: true, template: copular}                    # a class predicate
 
   held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      note: a container verb — the thing is in the container, the verb recorded as the preposition
+      text: "The box contains a letter."
+      instances:
+        - {t: witness, id: x1, class: box, definite: true}
+        - {t: witness, id: x2, class: letter}
+        - {t: locative, id: l1, thing: "@x2", place: "@x1", head: LocatedIn, preposition: contains, tense: present}
     - category: positive
       note: a place phrase inside a noun phrase — a locative of that thing, in the present
       text: "The ferret in the barn slept."

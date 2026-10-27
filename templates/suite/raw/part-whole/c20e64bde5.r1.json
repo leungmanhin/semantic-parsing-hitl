@@ -1,0 +1,90 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "dbd9c0eff5cb755495bbf8a35f5fa2de8218198a6bce3644a778278f9856f53c",
+  "item": {
+    "id": "sc20e64bde5",
+    "text": "Lamine had a ladder."
+  },
+  "usage": {
+    "input": 78694,
+    "output": 135,
+    "thinking": null,
+    "total": 78829,
+    "cached": 76645,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 78694,
+    "candidatesTokenCount": 135,
+    "totalTokenCount": 78829,
+    "cachedContentTokenCount": 76645,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 78694
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 76645
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 135
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sc20e64bde5\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"ladder\", \"span\": \"a ladder\"}, {\"t\": \"possession\", \"id\": \"p1\", \"verb\": \"have\", \"holder\": \"@n1\", \"possessed\": \"@x1\", \"tense\": \"past\", \"span\": \"Lamine had a ladder\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sc20e64bde5",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "ladder",
+        "span": "a ladder"
+      },
+      {
+        "t": "possession",
+        "id": "p1",
+        "verb": "have",
+        "holder": "@n1",
+        "possessed": "@x1",
+        "tense": "past",
+        "span": "Lamine had a ladder"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "b4506b321cc277ac80f5ce1aa23e5b0565215b85ccdd8fffa5bd24592c6be1a3",
+  "run": 1,
+  "case": {
+    "template": "part-whole",
+    "section": "held_out",
+    "index": 15,
+    "category": "abstain",
+    "text": "Lamine had a ladder.",
+    "key": "c20e64bde5"
+  }
+}

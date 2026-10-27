@@ -288,5 +288,28 @@ class SeededRulesOnTheEngine(unittest.TestCase):
         self.assertFalse(self.query(asym, "(And (Member $s depend) (Experiencer $s sk_stream_1) (Theme $s $y))"))   # asymmetric: one way only
 
 
+    def test_a_part_of_a_part_and_a_part_is_where_its_whole_is(self):
+        """partof_trans carries parthood up the chain; part_located places a part where its
+        whole is; a group's member is a part of what the group is a part of (the distribution
+        premise is the same relation); nothing is derived for an unrelated thing."""
+        facts = ['(: w1 (PartOf sk_wick_1 sk_lantern_1) (STV 1.0 0.99))',
+                 '(: w2 (PartOf sk_lantern_1 sk_lamp_1) (STV 1.0 0.99))',
+                 '(: l1 (LocatedIn sk_lamp_1 sk_shed_1) (STV 1.0 0.99))',
+                 '(: x1 (Member sk_spindle_1 spindle) (STV 1.0 0.99))']
+        h = self.space(facts)
+        up = self.query(h, "(PartOf sk_wick_1 sk_lamp_1)")
+        self.assertTrue(up and "partof_trans" in up[0], up)
+        self.assertAlmostEqual(tv(up)[0], 1.0, places=2)
+        where = self.query(h, "(LocatedIn sk_lantern_1 sk_shed_1)")
+        self.assertTrue(where and "part_located" in where[0], where)
+        self.assertTrue(self.query(h, "(LocatedIn sk_wick_1 sk_shed_1)"))                  # two steps: up, then where
+        self.assertFalse(self.query(h, "(PartOf sk_spindle_1 $w)"))
+        legs = ['(: g1 (GroupOf sk_group_1 leg) (STV 1.0 0.99))',
+                '(: w1 (PartOf sk_group_1 sk_table_1) (STV 1.0 0.99))',
+                '(: d1 (Implication (PartOf $x sk_group_1) (PartOf $x sk_table_1)) (STV 1.0 0.9))',
+                '(: m1 (PartOf sk_leg_1 sk_group_1) (STV 1.0 0.99))']
+        self.assertTrue(self.query(self.space(legs), "(PartOf sk_leg_1 sk_table_1)"))       # each member a part
+
+
 if __name__ == "__main__":
     unittest.main()

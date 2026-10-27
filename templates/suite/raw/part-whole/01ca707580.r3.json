@@ -1,0 +1,85 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "dbd9c0eff5cb755495bbf8a35f5fa2de8218198a6bce3644a778278f9856f53c",
+  "item": {
+    "id": "s01ca707580",
+    "text": "The cup is made of glass."
+  },
+  "usage": {
+    "input": 78697,
+    "output": 115,
+    "thinking": null,
+    "total": 78812,
+    "cached": 76648,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 78697,
+    "candidatesTokenCount": 115,
+    "totalTokenCount": 78812,
+    "cachedContentTokenCount": 76648,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 78697
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 76648
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 115
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s01ca707580\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"cup\", \"definite\": true, \"span\": \"The cup\"}, {\"t\": \"part-whole\", \"id\": \"w1\", \"whole\": \"@x1\", \"material\": \"glass\", \"word\": \"made of\", \"tense\": \"present\", \"span\": \"The cup is made of glass\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s01ca707580",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "cup",
+        "definite": true,
+        "span": "The cup"
+      },
+      {
+        "t": "part-whole",
+        "id": "w1",
+        "whole": "@x1",
+        "material": "glass",
+        "word": "made of",
+        "tense": "present",
+        "span": "The cup is made of glass"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "b4506b321cc277ac80f5ce1aa23e5b0565215b85ccdd8fffa5bd24592c6be1a3",
+  "run": 3,
+  "case": {
+    "template": "part-whole",
+    "section": "held_out",
+    "index": 8,
+    "category": "positive",
+    "text": "The cup is made of glass.",
+    "key": "01ca707580"
+  }
+}

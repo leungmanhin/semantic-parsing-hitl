@@ -1,0 +1,101 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "dbd9c0eff5cb755495bbf8a35f5fa2de8218198a6bce3644a778278f9856f53c",
+  "item": {
+    "id": "s3a7b766883",
+    "text": "The barn's roof is red."
+  },
+  "usage": {
+    "input": 78699,
+    "output": 288,
+    "thinking": null,
+    "total": 78987,
+    "cached": 76648,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 78699,
+    "candidatesTokenCount": 288,
+    "totalTokenCount": 78987,
+    "cachedContentTokenCount": 76648,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 78699
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 76648
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 288
+      }
+    ]
+  },
+  "raw_text": "{\n  \"id\": \"s3a7b766883\",\n  \"instances\": [\n    {\n      \"t\": \"witness\",\n      \"id\": \"x1\",\n      \"class\": \"barn\",\n      \"definite\": true,\n      \"span\": \"The barn\"\n    },\n    {\n      \"t\": \"witness\",\n      \"id\": \"x2\",\n      \"class\": \"roof\",\n      \"definite\": true,\n      \"span\": \"The barn's roof\"\n    },\n    {\n      \"t\": \"part-whole\",\n      \"id\": \"w1\",\n      \"part\": \"@x2\",\n      \"whole\": \"@x1\",\n      \"word\": \"'s\",\n      \"tense\": \"present\",\n      \"span\": \"The barn's roof\"\n    },\n    {\n      \"t\": \"copular\",\n      \"id\": \"c1\",\n      \"subject\": \"@x2\",\n      \"predicate\": \"red\",\n      \"form\": \"adjective\",\n      \"tense\": \"present\",\n      \"span\": \"The barn's roof is red\"\n    }\n  ],\n  \"unmapped\": [],\n  \"issues\": []\n}",
+  "response": {
+    "id": "s3a7b766883",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "barn",
+        "definite": true,
+        "span": "The barn"
+      },
+      {
+        "t": "witness",
+        "id": "x2",
+        "class": "roof",
+        "definite": true,
+        "span": "The barn's roof"
+      },
+      {
+        "t": "part-whole",
+        "id": "w1",
+        "part": "@x2",
+        "whole": "@x1",
+        "word": "'s",
+        "tense": "present",
+        "span": "The barn's roof"
+      },
+      {
+        "t": "copular",
+        "id": "c1",
+        "subject": "@x2",
+        "predicate": "red",
+        "form": "adjective",
+        "tense": "present",
+        "span": "The barn's roof is red"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "b4506b321cc277ac80f5ce1aa23e5b0565215b85ccdd8fffa5bd24592c6be1a3",
+  "run": 1,
+  "case": {
+    "template": "part-whole",
+    "section": "held_out",
+    "index": 9,
+    "category": "positive",
+    "text": "The barn's roof is red.",
+    "key": "3a7b766883"
+  }
+}
