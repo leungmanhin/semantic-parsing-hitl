@@ -1,0 +1,94 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "cc2343623446a0d902038d7ba03e6a938d3e014467560f3e9119255cf7019f68",
+  "item": {
+    "id": "s4af3a52a52",
+    "text": "The bread smells fresh."
+  },
+  "usage": {
+    "input": 83691,
+    "output": 146,
+    "thinking": null,
+    "total": 83837,
+    "cached": 81590,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 83691,
+    "candidatesTokenCount": 146,
+    "totalTokenCount": 83837,
+    "cachedContentTokenCount": 81590,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 83691
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 81590
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 146
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s4af3a52a52\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"bread\", \"definite\": true, \"span\": \"The bread\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@x1\", \"predicate\": \"fresh\", \"form\": \"adjective\", \"tense\": \"present\", \"span\": \"The bread smells fresh\"}, {\"t\": \"evidential\", \"id\": \"s1\", \"over\": [\"@c1\"], \"head\": \"Smell\", \"span\": \"smells\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s4af3a52a52",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "bread",
+        "definite": true,
+        "span": "The bread"
+      },
+      {
+        "t": "copular",
+        "id": "c1",
+        "subject": "@x1",
+        "predicate": "fresh",
+        "form": "adjective",
+        "tense": "present",
+        "span": "The bread smells fresh"
+      },
+      {
+        "t": "evidential",
+        "id": "s1",
+        "over": [
+          "@c1"
+        ],
+        "head": "Smell",
+        "span": "smells"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "836be316c0dc010abb33ece1e7393b405787e6eff5e1f562de8572a841c364a6",
+  "run": 1,
+  "case": {
+    "template": "evidential",
+    "section": "held_out",
+    "index": 4,
+    "category": "positive",
+    "text": "The bread smells fresh.",
+    "key": "4af3a52a52"
+  }
+}

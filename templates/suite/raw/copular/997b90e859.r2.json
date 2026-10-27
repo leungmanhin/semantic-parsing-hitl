@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
+  "prompt_sha256": "cc2343623446a0d902038d7ba03e6a938d3e014467560f3e9119255cf7019f68",
   "item": {
     "id": "s997b90e859",
     "text": "Teodor seems tired."
   },
   "usage": {
-    "input": 56506,
-    "output": 90,
+    "input": 83692,
+    "output": 144,
     "thinking": null,
-    "total": 56596,
-    "cached": 54457,
+    "total": 83836,
+    "cached": 81643,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 56506,
-    "candidatesTokenCount": 90,
-    "totalTokenCount": 56596,
-    "cachedContentTokenCount": 54457,
+    "promptTokenCount": 83692,
+    "candidatesTokenCount": 144,
+    "totalTokenCount": 83836,
+    "cachedContentTokenCount": 81643,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 56506
+        "tokenCount": 83692
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 54457
+        "tokenCount": 81643
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 90
+        "tokenCount": 144
       }
     ]
   },
-  "raw_text": "{\"id\": \"s997b90e859\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}], \"unmapped\": [{\"span\": \"seems tired\", \"code\": \"G00\", \"construction\": \"An evidential copular predicate with 'seem'.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"s997b90e859\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@n1\", \"predicate\": \"tired\", \"form\": \"adjective\", \"tense\": \"present\", \"span\": \"Teodor seems tired\"}, {\"t\": \"evidential\", \"id\": \"s1\", \"over\": [\"@c1\"], \"head\": \"Seem\", \"span\": \"seems\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s997b90e859",
     "instances": [
@@ -57,24 +57,36 @@
         "id": "n1",
         "name": "Teodor",
         "span": "Teodor"
-      }
-    ],
-    "unmapped": [
+      },
       {
-        "span": "seems tired",
-        "code": "G00",
-        "construction": "An evidential copular predicate with 'seem'."
+        "t": "copular",
+        "id": "c1",
+        "subject": "@n1",
+        "predicate": "tired",
+        "form": "adjective",
+        "tense": "present",
+        "span": "Teodor seems tired"
+      },
+      {
+        "t": "evidential",
+        "id": "s1",
+        "over": [
+          "@c1"
+        ],
+        "head": "Seem",
+        "span": "seems"
       }
     ],
+    "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
+  "prompt_body_sha256": "836be316c0dc010abb33ece1e7393b405787e6eff5e1f562de8572a841c364a6",
   "run": 2,
   "case": {
     "template": "copular",
     "section": "held_out",
-    "index": 10,
-    "category": "abstain",
+    "index": 12,
+    "category": "scoped",
     "text": "Teodor seems tired.",
     "key": "997b90e859"
   }

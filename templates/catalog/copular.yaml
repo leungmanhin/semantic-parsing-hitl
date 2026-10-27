@@ -36,8 +36,10 @@ trigger:
       a quantifier word on the subject — all ferrets are curious, most herons are patient:
       a quantified generalization
     - >-
-      a copular verb other than be — seems tired, looks tired, remains open: an evidential or
-      aspectual verb; became a locksmith, got tired: a change of state
+      a copular verb other than be — seems tired, looks tired, tastes salty: the evidential
+      template, over this template's instance; feels tired with an animate subject: a
+      sensation; remains open: an aspectual verb; became a locksmith, got tired: a change of
+      state
     - >-
       a relational adjective or noun with its complement — married to Lamine, similar to
       Teodor, a cousin of Yusra, Lamine's cousin, friends with Ottoline: a stative relation
@@ -123,6 +125,12 @@ examples:
 
   held_out:                  # tests; never rendered into the prompt
     - category: positive
+      note: the property itself — no feeling, no appearance
+      text: "Yusra is tired."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: copular, id: c1, subject: "@n1", predicate: tired, form: adjective, tense: present}
+    - category: positive
       text: "Yusra is a weaver."
       instances:
         - {t: named-entity, id: n1, name: "Yusra"}
@@ -189,9 +197,13 @@ examples:
     - category: abstain
       text: "Herons are birds."
       expected: {abstain: true, template: class-statement}             # a class as the subject
-    - category: abstain
+    - category: scoped
+      note: under an evidential verb — the copular is the sealed claim, not asserted
       text: "Teodor seems tired."
-      expected: {abstain: true, gap: G00, span: "seems tired"}        # a copular verb other than be
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: copular, id: c1, subject: "@n1", predicate: tired, form: adjective, tense: present}
+        - {t: evidential, id: s1, over: ["@c1"], head: Seem}
     - category: abstain
       text: "Lamine is fond of Yusra."
       expected: {abstain: true, gap: G00, span: "is fond of Yusra"}   # an adjective with a complement

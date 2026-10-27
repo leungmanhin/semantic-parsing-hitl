@@ -66,7 +66,7 @@ class SeededRulesOnTheEngine(unittest.TestCase):
     def test_every_rule_is_a_conditional(self):
         for r in rules():
             self.assertIn("(CTV (STV ", r, r)
-            self.assertTrue(r.rstrip().endswith("(STV 0.0 1.0)))"), r)
+            self.assertTrue(r.rstrip().endswith("(STV 0.0 0.0)))"), r)          # a negative branch with no confidence
 
     def test_named_result_holds_afterwards(self):
         h = self.space(['(: n1 (Name sk_teodor_1 "Teodor") (STV 1.0 0.99))',
@@ -328,6 +328,25 @@ class SeededRulesOnTheEngine(unittest.TestCase):
         self.assertFalse(self.query(h, "(Measure sk_wall_1 high $n $u)"))                    # a bound is not a value
         self.assertTrue(self.query(h, "(MeasureAtLeast sk_wall_1 high $n $u)"))
         self.assertTrue(self.query(h, "(Past (Measure sk_bridge_1 long $n $u))"))            # tensed: under its operator
+
+
+    def test_an_appearance_yields_its_claim_weakly(self):
+        """An evidential's sealed claim is derived at the appearance dial (0.9 at 0.7), below any
+        stated fact; a negated evidential yields nothing; a fact never yields its appearance."""
+        if not any(r.startswith("(: look_holds") for r in rules()):
+            self.skipTest("the appearance rules are pending")
+        h = self.space(['(: x1 (Member sk_ferret_1 ferret) (STV 1.0 0.99))',
+                        '(: s1 (Look (Member sk_ferret_1 tired)) (STV 1.0 0.99))',
+                        '(: s2 (Not (Seem (Member sk_teodor_1 tired))) (STV 1.0 0.99))',
+                        '(: c1 (Member sk_lamine_1 pale) (STV 1.0 0.99))'])
+        looked = self.query(h, "(Member sk_ferret_1 tired)")
+        self.assertTrue(looked and "look_holds" in looked[0], looked)
+        s, c = tv(looked)
+        self.assertAlmostEqual(s, 0.9, places=2)
+        self.assertLess(c, 0.75)                                                 # below a stated fact's 0.99
+        denied = self.query(h, "(Member sk_teodor_1 tired)")                     # a negated evidential: no information
+        self.assertTrue(not denied or tv(denied)[1] < 0.01, denied)              # (a strength-0 answer with no confidence at most)
+        self.assertFalse(self.query(h, "(Look (Member sk_lamine_1 pale))"))       # never the other way
 
 
 if __name__ == "__main__":

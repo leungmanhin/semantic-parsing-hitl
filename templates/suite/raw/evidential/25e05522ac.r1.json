@@ -1,0 +1,92 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "cc2343623446a0d902038d7ba03e6a938d3e014467560f3e9119255cf7019f68",
+  "item": {
+    "id": "s25e05522ac",
+    "text": "It seems that Yusra left."
+  },
+  "usage": {
+    "input": 83693,
+    "output": 140,
+    "thinking": null,
+    "total": 83833,
+    "cached": 81641,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 83693,
+    "candidatesTokenCount": 140,
+    "totalTokenCount": 83833,
+    "cachedContentTokenCount": 81641,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 83693
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 81641
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 140
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s25e05522ac\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n1\", \"tense\": \"past\", \"span\": \"Yusra left\"}, {\"t\": \"evidential\", \"id\": \"s1\", \"over\": [\"@m1\"], \"head\": \"Seem\", \"span\": \"It seems that\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s25e05522ac",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "motion",
+        "id": "m1",
+        "verb": "leave",
+        "mover": "@n1",
+        "tense": "past",
+        "span": "Yusra left"
+      },
+      {
+        "t": "evidential",
+        "id": "s1",
+        "over": [
+          "@m1"
+        ],
+        "head": "Seem",
+        "span": "It seems that"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "836be316c0dc010abb33ece1e7393b405787e6eff5e1f562de8572a841c364a6",
+  "run": 1,
+  "case": {
+    "template": "evidential",
+    "section": "held_out",
+    "index": 7,
+    "category": "positive",
+    "text": "It seems that Yusra left.",
+    "key": "25e05522ac"
+  }
+}

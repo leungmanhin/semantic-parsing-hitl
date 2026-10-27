@@ -61,6 +61,10 @@ trigger:
     - "<X> deserves to <V> / involves <V>-ing …"                        # a clause as the relatum, sealed
   boundary:                   # looks like a stative relation but is not one
     - >-
+      an appearance or a sensation with a property — looks tired, sounds odd, tastes salty: the
+      evidential template; look like / sound like with a noun phrase — looks like a prison — is
+      a resemblance, here (look_like, sound_like)
+    - >-
       a state of having — owns, has, keeps, lacks, belongs to: a possession
     - >-
       a psych or a perceptual state — likes, fears, admires, wants, distrusts Lamine; sees,
@@ -296,6 +300,13 @@ examples:
         - {t: named-entity, id: n1, name: "Lamine"}
         - {t: named-entity, id: n2, name: "Yusra"}
         - {t: stative-relation, id: p1, relation: cousin, subject: "@n1", object: "@n2", preposition: "of", tense: present}
+    - category: positive
+      note: a resemblance with look like — the verb and its preposition one lemma
+      text: "The school looks like a prison."
+      instances:
+        - {t: witness, id: x1, class: school, definite: true}
+        - {t: witness, id: x2, class: prison}
+        - {t: stative-relation, id: p1, relation: look_like, subject: "@x1", object: "@x2", tense: present}
     - category: positive
       note: a possessive relatum — the possessor is the object, no witness for the noun
       text: "Ottoline is Teodor's cousin."

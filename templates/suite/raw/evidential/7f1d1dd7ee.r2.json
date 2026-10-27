@@ -1,0 +1,88 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "cc2343623446a0d902038d7ba03e6a938d3e014467560f3e9119255cf7019f68",
+  "item": {
+    "id": "s7f1d1dd7ee",
+    "text": "Herons seem patient."
+  },
+  "usage": {
+    "input": 83690,
+    "output": 120,
+    "thinking": null,
+    "total": 83810,
+    "cached": 81641,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 83690,
+    "candidatesTokenCount": 120,
+    "totalTokenCount": 83810,
+    "cachedContentTokenCount": 81641,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 83690
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 81641
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 120
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s7f1d1dd7ee\", \"instances\": [{\"t\": \"class-statement\", \"id\": \"k1\", \"subject\": \"heron\", \"predicate\": \"patient\", \"form\": \"adjective\", \"definitional\": false, \"tense\": \"present\", \"span\": \"Herons seem patient\"}, {\"t\": \"evidential\", \"id\": \"s1\", \"over\": [\"@k1\"], \"head\": \"Seem\", \"span\": \"seem\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s7f1d1dd7ee",
+    "instances": [
+      {
+        "t": "class-statement",
+        "id": "k1",
+        "subject": "heron",
+        "predicate": "patient",
+        "form": "adjective",
+        "definitional": false,
+        "tense": "present",
+        "span": "Herons seem patient"
+      },
+      {
+        "t": "evidential",
+        "id": "s1",
+        "over": [
+          "@k1"
+        ],
+        "head": "Seem",
+        "span": "seem"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "836be316c0dc010abb33ece1e7393b405787e6eff5e1f562de8572a841c364a6",
+  "run": 2,
+  "case": {
+    "template": "evidential",
+    "section": "held_out",
+    "index": 6,
+    "category": "positive",
+    "text": "Herons seem patient.",
+    "key": "7f1d1dd7ee"
+  }
+}

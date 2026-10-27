@@ -307,6 +307,67 @@ rules:
   # meaning (married, similar, cousin) is one state with two bearers, both Experiencer; the
   # stative-relation template's lexicon decides the roles and a question names the other bearer.
 
+  # Appearances: what looks, sounds, feels, smells, tastes or seems so may be taken to be so —
+  # a defeasible default at the catalog's weakest claim kind (0.9 at 0.7), so that any direct
+  # statement overrides it on revision and a band query tells the derived claim from a stated
+  # one. Nothing follows from a negated evidential, and nothing runs the other way.
+  - id: look_holds
+    meaning: what looks so is taken to be so
+    requires: sealed-term-projection
+    premises: ["(Look $p)"]
+    conclusion: "$p"
+    truth: {strength: 0.9, confidence: 0.7}
+    semantics: deductive
+    reads: [evidential]
+  - id: sound_holds
+    meaning: what sounds so is taken to be so
+    requires: sealed-term-projection
+    premises: ["(Sound $p)"]
+    conclusion: "$p"
+    truth: {strength: 0.9, confidence: 0.7}
+    semantics: deductive
+    reads: [evidential]
+  - id: feel_holds
+    meaning: what feels so is taken to be so
+    requires: sealed-term-projection
+    premises: ["(Feel $p)"]
+    conclusion: "$p"
+    truth: {strength: 0.9, confidence: 0.7}
+    semantics: deductive
+    reads: [evidential]
+  - id: smell_holds
+    meaning: what smells so is taken to be so
+    requires: sealed-term-projection
+    premises: ["(Smell $p)"]
+    conclusion: "$p"
+    truth: {strength: 0.9, confidence: 0.7}
+    semantics: deductive
+    reads: [evidential]
+  - id: taste_holds
+    meaning: what tastes so is taken to be so
+    requires: sealed-term-projection
+    premises: ["(Taste $p)"]
+    conclusion: "$p"
+    truth: {strength: 0.9, confidence: 0.7}
+    semantics: deductive
+    reads: [evidential]
+  - id: seem_holds
+    meaning: what seems so is taken to be so
+    requires: sealed-term-projection
+    premises: ["(Seem $p)"]
+    conclusion: "$p"
+    truth: {strength: 0.9, confidence: 0.7}
+    semantics: deductive
+    reads: [evidential]
+  - id: appear_holds
+    meaning: what appears so is taken to be so
+    requires: sealed-term-projection
+    premises: ["(Appear $p)"]
+    conclusion: "$p"
+    truth: {strength: 0.9, confidence: 0.7}
+    semantics: deductive
+    reads: [evidential]
+
   # Norms: an obligation implies a permission. The parse states only what the text says; a
   # prohibition and an exemption are denials (Not (Permitted P)) / (Not (Obligated P)) and need
   # no rule to be queried at strength 0.

@@ -1,9 +1,9 @@
 {
   "prompt": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_body_sha256": "26539430410297030aed50dd411ab29db1bdef659fdc3c6923cbb7d25f73608d",
+  "prompt_body_sha256": "836be316c0dc010abb33ece1e7393b405787e6eff5e1f562de8572a841c364a6",
   "typecheck": "ran",
   "checks": {
-    "examples": 919,
+    "examples": 951,
     "findings": [],
     "pending": {},
     "shared": [
@@ -19,6 +19,13 @@
         "templates": [
           "activity",
           "adjunct"
+        ]
+      },
+      {
+        "text": "Teodor seems tired.",
+        "templates": [
+          "copular",
+          "evidential"
         ]
       },
       {
@@ -1240,7 +1247,7 @@
         "status": {
           "ok": 42
         },
-        "stale_prompt": 42,
+        "stale_prompt": 39,
         "by_category": {
           "positive": {
             "cases": 5,
@@ -1269,8 +1276,7 @@
             "pass": 12,
             "false_fires": 0,
             "outcomes": {
-              "target_fired": 9,
-              "gap_reported": 3
+              "target_fired": 12
             }
           }
         },
@@ -1297,11 +1303,11 @@
           "passed": 42
         },
         "usage": {
-          "input": 2373303,
-          "output": 7771,
+          "input": 2454861,
+          "output": 7883,
           "thinking": 0,
-          "total": 2381074,
-          "cached": 2287218,
+          "total": 2462744,
+          "cached": 2368775,
           "calls": 42,
           "thinking_calls": 0
         },
@@ -1317,8 +1323,8 @@
         "null_slots": 0,
         "lints": {},
         "spans": {
-          "instances": 153,
-          "with_span": 153,
+          "instances": 159,
+          "with_span": 159,
           "missing": 0,
           "not_verbatim": 0,
           "malformed": 0
@@ -1330,19 +1336,19 @@
     },
     "copular": {
       "held_out": {
-        "records": 45,
-        "cases": 15,
+        "records": 48,
+        "cases": 16,
         "status": {
-          "ok": 45
+          "ok": 48
         },
-        "stale_prompt": 45,
+        "stale_prompt": 42,
         "by_category": {
           "positive": {
-            "cases": 5,
-            "runs": 15,
-            "pass": 15,
-            "fired": 15,
-            "exact": 15
+            "cases": 6,
+            "runs": 18,
+            "pass": 18,
+            "fired": 18,
+            "exact": 18
           },
           "contrast": {
             "cases": 1,
@@ -1352,11 +1358,11 @@
             "exact": 3
           },
           "scoped": {
-            "cases": 3,
-            "runs": 9,
-            "pass": 9,
-            "fired": 9,
-            "exact": 9
+            "cases": 4,
+            "runs": 12,
+            "pass": 12,
+            "fired": 12,
+            "exact": 12
           },
           "optional": {
             "cases": 1,
@@ -1366,68 +1372,53 @@
             "exact": 3
           },
           "abstain": {
-            "cases": 5,
-            "runs": 15,
-            "pass": 15,
+            "cases": 4,
+            "runs": 12,
+            "pass": 12,
             "false_fires": 0,
             "outcomes": {
               "target_fired": 6,
-              "gap_reported": 9
+              "gap_reported": 6
             }
           }
         },
-        "pass": 45,
+        "pass": 48,
         "selection": {
-          "fire_runs": 30,
-          "fired": 30,
-          "abstain_runs": 15,
+          "fire_runs": 36,
+          "fired": 36,
+          "abstain_runs": 12,
           "false_fires": 0
         },
         "fill": {
-          "fired": 30,
-          "exact": 30,
+          "fired": 36,
+          "exact": 36,
           "rate": 1.0
         },
         "stability": {
-          "cases": 15,
-          "pairs": 45,
+          "cases": 16,
+          "pairs": 48,
           "pairwise_agreement": 1.0,
-          "unanimous": 15
+          "unanimous": 16
         },
         "typecheck": {
-          "checked": 45,
-          "passed": 45
+          "checked": 48,
+          "passed": 48
         },
         "usage": {
-          "input": 2593692,
-          "output": 5586,
+          "input": 2926320,
+          "output": 5880,
           "thinking": 0,
-          "total": 2599278,
-          "cached": 2447019,
-          "calls": 45,
+          "total": 2932200,
+          "cached": 2773501,
+          "calls": 48,
           "thinking_calls": 0
         },
-        "issues": [
-          {
-            "code": "P00",
-            "where": "perception",
-            "text": "The perception template's 'Not this template' section says 'looks tired, sounds odd, feels cold, felt tired: a copular clause with a property', which contradicts the copular template's 'Not this template' section ('a copular verb other than be — seems tired, looks tired, remains open: an evidential or aspectual verb') and the perception template's own 'Not this template' example ('looks tired — report it as unmapped').",
-            "sentence": "Teodor seems tired.",
-            "run": 1
-          },
-          {
-            "code": "P00",
-            "where": "copular / perception",
-            "text": "The 'Not this template' section of 'copular' excludes 'seems tired' as an evidential verb, while 'perception' says 'looks tired... a copular clause with a property', creating a contradiction about whether non-be copular verbs with adjectives are covered or unmapped.",
-            "sentence": "Teodor seems tired.",
-            "run": 3
-          }
-        ],
+        "issues": [],
         "null_slots": 0,
         "lints": {},
         "spans": {
-          "instances": 93,
-          "with_span": 93,
+          "instances": 105,
+          "with_span": 105,
           "missing": 0,
           "not_verbatim": 0,
           "malformed": 0
@@ -1861,6 +1852,85 @@
         "spans": {
           "instances": 54,
           "with_span": 54,
+          "missing": 0,
+          "not_verbatim": 0,
+          "malformed": 0
+        },
+        "models": [
+          "gemini-4-argon effort=low"
+        ]
+      }
+    },
+    "evidential": {
+      "held_out": {
+        "records": 42,
+        "cases": 14,
+        "status": {
+          "ok": 42
+        },
+        "stale_prompt": 0,
+        "by_category": {
+          "positive": {
+            "cases": 10,
+            "runs": 30,
+            "pass": 30,
+            "fired": 30,
+            "exact": 30
+          },
+          "scoped": {
+            "cases": 1,
+            "runs": 3,
+            "pass": 3,
+            "fired": 3,
+            "exact": 3
+          },
+          "abstain": {
+            "cases": 3,
+            "runs": 9,
+            "pass": 9,
+            "false_fires": 0,
+            "outcomes": {
+              "target_fired": 9
+            }
+          }
+        },
+        "pass": 42,
+        "selection": {
+          "fire_runs": 33,
+          "fired": 33,
+          "abstain_runs": 9,
+          "false_fires": 0
+        },
+        "fill": {
+          "fired": 33,
+          "exact": 33,
+          "rate": 1.0
+        },
+        "stability": {
+          "cases": 14,
+          "pairs": 42,
+          "pairwise_agreement": 1.0,
+          "unanimous": 14
+        },
+        "typecheck": {
+          "checked": 42,
+          "passed": 42
+        },
+        "usage": {
+          "input": 3515064,
+          "output": 6111,
+          "thinking": 0,
+          "total": 3521175,
+          "cached": 3428687,
+          "calls": 42,
+          "thinking_calls": 0
+        },
+        "issues": [],
+        "null_slots": 0,
+        "lints": {},
+        "spans": {
+          "instances": 123,
+          "with_span": 123,
           "missing": 0,
           "not_verbatim": 0,
           "malformed": 0
@@ -2831,7 +2901,7 @@
         "status": {
           "ok": 57
         },
-        "stale_prompt": 54,
+        "stale_prompt": 57,
         "by_category": {
           "positive": {
             "cases": 17,
@@ -2913,19 +2983,19 @@
     },
     "modal": {
       "held_out": {
-        "records": 12,
-        "cases": 4,
+        "records": 15,
+        "cases": 5,
         "status": {
-          "ok": 12
+          "ok": 15
         },
         "stale_prompt": 12,
         "by_category": {
           "positive": {
-            "cases": 3,
-            "runs": 9,
-            "pass": 9,
-            "fired": 9,
-            "exact": 9
+            "cases": 4,
+            "runs": 12,
+            "pass": 12,
+            "fired": 12,
+            "exact": 12
           },
           "abstain": {
             "cases": 1,
@@ -2937,43 +3007,43 @@
             }
           }
         },
-        "pass": 12,
+        "pass": 15,
         "selection": {
-          "fire_runs": 9,
-          "fired": 9,
+          "fire_runs": 12,
+          "fired": 12,
           "abstain_runs": 3,
           "false_fires": 0
         },
         "fill": {
-          "fired": 9,
-          "exact": 9,
+          "fired": 12,
+          "exact": 12,
           "rate": 1.0
         },
         "stability": {
-          "cases": 4,
-          "pairs": 12,
+          "cases": 5,
+          "pairs": 15,
           "pairwise_agreement": 1.0,
-          "unanimous": 4
+          "unanimous": 5
         },
         "typecheck": {
-          "checked": 12,
-          "passed": 12
+          "checked": 15,
+          "passed": 15
         },
         "usage": {
-          "input": 881778,
-          "output": 1863,
+          "input": 1132857,
+          "output": 2310,
           "thinking": 0,
-          "total": 883641,
-          "cached": 857189,
-          "calls": 12,
+          "total": 1135167,
+          "cached": 1102118,
+          "calls": 15,
           "thinking_calls": 0
         },
         "issues": [],
         "null_slots": 0,
         "lints": {},
         "spans": {
-          "instances": 39,
-          "with_span": 39,
+          "instances": 48,
+          "with_span": 48,
           "missing": 0,
           "not_verbatim": 0,
           "malformed": 0
@@ -3472,7 +3542,7 @@
         "status": {
           "ok": 36
         },
-        "stale_prompt": 36,
+        "stale_prompt": 33,
         "by_category": {
           "positive": {
             "cases": 5,
@@ -3508,8 +3578,8 @@
             "pass": 9,
             "false_fires": 0,
             "outcomes": {
-              "gap_reported": 6,
-              "target_fired": 3
+              "gap_reported": 3,
+              "target_fired": 6
             }
           }
         },
@@ -3536,42 +3606,20 @@
           "passed": 36
         },
         "usage": {
-          "input": 2034225,
-          "output": 5735,
+          "input": 2115783,
+          "output": 5578,
           "thinking": 0,
-          "total": 2039960,
-          "cached": 1797090,
+          "total": 2121361,
+          "cached": 1933103,
           "calls": 36,
           "thinking_calls": 0
         },
-        "issues": [
-          {
-            "code": "P00",
-            "where": "perception",
-            "text": "The 'perception' boundary says 'felt tired' is 'a copular clause with a property', but 'copular' is restricted to 'be' and 'perception' shows 'looks tired' as unmapped G00.",
-            "sentence": "Teodor felt tired.",
-            "run": 1
-          },
-          {
-            "code": "P00",
-            "where": "copular",
-            "text": "The perception template directs 'felt tired' to a copular clause with a property, but the copular template requires 'be' as the main verb and excludes copular verbs other than 'be'.",
-            "sentence": "Teodor felt tired.",
-            "run": 2
-          },
-          {
-            "code": "P00",
-            "where": "copular",
-            "text": "The perception template classifies 'felt tired' as 'a copular clause with a property', while the copular template requires 'be' as the main verb and excludes copular verbs other than 'be'.",
-            "sentence": "Teodor felt tired.",
-            "run": 3
-          }
-        ],
+        "issues": [],
         "null_slots": 0,
         "lints": {},
         "spans": {
-          "instances": 111,
-          "with_span": 111,
+          "instances": 114,
+          "with_span": 114,
           "missing": 0,
           "not_verbatim": 0,
           "malformed": 0
@@ -3944,21 +3992,100 @@
         ]
       }
     },
+    "sensation": {
+      "held_out": {
+        "records": 24,
+        "cases": 8,
+        "status": {
+          "ok": 24
+        },
+        "stale_prompt": 0,
+        "by_category": {
+          "positive": {
+            "cases": 5,
+            "runs": 15,
+            "pass": 15,
+            "fired": 15,
+            "exact": 15
+          },
+          "scoped": {
+            "cases": 1,
+            "runs": 3,
+            "pass": 3,
+            "fired": 3,
+            "exact": 3
+          },
+          "abstain": {
+            "cases": 2,
+            "runs": 6,
+            "pass": 6,
+            "false_fires": 0,
+            "outcomes": {
+              "target_fired": 6
+            }
+          }
+        },
+        "pass": 24,
+        "selection": {
+          "fire_runs": 18,
+          "fired": 18,
+          "abstain_runs": 6,
+          "false_fires": 0
+        },
+        "fill": {
+          "fired": 18,
+          "exact": 18,
+          "rate": 1.0
+        },
+        "stability": {
+          "cases": 8,
+          "pairs": 24,
+          "pairwise_agreement": 1.0,
+          "unanimous": 8
+        },
+        "typecheck": {
+          "checked": 24,
+          "passed": 24
+        },
+        "usage": {
+          "input": 2008578,
+          "output": 2729,
+          "thinking": 0,
+          "total": 2011307,
+          "cached": 1877759,
+          "calls": 24,
+          "thinking_calls": 0
+        },
+        "issues": [],
+        "null_slots": 0,
+        "lints": {},
+        "spans": {
+          "instances": 54,
+          "with_span": 54,
+          "missing": 0,
+          "not_verbatim": 0,
+          "malformed": 0
+        },
+        "models": [
+          "gemini-4-argon effort=low"
+        ]
+      }
+    },
     "stative-relation": {
       "held_out": {
-        "records": 72,
-        "cases": 24,
+        "records": 75,
+        "cases": 25,
         "status": {
-          "ok": 72
+          "ok": 75
         },
         "stale_prompt": 72,
         "by_category": {
           "positive": {
-            "cases": 18,
-            "runs": 54,
-            "pass": 54,
-            "fired": 54,
-            "exact": 54
+            "cases": 19,
+            "runs": 57,
+            "pass": 57,
+            "fired": 57,
+            "exact": 57
           },
           "scoped": {
             "cases": 1,
@@ -3978,43 +4105,43 @@
             }
           }
         },
-        "pass": 72,
+        "pass": 75,
         "selection": {
-          "fire_runs": 57,
-          "fired": 57,
+          "fire_runs": 60,
+          "fired": 60,
           "abstain_runs": 15,
           "false_fires": 0
         },
         "fill": {
-          "fired": 57,
-          "exact": 57,
+          "fired": 60,
+          "exact": 60,
           "rate": 1.0
         },
         "stability": {
-          "cases": 24,
-          "pairs": 72,
+          "cases": 25,
+          "pairs": 75,
           "pairwise_agreement": 1.0,
-          "unanimous": 24
+          "unanimous": 25
         },
         "typecheck": {
-          "checked": 69,
-          "passed": 69
+          "checked": 72,
+          "passed": 72
         },
         "usage": {
-          "input": 5508450,
-          "output": 10385,
+          "input": 5759532,
+          "output": 10820,
           "thinking": 0,
-          "total": 5518835,
-          "cached": 5212087,
-          "calls": 72,
+          "total": 5770352,
+          "cached": 5457021,
+          "calls": 75,
           "thinking_calls": 0
         },
         "issues": [],
         "null_slots": 0,
         "lints": {},
         "spans": {
-          "instances": 210,
-          "with_span": 210,
+          "instances": 219,
+          "with_span": 219,
           "missing": 0,
           "not_verbatim": 0,
           "malformed": 0

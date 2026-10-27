@@ -1,0 +1,83 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "cc2343623446a0d902038d7ba03e6a938d3e014467560f3e9119255cf7019f68",
+  "item": {
+    "id": "s32543b01cb",
+    "text": "Yusra feels tired."
+  },
+  "usage": {
+    "input": 83691,
+    "output": 108,
+    "thinking": null,
+    "total": 83799,
+    "cached": 81642,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 83691,
+    "candidatesTokenCount": 108,
+    "totalTokenCount": 83799,
+    "cachedContentTokenCount": 81642,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 83691
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 81642
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 108
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s32543b01cb\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"sensation\", \"id\": \"p1\", \"experiencer\": \"@n1\", \"state\": \"tired\", \"tense\": \"present\", \"span\": \"Yusra feels tired\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s32543b01cb",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "sensation",
+        "id": "p1",
+        "experiencer": "@n1",
+        "state": "tired",
+        "tense": "present",
+        "span": "Yusra feels tired"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "836be316c0dc010abb33ece1e7393b405787e6eff5e1f562de8572a841c364a6",
+  "run": 2,
+  "case": {
+    "template": "evidential",
+    "section": "held_out",
+    "index": 12,
+    "category": "abstain",
+    "text": "Yusra feels tired.",
+    "key": "32543b01cb"
+  }
+}

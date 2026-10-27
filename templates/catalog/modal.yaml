@@ -71,6 +71,13 @@ examples:
         - {t: copular, id: c1, subject: "@n1", predicate: hungry, form: adjective, tense: present}
         - {t: modal, id: s1, over: ["@c1"], head: Must, surface: must}
     - category: positive
+      note: epistemic might over a copular clause — a possibility, not an appearance
+      text: "Teodor might be tired."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: copular, id: c1, subject: "@n1", predicate: tired, form: adjective, tense: present}
+        - {t: modal, id: s1, over: ["@c1"], head: Might, surface: might}
+    - category: positive
       note: a capability — can over the clause, not a permission
       text: "Lamine can swim."
       instances:

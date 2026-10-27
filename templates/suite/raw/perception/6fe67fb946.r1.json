@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
+  "prompt_sha256": "cc2343623446a0d902038d7ba03e6a938d3e014467560f3e9119255cf7019f68",
   "item": {
     "id": "s6fe67fb946",
     "text": "Teodor felt tired."
   },
   "usage": {
-    "input": 56504,
-    "output": 161,
+    "input": 83690,
+    "output": 104,
     "thinking": null,
-    "total": 56665,
-    "cached": null,
+    "total": 83794,
+    "cached": 81641,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,23 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 56504,
-    "candidatesTokenCount": 161,
-    "totalTokenCount": 56665,
+    "promptTokenCount": 83690,
+    "candidatesTokenCount": 104,
+    "totalTokenCount": 83794,
+    "cachedContentTokenCount": 81641,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 56504
+        "tokenCount": 83690
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 81641
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 161
+        "tokenCount": 104
       }
     ]
   },
-  "raw_text": "{\"id\": \"s6fe67fb946\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}], \"unmapped\": [{\"span\": \"felt tired\", \"code\": \"G00\", \"construction\": \"A sensory or evidential copular verb ('feel') with an adjectival predicate.\"}], \"issues\": [{\"code\": \"P00\", \"where\": \"perception\", \"text\": \"The 'perception' boundary says 'felt tired' is 'a copular clause with a property', but 'copular' is restricted to 'be' and 'perception' shows 'looks tired' as unmapped G00.\"}]}",
+  "raw_text": "{\"id\": \"s6fe67fb946\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"sensation\", \"id\": \"p1\", \"experiencer\": \"@n1\", \"state\": \"tired\", \"tense\": \"past\", \"span\": \"Teodor felt tired\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s6fe67fb946",
     "instances": [
@@ -50,24 +57,20 @@
         "id": "n1",
         "name": "Teodor",
         "span": "Teodor"
+      },
+      {
+        "t": "sensation",
+        "id": "p1",
+        "experiencer": "@n1",
+        "state": "tired",
+        "tense": "past",
+        "span": "Teodor felt tired"
       }
     ],
-    "unmapped": [
-      {
-        "span": "felt tired",
-        "code": "G00",
-        "construction": "A sensory or evidential copular verb ('feel') with an adjectival predicate."
-      }
-    ],
-    "issues": [
-      {
-        "code": "P00",
-        "where": "perception",
-        "text": "The 'perception' boundary says 'felt tired' is 'a copular clause with a property', but 'copular' is restricted to 'be' and 'perception' shows 'looks tired' as unmapped G00."
-      }
-    ]
+    "unmapped": [],
+    "issues": []
   },
-  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
+  "prompt_body_sha256": "836be316c0dc010abb33ece1e7393b405787e6eff5e1f562de8572a841c364a6",
   "run": 1,
   "case": {
     "template": "perception",

@@ -43,9 +43,9 @@ trigger:
       an emotional or evaluative state — fears the ferret, likes the news: a psych state, not
       perceiving
     - >-
-      appearance and sensation with an adjective — looks tired, sounds odd, feels cold, felt
-      tired: an evidential copular, with no template yet (the copular template takes only be);
-      report the predicate as unmapped
+      appearance with an adjective — looks tired, sounds odd, the wall feels cold: the
+      evidential template, over a copular instance; no perceiver is a participant; feel with
+      an animate subject and a property — Teodor felt tired: the sensation template
     - >-
       understanding and idioms — saw the point, I see, hear from Lamine: not perceiving a thing
 
@@ -130,7 +130,7 @@ examples:
       expected: {abstain: true, template: attitude}                   # a that-clause: a factive attitude
     - category: abstain
       text: "The ferret looks tired."
-      expected: {abstain: true, gap: G00, span: "looks tired"}        # appearance with an adjective
+      expected: {abstain: true, template: evidential}                 # appearance with an adjective
 
   held_out:                  # tests; never rendered into the prompt
     - category: positive
@@ -205,7 +205,7 @@ examples:
       expected: {abstain: true, template: psych}                      # a psych state
     - category: abstain
       text: "Teodor felt tired."
-      expected: {abstain: true, gap: G00, span: "felt tired"}          # sensation with an adjective
+      expected: {abstain: true, template: sensation}                  # a felt state, no object perceived
     - category: abstain
       text: "Yusra saw the point."
       expected: {abstain: true, gap: G00, span: "saw the point"}       # understanding, an idiom

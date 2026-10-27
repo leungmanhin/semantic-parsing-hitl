@@ -18,8 +18,8 @@ concluding the conjuncts of a bound term, and the clause-event computation); low
 target that lacks the capability lists the rule as pending instead of writing it.
 
 Lowering for the chainer (the only target so far): ``(: id (Implication <premises> <conclusion>)
-(CTV (STV s c) (STV 0.0 1.0)))``. The explicit conditional is the chainer's documented form for a
-conditional relationship; its negative branch states the deductive semantics (nothing follows from
+(CTV (STV s c) (STV 0.0 0.0)))``. The explicit conditional is the chainer's documented form for a
+conditional relationship; its negative branch, with no confidence, states the deductive semantics (nothing follows from
 a failed premise). A bare ``(STV s c)`` would make the chainer estimate that branch from base rates
 over stored facts, which collapses the confidence of any conclusion drawn from a premise below
 strength 1.0. Arithmetic steps lower to the chainer's ``(Compute op (args) -> result)`` premise; a
@@ -233,7 +233,7 @@ def lower(rule: dict, target: str = "pettachainer") -> str:
         premises.append(f"(Compute {c['op']} ({' '.join(str(a) for a in c['args'])}) -> {result})")
     premise = premises[0] if len(premises) == 1 else "(And " + " ".join(premises) + ")"
     s, c = rule["truth"]["strength"], rule["truth"]["confidence"]
-    tv = f"(CTV (STV {_num(s)} {_num(c)}) (STV 0.0 1.0))"      # deductive: nothing follows from a failed premise
+    tv = f"(CTV (STV {_num(s)} {_num(c)}) (STV 0.0 0.0))"      # deductive: nothing follows from a failed premise — a branch with no confidence
     return f"(: {rule['id']} (Implication {premise} {rule['conclusion']}) {tv})"
 
 
@@ -254,7 +254,8 @@ def render(rules: list[dict], target: str = "pettachainer") -> str:
         ";; `python -m tmpl.rules`; never edited by hand. Loaded beside the emitted statements by a",
         ";; consumer, never by the parser. Each rule is a deductive implication with an explicit",
         ";; conditional truth value: the positive branch is the rule's reliability, the negative branch",
-        ";; (STV 0.0 1.0) says nothing follows from a failed premise.",
+        ";; (STV 0.0 0.0) carries no confidence, so nothing follows from a failed or denied premise",
+        ";; (a branch at (STV 0.0 1.0) would derive the conclusion DENIED, at full confidence).",
     ]
     pending = [r for r in rules if not runnable(r, target)]
     if pending:

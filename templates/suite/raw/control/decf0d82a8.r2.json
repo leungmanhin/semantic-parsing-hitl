@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
+  "prompt_sha256": "cc2343623446a0d902038d7ba03e6a938d3e014467560f3e9119255cf7019f68",
   "item": {
     "id": "sdecf0d82a8",
     "text": "Teodor seems to be tired."
   },
   "usage": {
-    "input": 56506,
-    "output": 138,
+    "input": 83692,
+    "output": 146,
     "thinking": null,
-    "total": 56644,
-    "cached": 54457,
+    "total": 83838,
+    "cached": 81643,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 56506,
-    "candidatesTokenCount": 138,
-    "totalTokenCount": 56644,
-    "cachedContentTokenCount": 54457,
+    "promptTokenCount": 83692,
+    "candidatesTokenCount": 146,
+    "totalTokenCount": 83838,
+    "cachedContentTokenCount": 81643,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 56506
+        "tokenCount": 83692
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 54457
+        "tokenCount": 81643
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 138
+        "tokenCount": 146
       }
     ]
   },
-  "raw_text": "{\n  \"id\": \"sdecf0d82a8\",\n  \"instances\": [\n    {\n      \"t\": \"named-entity\",\n      \"id\": \"n1\",\n      \"name\": \"Teodor\",\n      \"span\": \"Teodor\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"span\": \"seems to be tired\",\n      \"code\": \"G00\",\n      \"construction\": \"An evidential raising verb ('seem') taking an infinitival complement.\"\n    }\n  ],\n  \"issues\": []\n}",
+  "raw_text": "{\"id\": \"sdecf0d82a8\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@n1\", \"predicate\": \"tired\", \"form\": \"adjective\", \"tense\": \"present\", \"span\": \"Teodor seems to be tired\"}, {\"t\": \"evidential\", \"id\": \"s1\", \"over\": [\"@c1\"], \"head\": \"Seem\", \"span\": \"seems to be\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sdecf0d82a8",
     "instances": [
@@ -57,18 +57,30 @@
         "id": "n1",
         "name": "Teodor",
         "span": "Teodor"
-      }
-    ],
-    "unmapped": [
+      },
       {
-        "span": "seems to be tired",
-        "code": "G00",
-        "construction": "An evidential raising verb ('seem') taking an infinitival complement."
+        "t": "copular",
+        "id": "c1",
+        "subject": "@n1",
+        "predicate": "tired",
+        "form": "adjective",
+        "tense": "present",
+        "span": "Teodor seems to be tired"
+      },
+      {
+        "t": "evidential",
+        "id": "s1",
+        "over": [
+          "@c1"
+        ],
+        "head": "Seem",
+        "span": "seems to be"
       }
     ],
+    "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
+  "prompt_body_sha256": "836be316c0dc010abb33ece1e7393b405787e6eff5e1f562de8572a841c364a6",
   "run": 2,
   "case": {
     "template": "control",

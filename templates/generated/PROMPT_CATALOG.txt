@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 27e2e93e2b704f82 · 53 templates
+catalog sha256 0700cc4b06c4a55c · 55 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -52,9 +52,9 @@ fences.
 
 - Every instance carries an `id`: a short lowercase label you choose, unique within the item.
   Suggested prefixes: `n` named individual, `x` witness, `g` group, `e` event, `s` scope
-  operator (negation, modal, norm), `c` copular predication, `l` location, `q` quantified range,
-  `r` rule, `d` comparison or degree, `m` measure, `t` time, `k` link, `f` focus (n1, x1, e1, s1
-  …).
+  operator (negation, modal, norm, evidential), `c` copular predication, `l` location, `q`
+  quantified range, `r` rule, `d` comparison or degree, `m` measure, `t` time, `k` link, `f`
+  focus (n1, x1, e1, s1 …).
 - A slot that points to another instance holds `"@<id>"`, for example `"Agent": "@n1"`.
 - The id `now` is reserved for the text's REFERENCE TIME (the moment the text speaks from). You
   never write its instance; a deictic time (yesterday, tomorrow, last week) refers to it as its
@@ -1261,8 +1261,8 @@ Not this template:
 - a property under a condition — clay is soft when wet, ferrets are tame in Calderwick: a
   conditional property, a rule over the members; a class-level property restricted to a place or
   a time — otters are rare in Norfolk: a class-level property
-- a copular verb other than be — herons seem patient, ferrets became popular: evidential, or a
-  change of state
+- a copular verb other than be — herons seem patient: the evidential template over this
+  template's instance; ferrets became popular: a change of state
 
 Slots:
 
@@ -1603,8 +1603,8 @@ Not this template:
 - a purpose infinitive — went to the market to buy a thermos, worked to buy a spindle: the
   infinitive states an aim of the main clause's action, not a complement of its verb; a purpose
   link
-- seem, appear, tend — seems to be tired, tends to wait: a hedge or a habit over the clause;
-  report it as unmapped
+- seem, appear — seems to be tired, appears to have left: the evidential template, over the
+  clause; tend to — tends to wait: a habit over the clause, reported as unmapped
 - a finite that-clause — remembered that Lamine left, learned that the shed burned: an attitude
 
 Slots:
@@ -1710,8 +1710,9 @@ Not this template:
   member a rule ranges over, and takes this template)
 - a quantifier word on the subject — all ferrets are curious, most herons are patient: a
   quantified generalization
-- a copular verb other than be — seems tired, looks tired, remains open: an evidential or
-  aspectual verb; became a locksmith, got tired: a change of state
+- a copular verb other than be — seems tired, looks tired, tastes salty: the evidential
+  template, over this template's instance; feels tired with an animate subject: a sensation;
+  remains open: an aspectual verb; became a locksmith, got tired: a change of state
 - a relational adjective or noun with its complement — married to Lamine, similar to Teodor, a
   cousin of Yusra, Lamine's cousin, friends with Ottoline: a stative relation between the two; a
   quality adjective with a complement — afraid of the ferret, fond of Lamine, full of water: the
@@ -2502,9 +2503,9 @@ Not this template:
   proposition
 - an emotional or evaluative state — fears the ferret, likes the news: a psych state, not
   perceiving
-- appearance and sensation with an adjective — looks tired, sounds odd, feels cold, felt tired:
-  an evidential copular, with no template yet (the copular template takes only be); report the
-  predicate as unmapped
+- appearance with an adjective — looks tired, sounds odd, the wall feels cold: the evidential
+  template, over a copular instance; no perceiver is a participant; feel with an animate subject
+  and a property — Teodor felt tired: the sensation template
 - understanding and idioms — saw the point, I see, hear from Lamine: not perceiving a thing
 
 Slots:
@@ -2575,8 +2576,7 @@ The program renders these instances as:
 
 Not this template. TEXT: Teodor saw that Lamine sold the spindle. — use `attitude`.
 
-Not this template. TEXT: The ferret looks tired. — report it as unmapped: {"span": "looks
-tired", "code": "G00"}.
+Not this template. TEXT: The ferret looks tired. — use `evidential`.
 
 ### possession — A state of having
 
@@ -2687,6 +2687,8 @@ Forms:
 - <experiencer> was V-ed
 
 Not this template:
+- feel with a property — feels tired, felt guilty: a felt state of the subject, the sensation
+  template; no stimulus
 - a relation that is not a feeling — needs a ladder, resembles Lamine, depends on the pump,
   deserves a prize: a stative relation
 - a clause as the object — fears that P, hopes that P, likes that P: an attitude towards a
@@ -2773,6 +2775,75 @@ The program renders these instances as:
     (Experiencer sk_like_1 sk_yusra_1)
     (Stimulus sk_like_1 (And (Member sk_send_1 send) (Agent sk_send_1 sk_yusra_1) (Theme sk_send_1 quilt)))
 
+### sensation — A felt state of its experiencer
+
+When: A clause with "feel" whose subject is animate and whose complement is a property the
+subject experiences: feels tired, felt guilty, is feeling cold, feels sick, felt happy, feel
+safe. The subject is the experiencer; the property is the felt state, lemmatized; the tense and
+aspect are the clause's (felt → past; is feeling → progressive). Write one instance; no copular
+instance and no evidential instance beside it. The verb is the construction's marker and needs
+no slot.
+
+Verbs that anchor the class: feel.
+
+Forms:
+- <X> feels / felt <ADJ>
+- <X> is feeling <ADJ>
+
+Not this template:
+- feel with a thing as the subject — the wall feels cold, the cloth feels soft: the speaker's
+  touch judging the thing; the evidential template
+- feel with an object perceived — felt the heat, felt a hand on the shoulder: a perception
+- feel that — feels that Lamine is right: an attitude with a clause
+- feel like with a noun or a verb — feels like a fool, feels like leaving: a resemblance or a
+  wish; no template here, report the predicate as unmapped
+- be with a property — Yusra is tired: a copular predication, the property itself
+
+Slots:
+
+- `t` (required): "sensation"
+- `id` (required; your label for this instance): your label for the state (p1, p2 …).
+- `experiencer` (required; "@id" of a referent instance, or a bare lemma for a non-specific
+  filler): who feels the state: the subject, a referent id.
+- `state` (required; a lemma): the felt state, lemmatized (tired, guilty, cold, sick, happy,
+  safe).
+- `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
+  not inferred.
+- `aspect` (optional; one of: simple, progressive, perfect).
+
+Example (a felt state — the state an eventuality with its experiencer, no flat property). TEXT: Lamine feels cold.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Lamine", "span": "Lamine"},
+      {"t": "sensation", "id": "p1", "experiencer": "@n1", "state": "cold", "tense": "present", "span": "Lamine feels cold"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_lamine_1 "Lamine")
+    (Member sk_cold_1 cold)
+    (Experiencer sk_cold_1 sk_lamine_1)
+
+Example (past). TEXT: Ottoline felt guilty.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Ottoline", "span": "Ottoline"},
+      {"t": "sensation", "id": "p1", "experiencer": "@n1", "state": "guilty", "tense": "past", "span": "Ottoline felt guilty"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_ottoline_1 "Ottoline")
+    (Member sk_guilty_1 guilty)
+    (Experiencer sk_guilty_1 sk_ottoline_1)
+    (Past sk_guilty_1)
+
+Not this template. TEXT: The ferret looks tired. — use `evidential`.
+
 ### stative-relation — A relation between two individuals that holds without anything happening
 
 When: A clause stating that a relation holds between two individuals while nothing happens: a
@@ -2817,6 +2888,9 @@ Forms:
 - <X> deserves to <V> / involves <V>-ing …
 
 Not this template:
+- an appearance or a sensation with a property — looks tired, sounds odd, tastes salty: the
+  evidential template; look like / sound like with a noun phrase — looks like a prison — is a
+  resemblance, here (look_like, sound_like)
 - a state of having — owns, has, keeps, lacks, belongs to: a possession
 - a psych or a perceptual state — likes, fears, admires, wants, distrusts Lamine; sees, hears: a
   psych state or a perception; a quality adjective with a complement — afraid of the ferret,
@@ -3221,6 +3295,104 @@ The program renders these instances as:
     (Counterfactual (And (Member sk_arrive_1 arrive) (Agent sk_arrive_1 sk_teodor_1) (Past sk_arrive_1)) (And (Member sk_stay_1 stay) (Agent sk_stay_1 sk_lamine_1) (Past sk_stay_1)))
 
 Not this template. TEXT: If Teodor arrives, Ottoline leaves. — use `conditional`.
+
+### evidential — A verb of appearance or sensation over a claim
+
+When: A copular verb of appearance or sensation — seem, appear, look, sound, feel, smell, taste
+— with a property or a class (the ferret looks tired, the soup tastes salty, the voice sounded
+distorted, the wall feels cold, Teodor seems tired, Ottoline appears to be a weaver), with "to
+be" (seems to be tired), or over a clause (Ottoline appears to have left; it seems that Yusra
+left; it looks like the ladder is broken). Parse the claim with its own template as if it were
+asserted — a copular instance for a property or a class, its subject the thing and its tense
+present; a class statement for a class subject (herons seem patient); the predication with its
+own tense and aspect for a clause (appears to have left → past) — and write the evidential
+instance over it, `head` the verb capitalized and `tense` the clause's (seemed, looked, sounded
+→ past). The expletive "it" of "it seems that" and "it looks like" is not a referent. The claim
+is not asserted: nothing says the ferret is tired. A negated evidential (does not seem tired) is
+a negation instance over this one.
+
+Forms:
+- <X> seems / looks / sounds / feels / smells / tastes <ADJ>
+- <X> seems / appears (to be) <ADJ> / a <N>
+- <X> seems / appears to <V> …
+- It seems / appears that <clause>; it looks like <clause>
+
+Not this template:
+- a resemblance with like and a noun phrase — looks like a prison, sounds like a plan, smells
+  like a locker room: a stative relation (look_like, sound_like, smell_like), not an appearance
+  claim
+- a perception with a perceiver — Teodor saw the ferret, Yusra heard the news: a perception
+  event; here no perceiver is a participant
+- feel with an animate subject and a property — Yusra feels tired, felt guilty: the subject's
+  own felt state, asserted, not an appearance judged from outside; the sensation template
+- appear as showing up — appeared in the hall, appeared on Monday: a motion or an event, not an
+  appearance claim
+- remain, stay, keep with a property — remains open, stayed warm: a continuation, an aspectual
+  or the clause's own state; become, get, turn — became tired: a change of state
+- an epistemic modal — might be tired, must be tired: the modal template; a hearsay attribution
+  — according to Lamine, is said to be tired: an attribution or an attitude
+- a hedge adverb — probably tired, apparently tired: no slot here; report the adverb as unmapped
+  and parse the clause
+
+Slots:
+
+- `t` (required): "evidential"
+- `id` (required; your label for this instance): your label for the operator (s1, s2 …).
+- `over` (required; a list of "@id" of the instances this one scopes over): the claim sealed
+  under the verb: the id of the copular or class-statement instance for a property or a class,
+  or of the predication for a clause (with its own tense); nothing else.
+- `head` (required; one of: Seem, Appear, Look, Sound, Feel, Smell, Taste): the verb,
+  capitalized: the sense that is the evidence (Look for sight, Sound for hearing, Feel for
+  touch, Smell, Taste), Seem or Appear for an inference.
+- `tense` (optional; one of: past, present, future): the evidential verb's tense (seemed, looked
+  → past); absent for the present; the claim under it keeps its own tense slot.
+
+Example (an appearance with a property — the copular sealed under the verb). TEXT: The ferret looks tired.
+
+Instances:
+
+    [
+      {"t": "witness", "id": "x1", "class": "ferret", "definite": true, "span": "The ferret"},
+      {"t": "copular", "id": "c1", "subject": "@x1", "predicate": "tired", "form": "adjective", "tense": "present", "span": "The ferret looks tired"},
+      {"t": "evidential", "id": "s1", "over": ["@c1"], "head": "Look", "span": "looks"}
+    ]
+
+The program renders these instances as:
+
+    (Member sk_ferret_1 ferret)
+    (Look (Member sk_ferret_1 tired))
+
+Example (a sensation verb — the sense as the head). TEXT: The soup tastes salty.
+
+Instances:
+
+    [
+      {"t": "witness", "id": "x1", "class": "soup", "definite": true, "span": "The soup"},
+      {"t": "copular", "id": "c1", "subject": "@x1", "predicate": "salty", "form": "adjective", "tense": "present", "span": "The soup tastes salty"},
+      {"t": "evidential", "id": "s1", "over": ["@c1"], "head": "Taste", "span": "tastes"}
+    ]
+
+The program renders these instances as:
+
+    (Member sk_soup_1 soup)
+    (Taste (Member sk_soup_1 salty))
+
+Example (appear to be with a class). TEXT: Ottoline appears to be a weaver.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Ottoline", "span": "Ottoline"},
+      {"t": "copular", "id": "c1", "subject": "@n1", "predicate": "weaver", "form": "noun", "tense": "present", "span": "Ottoline appears to be a weaver"},
+      {"t": "evidential", "id": "s1", "over": ["@c1"], "head": "Appear", "span": "appears to be"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_ottoline_1 "Ottoline")
+    (Appear (Member sk_ottoline_1 weaver))
+
+Not this template. TEXT: Teodor saw the ferret. — use `perception`.
 
 ### imperative — A command or a request to the addressee
 

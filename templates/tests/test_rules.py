@@ -31,7 +31,7 @@ class SourceTests(unittest.TestCase):
         for r in R.concrete(RULES):
             st = R.lower(r)
             self.assertTrue(st.startswith(f"(: {r['id']} (Implication "), st)
-            self.assertTrue(st.endswith("(STV 0.0 1.0)))"), st)
+            self.assertTrue(st.endswith("(STV 0.0 0.0)))"), st)
             name, atom = T.split_statement(st)
             self.assertEqual(atom[0], "Implication")
         self.assertEqual(sum(1 for r in RULES if R.runnable(r)), len(RULES))         # every rule lowers now

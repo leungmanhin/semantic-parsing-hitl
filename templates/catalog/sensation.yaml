@@ -1,0 +1,145 @@
+# Template: sensation  (a felt state of its experiencer: "Yusra feels tired", "Ottoline felt guilty", "Lamine is feeling cold")
+#
+# "Feel" with an animate subject and a property states the subject's own inner state: the
+# subject experiences the state, which is asserted as a state eventuality with its experiencer
+# — (Member sk_tired_1 tired) (Experiencer sk_tired_1 sk_yusra_1) — not as the flat property
+# (Member sk_yusra_1 tired): feeling guilty does not say one is guilty, feeling cold does not
+# say one is cold to the touch. Nothing is sealed and nobody judges from outside, which is what
+# tells it from an evidential ("the wall feels cold": the speaker's touch, the wall judged).
+# Whether a felt state yields the flat property is a background matter, not the parse's.
+
+id: sensation
+family: predication
+shape: verb-class
+title: A felt state of its experiencer
+
+trigger:
+  construction: >
+    A clause with "feel" whose subject is animate and whose complement is a property the
+    subject experiences: feels tired, felt guilty, is feeling cold, feels sick, felt happy,
+    feel safe. The subject is the experiencer; the property is the felt state, lemmatized;
+    the tense and aspect are the clause's (felt → past; is feeling → progressive). Write one
+    instance; no copular instance and no evidential instance beside it. The verb is the
+    construction's marker and needs no slot.
+  verbs: [feel]
+  surface_forms:
+    - "<X> feels / felt <ADJ>"                       # Yusra feels tired; Ottoline felt guilty
+    - "<X> is feeling <ADJ>"                         # progressive: the state ongoing
+  boundary:                   # looks like a sensation but is not one
+    - >-
+      feel with a thing as the subject — the wall feels cold, the cloth feels soft: the
+      speaker's touch judging the thing; the evidential template
+    - >-
+      feel with an object perceived — felt the heat, felt a hand on the shoulder: a perception
+    - >-
+      feel that — feels that Lamine is right: an attitude with a clause
+    - >-
+      feel like with a noun or a verb — feels like a fool, feels like leaving: a resemblance or
+      a wish; no template here, report the predicate as unmapped
+    - >-
+      be with a property — Yusra is tired: a copular predication, the property itself
+
+slots:
+  id:          {type: id, required: true, doc: "your label for the state (p1, p2 …)"}
+  experiencer: {type: filler, class: Entity, role: Experiencer, required: true,
+                doc: "who feels the state: the subject, a referent id"}
+  state:       {type: lemma, class: Class, required: true,
+                doc: "the felt state, lemmatized (tired, guilty, cold, sick, happy, safe)"}
+  tense:       {type: enum, values: [past, present, future], required: true,
+                doc: "the clause's tense; present is recorded, not inferred"}
+  aspect:      {type: enum, values: [simple, progressive, perfect], required: false, default: simple}
+
+mints: {id: Event, stem: state}
+
+emits:
+  - atom: "(Member @id {state})"
+  - atom: "(Experiencer @id {experiencer})"
+  - atom: "(Past @id)"
+    when: "tense == past or aspect == perfect"
+  - atom: "(Future @id)"
+    when: "tense == future"
+  - atom: "(Ongoing @id)"
+    when: "aspect == progressive"
+
+notes:
+  - >-
+    The felt state is an eventuality of its own with the subject as its experiencer: "Yusra
+    feels tired" asserts a tiredness she experiences. A question "does Yusra feel tired?" reads
+    it directly; "is Yusra tired?" would need a bridge from the felt state to the property,
+    which is a decision for the uniform-states round, since the bridge is safe for tired and
+    not for guilty.
+  - >-
+    The same form with a thing as the subject is an appearance to the speaker, not the thing's
+    feeling, and belongs to the evidential template: the animacy of the subject decides.
+
+depends_on: [named-entity, witness]
+composes_with: [negation, modal, time]
+
+examples:
+  shown:                     # rendered into the prompt
+    - category: positive
+      note: a felt state — the state an eventuality with its experiencer, no flat property
+      text: "Lamine feels cold."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine", span: "Lamine"}
+        - {t: sensation, id: p1, experiencer: "@n1", state: cold, tense: present, span: "Lamine feels cold"}
+      emitted:               # what the emitter produces (illustration; the emitter is the authority)
+        - "(Name sk_lamine_1 \"Lamine\")"
+        - "(Member sk_cold_1 cold)"
+        - "(Experiencer sk_cold_1 sk_lamine_1)"
+      declarations:
+        - "(: cold Class)"
+        - "(: sk_cold_1 Event)"
+        - "(: sk_lamine_1 Entity)"
+    - category: positive
+      note: past
+      text: "Ottoline felt guilty."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline", span: "Ottoline"}
+        - {t: sensation, id: p1, experiencer: "@n1", state: guilty, tense: past, span: "Ottoline felt guilty"}
+    - category: abstain
+      text: "The ferret looks tired."
+      expected: {abstain: true, template: evidential}                 # an appearance judged from outside
+
+  held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      text: "Yusra feels tired."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: sensation, id: p1, experiencer: "@n1", state: tired, tense: present}
+    - category: positive
+      note: past
+      text: "Teodor felt tired."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: sensation, id: p1, experiencer: "@n1", state: tired, tense: past}
+    - category: positive
+      text: "Lamine felt sick."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: sensation, id: p1, experiencer: "@n1", state: sick, tense: past}
+    - category: positive
+      note: progressive
+      text: "Ottoline is feeling happy."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: sensation, id: p1, experiencer: "@n1", state: happy, tense: present, aspect: progressive}
+    - category: positive
+      note: a witness as the experiencer
+      text: "The weaver feels safe."
+      instances:
+        - {t: witness, id: x1, class: weaver, definite: true}
+        - {t: sensation, id: p1, experiencer: "@x1", state: safe, tense: present}
+    - category: scoped
+      note: under negation
+      text: "Yusra does not feel tired."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: sensation, id: p1, experiencer: "@n1", state: tired, tense: present}
+        - {t: negation, id: s1, over: ["@p1"]}
+    - category: abstain
+      text: "The wall feels cold."
+      expected: {abstain: true, template: evidential}                 # a thing judged by touch
+    - category: abstain
+      text: "Yusra is tired."
+      expected: {abstain: true, template: copular}                    # the property itself

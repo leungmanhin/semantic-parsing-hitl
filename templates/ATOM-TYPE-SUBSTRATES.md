@@ -2,7 +2,7 @@
 
 Generated from `templates/atom-type-substrates.json` (schema `atom-type-substrates/1`) by `templates/tmpl/gen_substrate.py`, together with `templates/generated/atom-types.metta`. Do not edit by hand; regenerate with `cd templates && python -m tmpl.gen_substrate`.
 
-136 heads in 13 kinds (7 proposed; 136 with a reviewed type declaration so far). `type-def` is the PeTTa declaration emitted for the head; `?` as the output type means the head is not yet reviewed and is absent from the `.metta` file; `%Undefined%` marks a position the head takes but the JSON does not type.
+143 heads in 13 kinds (7 proposed; 143 with a reviewed type declaration so far). `type-def` is the PeTTa declaration emitted for the head; `?` as the output type means the head is not yet reviewed and is absent from the `.metta` file; `%Undefined%` marks a position the head takes but the JSON does not type.
 
 Every atom is carried as a statement (: <proof-name> <atom> <tv>), tv = (STV strength confidence) or another engine truth value. The carrier is not an atom kind: ':' is never type-declared (it is also PeTTa's type-declaration head) and the truth value is declared by the engine, not by this substrate.
 
@@ -193,13 +193,20 @@ type-def: (: Time (-> Event TimeTerm Proposition))
 gloss: Locates an eventuality at a time point or recurrence slot. Filler = a time instance (deictic constants such as yesterday / now are declared Time by the emitter). A compound-action class symbol under the compound decomposition ((Patient use_crosswalk crosswalk)) is declared both Class and Event.
 
 
-## scope (13)
+## scope (20)
 
 head: AccordingTo
 kind: scope
 arity: 2
 type-def: (: AccordingTo (-> Proposition Instance Proposition))
 gloss: Evidential attribution: seals P and names its source ("according to X, P").
+
+
+head: Appear
+kind: scope
+arity: 1
+type-def: (: Appear (-> Proposition Proposition))
+gloss: Evidential operator over a sealed claim: how things appear by an inference from the evidence at hand ('appears'); the claim is not asserted. The evidential template's head, the verb kept as the head because the sense is the evidence; carries the sealed claim's own truth value. Order: (Appear P).
 
 
 head: Can
@@ -223,12 +230,26 @@ type-def: (: Directive (-> Proposition Proposition))
 gloss: Seals a positive imperative's commanded eventuality.
 
 
+head: Feel
+kind: scope
+arity: 1
+type-def: (: Feel (-> Proposition Proposition))
+gloss: Evidential operator over a sealed claim: how things appear by touch ('feels cold'); the claim is not asserted. The evidential template's head, the verb kept as the head because the sense is the evidence; carries the sealed claim's own truth value. Order: (Feel P).
+
+
 head: Forbid
 kind: scope
 arity: 1
 type-def: (: Forbid (-> Proposition Proposition))
 gloss: Seals a negative imperative's forbidden eventuality. RETIRE: under explicit scope a negative imperative is (Directive (Not P)), parallel to (Obligated (Not P)); declaration kept only until the re-parse.
 status: retire
+
+
+head: Look
+kind: scope
+arity: 1
+type-def: (: Look (-> Proposition Proposition))
+gloss: Evidential operator over a sealed claim: how things appear by sight ('looks tired'); the claim is not asserted. The evidential template's head, the verb kept as the head because the sense is the evidence; carries the sealed claim's own truth value. Order: (Look P).
 
 
 head: Might
@@ -280,6 +301,34 @@ kind: scope
 arity: 2
 type-def: (: Question (-> Atom Proposition Proposition))
 gloss: Seals an embedded constituent (wh-) question with its wh-word. The wh-word is a bare symbol that doubles as the gap filler inside the body, so its position is unchecked.
+
+
+head: Seem
+kind: scope
+arity: 1
+type-def: (: Seem (-> Proposition Proposition))
+gloss: Evidential operator over a sealed claim: how things appear by an inference from the evidence at hand ('seems'); the claim is not asserted. The evidential template's head, the verb kept as the head because the sense is the evidence; carries the sealed claim's own truth value. Order: (Seem P).
+
+
+head: Smell
+kind: scope
+arity: 1
+type-def: (: Smell (-> Proposition Proposition))
+gloss: Evidential operator over a sealed claim: how things appear by smell ('smells fresh'); the claim is not asserted. The evidential template's head, the verb kept as the head because the sense is the evidence; carries the sealed claim's own truth value. Order: (Smell P).
+
+
+head: Sound
+kind: scope
+arity: 1
+type-def: (: Sound (-> Proposition Proposition))
+gloss: Evidential operator over a sealed claim: how things appear by hearing ('sounded distorted'); the claim is not asserted. The evidential template's head, the verb kept as the head because the sense is the evidence; carries the sealed claim's own truth value. Order: (Sound P).
+
+
+head: Taste
+kind: scope
+arity: 1
+type-def: (: Taste (-> Proposition Proposition))
+gloss: Evidential operator over a sealed claim: how things appear by taste ('tastes salty'); the claim is not asserted. The evidential template's head, the verb kept as the head because the sense is the evidence; carries the sealed claim's own truth value. Order: (Taste P).
 
 
 head: Whether
