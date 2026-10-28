@@ -543,6 +543,27 @@ class EmitTests(unittest.TestCase):
         self.assertIn("(Even laugh sk_laugh_1)", atoms_of(out["statements"]))
         self.assertIn("(: laugh Class)", out["declarations"])
 
+    def test_a_norm_under_a_frequency_rule_seals_the_act_with_its_time(self):
+        """A frequency whose ``over`` names a norm renders the rule's consequent as the norm over
+        the act, with the within shape (the episode's time) inside the sealed act; the truth
+        value is the norm's force and confidence; a plain frequency and a negation over a
+        frequency are unchanged."""
+        out = E.emit({"id": "n", "instances": [
+            {"t": "named-entity", "id": "n1", "name": "Lamine"}, {"t": "witness", "id": "x1", "class": "shed", "definite": True},
+            {"t": "activity", "id": "v1", "verb": "lock", "actor": "@n1", "patient": "@x1", "tense": "present"},
+            {"t": "norm", "id": "s1", "over": ["@v1"], "kind": "obligation", "weak": True, "word": "should"},
+            {"t": "range", "id": "q1", "class": "night", "quantifier": "every"},
+            {"t": "frequency", "id": "f1", "occasion": ["@q1"], "over": ["@s1"], "every": 1, "word": "every night"}]}, CATALOG)
+        rule = next(st for st in out["statements"] if "(Implication " in st)
+        self.assertIn("(Implication (Member $x night) (Obligated (And (Member (sk_lock $x) lock) (Agent (sk_lock $x) sk_lamine_1) (Patient (sk_lock $x) sk_shed_1) (Time (sk_lock $x) $x))))", rule)
+        self.assertTrue(rule.endswith("(STV 0.7 0.99))"), rule)                      # a weak norm's force, a norm's confidence
+        self.assertNotIn("(Time", rule.split("(Obligated")[0])                        # the time sits inside the sealed act
+        plain = E.emit({"id": "p", "instances": [
+            {"t": "named-entity", "id": "n1", "name": "Yusra"}, {"t": "activity", "id": "v1", "verb": "swim", "actor": "@n1", "tense": "present"},
+            {"t": "range", "id": "q1", "class": "morning", "quantifier": "every"},
+            {"t": "frequency", "id": "f1", "occasion": ["@q1"], "over": ["@v1"], "every": 1, "word": "every morning"}]}, CATALOG)
+        self.assertTrue(any(st.endswith("(Time (sk_swim $x) $x))) (STV 1.0 0.9))") for st in plain["statements"]), plain["statements"])
+
     def test_malformed_instances_are_refused(self):
         bad = [{"t": "transfer", "id": "e1", "verb": "give", "giver": "@n9", "object": "x", "tense": "past"}]
         with self.assertRaises(E.EmitError) as cm:

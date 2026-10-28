@@ -83,6 +83,12 @@ trigger:
     - >-
       would or could in a subjunctive conditional — if Yusra sang, Teodor could leave: the
       counterfactual template
+    - >-
+      a norm with a frequency — must lock the shed every night, should water the plants daily,
+      may use the kitchen on Sundays, should always lock the shed: this template's instance over
+      the act, and the frequency template's rule over the occasions whose `over` names the norm
+      (the obligation on each occasion); must never / should never — must never feed the
+      ferrets: a prohibition (weak with should), the never its universality, no frequency
 
 slots:
   id:    {type: id, required: true, doc: "your label for the norm (s1, s2 …)"}
@@ -187,11 +193,82 @@ examples:
         - {t: activity, id: v1, verb: wear, actor: "@q1", patient: glove, tense: present, span: "Glaziers must wear gloves"}
         - {t: norm, id: s1, over: ["@v1"], kind: obligation, word: must, span: "must"}
         - {t: generic, id: r1, ranges: ["@q1"], over: ["@s1"], span: "Glaziers must wear gloves"}
+    - category: positive
+      note: a norm with a frequency — the frequency's rule over the nights, the obligation its consequent, the act's time inside the sealed act
+      text: "Lamine must lock the shed every night."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine", span: "Lamine"}
+        - {t: witness, id: x1, class: shed, definite: true, span: "the shed"}
+        - {t: activity, id: v1, verb: lock, actor: "@n1", patient: "@x1", tense: present, span: "Lamine must lock the shed"}
+        - {t: norm, id: s1, over: ["@v1"], kind: obligation, word: must, span: "must"}
+        - {t: range, id: q1, class: night, quantifier: every, span: "every night"}
+        - {t: frequency, id: f1, occasion: ["@q1"], over: ["@s1"], every: 1, word: "every night", span: "every night"}
+      emitted:               # what the emitter produces (illustration; the emitter is the authority)
+        - "(Name sk_lamine_1 \"Lamine\")"
+        - "(Member sk_shed_1 shed)"
+        - "(Implication (Member $x night) (Obligated (And (Member (sk_lock $x) lock) (Agent (sk_lock $x) sk_lamine_1) (Patient (sk_lock $x) sk_shed_1) (Time (sk_lock $x) $x))))"
+      declarations:
+        - "(: lock Class)"
+        - "(: night Class)"
+        - "(: shed Class)"
+        - "(: sk_lamine_1 Entity)"
+        - "(: sk_lock_1 Event)"
+        - "(: sk_shed_1 Entity)"
+        - "(: sk_lock (-> Atom Event))"
     - category: abstain
       text: "Yusra must be tired."
       expected: {abstain: true, template: modal}                      # epistemic must
 
   held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      note: a weak norm with daily — the rule over the days at the norm's force 0.7
+      text: "Yusra should water the garden daily."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, class: garden, definite: true}
+        - {t: activity, id: v1, verb: water, actor: "@n1", patient: "@x1", tense: present}
+        - {t: norm, id: s1, over: ["@v1"], kind: obligation, weak: true, word: should}
+        - {t: range, id: q1, class: day}
+        - {t: frequency, id: f1, occasion: ["@q1"], over: ["@s1"], every: 1, word: daily}
+    - category: positive
+      note: a class norm with a frequency — the rule over the members and the months
+      text: "Members must sign the ledger every month."
+      instances:
+        - {t: range, id: q1, class: member}
+        - {t: witness, id: x1, class: ledger, definite: true}
+        - {t: activity, id: v1, verb: sign, actor: "@q1", patient: "@x1", tense: present}
+        - {t: norm, id: s1, over: ["@v1"], kind: obligation, word: must}
+        - {t: range, id: q2, class: month, quantifier: every}
+        - {t: frequency, id: f1, ranges: ["@q1"], occasion: ["@q2"], over: ["@s1"], every: 1, word: "every month"}
+    - category: positive
+      note: a permission on the Sundays
+      text: "Teodor may use the kitchen on Sundays."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, class: kitchen, definite: true}
+        - {t: activity, id: v1, verb: use, actor: "@n1", patient: "@x1", tense: present}
+        - {t: norm, id: s1, over: ["@v1"], kind: permission, word: may}
+        - {t: range, id: q1, class: sunday}
+        - {t: frequency, id: f1, occasion: ["@q1"], over: ["@s1"], every: 1, word: "on Sundays"}
+    - category: positive
+      note: a weak norm with always — the rule over the occasions at the norm's force
+      text: "Lamine should always lock the shed."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: x1, class: shed, definite: true}
+        - {t: activity, id: v1, verb: lock, actor: "@n1", patient: "@x1", tense: present}
+        - {t: norm, id: s1, over: ["@v1"], kind: obligation, weak: true, word: should}
+        - {t: range, id: q1, class: occasion}
+        - {t: frequency, id: f1, occasion: ["@q1"], over: ["@s1"], level: always, word: always}
+    - category: positive
+      note: must never — a prohibition, the never its universality, no frequency instance
+      text: "Visitors must never feed the ferrets."
+      instances:
+        - {t: range, id: q1, class: visitor}
+        - {t: group, id: g1, class: ferret, definite: true}
+        - {t: activity, id: v1, verb: feed, actor: "@q1", patient: "@g1", tense: present}
+        - {t: norm, id: s1, over: ["@v1"], kind: prohibition, word: "must never"}
+        - {t: generic, id: r1, ranges: ["@q1"], over: ["@s1"]}
     - category: positive
       note: have to — an obligation, the same form as must
       text: "Yusra has to send the quilt."

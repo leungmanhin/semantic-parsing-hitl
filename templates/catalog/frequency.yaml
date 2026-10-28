@@ -74,7 +74,8 @@ trigger:
     - >-
       never on a bare clause — Yusra never laughs: a negation of the clause, with no frequency
       instance; never with an attachment or a when-clause (never arrives late) is this template's
-      rule at strength 0
+      rule at strength 0; never under a norm — must never feed the ferrets, should never be done:
+      a prohibition (weak with should), the never its universality, no frequency instance
     - >-
       again, still, already, yet — laughed again, still waits: an aspectual particle, a
       presupposition about an earlier state, not how often
@@ -113,7 +114,7 @@ slots:
   ranges:   {type: refs, class: Proposition, required: false,
              doc: "the class range(s) of a generic subject or object in the same clause (ferrets often bite, every ferret sleeps every night): their ids in text order; absent otherwise"}
   over:     {type: refs, class: Proposition, required: false, skolemize: true,
-             doc: "the predication over the occasions: its id, nothing else (a negation or a modal over the clause names THIS instance instead); filled with occasion for a period of one unit, a rate or an adverb, and with restrictor for the main clause of a when-clause; empty for an adverb on a clause with an attachment; never together with event"}
+             doc: "the predication over the occasions: its id, nothing else — or the id of the NORM over it (must lock the shed every night, may use the kitchen on Sundays, should always lock the shed: the norm instance over the act, so that the rule's consequent is the obligation or permission on each occasion); a negation or a modal over the clause names THIS instance instead; filled with occasion for a period of one unit, a rate or an adverb, and with restrictor for the main clause of a when-clause; empty for an adverb on a clause with an attachment; never together with event"}
   event:    {type: filler, class: Event, attaches: true, required: false,
              doc: "for a pattern recorded on the event instead — a period of more than one unit, or a bare count: the id of the clause's predication instance; never together with over"}
   every:    {type: number, required: false,
@@ -130,12 +131,15 @@ slots:
 one_of: [[occasion, restrictor, event], [every, times, level]]
 
 truth:
-  strength:                    # the quantifier over occasions: the adverb's dial, else a graded class range, else every
+  strength:                    # a weak norm under the frequency 0.7; else the quantifier over occasions: the adverb's dial, else a norm 1.0, else a graded class range, else every
+    - {from: over, slot: weak, values: {"true": 0.7}}                   # should … every night / always: the norm's force, on the one dial
     - {slot: level, values: {always: 1.0, usually: 0.9, normally: 0.9, generally: 0.9, often: 0.7, frequently: 0.7, regularly: 0.7, sometimes: 0.5, occasionally: 0.5, from_time_to_time: 0.5, once_in_a_while: 0.5, seldom: 0.1, rarely: 0.1, hardly_ever: 0.1, never: 0.0}}
+    - {from: over, slot: kind, values: {obligation: 1.0, permission: 1.0, prohibition: 1.0, exemption: 1.0}}   # a norm states no proportion
     - {from: ranges, slot: quantifier, values: {most: 0.9, many: 0.7, few: 0.1, "no": 0.0, none: 0.0}}
     - 1.0
-  confidence:                  # an explicit frequency word states a proportion over occasions (0.9); an existential one — sometimes — states none (0.7)
+  confidence:                  # an explicit frequency word states a proportion over occasions (0.9); an existential one — sometimes — states none (0.7); a norm is a prescription (0.99)
     - {slot: level, values: {sometimes: 0.7, occasionally: 0.7, from_time_to_time: 0.7, once_in_a_while: 0.7}}
+    - {from: over, slot: kind, values: {obligation: 0.99, permission: 0.99, prohibition: 0.99, exemption: 0.99}}
     - 0.9
 
 emits:
@@ -219,9 +223,19 @@ notes:
     week, counted as "knocked twice" counts its two particular knocks, (Times e 2). A numeric
     period, "every two weeks", is not a quantifier over weeks and is recorded on the event as
     stated, (Every e 2 week): a pattern a later view may unfold.
+  - >-
+    A norm with a frequency — "Lamine must lock the shed every night", "Teodor may use the
+    kitchen on Sundays", "Yusra should always lock the shed" — is the norm instance over the act
+    and this rule over the occasions with the norm as its consequent: (Implication (Member $x
+    night) (Obligated (And (Member (sk_lock $x) lock) (Agent (sk_lock $x) sk_lamine_1) (Patient
+    (sk_lock $x) sk_shed_1) (Time (sk_lock $x) $x)))) — the obligation on each occasion, the act's
+    time inside the sealed act, nothing asserted to happen; a stated night instantiates the
+    obligation, as a stated member instantiates a class norm. The rule's strength is the norm's
+    force first (a weak should 0.7, on the one dial), else the frequency word's proportion, else
+    the norm's 1.0; its confidence the norm's 0.99.
 
 depends_on: [range, time, activity]
-composes_with: [negation, modal, time, location]
+composes_with: [negation, modal, norm, time, location]
 
 examples:
   shown:                     # rendered into the prompt
@@ -483,3 +497,6 @@ examples:
     - category: abstain
       text: "Lamine used to sing."
       expected: {abstain: true, template: habitual}                   # a habit with no frequency: the mark
+    - category: abstain
+      text: "Visitors must never feed the ferrets."
+      expected: {abstain: true, template: norm}                       # never under a norm: a prohibition, no frequency

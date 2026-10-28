@@ -1,10 +1,10 @@
 # Suite report
 
-prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 53d89fa7f927c05a) · type check: ran
+prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 10797d224717f2bc) · type check: ran
 
 ## Catalog checks
 
-1023 examples checked; findings: 0
+1030 examples checked; findings: 0
 
 Sentences two templates claim with the same expected atoms (composition, fine):
 - "Ottoline bought the quilt for forty euros." — acquisition, measure
@@ -696,24 +696,25 @@ Mismatches: none
 
 ## frequency — held_out
 
-27 cases, 81 records (ok 81; stale prompt 81) · gemini-4-argon effort=low
+28 cases, 84 records (ok 84; stale prompt 81) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
 | positive | 22 | 66 | 66 | 66 | 66 |
 | scoped | 2 | 6 | 6 | 6 | 6 |
-| abstain | 3 | 9 | 0 (false fires) | – | 9 |
+| abstain | 4 | 12 | 0 (false fires) | – | 12 |
 
-- selection: fire cases fired 72/72 · abstain cases false fires 0/9
+- selection: fire cases fired 72/72 · abstain cases false fires 0/12
 - fill: exact 72/72 among fires
-- stability: pairwise agreement 1.0 (27 cases, 81 pairs), unanimous 27/27
-- type check: 81/81 emitted parses type
+- stability: pairwise agreement 1.0 (28 cases, 84 pairs), unanimous 28/28
+- type check: 84/84 emitted parses type
 - graph lints: none
-- spans: 333/333 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
-- usage: 81 calls · in 5,151,405 · cached 4,865,312 (94% of the input) · out 14,861 · thinking 0 (calls with thought tokens: 0)
+- spans: 348/348 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
+- usage: 84 calls · in 5,419,875 · cached 5,127,635 (95% of the input) · out 15,527 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
 Abstain cases (what the parser did, per run):
+- "Visitors must never feed the ferrets." (target `norm`): r1 target_fired [activity×1, generic×1, group×1, norm×1, range×1] · r2 target_fired [activity×1, generic×1, group×1, norm×1, range×1] · r3 target_fired [activity×1, generic×1, group×1, norm×1, range×1]
 - "Every ferret slept." (target `generic`): r1 target_fired [activity×1, generic×1, range×1] · r2 target_fired [activity×1, generic×1, range×1] · r3 target_fired [activity×1, generic×1, range×1]
 - "Yusra never laughs." (target `negation`): r1 target_fired [activity×1, named-entity×1, negation×1] · r2 target_fired [activity×1, named-entity×1, negation×1] · r3 target_fired [activity×1, named-entity×1, negation×1]
 - "Lamine used to sing." (target `habitual`): r1 target_fired [activity×1, habitual×1, named-entity×1] · r2 target_fired [activity×1, habitual×1, named-entity×1] · r3 target_fired [activity×1, habitual×1, named-entity×1]
@@ -722,7 +723,7 @@ Mismatches: none
 
 ## generic — held_out
 
-18 cases, 54 records (ok 54; stale prompt 51) · gemini-4-argon effort=low
+18 cases, 54 records (ok 54; stale prompt 54) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -749,7 +750,7 @@ Mismatches: none
 
 ## group — held_out
 
-12 cases, 36 records (ok 36; stale prompt 33) · gemini-4-argon effort=low
+12 cases, 36 records (ok 36; stale prompt 36) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -943,7 +944,7 @@ Mismatches: none
 
 ## measure — held_out
 
-20 cases, 60 records (ok 60; stale prompt 57) · gemini-4-argon effort=low
+20 cases, 60 records (ok 60; stale prompt 60) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -1058,22 +1059,22 @@ Mismatches: none
 
 ## norm — held_out
 
-27 cases, 81 records (ok 81; stale prompt 81) · gemini-4-argon effort=low
+32 cases, 96 records (ok 96; stale prompt 81) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
-| positive | 20 | 60 | 60 | 60 | 60 |
+| positive | 25 | 75 | 75 | 75 | 75 |
 | contrast | 1 | 3 | 3 | 3 | 3 |
 | scoped | 1 | 3 | 3 | 3 | 3 |
 | abstain | 5 | 15 | 0 (false fires) | – | 15 |
 
-- selection: fire cases fired 66/66 · abstain cases false fires 0/15
-- fill: exact 66/66 among fires
-- stability: pairwise agreement 1.0 (27 cases, 81 pairs), unanimous 27/27
-- type check: 81/81 emitted parses type
+- selection: fire cases fired 81/81 · abstain cases false fires 0/15
+- fill: exact 81/81 among fires
+- stability: pairwise agreement 1.0 (32 cases, 96 pairs), unanimous 32/32
+- type check: 96/96 emitted parses type
 - graph lints: none
-- spans: 279/279 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
-- usage: 81 calls · in 5,961,540 · cached 5,722,153 (96% of the input) · out 13,293 · thinking 0 (calls with thought tokens: 0)
+- spans: 366/366 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
+- usage: 96 calls · in 7,303,863 · cached 7,033,734 (96% of the input) · out 17,285 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: 1
   - P00 · modal · r3 "Ottoline may leave.": The modal 'may' on an agentive verb ('Ottoline may leave') is ambiguous between permission (`norm`) and epistemic possibility (`modal`), and the sentence provides no context to decide the reading.
 
@@ -1118,7 +1119,7 @@ Mismatches: none
 
 ## part-whole — held_out
 
-18 cases, 54 records (ok 54; stale prompt 48) · gemini-4-argon effort=low
+18 cases, 54 records (ok 54; stale prompt 54) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -1172,7 +1173,7 @@ Mismatches: none
 
 ## portion — held_out
 
-27 cases, 81 records (ok 81; stale prompt 0) · gemini-4-argon effort=low
+27 cases, 81 records (ok 81; stale prompt 81) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -1235,7 +1236,7 @@ Mismatches: none
 
 ## postmodifier — held_out
 
-10 cases, 30 records (ok 30; stale prompt 27) · gemini-4-argon effort=low
+10 cases, 30 records (ok 30; stale prompt 30) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -1483,7 +1484,7 @@ Mismatches: none
 
 ## witness — held_out
 
-3 cases, 9 records (ok 9; stale prompt 6) · gemini-4-argon effort=low
+3 cases, 9 records (ok 9; stale prompt 9) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|

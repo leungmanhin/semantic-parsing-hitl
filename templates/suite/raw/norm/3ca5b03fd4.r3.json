@@ -1,0 +1,120 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "25132cbace6e7c678746b31b1423f2906765b5e22cd638c9be325d6139c6de09",
+  "item": {
+    "id": "s3ca5b03fd4",
+    "text": "Teodor may use the kitchen on Sundays."
+  },
+  "usage": {
+    "input": 89489,
+    "output": 252,
+    "thinking": null,
+    "total": 89741,
+    "cached": 87440,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 89489,
+    "candidatesTokenCount": 252,
+    "totalTokenCount": 89741,
+    "cachedContentTokenCount": 87440,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 89489
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 87440
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 252
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s3ca5b03fd4\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"kitchen\", \"definite\": true, \"span\": \"the kitchen\"}, {\"t\": \"range\", \"id\": \"q1\", \"class\": \"sunday\", \"span\": \"on Sundays\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"use\", \"actor\": \"@n1\", \"patient\": \"@x1\", \"tense\": \"present\", \"span\": \"Teodor may use the kitchen\"}, {\"t\": \"norm\", \"id\": \"s1\", \"over\": [\"@v1\"], \"kind\": \"permission\", \"word\": \"may\", \"span\": \"may\"}, {\"t\": \"frequency\", \"id\": \"f1\", \"occasion\": [\"@q1\"], \"over\": [\"@s1\"], \"every\": 1, \"word\": \"on Sundays\", \"span\": \"on Sundays\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s3ca5b03fd4",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "kitchen",
+        "definite": true,
+        "span": "the kitchen"
+      },
+      {
+        "t": "range",
+        "id": "q1",
+        "class": "sunday",
+        "span": "on Sundays"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "use",
+        "actor": "@n1",
+        "patient": "@x1",
+        "tense": "present",
+        "span": "Teodor may use the kitchen"
+      },
+      {
+        "t": "norm",
+        "id": "s1",
+        "over": [
+          "@v1"
+        ],
+        "kind": "permission",
+        "word": "may",
+        "span": "may"
+      },
+      {
+        "t": "frequency",
+        "id": "f1",
+        "occasion": [
+          "@q1"
+        ],
+        "over": [
+          "@s1"
+        ],
+        "every": 1,
+        "word": "on Sundays",
+        "span": "on Sundays"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "10797d224717f2bca653a08062dad6c7808584229209bae1f558f6f764ea26dd",
+  "run": 3,
+  "case": {
+    "template": "norm",
+    "section": "held_out",
+    "index": 2,
+    "category": "positive",
+    "text": "Teodor may use the kitchen on Sundays.",
+    "key": "3ca5b03fd4"
+  }
+}

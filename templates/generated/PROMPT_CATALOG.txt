@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 cc46122efa9d85f2 · 57 templates
+catalog sha256 9be5729b4f6eb4ca · 57 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -3941,6 +3941,11 @@ Not this template:
   stated with a noun — needs a ladder, deserves a prize: a stative relation
 - would or could in a subjunctive conditional — if Yusra sang, Teodor could leave: the
   counterfactual template
+- a norm with a frequency — must lock the shed every night, should water the plants daily, may
+  use the kitchen on Sundays, should always lock the shed: this template's instance over the
+  act, and the frequency template's rule over the occasions whose `over` names the norm (the
+  obligation on each occasion); must never / should never — must never feed the ferrets: a
+  prohibition (weak with should), the never its universality, no frequency
 
 Slots:
 
@@ -4011,6 +4016,25 @@ Instances:
 The program renders these instances as:
 
     (Implication (Member $x glazier) (Obligated (And (Member (sk_wear $x) wear) (Agent (sk_wear $x) $x) (Patient (sk_wear $x) glove))))
+
+Example (a norm with a frequency — the frequency's rule over the nights, the obligation its consequent, the act's time inside the sealed act). TEXT: Lamine must lock the shed every night.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Lamine", "span": "Lamine"},
+      {"t": "witness", "id": "x1", "class": "shed", "definite": true, "span": "the shed"},
+      {"t": "activity", "id": "v1", "verb": "lock", "actor": "@n1", "patient": "@x1", "tense": "present", "span": "Lamine must lock the shed"},
+      {"t": "norm", "id": "s1", "over": ["@v1"], "kind": "obligation", "word": "must", "span": "must"},
+      {"t": "range", "id": "q1", "class": "night", "quantifier": "every", "span": "every night"},
+      {"t": "frequency", "id": "f1", "occasion": ["@q1"], "over": ["@s1"], "every": 1, "word": "every night", "span": "every night"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_lamine_1 "Lamine")
+    (Member sk_shed_1 shed)
+    (Implication (Member $x night) (Obligated (And (Member (sk_lock $x) lock) (Agent (sk_lock $x) sk_lamine_1) (Patient (sk_lock $x) sk_shed_1) (Time (sk_lock $x) $x))))
 
 Not this template. TEXT: Yusra must be tired. — use `modal`.
 
@@ -5276,7 +5300,8 @@ Not this template:
   laugh: a generalization over a class, the generic template
 - never on a bare clause — Yusra never laughs: a negation of the clause, with no frequency
   instance; never with an attachment or a when-clause (never arrives late) is this template's
-  rule at strength 0
+  rule at strength 0; never under a norm — must never feed the ferrets, should never be done: a
+  prohibition (weak with should), the never its universality, no frequency instance
 - again, still, already, yet — laughed again, still waits: an aspectual particle, a
   presupposition about an earlier state, not how often
 - a duration — for six hours: how long, the measure template; a vague one — all day, for years:
@@ -5314,10 +5339,12 @@ Slots:
   range(s) of a generic subject or object in the same clause (ferrets often bite, every ferret
   sleeps every night): their ids in text order; absent otherwise.
 - `over` (optional; a list of "@id" of the instances that state the clause): the predication
-  over the occasions: its id, nothing else (a negation or a modal over the clause names THIS
-  instance instead); filled with occasion for a period of one unit, a rate or an adverb, and
-  with restrictor for the main clause of a when-clause; empty for an adverb on a clause with an
-  attachment; never together with event.
+  over the occasions: its id, nothing else — or the id of the NORM over it (must lock the shed
+  every night, may use the kitchen on Sundays, should always lock the shed: the norm instance
+  over the act, so that the rule's consequent is the obligation or permission on each occasion);
+  a negation or a modal over the clause names THIS instance instead; filled with occasion for a
+  period of one unit, a rate or an adverb, and with restrictor for the main clause of a
+  when-clause; empty for an adverb on a clause with an attachment; never together with event.
 - `event` (optional; "@id" of the predication instance this attaches to): for a pattern recorded
   on the event instead — a period of more than one unit, or a bare count: the id of the clause's
   predication instance; never together with over.

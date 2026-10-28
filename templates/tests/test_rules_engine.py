@@ -490,6 +490,24 @@ class SeededRulesOnTheEngine(unittest.TestCase):
         self.assertTrue(chained, chained)                                                     # through pole_samedegree and both equivalences
         self.assertFalse(self.query(h, "(SameDegree strong sk_teodor_1 sk_yusra_1)"))
 
+    def test_a_norm_over_a_frequency_rule_instantiates_on_a_stated_occasion(self):
+        """A norm with a frequency is a rule over the occasions whose consequent is the norm over
+        the act: a stated night instantiates the obligation to lock that night, and the
+        obligation permits the act; nothing says the shed was locked, and an occasion of another
+        class instantiates nothing."""
+        h = self.space(['(: n1 (Name sk_lamine_1 "Lamine") (STV 1.0 0.99))',
+                        '(: x1 (Member sk_shed_1 shed) (STV 1.0 0.99))',
+                        '(: f1 (Implication (Member $x night) (Obligated (And (Member (sk_lock $x) lock) (Agent (sk_lock $x) sk_lamine_1) (Patient (sk_lock $x) sk_shed_1) (Time (sk_lock $x) $x)))) (STV 1.0 0.99))',
+                        '(: t7 (Member sk_night_7 night) (STV 1.0 0.99))',
+                        '(: t8 (Member sk_morning_2 morning) (STV 1.0 0.99))'])
+        must = self.query(h, "(Obligated (And (Member (sk_lock sk_night_7) lock) (Agent (sk_lock sk_night_7) sk_lamine_1) (Patient (sk_lock sk_night_7) sk_shed_1) (Time (sk_lock sk_night_7) sk_night_7)))")
+        self.assertTrue(must and "f1" in must[0], must)                                        # tonight's obligation
+        self.assertAlmostEqual(tv(must)[0], 1.0, places=2)
+        may = self.query(h, "(Permitted (And (Member (sk_lock sk_night_7) lock) (Agent (sk_lock sk_night_7) sk_lamine_1) (Patient (sk_lock sk_night_7) sk_shed_1) (Time (sk_lock sk_night_7) sk_night_7)))", steps=1500)
+        self.assertTrue(may and "obligation_permits" in may[0], may)                           # and its permission
+        self.assertFalse(self.query(h, "(Member (sk_lock sk_night_7) lock)"))                   # nothing happened
+        self.assertFalse(self.query(h, "(Obligated (And (Member (sk_lock sk_morning_2) lock) (Agent (sk_lock sk_morning_2) sk_lamine_1) (Patient (sk_lock sk_morning_2) sk_shed_1) (Time (sk_lock sk_morning_2) sk_morning_2)))"))
+
 
 if __name__ == "__main__":
     unittest.main()

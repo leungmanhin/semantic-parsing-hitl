@@ -1,0 +1,121 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "25132cbace6e7c678746b31b1423f2906765b5e22cd638c9be325d6139c6de09",
+  "item": {
+    "id": "s7444cfbe39",
+    "text": "Yusra should water the garden daily."
+  },
+  "usage": {
+    "input": 89488,
+    "output": 257,
+    "thinking": null,
+    "total": 89745,
+    "cached": 87439,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 89488,
+    "candidatesTokenCount": 257,
+    "totalTokenCount": 89745,
+    "cachedContentTokenCount": 87439,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 89488
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 87439
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 257
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s7444cfbe39\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"garden\", \"definite\": true, \"span\": \"the garden\"}, {\"t\": \"range\", \"id\": \"q1\", \"class\": \"day\", \"span\": \"daily\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"water\", \"actor\": \"@n1\", \"patient\": \"@x1\", \"tense\": \"present\", \"span\": \"Yusra should water the garden\"}, {\"t\": \"norm\", \"id\": \"s1\", \"over\": [\"@v1\"], \"kind\": \"obligation\", \"weak\": true, \"word\": \"should\", \"span\": \"should\"}, {\"t\": \"frequency\", \"id\": \"f1\", \"occasion\": [\"@q1\"], \"over\": [\"@s1\"], \"every\": 1, \"word\": \"daily\", \"span\": \"daily\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s7444cfbe39",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "garden",
+        "definite": true,
+        "span": "the garden"
+      },
+      {
+        "t": "range",
+        "id": "q1",
+        "class": "day",
+        "span": "daily"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "water",
+        "actor": "@n1",
+        "patient": "@x1",
+        "tense": "present",
+        "span": "Yusra should water the garden"
+      },
+      {
+        "t": "norm",
+        "id": "s1",
+        "over": [
+          "@v1"
+        ],
+        "kind": "obligation",
+        "weak": true,
+        "word": "should",
+        "span": "should"
+      },
+      {
+        "t": "frequency",
+        "id": "f1",
+        "occasion": [
+          "@q1"
+        ],
+        "over": [
+          "@s1"
+        ],
+        "every": 1,
+        "word": "daily",
+        "span": "daily"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "10797d224717f2bca653a08062dad6c7808584229209bae1f558f6f764ea26dd",
+  "run": 2,
+  "case": {
+    "template": "norm",
+    "section": "held_out",
+    "index": 0,
+    "category": "positive",
+    "text": "Yusra should water the garden daily.",
+    "key": "7444cfbe39"
+  }
+}

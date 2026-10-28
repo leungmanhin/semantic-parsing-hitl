@@ -1,0 +1,124 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "25132cbace6e7c678746b31b1423f2906765b5e22cd638c9be325d6139c6de09",
+  "item": {
+    "id": "scda04862bb",
+    "text": "Members must sign the ledger every month."
+  },
+  "usage": {
+    "input": 89487,
+    "output": 260,
+    "thinking": null,
+    "total": 89747,
+    "cached": 87438,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 89487,
+    "candidatesTokenCount": 260,
+    "totalTokenCount": 89747,
+    "cachedContentTokenCount": 87438,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 89487
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 87438
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 260
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"scda04862bb\", \"instances\": [{\"t\": \"range\", \"id\": \"q1\", \"class\": \"member\", \"span\": \"Members\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"ledger\", \"definite\": true, \"span\": \"the ledger\"}, {\"t\": \"range\", \"id\": \"q2\", \"class\": \"month\", \"quantifier\": \"every\", \"span\": \"every month\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"sign\", \"actor\": \"@q1\", \"patient\": \"@x1\", \"tense\": \"present\", \"span\": \"Members must sign the ledger\"}, {\"t\": \"norm\", \"id\": \"s1\", \"over\": [\"@v1\"], \"kind\": \"obligation\", \"word\": \"must\", \"span\": \"must\"}, {\"t\": \"frequency\", \"id\": \"f1\", \"occasion\": [\"@q2\"], \"ranges\": [\"@q1\"], \"over\": [\"@s1\"], \"every\": 1, \"word\": \"every month\", \"span\": \"every month\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "scda04862bb",
+    "instances": [
+      {
+        "t": "range",
+        "id": "q1",
+        "class": "member",
+        "span": "Members"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "ledger",
+        "definite": true,
+        "span": "the ledger"
+      },
+      {
+        "t": "range",
+        "id": "q2",
+        "class": "month",
+        "quantifier": "every",
+        "span": "every month"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "sign",
+        "actor": "@q1",
+        "patient": "@x1",
+        "tense": "present",
+        "span": "Members must sign the ledger"
+      },
+      {
+        "t": "norm",
+        "id": "s1",
+        "over": [
+          "@v1"
+        ],
+        "kind": "obligation",
+        "word": "must",
+        "span": "must"
+      },
+      {
+        "t": "frequency",
+        "id": "f1",
+        "occasion": [
+          "@q2"
+        ],
+        "ranges": [
+          "@q1"
+        ],
+        "over": [
+          "@s1"
+        ],
+        "every": 1,
+        "word": "every month",
+        "span": "every month"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "10797d224717f2bca653a08062dad6c7808584229209bae1f558f6f764ea26dd",
+  "run": 3,
+  "case": {
+    "template": "norm",
+    "section": "held_out",
+    "index": 1,
+    "category": "positive",
+    "text": "Members must sign the ledger every month.",
+    "key": "cda04862bb"
+  }
+}

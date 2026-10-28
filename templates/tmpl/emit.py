@@ -215,6 +215,7 @@ def rigid(r: dict, t: dict) -> bool:
 
 class _Emitter:
     def __init__(self, item: dict, catalog: dict):
+        self.pending_within: list = []
         self.item, self.cat = item, catalog
         self.insts = [dict(r) if isinstance(r, dict) else r for r in (item.get("instances") or [])]   # never mutate the caller's records
         self.by_id = {r["id"]: r for r in self.insts if "id" in r}
@@ -413,15 +414,37 @@ class _Emitter:
     def fill(self, inst: dict, slot: str, spec: dict, element=None, within: bool = False, part: str | None = None):
         v = element if element is not None else inst.get(slot)
         if spec["type"] == "refs":
-            if within:                                   # inside a bundle: the first referenced instance's symbol
+            if within:                                   # inside a bundle: the first referenced instance's symbol, through any scope over it
                 first = next((x for x in (v or []) if is_ref(x)), None)
-                return self.sym[first[1:]] if first else None
+                return self.content_symbol(first[1:]) if first else None
             return element if element is not None else self.bundle(v, inst["id"], spec, slot, part)
         if is_ref(v):
             return self.sym[v[1:]]
         if spec["type"] == "string":
             return Str(str(v))
         return v
+
+    def is_scope(self, iid: str) -> bool:
+        """An instance that mints no symbol and holds a clause in a refs slot: a negation, a modal,
+        a norm, an evidential — an operator over content, not content."""
+        r = self.by_id[iid]
+        t = self.cat[r["t"]]
+        return iid not in self.sym and any(sp["type"] == "refs" and r.get(sn) for sn, sp in (t.get("slots") or {}).items())
+
+    def content_symbol(self, iid: str):
+        """The symbol of an instance, or of the content under it when it is a scope operator
+        (the act under a norm): what a within-shape such as (Time {over} {occasion}) names."""
+        seen = set()
+        while iid not in self.sym and iid not in seen:
+            seen.add(iid)
+            r = self.by_id[iid]
+            t = self.cat[r["t"]]
+            nxt = next((x for sn, sp in (t.get("slots") or {}).items() if sp["type"] == "refs"
+                        for x in (r.get(sn) or []) if is_ref(x)), None)
+            if nxt is None:
+                break
+            iid = nxt[1:]
+        return self.sym[iid]
 
     def substitute(self, expr, inst: dict, slots: dict, element_slot=None, element=None, within: bool = False):
         if isinstance(expr, list):
@@ -605,9 +628,15 @@ class _Emitter:
         saved = self.sym
         if overlay is not None:
             self.sym = overlay
+        pushed = False
         try:
             terms = []
             ref_ids = [ref[1:] for ref in refs if is_ref(ref)]
+            if slot and part is None and any(self.is_scope(rid) for rid in ref_ids):
+                # a scope operator under this slot (a norm under a frequency): the within shapes belong
+                # inside the operator's own bundle, beside the act they describe, not beside the operator
+                self.pending_within.append(self.within_terms(scope_iid, slot))
+                pushed = True
             if part == "own":                            # the predication's own atoms and its participants'
                 for rid in ref_ids:
                     terms.extend(term for term, _e in self.shapes_of(rid))
@@ -626,10 +655,14 @@ class _Emitter:
                     terms.extend(self.atoms_of(ref[1:]))
                 for iid in self.attached(refs, scope_iid):
                     terms.extend(self.atoms_of(iid))
-            if slot and part is None:
+            if slot and part is None and not pushed:
                 terms.extend(self.within_terms(scope_iid, slot))
+                if self.pending_within and not any(self.is_scope(rid) for rid in ref_ids):
+                    terms.extend(self.pending_within.pop())         # the innermost bundle takes the outer scope's within shapes
         finally:
             self.sym = saved
+            if pushed and self.pending_within:
+                self.pending_within.pop()                            # never consumed (no content bundle under the operator)
         return terms[0] if len(terms) == 1 else ["And"] + terms
 
     def truth_of(self, inst: str) -> tuple:

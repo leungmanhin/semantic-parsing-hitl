@@ -1,0 +1,112 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "25132cbace6e7c678746b31b1423f2906765b5e22cd638c9be325d6139c6de09",
+  "item": {
+    "id": "s43b01b06e8",
+    "text": "Visitors must never feed the ferrets."
+  },
+  "usage": {
+    "input": 89490,
+    "output": 339,
+    "thinking": null,
+    "total": 89829,
+    "cached": 87441,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 89490,
+    "candidatesTokenCount": 339,
+    "totalTokenCount": 89829,
+    "cachedContentTokenCount": 87441,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 89490
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 87441
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 339
+      }
+    ]
+  },
+  "raw_text": "{\n  \"id\": \"s43b01b06e8\",\n  \"instances\": [\n    {\n      \"t\": \"range\",\n      \"id\": \"q1\",\n      \"class\": \"visitor\",\n      \"span\": \"Visitors\"\n    },\n    {\n      \"t\": \"group\",\n      \"id\": \"g1\",\n      \"class\": \"ferret\",\n      \"definite\": true,\n      \"span\": \"the ferrets\"\n    },\n    {\n      \"t\": \"activity\",\n      \"id\": \"v1\",\n      \"verb\": \"feed\",\n      \"actor\": \"@q1\",\n      \"patient\": \"@g1\",\n      \"tense\": \"present\",\n      \"span\": \"Visitors must never feed the ferrets\"\n    },\n    {\n      \"t\": \"norm\",\n      \"id\": \"s1\",\n      \"over\": [\n        \"@v1\"\n      ],\n      \"kind\": \"prohibition\",\n      \"word\": \"must never\",\n      \"span\": \"must never\"\n    },\n    {\n      \"t\": \"generic\",\n      \"id\": \"r1\",\n      \"ranges\": [\n        \"@q1\"\n      ],\n      \"over\": [\n        \"@s1\"\n      ],\n      \"span\": \"Visitors must never feed the ferrets\"\n    }\n  ],\n  \"unmapped\": [],\n  \"issues\": []\n}",
+  "response": {
+    "id": "s43b01b06e8",
+    "instances": [
+      {
+        "t": "range",
+        "id": "q1",
+        "class": "visitor",
+        "span": "Visitors"
+      },
+      {
+        "t": "group",
+        "id": "g1",
+        "class": "ferret",
+        "definite": true,
+        "span": "the ferrets"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "feed",
+        "actor": "@q1",
+        "patient": "@g1",
+        "tense": "present",
+        "span": "Visitors must never feed the ferrets"
+      },
+      {
+        "t": "norm",
+        "id": "s1",
+        "over": [
+          "@v1"
+        ],
+        "kind": "prohibition",
+        "word": "must never",
+        "span": "must never"
+      },
+      {
+        "t": "generic",
+        "id": "r1",
+        "ranges": [
+          "@q1"
+        ],
+        "over": [
+          "@s1"
+        ],
+        "span": "Visitors must never feed the ferrets"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "10797d224717f2bca653a08062dad6c7808584229209bae1f558f6f764ea26dd",
+  "run": 2,
+  "case": {
+    "template": "norm",
+    "section": "held_out",
+    "index": 4,
+    "category": "positive",
+    "text": "Visitors must never feed the ferrets.",
+    "key": "43b01b06e8"
+  }
+}
