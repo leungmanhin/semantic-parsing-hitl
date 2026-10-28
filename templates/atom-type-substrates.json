@@ -1213,6 +1213,29 @@
       "opaque": false,
       "gloss": "Links the two poles of one gradable dimension. Background fact (seeded), never parser output."
     },
+    "UnitFactor": {
+      "kind": "lexicon",
+      "arity": 3,
+      "arg_types": [
+        "Class",
+        "Class",
+        "Number"
+      ],
+      "out": "Proposition",
+      "opaque": false,
+      "gloss": "A unit's factor to a canonical unit: a magnitude in the first unit times the factor is the magnitude in the second (centimetre metre 0.01; a spelling variant is a factor of 1). Order: (UnitFactor unit canonical factor). Background fact (the rules file's lexicon), never parser output; the rules derive every measure and gap in the canonical unit."
+    },
+    "DimensionScale": {
+      "kind": "lexicon",
+      "arity": 2,
+      "arg_types": [
+        "Class",
+        "Class"
+      ],
+      "out": "Proposition",
+      "opaque": false,
+      "gloss": "A dimension noun's positive adjective scale (weight heavy, age old, cost expensive). Order: (DimensionScale noun adjective). Background fact (the rules file's lexicon), never parser output; the rules carry an ordering derived on the noun onto the adjective's scale."
+    },
     "Similarity": {
       "kind": "core-link",
       "arity": 2,

@@ -86,12 +86,42 @@ class SourceTests(unittest.TestCase):
         self.assertTrue(any("$z" in p for p in R.check([unbound], heads, ids)))
         unknown = copy.deepcopy(base); unknown["premises"] = ["(Coref $m $a)", "(Agentt $e $m)"]
         self.assertTrue(any("unknown head" in p for p in R.check([unknown], heads, ids)))
-        badop = copy.deepcopy(base); badop["computations"] = [{"result": "$q", "op": "*", "args": ["$e"]}]
+        badop = copy.deepcopy(base); badop["computations"] = [{"result": "$q", "op": "^", "args": ["$e"]}]
         self.assertTrue(any("op must be" in p for p in R.check([badop], heads, ids)))
         dup = [copy.deepcopy(base), copy.deepcopy(base)]
         self.assertTrue(any("duplicate id" in p for p in R.check(dup, heads, ids)))
         badtruth = copy.deepcopy(base); badtruth["truth"] = {"strength": 1.5, "confidence": 0.9}
         self.assertTrue(any("truth" in p for p in R.check([badtruth], heads, ids)))
+
+
+class FactsTests(unittest.TestCase):
+    def test_facts_validate_and_lower(self):
+        facts = R.load_facts(rules=RULES)
+        self.assertGreaterEqual(len(R.statements_of(facts)), 40)
+        groups = {g["id"]: g for g in facts}
+        self.assertEqual(groups["pole"]["head"], "ScaleOpposite")
+        self.assertEqual(R.lower_fact(groups["pole"], ["short", "tall"]), "(: pole_short_tall (ScaleOpposite short tall) (STV 1.0 0.99))")
+        self.assertIn("(: unit_centimetre_metre (UnitFactor centimetre metre 0.01) (STV 1.0 0.99))", R.statements_of(facts))
+        rendered = R.render(RULES, facts=facts)
+        self.assertLess(rendered.index("(: pole_short_tall"), rendered.index("(: result_holds"))      # facts before rules
+        self.assertEqual(R.render(RULES), rendered)                                                     # the default loads the same facts
+
+    def test_facts_validator(self):
+        arities, ids = R.substrate_arities(), R.catalog_ids()
+        base = {"id": "pole", "meaning": "m", "head": "ScaleOpposite", "truth": {"strength": 1.0, "confidence": 0.99},
+                "reads": ["comparative"], "entries": [["short", "tall"]]}
+        self.assertEqual(R.check_facts([base], arities, ids), [])
+        bad = copy.deepcopy(base); bad["head"] = "ScaleOpposit"
+        self.assertTrue(any("unknown head" in p for p in R.check_facts([bad], arities, ids)))
+        bad = copy.deepcopy(base); bad["entries"] = [["short"]]
+        self.assertTrue(any("takes 2" in p for p in R.check_facts([bad], arities, ids)))
+        bad = copy.deepcopy(base); bad["entries"] = [["short", "$x"]]
+        self.assertTrue(any("not a lowercase symbol" in p for p in R.check_facts([bad], arities, ids)))
+        bad = copy.deepcopy(base); bad["entries"] = [["short", "tall"], ["short", "tall"]]
+        self.assertTrue(any("duplicate entry" in p for p in R.check_facts([bad], arities, ids)))
+        self.assertTrue(any("already used" in p for p in R.check_facts([base], arities, ids, seen={"pole_short_tall"})))
+        bad = copy.deepcopy(base); bad["reads"] = ["nowhere"]
+        self.assertTrue(any("unknown template" in p for p in R.check_facts([bad], arities, ids)))
 
 
 class TypecheckTests(unittest.TestCase):
@@ -101,7 +131,7 @@ class TypecheckTests(unittest.TestCase):
         except Exception:
             self.skipTest("petta package not importable")
         with tempfile.NamedTemporaryFile("w", suffix=".jsonl", delete=False) as fh:
-            fh.write(json.dumps({"id": "rules", "statements": [R.lower(r) for r in R.concrete([r for r in RULES if R.runnable(r)])]}) + "\n")
+            fh.write(json.dumps({"id": "rules", "statements": [R.lower(r) for r in R.concrete([r for r in RULES if R.runnable(r)])] + R.statements_of(R.load_facts(rules=RULES))}) + "\n")
             path = fh.name
         report = path + ".report.json"
         try:

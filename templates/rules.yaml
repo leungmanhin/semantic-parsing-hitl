@@ -195,8 +195,8 @@ rules:
     semantics: deductive
     reads: [time]
   # Comparison: the parse emits the most specific atom (More, MoreBy, SameDegree, TimesAs) on the
-  # surface pole; these derive the rest. A pole lexicon (ScaleOpposite: short / tall) would let a
-  # consumer chain across poles — background facts, not rules; not seeded yet.
+  # surface pole; these derive the rest. The pole lexicon (the ScaleOpposite facts below) lets a
+  # consumer chain across poles: a comparison on one pole is the reverse comparison on the other.
   - id: more_trans
     meaning: exceeding is transitive on a scale
     premises: ["(More $s $x $y)", "(More $s $y $z)"]
@@ -243,6 +243,130 @@ rules:
     truth: {strength: 1.0, confidence: 0.99}
     semantics: deductive
     reads: [comparative]
+
+
+  # Poles: the ScaleOpposite facts name the two adjectives of one dimension; a comparison on one
+  # pole is the reverse comparison on the other (shorter than = taller than, the other way round).
+  # One route per conclusion: a measured gap flips as a gap and then yields the ordering through
+  # morebydiff; there is no direct gap-to-ordering pole edge.
+  - id: so_sym
+    meaning: the poles of a dimension are opposite in both directions
+    premises: ["(ScaleOpposite $a $b)"]
+    conclusion: "(ScaleOpposite $b $a)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [comparative]
+  - id: pole_more
+    meaning: exceeding on one pole is being exceeded on the opposite pole
+    premises: ["(ScaleOpposite $a $b)", "(More $a $x $y)"]
+    conclusion: "(More $b $y $x)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [comparative]
+    notes: >-
+      "Bob is shorter than Alice", (More short bob alice), gives (More tall alice bob), so a
+      question worded on the other pole is answered; the stated pole stays the stated atom.
+  - id: pole_moreby
+    meaning: a measured gap on one pole is the same gap the other way on the opposite pole
+    premises: ["(ScaleOpposite $a $b)", "(MoreBy $a $x $y $n $u)"]
+    conclusion: "(MoreBy $b $y $x $n $u)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [comparative]
+  - id: pole_samedegree
+    meaning: an equative on one pole is an equative on the opposite pole
+    premises: ["(ScaleOpposite $a $b)", "(SameDegree $a $x $y)"]
+    conclusion: "(SameDegree $b $x $y)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [comparative]
+
+  # Units: the parse keeps a measure in its stated unit; the UnitFactor facts give each unit's
+  # factor to the dimension's canonical unit (metre, kilogram, second, litre), and these rules
+  # derive the measure, the bound and the gap in the canonical unit, so that measures stated in
+  # different units compare. A consumer queries or thresholds in the canonical unit, or converts
+  # its threshold with the same factor. Conversions are linear; an affine unit (a temperature
+  # scale) has no factor and is not converted.
+  - id: unit_measure
+    meaning: a measure in a unit with a factor holds in the canonical unit
+    premises: ["(Measure $x $d $n $u)", "(UnitFactor $u $c $f)"]
+    computations: [{result: "$m", op: "*", args: ["$n", "$f"]}]
+    conclusion: "(Measure $x $d $m $c)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [measure]
+  - id: unit_atleast
+    meaning: a lower bound converts like a measure
+    premises: ["(MeasureAtLeast $x $d $n $u)", "(UnitFactor $u $c $f)"]
+    computations: [{result: "$m", op: "*", args: ["$n", "$f"]}]
+    conclusion: "(MeasureAtLeast $x $d $m $c)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [measure]
+  - id: unit_atmost
+    meaning: an upper bound converts like a measure
+    premises: ["(MeasureAtMost $x $d $n $u)", "(UnitFactor $u $c $f)"]
+    computations: [{result: "$m", op: "*", args: ["$n", "$f"]}]
+    conclusion: "(MeasureAtMost $x $d $m $c)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [measure]
+  - id: unit_moreby
+    meaning: a measured gap converts to the canonical unit
+    premises: ["(MoreBy $s $x $y $n $u)", "(UnitFactor $u $c $f)"]
+    computations: [{result: "$m", op: "*", args: ["$n", "$f"]}]
+    conclusion: "(MoreBy $s $x $y $m $c)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [comparative]
+
+  # Measures and orderings: two measures on one dimension in one unit give the gap between the
+  # things (morebydiff then gives the ordering), equal measures the equative; an ordering on a
+  # dimension NOUN (weight, age) is carried onto the noun's adjective scale by the DimensionScale
+  # facts, where the pole lexicon takes over.
+  - id: measure_moreby
+    meaning: two measures on one dimension in one unit give the gap between the things
+    premises: ["(Measure $x $d $a $u)", "(Measure $y $d $b $u)"]
+    computations: [{result: "$g", op: "-", args: ["$a", "$b"]}, {result: true, op: ">", args: ["$g", 0]}]
+    conclusion: "(MoreBy $d $x $y $g $u)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [measure, comparative]
+    notes: >-
+      "The rope is 3 metres long" and "the beam is 2 metres long" give (MoreBy long sk_rope_1
+      sk_beam_1 1.0 metre), and morebydiff the ordering (More long sk_rope_1 sk_beam_1). A
+      dimension stated as a noun (weighs 12 kilograms: weight) orders on that noun until the
+      dimension rules carry it onto the adjective; measures stated in different units meet in
+      the canonical unit first.
+  - id: measure_same
+    meaning: equal measures on one dimension in one unit give the equative
+    premises: ["(Measure $x $d $a $u)", "(Measure $y $d $a $u)"]
+    computations: [{result: true, op: "!=", args: ["$x", "$y"]}]
+    conclusion: "(SameDegree $d $x $y)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [measure, comparative]
+  - id: dimension_more
+    meaning: an ordering on a dimension noun is the ordering on its adjective scale
+    premises: ["(More $d $x $y)", "(DimensionScale $d $s)"]
+    conclusion: "(More $s $x $y)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [measure, comparative]
+  - id: dimension_moreby
+    meaning: a gap on a dimension noun is the gap on its adjective scale
+    premises: ["(MoreBy $d $x $y $n $u)", "(DimensionScale $d $s)"]
+    conclusion: "(MoreBy $s $x $y $n $u)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [measure, comparative]
+  - id: dimension_samedegree
+    meaning: an equative on a dimension noun is the equative on its adjective scale
+    premises: ["(SameDegree $d $x $y)", "(DimensionScale $d $s)"]
+    conclusion: "(SameDegree $s $x $y)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [measure, comparative]
 
   # Superlatives: the top of a class exceeds every other member, and no member exceeds the top. The
   # second rule concludes a negation, which the chainer answers as the positive at strength 0 — so
@@ -432,3 +556,111 @@ rules:
       "Teodor failed to arrive" marks the failing (Precludes sk_fail_1); the rule derives
       (Not (And (Member sk_arrive_1 arrive) (Agent sk_arrive_1 sk_teodor_1) (Past sk_arrive_1))),
       the catalog's own form for a denied past clause.
+
+# Lexicon facts: background atoms with no variables, loaded beside the rules. A group names its
+# head and its entries (one argument list per atom); each entry becomes a statement named by the
+# group id and the entry's symbols — (: pole_short_tall (ScaleOpposite short tall) (STV 1.0 0.99)).
+# Never parser output: the parse keeps the surface pole, the stated unit and the dimension word.
+facts:
+  - id: pole
+    meaning: the two adjectives of one gradable dimension, the lower pole first (so_sym gives the reverse pair)
+    head: ScaleOpposite
+    truth: {strength: 1.0, confidence: 0.99}
+    reads: [comparative]
+    notes: >-
+      One pair per dimension. A word with two dimensions (short: height and length; hard:
+      hardness and difficulty) is listed once, on the dimension of its commonest comparative,
+      since the scale symbol carries no sense and a pair applies wherever the word is used — the
+      price of keeping the surface word as the scale.
+    entries:
+      - [short, tall]
+      - [weak, strong]
+      - [slow, fast]
+      - [cheap, expensive]
+      - [light, heavy]
+      - [narrow, wide]
+      - [shallow, deep]
+      - [low, high]
+      - [young, old]
+      - [cold, hot]
+      - [cool, warm]
+      - [dim, bright]
+      - [quiet, loud]
+      - [small, large]
+      - [small, big]
+      - [thin, thick]
+      - [few, many]
+      - [little, much]
+      - [poor, rich]
+      - [empty, full]
+      - [early, late]
+      - [soft, hard]
+      - [bad, good]
+      - [near, far]
+      - [simple, complex]
+      - [easy, difficult]
+      - [rare, common]
+      - [sad, happy]
+      - [ugly, beautiful]
+  - id: unit
+    meaning: a magnitude in the unit times the factor is the magnitude in the canonical unit (metre, kilogram, second, litre); a spelling variant has the factor 1
+    head: UnitFactor
+    truth: {strength: 1.0, confidence: 0.99}
+    reads: [measure, comparative]
+    notes: >-
+      Linear factors only: a temperature scale is affine and has none, a currency has no fixed
+      one. Calendar units take their average length (a month 2629800 seconds, a year 31557600).
+      The factors are the legacy lexicon's; the spelling variants (meter, liter) convert at 1 so
+      that both spellings of a unit meet in the canonical one.
+    entries:
+      - [meter, metre, 1]
+      - [centimetre, metre, 0.01]
+      - [centimeter, metre, 0.01]
+      - [millimetre, metre, 0.001]
+      - [millimeter, metre, 0.001]
+      - [kilometre, metre, 1000]
+      - [kilometer, metre, 1000]
+      - [inch, metre, 0.0254]
+      - [foot, metre, 0.3048]
+      - [yard, metre, 0.9144]
+      - [mile, metre, 1609.344]
+      - [gram, kilogram, 0.001]
+      - [milligram, kilogram, 0.000001]
+      - [pound, kilogram, 0.453592]
+      - [ounce, kilogram, 0.0283495]
+      - [ton, kilogram, 1000]
+      - [tonne, kilogram, 1000]
+      - [minute, second, 60]
+      - [hour, second, 3600]
+      - [day, second, 86400]
+      - [week, second, 604800]
+      - [month, second, 2629800]
+      - [year, second, 31557600]
+      - [decade, second, 315576000]
+      - [century, second, 3155760000]
+      - [liter, litre, 1]
+      - [millilitre, litre, 0.001]
+      - [milliliter, litre, 0.001]
+      - [centilitre, litre, 0.01]
+  - id: dimension
+    meaning: a dimension noun's positive adjective scale, where an ordering derived from measures continues on the adjective and its pole
+    head: DimensionScale
+    truth: {strength: 1.0, confidence: 0.99}
+    reads: [measure, comparative]
+    entries:
+      - [weight, heavy]
+      - [height, tall]
+      - [length, long]
+      - [width, wide]
+      - [depth, deep]
+      - [age, old]
+      - [duration, long]
+      - [cost, expensive]
+      - [price, expensive]
+      - [speed, fast]
+      - [temperature, hot]
+      - [distance, far]
+      - [size, big]
+      - [thickness, thick]
+      - [strength, strong]
+      - [brightness, bright]

@@ -2,7 +2,7 @@
 
 Generated from `templates/atom-type-substrates.json` (schema `atom-type-substrates/1`) by `templates/tmpl/gen_substrate.py`, together with `templates/generated/atom-types.metta`. Do not edit by hand; regenerate with `cd templates && python -m tmpl.gen_substrate`.
 
-144 heads in 13 kinds (7 proposed; 144 with a reviewed type declaration so far). `type-def` is the PeTTa declaration emitted for the head; `?` as the output type means the head is not yet reviewed and is absent from the `.metta` file; `%Undefined%` marks a position the head takes but the JSON does not type.
+146 heads in 13 kinds (7 proposed; 146 with a reviewed type declaration so far). `type-def` is the PeTTa declaration emitted for the head; `?` as the output type means the head is not yet reviewed and is absent from the `.metta` file; `%Undefined%` marks a position the head takes but the JSON does not type.
 
 Every atom is carried as a statement (: <proof-name> <atom> <tv>), tv = (STV strength confidence) or another engine truth value. The carrier is not an atom kind: ':' is never type-declared (it is also PeTTa's type-declaration head) and the truth value is declared by the engine, not by this substrate.
 
@@ -826,7 +826,14 @@ type-def: (: forClass (-> Class Level))
 gloss: Comparison-class marker: ADJ relative to the norm for a class. A value term, not a statement: stands in the level slot of Degree.
 
 
-## lexicon (4)
+## lexicon (6)
+
+head: DimensionScale
+kind: lexicon
+arity: 2
+type-def: (: DimensionScale (-> Class Class Proposition))
+gloss: A dimension noun's positive adjective scale (weight heavy, age old, cost expensive). Order: (DimensionScale noun adjective). Background fact (the rules file's lexicon), never parser output; the rules carry an ordering derived on the noun onto the adjective's scale.
+
 
 head: MonthNumber
 kind: lexicon
@@ -847,6 +854,13 @@ kind: lexicon
 arity: 1
 type-def: (: Symmetric (-> Atom Proposition))
 gloss: The legacy line's tag on an open-class relation head (Friend) read by its seeded sym_rel; never catalog output. The catalog represents a symmetric relation as ONE state with TWO bearers — (Experiencer s x) (Experiencer s y) — chosen by the stative-relation template's lexicon, so nothing is tagged or derived. Declaration kept only until the re-parse.
+
+
+head: UnitFactor
+kind: lexicon
+arity: 3
+type-def: (: UnitFactor (-> Class Class Number Proposition))
+gloss: A unit's factor to a canonical unit: a magnitude in the first unit times the factor is the magnitude in the second (centimetre metre 0.01; a spelling variant is a factor of 1). Order: (UnitFactor unit canonical factor). Background fact (the rules file's lexicon), never parser output; the rules derive every measure and gap in the canonical unit.
 
 
 head: WeekdayNumber

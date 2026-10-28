@@ -24,6 +24,14 @@ a failed premise). A bare ``(STV s c)`` would make the chainer estimate that bra
 over stored facts, which collapses the confidence of any conclusion drawn from a premise below
 strength 1.0. Arithmetic steps lower to the chainer's ``(Compute op (args) -> result)`` premise; a
 boolean guard (``!=``, ``>``, ``<`` with ``result: true``) is a premise that holds only when the test does.
+
+FACTS. ``rules.yaml`` may also hold a ``facts`` list: background LEXICON atoms with no variables —
+the poles of a gradable dimension (``ScaleOpposite short tall``), unit factors to a canonical unit
+(``UnitFactor centimetre metre 0.01``), a dimension noun's adjective scale (``DimensionScale
+weight heavy``). A facts group names its ``head``, a ``truth``, the templates it ``reads`` and its
+``entries`` (one argument list per atom); each entry lowers to a plain statement
+``(: <group id>_<symbolic args> (<head> <args>) (STV s c))`` written before the rules, so a consumer
+loads the lexicon with the rules. Facts are never parser output.
 """
 from __future__ import annotations
 
@@ -48,7 +56,7 @@ CATALOG_DIR = os.path.join(TEMPLATES, "catalog")
 GENERATED = os.path.join(TEMPLATES, "generated", "seeded_rules.metta")
 
 SEMANTICS = ("deductive",)
-OPS = ("+", "-", "clause-event", "!=", ">", "<")   # arithmetic, the event of a sealed clause, and boolean guards (result: true)
+OPS = ("+", "-", "*", "/", "clause-event", "!=", ">", "<")   # arithmetic, the event of a sealed clause, and boolean guards (result: true)
 TENSES = {"none": None, "past": "Past", "future": "Future"}
 CAPABILITIES = ("sealed-term-projection",)
 TARGET_CAPABILITIES = {"pettachainer": {"sealed-term-projection"}}  # what each consumer can run; grows with the consumer
@@ -207,6 +215,107 @@ def catalog_ids(directory: str = CATALOG_DIR) -> set:
     return {os.path.basename(p)[:-5] for p in glob.glob(os.path.join(directory, "*.yaml")) if not os.path.basename(p).startswith("_")}
 
 
+def substrate_arities(path: str = SUBSTRATE) -> dict:
+    """Head → the arities the substrate declares (a list)."""
+    with open(path, encoding="utf-8") as fh:
+        heads = json.load(fh)["heads"]
+    return {name: T.arities_of(entry) for name, entry in heads.items()}
+
+
+_SYMBOL = re.compile(r"[a-z][a-z0-9_]*")
+FACT_KEYS = ("id", "meaning", "head", "truth", "reads", "entries", "notes")
+
+
+def fact_id(group: dict, entry: list) -> str:
+    """The statement name of one entry: the group id and the entry's symbolic arguments."""
+    return group["id"] + "".join(f"_{a}" for a in entry if isinstance(a, str))
+
+
+def check_facts(facts: list[dict], arities: dict | None = None, templates: set | None = None, seen: set | None = None) -> list[str]:
+    """Structural problems of the facts: a known head of the right arity, ground symbolic or
+    numeric arguments, unique statement names (also against the rules' ids when ``seen`` is
+    shared), a truth value in range, known templates."""
+    problems, seen = [], set() if seen is None else seen
+    for i, g in enumerate(facts):
+        where = f"facts[{i}] ({g.get('id', '?')})"
+        gid = g.get("id")
+        if not isinstance(gid, str) or not re.fullmatch(r"[a-z][a-z0-9_]*", gid):
+            problems.append(f"{where}: id must be lowercase snake_case")
+        if not g.get("meaning"):
+            problems.append(f"{where}: no meaning")
+        head = g.get("head")
+        if not isinstance(head, str) or not re.fullmatch(r"[A-Z][A-Za-z0-9]*", head):
+            problems.append(f"{where}: head must be an UpperCamelCase head")
+            head = None
+        elif arities is not None and head not in arities:
+            problems.append(f"{where}: unknown head {head!r} (not in the substrate)")
+            head = None
+        truth = g.get("truth")
+        if not (isinstance(truth, dict) and set(truth) == {"strength", "confidence"}
+                and all(isinstance(truth[k], (int, float)) and 0 <= truth[k] <= 1 for k in truth)):
+            problems.append(f"{where}: truth must be {{strength, confidence}} in [0, 1]")
+        if templates is not None:
+            for t in g.get("reads") or []:
+                if t not in templates:
+                    problems.append(f"{where}: reads unknown template {t!r}")
+        for key in g:
+            if key not in FACT_KEYS:
+                problems.append(f"{where}: unknown key {key!r}")
+        entries = g.get("entries")
+        if not isinstance(entries, list) or not entries:
+            problems.append(f"{where}: entries must be a non-empty list of argument lists")
+            continue
+        rows = set()
+        for j, e in enumerate(entries):
+            ew = f"{where}: entries[{j}]"
+            if not isinstance(e, list) or not e or not all(isinstance(a, (str, int, float)) and not isinstance(a, bool) for a in e):
+                problems.append(f"{ew}: must be a list of symbols and numbers")
+                continue
+            for a in e:
+                if isinstance(a, str) and not _SYMBOL.fullmatch(a):
+                    problems.append(f"{ew}: {a!r} is not a lowercase symbol (no variables in a fact)")
+            if head and arities is not None and len(e) not in arities[head]:
+                problems.append(f"{ew}: {head} takes {' or '.join(str(a) for a in arities[head])} arguments, not {len(e)}")
+            key = tuple(str(a) for a in e)
+            if key in rows:
+                problems.append(f"{ew}: duplicate entry")
+            rows.add(key)
+            if isinstance(gid, str):
+                name = fact_id(g, e)
+                if name in seen:
+                    problems.append(f"{ew}: statement name {name!r} already used")
+                seen.add(name)
+    return problems
+
+
+def load_facts(path: str = RULES, strict: bool = True, rules: list[dict] | None = None) -> list[dict]:
+    """The facts groups of the source (an empty list when it has none), validated; the rules'
+    ids are reserved against the statement names when ``rules`` is given."""
+    with open(path, encoding="utf-8") as fh:
+        doc = yaml.safe_load(fh)
+    facts = (doc or {}).get("facts") or []
+    if not isinstance(facts, list):
+        raise RulesError(f"{path}: `facts` must be a list")
+    seen = {v["id"] for r in (rules or []) for v in expand(r)}
+    problems = check_facts(facts, substrate_arities(), catalog_ids(), seen)
+    if problems and strict:
+        raise RulesError("\n".join(problems))
+    return facts
+
+
+def lower_fact(group: dict, entry: list, target: str = "pettachainer") -> str:
+    """One lexicon entry in the consumer's form: a plain statement."""
+    if target != "pettachainer":
+        raise RulesError(f"no lowering for target {target!r}")
+    args = " ".join(a if isinstance(a, str) else _num(a) for a in entry)
+    s, c = group["truth"]["strength"], group["truth"]["confidence"]
+    return f"(: {fact_id(group, entry)} ({group['head']} {args}) (STV {_num(s)} {_num(c)}))"
+
+
+def statements_of(facts: list[dict], target: str = "pettachainer") -> list[str]:
+    return [lower_fact(g, e, target) for g in facts for e in g["entries"]]
+
+
 def load(path: str = RULES, strict: bool = True) -> list[dict]:
     with open(path, encoding="utf-8") as fh:
         doc = yaml.safe_load(fh)
@@ -248,7 +357,11 @@ def runnable(rule: dict, target: str = "pettachainer") -> bool:
     return req is None or req in TARGET_CAPABILITIES.get(target, set())
 
 
-def render(rules: list[dict], target: str = "pettachainer") -> str:
+def render(rules: list[dict], target: str = "pettachainer", facts: list[dict] | None = None) -> str:
+    """The consumer's file: the lexicon facts (loaded from the source unless given), then the
+    rules."""
+    if facts is None:
+        facts = load_facts(rules=rules)
     lines = [
         ";; The catalog's background rules, lowered for the chainer from rules.yaml — generated by",
         ";; `python -m tmpl.rules`; never edited by hand. Loaded beside the emitted statements by a",
@@ -265,6 +378,15 @@ def render(rules: list[dict], target: str = "pettachainer") -> str:
         for r in pending:
             lines.append(f";;   {r['id']} — {r['meaning']} (requires {r['requires']})")
     lines.append("")
+    if facts:
+        lines.append(";; ===== Lexicon facts: background atoms with no variables, loaded with the rules (never parser output) =====")
+        for g in facts:
+            reads = f" (reads: {', '.join(g['reads'])})" if g.get("reads") else ""
+            lines.append(f";; {g['id']}: {g['meaning']}{reads}")
+            for e in g["entries"]:
+                lines.append(lower_fact(g, e, target))
+        lines.append("")
+        lines.append(";; ===== Rules =====")
     for src in rules:
         if not runnable(src, target):
             continue
@@ -284,18 +406,20 @@ def main(argv=None) -> int:
     ap.add_argument("--check", action="store_true", help="validate and compare with the generated file; write nothing")
     args = ap.parse_args(argv)
     rules = load(args.rules)
-    text = render(rules)
+    facts = load_facts(args.rules, rules=rules)
+    text = render(rules, facts=facts)
     n = len([v for r in rules if runnable(r) for v in expand(r)])
+    nf = len(statements_of(facts))
     pending = [r["id"] for r in rules if not runnable(r)]
     note = f", {len(pending)} pending the chainer's {', '.join(sorted({r['requires'] for r in rules if not runnable(r)}))}" if pending else ""
     if args.check:
         current = open(args.out, encoding="utf-8").read() if os.path.exists(args.out) else ""
-        print(f"{len(rules)} rules ({n} lowered{note}) valid · generated file {'fresh' if current == text else 'STALE'}")
+        print(f"{len(rules)} rules ({n} lowered{note}) + {nf} lexicon facts valid · generated file {'fresh' if current == text else 'STALE'}")
         return 0 if current == text else 1
     os.makedirs(os.path.dirname(args.out), exist_ok=True)
     with open(args.out, "w", encoding="utf-8") as fh:
         fh.write(text)
-    print(f"wrote {os.path.relpath(args.out, TEMPLATES)} ({len(rules)} rules, {n} lowered{note})")
+    print(f"wrote {os.path.relpath(args.out, TEMPLATES)} ({len(rules)} rules, {n} lowered{note}; {nf} lexicon facts)")
     return 0
 
 

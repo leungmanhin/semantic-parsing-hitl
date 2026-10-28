@@ -60,11 +60,19 @@ class SeededRulesOnTheEngine(unittest.TestCase):
             h.add_atom(a)
         return h
 
-    def query(self, h, pattern):
-        return h.query(f"(: $prf {pattern} $tv)", steps=400, timeout_sec=0)
+    def query(self, h, pattern, steps=400):
+        """A proof query; ``steps`` is the chainer's budget — 400 covers two derivation hops, a
+        lexicon chain through a unit, a gap, a dimension and a pole needs about 4000."""
+        return h.query(f"(: $prf {pattern} $tv)", steps=steps, timeout_sec=0)
 
     def test_every_rule_is_a_conditional(self):
+        """Every implication in the generated file is a conditional with a confidence-free
+        negative branch; the lexicon facts beside them are ground statements with a plain STV."""
         for r in rules():
+            if "(Implication " not in r:
+                self.assertNotIn("$", r, r)                                      # a fact: no variables
+                self.assertTrue(r.rstrip().endswith("(STV 1.0 0.99))"), r)
+                continue
             self.assertIn("(CTV (STV ", r, r)
             self.assertTrue(r.rstrip().endswith("(STV 0.0 0.0)))"), r)          # a negative branch with no confidence
 
@@ -423,6 +431,37 @@ class SeededRulesOnTheEngine(unittest.TestCase):
         self.assertTrue(fraction and "(Fraction 40 100)" in fraction[0], fraction)                   # a fraction level binds
         self.assertTrue(self.query(h, "(And (PartOf $p sk_loaf_1) (ProportionOf $p sk_loaf_1 half) (Member $p stale))"))   # a portion of a mass
         self.assertFalse(self.query(h, "(Implication (Member $x quilt) (Member $x damp))"))         # no claim about quilts in general
+
+    def test_the_lexicon_bridges_poles_units_and_dimensions(self):
+        """The background lexicon: a comparison on one pole answers a question on the opposite
+        pole and a measured gap flips with it; a measure in a non-canonical unit holds in the
+        canonical unit; two measures on one dimension give the gap, the ordering and, when equal,
+        the equative; a dimension noun's ordering reaches its adjective scale and then the
+        opposite pole; nothing is derived the wrong way round."""
+        if not any(r.startswith("(: pole_short_tall") for r in rules()):
+            self.skipTest("the lexicon is pending")
+        h = self.space(['(: c1 (More short sk_bob_1 sk_alice_1) (STV 1.0 0.99))',
+                        '(: c2 (MoreBy light sk_pony_1 sk_horse_1 30 kilogram) (STV 1.0 0.99))',
+                        '(: m1 (Measure sk_rope_1 long 300 centimetre) (STV 1.0 0.99))',
+                        '(: m2 (Measure sk_beam_1 long 2 metre) (STV 1.0 0.99))',
+                        '(: m3 (Measure sk_crate_1 weight 12 kilogram) (STV 1.0 0.99))',
+                        '(: m4 (Measure sk_box_1 weight 10 kilogram) (STV 1.0 0.99))',
+                        '(: m5 (Measure sk_yusra_1 old 30 year) (STV 1.0 0.99))',
+                        '(: m6 (Measure sk_teodor_1 old 30 year) (STV 1.0 0.99))'])
+        flipped = self.query(h, "(More tall sk_alice_1 sk_bob_1)")
+        self.assertTrue(flipped and "pole_more" in flipped[0], flipped)                   # shorter than = taller than, reversed
+        self.assertFalse(self.query(h, "(More tall sk_bob_1 sk_alice_1)"))                # never the wrong way round
+        self.assertTrue(self.query(h, "(More heavy sk_horse_1 sk_pony_1)"))               # the gap flips, then the ordering
+        metres = self.query(h, "(Measure sk_rope_1 long $m metre)")
+        self.assertTrue(metres and " 3.0 " in metres[0], metres)                          # 300 centimetres in the canonical unit
+        gap = self.query(h, "(MoreBy long sk_rope_1 sk_beam_1 $g metre)")
+        self.assertTrue(gap and " 1.0 " in gap[0], gap)                                   # the gap across units
+        self.assertTrue(self.query(h, "(More long sk_rope_1 sk_beam_1)", steps=1500))     # and the ordering: three hops
+        self.assertFalse(self.query(h, "(More long sk_beam_1 sk_rope_1)", steps=1500))
+        self.assertTrue(self.query(h, "(More heavy sk_crate_1 sk_box_1)", steps=1500))    # weight → heavy
+        self.assertTrue(self.query(h, "(More light sk_box_1 sk_crate_1)", steps=4000))    # → light, the opposite pole: five hops
+        self.assertTrue(self.query(h, "(SameDegree old sk_yusra_1 sk_teodor_1)"))         # equal measures: the equative
+        self.assertFalse(self.query(h, "(More old sk_yusra_1 sk_teodor_1)"))
 
 
 if __name__ == "__main__":
