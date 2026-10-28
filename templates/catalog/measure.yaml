@@ -40,7 +40,11 @@ trigger:
     degrees: two instances). A hedge (about, roughly, nearly) is recorded in `hedge`; the
     magnitude stays the number stated. A measure phrase inside a noun phrase (a 20 kilogram
     sack) is a measure of that witness, in the present. Number words are converted (forty →
-    40, three thousand → 3000, an hour → 1).
+    40, three thousand → 3000, an hour → 1). A QUANTITY OF A SUBSTANCE stated by a container or
+    a measure word — a cup of tea, two bags of flour, a litre of milk, three metres of cloth — is
+    a witness of the stuff (the indefinite quantity the text introduces) with this template's
+    instance on it: `bearer` the witness, `unit` the container or measure word (cup, bag, litre,
+    metre), `dimension` unspecified, `magnitude` the number (a cup → 1).
   surface_forms:
     - "<X> is <n> <unit> <ADJ>"                           # the rope is 3 metres long; Lamine is 30 years old
     - "<X> weighs / costs / measures <n> <unit>"           # the crate weighs 12 kilograms: dimension weight
@@ -50,6 +54,7 @@ trigger:
     - "<X> is at least / more than / no more than <n> <unit> <ADJ>"   # a bound: MeasureAtLeast / MeasureAtMost
     - "<X> is about / roughly <n> <unit> <ADJ>"            # a hedge, recorded
     - "<change verb> by <n> <unit> / from <n> to <n> <unit>"   # fell by 8 percent; rose from 9 to 12 degrees
+    - "a cup / two bags / a litre of <substance>"          # a quantity of a substance: a witness of the stuff, the unit cup / bag / litre
   boundary:                   # looks like a measure but is not one
     - >-
       a count of things — three students, has four legs, twelve chairs: a group with its
@@ -61,9 +66,9 @@ trigger:
     - >-
       a degree word with no number — very tall, too heavy, a lot heavier: a degree or an extent
     - >-
-      a proportion or a subset of a set — half of the loaf, 40 percent of the students: no
-      template here; report the phrase as unmapped (G00); a percentage as a value — unemployment
-      is 5 percent, fell by 8 percent — is a measure with the unit percent
+      a proportion or a subset of a definite whole — half of the loaf, 40 percent of the
+      students: the portion template; a percentage as a value — unemployment is 5 percent, fell
+      by 8 percent — is a measure with the unit percent
     - >-
       a time or a date — at noon, in 2019, three days ago, two weeks later: a time or a time
       relation, not a measure
@@ -71,8 +76,9 @@ trigger:
       how often — twice a week, every two hours: a frequency; a rate with a unit — 30
       kilometres per hour — is a measure
     - >-
-      a vague duration or amount with no number — all day, for years, a lot of water: no slot
-      here; report the phrase as unmapped (G00)
+      a vague duration with no number — all day, for years: no slot here; report the phrase as
+      unmapped (G00); a vague amount of a substance — a lot of water, plenty of rain: the
+      witness's own quantity phrase, no measure
     - >-
       a bare number with neither a dimension nor a unit — Lamine is 30, the bridge is 200: no
       dimension and no unit to record; report the clause as unmapped (G00)
@@ -178,6 +184,14 @@ examples:
       expected: {abstain: true, template: time}                       # a measured distance in time: a time point
 
   held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      note: a quantity of a substance — a witness of the stuff, the container word the unit
+      text: "Yusra drank a cup of tea."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, class: tea}
+        - {t: activity, id: v1, verb: drink, actor: "@n1", patient: "@x1", tense: past}
+        - {t: measure, id: m1, bearer: "@x1", head: Measure, dimension: unspecified, magnitude: 1, unit: cup}
     - category: positive
       note: a lower bound
       text: "The wall is at least 2 metres high."

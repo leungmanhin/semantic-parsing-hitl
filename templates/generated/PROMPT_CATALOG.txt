@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 6e7160ceeb9e7d50 · 56 templates
+catalog sha256 67b5023b362ac293 · 57 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -51,8 +51,8 @@ fences.
 ## Identifiers and fillers
 
 - Every instance carries an `id`: a short lowercase label you choose, unique within the item.
-  Suggested prefixes: `n` named individual, `x` witness, `g` group, `e` event, `s` scope
-  operator (negation, modal, norm, evidential), `c` copular predication, `l` location, `q`
+  Suggested prefixes: `n` named individual, `x` witness, `g` group or portion, `e` event, `s`
+  scope operator (negation, modal, norm, evidential), `c` copular predication, `l` location, `q`
   quantified range, `r` rule, `d` comparison or degree, `m` measure, `t` time, `k` link, `f`
   focus (n1, x1, e1, s1 …).
 - A slot that points to another instance holds `"@<id>"`, for example `"Agent": "@n1"`.
@@ -158,8 +158,7 @@ part, keep the instances the templates license and report just that part: an add
 bound, duration, place, manner, amount or tag leaves the event itself true ("was demolished
 before 1960" still says it was demolished). When the rest would NOT follow without the unmapped
 part, leave the whole claim out and report the whole clause: a negated condition ("unless it
-rains, Lamine sings"), a hedge ("supposedly full"), a proportion or partitive ("12.5% of the
-applicants").
+rains, Lamine sings"), a hedge ("supposedly full"), an unencodable quantity ("too much salt").
 
 Referents inside an unmapped span: a NAME still gets its instance (a name is rigid, the same
 individual wherever it appears in the text), but a common-noun phrase or a pronoun does not. A
@@ -208,17 +207,17 @@ span, not an issue.
 ### group — A plural noun phrase introducing a group of individuals
 
 When: A plural noun phrase headed by a common noun — the ferrets, several students, three
-ladders, a few children, dozens of protesters, both ladders, Yusra's ferrets — introducing a
-group of individuals of that class. The group gets one witness symbol. Its size is recorded as
-an exact count when a numeral or "both" states it (three → 3, both → 2) and as the vague phrase
-as written otherwise (several, a few, dozens). A definite group ("the", "these", "those",
-"both") is marked definite; a possessed group (Yusra's ferrets) records its possessor and needs
-no definite mark — the possessor presupposes it.
+ladders, a few children, dozens of protesters, a lot of rocks, both ladders, Yusra's ferrets —
+introducing a group of individuals of that class. The group gets one witness symbol. Its size is
+recorded as an exact count when a numeral or "both" states it (three → 3, both → 2) and as the
+vague phrase as written otherwise (several, a few, dozens). A definite group ("the", "these",
+"those", "both") is marked definite; a possessed group (Yusra's ferrets) records its possessor
+and needs no definite mark — the possessor presupposes it.
 
 Forms:
 - the <N>s
 - <numeral> <N>s
-- several / a few / many / dozens of <N>s
+- several / a few / many / dozens of / a lot of <N>s
 - both <N>s
 - <possessor>'s <N>s
 
@@ -228,6 +227,9 @@ Not this template:
 - a bare plural read generically — ferrets are curious: a statement about the class
 - a quantifier word — all ferrets, every ferret, each ferret, most ferrets, no ferret: a
   quantified generalization, not a group
+- a quantified portion of a definite group — two of the ferrets, most of the ferrets, the rest
+  of the ferrets: a portion, with this group as its whole; all of / each of / both of the
+  ferrets: this group itself, with a distribution; none of the ferrets: a range
 - a singular noun phrase — the ferret, a ladder: a witness
 
 Slots:
@@ -240,7 +242,7 @@ Slots:
 - `count` (optional; a number): the exact size when a numeral or both states it (three → 3; both
   → 2).
 - `quantity` (optional; a string): the vague size phrase as written (several, a few, some, many,
-  dozens); absent when a numeral or both states the size.
+  dozens, a lot, lots, plenty); absent when a numeral or both states the size.
 - `props` (optional; a list of lemmas): adjectival properties stated in the phrase.
 - `possessor` (optional; "@id" of a referent instance, or a bare lemma for a non-specific
   filler): the possessor of a possessive phrase (Yusra's ferrets).
@@ -353,6 +355,138 @@ The program renders these instances as:
 
     (Name sk_teodor_1 "Teodor")
 
+### portion — A quantified portion of a definite whole
+
+When: A noun phrase of the form "<quantity> of <the whole>" where the whole is a SPECIFIC
+referent the text presupposes — a definite or possessed group (the ferrets, these quilts,
+Yusra's ferrets, them) or a definite singular whole (the loaf, the budget, the field, the
+morning) — and the quantity is a NUMBER of two or more (two of the ferrets, twenty of the
+students), a VAGUE COUNT (several of, a few of, dozens of), a PROPORTION WORD (most of, some of,
+many of, few of, half of), a FRACTION or a PERCENTAGE (a third of, two-thirds of, forty percent
+of, 12.5% of, three out of five of), or "the rest of". Write the whole's own instance first (the
+group or the witness; a pronoun is a mention), then one portion instance naming it: `members` is
+the members' class when the whole is a group (ferret), absent for a mass or a single thing;
+exactly one of `count`, `quantity`, `word`, `numerator` (with `denominator`) or `rest` says how
+much. Number words are converted (two → 2, forty percent → 40 over 100, a third → 1 over 3; half
+stays the word half). The portion then fills the clause's slot like any referent, and a
+distribution instance over it says the predicate holds of each member when it does (most of the
+quilts are damp: each is).
+
+Forms:
+- <n> of the <N>s
+- several / a few / dozens of the <N>s
+- most / some / many / few / half of the <N>s
+- half / most / the rest of the <N>
+- a third / two-thirds / forty percent / 12.5% of the <N>(s)
+- <quantity> of them / of Yusra's <N>s
+
+Not this template:
+- one of the Ns — one of the weavers, one of the seven sins: a single member, a witness of the
+  class linked to the group by a part-whole instance (word one of), not a portion
+- all / each / both / every one of the Ns — all of the ferrets slept: the whole group itself
+  (both: count 2), with a distribution; none of the Ns — none of the ferrets slept: a range with
+  the quantifier none, and the generic builds the rule
+- a quantifier on a bare class noun — most students, three ferrets, half the time: no whole is
+  stated; most students is a range of a generalization, three ferrets a group; a bare "most" is
+  never a portion
+- a quantity of a substance — a cup of tea, three metres of cloth, a lot of water: a witness of
+  the stuff with a measure or a vague quantity phrase on it (the measure and witness templates),
+  not a portion of a whole
+- a plain part named by a noun — a piece of the loaf, the top of the ladder, a member of the
+  guild: a witness and a part-whole instance; the amount is not stated
+- one of the ADJ-est Ns — one of the oldest glaziers: a superlative
+- a possessive of-phrase — the quilt of Yusra, a friend of Lamine: a witness with its possessor,
+  or a stative relation
+- a percentage as a value, not a share of a whole — unemployment is 5 percent, fell by 8
+  percent: a measure with the unit percent
+
+Slots:
+
+- `t` (required): "portion"
+- `id` (required; your label for this instance): your label for the portion (g2, g3 …).
+- `whole` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
+  the whole the portion is taken from: the id of its instance — a definite or possessed group
+  (the ferrets, Yusra's ferrets), a definite witness (the loaf, the budget) or a mention (them).
+- `members` (optional; a lemma): the class of the portion's members when the whole is a group,
+  lemmatized to the singular (ferret); for a pronoun whole, its antecedent's class when the text
+  names it; absent for a mass or a single whole (half of the loaf).
+- `count` (optional; a number): an exact number of members, two or more (two of → 2, twenty of →
+  20); number words converted.
+- `quantity` (optional; a string): a vague count phrase as written (several, a few, a couple,
+  dozens, a handful, a number).
+- `word` (optional; a lemma): a proportion word as written, lowercase (most, some, many, few,
+  half).
+- `numerator` (optional; a number): the numerator of a stated fraction or percentage (two-thirds
+  → 2, a third → 1, forty percent → 40, 12.5% → 12.5, three out of five → 3); always with
+  denominator.
+- `denominator` (optional; a number): the denominator (two-thirds → 3, a third → 3, a percentage
+  → 100, three out of five → 5); always with numerator.
+- `rest` (optional; true / false): true for the rest of / the remainder of; absent otherwise.
+- Exactly one of `count`, `quantity`, `word`, `numerator`, `rest` is filled.
+
+Example (a counted portion of a definite group — a subset group with its count; the predicate on it and distributed to each member). TEXT: Three of the ferrets slept.
+
+Instances:
+
+    [
+      {"t": "group", "id": "g1", "class": "ferret", "definite": true, "span": "the ferrets"},
+      {"t": "portion", "id": "g2", "whole": "@g1", "members": "ferret", "count": 3, "span": "Three of the ferrets"},
+      {"t": "activity", "id": "v1", "verb": "sleep", "actor": "@g2", "tense": "past", "span": "Three of the ferrets slept"},
+      {"t": "distribution", "id": "d1", "group": "@g2", "over": ["@v1"], "span": "Three of the ferrets slept"}
+    ]
+
+The program renders these instances as:
+
+    (GroupOf sk_group_1 ferret)
+    (GroupOf sk_portion_1 ferret)
+    (SubsetOf sk_portion_1 sk_group_1)
+    (Cardinality sk_portion_1 3)
+    (Member sk_sleep_1 sleep)
+    (Agent sk_sleep_1 sk_portion_1)
+    (Past sk_sleep_1)
+    (Implication (PartOf $x sk_portion_1) (And (Member (sk_sleep $x) sleep) (Agent (sk_sleep $x) $x) (Past (sk_sleep $x))))
+
+Example (a proportion word — a label on the subset; the property distributed to each member, no claim about quilts in general). TEXT: Most of the quilts are damp.
+
+Instances:
+
+    [
+      {"t": "group", "id": "g1", "class": "quilt", "definite": true, "span": "the quilts"},
+      {"t": "portion", "id": "g2", "whole": "@g1", "members": "quilt", "word": "most", "span": "Most of the quilts"},
+      {"t": "copular", "id": "c1", "subject": "@g2", "predicate": "damp", "form": "adjective", "tense": "present", "span": "Most of the quilts are damp"},
+      {"t": "distribution", "id": "d1", "group": "@g2", "over": ["@c1"], "span": "Most of the quilts are damp"}
+    ]
+
+The program renders these instances as:
+
+    (GroupOf sk_group_1 quilt)
+    (GroupOf sk_portion_1 quilt)
+    (SubsetOf sk_portion_1 sk_group_1)
+    (ProportionOf sk_portion_1 sk_group_1 most)
+    (Member sk_portion_1 damp)
+    (Implication (PartOf $x sk_portion_1) (Member $x damp))
+
+Example (a single whole — the portion a part of it, no members and no distribution). TEXT: Half of the field is wet.
+
+Instances:
+
+    [
+      {"t": "witness", "id": "x1", "class": "field", "definite": true, "span": "the field"},
+      {"t": "portion", "id": "g2", "whole": "@x1", "word": "half", "span": "Half of the field"},
+      {"t": "copular", "id": "c1", "subject": "@g2", "predicate": "wet", "form": "adjective", "tense": "present", "span": "Half of the field is wet"}
+    ]
+
+The program renders these instances as:
+
+    (Member sk_field_1 field)
+    (PartOf sk_portion_1 sk_field_1)
+    (ProportionOf sk_portion_1 sk_field_1 half)
+    (Member sk_portion_1 wet)
+
+Not this template. TEXT: Several ferrets slept. — use `group`.
+
+Not this template. TEXT: Most students laugh. — use `generic`.
+
 ### range — The quantified variable of a verbal generalization
 
 When: The subject or object of a verbal generalization over a class: a quantifier word with a
@@ -375,6 +509,8 @@ Forms:
 Not this template:
 - a specific group — the ferrets, several ferrets, three students, some students: a group
   referent, and what is said of its members is a distribution
+- a quantified portion of a definite group — most of the ferrets, two of the ferrets: a portion
+  referent, not a range; none of the ferrets stays a range
 - a bare plural with "be" — ferrets are curious: a class statement, which carries its own
   quantifier
 - an existential singular — some ferret slept, a ferret slept: an indefinite witness
@@ -424,7 +560,11 @@ possessor presupposes the witness, so no definite mark is needed. A noun that na
 a period (meeting, audit, war, trip, storm) is a witness like any other; when the clause puts
 the noun itself in time (the meeting is at noon, the audit was on Monday) or places another
 event relative to it (left after the audit, slept during the meeting), mark it eventive so that
-the time or the relation can attach to it.
+the time or the relation can attach to it. A MASS noun with a quantity phrase — a lot of water,
+plenty of rain, lots of sugar, a little salt — or with a container or measure word — a cup of
+tea, a bag of flour — is a witness of the stuff (the quantity of it the text introduces): the
+vague phrase is recorded in `quantity`; a container or measure word is a measure instance on the
+witness.
 
 Forms:
 - a <N>
@@ -432,6 +572,7 @@ Forms:
 - <Adj> <N>
 - <possessor>'s <N>
 - the <N> of <possessor>
+- a lot of / plenty of <mass N>
 
 Not this template:
 - a bare plural read generically — dogs bark: a class-level statement, not a witness
@@ -454,6 +595,8 @@ Slots:
   lid, the car engine, the top of the ladder: no possessor, the witness definite, and a
   part-whole instance links the two); a referent id (for a possessive pronoun, the id of its
   mention instance), or a bare lemma for a class-level possessor.
+- `quantity` (optional; a string): a vague amount phrase on a mass noun, as written (a lot,
+  lots, plenty, a little, a bit, much); absent otherwise.
 - `eventive` (optional; true / false): true when the noun names an event or a period and the
   clause puts the noun itself in time (the meeting is at noon) or places another event relative
   to it (after the audit, during the meeting); absent otherwise.
@@ -2071,8 +2214,8 @@ Not this template:
   than Lamine: the comparative template
 - a superlative or an ordinal — the tallest weaver, the first to arrive: the superlative
   template
-- a degree on a quantity — too much salt, enough water, a lot of ferrets: no slot here; report
-  the span as unmapped
+- a degree on a quantity — too much salt, enough water: no slot here; report the span as
+  unmapped; a lot of ferrets, a lot of water: a group's or a witness's vague quantity
 - a class as the bearer — ferrets are very curious: a class statement; the degree word is
   reported as unmapped (G02)
 - a degree word on a manner adverb — laughed very loudly: the manner is recorded, the degree
@@ -2260,7 +2403,11 @@ the amount of the change (fell by 8 percent), MeasureFrom and MeasureTo for a st
 value (rose from 9 to 12 degrees: two instances). A hedge (about, roughly, nearly) is recorded
 in `hedge`; the magnitude stays the number stated. A measure phrase inside a noun phrase (a 20
 kilogram sack) is a measure of that witness, in the present. Number words are converted (forty →
-40, three thousand → 3000, an hour → 1).
+40, three thousand → 3000, an hour → 1). A QUANTITY OF A SUBSTANCE stated by a container or a
+measure word — a cup of tea, two bags of flour, a litre of milk, three metres of cloth — is a
+witness of the stuff (the indefinite quantity the text introduces) with this template's instance
+on it: `bearer` the witness, `unit` the container or measure word (cup, bag, litre, metre),
+`dimension` unspecified, `magnitude` the number (a cup → 1).
 
 Forms:
 - <X> is <n> <unit> <ADJ>
@@ -2271,6 +2418,7 @@ Forms:
 - <X> is at least / more than / no more than <n> <unit> <ADJ>
 - <X> is about / roughly <n> <unit> <ADJ>
 - <change verb> by <n> <unit> / from <n> to <n> <unit>
+- a cup / two bags / a litre of <substance>
 
 Not this template:
 - a count of things — three students, has four legs, twelve chairs: a group with its
@@ -2279,15 +2427,16 @@ Not this template:
   as the crate: the comparative template; a comparison against a bare number — taller than 2
   metres: a bounded measure, here
 - a degree word with no number — very tall, too heavy, a lot heavier: a degree or an extent
-- a proportion or a subset of a set — half of the loaf, 40 percent of the students: no template
-  here; report the phrase as unmapped (G00); a percentage as a value — unemployment is 5
-  percent, fell by 8 percent — is a measure with the unit percent
+- a proportion or a subset of a definite whole — half of the loaf, 40 percent of the students:
+  the portion template; a percentage as a value — unemployment is 5 percent, fell by 8 percent —
+  is a measure with the unit percent
 - a time or a date — at noon, in 2019, three days ago, two weeks later: a time or a time
   relation, not a measure
 - how often — twice a week, every two hours: a frequency; a rate with a unit — 30 kilometres per
   hour — is a measure
-- a vague duration or amount with no number — all day, for years, a lot of water: no slot here;
-  report the phrase as unmapped (G00)
+- a vague duration with no number — all day, for years: no slot here; report the phrase as
+  unmapped (G00); a vague amount of a substance — a lot of water, plenty of rain: the witness's
+  own quantity phrase, no measure
 - a bare number with neither a dimension nor a unit — Lamine is 30, the bridge is 200: no
   dimension and no unit to record; report the clause as unmapped (G00)
 - a stated distance between a thing and a place — the hotel is 800 metres from the river: a
@@ -2529,9 +2678,11 @@ Not this template:
   cousin: a possession, a possessor on the witness, a stative relation
 - a place inside a place — a village in Norfolk, a district of the city: a locative, never a
   part
-- a proportion, a subset or a measured portion of a whole — half of the loaf, most of the
-  students, three of the ferrets, a cup of water: no template here; report the phrase as
-  unmapped (G00); a plain portion — a piece of the loaf, the top of the ladder — is a part
+- a quantified portion of a definite whole — half of the loaf, most of the students, three of
+  the ferrets, the rest of the loaf: the portion template, a referent of its own; one of the
+  ferrets: a witness of the class that this template links to the group (word one of); a
+  quantity of a substance — a cup of water: a witness with a measure; a plain portion — a piece
+  of the loaf, the top of the ladder — is a part
 - a composition stated by kinds — consists of scientists and engineers, the ingredients are
   flour and sugar: the members' kinds, which no slot carries; report the clause as unmapped
 - a material adjective or a quality — a wooden box, the box is red: a property of the thing,
@@ -3184,7 +3335,7 @@ Forms:
 Not this template:
 - a comparative with a standard — taller than Yusra, as tall as Teodor: the comparative template
 - most as a quantifier — most students, most of the ferrets: a range of a generalization, or a
-  group; not a superlative
+  portion of a group; not a superlative
 - a bare superlative with no class stated anywhere — Teodor is the tallest, this one is the
   best: no class to fill; report the superlative as unmapped
 - an adverbial superlative — Yusra runs fastest, Lamine ate the most: a comparison of events,
@@ -4471,9 +4622,11 @@ Not this template:
 - a phrase on the clause, not on the noun — read the letter in the barn (the reading is in the
   barn), talked about the audit: a location or an oblique on the event; decide by what the
   phrase modifies
-- a partitive — two of the ferrets, some of the quilts: a group, not a modified noun
-- a measure or a container — a cup of tea, three metres of cloth: the substance is the verb's
-  object as a bare lemma (tea, cloth); the measure phrase is reported as unmapped
+- a partitive — two of the ferrets, some of the quilts: a portion of the group (the portion
+  template), not a modified noun; one of the ferrets: a witness that is a member (part-whole)
+- a measure or a container — a cup of tea, three metres of cloth: a witness of the substance
+  with a measure on it (unit cup, metre), the measure template; a lot of water: the witness's
+  quantity phrase
 - a place phrase inside a noun phrase — the ferret in the barn, the ledger on the workbench: a
   locative predication of that thing (in, at, on, near, under …), not a phrase of this class;
   and a place predicated of a thing — the ledger is on the workbench — likewise
@@ -5033,12 +5186,12 @@ Not this template. TEXT: Ferrets are curious. — use `class-statement`.
 
 ### distribution — A predication over a group holds of each member
 
-When: A clause whose subject or object is a group (a plural noun phrase) and whose predicate
-holds of each member on its own: the ferrets are curious (each is), several students laughed
-(each did), the students did not laugh (none did). The instance names the group and the
-predication over it — or the scope operator over that predication, when there is one — and
-nothing else. Do not add it for a collective predicate: surrounded the barn, carried the ladder
-together, met, gathered, outnumbered.
+When: A clause whose subject or object is a group (a plural noun phrase, or a portion of one —
+most of the ferrets, two of the quilts) and whose predicate holds of each member on its own: the
+ferrets are curious (each is), several students laughed (each did), the students did not laugh
+(none did). The instance names the group and the predication over it — or the scope operator
+over that predication, when there is one — and nothing else. Do not add it for a collective
+predicate: surrounded the barn, carried the ladder together, met, gathered, outnumbered.
 
 Not this template:
 - a collective predicate — surrounded, gathered, met, outnumbered, carried it together: holds of
@@ -5052,7 +5205,7 @@ Slots:
 - `t` (required): "distribution"
 - `id` (required; your label for this instance): your label for the rule.
 - `group` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
-  the group instance's id.
+  the group instance's id, or a portion's.
 - `over` (required; a list of "@id" of the instances that state the clause): the predication
   over the group, or the negation / modal over that predication: its id, nothing else.
 

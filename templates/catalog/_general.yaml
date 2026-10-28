@@ -47,7 +47,7 @@ output_contract:
 identifiers:
 - >-
   Every instance carries an `id`: a short lowercase label you choose, unique within the item. Suggested
-  prefixes: `n` named individual, `x` witness, `g` group, `e` event, `s` scope operator (negation, modal, norm, evidential),
+  prefixes: `n` named individual, `x` witness, `g` group or portion, `e` event, `s` scope operator (negation, modal, norm, evidential),
   `c` copular predication, `l` location, `q` quantified range, `r` rule, `d` comparison or degree, `m` measure, `t` time, `k` link, `f` focus (n1, x1, e1, s1 …).
 - >-
   A slot that points to another instance holds `"@<id>"`, for example `"Agent": "@n1"`.
@@ -149,7 +149,7 @@ unmapped:
   place, manner, amount or tag leaves the event itself true ("was demolished before 1960" still says it
   was demolished). When the rest would NOT follow without the unmapped part, leave the whole claim out
   and report the whole clause: a negated condition ("unless it rains, Lamine sings"), a hedge ("supposedly full"),
-  a proportion or partitive ("12.5% of the applicants").
+  an unencodable quantity ("too much salt").
 - >-
   Referents inside an unmapped span: a NAME still gets its instance (a name is rigid, the same individual
   wherever it appears in the text), but a common-noun phrase or a pronoun does not. A witness is introduced only by a clause a

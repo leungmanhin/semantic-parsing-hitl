@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "dbd9c0eff5cb755495bbf8a35f5fa2de8218198a6bce3644a778278f9856f53c",
+  "prompt_sha256": "a8974cde6a6505f9be6d33a69f7ecc5a9ab4fed6002072e069d50ddc35694864",
   "item": {
     "id": "saac9d10bd0",
     "text": "Half of the loaf is stale."
   },
   "usage": {
-    "input": 78695,
-    "output": 70,
+    "input": 88896,
+    "output": 146,
     "thinking": null,
-    "total": 78765,
-    "cached": 76645,
+    "total": 89042,
+    "cached": 86847,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,48 +25,66 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 78695,
-    "candidatesTokenCount": 70,
-    "totalTokenCount": 78765,
-    "cachedContentTokenCount": 76645,
+    "promptTokenCount": 88896,
+    "candidatesTokenCount": 146,
+    "totalTokenCount": 89042,
+    "cachedContentTokenCount": 86847,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 78695
+        "tokenCount": 88896
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 76645
+        "tokenCount": 86847
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 70
+        "tokenCount": 146
       }
     ]
   },
-  "raw_text": "{\"id\": \"saac9d10bd0\", \"instances\": [], \"unmapped\": [{\"span\": \"Half of the loaf is stale\", \"code\": \"G00\", \"construction\": \"A copular predication whose subject is a fractional partitive of a singular whole.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"saac9d10bd0\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"loaf\", \"definite\": true, \"span\": \"the loaf\"}, {\"t\": \"portion\", \"id\": \"g1\", \"whole\": \"@x1\", \"word\": \"half\", \"span\": \"Half of the loaf\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@g1\", \"predicate\": \"stale\", \"form\": \"adjective\", \"tense\": \"present\", \"span\": \"Half of the loaf is stale\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "saac9d10bd0",
-    "instances": [],
-    "unmapped": [
+    "instances": [
       {
-        "span": "Half of the loaf is stale",
-        "code": "G00",
-        "construction": "A copular predication whose subject is a fractional partitive of a singular whole."
+        "t": "witness",
+        "id": "x1",
+        "class": "loaf",
+        "definite": true,
+        "span": "the loaf"
+      },
+      {
+        "t": "portion",
+        "id": "g1",
+        "whole": "@x1",
+        "word": "half",
+        "span": "Half of the loaf"
+      },
+      {
+        "t": "copular",
+        "id": "c1",
+        "subject": "@g1",
+        "predicate": "stale",
+        "form": "adjective",
+        "tense": "present",
+        "span": "Half of the loaf is stale"
       }
     ],
+    "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "b4506b321cc277ac80f5ce1aa23e5b0565215b85ccdd8fffa5bd24592c6be1a3",
+  "prompt_body_sha256": "53d89fa7f927c05abfee7398d51a10619c0e84356460aa9ef11db0ca08813b31",
   "run": 1,
   "case": {
     "template": "part-whole",
     "section": "held_out",
-    "index": 16,
+    "index": 17,
     "category": "abstain",
     "text": "Half of the loaf is stale.",
     "key": "aac9d10bd0"

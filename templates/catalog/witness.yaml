@@ -18,13 +18,18 @@ trigger:
     noun that names an event or a period (meeting, audit, war, trip, storm) is a witness like any
     other; when the clause puts the noun itself in time (the meeting is at noon, the audit was on
     Monday) or places another event relative to it (left after the audit, slept during the
-    meeting), mark it eventive so that the time or the relation can attach to it.
+    meeting), mark it eventive so that the time or the relation can attach to it. A MASS noun
+    with a quantity phrase — a lot of water, plenty of rain, lots of sugar, a little salt — or
+    with a container or measure word — a cup of tea, a bag of flour — is a witness of the stuff
+    (the quantity of it the text introduces): the vague phrase is recorded in `quantity`; a
+    container or measure word is a measure instance on the witness.
   surface_forms:
     - "a <N>"                       # indefinite
     - "the <N>"                     # definite
     - "<Adj> <N>"                   # the property is recorded beside the class
     - "<possessor>'s <N>"           # the possessor is recorded; definite
     - "the <N> of <possessor>"      # the same
+    - "a lot of / plenty of <mass N>"   # a witness of the stuff, the phrase recorded
   boundary:
     - >-
       a bare plural read generically — dogs bark: a class-level statement, not a witness
@@ -42,6 +47,8 @@ slots:
              doc: "adjectival properties stated in the phrase; a property with a degree word (a very old spindle) is a degree instance beside the witness, not a property here"}
   possessor: {type: filler, class: Entity, required: false,
               doc: "the possessor of a possessive phrase: Yusra's quilt, the quilt of Yusra, her quilt — an owner or an associate, NOT a whole the noun is a part of (the lid of the box, the box's lid, the car engine, the top of the ladder: no possessor, the witness definite, and a part-whole instance links the two); a referent id (for a possessive pronoun, the id of its mention instance), or a bare lemma for a class-level possessor"}
+  quantity: {type: string, required: false,
+             doc: "a vague amount phrase on a mass noun, as written (a lot, lots, plenty, a little, a bit, much); absent otherwise"}
   eventive: {type: bool, required: false,
              doc: "true when the noun names an event or a period and the clause puts the noun itself in time (the meeting is at noon) or places another event relative to it (after the audit, during the meeting); absent otherwise"}
 
@@ -55,6 +62,8 @@ emits:
     each: props
   - atom: "(Possession @id {possessor})"
     if_filled: possessor
+  - atom: "(QuantityPhrase @id \"{quantity}\")"
+    if_filled: quantity
 
 examples:
   shown:
@@ -69,6 +78,13 @@ examples:
         - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
         - {t: witness, id: x1, class: quilt, possessor: "@n1", span: "Yusra's quilt"}
   held_out:
+    - category: positive
+      note: a vague amount of a mass — a witness of the stuff with the phrase recorded
+      text: "Lamine drank a lot of water."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: x1, class: water, quantity: a lot}
+        - {t: activity, id: v1, verb: drink, actor: "@n1", patient: "@x1", tense: past}
     - category: positive
       note: a property stated in the phrase
       text: "Lamine washed the old quilt."

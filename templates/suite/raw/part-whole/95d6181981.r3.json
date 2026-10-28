@@ -1,0 +1,99 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "a8974cde6a6505f9be6d33a69f7ecc5a9ab4fed6002072e069d50ddc35694864",
+  "item": {
+    "id": "s95d6181981",
+    "text": "One of the weavers laughed."
+  },
+  "usage": {
+    "input": 88898,
+    "output": 186,
+    "thinking": null,
+    "total": 89084,
+    "cached": 86849,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 88898,
+    "candidatesTokenCount": 186,
+    "totalTokenCount": 89084,
+    "cachedContentTokenCount": 86849,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 88898
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 86849
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 186
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s95d6181981\", \"instances\": [{\"t\": \"group\", \"id\": \"g1\", \"class\": \"weaver\", \"definite\": true, \"span\": \"the weavers\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"weaver\", \"span\": \"One of the weavers\"}, {\"t\": \"part-whole\", \"id\": \"w1\", \"part\": \"@x1\", \"whole\": \"@g1\", \"word\": \"one of\", \"tense\": \"present\", \"span\": \"One of the weavers\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"laugh\", \"actor\": \"@x1\", \"tense\": \"past\", \"span\": \"One of the weavers laughed\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s95d6181981",
+    "instances": [
+      {
+        "t": "group",
+        "id": "g1",
+        "class": "weaver",
+        "definite": true,
+        "span": "the weavers"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "weaver",
+        "span": "One of the weavers"
+      },
+      {
+        "t": "part-whole",
+        "id": "w1",
+        "part": "@x1",
+        "whole": "@g1",
+        "word": "one of",
+        "tense": "present",
+        "span": "One of the weavers"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "laugh",
+        "actor": "@x1",
+        "tense": "past",
+        "span": "One of the weavers laughed"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "53d89fa7f927c05abfee7398d51a10619c0e84356460aa9ef11db0ca08813b31",
+  "run": 3,
+  "case": {
+    "template": "part-whole",
+    "section": "held_out",
+    "index": 16,
+    "category": "positive",
+    "text": "One of the weavers laughed.",
+    "key": "95d6181981"
+  }
+}

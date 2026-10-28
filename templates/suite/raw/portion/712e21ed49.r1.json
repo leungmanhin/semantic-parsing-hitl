@@ -1,0 +1,96 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "a8974cde6a6505f9be6d33a69f7ecc5a9ab4fed6002072e069d50ddc35694864",
+  "item": {
+    "id": "s712e21ed49",
+    "text": "Every ferret slept."
+  },
+  "usage": {
+    "input": 88895,
+    "output": 147,
+    "thinking": null,
+    "total": 89042,
+    "cached": 86846,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 88895,
+    "candidatesTokenCount": 147,
+    "totalTokenCount": 89042,
+    "cachedContentTokenCount": 86846,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 88895
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 86846
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 147
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s712e21ed49\", \"instances\": [{\"t\": \"range\", \"id\": \"q1\", \"class\": \"ferret\", \"quantifier\": \"every\", \"predicate\": \"sleep\", \"span\": \"Every ferret\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"sleep\", \"actor\": \"@q1\", \"tense\": \"past\", \"span\": \"Every ferret slept\"}, {\"t\": \"generic\", \"id\": \"r1\", \"ranges\": [\"@q1\"], \"over\": [\"@e1\"], \"span\": \"Every ferret slept\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s712e21ed49",
+    "instances": [
+      {
+        "t": "range",
+        "id": "q1",
+        "class": "ferret",
+        "quantifier": "every",
+        "predicate": "sleep",
+        "span": "Every ferret"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "sleep",
+        "actor": "@q1",
+        "tense": "past",
+        "span": "Every ferret slept"
+      },
+      {
+        "t": "generic",
+        "id": "r1",
+        "ranges": [
+          "@q1"
+        ],
+        "over": [
+          "@e1"
+        ],
+        "span": "Every ferret slept"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "53d89fa7f927c05abfee7398d51a10619c0e84356460aa9ef11db0ca08813b31",
+  "run": 1,
+  "case": {
+    "template": "portion",
+    "section": "held_out",
+    "index": 18,
+    "category": "abstain",
+    "text": "Every ferret slept.",
+    "key": "712e21ed49"
+  }
+}

@@ -282,6 +282,16 @@ rules:
       Lamine did not sing, which this rule states as the denial of the antecedent's conjuncts.
 
   # Parts and wholes: a part of a part is a part of the whole, and a part is where its whole is.
+  - id: subset_is_part
+    meaning: a quantified portion of a group is a part of it
+    premises: ["(SubsetOf $s $g)"]
+    conclusion: "(PartOf $s $g)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [portion]
+    notes: >-
+      "Three of the ferrets" is a subset group of the ferrets; as a part of the group its
+      members are members of the group through partof_trans, and it is where the group is.
   - id: partof_trans
     meaning: a part of a part is a part of the whole
     premises: ["(PartOf $x $y)", "(PartOf $y $z)"]

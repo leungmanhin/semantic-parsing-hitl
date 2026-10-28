@@ -52,9 +52,11 @@ trigger:
       a place inside a place — a village in Norfolk, a district of the city: a locative, never
       a part
     - >-
-      a proportion, a subset or a measured portion of a whole — half of the loaf, most of the
-      students, three of the ferrets, a cup of water: no template here; report the phrase as
-      unmapped (G00); a plain portion — a piece of the loaf, the top of the ladder — is a part
+      a quantified portion of a definite whole — half of the loaf, most of the students, three
+      of the ferrets, the rest of the loaf: the portion template, a referent of its own; one of
+      the ferrets: a witness of the class that this template links to the group (word one of);
+      a quantity of a substance — a cup of water: a witness with a measure; a plain portion — a
+      piece of the loaf, the top of the ladder — is a part
     - >-
       a composition stated by kinds — consists of scientists and engineers, the ingredients are
       flour and sugar: the members' kinds, which no slot carries; report the clause as unmapped
@@ -277,6 +279,14 @@ examples:
     - category: abstain
       text: "Lamine had a ladder."
       expected: {abstain: true, template: possession}                 # a thing owned
+    - category: positive
+      note: one of the Ns — a single member, a witness of the class linked to the group
+      text: "One of the weavers laughed."
+      instances:
+        - {t: group, id: g1, class: weaver, definite: true}
+        - {t: witness, id: x1, class: weaver}
+        - {t: part-whole, id: w1, part: "@x1", whole: "@g1", word: "one of", tense: present}
+        - {t: activity, id: v1, verb: laugh, actor: "@x1", tense: past}
     - category: abstain
       text: "Half of the loaf is stale."
-      expected: {abstain: true, gap: G00, span: "Half of the loaf"}   # a proportion of a whole
+      expected: {abstain: true, template: portion}                   # a proportion of a whole

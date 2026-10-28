@@ -1,0 +1,91 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "a8974cde6a6505f9be6d33a69f7ecc5a9ab4fed6002072e069d50ddc35694864",
+  "item": {
+    "id": "sbfe9c61d2e",
+    "text": "Lamine is a member of the guild."
+  },
+  "usage": {
+    "input": 88899,
+    "output": 146,
+    "thinking": null,
+    "total": 89045,
+    "cached": 86850,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 88899,
+    "candidatesTokenCount": 146,
+    "totalTokenCount": 89045,
+    "cachedContentTokenCount": 86850,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 88899
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 86850
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 146
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sbfe9c61d2e\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"guild\", \"definite\": true, \"span\": \"the guild\"}, {\"t\": \"part-whole\", \"id\": \"w1\", \"part\": \"@n1\", \"whole\": \"@x1\", \"word\": \"member of\", \"tense\": \"present\", \"span\": \"Lamine is a member of the guild\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sbfe9c61d2e",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "guild",
+        "definite": true,
+        "span": "the guild"
+      },
+      {
+        "t": "part-whole",
+        "id": "w1",
+        "part": "@n1",
+        "whole": "@x1",
+        "word": "member of",
+        "tense": "present",
+        "span": "Lamine is a member of the guild"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "53d89fa7f927c05abfee7398d51a10619c0e84356460aa9ef11db0ca08813b31",
+  "run": 2,
+  "case": {
+    "template": "portion",
+    "section": "held_out",
+    "index": 24,
+    "category": "abstain",
+    "text": "Lamine is a member of the guild.",
+    "key": "bfe9c61d2e"
+  }
+}

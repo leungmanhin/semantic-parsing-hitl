@@ -182,6 +182,7 @@
 (: ProportionOf (-> Entity Entity Level Proposition))
 (: PurposeOf (-> Event Event Proposition))
 (: QuantifierPhrase (-> Class Class String Proposition))
+(: QuantityPhrase (-> Entity String Proposition))
 (: Quarter (-> TimeTerm Number Proposition))
 (: Quarter (-> Number Number TimeTerm))
 (: Question (-> Atom Proposition Proposition))

@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
+  "prompt_sha256": "a8974cde6a6505f9be6d33a69f7ecc5a9ab4fed6002072e069d50ddc35694864",
   "item": {
     "id": "s6091ec94b0",
     "text": "Yusra drank a cup of tea."
   },
   "usage": {
-    "input": 56508,
-    "output": 144,
+    "input": 88899,
+    "output": 203,
     "thinking": null,
-    "total": 56652,
-    "cached": 54459,
+    "total": 89102,
+    "cached": 86850,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 56508,
-    "candidatesTokenCount": 144,
-    "totalTokenCount": 56652,
-    "cachedContentTokenCount": 54459,
+    "promptTokenCount": 88899,
+    "candidatesTokenCount": 203,
+    "totalTokenCount": 89102,
+    "cachedContentTokenCount": 86850,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 56508
+        "tokenCount": 88899
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 54459
+        "tokenCount": 86850
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 144
+        "tokenCount": 203
       }
     ]
   },
-  "raw_text": "{\"id\": \"s6091ec94b0\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"drink\", \"actor\": \"@n1\", \"patient\": \"tea\", \"tense\": \"past\", \"span\": \"Yusra drank a cup of tea\"}], \"unmapped\": [{\"span\": \"a cup of\", \"code\": \"G00\", \"construction\": \"A container or measure phrase on a mass noun.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"s6091ec94b0\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"tea\", \"span\": \"a cup of tea\"}, {\"t\": \"measure\", \"id\": \"m1\", \"bearer\": \"@x1\", \"head\": \"Measure\", \"dimension\": \"unspecified\", \"magnitude\": 1, \"unit\": \"cup\", \"tense\": \"present\", \"span\": \"a cup of tea\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"drink\", \"actor\": \"@n1\", \"patient\": \"@x1\", \"tense\": \"past\", \"span\": \"Yusra drank a cup of tea\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s6091ec94b0",
     "instances": [
@@ -59,25 +59,36 @@
         "span": "Yusra"
       },
       {
+        "t": "witness",
+        "id": "x1",
+        "class": "tea",
+        "span": "a cup of tea"
+      },
+      {
+        "t": "measure",
+        "id": "m1",
+        "bearer": "@x1",
+        "head": "Measure",
+        "dimension": "unspecified",
+        "magnitude": 1,
+        "unit": "cup",
+        "tense": "present",
+        "span": "a cup of tea"
+      },
+      {
         "t": "activity",
         "id": "v1",
         "verb": "drink",
         "actor": "@n1",
-        "patient": "tea",
+        "patient": "@x1",
         "tense": "past",
         "span": "Yusra drank a cup of tea"
       }
     ],
-    "unmapped": [
-      {
-        "span": "a cup of",
-        "code": "G00",
-        "construction": "A container or measure phrase on a mass noun."
-      }
-    ],
+    "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
+  "prompt_body_sha256": "53d89fa7f927c05abfee7398d51a10619c0e84356460aa9ef11db0ca08813b31",
   "run": 2,
   "case": {
     "template": "postmodifier",

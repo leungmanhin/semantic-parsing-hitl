@@ -16,7 +16,8 @@ status: draft
 
 trigger:
   construction: >
-    A clause whose subject or object is a group (a plural noun phrase) and whose predicate holds
+    A clause whose subject or object is a group (a plural noun phrase, or a portion of one — most
+    of the ferrets, two of the quilts) and whose predicate holds
     of each member on its own: the ferrets are curious (each is), several students laughed
     (each did), the students did not laugh (none did). The instance names the group and the
     predication over it — or the scope operator over that predication, when there is one — and
@@ -34,7 +35,7 @@ trigger:
 
 slots:
   id:    {type: id, required: true, doc: "your label for the rule"}
-  group: {type: filler, class: Entity, required: true, doc: "the group instance's id"}
+  group: {type: filler, class: Entity, required: true, doc: "the group instance's id, or a portion's"}
   over:  {type: refs, class: Proposition, required: true, consumes: false, bind: group, skolemize: true,
           doc: "the predication over the group, or the negation / modal over that predication: its id, nothing else"}
 

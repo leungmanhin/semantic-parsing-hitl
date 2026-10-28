@@ -1,0 +1,93 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "a8974cde6a6505f9be6d33a69f7ecc5a9ab4fed6002072e069d50ddc35694864",
+  "item": {
+    "id": "sa7693f7bbf",
+    "text": "A third of the field is wet."
+  },
+  "usage": {
+    "input": 88897,
+    "output": 154,
+    "thinking": null,
+    "total": 89051,
+    "cached": 86848,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 88897,
+    "candidatesTokenCount": 154,
+    "totalTokenCount": 89051,
+    "cachedContentTokenCount": 86848,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 88897
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 86848
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 154
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sa7693f7bbf\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"field\", \"definite\": true, \"span\": \"the field\"}, {\"t\": \"portion\", \"id\": \"g1\", \"whole\": \"@x1\", \"numerator\": 1, \"denominator\": 3, \"span\": \"A third of the field\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@g1\", \"predicate\": \"wet\", \"form\": \"adjective\", \"tense\": \"present\", \"span\": \"A third of the field is wet\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sa7693f7bbf",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "field",
+        "definite": true,
+        "span": "the field"
+      },
+      {
+        "t": "portion",
+        "id": "g1",
+        "whole": "@x1",
+        "numerator": 1,
+        "denominator": 3,
+        "span": "A third of the field"
+      },
+      {
+        "t": "copular",
+        "id": "c1",
+        "subject": "@g1",
+        "predicate": "wet",
+        "form": "adjective",
+        "tense": "present",
+        "span": "A third of the field is wet"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "53d89fa7f927c05abfee7398d51a10619c0e84356460aa9ef11db0ca08813b31",
+  "run": 2,
+  "case": {
+    "template": "portion",
+    "section": "held_out",
+    "index": 7,
+    "category": "positive",
+    "text": "A third of the field is wet.",
+    "key": "a7693f7bbf"
+  }
+}

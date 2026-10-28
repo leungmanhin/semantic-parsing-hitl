@@ -383,6 +383,47 @@ class SeededRulesOnTheEngine(unittest.TestCase):
         sealed = self.query(h, "(And (Member $s tired) (Experiencer $s sk_lamine_1) (Of $s $what))")
         self.assertTrue(sealed and "(Member sk_wait_1 wait)" in sealed[0], sealed)             # yet reachable as the complement
 
+    def test_a_portion_is_a_subset_or_a_part_of_its_whole(self):
+        """A quantified portion of a definite group is a subset group whose count or proportion
+        binds; the distribution rule over it instantiates for a stated member; the member is a
+        part of the whole group through subset_is_part and partof_trans; a fraction level binds
+        as a Fraction term; a portion of a mass is a part of it; and nothing is claimed of the
+        class in general."""
+        if not any(r.startswith("(: subset_is_part") for r in rules()):
+            self.skipTest("the subset rule is pending")
+        h = self.space(['(: g1_groupof (GroupOf sk_group_1 ferret) (STV 1.0 0.99))',
+                        '(: g2_groupof (GroupOf sk_portion_1 ferret) (STV 1.0 0.99))',
+                        '(: g2_subsetof (SubsetOf sk_portion_1 sk_group_1) (STV 1.0 0.99))',
+                        '(: g2_cardinality (Cardinality sk_portion_1 3) (STV 1.0 0.99))',
+                        '(: v1_member (Member sk_sleep_1 sleep) (STV 1.0 0.99))',
+                        '(: v1_agent (Agent sk_sleep_1 sk_portion_1) (STV 1.0 0.99))',
+                        '(: v1_past (Past sk_sleep_1) (STV 1.0 0.99))',
+                        '(: d1_implication (Implication (PartOf $x sk_portion_1) (And (Member (sk_sleep $x) sleep) (Agent (sk_sleep $x) $x) (Past (sk_sleep $x)))) (STV 1.0 0.9))',
+                        '(: f9 (Member sk_ferret_9 ferret) (STV 1.0 0.99))',
+                        '(: f9p (PartOf sk_ferret_9 sk_portion_1) (STV 1.0 0.99))',
+                        '(: g3_groupof (GroupOf sk_group_2 quilt) (STV 1.0 0.99))',
+                        '(: g4_groupof (GroupOf sk_portion_2 quilt) (STV 1.0 0.99))',
+                        '(: g4_subsetof (SubsetOf sk_portion_2 sk_group_2) (STV 1.0 0.99))',
+                        '(: g4_proportionof (ProportionOf sk_portion_2 sk_group_2 most) (STV 1.0 0.99))',
+                        '(: c1_member (Member sk_portion_2 damp) (STV 1.0 0.99))',
+                        '(: g6_proportionof (ProportionOf sk_portion_3 sk_group_3 (Fraction 40 100)) (STV 1.0 0.99))',
+                        '(: x1_member (Member sk_loaf_1 loaf) (STV 1.0 0.99))',
+                        '(: g7_partof (PartOf sk_portion_4 sk_loaf_1) (STV 1.0 0.99))',
+                        '(: g7_proportionof (ProportionOf sk_portion_4 sk_loaf_1 half) (STV 1.0 0.99))',
+                        '(: c2_member (Member sk_portion_4 stale) (STV 1.0 0.99))'])
+        how_many = self.query(h, "(And (SubsetOf $s sk_group_1) (Cardinality $s $n) (Member $e sleep) (Agent $e $s))")
+        self.assertTrue(how_many and "(Cardinality sk_portion_1 3)" in how_many[0], how_many)      # how many of the ferrets slept
+        member = self.query(h, "(And (Member (sk_sleep sk_ferret_9) sleep) (Agent (sk_sleep sk_ferret_9) sk_ferret_9))")
+        self.assertTrue(member and "d1_implication" in member[0], member)                            # a stated member slept, by the distribution
+        whole = self.query(h, "(PartOf sk_ferret_9 sk_group_1)")
+        self.assertTrue(whole and "subset_is_part" in whole[0] and "partof_trans" in whole[0], whole)   # a member of the portion is a member of the whole
+        share = self.query(h, "(And (ProportionOf $p sk_group_2 $level) (Member $p damp))")
+        self.assertTrue(share and " most)" in share[0], share)                                       # what share of the quilts is damp
+        fraction = self.query(h, "(ProportionOf $p sk_group_3 (Fraction $n $d))")
+        self.assertTrue(fraction and "(Fraction 40 100)" in fraction[0], fraction)                   # a fraction level binds
+        self.assertTrue(self.query(h, "(And (PartOf $p sk_loaf_1) (ProportionOf $p sk_loaf_1 half) (Member $p stale))"))   # a portion of a mass
+        self.assertFalse(self.query(h, "(Implication (Member $x quilt) (Member $x damp))"))         # no claim about quilts in general
+
 
 if __name__ == "__main__":
     unittest.main()

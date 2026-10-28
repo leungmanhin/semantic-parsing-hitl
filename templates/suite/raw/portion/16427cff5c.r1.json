@@ -1,0 +1,99 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "a8974cde6a6505f9be6d33a69f7ecc5a9ab4fed6002072e069d50ddc35694864",
+  "item": {
+    "id": "s16427cff5c",
+    "text": "Yusra's ferrets slept."
+  },
+  "usage": {
+    "input": 88898,
+    "output": 187,
+    "thinking": null,
+    "total": 89085,
+    "cached": 86849,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 88898,
+    "candidatesTokenCount": 187,
+    "totalTokenCount": 89085,
+    "cachedContentTokenCount": 86849,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 88898
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 86849
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 187
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s16427cff5c\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"group\", \"id\": \"g1\", \"class\": \"ferret\", \"possessor\": \"@n1\", \"span\": \"Yusra's ferrets\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"sleep\", \"actor\": \"@g1\", \"tense\": \"past\", \"span\": \"Yusra's ferrets slept\"}, {\"t\": \"distribution\", \"id\": \"r1\", \"group\": \"@g1\", \"over\": [\"@e1\"], \"span\": \"Yusra's ferrets slept\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s16427cff5c",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "group",
+        "id": "g1",
+        "class": "ferret",
+        "possessor": "@n1",
+        "span": "Yusra's ferrets"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "sleep",
+        "actor": "@g1",
+        "tense": "past",
+        "span": "Yusra's ferrets slept"
+      },
+      {
+        "t": "distribution",
+        "id": "r1",
+        "group": "@g1",
+        "over": [
+          "@e1"
+        ],
+        "span": "Yusra's ferrets slept"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "53d89fa7f927c05abfee7398d51a10619c0e84356460aa9ef11db0ca08813b31",
+  "run": 1,
+  "case": {
+    "template": "portion",
+    "section": "held_out",
+    "index": 26,
+    "category": "abstain",
+    "text": "Yusra's ferrets slept.",
+    "key": "16427cff5c"
+  }
+}

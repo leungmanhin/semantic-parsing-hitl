@@ -34,10 +34,12 @@ trigger:
       the barn), talked about the audit: a location or an oblique on the event; decide by what
       the phrase modifies
     - >-
-      a partitive — two of the ferrets, some of the quilts: a group, not a modified noun
+      a partitive — two of the ferrets, some of the quilts: a portion of the group (the portion
+      template), not a modified noun; one of the ferrets: a witness that is a member (part-whole)
     - >-
-      a measure or a container — a cup of tea, three metres of cloth: the substance is the
-      verb's object as a bare lemma (tea, cloth); the measure phrase is reported as unmapped
+      a measure or a container — a cup of tea, three metres of cloth: a witness of the substance
+      with a measure on it (unit cup, metre), the measure template; a lot of water: the
+      witness's quantity phrase
     - >-
       a place phrase inside a noun phrase — the ferret in the barn, the ledger on the workbench:
       a locative predication of that thing (in, at, on, near, under …), not a phrase of this
@@ -172,4 +174,4 @@ examples:
       expected: {abstain: true, template: oblique}                    # a phrase on the clause
     - category: abstain
       text: "Yusra drank a cup of tea."
-      expected: {abstain: true, gap: G00, span: "cup of tea"}         # a measure or container
+      expected: {abstain: true, template: measure}                   # a measure or container

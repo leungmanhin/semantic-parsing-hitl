@@ -1,0 +1,341 @@
+# Template: portion  (a quantified portion of a definite whole: "three of the ferrets", "most of the quilts", "half of the loaf", "the rest of the loaf")
+#
+# "Q of the Ns" and "Q of the N" pick a portion of a SPECIFIC, presupposed whole — the ferrets
+# the text has in view, the loaf on the table — and say how much of it: a count (three of the
+# ferrets), a vague count (several of the ferrets), a proportion word (most of the quilts, half
+# of the loaf), a fraction or a percentage (two-thirds of the weavers, forty percent of the
+# quilts), or the remainder (the rest of the loaf). The portion is a referent of its own: of a
+# GROUP, a subset group — (GroupOf sk_portion_1 ferret) (SubsetOf sk_portion_1 sk_group_1)
+# (Cardinality sk_portion_1 3); of a MASS or a single thing, a part — (PartOf sk_portion_1
+# sk_loaf_1) (ProportionOf sk_portion_1 sk_loaf_1 half). What the sentence says of the portion
+# is said by the ordinary templates with the portion as the filler, and a distribution instance
+# says it holds of each member, as for any group. No class-level claim: "most of the quilts are
+# damp" is about those quilts, never about quilts. A proportion word stays a label as written
+# (most, half, few); a stated fraction or percentage is a Fraction term, never reduced — (Fraction
+# 40 100) keeps that it was a percentage.
+
+id: portion
+family: referent
+shape: referent
+title: A quantified portion of a definite whole
+
+trigger:
+  construction: >
+    A noun phrase of the form "<quantity> of <the whole>" where the whole is a SPECIFIC referent
+    the text presupposes — a definite or possessed group (the ferrets, these quilts, Yusra's
+    ferrets, them) or a definite singular whole (the loaf, the budget, the field, the morning) —
+    and the quantity is a NUMBER of two or more (two of the ferrets, twenty of the students), a
+    VAGUE COUNT (several of, a few of, dozens of), a PROPORTION WORD (most of, some of, many of,
+    few of, half of), a FRACTION or a PERCENTAGE (a third of, two-thirds of, forty percent of,
+    12.5% of, three out of five of), or "the rest of". Write the whole's own instance first (the
+    group or the witness; a pronoun is a mention), then one portion instance naming it:
+    `members` is the members' class when the whole is a group (ferret), absent for a mass or a
+    single thing; exactly one of `count`, `quantity`, `word`, `numerator` (with `denominator`)
+    or `rest` says how much. Number words are converted (two → 2, forty percent → 40 over 100,
+    a third → 1 over 3; half stays the word half). The portion then fills the clause's slot like
+    any referent, and a distribution instance over it says the predicate holds of each member
+    when it does (most of the quilts are damp: each is).
+  surface_forms:
+    - "<n> of the <N>s"                               # three of the ferrets: count 3
+    - "several / a few / dozens of the <N>s"          # a vague count: quantity
+    - "most / some / many / few / half of the <N>s"   # a proportion word
+    - "half / most / the rest of the <N>"             # a mass or a single whole: a part of it
+    - "a third / two-thirds / forty percent / 12.5% of the <N>(s)"   # a fraction or a percentage: numerator over denominator
+    - "<quantity> of them / of Yusra's <N>s"          # the whole a mention or a possessed group
+  boundary:                   # looks like a portion but is not one
+    - >-
+      one of the Ns — one of the weavers, one of the seven sins: a single member, a witness of
+      the class linked to the group by a part-whole instance (word one of), not a portion
+    - >-
+      all / each / both / every one of the Ns — all of the ferrets slept: the whole group
+      itself (both: count 2), with a distribution; none of the Ns — none of the ferrets slept: a
+      range with the quantifier none, and the generic builds the rule
+    - >-
+      a quantifier on a bare class noun — most students, three ferrets, half the time: no whole
+      is stated; most students is a range of a generalization, three ferrets a group; a bare
+      "most" is never a portion
+    - >-
+      a quantity of a substance — a cup of tea, three metres of cloth, a lot of water: a witness
+      of the stuff with a measure or a vague quantity phrase on it (the measure and witness
+      templates), not a portion of a whole
+    - >-
+      a plain part named by a noun — a piece of the loaf, the top of the ladder, a member of the
+      guild: a witness and a part-whole instance; the amount is not stated
+    - >-
+      one of the ADJ-est Ns — one of the oldest glaziers: a superlative
+    - >-
+      a possessive of-phrase — the quilt of Yusra, a friend of Lamine: a witness with its
+      possessor, or a stative relation
+    - >-
+      a percentage as a value, not a share of a whole — unemployment is 5 percent, fell by 8
+      percent: a measure with the unit percent
+
+slots:
+  id:          {type: id, required: true, doc: "your label for the portion (g2, g3 …)"}
+  whole:       {type: filler, class: Entity, required: true,
+                doc: "the whole the portion is taken from: the id of its instance — a definite or possessed group (the ferrets, Yusra's ferrets), a definite witness (the loaf, the budget) or a mention (them)"}
+  members:     {type: lemma, class: Class, required: false,
+                doc: "the class of the portion's members when the whole is a group, lemmatized to the singular (ferret); for a pronoun whole, its antecedent's class when the text names it; absent for a mass or a single whole (half of the loaf)"}
+  count:       {type: number, required: false, doc: "an exact number of members, two or more (two of → 2, twenty of → 20); number words converted"}
+  quantity:    {type: string, required: false, doc: "a vague count phrase as written (several, a few, a couple, dozens, a handful, a number)"}
+  word:        {type: lemma, class: Level, required: false,
+                doc: "a proportion word as written, lowercase (most, some, many, few, half)"}
+  numerator:   {type: number, required: false, doc: "the numerator of a stated fraction or percentage (two-thirds → 2, a third → 1, forty percent → 40, 12.5% → 12.5, three out of five → 3); always with denominator"}
+  denominator: {type: number, required: false, doc: "the denominator (two-thirds → 3, a third → 3, a percentage → 100, three out of five → 5); always with numerator"}
+  rest:        {type: bool, required: false, doc: "true for the rest of / the remainder of; absent otherwise"}
+
+one_of: [[count, quantity, word, numerator, rest]]
+
+mints: {id: Entity, literal: portion}
+
+presupposed: [whole]        # a portion of a specific whole exists whatever scope mentions it
+
+emits:
+  - atom: "(GroupOf @id {members})"          # of a group: a subset group of its members
+    if_filled: members
+  - atom: "(SubsetOf @id {whole})"
+    if_filled: members
+  - atom: "(PartOf @id {whole})"             # of a mass or a single thing: a part of it
+    when: "not members"
+  - atom: "(Cardinality @id {count})"
+    if_filled: count
+  - atom: "(CardinalityPhrase @id \"{quantity}\")"
+    if_filled: quantity
+  - atom: "(ProportionOf @id {whole} {word})"
+    if_filled: word
+  - atom: "(ProportionOf @id {whole} (Fraction {numerator} {denominator}))"
+    if_filled: numerator
+  - atom: "(RestOf @id {whole})"
+    when: "rest == true"
+
+notes:
+  - >-
+    The portion is a referent like a group: the predication templates take it as any other
+    filler, and the group-level statement is true of the portion as such; the distribution
+    instance adds the per-member rule, which is how a property of "most of the quilts" reaches
+    each quilt. The legacy's kind-like reading of the subset is this rule.
+  - >-
+    The whole is presupposed and so is the portion: "two of the ferrets did not sleep" denies
+    the sleeping of those two, not that there are two; the portion stays at the top level under
+    negation and modality.
+  - >-
+    A member of the portion is a member of the whole: the background rule subset_is_part makes
+    a subset group a part of its group, and a part of a part is a part of the whole.
+  - >-
+    A proportion word is a label as written (most, half, some, few), a stated fraction or
+    percentage a Fraction term with the numbers as stated and never reduced: (Fraction 40 100)
+    says forty percent, (Fraction 2 3) two-thirds; which labels compare how is a consumer's
+    business, as for a degree word.
+
+depends_on: [group, witness, mention]
+composes_with: [distribution, negation, modal, coref]
+
+examples:
+  shown:                     # rendered into the prompt
+    - category: positive
+      note: a counted portion of a definite group — a subset group with its count; the predicate on it and distributed to each member
+      text: "Three of the ferrets slept."
+      instances:
+        - {t: group, id: g1, class: ferret, definite: true, span: "the ferrets"}
+        - {t: portion, id: g2, whole: "@g1", members: ferret, count: 3, span: "Three of the ferrets"}
+        - {t: activity, id: v1, verb: sleep, actor: "@g2", tense: past, span: "Three of the ferrets slept"}
+        - {t: distribution, id: d1, group: "@g2", over: ["@v1"], span: "Three of the ferrets slept"}
+      emitted:               # what the emitter produces (illustration; the emitter is the authority)
+        - "(GroupOf sk_group_1 ferret)"
+        - "(GroupOf sk_portion_1 ferret)"
+        - "(SubsetOf sk_portion_1 sk_group_1)"
+        - "(Cardinality sk_portion_1 3)"
+        - "(Member sk_sleep_1 sleep)"
+        - "(Agent sk_sleep_1 sk_portion_1)"
+        - "(Past sk_sleep_1)"
+        - "(Implication (PartOf $x sk_portion_1) (And (Member (sk_sleep $x) sleep) (Agent (sk_sleep $x) $x) (Past (sk_sleep $x))))"
+      declarations:
+        - "(: ferret Class)"
+        - "(: sk_group_1 Entity)"
+        - "(: sk_portion_1 Entity)"
+        - "(: sk_sleep_1 Event)"
+        - "(: sleep Class)"
+        - "(: sk_sleep (-> Atom Event))"
+    - category: positive
+      note: a proportion word — a label on the subset; the property distributed to each member, no claim about quilts in general
+      text: "Most of the quilts are damp."
+      instances:
+        - {t: group, id: g1, class: quilt, definite: true, span: "the quilts"}
+        - {t: portion, id: g2, whole: "@g1", members: quilt, word: most, span: "Most of the quilts"}
+        - {t: copular, id: c1, subject: "@g2", predicate: damp, form: adjective, tense: present, span: "Most of the quilts are damp"}
+        - {t: distribution, id: d1, group: "@g2", over: ["@c1"], span: "Most of the quilts are damp"}
+    - category: positive
+      note: a single whole — the portion a part of it, no members and no distribution
+      text: "Half of the field is wet."
+      instances:
+        - {t: witness, id: x1, class: field, definite: true, span: "the field"}
+        - {t: portion, id: g2, whole: "@x1", word: half, span: "Half of the field"}
+        - {t: copular, id: c1, subject: "@g2", predicate: wet, form: adjective, tense: present, span: "Half of the field is wet"}
+    - category: abstain
+      text: "Several ferrets slept."
+      expected: {abstain: true, template: group}                      # no whole stated: a group
+    - category: abstain
+      text: "Most students laugh."
+      expected: {abstain: true, template: generic}                    # most on a bare class: a generalization
+
+  held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      note: a proportion of a mass — a part of the loaf
+      text: "Half of the loaf is stale."
+      instances:
+        - {t: witness, id: x1, class: loaf, definite: true}
+        - {t: portion, id: g2, whole: "@x1", word: half}
+        - {t: copular, id: c1, subject: "@g2", predicate: stale, form: adjective, tense: present}
+    - category: positive
+      text: "Two of the ferrets slept."
+      instances:
+        - {t: group, id: g1, class: ferret, definite: true}
+        - {t: portion, id: g2, whole: "@g1", members: ferret, count: 2}
+        - {t: activity, id: v1, verb: sleep, actor: "@g2", tense: past}
+        - {t: distribution, id: d1, group: "@g2", over: ["@v1"]}
+    - category: positive
+      note: a vague count on the portion
+      text: "Several of the quilts are damp."
+      instances:
+        - {t: group, id: g1, class: quilt, definite: true}
+        - {t: portion, id: g2, whole: "@g1", members: quilt, quantity: several}
+        - {t: copular, id: c1, subject: "@g2", predicate: damp, form: adjective, tense: present}
+        - {t: distribution, id: d1, group: "@g2", over: ["@c1"]}
+    - category: positive
+      text: "Some of the weavers laughed."
+      instances:
+        - {t: group, id: g1, class: weaver, definite: true}
+        - {t: portion, id: g2, whole: "@g1", members: weaver, word: some}
+        - {t: activity, id: v1, verb: laugh, actor: "@g2", tense: past}
+        - {t: distribution, id: d1, group: "@g2", over: ["@v1"]}
+    - category: positive
+      text: "Few of the ferrets slept."
+      instances:
+        - {t: group, id: g1, class: ferret, definite: true}
+        - {t: portion, id: g2, whole: "@g1", members: ferret, word: few}
+        - {t: activity, id: v1, verb: sleep, actor: "@g2", tense: past}
+        - {t: distribution, id: d1, group: "@g2", over: ["@v1"]}
+    - category: positive
+      note: a fraction — a Fraction term, never reduced
+      text: "Two-thirds of the weavers left."
+      instances:
+        - {t: group, id: g1, class: weaver, definite: true}
+        - {t: portion, id: g2, whole: "@g1", members: weaver, numerator: 2, denominator: 3}
+        - {t: motion, id: m1, verb: leave, mover: "@g2", tense: past}
+        - {t: distribution, id: d1, group: "@g2", over: ["@m1"]}
+    - category: positive
+      note: a percentage — over 100, the number as stated
+      text: "Forty percent of the quilts are damp."
+      instances:
+        - {t: group, id: g1, class: quilt, definite: true}
+        - {t: portion, id: g2, whole: "@g1", members: quilt, numerator: 40, denominator: 100}
+        - {t: copular, id: c1, subject: "@g2", predicate: damp, form: adjective, tense: present}
+        - {t: distribution, id: d1, group: "@g2", over: ["@c1"]}
+    - category: positive
+      note: a fraction of a single whole
+      text: "A third of the field is wet."
+      instances:
+        - {t: witness, id: x1, class: field, definite: true}
+        - {t: portion, id: g2, whole: "@x1", numerator: 1, denominator: 3}
+        - {t: copular, id: c1, subject: "@g2", predicate: wet, form: adjective, tense: present}
+    - category: positive
+      note: the remainder of a single whole
+      text: "The rest of the loaf is stale."
+      instances:
+        - {t: witness, id: x1, class: loaf, definite: true}
+        - {t: portion, id: g2, whole: "@x1", rest: true}
+        - {t: copular, id: c1, subject: "@g2", predicate: stale, form: adjective, tense: present}
+    - category: positive
+      note: the remainder of a group
+      text: "The rest of the ferrets slept."
+      instances:
+        - {t: group, id: g1, class: ferret, definite: true}
+        - {t: portion, id: g2, whole: "@g1", members: ferret, rest: true}
+        - {t: activity, id: v1, verb: sleep, actor: "@g2", tense: past}
+        - {t: distribution, id: d1, group: "@g2", over: ["@v1"]}
+    - category: positive
+      note: the whole a pronoun — a mention, its antecedent's class as the members' class
+      text: "The ferrets ate. Most of them slept."
+      instances:
+        - {t: group, id: g1, class: ferret, definite: true}
+        - {t: activity, id: v1, verb: eat, actor: "@g1", tense: past}
+        - {t: distribution, id: d1, group: "@g1", over: ["@v1"]}
+        - {t: mention, id: m1, word: them}
+        - {t: portion, id: g2, whole: "@m1", members: ferret, word: most}
+        - {t: activity, id: v2, verb: sleep, actor: "@g2", tense: past}
+        - {t: distribution, id: d2, group: "@g2", over: ["@v2"]}
+        - {t: coref, id: c1, mention: "@m1", antecedent: "@g1", certainty: certain}
+    - category: positive
+      note: a possessed group as the whole
+      text: "Three of Yusra's ferrets slept."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: group, id: g1, class: ferret, possessor: "@n1"}
+        - {t: portion, id: g2, whole: "@g1", members: ferret, count: 3}
+        - {t: activity, id: v1, verb: sleep, actor: "@g2", tense: past}
+        - {t: distribution, id: d1, group: "@g2", over: ["@v1"]}
+    - category: positive
+      text: "Twenty of the students waited."
+      instances:
+        - {t: group, id: g1, class: student, definite: true}
+        - {t: portion, id: g2, whole: "@g1", members: student, count: 20}
+        - {t: activity, id: v1, verb: wait, actor: "@g2", tense: past}
+        - {t: distribution, id: d1, group: "@g2", over: ["@v1"]}
+    - category: positive
+      note: past tense on the predicate of a mass portion
+      text: "Half of the loaf was stale."
+      instances:
+        - {t: witness, id: x1, class: loaf, definite: true}
+        - {t: portion, id: g2, whole: "@x1", word: half}
+        - {t: copular, id: c1, subject: "@g2", predicate: stale, form: adjective, tense: past}
+    - category: scoped
+      note: under negation — the portion presupposed, the sleeping denied of it and of each member
+      text: "Two of the ferrets did not sleep."
+      instances:
+        - {t: group, id: g1, class: ferret, definite: true}
+        - {t: portion, id: g2, whole: "@g1", members: ferret, count: 2}
+        - {t: activity, id: v1, verb: sleep, actor: "@g2", tense: past}
+        - {t: negation, id: s1, over: ["@v1"]}
+        - {t: distribution, id: d1, group: "@g2", over: ["@s1"]}
+    - category: scoped
+      note: under a modal
+      text: "Most of the quilts might be damp."
+      instances:
+        - {t: group, id: g1, class: quilt, definite: true}
+        - {t: portion, id: g2, whole: "@g1", members: quilt, word: most}
+        - {t: copular, id: c1, subject: "@g2", predicate: damp, form: adjective, tense: present}
+        - {t: modal, id: s1, over: ["@c1"], head: Might, surface: might}
+        - {t: distribution, id: d1, group: "@g2", over: ["@s1"]}
+    - category: abstain
+      text: "The ferrets slept."
+      expected: {abstain: true, template: group}                      # the whole group, no quantity
+    - category: abstain
+      text: "All of the ferrets slept."
+      expected: {abstain: true, template: group}                      # all of: the group itself
+    - category: abstain
+      text: "Every ferret slept."
+      expected: {abstain: true, template: generic}                    # a quantifier on a class
+    - category: abstain
+      text: "None of the ferrets slept."
+      expected: {abstain: true, template: generic}                    # none of: a range
+    - category: abstain
+      text: "One of the weavers laughed."
+      expected: {abstain: true, template: part-whole}                 # one of: a member witness
+    - category: abstain
+      text: "Ottoline is one of the oldest glaziers."
+      expected: {abstain: true, template: superlative}                # one of the ADJ-est
+    - category: abstain
+      text: "Yusra drank a cup of tea."
+      expected: {abstain: true, template: measure}                    # a quantity of a substance
+    - category: abstain
+      text: "Lamine drank a lot of water."
+      expected: {abstain: true, template: witness}                    # a vague amount of a substance
+    - category: abstain
+      text: "Lamine is a member of the guild."
+      expected: {abstain: true, template: part-whole}                 # a member, no amount
+    - category: abstain
+      text: "The price fell by 8 percent."
+      expected: {abstain: true, template: measure}                    # a percentage as a value
+    - category: abstain
+      text: "Yusra's ferrets slept."
+      expected: {abstain: true, template: group}                      # a possessed group, no portion

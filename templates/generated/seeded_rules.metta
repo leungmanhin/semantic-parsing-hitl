@@ -69,6 +69,8 @@
 (: most_bounds (Implication (And (Most $s $x $c) (Member $y $c)) (Not (More $s $y $x))) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
 ;; counterfactual_antecedent_false: a counterfactual's antecedent did not happen (reads: counterfactual)
 (: counterfactual_antecedent_false (Implication (Counterfactual $p $q) (Not $p)) (CTV (STV 1.0 0.9) (STV 0.0 0.0)))
+;; subset_is_part: a quantified portion of a group is a part of it (reads: portion)
+(: subset_is_part (Implication (SubsetOf $s $g) (PartOf $s $g)) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
 ;; partof_trans: a part of a part is a part of the whole (reads: part-whole)
 (: partof_trans (Implication (And (PartOf $x $y) (PartOf $y $z)) (PartOf $x $z)) (CTV (STV 1.0 0.9) (STV 0.0 0.0)))
 ;; part_located: a part is where its whole is (reads: part-whole, locative)

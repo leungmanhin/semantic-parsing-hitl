@@ -1,0 +1,93 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "a8974cde6a6505f9be6d33a69f7ecc5a9ab4fed6002072e069d50ddc35694864",
+  "item": {
+    "id": "seb4dc93755",
+    "text": "The ferrets slept."
+  },
+  "usage": {
+    "input": 88894,
+    "output": 140,
+    "thinking": null,
+    "total": 89034,
+    "cached": 81920,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 88894,
+    "candidatesTokenCount": 140,
+    "totalTokenCount": 89034,
+    "cachedContentTokenCount": 81920,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 88894
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 81920
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 140
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"seb4dc93755\", \"instances\": [{\"t\": \"group\", \"id\": \"g1\", \"class\": \"ferret\", \"definite\": true, \"span\": \"The ferrets\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"sleep\", \"actor\": \"@g1\", \"tense\": \"past\", \"span\": \"The ferrets slept\"}, {\"t\": \"distribution\", \"id\": \"d1\", \"group\": \"@g1\", \"over\": [\"@v1\"], \"span\": \"The ferrets slept\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "seb4dc93755",
+    "instances": [
+      {
+        "t": "group",
+        "id": "g1",
+        "class": "ferret",
+        "definite": true,
+        "span": "The ferrets"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "sleep",
+        "actor": "@g1",
+        "tense": "past",
+        "span": "The ferrets slept"
+      },
+      {
+        "t": "distribution",
+        "id": "d1",
+        "group": "@g1",
+        "over": [
+          "@v1"
+        ],
+        "span": "The ferrets slept"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "53d89fa7f927c05abfee7398d51a10619c0e84356460aa9ef11db0ca08813b31",
+  "run": 1,
+  "case": {
+    "template": "portion",
+    "section": "held_out",
+    "index": 16,
+    "category": "abstain",
+    "text": "The ferrets slept.",
+    "key": "eb4dc93755"
+  }
+}

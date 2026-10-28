@@ -122,6 +122,13 @@ examples:
 
   held_out:                  # tests; never rendered into the prompt
     - category: positive
+      note: none of the Ns — the negative universal over the class, as no N
+      text: "None of the ferrets slept."
+      instances:
+        - {t: range, id: q1, class: ferret, quantifier: none, predicate: sleep}
+        - {t: activity, id: v1, verb: sleep, actor: "@q1", tense: past}
+        - {t: generic, id: r1, ranges: ["@q1"], over: ["@v1"]}
+    - category: positive
       note: a universal, past
       text: "Every ferret slept."
       instances:
