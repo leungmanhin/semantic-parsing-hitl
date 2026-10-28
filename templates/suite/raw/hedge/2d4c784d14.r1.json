@@ -1,0 +1,100 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "15dd5977b3c62eb5d96dfaea2735e2baebeceb2f8d2a2812828b700dbe9c989d",
+  "item": {
+    "id": "s2d4c784d14",
+    "text": "Presumably, Teodor locked the shed."
+  },
+  "usage": {
+    "input": 92433,
+    "output": 175,
+    "thinking": null,
+    "total": 92608,
+    "cached": 90381,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 92433,
+    "candidatesTokenCount": 175,
+    "totalTokenCount": 92608,
+    "cachedContentTokenCount": 90381,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 92433
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 90381
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 175
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s2d4c784d14\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"shed\", \"definite\": true, \"span\": \"the shed\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"lock\", \"actor\": \"@n1\", \"patient\": \"@x1\", \"tense\": \"past\", \"span\": \"Teodor locked the shed\"}, {\"t\": \"hedge\", \"id\": \"s1\", \"over\": [\"@v1\"], \"word\": \"presumably\", \"span\": \"Presumably\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s2d4c784d14",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "shed",
+        "definite": true,
+        "span": "the shed"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "lock",
+        "actor": "@n1",
+        "patient": "@x1",
+        "tense": "past",
+        "span": "Teodor locked the shed"
+      },
+      {
+        "t": "hedge",
+        "id": "s1",
+        "over": [
+          "@v1"
+        ],
+        "word": "presumably",
+        "span": "Presumably"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "c510aed7c947628c88280a5ab290bb4a336eaa5c8e5862b3e97b3a323f409c8e",
+  "run": 1,
+  "case": {
+    "template": "hedge",
+    "section": "held_out",
+    "index": 6,
+    "category": "positive",
+    "text": "Presumably, Teodor locked the shed.",
+    "key": "2d4c784d14"
+  }
+}

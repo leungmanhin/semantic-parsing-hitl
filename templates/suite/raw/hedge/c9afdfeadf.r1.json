@@ -1,0 +1,101 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "15dd5977b3c62eb5d96dfaea2735e2baebeceb2f8d2a2812828b700dbe9c989d",
+  "item": {
+    "id": "sc9afdfeadf",
+    "text": "Lamine is sure that Yusra left."
+  },
+  "usage": {
+    "input": 92429,
+    "output": 188,
+    "thinking": null,
+    "total": 92617,
+    "cached": 90380,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 92429,
+    "candidatesTokenCount": 188,
+    "totalTokenCount": 92617,
+    "cachedContentTokenCount": 90380,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 92429
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 90380
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 188
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sc9afdfeadf\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n2\", \"tense\": \"past\", \"span\": \"Yusra left\"}, {\"t\": \"attitude\", \"id\": \"a1\", \"verb\": \"sure\", \"holder\": \"@n1\", \"content\": [\"@m1\"], \"factive\": false, \"tense\": \"present\", \"span\": \"Lamine is sure that Yusra left\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sc9afdfeadf",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "motion",
+        "id": "m1",
+        "verb": "leave",
+        "mover": "@n2",
+        "tense": "past",
+        "span": "Yusra left"
+      },
+      {
+        "t": "attitude",
+        "id": "a1",
+        "verb": "sure",
+        "holder": "@n1",
+        "content": [
+          "@m1"
+        ],
+        "factive": false,
+        "tense": "present",
+        "span": "Lamine is sure that Yusra left"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "c510aed7c947628c88280a5ab290bb4a336eaa5c8e5862b3e97b3a323f409c8e",
+  "run": 1,
+  "case": {
+    "template": "hedge",
+    "section": "held_out",
+    "index": 13,
+    "category": "abstain",
+    "text": "Lamine is sure that Yusra left.",
+    "key": "c9afdfeadf"
+  }
+}

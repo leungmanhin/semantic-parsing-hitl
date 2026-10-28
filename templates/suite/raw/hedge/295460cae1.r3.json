@@ -1,0 +1,93 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "15dd5977b3c62eb5d96dfaea2735e2baebeceb2f8d2a2812828b700dbe9c989d",
+  "item": {
+    "id": "s295460cae1",
+    "text": "Yusra is supposedly a weaver."
+  },
+  "usage": {
+    "input": 92430,
+    "output": 147,
+    "thinking": null,
+    "total": 92577,
+    "cached": 90381,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 92430,
+    "candidatesTokenCount": 147,
+    "totalTokenCount": 92577,
+    "cachedContentTokenCount": 90381,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 92430
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 90381
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 147
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s295460cae1\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@n1\", \"predicate\": \"weaver\", \"form\": \"noun\", \"tense\": \"present\", \"span\": \"Yusra is supposedly a weaver\"}, {\"t\": \"hedge\", \"id\": \"s1\", \"over\": [\"@c1\"], \"word\": \"supposedly\", \"span\": \"supposedly\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s295460cae1",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "copular",
+        "id": "c1",
+        "subject": "@n1",
+        "predicate": "weaver",
+        "form": "noun",
+        "tense": "present",
+        "span": "Yusra is supposedly a weaver"
+      },
+      {
+        "t": "hedge",
+        "id": "s1",
+        "over": [
+          "@c1"
+        ],
+        "word": "supposedly",
+        "span": "supposedly"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "c510aed7c947628c88280a5ab290bb4a336eaa5c8e5862b3e97b3a323f409c8e",
+  "run": 3,
+  "case": {
+    "template": "hedge",
+    "section": "held_out",
+    "index": 5,
+    "category": "positive",
+    "text": "Yusra is supposedly a weaver.",
+    "key": "295460cae1"
+  }
+}

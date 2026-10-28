@@ -1,0 +1,92 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "15dd5977b3c62eb5d96dfaea2735e2baebeceb2f8d2a2812828b700dbe9c989d",
+  "item": {
+    "id": "s05ae12ff8b",
+    "text": "Ottoline will certainly leave."
+  },
+  "usage": {
+    "input": 92429,
+    "output": 136,
+    "thinking": null,
+    "total": 92565,
+    "cached": 90377,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 92429,
+    "candidatesTokenCount": 136,
+    "totalTokenCount": 92565,
+    "cachedContentTokenCount": 90377,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 92429
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 90377
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 136
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s05ae12ff8b\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n1\", \"tense\": \"future\", \"span\": \"Ottoline will certainly leave\"}, {\"t\": \"hedge\", \"id\": \"s1\", \"over\": [\"@m1\"], \"word\": \"certainly\", \"span\": \"certainly\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s05ae12ff8b",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Ottoline",
+        "span": "Ottoline"
+      },
+      {
+        "t": "motion",
+        "id": "m1",
+        "verb": "leave",
+        "mover": "@n1",
+        "tense": "future",
+        "span": "Ottoline will certainly leave"
+      },
+      {
+        "t": "hedge",
+        "id": "s1",
+        "over": [
+          "@m1"
+        ],
+        "word": "certainly",
+        "span": "certainly"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "c510aed7c947628c88280a5ab290bb4a336eaa5c8e5862b3e97b3a323f409c8e",
+  "run": 1,
+  "case": {
+    "template": "hedge",
+    "section": "held_out",
+    "index": 3,
+    "category": "positive",
+    "text": "Ottoline will certainly leave.",
+    "key": "05ae12ff8b"
+  }
+}

@@ -179,8 +179,6 @@
 (: Permitted (-> Proposition Proposition))
 (: Possession (-> Entity Entity Proposition))
 (: Precludes (-> Event Proposition))
-(: Probably (-> Event Proposition))
-(: Probably (-> Proposition Proposition))
 (: ProportionOf (-> Entity Entity Level Proposition))
 (: PurposeOf (-> Event Event Proposition))
 (: QuantifierPhrase (-> Class Class String Proposition))

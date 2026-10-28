@@ -82,8 +82,9 @@ trigger:
       Lamine left, aware that the gate is open, glad that Ottoline came, ready to leave, eager /
       willing / afraid to V: a propositional attitude of the subject, the attitude template with
       the adjective as its lemma; able to V — is able to swim: a capability, the modal template;
-      supposed / required / allowed to V: a norm; likely, bound, certain or sure TO V, about to,
-      due to — likely to win: a hedge over the clause, no template, report the predicate as
+      supposed / required / allowed to V: a norm; likely, unlikely, bound, certain or sure TO
+      V — likely to win: the hedge template over the infinitive's clause, the subject acting in
+      it; about to, due to — about to leave: imminence, no template, report the predicate as
       unmapped; too tired to sing, tall enough to reach: the degree template, the infinitive
       reported
     - >-
@@ -397,7 +398,7 @@ examples:
       expected: {abstain: true, template: modal}                      # a capability
     - category: abstain
       text: "Yusra is likely to win."
-      expected: {abstain: true, gap: G00, span: "likely to win"}      # a hedge over the clause
+      expected: {abstain: true, template: hedge}                      # a raising adjective: a hedge over the clause
     - category: abstain
       text: "Teodor is supposed to wait."
       expected: {abstain: true, template: norm}                       # a weak obligation

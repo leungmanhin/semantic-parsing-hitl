@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 ffa60aeb032c9267 · 57 templates
+catalog sha256 595b725137caa639 · 58 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -52,9 +52,9 @@ fences.
 
 - Every instance carries an `id`: a short lowercase label you choose, unique within the item.
   Suggested prefixes: `n` named individual, `x` witness, `g` group or portion, `e` event, `s`
-  scope operator (negation, modal, norm, evidential), `c` copular predication, `l` location, `q`
-  quantified range, `r` rule, `d` comparison or degree, `m` measure, `t` time, `k` link, `f`
-  focus (n1, x1, e1, s1 …).
+  scope operator (negation, modal, norm, evidential, hedge), `c` copular predication, `l`
+  location, `q` quantified range, `r` rule, `d` comparison or degree, `m` measure, `t` time, `k`
+  link, `f` focus (n1, x1, e1, s1 …).
 - A slot that points to another instance holds `"@<id>"`, for example `"Agent": "@n1"`.
 - The id `now` is reserved for the text's REFERENCE TIME (the moment the text speaks from). You
   never write its instance; a deictic time (yesterday, tomorrow, last week) refers to it as its
@@ -158,7 +158,9 @@ part, keep the instances the templates license and report just that part: an add
 bound, duration, place, manner, amount or tag leaves the event itself true ("was demolished
 before 1960" still says it was demolished). When the rest would NOT follow without the unmapped
 part, leave the whole claim out and report the whole clause: a negated condition ("unless it
-rains, Lamine sings"), a hedge ("supposedly full"), an unencodable quantity ("too much salt").
+rains, Lamine sings"), a reported claim no template carries ("is said to be full"), an
+unencodable quantity ("too much salt"). An evaluative adverb ("unfortunately, Yusra left")
+leaves the clause entailed: keep the clause and report the adverb (G02).
 
 Referents inside an unmapped span: a NAME still gets its instance (a name is rigid, the same
 individual wherever it appears in the text), but a common-noun phrase or a pronoun does not. A
@@ -171,9 +173,9 @@ Codes:
 - G00: anything no template here covers and no other code names
 - G01: a comparative with no stated standard ('a sturdier bracket', 'prices ended lower')
 - G02: an adverb with no slot: sequence (initially, eventually, finally), scope or domain
-  (nationally, locally), a degree word on a manner adverb, on a class-level statement or on an
-  adjective with a complement (laughed very loudly; ferrets are very curious; very fond of
-  Teodor)
+  (nationally, locally), an evaluation (unfortunately, luckily, sadly), a degree word on a
+  manner adverb, on a class-level statement or on an adjective with a complement (laughed very
+  loudly; ferrets are very curious; very fond of Teodor)
 - G03: a post-nominal tag on a name (a party or district tag, a ticker, a bracketed code)
 - G04: an irrealis relative clause or a lone would-have consequent ('the bridge that would have
   collapsed')
@@ -873,9 +875,10 @@ Not this template:
   left, aware that the gate is open, glad that Ottoline came, ready to leave, eager / willing /
   afraid to V: a propositional attitude of the subject, the attitude template with the adjective
   as its lemma; able to V — is able to swim: a capability, the modal template; supposed /
-  required / allowed to V: a norm; likely, bound, certain or sure TO V, about to, due to —
-  likely to win: a hedge over the clause, no template, report the predicate as unmapped; too
-  tired to sing, tall enough to reach: the degree template, the infinitive reported
+  required / allowed to V: a norm; likely, unlikely, bound, certain or sure TO V — likely to
+  win: the hedge template over the infinitive's clause, the subject acting in it; about to, due
+  to — about to leave: imminence, no template, report the predicate as unmapped; too tired to
+  sing, tall enough to reach: the degree template, the infinitive reported
 - a prepositional phrase on a verb — talked about the audit, waited for Teodor: an oblique on
   the event; on a noun — a book about ferrets, the lid of the box: a postmodifier or a
   part-whole
@@ -1129,11 +1132,11 @@ Not this template:
   predicated of anyone
 - an adjective with a noun-phrase complement — afraid of the ferret, sure of the result, fond of
   Lamine: the adjective-complement template; able to V — is able to swim: a capability, the
-  modal template; likely, bound, certain or sure TO V, about to, due to — Yusra is likely to
-  win: a hedge over the clause, not a stance of the subject; no template, report the predicate
-  as unmapped; hard, easy, difficult, impossible, important or safe to V — the quilt is hard to
-  mend, it is important to rest: a quality of the action, the adjective-complement template with
-  no bearer
+  modal template; likely, bound, certain or sure TO V — Yusra is likely to win: the speaker's
+  hedge over the clause, not a stance of the subject, the hedge template; about to, due to:
+  imminence, unmapped; hard, easy, difficult, impossible, important or safe to V — the quilt is
+  hard to mend, it is important to rest: a quality of the action, the adjective-complement
+  template with no bearer
 
 Slots:
 
@@ -3705,8 +3708,8 @@ Not this template:
   or the clause's own state; become, get, turn — became tired: a change of state
 - an epistemic modal — might be tired, must be tired: the modal template; a hearsay attribution
   — according to Lamine, is said to be tired: an attribution or an attitude
-- a hedge adverb — probably tired, apparently tired: no slot here; report the adverb as unmapped
-  and parse the clause
+- a hedge adverb — probably tired, apparently tired: the hedge template over the clause, which
+  sets its truth value; no appearance is stated
 
 Slots:
 
@@ -3767,6 +3770,91 @@ The program renders these instances as:
     (Appear (Member sk_ottoline_1 weaver))
 
 Not this template. TEXT: Teodor saw the ferret. — use `perception`.
+
+### hedge — The speaker's qualified commitment to a clause
+
+When: A clause qualified by a HEDGE: a sentence adverb of likelihood or commitment — probably,
+likely, presumably, apparently, seemingly, supposedly, reportedly, allegedly, evidently,
+certainly, surely, definitely, undoubtedly, clearly, obviously — or a RAISING adjective with a
+to-infinitive — is likely / unlikely / bound / certain / sure to V, where the subject acts in
+the infinitive's clause (tense present). The clause is parsed with its own templates; the hedge
+instance names its predication (or the negation, modal, norm or rule over it) in `over` and the
+word in `word`. The program sets the clause's truth value from the word; nothing else changes
+and no atom is added. One instance per hedge word.
+
+Forms:
+- <S> probably / apparently / certainly <V> …
+- Probably / Presumably, <clause>
+- <S> is likely / unlikely / bound / certain / sure to <V> …
+
+Not this template:
+- a possibility — might, may, could, perhaps, maybe, possibly: the modal template (Might), with
+  the word in its surface; an epistemic inference — must be tired, must have left: the modal
+  template (Must)
+- an appearance or a report stated by a verb — seems tired, looks tired, is said to be tired:
+  the evidential template, or an attribution (according to Lamine)
+- a stance of the subject — is sure that P, is afraid that P, is confident that P: the subject's
+  attitude, the attitude template; a hedge is the speaker's, not the subject's
+- imminence or a schedule — is about to leave, is due to arrive: not a commitment; no template,
+  report the predicate as unmapped; due to X as a cause likewise
+- a hedge on a number — about 40 years old, roughly 3 metres: the measure template's own hedge
+  slot, the number kept
+- an evaluation — unfortunately, luckily, sadly: the speaker's feeling about the clause, not a
+  commitment to it; keep the clause and report the adverb as unmapped (G02)
+- a frequency adverb — usually, often, sometimes: the frequency template; a degree adverb —
+  very, almost, barely: a degree or an extent
+
+Slots:
+
+- `t` (required): "hedge"
+- `id` (required; your label for this instance): your label for the hedge (s1, s2 …).
+- `over` (required; a list of "@id" of the instances this one scopes over): the clause the hedge
+  qualifies: the id of its predication, or of the negation, modal, norm or rule over it
+  (probably did not leave: the negation instance); for a raising adjective, the infinitive's
+  predication with the subject as its actor.
+- `word` (required; one of: probably, likely, presumably, apparently, seemingly, supposedly,
+  reportedly, allegedly, evidently, unlikely, certainly, surely, definitely, undoubtedly,
+  clearly, obviously, bound, certain, sure): the hedge word as written, lowercase (is likely to
+  → likely, is bound to → bound); the program sets the dial from it.
+
+Example (a sentence adverb — the clause's own atoms at the hedge's truth value, no operator). TEXT: Teodor probably locked the shed.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Teodor", "span": "Teodor"},
+      {"t": "witness", "id": "x1", "class": "shed", "definite": true, "span": "the shed"},
+      {"t": "activity", "id": "v1", "verb": "lock", "actor": "@n1", "patient": "@x1", "tense": "past", "span": "Teodor probably locked the shed"},
+      {"t": "hedge", "id": "s1", "over": ["@v1"], "word": "probably", "span": "probably"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_teodor_1 "Teodor")
+    (Member sk_shed_1 shed)
+    (Member sk_lock_1 lock)
+    (Agent sk_lock_1 sk_teodor_1)
+    (Patient sk_lock_1 sk_shed_1)
+    (Past sk_lock_1)
+
+Example (a hedge on a copular clause). TEXT: The gate is apparently open.
+
+Instances:
+
+    [
+      {"t": "witness", "id": "x1", "class": "gate", "definite": true, "span": "The gate"},
+      {"t": "copular", "id": "c1", "subject": "@x1", "predicate": "open", "form": "adjective", "tense": "present", "span": "The gate is apparently open"},
+      {"t": "hedge", "id": "s1", "over": ["@c1"], "word": "apparently", "span": "apparently"}
+    ]
+
+The program renders these instances as:
+
+    (Member sk_gate_1 gate)
+    (Member sk_gate_1 open)
+
+Not this template. TEXT: Yusra must be tired. — use `modal`.
+
+Not this template. TEXT: The ferret looks tired. — use `evidential`.
 
 ### imperative — A command or a request to the addressee
 
@@ -3867,18 +3955,20 @@ Not this template. TEXT: Teodor gave Yusra a thermos. — use `transfer`.
 When: A modal auxiliary in its capability or epistemic reading (can, could, might, may, must,
 should) applied to a clause, or the capability stated by an adjective — is able to swim, was
 unable to sing: Can with the words in `surface`, a negation over it for unable, and the copula's
-tense on the clause (was able to sing: the singing past). The clause is not asserted; the modal
-scopes over it. The head records the modality (capability, epistemic possibility, epistemic
-necessity), and the surface word is kept; a deontic reading — an obligation, a permission, a
-prohibition, an exemption — is the norm template's. The clause under the modal keeps its own
-tense slot: present for a bare infinitive (might lend), past with aspect perfect for a perfect
-infinitive (might have lent); the modal instance carries nothing about tense.
+tense on the clause (was able to sing: the singing past); a possibility ADVERB — perhaps, maybe,
+possibly — is Might with the adverb in `surface`. The clause is not asserted; the modal scopes
+over it. The head records the modality (capability, epistemic possibility, epistemic necessity),
+and the surface word is kept; a deontic reading — an obligation, a permission, a prohibition, an
+exemption — is the norm template's. The clause under the modal keeps its own tense slot: present
+for a bare infinitive (might lend), past with aspect perfect for a perfect infinitive (might
+have lent); the modal instance carries nothing about tense.
 
 Forms:
 - <S> might <V> …
 - <S> must be <ADJ>
 - <S> might have <V>-ed …
 - <S> is able / unable to <V>
+- Perhaps / maybe <clause>; <S> possibly <V> …
 
 Not this template:
 - a modal word used deontically — must as an obligation, may or can as a permission, must not /
@@ -3887,6 +3977,9 @@ Not this template:
 - the ordering with negation — can't (Not over Can), might not (Might over Not): the instance
   order follows the meaning; a negated deontic is the norm template's prohibition or exemption,
   with no negation instance
+- a likelihood or a commitment adverb — probably, likely, apparently, certainly: the hedge
+  template, which sets the clause's truth value and adds no operator; only a possibility
+  (perhaps, maybe, possibly) is Might
 
 Slots:
 
@@ -4514,8 +4607,9 @@ Not this template:
 - a sequence or time adverb — finally, eventually, initially, later, now, yesterday: when; a
   time or a gap
 - a domain or scope adverb — nationally, internationally, locally: reported as unmapped
-- a hedge or an evaluation — probably, certainly, unfortunately, luckily: the speaker's stance;
-  reported as unmapped
+- a hedge — probably, certainly, apparently: the speaker's commitment to the clause, the hedge
+  template, which sets the clause's truth value; an evaluation — unfortunately, luckily: the
+  speaker's feeling, reported as unmapped (G02), the clause kept
 - a direction particle — climbed back, went away, came out: part of the motion's path; reported
   as unmapped
 - an instrument or a companion phrase — with a knife, with Yusra: an adjunct role, not a manner

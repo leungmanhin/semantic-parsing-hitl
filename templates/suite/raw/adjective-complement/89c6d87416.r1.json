@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "a4a1e559add5106a8f10a50d4744e035bdc6511b722b0d76d8fd3d79283a753f",
+  "prompt_sha256": "15dd5977b3c62eb5d96dfaea2735e2baebeceb2f8d2a2812828b700dbe9c989d",
   "item": {
     "id": "s89c6d87416",
     "text": "Yusra is likely to win."
   },
   "usage": {
-    "input": 91072,
-    "output": 102,
+    "input": 92432,
+    "output": 142,
     "thinking": null,
-    "total": 91174,
-    "cached": 89022,
+    "total": 92574,
+    "cached": 90381,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 91072,
-    "candidatesTokenCount": 102,
-    "totalTokenCount": 91174,
-    "cachedContentTokenCount": 89022,
+    "promptTokenCount": 92432,
+    "candidatesTokenCount": 142,
+    "totalTokenCount": 92574,
+    "cachedContentTokenCount": 90381,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 91072
+        "tokenCount": 92432
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 89022
+        "tokenCount": 90381
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 102
+        "tokenCount": 142
       }
     ]
   },
-  "raw_text": "{\"id\": \"s89c6d87416\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}], \"unmapped\": [{\"span\": \"is likely to win\", \"code\": \"G00\", \"construction\": \"A copular predicate with 'likely' and a to-infinitive hedging the clause.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"s89c6d87416\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"win\", \"actor\": \"@n1\", \"tense\": \"present\", \"span\": \"Yusra is likely to win\"}, {\"t\": \"hedge\", \"id\": \"s1\", \"over\": [\"@e1\"], \"word\": \"likely\", \"span\": \"is likely to\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s89c6d87416",
     "instances": [
@@ -57,18 +57,29 @@
         "id": "n1",
         "name": "Yusra",
         "span": "Yusra"
-      }
-    ],
-    "unmapped": [
+      },
       {
-        "span": "is likely to win",
-        "code": "G00",
-        "construction": "A copular predicate with 'likely' and a to-infinitive hedging the clause."
+        "t": "activity",
+        "id": "e1",
+        "verb": "win",
+        "actor": "@n1",
+        "tense": "present",
+        "span": "Yusra is likely to win"
+      },
+      {
+        "t": "hedge",
+        "id": "s1",
+        "over": [
+          "@e1"
+        ],
+        "word": "likely",
+        "span": "is likely to"
       }
     ],
+    "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "8ac75c56e7d2146ae11c4882bacb5e004e721af058067471bfb7b088b23e1d31",
+  "prompt_body_sha256": "c510aed7c947628c88280a5ab290bb4a336eaa5c8e5862b3e97b3a323f409c8e",
   "run": 1,
   "case": {
     "template": "adjective-complement",

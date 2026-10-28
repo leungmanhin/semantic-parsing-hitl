@@ -1,0 +1,217 @@
+# Template: hedge  (the speaker's qualified commitment to a clause: "Yusra probably left", "The gate is apparently open", "Yusra is likely to win", "Ottoline will certainly leave")
+#
+# A hedge word — probably, likely, presumably, apparently, supposedly, certainly, definitely,
+# or a raising adjective with a to-infinitive (likely / unlikely / bound / certain / sure to) —
+# says how far the sentence commits to its clause. It is not an operator and not a fact about
+# the world: the clause's own statements are emitted at a truth value the word sets, on the one
+# dial the catalog uses for commitment — a weak hedge (probably, likely, apparently …) 0.9 at
+# confidence 0.7, unlikely 0.1 at 0.7, a strong one (certainly, definitely, bound to …) 1.0 at
+# 0.9 — and the word stays in the instance record as the provenance of that value. No atom is
+# added. A possibility word (might, may, perhaps, maybe, possibly) is the modal's Might, an
+# appearance verb (seems, looks) the evidential's head, an attribution (according to X) its own
+# template, and a hedge on a number the measure's own slot.
+
+id: hedge
+family: scope
+shape: scope
+title: The speaker's qualified commitment to a clause
+
+trigger:
+  construction: >
+    A clause qualified by a HEDGE: a sentence adverb of likelihood or commitment — probably,
+    likely, presumably, apparently, seemingly, supposedly, reportedly, allegedly, evidently,
+    certainly, surely, definitely, undoubtedly, clearly, obviously — or a RAISING adjective with
+    a to-infinitive — is likely / unlikely / bound / certain / sure to V, where the subject acts
+    in the infinitive's clause (tense present). The clause is parsed with its own templates;
+    the hedge instance names its predication (or the negation, modal, norm or rule over it) in
+    `over` and the word in `word`. The program sets the clause's truth value from the word;
+    nothing else changes and no atom is added. One instance per hedge word.
+  surface_forms:
+    - "<S> probably / apparently / certainly <V> …"        # a sentence adverb: the clause at the word's dial
+    - "Probably / Presumably, <clause>"                    # the same, fronted
+    - "<S> is likely / unlikely / bound / certain / sure to <V> …"   # a raising adjective: the subject acts in the clause
+  boundary:                   # looks like a hedge but is not one
+    - >-
+      a possibility — might, may, could, perhaps, maybe, possibly: the modal template (Might),
+      with the word in its surface; an epistemic inference — must be tired, must have left: the
+      modal template (Must)
+    - >-
+      an appearance or a report stated by a verb — seems tired, looks tired, is said to be
+      tired: the evidential template, or an attribution (according to Lamine)
+    - >-
+      a stance of the subject — is sure that P, is afraid that P, is confident that P: the
+      subject's attitude, the attitude template; a hedge is the speaker's, not the subject's
+    - >-
+      imminence or a schedule — is about to leave, is due to arrive: not a commitment; no
+      template, report the predicate as unmapped; due to X as a cause likewise
+    - >-
+      a hedge on a number — about 40 years old, roughly 3 metres: the measure template's own
+      hedge slot, the number kept
+    - >-
+      an evaluation — unfortunately, luckily, sadly: the speaker's feeling about the clause, not
+      a commitment to it; keep the clause and report the adverb as unmapped (G02)
+    - >-
+      a frequency adverb — usually, often, sometimes: the frequency template; a degree adverb —
+      very, almost, barely: a degree or an extent
+
+slots:
+  id:   {type: id, required: true, doc: "your label for the hedge (s1, s2 …)"}
+  over: {type: refs, class: Proposition, required: true,
+         doc: "the clause the hedge qualifies: the id of its predication, or of the negation, modal, norm or rule over it (probably did not leave: the negation instance); for a raising adjective, the infinitive's predication with the subject as its actor"}
+  word: {type: enum, values: [probably, likely, presumably, apparently, seemingly, supposedly, reportedly, allegedly, evidently, unlikely, certainly, surely, definitely, undoubtedly, clearly, obviously, bound, certain, sure], required: true,
+         doc: "the hedge word as written, lowercase (is likely to → likely, is bound to → bound); the program sets the dial from it"}
+
+truth:                            # the clause's own commitment, set by the word on the one dial
+  strength:
+    - {slot: word, values: {probably: 0.9, likely: 0.9, presumably: 0.9, apparently: 0.9, seemingly: 0.9, supposedly: 0.9, reportedly: 0.9, allegedly: 0.9, evidently: 0.9, unlikely: 0.1, certainly: 1.0, surely: 1.0, definitely: 1.0, undoubtedly: 1.0, clearly: 1.0, obviously: 1.0, bound: 1.0, certain: 1.0, sure: 1.0}}
+    - 1.0
+  confidence:
+    - {slot: word, values: {probably: 0.7, likely: 0.7, presumably: 0.7, apparently: 0.7, seemingly: 0.7, supposedly: 0.7, reportedly: 0.7, allegedly: 0.7, evidently: 0.7, unlikely: 0.7, certainly: 0.9, surely: 0.9, definitely: 0.9, undoubtedly: 0.9, clearly: 0.9, obviously: 0.9, bound: 0.9, certain: 0.9, sure: 0.9}}
+    - 0.99
+
+emits:
+  - atom: "{over}"                 # the clause's own statements, one per conjunct, at the hedge's truth value
+    each: over
+
+notes:
+  - >-
+    The hedge is the one template that sets a clause's truth value from a word instead of
+    wrapping the clause in an operator. "Yusra probably left" states the leaving at strength
+    0.9 and confidence 0.7 — the sentence's commitment, which a consumer reads with a band
+    query — and the word probably is provenance in the instance; "unlikely" states the clause
+    at strength 0.1, a weak denial with no Not; "certainly" keeps the strength at 1.0 and the
+    confidence below a plain fact's. The dial is the program's: the parser only records the
+    word.
+  - >-
+    A hedge over a negation hedges the denial ("probably did not leave": the Not statement at
+    0.9 / 0.7); over a generalization it hedges the rule. The modal's Might stays an operator,
+    since a possibility is a different claim from a weak assertion: "might have left" says the
+    leaving is possible, "probably left" that it is likely.
+
+depends_on: []
+composes_with: [negation, modal, generic, attitude]
+
+examples:
+  shown:                     # rendered into the prompt
+    - category: positive
+      note: a sentence adverb — the clause's own atoms at the hedge's truth value, no operator
+      text: "Teodor probably locked the shed."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor", span: "Teodor"}
+        - {t: witness, id: x1, class: shed, definite: true, span: "the shed"}
+        - {t: activity, id: v1, verb: lock, actor: "@n1", patient: "@x1", tense: past, span: "Teodor probably locked the shed"}
+        - {t: hedge, id: s1, over: ["@v1"], word: probably, span: "probably"}
+      emitted:               # what the emitter produces (illustration; the emitter is the authority)
+        - "(Name sk_teodor_1 \"Teodor\")"
+        - "(Member sk_shed_1 shed)"
+        - "(Member sk_lock_1 lock)"
+        - "(Agent sk_lock_1 sk_teodor_1)"
+        - "(Patient sk_lock_1 sk_shed_1)"
+        - "(Past sk_lock_1)"
+      declarations:
+        - "(: lock Class)"
+        - "(: shed Class)"
+        - "(: sk_lock_1 Event)"
+        - "(: sk_shed_1 Entity)"
+        - "(: sk_teodor_1 Entity)"
+    - category: positive
+      note: a hedge on a copular clause
+      text: "The gate is apparently open."
+      instances:
+        - {t: witness, id: x1, class: gate, definite: true, span: "The gate"}
+        - {t: copular, id: c1, subject: "@x1", predicate: open, form: adjective, tense: present, span: "The gate is apparently open"}
+        - {t: hedge, id: s1, over: ["@c1"], word: apparently, span: "apparently"}
+    - category: abstain
+      text: "Yusra must be tired."
+      expected: {abstain: true, template: modal}                      # an epistemic inference
+    - category: abstain
+      text: "The ferret looks tired."
+      expected: {abstain: true, template: evidential}                 # an appearance stated by a verb
+
+  held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      text: "Yusra probably left."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: motion, id: m1, verb: leave, mover: "@n1", tense: past}
+        - {t: hedge, id: s1, over: ["@m1"], word: probably}
+    - category: positive
+      note: a raising adjective — the subject acts in the infinitive's clause
+      text: "Yusra is likely to win."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: activity, id: v1, verb: win, actor: "@n1", tense: present}
+        - {t: hedge, id: s1, over: ["@v1"], word: likely}
+    - category: positive
+      note: unlikely — the clause at strength 0.1, no negation
+      text: "Lamine is unlikely to sing."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: activity, id: v1, verb: sing, actor: "@n1", tense: present}
+        - {t: hedge, id: s1, over: ["@v1"], word: unlikely}
+    - category: positive
+      note: a strong hedge — strength 1.0, the confidence below a plain fact's
+      text: "Ottoline will certainly leave."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: motion, id: m1, verb: leave, mover: "@n1", tense: future}
+        - {t: hedge, id: s1, over: ["@m1"], word: certainly}
+    - category: positive
+      note: bound to — a strong raising adjective over a copular clause
+      text: "Teodor is bound to be late."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: copular, id: c1, subject: "@n1", predicate: late, form: adjective, tense: present}
+        - {t: hedge, id: s1, over: ["@c1"], word: bound}
+    - category: positive
+      note: a hearsay adverb — a weak commitment, the source unnamed
+      text: "Yusra is supposedly a weaver."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: copular, id: c1, subject: "@n1", predicate: weaver, form: noun, tense: present}
+        - {t: hedge, id: s1, over: ["@c1"], word: supposedly}
+    - category: positive
+      note: fronted
+      text: "Presumably, Teodor locked the shed."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, class: shed, definite: true}
+        - {t: activity, id: v1, verb: lock, actor: "@n1", patient: "@x1", tense: past}
+        - {t: hedge, id: s1, over: ["@v1"], word: presumably}
+    - category: scoped
+      note: a hedge over a negation — the denial at the hedge's truth value
+      text: "Lamine probably did not leave."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: motion, id: m1, verb: leave, mover: "@n1", tense: past}
+        - {t: negation, id: s1, over: ["@m1"]}
+        - {t: hedge, id: s2, over: ["@s1"], word: probably}
+    - category: scoped
+      note: a hedge over a generalization — the rule at the hedge's truth value
+      text: "Herons probably eat frogs."
+      instances:
+        - {t: range, id: q1, class: heron}
+        - {t: activity, id: v1, verb: eat, actor: "@q1", patient: frog, tense: present}
+        - {t: generic, id: r1, ranges: ["@q1"], over: ["@v1"]}
+        - {t: hedge, id: s1, over: ["@r1"], word: probably}
+    - category: abstain
+      text: "Perhaps Yusra left."
+      expected: {abstain: true, template: modal}                      # a possibility: Might
+    - category: abstain
+      text: "Teodor might be tired."
+      expected: {abstain: true, template: modal}                      # a possibility
+    - category: abstain
+      text: "Yusra is about to leave."
+      expected: {abstain: true, gap: G00, span: "about to leave"}     # imminence, not a commitment
+    - category: abstain
+      text: "Ottoline is about 40 years old."
+      expected: {abstain: true, template: measure}                    # a hedge on a number
+    - category: abstain
+      text: "Lamine is sure that Yusra left."
+      expected: {abstain: true, template: attitude}                   # the subject's stance
+    - category: abstain
+      text: "Lamine often laughed."
+      expected: {abstain: true, template: frequency}                  # a frequency adverb
+    - category: abstain
+      text: "Unfortunately, Yusra left."
+      expected: {abstain: true, gap: G02, span: "Unfortunately"}      # an evaluation: the adverb reported, the clause kept

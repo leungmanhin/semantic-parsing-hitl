@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
+  "prompt_sha256": "15dd5977b3c62eb5d96dfaea2735e2baebeceb2f8d2a2812828b700dbe9c989d",
   "item": {
     "id": "s23024c827a",
     "text": "Yusra probably left."
   },
   "usage": {
-    "input": 56506,
-    "output": 113,
+    "input": 92430,
+    "output": 138,
     "thinking": null,
-    "total": 56619,
-    "cached": 54457,
+    "total": 92568,
+    "cached": 90381,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 56506,
-    "candidatesTokenCount": 113,
-    "totalTokenCount": 56619,
-    "cachedContentTokenCount": 54457,
+    "promptTokenCount": 92430,
+    "candidatesTokenCount": 138,
+    "totalTokenCount": 92568,
+    "cachedContentTokenCount": 90381,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 56506
+        "tokenCount": 92430
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 54457
+        "tokenCount": 90381
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 113
+        "tokenCount": 138
       }
     ]
   },
-  "raw_text": "{\"id\": \"s23024c827a\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}], \"unmapped\": [{\"span\": \"Yusra probably left\", \"code\": \"G00\", \"construction\": \"A clause modified by an epistemic adverb ('probably') that hedges the assertion, so the whole clause is left out to avoid an unqualified claim.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"s23024c827a\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n1\", \"tense\": \"past\", \"span\": \"Yusra probably left\"}, {\"t\": \"hedge\", \"id\": \"s1\", \"over\": [\"@m1\"], \"word\": \"probably\", \"span\": \"probably\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s23024c827a",
     "instances": [
@@ -57,18 +57,29 @@
         "id": "n1",
         "name": "Yusra",
         "span": "Yusra"
-      }
-    ],
-    "unmapped": [
+      },
       {
-        "span": "Yusra probably left",
-        "code": "G00",
-        "construction": "A clause modified by an epistemic adverb ('probably') that hedges the assertion, so the whole clause is left out to avoid an unqualified claim."
+        "t": "motion",
+        "id": "m1",
+        "verb": "leave",
+        "mover": "@n1",
+        "tense": "past",
+        "span": "Yusra probably left"
+      },
+      {
+        "t": "hedge",
+        "id": "s1",
+        "over": [
+          "@m1"
+        ],
+        "word": "probably",
+        "span": "probably"
       }
     ],
+    "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
+  "prompt_body_sha256": "c510aed7c947628c88280a5ab290bb4a336eaa5c8e5862b3e97b3a323f409c8e",
   "run": 1,
   "case": {
     "template": "manner",

@@ -1,0 +1,92 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "15dd5977b3c62eb5d96dfaea2735e2baebeceb2f8d2a2812828b700dbe9c989d",
+  "item": {
+    "id": "s89c6d87416",
+    "text": "Yusra is likely to win."
+  },
+  "usage": {
+    "input": 92432,
+    "output": 142,
+    "thinking": null,
+    "total": 92574,
+    "cached": 90383,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 92432,
+    "candidatesTokenCount": 142,
+    "totalTokenCount": 92574,
+    "cachedContentTokenCount": 90383,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 92432
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 90383
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 142
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s89c6d87416\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"win\", \"actor\": \"@n1\", \"tense\": \"present\", \"span\": \"Yusra is likely to win\"}, {\"t\": \"hedge\", \"id\": \"s1\", \"over\": [\"@v1\"], \"word\": \"likely\", \"span\": \"is likely to\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s89c6d87416",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "win",
+        "actor": "@n1",
+        "tense": "present",
+        "span": "Yusra is likely to win"
+      },
+      {
+        "t": "hedge",
+        "id": "s1",
+        "over": [
+          "@v1"
+        ],
+        "word": "likely",
+        "span": "is likely to"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "c510aed7c947628c88280a5ab290bb4a336eaa5c8e5862b3e97b3a323f409c8e",
+  "run": 3,
+  "case": {
+    "template": "hedge",
+    "section": "held_out",
+    "index": 1,
+    "category": "positive",
+    "text": "Yusra is likely to win.",
+    "key": "89c6d87416"
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "15dd5977b3c62eb5d96dfaea2735e2baebeceb2f8d2a2812828b700dbe9c989d",
+  "item": {
+    "id": "sa51d2d844a",
+    "text": "Perhaps Yusra left."
+  },
+  "usage": {
+    "input": 92429,
+    "output": 142,
+    "thinking": null,
+    "total": 92571,
+    "cached": 90380,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 92429,
+    "candidatesTokenCount": 142,
+    "totalTokenCount": 92571,
+    "cachedContentTokenCount": 90380,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 92429
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 90380
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 142
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sa51d2d844a\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"motion\", \"id\": \"e1\", \"verb\": \"leave\", \"mover\": \"@n1\", \"tense\": \"past\", \"span\": \"Yusra left\"}, {\"t\": \"modal\", \"id\": \"s1\", \"over\": [\"@e1\"], \"head\": \"Might\", \"surface\": \"perhaps\", \"span\": \"Perhaps\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sa51d2d844a",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "motion",
+        "id": "e1",
+        "verb": "leave",
+        "mover": "@n1",
+        "tense": "past",
+        "span": "Yusra left"
+      },
+      {
+        "t": "modal",
+        "id": "s1",
+        "over": [
+          "@e1"
+        ],
+        "head": "Might",
+        "surface": "perhaps",
+        "span": "Perhaps"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "c510aed7c947628c88280a5ab290bb4a336eaa5c8e5862b3e97b3a323f409c8e",
+  "run": 2,
+  "case": {
+    "template": "modal",
+    "section": "held_out",
+    "index": 0,
+    "category": "positive",
+    "text": "Perhaps Yusra left.",
+    "key": "a51d2d844a"
+  }
+}

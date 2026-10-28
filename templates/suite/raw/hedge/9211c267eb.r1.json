@@ -1,0 +1,93 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "15dd5977b3c62eb5d96dfaea2735e2baebeceb2f8d2a2812828b700dbe9c989d",
+  "item": {
+    "id": "s9211c267eb",
+    "text": "Teodor is bound to be late."
+  },
+  "usage": {
+    "input": 92432,
+    "output": 146,
+    "thinking": null,
+    "total": 92578,
+    "cached": 90380,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 92432,
+    "candidatesTokenCount": 146,
+    "totalTokenCount": 92578,
+    "cachedContentTokenCount": 90380,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 92432
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 90380
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 146
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s9211c267eb\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@n1\", \"predicate\": \"late\", \"form\": \"adjective\", \"tense\": \"present\", \"span\": \"Teodor is bound to be late\"}, {\"t\": \"hedge\", \"id\": \"s1\", \"over\": [\"@c1\"], \"word\": \"bound\", \"span\": \"is bound to\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s9211c267eb",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "copular",
+        "id": "c1",
+        "subject": "@n1",
+        "predicate": "late",
+        "form": "adjective",
+        "tense": "present",
+        "span": "Teodor is bound to be late"
+      },
+      {
+        "t": "hedge",
+        "id": "s1",
+        "over": [
+          "@c1"
+        ],
+        "word": "bound",
+        "span": "is bound to"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "c510aed7c947628c88280a5ab290bb4a336eaa5c8e5862b3e97b3a323f409c8e",
+  "run": 1,
+  "case": {
+    "template": "hedge",
+    "section": "held_out",
+    "index": 4,
+    "category": "positive",
+    "text": "Teodor is bound to be late.",
+    "key": "9211c267eb"
+  }
+}

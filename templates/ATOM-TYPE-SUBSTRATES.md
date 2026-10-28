@@ -2,7 +2,7 @@
 
 Generated from `templates/atom-type-substrates.json` (schema `atom-type-substrates/1`) by `templates/tmpl/gen_substrate.py`, together with `templates/generated/atom-types.metta`. Do not edit by hand; regenerate with `cd templates && python -m tmpl.gen_substrate`.
 
-148 heads in 14 kinds (7 proposed; 148 with a reviewed type declaration so far). `type-def` is the PeTTa declaration emitted for the head; `?` as the output type means the head is not yet reviewed and is absent from the `.metta` file; `%Undefined%` marks a position the head takes but the JSON does not type.
+147 heads in 14 kinds (7 proposed; 147 with a reviewed type declaration so far). `type-def` is the PeTTa declaration emitted for the head; `?` as the output type means the head is not yet reviewed and is absent from the `.metta` file; `%Undefined%` marks a position the head takes but the JSON does not type.
 
 Every atom is carried as a statement (: <proof-name> <atom> <tv>), tv = (STV strength confidence) or another engine truth value. The carrier is not an atom kind: ':' is never type-declared (it is also PeTTa's type-declaration head) and the truth value is declared by the engine, not by this substrate.
 
@@ -193,7 +193,7 @@ type-def: (: Time (-> Event TimeTerm Proposition))
 gloss: Locates an eventuality at a time point or recurrence slot. Filler = a time instance (deictic constants such as yesterday / now are declared Time by the emitter). A compound-action class symbol under the compound decomposition ((Patient use_crosswalk crosswalk)) is declared both Class and Event.
 
 
-## scope (20)
+## scope (19)
 
 head: AccordingTo
 kind: scope
@@ -286,14 +286,6 @@ kind: scope
 arity: 1
 type-def: (: Permitted (-> Event Proposition))  ; and 1 more (per arity / per union alternative)
 gloss: Deontic permission over the sealed clause: (Permitted P), the norm template's permission (may, can, is allowed to); a prohibition (must not, may not, cannot, forbidden) is (Not (Permitted P)), the denial of permission; on a class the generic's rule concludes it. The tag form (-> Event Proposition) is legacy, kept only until the re-parse.
-
-
-head: Probably
-kind: scope
-arity: 1
-type-def: (: Probably (-> Event Proposition))  ; and 1 more (per arity / per union alternative)
-gloss: Epistemic probability ('probably'). Target form: operator over the sealed clause (-> Proposition Proposition); the tag form (-> Event Proposition) is legacy, kept only until the re-parse. RETIRE: the likelihood becomes the clause statement's STV strength (band per word, in the template), and the surface word is kept by a LikelihoodPhrase surface record; declaration kept only until the re-parse.
-status: retire
 
 
 head: Question
@@ -1112,4 +1104,4 @@ Oblique prepositions (62), all declared `(-> Instance|Class Instance|Proposition
 ## notes
 
 - Proposed, not yet emitted by any template: Coref, Equivalence, InContext, LikelihoodPhrase, Not, Pending, Similarity.
-- To retire at the re-parse (declaration kept until then so today's parses still type-check): Forbid, KindProperty, Probably, QuantifierPhrase, TimesPer, WithinLast.
+- To retire at the re-parse (declaration kept until then so today's parses still type-check): Forbid, KindProperty, QuantifierPhrase, TimesPer, WithinLast.

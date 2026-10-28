@@ -1,0 +1,94 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "15dd5977b3c62eb5d96dfaea2735e2baebeceb2f8d2a2812828b700dbe9c989d",
+  "item": {
+    "id": "s092a0250d9",
+    "text": "Teodor might be tired."
+  },
+  "usage": {
+    "input": 92431,
+    "output": 149,
+    "thinking": null,
+    "total": 92580,
+    "cached": 90381,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 92431,
+    "candidatesTokenCount": 149,
+    "totalTokenCount": 92580,
+    "cachedContentTokenCount": 90381,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 92431
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 90381
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 149
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s092a0250d9\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@n1\", \"predicate\": \"tired\", \"form\": \"adjective\", \"tense\": \"present\", \"span\": \"Teodor might be tired\"}, {\"t\": \"modal\", \"id\": \"s1\", \"over\": [\"@c1\"], \"head\": \"Might\", \"surface\": \"might\", \"span\": \"might\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s092a0250d9",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "copular",
+        "id": "c1",
+        "subject": "@n1",
+        "predicate": "tired",
+        "form": "adjective",
+        "tense": "present",
+        "span": "Teodor might be tired"
+      },
+      {
+        "t": "modal",
+        "id": "s1",
+        "over": [
+          "@c1"
+        ],
+        "head": "Might",
+        "surface": "might",
+        "span": "might"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "c510aed7c947628c88280a5ab290bb4a336eaa5c8e5862b3e97b3a323f409c8e",
+  "run": 1,
+  "case": {
+    "template": "hedge",
+    "section": "held_out",
+    "index": 10,
+    "category": "abstain",
+    "text": "Teodor might be tired.",
+    "key": "092a0250d9"
+  }
+}

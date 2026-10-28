@@ -1,0 +1,89 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "7e6ab9ad9cc8e288957271053d9e2b9685164b11dde3729b028d02150277e6a6",
+  "item": {
+    "id": "s36d7014d6d",
+    "text": "Unfortunately, Yusra left."
+  },
+  "usage": {
+    "input": 92491,
+    "output": 132,
+    "thinking": null,
+    "total": 92623,
+    "cached": 90442,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 92491,
+    "candidatesTokenCount": 132,
+    "totalTokenCount": 92623,
+    "cachedContentTokenCount": 90442,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 92491
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 90442
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 132
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s36d7014d6d\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"motion\", \"id\": \"e1\", \"verb\": \"leave\", \"mover\": \"@n1\", \"tense\": \"past\", \"span\": \"Yusra left\"}], \"unmapped\": [{\"span\": \"Unfortunately\", \"code\": \"G02\", \"construction\": \"An evaluative sentence adverb with no template slot.\"}], \"issues\": []}",
+  "response": {
+    "id": "s36d7014d6d",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "motion",
+        "id": "e1",
+        "verb": "leave",
+        "mover": "@n1",
+        "tense": "past",
+        "span": "Yusra left"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "Unfortunately",
+        "code": "G02",
+        "construction": "An evaluative sentence adverb with no template slot."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "3e971f6009fc814b5fb18f3f2ba8e61752fde94c357a56c228a567bcf8742d1c",
+  "run": 2,
+  "case": {
+    "template": "hedge",
+    "section": "held_out",
+    "index": 15,
+    "category": "abstain",
+    "text": "Unfortunately, Yusra left.",
+    "key": "36d7014d6d"
+  }
+}

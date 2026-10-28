@@ -548,6 +548,30 @@ class SeededRulesOnTheEngine(unittest.TestCase):
         self.assertFalse(self.query(h, "(Member sk_lamine_1 guilty)"))                                       # feels guilty → nothing
         self.assertFalse(self.query(h, "(Experiencer sk_crooked_1 $x)"))                                     # the copular state has no bearer role
 
+    def test_a_hedge_sets_the_dial_and_a_band_query_reads_it(self):
+        """A hedged clause is its own statements at the hedge's truth value, no operator: a band
+        query on the strength tells a probable fact from an unlikely one, an unlikely fact is a
+        weak denial WITH confidence (unlike a no-information answer), a strong hedge keeps the
+        strength and lowers only the confidence, and a hedged denial is the Not statement at the
+        dial, answering the positive at strength 0.1."""
+        h = self.space(['(: p1_member (Member sk_leave_1 leave) (STV 0.9 0.7))', '(: p1_agent (Agent sk_leave_1 sk_yusra_1) (STV 0.9 0.7))',
+                        '(: u1_member (Member sk_sing_1 sing) (STV 0.1 0.7))', '(: u1_agent (Agent sk_sing_1 sk_lamine_1) (STV 0.1 0.7))',
+                        '(: f1_member (Member sk_lock_1 lock) (STV 1.0 0.99))',
+                        '(: c1_member (Member sk_teodor_1 late) (STV 1.0 0.9))',
+                        '(: n1_not (Not (And (Member sk_leave_2 leave) (Agent sk_leave_2 sk_ottoline_1))) (STV 0.9 0.7))'])
+        def band(stmt, lo, hi):
+            return [str(x) for x in (h.query(f"(: $prf {stmt} (STV (Band {lo} {hi}) $c))", steps=400, timeout_sec=0) or [])]
+        self.assertTrue(band("(Member sk_leave_1 leave)", 0.8, 1.0))                            # probably left: likely
+        self.assertFalse(band("(Member sk_leave_1 leave)", 0.0, 0.2))
+        unlikely = band("(Member sk_sing_1 sing)", 0.0, 0.2)
+        self.assertTrue(unlikely and tv(unlikely)[1] > 0.5, unlikely)                          # unlikely to sing: a weak denial with confidence
+        self.assertAlmostEqual(tv(self.query(h, "(Member sk_lock_1 lock)"))[1], 0.99, places=2)   # a plain fact
+        strong = self.query(h, "(Member sk_teodor_1 late)")
+        self.assertAlmostEqual(tv(strong)[0], 1.0, places=2)                                    # bound to be late: full strength
+        self.assertLess(tv(strong)[1], 0.95)                                                    # at a confidence below a plain fact's
+        denied = self.query(h, "(And (Member sk_leave_2 leave) (Agent sk_leave_2 sk_ottoline_1))")
+        self.assertTrue(denied and tv(denied)[0] < 0.2 and tv(denied)[1] > 0.5, denied)        # probably did not leave
+
 
 if __name__ == "__main__":
     unittest.main()

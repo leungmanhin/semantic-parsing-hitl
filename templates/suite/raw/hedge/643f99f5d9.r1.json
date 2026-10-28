@@ -1,0 +1,81 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "15dd5977b3c62eb5d96dfaea2735e2baebeceb2f8d2a2812828b700dbe9c989d",
+  "item": {
+    "id": "s643f99f5d9",
+    "text": "Yusra is about to leave."
+  },
+  "usage": {
+    "input": 92432,
+    "output": 100,
+    "thinking": null,
+    "total": 92532,
+    "cached": 90381,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 92432,
+    "candidatesTokenCount": 100,
+    "totalTokenCount": 92532,
+    "cachedContentTokenCount": 90381,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 92432
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 90381
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 100
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s643f99f5d9\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}], \"unmapped\": [{\"span\": \"is about to leave\", \"code\": \"G00\", \"construction\": \"An imminence predicate with 'be about to' and an infinitive.\"}], \"issues\": []}",
+  "response": {
+    "id": "s643f99f5d9",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "is about to leave",
+        "code": "G00",
+        "construction": "An imminence predicate with 'be about to' and an infinitive."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "c510aed7c947628c88280a5ab290bb4a336eaa5c8e5862b3e97b3a323f409c8e",
+  "run": 1,
+  "case": {
+    "template": "hedge",
+    "section": "held_out",
+    "index": 11,
+    "category": "abstain",
+    "text": "Yusra is about to leave.",
+    "key": "643f99f5d9"
+  }
+}

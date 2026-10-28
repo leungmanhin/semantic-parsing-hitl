@@ -47,7 +47,7 @@ output_contract:
 identifiers:
 - >-
   Every instance carries an `id`: a short lowercase label you choose, unique within the item. Suggested
-  prefixes: `n` named individual, `x` witness, `g` group or portion, `e` event, `s` scope operator (negation, modal, norm, evidential),
+  prefixes: `n` named individual, `x` witness, `g` group or portion, `e` event, `s` scope operator (negation, modal, norm, evidential, hedge),
   `c` copular predication, `l` location, `q` quantified range, `r` rule, `d` comparison or degree, `m` measure, `t` time, `k` link, `f` focus (n1, x1, e1, s1 …).
 - >-
   A slot that points to another instance holds `"@<id>"`, for example `"Agent": "@n1"`.
@@ -148,8 +148,9 @@ unmapped:
   keep the instances the templates license and report just that part: an added time, date bound, duration,
   place, manner, amount or tag leaves the event itself true ("was demolished before 1960" still says it
   was demolished). When the rest would NOT follow without the unmapped part, leave the whole claim out
-  and report the whole clause: a negated condition ("unless it rains, Lamine sings"), a hedge ("supposedly full"),
-  an unencodable quantity ("too much salt").
+  and report the whole clause: a negated condition ("unless it rains, Lamine sings"), a reported claim no template
+  carries ("is said to be full"), an unencodable quantity ("too much salt"). An evaluative adverb ("unfortunately,
+  Yusra left") leaves the clause entailed: keep the clause and report the adverb (G02).
 - >-
   Referents inside an unmapped span: a NAME still gets its instance (a name is rigid, the same individual
   wherever it appears in the text), but a common-noun phrase or a pronoun does not. A witness is introduced only by a clause a
@@ -162,8 +163,8 @@ gap_codes:
     a comparative with no stated standard ('a sturdier bracket', 'prices ended lower')
   G02: >-
     an adverb with no slot: sequence (initially, eventually, finally), scope or domain (nationally, locally),
-    a degree word on a manner adverb, on a class-level statement or on an adjective with a complement
-    (laughed very loudly; ferrets are very curious; very fond of Teodor)
+    an evaluation (unfortunately, luckily, sadly), a degree word on a manner adverb, on a class-level statement
+    or on an adjective with a complement (laughed very loudly; ferrets are very curious; very fond of Teodor)
   G03: >-
     a post-nominal tag on a name (a party or district tag, a ticker, a bracketed code)
   G04: >-
