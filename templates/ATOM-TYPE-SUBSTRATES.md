@@ -2,7 +2,7 @@
 
 Generated from `templates/atom-type-substrates.json` (schema `atom-type-substrates/1`) by `templates/tmpl/gen_substrate.py`, together with `templates/generated/atom-types.metta`. Do not edit by hand; regenerate with `cd templates && python -m tmpl.gen_substrate`.
 
-146 heads in 13 kinds (7 proposed; 146 with a reviewed type declaration so far). `type-def` is the PeTTa declaration emitted for the head; `?` as the output type means the head is not yet reviewed and is absent from the `.metta` file; `%Undefined%` marks a position the head takes but the JSON does not type.
+148 heads in 14 kinds (7 proposed; 148 with a reviewed type declaration so far). `type-def` is the PeTTa declaration emitted for the head; `?` as the output type means the head is not yet reviewed and is absent from the `.metta` file; `%Undefined%` marks a position the head takes but the JSON does not type.
 
 Every atom is carried as a statement (: <proof-name> <atom> <tv>), tv = (STV strength confidence) or another engine truth value. The carrier is not an atom kind: ':' is never type-declared (it is also PeTTa's type-declaration head) and the truth value is declared by the engine, not by this substrate.
 
@@ -826,7 +826,7 @@ type-def: (: forClass (-> Class Level))
 gloss: Comparison-class marker: ADJ relative to the norm for a class. A value term, not a statement: stands in the level slot of Degree.
 
 
-## lexicon (6)
+## lexicon (7)
 
 head: DimensionScale
 kind: lexicon
@@ -854,6 +854,13 @@ kind: lexicon
 arity: 1
 type-def: (: Symmetric (-> Atom Proposition))
 gloss: The legacy line's tag on an open-class relation head (Friend) read by its seeded sym_rel; never catalog output. The catalog represents a symmetric relation as ONE state with TWO bearers — (Experiencer s x) (Experiencer s y) — chosen by the stative-relation template's lexicon, so nothing is tagged or derived. Declaration kept only until the re-parse.
+
+
+head: Transparent
+kind: lexicon
+arity: 1
+type-def: (: Transparent (-> Class Proposition))
+gloss: A property whose felt or complemented state entails the bare property of its bearer (tired, afraid: feeling tired is being tired; afraid of the ferret is afraid), unlike guilty, fond or good. Background fact (the rules file's lexicon), never parser output; the rule felt_state_holds reads it.
 
 
 head: UnitFactor
@@ -1080,6 +1087,15 @@ kind: computation
 arity: 2
 type-def: (: ParticleFromNormal (-> Number Number Distribution))
 gloss: Approximate magnitude as a normal distribution: mean and sigma. Generic meaning (an approximate magnitude, "about 200 kg"); engine-named; other engines get it by lowering.
+
+
+## state (1)
+
+head: Holds
+kind: state
+arity: 2
+type-def: (: Holds (-> Event Proposition Proposition))
+gloss: The state of a flat predication holding: (Holds state P) names the eventuality that P (a copular or locative atom, asserted on its own beside it) holds, so that a time, a place, a duration, a relation, a link or a focus can hang on the state. Minted by the emitter only when something attaches to the predication; the state carries the clause's tense as an event does. Order: (Holds state proposition); the proposition is untensed and is not asserted by this atom.
 
 
 ## open-class heads (not enumerable)

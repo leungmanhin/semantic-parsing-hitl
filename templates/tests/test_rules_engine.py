@@ -508,6 +508,46 @@ class SeededRulesOnTheEngine(unittest.TestCase):
         self.assertFalse(self.query(h, "(Member (sk_lock sk_night_7) lock)"))                   # nothing happened
         self.assertFalse(self.query(h, "(Obligated (And (Member (sk_lock sk_morning_2) lock) (Agent (sk_lock sk_morning_2) sk_lamine_1) (Patient (sk_lock sk_morning_2) sk_shed_1) (Time (sk_lock sk_morning_2) sk_morning_2)))"))
 
+    def test_an_anchored_state_and_the_transparent_bridge(self):
+        """An anchored copular clause keeps its flat atom and gains the state of the fact
+        holding: the flat question is answered as before, the state is found by unifying into
+        Holds and carries the relation (until when; what happened during it); a transparent
+        felt or complemented state yields the bearer's bare property through the lexicon, an
+        opaque one does not, and the copular state has no experiencer for the bridge to read."""
+        if not any(r.startswith("(: felt_state_holds") for r in rules()):
+            self.skipTest("the bridge is pending")
+        h = self.space(['(: x1 (Member sk_ladder_1 ladder) (STV 1.0 0.99))',
+                        '(: c1_past (Past (Member sk_ladder_1 crooked)) (STV 1.0 0.99))',
+                        '(: c1_holds (Holds sk_crooked_1 (Member sk_ladder_1 crooked)) (STV 1.0 0.99))',
+                        '(: c1_past_2 (Past sk_crooked_1) (STV 1.0 0.99))',
+                        '(: r1_end (End sk_crooked_1 sk_time_1) (STV 1.0 0.99))',
+                        '(: t1_weekday (Weekday sk_time_1 monday) (STV 1.0 0.99))',
+                        '(: v1_member (Member sk_sing_1 sing) (STV 1.0 0.99))',
+                        '(: v1_agent (Agent sk_sing_1 sk_lamine_1) (STV 1.0 0.99))',
+                        '(: r2_during (During sk_sing_1 sk_crooked_1) (STV 1.0 0.99))',
+                        '(: p1_member (Member sk_tired_1 tired) (STV 1.0 0.99))',
+                        '(: p1_experiencer (Experiencer sk_tired_1 sk_yusra_1) (STV 1.0 0.99))',
+                        '(: p2_member (Member sk_afraid_1 afraid) (STV 1.0 0.99))',
+                        '(: p2_experiencer (Experiencer sk_afraid_1 sk_teodor_1) (STV 1.0 0.99))',
+                        '(: p2_of (Of sk_afraid_1 sk_ferret_1) (STV 1.0 0.99))',
+                        '(: p3_member (Member sk_good_1 good) (STV 1.0 0.99))',
+                        '(: p3_experiencer (Experiencer sk_good_1 sk_teodor_1) (STV 1.0 0.99))',
+                        '(: p3_at (At sk_good_1 chess) (STV 1.0 0.99))',
+                        '(: p4_member (Member sk_guilty_1 guilty) (STV 1.0 0.99))',
+                        '(: p4_experiencer (Experiencer sk_guilty_1 sk_lamine_1) (STV 1.0 0.99))'])
+        self.assertTrue(self.query(h, "(Past (Member sk_ladder_1 crooked))"))                                  # the flat fact
+        until = self.query(h, "(And (Holds $s (Member sk_ladder_1 crooked)) (End $s $t))")
+        self.assertTrue(until and "sk_time_1" in until[0], until)                                            # until when
+        during = self.query(h, "(And (Holds $s (Member sk_ladder_1 crooked)) (During $e $s) (Member $e sing))")
+        self.assertTrue(during and "sk_sing_1" in during[0], during)                                         # what happened meanwhile
+        tired = self.query(h, "(Member sk_yusra_1 tired)")
+        self.assertTrue(tired and "felt_state_holds" in tired[0], tired)                                     # feels tired → tired
+        self.assertLess(tv(tired)[1], 0.95)                                                                  # at the generalization confidence
+        self.assertTrue(self.query(h, "(Member sk_teodor_1 afraid)"))                                        # afraid of → afraid
+        self.assertFalse(self.query(h, "(Member sk_teodor_1 good)"))                                         # good at → nothing
+        self.assertFalse(self.query(h, "(Member sk_lamine_1 guilty)"))                                       # feels guilty → nothing
+        self.assertFalse(self.query(h, "(Experiencer sk_crooked_1 $x)"))                                     # the copular state has no bearer role
+
 
 if __name__ == "__main__":
     unittest.main()

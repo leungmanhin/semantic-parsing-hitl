@@ -1,0 +1,94 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "ee43ce571921709d0ec13373da833a63191c51b34e21dc13084fdfde37fbd0a2",
+  "item": {
+    "id": "s83c9ed4328",
+    "text": "Lamine was ill for six weeks."
+  },
+  "usage": {
+    "input": 89684,
+    "output": 161,
+    "thinking": null,
+    "total": 89845,
+    "cached": 87634,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 89684,
+    "candidatesTokenCount": 161,
+    "totalTokenCount": 89845,
+    "cachedContentTokenCount": 87634,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 89684
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 87634
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 161
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s83c9ed4328\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@n1\", \"predicate\": \"ill\", \"form\": \"adjective\", \"tense\": \"past\", \"span\": \"Lamine was ill\"}, {\"t\": \"measure\", \"id\": \"m1\", \"event\": \"@c1\", \"head\": \"Measure\", \"dimension\": \"duration\", \"magnitude\": 6, \"unit\": \"week\", \"span\": \"for six weeks\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s83c9ed4328",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "copular",
+        "id": "c1",
+        "subject": "@n1",
+        "predicate": "ill",
+        "form": "adjective",
+        "tense": "past",
+        "span": "Lamine was ill"
+      },
+      {
+        "t": "measure",
+        "id": "m1",
+        "event": "@c1",
+        "head": "Measure",
+        "dimension": "duration",
+        "magnitude": 6,
+        "unit": "week",
+        "span": "for six weeks"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "86ab096c1dd73fa4c56942165df3a5d9e3dd0580157fc8b292e05fc4e80e7d26",
+  "run": 1,
+  "case": {
+    "template": "measure",
+    "section": "held_out",
+    "index": 0,
+    "category": "positive",
+    "text": "Lamine was ill for six weeks.",
+    "key": "83c9ed4328"
+  }
+}

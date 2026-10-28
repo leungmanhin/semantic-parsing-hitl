@@ -45,7 +45,8 @@ trigger:
     - >-
       a non-spatial phrase on an adjective — good at chess, modest in its demands: an adjective
       with a complement, the adjective-complement template; a place phrase on an adjective —
-      happy in Calderwick: a copular clause mints no event to carry it; reported as unmapped
+      happy in Calderwick, empty in the village: this template on the copular predication (the
+      event slot names the copular instance; the program mints the state the place hangs on)
     - >-
       a place phrase inside a noun phrase — the ferret in the barn slept: a locative predication
       of that thing, not an attachment to the clause's event
@@ -121,6 +122,14 @@ examples:
       expected: {abstain: true, template: locative}                   # where a thing is, no event
 
   held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      note: a place on a copular clause — the state of the fact holding carries the location
+      text: "Lamine was happy in Calderwick."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: named-entity, id: n2, name: "Calderwick"}
+        - {t: copular, id: c1, subject: "@n1", predicate: happy, form: adjective, tense: past}
+        - {t: location, id: l1, event: "@c1", place: "@n2", head: Location, preposition: in}
     - category: positive
       text: "Teodor read the letter in the barn."
       instances:

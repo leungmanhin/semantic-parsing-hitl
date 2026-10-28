@@ -1,0 +1,92 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "ee43ce571921709d0ec13373da833a63191c51b34e21dc13084fdfde37fbd0a2",
+  "item": {
+    "id": "s02031f9206",
+    "text": "Yusra was tired yesterday."
+  },
+  "usage": {
+    "input": 89683,
+    "output": 117,
+    "thinking": null,
+    "total": 89800,
+    "cached": 87580,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 89683,
+    "candidatesTokenCount": 117,
+    "totalTokenCount": 89800,
+    "cachedContentTokenCount": 87580,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 89683
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 87580
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 117
+      }
+    ]
+  },
+  "raw_text": "{\"id\":\"s02031f9206\",\"instances\":[{\"t\":\"named-entity\",\"id\":\"n1\",\"name\":\"Yusra\",\"span\":\"Yusra\"},{\"t\":\"copular\",\"id\":\"c1\",\"subject\":\"@n1\",\"predicate\":\"tired\",\"form\":\"adjective\",\"tense\":\"past\",\"span\":\"Yusra was tired\"},{\"t\":\"time\",\"id\":\"t1\",\"event\":\"@c1\",\"deictic\":\"yesterday\",\"anchor\":\"@now\",\"span\":\"yesterday\"}],\"unmapped\":[],\"issues\":[]}",
+  "response": {
+    "id": "s02031f9206",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "copular",
+        "id": "c1",
+        "subject": "@n1",
+        "predicate": "tired",
+        "form": "adjective",
+        "tense": "past",
+        "span": "Yusra was tired"
+      },
+      {
+        "t": "time",
+        "id": "t1",
+        "event": "@c1",
+        "deictic": "yesterday",
+        "anchor": "@now",
+        "span": "yesterday"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "86ab096c1dd73fa4c56942165df3a5d9e3dd0580157fc8b292e05fc4e80e7d26",
+  "run": 1,
+  "case": {
+    "template": "time",
+    "section": "held_out",
+    "index": 0,
+    "category": "positive",
+    "text": "Yusra was tired yesterday.",
+    "key": "02031f9206"
+  }
+}

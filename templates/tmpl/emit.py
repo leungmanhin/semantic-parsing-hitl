@@ -316,15 +316,32 @@ class _Emitter:
         return problems
 
     # ---------------------------------------------------------------- symbols
+    def demanded(self) -> set:
+        """The instances some other instance names as an EVENT (a filler slot of class Event: a
+        time's, a location's, a measure's, a relation's, a link's or a focus's). A template that
+        mints ``on_demand`` gets its symbol only for these: a copular or locative predication
+        is a flat atom until something attaches to it, and then also the state of that fact
+        holding."""
+        out = set()
+        for r in self.insts:
+            t = self.cat.get(r.get("t")) or {}
+            for sname, spec in (t.get("slots") or {}).items():
+                if spec["type"] == "filler" and "Event" in str(spec.get("class", "")) and is_ref(r.get(sname)):
+                    out.add(r[sname][1:])
+        return out
+
     def assign_symbols(self):
         named: dict[str, list[str]] = {}
         counters: dict[str, int] = {}
         n_vars = 0
+        demanded = self.demanded()
         for r in self.insts:
             t = self.cat[r["t"]]
             m = t.get("mints")
             if not m:
                 continue
+            if m.get("on_demand") and r["id"] not in demanded:
+                continue                                  # a flat predication nothing attaches to: no state symbol
             if m.get("variable"):
                 self.sym[r["id"]] = VARIABLES[n_vars] if n_vars < len(VARIABLES) else f"$v{n_vars}"
                 n_vars += 1
@@ -493,6 +510,8 @@ class _Emitter:
             if e.get("within"):                          # rendered inside that slot's bundle, see within_terms
                 continue
             if bool(e.get("project")) != projecting:
+                continue
+            if e.get("if_minted") and iid not in self.sym:   # the state of an anchored predication: only when minted
                 continue
             if "if_filled" in e and r.get(e["if_filled"]) in (None, [], ""):
                 continue

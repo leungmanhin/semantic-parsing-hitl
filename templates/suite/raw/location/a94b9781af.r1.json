@@ -1,0 +1,99 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "ee43ce571921709d0ec13373da833a63191c51b34e21dc13084fdfde37fbd0a2",
+  "item": {
+    "id": "sa94b9781af",
+    "text": "Lamine was happy in Calderwick."
+  },
+  "usage": {
+    "input": 89683,
+    "output": 187,
+    "thinking": null,
+    "total": 89870,
+    "cached": 87634,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 89683,
+    "candidatesTokenCount": 187,
+    "totalTokenCount": 89870,
+    "cachedContentTokenCount": 87634,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 89683
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 87634
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 187
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sa94b9781af\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Calderwick\", \"span\": \"Calderwick\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@n1\", \"predicate\": \"happy\", \"form\": \"adjective\", \"tense\": \"past\", \"span\": \"Lamine was happy\"}, {\"t\": \"location\", \"id\": \"l1\", \"event\": \"@c1\", \"place\": \"@n2\", \"head\": \"Location\", \"preposition\": \"in\", \"span\": \"in Calderwick\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sa94b9781af",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Calderwick",
+        "span": "Calderwick"
+      },
+      {
+        "t": "copular",
+        "id": "c1",
+        "subject": "@n1",
+        "predicate": "happy",
+        "form": "adjective",
+        "tense": "past",
+        "span": "Lamine was happy"
+      },
+      {
+        "t": "location",
+        "id": "l1",
+        "event": "@c1",
+        "place": "@n2",
+        "head": "Location",
+        "preposition": "in",
+        "span": "in Calderwick"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "86ab096c1dd73fa4c56942165df3a5d9e3dd0580157fc8b292e05fc4e80e7d26",
+  "run": 1,
+  "case": {
+    "template": "location",
+    "section": "held_out",
+    "index": 0,
+    "category": "positive",
+    "text": "Lamine was happy in Calderwick.",
+    "key": "a94b9781af"
+  }
+}

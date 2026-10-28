@@ -1,0 +1,109 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "ee43ce571921709d0ec13373da833a63191c51b34e21dc13084fdfde37fbd0a2",
+  "item": {
+    "id": "s906e21dc12",
+    "text": "Yusra was in the barn during the audit."
+  },
+  "usage": {
+    "input": 89686,
+    "output": 240,
+    "thinking": null,
+    "total": 89926,
+    "cached": 87637,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 89686,
+    "candidatesTokenCount": 240,
+    "totalTokenCount": 89926,
+    "cachedContentTokenCount": 87637,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 89686
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 87637
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 240
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s906e21dc12\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"barn\", \"definite\": true, \"span\": \"the barn\"}, {\"t\": \"witness\", \"id\": \"x2\", \"class\": \"audit\", \"definite\": true, \"eventive\": true, \"span\": \"the audit\"}, {\"t\": \"locative\", \"id\": \"l1\", \"thing\": \"@n1\", \"place\": \"@x1\", \"head\": \"LocatedIn\", \"preposition\": \"in\", \"tense\": \"past\", \"span\": \"Yusra was in the barn\"}, {\"t\": \"time-relation\", \"id\": \"r1\", \"event\": \"@l1\", \"reference\": \"@x2\", \"head\": \"During\", \"word\": \"during\", \"span\": \"during the audit\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s906e21dc12",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "barn",
+        "definite": true,
+        "span": "the barn"
+      },
+      {
+        "t": "witness",
+        "id": "x2",
+        "class": "audit",
+        "definite": true,
+        "eventive": true,
+        "span": "the audit"
+      },
+      {
+        "t": "locative",
+        "id": "l1",
+        "thing": "@n1",
+        "place": "@x1",
+        "head": "LocatedIn",
+        "preposition": "in",
+        "tense": "past",
+        "span": "Yusra was in the barn"
+      },
+      {
+        "t": "time-relation",
+        "id": "r1",
+        "event": "@l1",
+        "reference": "@x2",
+        "head": "During",
+        "word": "during",
+        "span": "during the audit"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "86ab096c1dd73fa4c56942165df3a5d9e3dd0580157fc8b292e05fc4e80e7d26",
+  "run": 3,
+  "case": {
+    "template": "time-relation",
+    "section": "held_out",
+    "index": 26,
+    "category": "positive",
+    "text": "Yusra was in the barn during the audit.",
+    "key": "906e21dc12"
+  }
+}

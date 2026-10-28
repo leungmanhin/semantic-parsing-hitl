@@ -40,9 +40,10 @@ trigger:
       a particle on a count — only one ferret, only three letters: no carrier for the
       exclusivity on a number; report the particle under G07
     - >-
-      a particle on a copular or a class statement — only the ladder is crooked, herons are
-      also common: the clause has no event for the atom to name; keep the predication and
-      report the particle as unmapped
+      a particle on a class statement — herons are also common: the clause has no event for
+      the atom to name; keep the predication and report the particle as unmapped (on a copular
+      or locative clause — only the ladder is crooked — the predication is the event: the program
+      mints the state the particle names)
     - >-
       a particle on a generalization — only ferrets sleep in burrows: the event is a rule's
       variable, no top-level atom can name it; report the clause as unmapped
@@ -257,9 +258,13 @@ examples:
     - category: abstain
       text: "Even though Lamine waited, Teodor left."
       expected: {abstain: true, template: link}                        # a connective
-    - category: abstain
+    - category: positive
+      note: a particle on a copular clause — the state of the fact holding is the event the atom names
       text: "Only the ladder is crooked."
-      expected: {abstain: true, gap: G00, span: "Only"}                # no event to name: the particle is reported
+      instances:
+        - {t: witness, id: x1, class: ladder, definite: true}
+        - {t: copular, id: c1, subject: "@x1", predicate: crooked, form: adjective, tense: present}
+        - {t: focus, id: f1, head: Only, filler: "@x1", event: "@c1", surface: only}
     - category: abstain
       text: "Also, Teodor left."
       expected: {abstain: true, gap: G05, span: "Also"}                # a discourse connective

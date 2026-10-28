@@ -416,6 +416,23 @@ rules:
       "If Lamine had sung, Yusra would have left" seals both clauses; the form presupposes that
       Lamine did not sing, which this rule states as the denial of the antecedent's conjuncts.
 
+  # Felt and complemented states: a state eventuality with an experiencer yields the bearer's bare
+  # property only for the adjectives the Transparent lexicon lists (feeling tired is being tired;
+  # afraid of the ferret is afraid), never for guilty, fond or good.
+  - id: felt_state_holds
+    meaning: a transparent felt or complemented state yields the bearer's bare property
+    premises: ["(Member $s $p)", "(Experiencer $s $x)", "(Transparent $p)"]
+    conclusion: "(Member $x $p)"
+    truth: {strength: 1.0, confidence: 0.9}
+    semantics: deductive
+    reads: [sensation, adjective-complement]
+    notes: >-
+      "Yusra feels tired" gives (Member sk_yusra_1 tired) and "Teodor is afraid of the ferret"
+      (Member sk_teodor_1 afraid), at the generalization confidence 0.9; "Lamine feels guilty"
+      and "Teodor is good at chess" yield nothing, since guilty and good are not listed. A
+      copular state minted on demand carries no Experiencer, so the rule never reads it; the
+      flat atom beside it is the property.
+
   # Parts and wholes: a part of a part is a part of the whole, and a part is where its whole is.
   - id: subset_is_part
     meaning: a quantified portion of a group is a part of it
@@ -675,3 +692,47 @@ facts:
       - [thickness, thick]
       - [strength, strong]
       - [brightness, bright]
+  - id: transparent
+    meaning: a property whose felt or complemented state entails the bare property of its bearer (the bridge rule felt_state_holds reads it)
+    head: Transparent
+    truth: {strength: 1.0, confidence: 0.99}
+    reads: [sensation, adjective-complement]
+    notes: >-
+      Felt states (tired, cold, sick) and quality states whose complement only names the object
+      (afraid of, angry with, worried about, interested in) carry their bare property; a
+      complement that makes the quality (good at, fond of, free from, responsible for) and a
+      moral or evaluative feeling (guilty, ashamed) do not — the list is a judgment, revisable.
+    entries:
+      - [tired]
+      - [exhausted]
+      - [sleepy]
+      - [cold]
+      - [hot]
+      - [warm]
+      - [sick]
+      - [ill]
+      - [unwell]
+      - [dizzy]
+      - [hungry]
+      - [thirsty]
+      - [happy]
+      - [sad]
+      - [lonely]
+      - [safe]
+      - [calm]
+      - [nervous]
+      - [anxious]
+      - [afraid]
+      - [scared]
+      - [angry]
+      - [furious]
+      - [worried]
+      - [upset]
+      - [interested]
+      - [curious]
+      - [famous]
+      - [proud]
+      - [pleased]
+      - [sorry]
+      - [sure]
+      - [aware]

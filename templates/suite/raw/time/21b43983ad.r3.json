@@ -1,0 +1,91 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "ee43ce571921709d0ec13373da833a63191c51b34e21dc13084fdfde37fbd0a2",
+  "item": {
+    "id": "s21b43983ad",
+    "text": "Teodor was a pilot in 1990."
+  },
+  "usage": {
+    "input": 89688,
+    "output": 150,
+    "thinking": null,
+    "total": 89838,
+    "cached": 87639,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 89688,
+    "candidatesTokenCount": 150,
+    "totalTokenCount": 89838,
+    "cachedContentTokenCount": 87639,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 89688
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 87639
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 150
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s21b43983ad\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@n1\", \"predicate\": \"pilot\", \"form\": \"noun\", \"tense\": \"past\", \"span\": \"Teodor was a pilot\"}, {\"t\": \"time\", \"id\": \"t1\", \"event\": \"@c1\", \"year\": 1990, \"span\": \"in 1990\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s21b43983ad",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "copular",
+        "id": "c1",
+        "subject": "@n1",
+        "predicate": "pilot",
+        "form": "noun",
+        "tense": "past",
+        "span": "Teodor was a pilot"
+      },
+      {
+        "t": "time",
+        "id": "t1",
+        "event": "@c1",
+        "year": 1990,
+        "span": "in 1990"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "86ab096c1dd73fa4c56942165df3a5d9e3dd0580157fc8b292e05fc4e80e7d26",
+  "run": 3,
+  "case": {
+    "template": "time",
+    "section": "held_out",
+    "index": 1,
+    "category": "positive",
+    "text": "Teodor was a pilot in 1990.",
+    "key": "21b43983ad"
+  }
+}

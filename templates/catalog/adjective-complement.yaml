@@ -62,9 +62,9 @@ trigger:
       located in Calderwick: a locative
     - >-
       a phrase that says where or when — happy in Calderwick, busy on Monday, cold in winter:
-      not a complement; the adjective is a copular predication and the place or time phrase is
-      reported as unmapped, since a copular clause mints no event to carry it; the test: the
-      phrase answers where or when, not what the quality bears on
+      not a complement; the adjective is a copular predication and the phrase a location or a
+      time on it (the program mints the state they hang on); the test: the phrase answers where
+      or when, not what the quality bears on
     - >-
       a degree word on the adjective — very fond of Teodor, too afraid of the ferret: this
       template, with the degree word reported under G02; an approximator — almost full of tea —
@@ -355,7 +355,7 @@ examples:
       expected: {abstain: true, gap: G00, span: "sure that Yusra left"}   # a that-clause complement
     - category: abstain
       text: "Lamine was happy in Calderwick."
-      expected: {abstain: true, gap: G00, span: "in Calderwick"}      # a place, not a complement
+      expected: {abstain: true, template: location}                   # a place on the copular state, not a complement
     - category: abstain
       text: "The delay was due to the rain."
       expected: {abstain: true, gap: G00, span: "due to the rain"}    # a cause stated by a preposition

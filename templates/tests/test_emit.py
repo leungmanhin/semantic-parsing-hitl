@@ -564,6 +564,34 @@ class EmitTests(unittest.TestCase):
             {"t": "frequency", "id": "f1", "occasion": ["@q1"], "over": ["@v1"], "every": 1, "word": "every morning"}]}, CATALOG)
         self.assertTrue(any(st.endswith("(Time (sk_swim $x) $x))) (STV 1.0 0.9))") for st in plain["statements"]), plain["statements"])
 
+    def test_an_anchored_copular_clause_mints_the_state_of_the_fact_holding(self):
+        """A copular or locative predication is a flat atom; when a time, a place, a duration, a
+        relation, a link or a focus names it, the emitter mints the state of that fact holding
+        (Holds state P) with the clause's tense on the state, and the attachment hangs on the
+        state; a plain clause mints nothing; under negation the state and its attachment stay
+        inside the bundle."""
+        plain = E.emit({"id": "p", "instances": [{"t": "witness", "id": "x1", "class": "ladder", "definite": True},
+                                                 {"t": "copular", "id": "c1", "subject": "@x1", "predicate": "crooked", "form": "adjective", "tense": "past"}]}, CATALOG)
+        self.assertFalse(any("Holds" in st or "sk_crooked" in st for st in plain["statements"]), plain["statements"])
+        anchored = E.emit({"id": "a", "instances": [{"t": "witness", "id": "x1", "class": "ladder", "definite": True},
+                                                    {"t": "copular", "id": "c1", "subject": "@x1", "predicate": "crooked", "form": "adjective", "tense": "past"},
+                                                    {"t": "time", "id": "t1", "weekday": "monday"},
+                                                    {"t": "time-relation", "id": "r1", "event": "@c1", "reference": "@t1", "head": "End", "word": "until"}]}, CATALOG)
+        terms = [T.split_statement(st)[1] for st in anchored["statements"]]
+        self.assertIn(["Past", ["Member", "sk_ladder_1", "crooked"]], terms)                    # the flat atom stays the assertion
+        self.assertIn(["Holds", "sk_crooked_1", ["Member", "sk_ladder_1", "crooked"]], terms)   # the state of the fact holding
+        self.assertIn(["Past", "sk_crooked_1"], terms)                                           # its tense, as an event's
+        self.assertIn(["End", "sk_crooked_1", "sk_time_1"], terms)                               # the relation on the state
+        self.assertIn("(: sk_crooked_1 Event)", anchored["declarations"])
+        denied = E.emit({"id": "d", "instances": [{"t": "witness", "id": "x1", "class": "ladder", "definite": True},
+                                                  {"t": "copular", "id": "c1", "subject": "@x1", "predicate": "crooked", "form": "adjective", "tense": "past"},
+                                                  {"t": "time", "id": "t1", "event": "@c1", "deictic": "yesterday", "anchor": "@now"},
+                                                  {"t": "negation", "id": "s1", "over": ["@c1"]}]}, CATALOG)
+        nots = [st for st in denied["statements"] if "(Not " in st]
+        self.assertEqual(len(nots), 1, denied["statements"])
+        self.assertIn("(Holds sk_crooked_1 (Member sk_ladder_1 crooked))", nots[0])              # the state inside the denial
+        self.assertIn("(Time sk_crooked_1 sk_time_1)", nots[0])
+
     def test_malformed_instances_are_refused(self):
         bad = [{"t": "transfer", "id": "e1", "verb": "give", "giver": "@n9", "object": "x", "tense": "past"}]
         with self.assertRaises(E.EmitError) as cm:

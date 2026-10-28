@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "e576504c89d5c800dbe9fdc3baab9dbbd0397acfd8cf64f6021104e23b31a9b7",
+  "prompt_sha256": "ee43ce571921709d0ec13373da833a63191c51b34e21dc13084fdfde37fbd0a2",
   "item": {
     "id": "sce2073f1f3",
     "text": "The ladder was crooked until Monday."
   },
   "usage": {
-    "input": 59748,
-    "output": 171,
+    "input": 89682,
+    "output": 184,
     "thinking": null,
-    "total": 59919,
-    "cached": 57699,
+    "total": 89866,
+    "cached": 87633,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 59748,
-    "candidatesTokenCount": 171,
-    "totalTokenCount": 59919,
-    "cachedContentTokenCount": 57699,
+    "promptTokenCount": 89682,
+    "candidatesTokenCount": 184,
+    "totalTokenCount": 89866,
+    "cachedContentTokenCount": 87633,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 59748
+        "tokenCount": 89682
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 57699
+        "tokenCount": 87633
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 171
+        "tokenCount": 184
       }
     ]
   },
-  "raw_text": "{\"id\": \"sce2073f1f3\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"ladder\", \"definite\": true, \"span\": \"The ladder\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@x1\", \"predicate\": \"crooked\", \"form\": \"adjective\", \"tense\": \"past\", \"span\": \"The ladder was crooked\"}, {\"t\": \"time\", \"id\": \"t1\", \"weekday\": \"monday\", \"span\": \"Monday\"}], \"unmapped\": [{\"span\": \"until Monday\", \"code\": \"G00\", \"construction\": \"A temporal relation phrase modifying a copular clause with no event of its own.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"sce2073f1f3\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"ladder\", \"definite\": true, \"span\": \"The ladder\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@x1\", \"predicate\": \"crooked\", \"form\": \"adjective\", \"tense\": \"past\", \"span\": \"The ladder was crooked\"}, {\"t\": \"time\", \"id\": \"t1\", \"weekday\": \"monday\", \"span\": \"Monday\"}, {\"t\": \"time-relation\", \"id\": \"r1\", \"event\": \"@c1\", \"reference\": \"@t1\", \"head\": \"End\", \"word\": \"until\", \"span\": \"until Monday\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sce2073f1f3",
     "instances": [
@@ -73,24 +73,27 @@
         "id": "t1",
         "weekday": "monday",
         "span": "Monday"
-      }
-    ],
-    "unmapped": [
+      },
       {
-        "span": "until Monday",
-        "code": "G00",
-        "construction": "A temporal relation phrase modifying a copular clause with no event of its own."
+        "t": "time-relation",
+        "id": "r1",
+        "event": "@c1",
+        "reference": "@t1",
+        "head": "End",
+        "word": "until",
+        "span": "until Monday"
       }
     ],
+    "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "2a9a3fa258cdad2d747fdcbe0ebd8b0e2a17a87d7fd135bcf030ae79618d3563",
+  "prompt_body_sha256": "86ab096c1dd73fa4c56942165df3a5d9e3dd0580157fc8b292e05fc4e80e7d26",
   "run": 3,
   "case": {
     "template": "time-relation",
     "section": "held_out",
     "index": 25,
-    "category": "abstain",
+    "category": "positive",
     "text": "The ladder was crooked until Monday.",
     "key": "ce2073f1f3"
   }

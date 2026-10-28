@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "1286d8bbfeb2da64ec2b9cfbb063951d7dca144e9191e5590977f8e5bd4891ee",
+  "prompt_sha256": "ee43ce571921709d0ec13373da833a63191c51b34e21dc13084fdfde37fbd0a2",
   "item": {
     "id": "sa94b9781af",
     "text": "Lamine was happy in Calderwick."
   },
   "usage": {
-    "input": 86187,
-    "output": 185,
+    "input": 89683,
+    "output": 187,
     "thinking": null,
-    "total": 86372,
-    "cached": 84138,
+    "total": 89870,
+    "cached": 87634,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 86187,
-    "candidatesTokenCount": 185,
-    "totalTokenCount": 86372,
-    "cachedContentTokenCount": 84138,
+    "promptTokenCount": 89683,
+    "candidatesTokenCount": 187,
+    "totalTokenCount": 89870,
+    "cachedContentTokenCount": 87634,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 86187
+        "tokenCount": 89683
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 84138
+        "tokenCount": 87634
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 185
+        "tokenCount": 187
       }
     ]
   },
-  "raw_text": "{\"id\": \"sa94b9781af\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Calderwick\", \"span\": \"Calderwick\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@n1\", \"predicate\": \"happy\", \"form\": \"adjective\", \"tense\": \"past\", \"span\": \"Lamine was happy\"}], \"unmapped\": [{\"span\": \"in Calderwick\", \"code\": \"G00\", \"construction\": \"A locative prepositional phrase on a copular adjectival predicate, which mints no event to carry a location attachment.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"sa94b9781af\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Calderwick\", \"span\": \"Calderwick\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@n1\", \"predicate\": \"happy\", \"form\": \"adjective\", \"tense\": \"past\", \"span\": \"Lamine was happy\"}, {\"t\": \"location\", \"id\": \"l1\", \"event\": \"@c1\", \"place\": \"@n2\", \"head\": \"Location\", \"preposition\": \"in\", \"span\": \"in Calderwick\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sa94b9781af",
     "instances": [
@@ -72,18 +72,21 @@
         "form": "adjective",
         "tense": "past",
         "span": "Lamine was happy"
-      }
-    ],
-    "unmapped": [
+      },
       {
-        "span": "in Calderwick",
-        "code": "G00",
-        "construction": "A locative prepositional phrase on a copular adjectival predicate, which mints no event to carry a location attachment."
+        "t": "location",
+        "id": "l1",
+        "event": "@c1",
+        "place": "@n2",
+        "head": "Location",
+        "preposition": "in",
+        "span": "in Calderwick"
       }
     ],
+    "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "fbd14f0c671be9cc8d5a741e5b5370494fbe710fbaca5af9546667bfec15f428",
+  "prompt_body_sha256": "86ab096c1dd73fa4c56942165df3a5d9e3dd0580157fc8b292e05fc4e80e7d26",
   "run": 2,
   "case": {
     "template": "adjective-complement",

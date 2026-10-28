@@ -2,7 +2,10 @@
 #
 # The predication is the flat atom (Member <subject> <predicate>); tense, negation and modality
 # are operators over it ((Past (Member …)), (Not (Member …)), (Might (Member …))). No state
-# eventuality is minted for a plain copular clause. The subject is a referent instance (a name,
+# eventuality is minted for a plain copular clause; when a time, a place, a duration, a relation,
+# a link or a focus names the predication, the state of the fact holding is minted on demand —
+# (Holds sk_crooked_1 (Member sk_ladder_1 crooked)) — and the attachment hangs on it. The subject
+# is a referent instance (a name,
 # a witness, a resolved pronoun); the predicate is a class or a property lemma. A bare-plural or
 # mass-noun subject makes a class statement, not this template.
 
@@ -22,7 +25,9 @@ trigger:
     business. The
     predicate's head is the class or the property; an adjective inside a predicate noun phrase
     (is a careful weaver) is a second copular instance with the adjective as its predicate.
-    Tense is the clause's; present is recorded and emits nothing.
+    Tense is the clause's; present is recorded and emits nothing. A time, a place, a duration,
+    a time relation, a link or a focus particle on the clause names this instance as its event,
+    as it would a verb's: the program mints the state of the fact holding and attaches to it.
   surface_forms:
     - "<subject> is a <N>"                     # Teodor is a locksmith
     - "<subject> is <ADJ>"                     # the ladder is crooked
@@ -71,12 +76,24 @@ slots:
               doc: "the clause's tense; present is recorded, not inferred"}
   aspect:    {type: enum, values: [simple, progressive, perfect], required: false, default: simple}
 
+mints: {id: Event, stem: predicate, on_demand: true}      # the state of the fact holding, only when something attaches to the predication
+
 emits:
   - atom: "(Member {subject} {predicate})"
     when: "tense == present and aspect != perfect and aspect != progressive"
   - atom: "(Past (Member {subject} {predicate}))"
     when: "tense == past or aspect == perfect"
   - atom: "(Future (Member {subject} {predicate}))"
+    when: "tense == future"
+  # an anchored predication: the state of the fact holding, minted only when something attaches
+  # to this instance (a time, a place, a duration, a relation, a link, a focus); its tense beside it
+  - atom: "(Holds @id (Member {subject} {predicate}))"
+    if_minted: true
+  - atom: "(Past @id)"
+    if_minted: true
+    when: "tense == past or aspect == perfect"
+  - atom: "(Future @id)"
+    if_minted: true
     when: "tense == future"
   - atom: "(Ongoing (Member {subject} {predicate}))"
     when: "aspect == progressive"
@@ -89,6 +106,13 @@ notes:
   - >-
     A class and a property take the same atom, as the substrate treats properties as classes;
     the form slot records which the text used, for later normalization.
+  - >-
+    An anchored copular clause — "Yusra was tired yesterday", "the ladder was crooked until
+    Monday", "Lamine was happy in Calderwick", "only the ladder is crooked" — keeps its flat
+    atom as the assertion and gains, from the emitter, the state of that fact holding: (Holds
+    sk_tired_1 (Member sk_yusra_1 tired)) with the clause's tense on the state, (Past sk_tired_1),
+    and the time, place, duration, relation, link or focus on the state. The parser only names
+    this instance in the attachment's event slot; a plain clause mints no state.
 
 depends_on: [named-entity, witness]
 composes_with: [negation, modal, norm, time]

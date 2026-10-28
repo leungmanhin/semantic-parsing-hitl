@@ -4,7 +4,10 @@
 # "there is a <thing> <place phrase>". The atom relates the two referents directly — (LocatedIn
 # thing place) for in / at / inside / within, the preposition's own head otherwise ((On thing
 # place), (Under …), (From …) for an origin) — with tense, negation and modality as operators over
-# it, as for a copular predication. No event is minted: being somewhere is a state of the thing.
+# it, as for a copular predication. No event is minted for a plain clause: being somewhere is a
+# state of the thing; when a time, a duration, a relation, a link or a focus names the predication,
+# the state of the fact holding is minted on demand — (Holds sk_located_1 (LocatedIn sk_yusra_1
+# sk_barn_1)) — and the attachment hangs on it.
 
 id: locative
 family: predication
@@ -68,6 +71,8 @@ slots:
                 doc: "the clause's tense; present is recorded, not inferred; present for a place phrase inside a noun phrase"}
   aspect:      {type: enum, values: [simple, progressive, perfect], required: false, default: simple}
 
+mints: {id: Event, literal: located, on_demand: true}      # the state of the fact holding, only when something attaches
+
 emits:
   - atom: "({head} {thing} {place})"
     when: "tense == present and aspect != perfect and aspect != progressive"
@@ -77,6 +82,15 @@ emits:
     when: "tense == future"
   - atom: "(Ongoing ({head} {thing} {place}))"
     when: "aspect == progressive"
+  # an anchored predication: the state of the fact holding, minted only when something attaches
+  - atom: "(Holds @id ({head} {thing} {place}))"
+    if_minted: true
+  - atom: "(Past @id)"
+    if_minted: true
+    when: "tense == past or aspect == perfect"
+  - atom: "(Future @id)"
+    if_minted: true
+    when: "tense == future"
 
 notes:
   - >-

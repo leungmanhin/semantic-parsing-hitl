@@ -182,6 +182,8 @@ def check_template(t: dict, path: str) -> list[str]:
             problems += [f"emits[{i}]: {m}" for m in check_when(e["when"], slots, lexicon)]
         if "project" in e and not isinstance(e["project"], bool):
             problems.append(f"emits[{i}]: project must be true or false")
+        if "if_minted" in e and (not isinstance(e["if_minted"], bool) or not mints):
+            problems.append(f"emits[{i}]: if_minted must be true or false, on a template that mints")
         if "within" in e and (slots.get(e["within"]) or {}).get("type") != "refs":
             problems.append(f"emits[{i}]: within must name a refs slot of the template")
         if "stv" in e and not (isinstance(e["stv"], list) and len(e["stv"]) == 2 and all(isinstance(x, (int, float)) for x in e["stv"])):

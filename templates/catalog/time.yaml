@@ -76,7 +76,7 @@ trigger:
 slots:
   id:      {type: id, required: true, doc: "your label for the time (t1, t2 …)"}
   event:   {type: filler, class: Event, attaches: true, required: false,
-            doc: "the event the time attaches to: the id of the clause's predication instance, or of an eventive witness when the time is predicated of an event noun (the meeting is at noon); absent only for a time no clause places an event at"}
+            doc: "the event the time attaches to: the id of the clause's predication instance — a verb's, or a copular / locative one (Yusra was tired yesterday: the state's time; the program mints the state) —, or of an eventive witness when the time is predicated of an event noun (the meeting is at noon); absent only for a time no clause places an event at"}
   deictic: {type: enum, values: [now, today, tonight, yesterday, tomorrow, last_week, this_week, next_week, last_month, this_month, next_month, last_year, this_year, next_year], required: false,
             doc: "a time relative to the moment the text speaks from, as one of the listed words (last Tuesday or two days ago are not deictics here); fill no field beside it"}
   anchor:  {type: filler, class: TimeTerm, required: false, default: "@now",
@@ -264,6 +264,20 @@ examples:
       expected: {abstain: true, template: location}                   # a place
 
   held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      note: a deictic time on a copular clause — the state of the fact holding is minted and carries the time
+      text: "Yusra was tired yesterday."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: copular, id: c1, subject: "@n1", predicate: tired, form: adjective, tense: past}
+        - {t: time, id: t1, event: "@c1", deictic: yesterday, anchor: "@now"}
+    - category: positive
+      note: a year on a copular clause with a noun predicate
+      text: "Teodor was a pilot in 1990."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: copular, id: c1, subject: "@n1", predicate: pilot, form: noun, tense: past}
+        - {t: time, id: t1, event: "@c1", year: 1990}
     - category: positive
       note: a year
       text: "Teodor arrived in 2019."

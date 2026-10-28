@@ -44,9 +44,10 @@ trigger:
       a connective opening the text with nothing before it — "But Lamine left.": no first
       clause to relate; parse the clause and report the connective (G05)
     - >-
-      a clause with no event of its own as an endpoint — the ladder is crooked because it is
-      old, Yusra left because the gate was open: a copular, locative or degree clause has no
-      event symbol to link; both clauses are parsed and the connective reported as unmapped
+      a copular or locative clause as an endpoint — Yusra left because the gate was open, the
+      ladder is crooked because it is old: the endpoint names that predication instance and the
+      program mints the state it links; a degree clause still has no event: both clauses parsed,
+      the connective reported as unmapped
     - >-
       a conditional — if Lamine sings, Yusra leaves: the conditional template; a subjunctive (if
       Lamine had sung, …): the counterfactual template; unless / if not: still unmapped (G08)
@@ -236,9 +237,15 @@ examples:
         - {t: motion, id: m1, verb: leave, mover: "@n3", tense: past}
         - {t: link, id: k1, head: Because, main: "@v1", sub: "@v2"}
         - {t: link, id: k2, head: So, main: "@v1", sub: "@m1"}
-    - category: abstain
+    - category: positive
+      note: a copular clause as the connective's clause — the state of the gate being open is the link's endpoint
       text: "Yusra left because the gate was open."
-      expected: {abstain: true, gap: G00, span: "because"}           # a copular endpoint: nothing to link
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, class: gate, definite: true}
+        - {t: motion, id: m1, verb: leave, mover: "@n1", tense: past}
+        - {t: copular, id: c1, subject: "@x1", predicate: open, form: adjective, tense: past}
+        - {t: link, id: k1, head: Because, main: "@m1", sub: "@c1"}
     - category: abstain
       text: "Yusra laughed because of the rain."
       expected: {abstain: true, gap: G00, span: "because of the rain"}   # a noun phrase, not a clause

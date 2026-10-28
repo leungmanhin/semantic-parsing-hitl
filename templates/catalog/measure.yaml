@@ -91,7 +91,7 @@ slots:
   bearer:    {type: filler, class: Instance, required: false,
               doc: "the thing measured: a referent id — a witness, a name, a group (the crates weighed 180 kilograms: the whole, no distribution) or an eventive witness (the audit took three hours); absent when the measure sits on the clause's event"}
   event:     {type: filler, class: Event, attaches: true, required: false,
-              doc: "the clause's predication instance when the measure phrase is on the event: a duration (slept for eight hours), a distance (ran five kilometres), a price paid (bought the quilt for forty euros), a rate (travels at 30 kilometres per hour), a change's amount or its start / end value (fell by 8 percent); absent with bearer"}
+              doc: "the clause's predication instance when the measure phrase is on the event — a verb's, or a copular / locative one (was ill for six weeks: the state's duration; the program mints the state) —: a duration (slept for eight hours), a distance (ran five kilometres), a price paid (bought the quilt for forty euros), a rate (travels at 30 kilometres per hour), a change's amount or its start / end value (fell by 8 percent); absent with bearer"}
   head:      {type: enum, values: [Measure, MeasureAtLeast, MeasureAtMost, MeasureBy, MeasureFrom, MeasureTo], required: true,
               doc: "Measure for a stated value; MeasureAtLeast for at least / more than / over / above; MeasureAtMost for at most / no more than / less than / under / below / up to; MeasureBy for the amount of a change, MeasureFrom / MeasureTo for its start / end value (with event only)"}
   dimension: {type: lemma, class: Class, required: true,
@@ -189,6 +189,13 @@ examples:
       expected: {abstain: true, template: time}                       # a measured distance in time: a time point
 
   held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      note: a duration on a copular clause — the state of being ill lasts six weeks
+      text: "Lamine was ill for six weeks."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: copular, id: c1, subject: "@n1", predicate: ill, form: adjective, tense: past}
+        - {t: measure, id: m1, event: "@c1", head: Measure, dimension: duration, magnitude: 6, unit: week}
     - category: positive
       note: a quantity of a substance — a witness of the stuff, the container word the unit
       text: "Yusra drank a cup of tea."

@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
+  "prompt_sha256": "ee43ce571921709d0ec13373da833a63191c51b34e21dc13084fdfde37fbd0a2",
   "item": {
     "id": "s03aad442ce",
     "text": "Yusra left because the gate was open."
   },
   "usage": {
-    "input": 56507,
-    "output": 219,
+    "input": 89683,
+    "output": 221,
     "thinking": null,
-    "total": 56726,
-    "cached": 54458,
+    "total": 89904,
+    "cached": 87634,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 56507,
-    "candidatesTokenCount": 219,
-    "totalTokenCount": 56726,
-    "cachedContentTokenCount": 54458,
+    "promptTokenCount": 89683,
+    "candidatesTokenCount": 221,
+    "totalTokenCount": 89904,
+    "cachedContentTokenCount": 87634,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 56507
+        "tokenCount": 89683
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 54458
+        "tokenCount": 87634
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 219
+        "tokenCount": 221
       }
     ]
   },
-  "raw_text": "{\"id\": \"s03aad442ce\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"gate\", \"definite\": true, \"span\": \"the gate\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n1\", \"tense\": \"past\", \"span\": \"Yusra left\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@x1\", \"predicate\": \"open\", \"form\": \"adjective\", \"tense\": \"past\", \"span\": \"the gate was open\"}], \"unmapped\": [{\"span\": \"because\", \"code\": \"G00\", \"construction\": \"A causal connective whose subordinate clause is a copular predication with no event symbol to link.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"s03aad442ce\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"gate\", \"definite\": true, \"span\": \"the gate\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n1\", \"tense\": \"past\", \"span\": \"Yusra left\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@x1\", \"predicate\": \"open\", \"form\": \"adjective\", \"tense\": \"past\", \"span\": \"the gate was open\"}, {\"t\": \"link\", \"id\": \"k1\", \"head\": \"Because\", \"main\": \"@m1\", \"sub\": \"@c1\", \"span\": \"because\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s03aad442ce",
     "instances": [
@@ -81,24 +81,26 @@
         "form": "adjective",
         "tense": "past",
         "span": "the gate was open"
-      }
-    ],
-    "unmapped": [
+      },
       {
-        "span": "because",
-        "code": "G00",
-        "construction": "A causal connective whose subordinate clause is a copular predication with no event symbol to link."
+        "t": "link",
+        "id": "k1",
+        "head": "Because",
+        "main": "@m1",
+        "sub": "@c1",
+        "span": "because"
       }
     ],
+    "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
+  "prompt_body_sha256": "86ab096c1dd73fa4c56942165df3a5d9e3dd0580157fc8b292e05fc4e80e7d26",
   "run": 3,
   "case": {
     "template": "link",
     "section": "held_out",
     "index": 10,
-    "category": "abstain",
+    "category": "positive",
     "text": "Yusra left because the gate was open.",
     "key": "03aad442ce"
   }

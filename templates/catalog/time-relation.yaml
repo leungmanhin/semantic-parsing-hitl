@@ -66,9 +66,10 @@ trigger:
       every time or whenever with a clause — whenever the bell rings: a generalization over the
       when-clause's events, the frequency template; not a relation between two particular events
     - >-
-      a main clause with no event of its own — the ladder was crooked until Monday, Yusra was in
-      the barn during the audit: a copular, locative or degree clause mints no event; parse the
-      clause and the time, report the relation phrase as unmapped
+      a copular or locative main clause — the ladder was crooked until Monday, Yusra was in the
+      barn during the audit: the relation's event names that predication instance and the
+      program mints the state it relates; a degree clause still has no event: parse the clause
+      and the time, report the relation phrase as unmapped
     - >-
       a gerund after a non-temporal preposition — without saying a word, by working hard, instead
       of leaving: not a relation in time; an oblique's business, reported as unmapped there
@@ -377,6 +378,20 @@ examples:
     - category: abstain
       text: "Whenever Yusra sang, the ferret hid."
       expected: {abstain: true, template: frequency}                  # a generalization over the when-clause's events
-    - category: abstain
+    - category: positive
+      note: until on a copular clause — the state of the fact holding is the relation's event
       text: "The ladder was crooked until Monday."
-      expected: {abstain: true, gap: G00, span: "until Monday"}       # the main clause mints no event
+      instances:
+        - {t: witness, id: x1, class: ladder, definite: true}
+        - {t: copular, id: c1, subject: "@x1", predicate: crooked, form: adjective, tense: past}
+        - {t: time, id: t1, weekday: monday}
+        - {t: time-relation, id: r1, event: "@c1", reference: "@t1", head: End, word: until}
+    - category: positive
+      note: during on a locative clause — the state of being in the barn falls within the audit
+      text: "Yusra was in the barn during the audit."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, class: barn, definite: true}
+        - {t: witness, id: x2, class: audit, definite: true, eventive: true}
+        - {t: locative, id: l1, thing: "@n1", place: "@x1", head: LocatedIn, preposition: in, tense: past}
+        - {t: time-relation, id: r1, event: "@l1", reference: "@x2", head: During, word: during}
