@@ -47,8 +47,9 @@ trigger:
       a clause as the object — fears that P, hopes that P, likes that P: an attitude towards a
       proposition; nothing is felt about a thing
     - >-
-      an adjectival state — is afraid of the ferret, is fond of Lamine, is angry: a copular
-      clause with a property, not a verb of this class
+      an adjectival state with a complement — is afraid of the ferret, is fond of Lamine, is
+      worried about the audit: the adjective-complement template; a bare one — is angry: a
+      copular property; neither is a verb of this class
     - >-
       perception — saw the ferret, heard the news: perceiving something, not feeling something
       about it
@@ -207,7 +208,7 @@ examples:
       expected: {abstain: true, template: perception}
     - category: abstain
       text: "Ottoline is afraid of the ferret."
-      expected: {abstain: true, gap: G00, span: "is afraid of the ferret"}      # adjectival state
+      expected: {abstain: true, template: adjective-complement}         # an adjectival state with a complement
     - category: positive
       note: a gerund as the stimulus
       text: "Lamine enjoys sending quilts."

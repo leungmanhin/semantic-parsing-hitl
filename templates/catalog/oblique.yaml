@@ -79,7 +79,7 @@ slots:
   id:     {type: id, required: true, doc: "your label for the attachment (a1, a2 …)"}
   event:  {type: filler, class: Event, attaches: true, required: true,
            doc: "the predication the phrase attaches to: the id of the clause's event instance"}
-  head:   {type: enum, values: [About, Above, Across, Against, Along, Among, Around, As, At, Behind, Below, Beneath, Beside, Besides, Between, Beyond, By, Concerning, Despite, Down, Except, For, From, In, Inside, Into, Like, Near, Of, Off, On, Onto, Opposite, Out, Outside, Over, Past, Per, Regarding, Round, Through, To, Toward, Towards, Under, Underneath, Unlike, Up, Upon, Via, With, Within, Without],
+  head:   {type: enum, values: [About, Above, Across, Against, Along, Among, Around, As, At, Behind, Below, Beneath, Beside, Besides, Between, Beyond, By, Concerning, Despite, Down, Except, For, From, In, Inside, Into, Like, Near, Of, "Off", "On", Onto, Opposite, Out, Outside, Over, Past, Per, Regarding, Round, Through, To, Toward, Towards, Under, Underneath, Unlike, Up, Upon, Via, With, Within, Without],
            required: true, doc: "the preposition as written, capitalized (about → About, without → Without); never a synonym"}
   object: {type: filler, class: Entity, required: true,
            doc: "the phrase's object: a referent id (a witness, a name) for a specific thing, or a bare lemma for a non-specific or class-level one (as a weaver → weaver, without a quilt → quilt, like a bird → bird)"}

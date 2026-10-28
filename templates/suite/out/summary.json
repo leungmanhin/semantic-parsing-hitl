@@ -1,9 +1,9 @@
 {
   "prompt": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_body_sha256": "836be316c0dc010abb33ece1e7393b405787e6eff5e1f562de8572a841c364a6",
+  "prompt_body_sha256": "fbd14f0c671be9cc8d5a741e5b5370494fbe710fbaca5af9546667bfec15f428",
   "typecheck": "ran",
   "checks": {
-    "examples": 951,
+    "examples": 986,
     "findings": [],
     "pending": {},
     "shared": [
@@ -232,6 +232,86 @@
         "spans": {
           "instances": 135,
           "with_span": 135,
+          "missing": 0,
+          "not_verbatim": 0,
+          "malformed": 0
+        },
+        "models": [
+          "gemini-4-argon effort=low"
+        ]
+      }
+    },
+    "adjective-complement": {
+      "held_out": {
+        "records": 90,
+        "cases": 30,
+        "status": {
+          "ok": 90
+        },
+        "stale_prompt": 0,
+        "by_category": {
+          "positive": {
+            "cases": 17,
+            "runs": 51,
+            "pass": 51,
+            "fired": 51,
+            "exact": 51
+          },
+          "scoped": {
+            "cases": 3,
+            "runs": 9,
+            "pass": 9,
+            "fired": 9,
+            "exact": 9
+          },
+          "abstain": {
+            "cases": 10,
+            "runs": 30,
+            "pass": 30,
+            "false_fires": 0,
+            "outcomes": {
+              "target_fired": 15,
+              "gap_reported": 15
+            }
+          }
+        },
+        "pass": 90,
+        "selection": {
+          "fire_runs": 60,
+          "fired": 60,
+          "abstain_runs": 30,
+          "false_fires": 0
+        },
+        "fill": {
+          "fired": 60,
+          "exact": 60,
+          "rate": 1.0
+        },
+        "stability": {
+          "cases": 30,
+          "pairs": 90,
+          "pairwise_agreement": 1.0,
+          "unanimous": 30
+        },
+        "typecheck": {
+          "checked": 87,
+          "passed": 87
+        },
+        "usage": {
+          "input": 7756851,
+          "output": 12956,
+          "thinking": 0,
+          "total": 7769807,
+          "cached": 7485956,
+          "calls": 90,
+          "thinking_calls": 0
+        },
+        "issues": [],
+        "null_slots": 0,
+        "lints": {},
+        "spans": {
+          "instances": 240,
+          "with_span": 240,
           "missing": 0,
           "not_verbatim": 0,
           "malformed": 0
@@ -1247,7 +1327,7 @@
         "status": {
           "ok": 42
         },
-        "stale_prompt": 39,
+        "stale_prompt": 42,
         "by_category": {
           "positive": {
             "cases": 5,
@@ -1341,7 +1421,7 @@
         "status": {
           "ok": 48
         },
-        "stale_prompt": 42,
+        "stale_prompt": 45,
         "by_category": {
           "positive": {
             "cases": 6,
@@ -1377,8 +1457,8 @@
             "pass": 12,
             "false_fires": 0,
             "outcomes": {
-              "target_fired": 6,
-              "gap_reported": 6
+              "target_fired": 9,
+              "gap_reported": 3
             }
           }
         },
@@ -1405,11 +1485,11 @@
           "passed": 48
         },
         "usage": {
-          "input": 2926320,
-          "output": 5880,
+          "input": 3015360,
+          "output": 5901,
           "thinking": 0,
-          "total": 2932200,
-          "cached": 2773501,
+          "total": 3021261,
+          "cached": 2862541,
           "calls": 48,
           "thinking_calls": 0
         },
@@ -1417,8 +1497,8 @@
         "null_slots": 0,
         "lints": {},
         "spans": {
-          "instances": 105,
-          "with_span": 105,
+          "instances": 108,
+          "with_span": 108,
           "missing": 0,
           "not_verbatim": 0,
           "malformed": 0
@@ -1868,7 +1948,7 @@
         "status": {
           "ok": 42
         },
-        "stale_prompt": 0,
+        "stale_prompt": 42,
         "by_category": {
           "positive": {
             "cases": 10,
@@ -2618,7 +2698,7 @@
         "status": {
           "ok": 45
         },
-        "stale_prompt": 45,
+        "stale_prompt": 42,
         "by_category": {
           "positive": {
             "cases": 8,
@@ -2647,8 +2727,7 @@
             "pass": 9,
             "false_fires": 0,
             "outcomes": {
-              "target_fired": 6,
-              "gap_reported": 3
+              "target_fired": 9
             }
           }
         },
@@ -2675,42 +2754,20 @@
           "passed": 45
         },
         "usage": {
-          "input": 2542815,
-          "output": 8952,
+          "input": 2631855,
+          "output": 9018,
           "thinking": 0,
-          "total": 2551767,
-          "cached": 2450600,
+          "total": 2640873,
+          "cached": 2539640,
           "calls": 45,
           "thinking_calls": 0
         },
-        "issues": [
-          {
-            "code": "P00",
-            "where": "copular",
-            "text": "The location template mentions 'in its demands' as an oblique on an event, but a copular predication has no event symbol for an oblique to attach to and states that an adjective with a complement must be reported as unmapped as a whole.",
-            "sentence": "Lamine was modest in his demands.",
-            "run": 1
-          },
-          {
-            "code": "P00",
-            "where": "copular",
-            "text": "The location boundary note classifies 'in its demands' as an oblique on an event, but a copular predication renders no event symbol for an oblique to attach to, and the copular boundary note treats an adjective with a complement as an unmapped predicate.",
-            "sentence": "Lamine was modest in his demands.",
-            "run": 2
-          },
-          {
-            "code": "P00",
-            "where": "copular",
-            "text": "The location template mentions 'in its demands' as an oblique on an event, but a copular predication has no event symbol for an oblique to attach to, and copular rejects adjectives with complements.",
-            "sentence": "Lamine was modest in his demands.",
-            "run": 3
-          }
-        ],
+        "issues": [],
         "null_slots": 0,
         "lints": {},
         "spans": {
-          "instances": 183,
-          "with_span": 183,
+          "instances": 195,
+          "with_span": 195,
           "missing": 0,
           "not_verbatim": 0,
           "malformed": 0
@@ -2988,7 +3045,7 @@
         "status": {
           "ok": 15
         },
-        "stale_prompt": 12,
+        "stale_prompt": 15,
         "by_category": {
           "positive": {
             "cases": 4,
@@ -3542,7 +3599,7 @@
         "status": {
           "ok": 36
         },
-        "stale_prompt": 33,
+        "stale_prompt": 36,
         "by_category": {
           "positive": {
             "cases": 5,
@@ -3810,7 +3867,7 @@
         "status": {
           "ok": 39
         },
-        "stale_prompt": 39,
+        "stale_prompt": 36,
         "by_category": {
           "positive": {
             "cases": 5,
@@ -3846,8 +3903,7 @@
             "pass": 9,
             "false_fires": 0,
             "outcomes": {
-              "gap_reported": 3,
-              "target_fired": 6
+              "target_fired": 9
             }
           }
         },
@@ -3874,11 +3930,11 @@
           "passed": 39
         },
         "usage": {
-          "input": 2203773,
-          "output": 6315,
+          "input": 2292813,
+          "output": 6449,
           "thinking": 0,
-          "total": 2210088,
-          "cached": 2122587,
+          "total": 2299262,
+          "cached": 2211629,
           "calls": 39,
           "thinking_calls": 0
         },
@@ -3901,8 +3957,8 @@
         "null_slots": 0,
         "lints": {},
         "spans": {
-          "instances": 123,
-          "with_span": 123,
+          "instances": 129,
+          "with_span": 129,
           "missing": 0,
           "not_verbatim": 0,
           "malformed": 0
@@ -3999,7 +4055,7 @@
         "status": {
           "ok": 24
         },
-        "stale_prompt": 0,
+        "stale_prompt": 24,
         "by_category": {
           "positive": {
             "cases": 5,
@@ -4078,7 +4134,7 @@
         "status": {
           "ok": 75
         },
-        "stale_prompt": 72,
+        "stale_prompt": 75,
         "by_category": {
           "positive": {
             "cases": 19,

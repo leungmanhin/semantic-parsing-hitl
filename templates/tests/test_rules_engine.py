@@ -348,6 +348,41 @@ class SeededRulesOnTheEngine(unittest.TestCase):
         self.assertTrue(not denied or tv(denied)[1] < 0.01, denied)              # (a strength-0 answer with no confidence at most)
         self.assertFalse(self.query(h, "(Look (Member sk_lamine_1 pale))"))       # never the other way
 
+    def test_an_adjective_complement_is_a_state_with_its_complement(self):
+        """A quality adjective with its complement is a state eventuality whose complement sits
+        under the preposition as written: the wh-questions read the bearer and the complement off
+        the state, a denied state answers the positive at strength 0, an unstated one answers
+        nothing, a class-level one instantiates for a member through the generic's rule, and a
+        gerund complement is a sealed term — not asserted, yet reachable as the complement."""
+        h = self.space(['(: n1 (Name sk_yusra_1 "Yusra") (STV 1.0 0.99))', '(: n2 (Name sk_teodor_1 "Teodor") (STV 1.0 0.99))',
+                        '(: p1_member (Member sk_fond_1 fond) (STV 1.0 0.99))',
+                        '(: p1_experiencer (Experiencer sk_fond_1 sk_yusra_1) (STV 1.0 0.99))',
+                        '(: p1_of (Of sk_fond_1 sk_teodor_1) (STV 1.0 0.99))',
+                        '(: p2_member (Member sk_good_1 good) (STV 1.0 0.99))',
+                        '(: p2_experiencer (Experiencer sk_good_1 sk_teodor_1) (STV 1.0 0.99))',
+                        '(: p2_at (At sk_good_1 chess) (STV 1.0 0.99))',
+                        '(: s1_not (Not (And (Member sk_fond_2 fond) (Experiencer sk_fond_2 sk_lamine_1) (Of sk_fond_2 sk_yusra_1))) (STV 1.0 0.99))',
+                        '(: r1_implication (Implication (Member $x heron) (And (Member (sk_sensitive $x) sensitive) (Experiencer (sk_sensitive $x) $x) (To (sk_sensitive $x) noise))) (STV 0.9 0.7))',
+                        '(: c1_member (Member sk_ottoline_1 heron) (STV 1.0 0.99))',
+                        '(: p3_member (Member sk_tired_1 tired) (STV 1.0 0.99))',
+                        '(: p3_experiencer (Experiencer sk_tired_1 sk_lamine_1) (STV 1.0 0.99))',
+                        '(: p3_of (Of sk_tired_1 (And (Member sk_wait_1 wait) (Agent sk_wait_1 sk_lamine_1))) (STV 1.0 0.99))'])
+        who = self.query(h, "(And (Member $s fond) (Experiencer $s $x) (Of $s sk_teodor_1))")
+        self.assertTrue(who and "sk_yusra_1" in who[0], who)                                   # who is fond of Teodor
+        what = self.query(h, "(And (Member $s good) (Experiencer $s sk_teodor_1) (At $s $y))")
+        self.assertTrue(what and "chess" in what[0], what)                                     # what is Teodor good at
+        denied = self.query(h, "(And (Member $s fond) (Experiencer $s sk_lamine_1) (Of $s sk_yusra_1))")
+        self.assertTrue(denied and tv(denied)[0] < 0.01, denied)                               # a stored denial answers at strength 0
+        self.assertFalse(self.query(h, "(And (Member $s good) (Experiencer $s sk_yusra_1) (At $s chess))"))   # unstated: nothing
+        member = self.query(h, "(And (Member $s sensitive) (Experiencer $s sk_ottoline_1) (To $s $what))")
+        self.assertTrue(member and "noise" in member[0], member)                               # the class rule instantiates for a member
+        s, c = tv(member)
+        self.assertAlmostEqual(s, 0.9, places=2)
+        self.assertLess(c, 0.75)
+        self.assertFalse(self.query(h, "(Member $e wait)"))                                    # the gerund is sealed: no waiting asserted
+        sealed = self.query(h, "(And (Member $s tired) (Experiencer $s sk_lamine_1) (Of $s $what))")
+        self.assertTrue(sealed and "(Member sk_wait_1 wait)" in sealed[0], sealed)             # yet reachable as the complement
+
 
 if __name__ == "__main__":
     unittest.main()

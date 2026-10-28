@@ -44,8 +44,8 @@ trigger:
       a relational adjective or noun with its complement — married to Lamine, similar to
       Teodor, a cousin of Yusra, Lamine's cousin, friends with Ottoline: a stative relation
       between the two; a quality adjective with a complement — afraid of the ferret, fond of
-      Lamine, full of water: the complement is part of the predication; report the whole
-      predicate as a gap
+      Lamine, full of water, good at chess: the adjective-complement template, a state of the
+      subject with its complement
     - >-
       a definite or a name as the predicate — is the locksmith, is Teodor: an identity
       statement, not a class or a property (a possessed relational noun — is Lamine's cousin —
@@ -206,7 +206,7 @@ examples:
         - {t: evidential, id: s1, over: ["@c1"], head: Seem}
     - category: abstain
       text: "Lamine is fond of Yusra."
-      expected: {abstain: true, gap: G00, span: "is fond of Yusra"}   # an adjective with a complement
+      expected: {abstain: true, template: adjective-complement}         # an adjective with a complement
     - category: abstain
       text: "Teodor is the locksmith."
       expected: {abstain: true, gap: G00, span: "is the locksmith"}   # an identity statement

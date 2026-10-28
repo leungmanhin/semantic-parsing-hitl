@@ -1,0 +1,364 @@
+# Template: adjective-complement  (a quality adjective with its prepositional complement: "Yusra is fond of Teodor", "Teodor is good at chess", "The thermos is full of tea")
+#
+# A quality adjective whose meaning is completed by a prepositional phrase — fond OF someone,
+# afraid OF something, full OF a substance, good AT a domain, modest IN a respect, famous FOR a
+# thing — states a state of the subject that the complement completes. The flat (Member
+# sk_yusra_1 fond) would sever the complement, so the state is an eventuality of its own, as a
+# felt state and a stative relation are: (Member sk_fond_1 fond) (Experiencer sk_fond_1
+# sk_yusra_1), with the complement attached to the state under the preposition as written,
+# capitalized — (Of sk_fond_1 sk_teodor_1), (At sk_good_1 chess) — exactly as a prepositional
+# phrase attaches to a verb's event. The preposition is the head because one adjective takes
+# different complements by different prepositions (good at chess, good for the heart, good with
+# ferrets), and the word used is the record. Tense, negation, modality and a time attach to the
+# state. No flat property is asserted beside it: good at chess does not say good, and whether
+# full of tea says full is a background matter per adjective, not the parse's.
+
+id: adjective-complement
+family: predication
+shape: verb-class
+title: A quality adjective with its prepositional complement
+
+trigger:
+  construction: >
+    A clause with "be" whose predicate is a QUALITY ADJECTIVE followed by a prepositional phrase
+    that completes it: the adjective selects the preposition and the phrase says what the quality
+    bears on — fond of Teodor, afraid of the ferret, proud of the quilt, full of tea, free from
+    pain, good at chess, keen on chess, interested in chess, responsible for the barn, famous for
+    the mill, angry with Teodor, worried about the audit, sensitive to noise, modest in his
+    demands. The subject is the bearer of the state; the adjective is the property, lemmatized;
+    the preposition is recorded as written, capitalized, as the head; the phrase's object is a
+    referent (a name, a witness, a group, a resolved pronoun) or a bare lemma for a non-specific
+    or class-level one (good at chess, full of tea). A gerund clause as the complement (afraid of
+    losing the quilt, tired of waiting, good at baking loaves) is parsed with its own template,
+    the bearer as its actor and tense present, and listed in `complement`, sealed. The tense and
+    aspect are the clause's. Write one instance for the adjective with its complement; no
+    copular instance beside it, and no oblique for the phrase.
+  surface_forms:
+    - "<X> is fond / afraid / proud / full / sure of <Y>"             # of: the commonest
+    - "<X> is good / bad / clever at <Y>"                             # at: a domain or a skill
+    - "<X> is responsible / famous / ready / late for <Y>"           # for
+    - "<X> is sensitive / loyal / allergic to <Y>"                   # to (similar to, married to: a stative relation)
+    - "<X> is interested / fluent / rich / modest in <Y>"            # in: a respect or a domain
+    - "<X> is angry / pleased / busy / careful with <Y>"             # with
+    - "<X> is worried / happy / particular about <Y>"                # about
+    - "<X> is free / safe / absent from <Y>"                         # from
+    - "<X> is keen / dependent on <Y>"                               # on
+    - "<X> is afraid of / tired of / good at <V>-ing …"              # a gerund as the complement, sealed
+  boundary:                   # looks like an adjective with a complement but is not one
+    - >-
+      a plain adjective with no complement stated — Yusra is tired, Yusra is afraid: a copular
+      predication; a psych verb — fears the ferret, likes Yusra — the psych template, and feels
+      tired a sensation
+    - >-
+      a relational adjective or noun with its complement — married to Lamine, similar to Teodor,
+      related to Yusra, equal to, parallel to, different from, a cousin of Yusra: a relation
+      between two individuals, the stative-relation template; the test: a relation holds between
+      the two, a quality holds of the subject about the complement
+    - >-
+      a verb's participle with a by-phrase — surrounded by a wall, written by Teodor, frightened
+      by the ferret: the verb's own template (a stative relation, an activity, a psych state, in
+      the passive); with another preposition the word is an adjective and comes here (interested
+      in chess, worried about the audit, pleased with the quilt); made of oak: part-whole;
+      located in Calderwick: a locative
+    - >-
+      a phrase that says where or when — happy in Calderwick, busy on Monday, cold in winter:
+      not a complement; the adjective is a copular predication and the place or time phrase is
+      reported as unmapped, since a copular clause mints no event to carry it; the test: the
+      phrase answers where or when, not what the quality bears on
+    - >-
+      a degree word on the adjective — very fond of Teodor, too afraid of the ferret: this
+      template, with the degree word reported under G02; an approximator — almost full of tea —
+      leaves the whole predicate unmapped, since the property is not asserted
+    - >-
+      an adjective with a to-infinitive or a that-clause — ready to leave, able to lift the beam,
+      hard to mend, sure that Lamine left, afraid that it rains: no template; report the
+      predicate as unmapped (too tired to sing, tall enough to reach: the degree template, the
+      infinitive reported)
+    - >-
+      a prepositional phrase on a verb — talked about the audit, waited for Teodor: an oblique
+      on the event; on a noun — a book about ferrets, the lid of the box: a postmodifier or a
+      part-whole
+    - >-
+      a prepositional idiom with no adjective — in trouble, out of the question, in fashion, at
+      hand: no template; report the predicate as unmapped; due to / owing to — the delay was due
+      to the rain: a cause stated by a preposition, reported as unmapped
+    - >-
+      a partitive or a hedge — one of the weavers, part of the plan, kind of tired: a part-whole,
+      a proportion or a hedge, not a quality with a complement
+    - >-
+      a copular verb other than be — seems fond of Teodor, looks afraid of the ferret: the
+      evidential template over this template's instance; became fond of Yusra, got interested
+      in chess: a change of state, whose template has no slot for the complement; report the
+      predicate as unmapped
+    - >-
+      a class as the subject — herons are sensitive to noise: the generic template builds the
+      rule, with this template's instance as the predication over the range
+    - >-
+      a comparative form of the adjective — fonder of Teodor than of Lamine: the comparative
+      template's business; report the complement phrases as unmapped
+
+slots:
+  id:         {type: id, required: true, doc: "your label for the state (p1, p2 …)"}
+  bearer:     {type: filler, class: Entity, role: Experiencer, required: true,
+               doc: "the subject the adjective holds of: a referent id (a name, a witness, a group, a resolved pronoun, or the range inside a rule)"}
+  property:   {type: lemma, class: Class, required: true,
+               doc: "the adjective, lemmatized (fond, afraid, full, good, modest, famous, interested)"}
+  head:       {type: enum, values: [About, At, For, From, In, Of, "On", To, Toward, Towards, With], required: true,
+               doc: "the preposition introducing the complement, as written, capitalized (of → Of, at → At); never a synonym"}
+  object:     {type: filler, class: Entity, required: false,
+               doc: "the complement as a thing: a referent id (a name, a witness, a group, a resolved pronoun) for a specific one, or a bare lemma for a non-specific or class-level one (good at chess → chess, full of tea → tea, fond of ferrets → ferret)"}
+  complement: {type: refs, class: Proposition, required: false,
+               doc: "the complement as an action (afraid of losing the quilt, tired of waiting, good at baking loaves): the ids of the instances that state it (its predication, with the bearer as its actor, tense present), sealed; never together with object; the referents it mentions are not listed"}
+  tense:      {type: enum, values: [past, present, future], required: true,
+               doc: "the clause's tense; present is recorded, not inferred"}
+  aspect:     {type: enum, values: [simple, progressive, perfect], required: false, default: simple}
+
+one_of: [[object, complement]]
+
+mints: {id: Event, stem: property}
+
+emits:
+  - atom: "(Member @id {property})"
+  - atom: "(Experiencer @id {bearer})"
+  - atom: "({head} @id {object})"             # the complement as a thing, under the preposition
+    if_filled: object
+  - atom: "({head} @id {complement})"         # the complement as an action, sealed as one term
+    if_filled: complement
+  - atom: "(Past @id)"
+    when: "tense == past or aspect == perfect"
+  - atom: "(Future @id)"
+    when: "tense == future"
+  - atom: "(Ongoing @id)"
+    when: "aspect == progressive"
+
+notes:
+  - >-
+    The state is an eventuality with the subject as its Experiencer and the complement under
+    the preposition, as a felt state and a stative relation are: "what is Teodor good at?"
+    reads the complement off the state. "Is Teodor good?" is not answered, since no flat
+    property is asserted: whether a quality with a complement yields the bare property is a
+    matter per adjective (full of tea is full; good at chess is not good), for the uniform
+    states round, not for the parse.
+  - >-
+    The preposition is the head and is never normalized, as on an event: "good at chess" and
+    "good for the heart" are two complements of good, and whether "of" after fond and "of"
+    after full name one relation is a consumer's business.
+  - >-
+    An indefinite complement is a witness, asserted at the top level (afraid of a ferret: there
+    is a ferret), as the catalog reads every indefinite; a bare plural or mass one is a bare
+    lemma (full of tea, fond of ferrets).
+  - >-
+    A gerund complement is sealed as one term under the preposition: "afraid of losing the
+    quilt" asserts no losing, and "tired of waiting" asserts the waiting no more than the
+    sentence does; the state is the claim.
+
+depends_on: [named-entity, witness]
+composes_with: [negation, modal, evidential, generic, time, coref]
+
+examples:
+  shown:                     # rendered into the prompt
+    - category: positive
+      note: the quality a state of its bearer, the complement under the preposition as written; no flat property
+      text: "Yusra is fond of Teodor."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
+        - {t: named-entity, id: n2, name: "Teodor", span: "Teodor"}
+        - {t: adjective-complement, id: p1, bearer: "@n1", property: fond, head: Of, object: "@n2", tense: present, span: "Yusra is fond of Teodor"}
+      emitted:               # what the emitter produces (illustration; the emitter is the authority)
+        - "(Name sk_yusra_1 \"Yusra\")"
+        - "(Name sk_teodor_1 \"Teodor\")"
+        - "(Member sk_fond_1 fond)"
+        - "(Experiencer sk_fond_1 sk_yusra_1)"
+        - "(Of sk_fond_1 sk_teodor_1)"
+      declarations:
+        - "(: fond Class)"
+        - "(: sk_fond_1 Event)"
+        - "(: sk_teodor_1 Entity)"
+        - "(: sk_yusra_1 Entity)"
+    - category: positive
+      note: a domain as the complement — a bare lemma; the preposition the head
+      text: "Teodor is good at chess."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor", span: "Teodor"}
+        - {t: adjective-complement, id: p1, bearer: "@n1", property: good, head: At, object: chess, tense: present, span: "Teodor is good at chess"}
+    - category: positive
+      note: a gerund as the complement — parsed with its own template, the bearer its actor, and sealed
+      text: "Lamine is tired of waiting."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine", span: "Lamine"}
+        - {t: activity, id: v1, verb: wait, actor: "@n1", tense: present, span: "waiting"}
+        - {t: adjective-complement, id: p1, bearer: "@n1", property: tired, head: Of, complement: ["@v1"], tense: present, span: "Lamine is tired of waiting"}
+    - category: abstain
+      text: "Yusra talked about the audit."
+      expected: {abstain: true, template: oblique}                    # a prepositional phrase on a verb
+    - category: abstain
+      text: "The ledger is on the workbench."
+      expected: {abstain: true, template: locative}                   # where a thing is, no adjective
+
+  held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      text: "Lamine is fond of Yusra."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: named-entity, id: n2, name: "Yusra"}
+        - {t: adjective-complement, id: p1, bearer: "@n1", property: fond, head: Of, object: "@n2", tense: present}
+    - category: positive
+      note: a definite witness as the complement
+      text: "Ottoline is afraid of the ferret."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: witness, id: x1, class: ferret, definite: true}
+        - {t: adjective-complement, id: p1, bearer: "@n1", property: afraid, head: Of, object: "@x1", tense: present}
+    - category: positive
+      note: a respect, in; past tense; the complement a possessed group with its pronoun a mention
+      text: "Lamine was modest in his demands."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: mention, id: m1, word: his}
+        - {t: group, id: g1, class: demand, possessor: "@m1"}
+        - {t: adjective-complement, id: p1, bearer: "@n1", property: modest, head: In, object: "@g1", tense: past}
+        - {t: coref, id: c1, mention: "@m1", antecedent: "@n1", certainty: certain}
+    - category: positive
+      note: a mass complement — a bare lemma; a witness as the bearer
+      text: "The thermos is full of tea."
+      instances:
+        - {t: witness, id: x1, class: thermos, definite: true}
+        - {t: adjective-complement, id: p1, bearer: "@x1", property: full, head: Of, object: tea, tense: present}
+    - category: positive
+      text: "Teodor is responsible for the barn."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, class: barn, definite: true}
+        - {t: adjective-complement, id: p1, bearer: "@n1", property: responsible, head: For, object: "@x1", tense: present}
+    - category: positive
+      note: with; past
+      text: "Yusra was angry with Teodor."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: named-entity, id: n2, name: "Teodor"}
+        - {t: adjective-complement, id: p1, bearer: "@n1", property: angry, head: With, object: "@n2", tense: past}
+    - category: positive
+      text: "Lamine is keen on chess."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: adjective-complement, id: p1, bearer: "@n1", property: keen, head: "On", object: chess, tense: present}
+    - category: positive
+      note: a place name as the bearer
+      text: "Calderwick is famous for the mill."
+      instances:
+        - {t: named-entity, id: n1, name: "Calderwick"}
+        - {t: witness, id: x1, class: mill, definite: true}
+        - {t: adjective-complement, id: p1, bearer: "@n1", property: famous, head: For, object: "@x1", tense: present}
+    - category: positive
+      text: "Teodor is free from pain."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: adjective-complement, id: p1, bearer: "@n1", property: free, head: From, object: pain, tense: present}
+    - category: positive
+      note: a participle used as an adjective, with its own preposition
+      text: "Teodor is interested in chess."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: adjective-complement, id: p1, bearer: "@n1", property: interested, head: In, object: chess, tense: present}
+    - category: positive
+      note: about — the adjective, not the psych verb
+      text: "Yusra is worried about the audit."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, class: audit, definite: true}
+        - {t: adjective-complement, id: p1, bearer: "@n1", property: worried, head: About, object: "@x1", tense: present}
+    - category: positive
+      note: a gerund with an object as the complement — sealed
+      text: "Ottoline is good at baking loaves."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: creation, id: e1, verb: bake, creator: "@n1", product: loaf, tense: present}
+        - {t: adjective-complement, id: p1, bearer: "@n1", property: good, head: At, complement: ["@e1"], tense: present}
+    - category: positive
+      note: a class as the subject — the generic builds the rule, the complement a bare lemma
+      text: "Herons are sensitive to noise."
+      instances:
+        - {t: range, id: q1, class: heron}
+        - {t: adjective-complement, id: p1, bearer: "@q1", property: sensitive, head: To, object: noise, tense: present}
+        - {t: generic, id: r1, ranges: ["@q1"], over: ["@p1"]}
+    - category: positive
+      note: a witness as the bearer, a bare plural as the complement
+      text: "The ferret is fond of eggs."
+      instances:
+        - {t: witness, id: x1, class: ferret, definite: true}
+        - {t: adjective-complement, id: p1, bearer: "@x1", property: fond, head: Of, object: egg, tense: present}
+    - category: positive
+      note: future
+      text: "Lamine will be responsible for the audit."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: x1, class: audit, definite: true}
+        - {t: adjective-complement, id: p1, bearer: "@n1", property: responsible, head: For, object: "@x1", tense: future}
+    - category: positive
+      note: present perfect — the state renders as past
+      text: "Teodor has been afraid of ferrets."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: adjective-complement, id: p1, bearer: "@n1", property: afraid, head: Of, object: ferret, tense: present, aspect: perfect}
+    - category: positive
+      note: a time on the state — the eventuality carries it
+      text: "Yusra was afraid of the ferret yesterday."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, class: ferret, definite: true}
+        - {t: adjective-complement, id: p1, bearer: "@n1", property: afraid, head: Of, object: "@x1", tense: past}
+        - {t: time, id: t1, event: "@p1", deictic: yesterday, anchor: "@now"}
+    - category: scoped
+      note: under negation — the state with its complement is denied as a whole
+      text: "Lamine is not fond of Yusra."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: named-entity, id: n2, name: "Yusra"}
+        - {t: adjective-complement, id: p1, bearer: "@n1", property: fond, head: Of, object: "@n2", tense: present}
+        - {t: negation, id: s1, over: ["@p1"]}
+    - category: scoped
+      note: under a modal
+      text: "Teodor might be afraid of the ferret."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, class: ferret, definite: true}
+        - {t: adjective-complement, id: p1, bearer: "@n1", property: afraid, head: Of, object: "@x1", tense: present}
+        - {t: modal, id: s1, over: ["@p1"], head: Might, surface: might}
+    - category: scoped
+      note: under an evidential verb — the state is the sealed claim
+      text: "Teodor seems afraid of the ferret."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, class: ferret, definite: true}
+        - {t: adjective-complement, id: p1, bearer: "@n1", property: afraid, head: Of, object: "@x1", tense: present}
+        - {t: evidential, id: s1, over: ["@p1"], head: Seem}
+    - category: abstain
+      text: "Yusra is married to Lamine."
+      expected: {abstain: true, template: stative-relation}           # a relational adjective
+    - category: abstain
+      text: "Yusra is tired."
+      expected: {abstain: true, template: copular}                    # no complement
+    - category: abstain
+      text: "The house is surrounded by a wall."
+      expected: {abstain: true, template: stative-relation}           # a participle with a by-phrase
+    - category: abstain
+      text: "Teodor is extremely tired."
+      expected: {abstain: true, template: degree}                     # a degree word, no complement
+    - category: abstain
+      text: "Yusra fears the ferret."
+      expected: {abstain: true, template: psych}                      # a psych verb
+    - category: abstain
+      text: "Ottoline is ready to leave."
+      expected: {abstain: true, gap: G00, span: "ready to leave"}     # a to-infinitive complement
+    - category: abstain
+      text: "Lamine is sure that Yusra left."
+      expected: {abstain: true, gap: G00, span: "sure that Yusra left"}   # a that-clause complement
+    - category: abstain
+      text: "Lamine was happy in Calderwick."
+      expected: {abstain: true, gap: G00, span: "in Calderwick"}      # a place, not a complement
+    - category: abstain
+      text: "The delay was due to the rain."
+      expected: {abstain: true, gap: G00, span: "due to the rain"}    # a cause stated by a preposition
+    - category: abstain
+      text: "Lamine is in trouble."
+      expected: {abstain: true, gap: G00, span: "in trouble"}         # a prepositional idiom, no adjective

@@ -1,10 +1,10 @@
 # Suite report
 
-prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 836be316c0dc010a) · type check: ran
+prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 fbd14f0c671be9cc) · type check: ran
 
 ## Catalog checks
 
-951 examples checked; findings: 0
+986 examples checked; findings: 0
 
 Sentences two templates claim with the same expected atoms (composition, fine):
 - "Ottoline bought the quilt for forty euros." — acquisition, measure
@@ -70,6 +70,39 @@ Abstain cases (what the parser did, per run):
 - "Yusra had a rest." (gap G00): r1 gap_reported [named-entity×1; unmapped G00] · r2 gap_reported [named-entity×1; unmapped G00] · r3 gap_reported [named-entity×1; unmapped G00]
 - "The ladder broke." (target `change-of-state`): r1 target_fired [change-of-state×1, witness×1] · r2 target_fired [change-of-state×1, witness×1] · r3 target_fired [change-of-state×1, witness×1]
 - "Teodor built a shed." (target `creation`): r1 target_fired [creation×1, named-entity×1, witness×1] · r2 target_fired [creation×1, named-entity×1, witness×1] · r3 target_fired [creation×1, named-entity×1, witness×1]
+
+Mismatches: none
+
+## adjective-complement — held_out
+
+30 cases, 90 records (ok 90; stale prompt 0) · gemini-4-argon effort=low
+
+| category | cases | runs | fired | exact | pass |
+|---|---|---|---|---|---|
+| positive | 17 | 51 | 51 | 51 | 51 |
+| scoped | 3 | 9 | 9 | 9 | 9 |
+| abstain | 10 | 30 | 0 (false fires) | – | 30 |
+
+- selection: fire cases fired 60/60 · abstain cases false fires 0/30
+- fill: exact 60/60 among fires
+- stability: pairwise agreement 1.0 (30 cases, 90 pairs), unanimous 30/30
+- type check: 87/87 emitted parses type
+- graph lints: none
+- spans: 240/240 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
+- usage: 90 calls · in 7,756,851 · cached 7,485,956 (97% of the input) · out 12,956 · thinking 0 (calls with thought tokens: 0)
+- issues reported by the parser: none
+
+Abstain cases (what the parser did, per run):
+- "Yusra is married to Lamine." (target `stative-relation`): r1 target_fired [named-entity×2, stative-relation×1] · r2 target_fired [named-entity×2, stative-relation×1] · r3 target_fired [named-entity×2, stative-relation×1]
+- "The delay was due to the rain." (gap G00): r1 gap_reported [nothing fired; unmapped G00] · r2 gap_reported [nothing fired; unmapped G00] · r3 gap_reported [nothing fired; unmapped G00]
+- "The house is surrounded by a wall." (target `stative-relation`): r1 target_fired [stative-relation×1, witness×2] · r2 target_fired [stative-relation×1, witness×2] · r3 target_fired [stative-relation×1, witness×2]
+- "Yusra is tired." (target `copular`): r1 target_fired [copular×1, named-entity×1] · r2 target_fired [copular×1, named-entity×1] · r3 target_fired [copular×1, named-entity×1]
+- "Lamine is in trouble." (gap G00): r1 gap_reported [named-entity×1; unmapped G00] · r2 gap_reported [named-entity×1; unmapped G00] · r3 gap_reported [named-entity×1; unmapped G00]
+- "Lamine was happy in Calderwick." (gap G00): r1 gap_reported [copular×1, named-entity×2; unmapped G00] · r2 gap_reported [copular×1, named-entity×2; unmapped G00] · r3 gap_reported [copular×1, named-entity×2; unmapped G00]
+- "Ottoline is ready to leave." (gap G00): r1 gap_reported [named-entity×1; unmapped G00] · r2 gap_reported [named-entity×1; unmapped G00] · r3 gap_reported [named-entity×1; unmapped G00]
+- "Teodor is extremely tired." (target `degree`): r1 target_fired [degree×1, named-entity×1] · r2 target_fired [degree×1, named-entity×1] · r3 target_fired [degree×1, named-entity×1]
+- "Lamine is sure that Yusra left." (gap G00): r1 gap_reported [named-entity×2; unmapped G00] · r2 gap_reported [named-entity×2; unmapped G00] · r3 gap_reported [named-entity×2; unmapped G00]
+- "Yusra fears the ferret." (target `psych`): r1 target_fired [named-entity×1, psych×1, witness×1] · r2 target_fired [named-entity×1, psych×1, witness×1] · r3 target_fired [named-entity×1, psych×1, witness×1]
 
 Mismatches: none
 
@@ -386,7 +419,7 @@ Mismatches: none
 
 ## control — held_out
 
-14 cases, 42 records (ok 42; stale prompt 39) · gemini-4-argon effort=low
+14 cases, 42 records (ok 42; stale prompt 42) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -415,7 +448,7 @@ Mismatches: none
 
 ## copular — held_out
 
-16 cases, 48 records (ok 48; stale prompt 42) · gemini-4-argon effort=low
+16 cases, 48 records (ok 48; stale prompt 45) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -430,15 +463,15 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (16 cases, 48 pairs), unanimous 16/16
 - type check: 48/48 emitted parses type
 - graph lints: none
-- spans: 105/105 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
-- usage: 48 calls · in 2,926,320 · cached 2,773,501 (95% of the input) · out 5,880 · thinking 0 (calls with thought tokens: 0)
+- spans: 108/108 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
+- usage: 48 calls · in 3,015,360 · cached 2,862,541 (95% of the input) · out 5,901 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
 Abstain cases (what the parser did, per run):
 - "Herons are birds." (target `class-statement`): r1 target_fired [class-statement×1] · r2 target_fired [class-statement×1] · r3 target_fired [class-statement×1]
 - "Teodor is the locksmith." (gap G00): r1 gap_reported [named-entity×1; unmapped G00] · r2 gap_reported [named-entity×1; unmapped G00] · r3 gap_reported [named-entity×1; unmapped G00]
 - "Teodor is extremely tired." (target `degree`): r1 target_fired [degree×1, named-entity×1] · r2 target_fired [degree×1, named-entity×1] · r3 target_fired [degree×1, named-entity×1]
-- "Lamine is fond of Yusra." (gap G00): r1 gap_reported [named-entity×2; unmapped G00] · r2 gap_reported [named-entity×2; unmapped G00] · r3 gap_reported [named-entity×2; unmapped G00]
+- "Lamine is fond of Yusra." (target `adjective-complement`): r1 target_fired [adjective-complement×1, named-entity×2] · r2 target_fired [adjective-complement×1, named-entity×2] · r3 target_fired [adjective-complement×1, named-entity×2]
 
 Mismatches: none
 
@@ -580,7 +613,7 @@ Mismatches: none
 
 ## evidential — held_out
 
-14 cases, 42 records (ok 42; stale prompt 0) · gemini-4-argon effort=low
+14 cases, 42 records (ok 42; stale prompt 42) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -828,7 +861,7 @@ Mismatches: none
 
 ## location — held_out
 
-15 cases, 45 records (ok 45; stale prompt 45) · gemini-4-argon effort=low
+15 cases, 45 records (ok 45; stale prompt 42) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -842,17 +875,14 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (15 cases, 45 pairs), unanimous 15/15
 - type check: 45/45 emitted parses type
 - graph lints: none
-- spans: 183/183 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
-- usage: 45 calls · in 2,542,815 · cached 2,450,600 (96% of the input) · out 8,952 · thinking 0 (calls with thought tokens: 0)
-- issues reported by the parser: 3
-  - P00 · copular · r1 "Lamine was modest in his demands.": The location template mentions 'in its demands' as an oblique on an event, but a copular predication has no event symbol for an oblique to attach to and states that an adjective with a complement must be reported as unmapped as a whole.
-  - P00 · copular · r2 "Lamine was modest in his demands.": The location boundary note classifies 'in its demands' as an oblique on an event, but a copular predication renders no event symbol for an oblique to attach to, and the copular boundary note treats an adjective with a complement as an unmapped predicate.
-  - P00 · copular · r3 "Lamine was modest in his demands.": The location template mentions 'in its demands' as an oblique on an event, but a copular predication has no event symbol for an oblique to attach to, and copular rejects adjectives with complements.
+- spans: 195/195 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
+- usage: 45 calls · in 2,631,855 · cached 2,539,640 (96% of the input) · out 9,018 · thinking 0 (calls with thought tokens: 0)
+- issues reported by the parser: none
 
 Abstain cases (what the parser did, per run):
 - "Teodor arrived in 2019." (target `time`): r1 target_fired [motion×1, named-entity×1, time×1] · r2 target_fired [motion×1, named-entity×1, time×1] · r3 target_fired [motion×1, named-entity×1, time×1]
 - "Teodor ran across the field." (target `motion`): r1 target_fired [motion×1, named-entity×1, oblique×1, witness×1] · r2 target_fired [motion×1, named-entity×1, oblique×1, witness×1] · r3 target_fired [motion×1, named-entity×1, oblique×1, witness×1]
-- "Lamine was modest in his demands." (gap G00): r1 gap_reported [named-entity×1; unmapped G00] · r2 gap_reported [named-entity×1; unmapped G00] · r3 gap_reported [named-entity×1; unmapped G00]
+- "Lamine was modest in his demands." (target `adjective-complement`): r1 target_fired [adjective-complement×1, coref×1, group×1, mention×1, named-entity×1] · r2 target_fired [adjective-complement×1, coref×1, group×1, mention×1, named-entity×1] · r3 target_fired [adjective-complement×1, coref×1, group×1, mention×1, named-entity×1]
 
 Mismatches: none
 
@@ -938,7 +968,7 @@ Mismatches: none
 
 ## modal — held_out
 
-5 cases, 15 records (ok 15; stale prompt 12) · gemini-4-argon effort=low
+5 cases, 15 records (ok 15; stale prompt 15) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -1114,7 +1144,7 @@ Mismatches: none
 
 ## perception — held_out
 
-12 cases, 36 records (ok 36; stale prompt 33) · gemini-4-argon effort=low
+12 cases, 36 records (ok 36; stale prompt 36) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -1198,7 +1228,7 @@ Mismatches: none
 
 ## psych — held_out
 
-13 cases, 39 records (ok 39; stale prompt 39) · gemini-4-argon effort=low
+13 cases, 39 records (ok 39; stale prompt 36) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -1213,14 +1243,14 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (13 cases, 39 pairs), unanimous 13/13
 - type check: 39/39 emitted parses type
 - graph lints: none
-- spans: 123/123 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
-- usage: 39 calls · in 2,203,773 · cached 2,122,587 (96% of the input) · out 6,315 · thinking 0 (calls with thought tokens: 0)
+- spans: 129/129 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
+- usage: 39 calls · in 2,292,813 · cached 2,211,629 (96% of the input) · out 6,449 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: 2
   - P01 · psych · r2 "Teodor was frightened.": Both psych (agentless passive '<experiencer> was V-ed') and copular (adjectival participle '<subject> was <ADJ>') apply to 'Teodor was frightened'.
   - P01 · psych · r3 "Teodor was frightened.": Both psych (as an agentless passive `<experiencer> was V-ed` of frighten) and copular (as a past copular predication with the participial adjective frightened) seem to apply to 'Teodor was frightened'.
 
 Abstain cases (what the parser did, per run):
-- "Ottoline is afraid of the ferret." (gap G00): r1 gap_reported [named-entity×1; unmapped G00] · r2 gap_reported [named-entity×1; unmapped G00] · r3 gap_reported [named-entity×1; unmapped G00]
+- "Ottoline is afraid of the ferret." (target `adjective-complement`): r1 target_fired [adjective-complement×1, named-entity×1, witness×1] · r2 target_fired [adjective-complement×1, named-entity×1, witness×1] · r3 target_fired [adjective-complement×1, named-entity×1, witness×1]
 - "Yusra fears that Lamine sold the spindle." (target `attitude`): r1 target_fired [attitude×1, named-entity×2, transfer×1, witness×1] · r2 target_fired [attitude×1, named-entity×2, transfer×1, witness×1] · r3 target_fired [attitude×1, named-entity×2, transfer×1, witness×1]
 - "Teodor heard the news." (target `perception`): r1 target_fired [named-entity×1, perception×1, witness×1] · r2 target_fired [named-entity×1, perception×1, witness×1] · r3 target_fired [named-entity×1, perception×1, witness×1]
 
@@ -1256,7 +1286,7 @@ Mismatches: none
 
 ## sensation — held_out
 
-8 cases, 24 records (ok 24; stale prompt 0) · gemini-4-argon effort=low
+8 cases, 24 records (ok 24; stale prompt 24) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -1281,7 +1311,7 @@ Mismatches: none
 
 ## stative-relation — held_out
 
-25 cases, 75 records (ok 75; stale prompt 72) · gemini-4-argon effort=low
+25 cases, 75 records (ok 75; stale prompt 75) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|

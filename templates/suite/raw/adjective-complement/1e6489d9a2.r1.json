@@ -1,0 +1,100 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "1286d8bbfeb2da64ec2b9cfbb063951d7dca144e9191e5590977f8e5bd4891ee",
+  "item": {
+    "id": "s1e6489d9a2",
+    "text": "Yusra was afraid of the ferret yesterday."
+  },
+  "usage": {
+    "input": 86190,
+    "output": 197,
+    "thinking": null,
+    "total": 86387,
+    "cached": 84139,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 86190,
+    "candidatesTokenCount": 197,
+    "totalTokenCount": 86387,
+    "cachedContentTokenCount": 84139,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 86190
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 84139
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 197
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s1e6489d9a2\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"ferret\", \"definite\": true, \"span\": \"the ferret\"}, {\"t\": \"adjective-complement\", \"id\": \"p1\", \"bearer\": \"@n1\", \"property\": \"afraid\", \"head\": \"Of\", \"object\": \"@x1\", \"tense\": \"past\", \"span\": \"Yusra was afraid of the ferret\"}, {\"t\": \"time\", \"id\": \"t1\", \"event\": \"@p1\", \"deictic\": \"yesterday\", \"anchor\": \"@now\", \"span\": \"yesterday\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s1e6489d9a2",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "ferret",
+        "definite": true,
+        "span": "the ferret"
+      },
+      {
+        "t": "adjective-complement",
+        "id": "p1",
+        "bearer": "@n1",
+        "property": "afraid",
+        "head": "Of",
+        "object": "@x1",
+        "tense": "past",
+        "span": "Yusra was afraid of the ferret"
+      },
+      {
+        "t": "time",
+        "id": "t1",
+        "event": "@p1",
+        "deictic": "yesterday",
+        "anchor": "@now",
+        "span": "yesterday"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "fbd14f0c671be9cc8d5a741e5b5370494fbe710fbaca5af9546667bfec15f428",
+  "run": 1,
+  "case": {
+    "template": "adjective-complement",
+    "section": "held_out",
+    "index": 16,
+    "category": "positive",
+    "text": "Yusra was afraid of the ferret yesterday.",
+    "key": "1e6489d9a2"
+  }
+}

@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
+  "prompt_sha256": "1286d8bbfeb2da64ec2b9cfbb063951d7dca144e9191e5590977f8e5bd4891ee",
   "item": {
     "id": "sccc68b087f",
     "text": "Lamine is fond of Yusra."
   },
   "usage": {
-    "input": 56507,
-    "output": 181,
+    "input": 86187,
+    "output": 150,
     "thinking": null,
-    "total": 56688,
-    "cached": 54456,
+    "total": 86337,
+    "cached": 84136,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 56507,
-    "candidatesTokenCount": 181,
-    "totalTokenCount": 56688,
-    "cachedContentTokenCount": 54456,
+    "promptTokenCount": 86187,
+    "candidatesTokenCount": 150,
+    "totalTokenCount": 86337,
+    "cachedContentTokenCount": 84136,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 56507
+        "tokenCount": 86187
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 54456
+        "tokenCount": 84136
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 181
+        "tokenCount": 150
       }
     ]
   },
-  "raw_text": "{\n  \"id\": \"sccc68b087f\",\n  \"instances\": [\n    {\n      \"t\": \"named-entity\",\n      \"id\": \"n1\",\n      \"name\": \"Lamine\",\n      \"span\": \"Lamine\"\n    },\n    {\n      \"t\": \"named-entity\",\n      \"id\": \"n2\",\n      \"name\": \"Yusra\",\n      \"span\": \"Yusra\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"span\": \"is fond of Yusra\",\n      \"code\": \"G00\",\n      \"construction\": \"An adjectival predicate with a prepositional complement.\"\n    }\n  ],\n  \"issues\": []\n}",
+  "raw_text": "{\"id\": \"sccc68b087f\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"adjective-complement\", \"id\": \"p1\", \"bearer\": \"@n1\", \"property\": \"fond\", \"head\": \"Of\", \"object\": \"@n2\", \"tense\": \"present\", \"span\": \"Lamine is fond of Yusra\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sccc68b087f",
     "instances": [
@@ -63,23 +63,27 @@
         "id": "n2",
         "name": "Yusra",
         "span": "Yusra"
-      }
-    ],
-    "unmapped": [
+      },
       {
-        "span": "is fond of Yusra",
-        "code": "G00",
-        "construction": "An adjectival predicate with a prepositional complement."
+        "t": "adjective-complement",
+        "id": "p1",
+        "bearer": "@n1",
+        "property": "fond",
+        "head": "Of",
+        "object": "@n2",
+        "tense": "present",
+        "span": "Lamine is fond of Yusra"
       }
     ],
+    "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
+  "prompt_body_sha256": "fbd14f0c671be9cc8d5a741e5b5370494fbe710fbaca5af9546667bfec15f428",
   "run": 1,
   "case": {
     "template": "copular",
     "section": "held_out",
-    "index": 11,
+    "index": 13,
     "category": "abstain",
     "text": "Lamine is fond of Yusra.",
     "key": "ccc68b087f"

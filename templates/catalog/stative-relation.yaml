@@ -24,7 +24,7 @@ trigger:
     depend on, rely on, resemble, look like, differ from, match, equal, mean, represent, stand
     for, suit, fit, concern, involve, apply to, relate to, face, border, adjoin, surround,
     overlook, cover, support (the beam supports the roof) — or "be" with a RELATIONAL adjective
-    or noun and its complement: married to, similar to, related to, equal to, a cousin / friend
+    or noun and its complement: married to, similar to, related to, equal to, different from, a cousin / friend
     / neighbour of, Lamine's cousin, friends with; also the coordinated form (Yusra and Lamine
     are cousins / friends / married). The test is the progressive: a stative verb resists it
     (*is resembling, *is needing); a verb that takes it is an event. Write one instance with the
@@ -50,7 +50,7 @@ trigger:
     like, stand for) joins it in the lemma (look_like, stand_for); otherwise the lemma is the
     verb and the preposition goes in `preposition` (depend + on, differ + from). The relational
     adjectives and nouns of the copular form are open: married, similar, related, equal,
-    identical, parallel, cousin, friend, neighbour, sibling, partner, rival, colleague.
+    identical, parallel, different, cousin, friend, neighbour, sibling, partner, rival, colleague.
   surface_forms:
     - "<X> needs / deserves / resembles / faces <Y>"                     # a direct object
     - "<X> depends on / relies on / differs from / applies to <Y>"      # a prepositional object: the preposition recorded
@@ -69,8 +69,9 @@ trigger:
     - >-
       a psych or a perceptual state — likes, fears, admires, wants, distrusts Lamine; sees,
       hears: a psych state or a perception; a quality adjective with a complement — afraid of
-      the ferret, fond of Lamine, full of water, good at chess: no template yet, report the
-      predicate as unmapped
+      the ferret, fond of Lamine, full of water, good at chess: the adjective-complement
+      template (a quality of the subject that the complement completes, not a relation between
+      two individuals)
     - >-
       a part and its whole — contains, includes, consists of, is made of, has a lid, is a
       member of: the part-whole template; a separate thing inside a container — the box
@@ -121,7 +122,7 @@ slots:
 any_of: [[object, complement]]
 
 lexicon:                     # the relations that hold the other way round by their meaning: one state, two bearers
-  symmetric: [married, similar, related, equal, identical, parallel, resemble, differ, match,
+  symmetric: [married, similar, related, equal, identical, parallel, different, resemble, differ, match,
               border, adjoin, friend, cousin, sibling, twin, spouse, partner, rival, colleague,
               neighbour, neighbor]
 

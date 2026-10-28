@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 0700cc4b06c4a55c · 55 templates
+catalog sha256 6e7160ceeb9e7d50 · 56 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -172,8 +172,9 @@ Codes:
 - G00: anything no template here covers and no other code names
 - G01: a comparative with no stated standard ('a sturdier bracket', 'prices ended lower')
 - G02: an adverb with no slot: sequence (initially, eventually, finally), scope or domain
-  (nationally, locally), a degree word on a manner adverb or on a class-level statement (laughed
-  very loudly; ferrets are very curious)
+  (nationally, locally), a degree word on a manner adverb, on a class-level statement or on an
+  adjective with a complement (laughed very loudly; ferrets are very curious; very fond of
+  Teodor)
 - G03: a post-nominal tag on a name (a party or district tag, a ticker, a bracketed code)
 - G04: an irrealis relative clause or a lone would-have consequent ('the bridge that would have
   collapsed')
@@ -668,6 +669,155 @@ The program renders these instances as:
 Not this template. TEXT: Teodor gave Yusra a thermos. — use `transfer`.
 
 Not this template. TEXT: Yusra went to the market. — use `motion`.
+
+### adjective-complement — A quality adjective with its prepositional complement
+
+When: A clause with "be" whose predicate is a QUALITY ADJECTIVE followed by a prepositional
+phrase that completes it: the adjective selects the preposition and the phrase says what the
+quality bears on — fond of Teodor, afraid of the ferret, proud of the quilt, full of tea, free
+from pain, good at chess, keen on chess, interested in chess, responsible for the barn, famous
+for the mill, angry with Teodor, worried about the audit, sensitive to noise, modest in his
+demands. The subject is the bearer of the state; the adjective is the property, lemmatized; the
+preposition is recorded as written, capitalized, as the head; the phrase's object is a referent
+(a name, a witness, a group, a resolved pronoun) or a bare lemma for a non-specific or
+class-level one (good at chess, full of tea). A gerund clause as the complement (afraid of
+losing the quilt, tired of waiting, good at baking loaves) is parsed with its own template, the
+bearer as its actor and tense present, and listed in `complement`, sealed. The tense and aspect
+are the clause's. Write one instance for the adjective with its complement; no copular instance
+beside it, and no oblique for the phrase.
+
+Forms:
+- <X> is fond / afraid / proud / full / sure of <Y>
+- <X> is good / bad / clever at <Y>
+- <X> is responsible / famous / ready / late for <Y>
+- <X> is sensitive / loyal / allergic to <Y>
+- <X> is interested / fluent / rich / modest in <Y>
+- <X> is angry / pleased / busy / careful with <Y>
+- <X> is worried / happy / particular about <Y>
+- <X> is free / safe / absent from <Y>
+- <X> is keen / dependent on <Y>
+- <X> is afraid of / tired of / good at <V>-ing …
+
+Not this template:
+- a plain adjective with no complement stated — Yusra is tired, Yusra is afraid: a copular
+  predication; a psych verb — fears the ferret, likes Yusra — the psych template, and feels
+  tired a sensation
+- a relational adjective or noun with its complement — married to Lamine, similar to Teodor,
+  related to Yusra, equal to, parallel to, different from, a cousin of Yusra: a relation between
+  two individuals, the stative-relation template; the test: a relation holds between the two, a
+  quality holds of the subject about the complement
+- a verb's participle with a by-phrase — surrounded by a wall, written by Teodor, frightened by
+  the ferret: the verb's own template (a stative relation, an activity, a psych state, in the
+  passive); with another preposition the word is an adjective and comes here (interested in
+  chess, worried about the audit, pleased with the quilt); made of oak: part-whole; located in
+  Calderwick: a locative
+- a phrase that says where or when — happy in Calderwick, busy on Monday, cold in winter: not a
+  complement; the adjective is a copular predication and the place or time phrase is reported as
+  unmapped, since a copular clause mints no event to carry it; the test: the phrase answers
+  where or when, not what the quality bears on
+- a degree word on the adjective — very fond of Teodor, too afraid of the ferret: this template,
+  with the degree word reported under G02; an approximator — almost full of tea — leaves the
+  whole predicate unmapped, since the property is not asserted
+- an adjective with a to-infinitive or a that-clause — ready to leave, able to lift the beam,
+  hard to mend, sure that Lamine left, afraid that it rains: no template; report the predicate
+  as unmapped (too tired to sing, tall enough to reach: the degree template, the infinitive
+  reported)
+- a prepositional phrase on a verb — talked about the audit, waited for Teodor: an oblique on
+  the event; on a noun — a book about ferrets, the lid of the box: a postmodifier or a
+  part-whole
+- a prepositional idiom with no adjective — in trouble, out of the question, in fashion, at
+  hand: no template; report the predicate as unmapped; due to / owing to — the delay was due to
+  the rain: a cause stated by a preposition, reported as unmapped
+- a partitive or a hedge — one of the weavers, part of the plan, kind of tired: a part-whole, a
+  proportion or a hedge, not a quality with a complement
+- a copular verb other than be — seems fond of Teodor, looks afraid of the ferret: the
+  evidential template over this template's instance; became fond of Yusra, got interested in
+  chess: a change of state, whose template has no slot for the complement; report the predicate
+  as unmapped
+- a class as the subject — herons are sensitive to noise: the generic template builds the rule,
+  with this template's instance as the predication over the range
+- a comparative form of the adjective — fonder of Teodor than of Lamine: the comparative
+  template's business; report the complement phrases as unmapped
+
+Slots:
+
+- `t` (required): "adjective-complement"
+- `id` (required; your label for this instance): your label for the state (p1, p2 …).
+- `bearer` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
+  the subject the adjective holds of: a referent id (a name, a witness, a group, a resolved
+  pronoun, or the range inside a rule).
+- `property` (required; a lemma): the adjective, lemmatized (fond, afraid, full, good, modest,
+  famous, interested).
+- `head` (required; one of: About, At, For, From, In, Of, On, To, Toward, Towards, With): the
+  preposition introducing the complement, as written, capitalized (of → Of, at → At); never a
+  synonym.
+- `object` (optional; "@id" of a referent instance, or a bare lemma for a non-specific filler):
+  the complement as a thing: a referent id (a name, a witness, a group, a resolved pronoun) for
+  a specific one, or a bare lemma for a non-specific or class-level one (good at chess → chess,
+  full of tea → tea, fond of ferrets → ferret).
+- `complement` (optional; a list of "@id" of the instances that state the clause): the
+  complement as an action (afraid of losing the quilt, tired of waiting, good at baking loaves):
+  the ids of the instances that state it (its predication, with the bearer as its actor, tense
+  present), sealed; never together with object; the referents it mentions are not listed.
+- `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
+  not inferred.
+- `aspect` (optional; one of: simple, progressive, perfect).
+- Exactly one of `object`, `complement` is filled.
+
+Example (the quality a state of its bearer, the complement under the preposition as written; no flat property). TEXT: Yusra is fond of Teodor.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Yusra", "span": "Yusra"},
+      {"t": "named-entity", "id": "n2", "name": "Teodor", "span": "Teodor"},
+      {"t": "adjective-complement", "id": "p1", "bearer": "@n1", "property": "fond", "head": "Of", "object": "@n2", "tense": "present", "span": "Yusra is fond of Teodor"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_yusra_1 "Yusra")
+    (Name sk_teodor_1 "Teodor")
+    (Member sk_fond_1 fond)
+    (Experiencer sk_fond_1 sk_yusra_1)
+    (Of sk_fond_1 sk_teodor_1)
+
+Example (a domain as the complement — a bare lemma; the preposition the head). TEXT: Teodor is good at chess.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Teodor", "span": "Teodor"},
+      {"t": "adjective-complement", "id": "p1", "bearer": "@n1", "property": "good", "head": "At", "object": "chess", "tense": "present", "span": "Teodor is good at chess"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_teodor_1 "Teodor")
+    (Member sk_good_1 good)
+    (Experiencer sk_good_1 sk_teodor_1)
+    (At sk_good_1 chess)
+
+Example (a gerund as the complement — parsed with its own template, the bearer its actor, and sealed). TEXT: Lamine is tired of waiting.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Lamine", "span": "Lamine"},
+      {"t": "activity", "id": "v1", "verb": "wait", "actor": "@n1", "tense": "present", "span": "waiting"},
+      {"t": "adjective-complement", "id": "p1", "bearer": "@n1", "property": "tired", "head": "Of", "complement": ["@v1"], "tense": "present", "span": "Lamine is tired of waiting"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_lamine_1 "Lamine")
+    (Member sk_tired_1 tired)
+    (Experiencer sk_tired_1 sk_lamine_1)
+    (Of sk_tired_1 (And (Member sk_wait_1 wait) (Agent sk_wait_1 sk_lamine_1)))
+
+Not this template. TEXT: Yusra talked about the audit. — use `oblique`.
+
+Not this template. TEXT: The ledger is on the workbench. — use `locative`.
 
 ### aspectual — A phase of an action
 
@@ -1715,8 +1865,8 @@ Not this template:
   remains open: an aspectual verb; became a locksmith, got tired: a change of state
 - a relational adjective or noun with its complement — married to Lamine, similar to Teodor, a
   cousin of Yusra, Lamine's cousin, friends with Ottoline: a stative relation between the two; a
-  quality adjective with a complement — afraid of the ferret, fond of Lamine, full of water: the
-  complement is part of the predication; report the whole predicate as a gap
+  quality adjective with a complement — afraid of the ferret, fond of Lamine, full of water,
+  good at chess: the adjective-complement template, a state of the subject with its complement
 - a definite or a name as the predicate — is the locksmith, is Teodor: an identity statement,
   not a class or a property (a possessed relational noun — is Lamine's cousin — is a stative
   relation)
@@ -1927,8 +2077,8 @@ Not this template:
   reported as unmapped (G02)
 - a degree word on a manner adverb — laughed very loudly: the manner is recorded, the degree
   word reported (G02)
-- an adjective with a complement — too fond of Yusra, very afraid of the ferret: the complement
-  is part of the predication; report the whole predicate as unmapped
+- an adjective with a complement — too fond of Yusra, very afraid of the ferret: the
+  adjective-complement template, with the degree word reported under G02
 - the consequence of too, enough or so — too young to vote, so tired that she slept: the degree
   is recorded; the infinitive or the that-clause is reported as unmapped
 
@@ -2693,8 +2843,9 @@ Not this template:
   deserves a prize: a stative relation
 - a clause as the object — fears that P, hopes that P, likes that P: an attitude towards a
   proposition; nothing is felt about a thing
-- an adjectival state — is afraid of the ferret, is fond of Lamine, is angry: a copular clause
-  with a property, not a verb of this class
+- an adjectival state with a complement — is afraid of the ferret, is fond of Lamine, is worried
+  about the audit: the adjective-complement template; a bare one — is angry: a copular property;
+  neither is a verb of this class
 - perception — saw the ferret, heard the news: perceiving something, not feeling something about
   it
 - a degree adverb on the verb (deeply distrusts, really likes): the state is parsed and the
@@ -2851,22 +3002,22 @@ STATIVE VERB with an object or a prepositional object — need, require, deserve
 on, rely on, resemble, look like, differ from, match, equal, mean, represent, stand for, suit,
 fit, concern, involve, apply to, relate to, face, border, adjoin, surround, overlook, cover,
 support (the beam supports the roof) — or "be" with a RELATIONAL adjective or noun and its
-complement: married to, similar to, related to, equal to, a cousin / friend / neighbour of,
-Lamine's cousin, friends with; also the coordinated form (Yusra and Lamine are cousins / friends
-/ married). The test is the progressive: a stative verb resists it (*is resembling, *is
-needing); a verb that takes it is an event. Write one instance with the verb or the adjective /
-noun as `relation`, the subject as `subject` (the bearer of the state) and the other relatum as
-`object`, with the preposition that introduces it recorded; a coordinated subject (Yusra and
-Lamine are cousins) gives the first conjunct as the subject and the second as the object, no
-group; a possessive relatum (Lamine's cousin) is the object, with no witness for the relational
-noun. A passive or participial form (is surrounded by a wall, is covered with snow, is connected
-to the mill) keeps the active roles: the by- or with-phrase is the subject and the surface
-subject the object. A relatum that is an action or a clause (deserves to rest, involves selling
-the barn, means leaving early) is parsed with its own template and listed in `complement`,
-sealed. Whether the relation holds the other way round (married, similar, cousin) is not yours
-to judge: write the subject and the object as the sentence gives them, and never a second
-instance for the reverse. An indefinite relatum (needs a ladder) is a witness; a bare plural or
-mass one (needs water, covered with snow) a bare lemma.
+complement: married to, similar to, related to, equal to, different from, a cousin / friend /
+neighbour of, Lamine's cousin, friends with; also the coordinated form (Yusra and Lamine are
+cousins / friends / married). The test is the progressive: a stative verb resists it (*is
+resembling, *is needing); a verb that takes it is an event. Write one instance with the verb or
+the adjective / noun as `relation`, the subject as `subject` (the bearer of the state) and the
+other relatum as `object`, with the preposition that introduces it recorded; a coordinated
+subject (Yusra and Lamine are cousins) gives the first conjunct as the subject and the second as
+the object, no group; a possessive relatum (Lamine's cousin) is the object, with no witness for
+the relational noun. A passive or participial form (is surrounded by a wall, is covered with
+snow, is connected to the mill) keeps the active roles: the by- or with-phrase is the subject
+and the surface subject the object. A relatum that is an action or a clause (deserves to rest,
+involves selling the barn, means leaving early) is parsed with its own template and listed in
+`complement`, sealed. Whether the relation holds the other way round (married, similar, cousin)
+is not yours to judge: write the subject and the object as the sentence gives them, and never a
+second instance for the reverse. An indefinite relatum (needs a ladder) is a witness; a bare
+plural or mass one (needs water, covered with snow) a bare lemma.
 
 Verbs that anchor the class: need, require, deserve, merit, depend, rely, resemble, look_like,
 differ, match, equal, mean, represent, stand_for, suit, fit, concern, involve, apply, relate,
@@ -2876,7 +3027,7 @@ individuals belongs here. A verb whose preposition is part of its meaning alone 
 stand for) joins it in the lemma (look_like, stand_for); otherwise the lemma is the verb and the
 preposition goes in `preposition` (depend + on, differ + from). The relational adjectives and
 nouns of the copular form are open: married, similar, related, equal, identical, parallel,
-cousin, friend, neighbour, sibling, partner, rival, colleague.
+different, cousin, friend, neighbour, sibling, partner, rival, colleague.
 
 Forms:
 - <X> needs / deserves / resembles / faces <Y>
@@ -2894,8 +3045,8 @@ Not this template:
 - a state of having — owns, has, keeps, lacks, belongs to: a possession
 - a psych or a perceptual state — likes, fears, admires, wants, distrusts Lamine; sees, hears: a
   psych state or a perception; a quality adjective with a complement — afraid of the ferret,
-  fond of Lamine, full of water, good at chess: no template yet, report the predicate as
-  unmapped
+  fond of Lamine, full of water, good at chess: the adjective-complement template (a quality of
+  the subject that the complement completes, not a relation between two individuals)
 - a part and its whole — contains, includes, consists of, is made of, has a lid, is a member of:
   the part-whole template; a separate thing inside a container — the box contains a letter: a
   locative
@@ -3742,8 +3893,9 @@ Not this template:
 - a with-phrase that says how — with care, with difficulty: a manner
 - a with-phrase inside a noun phrase — the man with the hat, a thermos with a dent: a
   postmodifier of that noun
-- with meaning because of or full of — red with blood, teeming with spiders: a state or a cause;
-  report the phrase as unmapped
+- with on an adjective — red with blood, numb with cold, angry with Teodor: the
+  adjective-complement template; teeming with spiders: a verb's phrase with no slot here; report
+  it as unmapped
 - a coordinated subject — Teodor and Yusra danced: one instance per conjunct, no companion
 - a material — built a shed from planks: an oblique (From) on the event
 
@@ -4024,8 +4176,8 @@ Not this template:
 - a non-spatial in / on / at on an event — works on the audit: no place; an oblique on the
   event, by its preposition
 - a non-spatial phrase on an adjective — good at chess, modest in its demands: an adjective with
-  a complement, which a copular predication cannot carry; reported as unmapped until it has a
-  template
+  a complement, the adjective-complement template; a place phrase on an adjective — happy in
+  Calderwick: a copular clause mints no event to carry it; reported as unmapped
 - a place phrase inside a noun phrase — the ferret in the barn slept: a locative predication of
   that thing, not an attachment to the clause's event
 - between two places, among a group — between the barn and the shed: no slot here; reported as
@@ -4228,7 +4380,7 @@ Slots:
   phrase attaches to: the id of the clause's event instance.
 - `head` (required; one of: About, Above, Across, Against, Along, Among, Around, As, At, Behind,
   Below, Beneath, Beside, Besides, Between, Beyond, By, Concerning, Despite, Down, Except, For,
-  From, In, Inside, Into, Like, Near, Of, False, True, Onto, Opposite, Out, Outside, Over, Past,
+  From, In, Inside, Into, Like, Near, Of, Off, On, Onto, Opposite, Out, Outside, Over, Past,
   Per, Regarding, Round, Through, To, Toward, Towards, Under, Underneath, Unlike, Up, Upon, Via,
   With, Within, Without): the preposition as written, capitalized (about → About, without →
   Without); never a synonym.
@@ -4336,7 +4488,7 @@ Slots:
   modifies: the id of its witness or named-entity instance.
 - `head` (required; one of: About, Above, Across, Against, Along, Among, Around, As, At, Behind,
   Below, Beneath, Beside, Besides, Between, Beyond, By, Concerning, Despite, Down, Except, For,
-  From, In, Inside, Into, Like, Near, Of, False, True, Onto, Opposite, Out, Outside, Over, Past,
+  From, In, Inside, Into, Like, Near, Of, Off, On, Onto, Opposite, Out, Outside, Over, Past,
   Per, Regarding, Round, Through, To, Toward, Towards, Under, Underneath, Unlike, Up, Upon, Via,
   With, Within, Without): the preposition as written, capitalized (with → With, about → About);
   never a synonym.

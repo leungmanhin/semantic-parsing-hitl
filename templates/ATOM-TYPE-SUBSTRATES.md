@@ -1070,7 +1070,7 @@ Heads the prompt licenses generically; the validator checks position and arity o
 - head of a nominalization class-relation, e.g. (Build dam_builder dam)
 - skolem-function head (sk_<verb>) in a scope construction, e.g. (sk_y $x)
 
-Oblique prepositions (62), all declared `(-> Instance|Class Instance Proposition)`: About, Above, Across, After, Against, Along, Among, Around, As, At, Before, Behind, Below, Beneath, Beside, Besides, Between, Beyond, But, By, Concerning, Despite, Down, During, Except, For, From, In, Inside, Into, Like, Near, Of, Off, On, Onto, Opposite, Out, Outside, Over, Past, Per, Regarding, Round, Since, Than, Through, Throughout, Till, To, Toward, Towards, Under, Underneath, Unlike, Until, Up, Upon, Via, With, Within, Without.
+Oblique prepositions (62), all declared `(-> Instance|Class Instance|Proposition Proposition)`: About, Above, Across, After, Against, Along, Among, Around, As, At, Before, Behind, Below, Beneath, Beside, Besides, Between, Beyond, But, By, Concerning, Despite, Down, During, Except, For, From, In, Inside, Into, Like, Near, Of, Off, On, Onto, Opposite, Out, Outside, Over, Past, Per, Regarding, Round, Since, Than, Through, Throughout, Till, To, Toward, Towards, Under, Underneath, Unlike, Until, Up, Upon, Via, With, Within, Without.
 
 ## notes
 
