@@ -30,9 +30,14 @@ class SourceTests(unittest.TestCase):
     def test_lowering_form(self):
         for r in R.concrete(RULES):
             st = R.lower(r)
+            name, atom = T.split_statement(st)
+            if r.get("semantics") == "equivalence":
+                self.assertTrue(st.startswith(f"(: {r['id']} (Equivalence "), st)
+                self.assertTrue(st.endswith(f"(STV {float(r['truth']['strength'])!r} {float(r['truth']['confidence'])!r}))"), st)
+                self.assertEqual(atom[0], "Equivalence")
+                continue
             self.assertTrue(st.startswith(f"(: {r['id']} (Implication "), st)
             self.assertTrue(st.endswith("(STV 0.0 0.0)))"), st)
-            name, atom = T.split_statement(st)
             self.assertEqual(atom[0], "Implication")
         self.assertEqual(sum(1 for r in RULES if R.runnable(r)), len(RULES))         # every rule lowers now
         days = next(r for r in RULES if r["id"] == "days_before_day")
@@ -78,6 +83,23 @@ class SourceTests(unittest.TestCase):
         self.assertTrue(any("placeholder" in p for p in R.check([stray], R.substrate_heads(), R.catalog_ids())))
         unknown = copy.deepcopy(src); unknown["requires"] = "telepathy"
         self.assertTrue(any("unknown capability" in p for p in R.check([unknown], R.substrate_heads(), R.catalog_ids())))
+
+    def test_equivalences_lower_to_the_link_and_validate(self):
+        """A rule with semantics equivalence lowers to the chainer's Equivalence link with a plain
+        STV; the validator wants one premise, the same variables on both sides, no computation,
+        no skolem term."""
+        sym = next(r for r in RULES if r["id"] == "samedegree_sym")
+        self.assertEqual(R.lower(sym), "(: samedegree_sym (Equivalence (SameDegree $s $x $y) (SameDegree $s $y $x)) (STV 1.0 0.99))")
+        self.assertGreaterEqual(sum(1 for r in RULES if r.get("semantics") == "equivalence"), 3)
+        heads, ids = R.substrate_heads(), R.catalog_ids()
+        bad = copy.deepcopy(sym); bad["conclusion"] = "(SameDegree $s $y $z)"
+        self.assertTrue(any("same variables" in p for p in R.check([bad], heads, ids)))
+        bad = copy.deepcopy(sym); bad["premises"] = ["(SameDegree $s $x $y)", "(Member $x $s)"]
+        self.assertTrue(any("exactly one premise" in p for p in R.check([bad], heads, ids)))
+        bad = copy.deepcopy(sym); bad["computations"] = [{"result": "$q", "op": "+", "args": ["$x", 1]}]
+        self.assertTrue(any("no computations" in p for p in R.check([bad], heads, ids)))
+        bad = copy.deepcopy(sym); bad["conclusion"] = "(SameDegree $s (sk_sym $x) $y)"
+        self.assertTrue(any("skolem" in p for p in R.check([bad], heads, ids)))
 
     def test_validator_catches_unsound_rules(self):
         base = copy.deepcopy(next(r for r in RULES if r["id"] == "coref_agent"))

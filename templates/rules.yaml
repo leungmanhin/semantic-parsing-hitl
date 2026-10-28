@@ -5,9 +5,12 @@
 # variables; `computations` are the arithmetic steps a conclusion needs; `truth` is how reliable
 # the inference is (0.99 for a congruence or an arithmetic rule, 0.9 for a generalization a later
 # fact can revise); `semantics: deductive` means the conclusion follows from the premises and
-# nothing follows from their absence, forward only. Nothing here names a consumer: `python -m
+# nothing follows from their absence, forward only; `semantics: equivalence` means the one premise
+# and the conclusion hold together (a symmetric relation read from either side), so the rule is used
+# in both directions and a denied side denies the other. Nothing here names a consumer: `python -m
 # tmpl.rules` validates the rules and lowers them for one (generated/seeded_rules.metta for the
-# chainer, where the deductive semantics becomes an explicit conditional truth value).
+# chainer, where the deductive semantics becomes an explicit conditional truth value and an
+# equivalence the chainer's Equivalence link).
 
 rules:
   - id: result_holds
@@ -29,8 +32,12 @@ rules:
     premises: ["(Coref $a $b)"]
     conclusion: "(Coref $b $a)"
     truth: {strength: 1.0, confidence: 0.99}
-    semantics: deductive
+    semantics: equivalence
     reads: [coref]
+    notes: >-
+      An equivalence: the link read from either mention is the same link, so the chainer's
+      Equivalence carries it both ways, and a denied link (not the same person) is denied both
+      ways too.
   - id: coref_agent
     meaning: a mention's Agent role holds of its antecedent
     premises: ["(Coref $m $a)", "(Agent $e $m)"]
@@ -209,8 +216,12 @@ rules:
     premises: ["(SameDegree $s $x $y)"]
     conclusion: "(SameDegree $s $y $x)"
     truth: {strength: 1.0, confidence: 0.99}
-    semantics: deductive
+    semantics: equivalence
     reads: [comparative]
+    notes: >-
+      An equivalence: "as tall as" read from either side is the same equative, so a denied
+      equative (Lamine is not as tall as Yusra, (Not (SameDegree tall …))) is denied from the
+      other side as well — the logical form's symmetry, not the English hint that he is shorter.
   - id: morebydiff
     meaning: a measured gap entails the plain ordering
     premises: ["(MoreBy $s $x $y $n $u)"]
@@ -254,7 +265,7 @@ rules:
     premises: ["(ScaleOpposite $a $b)"]
     conclusion: "(ScaleOpposite $b $a)"
     truth: {strength: 1.0, confidence: 0.99}
-    semantics: deductive
+    semantics: equivalence
     reads: [comparative]
   - id: pole_more
     meaning: exceeding on one pole is being exceeded on the opposite pole

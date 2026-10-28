@@ -25,6 +25,15 @@ over stored facts, which collapses the confidence of any conclusion drawn from a
 strength 1.0. Arithmetic steps lower to the chainer's ``(Compute op (args) -> result)`` premise; a
 boolean guard (``!=``, ``>``, ``<`` with ``result: true``) is a premise that holds only when the test does.
 
+EQUIVALENCES. A rule with ``semantics: equivalence`` states that its one premise and its
+conclusion hold together (a symmetric relation read from either side: ``(Coref $a $b)`` and
+``(Coref $b $a)``). It lowers to the chainer's Equivalence link, ``(: id (Equivalence P Q)
+(STV s c))``, which the chainer uses in both directions at the strength 2s/(1+s) with the
+rule's confidence, and whose denied side denies the other; it never lowers to two implications
+(the chainer would count a conclusion twice). The two sides must bind the same variables, hold
+no skolem function term (a term against a bare variable makes the search explode) and need no
+computation.
+
 FACTS. ``rules.yaml`` may also hold a ``facts`` list: background LEXICON atoms with no variables —
 the poles of a gradable dimension (``ScaleOpposite short tall``), unit factors to a canonical unit
 (``UnitFactor centimetre metre 0.01``), a dimension noun's adjective scale (``DimensionScale
@@ -55,7 +64,7 @@ SUBSTRATE = os.path.join(TEMPLATES, "atom-type-substrates.json")
 CATALOG_DIR = os.path.join(TEMPLATES, "catalog")
 GENERATED = os.path.join(TEMPLATES, "generated", "seeded_rules.metta")
 
-SEMANTICS = ("deductive",)
+SEMANTICS = ("deductive", "equivalence")
 OPS = ("+", "-", "*", "/", "clause-event", "!=", ">", "<")   # arithmetic, the event of a sealed clause, and boolean guards (result: true)
 TENSES = {"none": None, "past": "Past", "future": "Future"}
 CAPABILITIES = ("sealed-term-projection",)
@@ -192,6 +201,18 @@ def _check_one(r: dict, i: int, heads, templates, seen: set, expanded: bool = Fa
             problems.append(f"{where}: truth must be {{strength, confidence}} in [0, 1]")
         if r.get("semantics") not in SEMANTICS:
             problems.append(f"{where}: semantics must be one of {', '.join(SEMANTICS)}")
+        elif r.get("semantics") == "equivalence":
+            if len(prem) != 1:
+                problems.append(f"{where}: an equivalence has exactly one premise, its other side")
+            if r.get("computations"):
+                problems.append(f"{where}: an equivalence takes no computations")
+            if r.get("expand") or r.get("requires"):
+                problems.append(f"{where}: an equivalence neither expands nor requires a capability")
+            if concl and prem and set(_VAR.findall(prem[0])) != set(_VAR.findall(concl)):
+                problems.append(f"{where}: an equivalence binds the same variables on both sides")
+            for atom in parsed:
+                if any(_SKOLEM.fullmatch(h) for h in _heads(atom, set())):
+                    problems.append(f"{where}: an equivalence holds no skolem function term")
         if templates is not None:
             for t in r.get("reads") or []:
                 if t not in templates:
@@ -336,12 +357,14 @@ def lower(rule: dict, target: str = "pettachainer") -> str:
     """One rule in the consumer's form."""
     if target != "pettachainer":
         raise RulesError(f"no lowering for target {target!r}")
-    premises = list(rule["premises"])
-    for c in rule.get("computations") or []:
-        result = "true" if c["result"] is True else c["result"]
-        premises.append(f"(Compute {c['op']} ({' '.join(str(a) for a in c['args'])}) -> {result})")
-    premise = premises[0] if len(premises) == 1 else "(And " + " ".join(premises) + ")"
     s, c = rule["truth"]["strength"], rule["truth"]["confidence"]
+    if rule.get("semantics") == "equivalence":
+        return f"(: {rule['id']} (Equivalence {rule['premises'][0]} {rule['conclusion']}) (STV {_num(s)} {_num(c)}))"
+    premises = list(rule["premises"])
+    for comp in rule.get("computations") or []:
+        result = "true" if comp["result"] is True else comp["result"]
+        premises.append(f"(Compute {comp['op']} ({' '.join(str(a) for a in comp['args'])}) -> {result})")
+    premise = premises[0] if len(premises) == 1 else "(And " + " ".join(premises) + ")"
     tv = f"(CTV (STV {_num(s)} {_num(c)}) (STV 0.0 0.0))"      # deductive: nothing follows from a failed premise — a branch with no confidence
     return f"(: {rule['id']} (Implication {premise} {rule['conclusion']}) {tv})"
 
@@ -368,7 +391,9 @@ def render(rules: list[dict], target: str = "pettachainer", facts: list[dict] | 
         ";; consumer, never by the parser. Each rule is a deductive implication with an explicit",
         ";; conditional truth value: the positive branch is the rule's reliability, the negative branch",
         ";; (STV 0.0 0.0) carries no confidence, so nothing follows from a failed or denied premise",
-        ";; (a branch at (STV 0.0 1.0) would derive the conclusion DENIED, at full confidence).",
+        ";; (a branch at (STV 0.0 1.0) would derive the conclusion DENIED, at full confidence). An",
+        ";; equivalence (semantics: equivalence) is the chainer's Equivalence link with a plain STV: used in",
+        ";; both directions at 2s/(1+s) with the rule's confidence, its denied side denying the other.",
     ]
     pending = [r for r in rules if not runnable(r, target)]
     if pending:

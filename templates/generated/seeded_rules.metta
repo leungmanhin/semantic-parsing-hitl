@@ -3,7 +3,9 @@
 ;; consumer, never by the parser. Each rule is a deductive implication with an explicit
 ;; conditional truth value: the positive branch is the rule's reliability, the negative branch
 ;; (STV 0.0 0.0) carries no confidence, so nothing follows from a failed or denied premise
-;; (a branch at (STV 0.0 1.0) would derive the conclusion DENIED, at full confidence).
+;; (a branch at (STV 0.0 1.0) would derive the conclusion DENIED, at full confidence). An
+;; equivalence (semantics: equivalence) is the chainer's Equivalence link with a plain STV: used in
+;; both directions at 2s/(1+s) with the rule's confidence, its denied side denying the other.
 
 ;; ===== Lexicon facts: background atoms with no variables, loaded with the rules (never parser output) =====
 ;; pole: the two adjectives of one gradable dimension, the lower pole first (so_sym gives the reverse pair) (reads: comparative)
@@ -88,7 +90,7 @@
 ;; result_holds: a change's named result holds afterwards (reads: change-of-state)
 (: result_holds (Implication (Result $e (Member $x $s)) (Member $x $s)) (CTV (STV 1.0 0.9) (STV 0.0 0.0)))
 ;; coref_sym: a coreference link holds in both directions (reads: coref)
-(: coref_sym (Implication (Coref $a $b) (Coref $b $a)) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
+(: coref_sym (Equivalence (Coref $a $b) (Coref $b $a)) (STV 1.0 0.99))
 ;; coref_agent: a mention's Agent role holds of its antecedent (reads: coref)
 (: coref_agent (Implication (And (Coref $m $a) (Agent $e $m)) (Agent $e $a)) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
 ;; coref_patient: a mention's Patient role holds of its antecedent (reads: coref)
@@ -134,7 +136,7 @@
 ;; more_trans: exceeding is transitive on a scale (reads: comparative)
 (: more_trans (Implication (And (More $s $x $y) (More $s $y $z)) (More $s $x $z)) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
 ;; samedegree_sym: an equative holds in both directions (reads: comparative)
-(: samedegree_sym (Implication (SameDegree $s $x $y) (SameDegree $s $y $x)) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
+(: samedegree_sym (Equivalence (SameDegree $s $x $y) (SameDegree $s $y $x)) (STV 1.0 0.99))
 ;; morebydiff: a measured gap entails the plain ordering (reads: comparative)
 (: morebydiff (Implication (MoreBy $s $x $y $n $u) (More $s $x $y)) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
 ;; morebydiff_trans: measured gaps add along a chain in one unit (reads: comparative)
@@ -144,7 +146,7 @@
 ;; ratio_more_lt: a factor below one entails the reverse ordering (reads: comparative)
 (: ratio_more_lt (Implication (And (TimesAs $s $x $y $f) (Compute < ($f 1) -> true)) (More $s $y $x)) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
 ;; so_sym: the poles of a dimension are opposite in both directions (reads: comparative)
-(: so_sym (Implication (ScaleOpposite $a $b) (ScaleOpposite $b $a)) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
+(: so_sym (Equivalence (ScaleOpposite $a $b) (ScaleOpposite $b $a)) (STV 1.0 0.99))
 ;; pole_more: exceeding on one pole is being exceeded on the opposite pole (reads: comparative)
 (: pole_more (Implication (And (ScaleOpposite $a $b) (More $a $x $y)) (More $b $y $x)) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
 ;; pole_moreby: a measured gap on one pole is the same gap the other way on the opposite pole (reads: comparative)

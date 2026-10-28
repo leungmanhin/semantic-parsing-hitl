@@ -69,6 +69,10 @@ class SeededRulesOnTheEngine(unittest.TestCase):
         """Every implication in the generated file is a conditional with a confidence-free
         negative branch; the lexicon facts beside them are ground statements with a plain STV."""
         for r in rules():
+            if "(Equivalence " in r:
+                self.assertIn("$", r, r)                                         # an equivalence rule: variables, a plain STV
+                self.assertTrue(r.rstrip().endswith("(STV 1.0 0.99))"), r)
+                continue
             if "(Implication " not in r:
                 self.assertNotIn("$", r, r)                                      # a fact: no variables
                 self.assertTrue(r.rstrip().endswith("(STV 1.0 0.99))"), r)
@@ -462,6 +466,29 @@ class SeededRulesOnTheEngine(unittest.TestCase):
         self.assertTrue(self.query(h, "(More light sk_box_1 sk_crate_1)", steps=4000))    # → light, the opposite pole: five hops
         self.assertTrue(self.query(h, "(SameDegree old sk_yusra_1 sk_teodor_1)"))         # equal measures: the equative
         self.assertFalse(self.query(h, "(More old sk_yusra_1 sk_teodor_1)"))
+
+    def test_an_equivalence_rule_holds_both_ways_and_carries_a_denial(self):
+        """A rule lowered to the chainer's Equivalence link (the symmetry rules) answers from
+        either side with an equivalence proof label, carries a stored denial to the other side,
+        keeps a link's own strength, chains with the deductive rules, and answers nothing it
+        was not given."""
+        if not any(r.startswith("(: samedegree_sym (Equivalence") for r in rules()):
+            self.skipTest("the equivalence lowering is pending")
+        h = self.space(['(: c3 (SameDegree strong sk_yusra_1 sk_lamine_1) (STV 1.0 0.99))',
+                        '(: c4 (Not (SameDegree tall sk_lamine_1 sk_yusra_1)) (STV 1.0 0.99))',
+                        '(: k1 (Coref sk_she_1 sk_yusra_1) (STV 0.99 0.9))'])
+        flipped = self.query(h, "(SameDegree strong sk_lamine_1 sk_yusra_1)")
+        self.assertTrue(flipped and "equivalence-forward samedegree_sym" in flipped[0] or "equivalence-backward samedegree_sym" in flipped[0], flipped)
+        self.assertAlmostEqual(tv(flipped)[0], 1.0, places=2)
+        denied = self.query(h, "(SameDegree tall sk_yusra_1 sk_lamine_1)")
+        self.assertTrue(denied and tv(denied)[0] < 0.01 and tv(denied)[1] > 0.9, denied)     # the denial crosses the symmetry
+        coref = self.query(h, "(Coref sk_yusra_1 sk_she_1)")
+        self.assertTrue(coref and abs(tv(coref)[0] - 0.99) < 0.01, coref)                   # the link's own strength
+        pole = self.query(h, "(ScaleOpposite strong weak)")
+        self.assertTrue(pole and "so_sym" in pole[0], pole)                                   # a lexicon fact read the other way
+        chained = self.query(h, "(SameDegree weak sk_lamine_1 sk_yusra_1)", steps=1500)
+        self.assertTrue(chained, chained)                                                     # through pole_samedegree and both equivalences
+        self.assertFalse(self.query(h, "(SameDegree strong sk_teodor_1 sk_yusra_1)"))
 
 
 if __name__ == "__main__":
