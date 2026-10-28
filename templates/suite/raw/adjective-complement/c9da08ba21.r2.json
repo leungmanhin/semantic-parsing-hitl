@@ -1,0 +1,88 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "a4a1e559add5106a8f10a50d4744e035bdc6511b722b0d76d8fd3d79283a753f",
+  "item": {
+    "id": "sc9da08ba21",
+    "text": "Chess is difficult to learn."
+  },
+  "usage": {
+    "input": 91068,
+    "output": 118,
+    "thinking": null,
+    "total": 91186,
+    "cached": 89019,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 91068,
+    "candidatesTokenCount": 118,
+    "totalTokenCount": 91186,
+    "cachedContentTokenCount": 89019,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 91068
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 89019
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 118
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sc9da08ba21\", \"instances\": [{\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"learn\", \"patient\": \"chess\", \"tense\": \"present\", \"span\": \"learn\"}, {\"t\": \"adjective-complement\", \"id\": \"p1\", \"property\": \"difficult\", \"head\": \"To\", \"complement\": [\"@v1\"], \"tense\": \"present\", \"span\": \"Chess is difficult to learn\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sc9da08ba21",
+    "instances": [
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "learn",
+        "patient": "chess",
+        "tense": "present",
+        "span": "learn"
+      },
+      {
+        "t": "adjective-complement",
+        "id": "p1",
+        "property": "difficult",
+        "head": "To",
+        "complement": [
+          "@v1"
+        ],
+        "tense": "present",
+        "span": "Chess is difficult to learn"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "8ac75c56e7d2146ae11c4882bacb5e004e721af058067471bfb7b088b23e1d31",
+  "run": 2,
+  "case": {
+    "template": "adjective-complement",
+    "section": "held_out",
+    "index": 2,
+    "category": "positive",
+    "text": "Chess is difficult to learn.",
+    "key": "c9da08ba21"
+  }
+}

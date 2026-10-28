@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "1286d8bbfeb2da64ec2b9cfbb063951d7dca144e9191e5590977f8e5bd4891ee",
+  "prompt_sha256": "a4a1e559add5106a8f10a50d4744e035bdc6511b722b0d76d8fd3d79283a753f",
   "item": {
     "id": "sc9afdfeadf",
     "text": "Lamine is sure that Yusra left."
   },
   "usage": {
-    "input": 86185,
-    "output": 120,
+    "input": 91069,
+    "output": 143,
     "thinking": null,
-    "total": 86305,
-    "cached": 84136,
+    "total": 91212,
+    "cached": 89020,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 86185,
-    "candidatesTokenCount": 120,
-    "totalTokenCount": 86305,
-    "cachedContentTokenCount": 84136,
+    "promptTokenCount": 91069,
+    "candidatesTokenCount": 143,
+    "totalTokenCount": 91212,
+    "cachedContentTokenCount": 89020,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 86185
+        "tokenCount": 91069
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 84136
+        "tokenCount": 89020
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 120
+        "tokenCount": 143
       }
     ]
   },
-  "raw_text": "{\"id\": \"sc9afdfeadf\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Yusra\", \"span\": \"Yusra\"}], \"unmapped\": [{\"span\": \"is sure that Yusra left\", \"code\": \"G00\", \"construction\": \"An adjective taking a finite that-clause complement.\"}], \"issues\": []}",
+  "raw_text": "{\"id\":\"sc9afdfeadf\",\"instances\":[{\"t\":\"named-entity\",\"id\":\"n1\",\"name\":\"Lamine\",\"span\":\"Lamine\"},{\"t\":\"named-entity\",\"id\":\"n2\",\"name\":\"Yusra\",\"span\":\"Yusra\"},{\"t\":\"motion\",\"id\":\"m1\",\"verb\":\"leave\",\"mover\":\"@n2\",\"tense\":\"past\",\"span\":\"Yusra left\"},{\"t\":\"attitude\",\"id\":\"a1\",\"verb\":\"sure\",\"holder\":\"@n1\",\"content\":[\"@m1\"],\"factive\":false,\"tense\":\"present\",\"span\":\"Lamine is sure that Yusra left\"}],\"unmapped\":[],\"issues\":[]}",
   "response": {
     "id": "sc9afdfeadf",
     "instances": [
@@ -63,23 +63,37 @@
         "id": "n2",
         "name": "Yusra",
         "span": "Yusra"
-      }
-    ],
-    "unmapped": [
+      },
       {
-        "span": "is sure that Yusra left",
-        "code": "G00",
-        "construction": "An adjective taking a finite that-clause complement."
+        "t": "motion",
+        "id": "m1",
+        "verb": "leave",
+        "mover": "@n2",
+        "tense": "past",
+        "span": "Yusra left"
+      },
+      {
+        "t": "attitude",
+        "id": "a1",
+        "verb": "sure",
+        "holder": "@n1",
+        "content": [
+          "@m1"
+        ],
+        "factive": false,
+        "tense": "present",
+        "span": "Lamine is sure that Yusra left"
       }
     ],
+    "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "fbd14f0c671be9cc8d5a741e5b5370494fbe710fbaca5af9546667bfec15f428",
+  "prompt_body_sha256": "8ac75c56e7d2146ae11c4882bacb5e004e721af058067471bfb7b088b23e1d31",
   "run": 2,
   "case": {
     "template": "adjective-complement",
     "section": "held_out",
-    "index": 26,
+    "index": 29,
     "category": "abstain",
     "text": "Lamine is sure that Yusra left.",
     "key": "c9afdfeadf"

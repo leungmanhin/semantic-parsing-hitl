@@ -1,0 +1,93 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "a4a1e559add5106a8f10a50d4744e035bdc6511b722b0d76d8fd3d79283a753f",
+  "item": {
+    "id": "sda4d55d82b",
+    "text": "Lamine is able to swim."
+  },
+  "usage": {
+    "input": 91071,
+    "output": 110,
+    "thinking": null,
+    "total": 91181,
+    "cached": 89022,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 91071,
+    "candidatesTokenCount": 110,
+    "totalTokenCount": 91181,
+    "cachedContentTokenCount": 89022,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 91071
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 89022
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 110
+      }
+    ]
+  },
+  "raw_text": "{\"id\":\"sda4d55d82b\",\"instances\":[{\"t\":\"named-entity\",\"id\":\"n1\",\"name\":\"Lamine\",\"span\":\"Lamine\"},{\"t\":\"activity\",\"id\":\"v1\",\"verb\":\"swim\",\"actor\":\"@n1\",\"tense\":\"present\",\"span\":\"Lamine is able to swim\"},{\"t\":\"modal\",\"id\":\"s1\",\"over\":[\"@v1\"],\"head\":\"Can\",\"surface\":\"is able to\",\"span\":\"is able to\"}],\"unmapped\":[],\"issues\":[]}",
+  "response": {
+    "id": "sda4d55d82b",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "swim",
+        "actor": "@n1",
+        "tense": "present",
+        "span": "Lamine is able to swim"
+      },
+      {
+        "t": "modal",
+        "id": "s1",
+        "over": [
+          "@v1"
+        ],
+        "head": "Can",
+        "surface": "is able to",
+        "span": "is able to"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "8ac75c56e7d2146ae11c4882bacb5e004e721af058067471bfb7b088b23e1d31",
+  "run": 2,
+  "case": {
+    "template": "adjective-complement",
+    "section": "held_out",
+    "index": 30,
+    "category": "abstain",
+    "text": "Lamine is able to swim.",
+    "key": "da4d55d82b"
+  }
+}

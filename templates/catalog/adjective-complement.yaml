@@ -32,7 +32,13 @@ trigger:
     losing the quilt, tired of waiting, good at baking loaves) is parsed with its own template,
     the bearer as its actor and tense present, and listed in `complement`, sealed. The tense and
     aspect are the clause's. Write one instance for the adjective with its complement; no
-    copular instance beside it, and no oblique for the phrase.
+    copular instance beside it, and no oblique for the phrase. A QUALITY OF AN ACTION stated
+    with a to-infinitive — the quilt is hard to mend, the beam is impossible to lift, chess is
+    difficult to learn, it is important to rest — is this template with NO bearer: the adjective
+    holds of the action, which is parsed with its own template and listed in `complement` with
+    the sentence's subject as its patient (the quilt mended, the beam lifted) or with no
+    participant after an expletive it (it is important to rest), tense present; `head` is To,
+    the word as written. Nothing says the action happens.
   surface_forms:
     - "<X> is fond / afraid / proud / full / sure of <Y>"             # of: the commonest
     - "<X> is good / bad / clever at <Y>"                             # at: a domain or a skill
@@ -44,6 +50,8 @@ trigger:
     - "<X> is free / safe / absent from <Y>"                         # from
     - "<X> is keen / dependent on <Y>"                               # on
     - "<X> is afraid of / tired of / good at <V>-ing …"              # a gerund as the complement, sealed
+    - "<X> is hard / easy / impossible to <V>"                         # a quality of the action, X its patient: no bearer
+    - "It is important / necessary / safe to <V>"                      # the same with no subject at all
   boundary:                   # looks like an adjective with a complement but is not one
     - >-
       a plain adjective with no complement stated — Yusra is tired, Yusra is afraid: a copular
@@ -70,10 +78,14 @@ trigger:
       template, with the degree word reported under G02; an approximator — almost full of tea —
       leaves the whole predicate unmapped, since the property is not asserted
     - >-
-      an adjective with a to-infinitive or a that-clause — ready to leave, able to lift the beam,
-      hard to mend, sure that Lamine left, afraid that it rains: no template; report the
-      predicate as unmapped (too tired to sing, tall enough to reach: the degree template, the
-      infinitive reported)
+      an adjective with a that-clause, or a stance adjective with a to-infinitive — sure that
+      Lamine left, aware that the gate is open, glad that Ottoline came, ready to leave, eager /
+      willing / afraid to V: a propositional attitude of the subject, the attitude template with
+      the adjective as its lemma; able to V — is able to swim: a capability, the modal template;
+      supposed / required / allowed to V: a norm; likely, bound, certain or sure TO V, about to,
+      due to — likely to win: a hedge over the clause, no template, report the predicate as
+      unmapped; too tired to sing, tall enough to reach: the degree template, the infinitive
+      reported
     - >-
       a prepositional phrase on a verb — talked about the audit, waited for Teodor: an oblique
       on the event; on a noun — a book about ferrets, the lid of the box: a postmodifier or a
@@ -99,16 +111,16 @@ trigger:
 
 slots:
   id:         {type: id, required: true, doc: "your label for the state (p1, p2 …)"}
-  bearer:     {type: filler, class: Entity, role: Experiencer, required: true,
-               doc: "the subject the adjective holds of: a referent id (a name, a witness, a group, a resolved pronoun, or the range inside a rule)"}
+  bearer:     {type: filler, class: Entity, role: Experiencer, required: false,
+               doc: "the subject the adjective holds of: a referent id (a name, a witness, a group, a resolved pronoun, or the range inside a rule); ABSENT for a quality of an action (hard to mend, important to rest), whose subject, if any, is the action's patient inside complement"}
   property:   {type: lemma, class: Class, required: true,
                doc: "the adjective, lemmatized (fond, afraid, full, good, modest, famous, interested)"}
   head:       {type: enum, values: [About, At, For, From, In, Of, "On", To, Toward, Towards, With], required: true,
                doc: "the preposition introducing the complement, as written, capitalized (of → Of, at → At); never a synonym"}
   object:     {type: filler, class: Entity, required: false,
                doc: "the complement as a thing: a referent id (a name, a witness, a group, a resolved pronoun) for a specific one, or a bare lemma for a non-specific or class-level one (good at chess → chess, full of tea → tea, fond of ferrets → ferret)"}
-  complement: {type: refs, class: Proposition, required: false,
-               doc: "the complement as an action (afraid of losing the quilt, tired of waiting, good at baking loaves): the ids of the instances that state it (its predication, with the bearer as its actor, tense present), sealed; never together with object; the referents it mentions are not listed"}
+  complement: {type: refs, class: Proposition, required: false, bare_content: true, participant: true,
+               doc: "the complement as an action: a gerund (afraid of losing the quilt, tired of waiting, good at baking loaves) — its predication with the bearer as its actor, tense present — or the to-infinitive of a quality of the action (hard to mend: the mending with the subject as its patient; important to rest: the resting with no participant), sealed; never together with object; the referents it mentions are not listed"}
   tense:      {type: enum, values: [past, present, future], required: true,
                doc: "the clause's tense; present is recorded, not inferred"}
   aspect:     {type: enum, values: [simple, progressive, perfect], required: false, default: simple}
@@ -120,6 +132,7 @@ mints: {id: Event, stem: property}
 emits:
   - atom: "(Member @id {property})"
   - atom: "(Experiencer @id {bearer})"
+    if_filled: bearer
   - atom: "({head} @id {object})"             # the complement as a thing, under the preposition
     if_filled: object
   - atom: "({head} @id {complement})"         # the complement as an action, sealed as one term
@@ -188,6 +201,13 @@ examples:
         - {t: named-entity, id: n1, name: "Lamine", span: "Lamine"}
         - {t: activity, id: v1, verb: wait, actor: "@n1", tense: present, span: "waiting"}
         - {t: adjective-complement, id: p1, bearer: "@n1", property: tired, head: Of, complement: ["@v1"], tense: present, span: "Lamine is tired of waiting"}
+    - category: positive
+      note: a quality of an action — no bearer; the subject is the action's patient inside the sealed complement
+      text: "The quilt is hard to mend."
+      instances:
+        - {t: witness, id: x1, class: quilt, definite: true, span: "The quilt"}
+        - {t: activity, id: v1, verb: mend, patient: "@x1", tense: present, span: "mend"}
+        - {t: adjective-complement, id: p1, property: hard, head: To, complement: ["@v1"], tense: present, span: "The quilt is hard to mend"}
     - category: abstain
       text: "Yusra talked about the audit."
       expected: {abstain: true, template: oblique}                    # a prepositional phrase on a verb
@@ -196,6 +216,25 @@ examples:
       expected: {abstain: true, template: locative}                   # where a thing is, no adjective
 
   held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      note: an expletive subject — a quality of an action with no participant at all
+      text: "It is important to rest."
+      instances:
+        - {t: activity, id: v1, verb: rest, tense: present}
+        - {t: adjective-complement, id: p1, property: important, head: To, complement: ["@v1"], tense: present}
+    - category: positive
+      note: the subject as the action's patient; past tense on the quality
+      text: "The beam was impossible to lift."
+      instances:
+        - {t: witness, id: x1, class: beam, definite: true}
+        - {t: activity, id: v1, verb: lift, patient: "@x1", tense: present}
+        - {t: adjective-complement, id: p1, property: impossible, head: To, complement: ["@v1"], tense: past}
+    - category: positive
+      note: a bare class as the action's patient
+      text: "Chess is difficult to learn."
+      instances:
+        - {t: activity, id: v1, verb: learn, patient: chess, tense: present}
+        - {t: adjective-complement, id: p1, property: difficult, head: To, complement: ["@v1"], tense: present}
     - category: positive
       text: "Lamine is fond of Yusra."
       instances:
@@ -349,10 +388,19 @@ examples:
       expected: {abstain: true, template: psych}                      # a psych verb
     - category: abstain
       text: "Ottoline is ready to leave."
-      expected: {abstain: true, gap: G00, span: "ready to leave"}     # a to-infinitive complement
+      expected: {abstain: true, template: attitude}                   # a stance toward an action: an attitude
     - category: abstain
       text: "Lamine is sure that Yusra left."
-      expected: {abstain: true, gap: G00, span: "sure that Yusra left"}   # a that-clause complement
+      expected: {abstain: true, template: attitude}                   # a that-clause: an attitude
+    - category: abstain
+      text: "Lamine is able to swim."
+      expected: {abstain: true, template: modal}                      # a capability
+    - category: abstain
+      text: "Yusra is likely to win."
+      expected: {abstain: true, gap: G00, span: "likely to win"}      # a hedge over the clause
+    - category: abstain
+      text: "Teodor is supposed to wait."
+      expected: {abstain: true, template: norm}                       # a weak obligation
     - category: abstain
       text: "Lamine was happy in Calderwick."
       expected: {abstain: true, template: location}                   # a place on the copular state, not a complement

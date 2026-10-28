@@ -1,0 +1,95 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "a4a1e559add5106a8f10a50d4744e035bdc6511b722b0d76d8fd3d79283a753f",
+  "item": {
+    "id": "sff81d0e88d",
+    "text": "The beam was impossible to lift."
+  },
+  "usage": {
+    "input": 91071,
+    "output": 153,
+    "thinking": null,
+    "total": 91224,
+    "cached": 89022,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 91071,
+    "candidatesTokenCount": 153,
+    "totalTokenCount": 91224,
+    "cachedContentTokenCount": 89022,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 91071
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 89022
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 153
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sff81d0e88d\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"beam\", \"definite\": true, \"span\": \"The beam\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"lift\", \"patient\": \"@x1\", \"tense\": \"present\", \"span\": \"lift\"}, {\"t\": \"adjective-complement\", \"id\": \"p1\", \"property\": \"impossible\", \"head\": \"To\", \"complement\": [\"@v1\"], \"tense\": \"past\", \"span\": \"The beam was impossible to lift\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sff81d0e88d",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "beam",
+        "definite": true,
+        "span": "The beam"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "lift",
+        "patient": "@x1",
+        "tense": "present",
+        "span": "lift"
+      },
+      {
+        "t": "adjective-complement",
+        "id": "p1",
+        "property": "impossible",
+        "head": "To",
+        "complement": [
+          "@v1"
+        ],
+        "tense": "past",
+        "span": "The beam was impossible to lift"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "8ac75c56e7d2146ae11c4882bacb5e004e721af058067471bfb7b088b23e1d31",
+  "run": 2,
+  "case": {
+    "template": "adjective-complement",
+    "section": "held_out",
+    "index": 1,
+    "category": "positive",
+    "text": "The beam was impossible to lift.",
+    "key": "ff81d0e88d"
+  }
+}

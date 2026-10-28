@@ -19,7 +19,8 @@ Checks, in order:
   "Yusra, a locksmith" — nothing was dropped and the lone referent is exempt), a
   predication with filler slots none of which is filled (``bare-predication``) unless it is the
   content, directly or through another scope, of a scope whose refs slot declares
-  ``bare_content`` (an imperative's addressee is implicit), an optional
+  ``bare_content`` (an imperative's addressee is implicit), a refs slot marked ``participant: true`` is
+  filled (a quality of an action: the clause is the participant), an optional
   scope with an empty ``refs`` list (``empty-scope``);
 * span lints, when the caller supplies the TEXT: an instance without ``span`` (``span-missing``), a
   span that is not a string or a list of strings (``span-malformed``), a span that is not a verbatim
@@ -163,7 +164,9 @@ def lints(insts: list, catalog: dict, unmapped: list, text: str | None = None) -
                 out.append({"kind": "dangling-referent", "instance": r["id"],
                             "detail": f"{r['t']} {r['id']} is mentioned by no other instance and nothing is reported unmapped"})
         if t.get("family") == "predication" and r["id"] not in bare_ok:
-            fillers = [s for s, spec in slots.items() if spec["type"] == "filler" and spec.get("participant", True)]
+            fillers = [s for s, spec in slots.items()
+                       if (spec["type"] == "filler" and spec.get("participant", True))
+                       or (spec["type"] == "refs" and spec.get("participant"))]     # a clause that stands as the participant (a quality of an action)
             if fillers and not any(r.get(s) not in (None, "", []) for s in fillers):
                 out.append({"kind": "bare-predication", "instance": r["id"],
                             "detail": f"{r['t']} {r['id']} fills none of its participant slots ({', '.join(fillers)})"})

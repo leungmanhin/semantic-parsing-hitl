@@ -1,0 +1,103 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "a4a1e559add5106a8f10a50d4744e035bdc6511b722b0d76d8fd3d79283a753f",
+  "item": {
+    "id": "s63136a0888",
+    "text": "Yusra is willing to sign the ledger."
+  },
+  "usage": {
+    "input": 91074,
+    "output": 203,
+    "thinking": null,
+    "total": 91277,
+    "cached": 89025,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 91074,
+    "candidatesTokenCount": 203,
+    "totalTokenCount": 91277,
+    "cachedContentTokenCount": 89025,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 91074
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 89025
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 203
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s63136a0888\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"ledger\", \"definite\": true, \"span\": \"the ledger\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"sign\", \"actor\": \"@n1\", \"patient\": \"@x1\", \"tense\": \"present\", \"span\": \"to sign the ledger\"}, {\"t\": \"attitude\", \"id\": \"a1\", \"verb\": \"willing\", \"holder\": \"@n1\", \"content\": [\"@v1\"], \"factive\": false, \"tense\": \"present\", \"span\": \"Yusra is willing to sign the ledger\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s63136a0888",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "ledger",
+        "definite": true,
+        "span": "the ledger"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "sign",
+        "actor": "@n1",
+        "patient": "@x1",
+        "tense": "present",
+        "span": "to sign the ledger"
+      },
+      {
+        "t": "attitude",
+        "id": "a1",
+        "verb": "willing",
+        "holder": "@n1",
+        "content": [
+          "@v1"
+        ],
+        "factive": false,
+        "tense": "present",
+        "span": "Yusra is willing to sign the ledger"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "8ac75c56e7d2146ae11c4882bacb5e004e721af058067471bfb7b088b23e1d31",
+  "run": 3,
+  "case": {
+    "template": "attitude",
+    "section": "held_out",
+    "index": 2,
+    "category": "positive",
+    "text": "Yusra is willing to sign the ledger.",
+    "key": "63136a0888"
+  }
+}

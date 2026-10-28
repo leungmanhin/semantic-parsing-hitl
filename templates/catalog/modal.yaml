@@ -9,7 +9,9 @@ status: stub
 trigger:
   construction: >
     A modal auxiliary in its capability or epistemic reading (can, could, might, may, must,
-    should) applied to a clause. The clause is not asserted; the modal scopes over it. The head
+    should) applied to a clause, or the capability stated by an adjective — is able to swim,
+    was unable to sing: Can with the words in `surface`, a negation over it for unable, and
+    the copula's tense on the clause (was able to sing: the singing past). The clause is not asserted; the modal scopes over it. The head
     records the modality (capability, epistemic possibility, epistemic necessity), and the
     surface word is kept; a deontic reading — an obligation, a permission, a prohibition, an
     exemption — is the norm template's. The clause under the modal keeps its own tense slot: present
@@ -19,6 +21,7 @@ trigger:
     - "<S> might <V> …"
     - "<S> must be <ADJ>"                     # epistemic must
     - "<S> might have <V>-ed …"
+    - "<S> is able / unable to <V>"             # a capability stated by an adjective: Can, unable under a negation
   boundary:
     - >-
       a modal word used deontically — must as an obligation, may or can as a permission, must
@@ -56,6 +59,21 @@ examples:
         - "(: sk_yusra_1 Entity)"
         - "(: tired Class)"
   held_out:
+    - category: positive
+      note: a capability stated by an adjective — Can with the surface words
+      text: "Lamine is able to swim."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: activity, id: v1, verb: swim, actor: "@n1", tense: present}
+        - {t: modal, id: s1, over: ["@v1"], head: Can, surface: "is able to"}
+    - category: scoped
+      note: unable — the capability denied, the copula's tense on the clause
+      text: "Teodor was unable to sing."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: activity, id: v1, verb: sing, actor: "@n1", tense: past}
+        - {t: modal, id: s1, over: ["@v1"], head: Can, surface: "unable to"}
+        - {t: negation, id: s2, over: ["@s1"]}
     - category: positive
       note: epistemic must over a copular clause — an inference, no tense beside it
       text: "Teodor must be asleep."

@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 e8b4db47f9aab043 · 57 templates
+catalog sha256 ffa60aeb032c9267 · 57 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -827,7 +827,13 @@ class-level one (good at chess, full of tea). A gerund clause as the complement 
 losing the quilt, tired of waiting, good at baking loaves) is parsed with its own template, the
 bearer as its actor and tense present, and listed in `complement`, sealed. The tense and aspect
 are the clause's. Write one instance for the adjective with its complement; no copular instance
-beside it, and no oblique for the phrase.
+beside it, and no oblique for the phrase. A QUALITY OF AN ACTION stated with a to-infinitive —
+the quilt is hard to mend, the beam is impossible to lift, chess is difficult to learn, it is
+important to rest — is this template with NO bearer: the adjective holds of the action, which is
+parsed with its own template and listed in `complement` with the sentence's subject as its
+patient (the quilt mended, the beam lifted) or with no participant after an expletive it (it is
+important to rest), tense present; `head` is To, the word as written. Nothing says the action
+happens.
 
 Forms:
 - <X> is fond / afraid / proud / full / sure of <Y>
@@ -840,6 +846,8 @@ Forms:
 - <X> is free / safe / absent from <Y>
 - <X> is keen / dependent on <Y>
 - <X> is afraid of / tired of / good at <V>-ing …
+- <X> is hard / easy / impossible to <V>
+- It is important / necessary / safe to <V>
 
 Not this template:
 - a plain adjective with no complement stated — Yusra is tired, Yusra is afraid: a copular
@@ -861,10 +869,13 @@ Not this template:
 - a degree word on the adjective — very fond of Teodor, too afraid of the ferret: this template,
   with the degree word reported under G02; an approximator — almost full of tea — leaves the
   whole predicate unmapped, since the property is not asserted
-- an adjective with a to-infinitive or a that-clause — ready to leave, able to lift the beam,
-  hard to mend, sure that Lamine left, afraid that it rains: no template; report the predicate
-  as unmapped (too tired to sing, tall enough to reach: the degree template, the infinitive
-  reported)
+- an adjective with a that-clause, or a stance adjective with a to-infinitive — sure that Lamine
+  left, aware that the gate is open, glad that Ottoline came, ready to leave, eager / willing /
+  afraid to V: a propositional attitude of the subject, the attitude template with the adjective
+  as its lemma; able to V — is able to swim: a capability, the modal template; supposed /
+  required / allowed to V: a norm; likely, bound, certain or sure TO V, about to, due to —
+  likely to win: a hedge over the clause, no template, report the predicate as unmapped; too
+  tired to sing, tall enough to reach: the degree template, the infinitive reported
 - a prepositional phrase on a verb — talked about the audit, waited for Teodor: an oblique on
   the event; on a noun — a book about ferrets, the lid of the box: a postmodifier or a
   part-whole
@@ -886,9 +897,10 @@ Slots:
 
 - `t` (required): "adjective-complement"
 - `id` (required; your label for this instance): your label for the state (p1, p2 …).
-- `bearer` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
+- `bearer` (optional; "@id" of a referent instance, or a bare lemma for a non-specific filler):
   the subject the adjective holds of: a referent id (a name, a witness, a group, a resolved
-  pronoun, or the range inside a rule).
+  pronoun, or the range inside a rule); ABSENT for a quality of an action (hard to mend,
+  important to rest), whose subject, if any, is the action's patient inside complement.
 - `property` (required; a lemma): the adjective, lemmatized (fond, afraid, full, good, modest,
   famous, interested).
 - `head` (required; one of: About, At, For, From, In, Of, On, To, Toward, Towards, With): the
@@ -899,9 +911,11 @@ Slots:
   a specific one, or a bare lemma for a non-specific or class-level one (good at chess → chess,
   full of tea → tea, fond of ferrets → ferret).
 - `complement` (optional; a list of "@id" of the instances that state the clause): the
-  complement as an action (afraid of losing the quilt, tired of waiting, good at baking loaves):
-  the ids of the instances that state it (its predication, with the bearer as its actor, tense
-  present), sealed; never together with object; the referents it mentions are not listed.
+  complement as an action: a gerund (afraid of losing the quilt, tired of waiting, good at
+  baking loaves) — its predication with the bearer as its actor, tense present — or the
+  to-infinitive of a quality of the action (hard to mend: the mending with the subject as its
+  patient; important to rest: the resting with no participant), sealed; never together with
+  object; the referents it mentions are not listed.
 - `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
   not inferred.
 - `aspect` (optional; one of: simple, progressive, perfect).
@@ -957,6 +971,22 @@ The program renders these instances as:
     (Member sk_tired_1 tired)
     (Experiencer sk_tired_1 sk_lamine_1)
     (Of sk_tired_1 (And (Member sk_wait_1 wait) (Agent sk_wait_1 sk_lamine_1)))
+
+Example (a quality of an action — no bearer; the subject is the action's patient inside the sealed complement). TEXT: The quilt is hard to mend.
+
+Instances:
+
+    [
+      {"t": "witness", "id": "x1", "class": "quilt", "definite": true, "span": "The quilt"},
+      {"t": "activity", "id": "v1", "verb": "mend", "patient": "@x1", "tense": "present", "span": "mend"},
+      {"t": "adjective-complement", "id": "p1", "property": "hard", "head": "To", "complement": ["@v1"], "tense": "present", "span": "The quilt is hard to mend"}
+    ]
+
+The program renders these instances as:
+
+    (Member sk_quilt_1 quilt)
+    (Member sk_hard_1 hard)
+    (To sk_hard_1 (And (Member sk_mend_1 mend) (Patient sk_mend_1 sk_quilt_1)))
 
 Not this template. TEXT: Yusra talked about the audit. — use `oblique`.
 
@@ -1058,7 +1088,15 @@ think, suppose, assume, suspect, doubt, hope, fear, expect, claim, say, want, wi
 plan, decide, promise, agree) do not assert the complement; factive verbs (know, realize,
 discover, learn, notice, remember, regret) presuppose it. A finite complement has a subject and
 a tense of its own; an infinitival one is parsed with the holder as its actor (or the object,
-when the syntax supplies one) and tense present.
+when the syntax supplies one) and tense present. An ADJECTIVE with "be" takes the same
+construction: a that-clause naming what the subject is sure, certain, confident, convinced,
+aware, glad, sorry, surprised, upset, proud, afraid or worried of (Teodor is aware that the gate
+is open), or a to-infinitive naming what the subject is eager, willing, unwilling, reluctant,
+keen, anxious, happy, glad, afraid, ready or prepared to do (Ottoline is ready to leave). Write
+the adjective as the `verb` lemma; the copula is the construction's marker and the clause's
+tense is the copula's. The factive adjectives — aware, glad, sorry, surprised, upset, proud, and
+happy or angry with a that-clause — presuppose the complement; sure, certain, confident,
+convinced, afraid, worried and every infinitival stance do not.
 
 Verbs that anchor the class: believe, think, suppose, assume, suspect, doubt, hope, fear,
 expect, claim, say, want, wish, intend, plan, decide, promise, agree, know, realize, discover,
@@ -1068,6 +1106,8 @@ with `factive` decided by whether the verb presupposes the complement — the co
 negation of the attitude ("did not realize that P" still entails P).
 
 Forms:
+- <holder> is sure / aware / glad / afraid that <clause>
+- <holder> is eager / willing / ready to <V> …
 - <holder> V that <clause>
 - <holder> V <clause>
 - <holder> V-ed that <clause>
@@ -1087,22 +1127,31 @@ Not this template:
   of the message, not an attitude of the subject alone
 - a parenthetical or discourse use — I think, you know, as far as I know: no attitude is
   predicated of anyone
+- an adjective with a noun-phrase complement — afraid of the ferret, sure of the result, fond of
+  Lamine: the adjective-complement template; able to V — is able to swim: a capability, the
+  modal template; likely, bound, certain or sure TO V, about to, due to — Yusra is likely to
+  win: a hedge over the clause, not a stance of the subject; no template, report the predicate
+  as unmapped; hard, easy, difficult, impossible, important or safe to V — the quilt is hard to
+  mend, it is important to rest: a quality of the action, the adjective-complement template with
+  no bearer
 
 Slots:
 
 - `t` (required): "attitude"
 - `id` (required; your label for this instance): your label for the attitude event.
-- `verb` (required; a lemma): the attitude verb lemma.
+- `verb` (required; a lemma): the attitude verb lemma, or the adjective of an adjectival
+  attitude (is sure / aware / glad that P, is eager / ready to V), lemmatized.
 - `holder` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
   who holds the attitude: the subject.
 - `content` (required; a list of "@id" of the instances that state the clause): the complement
   clause: the ids of the instances that state it, that is its predication or the scope operator
   (negation, modal) over that predication; for an infinitival complement, its predication with
   the holder (or the object) as its actor; the referents it mentions are not listed.
-- `factive` (required; true / false): true when the verb presupposes the complement (know,
-  realize, discover, learn, notice, remember, regret), false otherwise (believe, think, suppose,
-  assume, suspect, doubt, hope, fear, expect, claim, say, want, wish, intend, plan, decide,
-  promise, agree).
+- `factive` (required; true / false): true when the verb or adjective presupposes the complement
+  (know, realize, discover, learn, notice, remember, regret; aware, glad, sorry, surprised,
+  upset, proud, happy / angry that), false otherwise (believe, think, suppose, assume, suspect,
+  doubt, hope, fear, expect, claim, say, want, wish, intend, plan, decide, promise, agree; sure,
+  certain, confident, convinced, afraid, worried, and every adjective with a to-infinitive).
 - `tense` (required; one of: past, present, future): the attitude clause's tense; present is
   recorded, not inferred.
 - `aspect` (optional; one of: simple, progressive, perfect).
@@ -1226,6 +1275,26 @@ The program renders these instances as:
     (Member sk_want_1 want)
     (Experiencer sk_want_1 sk_ottoline_1)
     (Theme sk_want_1 (And (Member sk_send_1 send) (Agent sk_send_1 sk_ottoline_1) (Theme sk_send_1 sk_quilt_1)))
+
+Example (an adjectival attitude — the adjective is the lemma, the that-clause its sealed complement; a factive adjective presupposes it). TEXT: Teodor is aware that the gate is open.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Teodor", "span": "Teodor"},
+      {"t": "witness", "id": "x1", "class": "gate", "definite": true, "span": "the gate"},
+      {"t": "copular", "id": "c1", "subject": "@x1", "predicate": "open", "form": "adjective", "tense": "present", "span": "the gate is open"},
+      {"t": "attitude", "id": "a1", "verb": "aware", "holder": "@n1", "content": ["@c1"], "factive": true, "tense": "present", "span": "Teodor is aware that the gate is open"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_teodor_1 "Teodor")
+    (Member sk_gate_1 gate)
+    (Member sk_aware_1 aware)
+    (Experiencer sk_aware_1 sk_teodor_1)
+    (Theme sk_aware_1 (Member sk_gate_1 open))
+    (Member sk_gate_1 open)
 
 ### causative — A causer brings about an action of someone or something else
 
@@ -3796,17 +3865,20 @@ Not this template. TEXT: Teodor gave Yusra a thermos. — use `transfer`.
 ### modal — A modal auxiliary scoping over a clause
 
 When: A modal auxiliary in its capability or epistemic reading (can, could, might, may, must,
-should) applied to a clause. The clause is not asserted; the modal scopes over it. The head
-records the modality (capability, epistemic possibility, epistemic necessity), and the surface
-word is kept; a deontic reading — an obligation, a permission, a prohibition, an exemption — is
-the norm template's. The clause under the modal keeps its own tense slot: present for a bare
-infinitive (might lend), past with aspect perfect for a perfect infinitive (might have lent);
-the modal instance carries nothing about tense.
+should) applied to a clause, or the capability stated by an adjective — is able to swim, was
+unable to sing: Can with the words in `surface`, a negation over it for unable, and the copula's
+tense on the clause (was able to sing: the singing past). The clause is not asserted; the modal
+scopes over it. The head records the modality (capability, epistemic possibility, epistemic
+necessity), and the surface word is kept; a deontic reading — an obligation, a permission, a
+prohibition, an exemption — is the norm template's. The clause under the modal keeps its own
+tense slot: present for a bare infinitive (might lend), past with aspect perfect for a perfect
+infinitive (might have lent); the modal instance carries nothing about tense.
 
 Forms:
 - <S> might <V> …
 - <S> must be <ADJ>
 - <S> might have <V>-ed …
+- <S> is able / unable to <V>
 
 Not this template:
 - a modal word used deontically — must as an obligation, may or can as a permission, must not /

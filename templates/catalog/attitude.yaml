@@ -25,6 +25,15 @@ trigger:
     factive verbs (know, realize, discover, learn, notice, remember, regret) presuppose it. A
     finite complement has a subject and a tense of its own; an infinitival one is parsed with
     the holder as its actor (or the object, when the syntax supplies one) and tense present.
+    An ADJECTIVE with "be" takes the same construction: a that-clause naming what the subject
+    is sure, certain, confident, convinced, aware, glad, sorry, surprised, upset, proud, afraid
+    or worried of (Teodor is aware that the gate is open), or a to-infinitive naming what the
+    subject is eager, willing, unwilling, reluctant, keen, anxious, happy, glad, afraid, ready
+    or prepared to do (Ottoline is ready to leave). Write the adjective as the `verb` lemma;
+    the copula is the construction's marker and the clause's tense is the copula's. The
+    factive adjectives — aware, glad, sorry, surprised, upset, proud, and happy or angry with a
+    that-clause — presuppose the complement; sure, certain, confident, convinced, afraid,
+    worried and every infinitival stance do not.
   verbs: [believe, think, suppose, assume, suspect, doubt, hope, fear, expect, claim, say,
           want, wish, intend, plan, decide, promise, agree,
           know, realize, discover, learn, notice, remember, regret]
@@ -33,6 +42,8 @@ trigger:
     here, with `factive` decided by whether the verb presupposes the complement — the
     complement survives negation of the attitude ("did not realize that P" still entails P).
   surface_forms:
+    - "<holder> is sure / aware / glad / afraid that <clause>"    # an adjectival attitude: the adjective the lemma
+    - "<holder> is eager / willing / ready to <V> …"              # a stance toward the holder's own action, sealed
     - "<holder> V that <clause>"                 # believes that Lamine lent Ottoline the trowel
     - "<holder> V <clause>"                      # thinks Lamine lent Ottoline the trowel
     - "<holder> V-ed that <clause>"              # tense on the attitude; the clause keeps its own
@@ -57,16 +68,24 @@ trigger:
     - >-
       a parenthetical or discourse use — I think, you know, as far as I know: no attitude is
       predicated of anyone
+    - >-
+      an adjective with a noun-phrase complement — afraid of the ferret, sure of the result,
+      fond of Lamine: the adjective-complement template; able to V — is able to swim: a
+      capability, the modal template; likely, bound, certain or sure TO V, about to, due to —
+      Yusra is likely to win: a hedge over the clause, not a stance of the subject; no
+      template, report the predicate as unmapped; hard, easy, difficult, impossible, important
+      or safe to V — the quilt is hard to mend, it is important to rest: a quality of the
+      action, the adjective-complement template with no bearer
 
 slots:
   id:      {type: id, required: true, doc: "your label for the attitude event"}
-  verb:    {type: lemma, class: Class, required: true, doc: "the attitude verb lemma"}
+  verb:    {type: lemma, class: Class, required: true, doc: "the attitude verb lemma, or the adjective of an adjectival attitude (is sure / aware / glad that P, is eager / ready to V), lemmatized"}
   holder:  {type: filler, class: Entity, role: Experiencer, required: true,
             doc: "who holds the attitude: the subject"}
   content: {type: refs, class: Proposition, required: true,
             doc: "the complement clause: the ids of the instances that state it, that is its predication or the scope operator (negation, modal) over that predication; for an infinitival complement, its predication with the holder (or the object) as its actor; the referents it mentions are not listed"}
   factive: {type: bool, required: true,
-            doc: "true when the verb presupposes the complement (know, realize, discover, learn, notice, remember, regret), false otherwise (believe, think, suppose, assume, suspect, doubt, hope, fear, expect, claim, say, want, wish, intend, plan, decide, promise, agree)"}
+            doc: "true when the verb or adjective presupposes the complement (know, realize, discover, learn, notice, remember, regret; aware, glad, sorry, surprised, upset, proud, happy / angry that), false otherwise (believe, think, suppose, assume, suspect, doubt, hope, fear, expect, claim, say, want, wish, intend, plan, decide, promise, agree; sure, certain, confident, convinced, afraid, worried, and every adjective with a to-infinitive)"}
   tense:   {type: enum, values: [past, present, future], required: true,
             doc: "the attitude clause's tense; present is recorded, not inferred"}
   aspect:  {type: enum, values: [simple, progressive, perfect], required: false, default: simple}
@@ -178,8 +197,46 @@ examples:
         - {t: witness, id: x1, class: quilt, definite: true, span: "the quilt"}
         - {t: transfer, id: e1, verb: send, giver: "@n1", object: "@x1", tense: present, span: "to send the quilt"}
         - {t: attitude, id: a1, verb: want, holder: "@n1", content: ["@e1"], factive: false, tense: present, span: "Ottoline wants to send the quilt"}
+    - category: positive
+      note: an adjectival attitude — the adjective is the lemma, the that-clause its sealed complement; a factive adjective presupposes it
+      text: "Teodor is aware that the gate is open."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor", span: "Teodor"}
+        - {t: witness, id: x1, class: gate, definite: true, span: "the gate"}
+        - {t: copular, id: c1, subject: "@x1", predicate: open, form: adjective, tense: present, span: "the gate is open"}
+        - {t: attitude, id: a1, verb: aware, holder: "@n1", content: ["@c1"], factive: true, tense: present, span: "Teodor is aware that the gate is open"}
 
   held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      note: a non-factive adjectival attitude with a that-clause — sealed, nothing asserted of the leaving
+      text: "Lamine is sure that Yusra left."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: named-entity, id: n2, name: "Yusra"}
+        - {t: motion, id: m1, verb: leave, mover: "@n2", tense: past}
+        - {t: attitude, id: a1, verb: sure, holder: "@n1", content: ["@m1"], factive: false, tense: present}
+    - category: positive
+      note: a stance adjective with a to-infinitive — the holder acts in the sealed clause
+      text: "Ottoline is ready to leave."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: motion, id: m1, verb: leave, mover: "@n1", tense: present}
+        - {t: attitude, id: a1, verb: ready, holder: "@n1", content: ["@m1"], factive: false, tense: present}
+    - category: positive
+      text: "Yusra is willing to sign the ledger."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, class: ledger, definite: true}
+        - {t: activity, id: v1, verb: sign, actor: "@n1", patient: "@x1", tense: present}
+        - {t: attitude, id: a1, verb: willing, holder: "@n1", content: ["@v1"], factive: false, tense: present}
+    - category: positive
+      note: a factive adjective — the coming is presupposed and stated flat
+      text: "Lamine is glad that Ottoline came."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: named-entity, id: n2, name: "Ottoline"}
+        - {t: motion, id: m1, verb: come, mover: "@n2", tense: past}
+        - {t: attitude, id: a1, verb: glad, holder: "@n1", content: ["@m1"], factive: true, tense: present}
     - category: positive
       note: a witness introduced inside the complement stays inside the seal
       text: "Teodor suspects that Lamine sold a spindle."

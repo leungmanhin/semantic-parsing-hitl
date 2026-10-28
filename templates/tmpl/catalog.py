@@ -129,8 +129,9 @@ def check_template(t: dict, path: str) -> list[str]:
             problems.append(f"slot {sname}: bind must name a filler slot of the template")
         if spec.get("attaches") and spec["type"] != "filler":
             problems.append(f"slot {sname}: attaches applies to filler slots only")
-        if "participant" in spec and (spec["type"] != "filler" or spec["participant"] is not False):
-            problems.append(f"slot {sname}: participant: false applies to filler slots only")
+        if "participant" in spec and not ((spec["type"] == "filler" and spec["participant"] is False)
+                                          or (spec["type"] == "refs" and spec["participant"] is True)):
+            problems.append(f"slot {sname}: participant: false applies to filler slots, participant: true to refs slots (a clause standing as the participant)")
     for key in ("one_of", "any_of"):
         for i, group in enumerate(t.get(key) or []):
             if not isinstance(group, list) or len(group) < 2 or any(g not in slots for g in group):

@@ -50,7 +50,7 @@ Nothing here changes `prompt.txt`, the briefs under `fusenf/briefs/`, or any pip
 - `catalog/<id>.yaml` is a whole template: trigger (construction, boundary), slots with their
   substrate class (`attaches: true` on a filler makes the instance an attachment rendered wherever its head is, never listed in a scope's `over`;
   `bare_content: true` on a refs slot lets the clause under it fill no participant, as under an imperative;
-  `participant: false` on an optional filler keeps it out of the bare-predication lint, as class-property's restriction),
+  `participant: false` on an optional filler keeps it out of the bare-predication lint, as class-property's restriction, and `participant: true` on a refs slot lets a filled clause count as the participant, as adjective-complement's quality of an action),
   `mints` (`stem` / `literal` / `symbol: <slot>` with `constant` / `variable`; `also` for extra classes), `emits` shapes
   (`if_filled`, `each`, `when` — slot tests, or `slot in name` / `slot not in name` against a list of the template's `lexicon:` section, a fact about the words applied by the emitter and never judged by the parser —, `project`, `within: <refs slot>` for a shape rendered inside that slot's bundle under its
   skolem substitution — a rule's consequent gaining `(Time (sk_swim $t) $t)`), `one_of` / `any_of` slot groups, notes,

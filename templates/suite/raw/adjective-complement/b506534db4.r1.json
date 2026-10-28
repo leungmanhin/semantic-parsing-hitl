@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "1286d8bbfeb2da64ec2b9cfbb063951d7dca144e9191e5590977f8e5bd4891ee",
+  "prompt_sha256": "a4a1e559add5106a8f10a50d4744e035bdc6511b722b0d76d8fd3d79283a753f",
   "item": {
     "id": "sb506534db4",
     "text": "Ottoline is ready to leave."
   },
   "usage": {
-    "input": 86186,
-    "output": 92,
+    "input": 91070,
+    "output": 156,
     "thinking": null,
-    "total": 86278,
-    "cached": 84136,
+    "total": 91226,
+    "cached": 89021,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 86186,
-    "candidatesTokenCount": 92,
-    "totalTokenCount": 86278,
-    "cachedContentTokenCount": 84136,
+    "promptTokenCount": 91070,
+    "candidatesTokenCount": 156,
+    "totalTokenCount": 91226,
+    "cachedContentTokenCount": 89021,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 86186
+        "tokenCount": 91070
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 84136
+        "tokenCount": 89021
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 92
+        "tokenCount": 156
       }
     ]
   },
-  "raw_text": "{\"id\": \"sb506534db4\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}], \"unmapped\": [{\"span\": \"is ready to leave\", \"code\": \"G00\", \"construction\": \"A copular adjective taking a to-infinitive complement.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"sb506534db4\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n1\", \"tense\": \"present\", \"span\": \"to leave\"}, {\"t\": \"attitude\", \"id\": \"a1\", \"verb\": \"ready\", \"holder\": \"@n1\", \"content\": [\"@m1\"], \"factive\": false, \"tense\": \"present\", \"span\": \"Ottoline is ready to leave\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sb506534db4",
     "instances": [
@@ -57,23 +57,37 @@
         "id": "n1",
         "name": "Ottoline",
         "span": "Ottoline"
-      }
-    ],
-    "unmapped": [
+      },
       {
-        "span": "is ready to leave",
-        "code": "G00",
-        "construction": "A copular adjective taking a to-infinitive complement."
+        "t": "motion",
+        "id": "m1",
+        "verb": "leave",
+        "mover": "@n1",
+        "tense": "present",
+        "span": "to leave"
+      },
+      {
+        "t": "attitude",
+        "id": "a1",
+        "verb": "ready",
+        "holder": "@n1",
+        "content": [
+          "@m1"
+        ],
+        "factive": false,
+        "tense": "present",
+        "span": "Ottoline is ready to leave"
       }
     ],
+    "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "fbd14f0c671be9cc8d5a741e5b5370494fbe710fbaca5af9546667bfec15f428",
+  "prompt_body_sha256": "8ac75c56e7d2146ae11c4882bacb5e004e721af058067471bfb7b088b23e1d31",
   "run": 1,
   "case": {
     "template": "adjective-complement",
     "section": "held_out",
-    "index": 25,
+    "index": 28,
     "category": "abstain",
     "text": "Ottoline is ready to leave.",
     "key": "b506534db4"

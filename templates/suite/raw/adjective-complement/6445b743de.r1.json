@@ -1,0 +1,87 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "a4a1e559add5106a8f10a50d4744e035bdc6511b722b0d76d8fd3d79283a753f",
+  "item": {
+    "id": "s6445b743de",
+    "text": "It is important to rest."
+  },
+  "usage": {
+    "input": 91070,
+    "output": 114,
+    "thinking": null,
+    "total": 91184,
+    "cached": 89021,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 91070,
+    "candidatesTokenCount": 114,
+    "totalTokenCount": 91184,
+    "cachedContentTokenCount": 89021,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 91070
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 89021
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 114
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s6445b743de\", \"instances\": [{\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"rest\", \"tense\": \"present\", \"span\": \"rest\"}, {\"t\": \"adjective-complement\", \"id\": \"p1\", \"property\": \"important\", \"head\": \"To\", \"complement\": [\"@v1\"], \"tense\": \"present\", \"span\": \"It is important to rest\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s6445b743de",
+    "instances": [
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "rest",
+        "tense": "present",
+        "span": "rest"
+      },
+      {
+        "t": "adjective-complement",
+        "id": "p1",
+        "property": "important",
+        "head": "To",
+        "complement": [
+          "@v1"
+        ],
+        "tense": "present",
+        "span": "It is important to rest"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "8ac75c56e7d2146ae11c4882bacb5e004e721af058067471bfb7b088b23e1d31",
+  "run": 1,
+  "case": {
+    "template": "adjective-complement",
+    "section": "held_out",
+    "index": 0,
+    "category": "positive",
+    "text": "It is important to rest.",
+    "key": "6445b743de"
+  }
+}
