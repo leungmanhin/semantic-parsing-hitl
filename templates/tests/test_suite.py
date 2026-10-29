@@ -367,6 +367,11 @@ class EndToEndTests(unittest.TestCase):
             summary = json.load(fh)
         s = summary["templates"]["transfer"]["held_out"]
         self.assertEqual(s["pass"], s["records"])
+        self.assertRegex(summary["manifest"]["id"], r"^[0-9a-f]{12}$")                 # the catalog version the score ran under
+        self.assertEqual((s["stale_manifest"], s["unstamped"]), (0, 0))               # every record stamped with it
+        one = sorted(os.listdir(os.path.join(self.raw, "transfer")))[0]
+        with open(os.path.join(self.raw, "transfer", one), encoding="utf-8") as fh:
+            self.assertEqual(json.load(fh)["manifest_id"], summary["manifest"]["id"])
         self.assertEqual(s["selection"]["false_fires"], 0)
         self.assertEqual(s["fill"]["rate"], 1.0)
         self.assertEqual(s["stability"]["pairwise_agreement"], 1.0)

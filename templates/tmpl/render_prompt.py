@@ -214,6 +214,8 @@ def main(argv=None) -> int:
     with open(OUT, "w", encoding="utf-8") as fh:
         fh.write(text)
     print(f"wrote {os.path.relpath(OUT)} ({len(text.splitlines())} lines, {len(catalog)} templates)")
+    from . import manifest as MF
+    print(f"manifest {MF.write()['id']}")
     return 0
 
 

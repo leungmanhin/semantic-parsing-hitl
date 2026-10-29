@@ -53,6 +53,7 @@ import sys
 import time
 
 from . import catalog as CAT, emit as E, typecheck as T, validate as V
+from . import manifest as MF
 
 TEMPLATES = os.path.dirname(CAT.CATALOG_DIR)
 REPO = os.path.dirname(TEMPLATES)
@@ -88,8 +89,7 @@ def key_of(text) -> str:
 def prompt_body_sha(text: str) -> str:
     """The prompt's hash without its header line, which carries the catalog hash: editing a
     held-out example changes the catalog hash but not the instructions the parser saw."""
-    body = "\n".join(ln for ln in text.splitlines() if not ln.startswith("catalog sha256 "))
-    return hashlib.sha256(body.encode("utf-8")).hexdigest()
+    return MF.prompt_body_sha(text)
 
 
 def load_parse_script(path: str = PARSE_SCRIPT):
@@ -420,6 +420,7 @@ def collect(args, catalog: dict) -> int:
         todo = todo[: args.limit]
     with open(args.prompt, encoding="utf-8") as fh:
         body_sha = prompt_body_sha(fh.read())
+    manifest_id = MF.current_id()                   # the catalog version this run is collected under
     n_cases = len({(t["case"]["template"], t["case"]["key"]) for t in todo})
     print(f"planned {len(todo)} calls ({n_cases} cases × up to {args.runs} runs; stored replies skipped)"
           f" · provider {args.provider} model {args.model or sp.PROVIDERS[args.provider].default_model}"
@@ -458,6 +459,7 @@ def collect(args, catalog: dict) -> int:
                    "item": {"id": item_id, "text": case["text"]}, "response": None, "error": f"request failed: {exc}"}
             failed += 1
         rec["prompt_body_sha256"] = body_sha
+        rec["manifest_id"] = manifest_id               # the catalog version the record was collected under
         rec["run"] = n
         rec["case"] = {k: case[k] for k in ("template", "section", "index", "category", "text", "key")}
         os.makedirs(os.path.dirname(path), exist_ok=True)
@@ -493,12 +495,14 @@ def span_counts(instances: list, span_lints: list) -> dict:
             "malformed": kinds.get("span-malformed", 0)}
 
 
-def score_record(case: dict, rec: dict, catalog: dict, heads: dict, body_sha: str | None) -> dict:
+def score_record(case: dict, rec: dict, catalog: dict, heads: dict, body_sha: str | None, manifest_id: str | None = None) -> dict:
     tid, category = case["template"], case["category"]
     row = {"template": tid, "section": case["section"], "category": category, "text": case["text"],
            "key": case["key"], "run": rec.get("run"), "status": "ok", "pass": False, "reasons": [],
            "model": rec.get("model"), "effort": rec.get("effort"),
            "stale_prompt": (body_sha is not None and rec.get("prompt_body_sha256") not in (None, body_sha)),
+           "manifest_id": rec.get("manifest_id"),
+           "stale_manifest": (manifest_id is not None and rec.get("manifest_id") not in (None, manifest_id)),
            "usage": {k: (rec.get("usage") or {}).get(k) for k in ("input", "output", "thinking", "total", "cached")}}
     resp = rec.get("response")
     if not isinstance(resp, dict):
@@ -631,6 +635,8 @@ def summarize(rows: list[dict]) -> dict:
         "records": len(rows), "cases": len(by_key),
         "status": dict(collections.Counter(r["status"] for r in rows)),
         "stale_prompt": sum(bool(r.get("stale_prompt")) for r in rows),
+        "stale_manifest": sum(bool(r.get("stale_manifest")) for r in rows),
+        "unstamped": sum(1 for r in rows if not r.get("manifest_id")),
         "by_category": by_cat,
         "pass": sum(r["pass"] for r in rows),
         "selection": {"fire_runs": len(fire_rows), "fired": len(fired),
@@ -656,6 +662,7 @@ def score(args, catalog: dict) -> int:
     if os.path.exists(args.prompt):
         with open(args.prompt, encoding="utf-8") as fh:
             body_sha = prompt_body_sha(fh.read())
+    manifest = MF.compute()
     if args.all:
         templates = sorted(t for t in catalog if os.path.isdir(os.path.join(args.raw_dir, t)))
     else:
@@ -675,7 +682,7 @@ def score(args, catalog: dict) -> int:
             with open(path, encoding="utf-8") as fh:
                 rec = json.load(fh)
             rec.setdefault("run", int(m.group(2)))
-            rows.append(score_record(cases[m.group(1)], rec, catalog, heads, body_sha))
+            rows.append(score_record(cases[m.group(1)], rec, catalog, heads, body_sha, manifest["id"]))
     typed = _typecheck(rows)
     if typed is not None:
         for i, r in enumerate(rows):
@@ -687,6 +694,7 @@ def score(args, catalog: dict) -> int:
                     r["pass"] = False
     checks = catalog_checks(catalog)
     summary = {"prompt": os.path.relpath(args.prompt, REPO), "prompt_body_sha256": body_sha,
+               "manifest": {"id": manifest["id"], "parts": manifest["parts"]},
                "typecheck": "ran" if typed is not None else "skipped (no petta package)",
                "checks": {"examples": checks["examples"], "findings": checks["findings"],
                           "pending": checks["pending"], "shared": checks["shared"]},
@@ -744,7 +752,7 @@ def render_report(summary: dict, rows: list[dict]) -> str:
     add("# Suite report")
     add("")
     add(f"prompt `{summary['prompt']}` (body sha256 {(summary.get('prompt_body_sha256') or '')[:16]}) · "
-        f"type check: {summary['typecheck']}")
+        f"manifest {(summary.get('manifest') or {}).get('id', '—')} · type check: {summary['typecheck']}")
     add("")
     add("## Catalog checks")
     add("")
@@ -758,7 +766,8 @@ def render_report(summary: dict, rows: list[dict]) -> str:
             add(f"## {tid} — {section}")
             add("")
             st = ", ".join(f"{k} {v}" for k, v in sorted(s["status"].items()))
-            add(f"{s['cases']} cases, {s['records']} records ({st}; stale prompt {s['stale_prompt']}) · "
+            add(f"{s['cases']} cases, {s['records']} records ({st}; stale prompt {s['stale_prompt']}; "
+                f"stale manifest {s.get('stale_manifest', 0)}, unstamped {s.get('unstamped', 0)}) · "
                 f"{'; '.join(s['models']) or 'no model recorded'}")
             add("")
             add("| category | cases | runs | fired | exact | pass |")

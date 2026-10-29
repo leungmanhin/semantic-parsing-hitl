@@ -445,6 +445,9 @@ def main(argv=None) -> int:
     with open(args.out, "w", encoding="utf-8") as fh:
         fh.write(text)
     print(f"wrote {os.path.relpath(args.out, TEMPLATES)} ({len(rules)} rules, {n} lowered{note}; {nf} lexicon facts)")
+    if args.out == GENERATED:
+        from . import manifest as MF
+        print(f"manifest {MF.write()['id']}")
     return 0
 
 

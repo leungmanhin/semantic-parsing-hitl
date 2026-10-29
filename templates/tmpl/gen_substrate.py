@@ -255,6 +255,8 @@ def main(argv: list[str] | None = None) -> int:
         f"wrote {os.path.relpath(OUT_MD, REPO)} ({len(src['heads'])} heads) and "
         f"{os.path.relpath(OUT_METTA, REPO)} ({n_decl} declarations)"
     )
+    from . import manifest as MF
+    print(f"manifest {MF.write()['id']}")
     return 0
 
 
