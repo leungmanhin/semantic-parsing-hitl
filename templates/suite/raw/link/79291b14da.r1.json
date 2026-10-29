@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
+  "prompt_sha256": "cc0453a3463f67408b129fa390aef4092ee46c2f02935fffea0438c769d07c99",
   "item": {
     "id": "s79291b14da",
     "text": "Yusra laughed because of the rain."
   },
   "usage": {
-    "input": 56508,
-    "output": 139,
+    "input": 96811,
+    "output": 179,
     "thinking": null,
-    "total": 56647,
-    "cached": 54459,
+    "total": 96990,
+    "cached": 94762,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 56508,
-    "candidatesTokenCount": 139,
-    "totalTokenCount": 56647,
-    "cachedContentTokenCount": 54459,
+    "promptTokenCount": 96811,
+    "candidatesTokenCount": 179,
+    "totalTokenCount": 96990,
+    "cachedContentTokenCount": 94762,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 56508
+        "tokenCount": 96811
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 54459
+        "tokenCount": 94762
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 139
+        "tokenCount": 179
       }
     ]
   },
-  "raw_text": "{\"id\": \"s79291b14da\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"laugh\", \"actor\": \"@n1\", \"tense\": \"past\", \"span\": \"Yusra laughed\"}], \"unmapped\": [{\"span\": \"because of the rain\", \"code\": \"G00\", \"construction\": \"A causal multi-word prepositional phrase with a noun phrase object.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"s79291b14da\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"rain\", \"definite\": true, \"span\": \"the rain\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"laugh\", \"actor\": \"@n1\", \"tense\": \"past\", \"span\": \"Yusra laughed\"}, {\"t\": \"oblique\", \"id\": \"a1\", \"event\": \"@e1\", \"head\": \"BecauseOf\", \"object\": \"@x1\", \"span\": \"because of the rain\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s79291b14da",
     "instances": [
@@ -59,24 +59,33 @@
         "span": "Yusra"
       },
       {
+        "t": "witness",
+        "id": "x1",
+        "class": "rain",
+        "definite": true,
+        "span": "the rain"
+      },
+      {
         "t": "activity",
-        "id": "v1",
+        "id": "e1",
         "verb": "laugh",
         "actor": "@n1",
         "tense": "past",
         "span": "Yusra laughed"
-      }
-    ],
-    "unmapped": [
+      },
       {
-        "span": "because of the rain",
-        "code": "G00",
-        "construction": "A causal multi-word prepositional phrase with a noun phrase object."
+        "t": "oblique",
+        "id": "a1",
+        "event": "@e1",
+        "head": "BecauseOf",
+        "object": "@x1",
+        "span": "because of the rain"
       }
     ],
+    "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
+  "prompt_body_sha256": "5f35b0b60405a1050c286ffca67cb25269dec29edeff917ac9d528e5621abdb1",
   "run": 1,
   "case": {
     "template": "link",

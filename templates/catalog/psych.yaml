@@ -68,7 +68,8 @@ slots:
                 doc: "what the state is about, as an action: the ids of the instances that state it (its predication, with the experiencer as its actor); never together with stimulus; the referents it mentions are not listed"}
   tense:       {type: enum, values: [past, present, future], required: true,
                 doc: "the clause's tense; present is recorded, not inferred"}
-  aspect:      {type: enum, values: [simple, progressive, perfect], required: false, default: simple}
+  aspect:      {type: enum, values: [simple, progressive, perfect, about_to, due_to], required: false, default: simple,
+               doc: "simple; progressive for be V-ing; perfect for have V-ed; about_to for be about to V / on the point of V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word kept as the value (be going to V is the future tense, not a prospective)"}
 
 mints: {id: Event}
 
@@ -85,6 +86,8 @@ emits:
     when: "tense == future"
   - atom: "(Ongoing @id)"
     when: "aspect == progressive"
+  - atom: "(Prospective @id)"
+    when: "aspect == about_to or aspect == due_to"
 
 notes:
   - >-

@@ -69,7 +69,8 @@ slots:
               doc: "the state the undergoer comes to be in, when the text names it: a class (became a locksmith → locksmith) or a property (got wet → wet, turned red → red)"}
   tense:     {type: enum, values: [past, present, future], required: true,
               doc: "the clause's tense; present is recorded, not inferred"}
-  aspect:    {type: enum, values: [simple, progressive, perfect], required: false, default: simple}
+  aspect:    {type: enum, values: [simple, progressive, perfect, about_to, due_to], required: false, default: simple,
+             doc: "simple; progressive for be V-ing; perfect for have V-ed; about_to for be about to V / on the point of V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word kept as the value (be going to V is the future tense, not a prospective)"}
 
 mints: {id: Event}
 
@@ -86,6 +87,8 @@ emits:
     when: "tense == future"
   - atom: "(Ongoing @id)"
     when: "aspect == progressive"
+  - atom: "(Prospective @id)"
+    when: "aspect == about_to or aspect == due_to"
 
 notes:
   - >-
@@ -226,3 +229,16 @@ examples:
     - category: abstain
       text: "Ottoline helped Lamine."
       expected: {abstain: true, template: activity}                   # the object is left as it was
+    - category: positive
+      note: about to on a change of state
+      text: "The price is about to fall."
+      instances:
+        - {t: witness, id: x1, class: price, definite: true}
+        - {t: change-of-state, id: e1, verb: fall, undergoer: "@x1", tense: present, aspect: about_to}
+    - category: positive
+      note: due to on an event noun's start, with a deictic time
+      text: "The audit is due to start tomorrow."
+      instances:
+        - {t: witness, id: x1, class: audit, definite: true, eventive: true}
+        - {t: change-of-state, id: e1, verb: start, undergoer: "@x1", tense: present, aspect: due_to}
+        - {t: time, id: t1, event: "@e1", deictic: tomorrow, anchor: "@now"}

@@ -2,7 +2,7 @@
 
 Generated from `templates/atom-type-substrates.json` (schema `atom-type-substrates/1`) by `templates/tmpl/gen_substrate.py`, together with `templates/generated/atom-types.metta`. Do not edit by hand; regenerate with `cd templates && python -m tmpl.gen_substrate`.
 
-147 heads in 14 kinds (7 proposed; 147 with a reviewed type declaration so far). `type-def` is the PeTTa declaration emitted for the head; `?` as the output type means the head is not yet reviewed and is absent from the `.metta` file; `%Undefined%` marks a position the head takes but the JSON does not type.
+154 heads in 14 kinds (7 proposed; 154 with a reviewed type declaration so far). `type-def` is the PeTTa declaration emitted for the head; `?` as the output type means the head is not yet reviewed and is absent from the `.metta` file; `%Undefined%` marks a position the head takes but the JSON does not type.
 
 Every atom is carried as a statement (: <proof-name> <atom> <tv>), tv = (STV strength confidence) or another engine truth value. The carrier is not an atom kind: ':' is never type-declared (it is also PeTTa's type-declaration head) and the truth value is declared by the engine, not by this substrate.
 
@@ -389,7 +389,7 @@ type-def: (: Still (-> Event Proposition))  ; and 1 more (per arity / per union 
 gloss: Continuative: the eventuality still holds (positive counterpart of cessation).
 
 
-## temporal (23)
+## temporal (24)
 
 head: Before
 kind: temporal
@@ -491,6 +491,13 @@ kind: temporal
 arity: 1
 type-def: (: Past (-> Event Proposition))  ; and 1 more (per arity / per union alternative)
 gloss: Past tense on an eventuality.
+
+
+head: Prospective
+kind: temporal
+arity: 1
+type-def: (: Prospective (-> Event Proposition))
+gloss: Prospective aspect: the eventuality is upcoming at the clause's reference time (be about to V, be due to V, be to V; the word is the record's aspect value). As Ongoing says underway, Prospective says ahead; whether it came about is not stated.
 
 
 head: Quarter
@@ -869,7 +876,7 @@ type-def: (: WeekdayNumber (-> Class Number Proposition))
 gloss: Seeded lexicon fact giving a weekday name its number (monday=1). Background fact (seeded), never parser output.
 
 
-## discourse (15)
+## discourse (21)
 
 head: Although
 kind: discourse
@@ -888,8 +895,15 @@ gloss: Causal connective 'as a result'. Order: (Connective main-clause-eventuali
 head: Because
 kind: discourse
 arity: 2
-type-def: (: Because (-> Event Event Proposition))
-gloss: Causal connective 'because'. Order: (Connective main-clause-eventuality subordinate-eventuality); a copular endpoint is reified as a state witness. The head is the surface connective itself, never normalized.
+type-def: (: Because (-> Event Event Proposition))  ; and 1 more (per arity / per union alternative)
+gloss: Causal connective 'because'. Order: (Connective main-clause-eventuality subordinate-eventuality); a copular endpoint is reified as a state witness. The head is the surface connective itself, never normalized. The second argument is an eventuality in a link between clauses, or the thing named as the cause when a rule reads a causal preposition (because of, due to, owing to, thanks to, on account of) as Because.
+
+
+head: BecauseOf
+kind: discourse
+arity: 2
+type-def: (: BecauseOf (-> Event Instance Proposition))
+gloss: A cause stated by the preposition 'because of' on the event: (BecauseOf e x) — e because of x; the words are the head, a background rule reads it as Because.
 
 
 head: But
@@ -913,6 +927,13 @@ type-def: (: Despite (-> Event Event Proposition))
 gloss: Concessive connective 'despite'. Order: (Connective main-clause-eventuality subordinate-eventuality); a copular endpoint is reified as a state witness. The head is the surface connective itself, never normalized.
 
 
+head: DueTo
+kind: discourse
+arity: 2
+type-def: (: DueTo (-> Event Instance Proposition))
+gloss: A cause stated by the preposition 'due to' on the event: (DueTo e x) — e due to x; the words are the head, a background rule reads it as Because (the schedule reading 'is due to V' is the Prospective aspect, not this).
+
+
 head: EvenThough
 kind: discourse
 arity: 2
@@ -925,6 +946,27 @@ kind: discourse
 arity: 2
 type-def: (: InOrderTo (-> Event Proposition Proposition))
 gloss: Purpose connective 'in order to'. Order: (InOrderTo action-event aim); the aim is the purpose clause SEALED as one term (an aim is not an occurrence: nothing of it is asserted on its own), its actor the action's subject.
+
+
+head: InSpiteOf
+kind: discourse
+arity: 2
+type-def: (: InSpiteOf (-> Event Instance Proposition))
+gloss: A concession stated by the preposition 'in spite of' on the event: (InSpiteOf e x), beside Despite; no rule relates the two.
+
+
+head: OnAccountOf
+kind: discourse
+arity: 2
+type-def: (: OnAccountOf (-> Event Instance Proposition))
+gloss: A cause stated by the preposition 'on account of' on the event: (OnAccountOf e x); a background rule reads it as Because.
+
+
+head: OwingTo
+kind: discourse
+arity: 2
+type-def: (: OwingTo (-> Event Instance Proposition))
+gloss: A cause stated by the preposition 'owing to' on the event: (OwingTo e x); a background rule reads it as Because.
 
 
 head: Since
@@ -946,6 +988,13 @@ kind: discourse
 arity: 2
 type-def: (: SoAsTo (-> Event Proposition Proposition))
 gloss: Purpose connective 'so as to'. Order: (SoAsTo action-event aim); the aim is the purpose clause SEALED as one term (an aim is not an occurrence: nothing of it is asserted on its own), its actor the action's subject.
+
+
+head: ThanksTo
+kind: discourse
+arity: 2
+type-def: (: ThanksTo (-> Event Instance Proposition))
+gloss: A cause stated by the preposition 'thanks to' on the event: (ThanksTo e x), the cause often an individual; a background rule reads it as Because.
 
 
 head: Therefore
@@ -1099,7 +1148,7 @@ Heads the prompt licenses generically; the validator checks position and arity o
 - head of a nominalization class-relation, e.g. (Build dam_builder dam)
 - skolem-function head (sk_<verb>) in a scope construction, e.g. (sk_y $x)
 
-Oblique prepositions (62), all declared `(-> Instance|Class Instance|Proposition Proposition)`: About, Above, Across, After, Against, Along, Among, Around, As, At, Before, Behind, Below, Beneath, Beside, Besides, Between, Beyond, But, By, Concerning, Despite, Down, During, Except, For, From, In, Inside, Into, Like, Near, Of, Off, On, Onto, Opposite, Out, Outside, Over, Past, Per, Regarding, Round, Since, Than, Through, Throughout, Till, To, Toward, Towards, Under, Underneath, Unlike, Until, Up, Upon, Via, With, Within, Without.
+Oblique prepositions (68), all declared `(-> Instance|Class Instance|Proposition Proposition)`: About, Above, Across, After, Against, Along, Among, Around, As, At, BecauseOf, Before, Behind, Below, Beneath, Beside, Besides, Between, Beyond, But, By, Concerning, Despite, Down, DueTo, During, Except, For, From, In, InSpiteOf, Inside, Into, Like, Near, Of, Off, On, OnAccountOf, Onto, Opposite, Out, Outside, Over, OwingTo, Past, Per, Regarding, Round, Since, Than, ThanksTo, Through, Throughout, Till, To, Toward, Towards, Under, Underneath, Unlike, Until, Up, Upon, Via, With, Within, Without.
 
 ## notes
 

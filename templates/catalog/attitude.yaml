@@ -78,7 +78,8 @@ trigger:
       fond of Lamine: the adjective-complement template; able to V — is able to swim: a
       capability, the modal template; likely, bound, certain or sure TO V — Yusra is likely to
       win: the speaker's hedge over the clause, not a stance of the subject, the hedge template;
-      about to, due to: imminence, unmapped; hard, easy, difficult, impossible, important
+      about to, due to: the clause's prospective aspect (about_to / due_to), not an attitude;
+      hard, easy, difficult, impossible, important
       or safe to V — the quilt is hard to mend, it is important to rest: a quality of the
       action, the adjective-complement template with no bearer
 
@@ -93,7 +94,8 @@ slots:
             doc: "true when the verb or adjective presupposes the complement (know, realize, discover, learn, notice, remember, regret; aware, glad, sorry, surprised, upset, proud, happy / angry that), false otherwise (believe, think, suppose, assume, suspect, doubt, hope, fear, expect, claim, say, want, wish, intend, plan, decide, promise, agree; sure, certain, confident, convinced, afraid, worried, and every adjective with a to-infinitive)"}
   tense:   {type: enum, values: [past, present, future], required: true,
             doc: "the attitude clause's tense; present is recorded, not inferred"}
-  aspect:  {type: enum, values: [simple, progressive, perfect], required: false, default: simple}
+  aspect:  {type: enum, values: [simple, progressive, perfect, about_to, due_to], required: false, default: simple,
+           doc: "simple; progressive for be V-ing; perfect for have V-ed; about_to for be about to V / on the point of V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word kept as the value (be going to V is the future tense, not a prospective)"}
 
 mints: {id: Event}
 
@@ -111,6 +113,8 @@ emits:
     when: "tense == future"
   - atom: "(Ongoing @id)"
     when: "aspect == progressive"
+  - atom: "(Prospective @id)"
+    when: "aspect == about_to or aspect == due_to"
 
 notes:
   - >-

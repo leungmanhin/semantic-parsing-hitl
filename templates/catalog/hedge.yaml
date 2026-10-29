@@ -72,8 +72,9 @@ trigger:
       a stance of the subject — is sure that P, is afraid that P, is confident that P: the
       subject's attitude, the attitude template; a hedge is the speaker's, not the subject's
     - >-
-      imminence or a schedule — is about to leave, is due to arrive: not a commitment; no
-      template, report the predicate as unmapped; due to X as a cause likewise
+      imminence or a schedule — is about to leave, is due to arrive: the clause's own template
+      with the prospective aspect (aspect about_to / due_to), not a commitment dial; due to X as
+      a cause: an oblique (DueTo)
     - >-
       a hedge on a number — about 40 years old, roughly 3 metres: the measure template's own
       hedge slot, the number kept
@@ -257,8 +258,8 @@ examples:
       text: "Teodor might be tired."
       expected: {abstain: true, template: modal}                      # a possibility
     - category: abstain
-      text: "Yusra is about to leave."
-      expected: {abstain: true, gap: G00, span: "about to leave"}     # imminence, not a commitment
+      text: "Lamine was about to sing."
+      expected: {abstain: true, template: activity}                   # a prospective aspect of the clause, not a hedge
     - category: abstain
       text: "Ottoline is about 40 years old."
       expected: {abstain: true, template: measure}                    # a hedge on a number

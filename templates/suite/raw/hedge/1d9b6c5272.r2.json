@@ -1,0 +1,84 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "57ef2e171cd233f2a96374e53fbc38fd5d9147adab7fc8cc7075c355e3292b40",
+  "item": {
+    "id": "s1d9b6c5272",
+    "text": "Lamine was about to sing."
+  },
+  "usage": {
+    "input": 96436,
+    "output": 113,
+    "thinking": null,
+    "total": 96549,
+    "cached": 94387,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 96436,
+    "candidatesTokenCount": 113,
+    "totalTokenCount": 96549,
+    "cachedContentTokenCount": 94387,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 96436
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 94387
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 113
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s1d9b6c5272\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"sing\", \"actor\": \"@n1\", \"tense\": \"past\", \"aspect\": \"about_to\", \"span\": \"Lamine was about to sing\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s1d9b6c5272",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "sing",
+        "actor": "@n1",
+        "tense": "past",
+        "aspect": "about_to",
+        "span": "Lamine was about to sing"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "6266a57f9e8948e2783e87645fb89d9030b7c0967645d5fa8f449734a919f87c",
+  "run": 2,
+  "case": {
+    "template": "hedge",
+    "section": "held_out",
+    "index": 11,
+    "category": "abstain",
+    "text": "Lamine was about to sing.",
+    "key": "1d9b6c5272"
+  }
+}

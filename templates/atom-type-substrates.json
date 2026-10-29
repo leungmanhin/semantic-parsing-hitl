@@ -125,11 +125,11 @@
       "arity": 2,
       "arg_types": [
         "Event",
-        "Event"
+        "Event|Instance"
       ],
       "out": "Proposition",
       "opaque": true,
-      "gloss": "Causal connective 'because'. Order: (Connective main-clause-eventuality subordinate-eventuality); a copular endpoint is reified as a state witness. The head is the surface connective itself, never normalized."
+      "gloss": "Causal connective 'because'. Order: (Connective main-clause-eventuality subordinate-eventuality); a copular endpoint is reified as a state witness. The head is the surface connective itself, never normalized. The second argument is an eventuality in a link between clauses, or the thing named as the cause when a rule reads a causal preposition (because of, due to, owing to, thanks to, on account of) as Because."
     },
     "Before": {
       "kind": "temporal",
@@ -360,6 +360,72 @@
       "out": "Proposition",
       "opaque": true,
       "gloss": "Concessive connective 'despite'. Order: (Connective main-clause-eventuality subordinate-eventuality); a copular endpoint is reified as a state witness. The head is the surface connective itself, never normalized."
+    },
+    "BecauseOf": {
+      "kind": "discourse",
+      "arity": 2,
+      "arg_types": [
+        "Event",
+        "Instance"
+      ],
+      "out": "Proposition",
+      "opaque": false,
+      "gloss": "A cause stated by the preposition 'because of' on the event: (BecauseOf e x) — e because of x; the words are the head, a background rule reads it as Because."
+    },
+    "DueTo": {
+      "kind": "discourse",
+      "arity": 2,
+      "arg_types": [
+        "Event",
+        "Instance"
+      ],
+      "out": "Proposition",
+      "opaque": false,
+      "gloss": "A cause stated by the preposition 'due to' on the event: (DueTo e x) — e due to x; the words are the head, a background rule reads it as Because (the schedule reading 'is due to V' is the Prospective aspect, not this)."
+    },
+    "OwingTo": {
+      "kind": "discourse",
+      "arity": 2,
+      "arg_types": [
+        "Event",
+        "Instance"
+      ],
+      "out": "Proposition",
+      "opaque": false,
+      "gloss": "A cause stated by the preposition 'owing to' on the event: (OwingTo e x); a background rule reads it as Because."
+    },
+    "ThanksTo": {
+      "kind": "discourse",
+      "arity": 2,
+      "arg_types": [
+        "Event",
+        "Instance"
+      ],
+      "out": "Proposition",
+      "opaque": false,
+      "gloss": "A cause stated by the preposition 'thanks to' on the event: (ThanksTo e x), the cause often an individual; a background rule reads it as Because."
+    },
+    "OnAccountOf": {
+      "kind": "discourse",
+      "arity": 2,
+      "arg_types": [
+        "Event",
+        "Instance"
+      ],
+      "out": "Proposition",
+      "opaque": false,
+      "gloss": "A cause stated by the preposition 'on account of' on the event: (OnAccountOf e x); a background rule reads it as Because."
+    },
+    "InSpiteOf": {
+      "kind": "discourse",
+      "arity": 2,
+      "arg_types": [
+        "Event",
+        "Instance"
+      ],
+      "out": "Proposition",
+      "opaque": false,
+      "gloss": "A concession stated by the preposition 'in spite of' on the event: (InSpiteOf e x), beside Despite; no rule relates the two."
     },
     "Directive": {
       "kind": "scope",
@@ -954,6 +1020,16 @@
       "out": "Proposition",
       "opaque": false,
       "gloss": "Progressive / continuative aspect."
+    },
+    "Prospective": {
+      "kind": "temporal",
+      "arity": 1,
+      "arg_types": [
+        "Event"
+      ],
+      "out": "Proposition",
+      "opaque": false,
+      "gloss": "Prospective aspect: the eventuality is upcoming at the clause's reference time (be about to V, be due to V, be to V; the word is the record's aspect value). As Ongoing says underway, Prospective says ahead; whether it came about is not stated."
     },
     "Only": {
       "kind": "particle",
@@ -1708,6 +1784,7 @@
       "Around",
       "As",
       "At",
+      "BecauseOf",
       "Before",
       "Behind",
       "Below",
@@ -1721,11 +1798,13 @@
       "Concerning",
       "Despite",
       "Down",
+      "DueTo",
       "During",
       "Except",
       "For",
       "From",
       "In",
+      "InSpiteOf",
       "Inside",
       "Into",
       "Like",
@@ -1733,17 +1812,20 @@
       "Of",
       "Off",
       "On",
+      "OnAccountOf",
       "Onto",
       "Opposite",
       "Out",
       "Outside",
       "Over",
+      "OwingTo",
       "Past",
       "Per",
       "Regarding",
       "Round",
       "Since",
       "Than",
+      "ThanksTo",
       "Through",
       "Throughout",
       "Till",

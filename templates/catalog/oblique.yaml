@@ -8,7 +8,10 @@
 # the object of a prepositional verb (wait for, look at, depend on, refer to, deal with), which is
 # never a direct-object role. Where, when, whence, whither, by what means, with whom, for whose
 # benefit and how have their own templates (location, time, motion, adjunct, manner); this
-# template takes the rest.
+# template takes the rest. A multi-word preposition keeps its words as the head, CamelCased —
+# (BecauseOf sk_laugh_1 sk_rain_1), (DueTo sk_delay_1 sk_rain_1), (InSpiteOf sk_sing_1 sk_rain_1)
+# —, and the background rules read each causal one (because of, due to, owing to, thanks to, on
+# account of) as Because.
 
 id: oblique
 family: attachment
@@ -24,9 +27,14 @@ trigger:
     argued over the quilt, complained about the ladder, dealt with the audit), in what capacity
     or likeness (worked as a weaver, sang like a bird), without what (left without the quilt),
     despite what (sang despite the rain), through or along what path (walked through the barn,
-    ran across the field), among or between what (sat among the ferrets). The event is parsed
-    with its own template; the oblique names the event, the preposition as written (capitalized)
-    and the object. One instance per phrase. Decide by the question the phrase answers: where,
+    ran across the field), among or between what (sat among the ferrets), and a cause or a
+    concession stated by a MULTI-WORD preposition (laughed because of the rain, waited owing to
+    the rain, rested on account of the storm, sang thanks to Lamine, sang in spite of the rain:
+    the phrase CamelCased is the head — BecauseOf, DueTo, OwingTo, ThanksTo, OnAccountOf,
+    InSpiteOf). The event is parsed with its own template; the oblique names the event, the
+    preposition as written (capitalized) and the object. A phrase predicated of an EVENT NOUN by
+    be (the delay was due to the rain) attaches to that eventive witness, with the clause's
+    tense in `tense`. One instance per phrase. Decide by the question the phrase answers: where,
     when, whence, whither, by what means, with whom, for whose benefit and how go to the
     templates that own them; everything else comes here.
   surface_forms:
@@ -35,6 +43,9 @@ trigger:
     - "<clause> as / like <object>"                     # worked as a weaver; sang like a bird
     - "<clause> without / despite <object>"             # left without the quilt; sang despite the rain
     - "<clause> through / across / along <object>"      # walked through the barn: a path
+    - "<clause> because of / due to / owing to / thanks to / on account of <object>"   # a cause stated by a preposition: BecauseOf, DueTo … the head; the rules read it as Because
+    - "<clause> in spite of <object>"                   # a concession: InSpiteOf, beside Despite
+    - "<event noun> was due to <object>"                # predicated of an event noun by be: on the eventive witness, the clause's tense recorded
   boundary:                   # looks like an oblique but is not one
     - >-
       where the event takes place — in the barn, at the market, on the roof, near the shed: a
@@ -68,9 +79,11 @@ trigger:
       denies the event, by asserts it: a scope question); report the phrase as unmapped; a gerund
       after a temporal preposition — after leaving: a time relation
     - >-
-      a multi-word preposition with no head of its own — because of the rain, due to the audit,
-      instead of Lamine, on behalf of Yusra, in spite of the storm: report the phrase as
-      unmapped (in spite of is not despite)
+      a multi-word preposition that is neither a cause nor a concession — instead of Lamine, on
+      behalf of Yusra, in front of the shed: no head yet; report the phrase as unmapped
+    - >-
+      due to with a verb — is due to arrive: the clause's prospective aspect (due_to), not a
+      cause
     - >-
       the price or the exchange of a transfer — sold the spindle for forty euros: a measure, no
       slot here; report the phrase as unmapped
@@ -78,14 +91,21 @@ trigger:
 slots:
   id:     {type: id, required: true, doc: "your label for the attachment (a1, a2 …)"}
   event:  {type: filler, class: Event, attaches: true, required: true,
-           doc: "the predication the phrase attaches to: the id of the clause's event instance"}
-  head:   {type: enum, values: [About, Above, Across, Against, Along, Among, Around, As, At, Behind, Below, Beneath, Beside, Besides, Between, Beyond, By, Concerning, Despite, Down, Except, For, From, In, Inside, Into, Like, Near, Of, "Off", "On", Onto, Opposite, Out, Outside, Over, Past, Per, Regarding, Round, Through, To, Toward, Towards, Under, Underneath, Unlike, Up, Upon, Via, With, Within, Without],
-           required: true, doc: "the preposition as written, capitalized (about → About, without → Without); never a synonym"}
+           doc: "the predication the phrase attaches to: the id of the clause's event instance, or of an eventive witness when the phrase is predicated of an event noun by be (the delay was due to the rain: the delay)"}
+  head:   {type: enum, values: [About, Above, Across, Against, Along, Among, Around, As, At, Behind, Below, Beneath, Beside, Besides, Between, Beyond, By, Concerning, Despite, Down, Except, For, From, In, Inside, Into, Like, Near, Of, "Off", "On", Onto, Opposite, Out, Outside, Over, Past, Per, Regarding, Round, Through, To, Toward, Towards, Under, Underneath, Unlike, Up, Upon, Via, With, Within, Without,
+                         BecauseOf, DueTo, OwingTo, ThanksTo, OnAccountOf, InSpiteOf],
+           required: true, doc: "the preposition as written, capitalized (about → About, without → Without), a multi-word one CamelCased (because of → BecauseOf, due to → DueTo, owing to → OwingTo, thanks to → ThanksTo, on account of → OnAccountOf, in spite of → InSpiteOf); never a synonym"}
   object: {type: filler, class: Entity, required: true,
            doc: "the phrase's object: a referent id (a witness, a name) for a specific thing, or a bare lemma for a non-specific or class-level one (as a weaver → weaver, without a quilt → quilt, like a bird → bird)"}
+  tense:  {type: enum, values: [past, present, future], required: false,
+           doc: "only when the phrase is predicated of an event noun by be (the delay was due to the rain): the clause's tense; otherwise absent, the event's own template records it"}
 
 emits:
   - atom: "({head} {event} {object})"
+  - atom: "(Past {event})"                  # predicated of an event noun by be: the clause's tense on that event
+    when: "tense == past"
+  - atom: "(Future {event})"
+    when: "tense == future"
 
 notes:
   - >-
@@ -96,6 +116,11 @@ notes:
   - >-
     An attachment has no symbol of its own: its atom is rendered wherever its event is rendered,
     inside a negation, a modal or a rule over the clause.
+  - >-
+    A multi-word preposition keeps its words as the head (BecauseOf, DueTo, OwingTo, ThanksTo,
+    OnAccountOf, InSpiteOf), as despite is Despite; the background rules read each causal one as
+    Because, so a why-question worded with Because finds a cause stated by a connective or by a
+    preposition alike, while in spite of stays a concession beside Despite.
 
 depends_on: []
 composes_with: [negation, modal, generic, location, time, manner, adjunct]
@@ -270,3 +295,53 @@ examples:
     - category: abstain
       text: "Teodor is taller than Yusra."
       expected: {abstain: true, template: comparative}                # a comparison with a standard
+    - category: positive
+      note: a multi-word causal preposition — the phrase CamelCased is the head, a rule reads it as Because
+      text: "Yusra laughed because of the rain."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, class: rain, definite: true}
+        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past}
+        - {t: oblique, id: a1, event: "@v1", head: BecauseOf, object: "@x1"}
+    - category: positive
+      note: due to predicated of an event noun by be — the phrase on the eventive witness, the clause's tense on it
+      text: "The delay was due to the rain."
+      instances:
+        - {t: witness, id: x1, class: delay, definite: true, eventive: true}
+        - {t: witness, id: x2, class: rain, definite: true}
+        - {t: oblique, id: a1, event: "@x1", head: DueTo, object: "@x2", tense: past}
+    - category: positive
+      note: on account of
+      text: "Teodor rested on account of the storm."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, class: storm, definite: true}
+        - {t: activity, id: v1, verb: rest, actor: "@n1", tense: past}
+        - {t: oblique, id: a1, event: "@v1", head: OnAccountOf, object: "@x1"}
+    - category: positive
+      note: thanks to a person — the cause an individual
+      text: "Yusra sang thanks to Lamine."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: activity, id: v1, verb: sing, actor: "@n1", tense: past}
+        - {t: oblique, id: a1, event: "@v1", head: ThanksTo, object: "@n2"}
+    - category: positive
+      note: owing to
+      text: "Lamine waited owing to the rain."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: x1, class: rain, definite: true}
+        - {t: activity, id: v1, verb: wait, actor: "@n1", tense: past}
+        - {t: oblique, id: a1, event: "@v1", head: OwingTo, object: "@x1"}
+    - category: positive
+      note: in spite of — a concession, the phrase the head beside despite
+      text: "Teodor sang in spite of the rain."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, class: rain, definite: true}
+        - {t: activity, id: v1, verb: sing, actor: "@n1", tense: past}
+        - {t: oblique, id: a1, event: "@v1", head: InSpiteOf, object: "@x1"}
+    - category: abstain
+      text: "Lamine sang instead of Yusra."
+      expected: {abstain: true, gap: G00, span: "instead of Yusra"}     # a substitution: no head yet

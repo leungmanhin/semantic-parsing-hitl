@@ -1,0 +1,85 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "57ef2e171cd233f2a96374e53fbc38fd5d9147adab7fc8cc7075c355e3292b40",
+  "item": {
+    "id": "sd33fc1c384",
+    "text": "The price is about to fall."
+  },
+  "usage": {
+    "input": 96434,
+    "output": 120,
+    "thinking": null,
+    "total": 96554,
+    "cached": 94385,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 96434,
+    "candidatesTokenCount": 120,
+    "totalTokenCount": 96554,
+    "cachedContentTokenCount": 94385,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 96434
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 94385
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 120
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sd33fc1c384\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"price\", \"definite\": true, \"span\": \"The price\"}, {\"t\": \"change-of-state\", \"id\": \"e1\", \"verb\": \"fall\", \"undergoer\": \"@x1\", \"tense\": \"present\", \"aspect\": \"about_to\", \"span\": \"The price is about to fall\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sd33fc1c384",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "price",
+        "definite": true,
+        "span": "The price"
+      },
+      {
+        "t": "change-of-state",
+        "id": "e1",
+        "verb": "fall",
+        "undergoer": "@x1",
+        "tense": "present",
+        "aspect": "about_to",
+        "span": "The price is about to fall"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "6266a57f9e8948e2783e87645fb89d9030b7c0967645d5fa8f449734a919f87c",
+  "run": 3,
+  "case": {
+    "template": "change-of-state",
+    "section": "held_out",
+    "index": 16,
+    "category": "positive",
+    "text": "The price is about to fall.",
+    "key": "d33fc1c384"
+  }
+}

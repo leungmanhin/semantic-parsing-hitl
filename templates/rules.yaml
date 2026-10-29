@@ -585,6 +585,46 @@ rules:
       (Not (And (Member sk_arrive_1 arrive) (Agent sk_arrive_1 sk_teodor_1) (Past sk_arrive_1))),
       the catalog's own form for a denied past clause.
 
+  # Causal prepositions: a cause stated by a preposition on the event (because of, due to, owing
+  # to, thanks to, on account of) keeps its words as the head in the parse; each is read as
+  # Because, so a why-question worded with Because finds a cause stated by a connective or by a
+  # preposition alike. In spite of stays a concession beside Despite: no rule.
+  - id: becauseof_cause
+    meaning: a cause stated with because of is a cause
+    premises: ["(BecauseOf $e $x)"]
+    conclusion: "(Because $e $x)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [oblique]
+  - id: dueto_cause
+    meaning: a cause stated with due to is a cause
+    premises: ["(DueTo $e $x)"]
+    conclusion: "(Because $e $x)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [oblique]
+  - id: owingto_cause
+    meaning: a cause stated with owing to is a cause
+    premises: ["(OwingTo $e $x)"]
+    conclusion: "(Because $e $x)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [oblique]
+  - id: thanksto_cause
+    meaning: a cause stated with thanks to is a cause
+    premises: ["(ThanksTo $e $x)"]
+    conclusion: "(Because $e $x)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [oblique]
+  - id: onaccountof_cause
+    meaning: a cause stated with on account of is a cause
+    premises: ["(OnAccountOf $e $x)"]
+    conclusion: "(Because $e $x)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [oblique]
+
 # Lexicon facts: background atoms with no variables, loaded beside the rules. A group names its
 # head and its entries (one argument list per atom); each entry becomes a statement named by the
 # group id and the entry's symbols — (: pole_short_tall (ScaleOpposite short tall) (STV 1.0 0.99)).

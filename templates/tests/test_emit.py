@@ -329,6 +329,23 @@ class EmitTests(unittest.TestCase):
         self.assertIn("(Ongoing sk_send_1)", atoms)
         self.assertFalse(any(a.startswith("(Past ") or a.startswith("(Future ") for a in atoms))
 
+    def test_a_prospective_aspect_marks_the_event_upcoming(self):
+        """about_to / due_to on a predication emit (Prospective e) beside the clause's tense: none
+        for a present matrix, Past for a past one; a simple aspect emits no mark."""
+        out = E.emit({"id": "p", "instances": [{"t": "named-entity", "id": "n1", "name": "Yusra"},
+                                                {"t": "motion", "id": "m1", "verb": "leave", "mover": "@n1", "tense": "present", "aspect": "about_to"}]}, CATALOG)
+        atoms = atoms_of(out["statements"])
+        self.assertIn("(Prospective sk_leave_1)", atoms)
+        self.assertFalse(any(a.startswith("(Past ") or a.startswith("(Future ") for a in atoms))
+        out = E.emit({"id": "p", "instances": [{"t": "named-entity", "id": "n1", "name": "Lamine"},
+                                                {"t": "activity", "id": "v1", "verb": "sing", "actor": "@n1", "tense": "past", "aspect": "due_to"}]}, CATALOG)
+        atoms = atoms_of(out["statements"])
+        self.assertIn("(Prospective sk_sing_1)", atoms)
+        self.assertIn("(Past sk_sing_1)", atoms)
+        out = E.emit({"id": "p", "instances": [{"t": "named-entity", "id": "n1", "name": "Lamine"},
+                                                {"t": "activity", "id": "v1", "verb": "sing", "actor": "@n1", "tense": "past"}]}, CATALOG)
+        self.assertFalse(any("Prospective" in a for a in atoms_of(out["statements"])))
+
     def test_degree_asserts_the_positive_only_where_the_text_does(self):
         """An intensifier keeps the property asserted beside its degree; an approximator or a
         comparison class leaves only the degree; both together record both and no positive; a

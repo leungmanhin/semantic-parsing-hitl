@@ -1,0 +1,93 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "cc0453a3463f67408b129fa390aef4092ee46c2f02935fffea0438c769d07c99",
+  "item": {
+    "id": "s12b580735f",
+    "text": "The delay was due to the rain."
+  },
+  "usage": {
+    "input": 96812,
+    "output": 152,
+    "thinking": null,
+    "total": 96964,
+    "cached": 94763,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 96812,
+    "candidatesTokenCount": 152,
+    "totalTokenCount": 96964,
+    "cachedContentTokenCount": 94763,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 96812
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 94763
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 152
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s12b580735f\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"delay\", \"definite\": true, \"eventive\": true, \"span\": \"The delay\"}, {\"t\": \"witness\", \"id\": \"x2\", \"class\": \"rain\", \"definite\": true, \"span\": \"the rain\"}, {\"t\": \"oblique\", \"id\": \"a1\", \"event\": \"@x1\", \"head\": \"DueTo\", \"object\": \"@x2\", \"tense\": \"past\", \"span\": \"was due to the rain\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s12b580735f",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "delay",
+        "definite": true,
+        "eventive": true,
+        "span": "The delay"
+      },
+      {
+        "t": "witness",
+        "id": "x2",
+        "class": "rain",
+        "definite": true,
+        "span": "the rain"
+      },
+      {
+        "t": "oblique",
+        "id": "a1",
+        "event": "@x1",
+        "head": "DueTo",
+        "object": "@x2",
+        "tense": "past",
+        "span": "was due to the rain"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "5f35b0b60405a1050c286ffca67cb25269dec29edeff917ac9d528e5621abdb1",
+  "run": 3,
+  "case": {
+    "template": "oblique",
+    "section": "held_out",
+    "index": 20,
+    "category": "positive",
+    "text": "The delay was due to the rain.",
+    "key": "12b580735f"
+  }
+}

@@ -62,7 +62,8 @@ slots:
             doc: "what the action is done to or with: the object; a bare lemma for a non-specific one (cooked dinner)"}
   tense:   {type: enum, values: [past, present, future], required: true,
             doc: "the clause's tense; present is recorded, not inferred"}
-  aspect:  {type: enum, values: [simple, progressive, perfect], required: false, default: simple}
+  aspect:  {type: enum, values: [simple, progressive, perfect, about_to, due_to], required: false, default: simple,
+           doc: "simple; progressive for be V-ing; perfect for have V-ed; about_to for be about to V / on the point of V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word kept as the value (be going to V is the future tense, not a prospective)"}
 
 mints: {id: Event}
 
@@ -78,6 +79,8 @@ emits:
     when: "tense == future"
   - atom: "(Ongoing @id)"
     when: "aspect == progressive"
+  - atom: "(Prospective @id)"
+    when: "aspect == about_to or aspect == due_to"
 
 notes:
   - >-
@@ -223,3 +226,9 @@ examples:
     - category: abstain
       text: "Yusra had a rest."
       expected: {abstain: true, gap: G00, span: "had a rest"}         # light-verb construction
+    - category: positive
+      note: a prospective with a past matrix — the clause's tense past, the event upcoming at that time
+      text: "Lamine was about to sing."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: activity, id: v1, verb: sing, actor: "@n1", tense: past, aspect: about_to}

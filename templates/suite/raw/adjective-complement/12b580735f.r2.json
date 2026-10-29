@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "1286d8bbfeb2da64ec2b9cfbb063951d7dca144e9191e5590977f8e5bd4891ee",
+  "prompt_sha256": "cc0453a3463f67408b129fa390aef4092ee46c2f02935fffea0438c769d07c99",
   "item": {
     "id": "s12b580735f",
     "text": "The delay was due to the rain."
   },
   "usage": {
-    "input": 86189,
-    "output": 74,
+    "input": 96812,
+    "output": 118,
     "thinking": null,
-    "total": 86263,
-    "cached": 84140,
+    "total": 96930,
+    "cached": 94763,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,48 +25,67 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 86189,
-    "candidatesTokenCount": 74,
-    "totalTokenCount": 86263,
-    "cachedContentTokenCount": 84140,
+    "promptTokenCount": 96812,
+    "candidatesTokenCount": 118,
+    "totalTokenCount": 96930,
+    "cachedContentTokenCount": 94763,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 86189
+        "tokenCount": 96812
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 84140
+        "tokenCount": 94763
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 74
+        "tokenCount": 118
       }
     ]
   },
-  "raw_text": "{\"id\": \"s12b580735f\", \"instances\": [], \"unmapped\": [{\"span\": \"The delay was due to the rain\", \"code\": \"G00\", \"construction\": \"A copular predicate stating a cause with 'due to' and a noun phrase.\"}], \"issues\": []}",
+  "raw_text": "{\"id\":\"s12b580735f\",\"instances\":[{\"t\":\"witness\",\"id\":\"x1\",\"class\":\"delay\",\"definite\":true,\"eventive\":true,\"span\":\"The delay\"},{\"t\":\"witness\",\"id\":\"x2\",\"class\":\"rain\",\"definite\":true,\"span\":\"the rain\"},{\"t\":\"oblique\",\"id\":\"a1\",\"event\":\"@x1\",\"head\":\"DueTo\",\"object\":\"@x2\",\"tense\":\"past\",\"span\":\"The delay was due to the rain\"}],\"unmapped\":[],\"issues\":[]}",
   "response": {
     "id": "s12b580735f",
-    "instances": [],
-    "unmapped": [
+    "instances": [
       {
-        "span": "The delay was due to the rain",
-        "code": "G00",
-        "construction": "A copular predicate stating a cause with 'due to' and a noun phrase."
+        "t": "witness",
+        "id": "x1",
+        "class": "delay",
+        "definite": true,
+        "eventive": true,
+        "span": "The delay"
+      },
+      {
+        "t": "witness",
+        "id": "x2",
+        "class": "rain",
+        "definite": true,
+        "span": "the rain"
+      },
+      {
+        "t": "oblique",
+        "id": "a1",
+        "event": "@x1",
+        "head": "DueTo",
+        "object": "@x2",
+        "tense": "past",
+        "span": "The delay was due to the rain"
       }
     ],
+    "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "fbd14f0c671be9cc8d5a741e5b5370494fbe710fbaca5af9546667bfec15f428",
+  "prompt_body_sha256": "5f35b0b60405a1050c286ffca67cb25269dec29edeff917ac9d528e5621abdb1",
   "run": 2,
   "case": {
     "template": "adjective-complement",
     "section": "held_out",
-    "index": 28,
+    "index": 34,
     "category": "abstain",
     "text": "The delay was due to the rain.",
     "key": "12b580735f"

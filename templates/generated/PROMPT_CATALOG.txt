@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 674f9c89cf091f16 · 58 templates
+catalog sha256 0a29b8dff014c28f · 58 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -681,7 +681,11 @@ Slots:
   the party the object comes from: the from-phrase.
 - `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
   not inferred.
-- `aspect` (optional; one of: simple, progressive, perfect).
+- `aspect` (optional; one of: simple, progressive, perfect, about_to, due_to): simple;
+  progressive for be V-ing; perfect for have V-ed; about_to for be about to V / on the point of
+  V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event
+  upcoming at the clause's time, the word kept as the value (be going to V is the future tense,
+  not a prospective).
 
 Example (with the source stated). TEXT: Ottoline took the envelope from Lamine.
 
@@ -778,7 +782,11 @@ Slots:
   dinner).
 - `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
   not inferred.
-- `aspect` (optional; one of: simple, progressive, perfect).
+- `aspect` (optional; one of: simple, progressive, perfect, about_to, due_to): simple;
+  progressive for be V-ing; perfect for have V-ed; about_to for be about to V / on the point of
+  V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event
+  upcoming at the clause's time, the word kept as the value (be going to V is the future tense,
+  not a prospective).
 
 Example (intransitive). TEXT: Yusra laughed.
 
@@ -879,14 +887,15 @@ Not this template:
   as its lemma; able to V — is able to swim: a capability, the modal template; supposed /
   required / allowed to V: a norm; likely, unlikely, bound, certain or sure TO V — likely to
   win: the hedge template over the infinitive's clause, the subject acting in it; about to, due
-  to — about to leave: imminence, no template, report the predicate as unmapped; too tired to
-  sing, tall enough to reach: the degree template, the infinitive reported
+  to — about to leave: the clause's own template with the prospective aspect (about_to /
+  due_to), not a complement; too tired to sing, tall enough to reach: the degree template, the
+  infinitive reported
 - a prepositional phrase on a verb — talked about the audit, waited for Teodor: an oblique on
   the event; on a noun — a book about ferrets, the lid of the box: a postmodifier or a
   part-whole
 - a prepositional idiom with no adjective — in trouble, out of the question, in fashion, at
   hand: no template; report the predicate as unmapped; due to / owing to — the delay was due to
-  the rain: a cause stated by a preposition, reported as unmapped
+  the rain: a cause stated by a preposition, an oblique (DueTo) on the event noun
 - a partitive or a hedge — one of the weavers, part of the plan, kind of tired: a part-whole, a
   proportion or a hedge, not a quality with a complement
 - a copular verb other than be — seems fond of Teodor, looks afraid of the ferret: the
@@ -923,7 +932,11 @@ Slots:
   object; the referents it mentions are not listed.
 - `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
   not inferred.
-- `aspect` (optional; one of: simple, progressive, perfect).
+- `aspect` (optional; one of: simple, progressive, perfect, about_to, due_to): simple;
+  progressive for be V-ing; perfect for have V-ed; about_to for be about to V / on the point of
+  V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event
+  upcoming at the clause's time, the word kept as the value (be going to V is the future tense,
+  not a prospective).
 - Exactly one of `object`, `complement` is filled.
 
 Example (the quality a state of its bearer, the complement under the preposition as written; no flat property). TEXT: Yusra is fond of Teodor.
@@ -1041,7 +1054,11 @@ Slots:
   actor or undergoer); the referents it mentions are not listed.
 - `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
   not inferred.
-- `aspect` (optional; one of: simple, progressive, perfect).
+- `aspect` (optional; one of: simple, progressive, perfect, about_to, due_to): simple;
+  progressive for be V-ing; perfect for have V-ed; about_to for be about to V / on the point of
+  V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event
+  upcoming at the clause's time, the word kept as the value (be going to V is the future tense,
+  not a prospective).
 
 Example (the phase event has no role of its own; the action is sealed as its Theme and marked as entailed). TEXT: Teodor began to sing.
 
@@ -1139,10 +1156,10 @@ Not this template:
 - an adjective with a noun-phrase complement — afraid of the ferret, sure of the result, fond of
   Lamine: the adjective-complement template; able to V — is able to swim: a capability, the
   modal template; likely, bound, certain or sure TO V — Yusra is likely to win: the speaker's
-  hedge over the clause, not a stance of the subject, the hedge template; about to, due to:
-  imminence, unmapped; hard, easy, difficult, impossible, important or safe to V — the quilt is
-  hard to mend, it is important to rest: a quality of the action, the adjective-complement
-  template with no bearer
+  hedge over the clause, not a stance of the subject, the hedge template; about to, due to: the
+  clause's prospective aspect (about_to / due_to), not an attitude; hard, easy, difficult,
+  impossible, important or safe to V — the quilt is hard to mend, it is important to rest: a
+  quality of the action, the adjective-complement template with no bearer
 
 Slots:
 
@@ -1163,7 +1180,11 @@ Slots:
   certain, confident, convinced, afraid, worried, and every adjective with a to-infinitive).
 - `tense` (required; one of: past, present, future): the attitude clause's tense; present is
   recorded, not inferred.
-- `aspect` (optional; one of: simple, progressive, perfect).
+- `aspect` (optional; one of: simple, progressive, perfect, about_to, due_to): simple;
+  progressive for be V-ing; perfect for have V-ed; about_to for be about to V / on the point of
+  V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event
+  upcoming at the clause's time, the word kept as the value (be going to V is the future tense,
+  not a prospective).
 
 Example. TEXT: Teodor believes that Lamine lent Ottoline the trowel.
 
@@ -1364,7 +1385,11 @@ Slots:
   (prevent, stop … from, keep … from).
 - `tense` (required; one of: past, present, future): the matrix clause's tense; present is
   recorded, not inferred.
-- `aspect` (optional; one of: simple, progressive, perfect).
+- `aspect` (optional; one of: simple, progressive, perfect, about_to, due_to): simple;
+  progressive for be V-ing; perfect for have V-ed; about_to for be about to V / on the point of
+  V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event
+  upcoming at the clause's time, the word kept as the value (be going to V is the future tense,
+  not a prospective).
 
 Example (the causee is the actor of the caused clause; make says it happened — the marker, not the parse, carries that). TEXT: Yusra made Teodor laugh.
 
@@ -1465,7 +1490,11 @@ Slots:
   a class (became a locksmith → locksmith) or a property (got wet → wet, turned red → red).
 - `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
   not inferred.
-- `aspect` (optional; one of: simple, progressive, perfect).
+- `aspect` (optional; one of: simple, progressive, perfect, about_to, due_to): simple;
+  progressive for be V-ing; perfect for have V-ed; about_to for be about to V / on the point of
+  V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event
+  upcoming at the clause's time, the word kept as the value (be going to V is the future tense,
+  not a prospective).
 
 Example (a change on its own). TEXT: The thermos cracked.
 
@@ -1753,7 +1782,11 @@ Slots:
   referents it mentions are not listed.
 - `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
   not inferred.
-- `aspect` (optional; one of: simple, progressive, perfect).
+- `aspect` (optional; one of: simple, progressive, perfect, about_to, due_to): simple;
+  progressive for be V-ing; perfect for have V-ed; about_to for be about to V / on the point of
+  V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event
+  upcoming at the clause's time, the word kept as the value (be going to V is the future tense,
+  not a prospective).
 - Exactly one of `message`, `content` is filled.
 
 Example (the message as a thing). TEXT: Ottoline told Teodor the news.
@@ -2003,7 +2036,11 @@ Slots:
   did not (fail, forget to, neglect).
 - `tense` (required; one of: past, present, future): the matrix clause's tense; present is
   recorded, not inferred.
-- `aspect` (optional; one of: simple, progressive, perfect).
+- `aspect` (optional; one of: simple, progressive, perfect, about_to, due_to): simple;
+  progressive for be V-ing; perfect for have V-ed; about_to for be about to V / on the point of
+  V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event
+  upcoming at the clause's time, the word kept as the value (be going to V is the future tense,
+  not a prospective).
 
 Example (no implication — the complement is sealed, nothing is said about the sleeping). TEXT: Yusra tried to sleep.
 
@@ -2106,6 +2143,9 @@ Not this template:
 - "there is / there are" — there is a thermos: an existential, which is the referent alone
 - an adjective with a degree word — is very crooked, was almost full, is tall for a weaver: a
   degree predication, which decides itself whether the property is asserted
+- about to be, due to be — is about to be a father, is due to be in Calderwick: a prospective
+  state, no form yet; report the predicate as unmapped (on a verb the clause's own template
+  takes the aspect about_to / due_to)
 
 Slots:
 
@@ -2210,7 +2250,11 @@ Slots:
   shed), a bare lemma for a non-specific one (baked bread).
 - `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
   not inferred.
-- `aspect` (optional; one of: simple, progressive, perfect).
+- `aspect` (optional; one of: simple, progressive, perfect, about_to, due_to): simple;
+  progressive for be V-ing; perfect for have V-ed; about_to for be about to V / on the point of
+  V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event
+  upcoming at the clause's time, the word kept as the value (be going to V is the future tense,
+  not a prospective).
 
 Example (the thing made is an indefinite witness). TEXT: Lamine baked a loaf.
 
@@ -2691,7 +2735,11 @@ Slots:
   the origin: a from / off / out of phrase, or the object of leave, exit.
 - `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
   not inferred.
-- `aspect` (optional; one of: simple, progressive, perfect).
+- `aspect` (optional; one of: simple, progressive, perfect, about_to, due_to): simple;
+  progressive for be V-ing; perfect for have V-ed; about_to for be about to V / on the point of
+  V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event
+  upcoming at the clause's time, the word kept as the value (be going to V is the future tense,
+  not a prospective).
 
 Example (a self-mover and a destination). TEXT: Yusra went to the market.
 
@@ -2733,6 +2781,22 @@ The program renders these instances as:
     (Theme sk_carry_1 sk_ladder_1)
     (Goal sk_carry_1 sk_shed_1)
     (Past sk_carry_1)
+
+Example (the prospective aspect — about to V, the event upcoming at the clause's time, the word kept as the aspect value). TEXT: Yusra is about to leave.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Yusra", "span": "Yusra"},
+      {"t": "motion", "id": "m1", "verb": "leave", "mover": "@n1", "tense": "present", "aspect": "about_to", "span": "Yusra is about to leave"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_yusra_1 "Yusra")
+    (Member sk_leave_1 leave)
+    (Agent sk_leave_1 sk_yusra_1)
+    (Prospective sk_leave_1)
 
 Not this template. TEXT: Teodor gave Yusra a thermos. — use `transfer`.
 
@@ -2922,7 +2986,11 @@ Slots:
   transfer's id).
 - `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
   not inferred.
-- `aspect` (optional; one of: simple, progressive, perfect).
+- `aspect` (optional; one of: simple, progressive, perfect, about_to, due_to): simple;
+  progressive for be V-ing; perfect for have V-ed; about_to for be about to V / on the point of
+  V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event
+  upcoming at the clause's time, the word kept as the value (be going to V is the future tense,
+  not a prospective).
 - Exactly one of `stimulus`, `event` is filled.
 
 Example (a thing perceived). TEXT: Teodor saw the ferret.
@@ -3018,7 +3086,11 @@ Slots:
   filler): the thing held: the object, or the subject of belong.
 - `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
   not inferred.
-- `aspect` (optional; one of: simple, progressive, perfect).
+- `aspect` (optional; one of: simple, progressive, perfect, about_to, due_to): simple;
+  progressive for be V-ing; perfect for have V-ed; about_to for be about to V / on the point of
+  V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event
+  upcoming at the clause's time, the word kept as the value (be going to V is the future tense,
+  not a prospective).
 
 Example (have as a main verb). TEXT: Teodor has a trowel.
 
@@ -3118,7 +3190,11 @@ Slots:
   listed.
 - `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
   not inferred.
-- `aspect` (optional; one of: simple, progressive, perfect).
+- `aspect` (optional; one of: simple, progressive, perfect, about_to, due_to): simple;
+  progressive for be V-ing; perfect for have V-ed; about_to for be about to V / on the point of
+  V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event
+  upcoming at the clause's time, the word kept as the value (be going to V is the future tense,
+  not a prospective).
 
 Example (fear-type, experiencer as subject). TEXT: Yusra distrusts Lamine.
 
@@ -3209,7 +3285,11 @@ Slots:
   safe).
 - `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
   not inferred.
-- `aspect` (optional; one of: simple, progressive, perfect).
+- `aspect` (optional; one of: simple, progressive, perfect, about_to, due_to): simple;
+  progressive for be V-ing; perfect for have V-ed; about_to for be about to V / on the point of
+  V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event
+  upcoming at the clause's time, the word kept as the value (be going to V is the future tense,
+  not a prospective).
 
 Example (a felt state — the state an eventuality with its experiencer, no flat property). TEXT: Lamine feels cold.
 
@@ -3344,7 +3424,11 @@ Slots:
   form.
 - `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
   not inferred.
-- `aspect` (optional; one of: simple, progressive, perfect).
+- `aspect` (optional; one of: simple, progressive, perfect, about_to, due_to): simple;
+  progressive for be V-ing; perfect for have V-ed; about_to for be about to V / on the point of
+  V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event
+  upcoming at the clause's time, the word kept as the value (be going to V is the future tense,
+  not a prospective).
 - At least one of `object`, `complement` is filled.
 
 Example (a symmetric verb — one state with two bearers; nothing is derived). TEXT: Yusra resembles Lamine.
@@ -3570,7 +3654,11 @@ Slots:
   what is transferred, unchanged by the transfer.
 - `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
   not inferred.
-- `aspect` (optional; one of: simple, progressive, perfect).
+- `aspect` (optional; one of: simple, progressive, perfect, about_to, due_to): simple;
+  progressive for be V-ing; perfect for have V-ed; about_to for be about to V / on the point of
+  V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event
+  upcoming at the clause's time, the word kept as the value (be going to V is the future tense,
+  not a prospective).
 
 Example. TEXT: Teodor gave Yusra a thermos.
 
@@ -3843,8 +3931,9 @@ Not this template:
   the dial; report the adverb as unmapped (G02)
 - a stance of the subject — is sure that P, is afraid that P, is confident that P: the subject's
   attitude, the attitude template; a hedge is the speaker's, not the subject's
-- imminence or a schedule — is about to leave, is due to arrive: not a commitment; no template,
-  report the predicate as unmapped; due to X as a cause likewise
+- imminence or a schedule — is about to leave, is due to arrive: the clause's own template with
+  the prospective aspect (aspect about_to / due_to), not a commitment dial; due to X as a cause:
+  an oblique (DueTo)
 - a hedge on a number — about 40 years old, roughly 3 metres: the measure template's own hedge
   slot, the number kept
 - an evaluation — unfortunately, luckily, sadly: the speaker's feeling about the clause, not a
@@ -4763,11 +4852,15 @@ about or directed at (talked about the audit, waited for Teodor, voted against t
 over the quilt, complained about the ladder, dealt with the audit), in what capacity or likeness
 (worked as a weaver, sang like a bird), without what (left without the quilt), despite what
 (sang despite the rain), through or along what path (walked through the barn, ran across the
-field), among or between what (sat among the ferrets). The event is parsed with its own
-template; the oblique names the event, the preposition as written (capitalized) and the object.
-One instance per phrase. Decide by the question the phrase answers: where, when, whence,
-whither, by what means, with whom, for whose benefit and how go to the templates that own them;
-everything else comes here.
+field), among or between what (sat among the ferrets), and a cause or a concession stated by a
+MULTI-WORD preposition (laughed because of the rain, waited owing to the rain, rested on account
+of the storm, sang thanks to Lamine, sang in spite of the rain: the phrase CamelCased is the
+head — BecauseOf, DueTo, OwingTo, ThanksTo, OnAccountOf, InSpiteOf). The event is parsed with
+its own template; the oblique names the event, the preposition as written (capitalized) and the
+object. A phrase predicated of an EVENT NOUN by be (the delay was due to the rain) attaches to
+that eventive witness, with the clause's tense in `tense`. One instance per phrase. Decide by
+the question the phrase answers: where, when, whence, whither, by what means, with whom, for
+whose benefit and how go to the templates that own them; everything else comes here.
 
 Forms:
 - <clause> about / against / over / on <object>
@@ -4775,6 +4868,9 @@ Forms:
 - <clause> as / like <object>
 - <clause> without / despite <object>
 - <clause> through / across / along <object>
+- <clause> because of / due to / owing to / thanks to / on account of <object>
+- <clause> in spite of <object>
+- <event noun> was due to <object>
 
 Not this template:
 - where the event takes place — in the barn, at the market, on the roof, near the shed: a
@@ -4798,9 +4894,9 @@ Not this template:
 - a gerund clause as the object — without saying a word, by working hard: not yet (without
   denies the event, by asserts it: a scope question); report the phrase as unmapped; a gerund
   after a temporal preposition — after leaving: a time relation
-- a multi-word preposition with no head of its own — because of the rain, due to the audit,
-  instead of Lamine, on behalf of Yusra, in spite of the storm: report the phrase as unmapped
-  (in spite of is not despite)
+- a multi-word preposition that is neither a cause nor a concession — instead of Lamine, on
+  behalf of Yusra, in front of the shed: no head yet; report the phrase as unmapped
+- due to with a verb — is due to arrive: the clause's prospective aspect (due_to), not a cause
 - the price or the exchange of a transfer — sold the spindle for forty euros: a measure, no slot
   here; report the phrase as unmapped
 
@@ -4809,17 +4905,23 @@ Slots:
 - `t` (required): "oblique"
 - `id` (required; your label for this instance): your label for the attachment (a1, a2 …).
 - `event` (required; "@id" of the predication instance this attaches to): the predication the
-  phrase attaches to: the id of the clause's event instance.
+  phrase attaches to: the id of the clause's event instance, or of an eventive witness when the
+  phrase is predicated of an event noun by be (the delay was due to the rain: the delay).
 - `head` (required; one of: About, Above, Across, Against, Along, Among, Around, As, At, Behind,
   Below, Beneath, Beside, Besides, Between, Beyond, By, Concerning, Despite, Down, Except, For,
   From, In, Inside, Into, Like, Near, Of, Off, On, Onto, Opposite, Out, Outside, Over, Past,
   Per, Regarding, Round, Through, To, Toward, Towards, Under, Underneath, Unlike, Up, Upon, Via,
-  With, Within, Without): the preposition as written, capitalized (about → About, without →
-  Without); never a synonym.
+  With, Within, Without, BecauseOf, DueTo, OwingTo, ThanksTo, OnAccountOf, InSpiteOf): the
+  preposition as written, capitalized (about → About, without → Without), a multi-word one
+  CamelCased (because of → BecauseOf, due to → DueTo, owing to → OwingTo, thanks to → ThanksTo,
+  on account of → OnAccountOf, in spite of → InSpiteOf); never a synonym.
 - `object` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
   the phrase's object: a referent id (a witness, a name) for a specific thing, or a bare lemma
   for a non-specific or class-level one (as a weaver → weaver, without a quilt → quilt, like a
   bird → bird).
+- `tense` (optional; one of: past, present, future): only when the phrase is predicated of an
+  event noun by be (the delay was due to the rain): the clause's tense; otherwise absent, the
+  event's own template records it.
 
 Example (what the action is about — the preposition is the head). TEXT: Yusra talked about the audit.
 
@@ -6010,8 +6112,9 @@ Forms:
 Not this template:
 - a temporal connective — after, before, when, while, until, once, as soon as, then, since (a
   time): a time relation, not a reason or a contrast
-- a connective with a noun phrase, not a clause — despite the storm: an oblique (Despite) on the
-  event; because of the rain, due to the audit: no head; report the phrase as unmapped
+- a connective with a noun phrase, not a clause — despite the storm, because of the rain, due to
+  the audit, thanks to Lamine: an oblique on the event with the phrase as its head (Despite,
+  BecauseOf, DueTo, ThanksTo); the rules read a causal one as Because
 - a connective opening the text with nothing before it — "But Lamine left.": no first clause to
   relate; parse the clause and report the connective (G05)
 - a copular, locative, degree, comparative, class-statement, part-whole or measure clause as an

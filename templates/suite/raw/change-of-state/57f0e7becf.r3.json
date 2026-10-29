@@ -1,0 +1,93 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "57ef2e171cd233f2a96374e53fbc38fd5d9147adab7fc8cc7075c355e3292b40",
+  "item": {
+    "id": "s57f0e7becf",
+    "text": "The audit is due to start tomorrow."
+  },
+  "usage": {
+    "input": 96435,
+    "output": 160,
+    "thinking": null,
+    "total": 96595,
+    "cached": 94386,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 96435,
+    "candidatesTokenCount": 160,
+    "totalTokenCount": 96595,
+    "cachedContentTokenCount": 94386,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 96435
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 94386
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 160
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s57f0e7becf\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"audit\", \"definite\": true, \"span\": \"The audit\"}, {\"t\": \"change-of-state\", \"id\": \"c1\", \"verb\": \"start\", \"undergoer\": \"@x1\", \"tense\": \"present\", \"aspect\": \"due_to\", \"span\": \"The audit is due to start\"}, {\"t\": \"time\", \"id\": \"t1\", \"event\": \"@c1\", \"deictic\": \"tomorrow\", \"anchor\": \"@now\", \"span\": \"tomorrow\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s57f0e7becf",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "audit",
+        "definite": true,
+        "span": "The audit"
+      },
+      {
+        "t": "change-of-state",
+        "id": "c1",
+        "verb": "start",
+        "undergoer": "@x1",
+        "tense": "present",
+        "aspect": "due_to",
+        "span": "The audit is due to start"
+      },
+      {
+        "t": "time",
+        "id": "t1",
+        "event": "@c1",
+        "deictic": "tomorrow",
+        "anchor": "@now",
+        "span": "tomorrow"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "6266a57f9e8948e2783e87645fb89d9030b7c0967645d5fa8f449734a919f87c",
+  "run": 3,
+  "case": {
+    "template": "change-of-state",
+    "section": "held_out",
+    "index": 17,
+    "category": "positive",
+    "text": "The audit is due to start tomorrow.",
+    "key": "57f0e7becf"
+  }
+}

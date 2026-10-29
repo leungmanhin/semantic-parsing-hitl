@@ -1,0 +1,91 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "50843c93adcf777e7d1f184bd6278f1334ccdc9b1cd48d0f49bbcb5d631384b6",
+  "item": {
+    "id": "sfe1b423c27",
+    "text": "Lamine is due to arrive at noon."
+  },
+  "usage": {
+    "input": 96437,
+    "output": 146,
+    "thinking": null,
+    "total": 96583,
+    "cached": 94388,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 96437,
+    "candidatesTokenCount": 146,
+    "totalTokenCount": 96583,
+    "cachedContentTokenCount": 94388,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 96437
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 94388
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 146
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sfe1b423c27\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"arrive\", \"mover\": \"@n1\", \"tense\": \"present\", \"aspect\": \"due_to\", \"span\": \"Lamine is due to arrive\"}, {\"t\": \"time\", \"id\": \"t1\", \"event\": \"@m1\", \"hour\": 12, \"span\": \"at noon\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sfe1b423c27",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "motion",
+        "id": "m1",
+        "verb": "arrive",
+        "mover": "@n1",
+        "tense": "present",
+        "aspect": "due_to",
+        "span": "Lamine is due to arrive"
+      },
+      {
+        "t": "time",
+        "id": "t1",
+        "event": "@m1",
+        "hour": 12,
+        "span": "at noon"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "6266a57f9e8948e2783e87645fb89d9030b7c0967645d5fa8f449734a919f87c",
+  "run": 2,
+  "case": {
+    "template": "motion",
+    "section": "held_out",
+    "index": 15,
+    "category": "positive",
+    "text": "Lamine is due to arrive at noon.",
+    "key": "fe1b423c27"
+  }
+}

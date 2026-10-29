@@ -620,6 +620,29 @@ class SeededRulesOnTheEngine(unittest.TestCase):
         self.assertTrue(res and "sk_time_1" in res[0], res)                                                # the patience during the sunny spell, at its time
         self.assertLess(tv(res)[1], 0.8)                                                                   # at the generalization's confidence
 
+    def test_a_causal_preposition_is_read_as_because(self):
+        """A cause stated by a preposition keeps its words as the head and is read as Because by
+        the background rules: a why-question worded with Because finds the rain behind the delay
+        and the laughing; a concession (in spite of) yields no cause."""
+        if not any(r.startswith("(: dueto_cause") for r in rules()):
+            self.skipTest("the causal-preposition rules are pending")
+        h = self.space(['(: x1 (Member sk_delay_1 delay) (STV 1.0 0.99))',
+                        '(: x2 (Member sk_rain_1 rain) (STV 1.0 0.99))',
+                        '(: a1 (DueTo sk_delay_1 sk_rain_1) (STV 1.0 0.99))',
+                        '(: a1_past (Past sk_delay_1) (STV 1.0 0.99))',
+                        '(: v1 (Member sk_laugh_1 laugh) (STV 1.0 0.99))',
+                        '(: v1_agent (Agent sk_laugh_1 sk_yusra_1) (STV 1.0 0.99))',
+                        '(: a2 (BecauseOf sk_laugh_1 sk_rain_1) (STV 1.0 0.99))',
+                        '(: v2 (Member sk_sing_1 sing) (STV 1.0 0.99))',
+                        '(: a3 (InSpiteOf sk_sing_1 sk_rain_1) (STV 1.0 0.99))'])
+        why = self.query(h, "(And (Because sk_delay_1 $c) (Member $c rain))")
+        self.assertTrue(why and "dueto_cause" in why[0], why)                                     # due to → Because
+        s, c = tv(why)
+        self.assertGreater(c, 0.9)
+        self.assertTrue(self.query(h, "(Because sk_laugh_1 sk_rain_1)"))                           # because of → Because
+        self.assertTrue(self.query(h, "(DueTo sk_delay_1 $c)"))                                    # the surface head stays queryable
+        self.assertFalse(self.query(h, "(Because sk_sing_1 $c)"))                                  # a concession is not a cause
+
     def test_a_hedge_sets_the_dial_and_a_band_query_reads_it(self):
         """A hedged clause is its own statements at the hedge's truth value, no operator: a band
         query on the strength tells a probable fact from an unlikely one, an unlikely fact is a

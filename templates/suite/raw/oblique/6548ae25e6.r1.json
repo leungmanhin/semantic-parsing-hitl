@@ -1,0 +1,95 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "cc0453a3463f67408b129fa390aef4092ee46c2f02935fffea0438c769d07c99",
+  "item": {
+    "id": "s6548ae25e6",
+    "text": "Lamine sang instead of Yusra."
+  },
+  "usage": {
+    "input": 96811,
+    "output": 167,
+    "thinking": null,
+    "total": 96978,
+    "cached": 94761,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 96811,
+    "candidatesTokenCount": 167,
+    "totalTokenCount": 96978,
+    "cachedContentTokenCount": 94761,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 96811
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 94761
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 167
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s6548ae25e6\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"sing\", \"actor\": \"@n1\", \"tense\": \"past\", \"span\": \"Lamine sang\"}], \"unmapped\": [{\"span\": \"instead of Yusra\", \"code\": \"G00\", \"construction\": \"A substitution phrase headed by the multi-word preposition 'instead of'.\"}], \"issues\": []}",
+  "response": {
+    "id": "s6548ae25e6",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "sing",
+        "actor": "@n1",
+        "tense": "past",
+        "span": "Lamine sang"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "instead of Yusra",
+        "code": "G00",
+        "construction": "A substitution phrase headed by the multi-word preposition 'instead of'."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "5f35b0b60405a1050c286ffca67cb25269dec29edeff917ac9d528e5621abdb1",
+  "run": 1,
+  "case": {
+    "template": "oblique",
+    "section": "held_out",
+    "index": 25,
+    "category": "abstain",
+    "text": "Lamine sang instead of Yusra.",
+    "key": "6548ae25e6"
+  }
+}

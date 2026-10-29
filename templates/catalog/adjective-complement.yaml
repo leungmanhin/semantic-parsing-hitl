@@ -84,9 +84,9 @@ trigger:
       the adjective as its lemma; able to V — is able to swim: a capability, the modal template;
       supposed / required / allowed to V: a norm; likely, unlikely, bound, certain or sure TO
       V — likely to win: the hedge template over the infinitive's clause, the subject acting in
-      it; about to, due to — about to leave: imminence, no template, report the predicate as
-      unmapped; too tired to sing, tall enough to reach: the degree template, the infinitive
-      reported
+      it; about to, due to — about to leave: the clause's own template with the prospective
+      aspect (about_to / due_to), not a complement; too tired to sing, tall enough to reach: the
+      degree template, the infinitive reported
     - >-
       a prepositional phrase on a verb — talked about the audit, waited for Teodor: an oblique
       on the event; on a noun — a book about ferrets, the lid of the box: a postmodifier or a
@@ -94,7 +94,7 @@ trigger:
     - >-
       a prepositional idiom with no adjective — in trouble, out of the question, in fashion, at
       hand: no template; report the predicate as unmapped; due to / owing to — the delay was due
-      to the rain: a cause stated by a preposition, reported as unmapped
+      to the rain: a cause stated by a preposition, an oblique (DueTo) on the event noun
     - >-
       a partitive or a hedge — one of the weavers, part of the plan, kind of tired: a part-whole,
       a proportion or a hedge, not a quality with a complement
@@ -124,7 +124,8 @@ slots:
                doc: "the complement as an action: a gerund (afraid of losing the quilt, tired of waiting, good at baking loaves) — its predication with the bearer as its actor, tense present — or the to-infinitive of a quality of the action (hard to mend: the mending with the subject as its patient; important to rest: the resting with no participant), sealed; never together with object; the referents it mentions are not listed"}
   tense:      {type: enum, values: [past, present, future], required: true,
                doc: "the clause's tense; present is recorded, not inferred"}
-  aspect:     {type: enum, values: [simple, progressive, perfect], required: false, default: simple}
+  aspect:     {type: enum, values: [simple, progressive, perfect, about_to, due_to], required: false, default: simple,
+              doc: "simple; progressive for be V-ing; perfect for have V-ed; about_to for be about to V / on the point of V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word kept as the value (be going to V is the future tense, not a prospective)"}
 
 one_of: [[object, complement]]
 
@@ -144,6 +145,8 @@ emits:
     when: "tense == future"
   - atom: "(Ongoing @id)"
     when: "aspect == progressive"
+  - atom: "(Prospective @id)"
+    when: "aspect == about_to or aspect == due_to"
 
 notes:
   - >-
@@ -407,7 +410,7 @@ examples:
       expected: {abstain: true, template: location}                   # a place on the copular state, not a complement
     - category: abstain
       text: "The delay was due to the rain."
-      expected: {abstain: true, gap: G00, span: "due to the rain"}    # a cause stated by a preposition
+      expected: {abstain: true, template: oblique}                    # a cause stated by a preposition: an oblique (DueTo)
     - category: abstain
       text: "Lamine is in trouble."
       expected: {abstain: true, gap: G00, span: "in trouble"}         # a prepositional idiom, no adjective

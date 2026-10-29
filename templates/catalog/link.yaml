@@ -37,9 +37,9 @@ trigger:
       a temporal connective — after, before, when, while, until, once, as soon as, then, since
       (a time): a time relation, not a reason or a contrast
     - >-
-      a connective with a noun phrase, not a clause — despite the storm: an oblique (Despite)
-      on the event; because of the rain, due to the audit: no head; report the phrase as
-      unmapped
+      a connective with a noun phrase, not a clause — despite the storm, because of the rain,
+      due to the audit, thanks to Lamine: an oblique on the event with the phrase as its head
+      (Despite, BecauseOf, DueTo, ThanksTo); the rules read a causal one as Because
     - >-
       a connective opening the text with nothing before it — "But Lamine left.": no first
       clause to relate; parse the clause and report the connective (G05)
@@ -248,7 +248,7 @@ examples:
         - {t: link, id: k1, head: Because, main: "@m1", sub: "@c1"}
     - category: abstain
       text: "Yusra laughed because of the rain."
-      expected: {abstain: true, gap: G00, span: "because of the rain"}   # a noun phrase, not a clause
+      expected: {abstain: true, template: oblique}                    # a noun phrase, not a clause: an oblique (BecauseOf)
     - category: abstain
       text: "Lamine waited while Yusra sang."
       expected: {abstain: true, template: time-relation}              # a temporal connective

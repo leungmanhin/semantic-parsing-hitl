@@ -73,7 +73,8 @@ slots:
            doc: "the origin: a from / off / out of phrase, or the object of leave, exit"}
   tense:  {type: enum, values: [past, present, future], required: true,
            doc: "the clause's tense; present is recorded, not inferred"}
-  aspect: {type: enum, values: [simple, progressive, perfect], required: false, default: simple}
+  aspect: {type: enum, values: [simple, progressive, perfect, about_to, due_to], required: false, default: simple,
+          doc: "simple; progressive for be V-ing; perfect for have V-ed; about_to for be about to V / on the point of V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word kept as the value (be going to V is the future tense, not a prospective)"}
 
 mints: {id: Event}
 
@@ -93,6 +94,8 @@ emits:
     when: "tense == future"
   - atom: "(Ongoing @id)"
     when: "aspect == progressive"
+  - atom: "(Prospective @id)"
+    when: "aspect == about_to or aspect == due_to"
 
 notes:
   - >-
@@ -137,6 +140,12 @@ examples:
         - {t: witness, id: x1, class: ladder, definite: true, span: "the ladder"}
         - {t: witness, id: x2, class: shed, definite: true, span: "the shed"}
         - {t: motion, id: m1, verb: carry, mover: "@n1", moved: "@x1", goal: "@x2", tense: past, span: "Lamine carried the ladder to the shed"}
+    - category: positive
+      note: the prospective aspect — about to V, the event upcoming at the clause's time, the word kept as the aspect value
+      text: "Yusra is about to leave."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
+        - {t: motion, id: m1, verb: leave, mover: "@n1", tense: present, aspect: about_to, span: "Yusra is about to leave"}
     - category: abstain
       text: "Teodor gave Yusra a thermos."
       expected: {abstain: true, template: transfer}                   # a change of hands
@@ -234,3 +243,23 @@ examples:
     - category: abstain
       text: "Yusra came to like the quilt."
       expected: {abstain: true, template: aspectual}                  # the inchoative come_to
+    - category: positive
+      note: due to V with a time — a scheduled arrival, prospective, the time on the event
+      text: "Lamine is due to arrive at noon."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: motion, id: m1, verb: arrive, mover: "@n1", tense: present, aspect: due_to}
+        - {t: time, id: t1, event: "@m1", hour: 12}
+    - category: scoped
+      note: a prospective under negation
+      text: "Yusra is not about to leave."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: motion, id: m1, verb: leave, mover: "@n1", tense: present, aspect: about_to}
+        - {t: negation, id: s1, over: ["@m1"]}
+    - category: contrast
+      note: be going to V is the future tense, not a prospective
+      text: "Teodor is going to leave."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: motion, id: m1, verb: leave, mover: "@n1", tense: future}
