@@ -94,6 +94,7 @@ emits:
   # attaches to this instance (a time relation, a date, a link, a focus); its tense beside it
   - atom: "(Holds @id (Inheritance {subject} {predicate}))"
     if_minted: true
+    state: true
   - atom: "(Past @id)"
     if_minted: true
     when: "tense == past or aspect == perfect"

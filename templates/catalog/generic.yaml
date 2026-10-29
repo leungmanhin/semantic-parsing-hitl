@@ -56,7 +56,7 @@ slots:
            doc: "the range instance(s) the rule quantifies over, in text order: one per quantified class noun"}
   over:   {type: refs, class: Proposition, required: true, skolemize: true,
            doc: "the predication (or the part-whole relation) over the range(s), or the negation / modal / norm over that predication: its id, nothing else"}
-  condition: {type: refs, class: Proposition, required: false,
+  condition: {type: refs, class: Proposition, required: false, state_variable: true,
               doc: "a predication over the range that must hold for the generalization to apply (ferrets bite when cornered: the copular instance for cornered, its subject the range); its id; absent as a rule"}
 
 truth:
@@ -76,6 +76,16 @@ emits:
     when: "not condition"
   - atom: "(Implication (And {ranges} {condition}) {over})"
     if_filled: condition
+  # the state rule beside it: the condition's state is a variable, the event a function of the
+  # member and of it, falling during it
+  - atom: "(Implication (And {ranges} {condition}) {over})"
+    if_filled: condition
+    states: true
+  - atom: "(During {over} {condition})"
+    within: over
+    each: condition
+    if_filled: condition
+    states: true
 
 notes:
   - >-
@@ -93,6 +103,12 @@ notes:
   - >-
     A negated generalization (ferrets do not sleep) is the rule over the negation: the
     conclusion says that an arbitrary member does not sleep.
+  - >-
+    With a condition the program emits a second rule over the condition's STATE beside the flat
+    one — (Implication (And (Member $x ferret) (Holds $s (Member $x cornered))) (And (Member
+    (sk_bite $x $s) bite) (Agent (sk_bite $x $s) $x) (During (sk_bite $x $s) $s))) — so a ferret
+    stated cornered at a time bites during that state; the parser records the same instances
+    either way.
 
 depends_on: [range]
 composes_with: [negation, modal, norm]

@@ -85,6 +85,18 @@ emits:
     when: "not ranges"
   - atom: "(Implication (And {ranges} {condition|own}) {over})"
     if_filled: ranges
+  # the state rule beside it, for a stative condition: the condition's state is the variable, the
+  # consequence's state or event a function of it that falls during it; an eventive condition has none
+  - atom: "(Implication {condition|own} {over})"
+    when: "not ranges"
+    states: true
+  - atom: "(Implication (And {ranges} {condition|own}) {over})"
+    if_filled: ranges
+    states: true
+  - atom: "(During {over} {condition})"
+    within: over
+    each: condition
+    states: true
 
 notes:
   - >-
@@ -100,6 +112,14 @@ notes:
   - >-
     "If" is a condition, "when" a time: an eventive when-clause is the frequency template's
     generalization over occasions, and a stative when-clause (when cold) is a condition here.
+  - >-
+    A stative condition yields two rules from one record: the rule between the flat atoms, which
+    a plain statement fires (the door is open: the barn is cold), and the rule over the
+    condition's STATE — (Implication (Holds $s (Member sk_door_1 open)) (And (Holds (sk_cold $s)
+    (Member sk_barn_1 cold)) (During (sk_cold $s) $s))) — which an anchored statement fires (the
+    door was open yesterday: the barn's cold state during that one), the consequence's state or
+    event a function of the condition's state. The program emits both; the parser records the
+    same instances either way.
 
 depends_on: [activity, copular, range]
 composes_with: [negation, modal, norm]

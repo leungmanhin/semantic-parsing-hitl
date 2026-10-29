@@ -500,8 +500,10 @@ class EmitTests(unittest.TestCase):
                 {"t": "copular", "id": "c2", "subject": "@q1", "predicate": "cold", "form": "adjective", "tense": "present"},
                 {"t": "conditional-property", "id": "r1", "ranges": ["@q1"], "condition": ["@c2"], "over": ["@c1"]}]
         out = E.emit({"id": "t", "instances": rule}, CATALOG)
-        self.assertEqual(out["statements"], [
-            "(: r1_implication (Implication (And (Member $x alloy) (Member $x cold)) (Member $x brittle)) (STV 1.0 0.9))"])
+        self.assertEqual(out["statements"][0],
+            "(: r1_implication (Implication (And (Member $x alloy) (Member $x cold)) (Member $x brittle)) (STV 1.0 0.9))")
+        self.assertEqual(len(out["statements"]), 2)                                    # + the rule over the condition's state
+        self.assertIn("(Holds $s (Member $x cold))", out["statements"][1])
         denied = rule[:3] + [{"t": "negation", "id": "s1", "over": ["@c1"]},
                              {"t": "conditional-property", "id": "r1", "ranges": ["@q1"], "condition": ["@c2"], "over": ["@s1"]}]
         out = E.emit({"id": "t", "instances": denied}, CATALOG)
@@ -515,8 +517,9 @@ class EmitTests(unittest.TestCase):
             {"t": "activity", "id": "v1", "verb": "bite", "actor": "@q1", "tense": "present"},
             {"t": "copular", "id": "c1", "subject": "@q1", "predicate": "cornered", "form": "adjective", "tense": "present"},
             {"t": "generic", "id": "r1", "ranges": ["@q1"], "condition": ["@c1"], "over": ["@v1"]}]}, CATALOG)
-        self.assertEqual(atoms_of(out["statements"]),
-                         ["(Implication (And (Member $x ferret) (Member $x cornered)) (And (Member (sk_bite $x) bite) (Agent (sk_bite $x) $x)))"])
+        self.assertEqual(atoms_of(out["statements"])[0],
+                         "(Implication (And (Member $x ferret) (Member $x cornered)) (And (Member (sk_bite $x) bite) (Agent (sk_bite $x) $x)))")
+        self.assertEqual(len(out["statements"]), 2)                                    # + the rule over the condition's state
 
     def test_focus_is_a_top_level_atom_and_negation_targets_the_focus_or_the_prejacent(self):
         """A focus particle is one top-level atom over the clause's event; "not only" negates the
@@ -644,6 +647,59 @@ class EmitTests(unittest.TestCase):
                             {"t": "link", "id": "k1", "head": "Because", "main": "@v1", "sub": "@m1"}])
         self.assertTrue(any("(Holds sk_weight_1 (Measure sk_sack_1 weight 40 kilogram))" in st for st in r["statements"]), r["statements"])
         self.assertIn(["Because", "sk_rest_1", "sk_weight_1"], terms)                                # the measure's state as the cause
+
+    def test_a_stative_condition_yields_a_state_rule_beside_the_flat_one(self):
+        """A rule whose condition is a stative predication (a copular, a locative …) is emitted
+        twice: between the flat atoms, as before, and over the condition's STATE — the Holds
+        binder as the variable, the consequence's state or event a skolem function of the rule's
+        variables, placed During it; an eventive condition has no state rule; several conditions
+        bind several states; a scoped consequence keeps the state and its During inside the
+        operator."""
+        def rules_of(instances):
+            r = E.emit({"id": "a", "instances": instances}, CATALOG)
+            return [st for st in r["statements"] if "Implication" in st], r
+        rules, r = rules_of([{"t": "witness", "id": "x1", "class": "barn", "definite": True}, {"t": "witness", "id": "x2", "class": "door", "definite": True},
+                             {"t": "copular", "id": "c1", "subject": "@x1", "predicate": "cold", "form": "adjective", "tense": "present"},
+                             {"t": "copular", "id": "c2", "subject": "@x2", "predicate": "open", "form": "adjective", "tense": "present"},
+                             {"t": "conditional", "id": "r1", "condition": ["@c2"], "over": ["@c1"], "word": "when"}])
+        self.assertEqual(len(rules), 2, rules)
+        self.assertIn("(Implication (Member sk_door_1 open) (Member sk_barn_1 cold))", rules[0])              # the flat rule, as before
+        self.assertIn("(Implication (Holds $s (Member sk_door_1 open)) (And (Holds (sk_cold $s) (Member sk_barn_1 cold)) (During (sk_cold $s) $s)))", rules[1])
+        self.assertIn("(: sk_cold (-> Atom Event))", r["declarations"])
+        self.assertFalse(any("sk_cold_1" in st for st in r["statements"]))                                   # no state minted outside the rule
+        rules, r = rules_of([{"t": "range", "id": "q1", "class": "heron"}, {"t": "witness", "id": "x1", "class": "weather", "definite": True},
+                             {"t": "copular", "id": "c1", "subject": "@q1", "predicate": "patient", "form": "adjective", "tense": "present"},
+                             {"t": "copular", "id": "c2", "subject": "@x1", "predicate": "sunny", "form": "adjective", "tense": "present"},
+                             {"t": "conditional", "id": "r1", "ranges": ["@q1"], "condition": ["@c2"], "over": ["@c1"], "generic": True}])
+        self.assertIn("(Implication (And (Member $x heron) (Holds $s (Member sk_weather_1 sunny))) (And (Holds (sk_patient $x $s) (Member $x patient)) (During (sk_patient $x $s) $s)))", rules[1])
+        rules, r = rules_of([{"t": "range", "id": "q1", "class": "clay"},
+                             {"t": "copular", "id": "c1", "subject": "@q1", "predicate": "soft", "form": "adjective", "tense": "present"},
+                             {"t": "copular", "id": "c2", "subject": "@q1", "predicate": "wet", "form": "adjective", "tense": "present"},
+                             {"t": "conditional-property", "id": "r1", "ranges": ["@q1"], "condition": ["@c2"], "over": ["@c1"]}])
+        self.assertIn("(Implication (And (Member $x clay) (Holds $s (Member $x wet))) (And (Holds (sk_soft $x $s) (Member $x soft)) (During (sk_soft $x $s) $s)))", rules[1])
+        rules, r = rules_of([{"t": "range", "id": "q1", "class": "ferret"},
+                             {"t": "copular", "id": "c2", "subject": "@q1", "predicate": "cornered", "form": "adjective", "tense": "present"},
+                             {"t": "activity", "id": "v1", "verb": "bite", "actor": "@q1", "tense": "present"},
+                             {"t": "generic", "id": "r1", "ranges": ["@q1"], "condition": ["@c2"], "over": ["@v1"]}])
+        self.assertIn("(Implication (And (Member $x ferret) (Holds $s (Member $x cornered))) (And (Member (sk_bite $x $s) bite) (Agent (sk_bite $x $s) $x) (During (sk_bite $x $s) $s)))", rules[1])
+        rules, r = rules_of([{"t": "named-entity", "id": "n1", "name": "Teodor"}, {"t": "named-entity", "id": "n2", "name": "Ottoline"},
+                             {"t": "motion", "id": "m1", "verb": "arrive", "mover": "@n1", "tense": "present"},
+                             {"t": "motion", "id": "m2", "verb": "leave", "mover": "@n2", "tense": "present"},
+                             {"t": "conditional", "id": "r1", "condition": ["@m1"], "over": ["@m2"]}])
+        self.assertEqual(len(rules), 1, rules)                                                                # an eventive condition: no state rule
+        rules, r = rules_of([{"t": "range", "id": "q1", "class": "heron"},
+                             {"t": "copular", "id": "c1", "subject": "@q1", "predicate": "patient", "form": "adjective", "tense": "present"},
+                             {"t": "copular", "id": "c2", "subject": "@q1", "predicate": "healthy", "form": "adjective", "tense": "present"},
+                             {"t": "copular", "id": "c3", "subject": "@q1", "predicate": "warm", "form": "adjective", "tense": "present"},
+                             {"t": "conditional-property", "id": "r1", "ranges": ["@q1"], "condition": ["@c2", "@c3"], "over": ["@c1"]}])
+        self.assertIn("(Holds $s (Member $x healthy)) (Holds $s2 (Member $x warm))", rules[1])               # two conditions, two states
+        self.assertIn("(During (sk_patient $x $s $s2) $s) (During (sk_patient $x $s $s2) $s2)", rules[1])
+        rules, r = rules_of([{"t": "range", "id": "q1", "class": "clay"},
+                             {"t": "copular", "id": "c1", "subject": "@q1", "predicate": "soft", "form": "adjective", "tense": "present"},
+                             {"t": "copular", "id": "c2", "subject": "@q1", "predicate": "dry", "form": "adjective", "tense": "present"},
+                             {"t": "negation", "id": "s1", "over": ["@c1"]},
+                             {"t": "conditional-property", "id": "r1", "ranges": ["@q1"], "condition": ["@c2"], "over": ["@s1"]}])
+        self.assertIn("(Not (And (Holds (sk_soft $x $s) (Member $x soft)) (During (sk_soft $x $s) $s)))", rules[1])   # the denial keeps the state inside
 
     def test_malformed_instances_are_refused(self):
         bad = [{"t": "transfer", "id": "e1", "verb": "give", "giver": "@n9", "object": "x", "tense": "past"}]

@@ -117,12 +117,15 @@ emits:
   # Holds per atom the text asserts, the clause's tense beside them
   - atom: "(Holds @id (Member {bearer} {scale}))"
     if_minted: true
+    state: true
     when: "not for_class and level != almost and level != nearly and level != all_but"
   - atom: "(Holds @id (Degree {bearer} {scale} {level}))"
     if_minted: true
+    state: true
     if_filled: level
   - atom: "(Holds @id (Degree {bearer} {scale} (forClass {for_class})))"
     if_minted: true
+    state: true
     if_filled: for_class
   - atom: "(Past @id)"
     if_minted: true

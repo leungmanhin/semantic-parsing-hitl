@@ -38,7 +38,7 @@ CATALOG_DIR = os.path.abspath(os.path.join(HERE, os.pardir, "catalog"))
 SLOT_TYPES = {"id", "lemma", "filler", "refs", "enum", "bool", "string", "number", "int", "list"}
 CLASSED = {"lemma", "filler", "refs"}
 CATEGORIES = {"positive", "contrast", "scoped", "optional", "abstain"}
-SLOT_KEYS = {"type", "class", "role", "required", "default", "values", "doc", "consumes", "bind", "skolemize", "attaches", "bare_content", "participant", "as_variable"}
+SLOT_KEYS = {"type", "class", "role", "required", "default", "values", "doc", "consumes", "bind", "skolemize", "attaches", "bare_content", "participant", "as_variable", "state_variable"}
 
 _PLACEHOLDER = re.compile(r"\{([a-z_]+)(?:\|(own|attachments))?\}")   # {slot}, or {slot|own} / {slot|attachments} for a refs slot
 
@@ -129,6 +129,8 @@ def check_template(t: dict, path: str) -> list[str]:
             problems.append(f"slot {sname}: bind must name a filler slot of the template")
         if spec.get("attaches") and spec["type"] != "filler":
             problems.append(f"slot {sname}: attaches applies to filler slots only")
+        if "state_variable" in spec and not (spec["type"] == "refs" and spec["state_variable"] is True):
+            problems.append(f"slot {sname}: state_variable: true applies to refs slots only (the on-demand predications it names bind a state rule)")
         if "participant" in spec and not ((spec["type"] == "filler" and spec["participant"] is False)
                                           or (spec["type"] == "refs" and spec["participant"] is True)):
             problems.append(f"slot {sname}: participant: false applies to filler slots, participant: true to refs slots (a clause standing as the participant)")
@@ -185,6 +187,10 @@ def check_template(t: dict, path: str) -> list[str]:
             problems.append(f"emits[{i}]: project must be true or false")
         if "if_minted" in e and (not isinstance(e["if_minted"], bool) or not mints):
             problems.append(f"emits[{i}]: if_minted must be true or false, on a template that mints")
+        if "state" in e and (not isinstance(e["state"], bool) or not mints.get("on_demand")):
+            problems.append(f"emits[{i}]: state must be true or false, on a template that mints on demand")
+        if "states" in e and not isinstance(e["states"], bool):
+            problems.append(f"emits[{i}]: states must be true or false")
         if "within" in e and (slots.get(e["within"]) or {}).get("type") != "refs":
             problems.append(f"emits[{i}]: within must name a refs slot of the template")
         if "stv" in e and not (isinstance(e["stv"], list) and len(e["stv"]) == 2 and all(isinstance(x, (int, float)) for x in e["stv"])):

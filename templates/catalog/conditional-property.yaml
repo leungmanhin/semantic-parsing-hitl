@@ -64,7 +64,7 @@ slots:
   id:        {type: id, required: true, doc: "your label for the rule"}
   ranges:    {type: refs, class: Proposition, required: true,
               doc: "the range instance for the class (one, as a rule): the arbitrary member the condition and the property are about"}
-  condition: {type: refs, class: Proposition, required: true,
+  condition: {type: refs, class: Proposition, required: true, state_variable: true,
               doc: "the predication(s) that must hold of the member: a copular instance over the range for a state (wet), a locative instance for a place; their ids; a pronoun bound by the range is the range (subject @q1)"}
   over:      {type: refs, class: Proposition, required: true, skolemize: true,
               doc: "the copular predication over the range that then holds, or the negation / modal over it: its id, nothing else"}
@@ -80,6 +80,14 @@ truth:
 
 emits:
   - atom: "(Implication (And {ranges} {condition}) {over})"
+  # the state rule beside it: the condition's state is a variable, the property's state a function
+  # of the member and of it, falling during it
+  - atom: "(Implication (And {ranges} {condition}) {over})"
+    states: true
+  - atom: "(During {over} {condition})"
+    within: over
+    each: condition
+    states: true
 
 notes:
   - >-
@@ -93,6 +101,11 @@ notes:
   - >-
     A negated conclusion (clay is not soft when dry) is the negation instance over the copular
     predication, listed in `over`: the rule concludes the denial.
+  - >-
+    The program emits a second rule over the condition's STATE beside the flat one —
+    (Implication (And (Member $x clay) (Holds $s (Member $x wet))) (And (Holds (sk_soft $x $s)
+    (Member $x soft)) (During (sk_soft $x $s) $s))) — so a lump stated wet at a time is soft
+    during that state; the parser records the same instances either way.
 
 depends_on: [range, copular]
 composes_with: [negation, modal, locative, named-entity, witness]
@@ -109,10 +122,12 @@ examples:
         - {t: conditional-property, id: r1, ranges: ["@q1"], condition: ["@c2"], over: ["@c1"], span: "Clay is soft when wet"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
         - "(Implication (And (Member $x clay) (Member $x wet)) (Member $x soft))"
+        - "(Implication (And (Member $x clay) (Holds $s (Member $x wet))) (And (Holds (sk_soft $x $s) (Member $x soft)) (During (sk_soft $x $s) $s)))"
       declarations:
         - "(: clay Class)"
         - "(: soft Class)"
         - "(: wet Class)"
+        - "(: sk_soft (-> Atom Atom Event))"
     - category: positive
       note: a quantifier word — on the range, with the property as its predicate
       text: "All alloys are brittle when cold."

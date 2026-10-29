@@ -162,23 +162,29 @@ emits:
   # the comparison emits, inside Holds, the clause's tense beside it
   - atom: "(Holds @id (More {scale} {subject} {standard}))"
     if_minted: true
+    state: true
     when: "relation == more and not gap and not factor"
   - atom: "(Holds @id (More {scale} {standard} {subject}))"
     if_minted: true
+    state: true
     when: "relation == less and not gap and not factor"
   - atom: "(Holds @id (SameDegree {scale} {subject} {standard}))"
     if_minted: true
+    state: true
     when: "relation == as and not factor"
   - atom: "(Holds @id (MoreBy {scale} {subject} {standard} {gap} {unit}))"
     if_minted: true
+    state: true
     if_filled: gap
     when: "relation == more"
   - atom: "(Holds @id (MoreBy {scale} {standard} {subject} {gap} {unit}))"
     if_minted: true
+    state: true
     if_filled: gap
     when: "relation == less"
   - atom: "(Holds @id (TimesAs {scale} {subject} {standard} {factor}))"
     if_minted: true
+    state: true
     if_filled: factor
   - atom: "(Past @id)"
     if_minted: true

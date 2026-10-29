@@ -216,6 +216,7 @@ def rigid(r: dict, t: dict) -> bool:
 class _Emitter:
     def __init__(self, item: dict, catalog: dict):
         self.pending_within: list = []
+        self.state_mode = 0                             # > 0 while a `states: true` shape renders: on-demand predications are state binders / state functions
         self.item, self.cat = item, catalog
         self.insts = [dict(r) if isinstance(r, dict) else r for r in (item.get("instances") or [])]   # never mutate the caller's records
         self.by_id = {r["id"]: r for r in self.insts if "id" in r}
@@ -330,6 +331,26 @@ class _Emitter:
                     out.add(r[sname][1:])
         return out
 
+    def mint_stem(self, r: dict) -> str:
+        """The stem a minting template gives an instance's symbol (sk_<stem>_n)."""
+        m = self.cat[r["t"]].get("mints") or {}
+        stem_slot = m.get("stem")
+        stem = r.get(stem_slot) if stem_slot else m.get("literal") or r.get("verb") or r.get("class") or self.cat[r["t"]]["id"]
+        return slug(stem)
+
+    def is_on_demand(self, iid: str) -> bool:
+        """A predication whose template mints its state only on demand (a copular, a locative, a degree …)."""
+        return bool((self.cat[self.by_id[iid]["t"]].get("mints") or {}).get("on_demand"))
+
+    def state_binders(self, iid: str) -> list[str]:
+        """The on-demand predications a rule's state-variable slots (``as_variable`` / ``state_variable``
+        refs) reference: the binders of its state rule; none, and the rule has no state rule."""
+        r = self.by_id[iid]
+        t = self.cat[r["t"]]
+        return [x[1:] for sn, sp in (t.get("slots") or {}).items()
+                if sp["type"] == "refs" and (sp.get("as_variable") or sp.get("state_variable"))
+                for x in (r.get(sn) or []) if is_ref(x) and x[1:] in self.by_id and self.is_on_demand(x[1:])]
+
     def assign_symbols(self):
         named: dict[str, list[str]] = {}
         counters: dict[str, int] = {}
@@ -352,9 +373,7 @@ class _Emitter:
                 else:
                     named.setdefault(base, []).append(r["id"])
             else:
-                stem_slot = m.get("stem")
-                stem = r.get(stem_slot) if stem_slot else m.get("literal") or r.get("verb") or r.get("class") or t["id"]
-                stem = slug(stem)
+                stem = self.mint_stem(r)
                 counters[stem] = counters.get(stem, 0) + 1
                 self.sym[r["id"]] = f"sk_{stem}_{counters[stem]}"
         for base, ids in named.items():
@@ -432,7 +451,7 @@ class _Emitter:
         v = element if element is not None else inst.get(slot)
         if spec["type"] == "refs":
             if within:                                   # inside a bundle: the first referenced instance's symbol, through any scope over it
-                first = next((x for x in (v or []) if is_ref(x)), None)
+                first = next((x for x in ([element] if element is not None else (v or [])) if is_ref(x)), None)
                 return self.content_symbol(first[1:]) if first else None
             return element if element is not None else self.bundle(v, inst["id"], spec, slot, part)
         if is_ref(v):
@@ -506,10 +525,15 @@ class _Emitter:
         r = self.by_id[iid]
         t = self.cat[r["t"]]
         terms = []
+        on_demand = self.state_mode and self.is_on_demand(iid)
         for e in t.get("emits") or []:
             if e.get("within"):                          # rendered inside that slot's bundle, see within_terms
                 continue
             if bool(e.get("project")) != projecting:
+                continue
+            if on_demand and not e.get("state"):         # inside a state rule a predication is its state binder, nothing else
+                continue
+            if e.get("states") and not self.state_binders(iid):   # a state rule needs a stative condition to bind
                 continue
             if e.get("if_minted") and iid not in self.sym:   # the state of an anchored predication: only when minted
                 continue
@@ -520,17 +544,23 @@ class _Emitter:
             shape = parse_shape(e["atom"])
             for sym, cls in (e.get("declare") or {}).items():
                 self.declare(sym, cls)
-            if "each" in e:
-                slot = e["each"]
-                if t["slots"][slot]["type"] == "refs":
-                    b = self.bundle(r.get(slot) or [], iid)
-                    elements = b[1:] if isinstance(b, list) and b and b[0] == "And" else [b]
+            if e.get("states"):
+                self.state_mode += 1
+            try:
+                if "each" in e:
+                    slot = e["each"]
+                    if t["slots"][slot]["type"] == "refs":
+                        b = self.bundle(r.get(slot) or [], iid)
+                        elements = b[1:] if isinstance(b, list) and b and b[0] == "And" else [b]
+                    else:
+                        elements = r.get(slot) or []
+                    for element in elements:
+                        terms.append((self.substitute(shape, r, t["slots"], slot, element), e))
                 else:
-                    elements = r.get(slot) or []
-                for element in elements:
-                    terms.append((self.substitute(shape, r, t["slots"], slot, element), e))
-            else:
-                terms.append((self.substitute(shape, r, t["slots"]), e))
+                    terms.append((self.substitute(shape, r, t["slots"]), e))
+            finally:
+                if e.get("states"):
+                    self.state_mode -= 1
         return terms
 
     def within_terms(self, iid: str, slot: str) -> list:
@@ -542,13 +572,19 @@ class _Emitter:
         for e in t.get("emits") or []:
             if e.get("within") != slot:
                 continue
+            if bool(e.get("states")) != bool(self.state_mode):   # a state rule's within shapes belong to it alone
+                continue
             if "if_filled" in e and r.get(e["if_filled"]) in (None, [], ""):
                 continue
             if "when" in e and not holds(e["when"], r, t.get("lexicon")):
                 continue
             for sym, cls in (e.get("declare") or {}).items():
                 self.declare(sym, cls)
-            terms.append(self.substitute(parse_shape(e["atom"]), r, t["slots"], within=True))
+            if "each" in e:                              # one shape per element of the slot (a During per condition)
+                for element in r.get(e["each"]) or []:
+                    terms.append(self.substitute(parse_shape(e["atom"]), r, t["slots"], e["each"], element, within=True))
+            else:
+                terms.append(self.substitute(parse_shape(e["atom"]), r, t["slots"], within=True))
         return terms
 
     def attached(self, refs: list, scope_iid: str) -> list[str]:
@@ -592,13 +628,22 @@ class _Emitter:
         evars: list[str] = []
         used = {str(s) for s in self.sym.values() if isinstance(s, str) and s.startswith("$")}
         free = [v for v in VARIABLES if v not in used]
+        svars: list[str] = []
         for sname, sp in (self.cat[inst["t"]].get("slots") or {}).items():
-            if sp["type"] != "refs" or not sp.get("as_variable"):
+            if sp["type"] != "refs" or not (sp.get("as_variable") or (self.state_mode and sp.get("state_variable"))):
                 continue
             for ref in inst.get(sname) or []:
-                if not is_ref(ref) or ref[1:] not in self.sym:
+                if not is_ref(ref):
                     continue
                 rid = ref[1:]
+                if rid not in self.sym:
+                    if self.state_mode and rid in self.by_id and self.is_on_demand(rid):
+                        sv = "$s" if not svars else f"$s{len(svars) + 1}"     # a stative condition: its state is the bound variable
+                        mapping[rid] = sv
+                        svars.append(sv)
+                    continue
+                if not sp.get("as_variable"):
+                    continue
                 ev = "$e" if not evars else f"$e{len(evars) + 1}"
                 mapping[rid] = ev
                 evars.append(ev)
@@ -608,7 +653,7 @@ class _Emitter:
                         pid = r[s2][1:]
                         if pid in self.sym and pid not in mapping and not self.is_rigid(pid):
                             mapping[pid] = free.pop(0) if free else f"$p{len(mapping)}"
-        return mapping, evars
+        return mapping, evars + svars
 
     def bundle(self, refs: list, scope_iid: str, spec: dict | None = None, slot: str | None = None, part: str | None = None):
         """The content of a scope: its referenced instances' atoms plus the referents homed here,
@@ -640,10 +685,16 @@ class _Emitter:
                 variables.extend(evars)
                 for iid in self.inside(refs, scope_iid):
                     m = self.cat[self.by_id[iid]["t"]].get("mints") or {}
-                    if m and iid in self.sym and not self.is_rigid(iid) and iid not in mapping and variables:
-                        stem = self.sym[iid].rsplit("_", 1)[0]     # no variable in scope: the constant stays
-                        overlay[iid] = [stem] + variables
-                        self.sk_functions[(stem, len(variables))] = m.get("id", "Entity")
+                    if not m or self.is_rigid(iid) or iid in mapping or not variables:
+                        continue                              # no variable in scope: the constant stays
+                    if iid in self.sym:
+                        stem = self.sym[iid].rsplit("_", 1)[0]
+                    elif self.state_mode and m.get("on_demand"):
+                        stem = "sk_" + self.mint_stem(self.by_id[iid])   # a stative consequence: its state, a function of the binders
+                    else:
+                        continue
+                    overlay[iid] = [stem] + variables
+                    self.sk_functions[(stem, len(variables))] = m.get("id", "Entity")
         saved = self.sym
         if overlay is not None:
             self.sym = overlay

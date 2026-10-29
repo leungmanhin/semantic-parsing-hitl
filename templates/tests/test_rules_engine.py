@@ -594,6 +594,32 @@ class SeededRulesOnTheEngine(unittest.TestCase):
         bounded = self.query(h, "(And (Holds $s (Inheritance spindle tool)) (End $s $t) (Year $t $y))")
         self.assertTrue(bounded and "1900" in bounded[0], bounded)                                            # the statement held until when
 
+    def test_a_stative_condition_fires_flat_on_a_plain_statement_and_by_state_on_an_anchored_one(self):
+        """The two rules of a stative conditional: the flat rule fires on a plain statement and
+        says nothing of a past one; the state rule fires on an anchored state and places the
+        consequence's state during it — the barn's cold state during yesterday's open state, a
+        heron's patience during a stated sunny spell, at that spell's time."""
+        flat = '(: r_flat (Implication (Member sk_door_1 open) (Member sk_barn_1 cold)) (STV 1.0 0.9))'
+        state = '(: r_state (Implication (Holds $s (Member sk_door_1 open)) (And (Holds (sk_cold $s) (Member sk_barn_1 cold)) (During (sk_cold $s) $s))) (STV 1.0 0.9))'
+        plain = self.space([flat, state, '(: d_open (Member sk_door_1 open) (STV 1.0 0.99))'])
+        self.assertTrue(self.query(plain, "(Member sk_barn_1 cold)"))                                      # the plain statement: the flat rule
+        self.assertFalse(self.query(plain, "(Holds $c (Member sk_barn_1 cold))"))                          # no state to bind
+        past = self.space([flat, state,
+                           '(: d_past (Past (Member sk_door_1 open)) (STV 1.0 0.99))',
+                           '(: d_holds (Holds sk_open_1 (Member sk_door_1 open)) (STV 1.0 0.99))',
+                           '(: d_past_2 (Past sk_open_1) (STV 1.0 0.99))',
+                           '(: d_time (Time sk_open_1 sk_time_1) (STV 1.0 0.99))'])
+        self.assertFalse(self.query(past, "(Member sk_barn_1 cold)"))                                      # a past open state: no present claim
+        during = self.query(past, "(And (Holds $c (Member sk_barn_1 cold)) (During $c sk_open_1))")
+        self.assertTrue(during and "sk_cold" in during[0], during)                                        # the cold state during the open state
+        herons = self.space(['(: r_state (Implication (And (Member $x heron) (Holds $s (Member sk_weather_1 sunny))) (And (Holds (sk_patient $x $s) (Member $x patient)) (During (sk_patient $x $s) $s))) (STV 0.9 0.7))',
+                             '(: h1 (Member sk_heron_1 heron) (STV 1.0 0.99))',
+                             '(: w_holds (Holds sk_sunny_1 (Member sk_weather_1 sunny)) (STV 1.0 0.99))',
+                             '(: w_time (Time sk_sunny_1 sk_time_1) (STV 1.0 0.99))'])
+        res = self.query(herons, "(And (Holds $p (Member sk_heron_1 patient)) (During $p $s) (Time $s $t))", steps=1500)
+        self.assertTrue(res and "sk_time_1" in res[0], res)                                                # the patience during the sunny spell, at its time
+        self.assertLess(tv(res)[1], 0.8)                                                                   # at the generalization's confidence
+
     def test_a_hedge_sets_the_dial_and_a_band_query_reads_it(self):
         """A hedged clause is its own statements at the hedge's truth value, no operator: a band
         query on the strength tells a probable fact from an unlikely one, an unlikely fact is a

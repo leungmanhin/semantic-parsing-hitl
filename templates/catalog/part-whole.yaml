@@ -116,9 +116,11 @@ emits:
   # to this instance (a time, a duration, a relation, a link, a focus); its tense beside it
   - atom: "(Holds @id (PartOf {part} {whole}))"
     if_minted: true
+    state: true
     if_filled: part
   - atom: "(Holds @id (MadeOf {whole} {material}))"
     if_minted: true
+    state: true
     if_filled: material
   - atom: "(Past @id)"
     if_minted: true

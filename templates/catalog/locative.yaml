@@ -85,6 +85,7 @@ emits:
   # an anchored predication: the state of the fact holding, minted only when something attaches
   - atom: "(Holds @id ({head} {thing} {place}))"
     if_minted: true
+    state: true
   - atom: "(Past @id)"
     if_minted: true
     when: "tense == past or aspect == perfect"

@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 93d90817f528152a · 58 templates
+catalog sha256 674f9c89cf091f16 · 58 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -5375,6 +5375,7 @@ The program renders these instances as:
     (Member sk_barn_1 barn)
     (Member sk_door_1 door)
     (Implication (Member sk_door_1 open) (Member sk_barn_1 cold))
+    (Implication (Holds $s (Member sk_door_1 open)) (And (Holds (sk_cold $s) (Member sk_barn_1 cold)) (During (sk_cold $s) $s)))
 
 Not this template. TEXT: All alloys are brittle when cold. — use `conditional-property`.
 
@@ -5448,6 +5449,7 @@ Instances:
 The program renders these instances as:
 
     (Implication (And (Member $x clay) (Member $x wet)) (Member $x soft))
+    (Implication (And (Member $x clay) (Holds $s (Member $x wet))) (And (Holds (sk_soft $x $s) (Member $x soft)) (During (sk_soft $x $s) $s)))
 
 Example (a quantifier word — on the range, with the property as its predicate). TEXT: All alloys are brittle when cold.
 
@@ -5463,6 +5465,7 @@ Instances:
 The program renders these instances as:
 
     (Implication (And (Member $x alloy) (Member $x cold)) (Member $x brittle))
+    (Implication (And (Member $x alloy) (Holds $s (Member $x cold))) (And (Holds (sk_brittle $x $s) (Member $x brittle)) (During (sk_brittle $x $s) $s)))
 
 Not this template. TEXT: Otters are rare in Norfolk. — use `class-property`.
 

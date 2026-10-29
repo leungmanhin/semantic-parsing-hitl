@@ -1,6 +1,6 @@
 # Suite report
 
-prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 5542c07bfd76ceb7) · type check: ran
+prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 c2657c1352e33493) · type check: ran
 
 ## Catalog checks
 
@@ -807,7 +807,7 @@ Mismatches: none
 
 ## hedge — held_out
 
-31 cases, 93 records (ok 93; stale prompt 48) · gemini-4-argon effort=low
+31 cases, 93 records (ok 93; stale prompt 93) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
