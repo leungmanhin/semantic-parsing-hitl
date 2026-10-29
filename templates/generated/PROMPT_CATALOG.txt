@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 91001c7993e2ec00 · 58 templates
+catalog sha256 93d90817f528152a · 58 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -158,9 +158,10 @@ part, keep the instances the templates license and report just that part: an add
 bound, duration, place, manner, amount or tag leaves the event itself true ("was demolished
 before 1960" still says it was demolished). When the rest would NOT follow without the unmapped
 part, leave the whole claim out and report the whole clause: a negated condition ("unless it
-rains, Lamine sings"), a reported claim no template carries ("is said to be full"), an
-unencodable quantity ("too much salt"). An evaluative adverb ("unfortunately, Yusra left")
-leaves the clause entailed: keep the clause and report the adverb (G02).
+rains, Lamine sings"), an attribution to a source that no template carries ("according to
+Lamine, the gate is open"), an unencodable quantity ("too much salt"). An evaluative adverb
+("unfortunately, Yusra left") leaves the clause entailed: keep the clause and report the adverb
+(G02).
 
 Referents inside an unmapped span: a NAME still gets its instance (a name is rigid, the same
 individual wherever it appears in the text), but a common-noun phrase or a pronoun does not. A
@@ -309,8 +310,9 @@ Not this template:
 - a relative pronoun opening a relative clause — the clerk who laughed, the quilt that Yusra
   sold: a different construction, reported as unmapped
 - an expletive — it rained, it is clear that: no referent, no mention
-- a generic or impersonal pronoun — one never knows, you cannot be sure, they say: no referent,
-  reported as unmapped
+- a generic or impersonal pronoun — one never knows, you cannot be sure: no referent, reported
+  as unmapped; they say that P, people think that P: no referent either, and the clause goes
+  under the hedge template
 - a pronoun whose antecedent is not in the text (a text beginning "He laughed."): still a
   mention, but with no coref instance to state
 
@@ -1130,6 +1132,10 @@ Not this template:
   of the message, not an attitude of the subject alone
 - a parenthetical or discourse use — I think, you know, as far as I know: no attitude is
   predicated of anyone
+- an impersonal report — it is believed that P, Yusra is said / thought / expected to V, Lamine
+  is considered a glazier, they say that P: no holder is stated; the hedge template over the
+  clause, nothing sealed; a quantified holder — some people think that P: this template, the
+  group as its holder
 - an adjective with a noun-phrase complement — afraid of the ferret, sure of the result, fond of
   Lamine: the adjective-complement template; able to V — is able to swim: a capability, the
   modal template; likely, bound, certain or sure TO V — Yusra is likely to win: the speaker's
@@ -1716,6 +1722,8 @@ Forms:
 Not this template:
 - a reporting verb with no addressee — said that P, claimed that P, announced that P: the
   subject's attitude towards the clause; nothing is conveyed to anyone
+- an impersonal report — it is reported that P, Yusra is said to V, they say that P: no speaker;
+  the hedge template over the clause
 - an object that changes hands rather than a message — handed Ottoline the letter, sent Yusra a
   parcel: a transfer
 - a question as the content — asked Ottoline whether P, asked Yusra who left: the content is a
@@ -3721,8 +3729,10 @@ Not this template:
   appearance claim
 - remain, stay, keep with a property — remains open, stayed warm: a continuation, an aspectual
   or the clause's own state; become, get, turn — became tired: a change of state
-- an epistemic modal — might be tired, must be tired: the modal template; a hearsay attribution
-  — according to Lamine, is said to be tired: an attribution or an attitude
+- an epistemic modal — might be tired, must be tired: the modal template; a report with no
+  source — is said / believed / thought to be tired: the hedge template, which sets the clause's
+  truth value; an attribution — according to Lamine: no template yet, the whole clause reported
+  as unmapped
 - a hedge adverb — probably tired, apparently tired: the hedge template over the clause, which
   sets its truth value; no appearance is stated
 
@@ -3792,22 +3802,45 @@ When: A clause qualified by a HEDGE: a sentence adverb of likelihood or commitme
 likely, presumably, apparently, seemingly, supposedly, reportedly, allegedly, evidently,
 certainly, surely, definitely, undoubtedly, clearly, obviously — or a RAISING adjective with a
 to-infinitive — is likely / unlikely / bound / certain / sure to V, where the subject acts in
-the infinitive's clause (tense present). The clause is parsed with its own templates; the hedge
-instance names its predication (or the negation, modal, norm or rule over it) in `over` and the
-word in `word`. The program sets the clause's truth value from the word; nothing else changes
-and no atom is added. One instance per hedge word.
+the infinitive's clause (tense present) — or an IMPERSONAL REPORT, a claim whose source is
+nobody in particular: a passive raising verb of saying, believing, expecting or knowing (X is
+said / believed / thought / reported / rumoured / alleged / claimed / presumed / assumed /
+understood / supposed / expected / estimated / reputed / known to be … or to V; X is considered
+/ regarded as / deemed a N or ADJ), the impersonal extraposition (it is said / believed /
+thought / reported / known that P: "it" is no referent), or an impersonal active (they say that
+P, people think / believe that P). The clause is parsed with its own templates — a copular for
+"to be a weaver" or "considered a glazier", a locative for "to be in Calderwick", a verb's
+template for "to win" — with the matrix verb's tense (is said to be → present, was believed to
+be → past; a perfect infinitive, is said to have left, is past; is expected to win stays
+present, as likely to does); the hedge instance names its predication (or the negation, modal,
+norm or rule over it) in `over` and the word in `word` (the participle or verb lemmatized: said,
+believed, considered, say). The program sets the clause's truth value from the word; nothing
+else changes, no atom is added and no holder or attitude event is minted. One instance per hedge
+word.
 
 Forms:
 - <S> probably / apparently / certainly <V> …
 - Probably / Presumably, <clause>
 - <S> is likely / unlikely / bound / certain / sure to <V> …
+- <S> is said / believed / thought / reported / expected / known to be … / to <V>
+- <S> is considered / regarded as / deemed <N or ADJ>
+- It is said / believed / thought / known that <clause>
+- They say / people think that <clause>
 
 Not this template:
 - a possibility — might, may, could, perhaps, maybe, possibly: the modal template (Might), with
   the word in its surface; an epistemic inference — must be tired, must have left: the modal
   template (Must)
-- an appearance or a report stated by a verb — seems tired, looks tired, is said to be tired:
-  the evidential template, or an attribution (according to Lamine)
+- an appearance stated by a verb — seems tired, looks tired: the evidential template
+- a report with a NAMED or quantified source — Lamine says that P, Teodor believes that P, some
+  people think that P, everyone says that P: that holder's attitude or communication, not an
+  impersonal report; an attribution — according to Lamine, P: no template yet, and the claim is
+  not asserted, so report the whole clause as unmapped (G00)
+- supposed to as a duty or an expectation of conduct — is supposed to wait, is supposed to lock
+  the shed: the norm template's weak obligation; only a report about a fact (is supposed to be
+  rich) is a hedge
+- a generality adverb on a report — widely / generally / commonly believed: nothing changes on
+  the dial; report the adverb as unmapped (G02)
 - a stance of the subject — is sure that P, is afraid that P, is confident that P: the subject's
   attitude, the attitude template; a hedge is the speaker's, not the subject's
 - imminence or a schedule — is about to leave, is due to arrive: not a commitment; no template,
@@ -3829,8 +3862,12 @@ Slots:
   predication with the subject as its actor.
 - `word` (required; one of: probably, likely, presumably, apparently, seemingly, supposedly,
   reportedly, allegedly, evidently, unlikely, certainly, surely, definitely, undoubtedly,
-  clearly, obviously, bound, certain, sure): the hedge word as written, lowercase (is likely to
-  → likely, is bound to → bound); the program sets the dial from it.
+  clearly, obviously, bound, certain, sure, said, believed, thought, reported, rumoured,
+  rumored, alleged, claimed, presumed, assumed, understood, supposed, expected, estimated,
+  reputed, considered, regarded, deemed, known, say, think, believe): the hedge word as written,
+  lowercase (is likely to → likely, is bound to → bound); for an impersonal report the
+  participle (is said to → said, is regarded as → regarded, it is believed that → believed) or
+  the verb lemmatized (they say → say, people think → think); the program sets the dial from it.
 
 Example (a sentence adverb — the clause's own atoms at the hedge's truth value, no operator). TEXT: Teodor probably locked the shed.
 
@@ -3866,6 +3903,38 @@ The program renders these instances as:
 
     (Member sk_gate_1 gate)
     (Member sk_gate_1 open)
+
+Example (an impersonal report — the copular clause at the hearsay dial, the participle the word, no holder, nothing sealed). TEXT: The mill is said to be haunted.
+
+Instances:
+
+    [
+      {"t": "witness", "id": "x1", "class": "mill", "definite": true, "span": "The mill"},
+      {"t": "copular", "id": "c1", "subject": "@x1", "predicate": "haunted", "form": "adjective", "tense": "present", "span": "The mill is said to be haunted"},
+      {"t": "hedge", "id": "s1", "over": ["@c1"], "word": "said", "span": "is said to"}
+    ]
+
+The program renders these instances as:
+
+    (Member sk_mill_1 mill)
+    (Member sk_mill_1 haunted)
+
+Example (the impersonal extraposition — "it" is no referent; the clause at the dial). TEXT: It is believed that Yusra left.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Yusra", "span": "Yusra"},
+      {"t": "motion", "id": "m1", "verb": "leave", "mover": "@n1", "tense": "past", "span": "Yusra left"},
+      {"t": "hedge", "id": "s1", "over": ["@m1"], "word": "believed", "span": "It is believed that"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_yusra_1 "Yusra")
+    (Member sk_leave_1 leave)
+    (Agent sk_leave_1 sk_yusra_1)
+    (Past sk_leave_1)
 
 Not this template. TEXT: Yusra must be tired. — use `modal`.
 
@@ -4129,6 +4198,8 @@ Not this template:
   act, and the frequency template's rule over the occasions whose `over` names the norm (the
   obligation on each occasion); must never / should never — must never feed the ferrets: a
   prohibition (weak with should), the never its universality, no frequency
+- supposed to as a report about a fact — Yusra is supposed to be rich: the speaker's hedge over
+  the clause, not a duty; here supposed to is a weak obligation of conduct (is supposed to wait)
 
 Slots:
 

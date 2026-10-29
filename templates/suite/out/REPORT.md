@@ -1,10 +1,10 @@
 # Suite report
 
-prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 b40ca41fbfa8d059) · type check: ran
+prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 5542c07bfd76ceb7) · type check: ran
 
 ## Catalog checks
 
-1083 examples checked; findings: 0
+1100 examples checked; findings: 0
 
 Sentences two templates claim with the same expected atoms (composition, fine):
 - "Ottoline bought the quilt for forty euros." — acquisition, measure
@@ -807,31 +807,34 @@ Mismatches: none
 
 ## hedge — held_out
 
-16 cases, 48 records (ok 48; stale prompt 48) · gemini-4-argon effort=low
+31 cases, 93 records (ok 93; stale prompt 48) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
-| positive | 7 | 21 | 21 | 21 | 21 |
+| positive | 19 | 57 | 57 | 57 | 57 |
 | scoped | 2 | 6 | 6 | 6 | 6 |
-| abstain | 7 | 21 | 0 (false fires) | – | 21 |
+| abstain | 10 | 30 | 0 (false fires) | – | 30 |
 
-- selection: fire cases fired 27/27 · abstain cases false fires 0/21
-- fill: exact 27/27 among fires
-- stability: pairwise agreement 1.0 (16 cases, 48 pairs), unanimous 16/16
-- type check: 48/48 emitted parses type
+- selection: fire cases fired 63/63 · abstain cases false fires 0/30
+- fill: exact 63/63 among fires
+- stability: pairwise agreement 1.0 (31 cases, 93 pairs), unanimous 31/31
+- type check: 93/93 emitted parses type
 - graph lints: none
-- spans: 147/147 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
-- usage: 48 calls · in 4,436,844 · cached 4,243,676 (96% of the input) · out 7,127 · thinking 0 (calls with thought tokens: 0)
+- spans: 288/288 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
+- usage: 93 calls · in 8,676,558 · cached 8,298,843 (96% of the input) · out 14,219 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
 Abstain cases (what the parser did, per run):
 - "Teodor might be tired." (target `modal`): r1 target_fired [copular×1, modal×1, named-entity×1] · r2 target_fired [copular×1, modal×1, named-entity×1] · r3 target_fired [copular×1, modal×1, named-entity×1]
 - "Unfortunately, Yusra left." (gap G02): r1 gap_reported [motion×1, named-entity×1; unmapped G02] · r2 gap_reported [motion×1, named-entity×1; unmapped G02] · r3 gap_reported [motion×1, named-entity×1; unmapped G02]
+- "Teodor believes that Lamine did not sell the spindle." (target `attitude`): r1 target_fired [attitude×1, named-entity×2, negation×1, transfer×1, witness×1] · r2 target_fired [attitude×1, named-entity×2, negation×1, transfer×1, witness×1] · r3 target_fired [attitude×1, named-entity×2, negation×1, transfer×1, witness×1]
 - "Yusra is about to leave." (gap G00): r1 gap_reported [named-entity×1; unmapped G00] · r2 gap_reported [named-entity×1; unmapped G00] · r3 gap_reported [named-entity×1; unmapped G00]
 - "Lamine often laughed." (target `frequency`): r1 target_fired [activity×1, frequency×1, named-entity×1, range×1] · r2 target_fired [activity×1, frequency×1, named-entity×1, range×1] · r3 target_fired [activity×1, frequency×1, named-entity×1, range×1]
+- "According to Lamine, the gate is open." (gap G00): r1 gap_reported [named-entity×1; unmapped G00] · r2 gap_reported [named-entity×1; unmapped G00] · r3 gap_reported [named-entity×1; unmapped G00]
 - "Perhaps Yusra left." (target `modal`): r1 target_fired [modal×1, motion×1, named-entity×1] · r2 target_fired [modal×1, motion×1, named-entity×1] · r3 target_fired [modal×1, motion×1, named-entity×1]
 - "Ottoline is about 40 years old." (target `measure`): r1 target_fired [measure×1, named-entity×1] · r2 target_fired [measure×1, named-entity×1] · r3 target_fired [measure×1, named-entity×1]
 - "Lamine is sure that Yusra left." (target `attitude`): r1 target_fired [attitude×1, motion×1, named-entity×2] · r2 target_fired [attitude×1, motion×1, named-entity×2] · r3 target_fired [attitude×1, motion×1, named-entity×2]
+- "Teodor is supposed to wait." (target `norm`): r1 target_fired [activity×1, named-entity×1, norm×1] · r2 target_fired [activity×1, named-entity×1, norm×1] · r3 target_fired [activity×1, named-entity×1, norm×1]
 
 Mismatches: none
 
@@ -1460,7 +1463,7 @@ Mismatches: none
 
 ## time-relation — held_out
 
-31 cases, 93 records (ok 93; stale prompt 90) · gemini-4-argon effort=low
+31 cases, 93 records (ok 93; stale prompt 93) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|

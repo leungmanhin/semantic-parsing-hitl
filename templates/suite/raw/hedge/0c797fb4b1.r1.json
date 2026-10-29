@@ -1,0 +1,93 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "08c196e30a4fe4862e0cd24e37b2d743181a1db41ad56e597d0605df397034c3",
+  "item": {
+    "id": "s0c797fb4b1",
+    "text": "Yusra is considered a glazier."
+  },
+  "usage": {
+    "input": 94216,
+    "output": 149,
+    "thinking": null,
+    "total": 94365,
+    "cached": 92167,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 94216,
+    "candidatesTokenCount": 149,
+    "totalTokenCount": 94365,
+    "cachedContentTokenCount": 92167,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 94216
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 92167
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 149
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s0c797fb4b1\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@n1\", \"predicate\": \"glazier\", \"form\": \"noun\", \"tense\": \"present\", \"span\": \"Yusra is considered a glazier\"}, {\"t\": \"hedge\", \"id\": \"s1\", \"over\": [\"@c1\"], \"word\": \"considered\", \"span\": \"is considered\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s0c797fb4b1",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "copular",
+        "id": "c1",
+        "subject": "@n1",
+        "predicate": "glazier",
+        "form": "noun",
+        "tense": "present",
+        "span": "Yusra is considered a glazier"
+      },
+      {
+        "t": "hedge",
+        "id": "s1",
+        "over": [
+          "@c1"
+        ],
+        "word": "considered",
+        "span": "is considered"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "5542c07bfd76ceb7f7c16fe6c1f32c04b4f2fbe305514f723335894a9baa7f17",
+  "run": 1,
+  "case": {
+    "template": "hedge",
+    "section": "held_out",
+    "index": 23,
+    "category": "positive",
+    "text": "Yusra is considered a glazier.",
+    "key": "0c797fb4b1"
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "08c196e30a4fe4862e0cd24e37b2d743181a1db41ad56e597d0605df397034c3",
+  "item": {
+    "id": "s7ead17bd45",
+    "text": "The bridge is reported to be unsafe."
+  },
+  "usage": {
+    "input": 94214,
+    "output": 219,
+    "thinking": null,
+    "total": 94433,
+    "cached": 92165,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 94214,
+    "candidatesTokenCount": 219,
+    "totalTokenCount": 94433,
+    "cachedContentTokenCount": 92165,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 94214
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 92165
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 219
+      }
+    ]
+  },
+  "raw_text": "{\n  \"id\": \"s7ead17bd45\",\n  \"instances\": [\n    {\n      \"t\": \"witness\",\n      \"id\": \"x1\",\n      \"class\": \"bridge\",\n      \"definite\": true,\n      \"span\": \"The bridge\"\n    },\n    {\n      \"t\": \"copular\",\n      \"id\": \"c1\",\n      \"subject\": \"@x1\",\n      \"predicate\": \"unsafe\",\n      \"form\": \"adjective\",\n      \"tense\": \"present\",\n      \"span\": \"The bridge is reported to be unsafe\"\n    },\n    {\n      \"t\": \"hedge\",\n      \"id\": \"s1\",\n      \"over\": [\n        \"@c1\"\n      ],\n      \"word\": \"reported\",\n      \"span\": \"is reported to\"\n    }\n  ],\n  \"unmapped\": [],\n  \"issues\": []\n}",
+  "response": {
+    "id": "s7ead17bd45",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "bridge",
+        "definite": true,
+        "span": "The bridge"
+      },
+      {
+        "t": "copular",
+        "id": "c1",
+        "subject": "@x1",
+        "predicate": "unsafe",
+        "form": "adjective",
+        "tense": "present",
+        "span": "The bridge is reported to be unsafe"
+      },
+      {
+        "t": "hedge",
+        "id": "s1",
+        "over": [
+          "@c1"
+        ],
+        "word": "reported",
+        "span": "is reported to"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "5542c07bfd76ceb7f7c16fe6c1f32c04b4f2fbe305514f723335894a9baa7f17",
+  "run": 3,
+  "case": {
+    "template": "hedge",
+    "section": "held_out",
+    "index": 18,
+    "category": "positive",
+    "text": "The bridge is reported to be unsafe.",
+    "key": "7ead17bd45"
+  }
+}

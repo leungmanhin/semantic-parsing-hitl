@@ -1,0 +1,94 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "08c196e30a4fe4862e0cd24e37b2d743181a1db41ad56e597d0605df397034c3",
+  "item": {
+    "id": "s31a4a71829",
+    "text": "The shed is rumoured to be empty."
+  },
+  "usage": {
+    "input": 94218,
+    "output": 152,
+    "thinking": null,
+    "total": 94370,
+    "cached": 92169,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 94218,
+    "candidatesTokenCount": 152,
+    "totalTokenCount": 94370,
+    "cachedContentTokenCount": 92169,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 94218
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 92169
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 152
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s31a4a71829\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"shed\", \"definite\": true, \"span\": \"The shed\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@x1\", \"predicate\": \"empty\", \"form\": \"adjective\", \"tense\": \"present\", \"span\": \"The shed is rumoured to be empty\"}, {\"t\": \"hedge\", \"id\": \"s1\", \"over\": [\"@c1\"], \"word\": \"rumoured\", \"span\": \"is rumoured to\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s31a4a71829",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "shed",
+        "definite": true,
+        "span": "The shed"
+      },
+      {
+        "t": "copular",
+        "id": "c1",
+        "subject": "@x1",
+        "predicate": "empty",
+        "form": "adjective",
+        "tense": "present",
+        "span": "The shed is rumoured to be empty"
+      },
+      {
+        "t": "hedge",
+        "id": "s1",
+        "over": [
+          "@c1"
+        ],
+        "word": "rumoured",
+        "span": "is rumoured to"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "5542c07bfd76ceb7f7c16fe6c1f32c04b4f2fbe305514f723335894a9baa7f17",
+  "run": 2,
+  "case": {
+    "template": "hedge",
+    "section": "held_out",
+    "index": 21,
+    "category": "positive",
+    "text": "The shed is rumoured to be empty.",
+    "key": "31a4a71829"
+  }
+}

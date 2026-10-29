@@ -1,0 +1,87 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "08c196e30a4fe4862e0cd24e37b2d743181a1db41ad56e597d0605df397034c3",
+  "item": {
+    "id": "se5ff61ef45",
+    "text": "Teodor is supposed to wait."
+  },
+  "usage": {
+    "input": 94213,
+    "output": 149,
+    "thinking": null,
+    "total": 94362,
+    "cached": null,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 94213,
+    "candidatesTokenCount": 149,
+    "totalTokenCount": 94362,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 94213
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 149
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"se5ff61ef45\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"wait\", \"actor\": \"@n1\", \"tense\": \"present\", \"span\": \"Teodor is supposed to wait\"}, {\"t\": \"norm\", \"id\": \"s1\", \"over\": [\"@v1\"], \"kind\": \"obligation\", \"weak\": true, \"word\": \"is supposed to\", \"span\": \"is supposed to\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "se5ff61ef45",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "wait",
+        "actor": "@n1",
+        "tense": "present",
+        "span": "Teodor is supposed to wait"
+      },
+      {
+        "t": "norm",
+        "id": "s1",
+        "over": [
+          "@v1"
+        ],
+        "kind": "obligation",
+        "weak": true,
+        "word": "is supposed to",
+        "span": "is supposed to"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "5542c07bfd76ceb7f7c16fe6c1f32c04b4f2fbe305514f723335894a9baa7f17",
+  "run": 1,
+  "case": {
+    "template": "hedge",
+    "section": "held_out",
+    "index": 29,
+    "category": "abstain",
+    "text": "Teodor is supposed to wait.",
+    "key": "e5ff61ef45"
+  }
+}

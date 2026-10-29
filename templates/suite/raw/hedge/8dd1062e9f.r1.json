@@ -1,0 +1,100 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "08c196e30a4fe4862e0cd24e37b2d743181a1db41ad56e597d0605df397034c3",
+  "item": {
+    "id": "s8dd1062e9f",
+    "text": "Teodor is believed to be in Calderwick."
+  },
+  "usage": {
+    "input": 94218,
+    "output": 189,
+    "thinking": null,
+    "total": 94407,
+    "cached": 92112,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 94218,
+    "candidatesTokenCount": 189,
+    "totalTokenCount": 94407,
+    "cachedContentTokenCount": 92112,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 94218
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 92112
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 189
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s8dd1062e9f\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Calderwick\", \"span\": \"Calderwick\"}, {\"t\": \"locative\", \"id\": \"l1\", \"thing\": \"@n1\", \"place\": \"@n2\", \"head\": \"LocatedIn\", \"preposition\": \"in\", \"tense\": \"present\", \"span\": \"Teodor is believed to be in Calderwick\"}, {\"t\": \"hedge\", \"id\": \"s1\", \"over\": [\"@l1\"], \"word\": \"believed\", \"span\": \"is believed to\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s8dd1062e9f",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Calderwick",
+        "span": "Calderwick"
+      },
+      {
+        "t": "locative",
+        "id": "l1",
+        "thing": "@n1",
+        "place": "@n2",
+        "head": "LocatedIn",
+        "preposition": "in",
+        "tense": "present",
+        "span": "Teodor is believed to be in Calderwick"
+      },
+      {
+        "t": "hedge",
+        "id": "s1",
+        "over": [
+          "@l1"
+        ],
+        "word": "believed",
+        "span": "is believed to"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "5542c07bfd76ceb7f7c16fe6c1f32c04b4f2fbe305514f723335894a9baa7f17",
+  "run": 1,
+  "case": {
+    "template": "hedge",
+    "section": "held_out",
+    "index": 16,
+    "category": "positive",
+    "text": "Teodor is believed to be in Calderwick.",
+    "key": "8dd1062e9f"
+  }
+}

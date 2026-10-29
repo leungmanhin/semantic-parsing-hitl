@@ -1,0 +1,92 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "08c196e30a4fe4862e0cd24e37b2d743181a1db41ad56e597d0605df397034c3",
+  "item": {
+    "id": "se16030d61f",
+    "text": "It is thought that Lamine left."
+  },
+  "usage": {
+    "input": 94216,
+    "output": 136,
+    "thinking": null,
+    "total": 94352,
+    "cached": 92167,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 94216,
+    "candidatesTokenCount": 136,
+    "totalTokenCount": 94352,
+    "cachedContentTokenCount": 92167,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 94216
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 92167
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 136
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"se16030d61f\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n1\", \"tense\": \"past\", \"span\": \"Lamine left\"}, {\"t\": \"hedge\", \"id\": \"s1\", \"over\": [\"@m1\"], \"word\": \"thought\", \"span\": \"It is thought that\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "se16030d61f",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "motion",
+        "id": "m1",
+        "verb": "leave",
+        "mover": "@n1",
+        "tense": "past",
+        "span": "Lamine left"
+      },
+      {
+        "t": "hedge",
+        "id": "s1",
+        "over": [
+          "@m1"
+        ],
+        "word": "thought",
+        "span": "It is thought that"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "5542c07bfd76ceb7f7c16fe6c1f32c04b4f2fbe305514f723335894a9baa7f17",
+  "run": 2,
+  "case": {
+    "template": "hedge",
+    "section": "held_out",
+    "index": 17,
+    "category": "positive",
+    "text": "It is thought that Lamine left.",
+    "key": "e16030d61f"
+  }
+}

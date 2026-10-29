@@ -1,0 +1,94 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "08c196e30a4fe4862e0cd24e37b2d743181a1db41ad56e597d0605df397034c3",
+  "item": {
+    "id": "sb253e31862",
+    "text": "The quilt is regarded as valuable."
+  },
+  "usage": {
+    "input": 94215,
+    "output": 149,
+    "thinking": null,
+    "total": 94364,
+    "cached": 92166,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 94215,
+    "candidatesTokenCount": 149,
+    "totalTokenCount": 94364,
+    "cachedContentTokenCount": 92166,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 94215
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 92166
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 149
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sb253e31862\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"quilt\", \"definite\": true, \"span\": \"The quilt\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@x1\", \"predicate\": \"valuable\", \"form\": \"adjective\", \"tense\": \"present\", \"span\": \"The quilt is regarded as valuable\"}, {\"t\": \"hedge\", \"id\": \"s1\", \"over\": [\"@c1\"], \"word\": \"regarded\", \"span\": \"is regarded as\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sb253e31862",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "quilt",
+        "definite": true,
+        "span": "The quilt"
+      },
+      {
+        "t": "copular",
+        "id": "c1",
+        "subject": "@x1",
+        "predicate": "valuable",
+        "form": "adjective",
+        "tense": "present",
+        "span": "The quilt is regarded as valuable"
+      },
+      {
+        "t": "hedge",
+        "id": "s1",
+        "over": [
+          "@c1"
+        ],
+        "word": "regarded",
+        "span": "is regarded as"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "5542c07bfd76ceb7f7c16fe6c1f32c04b4f2fbe305514f723335894a9baa7f17",
+  "run": 2,
+  "case": {
+    "template": "hedge",
+    "section": "held_out",
+    "index": 24,
+    "category": "positive",
+    "text": "The quilt is regarded as valuable.",
+    "key": "b253e31862"
+  }
+}

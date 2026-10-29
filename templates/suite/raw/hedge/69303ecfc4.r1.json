@@ -1,0 +1,92 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "08c196e30a4fe4862e0cd24e37b2d743181a1db41ad56e597d0605df397034c3",
+  "item": {
+    "id": "s69303ecfc4",
+    "text": "Ottoline is expected to win."
+  },
+  "usage": {
+    "input": 94214,
+    "output": 137,
+    "thinking": null,
+    "total": 94351,
+    "cached": 92165,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 94214,
+    "candidatesTokenCount": 137,
+    "totalTokenCount": 94351,
+    "cachedContentTokenCount": 92165,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 94214
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 92165
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 137
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s69303ecfc4\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"win\", \"actor\": \"@n1\", \"tense\": \"present\", \"span\": \"Ottoline is expected to win\"}, {\"t\": \"hedge\", \"id\": \"s1\", \"over\": [\"@v1\"], \"word\": \"expected\", \"span\": \"is expected to\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s69303ecfc4",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Ottoline",
+        "span": "Ottoline"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "win",
+        "actor": "@n1",
+        "tense": "present",
+        "span": "Ottoline is expected to win"
+      },
+      {
+        "t": "hedge",
+        "id": "s1",
+        "over": [
+          "@v1"
+        ],
+        "word": "expected",
+        "span": "is expected to"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "5542c07bfd76ceb7f7c16fe6c1f32c04b4f2fbe305514f723335894a9baa7f17",
+  "run": 1,
+  "case": {
+    "template": "hedge",
+    "section": "held_out",
+    "index": 19,
+    "category": "positive",
+    "text": "Ottoline is expected to win.",
+    "key": "69303ecfc4"
+  }
+}

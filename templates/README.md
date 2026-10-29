@@ -133,7 +133,7 @@ Nothing here changes `prompt.txt`, the briefs under `fusenf/briefs/`, or any pip
   it scopes over; the operator asserts nothing of its own. A norm (must, may, must not, need not) is the
   exception: it asserts the deontic status itself over the sealed act, 1.0 at 0.99, a weak should 0.7. A hedge
   (probably, likely, certainly, a raising adjective) is the other: it adds no atom and sets the clause's own truth
-  value from the word (0.9 at 0.7 for a weak hedge, 0.1 for unlikely, 1.0 at 0.9 for a strong one). The parser's only judgments are readings of the text
+  value from the word (0.9 at 0.7 for a weak hedge or an impersonal report — is said / believed / thought to be, it is believed that —, 0.1 for unlikely, 1.0 at 0.9 for a strong one or known to be). The parser's only judgments are readings of the text
   (a class or a group, taxonomic or empirical, which template fires); it never estimates a proportion
   or a likelihood. "Every mosquito carries malaria" is strength 1.0 although false. Contradictory
   inputs are recorded as stated, each with its provenance; weighing them is the reasoner's job.
