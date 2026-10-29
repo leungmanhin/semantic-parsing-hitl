@@ -45,8 +45,9 @@ trigger:
     - >-
       a non-spatial phrase on an adjective — good at chess, modest in its demands: an adjective
       with a complement, the adjective-complement template; a place phrase on an adjective —
-      happy in Calderwick, empty in the village: this template on the copular predication (the
-      event slot names the copular instance; the program mints the state the place hangs on)
+      happy in Calderwick, empty in the village, very busy in the mill: this template on the
+      copular or degree predication (the event slot names that instance; the program mints the
+      state the place hangs on), and likewise on a comparative, a part-whole or a measure clause
     - >-
       a place phrase inside a noun phrase — the ferret in the barn slept: a locative predication
       of that thing, not an attachment to the clause's event
@@ -237,3 +238,11 @@ examples:
     - category: abstain
       text: "Lamine was modest in his demands."
       expected: {abstain: true, template: adjective-complement}         # a non-spatial in: an adjective's complement
+    - category: positive
+      note: a place on a graded clause — the state of the graded fact holding carries the location
+      text: "Teodor was very busy in the mill."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, class: mill, definite: true}
+        - {t: degree, id: d1, bearer: "@n1", scale: busy, level: very, tense: past}
+        - {t: location, id: l1, event: "@d1", place: "@x1", head: Location, preposition: in}

@@ -76,7 +76,7 @@ trigger:
 slots:
   id:      {type: id, required: true, doc: "your label for the time (t1, t2 …)"}
   event:   {type: filler, class: Event, attaches: true, required: false,
-            doc: "the event the time attaches to: the id of the clause's predication instance — a verb's, or a copular / locative one (Yusra was tired yesterday: the state's time; the program mints the state) —, or of an eventive witness when the time is predicated of an event noun (the meeting is at noon); absent only for a time no clause places an event at"}
+            doc: "the event the time attaches to: the id of the clause's predication instance — a verb's, or a copular, locative, degree, comparative, class-statement, part-whole or measure one (Yusra was tired yesterday, the barn was very cold yesterday: the state's time; the program mints the state) —, or of an eventive witness when the time is predicated of an event noun (the meeting is at noon); absent only for a time no clause places an event at"}
   deictic: {type: enum, values: [now, today, tonight, yesterday, tomorrow, last_week, this_week, next_week, last_month, this_month, next_month, last_year, this_year, next_year], required: false,
             doc: "a time relative to the moment the text speaks from, as one of the listed words (last Tuesday or two days ago are not deictics here); fill no field beside it"}
   anchor:  {type: filler, class: TimeTerm, required: false, default: "@now",
@@ -458,3 +458,25 @@ examples:
     - category: abstain
       text: "Lamine waited at the market."
       expected: {abstain: true, template: location}                   # a place
+    - category: positive
+      note: a deictic time on a graded clause — one state, a Holds for the property and one for its degree
+      text: "The barn was very cold yesterday."
+      instances:
+        - {t: witness, id: x1, class: barn, definite: true}
+        - {t: degree, id: d1, bearer: "@x1", scale: cold, level: very, tense: past}
+        - {t: time, id: t1, event: "@d1", deictic: yesterday, anchor: "@now"}
+    - category: positive
+      note: a deictic time on a comparison — the state of the ordering holding carries the time
+      text: "Lamine was taller than Teodor last year."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: named-entity, id: n2, name: "Teodor"}
+        - {t: comparative, id: c1, subject: "@n1", standard: "@n2", scale: tall, relation: more, tense: past}
+        - {t: time, id: t1, event: "@c1", deictic: last_year, anchor: "@now"}
+    - category: positive
+      note: a date on a measure of a thing — the state of the measure holding carries the time
+      text: "The village had a population of 3000 in 1990."
+      instances:
+        - {t: witness, id: x1, class: village, definite: true}
+        - {t: measure, id: m1, bearer: "@x1", head: Measure, dimension: population, magnitude: 3000, unit: unspecified, tense: past}
+        - {t: time, id: t1, event: "@m1", year: 1990}

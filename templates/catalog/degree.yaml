@@ -8,6 +8,10 @@
 # property's positive atom only where the text asserts it: (Member x crooked) + (Degree x crooked
 # very); (Degree x full almost) alone; (Degree x tall (forClass weaver)) alone. The degree word is
 # kept as written. A degree adverb on a verb is an extent; a comparison is another construction.
+# Anchored by a time, a place, a duration, a time relation, a link or a focus, the predication
+# gains, from the program, the state of the graded fact holding — (Holds sk_cold_1 (Member
+# sk_barn_1 cold)) (Holds sk_cold_1 (Degree sk_barn_1 cold very)) — and the attachment hangs on
+# it, as on a copular clause.
 
 id: degree
 family: predication
@@ -23,7 +27,10 @@ trigger:
     a downtoner (very, extremely, really, quite, rather, fairly, somewhat, slightly, a bit, a
     little, so), too or enough, an approximator (almost, nearly, all but), or a comparison class
     (ADJ for a N). One instance per graded property; the instance stands in place of the copular
-    predication or the witness property that the adjective would otherwise be.
+    predication or the witness property that the adjective would otherwise be. A time, a place,
+    a duration, a time relation, a link or a focus on the clause names this instance as its
+    event, as it would a copular one, and the program mints the state of the graded fact
+    holding.
   surface_forms:
     - "<bearer> is <degree word> <ADJ>"             # the ladder is very crooked
     - "<bearer> is too <ADJ> / <ADJ> enough"        # the soup is too hot; the ladder is tall enough
@@ -76,6 +83,8 @@ slots:
 
 any_of: [[level, for_class]]            # a degree word, a comparison class, or both
 
+mints: {id: Event, stem: scale, on_demand: true}          # the state of the graded fact holding, only when something attaches to the predication
+
 emits:
   # the positive: an intensifier, a downtoner, too and enough leave the property asserted;
   # an approximator (almost, nearly, all but) or a comparison class cancels it
@@ -103,6 +112,24 @@ emits:
   - atom: "(Future (Degree {bearer} {scale} (forClass {for_class})))"
     if_filled: for_class
     when: "tense == future"
+  # an anchored predication: the state of the graded fact holding, minted only when something
+  # attaches to this instance (a time, a place, a duration, a relation, a link, a focus); one
+  # Holds per atom the text asserts, the clause's tense beside them
+  - atom: "(Holds @id (Member {bearer} {scale}))"
+    if_minted: true
+    when: "not for_class and level != almost and level != nearly and level != all_but"
+  - atom: "(Holds @id (Degree {bearer} {scale} {level}))"
+    if_minted: true
+    if_filled: level
+  - atom: "(Holds @id (Degree {bearer} {scale} (forClass {for_class})))"
+    if_minted: true
+    if_filled: for_class
+  - atom: "(Past @id)"
+    if_minted: true
+    when: "tense == past"
+  - atom: "(Future @id)"
+    if_minted: true
+    when: "tense == future"
 
 notes:
   - >-
@@ -118,9 +145,16 @@ notes:
     A graded property inside a noun phrase (a very old spindle) is this template's instance
     beside the witness, which does not list the property among its own; the instance has no
     tense, like a witness property.
+  - >-
+    An anchored graded clause — the barn was very cold yesterday, the thermos was almost full
+    until noon — keeps its flat atoms and gains, from the program, the state of the graded fact
+    holding: one state, with a Holds atom for each atom the text asserts (the property and its
+    degree; the degree alone under an approximator or a comparison class), the clause's tense
+    on the state and the attachment on it. The parser only names this instance in the
+    attachment's event slot.
 
 depends_on: [named-entity, witness]
-composes_with: [negation, modal]
+composes_with: [negation, modal, time, location, time-relation, link, focus, measure]
 
 examples:
   shown:                     # rendered into the prompt

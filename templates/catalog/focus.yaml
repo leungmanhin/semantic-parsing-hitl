@@ -40,10 +40,12 @@ trigger:
       a particle on a count — only one ferret, only three letters: no carrier for the
       exclusivity on a number; report the particle under G07
     - >-
-      a particle on a class statement — herons are also common: the clause has no event for
-      the atom to name; keep the predication and report the particle as unmapped (on a copular
-      or locative clause — only the ladder is crooked — the predication is the event: the program
-      mints the state the particle names)
+      a particle on a class-level property — herons are also common, ferrets are even
+      widespread: the clause has no event for the atom to name; keep the predication and report
+      the particle as unmapped (on a copular, locative, degree, comparative, class-statement,
+      part-whole or measure clause — only the ladder is crooked, only herons are patient — the
+      predication is the event: the program mints the state the particle names; on a class
+      statement the filler is the class lemma)
     - >-
       a particle on a generalization — only ferrets sleep in burrows: the event is a rule's
       variable, no top-level atom can name it; report the clause as unmapped
@@ -67,7 +69,7 @@ slots:
   head:    {type: enum, values: [Only, Even, Also, Cleft], required: true,
             doc: "Only for only / just / solely / alone; Even for even; Also for also / too / as well / either / neither; Cleft for an it-cleft or a pseudo-cleft"}
   filler:  {type: filler, class: Class, required: true,
-            doc: "the focused constituent: the referent id of the subject or object the particle sits on (@n1, @x1), or the verb's lemma for a focus on the verb phrase (sleep)"}
+            doc: "the focused constituent: the referent id of the subject or object the particle sits on (@n1, @x1), the class lemma for a particle on a class statement's subject (only herons are patient → heron), or the verb's lemma for a focus on the verb phrase (sleep)"}
   event:   {type: filler, class: Event, required: true,
             doc: "the clause's event: the id of its predication instance — never the id of a negation or modal over it"}
   surface: {type: string, required: false,
@@ -271,3 +273,17 @@ examples:
     - category: abstain
       text: "Teodor has just arrived."
       expected: {abstain: true, gap: G02, span: "just"}                # recently: a time adverb
+    - category: positive
+      note: a particle on a comparison — the state of the ordering holding is the event the atom names
+      text: "Only the beam is longer than the ladder."
+      instances:
+        - {t: witness, id: x1, class: beam, definite: true}
+        - {t: witness, id: x2, class: ladder, definite: true}
+        - {t: comparative, id: c1, subject: "@x1", standard: "@x2", scale: long, relation: more, tense: present}
+        - {t: focus, id: f1, head: Only, filler: "@x1", event: "@c1", surface: only}
+    - category: positive
+      note: a particle on a class statement — the filler is the class lemma, the event the statement's state
+      text: "Only herons are patient."
+      instances:
+        - {t: class-statement, id: k1, subject: heron, predicate: patient, form: adjective, definitional: false, tense: present}
+        - {t: focus, id: f1, head: Only, filler: heron, event: "@k1", surface: only}

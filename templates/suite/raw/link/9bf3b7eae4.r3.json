@@ -1,0 +1,115 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "822e9bf211bc01ecdb212f3bab646cbe3f41d566339264fe668ab3937a0d47b2",
+  "item": {
+    "id": "s9bf3b7eae4",
+    "text": "Yusra left because the barn was colder than the shed."
+  },
+  "usage": {
+    "input": 92999,
+    "output": 262,
+    "thinking": null,
+    "total": 93261,
+    "cached": 90950,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 92999,
+    "candidatesTokenCount": 262,
+    "totalTokenCount": 93261,
+    "cachedContentTokenCount": 90950,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 92999
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 90950
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 262
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s9bf3b7eae4\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"barn\", \"definite\": true, \"span\": \"the barn\"}, {\"t\": \"witness\", \"id\": \"x2\", \"class\": \"shed\", \"definite\": true, \"span\": \"the shed\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n1\", \"tense\": \"past\", \"span\": \"Yusra left\"}, {\"t\": \"comparative\", \"id\": \"c1\", \"subject\": \"@x1\", \"standard\": \"@x2\", \"scale\": \"cold\", \"relation\": \"more\", \"tense\": \"past\", \"span\": \"the barn was colder than the shed\"}, {\"t\": \"link\", \"id\": \"k1\", \"head\": \"Because\", \"main\": \"@m1\", \"sub\": \"@c1\", \"span\": \"because\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s9bf3b7eae4",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "barn",
+        "definite": true,
+        "span": "the barn"
+      },
+      {
+        "t": "witness",
+        "id": "x2",
+        "class": "shed",
+        "definite": true,
+        "span": "the shed"
+      },
+      {
+        "t": "motion",
+        "id": "m1",
+        "verb": "leave",
+        "mover": "@n1",
+        "tense": "past",
+        "span": "Yusra left"
+      },
+      {
+        "t": "comparative",
+        "id": "c1",
+        "subject": "@x1",
+        "standard": "@x2",
+        "scale": "cold",
+        "relation": "more",
+        "tense": "past",
+        "span": "the barn was colder than the shed"
+      },
+      {
+        "t": "link",
+        "id": "k1",
+        "head": "Because",
+        "main": "@m1",
+        "sub": "@c1",
+        "span": "because"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "661edd3f574a3fe45ed77f316f74512c2fa7918748414902815eeeb8fe7440c9",
+  "run": 3,
+  "case": {
+    "template": "link",
+    "section": "held_out",
+    "index": 15,
+    "category": "positive",
+    "text": "Yusra left because the barn was colder than the shed.",
+    "key": "9bf3b7eae4"
+  }
+}

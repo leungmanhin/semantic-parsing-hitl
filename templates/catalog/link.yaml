@@ -44,10 +44,10 @@ trigger:
       a connective opening the text with nothing before it — "But Lamine left.": no first
       clause to relate; parse the clause and report the connective (G05)
     - >-
-      a copular or locative clause as an endpoint — Yusra left because the gate was open, the
-      ladder is crooked because it is old: the endpoint names that predication instance and the
-      program mints the state it links; a degree clause still has no event: both clauses parsed,
-      the connective reported as unmapped
+      a copular, locative, degree, comparative, class-statement, part-whole or measure clause as
+      an endpoint — Yusra left because the gate was open, the ladder is crooked because it is
+      old, Yusra left because the barn was colder than the shed: the endpoint names that
+      predication instance and the program mints the state it links
     - >-
       a conditional — if Lamine sings, Yusra leaves: the conditional template; a subjunctive (if
       Lamine had sung, …): the counterfactual template; unless / if not: still unmapped (G08)
@@ -258,3 +258,22 @@ examples:
     - category: abstain
       text: "Yusra went to the market to buy a thermos."
       expected: {abstain: true, template: purpose}                   # a purpose
+    - category: positive
+      note: a comparison as the because-clause — the state of the ordering holding is the link's endpoint
+      text: "Yusra left because the barn was colder than the shed."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: motion, id: m1, verb: leave, mover: "@n1", tense: past}
+        - {t: witness, id: x1, class: barn, definite: true}
+        - {t: witness, id: x2, class: shed, definite: true}
+        - {t: comparative, id: c1, subject: "@x1", standard: "@x2", scale: cold, relation: more, tense: past}
+        - {t: link, id: k1, head: Because, main: "@m1", sub: "@c1"}
+    - category: positive
+      note: a measure clause as the because-clause — the state of the measure holding is the endpoint
+      text: "Teodor rested because the sack weighed 40 kilograms."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: activity, id: v1, verb: rest, actor: "@n1", tense: past}
+        - {t: witness, id: x1, class: sack, definite: true}
+        - {t: measure, id: m1, bearer: "@x1", head: Measure, dimension: weight, magnitude: 40, unit: kilogram, tense: past}
+        - {t: link, id: k1, head: Because, main: "@v1", sub: "@m1"}

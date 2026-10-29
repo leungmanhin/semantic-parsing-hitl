@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 595b725137caa639 · 58 templates
+catalog sha256 91001c7993e2ec00 · 58 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -1608,7 +1608,9 @@ statement is definitional when it states what the class is by definition or taxo
 are mustelids, a spindle is a tool) and empirical when it generalizes over the class's members
 (ferrets are curious). A quantifier word on the subject (all, every, most, many, few, no)
 belongs to the statement: record it as written; the program sets the strength from it and keeps
-the word beside the statement.
+the word beside the statement. A time relation, a date or a deictic time, a link or a focus
+particle on the statement as such (spindles were cheap until 1900) names this instance as its
+event, and the program mints the state of the statement holding.
 
 Forms:
 - <class>s are <N>s
@@ -1623,9 +1625,11 @@ Not this template:
 - a definite plural — the ferrets are curious: a specific group of individuals, not the class
 - a property of the class as a whole that no member holds — ferrets are widespread, the dodo is
   extinct, herons are common: a class-level property, not a generalization
-- a property under a condition — clay is soft when wet, ferrets are tame in Calderwick: a
-  conditional property, a rule over the members; a class-level property restricted to a place or
-  a time — otters are rare in Norfolk: a class-level property
+- a property under a condition — clay is soft when wet, ferrets are tame in Calderwick, herons
+  are patient in winter: a conditional property, a rule over the members; a class-level property
+  restricted to a place or a time — otters are rare in Norfolk: a class-level property; a time
+  relation or a date bounding the statement itself — spindles were cheap until 1900: this
+  template, the relation naming the instance as its event
 - a copular verb other than be — herons seem patient: the evidential template over this
   template's instance; ferrets became popular: a change of state
 
@@ -1810,7 +1814,9 @@ relation as read (more; less; as for an equative), and a measured gap with its u
 when stated. For a copular comparison the instance stands in place of the copular predication
 and records the clause's tense; for an adverbial one the events carry the tense. The span is the
 whole clause for a copular comparison and the comparative phrase for an adverbial one (faster
-than Lamine).
+than Lamine). A time, a duration, a time relation, a link or a focus on a copular comparison
+names this instance as its event, as it would a copular predication, and the program mints the
+state of the ordering holding.
 
 Forms:
 - <X> is ADJ-er / more ADJ than <Y>
@@ -2268,7 +2274,9 @@ inside the referent's noun phrase (a very old spindle). The degree expression is
 or a downtoner (very, extremely, really, quite, rather, fairly, somewhat, slightly, a bit, a
 little, so), too or enough, an approximator (almost, nearly, all but), or a comparison class
 (ADJ for a N). One instance per graded property; the instance stands in place of the copular
-predication or the witness property that the adjective would otherwise be.
+predication or the witness property that the adjective would otherwise be. A time, a place, a
+duration, a time relation, a link or a focus on the clause names this instance as its event, as
+it would a copular one, and the program mints the state of the graded fact holding.
 
 Forms:
 - <bearer> is <degree word> <ADJ>
@@ -2481,7 +2489,10 @@ kilogram sack) is a measure of that witness, in the present. Number words are co
 measure word — a cup of tea, two bags of flour, a litre of milk, three metres of cloth — is a
 witness of the stuff (the indefinite quantity the text introduces) with this template's instance
 on it: `bearer` the witness, `unit` the container or measure word (cup, bag, litre, metre),
-`dimension` unspecified, `magnitude` the number (a cup → 1).
+`dimension` unspecified, `magnitude` the number (a cup → 1). A time, a time relation, a link or
+a focus on a measure clause of a thing (the village had a population of 3000 in 1990) names this
+instance as its event, as it would a copular predication, and the program mints the state of the
+measure holding; a measure on an event is itself the attachment and has no state.
 
 Forms:
 - <X> is <n> <unit> <ADJ>
@@ -2525,8 +2536,9 @@ Slots:
   distribution) or an eventive witness (the audit took three hours); absent when the measure
   sits on the clause's event.
 - `event` (optional; "@id" of the predication instance this attaches to): the clause's
-  predication instance when the measure phrase is on the event — a verb's, or a copular /
-  locative one (was ill for six weeks: the state's duration; the program mints the state) —: a
+  predication instance when the measure phrase is on the event — a verb's, or a copular,
+  locative, degree, comparative, class-statement or part-whole one (was ill for six weeks, was a
+  member of the guild for ten years: the state's duration; the program mints the state) —: a
   duration (slept for eight hours), a distance (ran five kilometres), a price paid (bought the
   quilt for forty euros), a rate (travels at 30 kilometres per hour), a change's amount or its
   start / end value (fell by 8 percent); absent with bearer.
@@ -2736,7 +2748,10 @@ instance over the group says that each member is a part. A passive keeps the lin
 was included in the treaty: the clause the part). On a class — every car has an engine, oranges
 contain juice — the subject is a range and the generic template builds the rule with this
 instance as the predication over it; an indefinite part is then a witness, a function of the
-member. `tense` is the clause's; a link inside a noun phrase is present.
+member. `tense` is the clause's; a link inside a noun phrase is present. A time, a duration, a
+time relation, a link or a focus on the clause (Lamine was a member of the guild until 1990)
+names this instance as its event, as it would a copular predication, and the program mints the
+state of the relation holding.
 
 Forms:
 - <part> is (a) part of <whole>
@@ -4520,8 +4535,9 @@ Not this template:
   event, by its preposition
 - a non-spatial phrase on an adjective — good at chess, modest in its demands: an adjective with
   a complement, the adjective-complement template; a place phrase on an adjective — happy in
-  Calderwick, empty in the village: this template on the copular predication (the event slot
-  names the copular instance; the program mints the state the place hangs on)
+  Calderwick, empty in the village, very busy in the mill: this template on the copular or
+  degree predication (the event slot names that instance; the program mints the state the place
+  hangs on), and likewise on a comparative, a part-whole or a measure clause
 - a place phrase inside a noun phrase — the ferret in the barn slept: a locative predication of
   that thing, not an attachment to the clause's event
 - between two places, among a group — between the barn and the shed: no slot here; reported as
@@ -4946,8 +4962,9 @@ Slots:
 - `t` (required): "time"
 - `id` (required; your label for this instance): your label for the time (t1, t2 …).
 - `event` (optional; "@id" of the predication instance this attaches to): the event the time
-  attaches to: the id of the clause's predication instance — a verb's, or a copular / locative
-  one (Yusra was tired yesterday: the state's time; the program mints the state) —, or of an
+  attaches to: the id of the clause's predication instance — a verb's, or a copular, locative,
+  degree, comparative, class-statement, part-whole or measure one (Yusra was tired yesterday,
+  the barn was very cold yesterday: the state's time; the program mints the state) —, or of an
   eventive witness when the time is predicated of an event noun (the meeting is at noon); absent
   only for a time no clause places an event at.
 - `deictic` (optional; one of: now, today, tonight, yesterday, tomorrow, last_week, this_week,
@@ -5092,10 +5109,10 @@ Not this template:
   or as is this template
 - every time or whenever with a clause — whenever the bell rings: a generalization over the
   when-clause's events, the frequency template; not a relation between two particular events
-- a copular or locative main clause — the ladder was crooked until Monday, Yusra was in the barn
-  during the audit: the relation's event names that predication instance and the program mints
-  the state it relates; a degree clause still has no event: parse the clause and the time,
-  report the relation phrase as unmapped
+- a copular, locative, degree, comparative, class-statement, part-whole or measure main clause —
+  the ladder was crooked until Monday, Yusra was in the barn during the audit, the thermos was
+  almost full until noon, Lamine was a member of the guild during the war: the relation's event
+  names that predication instance and the program mints the state it relates
 - a gerund after a non-temporal preposition — without saying a word, by working hard, instead of
   leaving: not a relation in time; an oblique's business, reported as unmapped there
 - an ordering only the tense implies, with no connective — Lamine had left. Yusra arrived.: the
@@ -5800,10 +5817,12 @@ Forms:
 Not this template:
 - a particle on a count — only one ferret, only three letters: no carrier for the exclusivity on
   a number; report the particle under G07
-- a particle on a class statement — herons are also common: the clause has no event for the atom
-  to name; keep the predication and report the particle as unmapped (on a copular or locative
-  clause — only the ladder is crooked — the predication is the event: the program mints the
-  state the particle names)
+- a particle on a class-level property — herons are also common, ferrets are even widespread:
+  the clause has no event for the atom to name; keep the predication and report the particle as
+  unmapped (on a copular, locative, degree, comparative, class-statement, part-whole or measure
+  clause — only the ladder is crooked, only herons are patient — the predication is the event:
+  the program mints the state the particle names; on a class statement the filler is the class
+  lemma)
 - a particle on a generalization — only ferrets sleep in burrows: the event is a rule's
   variable, no top-level atom can name it; report the clause as unmapped
 - "even though", "even if" — a connective or a conditional, not a scalar particle
@@ -5825,7 +5844,8 @@ Slots:
   pseudo-cleft.
 - `filler` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
   the focused constituent: the referent id of the subject or object the particle sits on (@n1,
-  @x1), or the verb's lemma for a focus on the verb phrase (sleep).
+  @x1), the class lemma for a particle on a class statement's subject (only herons are patient →
+  heron), or the verb's lemma for a focus on the verb phrase (sleep).
 - `event` (required; "@id" of a predication instance (the clause's event)): the clause's event:
   the id of its predication instance — never the id of a negation or modal over it.
 - `surface` (optional; a string): the particle as written (only, just, solely, alone, even,
@@ -5920,10 +5940,10 @@ Not this template:
   event; because of the rain, due to the audit: no head; report the phrase as unmapped
 - a connective opening the text with nothing before it — "But Lamine left.": no first clause to
   relate; parse the clause and report the connective (G05)
-- a copular or locative clause as an endpoint — Yusra left because the gate was open, the ladder
-  is crooked because it is old: the endpoint names that predication instance and the program
-  mints the state it links; a degree clause still has no event: both clauses parsed, the
-  connective reported as unmapped
+- a copular, locative, degree, comparative, class-statement, part-whole or measure clause as an
+  endpoint — Yusra left because the gate was open, the ladder is crooked because it is old,
+  Yusra left because the barn was colder than the shed: the endpoint names that predication
+  instance and the program mints the state it links
 - a conditional — if Lamine sings, Yusra leaves: the conditional template; a subjunctive (if
   Lamine had sung, …): the counterfactual template; unless / if not: still unmapped (G08)
 - an exception to a generalization — ferrets sleep, but this one works: the but introduces a

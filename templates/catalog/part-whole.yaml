@@ -7,7 +7,10 @@
 # is made of is a constitution, not a part: (MadeOf whole material), the material a class.
 # Tense, negation and modality are operators over the atom, as for a locative. A plural part
 # (four legs) is a group, and the distribution template says each member is a part; on a class
-# (every car has an engine) the generic builds the rule.
+# (every car has an engine) the generic builds the rule. Anchored by a time, a duration, a time
+# relation, a link or a focus, the clause gains, from the program, the state of the relation
+# holding — (Holds sk_part_1 (PartOf sk_lamine_1 sk_guild_1)) — and the attachment hangs on it,
+# as on a copular clause.
 
 id: part-whole
 family: predication
@@ -33,7 +36,10 @@ trigger:
     clause the part). On a class — every car has an engine, oranges contain juice — the subject
     is a range and the generic template builds the rule with this instance as the predication
     over it; an indefinite part is then a witness, a function of the member. `tense` is the
-    clause's; a link inside a noun phrase is present.
+    clause's; a link inside a noun phrase is present. A time, a duration, a time relation, a
+    link or a focus on the clause (Lamine was a member of the guild until 1990) names this
+    instance as its event, as it would a copular predication, and the program mints the state
+    of the relation holding.
   surface_forms:
     - "<part> is (a) part of <whole>"                     # the lid is part of the box
     - "<whole> has / contains / includes <part>"          # the box has a lid; the soup contains salt
@@ -85,6 +91,8 @@ slots:
 
 one_of: [[part, material]]
 
+mints: {id: Event, literal: part, on_demand: true}        # the state of the relation holding, only when something attaches to the clause
+
 emits:
   - atom: "(PartOf {part} {whole})"
     if_filled: part
@@ -104,6 +112,20 @@ emits:
   - atom: "(Future (MadeOf {whole} {material}))"
     if_filled: material
     when: "tense == future"
+  # an anchored clause: the state of the relation holding, minted only when something attaches
+  # to this instance (a time, a duration, a relation, a link, a focus); its tense beside it
+  - atom: "(Holds @id (PartOf {part} {whole}))"
+    if_minted: true
+    if_filled: part
+  - atom: "(Holds @id (MadeOf {whole} {material}))"
+    if_minted: true
+    if_filled: material
+  - atom: "(Past @id)"
+    if_minted: true
+    when: "tense == past"
+  - atom: "(Future @id)"
+    if_minted: true
+    when: "tense == future"
 
 notes:
   - >-
@@ -118,9 +140,14 @@ notes:
     Background rules carry a part's whole further: a part of a part is a part of the whole, and
     a part is where its whole is. Membership in a group is the same relation — the distribution
     template's own premise is (PartOf $x group).
+  - >-
+    An anchored clause — Lamine was a member of the guild until 1990, Teodor was a member of the
+    guild for ten years — keeps its flat atom and gains, from the program, the state of the
+    relation holding, with the clause's tense on the state and the attachment on it; the parser
+    only names this instance in the attachment's event slot.
 
 depends_on: [witness, group, named-entity]
-composes_with: [negation, modal, generic, distribution, copular]
+composes_with: [negation, modal, generic, distribution, copular, time, time-relation, link, focus, measure]
 
 examples:
   shown:                     # rendered into the prompt

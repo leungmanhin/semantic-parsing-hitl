@@ -8,7 +8,10 @@
 # least, more than, no more than, under) is a MeasureAtLeast / MeasureAtMost; a scalar change
 # carries its figures on the change event (MeasureBy, MeasureFrom, MeasureTo). Tense, negation
 # and modality are operators over the atom, as for a locative. A measure entails no positive:
-# "3 metres long" does not say long.
+# "3 metres long" does not say long. Anchored by a time, a time relation, a link or a focus, a
+# measure of a thing gains, from the program, the state of the measure holding — (Holds
+# sk_population_1 (Measure sk_village_1 population 3000 unspecified)) — and the attachment hangs
+# on it, as on a copular clause.
 
 id: measure
 family: predication
@@ -44,7 +47,11 @@ trigger:
     a measure word — a cup of tea, two bags of flour, a litre of milk, three metres of cloth — is
     a witness of the stuff (the indefinite quantity the text introduces) with this template's
     instance on it: `bearer` the witness, `unit` the container or measure word (cup, bag, litre,
-    metre), `dimension` unspecified, `magnitude` the number (a cup → 1).
+    metre), `dimension` unspecified, `magnitude` the number (a cup → 1). A time, a time relation,
+    a link or a focus on a measure clause of a thing (the village had a population of 3000 in
+    1990) names this instance as its event, as it would a copular predication, and the program
+    mints the state of the measure holding; a measure on an event is itself the attachment and
+    has no state.
   surface_forms:
     - "<X> is <n> <unit> <ADJ>"                           # the rope is 3 metres long; Lamine is 30 years old
     - "<X> weighs / costs / measures <n> <unit>"           # the crate weighs 12 kilograms: dimension weight
@@ -91,7 +98,7 @@ slots:
   bearer:    {type: filler, class: Instance, required: false,
               doc: "the thing measured: a referent id — a witness, a name, a group (the crates weighed 180 kilograms: the whole, no distribution) or an eventive witness (the audit took three hours); absent when the measure sits on the clause's event"}
   event:     {type: filler, class: Event, attaches: true, required: false,
-              doc: "the clause's predication instance when the measure phrase is on the event — a verb's, or a copular / locative one (was ill for six weeks: the state's duration; the program mints the state) —: a duration (slept for eight hours), a distance (ran five kilometres), a price paid (bought the quilt for forty euros), a rate (travels at 30 kilometres per hour), a change's amount or its start / end value (fell by 8 percent); absent with bearer"}
+              doc: "the clause's predication instance when the measure phrase is on the event — a verb's, or a copular, locative, degree, comparative, class-statement or part-whole one (was ill for six weeks, was a member of the guild for ten years: the state's duration; the program mints the state) —: a duration (slept for eight hours), a distance (ran five kilometres), a price paid (bought the quilt for forty euros), a rate (travels at 30 kilometres per hour), a change's amount or its start / end value (fell by 8 percent); absent with bearer"}
   head:      {type: enum, values: [Measure, MeasureAtLeast, MeasureAtMost, MeasureBy, MeasureFrom, MeasureTo], required: true,
               doc: "Measure for a stated value; MeasureAtLeast for at least / more than / over / above; MeasureAtMost for at most / no more than / less than / under / below / up to; MeasureBy for the amount of a change, MeasureFrom / MeasureTo for its start / end value (with event only)"}
   dimension: {type: lemma, class: Class, required: true,
@@ -108,6 +115,8 @@ slots:
 
 one_of: [[bearer, event]]
 
+mints: {id: Event, stem: dimension, on_demand: true}      # the state of the measure holding, only when something attaches to a measure of a thing
+
 emits:
   - atom: "({head} {bearer} {dimension} {magnitude} {unit})"
     if_filled: bearer
@@ -120,6 +129,17 @@ emits:
     when: "tense == future"
   - atom: "({head} {event} {dimension} {magnitude} {unit})"
     if_filled: event
+  # an anchored measure of a thing: the state of the measure holding, minted only when something
+  # attaches to this instance (a time, a relation, a link, a focus); its tense beside it
+  - atom: "(Holds @id ({head} {bearer} {dimension} {magnitude} {unit}))"
+    if_minted: true
+    if_filled: bearer
+  - atom: "(Past @id)"
+    if_minted: true
+    when: "tense == past"
+  - atom: "(Future @id)"
+    if_minted: true
+    when: "tense == future"
 
 notes:
   - >-
@@ -145,9 +165,14 @@ notes:
     (metre, kilogram, second, litre) and the rules derive the measure in it, so measures stated in
     different units compare; two measures on one dimension yield the gap and the ordering, and a
     dimension noun's ordering continues on its adjective scale (weight: heavy).
+  - >-
+    An anchored measure of a thing — the village had a population of 3000 in 1990, Teodor
+    rested because the sack weighed 40 kilograms — keeps its flat atom and gains, from the
+    program, the state of the measure holding, with the clause's tense on the state and the
+    attachment on it; the parser only names this instance in the attachment's event slot.
 
 depends_on: [witness, named-entity, group]
-composes_with: [negation, modal, generic, change-of-state, activity, motion, acquisition]
+composes_with: [negation, modal, generic, change-of-state, activity, motion, acquisition, time, time-relation, link, focus]
 
 examples:
   shown:                     # rendered into the prompt
@@ -327,3 +352,11 @@ examples:
     - category: abstain
       text: "The stew is too hot."
       expected: {abstain: true, template: degree}                     # a degree word, no number
+    - category: positive
+      note: a duration on a part-whole clause — the state of the membership holding lasts ten years
+      text: "Teodor was a member of the guild for ten years."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, class: guild, definite: true}
+        - {t: part-whole, id: w1, part: "@n1", whole: "@x1", word: "member of", tense: past}
+        - {t: measure, id: m1, event: "@w1", head: Measure, dimension: duration, magnitude: 10, unit: year}

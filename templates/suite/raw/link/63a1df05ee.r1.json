@@ -1,0 +1,109 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "822e9bf211bc01ecdb212f3bab646cbe3f41d566339264fe668ab3937a0d47b2",
+  "item": {
+    "id": "s63a1df05ee",
+    "text": "Teodor rested because the sack weighed 40 kilograms."
+  },
+  "usage": {
+    "input": 93000,
+    "output": 235,
+    "thinking": null,
+    "total": 93235,
+    "cached": 90950,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 93000,
+    "candidatesTokenCount": 235,
+    "totalTokenCount": 93235,
+    "cachedContentTokenCount": 90950,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 93000
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 90950
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 235
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s63a1df05ee\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"sack\", \"definite\": true, \"span\": \"the sack\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"rest\", \"actor\": \"@n1\", \"tense\": \"past\", \"span\": \"Teodor rested\"}, {\"t\": \"measure\", \"id\": \"m1\", \"bearer\": \"@x1\", \"head\": \"Measure\", \"dimension\": \"weight\", \"magnitude\": 40, \"unit\": \"kilogram\", \"tense\": \"past\", \"span\": \"the sack weighed 40 kilograms\"}, {\"t\": \"link\", \"id\": \"k1\", \"head\": \"Because\", \"main\": \"@e1\", \"sub\": \"@m1\", \"span\": \"because\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s63a1df05ee",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "sack",
+        "definite": true,
+        "span": "the sack"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "rest",
+        "actor": "@n1",
+        "tense": "past",
+        "span": "Teodor rested"
+      },
+      {
+        "t": "measure",
+        "id": "m1",
+        "bearer": "@x1",
+        "head": "Measure",
+        "dimension": "weight",
+        "magnitude": 40,
+        "unit": "kilogram",
+        "tense": "past",
+        "span": "the sack weighed 40 kilograms"
+      },
+      {
+        "t": "link",
+        "id": "k1",
+        "head": "Because",
+        "main": "@e1",
+        "sub": "@m1",
+        "span": "because"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "661edd3f574a3fe45ed77f316f74512c2fa7918748414902815eeeb8fe7440c9",
+  "run": 1,
+  "case": {
+    "template": "link",
+    "section": "held_out",
+    "index": 16,
+    "category": "positive",
+    "text": "Teodor rested because the sack weighed 40 kilograms.",
+    "key": "63a1df05ee"
+  }
+}

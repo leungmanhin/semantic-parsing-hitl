@@ -6,7 +6,10 @@
 # definitional or taxonomic claim, 0.9 for an empirical generalization with an explicit quantifier
 # word, 0.7 for a bare empirical one (which states no proportion); a quantifier word (all,
 # most, few, no) sets the strength and is kept in a companion record. Tense, negation and
-# modality are operators over the atom.
+# modality are operators over the atom. A time relation, a date, a link or a particle on the
+# statement as such names it as its event and the program mints the state of the statement
+# holding — (Holds sk_cheap_1 (Inheritance spindle cheap)) — with the attachment on it; a
+# recurring or conditional restriction is a conditional property instead.
 
 id: class-statement
 family: predication
@@ -23,7 +26,10 @@ trigger:
     (ferrets are mustelids, a spindle is a tool) and empirical when it generalizes over the
     class's members (ferrets are curious). A quantifier word on the subject (all, every, most,
     many, few, no) belongs to the statement: record it as written; the program sets the
-    strength from it and keeps the word beside the statement.
+    strength from it and keeps the word beside the statement. A time relation, a date or a
+    deictic time, a link or a focus particle on the statement as such (spindles were cheap
+    until 1900) names this instance as its event, and the program mints the state of the
+    statement holding.
   surface_forms:
     - "<class>s are <N>s"                       # ferrets are mustelids
     - "<class>s are <ADJ>"                      # ferrets are curious
@@ -40,9 +46,11 @@ trigger:
       a property of the class as a whole that no member holds — ferrets are widespread, the
       dodo is extinct, herons are common: a class-level property, not a generalization
     - >-
-      a property under a condition — clay is soft when wet, ferrets are tame in Calderwick: a
-      conditional property, a rule over the members; a class-level property restricted to a
-      place or a time — otters are rare in Norfolk: a class-level property
+      a property under a condition — clay is soft when wet, ferrets are tame in Calderwick,
+      herons are patient in winter: a conditional property, a rule over the members; a
+      class-level property restricted to a place or a time — otters are rare in Norfolk: a
+      class-level property; a time relation or a date bounding the statement itself — spindles
+      were cheap until 1900: this template, the relation naming the instance as its event
     - >-
       a copular verb other than be — herons seem patient: the evidential template over this
       template's instance; ferrets became popular: a change of state
@@ -71,6 +79,8 @@ truth:
     - {slot: quantifier, values: {all: 0.9, every: 0.9, each: 0.9, most: 0.9, many: 0.9, few: 0.9, "no": 0.9, none: 0.9}}
     - 0.7
 
+mints: {id: Event, stem: predicate, on_demand: true}      # the state of the statement holding, only when something attaches to it
+
 emits:
   - atom: "(Inheritance {subject} {predicate})"
     when: "tense == present and aspect != perfect and aspect != progressive"
@@ -80,6 +90,16 @@ emits:
     when: "tense == future"
   - atom: "(Ongoing (Inheritance {subject} {predicate}))"
     when: "aspect == progressive"
+  # an anchored statement: the state of the statement holding, minted only when something
+  # attaches to this instance (a time relation, a date, a link, a focus); its tense beside it
+  - atom: "(Holds @id (Inheritance {subject} {predicate}))"
+    if_minted: true
+  - atom: "(Past @id)"
+    if_minted: true
+    when: "tense == past or aspect == perfect"
+  - atom: "(Future @id)"
+    if_minted: true
+    when: "tense == future"
 
 notes:
   - >-
@@ -95,9 +115,15 @@ notes:
     generalizations over members and would be wrong as Inheritance; they have their own
     template (class-property). A property under a condition is a rule over the members
     (conditional-property), since the flat atom could not carry the condition.
+  - >-
+    A statement bounded in time as such — spindles were cheap until 1900 — keeps its flat atom
+    and gains, from the program, the state of the statement holding, with the clause's tense on
+    the state and the relation on it; the parser only names this instance in the relation's
+    event slot. A restriction that recurs or conditions the members (herons are patient in
+    winter) is not a bound on the statement but a conditional property.
 
 depends_on: []
-composes_with: [negation, modal, norm]
+composes_with: [negation, modal, norm, time-relation, time, link, focus]
 
 examples:
   shown:                     # rendered into the prompt

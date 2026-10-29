@@ -1,0 +1,93 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "822e9bf211bc01ecdb212f3bab646cbe3f41d566339264fe668ab3937a0d47b2",
+  "item": {
+    "id": "s71dabcf05b",
+    "text": "The thermos was almost full until noon."
+  },
+  "usage": {
+    "input": 92995,
+    "output": 184,
+    "thinking": null,
+    "total": 93179,
+    "cached": null,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 92995,
+    "candidatesTokenCount": 184,
+    "totalTokenCount": 93179,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 92995
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 184
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s71dabcf05b\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"thermos\", \"definite\": true, \"span\": \"The thermos\"}, {\"t\": \"degree\", \"id\": \"d1\", \"bearer\": \"@x1\", \"scale\": \"full\", \"level\": \"almost\", \"tense\": \"past\", \"span\": \"The thermos was almost full\"}, {\"t\": \"time\", \"id\": \"t1\", \"hour\": 12, \"span\": \"noon\"}, {\"t\": \"time-relation\", \"id\": \"r1\", \"event\": \"@d1\", \"reference\": \"@t1\", \"head\": \"End\", \"word\": \"until\", \"span\": \"until noon\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s71dabcf05b",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "thermos",
+        "definite": true,
+        "span": "The thermos"
+      },
+      {
+        "t": "degree",
+        "id": "d1",
+        "bearer": "@x1",
+        "scale": "full",
+        "level": "almost",
+        "tense": "past",
+        "span": "The thermos was almost full"
+      },
+      {
+        "t": "time",
+        "id": "t1",
+        "hour": 12,
+        "span": "noon"
+      },
+      {
+        "t": "time-relation",
+        "id": "r1",
+        "event": "@d1",
+        "reference": "@t1",
+        "head": "End",
+        "word": "until",
+        "span": "until noon"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "661edd3f574a3fe45ed77f316f74512c2fa7918748414902815eeeb8fe7440c9",
+  "run": 1,
+  "case": {
+    "template": "time-relation",
+    "section": "held_out",
+    "index": 27,
+    "category": "positive",
+    "text": "The thermos was almost full until noon.",
+    "key": "71dabcf05b"
+  }
+}

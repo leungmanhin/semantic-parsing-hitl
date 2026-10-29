@@ -1,0 +1,100 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "822e9bf211bc01ecdb212f3bab646cbe3f41d566339264fe668ab3937a0d47b2",
+  "item": {
+    "id": "s82b33d0f8f",
+    "text": "Teodor was very busy in the mill."
+  },
+  "usage": {
+    "input": 92999,
+    "output": 189,
+    "thinking": null,
+    "total": 93188,
+    "cached": 90949,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 92999,
+    "candidatesTokenCount": 189,
+    "totalTokenCount": 93188,
+    "cachedContentTokenCount": 90949,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 92999
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 90949
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 189
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s82b33d0f8f\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"mill\", \"definite\": true, \"span\": \"the mill\"}, {\"t\": \"degree\", \"id\": \"d1\", \"bearer\": \"@n1\", \"scale\": \"busy\", \"level\": \"very\", \"tense\": \"past\", \"span\": \"Teodor was very busy\"}, {\"t\": \"location\", \"id\": \"l1\", \"event\": \"@d1\", \"place\": \"@x1\", \"head\": \"Location\", \"preposition\": \"in\", \"span\": \"in the mill\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s82b33d0f8f",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "mill",
+        "definite": true,
+        "span": "the mill"
+      },
+      {
+        "t": "degree",
+        "id": "d1",
+        "bearer": "@n1",
+        "scale": "busy",
+        "level": "very",
+        "tense": "past",
+        "span": "Teodor was very busy"
+      },
+      {
+        "t": "location",
+        "id": "l1",
+        "event": "@d1",
+        "place": "@x1",
+        "head": "Location",
+        "preposition": "in",
+        "span": "in the mill"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "661edd3f574a3fe45ed77f316f74512c2fa7918748414902815eeeb8fe7440c9",
+  "run": 1,
+  "case": {
+    "template": "location",
+    "section": "held_out",
+    "index": 16,
+    "category": "positive",
+    "text": "Teodor was very busy in the mill.",
+    "key": "82b33d0f8f"
+  }
+}

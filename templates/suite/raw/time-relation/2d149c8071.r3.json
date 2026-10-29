@@ -1,0 +1,106 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "822e9bf211bc01ecdb212f3bab646cbe3f41d566339264fe668ab3937a0d47b2",
+  "item": {
+    "id": "s2d149c8071",
+    "text": "Yusra was taller than Lamine until 2019."
+  },
+  "usage": {
+    "input": 93004,
+    "output": 235,
+    "thinking": null,
+    "total": 93239,
+    "cached": 90955,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 93004,
+    "candidatesTokenCount": 235,
+    "totalTokenCount": 93239,
+    "cachedContentTokenCount": 90955,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 93004
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 90955
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 235
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s2d149c8071\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"comparative\", \"id\": \"d1\", \"subject\": \"@n1\", \"standard\": \"@n2\", \"scale\": \"tall\", \"relation\": \"more\", \"tense\": \"past\", \"span\": \"Yusra was taller than Lamine\"}, {\"t\": \"time\", \"id\": \"t1\", \"year\": 2019, \"span\": \"2019\"}, {\"t\": \"time-relation\", \"id\": \"r1\", \"event\": \"@d1\", \"reference\": \"@t1\", \"head\": \"End\", \"word\": \"until\", \"span\": \"until 2019\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s2d149c8071",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "comparative",
+        "id": "d1",
+        "subject": "@n1",
+        "standard": "@n2",
+        "scale": "tall",
+        "relation": "more",
+        "tense": "past",
+        "span": "Yusra was taller than Lamine"
+      },
+      {
+        "t": "time",
+        "id": "t1",
+        "year": 2019,
+        "span": "2019"
+      },
+      {
+        "t": "time-relation",
+        "id": "r1",
+        "event": "@d1",
+        "reference": "@t1",
+        "head": "End",
+        "word": "until",
+        "span": "until 2019"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "661edd3f574a3fe45ed77f316f74512c2fa7918748414902815eeeb8fe7440c9",
+  "run": 3,
+  "case": {
+    "template": "time-relation",
+    "section": "held_out",
+    "index": 28,
+    "category": "positive",
+    "text": "Yusra was taller than Lamine until 2019.",
+    "key": "2d149c8071"
+  }
+}

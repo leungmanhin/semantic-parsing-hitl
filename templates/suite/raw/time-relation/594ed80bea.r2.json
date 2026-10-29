@@ -1,0 +1,94 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "48d481f1bbcb5e6d496f0dfaba50bb853ccb4d816116797f7bdb124cc7aacd60",
+  "item": {
+    "id": "s594ed80bea",
+    "text": "Spindles were cheap until 1900."
+  },
+  "usage": {
+    "input": 93002,
+    "output": 169,
+    "thinking": null,
+    "total": 93171,
+    "cached": 90953,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 93002,
+    "candidatesTokenCount": 169,
+    "totalTokenCount": 93171,
+    "cachedContentTokenCount": 90953,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 93002
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 90953
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 169
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s594ed80bea\", \"instances\": [{\"t\": \"class-statement\", \"id\": \"k1\", \"subject\": \"spindle\", \"predicate\": \"cheap\", \"form\": \"adjective\", \"definitional\": false, \"tense\": \"past\", \"span\": \"Spindles were cheap\"}, {\"t\": \"time\", \"id\": \"t1\", \"year\": 1900, \"span\": \"1900\"}, {\"t\": \"time-relation\", \"id\": \"r1\", \"event\": \"@k1\", \"reference\": \"@t1\", \"head\": \"End\", \"word\": \"until\", \"span\": \"until 1900\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s594ed80bea",
+    "instances": [
+      {
+        "t": "class-statement",
+        "id": "k1",
+        "subject": "spindle",
+        "predicate": "cheap",
+        "form": "adjective",
+        "definitional": false,
+        "tense": "past",
+        "span": "Spindles were cheap"
+      },
+      {
+        "t": "time",
+        "id": "t1",
+        "year": 1900,
+        "span": "1900"
+      },
+      {
+        "t": "time-relation",
+        "id": "r1",
+        "event": "@k1",
+        "reference": "@t1",
+        "head": "End",
+        "word": "until",
+        "span": "until 1900"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "b40ca41fbfa8d05944d55ca4f327529bcb144ce0c6d5c9dc02b90a0ba9a1cc66",
+  "run": 2,
+  "case": {
+    "template": "time-relation",
+    "section": "held_out",
+    "index": 30,
+    "category": "positive",
+    "text": "Spindles were cheap until 1900.",
+    "key": "594ed80bea"
+  }
+}

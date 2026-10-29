@@ -592,6 +592,59 @@ class EmitTests(unittest.TestCase):
         self.assertIn("(Holds sk_crooked_1 (Member sk_ladder_1 crooked))", nots[0])              # the state inside the denial
         self.assertIn("(Time sk_crooked_1 sk_time_1)", nots[0])
 
+    def test_anchored_graded_compared_classed_part_and_measured_clauses_mint_their_states(self):
+        """The degree, comparative, class-statement, part-whole and measure predications mint the
+        state of the fact holding on demand like the copular: nothing for a plain clause; when
+        anchored, one state per predication with a Holds atom for each atom the text asserts
+        (the degree's property and its degree; the degree alone under an approximator), the
+        clause's tense on the state and the attachment on it."""
+        def emitted(instances):
+            r = E.emit({"id": "a", "instances": instances}, CATALOG)
+            return [T.split_statement(st)[1] for st in r["statements"]], r
+        barn = {"t": "witness", "id": "x1", "class": "barn", "definite": True}
+        very_cold = {"t": "degree", "id": "d1", "bearer": "@x1", "scale": "cold", "level": "very", "tense": "past"}
+        terms, r = emitted([barn, very_cold])
+        self.assertFalse(any("Holds" in st or "sk_cold" in st for st in r["statements"]), r["statements"])   # a plain clause: no state
+        terms, r = emitted([barn, very_cold, {"t": "time", "id": "t1", "event": "@d1", "deictic": "yesterday", "anchor": "@now"}])
+        self.assertIn(["Past", ["Member", "sk_barn_1", "cold"]], terms)                              # the flat atoms stay
+        self.assertIn(["Past", ["Degree", "sk_barn_1", "cold", "very"]], terms)
+        self.assertIn(["Holds", "sk_cold_1", ["Member", "sk_barn_1", "cold"]], terms)                # one state, a Holds per asserted atom
+        self.assertIn(["Holds", "sk_cold_1", ["Degree", "sk_barn_1", "cold", "very"]], terms)
+        self.assertEqual(sum(1 for t in terms if t[0] == "Holds"), 2)
+        self.assertIn(["Past", "sk_cold_1"], terms)                                                   # its tense, as an event's
+        self.assertIn(["Time", "sk_cold_1", "sk_time_1"], terms)                                      # the time on the state
+        self.assertIn("(: sk_cold_1 Event)", r["declarations"])
+        terms, r = emitted([{"t": "witness", "id": "x1", "class": "thermos", "definite": True},
+                            {"t": "degree", "id": "d1", "bearer": "@x1", "scale": "full", "level": "almost", "tense": "past"},
+                            {"t": "time", "id": "t1", "hour": 12},
+                            {"t": "time-relation", "id": "r1", "event": "@d1", "reference": "@t1", "head": "End", "word": "until"}])
+        self.assertEqual([t for t in terms if t[0] == "Holds"],
+                         [["Holds", "sk_full_1", ["Degree", "sk_thermos_1", "full", "almost"]]])    # an approximator: the degree alone
+        self.assertIn(["End", "sk_full_1", "sk_time_1"], terms)
+        terms, r = emitted([{"t": "named-entity", "id": "n1", "name": "Yusra"}, {"t": "named-entity", "id": "n2", "name": "Lamine"},
+                            {"t": "comparative", "id": "c1", "subject": "@n1", "standard": "@n2", "scale": "tall", "relation": "less", "tense": "past"},
+                            {"t": "time", "id": "t1", "year": 2019},
+                            {"t": "time-relation", "id": "r1", "event": "@c1", "reference": "@t1", "head": "End", "word": "until"}])
+        self.assertIn(["Holds", "sk_tall_1", ["More", "tall", "sk_lamine_1", "sk_yusra_1"]], terms)  # less: the pair swapped as in the flat atom
+        self.assertIn(["Past", "sk_tall_1"], terms)
+        self.assertIn(["End", "sk_tall_1", "sk_time_1"], terms)
+        terms, r = emitted([{"t": "class-statement", "id": "k1", "subject": "heron", "predicate": "patient", "form": "adjective", "definitional": False, "tense": "present"},
+                            {"t": "focus", "id": "f1", "head": "Only", "filler": "heron", "event": "@k1", "surface": "only"}])
+        self.assertIn(["Holds", "sk_patient_1", ["Inheritance", "heron", "patient"]], terms)        # a class statement's state
+        self.assertIn(["Only", "heron", "sk_patient_1"], terms)                                      # the particle on it, the class the filler
+        self.assertNotIn(["Past", "sk_patient_1"], terms)
+        terms, r = emitted([{"t": "named-entity", "id": "n1", "name": "Teodor"}, {"t": "witness", "id": "x1", "class": "guild", "definite": True},
+                            {"t": "part-whole", "id": "w1", "part": "@n1", "whole": "@x1", "word": "member of", "tense": "past"},
+                            {"t": "measure", "id": "m1", "event": "@w1", "head": "Measure", "dimension": "duration", "magnitude": 10, "unit": "year"}])
+        self.assertIn(["Holds", "sk_part_1", ["PartOf", "sk_teodor_1", "sk_guild_1"]], terms)        # a part relation's state
+        self.assertTrue(any("(Measure sk_part_1 duration 10 year)" in st for st in r["statements"]), r["statements"])
+        terms, r = emitted([{"t": "named-entity", "id": "n1", "name": "Teodor"}, {"t": "witness", "id": "x1", "class": "sack", "definite": True},
+                            {"t": "activity", "id": "v1", "verb": "rest", "actor": "@n1", "tense": "past"},
+                            {"t": "measure", "id": "m1", "bearer": "@x1", "head": "Measure", "dimension": "weight", "magnitude": 40, "unit": "kilogram", "tense": "past"},
+                            {"t": "link", "id": "k1", "head": "Because", "main": "@v1", "sub": "@m1"}])
+        self.assertTrue(any("(Holds sk_weight_1 (Measure sk_sack_1 weight 40 kilogram))" in st for st in r["statements"]), r["statements"])
+        self.assertIn(["Because", "sk_rest_1", "sk_weight_1"], terms)                                # the measure's state as the cause
+
     def test_malformed_instances_are_refused(self):
         bad = [{"t": "transfer", "id": "e1", "verb": "give", "giver": "@n9", "object": "x", "tense": "past"}]
         with self.assertRaises(E.EmitError) as cm:

@@ -1,0 +1,108 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "822e9bf211bc01ecdb212f3bab646cbe3f41d566339264fe668ab3937a0d47b2",
+  "item": {
+    "id": "s6b0388d536",
+    "text": "Lamine was a member of the guild during the war."
+  },
+  "usage": {
+    "input": 93002,
+    "output": 234,
+    "thinking": null,
+    "total": 93236,
+    "cached": 90953,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 93002,
+    "candidatesTokenCount": 234,
+    "totalTokenCount": 93236,
+    "cachedContentTokenCount": 90953,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 93002
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 90953
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 234
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s6b0388d536\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"guild\", \"definite\": true, \"span\": \"the guild\"}, {\"t\": \"witness\", \"id\": \"x2\", \"class\": \"war\", \"definite\": true, \"eventive\": true, \"span\": \"the war\"}, {\"t\": \"part-whole\", \"id\": \"w1\", \"part\": \"@n1\", \"whole\": \"@x1\", \"word\": \"member of\", \"tense\": \"past\", \"span\": \"Lamine was a member of the guild\"}, {\"t\": \"time-relation\", \"id\": \"r1\", \"event\": \"@w1\", \"reference\": \"@x2\", \"head\": \"During\", \"word\": \"during\", \"span\": \"during the war\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s6b0388d536",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "guild",
+        "definite": true,
+        "span": "the guild"
+      },
+      {
+        "t": "witness",
+        "id": "x2",
+        "class": "war",
+        "definite": true,
+        "eventive": true,
+        "span": "the war"
+      },
+      {
+        "t": "part-whole",
+        "id": "w1",
+        "part": "@n1",
+        "whole": "@x1",
+        "word": "member of",
+        "tense": "past",
+        "span": "Lamine was a member of the guild"
+      },
+      {
+        "t": "time-relation",
+        "id": "r1",
+        "event": "@w1",
+        "reference": "@x2",
+        "head": "During",
+        "word": "during",
+        "span": "during the war"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "661edd3f574a3fe45ed77f316f74512c2fa7918748414902815eeeb8fe7440c9",
+  "run": 3,
+  "case": {
+    "template": "time-relation",
+    "section": "held_out",
+    "index": 29,
+    "category": "positive",
+    "text": "Lamine was a member of the guild during the war.",
+    "key": "6b0388d536"
+  }
+}

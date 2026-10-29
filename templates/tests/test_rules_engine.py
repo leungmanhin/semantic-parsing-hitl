@@ -548,6 +548,52 @@ class SeededRulesOnTheEngine(unittest.TestCase):
         self.assertFalse(self.query(h, "(Member sk_lamine_1 guilty)"))                                       # feels guilty → nothing
         self.assertFalse(self.query(h, "(Experiencer sk_crooked_1 $x)"))                                     # the copular state has no bearer role
 
+    def test_anchored_graded_compared_classed_part_and_measured_states_are_found_by_their_facts(self):
+        """The degree, comparative, class-statement, part-whole and measure predications gain the
+        state of the fact holding when anchored, as the copular does: the flat question is
+        answered as before; the state is found by unifying into Holds — from either of a graded
+        clause's two atoms — and carries the time, the end, the duration or the cause."""
+        h = self.space(['(: a_member (Member sk_barn_1 barn) (STV 1.0 0.99))',
+                        '(: a_past (Past (Member sk_barn_1 cold)) (STV 1.0 0.99))',
+                        '(: a_past_2 (Past (Degree sk_barn_1 cold very)) (STV 1.0 0.99))',
+                        '(: a_holds (Holds sk_cold_1 (Member sk_barn_1 cold)) (STV 1.0 0.99))',
+                        '(: a_holds_2 (Holds sk_cold_1 (Degree sk_barn_1 cold very)) (STV 1.0 0.99))',
+                        '(: a_past_3 (Past sk_cold_1) (STV 1.0 0.99))',
+                        '(: a_time (Time sk_cold_1 sk_time_1) (STV 1.0 0.99))',
+                        '(: a_beforeby (BeforeBy sk_time_1 sk_now_1 1 day) (STV 1.0 0.99))',
+                        '(: b_past (Past (More tall sk_yusra_1 sk_lamine_1)) (STV 1.0 0.99))',
+                        '(: b_holds (Holds sk_tall_1 (More tall sk_yusra_1 sk_lamine_1)) (STV 1.0 0.99))',
+                        '(: b_past_2 (Past sk_tall_1) (STV 1.0 0.99))',
+                        '(: b_end (End sk_tall_1 sk_time_2) (STV 1.0 0.99))',
+                        '(: b_year (Year sk_time_2 2019) (STV 1.0 0.99))',
+                        '(: c_member (Member sk_rest_1 rest) (STV 1.0 0.99))',
+                        '(: c_agent (Agent sk_rest_1 sk_teodor_1) (STV 1.0 0.99))',
+                        '(: c_past (Past (Measure sk_sack_1 weight 40 kilogram)) (STV 1.0 0.99))',
+                        '(: c_holds (Holds sk_weight_1 (Measure sk_sack_1 weight 40 kilogram)) (STV 1.0 0.99))',
+                        '(: c_because (Because sk_rest_1 sk_weight_1) (STV 1.0 0.99))',
+                        '(: d_past (Past (PartOf sk_teodor_1 sk_guild_1)) (STV 1.0 0.99))',
+                        '(: d_holds (Holds sk_part_1 (PartOf sk_teodor_1 sk_guild_1)) (STV 1.0 0.99))',
+                        '(: d_measure (Measure sk_part_1 duration 10 year) (STV 1.0 0.99))',
+                        '(: e_past (Past (Inheritance spindle tool)) (STV 1.0 0.99))',
+                        '(: e_holds (Holds sk_tool_1 (Inheritance spindle tool)) (STV 1.0 0.99))',
+                        '(: e_end (End sk_tool_1 sk_time_3) (STV 1.0 0.99))',
+                        '(: e_year (Year sk_time_3 1900) (STV 1.0 0.99))'])
+        self.assertTrue(self.query(h, "(Past (Degree sk_barn_1 cold very))"))                                 # the flat facts
+        self.assertTrue(self.query(h, "(Past (More tall sk_yusra_1 sk_lamine_1))"))
+        by_property = self.query(h, "(And (Holds $s (Member sk_barn_1 cold)) (Time $s $t))")
+        self.assertTrue(by_property and "sk_time_1" in by_property[0], by_property)                           # the state from the property
+        by_degree = self.query(h, "(And (Holds $s (Degree sk_barn_1 cold $l)) (Time $s $t))")
+        self.assertTrue(by_degree and "sk_time_1" in by_degree[0] and "very" in by_degree[0], by_degree)    # and from its degree
+        self.assertFalse(self.query(h, "(Holds $s (Member sk_barn_1 warm))"))                                 # no such state
+        until = self.query(h, "(And (Holds $s (More tall sk_yusra_1 sk_lamine_1)) (End $s $t) (Year $t $y))")
+        self.assertTrue(until and "2019" in until[0], until)                                                  # the comparison held until when
+        cause = self.query(h, "(And (Because $e $s) (Holds $s (Measure sk_sack_1 weight $n kilogram)) (Agent $e $who))")
+        self.assertTrue(cause and "sk_teodor_1" in cause[0] and "40" in cause[0], cause)                     # who rested, and the weight
+        lasted = self.query(h, "(And (Holds $s (PartOf sk_teodor_1 sk_guild_1)) (Measure $s duration $n year))")
+        self.assertTrue(lasted and "10" in lasted[0], lasted)                                                 # how long the membership held
+        bounded = self.query(h, "(And (Holds $s (Inheritance spindle tool)) (End $s $t) (Year $t $y))")
+        self.assertTrue(bounded and "1900" in bounded[0], bounded)                                            # the statement held until when
+
     def test_a_hedge_sets_the_dial_and_a_band_query_reads_it(self):
         """A hedged clause is its own statements at the hedge's truth value, no operator: a band
         query on the strength tells a probable fact from an unlikely one, an unlikely fact is a

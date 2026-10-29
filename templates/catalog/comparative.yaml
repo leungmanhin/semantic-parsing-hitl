@@ -8,7 +8,10 @@
 # ratio is (TimesAs tall x y 2). No comparison asserts the positive property: taller than Yusra
 # does not make Teodor tall. An adverbial comparative (swims faster than Lamine) compares two
 # events, the second elliptical, on the adverb's scale. Like a copular predication, the comparison
-# is wrapped by its tense, (Past (More …)), and takes a negation or a modal over it.
+# is wrapped by its tense, (Past (More …)), and takes a negation or a modal over it. Anchored by
+# a time, a duration, a time relation, a link or a focus, the comparison gains, from the program,
+# the state of the ordering holding — (Holds sk_tall_1 (More tall sk_yusra_1 sk_lamine_1)) — and
+# the attachment hangs on it, as on a copular clause.
 
 id: comparative
 family: predication
@@ -29,7 +32,9 @@ trigger:
     gap with its unit or a factor when stated. For a copular comparison the instance stands in
     place of the copular predication and records the clause's tense; for an adverbial one the
     events carry the tense. The span is the whole clause for a copular comparison and the
-    comparative phrase for an adverbial one (faster than Lamine).
+    comparative phrase for an adverbial one (faster than Lamine). A time, a duration, a time
+    relation, a link or a focus on a copular comparison names this instance as its event, as it
+    would a copular predication, and the program mints the state of the ordering holding.
   surface_forms:
     - "<X> is ADJ-er / more ADJ than <Y>"                  # Lamine is older than Ottoline: relation more
     - "<X> is less ADJ than <Y>"                           # Ottoline is less patient than Lamine: relation less, the pair swapped
@@ -100,6 +105,8 @@ truth:
     - {slot: classes, values: {"true": 0.7}}
     - 0.99
 
+mints: {id: Event, stem: scale, on_demand: true}          # the state of the ordering holding, only when something attaches to the comparison
+
 emits:
   # the plain ordering: more, and less read from the other side
   - atom: "(More {scale} {subject} {standard})"
@@ -150,6 +157,35 @@ emits:
   - atom: "(Future (TimesAs {scale} {subject} {standard} {factor}))"
     if_filled: factor
     when: "tense == future"
+  # an anchored comparison: the state of the ordering holding, minted only when something
+  # attaches to this instance (a time, a duration, a relation, a link, a focus); the one atom
+  # the comparison emits, inside Holds, the clause's tense beside it
+  - atom: "(Holds @id (More {scale} {subject} {standard}))"
+    if_minted: true
+    when: "relation == more and not gap and not factor"
+  - atom: "(Holds @id (More {scale} {standard} {subject}))"
+    if_minted: true
+    when: "relation == less and not gap and not factor"
+  - atom: "(Holds @id (SameDegree {scale} {subject} {standard}))"
+    if_minted: true
+    when: "relation == as and not factor"
+  - atom: "(Holds @id (MoreBy {scale} {subject} {standard} {gap} {unit}))"
+    if_minted: true
+    if_filled: gap
+    when: "relation == more"
+  - atom: "(Holds @id (MoreBy {scale} {standard} {subject} {gap} {unit}))"
+    if_minted: true
+    if_filled: gap
+    when: "relation == less"
+  - atom: "(Holds @id (TimesAs {scale} {subject} {standard} {factor}))"
+    if_minted: true
+    if_filled: factor
+  - atom: "(Past @id)"
+    if_minted: true
+    when: "tense == past"
+  - atom: "(Future @id)"
+    if_minted: true
+    when: "tense == future"
 
 notes:
   - >-
@@ -168,9 +204,15 @@ notes:
     Lamine's: a second event with the same verb and the standard as its actor, a predication of
     its own, and the comparison holds between the two events. "Smaller than a cat" compares with
     the class, a bare lemma; "than the cat" with the witness.
+  - >-
+    An anchored comparison — Yusra was taller than Lamine until 2019, only the beam is longer
+    than the ladder — keeps its flat atom and gains, from the program, the state of the ordering
+    holding, with the clause's tense on the state and the attachment on it; the parser only
+    names this instance in the attachment's event slot. An adverbial comparison has no state of
+    its own: a time or a place on the clause attaches to the clause's event.
 
 depends_on: [named-entity, witness, activity]
-composes_with: [negation, modal, time]
+composes_with: [negation, modal, time, time-relation, link, focus, measure]
 
 examples:
   shown:                     # rendered into the prompt
