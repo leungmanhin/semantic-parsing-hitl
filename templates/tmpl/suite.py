@@ -63,6 +63,7 @@ OUT_DIR = os.path.join(SUITE_DIR, "out")
 PARSE_SCRIPT = os.path.join(REPO, "semantic-parse.py")
 FRESHNESS_FILES = [os.path.join(REPO, "prompt.txt"), os.path.join(REPO, "regression", "regression_cases.md")]
 CORPORA_GLOB = os.path.join(REPO, "fusenf", "corpora", "*.jsonl")
+SAMPLE_GLOB = os.path.join(REPO, "datasets", "sample", "*.jsonl")      # the coverage sample: never a regression sentence
 
 FIRING = ("positive", "contrast", "scoped", "optional")
 CATEGORIES = FIRING + ("abstain",)
@@ -277,6 +278,13 @@ def _seen_sentences() -> set[str]:
                 if line.strip():
                     for s in json.loads(line).get("sentences") or []:
                         seen.add(_norm_sentence(s))
+    for path in sorted(glob.glob(SAMPLE_GLOB)):
+        with open(path, encoding="utf-8") as fh:
+            for line in fh:
+                if line.strip():
+                    rec = json.loads(line)
+                    if rec.get("text"):
+                        seen.add(_norm_sentence(rec["text"]))
     seen.discard("")
     return seen
 

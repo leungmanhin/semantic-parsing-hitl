@@ -1,0 +1,35 @@
+{
+  "name": "clutrr",
+  "homepage": "https://github.com/facebookresearch/clutrr",
+  "license": "CC BY-NC 4.0 (non-commercial; verify before any publication)",
+  "notes": "Kinship stories with a queried relation; the generalization configurations (trained on chains of length 2-3 or 2-4, tested on 2-10). Rows: id, story, query, target, target_text, clean_story.",
+  "files": [
+    {
+      "path": "gen_train234_test2to10.test.jsonl",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=CLUTRR/v1&config=gen_train234_test2to10&split=test",
+      "how": "rows API",
+      "sha256": "c331abddeb19bba53209c83fb16e5751d8fe8eab4ab5bdb3d684e5dc3295b60f",
+      "bytes": 2038194,
+      "rows": 1048,
+      "requested": 2000
+    },
+    {
+      "path": "gen_train23_test2to10.test.jsonl",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=CLUTRR/v1&config=gen_train23_test2to10&split=test",
+      "how": "rows API",
+      "sha256": "fd776896c4e38206058c43ad5b6c6e883e980710661d97d8d252b5103dfe9464",
+      "bytes": 2153887,
+      "rows": 1146,
+      "requested": 2000
+    },
+    {
+      "path": "gen_train23_test2to10.validation.jsonl",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=CLUTRR/v1&config=gen_train23_test2to10&split=validation",
+      "how": "rows API",
+      "sha256": "6d1322466de17988ec4aa22b26843f64a130fb6ff85513e21e566149040f4738",
+      "bytes": 1811827,
+      "rows": 2000,
+      "requested": 2000
+    }
+  ]
+}

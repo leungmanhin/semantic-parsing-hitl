@@ -11,6 +11,7 @@ Nothing here changes `prompt.txt`, the briefs under `fusenf/briefs/`, or any pip
 | `generated/PROMPT_CATALOG.txt` | the parser's instruction set, rendered from the catalog; never edited by hand |
 | `generated/MANIFEST.json` | the catalog's VERSION MANIFEST: the hashes of the templates, the prompt (and its body), the substrate and its declarations, the rules and their lowered form, and the emitter code, under one twelve-digit id; rewritten by `render_prompt`, `gen_substrate` and `rules`; its id is stamped into each record a `collect` stores (`manifest_id`) and into each `score` summary, which counts the records whose version differs (stale) or predates the stamp (unstamped) |
 | `tmpl/manifest.py` | computes, writes and checks the manifest (`python -m tmpl.manifest [--check]`) |
+| `tmpl/coverage.py` | the §7.4 coverage instrument: `sample` draws a stratified sample of natural text from `datasets/prepared/` into `datasets/sample/`, `parse` sends it one sentence per call (resumable, the manifest id stamped), `report` validates every reply and writes `datasets/sample/COVERAGE.md` — the parse rate per source, the gap-code and unmapped-span histograms, the fired templates; the sample is watched by the suite's leak check, never a regression sentence |
 | `tmpl/catalog.py` | loader and structural checks |
 | `tmpl/emit.py` | generic emitter: instances → statements + declarations |
 | `tmpl/render_prompt.py` | catalog → instruction set |

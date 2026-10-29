@@ -2,3 +2,8 @@
 *.pyc
 
 mini-reports/
+
+# public datasets: the fetch script, the README and each SOURCE.json are versioned, the data is not
+datasets/*/*
+!datasets/*/SOURCE.json
+!datasets/sample/*.jsonl

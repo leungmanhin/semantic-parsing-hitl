@@ -1,0 +1,26 @@
+{
+  "name": "babi",
+  "homepage": "https://research.facebook.com/downloads/babi/",
+  "license": "CC BY 3.0",
+  "notes": "The twenty bAbI tasks; only task 1 (single supporting fact: location tracking) is served by the hub's rows API — the original tarball's hosts no longer answer. Rows: story {id, type, text, supporting_ids, answer}.",
+  "files": [
+    {
+      "path": "en-10k-qa1.test.jsonl",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=facebook/babi_qa&config=en-10k-qa1&split=test",
+      "how": "rows API",
+      "sha256": "c8da620f61a16822cf0a7562c52bf4ac6bfe38da26831d8dd052cc8ecc4a562e",
+      "bytes": 158877,
+      "rows": 200,
+      "requested": 2000
+    },
+    {
+      "path": "en-10k-qa1.train.jsonl",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=facebook/babi_qa&config=en-10k-qa1&split=train",
+      "how": "rows API",
+      "sha256": "0136b274a7a7cb0a5f974d8a86fed0445cbfa8d73953686495817fdd3e283955",
+      "bytes": 1588248,
+      "rows": 2000,
+      "requested": 2000
+    }
+  ]
+}
