@@ -40,7 +40,7 @@ trigger:
   boundary:                   # looks like a control verb but is not one
     - >-
       a desire, intention, decision or commitment — wants to leave, hopes to win, intends /
-      plans / decides / promises / agrees to send the quilt: an attitude whose complement is the
+      plans / decides / promises / agrees / offers to send the quilt: an attitude whose complement is the
       clause, sealed and never asserted
     - >-
       a liking or a dislike of an action — likes to send quilts, enjoys sending quilts, hates
@@ -75,8 +75,8 @@ slots:
                 doc: "what the verb implies about the complement: none — nothing follows (try, attempt, refuse, choose, struggle, hesitate); positive — it happened (manage, dare, bother, remember to, learn to, happen to); negative — it did not (fail, forget to, neglect)"}
   tense:       {type: enum, values: [past, present, future], required: true,
                 doc: "the matrix clause's tense; present is recorded, not inferred"}
-  aspect:      {type: enum, values: [simple, progressive, perfect, about_to, due_to], required: false, default: simple,
-               doc: "simple; progressive for be V-ing; perfect for have V-ed; about_to for be about to V / on the point of V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word kept as the value (be going to V is the future tense, not a prospective)"}
+  aspect:      {type: enum, values: [simple, progressive, perfect, perfect_progressive, about_to, due_to], required: false, default: simple,
+               doc: "simple; progressive for be V-ing; perfect for have V-ed; perfect_progressive for have been V-ing; about_to for be about to V / on the point of V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word kept as the value (be going to V is the future tense, not a prospective)"}
 
 mints: {id: Event}
 
@@ -90,11 +90,11 @@ emits:
   - atom: "(Precludes @id)"                 # a negative implicative verb: the rule derives the complement's negation
     when: "implication == negative"
   - atom: "(Past @id)"
-    when: "tense == past or aspect == perfect"
+    when: "tense == past or aspect == perfect or aspect == perfect_progressive"
   - atom: "(Future @id)"
     when: "tense == future"
   - atom: "(Ongoing @id)"
-    when: "aspect == progressive"
+    when: "aspect == progressive or aspect == perfect_progressive"
   - atom: "(Prospective @id)"
     when: "aspect == about_to or aspect == due_to"
 

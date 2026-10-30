@@ -1,0 +1,92 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "86e68bd0d46ce98a22c1114a9d1a7ec1e0f59ab63b8ed0dc5a7e6a9d4fa2e49a",
+  "item": {
+    "id": "sd547776733",
+    "text": "The temple was built in 118 BCE."
+  },
+  "usage": {
+    "input": 98361,
+    "output": 143,
+    "thinking": null,
+    "total": 98504,
+    "cached": 96312,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 98361,
+    "candidatesTokenCount": 143,
+    "totalTokenCount": 98504,
+    "cachedContentTokenCount": 96312,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 98361
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 96312
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 143
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sd547776733\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"temple\", \"definite\": true, \"span\": \"The temple\"}, {\"t\": \"creation\", \"id\": \"e1\", \"verb\": \"build\", \"product\": \"@x1\", \"tense\": \"past\", \"span\": \"The temple was built\"}, {\"t\": \"time\", \"id\": \"t1\", \"event\": \"@e1\", \"year\": -118, \"span\": \"in 118 BCE\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sd547776733",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "temple",
+        "definite": true,
+        "span": "The temple"
+      },
+      {
+        "t": "creation",
+        "id": "e1",
+        "verb": "build",
+        "product": "@x1",
+        "tense": "past",
+        "span": "The temple was built"
+      },
+      {
+        "t": "time",
+        "id": "t1",
+        "event": "@e1",
+        "year": -118,
+        "span": "in 118 BCE"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "9c8b43a22f3af76d65eed0b84c134267fad63aaf26a359526f8fb143d6b79392",
+  "manifest_id": "9ca11cf54ff0",
+  "run": 3,
+  "case": {
+    "template": "time",
+    "section": "held_out",
+    "index": 31,
+    "category": "positive",
+    "text": "The temple was built in 118 BCE.",
+    "key": "d547776733"
+  }
+}

@@ -45,7 +45,7 @@ trigger:
 
 slots:
   id:         {type: id, required: true, doc: "your label for the range (q1, q2 …)"}
-  class:       {type: lemma, class: Class, required: true, doc: "the class, lemmatized to the singular (ferret); for the occasions of a frequency the unit, day part or weekday (day, morning, sunday), or occasion for a bare adverb"}
+  class:       {type: lemma, class: Class, required: true, doc: "the class, lemmatized to the singular (ferret) — an adjective on it (adult herons, red ferrets) is not part of the class but a copular instance over the range, listed in the rule's condition; for the occasions of a frequency the unit, day part or weekday (day, morning, sunday), or occasion for a bare adverb"}
   quantifier: {type: string, required: false,
                doc: "the quantifier word as written (every, each, all, most, many, few, no, none); absent for a bare generic"}
   predicate:  {type: lemma, class: Class, required: false,

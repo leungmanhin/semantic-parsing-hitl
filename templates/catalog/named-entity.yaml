@@ -26,7 +26,9 @@ slots:
   name:  {type: string, required: true, doc: "the surface name, capitalised as written"}
   title: {type: string, required: false, doc: "a leading title, if any"}
   class:  {type: lemma, class: Class, required: false,
-          doc: "the class an appositive or a title phrase states for the name (Lamine, a glazier); a predicative is a N is a copular instance, not this slot"}
+          doc: "the class an appositive or a title phrase states for the name (Lamine, a glazier); a predicative is a N is a copular instance, not this slot; a relational noun with a possessor (her son Bram, Ilse's husband Corvin) is a relation, not a class: the stative-relation template"}
+  props:  {type: list, class: Class, required: false,
+          doc: "adjectival or nominal modifiers inside the appositive or title phrase, each a lemma (a retired harbour pilot: retired, harbour; the northern ferry company: northern, ferry)"}
 
 mints: {id: Entity, stem: name}
 
@@ -36,6 +38,8 @@ emits:
   - atom: "(Name @id \"{name}\")"
   - atom: "(Member @id {class})"
     if_filled: class
+  - atom: "(Member @id {props})"
+    each: props
 
 examples:
   shown:
@@ -49,3 +53,9 @@ examples:
       text: "Yusra, a locksmith"
       instances:
         - {t: named-entity, id: n1, name: "Yusra", class: locksmith}
+    - category: positive
+      note: a modifier inside the appositive — a prop on the name
+      text: "Lamine, a skilled glazier, left."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine", class: glazier, props: [skilled]}
+        - {t: motion, id: m1, verb: leave, mover: "@n1", tense: past}

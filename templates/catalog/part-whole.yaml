@@ -35,7 +35,10 @@ trigger:
     member is a part. A passive keeps the link (the clause was included in the treaty: the
     clause the part). On a class — every car has an engine, oranges contain juice — the subject
     is a range and the generic template builds the rule with this instance as the predication
-    over it; an indefinite part is then a witness, a function of the member. `tense` is the
+    over it; an indefinite part is then a witness, a function of the member. A LIST OF NAMED
+    MEMBERS after a colon or after including (two potters stayed: Ines and Corvin; the
+    guild, including Lamine) is one instance per named member, the group the whole, the word
+    ":" or including. `tense` is the
     clause's; a link inside a noun phrase is present. A time, a duration, a time relation, a
     link or a focus on the clause (Lamine was a member of the guild until 1990) names this
     instance as its event, as it would a copular predication, and the program mints the state
@@ -319,3 +322,16 @@ examples:
     - category: abstain
       text: "Half of the loaf is stale."
       expected: {abstain: true, template: portion}                   # a proportion of a whole
+    - category: positive
+      note: named members listed after a colon — one link per member, the group the whole; the predicate distributes
+      text: "Three weavers came: Yusra, Lamine and Teodor."
+      instances:
+        - {t: group, id: g1, class: weaver, count: 3}
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: named-entity, id: n3, name: "Teodor"}
+        - {t: motion, id: m1, verb: come, mover: "@g1", tense: past}
+        - {t: distribution, id: d1, group: "@g1", over: ["@m1"]}
+        - {t: part-whole, id: w1, part: "@n1", whole: "@g1", word: ":", tense: present}
+        - {t: part-whole, id: w2, part: "@n2", whole: "@g1", word: ":", tense: present}
+        - {t: part-whole, id: w3, part: "@n3", whole: "@g1", word: ":", tense: present}

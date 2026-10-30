@@ -36,7 +36,8 @@ trigger:
     date or an offset (Monday morning, the following morning) is a second instance. A time no
     clause places an event at — the reference of a time relation (before noon), the edge of a
     window (within three days) — is an instance with no event. When the time is predicated of
-    an event noun by "be" (the meeting is at noon, the audit was on Monday), the noun is a witness
+    an event noun by "be" or by take place / occur / happen (the meeting is at noon, the audit was
+    on Monday, the fair took place in May: these verbs have no event of their own), the noun is a witness
     marked eventive, the time attaches to it, and this instance records the clause's tense.
   surface_forms:
     - "<clause> in <year / month>"                   # arrived in 2019; left in May
@@ -89,14 +90,14 @@ slots:
             doc: "the unit of the offset, singular and lowercase: minute, hour, day, week, month, year"}
   direction: {type: enum, values: [before, after], required: false,
             doc: "before when the time precedes its anchor (ago, earlier, before it), after when it follows (from now, in n units, later, after it) and for the same period as the anchor (that evening, the same day: offset 0)"}
-  year:    {type: int, required: false, doc: "the calendar year (2019)"}
+  year:    {type: int, required: false, doc: "the calendar year (2019); a BCE / BC year as a negative integer (44 BC → -44)"}
   month:   {type: lemma, class: Class, required: false, doc: "the month name, lowercase (may)"}
   day:     {type: int, required: false, doc: "the day of the month (3)"}
   weekday: {type: lemma, class: Class, required: false, doc: "the weekday name, lowercase (monday)"}
   hour:    {type: int, required: false, doc: "the clock hour in 24-hour form (3 pm → 15, noon → 12, midnight → 0)"}
   minute:  {type: int, required: false, doc: "the clock minute (2:30 → 30); absent for a whole hour"}
   tense:   {type: enum, values: [past, present, future], required: false,
-            doc: "only when the time is predicated of an event noun by be (the meeting was at noon): the clause's tense; otherwise absent, the event's own template records it"}
+            doc: "only when the time is predicated of an event noun by be or by take place / occur / happen (the meeting was at noon, the fair took place in May): the clause's tense; otherwise absent, the event's own template records it"}
 
 mints: {id: TimeTerm, symbol: name, constant: true, literal: time}   # a named time is its word; otherwise sk_time_n (a date, a clock time, a deictic, an offset)
 
@@ -480,3 +481,16 @@ examples:
         - {t: witness, id: x1, class: village, definite: true}
         - {t: measure, id: m1, bearer: "@x1", head: Measure, dimension: population, magnitude: 3000, unit: unspecified, tense: past}
         - {t: time, id: t1, event: "@m1", year: 1990}
+    - category: positive
+      note: a time predicated of an event noun by take place — the noun is the eventive witness, the verb has no event
+      text: "The audit took place on Monday."
+      instances:
+        - {t: witness, id: x1, class: audit, definite: true, eventive: true}
+        - {t: time, id: t1, event: "@x1", weekday: monday, tense: past}
+    - category: positive
+      note: a BCE year — a negative integer
+      text: "The temple was built in 118 BCE."
+      instances:
+        - {t: witness, id: x1, class: temple, definite: true}
+        - {t: creation, id: e1, verb: build, product: "@x1", tense: past}
+        - {t: time, id: t1, event: "@e1", year: -118}

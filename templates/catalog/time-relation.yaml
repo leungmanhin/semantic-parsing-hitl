@@ -66,6 +66,15 @@ trigger:
       every time or whenever with a clause — whenever the bell rings: a generalization over the
       when-clause's events, the frequency template; not a relation between two particular events
     - >-
+      a stative when / while clause under a PARTICULAR event — Lamine sang while the oven was
+      hot, Ottoline knocked when the shutters were closed: this template (During), the state the
+      reference; under a generic main clause — honey is runny when warm: a condition,
+      the conditional template
+    - >-
+      a time clause on a bare existential — when the audit ended, there were doubts: the main
+      clause has no event (an existential is its referent alone); report both clauses as
+      unmapped (G00)
+    - >-
       a copular, locative, degree, comparative, class-statement, part-whole or measure main
       clause — the ladder was crooked until Monday, Yusra was in the barn during the audit, the
       thermos was almost full until noon, Lamine was a member of the guild during the war: the
@@ -85,8 +94,8 @@ slots:
   id:        {type: id, required: true, doc: "your label for the relation (r1, r2 …)"}
   event:     {type: filler, class: Event, attaches: true, required: true,
               doc: "the event placed in time: the id of the clause's predication instance, or of an eventive witness when the relation is predicated of an event noun (the audit was before the meeting)"}
-  reference: {type: filler, class: Instance, required: true,
-              doc: "what the event is placed relative to: the id of the other clause's predication instance (after Lamine sang), of an eventive witness (after the audit), or of a time instance with no event of its own (before noon, since 2019, until dawn, the edge of a window: within three days); never a bare lemma"}
+  reference: {type: filler, class: "Event|Instance", required: true,
+              doc: "what the event is placed relative to: the id of the other clause's predication instance (after Lamine sang), of an eventive witness (after the audit), of a time instance with no event of its own (before noon, since 2019, until dawn, the edge of a window: within three days), or of a copular / locative / degree instance for a STATE the event falls within (sang while the oven was hot, waved when she was close enough: the program mints the state); never a bare lemma"}
   head:      {type: enum, values: [Before, After, During, Start, End, TimeAtMost, TimeAtLeast], required: true,
               doc: "the relation as read: Before for before / prior to / ahead of; After for after / following / once / as soon as / then; During for during / while / as / when / throughout / amid; Start for since / from / as of / starting; End for until / till / through / up to and the to of from … to; TimeAtMost for by / no later than / at the latest and for within n units (on the time at the offset); TimeAtLeast for not before / no earlier than / at the earliest and for in the past / last n units (on the time at the offset)"}
   word:      {type: string, required: true, doc: "the preposition or connective as written (after, while, until, as soon as …)"}
@@ -429,3 +438,21 @@ examples:
         - {t: class-statement, id: k1, subject: spindle, predicate: cheap, form: adjective, definitional: false, tense: past}
         - {t: time, id: t1, year: 1900}
         - {t: time-relation, id: r1, event: "@k1", reference: "@t1", head: End, word: until}
+    - category: positive
+      note: a stative while-clause under a particular event — the state is the reference and the program mints it
+      text: "Yusra left while the gate was open."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, class: gate, definite: true}
+        - {t: motion, id: m1, verb: leave, mover: "@n1", tense: past}
+        - {t: copular, id: c1, subject: "@x1", predicate: open, form: adjective, tense: past}
+        - {t: time-relation, id: r1, event: "@m1", reference: "@c1", head: During, word: while}
+    - category: positive
+      note: a stative when-clause under a particular event
+      text: "Teodor waved when the door was open."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, class: door, definite: true}
+        - {t: activity, id: v1, verb: wave, actor: "@n1", tense: past}
+        - {t: copular, id: c1, subject: "@x1", predicate: open, form: adjective, tense: past}
+        - {t: time-relation, id: r1, event: "@v1", reference: "@c1", head: During, word: when}

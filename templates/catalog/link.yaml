@@ -65,8 +65,8 @@ trigger:
 
 slots:
   id:   {type: id, required: true, doc: "your label for the link (k1, k2 …)"}
-  head: {type: enum, values: [Because, Since, So, Therefore, Thus, Consequently, AsAResult, Although, EvenThough, Despite, But, Yet], required: true,
-         doc: "the connective as written, one word in CamelCase: as a result → AsAResult, even though → EvenThough; since only in its causal sense"}
+  head: {type: enum, values: [Because, Since, So, Therefore, Thus, Consequently, AsAResult, Although, EvenThough, Despite, But, Yet, As], required: true,
+         doc: "the connective as written, one word in CamelCase: as a result → AsAResult, even though → EvenThough; since and as only in their causal sense (as the shed was locked, Ottoline waited); a temporal as or since is a time relation"}
   main: {type: filler, class: Event, required: true,
          doc: "the main clause's event: the id of its PREDICATION instance (an activity, a motion, an attitude …) — never the id of a negation or modal instance over it, even when the clause is negated — the clause the connective's clause attaches to (X in 'X because Y', even when Y is fronted), or the first clause for so / but / yet / therefore"}
   sub:  {type: filler, class: Event, required: true,
@@ -277,3 +277,12 @@ examples:
         - {t: witness, id: x1, class: sack, definite: true}
         - {t: measure, id: m1, bearer: "@x1", head: Measure, dimension: weight, magnitude: 40, unit: kilogram, tense: past}
         - {t: link, id: k1, head: Because, main: "@v1", sub: "@m1"}
+    - category: positive
+      note: causal as — a link, the state minted as the endpoint
+      text: "As the gate was open, the ferret left."
+      instances:
+        - {t: witness, id: x1, class: gate, definite: true}
+        - {t: witness, id: x2, class: ferret, definite: true}
+        - {t: copular, id: c1, subject: "@x1", predicate: open, form: adjective, tense: past}
+        - {t: motion, id: m1, verb: leave, mover: "@x2", tense: past}
+        - {t: link, id: k1, head: As, main: "@m1", sub: "@c1"}

@@ -1,0 +1,99 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "ce6fa789a6c0b988c464083c6a630d6d41d3e9e14f6a2b8c66d58b12f29f7776",
+  "item": {
+    "id": "s9b00a6dca9",
+    "text": "Teodor's wife Ottoline sang."
+  },
+  "usage": {
+    "input": 98355,
+    "output": 189,
+    "thinking": null,
+    "total": 98544,
+    "cached": 96306,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 98355,
+    "candidatesTokenCount": 189,
+    "totalTokenCount": 98544,
+    "cachedContentTokenCount": 96306,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 98355
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 96306
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 189
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s9b00a6dca9\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"stative-relation\", \"id\": \"p1\", \"relation\": \"wife\", \"subject\": \"@n2\", \"object\": \"@n1\", \"tense\": \"present\", \"span\": \"Teodor's wife Ottoline\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"sing\", \"actor\": \"@n2\", \"tense\": \"past\", \"span\": \"Teodor's wife Ottoline sang\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s9b00a6dca9",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Ottoline",
+        "span": "Ottoline"
+      },
+      {
+        "t": "stative-relation",
+        "id": "p1",
+        "relation": "wife",
+        "subject": "@n2",
+        "object": "@n1",
+        "tense": "present",
+        "span": "Teodor's wife Ottoline"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "sing",
+        "actor": "@n2",
+        "tense": "past",
+        "span": "Teodor's wife Ottoline sang"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "9c8b43a22f3af76d65eed0b84c134267fad63aaf26a359526f8fb143d6b79392",
+  "manifest_id": "ea25d89bb5ef",
+  "run": 3,
+  "case": {
+    "template": "stative-relation",
+    "section": "held_out",
+    "index": 26,
+    "category": "positive",
+    "text": "Teodor's wife Ottoline sang.",
+    "key": "9b00a6dca9"
+  }
+}

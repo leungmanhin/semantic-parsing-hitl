@@ -1,0 +1,117 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "ce6fa789a6c0b988c464083c6a630d6d41d3e9e14f6a2b8c66d58b12f29f7776",
+  "item": {
+    "id": "se9345c349c",
+    "text": "Yusra visited her brother Lamine."
+  },
+  "usage": {
+    "input": 98355,
+    "output": 269,
+    "thinking": null,
+    "total": 98624,
+    "cached": 96306,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 98355,
+    "candidatesTokenCount": 269,
+    "totalTokenCount": 98624,
+    "cachedContentTokenCount": 96306,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 98355
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 96306
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 269
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"se9345c349c\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"mention\", \"id\": \"m1\", \"word\": \"her\", \"span\": \"her\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"stative-relation\", \"id\": \"p1\", \"relation\": \"brother\", \"subject\": \"@n2\", \"object\": \"@m1\", \"tense\": \"present\", \"span\": \"her brother Lamine\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"visit\", \"actor\": \"@n1\", \"patient\": \"@n2\", \"tense\": \"past\", \"span\": \"Yusra visited her brother Lamine\"}, {\"t\": \"coref\", \"id\": \"k1\", \"mention\": \"@m1\", \"antecedent\": \"@n1\", \"certainty\": \"certain\", \"span\": [\"Yusra\", \"her\"]}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "se9345c349c",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "mention",
+        "id": "m1",
+        "word": "her",
+        "span": "her"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "stative-relation",
+        "id": "p1",
+        "relation": "brother",
+        "subject": "@n2",
+        "object": "@m1",
+        "tense": "present",
+        "span": "her brother Lamine"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "visit",
+        "actor": "@n1",
+        "patient": "@n2",
+        "tense": "past",
+        "span": "Yusra visited her brother Lamine"
+      },
+      {
+        "t": "coref",
+        "id": "k1",
+        "mention": "@m1",
+        "antecedent": "@n1",
+        "certainty": "certain",
+        "span": [
+          "Yusra",
+          "her"
+        ]
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "9c8b43a22f3af76d65eed0b84c134267fad63aaf26a359526f8fb143d6b79392",
+  "manifest_id": "ea25d89bb5ef",
+  "run": 2,
+  "case": {
+    "template": "stative-relation",
+    "section": "held_out",
+    "index": 25,
+    "category": "positive",
+    "text": "Yusra visited her brother Lamine.",
+    "key": "e9345c349c"
+  }
+}

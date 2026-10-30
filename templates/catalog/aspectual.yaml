@@ -59,8 +59,8 @@ slots:
                doc: "the action: the ids of the instances that state it (its predication, with the sentence's subject as its actor or undergoer); the referents it mentions are not listed"}
   tense:      {type: enum, values: [past, present, future], required: true,
                doc: "the clause's tense; present is recorded, not inferred"}
-  aspect:     {type: enum, values: [simple, progressive, perfect, about_to, due_to], required: false, default: simple,
-              doc: "simple; progressive for be V-ing; perfect for have V-ed; about_to for be about to V / on the point of V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word kept as the value (be going to V is the future tense, not a prospective)"}
+  aspect:     {type: enum, values: [simple, progressive, perfect, perfect_progressive, about_to, due_to], required: false, default: simple,
+              doc: "simple; progressive for be V-ing; perfect for have V-ed; perfect_progressive for have been V-ing; about_to for be about to V / on the point of V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word kept as the value (be going to V is the future tense, not a prospective)"}
 
 mints: {id: Event}
 
@@ -69,11 +69,11 @@ emits:
   - atom: "(Theme @id {complement})"        # the action, sealed as one term
   - atom: "(Entails @id)"                   # the action was underway: a background rule derives it at this event's tense
   - atom: "(Past @id)"
-    when: "tense == past or aspect == perfect"
+    when: "tense == past or aspect == perfect or aspect == perfect_progressive"
   - atom: "(Future @id)"
     when: "tense == future"
   - atom: "(Ongoing @id)"
-    when: "aspect == progressive"
+    when: "aspect == progressive or aspect == perfect_progressive"
   - atom: "(Prospective @id)"
     when: "aspect == about_to or aspect == due_to"
 

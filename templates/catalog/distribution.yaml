@@ -37,7 +37,7 @@ slots:
   id:    {type: id, required: true, doc: "your label for the rule"}
   group: {type: filler, class: Entity, required: true, doc: "the group instance's id, or a portion's"}
   over:  {type: refs, class: Proposition, required: true, consumes: false, bind: group, skolemize: true,
-          doc: "the predication over the group, or the negation / modal over that predication: its id, nothing else"}
+          doc: "the predication over the group, or the negation / modal over that predication: its id, nothing else — never an attachment (a location, a time, an oblique), which follows its head"}
 
 truth: {strength: [1.0], confidence: [0.9]}
 

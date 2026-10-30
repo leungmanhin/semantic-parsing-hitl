@@ -35,7 +35,7 @@ trigger:
     that-clause — presuppose the complement; sure, certain, confident, convinced, afraid,
     worried and every infinitival stance do not.
   verbs: [believe, think, suppose, assume, suspect, doubt, hope, fear, expect, claim, say,
-          want, wish, intend, plan, decide, promise, agree,
+          want, wish, intend, plan, decide, promise, agree, offer, vow,
           know, realize, discover, learn, notice, remember, regret]
   verbs_note: >
     The lists anchor the two classes; an unlisted verb that takes a finite complement belongs
@@ -94,8 +94,8 @@ slots:
             doc: "true when the verb or adjective presupposes the complement (know, realize, discover, learn, notice, remember, regret; aware, glad, sorry, surprised, upset, proud, happy / angry that), false otherwise (believe, think, suppose, assume, suspect, doubt, hope, fear, expect, claim, say, want, wish, intend, plan, decide, promise, agree; sure, certain, confident, convinced, afraid, worried, and every adjective with a to-infinitive)"}
   tense:   {type: enum, values: [past, present, future], required: true,
             doc: "the attitude clause's tense; present is recorded, not inferred"}
-  aspect:  {type: enum, values: [simple, progressive, perfect, about_to, due_to], required: false, default: simple,
-           doc: "simple; progressive for be V-ing; perfect for have V-ed; about_to for be about to V / on the point of V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word kept as the value (be going to V is the future tense, not a prospective)"}
+  aspect:  {type: enum, values: [simple, progressive, perfect, perfect_progressive, about_to, due_to], required: false, default: simple,
+           doc: "simple; progressive for be V-ing; perfect for have V-ed; perfect_progressive for have been V-ing; about_to for be about to V / on the point of V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word kept as the value (be going to V is the future tense, not a prospective)"}
 
 mints: {id: Event}
 
@@ -108,11 +108,11 @@ emits:
     when: "factive == true"
     project: true                           # at the top level whatever scope the attitude sits in
   - atom: "(Past @id)"
-    when: "tense == past or aspect == perfect"
+    when: "tense == past or aspect == perfect or aspect == perfect_progressive"
   - atom: "(Future @id)"
     when: "tense == future"
   - atom: "(Ongoing @id)"
-    when: "aspect == progressive"
+    when: "aspect == progressive or aspect == perfect_progressive"
   - atom: "(Prospective @id)"
     when: "aspect == about_to or aspect == due_to"
 
@@ -377,3 +377,11 @@ examples:
     - category: abstain
       text: "Yusra told Teodor that Ottoline sent the quilt."
       expected: {abstain: true, template: communication}
+    - category: positive
+      note: offer with a to-infinitive — a commitment, non-factive
+      text: "Lamine offered to carry the ladder."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: x1, class: ladder, definite: true}
+        - {t: motion, id: m1, verb: carry, mover: "@n1", moved: "@x1", tense: present}
+        - {t: attitude, id: a1, verb: offer, holder: "@n1", content: ["@m1"], factive: false, tense: past}

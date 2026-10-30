@@ -178,6 +178,7 @@
 (: ParticleFromNormal (-> Number Number Distribution))
 (: Past (-> Event Proposition))
 (: Past (-> Proposition Proposition))
+(: Path (-> Event Entity Proposition))
 (: Patient (-> Event Entity Proposition))
 (: Pending (-> Event Proposition))
 (: Pending (-> Proposition Proposition))

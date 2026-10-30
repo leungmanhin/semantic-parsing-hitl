@@ -258,3 +258,11 @@ examples:
     - category: abstain
       text: "Wax is soft when warm."
       expected: {abstain: true, template: conditional-property}       # a copular predicate under a condition
+    - category: positive
+      note: an adjective on the range — a copular condition over the member, not part of the class
+      text: "Adult herons eat frogs."
+      instances:
+        - {t: range, id: q1, class: heron}
+        - {t: copular, id: c1, subject: "@q1", predicate: adult, form: adjective, tense: present}
+        - {t: activity, id: v1, verb: eat, actor: "@q1", patient: frog, tense: present}
+        - {t: generic, id: r1, ranges: ["@q1"], condition: ["@c1"], over: ["@v1"]}

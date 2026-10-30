@@ -1,0 +1,88 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "ce6fa789a6c0b988c464083c6a630d6d41d3e9e14f6a2b8c66d58b12f29f7776",
+  "item": {
+    "id": "s5219b95945",
+    "text": "Lamine is the oldest locksmith in Calderwick."
+  },
+  "usage": {
+    "input": 98358,
+    "output": 127,
+    "thinking": null,
+    "total": 98485,
+    "cached": 96303,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 98358,
+    "candidatesTokenCount": 127,
+    "totalTokenCount": 98485,
+    "cachedContentTokenCount": 96303,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 98358
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 96303
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 127
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s5219b95945\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Calderwick\", \"span\": \"Calderwick\"}], \"unmapped\": [{\"span\": \"the oldest locksmith in Calderwick\", \"code\": \"G00\", \"construction\": \"A superlative whose class is narrowed by a domain phrase.\"}], \"issues\": []}",
+  "response": {
+    "id": "s5219b95945",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Calderwick",
+        "span": "Calderwick"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "the oldest locksmith in Calderwick",
+        "code": "G00",
+        "construction": "A superlative whose class is narrowed by a domain phrase."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "9c8b43a22f3af76d65eed0b84c134267fad63aaf26a359526f8fb143d6b79392",
+  "manifest_id": "ea25d89bb5ef",
+  "run": 1,
+  "case": {
+    "template": "superlative",
+    "section": "held_out",
+    "index": 15,
+    "category": "abstain",
+    "text": "Lamine is the oldest locksmith in Calderwick.",
+    "key": "5219b95945"
+  }
+}

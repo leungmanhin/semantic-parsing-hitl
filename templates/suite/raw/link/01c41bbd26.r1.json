@@ -1,0 +1,109 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "ce6fa789a6c0b988c464083c6a630d6d41d3e9e14f6a2b8c66d58b12f29f7776",
+  "item": {
+    "id": "s01c41bbd26",
+    "text": "As the gate was open, the ferret left."
+  },
+  "usage": {
+    "input": 98356,
+    "output": 222,
+    "thinking": null,
+    "total": 98578,
+    "cached": 96307,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 98356,
+    "candidatesTokenCount": 222,
+    "totalTokenCount": 98578,
+    "cachedContentTokenCount": 96307,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 98356
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 96307
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 222
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s01c41bbd26\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"gate\", \"definite\": true, \"span\": \"the gate\"}, {\"t\": \"witness\", \"id\": \"x2\", \"class\": \"ferret\", \"definite\": true, \"span\": \"the ferret\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@x1\", \"predicate\": \"open\", \"form\": \"adjective\", \"tense\": \"past\", \"span\": \"the gate was open\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@x2\", \"tense\": \"past\", \"span\": \"the ferret left\"}, {\"t\": \"link\", \"id\": \"k1\", \"head\": \"As\", \"main\": \"@m1\", \"sub\": \"@c1\", \"span\": \"As\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s01c41bbd26",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "gate",
+        "definite": true,
+        "span": "the gate"
+      },
+      {
+        "t": "witness",
+        "id": "x2",
+        "class": "ferret",
+        "definite": true,
+        "span": "the ferret"
+      },
+      {
+        "t": "copular",
+        "id": "c1",
+        "subject": "@x1",
+        "predicate": "open",
+        "form": "adjective",
+        "tense": "past",
+        "span": "the gate was open"
+      },
+      {
+        "t": "motion",
+        "id": "m1",
+        "verb": "leave",
+        "mover": "@x2",
+        "tense": "past",
+        "span": "the ferret left"
+      },
+      {
+        "t": "link",
+        "id": "k1",
+        "head": "As",
+        "main": "@m1",
+        "sub": "@c1",
+        "span": "As"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "9c8b43a22f3af76d65eed0b84c134267fad63aaf26a359526f8fb143d6b79392",
+  "manifest_id": "ea25d89bb5ef",
+  "run": 1,
+  "case": {
+    "template": "link",
+    "section": "held_out",
+    "index": 17,
+    "category": "positive",
+    "text": "As the gate was open, the ferret left.",
+    "key": "01c41bbd26"
+  }
+}

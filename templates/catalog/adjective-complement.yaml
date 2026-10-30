@@ -124,8 +124,8 @@ slots:
                doc: "the complement as an action: a gerund (afraid of losing the quilt, tired of waiting, good at baking loaves) — its predication with the bearer as its actor, tense present — or the to-infinitive of a quality of the action (hard to mend: the mending with the subject as its patient; important to rest: the resting with no participant), sealed; never together with object; the referents it mentions are not listed"}
   tense:      {type: enum, values: [past, present, future], required: true,
                doc: "the clause's tense; present is recorded, not inferred"}
-  aspect:     {type: enum, values: [simple, progressive, perfect, about_to, due_to], required: false, default: simple,
-              doc: "simple; progressive for be V-ing; perfect for have V-ed; about_to for be about to V / on the point of V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word kept as the value (be going to V is the future tense, not a prospective)"}
+  aspect:     {type: enum, values: [simple, progressive, perfect, perfect_progressive, about_to, due_to], required: false, default: simple,
+              doc: "simple; progressive for be V-ing; perfect for have V-ed; perfect_progressive for have been V-ing; about_to for be about to V / on the point of V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word kept as the value (be going to V is the future tense, not a prospective)"}
 
 one_of: [[object, complement]]
 
@@ -140,11 +140,11 @@ emits:
   - atom: "({head} @id {complement})"         # the complement as an action, sealed as one term
     if_filled: complement
   - atom: "(Past @id)"
-    when: "tense == past or aspect == perfect"
+    when: "tense == past or aspect == perfect or aspect == perfect_progressive"
   - atom: "(Future @id)"
     when: "tense == future"
   - atom: "(Ongoing @id)"
-    when: "aspect == progressive"
+    when: "aspect == progressive or aspect == perfect_progressive"
   - atom: "(Prospective @id)"
     when: "aspect == about_to or aspect == due_to"
 

@@ -50,6 +50,7 @@ slots:
   definite:  {type: bool, required: false, doc: "true for the / these / those / both; absent for a possessed group (the possessor presupposes it) and otherwise"}
   count:     {type: number, required: false, doc: "the exact size when a numeral or both states it (three → 3; both → 2)"}
   quantity:  {type: string, required: false, doc: "the vague size phrase as written (several, a few, some, many, dozens, a lot, lots, plenty); absent when a numeral or both states the size"}
+  hedge:     {type: string, required: false, doc: "an approximation word on the count as written (about, approximately, roughly, nearly, almost, around, some); recorded, not rendered — the count stays the number stated"}
   props:     {type: list, class: Class, required: false, doc: "adjectival properties stated in the phrase"}
   possessor: {type: filler, class: Entity, required: false, doc: "the possessor of a possessive phrase (Yusra's ferrets)"}
 
@@ -188,3 +189,10 @@ examples:
     - category: abstain
       text: "Every ferret slept."
       expected: {abstain: true, template: generic}                    # a quantifier word
+    - category: positive
+      note: a hedge on a count — recorded, the count kept
+      text: "About forty weavers sang."
+      instances:
+        - {t: group, id: g1, class: weaver, count: 40, hedge: about}
+        - {t: activity, id: v1, verb: sing, actor: "@g1", tense: past}
+        - {t: distribution, id: d1, group: "@g1", over: ["@v1"]}

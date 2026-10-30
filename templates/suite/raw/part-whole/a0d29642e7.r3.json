@@ -1,0 +1,148 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "ce6fa789a6c0b988c464083c6a630d6d41d3e9e14f6a2b8c66d58b12f29f7776",
+  "item": {
+    "id": "sa0d29642e7",
+    "text": "Three weavers came: Yusra, Lamine and Teodor."
+  },
+  "usage": {
+    "input": 98360,
+    "output": 382,
+    "thinking": null,
+    "total": 98742,
+    "cached": 96311,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 98360,
+    "candidatesTokenCount": 382,
+    "totalTokenCount": 98742,
+    "cachedContentTokenCount": 96311,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 98360
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 96311
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 382
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sa0d29642e7\", \"instances\": [{\"t\": \"group\", \"id\": \"g1\", \"class\": \"weaver\", \"count\": 3, \"span\": \"Three weavers\"}, {\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n3\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"come\", \"mover\": \"@g1\", \"tense\": \"past\", \"span\": \"Three weavers came\"}, {\"t\": \"part-whole\", \"id\": \"w1\", \"part\": \"@n1\", \"whole\": \"@g1\", \"word\": \":\", \"tense\": \"present\", \"span\": [\"Three weavers\", \"Yusra\"]}, {\"t\": \"part-whole\", \"id\": \"w2\", \"part\": \"@n2\", \"whole\": \"@g1\", \"word\": \":\", \"tense\": \"present\", \"span\": [\"Three weavers\", \"Lamine\"]}, {\"t\": \"part-whole\", \"id\": \"w3\", \"part\": \"@n3\", \"whole\": \"@g1\", \"word\": \":\", \"tense\": \"present\", \"span\": [\"Three weavers\", \"Teodor\"]}, {\"t\": \"distribution\", \"id\": \"d1\", \"group\": \"@g1\", \"over\": [\"@m1\"], \"span\": \"Three weavers came\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sa0d29642e7",
+    "instances": [
+      {
+        "t": "group",
+        "id": "g1",
+        "class": "weaver",
+        "count": 3,
+        "span": "Three weavers"
+      },
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "named-entity",
+        "id": "n3",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "motion",
+        "id": "m1",
+        "verb": "come",
+        "mover": "@g1",
+        "tense": "past",
+        "span": "Three weavers came"
+      },
+      {
+        "t": "part-whole",
+        "id": "w1",
+        "part": "@n1",
+        "whole": "@g1",
+        "word": ":",
+        "tense": "present",
+        "span": [
+          "Three weavers",
+          "Yusra"
+        ]
+      },
+      {
+        "t": "part-whole",
+        "id": "w2",
+        "part": "@n2",
+        "whole": "@g1",
+        "word": ":",
+        "tense": "present",
+        "span": [
+          "Three weavers",
+          "Lamine"
+        ]
+      },
+      {
+        "t": "part-whole",
+        "id": "w3",
+        "part": "@n3",
+        "whole": "@g1",
+        "word": ":",
+        "tense": "present",
+        "span": [
+          "Three weavers",
+          "Teodor"
+        ]
+      },
+      {
+        "t": "distribution",
+        "id": "d1",
+        "group": "@g1",
+        "over": [
+          "@m1"
+        ],
+        "span": "Three weavers came"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "9c8b43a22f3af76d65eed0b84c134267fad63aaf26a359526f8fb143d6b79392",
+  "manifest_id": "ea25d89bb5ef",
+  "run": 3,
+  "case": {
+    "template": "part-whole",
+    "section": "held_out",
+    "index": 18,
+    "category": "positive",
+    "text": "Three weavers came: Yusra, Lamine and Teodor.",
+    "key": "a0d29642e7"
+  }
+}

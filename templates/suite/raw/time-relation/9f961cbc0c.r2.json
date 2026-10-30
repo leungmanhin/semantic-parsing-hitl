@@ -1,0 +1,109 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "ce6fa789a6c0b988c464083c6a630d6d41d3e9e14f6a2b8c66d58b12f29f7776",
+  "item": {
+    "id": "s9f961cbc0c",
+    "text": "Yusra left while the gate was open."
+  },
+  "usage": {
+    "input": 98355,
+    "output": 230,
+    "thinking": null,
+    "total": 98585,
+    "cached": 96306,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 98355,
+    "candidatesTokenCount": 230,
+    "totalTokenCount": 98585,
+    "cachedContentTokenCount": 96306,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 98355
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 96306
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 230
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s9f961cbc0c\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"gate\", \"definite\": true, \"span\": \"the gate\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n1\", \"tense\": \"past\", \"span\": \"Yusra left\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@x1\", \"predicate\": \"open\", \"form\": \"adjective\", \"tense\": \"past\", \"span\": \"the gate was open\"}, {\"t\": \"time-relation\", \"id\": \"r1\", \"event\": \"@m1\", \"reference\": \"@c1\", \"head\": \"During\", \"word\": \"while\", \"span\": \"while\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s9f961cbc0c",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "gate",
+        "definite": true,
+        "span": "the gate"
+      },
+      {
+        "t": "motion",
+        "id": "m1",
+        "verb": "leave",
+        "mover": "@n1",
+        "tense": "past",
+        "span": "Yusra left"
+      },
+      {
+        "t": "copular",
+        "id": "c1",
+        "subject": "@x1",
+        "predicate": "open",
+        "form": "adjective",
+        "tense": "past",
+        "span": "the gate was open"
+      },
+      {
+        "t": "time-relation",
+        "id": "r1",
+        "event": "@m1",
+        "reference": "@c1",
+        "head": "During",
+        "word": "while",
+        "span": "while"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "9c8b43a22f3af76d65eed0b84c134267fad63aaf26a359526f8fb143d6b79392",
+  "manifest_id": "ea25d89bb5ef",
+  "run": 2,
+  "case": {
+    "template": "time-relation",
+    "section": "held_out",
+    "index": 31,
+    "category": "positive",
+    "text": "Yusra left while the gate was open.",
+    "key": "9f961cbc0c"
+  }
+}

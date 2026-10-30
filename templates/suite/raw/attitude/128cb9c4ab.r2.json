@@ -1,0 +1,104 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "ce6fa789a6c0b988c464083c6a630d6d41d3e9e14f6a2b8c66d58b12f29f7776",
+  "item": {
+    "id": "s128cb9c4ab",
+    "text": "Lamine offered to carry the ladder."
+  },
+  "usage": {
+    "input": 98354,
+    "output": 197,
+    "thinking": null,
+    "total": 98551,
+    "cached": 96305,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 98354,
+    "candidatesTokenCount": 197,
+    "totalTokenCount": 98551,
+    "cachedContentTokenCount": 96305,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 98354
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 96305
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 197
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s128cb9c4ab\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"ladder\", \"definite\": true, \"span\": \"the ladder\"}, {\"t\": \"motion\", \"id\": \"e1\", \"verb\": \"carry\", \"mover\": \"@n1\", \"moved\": \"@x1\", \"tense\": \"present\", \"span\": \"to carry the ladder\"}, {\"t\": \"attitude\", \"id\": \"a1\", \"verb\": \"offer\", \"holder\": \"@n1\", \"content\": [\"@e1\"], \"factive\": false, \"tense\": \"past\", \"span\": \"Lamine offered to carry the ladder\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s128cb9c4ab",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "ladder",
+        "definite": true,
+        "span": "the ladder"
+      },
+      {
+        "t": "motion",
+        "id": "e1",
+        "verb": "carry",
+        "mover": "@n1",
+        "moved": "@x1",
+        "tense": "present",
+        "span": "to carry the ladder"
+      },
+      {
+        "t": "attitude",
+        "id": "a1",
+        "verb": "offer",
+        "holder": "@n1",
+        "content": [
+          "@e1"
+        ],
+        "factive": false,
+        "tense": "past",
+        "span": "Lamine offered to carry the ladder"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "9c8b43a22f3af76d65eed0b84c134267fad63aaf26a359526f8fb143d6b79392",
+  "manifest_id": "ea25d89bb5ef",
+  "run": 2,
+  "case": {
+    "template": "attitude",
+    "section": "held_out",
+    "index": 19,
+    "category": "positive",
+    "text": "Lamine offered to carry the ladder.",
+    "key": "128cb9c4ab"
+  }
+}

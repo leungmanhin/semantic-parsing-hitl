@@ -1,0 +1,92 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "ce6fa789a6c0b988c464083c6a630d6d41d3e9e14f6a2b8c66d58b12f29f7776",
+  "item": {
+    "id": "s64baf887c4",
+    "text": "Lamine crossed the river."
+  },
+  "usage": {
+    "input": 98352,
+    "output": 140,
+    "thinking": null,
+    "total": 98492,
+    "cached": 96303,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 98352,
+    "candidatesTokenCount": 140,
+    "totalTokenCount": 98492,
+    "cachedContentTokenCount": 96303,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 98352
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 96303
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 140
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s64baf887c4\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"river\", \"definite\": true, \"span\": \"the river\"}, {\"t\": \"motion\", \"id\": \"e1\", \"verb\": \"cross\", \"mover\": \"@n1\", \"path\": \"@x1\", \"tense\": \"past\", \"span\": \"Lamine crossed the river\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s64baf887c4",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "river",
+        "definite": true,
+        "span": "the river"
+      },
+      {
+        "t": "motion",
+        "id": "e1",
+        "verb": "cross",
+        "mover": "@n1",
+        "path": "@x1",
+        "tense": "past",
+        "span": "Lamine crossed the river"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "9c8b43a22f3af76d65eed0b84c134267fad63aaf26a359526f8fb143d6b79392",
+  "manifest_id": "ea25d89bb5ef",
+  "run": 2,
+  "case": {
+    "template": "motion",
+    "section": "held_out",
+    "index": 18,
+    "category": "positive",
+    "text": "Lamine crossed the river.",
+    "key": "64baf887c4"
+  }
+}

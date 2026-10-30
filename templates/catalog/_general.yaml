@@ -50,7 +50,10 @@ identifiers:
   prefixes: `n` named individual, `x` witness, `g` group or portion, `e` event, `s` scope operator (negation, modal, norm, evidential, hedge),
   `c` copular predication, `l` location, `q` quantified range, `r` rule, `d` comparison or degree, `m` measure, `t` time, `k` link, `f` focus (n1, x1, e1, s1 …).
 - >-
-  A slot that points to another instance holds `"@<id>"`, for example `"Agent": "@n1"`.
+  A slot that points to another instance holds `"@<id>"`, for example `"Agent": "@n1"`. An EVENT slot — a time's,
+  a place's, a duration's, a relation's, a link's, a focus's — names a PREDICATION instance, never a negation,
+  modal, norm or hedge instance over it; a distribution's `over` names the predication (or the operator over
+  it), never an attachment such as a location or an oblique, which follows its head.
 - >-
   The id `now` is reserved for the text's REFERENCE TIME (the moment the text speaks from). You never
   write its instance; a deictic time (yesterday, tomorrow, last week) refers to it as its anchor,
@@ -156,7 +159,8 @@ unmapped:
   wherever it appears in the text), but a common-noun phrase or a pronoun does not. A witness is introduced only by a clause a
   template covers; the span carries the noun verbatim, and if a covered clause mentions the same thing,
   that clause's instance is the referent. Never introduce a witness for something stated only in words
-  you report as unmapped.
+  you report as unmapped; the same holds for a group or a range: a plural or quantified phrase inside an
+  unmapped span introduces nothing.
 gap_codes:
   G00: anything no template here covers and no other code names
   G01: >-

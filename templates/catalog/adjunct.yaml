@@ -63,7 +63,7 @@ slots:
                 doc: "the added participant: a referent id (a witness for a knife, a name for Yusra) or a bare lemma for a class-level one (by train, with soap)"}
   head:        {type: enum, values: [Instrument, CoAgent, Beneficiary], required: true,
                 doc: "Instrument for a tool, substance or means; CoAgent for a person or animal taking part; Beneficiary for the party the event is done for"}
-  preposition: {type: string, required: true, doc: "the preposition as written (with, by, for, using, together_with, on_behalf_of)"}
+  preposition: {type: string, required: false, doc: "the preposition as written (with, by, for, using, together_with, on_behalf_of); absent for a dative beneficiary with no preposition (fetched him a lantern, baked Yusra a loaf)"}
 
 emits:
   - atom: "({head} {event} {participant})"
@@ -212,3 +212,12 @@ examples:
     - category: abstain
       text: "Lamine worked for six hours."
       expected: {abstain: true, template: measure}                    # a duration: a measure on the event
+    - category: positive
+      note: a dative beneficiary with no preposition — the double-object form
+      text: "Lamine bought Yusra a thermos."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: named-entity, id: n2, name: "Yusra"}
+        - {t: witness, id: x1, class: thermos}
+        - {t: acquisition, id: e1, verb: buy, acquirer: "@n1", object: "@x1", tense: past}
+        - {t: adjunct, id: a1, event: "@e1", head: Beneficiary, participant: "@n2"}

@@ -61,8 +61,12 @@ trigger:
       a date or a numbered item — the third of May, page 34, chapter two: a time or a name, not
       a rank in a class
     - >-
-      a stated domain beside the class — the oldest orchard in the valley: the place is a
-      locative predication of the witness, parsed as usual; the class stays orchard
+      a class narrowed by a domain phrase or by a modifier on the noun — the oldest orchard in
+      the valley, the tallest weaver in the guild, the first left-handed glazier, the largest
+      stone bridge: the comparison is within the narrowed class, which no slot carries yet;
+      write no superlative instance (on the bare class it would claim the top of every
+      orchard, weaver, glazier or bridge) and report the superlative phrase as unmapped (G00);
+      the rest of the clause is parsed as usual
 
 slots:
   id:          {type: id, required: true, doc: "your label for the superlative (s1, s2 …)"}
@@ -71,7 +75,7 @@ slots:
   scale:       {type: lemma, class: Class, required: true,
                 doc: "what orders the class: the adjective lemmatized (tallest → tall, most careful → careful, best → good, worst → bad), the verb of the first / last to V (arrive, speak), or the class itself for a plain ordinal (the third ferret → ferret)"}
   class:       {type: lemma, class: Class, required: false,
-                doc: "the class compared within, lemmatized to the singular: the noun of the phrase (weaver, quilt) or of the of-phrase (the tallest of the weavers → weaver); absent only for the first / last to V"}
+                doc: "the class compared within, lemmatized to the singular: the noun of the phrase (weaver, quilt) or of the of-phrase (the tallest of the weavers → weaver); absent only for the first / last to V; never a narrowed class: a modifier on the noun or a domain phrase that narrows the comparison means no instance at all (see the boundary)"}
   kind:        {type: enum, values: [most, among, ordinal], required: true,
                 doc: "most for the ADJ-est / the most ADJ (the unique top); among for one of the ADJ-est; ordinal for a rank: the n-th, the n-th ADJ-est, the first / last to V"}
   rank:        {type: number, required: false, doc: "the rank of an ordinal: first → 1, second → 2, third → 3; empty for last"}
@@ -270,3 +274,9 @@ examples:
     - category: abstain
       text: "Yusra runs fastest."
       expected: {abstain: true, gap: G00, span: "fastest"}            # an adverbial superlative
+    - category: abstain
+      text: "Lamine is the oldest locksmith in Calderwick."
+      expected: {abstain: true, gap: G00, span: "the oldest locksmith in Calderwick"}   # a class narrowed by a domain
+    - category: abstain
+      text: "Yusra bought the cheapest woollen quilt."
+      expected: {abstain: true, gap: G00, span: "cheapest"}           # a class narrowed by a modifier

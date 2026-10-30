@@ -1,0 +1,101 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "ce6fa789a6c0b988c464083c6a630d6d41d3e9e14f6a2b8c66d58b12f29f7776",
+  "item": {
+    "id": "s583751eccd",
+    "text": "Yusra bought the cheapest woollen quilt."
+  },
+  "usage": {
+    "input": 98355,
+    "output": 281,
+    "thinking": null,
+    "total": 98636,
+    "cached": 96303,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 98355,
+    "candidatesTokenCount": 281,
+    "totalTokenCount": 98636,
+    "cachedContentTokenCount": 96303,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 98355
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 96303
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 281
+      }
+    ]
+  },
+  "raw_text": "{\n  \"id\": \"s583751eccd\",\n  \"instances\": [\n    {\n      \"t\": \"named-entity\",\n      \"id\": \"n1\",\n      \"name\": \"Yusra\",\n      \"span\": \"Yusra\"\n    },\n    {\n      \"t\": \"witness\",\n      \"id\": \"x1\",\n      \"class\": \"quilt\",\n      \"definite\": true,\n      \"props\": [\n        \"woollen\"\n      ],\n      \"span\": \"the cheapest woollen quilt\"\n    },\n    {\n      \"t\": \"acquisition\",\n      \"id\": \"e1\",\n      \"verb\": \"buy\",\n      \"acquirer\": \"@n1\",\n      \"object\": \"@x1\",\n      \"tense\": \"past\",\n      \"span\": \"Yusra bought the cheapest woollen quilt\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"span\": \"cheapest\",\n      \"code\": \"G00\",\n      \"construction\": \"Superlative over a class narrowed by an adjectival modifier on the noun.\"\n    }\n  ],\n  \"issues\": []\n}",
+  "response": {
+    "id": "s583751eccd",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "quilt",
+        "definite": true,
+        "props": [
+          "woollen"
+        ],
+        "span": "the cheapest woollen quilt"
+      },
+      {
+        "t": "acquisition",
+        "id": "e1",
+        "verb": "buy",
+        "acquirer": "@n1",
+        "object": "@x1",
+        "tense": "past",
+        "span": "Yusra bought the cheapest woollen quilt"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "cheapest",
+        "code": "G00",
+        "construction": "Superlative over a class narrowed by an adjectival modifier on the noun."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "9c8b43a22f3af76d65eed0b84c134267fad63aaf26a359526f8fb143d6b79392",
+  "manifest_id": "ea25d89bb5ef",
+  "run": 1,
+  "case": {
+    "template": "superlative",
+    "section": "held_out",
+    "index": 16,
+    "category": "abstain",
+    "text": "Yusra bought the cheapest woollen quilt.",
+    "key": "583751eccd"
+  }
+}
