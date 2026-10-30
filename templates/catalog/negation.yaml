@@ -10,11 +10,14 @@ trigger:
   construction: >
     A clause negated by not / n't / never / no (as a sentential negator). The negated content is
     the whole predication the negator attaches to, with its tense and its own attachments; a
-    witness introduced inside the negated clause belongs to the negation's scope.
+    witness introduced inside the negated clause belongs to the negation's scope. Would not as
+    a refusal in a past narrative — the lid would not budge — is this negation over the clause
+    in the past tense; the refusal has no head of its own.
   surface_forms:
     - "<S> did not <V> …"
     - "<S> is not <Adj>"
     - "<S> never <V> …"
+    - "<S> would not <V> … (a refusal)"            # the lid would not budge: the clause past
   boundary:
     - >-
       not only — the negation scopes over the FOCUS instance ("not only Yusra laughed" denies
@@ -53,3 +56,10 @@ examples:
         - {t: named-entity, id: n1, name: "Yusra"}
         - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: present}
         - {t: negation, id: s1, over: ["@v1"]}
+    - category: positive
+      note: would not as a refusal in a past narrative — the negation over the past clause, no modal
+      text: "The gate would not open."
+      instances:
+        - {t: witness, id: x1, class: gate, definite: true}
+        - {t: change-of-state, id: c1, verb: open, undergoer: "@x1", tense: past}
+        - {t: negation, id: s1, over: ["@c1"]}

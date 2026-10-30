@@ -59,8 +59,8 @@ slots:
                doc: "the action: the ids of the instances that state it (its predication, with the sentence's subject as its actor or undergoer); the referents it mentions are not listed"}
   tense:      {type: enum, values: [past, present, future], required: true,
                doc: "the clause's tense; present is recorded, not inferred"}
-  aspect:     {type: enum, values: [simple, progressive, perfect, perfect_progressive, about_to, due_to], required: false, default: simple,
-              doc: "simple; progressive for be V-ing; perfect for have V-ed; perfect_progressive for have been V-ing; about_to for be about to V / on the point of V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word kept as the value (be going to V is the future tense, not a prospective)"}
+  aspect:     {type: enum, values: [simple, progressive, perfect, perfect_progressive, about_to, due_to, would, going_to], required: false, default: simple,
+              doc: "simple; progressive for be V-ing; perfect for have V-ed; perfect_progressive for have been V-ing; about_to for be about to V / on the point of V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word kept as the value (be going to V is the future tense, not a prospective); would for a future seen from a past moment (said the barn would flood, hoped the bridge would hold) and going_to for was / were going to V — the same PROSPECTIVE, with tense past; a would that tells what then happened (would later marry) is the plain past, and a would with no if-clause and no past moment is the modal's Would"}
 
 mints: {id: Event}
 
@@ -75,7 +75,7 @@ emits:
   - atom: "(Ongoing @id)"
     when: "aspect == progressive or aspect == perfect_progressive"
   - atom: "(Prospective @id)"
-    when: "aspect == about_to or aspect == due_to"
+    when: "aspect == about_to or aspect == due_to or aspect == would or aspect == going_to"
 
 notes:
   - >-

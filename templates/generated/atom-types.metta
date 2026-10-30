@@ -248,6 +248,7 @@
 (: WeekdayNumber (-> Class Number Proposition))
 (: Whether (-> Proposition Proposition))
 (: WithinLast (-> Event Number Class Proposition))
+(: Would (-> Proposition Proposition))
 (: Xor (-> Proposition Proposition Proposition))
 (: Year (-> TimeTerm Number Proposition))
 (: Year (-> Number TimeTerm))

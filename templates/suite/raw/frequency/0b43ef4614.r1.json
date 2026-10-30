@@ -1,0 +1,103 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "3abd119cff3573e7f2a99fccf3e35d2365c145a9dfd6800c9354a7f84e181a36",
+  "item": {
+    "id": "s0b43ef4614",
+    "text": "Teodor would often sing."
+  },
+  "usage": {
+    "input": 100983,
+    "output": 173,
+    "thinking": null,
+    "total": 101156,
+    "cached": 98934,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 100983,
+    "candidatesTokenCount": 173,
+    "totalTokenCount": 101156,
+    "cachedContentTokenCount": 98934,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 100983
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 98934
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 173
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s0b43ef4614\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"range\", \"id\": \"q1\", \"class\": \"occasion\", \"span\": \"often\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"sing\", \"actor\": \"@n1\", \"tense\": \"past\", \"span\": \"Teodor would often sing\"}, {\"t\": \"frequency\", \"id\": \"f1\", \"occasion\": [\"@q1\"], \"over\": [\"@e1\"], \"level\": \"often\", \"word\": \"often\", \"span\": \"often\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s0b43ef4614",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "range",
+        "id": "q1",
+        "class": "occasion",
+        "span": "often"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "sing",
+        "actor": "@n1",
+        "tense": "past",
+        "span": "Teodor would often sing"
+      },
+      {
+        "t": "frequency",
+        "id": "f1",
+        "occasion": [
+          "@q1"
+        ],
+        "over": [
+          "@e1"
+        ],
+        "level": "often",
+        "word": "often",
+        "span": "often"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "3cb44d6f2e26ddb771a893720e0dd22b8cfff6ba7d41280f178d82cd75cf2bc9",
+  "manifest_id": "fbdefa0794dc",
+  "run": 1,
+  "case": {
+    "template": "frequency",
+    "section": "held_out",
+    "index": 28,
+    "category": "positive",
+    "text": "Teodor would often sing.",
+    "key": "0b43ef4614"
+  }
+}

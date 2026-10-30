@@ -1,0 +1,75 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "3abd119cff3573e7f2a99fccf3e35d2365c145a9dfd6800c9354a7f84e181a36",
+  "item": {
+    "id": "sc323dde8ae",
+    "text": "Would you close the window?"
+  },
+  "usage": {
+    "input": 100980,
+    "output": 60,
+    "thinking": null,
+    "total": 101040,
+    "cached": 98931,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 100980,
+    "candidatesTokenCount": 60,
+    "totalTokenCount": 101040,
+    "cachedContentTokenCount": 98931,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 100980
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 98931
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 60
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sc323dde8ae\", \"instances\": [], \"unmapped\": [{\"span\": \"Would you close the window?\", \"code\": \"G00\", \"construction\": \"An interrogative clause asking for an action.\"}], \"issues\": []}",
+  "response": {
+    "id": "sc323dde8ae",
+    "instances": [],
+    "unmapped": [
+      {
+        "span": "Would you close the window?",
+        "code": "G00",
+        "construction": "An interrogative clause asking for an action."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "3cb44d6f2e26ddb771a893720e0dd22b8cfff6ba7d41280f178d82cd75cf2bc9",
+  "manifest_id": "fbdefa0794dc",
+  "run": 3,
+  "case": {
+    "template": "modal",
+    "section": "held_out",
+    "index": 10,
+    "category": "abstain",
+    "text": "Would you close the window?",
+    "key": "c323dde8ae"
+  }
+}

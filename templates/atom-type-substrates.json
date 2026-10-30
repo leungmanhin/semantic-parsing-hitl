@@ -1051,7 +1051,7 @@
       ],
       "out": "Proposition",
       "opaque": false,
-      "gloss": "Prospective aspect: the eventuality is upcoming at the clause's reference time (be about to V, be due to V, be to V; the word is the record's aspect value). As Ongoing says underway, Prospective says ahead; whether it came about is not stated."
+      "gloss": "Prospective aspect: the eventuality is upcoming at the clause's reference time (be about to V, be due to V, be to V; would V and was going to V seen from a past moment, with the past tense; the word is the record's aspect value). As Ongoing says underway, Prospective says ahead; whether it came about is not stated."
     },
     "Only": {
       "kind": "particle",
@@ -1603,6 +1603,16 @@
       "opaque": false,
       "gloss": "Backward window: the eventuality falls within the last n units. RETIRE: the catalog composes it from a time instance at the offset and a bound — (BeforeBy t now n unit) (TimeAtLeast e t) — and the forward window (within n units) the same way with TimeAtMost; no stored parse uses it; declaration kept only until the re-parse.",
       "status": "retire"
+    },
+    "Would": {
+      "kind": "scope",
+      "arity": 1,
+      "arg_types": [
+        "Proposition"
+      ],
+      "out": "Proposition",
+      "opaque": false,
+      "gloss": "The conditional mood with its condition unstated ('would', 'would have'): (Would P) — P holds under circumstances the text does not state; nothing under it is asserted. A stated condition makes a Counterfactual; a would seen from a past moment is the Prospective aspect, a past habit Habitual, a wish want / prefer."
     },
     "Xor": {
       "kind": "core-link",

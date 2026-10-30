@@ -1,0 +1,102 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "3abd119cff3573e7f2a99fccf3e35d2365c145a9dfd6800c9354a7f84e181a36",
+  "item": {
+    "id": "s076039f25c",
+    "text": "Teodor would enjoy the fair."
+  },
+  "usage": {
+    "input": 100985,
+    "output": 183,
+    "thinking": null,
+    "total": 101168,
+    "cached": 98936,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 100985,
+    "candidatesTokenCount": 183,
+    "totalTokenCount": 101168,
+    "cachedContentTokenCount": 98936,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 100985
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 98936
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 183
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s076039f25c\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"fair\", \"definite\": true, \"span\": \"the fair\"}, {\"t\": \"psych\", \"id\": \"p1\", \"verb\": \"enjoy\", \"experiencer\": \"@n1\", \"stimulus\": \"@x1\", \"tense\": \"present\", \"span\": \"Teodor would enjoy the fair\"}, {\"t\": \"modal\", \"id\": \"s1\", \"over\": [\"@p1\"], \"head\": \"Would\", \"surface\": \"would\", \"span\": \"would\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s076039f25c",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "fair",
+        "definite": true,
+        "span": "the fair"
+      },
+      {
+        "t": "psych",
+        "id": "p1",
+        "verb": "enjoy",
+        "experiencer": "@n1",
+        "stimulus": "@x1",
+        "tense": "present",
+        "span": "Teodor would enjoy the fair"
+      },
+      {
+        "t": "modal",
+        "id": "s1",
+        "over": [
+          "@p1"
+        ],
+        "head": "Would",
+        "surface": "would",
+        "span": "would"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "3cb44d6f2e26ddb771a893720e0dd22b8cfff6ba7d41280f178d82cd75cf2bc9",
+  "manifest_id": "fbdefa0794dc",
+  "run": 3,
+  "case": {
+    "template": "modal",
+    "section": "held_out",
+    "index": 8,
+    "category": "positive",
+    "text": "Teodor would enjoy the fair.",
+    "key": "076039f25c"
+  }
+}

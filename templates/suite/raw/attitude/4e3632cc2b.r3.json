@@ -1,0 +1,103 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "3abd119cff3573e7f2a99fccf3e35d2365c145a9dfd6800c9354a7f84e181a36",
+  "item": {
+    "id": "s4e3632cc2b",
+    "text": "Teodor said that Ottoline would leave."
+  },
+  "usage": {
+    "input": 100986,
+    "output": 196,
+    "thinking": null,
+    "total": 101182,
+    "cached": 98937,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 100986,
+    "candidatesTokenCount": 196,
+    "totalTokenCount": 101182,
+    "cachedContentTokenCount": 98937,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 100986
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 98937
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 196
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s4e3632cc2b\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"motion\", \"id\": \"e1\", \"verb\": \"leave\", \"mover\": \"@n2\", \"tense\": \"past\", \"aspect\": \"would\", \"span\": \"Ottoline would leave\"}, {\"t\": \"attitude\", \"id\": \"e2\", \"verb\": \"say\", \"holder\": \"@n1\", \"content\": [\"@e1\"], \"factive\": false, \"tense\": \"past\", \"span\": \"Teodor said that Ottoline would leave\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s4e3632cc2b",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Ottoline",
+        "span": "Ottoline"
+      },
+      {
+        "t": "motion",
+        "id": "e1",
+        "verb": "leave",
+        "mover": "@n2",
+        "tense": "past",
+        "aspect": "would",
+        "span": "Ottoline would leave"
+      },
+      {
+        "t": "attitude",
+        "id": "e2",
+        "verb": "say",
+        "holder": "@n1",
+        "content": [
+          "@e1"
+        ],
+        "factive": false,
+        "tense": "past",
+        "span": "Teodor said that Ottoline would leave"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "3cb44d6f2e26ddb771a893720e0dd22b8cfff6ba7d41280f178d82cd75cf2bc9",
+  "manifest_id": "fbdefa0794dc",
+  "run": 3,
+  "case": {
+    "template": "communication",
+    "section": "held_out",
+    "index": 13,
+    "category": "positive",
+    "text": "Teodor said that Ottoline would leave.",
+    "key": "4e3632cc2b"
+  }
+}

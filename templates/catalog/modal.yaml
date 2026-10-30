@@ -17,31 +17,62 @@ trigger:
     surface word is kept; a deontic reading — an obligation, a permission, a prohibition, an
     exemption — is the norm template's. The clause under the modal keeps its own tense slot: present
     for a bare infinitive (might lend), past with aspect perfect for a perfect infinitive
-    (might have lent); the modal instance carries nothing about tense.
+    (might have lent); the modal instance carries nothing about tense. WOULD with no if-clause
+    in the sentence and no past moment it is seen from — the conditional mood, true under
+    circumstances the text does not state: the mill would need a new wheel, a bigger cart would
+    help, Bram would have stayed — is Would with `surface` would; a lone would-have puts its
+    clause in the past with aspect perfect. The other readings of would are not this head (the
+    boundary lists them).
   surface_forms:
     - "<S> might <V> …"
     - "<S> must be <ADJ>"                     # epistemic must
     - "<S> might have <V>-ed …"
     - "<S> is able / unable to <V>"             # a capability stated by an adjective: Can, unable under a negation
     - "Perhaps / maybe <clause>; <S> possibly <V> …"   # a possibility adverb: Might
+    - "<S> would <V> … (no if-clause)"          # the mill would need a new wheel: Would, the condition unstated
+    - "<S> would have <V>-ed …"                 # Bram would have stayed: Would over a past clause, aspect perfect
   boundary:
     - >-
       a modal word used deontically — must as an obligation, may or can as a permission, must
       not / may not / cannot as a prohibition, need not as an exemption: the norm template; the
       sentence decides the reading
     - >-
-      the ordering with negation — can't (Not over Can), might not (Might over Not): the
-      instance order follows the meaning; a negated deontic is the norm template's prohibition
+      the ordering with negation — can't (Not over Can), might not (Might over Not), would not in the
+      conditional mood (Would over Not; a past refusal is the negation alone): the instance
+      order follows the meaning; a negated deontic is the norm template's prohibition
       or exemption, with no negation instance
     - >-
       a likelihood or a commitment adverb — probably, likely, apparently, certainly: the hedge
       template, which sets the clause's truth value and adds no operator; only a possibility
       (perhaps, maybe, possibly) is Might
+    - >-
+      would in the consequence of a subjunctive conditional — if Yusra sang, Teodor would
+      leave: the counterfactual template
+    - >-
+      would seen from a past moment — said the barn would flood, knew she would recover: the
+      clause's own template with aspect would and tense past, no modal
+    - >-
+      a would that tells what then happened in a past narrative — would later marry, would go
+      on to found a school: the plain past, no modal
+    - >-
+      a wish — would like, would love, would rather, would prefer: want or prefer in the
+      present, the attitude template for a clause and the psych template for a thing, the
+      words in `word`
+    - >-
+      would not as a refusal in a past narrative — the lid would not budge: the negation over
+      the clause in the past tense, no modal
+    - >-
+      would for a past habit — at night she would wander the halls: the habitual template with
+      word would and the clause past; with a frequency word (would often walk, every winter
+      would close the shutters) the frequency template
+    - >-
+      would you …? — a question or a request: report it as unmapped (G00), as every question
 
 slots:
   id:      {type: id, required: true}
   over:    {type: refs, class: Proposition, required: true, doc: "the clause scoped over"}
-  head:    {type: enum, values: [Can, Might, Must], required: true}
+  head:    {type: enum, values: [Can, Might, Must, Would], required: true,
+            doc: "Can for a capability, Might for a possibility, Must for an epistemic necessity, Would for the conditional mood with the condition unstated"}
   surface: {type: string, required: false, doc: "the modal word as written"}
 
 truth: {inherit: over}         # the atom carries the scoped statement's own truth value
@@ -118,3 +149,21 @@ examples:
     - category: abstain
       text: "Yusra has to send the quilt."
       expected: {abstain: true, template: norm}                       # have to: an obligation
+    - category: positive
+      note: would with no if-clause — the conditional mood, the condition unstated
+      text: "Teodor would enjoy the fair."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, class: fair, definite: true}
+        - {t: psych, id: p1, verb: enjoy, experiencer: "@n1", stimulus: "@x1", tense: present}
+        - {t: modal, id: s1, over: ["@p1"], head: Would, surface: would}
+    - category: positive
+      note: a lone would-have — Would over the clause in the past with aspect perfect
+      text: "Yusra would have left."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: motion, id: m1, verb: leave, mover: "@n1", tense: past, aspect: perfect}
+        - {t: modal, id: s1, over: ["@m1"], head: Would, surface: would}
+    - category: abstain
+      text: "Would you close the window?"
+      expected: {abstain: true, gap: G00, span: "Would you close the window"}   # a question asking for an action

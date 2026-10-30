@@ -1,0 +1,117 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "3abd119cff3573e7f2a99fccf3e35d2365c145a9dfd6800c9354a7f84e181a36",
+  "item": {
+    "id": "sb6103def68",
+    "text": "Lamine visited his aunt."
+  },
+  "usage": {
+    "input": 100981,
+    "output": 258,
+    "thinking": null,
+    "total": 101239,
+    "cached": 98931,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 100981,
+    "candidatesTokenCount": 258,
+    "totalTokenCount": 101239,
+    "cachedContentTokenCount": 98931,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 100981
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 98931
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 258
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sb6103def68\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"mention\", \"id\": \"m1\", \"word\": \"his\", \"span\": \"his\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"aunt\", \"span\": \"his aunt\"}, {\"t\": \"stative-relation\", \"id\": \"p1\", \"relation\": \"aunt\", \"subject\": \"@x1\", \"object\": \"@m1\", \"tense\": \"present\", \"span\": \"his aunt\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"visit\", \"actor\": \"@n1\", \"patient\": \"@x1\", \"tense\": \"past\", \"span\": \"Lamine visited his aunt\"}, {\"t\": \"coref\", \"id\": \"c1\", \"mention\": \"@m1\", \"antecedent\": \"@n1\", \"certainty\": \"certain\", \"span\": [\"Lamine\", \"his\"]}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sb6103def68",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "mention",
+        "id": "m1",
+        "word": "his",
+        "span": "his"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "aunt",
+        "span": "his aunt"
+      },
+      {
+        "t": "stative-relation",
+        "id": "p1",
+        "relation": "aunt",
+        "subject": "@x1",
+        "object": "@m1",
+        "tense": "present",
+        "span": "his aunt"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "visit",
+        "actor": "@n1",
+        "patient": "@x1",
+        "tense": "past",
+        "span": "Lamine visited his aunt"
+      },
+      {
+        "t": "coref",
+        "id": "c1",
+        "mention": "@m1",
+        "antecedent": "@n1",
+        "certainty": "certain",
+        "span": [
+          "Lamine",
+          "his"
+        ]
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "3cb44d6f2e26ddb771a893720e0dd22b8cfff6ba7d41280f178d82cd75cf2bc9",
+  "manifest_id": "fbdefa0794dc",
+  "run": 1,
+  "case": {
+    "template": "stative-relation",
+    "section": "held_out",
+    "index": 29,
+    "category": "positive",
+    "text": "Lamine visited his aunt.",
+    "key": "b6103def68"
+  }
+}

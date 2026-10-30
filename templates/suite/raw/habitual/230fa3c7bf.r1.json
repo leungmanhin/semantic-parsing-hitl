@@ -1,0 +1,112 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "3abd119cff3573e7f2a99fccf3e35d2365c145a9dfd6800c9354a7f84e181a36",
+  "item": {
+    "id": "s230fa3c7bf",
+    "text": "Lamine used to sing, and Yusra would dance."
+  },
+  "usage": {
+    "input": 100988,
+    "output": 244,
+    "thinking": null,
+    "total": 101232,
+    "cached": 98934,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 100988,
+    "candidatesTokenCount": 244,
+    "totalTokenCount": 101232,
+    "cachedContentTokenCount": 98934,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 100988
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 98934
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 244
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s230fa3c7bf\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"sing\", \"actor\": \"@n1\", \"tense\": \"past\", \"span\": \"Lamine used to sing\"}, {\"t\": \"activity\", \"id\": \"e2\", \"verb\": \"dance\", \"actor\": \"@n2\", \"tense\": \"past\", \"span\": \"Yusra would dance\"}, {\"t\": \"habitual\", \"id\": \"h1\", \"event\": \"@e1\", \"word\": \"used to\", \"span\": \"used to\"}, {\"t\": \"habitual\", \"id\": \"h2\", \"event\": \"@e2\", \"word\": \"would\", \"span\": \"would\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s230fa3c7bf",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "sing",
+        "actor": "@n1",
+        "tense": "past",
+        "span": "Lamine used to sing"
+      },
+      {
+        "t": "activity",
+        "id": "e2",
+        "verb": "dance",
+        "actor": "@n2",
+        "tense": "past",
+        "span": "Yusra would dance"
+      },
+      {
+        "t": "habitual",
+        "id": "h1",
+        "event": "@e1",
+        "word": "used to",
+        "span": "used to"
+      },
+      {
+        "t": "habitual",
+        "id": "h2",
+        "event": "@e2",
+        "word": "would",
+        "span": "would"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "3cb44d6f2e26ddb771a893720e0dd22b8cfff6ba7d41280f178d82cd75cf2bc9",
+  "manifest_id": "fbdefa0794dc",
+  "run": 1,
+  "case": {
+    "template": "habitual",
+    "section": "held_out",
+    "index": 12,
+    "category": "positive",
+    "text": "Lamine used to sing, and Yusra would dance.",
+    "key": "230fa3c7bf"
+  }
+}

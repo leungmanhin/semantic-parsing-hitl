@@ -1,0 +1,86 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "3abd119cff3573e7f2a99fccf3e35d2365c145a9dfd6800c9354a7f84e181a36",
+  "item": {
+    "id": "s6c11b50b3e",
+    "text": "Ottoline would like a lantern."
+  },
+  "usage": {
+    "input": 100985,
+    "output": 120,
+    "thinking": null,
+    "total": 101105,
+    "cached": 98931,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 100985,
+    "candidatesTokenCount": 120,
+    "totalTokenCount": 101105,
+    "cachedContentTokenCount": 98931,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 100985
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 98931
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 120
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s6c11b50b3e\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"psych\", \"id\": \"p1\", \"verb\": \"want\", \"experiencer\": \"@n1\", \"stimulus\": \"lantern\", \"tense\": \"present\", \"word\": \"would like\", \"span\": \"Ottoline would like a lantern\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s6c11b50b3e",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Ottoline",
+        "span": "Ottoline"
+      },
+      {
+        "t": "psych",
+        "id": "p1",
+        "verb": "want",
+        "experiencer": "@n1",
+        "stimulus": "lantern",
+        "tense": "present",
+        "word": "would like",
+        "span": "Ottoline would like a lantern"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "3cb44d6f2e26ddb771a893720e0dd22b8cfff6ba7d41280f178d82cd75cf2bc9",
+  "manifest_id": "fbdefa0794dc",
+  "run": 1,
+  "case": {
+    "template": "psych",
+    "section": "held_out",
+    "index": 14,
+    "category": "positive",
+    "text": "Ottoline would like a lantern.",
+    "key": "6c11b50b3e"
+  }
+}

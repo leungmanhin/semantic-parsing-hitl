@@ -1,0 +1,93 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "3abd119cff3573e7f2a99fccf3e35d2365c145a9dfd6800c9354a7f84e181a36",
+  "item": {
+    "id": "s737920ee88",
+    "text": "The gate would not open."
+  },
+  "usage": {
+    "input": 100983,
+    "output": 140,
+    "thinking": null,
+    "total": 101123,
+    "cached": 98934,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 100983,
+    "candidatesTokenCount": 140,
+    "totalTokenCount": 101123,
+    "cachedContentTokenCount": 98934,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 100983
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 98934
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 140
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s737920ee88\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"gate\", \"definite\": true, \"span\": \"The gate\"}, {\"t\": \"change-of-state\", \"id\": \"e1\", \"verb\": \"open\", \"undergoer\": \"@x1\", \"tense\": \"past\", \"span\": \"The gate would not open\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@e1\"], \"span\": \"would not\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s737920ee88",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "gate",
+        "definite": true,
+        "span": "The gate"
+      },
+      {
+        "t": "change-of-state",
+        "id": "e1",
+        "verb": "open",
+        "undergoer": "@x1",
+        "tense": "past",
+        "span": "The gate would not open"
+      },
+      {
+        "t": "negation",
+        "id": "s1",
+        "over": [
+          "@e1"
+        ],
+        "span": "would not"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "3cb44d6f2e26ddb771a893720e0dd22b8cfff6ba7d41280f178d82cd75cf2bc9",
+  "manifest_id": "fbdefa0794dc",
+  "run": 2,
+  "case": {
+    "template": "negation",
+    "section": "held_out",
+    "index": 1,
+    "category": "positive",
+    "text": "The gate would not open.",
+    "key": "737920ee88"
+  }
+}

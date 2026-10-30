@@ -2,7 +2,7 @@
 
 Generated from `templates/atom-type-substrates.json` (schema `atom-type-substrates/1`) by `templates/tmpl/gen_substrate.py`, together with `templates/generated/atom-types.metta`. Do not edit by hand; regenerate with `cd templates && python -m tmpl.gen_substrate`.
 
-156 heads in 14 kinds (7 proposed; 156 with a reviewed type declaration so far). `type-def` is the PeTTa declaration emitted for the head; `?` as the output type means the head is not yet reviewed and is absent from the `.metta` file; `%Undefined%` marks a position the head takes but the JSON does not type.
+157 heads in 14 kinds (7 proposed; 157 with a reviewed type declaration so far). `type-def` is the PeTTa declaration emitted for the head; `?` as the output type means the head is not yet reviewed and is absent from the `.metta` file; `%Undefined%` marks a position the head takes but the JSON does not type.
 
 Every atom is carried as a statement (: <proof-name> <atom> <tv>), tv = (STV strength confidence) or another engine truth value. The carrier is not an atom kind: ':' is never type-declared (it is also PeTTa's type-declaration head) and the truth value is declared by the engine, not by this substrate.
 
@@ -207,7 +207,7 @@ type-def: (: Time (-> Event TimeTerm Proposition))
 gloss: Locates an eventuality at a time point or recurrence slot. Filler = a time instance (deictic constants such as yesterday / now are declared Time by the emitter). A compound-action class symbol under the compound decomposition ((Patient use_crosswalk crosswalk)) is declared both Class and Event.
 
 
-## scope (19)
+## scope (20)
 
 head: AccordingTo
 kind: scope
@@ -342,6 +342,13 @@ kind: scope
 arity: 1
 type-def: (: Whether (-> Proposition Proposition))
 gloss: Seals an embedded polar question under the matrix verb's Theme.
+
+
+head: Would
+kind: scope
+arity: 1
+type-def: (: Would (-> Proposition Proposition))
+gloss: The conditional mood with its condition unstated ('would', 'would have'): (Would P) — P holds under circumstances the text does not state; nothing under it is asserted. A stated condition makes a Counterfactual; a would seen from a past moment is the Prospective aspect, a past habit Habitual, a wish want / prefer.
 
 
 ## particle (8)
@@ -511,7 +518,7 @@ head: Prospective
 kind: temporal
 arity: 1
 type-def: (: Prospective (-> Event Proposition))
-gloss: Prospective aspect: the eventuality is upcoming at the clause's reference time (be about to V, be due to V, be to V; the word is the record's aspect value). As Ongoing says underway, Prospective says ahead; whether it came about is not stated.
+gloss: Prospective aspect: the eventuality is upcoming at the clause's reference time (be about to V, be due to V, be to V; would V and was going to V seen from a past moment, with the past tense; the word is the record's aspect value). As Ongoing says underway, Prospective says ahead; whether it came about is not stated.
 
 
 head: Quarter

@@ -30,11 +30,13 @@ trigger:
       an indicative conditional — if Lamine sings, Yusra leaves; if Yusra arrives, Teodor will
       leave: a rule, the conditional template
     - >-
-      a lone would-have consequent — Yusra would have left; the bridge that would have collapsed:
-      no antecedent to seal; report the clause as unmapped (G04)
+      a lone would-have consequent — Bram would have stayed: no antecedent to seal, the modal
+      template's Would; an irrealis relative clause (the bridge that would have collapsed):
+      unmapped (G04)
     - >-
-      a wish or a polite would — Yusra would like a thermos; Lamine would often sing: not a
-      conditional; the clause's own template, the modal as a modal
+      a would with no if-clause — a wish (Yusra would like a thermos), a past habit, a future seen
+      from a past moment, a hypothetical whose condition is unstated: not a conditional; the
+      modal template's boundary sends each to its form
     - >-
       an embedded question with if — asked if Yusra had left: a sealed question under the verb
 
@@ -131,4 +133,4 @@ examples:
       expected: {abstain: true, template: conditional}                # indicative
     - category: abstain
       text: "Yusra would have left."
-      expected: {abstain: true, gap: G04, span: "would have left"}    # a lone would-have consequent
+      expected: {abstain: true, template: modal}                      # a lone would-have consequent: Would

@@ -1,0 +1,124 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "3abd119cff3573e7f2a99fccf3e35d2365c145a9dfd6800c9354a7f84e181a36",
+  "item": {
+    "id": "s8a7a78f758",
+    "text": "Ottoline's brother sold her quilt."
+  },
+  "usage": {
+    "input": 100987,
+    "output": 303,
+    "thinking": null,
+    "total": 101290,
+    "cached": 98938,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 100987,
+    "candidatesTokenCount": 303,
+    "totalTokenCount": 101290,
+    "cachedContentTokenCount": 98938,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 100987
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 98938
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 303
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s8a7a78f758\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"brother\", \"span\": \"Ottoline's brother\"}, {\"t\": \"mention\", \"id\": \"m1\", \"word\": \"her\", \"span\": \"her\"}, {\"t\": \"witness\", \"id\": \"x2\", \"class\": \"quilt\", \"possessor\": \"@m1\", \"span\": \"her quilt\"}, {\"t\": \"stative-relation\", \"id\": \"p1\", \"relation\": \"brother\", \"subject\": \"@x1\", \"object\": \"@n1\", \"tense\": \"present\", \"span\": \"Ottoline's brother\"}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"sell\", \"giver\": \"@x1\", \"object\": \"@x2\", \"tense\": \"past\", \"span\": \"Ottoline's brother sold her quilt\"}, {\"t\": \"coref\", \"id\": \"k1\", \"mention\": \"@m1\", \"antecedent\": \"@n1\", \"certainty\": \"certain\", \"span\": [\"Ottoline\", \"her\"]}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s8a7a78f758",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Ottoline",
+        "span": "Ottoline"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "brother",
+        "span": "Ottoline's brother"
+      },
+      {
+        "t": "mention",
+        "id": "m1",
+        "word": "her",
+        "span": "her"
+      },
+      {
+        "t": "witness",
+        "id": "x2",
+        "class": "quilt",
+        "possessor": "@m1",
+        "span": "her quilt"
+      },
+      {
+        "t": "stative-relation",
+        "id": "p1",
+        "relation": "brother",
+        "subject": "@x1",
+        "object": "@n1",
+        "tense": "present",
+        "span": "Ottoline's brother"
+      },
+      {
+        "t": "transfer",
+        "id": "e1",
+        "verb": "sell",
+        "giver": "@x1",
+        "object": "@x2",
+        "tense": "past",
+        "span": "Ottoline's brother sold her quilt"
+      },
+      {
+        "t": "coref",
+        "id": "k1",
+        "mention": "@m1",
+        "antecedent": "@n1",
+        "certainty": "certain",
+        "span": [
+          "Ottoline",
+          "her"
+        ]
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "3cb44d6f2e26ddb771a893720e0dd22b8cfff6ba7d41280f178d82cd75cf2bc9",
+  "manifest_id": "fbdefa0794dc",
+  "run": 2,
+  "case": {
+    "template": "stative-relation",
+    "section": "held_out",
+    "index": 28,
+    "category": "positive",
+    "text": "Ottoline's brother sold her quilt.",
+    "key": "8a7a78f758"
+  }
+}

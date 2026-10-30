@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 bbe1bd0cb4d6d005 · 58 templates
+catalog sha256 bd8356bd3341e033 · 58 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -184,8 +184,8 @@ Codes:
   manner adverb, on a class-level statement or on an adjective with a complement (laughed very
   loudly; ferrets are very curious; very fond of Teodor)
 - G03: a post-nominal tag on a name (a party or district tag, a ticker, a bracketed code)
-- G04: an irrealis relative clause or a lone would-have consequent ('the bridge that would have
-  collapsed')
+- G04: an irrealis relative clause ('the bridge that would have collapsed'); a lone would-have
+  main clause is the modal's Would
 - G05: a connective at the start of the text with no first clause to relate ('But the vote
   stood.')
 - G06: a result or outcome infinitive ('woke to find the door open')
@@ -705,10 +705,14 @@ Slots:
 - `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
   not inferred.
 - `aspect` (optional; one of: simple, progressive, perfect, perfect_progressive, about_to,
-  due_to): simple; progressive for be V-ing; perfect for have V-ed; perfect_progressive for have
-  been V-ing; about_to for be about to V / on the point of V-ing and due_to for be due to V / be
-  to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word
-  kept as the value (be going to V is the future tense, not a prospective).
+  due_to, would, going_to): simple; progressive for be V-ing; perfect for have V-ed;
+  perfect_progressive for have been V-ing; about_to for be about to V / on the point of V-ing
+  and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event
+  upcoming at the clause's time, the word kept as the value (be going to V is the future tense,
+  not a prospective); would for a future seen from a past moment (said the barn would flood,
+  hoped the bridge would hold) and going_to for was / were going to V — the same PROSPECTIVE,
+  with tense past; a would that tells what then happened (would later marry) is the plain past,
+  and a would with no if-clause and no past moment is the modal's Would.
 
 Example (with the source stated). TEXT: Ottoline took the envelope from Lamine.
 
@@ -806,10 +810,14 @@ Slots:
 - `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
   not inferred.
 - `aspect` (optional; one of: simple, progressive, perfect, perfect_progressive, about_to,
-  due_to): simple; progressive for be V-ing; perfect for have V-ed; perfect_progressive for have
-  been V-ing; about_to for be about to V / on the point of V-ing and due_to for be due to V / be
-  to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word
-  kept as the value (be going to V is the future tense, not a prospective).
+  due_to, would, going_to): simple; progressive for be V-ing; perfect for have V-ed;
+  perfect_progressive for have been V-ing; about_to for be about to V / on the point of V-ing
+  and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event
+  upcoming at the clause's time, the word kept as the value (be going to V is the future tense,
+  not a prospective); would for a future seen from a past moment (said the barn would flood,
+  hoped the bridge would hold) and going_to for was / were going to V — the same PROSPECTIVE,
+  with tense past; a would that tells what then happened (would later marry) is the plain past,
+  and a would with no if-clause and no past moment is the modal's Would.
 
 Example (intransitive). TEXT: Yusra laughed.
 
@@ -956,10 +964,14 @@ Slots:
 - `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
   not inferred.
 - `aspect` (optional; one of: simple, progressive, perfect, perfect_progressive, about_to,
-  due_to): simple; progressive for be V-ing; perfect for have V-ed; perfect_progressive for have
-  been V-ing; about_to for be about to V / on the point of V-ing and due_to for be due to V / be
-  to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word
-  kept as the value (be going to V is the future tense, not a prospective).
+  due_to, would, going_to): simple; progressive for be V-ing; perfect for have V-ed;
+  perfect_progressive for have been V-ing; about_to for be about to V / on the point of V-ing
+  and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event
+  upcoming at the clause's time, the word kept as the value (be going to V is the future tense,
+  not a prospective); would for a future seen from a past moment (said the barn would flood,
+  hoped the bridge would hold) and going_to for was / were going to V — the same PROSPECTIVE,
+  with tense past; a would that tells what then happened (would later marry) is the plain past,
+  and a would with no if-clause and no past moment is the modal's Would.
 - Exactly one of `object`, `complement` is filled.
 
 Example (the quality a state of its bearer, the complement under the preposition as written; no flat property). TEXT: Yusra is fond of Teodor.
@@ -1078,10 +1090,14 @@ Slots:
 - `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
   not inferred.
 - `aspect` (optional; one of: simple, progressive, perfect, perfect_progressive, about_to,
-  due_to): simple; progressive for be V-ing; perfect for have V-ed; perfect_progressive for have
-  been V-ing; about_to for be about to V / on the point of V-ing and due_to for be due to V / be
-  to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word
-  kept as the value (be going to V is the future tense, not a prospective).
+  due_to, would, going_to): simple; progressive for be V-ing; perfect for have V-ed;
+  perfect_progressive for have been V-ing; about_to for be about to V / on the point of V-ing
+  and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event
+  upcoming at the clause's time, the word kept as the value (be going to V is the future tense,
+  not a prospective); would for a future seen from a past moment (said the barn would flood,
+  hoped the bridge would hold) and going_to for was / were going to V — the same PROSPECTIVE,
+  with tense past; a would that tells what then happened (would later marry) is the plain past,
+  and a would with no if-clause and no past moment is the modal's Would.
 
 Example (the phase event has no role of its own; the action is sealed as its Theme and marked as entailed). TEXT: Teodor began to sing.
 
@@ -1133,19 +1149,21 @@ think, suppose, assume, suspect, doubt, hope, fear, expect, claim, say, want, wi
 plan, decide, promise, agree) do not assert the complement; factive verbs (know, realize,
 discover, learn, notice, remember, regret) presuppose it. A finite complement has a subject and
 a tense of its own; an infinitival one is parsed with the holder as its actor (or the object,
-when the syntax supplies one) and tense present. An ADJECTIVE with "be" takes the same
-construction: a that-clause naming what the subject is sure, certain, confident, convinced,
-aware, glad, sorry, surprised, upset, proud, afraid or worried of (Teodor is aware that the gate
-is open), or a to-infinitive naming what the subject is eager, willing, unwilling, reluctant,
-keen, anxious, happy, glad, afraid, ready or prepared to do (Ottoline is ready to leave). Write
-the adjective as the `verb` lemma; the copula is the construction's marker and the clause's
-tense is the copula's. The factive adjectives — aware, glad, sorry, surprised, upset, proud, and
-happy or angry with a that-clause — presuppose the complement; sure, certain, confident,
-convinced, afraid, worried and every infinitival stance do not.
+when the syntax supplies one) and tense present. A WISH with would — would like to V, would love
+to V: want; would rather V, would prefer to V: prefer — is the attitude in the present tense
+with the words in `word`. An ADJECTIVE with "be" takes the same construction: a that-clause
+naming what the subject is sure, certain, confident, convinced, aware, glad, sorry, surprised,
+upset, proud, afraid or worried of (Teodor is aware that the gate is open), or a to-infinitive
+naming what the subject is eager, willing, unwilling, reluctant, keen, anxious, happy, glad,
+afraid, ready or prepared to do (Ottoline is ready to leave). Write the adjective as the `verb`
+lemma; the copula is the construction's marker and the clause's tense is the copula's. The
+factive adjectives — aware, glad, sorry, surprised, upset, proud, and happy or angry with a
+that-clause — presuppose the complement; sure, certain, confident, convinced, afraid, worried
+and every infinitival stance do not.
 
 Verbs that anchor the class: believe, think, suppose, assume, suspect, doubt, hope, fear,
-expect, claim, say, want, wish, intend, plan, decide, promise, agree, offer, vow, know, realize,
-discover, learn, notice, remember, regret.
+expect, claim, say, want, wish, prefer, intend, plan, decide, promise, agree, offer, vow, know,
+realize, discover, learn, notice, remember, regret.
 The lists anchor the two classes; an unlisted verb that takes a finite complement belongs here,
 with `factive` decided by whether the verb presupposes the complement — the complement survives
 negation of the attitude ("did not realize that P" still entails P).
@@ -1158,6 +1176,8 @@ Forms:
 - <holder> V-ed that <clause>
 - <holder> V to <V2> …
 - <holder> V <object> to <V2> …
+- <holder> would like / love to <V2> …
+- <holder> would rather <V2> …
 
 Not this template:
 - an entity object instead of a clause — fears the dog, distrusts Lamine, knows Yusra: a psych
@@ -1203,11 +1223,17 @@ Slots:
   certain, confident, convinced, afraid, worried, and every adjective with a to-infinitive).
 - `tense` (required; one of: past, present, future): the attitude clause's tense; present is
   recorded, not inferred.
+- `word` (optional; a string): the words as written when the verb is a wish with would: would
+  like, would love (want); would rather, would prefer (prefer); absent otherwise.
 - `aspect` (optional; one of: simple, progressive, perfect, perfect_progressive, about_to,
-  due_to): simple; progressive for be V-ing; perfect for have V-ed; perfect_progressive for have
-  been V-ing; about_to for be about to V / on the point of V-ing and due_to for be due to V / be
-  to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word
-  kept as the value (be going to V is the future tense, not a prospective).
+  due_to, would, going_to): simple; progressive for be V-ing; perfect for have V-ed;
+  perfect_progressive for have been V-ing; about_to for be about to V / on the point of V-ing
+  and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event
+  upcoming at the clause's time, the word kept as the value (be going to V is the future tense,
+  not a prospective); would for a future seen from a past moment (said the barn would flood,
+  hoped the bridge would hold) and going_to for was / were going to V — the same PROSPECTIVE,
+  with tense past; a would that tells what then happened (would later marry) is the plain past,
+  and a would with no if-clause and no past moment is the modal's Would.
 
 Example. TEXT: Teodor believes that Lamine lent Ottoline the trowel.
 
@@ -1409,10 +1435,14 @@ Slots:
 - `tense` (required; one of: past, present, future): the matrix clause's tense; present is
   recorded, not inferred.
 - `aspect` (optional; one of: simple, progressive, perfect, perfect_progressive, about_to,
-  due_to): simple; progressive for be V-ing; perfect for have V-ed; perfect_progressive for have
-  been V-ing; about_to for be about to V / on the point of V-ing and due_to for be due to V / be
-  to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word
-  kept as the value (be going to V is the future tense, not a prospective).
+  due_to, would, going_to): simple; progressive for be V-ing; perfect for have V-ed;
+  perfect_progressive for have been V-ing; about_to for be about to V / on the point of V-ing
+  and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event
+  upcoming at the clause's time, the word kept as the value (be going to V is the future tense,
+  not a prospective); would for a future seen from a past moment (said the barn would flood,
+  hoped the bridge would hold) and going_to for was / were going to V — the same PROSPECTIVE,
+  with tense past; a would that tells what then happened (would later marry) is the plain past,
+  and a would with no if-clause and no past moment is the modal's Would.
 
 Example (the causee is the actor of the caused clause; make says it happened — the marker, not the parse, carries that). TEXT: Yusra made Teodor laugh.
 
@@ -1516,10 +1546,14 @@ Slots:
 - `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
   not inferred.
 - `aspect` (optional; one of: simple, progressive, perfect, perfect_progressive, about_to,
-  due_to): simple; progressive for be V-ing; perfect for have V-ed; perfect_progressive for have
-  been V-ing; about_to for be about to V / on the point of V-ing and due_to for be due to V / be
-  to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word
-  kept as the value (be going to V is the future tense, not a prospective).
+  due_to, would, going_to): simple; progressive for be V-ing; perfect for have V-ed;
+  perfect_progressive for have been V-ing; about_to for be about to V / on the point of V-ing
+  and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event
+  upcoming at the clause's time, the word kept as the value (be going to V is the future tense,
+  not a prospective); would for a future seen from a past moment (said the barn would flood,
+  hoped the bridge would hold) and going_to for was / were going to V — the same PROSPECTIVE,
+  with tense past; a would that tells what then happened (would later marry) is the plain past,
+  and a would with no if-clause and no past moment is the modal's Would.
 
 Example (a change on its own). TEXT: The thermos cracked.
 
@@ -1808,10 +1842,14 @@ Slots:
 - `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
   not inferred.
 - `aspect` (optional; one of: simple, progressive, perfect, perfect_progressive, about_to,
-  due_to): simple; progressive for be V-ing; perfect for have V-ed; perfect_progressive for have
-  been V-ing; about_to for be about to V / on the point of V-ing and due_to for be due to V / be
-  to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word
-  kept as the value (be going to V is the future tense, not a prospective).
+  due_to, would, going_to): simple; progressive for be V-ing; perfect for have V-ed;
+  perfect_progressive for have been V-ing; about_to for be about to V / on the point of V-ing
+  and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event
+  upcoming at the clause's time, the word kept as the value (be going to V is the future tense,
+  not a prospective); would for a future seen from a past moment (said the barn would flood,
+  hoped the bridge would hold) and going_to for was / were going to V — the same PROSPECTIVE,
+  with tense past; a would that tells what then happened (would later marry) is the plain past,
+  and a would with no if-clause and no past moment is the modal's Would.
 - Exactly one of `message`, `content` is filled.
 
 Example (the message as a thing). TEXT: Ottoline told Teodor the news.
@@ -2062,10 +2100,14 @@ Slots:
 - `tense` (required; one of: past, present, future): the matrix clause's tense; present is
   recorded, not inferred.
 - `aspect` (optional; one of: simple, progressive, perfect, perfect_progressive, about_to,
-  due_to): simple; progressive for be V-ing; perfect for have V-ed; perfect_progressive for have
-  been V-ing; about_to for be about to V / on the point of V-ing and due_to for be due to V / be
-  to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word
-  kept as the value (be going to V is the future tense, not a prospective).
+  due_to, would, going_to): simple; progressive for be V-ing; perfect for have V-ed;
+  perfect_progressive for have been V-ing; about_to for be about to V / on the point of V-ing
+  and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event
+  upcoming at the clause's time, the word kept as the value (be going to V is the future tense,
+  not a prospective); would for a future seen from a past moment (said the barn would flood,
+  hoped the bridge would hold) and going_to for was / were going to V — the same PROSPECTIVE,
+  with tense past; a would that tells what then happened (would later marry) is the plain past,
+  and a would with no if-clause and no past moment is the modal's Would.
 
 Example (no implication — the complement is sealed, nothing is said about the sleeping). TEXT: Yusra tried to sleep.
 
@@ -2278,10 +2320,14 @@ Slots:
 - `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
   not inferred.
 - `aspect` (optional; one of: simple, progressive, perfect, perfect_progressive, about_to,
-  due_to): simple; progressive for be V-ing; perfect for have V-ed; perfect_progressive for have
-  been V-ing; about_to for be about to V / on the point of V-ing and due_to for be due to V / be
-  to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word
-  kept as the value (be going to V is the future tense, not a prospective).
+  due_to, would, going_to): simple; progressive for be V-ing; perfect for have V-ed;
+  perfect_progressive for have been V-ing; about_to for be about to V / on the point of V-ing
+  and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event
+  upcoming at the clause's time, the word kept as the value (be going to V is the future tense,
+  not a prospective); would for a future seen from a past moment (said the barn would flood,
+  hoped the bridge would hold) and going_to for was / were going to V — the same PROSPECTIVE,
+  with tense past; a would that tells what then happened (would later marry) is the plain past,
+  and a would with no if-clause and no past moment is the modal's Would.
 
 Example (the thing made is an indefinite witness). TEXT: Lamine baked a loaf.
 
@@ -2767,10 +2813,14 @@ Slots:
 - `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
   not inferred.
 - `aspect` (optional; one of: simple, progressive, perfect, perfect_progressive, about_to,
-  due_to): simple; progressive for be V-ing; perfect for have V-ed; perfect_progressive for have
-  been V-ing; about_to for be about to V / on the point of V-ing and due_to for be due to V / be
-  to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word
-  kept as the value (be going to V is the future tense, not a prospective).
+  due_to, would, going_to): simple; progressive for be V-ing; perfect for have V-ed;
+  perfect_progressive for have been V-ing; about_to for be about to V / on the point of V-ing
+  and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event
+  upcoming at the clause's time, the word kept as the value (be going to V is the future tense,
+  not a prospective); would for a future seen from a past moment (said the barn would flood,
+  hoped the bridge would hold) and going_to for was / were going to V — the same PROSPECTIVE,
+  with tense past; a would that tells what then happened (would later marry) is the plain past,
+  and a would with no if-clause and no past moment is the modal's Would.
 
 Example (a self-mover and a destination). TEXT: Yusra went to the market.
 
@@ -3022,10 +3072,14 @@ Slots:
 - `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
   not inferred.
 - `aspect` (optional; one of: simple, progressive, perfect, perfect_progressive, about_to,
-  due_to): simple; progressive for be V-ing; perfect for have V-ed; perfect_progressive for have
-  been V-ing; about_to for be about to V / on the point of V-ing and due_to for be due to V / be
-  to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word
-  kept as the value (be going to V is the future tense, not a prospective).
+  due_to, would, going_to): simple; progressive for be V-ing; perfect for have V-ed;
+  perfect_progressive for have been V-ing; about_to for be about to V / on the point of V-ing
+  and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event
+  upcoming at the clause's time, the word kept as the value (be going to V is the future tense,
+  not a prospective); would for a future seen from a past moment (said the barn would flood,
+  hoped the bridge would hold) and going_to for was / were going to V — the same PROSPECTIVE,
+  with tense past; a would that tells what then happened (would later marry) is the plain past,
+  and a would with no if-clause and no past moment is the modal's Would.
 - Exactly one of `stimulus`, `event` is filled.
 
 Example (a thing perceived). TEXT: Teodor saw the ferret.
@@ -3122,10 +3176,14 @@ Slots:
 - `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
   not inferred.
 - `aspect` (optional; one of: simple, progressive, perfect, perfect_progressive, about_to,
-  due_to): simple; progressive for be V-ing; perfect for have V-ed; perfect_progressive for have
-  been V-ing; about_to for be about to V / on the point of V-ing and due_to for be due to V / be
-  to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word
-  kept as the value (be going to V is the future tense, not a prospective).
+  due_to, would, going_to): simple; progressive for be V-ing; perfect for have V-ed;
+  perfect_progressive for have been V-ing; about_to for be about to V / on the point of V-ing
+  and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event
+  upcoming at the clause's time, the word kept as the value (be going to V is the future tense,
+  not a prospective); would for a future seen from a past moment (said the barn would flood,
+  hoped the bridge would hold) and going_to for was / were going to V — the same PROSPECTIVE,
+  with tense past; a would that tells what then happened (would later marry) is the plain past,
+  and a would with no if-clause and no past moment is the modal's Would.
 
 Example (have as a main verb). TEXT: Teodor has a trowel.
 
@@ -3177,11 +3235,14 @@ ferret); with a frighten-type verb the subject is the stimulus and the object th
 (the ferret frightens Yusra). The stimulus is a noun phrase — a thing, a named individual or an
 event named by a noun (dreaded the audit) — or an action the experiencer likes, enjoys, hates,
 prefers or fears doing (likes to send quilts, enjoys sending quilts): then the stimulus is a
-clause, parsed with the experiencer as its actor and tense present, and sealed.
+clause, parsed with the experiencer as its actor and tense present, and sealed. A WISH for a
+thing with would — would like a cup, would love a ride — is want in the present tense with the
+words in `word`; a thing wanted that is not a particular one is a bare lemma (wants a ladder:
+ladder), never a witness.
 
 Verbs that anchor the class: like, dislike, love, hate, adore, despise, fear, dread, trust,
-distrust, admire, respect, envy, resent, miss, enjoy, prefer, pity, frighten, scare, worry,
-annoy, bother, please, delight, amuse, surprise, upset, disappoint, impress.
+distrust, admire, want, respect, envy, resent, miss, enjoy, prefer, pity, frighten, scare,
+worry, annoy, bother, please, delight, amuse, surprise, upset, disappoint, impress.
 The first line is the fear-type class (experiencer as subject), the second the frighten-type
 class (experiencer as object). An unlisted verb that denotes such a state belongs here, with the
 roles assigned by meaning: who feels, and what the feeling is about.
@@ -3191,6 +3252,7 @@ Forms:
 - <stimulus> V <experiencer>
 - <experiencer> was V-ed by <stimulus>
 - <experiencer> was V-ed
+- <experiencer> would like / love <thing>
 
 Not this template:
 - feel with a property — feels tired, felt guilty: a felt state of the subject, the sensation
@@ -3216,20 +3278,26 @@ Slots:
   filler): who holds the state: the subject of a fear-type verb, the object of a frighten-type
   verb.
 - `stimulus` (optional; "@id" of a referent instance, or a bare lemma for a non-specific
-  filler): what the state is about, as a thing: the object of a fear-type verb, the subject (or
-  by-phrase) of a frighten-type verb; absent in an agentless passive, and when the stimulus is a
-  clause.
+  filler): what the state is about, as a thing (a bare lemma for a thing wanted that is not a
+  particular one): the object of a fear-type verb, the subject (or by-phrase) of a frighten-type
+  verb; absent in an agentless passive, and when the stimulus is a clause.
 - `complement` (optional; a list of "@id" of the instances that state the clause): what the
   state is about, as an action: the ids of the instances that state it (its predication, with
   the experiencer as its actor); never together with stimulus; the referents it mentions are not
   listed.
 - `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
   not inferred.
+- `word` (optional; a string): the words as written when the verb is a wish with would: would
+  like, would love (want); would rather, would prefer (prefer); absent otherwise.
 - `aspect` (optional; one of: simple, progressive, perfect, perfect_progressive, about_to,
-  due_to): simple; progressive for be V-ing; perfect for have V-ed; perfect_progressive for have
-  been V-ing; about_to for be about to V / on the point of V-ing and due_to for be due to V / be
-  to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word
-  kept as the value (be going to V is the future tense, not a prospective).
+  due_to, would, going_to): simple; progressive for be V-ing; perfect for have V-ed;
+  perfect_progressive for have been V-ing; about_to for be about to V / on the point of V-ing
+  and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event
+  upcoming at the clause's time, the word kept as the value (be going to V is the future tense,
+  not a prospective); would for a future seen from a past moment (said the barn would flood,
+  hoped the bridge would hold) and going_to for was / were going to V — the same PROSPECTIVE,
+  with tense past; a would that tells what then happened (would later marry) is the plain past,
+  and a would with no if-clause and no past moment is the modal's Would.
 
 Example (fear-type, experiencer as subject). TEXT: Yusra distrusts Lamine.
 
@@ -3321,10 +3389,14 @@ Slots:
 - `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
   not inferred.
 - `aspect` (optional; one of: simple, progressive, perfect, perfect_progressive, about_to,
-  due_to): simple; progressive for be V-ing; perfect for have V-ed; perfect_progressive for have
-  been V-ing; about_to for be about to V / on the point of V-ing and due_to for be due to V / be
-  to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word
-  kept as the value (be going to V is the future tense, not a prospective).
+  due_to, would, going_to): simple; progressive for be V-ing; perfect for have V-ed;
+  perfect_progressive for have been V-ing; about_to for be about to V / on the point of V-ing
+  and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event
+  upcoming at the clause's time, the word kept as the value (be going to V is the future tense,
+  not a prospective); would for a future seen from a past moment (said the barn would flood,
+  hoped the bridge would hold) and going_to for was / were going to V — the same PROSPECTIVE,
+  with tense past; a would that tells what then happened (would later marry) is the plain past,
+  and a would with no if-clause and no past moment is the modal's Would.
 
 Example (a felt state — the state an eventuality with its experiencer, no flat property). TEXT: Lamine feels cold.
 
@@ -3475,10 +3547,14 @@ Slots:
 - `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
   not inferred.
 - `aspect` (optional; one of: simple, progressive, perfect, perfect_progressive, about_to,
-  due_to): simple; progressive for be V-ing; perfect for have V-ed; perfect_progressive for have
-  been V-ing; about_to for be about to V / on the point of V-ing and due_to for be due to V / be
-  to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word
-  kept as the value (be going to V is the future tense, not a prospective).
+  due_to, would, going_to): simple; progressive for be V-ing; perfect for have V-ed;
+  perfect_progressive for have been V-ing; about_to for be about to V / on the point of V-ing
+  and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event
+  upcoming at the clause's time, the word kept as the value (be going to V is the future tense,
+  not a prospective); would for a future seen from a past moment (said the barn would flood,
+  hoped the bridge would hold) and going_to for was / were going to V — the same PROSPECTIVE,
+  with tense past; a would that tells what then happened (would later marry) is the plain past,
+  and a would with no if-clause and no past moment is the modal's Would.
 - At least one of `object`, `complement` is filled.
 
 Example (a symmetric verb — one state with two bearers; nothing is derived). TEXT: Yusra resembles Lamine.
@@ -3710,10 +3786,14 @@ Slots:
 - `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
   not inferred.
 - `aspect` (optional; one of: simple, progressive, perfect, perfect_progressive, about_to,
-  due_to): simple; progressive for be V-ing; perfect for have V-ed; perfect_progressive for have
-  been V-ing; about_to for be about to V / on the point of V-ing and due_to for be due to V / be
-  to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word
-  kept as the value (be going to V is the future tense, not a prospective).
+  due_to, would, going_to): simple; progressive for be V-ing; perfect for have V-ed;
+  perfect_progressive for have been V-ing; about_to for be about to V / on the point of V-ing
+  and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event
+  upcoming at the clause's time, the word kept as the value (be going to V is the future tense,
+  not a prospective); would for a future seen from a past moment (said the barn would flood,
+  hoped the bridge would hold) and going_to for was / were going to V — the same PROSPECTIVE,
+  with tense past; a would that tells what then happened (would later marry) is the plain past,
+  and a would with no if-clause and no past moment is the modal's Would.
 
 Example. TEXT: Teodor gave Yusra a thermos.
 
@@ -3803,10 +3883,12 @@ Forms:
 Not this template:
 - an indicative conditional — if Lamine sings, Yusra leaves; if Yusra arrives, Teodor will
   leave: a rule, the conditional template
-- a lone would-have consequent — Yusra would have left; the bridge that would have collapsed: no
-  antecedent to seal; report the clause as unmapped (G04)
-- a wish or a polite would — Yusra would like a thermos; Lamine would often sing: not a
-  conditional; the clause's own template, the modal as a modal
+- a lone would-have consequent — Bram would have stayed: no antecedent to seal, the modal
+  template's Would; an irrealis relative clause (the bridge that would have collapsed): unmapped
+  (G04)
+- a would with no if-clause — a wish (Yusra would like a thermos), a past habit, a future seen
+  from a past moment, a hypothetical whose condition is unstated: not a conditional; the modal
+  template's boundary sends each to its form
 - an embedded question with if — asked if Yusra had left: a sealed question under the verb
 
 Slots:
@@ -4189,7 +4271,11 @@ over it. The head records the modality (capability, epistemic possibility, epist
 and the surface word is kept; a deontic reading — an obligation, a permission, a prohibition, an
 exemption — is the norm template's. The clause under the modal keeps its own tense slot: present
 for a bare infinitive (might lend), past with aspect perfect for a perfect infinitive (might
-have lent); the modal instance carries nothing about tense.
+have lent); the modal instance carries nothing about tense. WOULD with no if-clause in the
+sentence and no past moment it is seen from — the conditional mood, true under circumstances the
+text does not state: the mill would need a new wheel, a bigger cart would help, Bram would have
+stayed — is Would with `surface` would; a lone would-have puts its clause in the past with
+aspect perfect. The other readings of would are not this head (the boundary lists them).
 
 Forms:
 - <S> might <V> …
@@ -4197,17 +4283,34 @@ Forms:
 - <S> might have <V>-ed …
 - <S> is able / unable to <V>
 - Perhaps / maybe <clause>; <S> possibly <V> …
+- <S> would <V> … (no if-clause)
+- <S> would have <V>-ed …
 
 Not this template:
 - a modal word used deontically — must as an obligation, may or can as a permission, must not /
   may not / cannot as a prohibition, need not as an exemption: the norm template; the sentence
   decides the reading
-- the ordering with negation — can't (Not over Can), might not (Might over Not): the instance
+- the ordering with negation — can't (Not over Can), might not (Might over Not), would not in
+  the conditional mood (Would over Not; a past refusal is the negation alone): the instance
   order follows the meaning; a negated deontic is the norm template's prohibition or exemption,
   with no negation instance
 - a likelihood or a commitment adverb — probably, likely, apparently, certainly: the hedge
   template, which sets the clause's truth value and adds no operator; only a possibility
   (perhaps, maybe, possibly) is Might
+- would in the consequence of a subjunctive conditional — if Yusra sang, Teodor would leave: the
+  counterfactual template
+- would seen from a past moment — said the barn would flood, knew she would recover: the
+  clause's own template with aspect would and tense past, no modal
+- a would that tells what then happened in a past narrative — would later marry, would go on to
+  found a school: the plain past, no modal
+- a wish — would like, would love, would rather, would prefer: want or prefer in the present,
+  the attitude template for a clause and the psych template for a thing, the words in `word`
+- would not as a refusal in a past narrative — the lid would not budge: the negation over the
+  clause in the past tense, no modal
+- would for a past habit — at night she would wander the halls: the habitual template with word
+  would and the clause past; with a frequency word (would often walk, every winter would close
+  the shutters) the frequency template
+- would you …? — a question or a request: report it as unmapped (G00), as every question
 
 Slots:
 
@@ -4215,7 +4318,9 @@ Slots:
 - `id` (required; your label for this instance).
 - `over` (required; a list of "@id" of the instances this one scopes over): the clause scoped
   over.
-- `head` (required; one of: Can, Might, Must).
+- `head` (required; one of: Can, Might, Must, Would): Can for a capability, Might for a
+  possibility, Must for an epistemic necessity, Would for the conditional mood with the
+  condition unstated.
 - `surface` (optional; a string): the modal word as written.
 
 Example (epistemic must over a copular clause — an inference about what is the case, not an obligation). TEXT: Yusra must be tired.
@@ -4237,12 +4342,15 @@ The program renders these instances as:
 
 When: A clause negated by not / n't / never / no (as a sentential negator). The negated content
 is the whole predication the negator attaches to, with its tense and its own attachments; a
-witness introduced inside the negated clause belongs to the negation's scope.
+witness introduced inside the negated clause belongs to the negation's scope. Would not as a
+refusal in a past narrative — the lid would not budge — is this negation over the clause in the
+past tense; the refusal has no head of its own.
 
 Forms:
 - <S> did not <V> …
 - <S> is not <Adj>
 - <S> never <V> …
+- <S> would not <V> … (a refusal)
 
 Not this template:
 - not only — the negation scopes over the FOCUS instance ("not only Yusra laughed" denies the
@@ -4647,15 +4755,19 @@ expression — Yusra swims, Teodor reads, Lamine bakes bread, Ottoline visits th
 subject's habit, not one occurrence. Parse the clause with its own template (tense present) and
 add this instance on its event; the event's symbol then denotes the habit. The habitual past
 with "used to" — Lamine used to sing — is the same mark on a clause parsed in the past tense,
-with the words recorded. The reading is the text's: a story told in the present tense, stage
-directions, a running commentary or a headline makes each clause one occurrence, and then no
-instance is written; a simple past with no "used to" is one occurrence as well.
+with the words recorded; so is a would of past routine with no frequency word (at night she
+would wander the halls: word would). The reading is the text's: a story told in the present
+tense, stage directions, a running commentary or a headline makes each clause one occurrence,
+and then no instance is written; a simple past with no "used to" is one occurrence as well.
 
 Forms:
 - <subject> V-s …
 - <subject> used to V …
+- <subject> would V … (a past routine)
 
 Not this template:
+- would with a frequency word — would often walk, every winter would close the shutters: the
+  frequency template, the clause past; no mark
 - a frequency expression on the clause — every day, on Sundays, often, twice a week: a rule over
   occasions, the frequency template; no mark
 - the progressive — Yusra is swimming: one occurrence under way, the clause's own aspect
@@ -4679,8 +4791,8 @@ Slots:
 - `id` (required; your label for this instance): your label for the mark (h1, h2 …).
 - `event` (required; "@id" of the predication instance this attaches to): the clause's
   predication instance: the id of the event this marks as a habit.
-- `word` (optional; a string): used to, when the habit is marked by it; absent for a bare
-  present.
+- `word` (optional; a string): used to or would, when the habit is marked by it; absent for a
+  bare present.
 
 Example (a bare habitual present — the event denotes the habit). TEXT: Yusra swims.
 

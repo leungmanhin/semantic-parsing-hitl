@@ -500,3 +500,11 @@ examples:
     - category: abstain
       text: "Visitors must never feed the ferrets."
       expected: {abstain: true, template: norm}                       # never under a norm: a prohibition, no frequency
+    - category: positive
+      note: would with a frequency word — the past clause in the rule, no modal and no mark
+      text: "Teodor would often sing."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: activity, id: v1, verb: sing, actor: "@n1", tense: past}
+        - {t: range, id: q1, class: occasion}
+        - {t: frequency, id: f1, occasion: ["@q1"], over: ["@v1"], level: often, word: often}

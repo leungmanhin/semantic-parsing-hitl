@@ -20,13 +20,18 @@ trigger:
     habit, not one occurrence. Parse the clause with its own template (tense present) and add
     this instance on its event; the event's symbol then denotes the habit. The habitual past with
     "used to" — Lamine used to sing — is the same mark on a clause parsed in the past tense, with
-    the words recorded. The reading is the text's: a story told in the present tense, stage
+    the words recorded; so is a would of past routine with no frequency word (at night she
+    would wander the halls: word would). The reading is the text's: a story told in the present tense, stage
     directions, a running commentary or a headline makes each clause one occurrence, and then no
     instance is written; a simple past with no "used to" is one occurrence as well.
   surface_forms:
     - "<subject> V-s …"                              # Yusra swims; Teodor reads the paper: a habit
     - "<subject> used to V …"                        # Lamine used to sing: a past habit, word recorded
+    - "<subject> would V … (a past routine)"         # at night she would wander: word would
   boundary:                   # looks like a habit but is not one
+    - >-
+      would with a frequency word — would often walk, every winter would close the shutters:
+      the frequency template, the clause past; no mark
     - >-
       a frequency expression on the clause — every day, on Sundays, often, twice a week: a rule
       over occasions, the frequency template; no mark
@@ -57,7 +62,7 @@ slots:
   id:    {type: id, required: true, doc: "your label for the mark (h1, h2 …)"}
   event: {type: filler, class: Event, attaches: true, required: true,
           doc: "the clause's predication instance: the id of the event this marks as a habit"}
-  word:  {type: string, required: false, doc: "used to, when the habit is marked by it; absent for a bare present"}
+  word:  {type: string, required: false, doc: "used to or would, when the habit is marked by it; absent for a bare present"}
 
 emits:
   - atom: "(Habitual {event})"
@@ -186,3 +191,13 @@ examples:
     - category: abstain
       text: "Herons eat frogs."
       expected: {abstain: true, template: generic}                    # a generic subject
+    - category: positive
+      note: would of past routine beside used to — the habitual mark on each past clause, the words recorded
+      text: "Lamine used to sing, and Yusra would dance."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: named-entity, id: n2, name: "Yusra"}
+        - {t: activity, id: v1, verb: sing, actor: "@n1", tense: past}
+        - {t: habitual, id: h1, event: "@v1", word: "used to"}
+        - {t: activity, id: v2, verb: dance, actor: "@n2", tense: past}
+        - {t: habitual, id: h2, event: "@v2", word: would}
