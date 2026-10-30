@@ -2,7 +2,7 @@
 
 Generated from `templates/atom-type-substrates.json` (schema `atom-type-substrates/1`) by `templates/tmpl/gen_substrate.py`, together with `templates/generated/atom-types.metta`. Do not edit by hand; regenerate with `cd templates && python -m tmpl.gen_substrate`.
 
-155 heads in 14 kinds (7 proposed; 155 with a reviewed type declaration so far). `type-def` is the PeTTa declaration emitted for the head; `?` as the output type means the head is not yet reviewed and is absent from the `.metta` file; `%Undefined%` marks a position the head takes but the JSON does not type.
+156 heads in 14 kinds (7 proposed; 156 with a reviewed type declaration so far). `type-def` is the PeTTa declaration emitted for the head; `?` as the output type means the head is not yet reviewed and is absent from the `.metta` file; `%Undefined%` marks a position the head takes but the JSON does not type.
 
 Every atom is carried as a statement (: <proof-name> <atom> <tv>), tv = (STV strength confidence) or another engine truth value. The carrier is not an atom kind: ':' is never type-declared (it is also PeTTa's type-declaration head) and the truth value is declared by the engine, not by this substrate.
 
@@ -86,13 +86,20 @@ type-def: (: Xor (-> Proposition Proposition Proposition))
 gloss: Exclusive disjunction: exactly one of two disjuncts holds.
 
 
-## role (16)
+## role (17)
 
 head: Agent
 kind: role
 arity: 2
 type-def: (: Agent (-> Event Entity Proposition))
 gloss: Volitional doer / subject of an action. A compound-action class symbol under the compound decomposition ((Patient use_crosswalk crosswalk)) is declared both Class and Event.
+
+
+head: Bearer
+kind: role
+arity: 2
+type-def: (: Bearer (-> Event Entity Proposition))
+gloss: The one a relation holds of — the subject of a stative relation: Bram in 'Bram is Yusra's son', (Bearer state Bram); both relata of a symmetric relation ('Yusra and Lamine are cousins': two Bearer atoms on one state); the mill in 'the mill depends on the stream'. Order: (Bearer state bearer); the other relatum is the Theme. A feeling, a perception or an attitude takes Experiencer; a state of having (own, have, lack) takes Holder.
 
 
 head: Beneficiary
@@ -113,7 +120,7 @@ head: Experiencer
 kind: role
 arity: 2
 type-def: (: Experiencer (-> Event Entity Proposition))
-gloss: Subject of a stative predication — psych state or predicate-adjective state. A compound-action class symbol under the compound decomposition ((Patient use_crosswalk crosswalk)) is declared both Class and Event.
+gloss: Subject of a felt or experienced state — a psych state, a sensation, a perception, an attitude, a predicate-adjective state; the subject of a stative relation (son of, married to, depends on) is Bearer. A compound-action class symbol under the compound decomposition ((Patient use_crosswalk crosswalk)) is declared both Class and Event.
 
 
 head: Goal
@@ -127,7 +134,7 @@ head: Holder
 kind: role
 arity: 2
 type-def: (: Holder (-> Event Entity Proposition))
-gloss: Subject of a possession/relational state only (own, have, lack). A compound-action class symbol under the compound decomposition ((Patient use_crosswalk crosswalk)) is declared both Class and Event.
+gloss: Subject of a possession state only (own, have, lack); the subject of a stative relation is Bearer. A compound-action class symbol under the compound decomposition ((Patient use_crosswalk crosswalk)) is declared both Class and Event.
 
 
 head: Instrument

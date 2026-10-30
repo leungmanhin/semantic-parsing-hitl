@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 83c85d94773b3398 · 58 templates
+catalog sha256 bbe1bd0cb4d6d005 · 58 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -618,8 +618,10 @@ Slots:
   filler): the possessor of a possessive phrase: Yusra's quilt, the quilt of Yusra, her quilt —
   an owner or an associate, NOT a whole the noun is a part of (the lid of the box, the box's
   lid, the car engine, the top of the ladder: no possessor, the witness definite, and a
-  part-whole instance links the two); a referent id (for a possessive pronoun, the id of its
-  mention instance), or a bare lemma for a class-level possessor.
+  part-whole instance links the two), NOT the other party of a singular relational noun (her
+  son, Bram's grandmother, the guild's treasurer: no possessor, a stative-relation instance with
+  the witness as its bearer); a referent id (for a possessive pronoun, the id of its mention
+  instance), or a bare lemma for a class-level possessor.
 - `quantity` (optional; a string): a vague amount phrase on a mass noun, as written (a lot,
   lots, plenty, a little, a bit, much); absent otherwise.
 - `eventive` (optional; true / false): true when the noun names an event or a period and the
@@ -3376,17 +3378,22 @@ the relational noun. A relational noun in APPOSITION to a name, with a possessor
 Ilse's husband Corvin, their aunt, Wren — states the same relation: the name's instance and this
 template's instance with the noun as the relation, the name as the subject and the possessor as
 the object (a pronoun: its mention), as if the text said Bram is her son; the name then takes
-its role in the clause. A DEFINITE ROLE TITLE with an of-phrase — the warden of the mill, the
-president of the guild, the author of the letter — is a relational noun too: this template, the
-holder the subject, the of-phrase the object (preposition of), never an identity copular. A
-passive or participial form (is surrounded by a wall, is covered with snow, is connected to the
-mill) keeps the active roles: the by- or with-phrase is the subject and the surface subject the
-object. A relatum that is an action or a clause (deserves to rest, involves selling the barn,
-means leaving early) is parsed with its own template and listed in `complement`, sealed. Whether
-the relation holds the other way round (married, similar, cousin) is not yours to judge: write
-the subject and the object as the sentence gives them, and never a second instance for the
-reverse. An indefinite relatum (needs a ladder) is a witness; a bare plural or mass one (needs
-water, covered with snow) a bare lemma.
+its role in the clause. A SINGULAR relational noun with a possessor and NO name — her son,
+Bram's grandmother, the guild's treasurer — states the same relation with a witness as the
+bearer: the witness for the noun (its class the noun, no possessor) is the subject and the
+possessor the object; a noun the possessor owns or is merely associated with (her quilt, Bram's
+lantern) keeps the witness's possessor, and a plural one (her sons) stays the group's possessor
+for now. A DEFINITE ROLE TITLE with an of-phrase — the warden of the mill, the president of the
+guild, the author of the letter — is a relational noun too: this template, the holder the
+subject, the of-phrase the object (preposition of), never an identity copular. A passive or
+participial form (is surrounded by a wall, is covered with snow, is connected to the mill) keeps
+the active roles: the by- or with-phrase is the subject and the surface subject the object. A
+relatum that is an action or a clause (deserves to rest, involves selling the barn, means
+leaving early) is parsed with its own template and listed in `complement`, sealed. Whether the
+relation holds the other way round (married, similar, cousin) is not yours to judge: write the
+subject and the object as the sentence gives them, and never a second instance for the reverse.
+An indefinite relatum (needs a ladder) is a witness; a bare plural or mass one (needs water,
+covered with snow) a bare lemma.
 
 Verbs that anchor the class: need, require, deserve, merit, depend, rely, resemble, look_like,
 differ, match, equal, mean, represent, stand_for, suit, fit, concern, involve, apply, relate,
@@ -3403,6 +3410,7 @@ Forms:
 - <X> depends on / relies on / differs from / applies to <Y>
 - <X> is married to / similar to / related to <Y>
 - <possessor>'s <relational noun> <Name> / her <noun> <Name> / their <noun>, <Name>
+- <possessor>'s <relational noun> V … / her <noun> V …
 - <X> is the <role> of <Y>
 - <X> is a cousin of <Y> / is <Y>'s cousin
 - <X> and <Y> are cousins / friends / married
@@ -3488,8 +3496,8 @@ The program renders these instances as:
     (Name sk_yusra_1 "Yusra")
     (Name sk_lamine_1 "Lamine")
     (Member sk_resemble_1 resemble)
-    (Experiencer sk_resemble_1 sk_yusra_1)
-    (Experiencer sk_resemble_1 sk_lamine_1)
+    (Bearer sk_resemble_1 sk_yusra_1)
+    (Bearer sk_resemble_1 sk_lamine_1)
 
 Example (a prepositional object — the preposition recorded, no oblique; not symmetric). TEXT: The mill depends on the stream.
 
@@ -3506,7 +3514,7 @@ The program renders these instances as:
     (Member sk_mill_1 mill)
     (Member sk_stream_1 stream)
     (Member sk_depend_1 depend)
-    (Experiencer sk_depend_1 sk_mill_1)
+    (Bearer sk_depend_1 sk_mill_1)
     (Theme sk_depend_1 sk_stream_1)
 
 Example (the coordinated copular form — the first conjunct the subject, the second the object, no group). TEXT: Yusra and Lamine are cousins.
@@ -3524,8 +3532,8 @@ The program renders these instances as:
     (Name sk_yusra_1 "Yusra")
     (Name sk_lamine_1 "Lamine")
     (Member sk_cousin_1 cousin)
-    (Experiencer sk_cousin_1 sk_yusra_1)
-    (Experiencer sk_cousin_1 sk_lamine_1)
+    (Bearer sk_cousin_1 sk_yusra_1)
+    (Bearer sk_cousin_1 sk_lamine_1)
 
 Not this template. TEXT: Teodor has a trowel. — use `possession`.
 

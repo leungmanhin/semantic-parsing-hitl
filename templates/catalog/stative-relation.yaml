@@ -5,10 +5,10 @@
 # two individuals and nothing happens. Like a state of having or a psych state, the relation is
 # a state with an eventuality of its own, carrying the relata as roles; tense, negation,
 # modality and a time attach to it. An asymmetric relation has a bearer and a theme: (Member
-# sk_depend_1 depend) (Experiencer sk_depend_1 sk_mill_1) (Theme sk_depend_1 sk_stream_1). A
+# sk_depend_1 depend) (Bearer sk_depend_1 sk_mill_1) (Theme sk_depend_1 sk_stream_1). A
 # relation that holds the other way round by its meaning (married, similar, cousin, resemble) is
-# ONE state with TWO bearers: (Member sk_resemble_1 resemble) (Experiencer sk_resemble_1
-# sk_yusra_1) (Experiencer sk_resemble_1 sk_lamine_1) — the subject and the complement are the
+# ONE state with TWO bearers: (Member sk_resemble_1 resemble) (Bearer sk_resemble_1
+# sk_yusra_1) (Bearer sk_resemble_1 sk_lamine_1) — the subject and the complement are the
 # sentence's perspective, not the state's; the template's own list of symmetric relations
 # decides the roles, the parser does not judge it, and no reverse state is ever derived.
 
@@ -37,6 +37,11 @@ trigger:
     same relation: the name's instance and this template's instance with the noun as the
     relation, the name as the subject and the possessor as the object (a pronoun: its mention),
     as if the text said Bram is her son; the name then takes its role in the clause. A
+    SINGULAR relational noun with a possessor and NO name — her son, Bram's grandmother, the
+    guild's treasurer — states the same relation with a witness as the bearer: the witness for
+    the noun (its class the noun, no possessor) is the subject and the possessor the object; a
+    noun the possessor owns or is merely associated with (her quilt, Bram's lantern) keeps the
+    witness's possessor, and a plural one (her sons) stays the group's possessor for now. A
     DEFINITE ROLE TITLE with an of-phrase — the warden of the mill, the president of the guild,
     the author of the letter — is a relational noun too: this template, the holder the subject,
     the of-phrase the object (preposition of), never an identity copular. A passive or participial form (is
@@ -63,6 +68,7 @@ trigger:
     - "<X> depends on / relies on / differs from / applies to <Y>"      # a prepositional object: the preposition recorded
     - "<X> is married to / similar to / related to <Y>"                 # a relational adjective with be
     - "<possessor>'s <relational noun> <Name> / her <noun> <Name> / their <noun>, <Name>"   # an apposition: the relation stated, the name the subject
+    - "<possessor>'s <relational noun> V … / her <noun> V …"                    # no name: a witness for the noun is the bearer
     - "<X> is the <role> of <Y>"                                         # a definite role title: the warden of the mill
     - "<X> is a cousin of <Y> / is <Y>'s cousin"                        # a relational noun with be
     - "<X> and <Y> are cousins / friends / married"                     # the coordinated form: X the subject, Y the object
@@ -116,7 +122,7 @@ slots:
   id:          {type: id, required: true, doc: "your label for the state (p1, p2 …)"}
   relation:    {type: lemma, class: Class, required: true,
                 doc: "the verb lemma (need, resemble, depend, face), joined with its preposition only when the verb means nothing alone (look_like, stand_for); for the copular form the adjective or noun, lemmatized to the singular (married, similar, cousin, friend)"}
-  subject:     {type: filler, class: Entity, role: Experiencer, required: false,
+  subject:     {type: filler, class: Entity, role: Bearer, required: false,
                 doc: "the bearer of the state: the subject; the by- or with-phrase of a passive or participial form (is surrounded by a wall: the wall); the first conjunct of a coordinated subject (Yusra and Lamine are cousins: Yusra); a referent id, or a bare lemma for a class-level one (covered with snow); absent in an agentless passive"}
   object:      {type: filler, class: Entity, role: Theme, required: false,
                 doc: "the other relatum: the object, the prepositional object (depends on the pump, married to Lamine, a cousin of Lamine), the possessor of a relational noun (Lamine's cousin: Lamine), the surface subject of a passive or participial form, or the second conjunct of a coordinated subject; a referent id, or a bare lemma for a class-level one (needs water); absent when the relatum is a clause"}
@@ -140,12 +146,12 @@ mints: {id: Event, stem: relation}
 
 emits:
   - atom: "(Member @id {relation})"
-  - atom: "(Experiencer @id {subject})"
+  - atom: "(Bearer @id {subject})"
     if_filled: subject
   - atom: "(Theme @id {object})"             # an asymmetric relation: a bearer and a theme
     if_filled: object
     when: "relation not in symmetric"
-  - atom: "(Experiencer @id {object})"       # a symmetric relation: the other relatum is a bearer too
+  - atom: "(Bearer @id {object})"            # a symmetric relation: the other relatum is a bearer too
     if_filled: object
     when: "relation in symmetric"
   - atom: "(Theme @id {complement})"        # a clause as the relatum, sealed as one term
@@ -162,13 +168,13 @@ emits:
 notes:
   - >-
     A state with an eventuality, as a state of having and a psych state are: the bearer is its
-    Experiencer (the entity the state holds of) and the other relatum its Theme, the same roles
+    Bearer (the entity the state holds of) and the other relatum its Theme, the same roles
     in a statement and in a question about it; a time, a negation or a modal attaches to the
     state. Nothing is an Agent: nobody acts.
   - >-
     A symmetric relation is one state with two bearers. "Yusra is married to Lamine" and
     "Lamine is married to Yusra" describe the same marriage, so both relata are its
-    Experiencer and nothing is derived: a question names the other bearer. Which relations are
+    Bearer and nothing is derived: a question names the other bearer. Which relations are
     symmetric is a fact about the words, kept in the template's lexicon and applied by the
     emitter; the parser only records who is the subject and who the complement.
   - >-
@@ -195,8 +201,8 @@ examples:
         - "(Name sk_yusra_1 \"Yusra\")"
         - "(Name sk_lamine_1 \"Lamine\")"
         - "(Member sk_resemble_1 resemble)"
-        - "(Experiencer sk_resemble_1 sk_yusra_1)"
-        - "(Experiencer sk_resemble_1 sk_lamine_1)"
+        - "(Bearer sk_resemble_1 sk_yusra_1)"
+        - "(Bearer sk_resemble_1 sk_lamine_1)"
       declarations:
         - "(: resemble Class)"
         - "(: sk_lamine_1 Entity)"
@@ -403,3 +409,24 @@ examples:
         - {t: named-entity, id: n1, name: "Yusra"}
         - {t: named-entity, id: n2, name: "Calderwick"}
         - {t: stative-relation, id: p1, relation: mayor, subject: "@n1", object: "@n2", preposition: of, tense: present}
+    - category: positive
+      note: a relational noun with a possessor and no name — a witness as the bearer; an owned thing keeps its possessor
+      text: "Ottoline's brother sold her quilt."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: witness, id: x1, class: brother}
+        - {t: stative-relation, id: p1, relation: brother, subject: "@x1", object: "@n1", tense: present}
+        - {t: mention, id: m1, word: her}
+        - {t: coref, id: k1, mention: "@m1", antecedent: "@n1", certainty: certain}
+        - {t: witness, id: x2, class: quilt, possessor: "@m1"}
+        - {t: transfer, id: e1, verb: sell, giver: "@x1", object: "@x2", tense: past}
+    - category: positive
+      note: a pronoun possessor of a relational noun — its mention is the object
+      text: "Lamine visited his aunt."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: mention, id: m1, word: his}
+        - {t: coref, id: k1, mention: "@m1", antecedent: "@n1", certainty: certain}
+        - {t: witness, id: x1, class: aunt}
+        - {t: stative-relation, id: p1, relation: aunt, subject: "@x1", object: "@m1", tense: present}
+        - {t: activity, id: v1, verb: visit, actor: "@n1", patient: "@x1", tense: past}

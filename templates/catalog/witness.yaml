@@ -46,7 +46,7 @@ slots:
   props:    {type: list, class: Class, required: false,
              doc: "adjectival properties stated in the phrase; a property with a degree word (a very old spindle) is a degree instance beside the witness, not a property here"}
   possessor: {type: filler, class: Entity, required: false,
-              doc: "the possessor of a possessive phrase: Yusra's quilt, the quilt of Yusra, her quilt — an owner or an associate, NOT a whole the noun is a part of (the lid of the box, the box's lid, the car engine, the top of the ladder: no possessor, the witness definite, and a part-whole instance links the two); a referent id (for a possessive pronoun, the id of its mention instance), or a bare lemma for a class-level possessor"}
+              doc: "the possessor of a possessive phrase: Yusra's quilt, the quilt of Yusra, her quilt — an owner or an associate, NOT a whole the noun is a part of (the lid of the box, the box's lid, the car engine, the top of the ladder: no possessor, the witness definite, and a part-whole instance links the two), NOT the other party of a singular relational noun (her son, Bram's grandmother, the guild's treasurer: no possessor, a stative-relation instance with the witness as its bearer); a referent id (for a possessive pronoun, the id of its mention instance), or a bare lemma for a class-level possessor"}
   quantity: {type: string, required: false,
              doc: "a vague amount phrase on a mass noun, as written (a lot, lots, plenty, a little, a bit, much); absent otherwise"}
   eventive: {type: bool, required: false,

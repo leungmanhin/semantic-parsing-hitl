@@ -135,6 +135,8 @@
 (: coref_recipient (Implication (And (Coref $m $a) (Recipient $e $m)) (Recipient $e $a)) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
 ;; coref_experiencer: a mention's Experiencer role holds of its antecedent (reads: coref)
 (: coref_experiencer (Implication (And (Coref $m $a) (Experiencer $e $m)) (Experiencer $e $a)) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
+;; coref_bearer: a mention's Bearer role holds of its antecedent (reads: coref)
+(: coref_bearer (Implication (And (Coref $m $a) (Bearer $e $m)) (Bearer $e $a)) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
 ;; coref_stimulus: a mention's Stimulus role holds of its antecedent (reads: coref)
 (: coref_stimulus (Implication (And (Coref $m $a) (Stimulus $e $m)) (Stimulus $e $a)) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
 ;; coref_holder: a mention's Holder role holds of its antecedent (reads: coref)

@@ -278,26 +278,31 @@ class SeededRulesOnTheEngine(unittest.TestCase):
 
 
     def test_a_symmetric_relation_is_one_state_with_two_bearers(self):
-        """A symmetric stative relation is one state whose two relata are both its Experiencer:
+        """A symmetric stative relation is one state whose two relata are both its Bearer:
         the yes/no question holds in either order, the wh-question names the other bearer, no
         trivial self-binding appears, and a != guard is accepted as a query conjunct. Nothing is
         derived: no rule is involved."""
         h = self.space(['(: n1 (Name sk_yusra_1 "Yusra") (STV 1.0 0.99))', '(: n2 (Name sk_lamine_1 "Lamine") (STV 1.0 0.99))',
                         '(: p1_member (Member sk_married_1 married) (STV 1.0 0.99))',
-                        '(: p1_experiencer (Experiencer sk_married_1 sk_yusra_1) (STV 1.0 0.99))',
-                        '(: p1_experiencer_2 (Experiencer sk_married_1 sk_lamine_1) (STV 1.0 0.99))'])
-        self.assertTrue(self.query(h, "(And (Member $s married) (Experiencer $s sk_lamine_1) (Experiencer $s sk_yusra_1))"))   # either order
-        who = self.query(h, "(And (Member $s married) (Experiencer $s sk_yusra_1) (Experiencer $s $y))")
+                        '(: p1_bearer (Bearer sk_married_1 sk_yusra_1) (STV 1.0 0.99))',
+                        '(: p1_bearer_2 (Bearer sk_married_1 sk_lamine_1) (STV 1.0 0.99))'])
+        self.assertTrue(self.query(h, "(And (Member $s married) (Bearer $s sk_lamine_1) (Bearer $s sk_yusra_1))"))   # either order
+        who = self.query(h, "(And (Member $s married) (Bearer $s sk_yusra_1) (Bearer $s $y))")
         self.assertTrue(who and "sk_lamine_1" in who[0], who)
         self.assertEqual(len(who), 1)                                                            # no self-binding
         self.assertAlmostEqual(tv(who)[0], 1.0, places=2)
-        guarded = self.query(h, "(And (Member $s married) (Experiencer $s sk_yusra_1) (Experiencer $s $y) (Compute != (sk_yusra_1 $y) -> true))")
+        guarded = self.query(h, "(And (Member $s married) (Bearer $s sk_yusra_1) (Bearer $s $y) (Compute != (sk_yusra_1 $y) -> true))")
         self.assertTrue(guarded and "sk_lamine_1" in guarded[0], guarded)
-        self.assertFalse(self.query(h, "(And (Member $s married) (Experiencer $s sk_yusra_1) (Experiencer $s sk_teodor_1))"))
+        self.assertFalse(self.query(h, "(And (Member $s married) (Bearer $s sk_yusra_1) (Bearer $s sk_teodor_1))"))
         asym = self.space(['(: p1_member (Member sk_depend_1 depend) (STV 1.0 0.99))',
-                           '(: p1_experiencer (Experiencer sk_depend_1 sk_mill_1) (STV 1.0 0.99))',
+                           '(: p1_bearer (Bearer sk_depend_1 sk_mill_1) (STV 1.0 0.99))',
                            '(: p1_theme (Theme sk_depend_1 sk_stream_1) (STV 1.0 0.99))'])
-        self.assertFalse(self.query(asym, "(And (Member $s depend) (Experiencer $s sk_stream_1) (Theme $s $y))"))   # asymmetric: one way only
+        self.assertFalse(self.query(asym, "(And (Member $s depend) (Bearer $s sk_stream_1) (Theme $s $y))"))   # asymmetric: one way only
+        he = self.space(['(: p1_member (Member sk_son_1 son) (STV 1.0 0.99))',
+                         '(: p1_bearer (Bearer sk_son_1 sk_he_1) (STV 1.0 0.99))',
+                         '(: p1_theme (Theme sk_son_1 sk_yusra_1) (STV 1.0 0.99))',
+                         '(: k1_coref (Coref sk_he_1 sk_bram_1) (STV 1.0 0.99))'])
+        self.assertTrue(self.query(he, "(And (Member $s son) (Bearer $s sk_bram_1) (Theme $s sk_yusra_1))"))   # a pronoun's Bearer reaches its antecedent (coref_bearer)
 
 
     def test_a_part_of_a_part_and_a_part_is_where_its_whole_is(self):

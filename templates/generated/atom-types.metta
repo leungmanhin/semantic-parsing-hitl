@@ -35,6 +35,7 @@
 (: And (-> Proposition Proposition Proposition Proposition Proposition Proposition Proposition Proposition Proposition Proposition))
 (: Appear (-> Proposition Proposition))
 (: AsAResult (-> Event Event Proposition))
+(: Bearer (-> Event Entity Proposition))
 (: Because (-> Event Event Proposition))
 (: Because (-> Event Instance Proposition))
 (: BecauseOf (-> Event Instance Proposition))

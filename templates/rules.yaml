@@ -73,6 +73,13 @@ rules:
     truth: {strength: 1.0, confidence: 0.99}
     semantics: deductive
     reads: [coref]
+  - id: coref_bearer
+    meaning: a mention's Bearer role holds of its antecedent
+    premises: ["(Coref $m $a)", "(Bearer $e $m)"]
+    conclusion: "(Bearer $e $a)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [coref]
   - id: coref_stimulus
     meaning: a mention's Stimulus role holds of its antecedent
     premises: ["(Coref $m $a)", "(Stimulus $e $m)"]
@@ -466,7 +473,7 @@ rules:
       "The lid is part of the box" with "the box is in the shed" places the lid in the shed.
 
   # Stative relations need no symmetry rule: a relation that holds the other way round by its
-  # meaning (married, similar, cousin) is one state with two bearers, both Experiencer; the
+  # meaning (married, similar, cousin) is one state with two bearers, both Bearer; the
   # stative-relation template's lexicon decides the roles and a question names the other bearer.
 
   # Appearances: what looks, sounds, feels, smells, tastes or seems so may be taken to be so —

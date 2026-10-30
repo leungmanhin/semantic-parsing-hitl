@@ -120,6 +120,17 @@
       "opaque": true,
       "gloss": "Causal connective 'as a result'. Order: (Connective main-clause-eventuality subordinate-eventuality); a copular endpoint is reified as a state witness. The head is the surface connective itself, never normalized."
     },
+    "Bearer": {
+      "kind": "role",
+      "arity": 2,
+      "arg_types": [
+        "Event",
+        "Entity"
+      ],
+      "out": "Proposition",
+      "opaque": false,
+      "gloss": "The one a relation holds of — the subject of a stative relation: Bram in 'Bram is Yusra's son', (Bearer state Bram); both relata of a symmetric relation ('Yusra and Lamine are cousins': two Bearer atoms on one state); the mill in 'the mill depends on the stream'. Order: (Bearer state bearer); the other relatum is the Theme. A feeling, a perception or an attitude takes Experiencer; a state of having (own, have, lack) takes Holder."
+    },
     "Because": {
       "kind": "discourse",
       "arity": 2,
@@ -535,7 +546,7 @@
       ],
       "out": "Proposition",
       "opaque": false,
-      "gloss": "Subject of a stative predication — psych state or predicate-adjective state. A compound-action class symbol under the compound decomposition ((Patient use_crosswalk crosswalk)) is declared both Class and Event."
+      "gloss": "Subject of a felt or experienced state — a psych state, a sensation, a perception, an attitude, a predicate-adjective state; the subject of a stative relation (son of, married to, depends on) is Bearer. A compound-action class symbol under the compound decomposition ((Patient use_crosswalk crosswalk)) is declared both Class and Event."
     },
     "Extent": {
       "kind": "measure",
@@ -649,7 +660,7 @@
       ],
       "out": "Proposition",
       "opaque": false,
-      "gloss": "Subject of a possession/relational state only (own, have, lack). A compound-action class symbol under the compound decomposition ((Patient use_crosswalk crosswalk)) is declared both Class and Event."
+      "gloss": "Subject of a possession state only (own, have, lack); the subject of a stative relation is Bearer. A compound-action class symbol under the compound decomposition ((Patient use_crosswalk crosswalk)) is declared both Class and Event."
     },
     "Hour": {
       "kind": "temporal",
