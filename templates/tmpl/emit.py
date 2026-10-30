@@ -455,6 +455,9 @@ class _Emitter:
                 return self.content_symbol(first[1:]) if first else None
             return element if element is not None else self.bundle(v, inst["id"], spec, slot, part)
         if is_ref(v):
+            if v[1:] not in self.sym:
+                raise EmitError([f"{inst['t']} {inst['id']}: slot {slot} names {v}, which mints no symbol of its own "
+                                 f"(a flat predication is named only by an Event filler, which mints its state)"])
             return self.sym[v[1:]]
         if spec["type"] == "string":
             return Str(str(v))

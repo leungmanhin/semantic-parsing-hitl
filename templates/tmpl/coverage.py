@@ -221,7 +221,10 @@ def assess(parsed: list[dict], catalog: dict, typecheck: bool = False) -> dict:
                "status": "error" if reply.get("error") or not isinstance(resp, dict) else "ok",
                "instances": 0, "fired": {}, "unmapped": [], "issues": [], "findings": [], "outcome": "none", "usage": reply.get("usage") or {}}
         if row["status"] == "ok":
-            res = V.validate(resp, catalog, typecheck=typecheck, text=r["text"]) if typecheck else V.inspect(resp, catalog, text=r["text"])
+            try:
+                res = V.validate(resp, catalog, typecheck=typecheck, text=r["text"]) if typecheck else V.inspect(resp, catalog, text=r["text"])
+            except Exception as exc:                       # a reply the emitter or the validator cannot take: malformed, with the reason
+                res = {"instances": [], "fired": {}, "unmapped": [], "issues": [], "findings": [{"kind": "instance", "detail": f"{type(exc).__name__}: {str(exc)[:200]}"}]}
             row["instances"] = len(res["instances"])
             row["fired"] = res["fired"]
             row["unmapped"] = [u for u in res["unmapped"] if isinstance(u, dict)]
