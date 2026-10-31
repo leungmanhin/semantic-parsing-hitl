@@ -2,7 +2,7 @@
 
 Generated from `templates/atom-type-substrates.json` (schema `atom-type-substrates/1`) by `templates/tmpl/gen_substrate.py`, together with `templates/generated/atom-types.metta`. Do not edit by hand; regenerate with `cd templates && python -m tmpl.gen_substrate`.
 
-163 heads in 14 kinds (7 proposed; 163 with a reviewed type declaration so far). `type-def` is the PeTTa declaration emitted for the head; `?` as the output type means the head is not yet reviewed and is absent from the `.metta` file; `%Undefined%` marks a position the head takes but the JSON does not type.
+165 heads in 14 kinds (7 proposed; 165 with a reviewed type declaration so far). `type-def` is the PeTTa declaration emitted for the head; `?` as the output type means the head is not yet reviewed and is absent from the `.metta` file; `%Undefined%` marks a position the head takes but the JSON does not type.
 
 Every atom is carried as a statement (: <proof-name> <atom> <tv>), tv = (STV strength confidence) or another engine truth value. The carrier is not an atom kind: ':' is never type-declared (it is also PeTTa's type-declaration head) and the truth value is declared by the engine, not by this substrate.
 
@@ -617,7 +617,7 @@ legacy: (: Year (-> Number TimeTerm))  ; kept until the re-parse
 gloss: Calendar year of a time instance: (Year t 2026). Legacy constructor form (Year 2026) kept until the re-parse.
 
 
-## relation (17)
+## relation (18)
 
 head: Between
 kind: relation
@@ -638,6 +638,13 @@ kind: relation
 arity: 3
 type-def: (: ConditionalProperty (-> Class Class Class Proposition))  ; and 1 more (per arity / per union alternative)
 gloss: A class-level property restricted to a place, a time or a circumstance: the class as found there has the property (otters are rare in Norfolk; cranes are rare in winter). Order: (ConditionalProperty class property restriction); the restriction is an entity (a place, a thing) or a class (a time, a circumstance). Opaque like KindProperty: distributes to no member. A member-level property under a condition is a parser-emitted rule instead, never this atom.
+
+
+head: DirectionFrom
+kind: relation
+arity: 3
+type-def: (: DirectionFrom (-> Instance Instance Class Proposition))
+gloss: A direction from a landmark: (DirectionFrom x y east) — x lies east of y, the compass word as one lemma; read from y it is the opposite direction (direction_converse).
 
 
 head: Entails
@@ -881,7 +888,7 @@ type-def: (: forClass (-> Class Level))
 gloss: Comparison-class marker: ADJ relative to the norm for a class. A value term, not a statement: stands in the level slot of Degree.
 
 
-## lexicon (8)
+## lexicon (9)
 
 head: DimensionScale
 kind: lexicon
@@ -902,6 +909,13 @@ kind: lexicon
 arity: 2
 type-def: (: MonthNumber (-> Class Number Proposition))
 gloss: Seeded lexicon fact giving a month name its ordinal number. Background fact (seeded), never parser output; month names are classes of time periods.
+
+
+head: OppositeDirection
+kind: lexicon
+arity: 2
+type-def: (: OppositeDirection (-> Class Class Proposition))
+gloss: The opposite of a compass direction, a lexicon fact: (OppositeDirection east west).
 
 
 head: ScaleOpposite

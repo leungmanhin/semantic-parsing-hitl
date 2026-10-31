@@ -17,9 +17,10 @@ trigger:
   construction: >
     A prepositional phrase naming the place where the clause's event takes place: in / at / on /
     inside / within a place (laughed in the barn, waited at the gate, slept on the rug), or
-    near / by / under / over / above / below / behind / beside / outside / opposite it. The event
-    is parsed with its own template; the location instance names that event and the place. One
-    instance per place phrase.
+    near / by / under / over / above / below / behind / beside / outside / opposite it, or in a
+    direction from it (fished west of the bridge: head DirectionFrom, the compass word in
+    `direction`). The event is parsed with its own template; the location instance names that
+    event and the place. One instance per place phrase.
   surface_forms:
     - "<clause> in / at / on <place>"                 # Yusra laughed in the barn
     - "<clause> near / under / behind … <place>"      # the ferret slept under the ladder
@@ -64,12 +65,14 @@ slots:
                 doc: "the place: a referent id (a witness for the barn, a name for Calderwick) or a bare lemma for a class-level place (in burrows)"}
   place2:      {type: filler, class: Entity, required: false, only_when: "head == Between",
                 doc: "with head Between only, the second of the two places (slept between the barn and the shed: the shed); the order as written"}
-  head:        {type: enum, values: [Location, Near, By, Under, Over, Above, Below, Behind, Beside, Between, Outside, Opposite], required: true,
+  direction:   {type: enum, class: Class, values: [north, south, east, west, northeast, northwest, southeast, southwest], required: false, only_when: "head == DirectionFrom",
+                doc: "with head DirectionFrom only, the compass direction of the thing from the place, as one word (west of the barn: west; north-east of: northeast)"}
+  head:        {type: enum, values: [Location, Near, By, Under, Over, Above, Below, Behind, Beside, Between, Outside, Opposite, DirectionFrom], required: true,
                 doc: "Location for in / at / on / inside / within; otherwise the preposition itself, capitalized (under → Under)"}
   preposition: {type: string, required: true, doc: "the preposition as written (in, at, under …)"}
 
 emits:
-  - atom: "({head} {event} {place} {place2|opt})"
+  - atom: "({head} {event} {place} {place2|opt} {direction|opt})"
 
 notes:
   - >-
@@ -268,3 +271,11 @@ examples:
         - {t: witness, id: x2, class: well, definite: true}
         - {t: activity, id: v1, verb: wait, actor: "@n1", tense: past}
         - {t: location, id: l1, event: "@v1", place: "@x1", place2: "@x2", head: Between, preposition: between}
+    - category: positive
+      note: an event's place in a direction from a landmark
+      text: "Bram camped west of the river."
+      instances:
+        - {t: named-entity, id: n1, name: "Bram"}
+        - {t: witness, id: x1, class: river, definite: true}
+        - {t: activity, id: v1, verb: camp, actor: "@n1", tense: past}
+        - {t: location, id: l1, event: "@v1", place: "@x1", head: DirectionFrom, direction: west, preposition: west of}

@@ -1138,7 +1138,8 @@ class _Emitter:
                         self.declare(self.sym[r["id"]], cls)
             for sname, spec in (t.get("slots") or {}).items():
                 v = r.get(sname)
-                if v is None or spec["type"] not in ("filler", "lemma", "list"):
+                if v is None or (spec["type"] not in ("filler", "lemma", "list")
+                                 and not (spec["type"] == "enum" and spec.get("class"))):   # an enum of words that are symbols (a compass word)
                     continue
                 cls = spec.get("class")
                 if cls == "String":                         # words as written (an alias): quoted strings, not symbols

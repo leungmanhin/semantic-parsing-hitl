@@ -30,7 +30,10 @@ trigger:
     Lamine) and `whole` the whole's referent; `material` (wool, glass, oak) is a lemma, never a
     referent, and stands instead of `part`. The part inside a noun phrase (the lid of the box,
     the box's lid, the top of the ladder) is a witness with NO possessor, marked definite, and
-    this instance links it to the whole. A counted or plural part (four legs, six bands, blue
+    this instance links it to the whole. A DIRECTION ADJECTIVE before a place's name (southern
+    Calderwick, central Aldmoor) names a part of that place: a definite witness whose class is the
+    adjective as written (southern; never turned into a noun), this instance linking it to the
+    place, the word the adjective; the place phrase in the clause is that witness. A counted or plural part (four legs, six bands, blue
     eyes) is a group instance, and a distribution instance over the group says that each
     member is a part. A passive keeps the link (the clause was included in the treaty: the
     clause the part). On a class — every car has an engine, oranges contain juice — the subject
@@ -373,3 +376,22 @@ examples:
         - {t: distribution, id: d1, group: "@g1", over: ["@v1"]}
         - {t: part-whole, id: w1, part: "@n1", whole: "@g1", word: such as, tense: present}
         - {t: part-whole, id: w2, part: "@n2", whole: "@g1", word: such as, tense: present}
+    - category: positive
+      note: a direction adjective before a place's name — a part of the place, the adjective its class
+      text: "Varnholt is in northern Calderwick."
+      instances:
+        - {t: named-entity, id: n1, name: "Varnholt"}
+        - {t: named-entity, id: n2, name: "Calderwick"}
+        - {t: witness, id: x1, class: northern, definite: true}
+        - {t: part-whole, id: w1, part: "@x1", whole: "@n2", word: northern, tense: present}
+        - {t: locative, id: l1, thing: "@n1", place: "@x1", head: LocatedIn, preposition: in, tense: present}
+    - category: positive
+      note: the same part as an event's place
+      text: "Ines fished in western Aldmoor."
+      instances:
+        - {t: named-entity, id: n1, name: "Ines"}
+        - {t: named-entity, id: n2, name: "Aldmoor"}
+        - {t: witness, id: x1, class: western, definite: true}
+        - {t: part-whole, id: w1, part: "@x1", whole: "@n2", word: western, tense: present}
+        - {t: activity, id: v1, verb: fish, actor: "@n1", tense: past}
+        - {t: location, id: l1, event: "@v1", place: "@x1", head: Location, preposition: in}

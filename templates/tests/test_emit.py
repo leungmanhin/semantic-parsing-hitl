@@ -957,6 +957,21 @@ class EmitTests(unittest.TestCase):
         self.assertIn("(BeforeBy sk_time_1 sk_now_1 1 week)", w)
         self.assertIn("(Weekday sk_time_1 friday)", w)
 
+    def test_a_direction_from_a_landmark(self):
+        """DirectionFrom takes the compass word as its third argument; the word is refused on any
+        other head."""
+        out = atoms_of(E.emit({"id": "d", "instances": [
+            {"t": "witness", "id": "x1", "class": "well", "definite": True}, {"t": "witness", "id": "x2", "class": "barn", "definite": True},
+            {"t": "locative", "id": "l1", "thing": "@x1", "place": "@x2", "head": "DirectionFrom", "direction": "west",
+             "preposition": "west of", "tense": "past"}]}, CATALOG)["statements"])
+        self.assertIn("(Past (DirectionFrom sk_well_1 sk_barn_1 west))", out)
+        with self.assertRaises(E.EmitError) as cm:
+            E.emit({"id": "bad", "instances": [
+                {"t": "witness", "id": "x1", "class": "well"}, {"t": "witness", "id": "x2", "class": "barn"},
+                {"t": "locative", "id": "l1", "thing": "@x1", "place": "@x2", "head": "Near", "direction": "west",
+                 "preposition": "near", "tense": "present"}]}, CATALOG)
+        self.assertTrue(any("only when" in p for p in cm.exception.args[0]))
+
     def test_malformed_instances_are_refused(self):
         bad = [{"t": "transfer", "id": "e1", "verb": "give", "giver": "@n9", "object": "x", "tense": "past"}]
         with self.assertRaises(E.EmitError) as cm:

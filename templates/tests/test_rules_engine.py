@@ -424,6 +424,23 @@ class SeededRulesOnTheEngine(unittest.TestCase):
         s, c = tv(self.query(h, "(Past (Member sk_teodor_1 locksmith))"))
         self.assertAlmostEqual(s, 1.0, places=2)
 
+    def test_places_carry_up_and_directions_reverse(self):
+        """What is in a part of a place is in the place (located_in_part), being located carries up
+        a chain (located_trans, even round a cycle), and a direction read from the landmark is the
+        opposite one (direction_converse); nothing is found for an unrelated place or the wrong way."""
+        h = self.space(["(: a1 (Member sk_northern_1 northern) (STV 1.0 0.99))", "(: a2 (PartOf sk_northern_1 sk_calderwick_1) (STV 1.0 0.99))",
+                        "(: a3 (LocatedIn sk_varnholt_1 sk_northern_1) (STV 1.0 0.99))", "(: a4 (LocatedIn sk_calderwick_1 sk_norland_1) (STV 1.0 0.99))",
+                        "(: a5 (LocatedIn sk_norland_1 sk_varnholt_1) (STV 1.0 0.99))",
+                        "(: b1 (DirectionFrom sk_mill_1 sk_bridge_1 east) (STV 1.0 0.99))"])
+        s, c = tv(self.query(h, "(LocatedIn sk_varnholt_1 sk_calderwick_1)", steps=1500))
+        self.assertAlmostEqual(s, 1.0, places=2)
+        s, c = tv(self.query(h, "(LocatedIn sk_varnholt_1 sk_norland_1)", steps=1500))
+        self.assertAlmostEqual(s, 1.0, places=2)
+        self.assertFalse(self.query(h, "(LocatedIn sk_varnholt_1 sk_elsewhere_1)", steps=1500))
+        s, c = tv(self.query(h, "(DirectionFrom sk_bridge_1 sk_mill_1 west)", steps=1500))
+        self.assertAlmostEqual(s, 1.0, places=2)
+        self.assertFalse(self.query(h, "(DirectionFrom sk_bridge_1 sk_mill_1 east)", steps=1500))
+
     def test_a_relative_clause_comparison_class(self):
         """A comparison class narrowed by a relative clause with an indefinite admits a member whose
         own atoms say the same — any event of the verb, the subject in its role, a filler of the

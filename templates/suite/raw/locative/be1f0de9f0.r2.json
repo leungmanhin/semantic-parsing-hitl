@@ -1,0 +1,105 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "542b6db2a3a4996b59b6530e2ee4b02a0b2684c5dca85189e33f1f2d156cb297",
+  "item": {
+    "id": "sbe1f0de9f0",
+    "text": "The barn is two miles north of the mill."
+  },
+  "usage": {
+    "input": 107647,
+    "output": 212,
+    "thinking": null,
+    "total": 107859,
+    "cached": 105598,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 107647,
+    "candidatesTokenCount": 212,
+    "totalTokenCount": 107859,
+    "cachedContentTokenCount": 105598,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 107647
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 105598
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 212
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sbe1f0de9f0\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"barn\", \"definite\": true, \"span\": \"The barn\"}, {\"t\": \"witness\", \"id\": \"x2\", \"class\": \"mill\", \"definite\": true, \"span\": \"the mill\"}, {\"t\": \"locative\", \"id\": \"l1\", \"thing\": \"@x1\", \"place\": \"@x2\", \"direction\": \"north\", \"head\": \"DirectionFrom\", \"preposition\": \"of\", \"tense\": \"present\", \"span\": \"The barn is two miles north of the mill\"}, {\"t\": \"measure\", \"id\": \"m1\", \"event\": \"@l1\", \"head\": \"Measure\", \"dimension\": \"distance\", \"magnitude\": 2, \"unit\": \"mile\", \"span\": \"two miles\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sbe1f0de9f0",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "barn",
+        "definite": true,
+        "span": "The barn"
+      },
+      {
+        "t": "witness",
+        "id": "x2",
+        "class": "mill",
+        "definite": true,
+        "span": "the mill"
+      },
+      {
+        "t": "locative",
+        "id": "l1",
+        "thing": "@x1",
+        "place": "@x2",
+        "direction": "north",
+        "head": "DirectionFrom",
+        "preposition": "of",
+        "tense": "present",
+        "span": "The barn is two miles north of the mill"
+      },
+      {
+        "t": "measure",
+        "id": "m1",
+        "event": "@l1",
+        "head": "Measure",
+        "dimension": "distance",
+        "magnitude": 2,
+        "unit": "mile",
+        "span": "two miles"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "c5f4a581ede230056421e1d5e76bd4900533b3d737acbd78852945af15d3f75f",
+  "manifest_id": "73c35a3d3778",
+  "run": 2,
+  "case": {
+    "template": "locative",
+    "section": "held_out",
+    "index": 18,
+    "category": "positive",
+    "text": "The barn is two miles north of the mill.",
+    "key": "be1f0de9f0"
+  }
+}

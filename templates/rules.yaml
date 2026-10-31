@@ -520,6 +520,30 @@ rules:
       "The wick is part of the lantern" and "the lantern is part of the lamp" give the wick as a
       part of the lamp. Membership is carried the same way (a member of a guild that is part of
       a federation), at the generalization confidence rather than a definitional one.
+  - id: located_in_part
+    meaning: what is in a part of a place is in the place (in southern Calderwick, so in Calderwick)
+    premises: ["(LocatedIn $x $p)", "(PartOf $p $w)"]
+    conclusion: "(LocatedIn $x $w)"
+    truth: {strength: 1.0, confidence: 0.9}
+    semantics: deductive
+    reads: [locative, part-whole]
+  - id: located_trans
+    meaning: being located carries up a chain of places (in Calderwick, Calderwick in Norland, so in Norland)
+    premises: ["(LocatedIn $x $y)", "(LocatedIn $y $z)"]
+    conclusion: "(LocatedIn $x $z)"
+    truth: {strength: 1.0, confidence: 0.9}
+    semantics: deductive
+    reads: [locative]
+    notes: >-
+      Each hop lowers the confidence (two hops about 0.8, three about 0.73), so a long chain answers
+      more weakly than a stated place; a cycle in the data does not trap the search.
+  - id: direction_converse
+    meaning: a direction from a landmark read from the landmark is the opposite direction (east of the bridge, so the bridge is west of it)
+    premises: ["(DirectionFrom $x $y $d)", "(OppositeDirection $d $e)"]
+    conclusion: "(DirectionFrom $y $x $e)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [locative, location]
   - id: part_located
     meaning: a part is where its whole is
     premises: ["(PartOf $p $w)", "(LocatedIn $w $l)"]
@@ -695,6 +719,20 @@ rules:
 # group id and the entry's symbols — (: pole_short_tall (ScaleOpposite short tall) (STV 1.0 0.99)).
 # Never parser output: the parse keeps the surface pole, the stated unit and the dimension word.
 facts:
+  - id: opposite_direction
+    meaning: the opposite of each compass direction, both ways (direction_converse)
+    head: OppositeDirection
+    truth: {strength: 1.0, confidence: 0.99}
+    reads: [locative, location]
+    entries:
+      - [north, south]
+      - [south, north]
+      - [east, west]
+      - [west, east]
+      - [northeast, southwest]
+      - [southwest, northeast]
+      - [northwest, southeast]
+      - [southeast, northwest]
   - id: month_index
     meaning: the place of each month in the year, for ordering dates (month_order)
     head: MonthIndex

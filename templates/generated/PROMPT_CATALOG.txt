@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 46a2af36ca9560ea · 59 templates
+catalog sha256 27c880ec26ddab21 · 59 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -459,7 +459,8 @@ Slots:
   language.
 - `props` (optional; a list of lemmas): adjectives inside the appositive or title phrase, each a
   lemma (a careful harbour pilot: careful; the northern ferry company: northern); a noun before
-  the class is a mod, never a property.
+  the class is a mod, never a property; a direction adjective before a place's own name
+  (southern Calderwick) is a part of the place (part-whole), never a property.
 - `former` (optional; true / false): with a class, true when former, ex-, one-time or retired
   makes the noun something the referent was and no longer is (Ines, a retired weaver).
 - `mods` (optional; a list of lemmas, or "@id" of a named-entity or a time instance): the nouns,
@@ -2678,18 +2679,23 @@ located; the object of the preposition is the place. A place phrase inside a nou
 ledger on the workbench, a village in Norfolk) is a locative of that thing too, in the present.
 A container verb with a separate thing inside — the box contains a letter, the drawer holds a
 key — locates the thing in the container: head LocatedIn, the verb recorded as the preposition,
-the thing in `thing` and the container in `place`.
+the thing in `thing` and the container in `place`. A DIRECTION FROM A LANDMARK (the well is west
+of the barn) is head DirectionFrom with the compass word in `direction`; a distance on it (three
+miles south of the barn) is a measure on this instance (dimension distance; the program mints
+the state of the fact holding).
 
 Forms:
 - <thing> is in / at / on / under … <place>
 - there is <thing> <place phrase>
 - <thing> is located / situated in <place>
 - <thing> is from <place>
+- <thing> is <compass word> of <place>
 - <thing> <place phrase>
 
 Not this template:
 - the place of an EVENT — laughed in the barn, waited at the gate: an attachment to that event,
   not a locative
+- nearby with no place named (a nearby farm): no slot; report it as unmapped
 - a verb of residence or posture — lives in Calderwick, stood by the door, lay on the workbench:
   the verb's own event with a location attachment
 - a spatial relation stated by a verb — faces the river, borders the marsh, surrounds the house,
@@ -2719,9 +2725,13 @@ Slots:
 - `place2` (optional; "@id" of a referent instance, or a bare lemma for a non-specific filler):
   with head Between only, the second of the two places (between the barn and the shed: the
   shed); the order as written.
+- `direction` (optional; one of: north, south, east, west, northeast, northwest, southeast,
+  southwest): with head DirectionFrom only, the compass direction of the thing from the place,
+  as one word (west of the barn: west; north-east of: northeast).
 - `head` (required; one of: LocatedIn, On, Near, By, Under, Over, Above, Below, Behind, Beside,
-  Between, Outside, Opposite, From): LocatedIn for in / at / inside / within; otherwise the
-  preposition itself, capitalized (on → On, under → Under); From for an origin (is from).
+  Between, Outside, Opposite, From, DirectionFrom): LocatedIn for in / at / inside / within;
+  otherwise the preposition itself, capitalized (on → On, under → Under); From for an origin (is
+  from).
 - `preposition` (required; a string): the preposition as written (in, on, under, from …).
 - `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
   not inferred; present for a place phrase inside a noun phrase.
@@ -3072,21 +3082,24 @@ Write one instance per link: `part` is the part's referent (a witness for the li
 salt, a group for four legs or six bands, a name for Lamine) and `whole` the whole's referent;
 `material` (wool, glass, oak) is a lemma, never a referent, and stands instead of `part`. The
 part inside a noun phrase (the lid of the box, the box's lid, the top of the ladder) is a
-witness with NO possessor, marked definite, and this instance links it to the whole. A counted
-or plural part (four legs, six bands, blue eyes) is a group instance, and a distribution
-instance over the group says that each member is a part. A passive keeps the link (the clause
-was included in the treaty: the clause the part). On a class — every car has an engine, oranges
-contain juice — the subject is a range and the generic template builds the rule with this
-instance as the predication over it; an indefinite part is then a witness, a function of the
-member. A LIST OF NAMED MEMBERS after a colon, after including, such as or namely, or set off by
-dashes, brackets or a comma (two potters stayed: Ines and Corvin; the guild, including Lamine;
-the two potters — Ines and Corvin — stayed) is one instance per named member, the group the
-whole, the word as written (":", "including", "such as", "namely", "—", "(", ","); no count is
-drawn from the list, and a list of kinds (birds — gulls, terns) names no member: report it as
-unmapped. `tense` is the clause's; a link inside a noun phrase is present. A time, a duration, a
-time relation, a link or a focus on the clause (Lamine was a member of the guild until 1990)
-names this instance as its event, as it would a copular predication, and the program mints the
-state of the relation holding.
+witness with NO possessor, marked definite, and this instance links it to the whole. A DIRECTION
+ADJECTIVE before a place's name (southern Calderwick, central Aldmoor) names a part of that
+place: a definite witness whose class is the adjective as written (southern; never turned into a
+noun), this instance linking it to the place, the word the adjective; the place phrase in the
+clause is that witness. A counted or plural part (four legs, six bands, blue eyes) is a group
+instance, and a distribution instance over the group says that each member is a part. A passive
+keeps the link (the clause was included in the treaty: the clause the part). On a class — every
+car has an engine, oranges contain juice — the subject is a range and the generic template
+builds the rule with this instance as the predication over it; an indefinite part is then a
+witness, a function of the member. A LIST OF NAMED MEMBERS after a colon, after including, such
+as or namely, or set off by dashes, brackets or a comma (two potters stayed: Ines and Corvin;
+the guild, including Lamine; the two potters — Ines and Corvin — stayed) is one instance per
+named member, the group the whole, the word as written (":", "including", "such as", "namely",
+"—", "(", ","); no count is drawn from the list, and a list of kinds (birds — gulls, terns)
+names no member: report it as unmapped. `tense` is the clause's; a link inside a noun phrase is
+present. A time, a duration, a time relation, a link or a focus on the clause (Lamine was a
+member of the guild until 1990) names this instance as its event, as it would a copular
+predication, and the program mints the state of the relation holding.
 
 Forms:
 - <part> is (a) part of <whole>
@@ -5052,9 +5065,10 @@ Not this template. TEXT: Ferrets sleep. — use `generic`.
 
 When: A prepositional phrase naming the place where the clause's event takes place: in / at / on
 / inside / within a place (laughed in the barn, waited at the gate, slept on the rug), or near /
-by / under / over / above / below / behind / beside / outside / opposite it. The event is parsed
-with its own template; the location instance names that event and the place. One instance per
-place phrase.
+by / under / over / above / below / behind / beside / outside / opposite it, or in a direction
+from it (fished west of the bridge: head DirectionFrom, the compass word in `direction`). The
+event is parsed with its own template; the location instance names that event and the place. One
+instance per place phrase.
 
 Forms:
 - <clause> in / at / on <place>
@@ -5096,9 +5110,12 @@ Slots:
 - `place2` (optional; "@id" of a referent instance, or a bare lemma for a non-specific filler):
   with head Between only, the second of the two places (slept between the barn and the shed: the
   shed); the order as written.
+- `direction` (optional; one of: north, south, east, west, northeast, northwest, southeast,
+  southwest): with head DirectionFrom only, the compass direction of the thing from the place,
+  as one word (west of the barn: west; north-east of: northeast).
 - `head` (required; one of: Location, Near, By, Under, Over, Above, Below, Behind, Beside,
-  Between, Outside, Opposite): Location for in / at / on / inside / within; otherwise the
-  preposition itself, capitalized (under → Under).
+  Between, Outside, Opposite, DirectionFrom): Location for in / at / on / inside / within;
+  otherwise the preposition itself, capitalized (under → Under).
 - `preposition` (required; a string): the preposition as written (in, at, under …).
 
 Example (the place attaches to the clause's event). TEXT: Yusra laughed in the barn.

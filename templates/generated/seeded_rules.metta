@@ -8,6 +8,15 @@
 ;; both directions at 2s/(1+s) with the rule's confidence, its denied side denying the other.
 
 ;; ===== Lexicon facts: background atoms with no variables, loaded with the rules (never parser output) =====
+;; opposite_direction: the opposite of each compass direction, both ways (direction_converse) (reads: locative, location)
+(: opposite_direction_north_south (OppositeDirection north south) (STV 1.0 0.99))
+(: opposite_direction_south_north (OppositeDirection south north) (STV 1.0 0.99))
+(: opposite_direction_east_west (OppositeDirection east west) (STV 1.0 0.99))
+(: opposite_direction_west_east (OppositeDirection west east) (STV 1.0 0.99))
+(: opposite_direction_northeast_southwest (OppositeDirection northeast southwest) (STV 1.0 0.99))
+(: opposite_direction_southwest_northeast (OppositeDirection southwest northeast) (STV 1.0 0.99))
+(: opposite_direction_northwest_southeast (OppositeDirection northwest southeast) (STV 1.0 0.99))
+(: opposite_direction_southeast_northwest (OppositeDirection southeast northwest) (STV 1.0 0.99))
 ;; month_index: the place of each month in the year, for ordering dates (month_order) (reads: time)
 (: month_index_january (MonthIndex january 1.0) (STV 1.0 0.99))
 (: month_index_february (MonthIndex february 2.0) (STV 1.0 0.99))
@@ -244,6 +253,12 @@
 (: subset_is_part (Implication (SubsetOf $s $g) (PartOf $s $g)) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
 ;; partof_trans: a part of a part is a part of the whole (reads: part-whole)
 (: partof_trans (Implication (And (PartOf $x $y) (PartOf $y $z)) (PartOf $x $z)) (CTV (STV 1.0 0.9) (STV 0.0 0.0)))
+;; located_in_part: what is in a part of a place is in the place (in southern Calderwick, so in Calderwick) (reads: locative, part-whole)
+(: located_in_part (Implication (And (LocatedIn $x $p) (PartOf $p $w)) (LocatedIn $x $w)) (CTV (STV 1.0 0.9) (STV 0.0 0.0)))
+;; located_trans: being located carries up a chain of places (in Calderwick, Calderwick in Norland, so in Norland) (reads: locative)
+(: located_trans (Implication (And (LocatedIn $x $y) (LocatedIn $y $z)) (LocatedIn $x $z)) (CTV (STV 1.0 0.9) (STV 0.0 0.0)))
+;; direction_converse: a direction from a landmark read from the landmark is the opposite direction (east of the bridge, so the bridge is west of it) (reads: locative, location)
+(: direction_converse (Implication (And (DirectionFrom $x $y $d) (OppositeDirection $d $e)) (DirectionFrom $y $x $e)) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
 ;; part_located: a part is where its whole is (reads: part-whole, locative)
 (: part_located (Implication (And (PartOf $p $w) (LocatedIn $w $l)) (LocatedIn $p $l)) (CTV (STV 1.0 0.9) (STV 0.0 0.0)))
 ;; look_holds: what looks so is taken to be so (reads: evidential)

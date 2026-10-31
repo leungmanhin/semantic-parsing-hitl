@@ -1866,6 +1866,29 @@
       "out": "Proposition",
       "opaque": false,
       "gloss": "The place of a month in the year, a lexicon fact the rules use to order dates: (MonthIndex july 7)."
+    },
+    "DirectionFrom": {
+      "kind": "relation",
+      "arity": 3,
+      "arg_types": [
+        "Instance",
+        "Instance",
+        "Class"
+      ],
+      "out": "Proposition",
+      "opaque": false,
+      "gloss": "A direction from a landmark: (DirectionFrom x y east) — x lies east of y, the compass word as one lemma; read from y it is the opposite direction (direction_converse)."
+    },
+    "OppositeDirection": {
+      "kind": "lexicon",
+      "arity": 2,
+      "arg_types": [
+        "Class",
+        "Class"
+      ],
+      "out": "Proposition",
+      "opaque": false,
+      "gloss": "The opposite of a compass direction, a lexicon fact: (OppositeDirection east west)."
     }
   },
   "open_class": {
