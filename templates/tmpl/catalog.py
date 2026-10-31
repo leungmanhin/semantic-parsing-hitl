@@ -40,7 +40,7 @@ CLASSED = {"lemma", "filler", "refs"}
 CATEGORIES = {"positive", "contrast", "scoped", "optional", "abstain"}
 SLOT_KEYS = {"type", "class", "role", "required", "default", "values", "doc", "consumes", "bind", "skolemize", "attaches", "bare_content", "participant", "as_variable", "state_variable"}
 
-_PLACEHOLDER = re.compile(r"\{([a-z_]+)(?:\|(own|attachments))?\}")   # {slot}, or {slot|own} / {slot|attachments} for a refs slot
+_PLACEHOLDER = re.compile(r"\{([a-z_]+)(?:\|(own|attachments|narrowed|narrowing))?\}")   # {slot}, or {slot|own} / {slot|attachments} for a refs slot, {slot|narrowed} / {slot|narrowing} under a narrowing
 
 
 class CatalogError(Exception):
@@ -197,6 +197,21 @@ def check_template(t: dict, path: str) -> list[str]:
             problems.append(f"emits[{i}]: stv must be [strength, confidence]")
         if "declare" in e and not (isinstance(e["declare"], dict) and all(isinstance(k, str) and isinstance(v, str) for k, v in e["declare"].items())):
             problems.append(f"emits[{i}]: declare must map symbols to classes")
+        if "if_narrowed" in e and (e["if_narrowed"] not in (True, False, "defined", "opaque") or not t.get("narrowing")):
+            problems.append(f"emits[{i}]: if_narrowed must be true, defined or opaque, on a template with a narrowing")
+        if ("|narrowed}" in atom or "|narrowing}" in atom) and not t.get("narrowing"):
+            problems.append(f"emits[{i}]: a narrowed placeholder needs the template's narrowing")
+    period = t.get("period")
+    if period is not None and not (isinstance(period, dict) and all(k in slots and isinstance(v, str) for k, v in period.items())):
+        problems.append("period: a map of the template's slots to the heads that name the period they hold")
+    narrowing = t.get("narrowing")
+    if narrowing is not None:
+        if not isinstance(narrowing, dict) or set(narrowing) - {"class", "scale", "subject", "props", "within"}:
+            problems.append("narrowing: a map of class, scale, subject, props and within to slot names")
+        else:
+            for key, sname in narrowing.items():
+                if sname not in slots:
+                    problems.append(f"narrowing: {key} names unknown slot {sname}")
     for section in ("shown", "held_out"):
         for j, ex in enumerate((t.get("examples") or {}).get(section) or []):
             if ex.get("category") not in CATEGORIES:

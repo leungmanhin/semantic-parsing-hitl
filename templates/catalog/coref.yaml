@@ -33,7 +33,8 @@ trigger:
     - >-
       two different referents with the same class — a ferret and another ferret: no link
     - >-
-      a relative pronoun — the clerk who laughed: a different construction, reported as unmapped
+      a relative pronoun — the heron that ate the frog: no coreference; the noun fills the clause's
+      role directly (relative clauses)
     - >-
       an expletive or a generic pronoun — it rained, one never knows: no referent, no link
 
@@ -188,4 +189,4 @@ examples:
       expected: {abstain: true, template: activity}                   # a first mention: nothing to link
     - category: abstain
       text: "The clerk who laughed left."
-      expected: {abstain: true, gap: G00, span: "who laughed"}       # a relative pronoun
+      expected: {abstain: true, template: activity}                   # a relative pronoun: the noun fills the clause

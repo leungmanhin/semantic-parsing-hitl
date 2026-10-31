@@ -1,0 +1,110 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "d137ed295b0b05004ded01352423f5220006264f7d72004c71331d69a771b0bb",
+  "item": {
+    "id": "s8847043ecd",
+    "text": "Ferrets that bite are dangerous."
+  },
+  "usage": {
+    "input": 102440,
+    "output": 195,
+    "thinking": null,
+    "total": 102635,
+    "cached": 100391,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 102440,
+    "candidatesTokenCount": 195,
+    "totalTokenCount": 102635,
+    "cachedContentTokenCount": 100391,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 102440
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 100391
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 195
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s8847043ecd\", \"instances\": [{\"t\": \"range\", \"id\": \"q1\", \"class\": \"ferret\", \"span\": \"Ferrets\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"bite\", \"actor\": \"@q1\", \"tense\": \"present\", \"span\": \"that bite\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@q1\", \"predicate\": \"dangerous\", \"form\": \"adjective\", \"tense\": \"present\", \"span\": [\"Ferrets\", \"are dangerous\"]}, {\"t\": \"conditional-property\", \"id\": \"r1\", \"ranges\": [\"@q1\"], \"condition\": [\"@v1\"], \"over\": [\"@c1\"], \"span\": \"Ferrets that bite are dangerous\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s8847043ecd",
+    "instances": [
+      {
+        "t": "range",
+        "id": "q1",
+        "class": "ferret",
+        "span": "Ferrets"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "bite",
+        "actor": "@q1",
+        "tense": "present",
+        "span": "that bite"
+      },
+      {
+        "t": "copular",
+        "id": "c1",
+        "subject": "@q1",
+        "predicate": "dangerous",
+        "form": "adjective",
+        "tense": "present",
+        "span": [
+          "Ferrets",
+          "are dangerous"
+        ]
+      },
+      {
+        "t": "conditional-property",
+        "id": "r1",
+        "ranges": [
+          "@q1"
+        ],
+        "condition": [
+          "@v1"
+        ],
+        "over": [
+          "@c1"
+        ],
+        "span": "Ferrets that bite are dangerous"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "7480bc47d5484601118414de48311672c2b9d194dbe803d04915741093b2e7f2",
+  "manifest_id": "f38a5f28ba5c",
+  "run": 2,
+  "case": {
+    "template": "conditional-property",
+    "section": "held_out",
+    "index": 13,
+    "category": "positive",
+    "text": "Ferrets that bite are dangerous.",
+    "key": "8847043ecd"
+  }
+}

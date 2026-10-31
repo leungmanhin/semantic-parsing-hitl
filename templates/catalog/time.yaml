@@ -27,7 +27,7 @@ trigger:
     phrase naming a time by one the text stated before it (that evening, the same day, the next
     day, the following morning, the week after). The event is parsed with its own template; the
     time instance names that event and describes the time: a date or a clock time by its fields
-    (year, month, day, weekday, hour, minute), a deictic by the `deictic` word with the reference
+    (year, decade, century, month, day, weekday, hour, minute), a deictic by the `deictic` word with the reference
     time as its anchor, a measured distance by its `offset`, `unit` and `direction` from its
     anchor (the reference time for ago / from now / in n units; a stated event or time for before
     / after it and for later / earlier), an anaphoric phrase likewise from the antecedent event or
@@ -41,6 +41,7 @@ trigger:
     marked eventive, the time attaches to it, and this instance records the clause's tense.
   surface_forms:
     - "<clause> in <year / month>"                   # arrived in 2019; left in May
+    - "<clause> in the <n>0s / in the <n>th century"   # a decade by its first year (the 1880s → 1880), a century by its number
     - "<clause> on <date / weekday>"                 # baked a loaf on 3 May 2019; sold the spindle on Monday
     - "<clause> at <clock time>"                     # left at 3 pm; arrived at noon
     - "<clause> <deictic>"                           # laughed yesterday; will leave tomorrow; left last week
@@ -63,8 +64,8 @@ trigger:
     - >-
       a duration — for six hours, lasted two days: the measure template, not a time
     - >-
-      a decade, a century or an era — in the 1990s, in the 19th century: no slot yet; reported
-      as unmapped
+      an era — the Victorian era, in his generation: no slot yet; reported as unmapped (a decade
+      or a century has its slot: in the 1880s, in the 18th century)
     - >-
       an approximate time — around noon, about 3 pm: record the time, report the approximator
       as unmapped
@@ -91,6 +92,8 @@ slots:
   direction: {type: enum, values: [before, after], required: false,
             doc: "before when the time precedes its anchor (ago, earlier, before it), after when it follows (from now, in n units, later, after it) and for the same period as the anchor (that evening, the same day: offset 0)"}
   year:    {type: int, required: false, doc: "the calendar year (2019); a BCE / BC year as a negative integer (44 BC → -44)"}
+  decade:  {type: int, required: false, doc: "a decade by its first year (the 1880s → 1880); no year beside it"}
+  century: {type: int, required: false, doc: "a century by its number (the 18th century → 18; the 3rd century BCE → -3); no year beside it"}
   month:   {type: lemma, class: Class, required: false, doc: "the month name, lowercase (may)"}
   day:     {type: int, required: false, doc: "the day of the month (3)"}
   weekday: {type: lemma, class: Class, required: false, doc: "the weekday name, lowercase (monday)"}
@@ -101,11 +104,17 @@ slots:
 
 mints: {id: TimeTerm, symbol: name, constant: true, literal: time}   # a named time is its word; otherwise sk_time_n (a date, a clock time, a deictic, an offset)
 
+period: {century: Century, decade: Decade, year: Year}   # the slots that name a period (a superlative's domain: of the 18th century)
+
 emits:
   - atom: "(Time {event} @id)"
     if_filled: event
   - atom: "(Year @id {year})"
     if_filled: year
+  - atom: "(Decade @id {decade})"
+    if_filled: decade
+  - atom: "(Century @id {century})"
+    if_filled: century
   - atom: "(Month @id {month})"
     if_filled: month
   - atom: "(Day @id {day})"
@@ -177,6 +186,12 @@ emits:
   - atom: "(Member @id year)"                              # a bare year
     when: "year and not month and not day and not weekday or deictic == last_year or deictic == this_year or deictic == next_year"
     declare: {year: Class}
+  - atom: "(Member @id decade)"                            # a decade
+    if_filled: decade
+    declare: {decade: Class}
+  - atom: "(Member @id century)"                           # a century
+    if_filled: century
+    declare: {century: Class}
   - atom: "(Member @id {unit})"                            # an offset: the unit it is counted in
     if_filled: offset
   - atom: "(Past {event})"
@@ -494,3 +509,10 @@ examples:
         - {t: witness, id: x1, class: temple, definite: true}
         - {t: creation, id: e1, verb: build, product: "@x1", tense: past}
         - {t: time, id: t1, event: "@e1", year: -118}
+    - category: positive
+      note: a decade by its first year
+      text: "The mill opened in the 1950s."
+      instances:
+        - {t: witness, id: x1, class: mill, definite: true}
+        - {t: change-of-state, id: c1, verb: open, undergoer: "@x1", tense: past}
+        - {t: time, id: t1, event: "@c1", decade: 1950}

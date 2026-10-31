@@ -1,0 +1,107 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "377abc821e9e958b662ce6c8fe02dff0be06359edfa0dcd0df7e6becc7e145a2",
+  "item": {
+    "id": "sde398f109c",
+    "text": "Teodor was the first mayor of Calderwick."
+  },
+  "usage": {
+    "input": 101619,
+    "output": 234,
+    "thinking": null,
+    "total": 101853,
+    "cached": 99570,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 101619,
+    "candidatesTokenCount": 234,
+    "totalTokenCount": 101853,
+    "cachedContentTokenCount": 99570,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 101619
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 99570
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 234
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sde398f109c\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Calderwick\", \"span\": \"Calderwick\"}, {\"t\": \"stative-relation\", \"id\": \"p1\", \"relation\": \"mayor\", \"subject\": \"@n1\", \"object\": \"@n2\", \"preposition\": \"of\", \"tense\": \"past\", \"span\": \"Teodor was the first mayor of Calderwick\"}, {\"t\": \"superlative\", \"id\": \"s1\", \"subject\": \"@n1\", \"scale\": \"mayor\", \"class\": \"mayor\", \"kind\": \"ordinal\", \"rank\": 1, \"predicative\": true, \"tense\": \"past\", \"within\": [\"@p1\"], \"span\": \"Teodor was the first mayor of Calderwick\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sde398f109c",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Calderwick",
+        "span": "Calderwick"
+      },
+      {
+        "t": "stative-relation",
+        "id": "p1",
+        "relation": "mayor",
+        "subject": "@n1",
+        "object": "@n2",
+        "preposition": "of",
+        "tense": "past",
+        "span": "Teodor was the first mayor of Calderwick"
+      },
+      {
+        "t": "superlative",
+        "id": "s1",
+        "subject": "@n1",
+        "scale": "mayor",
+        "class": "mayor",
+        "kind": "ordinal",
+        "rank": 1,
+        "predicative": true,
+        "tense": "past",
+        "within": [
+          "@p1"
+        ],
+        "span": "Teodor was the first mayor of Calderwick"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "7c48d5bd0f6942976cf5c17da786c45173f2847bb917577fa46a99fc2a7b3288",
+  "manifest_id": "eb7cf7a52e2a",
+  "run": 2,
+  "case": {
+    "template": "superlative",
+    "section": "held_out",
+    "index": 24,
+    "category": "positive",
+    "text": "Teodor was the first mayor of Calderwick.",
+    "key": "de398f109c"
+  }
+}

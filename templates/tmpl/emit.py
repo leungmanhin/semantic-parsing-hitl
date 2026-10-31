@@ -41,6 +41,28 @@ and its participants' (the restrictor of a rule over the clause's events: ``(And
 arrive) (Agent $e sk_teodor_1))``), ``{slot|attachments}`` renders its attachments, skolemized
 over ``$e`` (the nuclear scope: ``(And (Time $e (sk_time $e)) (Hour (sk_time $e) 12))``).
 
+Narrowing.  A template may declare ``narrowing: {class, scale, subject, props, within}`` (slot
+names): the class an instance compares its subject within is narrowed by the description its
+noun phrase gives — the subject witness's own ``props`` and ``possessor``, the instance's
+``props``, and each instance its ``within`` list names (a locative, a postmodifier, a part-whole
+whose atom describes the subject).  The program builds the COMPARISON CLASS as a term from that
+description, the restrictions in a fixed order — ``(Narrow city (LocatedIn sk_scotland_1))``,
+``(Narrow album (And (Member studio) (Possession sk_ottoline_1)))`` — so every text that says
+the same gets the same term, a pronoun replaced by its certain antecedent.  ``{class|narrowed}``
+renders that term (the class itself when nothing narrows it, the ordering when there is no
+class), ``{scale|narrowed}`` the term when the ordering is the counted class itself,
+``{class|narrowing}`` the body over ``$y`` of the rule that defines the members (the class, then
+each restriction), and ``if_narrowed: true`` emits a shape only for a narrowed instance (once per
+text and term), ``defined`` only when the rule exists, ``opaque`` only when it cannot.  A
+relational noun's relatum in ``within`` (a state the subject bears) is ``(Relation mayor
+sk_calderwick_1)``, shown by the state itself, ``(Member $s mayor) (Bearer $s $y) (Theme $s
+sk_calderwick_1)`` — no class atom on the member, since the relation shows it; a copular relative
+clause is the property it states, ``(Member broken)``; an eventive one is ``(Event weave Patient
+(Agent sk_lamine_1))`` — its verb, the subject's role and the other participants, an indefinite as
+``(Some loom)`` — shown by ``(Member $e weave) (Patient $e $y) (Agent $e sk_lamine_1)``; a time instance
+whose template declares a ``period`` (slot -> head) is ``(Within (Century 19))``, which no atom
+of another member shows: such a class has no rule, its subject's membership is stated instead.
+
 Symbols.  A template that ``mints`` a symbol says its class and how it is named:
 ``symbol: name`` derives the symbol from the ``name`` slot (``"Ilse Varga"`` -> ``ilse_varga``,
 duplicates numbered), otherwise a witness ``sk_<stem>_<n>`` whose stem is the ``stem`` slot's value, or the
@@ -227,6 +249,7 @@ class _Emitter:
         self._names: dict[str, int] = {}
         self.head_of: dict[str, str] = {}               # attachment instance -> the instance it attaches to
         self.attachments_of: dict[str, list[str]] = {}  # head instance -> its attachments, in order
+        self.narrow: dict[str, dict] = {}               # instance -> its comparison class: {"term": …, "body": …}
 
     # ---------------------------------------------------------------- checks
     def check(self) -> list[str]:
@@ -446,8 +469,196 @@ class _Emitter:
             if h is not None:
                 self.homed_in.setdefault(h, []).append(iid)
 
+    # ---------------------------------------------------------------- narrowing
+    def compute_narrowing(self):
+        """The comparison class of every instance whose template declares a ``narrowing``: the
+        class with the restrictions the noun phrase states, as a term that is the same in every
+        text saying the same (see the module notes), and the body of the rule that defines its
+        members — None when a restriction (a period) states nothing a member's own atoms show."""
+        antecedent = {}
+        for r in self.insts:
+            if r.get("t") == "coref" and str(r.get("certainty")) == "certain" \
+                    and is_ref(r.get("mention")) and is_ref(r.get("antecedent")):
+                m, a = self.sym.get(r["mention"][1:]), self.sym.get(r["antecedent"][1:])
+                if m and a:
+                    antecedent[m] = a
+
+        def canon(v):
+            if is_ref(v):
+                if v[1:] not in self.sym:
+                    raise EmitError([f"a narrowing names {v}, which mints no symbol"])
+                v = self.sym[v[1:]]
+            return antecedent.get(v, v) if isinstance(v, str) else v
+
+        for r in self.insts:
+            spec = self.cat[r["t"]].get("narrowing")
+            if not spec:
+                continue
+            cls, subj = r.get(spec["class"]), r.get(spec["subject"])
+            if cls in (None, "") or not is_ref(subj) or subj[1:] not in self.sym:
+                continue
+            subj_sym = self.sym[subj[1:]]
+            pats, bodies, opaque, covered = [], {}, False, False
+            def restrict(pat, body):
+                pats.append(pat)
+                bodies[render(pat)] = body
+            phrase = self.by_id.get(subj[1:]) or {}
+            if phrase.get("t") == "witness":              # the subject's own phrase: its modifiers and its possessor narrow
+                for prop in phrase.get("props") or []:
+                    restrict(["Member", prop], [["Member", "$y", prop]])
+                if phrase.get("possessor") not in (None, ""):
+                    owner = canon(phrase["possessor"])
+                    restrict(["Possession", owner], [["Possession", "$y", owner]])
+            for prop in r.get(spec.get("props", ""), None) or []:
+                restrict(["Member", prop], [["Member", "$y", prop]])
+            for n_ref, ref in enumerate(r.get(spec.get("within", ""), None) or []):
+                if not is_ref(ref) or ref[1:] not in self.by_id:
+                    raise EmitError([f"{r['t']} {r['id']}: within names {ref!r}, not an instance"])
+                rid, rr = ref[1:], self.by_id[ref[1:]]
+                period = self.cat[rr["t"]].get("period")
+                if period:                                # a dated period: named by its description, shown by no atom of a member
+                    desc = next(([head, rr[slot]] for slot, head in period.items() if rr.get(slot) not in (None, "")), None)
+                    if desc is None:
+                        raise EmitError([f"{r['t']} {r['id']}: within names {ref}, a time that names no {', '.join(period)}"])
+                    restrict(["Within", desc], None)
+                    opaque = True
+                    continue
+                rel = self.relation_of(rid, subj_sym)
+                if rel:                                   # the relatum of a relational noun: a state the subject bears
+                    lemma, role, other = rel
+                    other = canon(other)
+                    state = "$s" if n_ref == 0 else f"$s{n_ref + 1}"
+                    restrict(["Relation", lemma, other], [["Member", state, lemma], ["Bearer", state, "$y"], [role, state, other]])
+                    covered = covered or str(lemma) == str(cls)
+                    continue
+                found = self.restriction_of(rid, subj_sym)
+                if found is not None:
+                    other = canon(found[1])
+                    restrict([found[0], other], [[found[0], "$y", other]])
+                    continue
+                prop = self.property_of(rid, subj_sym)
+                if prop is not None:                      # a copular relative clause: a property of the subject
+                    restrict(["Member", prop], [["Member", "$y", prop]])
+                    continue
+                event = self.event_of(rid, subj_sym, n_ref, canon)
+                if event is not None:                     # an eventive relative clause: its verb and its participants
+                    restrict(*event)
+                    continue
+                raise EmitError([f"{r['t']} {r['id']}: within names {ref}, whose atoms say nothing of the subject"])
+            if not pats:
+                continue
+            pats = [p for _k, p in sorted({render(p): p for p in pats}.items())]
+            body = None
+            if not opaque:
+                conj = [] if covered else [["Member", "$y", cls]]   # a relation of the class's own noun shows the class
+                for p in pats:
+                    conj += bodies[render(p)]
+                body = conj[0] if len(conj) == 1 else ["And", *conj]
+            self.narrow[r["id"]] = {"term": ["Narrow", cls, pats[0] if len(pats) == 1 else ["And", *pats]], "body": body}
+
+    def relation_of(self, iid: str, subj_sym: str):
+        """``(relation, role, other)`` when the instance is a state the subject bears — (Member s
+        mayor) (Bearer s subject) (Theme s other), or a second Bearer for a symmetric relation."""
+        terms = [t for t, _e in self.shapes_of(iid)]
+        flat = [t for t in terms if isinstance(t, list) and len(t) == 3]
+        state = next((t[1] for t in flat if t[0] == "Bearer" and t[2] == subj_sym), None)
+        if state is None:
+            return None
+        lemma = next((t[2] for t in flat if t[0] == "Member" and t[1] == state), None)
+        other = next(((t[0], t[2]) for t in flat if t[1] == state and (t[0] == "Theme" or (t[0] == "Bearer" and t[2] != subj_sym))), None)
+        if lemma is None or other is None:
+            return None
+        return lemma, other[0], other[1]
+
+    def property_of(self, iid: str, subj_sym: str):
+        """The property a copular instance states of the subject, (Member subject p), a tense or a
+        state around it looked through."""
+        def find(term):
+            if not isinstance(term, list):
+                return None
+            if len(term) == 3 and term[0] == "Member" and term[1] == subj_sym:
+                return term[2]
+            for x in term[1:]:
+                hit = find(x)
+                if hit is not None:
+                    return hit
+            return None
+        for term, _e in self.shapes_of(iid):
+            hit = find(term)
+            if hit is not None:
+                return hit
+        return None
+
+    def event_of(self, iid: str, subj_sym: str, n: int, canon):
+        """``(term, body)`` for a clause whose event has the subject in a role: the term
+        ``(Event verb Role (Role2 filler) …)`` — an indefinite filler as ``(Some class)``, a name
+        or a definite as its symbol — and the body over ``$y``, the event a variable, an
+        indefinite a variable of its class. Tense and aspect describe no member: they stay out."""
+        ev = self.sym.get(iid)
+        if ev is None:
+            return None
+        by_sym = {v: k for k, v in self.sym.items()}
+        flat = [t for t, _e, _o in self.rendered(iid) if isinstance(t, list) and len(t) == 3 and t[1] == ev]
+        verb = next((t[2] for t in flat if t[0] == "Member"), None)
+        role = next((t[0] for t in flat if t[0] != "Member" and t[2] == subj_sym), None)
+        if verb is None or role is None:
+            return None
+        var = "$e" if n == 0 else f"$e{n + 1}"
+        pairs, body, k = [], [["Member", var, verb], [role, var, "$y"]], 0
+        for head, _ev, filler in flat:
+            if head == "Member" or filler == subj_sym:
+                continue
+            src = self.by_id.get(by_sym.get(filler, "")) or {}
+            if src.get("t") == "witness" and not src.get("definite") and src.get("possessor") in (None, ""):
+                k += 1
+                z = f"$z{n + 1}_{k}"
+                pairs.append([head, ["Some", src["class"]]])
+                body += [[head, var, z], ["Member", z, src["class"]]]
+            else:
+                f = canon(filler)
+                pairs.append([head, f])
+                body.append([head, var, f])
+        pairs = [p for _k, p in sorted((render(p), p) for p in pairs)]
+        return ["Event", verb, role, *pairs], body
+
+    def restriction_of(self, iid: str, subj_sym: str):
+        """``(head other)`` from the first two-place atom of an instance whose first argument is
+        the subject (a tense or a state around it is looked through): (LocatedIn x place) ->
+        (LocatedIn place)."""
+        def find(term):
+            if not isinstance(term, list):
+                return None
+            if len(term) == 3 and isinstance(term[0], str) and term[1] == subj_sym and term[0] != "Member":
+                return term[0], term[2]
+            for x in term[1:]:
+                hit = find(x)
+                if hit:
+                    return hit
+            return None
+        for term, _e in self.shapes_of(iid):
+            hit = find(term)
+            if hit:
+                return hit
+        return None
+
+    def narrowed_fill(self, inst: dict, slot: str, part: str):
+        spec = self.cat[inst["t"]].get("narrowing") or {}
+        n = self.narrow.get(inst["id"])
+        if part == "narrowing":
+            return n["body"] if n else None
+        v = inst.get(slot)
+        if slot == spec.get("class"):
+            if n:
+                return n["term"]
+            return v if v not in (None, "") else inst.get(spec.get("scale"))   # no class (the first to V): the ordering's own
+        if slot == spec.get("scale") and n and str(v) == str(inst.get(spec.get("class"))):
+            return n["term"]                              # a counted ordinal: the ordering is the class
+        return v
+
     # ---------------------------------------------------------------- rendering
     def fill(self, inst: dict, slot: str, spec: dict, element=None, within: bool = False, part: str | None = None):
+        if part in ("narrowed", "narrowing"):
+            return self.narrowed_fill(inst, slot, part)
         v = element if element is not None else inst.get(slot)
         if spec["type"] == "refs":
             if within:                                   # inside a bundle: the first referenced instance's symbol, through any scope over it
@@ -540,6 +751,11 @@ class _Emitter:
                 continue
             if e.get("if_minted") and iid not in self.sym:   # the state of an anchored predication: only when minted
                 continue
+            if e.get("if_narrowed"):                     # a comparison class: true when narrowed; defined / opaque: its rule, or none
+                n = self.narrow.get(iid)
+                if n is None or (e["if_narrowed"] == "defined" and n["body"] is None) \
+                        or (e["if_narrowed"] == "opaque" and n["body"] is not None):
+                    continue
             if "if_filled" in e and r.get(e["if_filled"]) in (None, [], ""):
                 continue
             if "when" in e and not holds(e["when"], r, t.get("lexicon")):
@@ -806,6 +1022,8 @@ class _Emitter:
                 if v is None or spec["type"] not in ("filler", "lemma", "list"):
                     continue
                 cls = spec.get("class")
+                if cls == "String":                         # words as written (an alias): quoted strings, not symbols
+                    continue
                 for x in (v if isinstance(v, list) else [v]):
                     if is_ref(x) or isinstance(x, (int, float)) or not cls:
                         continue
@@ -866,14 +1084,20 @@ class _Emitter:
             raise EmitError(problems)
         self.assign_symbols()
         self.compute_homes()
+        self.compute_narrowing()
         for r in self.insts:
             iid = r["id"]
             if iid in self.scope_of or self.home.get(iid) is not None or iid in self.head_of:
                 continue                                    # rendered inside a scope, or with its head
             for term, e, owner in self.rendered(iid):
                 self.add(term, self.by_id[owner]["t"], owner, e.get("stv"))
+        defined = set()
         for r in self.insts:                                    # presuppositions: top level, any scope
             for term, e in self.shapes_of(r["id"], projecting=True):
+                if e.get("if_narrowed"):                        # one definition per comparison class and text
+                    if render(term) in defined:
+                        continue
+                    defined.add(render(term))
                 self.add(term, r["t"], r["id"], e.get("stv"))
         fired: dict[str, int] = {}
         for r in self.insts:

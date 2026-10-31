@@ -250,3 +250,11 @@ examples:
       instances:
         - {t: witness, id: x1, class: audit, definite: true, eventive: true}
         - {t: change-of-state, id: e1, verb: continue, undergoer: "@x1", tense: past}
+    - category: positive
+      note: whose — the noun the possessor of what follows
+      text: "The man whose ladder broke left."
+      instances:
+        - {t: witness, id: x1, class: man, definite: true}
+        - {t: witness, id: x2, class: ladder, possessor: "@x1"}
+        - {t: change-of-state, id: c1, verb: break, undergoer: "@x2", tense: past}
+        - {t: motion, id: m1, verb: leave, mover: "@x1", tense: past}

@@ -243,3 +243,11 @@ examples:
     - category: abstain
       text: "Lamine made Yusra send the quilt."
       expected: {abstain: true, template: causative}                  # a causative over a clause
+    - category: positive
+      note: an -ed participle after a noun — the noun the product, the by-phrase the creator, no tense of its own
+      text: "The quilt woven by Ottoline was sold."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: witness, id: x1, class: quilt, definite: true}
+        - {t: creation, id: e1, verb: weave, creator: "@n1", product: "@x1", tense: present}
+        - {t: transfer, id: e2, verb: sell, object: "@x1", tense: past}

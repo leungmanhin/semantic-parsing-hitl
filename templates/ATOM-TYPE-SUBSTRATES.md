@@ -2,7 +2,7 @@
 
 Generated from `templates/atom-type-substrates.json` (schema `atom-type-substrates/1`) by `templates/tmpl/gen_substrate.py`, together with `templates/generated/atom-types.metta`. Do not edit by hand; regenerate with `cd templates && python -m tmpl.gen_substrate`.
 
-157 heads in 14 kinds (7 proposed; 157 with a reviewed type declaration so far). `type-def` is the PeTTa declaration emitted for the head; `?` as the output type means the head is not yet reviewed and is absent from the `.metta` file; `%Undefined%` marks a position the head takes but the JSON does not type.
+160 heads in 14 kinds (7 proposed; 160 with a reviewed type declaration so far). `type-def` is the PeTTa declaration emitted for the head; `?` as the output type means the head is not yet reviewed and is absent from the `.metta` file; `%Undefined%` marks a position the head takes but the JSON does not type.
 
 Every atom is carried as a statement (: <proof-name> <atom> <tv>), tv = (STV strength confidence) or another engine truth value. The carrier is not an atom kind: ':' is never type-declared (it is also PeTTa's type-declaration head) and the truth value is declared by the engine, not by this substrate.
 
@@ -10,7 +10,7 @@ Types: Atom, Class, Context, Distribution, Entity, Event, Instance, Level, Numbe
 
 Declared type list (PeTTa convention, capitalized): Atom = unchecked position; Proposition = a statement-forming expression; Instance with sub-types Entity and Event (a symbol carries both its sub-type and Instance); Class; Number; String. Migration mapping from the ad-hoc names: term, assertion -> Proposition; property, verb-lemma, unit -> Class; symbol, reading-tag -> String; var, uncertain -> Atom. A union such as Event|Proposition expands to one declaration per alternative. `out` = the output type of the head's type declaration, set as each kind is reviewed. Proposed types Statement (a statement id = the proof name, reified) and Context (a scope reified), both sub-types of Instance by dual declaration; they belong to the flat context VIEW of scope unless that form becomes canonical. TimeTerm = a reified time instant or period (not named Time: that is the role head) (sub-type of Instance by dual declaration; time predicates Day / Hour / Month / … describe it). Distribution = an engine value (ParticleFromNormal …) allowed where an approximate number is. Level = a degree / proportion level: a symbol from a closed label set (very, excessive, most, half — declared Level by the emitter) or a term standing in for one ((forKind class), (Fraction n d)).
 
-## core-link (10)
+## core-link (11)
 
 head: And
 kind: core-link
@@ -62,6 +62,13 @@ kind: core-link
 arity: 2
 type-def: (: Member (-> Instance Class Proposition))
 gloss: An individual belongs to a class or holds a property.
+
+
+head: Narrow
+kind: core-link
+arity: 2
+type-def: (: Narrow (-> Class Atom Class))
+gloss: A comparison class: the class as a noun phrase narrows it — (Narrow city (LocatedIn sk_scotland_1)), the cities located in Scotland; (Narrow album (And (Member studio) (Possession sk_ottoline_1))). Each restriction is an atom with its member left out, several in an And in a fixed order; a relational noun's relatum is (Relation mayor sk_calderwick_1), a dated period (Within (Century 18)). Built by the program from the parse, so every text that says the same gets the same term; a rule beside the superlative defines its members.
 
 
 head: Or
@@ -410,7 +417,7 @@ type-def: (: Still (-> Event Proposition))  ; and 1 more (per arity / per union 
 gloss: Continuative: the eventuality still holds (positive counterpart of cessation).
 
 
-## temporal (24)
+## temporal (26)
 
 head: Before
 kind: temporal
@@ -426,12 +433,26 @@ type-def: (: BeforeBy (-> Event Event Number Class Proposition))  ; and 3 more (
 gloss: Measured temporal gap: the first eventuality or time instance precedes the second (an eventuality, or a time instance such as the text's reference time now) by n units; 0 units = the same period (today = 0 day before now).
 
 
+head: Century
+kind: temporal
+arity: 2
+type-def: (: Century (-> TimeTerm Number Proposition))
+gloss: The century of a time instance, by its number: (Century t 18) for the 18th century, a BCE century negative.
+
+
 head: Day
 kind: temporal
 arity: 2
 type-def: (: Day (-> TimeTerm Number Proposition))
 legacy: (: Day (-> Number TimeTerm))  ; kept until the re-parse
 gloss: Day-of-month of a time instance: (Day t 6). Legacy constructor form (Day 6) kept until the re-parse.
+
+
+head: Decade
+kind: temporal
+arity: 2
+type-def: (: Decade (-> TimeTerm Number Proposition))
+gloss: The decade of a time instance, by its first year: (Decade t 1880) for the 1880s.
 
 
 head: Duration
@@ -820,9 +841,9 @@ gloss: Superlative: X is the most ADJ member of a class. Order: (Most scale X cl
 
 head: Ordinal
 kind: measure
-arity: 3
-type-def: (: Ordinal (-> Instance Number Class Proposition))  ; and 1 more (per arity / per union alternative)
-gloss: The entity's rank on an ordering: (Ordinal entity rank ordering), the rank a number or the symbol last; the ordering an adjective's scale (the third tallest → tall), a verb lemma (the first to respond → respond) or the counted class itself (the third ferret → ferret).
+arity: 4
+type-def: (: Ordinal (-> Instance Number Class Class Proposition))  ; and 1 more (per arity / per union alternative)
+gloss: The entity's rank on an ordering within a class: (Ordinal entity rank ordering class), the rank a number or the symbol last; the ordering an adjective's scale (the third tallest weaver → tall, weaver), a verb lemma (the first to respond → respond, respond: those who did) or the counted class itself (the third ferret → ferret, ferret); the class may be a comparison class (Narrow …). The rule rank_orders compares two ranks on one scale in one class.
 
 
 head: SameDegree

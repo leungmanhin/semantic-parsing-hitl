@@ -1,0 +1,99 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "17988e2384446b5748f6fd64f767f41677e3121f04fb0a31fed6f89cb979fae5",
+  "item": {
+    "id": "sbce6ff5092",
+    "text": "Teodor was the first glazier who sang."
+  },
+  "usage": {
+    "input": 102501,
+    "output": 179,
+    "thinking": null,
+    "total": 102680,
+    "cached": 100452,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 102501,
+    "candidatesTokenCount": 179,
+    "totalTokenCount": 102680,
+    "cachedContentTokenCount": 100452,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 102501
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 100452
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 179
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sbce6ff5092\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"sing\", \"actor\": \"@n1\", \"tense\": \"past\", \"span\": \"who sang\"}, {\"t\": \"superlative\", \"id\": \"s1\", \"subject\": \"@n1\", \"scale\": \"glazier\", \"class\": \"glazier\", \"kind\": \"ordinal\", \"rank\": 1, \"predicative\": true, \"tense\": \"past\", \"within\": [\"@e1\"], \"span\": \"Teodor was the first glazier who sang\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sbce6ff5092",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "sing",
+        "actor": "@n1",
+        "tense": "past",
+        "span": "who sang"
+      },
+      {
+        "t": "superlative",
+        "id": "s1",
+        "subject": "@n1",
+        "scale": "glazier",
+        "class": "glazier",
+        "kind": "ordinal",
+        "rank": 1,
+        "predicative": true,
+        "tense": "past",
+        "within": [
+          "@e1"
+        ],
+        "span": "Teodor was the first glazier who sang"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "f15d8502e132fd8980ce7f15c9fb5840544fdde7404efbd00d750eabb5dfd958",
+  "manifest_id": "3c0014732900",
+  "run": 2,
+  "case": {
+    "template": "superlative",
+    "section": "held_out",
+    "index": 28,
+    "category": "positive",
+    "text": "Teodor was the first glazier who sang.",
+    "key": "bce6ff5092"
+  }
+}

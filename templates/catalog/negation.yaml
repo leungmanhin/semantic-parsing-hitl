@@ -63,3 +63,12 @@ examples:
         - {t: witness, id: x1, class: gate, definite: true}
         - {t: change-of-state, id: c1, verb: open, undergoer: "@x1", tense: past}
         - {t: negation, id: s1, over: ["@c1"]}
+    - category: positive
+      note: a relative clause on an indefinite under the negation — listed under the same scope
+      text: "Teodor did not meet a weaver who sang."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, class: weaver}
+        - {t: activity, id: v1, verb: meet, actor: "@n1", patient: "@x1", tense: past}
+        - {t: activity, id: v2, verb: sing, actor: "@x1", tense: past}
+        - {t: negation, id: s1, over: ["@v1", "@v2"]}

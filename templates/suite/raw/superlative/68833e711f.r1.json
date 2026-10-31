@@ -1,0 +1,112 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "377abc821e9e958b662ce6c8fe02dff0be06359edfa0dcd0df7e6becc7e145a2",
+  "item": {
+    "id": "s68833e711f",
+    "text": "Lamine's second wife sang."
+  },
+  "usage": {
+    "input": 101618,
+    "output": 253,
+    "thinking": null,
+    "total": 101871,
+    "cached": 99513,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 101618,
+    "candidatesTokenCount": 253,
+    "totalTokenCount": 101871,
+    "cachedContentTokenCount": 99513,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 101618
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 99513
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 253
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s68833e711f\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"wife\", \"span\": \"Lamine's second wife\"}, {\"t\": \"stative-relation\", \"id\": \"p1\", \"relation\": \"wife\", \"subject\": \"@x1\", \"object\": \"@n1\", \"tense\": \"present\", \"span\": \"Lamine's second wife\"}, {\"t\": \"superlative\", \"id\": \"s1\", \"subject\": \"@x1\", \"scale\": \"wife\", \"class\": \"wife\", \"kind\": \"ordinal\", \"rank\": 2, \"within\": [\"@p1\"], \"span\": \"Lamine's second wife\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"sing\", \"actor\": \"@x1\", \"tense\": \"past\", \"span\": \"Lamine's second wife sang\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s68833e711f",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "wife",
+        "span": "Lamine's second wife"
+      },
+      {
+        "t": "stative-relation",
+        "id": "p1",
+        "relation": "wife",
+        "subject": "@x1",
+        "object": "@n1",
+        "tense": "present",
+        "span": "Lamine's second wife"
+      },
+      {
+        "t": "superlative",
+        "id": "s1",
+        "subject": "@x1",
+        "scale": "wife",
+        "class": "wife",
+        "kind": "ordinal",
+        "rank": 2,
+        "within": [
+          "@p1"
+        ],
+        "span": "Lamine's second wife"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "sing",
+        "actor": "@x1",
+        "tense": "past",
+        "span": "Lamine's second wife sang"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "7c48d5bd0f6942976cf5c17da786c45173f2847bb917577fa46a99fc2a7b3288",
+  "manifest_id": "eb7cf7a52e2a",
+  "run": 1,
+  "case": {
+    "template": "superlative",
+    "section": "held_out",
+    "index": 25,
+    "category": "positive",
+    "text": "Lamine's second wife sang.",
+    "key": "68833e711f"
+  }
+}

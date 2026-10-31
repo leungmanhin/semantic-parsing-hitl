@@ -1,0 +1,108 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "ab1d66d33186390f3360a1804bcf0c047773b5bffeb60dcea9549c75608a59bd",
+  "item": {
+    "id": "se396c7d20c",
+    "text": "Teodor did not meet a weaver who sang."
+  },
+  "usage": {
+    "input": 102388,
+    "output": 210,
+    "thinking": null,
+    "total": 102598,
+    "cached": 100339,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 102388,
+    "candidatesTokenCount": 210,
+    "totalTokenCount": 102598,
+    "cachedContentTokenCount": 100339,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 102388
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 100339
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 210
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"se396c7d20c\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"weaver\", \"span\": \"a weaver\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"meet\", \"actor\": \"@n1\", \"patient\": \"@x1\", \"tense\": \"past\", \"span\": \"Teodor did not meet a weaver\"}, {\"t\": \"activity\", \"id\": \"v2\", \"verb\": \"sing\", \"actor\": \"@x1\", \"tense\": \"past\", \"span\": \"who sang\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@v1\", \"@v2\"], \"span\": \"did not\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "se396c7d20c",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "weaver",
+        "span": "a weaver"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "meet",
+        "actor": "@n1",
+        "patient": "@x1",
+        "tense": "past",
+        "span": "Teodor did not meet a weaver"
+      },
+      {
+        "t": "activity",
+        "id": "v2",
+        "verb": "sing",
+        "actor": "@x1",
+        "tense": "past",
+        "span": "who sang"
+      },
+      {
+        "t": "negation",
+        "id": "s1",
+        "over": [
+          "@v1",
+          "@v2"
+        ],
+        "span": "did not"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "23715ceda6cf1a9f26da7ddc19072c26ac7ae20b8da2685c250a62434a182d4a",
+  "manifest_id": "c796e2cfa0b5",
+  "run": 2,
+  "case": {
+    "template": "negation",
+    "section": "held_out",
+    "index": 2,
+    "category": "positive",
+    "text": "Teodor did not meet a weaver who sang.",
+    "key": "e396c7d20c"
+  }
+}

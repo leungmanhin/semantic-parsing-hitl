@@ -1,0 +1,119 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "6b3a1bd11ae69ca1d9c3bcc91659eeed55f094bc7121f4c0a669a809bf25fa25",
+  "item": {
+    "id": "sb7ab28ed58",
+    "text": "Yusra sang the first song by Lamine."
+  },
+  "usage": {
+    "input": 101359,
+    "output": 278,
+    "thinking": null,
+    "total": 101637,
+    "cached": 99255,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 101359,
+    "candidatesTokenCount": 278,
+    "totalTokenCount": 101637,
+    "cachedContentTokenCount": 99255,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 101359
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 99255
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 278
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sb7ab28ed58\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"song\", \"definite\": true, \"span\": \"the first song\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"postmodifier\", \"id\": \"a1\", \"noun\": \"@x1\", \"head\": \"By\", \"object\": \"@n2\", \"span\": \"by Lamine\"}, {\"t\": \"superlative\", \"id\": \"d1\", \"subject\": \"@x1\", \"scale\": \"song\", \"class\": \"song\", \"kind\": \"ordinal\", \"rank\": 1, \"within\": [\"@a1\"], \"span\": \"the first song by Lamine\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"sing\", \"actor\": \"@n1\", \"patient\": \"@x1\", \"tense\": \"past\", \"span\": \"Yusra sang the first song\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sb7ab28ed58",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "song",
+        "definite": true,
+        "span": "the first song"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "postmodifier",
+        "id": "a1",
+        "noun": "@x1",
+        "head": "By",
+        "object": "@n2",
+        "span": "by Lamine"
+      },
+      {
+        "t": "superlative",
+        "id": "d1",
+        "subject": "@x1",
+        "scale": "song",
+        "class": "song",
+        "kind": "ordinal",
+        "rank": 1,
+        "within": [
+          "@a1"
+        ],
+        "span": "the first song by Lamine"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "sing",
+        "actor": "@n1",
+        "patient": "@x1",
+        "tense": "past",
+        "span": "Yusra sang the first song"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "a1ea4d28fb27966431c0bbab6fce9bab036fcf04dd75e1d39b1e08788d19393d",
+  "manifest_id": "45202fb17741",
+  "run": 1,
+  "case": {
+    "template": "superlative",
+    "section": "held_out",
+    "index": 18,
+    "category": "positive",
+    "text": "Yusra sang the first song by Lamine.",
+    "key": "b7ab28ed58"
+  }
+}

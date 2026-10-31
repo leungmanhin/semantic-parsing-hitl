@@ -1,0 +1,90 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "6b3a1bd11ae69ca1d9c3bcc91659eeed55f094bc7121f4c0a669a809bf25fa25",
+  "item": {
+    "id": "sf3be643fde",
+    "text": "Lamine is the oldest left-handed glazier."
+  },
+  "usage": {
+    "input": 101359,
+    "output": 133,
+    "thinking": null,
+    "total": 101492,
+    "cached": 99310,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 101359,
+    "candidatesTokenCount": 133,
+    "totalTokenCount": 101492,
+    "cachedContentTokenCount": 99310,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 101359
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 99310
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 133
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sf3be643fde\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"superlative\", \"id\": \"s1\", \"subject\": \"@n1\", \"scale\": \"old\", \"class\": \"glazier\", \"kind\": \"most\", \"predicative\": true, \"tense\": \"present\", \"props\": [\"left_handed\"], \"span\": \"Lamine is the oldest left-handed glazier\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sf3be643fde",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "superlative",
+        "id": "s1",
+        "subject": "@n1",
+        "scale": "old",
+        "class": "glazier",
+        "kind": "most",
+        "predicative": true,
+        "tense": "present",
+        "props": [
+          "left_handed"
+        ],
+        "span": "Lamine is the oldest left-handed glazier"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "a1ea4d28fb27966431c0bbab6fce9bab036fcf04dd75e1d39b1e08788d19393d",
+  "manifest_id": "45202fb17741",
+  "run": 1,
+  "case": {
+    "template": "superlative",
+    "section": "held_out",
+    "index": 21,
+    "category": "positive",
+    "text": "Lamine is the oldest left-handed glazier.",
+    "key": "f3be643fde"
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "ab1d66d33186390f3360a1804bcf0c047773b5bffeb60dcea9549c75608a59bd",
+  "item": {
+    "id": "s48cfa84b8a",
+    "text": "Hoping to win, Lamine trained."
+  },
+  "usage": {
+    "input": 102385,
+    "output": 288,
+    "thinking": null,
+    "total": 102673,
+    "cached": 100336,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 102385,
+    "candidatesTokenCount": 288,
+    "totalTokenCount": 102673,
+    "cachedContentTokenCount": 100336,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 102385
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 100336
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 288
+      }
+    ]
+  },
+  "raw_text": "{\n  \"id\": \"s48cfa84b8a\",\n  \"instances\": [\n    {\n      \"t\": \"named-entity\",\n      \"id\": \"n1\",\n      \"name\": \"Lamine\",\n      \"span\": \"Lamine\"\n    },\n    {\n      \"t\": \"activity\",\n      \"id\": \"e1\",\n      \"verb\": \"win\",\n      \"actor\": \"@n1\",\n      \"tense\": \"present\",\n      \"span\": \"to win\"\n    },\n    {\n      \"t\": \"attitude\",\n      \"id\": \"e2\",\n      \"verb\": \"hope\",\n      \"holder\": \"@n1\",\n      \"content\": [\n        \"@e1\"\n      ],\n      \"factive\": false,\n      \"tense\": \"present\",\n      \"span\": \"Hoping to win\"\n    },\n    {\n      \"t\": \"activity\",\n      \"id\": \"e3\",\n      \"verb\": \"train\",\n      \"actor\": \"@n1\",\n      \"tense\": \"past\",\n      \"span\": \"Lamine trained\"\n    }\n  ],\n  \"unmapped\": [],\n  \"issues\": []\n}",
+  "response": {
+    "id": "s48cfa84b8a",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "win",
+        "actor": "@n1",
+        "tense": "present",
+        "span": "to win"
+      },
+      {
+        "t": "attitude",
+        "id": "e2",
+        "verb": "hope",
+        "holder": "@n1",
+        "content": [
+          "@e1"
+        ],
+        "factive": false,
+        "tense": "present",
+        "span": "Hoping to win"
+      },
+      {
+        "t": "activity",
+        "id": "e3",
+        "verb": "train",
+        "actor": "@n1",
+        "tense": "past",
+        "span": "Lamine trained"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "23715ceda6cf1a9f26da7ddc19072c26ac7ae20b8da2685c250a62434a182d4a",
+  "manifest_id": "c796e2cfa0b5",
+  "run": 3,
+  "case": {
+    "template": "attitude",
+    "section": "held_out",
+    "index": 24,
+    "category": "positive",
+    "text": "Hoping to win, Lamine trained.",
+    "key": "48cfa84b8a"
+  }
+}

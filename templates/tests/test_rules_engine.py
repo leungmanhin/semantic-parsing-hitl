@@ -305,6 +305,65 @@ class SeededRulesOnTheEngine(unittest.TestCase):
         self.assertTrue(self.query(he, "(And (Member $s son) (Bearer $s sk_bram_1) (Theme $s sk_yusra_1))"))   # a pronoun's Bearer reaches its antecedent (coref_bearer)
 
 
+    def test_a_comparison_class_compares_within_it_across_texts(self):
+        """A superlative or a rank over a comparison class — the term the program builds from the
+        noun phrase, (Narrow city (LocatedIn sk_scotland_1)) — compares only the members its
+        defining rule admits from their own atoms; two texts saying the same give the same term
+        and rule, so their ranks compare (rank_orders); the top is first (most_rank_one); a
+        counted ordinal compares nothing."""
+        cls = "(Narrow city (LocatedIn sk_scotland_1))"
+        rule = f"(Implication (And (Member $y city) (LocatedIn $y sk_scotland_1)) (Member $y {cls}))"
+        h = self.space([f"(: t1_class {rule} (STV 1.0 0.99))", f"(: t2_class {rule} (STV 1.0 0.99))",
+                        f"(: s0 (Most large sk_glasgow_1 {cls}) (STV 1.0 0.99))",
+                        f"(: s1 (Ordinal sk_x_1 2 large {cls}) (STV 1.0 0.99))", f"(: s2 (Ordinal sk_y_1 3 large {cls}) (STV 1.0 0.99))",
+                        "(: k1 (Member sk_aberdeen_1 city) (STV 1.0 0.99))", "(: k2 (LocatedIn sk_aberdeen_1 sk_scotland_1) (STV 1.0 0.99))",
+                        "(: k3 (Member sk_london_1 city) (STV 1.0 0.99))", "(: k4 (LocatedIn sk_london_1 sk_england_1) (STV 1.0 0.99))"])
+        s, c = tv(self.query(h, "(More large sk_glasgow_1 sk_aberdeen_1)", steps=1500))
+        self.assertAlmostEqual(s, 1.0, places=2)
+        self.assertGreater(c, 0.9)
+        self.assertFalse(self.query(h, "(More large sk_glasgow_1 sk_london_1)", steps=1500))        # outside the class: no comparison
+        s, c = tv(self.query(h, "(More large sk_x_1 sk_y_1)", steps=1500))                          # ranks from two texts
+        self.assertAlmostEqual(s, 1.0, places=2)
+        self.assertTrue(self.query(h, f"(Ordinal sk_glasgow_1 1 large {cls})"))                    # the top is first
+        counted = self.space(["(: s1 (Ordinal sk_a_1 2 album album) (STV 1.0 0.99))", "(: s2 (Ordinal sk_b_1 3 album album) (STV 1.0 0.99))"])
+        self.assertFalse(self.query(counted, "(More album sk_a_1 sk_b_1)"))                       # a counted ordinal compares nothing
+
+    def test_a_relational_or_a_period_comparison_class(self):
+        """A relational comparison class admits a member through its relation state alone (a
+        mayor known only as "the mayor of Calderwick"), not a mayor of another town; a period
+        class has no rule, and two texts' stated members compare through most_exceeds."""
+        rel = "(Narrow mayor (Relation mayor sk_calderwick_1))"
+        rule = f"(Implication (And (Member $s mayor) (Bearer $s $y) (Theme $s sk_calderwick_1)) (Member $y {rel}))"
+        h = self.space([f"(: d1 {rule} (STV 1.0 0.99))",
+                        "(: a1 (Member sk_mayor_7 mayor) (STV 1.0 0.99))", "(: a2 (Bearer sk_mayor_7 sk_ines_1) (STV 1.0 0.99))",
+                        "(: a3 (Theme sk_mayor_7 sk_calderwick_1) (STV 1.0 0.99))",
+                        "(: b1 (Member sk_mayor_8 mayor) (STV 1.0 0.99))", "(: b2 (Bearer sk_mayor_8 sk_bob_1) (STV 1.0 0.99))",
+                        "(: b3 (Theme sk_mayor_8 sk_aldmoor_1) (STV 1.0 0.99))"])
+        self.assertTrue(self.query(h, f"(Member sk_ines_1 {rel})", steps=1500))      # through the relation state
+        self.assertFalse(self.query(h, f"(Member sk_bob_1 {rel})", steps=1500))      # another town's mayor: not a member
+        per = "(Narrow glazier (Within (Century 17)))"
+        p = self.space([f"(: s1 (Most fine sk_lamine_1 {per}) (STV 1.0 0.99))", f"(: m1 (Member sk_lamine_1 {per}) (STV 1.0 0.99))",
+                        f"(: s2 (Ordinal sk_teodor_1 2 fine {per}) (STV 1.0 0.99))", f"(: m2 (Member sk_teodor_1 {per}) (STV 1.0 0.99))"])
+        s, c = tv(self.query(p, "(More fine sk_lamine_1 sk_teodor_1)", steps=1500))   # two texts' stated members compare
+        self.assertAlmostEqual(s, 1.0, places=2)
+
+    def test_a_relative_clause_comparison_class(self):
+        """A comparison class narrowed by a relative clause with an indefinite admits a member whose
+        own atoms say the same — any event of the verb, the subject in its role, a filler of the
+        class — and no member whose filler is of another class."""
+        cls = "(Narrow weaver (Event own Holder (Theme (Some loom))))"
+        rule = (f"(Implication (And (Member $y weaver) (Member $e own) (Holder $e $y) (Theme $e $z1_1) (Member $z1_1 loom)) "
+                f"(Member $y {cls}))")
+        h = self.space([f"(: d1 {rule} (STV 1.0 0.99))",
+                        "(: a1 (Member sk_ines_1 weaver) (STV 1.0 0.99))", "(: a2 (Member sk_own_4 own) (STV 1.0 0.99))",
+                        "(: a3 (Holder sk_own_4 sk_ines_1) (STV 1.0 0.99))", "(: a4 (Theme sk_own_4 sk_loom_9) (STV 1.0 0.99))",
+                        "(: a5 (Member sk_loom_9 loom) (STV 1.0 0.99))",
+                        "(: b1 (Member sk_bram_1 weaver) (STV 1.0 0.99))", "(: b2 (Member sk_own_5 own) (STV 1.0 0.99))",
+                        "(: b3 (Holder sk_own_5 sk_bram_1) (STV 1.0 0.99))", "(: b4 (Theme sk_own_5 sk_lamp_2) (STV 1.0 0.99))",
+                        "(: b5 (Member sk_lamp_2 lamp) (STV 1.0 0.99))"])
+        self.assertTrue(self.query(h, f"(Member sk_ines_1 {cls})", steps=1500))     # owns a loom: a member
+        self.assertFalse(self.query(h, f"(Member sk_bram_1 {cls})", steps=1500))    # owns a lamp: not
+
     def test_a_part_of_a_part_and_a_part_is_where_its_whole_is(self):
         """partof_trans carries parthood up the chain; part_located places a part where its
         whole is; a group's member is a part of what the group is a part of (the distribution

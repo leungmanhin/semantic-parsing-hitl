@@ -1,0 +1,91 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "6b3a1bd11ae69ca1d9c3bcc91659eeed55f094bc7121f4c0a669a809bf25fa25",
+  "item": {
+    "id": "sb2e115990d",
+    "text": "Teodor was the finest glazier of his era."
+  },
+  "usage": {
+    "input": 101362,
+    "output": 151,
+    "thinking": null,
+    "total": 101513,
+    "cached": 99313,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 101362,
+    "candidatesTokenCount": 151,
+    "totalTokenCount": 101513,
+    "cachedContentTokenCount": 99313,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 101362
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 99313
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 151
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sb2e115990d\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@n1\", \"predicate\": \"glazier\", \"form\": \"noun\", \"tense\": \"past\", \"span\": \"Teodor was the finest glazier of his era\"}], \"unmapped\": [{\"span\": \"the finest glazier of his era\", \"code\": \"G00\", \"construction\": \"A superlative restricted to a period or era domain.\"}], \"issues\": []}",
+  "response": {
+    "id": "sb2e115990d",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "copular",
+        "id": "c1",
+        "subject": "@n1",
+        "predicate": "glazier",
+        "form": "noun",
+        "tense": "past",
+        "span": "Teodor was the finest glazier of his era"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "the finest glazier of his era",
+        "code": "G00",
+        "construction": "A superlative restricted to a period or era domain."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "a1ea4d28fb27966431c0bbab6fce9bab036fcf04dd75e1d39b1e08788d19393d",
+  "manifest_id": "45202fb17741",
+  "run": 2,
+  "case": {
+    "template": "superlative",
+    "section": "held_out",
+    "index": 23,
+    "category": "abstain",
+    "text": "Teodor was the finest glazier of his era.",
+    "key": "b2e115990d"
+  }
+}

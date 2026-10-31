@@ -397,6 +397,26 @@ rules:
     truth: {strength: 1.0, confidence: 0.99}
     semantics: deductive
     reads: [superlative, comparative]
+  - id: rank_orders
+    meaning: of two ranks on one scale in one class, the lower is the greater (the second largest exceeds the third)
+    premises: ["(Ordinal $a $m $s $c)", "(Ordinal $b $n $s $c)"]
+    computations: [{result: true, op: "<", args: ["$m", "$n"]}, {result: true, op: "!=", args: ["$s", "$c"]}]
+    conclusion: "(More $s $a $b)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [superlative, comparative]
+    notes: >-
+      Only an ordering on a scale compares: a counted ordinal (the third ferret, her second novel) and the
+      first to V have the class as their ordering, and the guard keeps them out. Two texts that rank in
+      the same comparison class compare — "the second largest town in the valley" and "the third largest
+      town in the valley" give the same term.
+  - id: most_rank_one
+    meaning: the most ADJ member of a class is first on that scale in that class
+    premises: ["(Most $s $x $c)"]
+    conclusion: "(Ordinal $x 1 $s $c)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [superlative]
   - id: most_bounds
     meaning: no member of a class exceeds its most ADJ member on the scale
     premises: ["(Most $s $x $c)", "(Member $y $c)"]

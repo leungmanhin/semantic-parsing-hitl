@@ -250,3 +250,36 @@ examples:
       instances:
         - {t: named-entity, id: n1, name: "Ottoline"}
         - {t: activity, id: v1, verb: sing, actor: "@n1", tense: past, aspect: going_to}
+    - category: positive
+      note: a relative clause with a subject gap — the noun is the clause's actor, both clauses asserted
+      text: "The ferret that bit Lamine slept."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: x1, class: ferret, definite: true}
+        - {t: activity, id: v1, verb: bite, actor: "@x1", patient: "@n1", tense: past}
+        - {t: activity, id: v2, verb: sleep, actor: "@x1", tense: past}
+    - category: positive
+      note: a relative clause between commas on a name — asserted like any clause
+      text: "Lamine, who sang at the fair, left."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: x1, class: fair, definite: true}
+        - {t: activity, id: v1, verb: sing, actor: "@n1", tense: past}
+        - {t: location, id: l1, event: "@v1", place: "@x1", head: Location, preposition: at}
+        - {t: motion, id: m1, verb: leave, mover: "@n1", tense: past}
+    - category: positive
+      note: an -ing participle after a noun — the noun its actor, no tense of its own
+      text: "The weaver singing in the hall laughed."
+      instances:
+        - {t: witness, id: x1, class: weaver, definite: true}
+        - {t: witness, id: x2, class: hall, definite: true}
+        - {t: activity, id: v1, verb: sing, actor: "@x1", tense: present}
+        - {t: location, id: l1, event: "@v1", place: "@x2", head: Location, preposition: in}
+        - {t: activity, id: v2, verb: laugh, actor: "@x1", tense: past}
+    - category: positive
+      note: a relative pronoun is no mention — the noun fills the clause's role directly
+      text: "The clerk who laughed left."
+      instances:
+        - {t: witness, id: x1, class: clerk, definite: true}
+        - {t: activity, id: v1, verb: laugh, actor: "@x1", tense: past}
+        - {t: motion, id: m1, verb: leave, mover: "@x1", tense: past}

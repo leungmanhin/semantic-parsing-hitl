@@ -246,3 +246,13 @@ examples:
         - {t: witness, id: x1, class: mill, definite: true}
         - {t: degree, id: d1, bearer: "@n1", scale: busy, level: very, tense: past}
         - {t: location, id: l1, event: "@d1", place: "@x1", head: Location, preposition: in}
+    - category: positive
+      note: where — the noun the place of the relative clause's event, the word as its preposition
+      text: "Teodor visited the town where Yusra sang."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: named-entity, id: n2, name: "Yusra"}
+        - {t: witness, id: x1, class: town, definite: true}
+        - {t: activity, id: v1, verb: visit, actor: "@n1", patient: "@x1", tense: past}
+        - {t: activity, id: v2, verb: sing, actor: "@n2", tense: past}
+        - {t: location, id: l1, event: "@v2", place: "@x1", head: Location, preposition: where}

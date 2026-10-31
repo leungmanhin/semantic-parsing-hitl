@@ -349,6 +349,17 @@
         "(: Day (-> Number TimeTerm))"
       ]
     },
+    "Decade": {
+      "kind": "temporal",
+      "arity": 2,
+      "arg_types": [
+        "TimeTerm",
+        "Number"
+      ],
+      "out": "Proposition",
+      "opaque": false,
+      "gloss": "The decade of a time instance, by its first year: (Decade t 1880) for the 1880s."
+    },
     "Degree": {
       "kind": "measure",
       "arity": 3,
@@ -747,6 +758,17 @@
         "(: Interpretation (-> String Atom Proposition))"
       ]
     },
+    "Century": {
+      "kind": "temporal",
+      "arity": 2,
+      "arg_types": [
+        "TimeTerm",
+        "Number"
+      ],
+      "out": "Proposition",
+      "opaque": false,
+      "gloss": "The century of a time instance, by its number: (Century t 18) for the 18th century, a BCE century negative."
+    },
     "ClassProperty": {
       "kind": "relation",
       "arity": 2,
@@ -1012,6 +1034,17 @@
       "opaque": false,
       "gloss": "Records a named individual's surface name string. Surface record: a literal string; excluded from the faithful mining view."
     },
+    "Narrow": {
+      "kind": "core-link",
+      "arity": 2,
+      "arg_types": [
+        "Class",
+        "Atom"
+      ],
+      "out": "Class",
+      "opaque": false,
+      "gloss": "A comparison class: the class as a noun phrase narrows it — (Narrow city (LocatedIn sk_scotland_1)), the cities located in Scotland; (Narrow album (And (Member studio) (Possession sk_ottoline_1))). Each restriction is an atom with its member left out, several in an And in a fixed order; a relational noun's relatum is (Relation mayor sk_calderwick_1), a dated period (Within (Century 18)). Built by the program from the parse, so every text that says the same gets the same term; a rule beside the superlative defines its members."
+    },
     "Not": {
       "kind": "scope",
       "arity": 1,
@@ -1077,15 +1110,16 @@
     },
     "Ordinal": {
       "kind": "measure",
-      "arity": 3,
+      "arity": 4,
       "arg_types": [
         "Instance",
         "Number|Class",
+        "Class",
         "Class"
       ],
       "out": "Proposition",
       "opaque": true,
-      "gloss": "The entity's rank on an ordering: (Ordinal entity rank ordering), the rank a number or the symbol last; the ordering an adjective's scale (the third tallest → tall), a verb lemma (the first to respond → respond) or the counted class itself (the third ferret → ferret)."
+      "gloss": "The entity's rank on an ordering within a class: (Ordinal entity rank ordering class), the rank a number or the symbol last; the ordering an adjective's scale (the third tallest weaver → tall, weaver), a verb lemma (the first to respond → respond, respond: those who did) or the counted class itself (the third ferret → ferret, ferret); the class may be a comparison class (Narrow …). The rule rank_orders compares two ranks on one scale in one class."
     },
     "PartOf": {
       "kind": "relation",

@@ -211,3 +211,12 @@ examples:
     - category: abstain
       text: "Teodor won the race."
       expected: {abstain: true, gap: G00, span: "won the race"}       # nothing changes hands
+    - category: positive
+      note: a relative clause with an object gap — the noun is the thing bought
+      text: "Yusra washed the quilt that Teodor bought."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: named-entity, id: n2, name: "Teodor"}
+        - {t: witness, id: x1, class: quilt, definite: true}
+        - {t: activity, id: v1, verb: wash, actor: "@n1", patient: "@x1", tense: past}
+        - {t: acquisition, id: e1, verb: buy, acquirer: "@n2", object: "@x1", tense: past}

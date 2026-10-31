@@ -1,0 +1,115 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "ab1d66d33186390f3360a1804bcf0c047773b5bffeb60dcea9549c75608a59bd",
+  "item": {
+    "id": "s30a6acbee2",
+    "text": "Teodor visited the town where Yusra sang."
+  },
+  "usage": {
+    "input": 102386,
+    "output": 261,
+    "thinking": null,
+    "total": 102647,
+    "cached": 100335,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 102386,
+    "candidatesTokenCount": 261,
+    "totalTokenCount": 102647,
+    "cachedContentTokenCount": 100335,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 102386
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 100335
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 261
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s30a6acbee2\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"town\", \"definite\": true, \"span\": \"the town\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"visit\", \"actor\": \"@n1\", \"patient\": \"@x1\", \"tense\": \"past\", \"span\": \"Teodor visited the town\"}, {\"t\": \"activity\", \"id\": \"v2\", \"verb\": \"sing\", \"actor\": \"@n2\", \"tense\": \"past\", \"span\": \"Yusra sang\"}, {\"t\": \"location\", \"id\": \"l1\", \"event\": \"@v2\", \"place\": \"@x1\", \"head\": \"Location\", \"preposition\": \"where\", \"span\": \"where Yusra sang\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s30a6acbee2",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "town",
+        "definite": true,
+        "span": "the town"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "visit",
+        "actor": "@n1",
+        "patient": "@x1",
+        "tense": "past",
+        "span": "Teodor visited the town"
+      },
+      {
+        "t": "activity",
+        "id": "v2",
+        "verb": "sing",
+        "actor": "@n2",
+        "tense": "past",
+        "span": "Yusra sang"
+      },
+      {
+        "t": "location",
+        "id": "l1",
+        "event": "@v2",
+        "place": "@x1",
+        "head": "Location",
+        "preposition": "where",
+        "span": "where Yusra sang"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "23715ceda6cf1a9f26da7ddc19072c26ac7ae20b8da2685c250a62434a182d4a",
+  "manifest_id": "c796e2cfa0b5",
+  "run": 1,
+  "case": {
+    "template": "location",
+    "section": "held_out",
+    "index": 17,
+    "category": "positive",
+    "text": "Teodor visited the town where Yusra sang.",
+    "key": "30a6acbee2"
+  }
+}

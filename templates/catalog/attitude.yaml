@@ -421,3 +421,11 @@ examples:
         - {t: named-entity, id: n2, name: "Ottoline"}
         - {t: motion, id: m1, verb: leave, mover: "@n2", tense: past, aspect: would}
         - {t: attitude, id: a1, verb: say, holder: "@n1", content: ["@m1"], factive: false, tense: past}
+    - category: positive
+      note: a participial clause opening the sentence — the main subject its holder, tense present, no link
+      text: "Hoping to win, Lamine trained."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: activity, id: v1, verb: win, actor: "@n1", tense: present}
+        - {t: attitude, id: a1, verb: hope, holder: "@n1", content: ["@v1"], factive: false, tense: present}
+        - {t: activity, id: v2, verb: train, actor: "@n1", tense: past}

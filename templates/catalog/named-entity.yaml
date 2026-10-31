@@ -27,6 +27,8 @@ slots:
   title: {type: string, required: false, doc: "a leading title, if any"}
   class:  {type: lemma, class: Class, required: false,
           doc: "the class an appositive or a title phrase states for the name (Lamine, a glazier); a predicative is a N is a copular instance, not this slot; a relational noun with a possessor (her son Bram, Ilse's husband Corvin) is a relation, not a class: the stative-relation template"}
+  aliases: {type: list, class: String, required: false,
+           doc: "other names of the same individual, each as written: known as, also known as, better known as, called, nicknamed (Ines, known as Nell: Nell)"}
   props:  {type: list, class: Class, required: false,
           doc: "adjectival or nominal modifiers inside the appositive or title phrase, each a lemma (a retired harbour pilot: retired, harbour; the northern ferry company: northern, ferry)"}
 
@@ -36,6 +38,8 @@ presupposed: [name]                     # a name is rigid whatever scope mention
 
 emits:
   - atom: "(Name @id \"{name}\")"
+  - atom: "(Name @id \"{aliases}\")"
+    each: aliases
   - atom: "(Member @id {class})"
     if_filled: class
   - atom: "(Member @id {props})"
@@ -58,4 +62,10 @@ examples:
       text: "Lamine, a skilled glazier, left."
       instances:
         - {t: named-entity, id: n1, name: "Lamine", class: glazier, props: [skilled]}
+        - {t: motion, id: m1, verb: leave, mover: "@n1", tense: past}
+    - category: positive
+      note: known as — a second name of the same individual, no clause
+      text: "Lamine, known as Bram, left."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine", aliases: ["Bram"]}
         - {t: motion, id: m1, verb: leave, mover: "@n1", tense: past}

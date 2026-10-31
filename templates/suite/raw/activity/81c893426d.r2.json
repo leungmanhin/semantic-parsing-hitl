@@ -1,0 +1,111 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "ab1d66d33186390f3360a1804bcf0c047773b5bffeb60dcea9549c75608a59bd",
+  "item": {
+    "id": "s81c893426d",
+    "text": "Lamine, who sang at the fair, left."
+  },
+  "usage": {
+    "input": 102390,
+    "output": 223,
+    "thinking": null,
+    "total": 102613,
+    "cached": 100341,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 102390,
+    "candidatesTokenCount": 223,
+    "totalTokenCount": 102613,
+    "cachedContentTokenCount": 100341,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 102390
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 100341
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 223
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s81c893426d\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"fair\", \"definite\": true, \"span\": \"the fair\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"sing\", \"actor\": \"@n1\", \"tense\": \"past\", \"span\": \"who sang\"}, {\"t\": \"motion\", \"id\": \"e2\", \"verb\": \"leave\", \"mover\": \"@n1\", \"tense\": \"past\", \"span\": [\"Lamine\", \"left\"]}, {\"t\": \"location\", \"id\": \"l1\", \"event\": \"@e1\", \"place\": \"@x1\", \"head\": \"Location\", \"preposition\": \"at\", \"span\": \"at the fair\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s81c893426d",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "fair",
+        "definite": true,
+        "span": "the fair"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "sing",
+        "actor": "@n1",
+        "tense": "past",
+        "span": "who sang"
+      },
+      {
+        "t": "motion",
+        "id": "e2",
+        "verb": "leave",
+        "mover": "@n1",
+        "tense": "past",
+        "span": [
+          "Lamine",
+          "left"
+        ]
+      },
+      {
+        "t": "location",
+        "id": "l1",
+        "event": "@e1",
+        "place": "@x1",
+        "head": "Location",
+        "preposition": "at",
+        "span": "at the fair"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "23715ceda6cf1a9f26da7ddc19072c26ac7ae20b8da2685c250a62434a182d4a",
+  "manifest_id": "c796e2cfa0b5",
+  "run": 2,
+  "case": {
+    "template": "activity",
+    "section": "held_out",
+    "index": 22,
+    "category": "positive",
+    "text": "Lamine, who sang at the fair, left.",
+    "key": "81c893426d"
+  }
+}

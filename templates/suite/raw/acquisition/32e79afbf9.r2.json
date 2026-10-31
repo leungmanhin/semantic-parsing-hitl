@@ -1,0 +1,107 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "ab1d66d33186390f3360a1804bcf0c047773b5bffeb60dcea9549c75608a59bd",
+  "item": {
+    "id": "s32e79afbf9",
+    "text": "Yusra washed the quilt that Teodor bought."
+  },
+  "usage": {
+    "input": 102387,
+    "output": 223,
+    "thinking": null,
+    "total": 102610,
+    "cached": 100338,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 102387,
+    "candidatesTokenCount": 223,
+    "totalTokenCount": 102610,
+    "cachedContentTokenCount": 100338,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 102387
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 100338
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 223
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s32e79afbf9\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"quilt\", \"definite\": true, \"span\": \"the quilt\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"wash\", \"actor\": \"@n1\", \"patient\": \"@x1\", \"tense\": \"past\", \"span\": \"Yusra washed the quilt\"}, {\"t\": \"acquisition\", \"id\": \"e2\", \"verb\": \"buy\", \"acquirer\": \"@n2\", \"object\": \"@x1\", \"tense\": \"past\", \"span\": \"that Teodor bought\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s32e79afbf9",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "quilt",
+        "definite": true,
+        "span": "the quilt"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "wash",
+        "actor": "@n1",
+        "patient": "@x1",
+        "tense": "past",
+        "span": "Yusra washed the quilt"
+      },
+      {
+        "t": "acquisition",
+        "id": "e2",
+        "verb": "buy",
+        "acquirer": "@n2",
+        "object": "@x1",
+        "tense": "past",
+        "span": "that Teodor bought"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "23715ceda6cf1a9f26da7ddc19072c26ac7ae20b8da2685c250a62434a182d4a",
+  "manifest_id": "c796e2cfa0b5",
+  "run": 2,
+  "case": {
+    "template": "acquisition",
+    "section": "held_out",
+    "index": 12,
+    "category": "positive",
+    "text": "Yusra washed the quilt that Teodor bought.",
+    "key": "32e79afbf9"
+  }
+}

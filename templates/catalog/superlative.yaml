@@ -9,7 +9,11 @@
 # first to V", the class itself for a plain ordinal. The predicative form (Yusra is the tallest
 # weaver) also asserts the membership, (Member sk_yusra_1 weaver), as a presupposition that
 # survives a negation; inside a noun phrase (the tallest weaver left) the witness carries the
-# class and the instance adds the superlative. No comparison asserts the positive property.
+# class and the instance adds the superlative. No comparison asserts the positive property. A
+# class the noun phrase narrows — the oldest mill in the valley, her second novel, the largest
+# walled town — is a COMPARISON CLASS the program builds from the phrase: (Most old sk_mill_1
+# (Narrow mill (LocatedIn sk_valley_1))) and a rule that defines its members, so the comparison
+# stays inside it.
 
 id: superlative
 family: predication
@@ -31,7 +35,17 @@ trigger:
     the clause's tense, and the membership in the class is asserted too. Inside a noun phrase, the
     witness is parsed as usual (the tallest weaver: a definite witness of class weaver) and the
     instance adds the superlative with no tense and no `predicative`. The span is the whole clause
-    for the predicative form and the superlative phrase for the attributive one.
+    for the predicative form and the superlative phrase for the attributive one. A CLASS THE
+    PHRASE NARROWS is compared within as narrowed: the witness's own props and possessor narrow it
+    by themselves (the largest walled town, her second novel); a place, an author or a whole is
+    parsed as its own instance on the subject — the locative (the oldest mill in the valley), the
+    postmodifier (the first poem by Bram), the part-whole (the fourth stanza of the hymn), the relation a
+    relational class noun states (the first warden of the mill, Bram's second husband: the
+    stative-relation, the witness its bearer), the time of a dated period (of the 18th century:
+    a time instance with no event), a relative clause on the noun (the oldest bell that still rings,
+    the first ship that reached the bay: the clause's own instance) — and listed in `within`; in the predicative form the locative is written on the subject (Bram's
+    town in the valley: the town located in the valley, the clause's tense) and the modifiers on
+    the class noun go to `props`. The program builds the comparison class from all of them.
   surface_forms:
     - "<X> is the ADJ-est / the most ADJ <N>"             # Lamine is the oldest glazier: kind most, predicative
     - "<X> is one of the ADJ-est <N>s"                    # Ottoline is one of the oldest glaziers: kind among
@@ -39,6 +53,8 @@ trigger:
     - "<X> was the first / last to V"                     # Teodor was the first to arrive: kind ordinal, rank 1, scale arrive
     - "the ADJ-est <N> V-ed … / V-ed the ADJ-est <N>"     # the tallest weaver left; bought the most expensive quilt: attributive
     - "the <n-th> <N> …"                                  # the third ferret slept: kind ordinal, rank 3, scale ferret
+    - "the ADJ-est <N> in <place> / the <n-th> <N> by <author> / of <whole>"   # a narrowed class: the instance in `within`
+    - "<possessor>'s <n-th> <N> / the ADJ-est <ADJ2> <N>"   # the witness's possessor and props narrow it
   boundary:                   # looks like a superlative but is not one
     - >-
       a comparative with a standard — taller than Yusra, as tall as Teodor: the comparative
@@ -61,12 +77,15 @@ trigger:
       a date or a numbered item — the third of May, page 34, chapter two: a time or a name, not
       a rank in a class
     - >-
-      a class narrowed by a domain phrase or by a modifier on the noun — the oldest orchard in
-      the valley, the tallest weaver in the guild, the first left-handed glazier, the largest
-      stone bridge: the comparison is within the narrowed class, which no slot carries yet;
-      write no superlative instance (on the bare class it would claim the top of every
-      orchard, weaver, glazier or bridge) and report the superlative phrase as unmapped (G00);
-      the rest of the clause is parsed as usual
+      an era or a field as the domain — the busiest potter of his generation, the best singer
+      in the history of the choir, of the century with no number, a negated relative clause (the
+      oldest mill that never flooded): no restriction the parse can state; write no superlative instance and report the superlative phrase as unmapped (G00),
+      the rest of the clause parsed as usual (a dated period — of the 18th century, of the
+      1880s, of 1999 — is a time instance in `within`)
+    - >-
+      a phrase that narrows nothing — the tallest tower ever, of all time, in the world, on
+      record: the superlative over the class itself; report the phrase as unmapped (ever: G02,
+      a phrase: G00)
 
 slots:
   id:          {type: id, required: true, doc: "your label for the superlative (s1, s2 …)"}
@@ -75,7 +94,7 @@ slots:
   scale:       {type: lemma, class: Class, required: true,
                 doc: "what orders the class: the adjective lemmatized (tallest → tall, most careful → careful, best → good, worst → bad), the verb of the first / last to V (arrive, speak), or the class itself for a plain ordinal (the third ferret → ferret)"}
   class:       {type: lemma, class: Class, required: false,
-                doc: "the class compared within, lemmatized to the singular: the noun of the phrase (weaver, quilt) or of the of-phrase (the tallest of the weavers → weaver); absent only for the first / last to V; never a narrowed class: a modifier on the noun or a domain phrase that narrows the comparison means no instance at all (see the boundary)"}
+                doc: "the class compared within, lemmatized to the singular: the noun of the phrase (weaver, quilt) or of the of-phrase (the tallest of the weavers → weaver); absent only for the first / last to V; the noun alone: what narrows it is the subject's own phrase (its props, its possessor), `props` and `within`"}
   kind:        {type: enum, values: [most, among, ordinal], required: true,
                 doc: "most for the ADJ-est / the most ADJ (the unique top); among for one of the ADJ-est; ordinal for a rank: the n-th, the n-th ADJ-est, the first / last to V"}
   rank:        {type: number, required: false, doc: "the rank of an ordinal: first → 1, second → 2, third → 3; empty for last"}
@@ -84,39 +103,50 @@ slots:
                 doc: "true when the superlative is predicated of the subject by be (Yusra is the tallest weaver; Teodor was the first to arrive): the membership is asserted and the tense recorded; absent inside a noun phrase"}
   tense:       {type: enum, values: [past, present, future], required: false, default: present,
                 doc: "the copular clause's tense for the predicative form (is / was / will be the tallest); omit inside a noun phrase"}
+  props:       {type: list, class: Class, required: false,
+                doc: "in the predicative form, the modifiers on the class noun, each a lemma (Bram's town is the largest walled town: walled); inside a noun phrase the witness's own props narrow the class instead"}
+  within:      {type: list, class: Proposition, required: false,
+                doc: "the ids of the instances that narrow the class, each describing the subject: the locative that places it, the postmodifier that attributes it (by Bram), the part-whole that attaches it (of the hymn), the stative-relation a relational class noun states (the first warden of the mill), the time instance of a dated period (of the 18th century), the instance of a relative clause on the noun (the first ship that reached the bay); never a negated clause"}
+
+narrowing:                     # the comparison class: the class as the noun phrase narrows it
+  class: class
+  scale: scale
+  subject: subject
+  props: props
+  within: within
 
 emits:
   # the superlative: the unique top of the class on the scale
-  - atom: "(Most {scale} {subject} {class})"
+  - atom: "(Most {scale} {subject} {class|narrowed})"
     when: "kind == most and tense != past and tense != future"
-  - atom: "(Past (Most {scale} {subject} {class}))"
+  - atom: "(Past (Most {scale} {subject} {class|narrowed}))"
     when: "kind == most and tense == past"
-  - atom: "(Future (Most {scale} {subject} {class}))"
+  - atom: "(Future (Most {scale} {subject} {class|narrowed}))"
     when: "kind == most and tense == future"
   # the top stratum: one of the ADJ-est
-  - atom: "(AmongMost {scale} {subject} {class})"
+  - atom: "(AmongMost {scale} {subject} {class|narrowed})"
     when: "kind == among and tense != past and tense != future"
-  - atom: "(Past (AmongMost {scale} {subject} {class}))"
+  - atom: "(Past (AmongMost {scale} {subject} {class|narrowed}))"
     when: "kind == among and tense == past"
-  - atom: "(Future (AmongMost {scale} {subject} {class}))"
+  - atom: "(Future (AmongMost {scale} {subject} {class|narrowed}))"
     when: "kind == among and tense == future"
   # the rank: the n-th, the first to V, the last
-  - atom: "(Ordinal {subject} {rank} {scale})"
+  - atom: "(Ordinal {subject} {rank} {scale|narrowed} {class|narrowed})"
     if_filled: rank
     when: "kind == ordinal and not last and tense != past and tense != future"
-  - atom: "(Past (Ordinal {subject} {rank} {scale}))"
+  - atom: "(Past (Ordinal {subject} {rank} {scale|narrowed} {class|narrowed}))"
     if_filled: rank
     when: "kind == ordinal and not last and tense == past"
-  - atom: "(Future (Ordinal {subject} {rank} {scale}))"
+  - atom: "(Future (Ordinal {subject} {rank} {scale|narrowed} {class|narrowed}))"
     if_filled: rank
     when: "kind == ordinal and not last and tense == future"
-  - atom: "(Ordinal {subject} last {scale})"
+  - atom: "(Ordinal {subject} last {scale|narrowed} {class|narrowed})"
     when: "kind == ordinal and last and tense != past and tense != future"
     declare: {last: Class}
-  - atom: "(Past (Ordinal {subject} last {scale}))"
+  - atom: "(Past (Ordinal {subject} last {scale|narrowed} {class|narrowed}))"
     when: "kind == ordinal and last and tense == past"
     declare: {last: Class}
-  - atom: "(Future (Ordinal {subject} last {scale}))"
+  - atom: "(Future (Ordinal {subject} last {scale|narrowed} {class|narrowed}))"
     when: "kind == ordinal and last and tense == future"
     declare: {last: Class}
   # the membership the predicative form asserts (a presupposition: it projects through a negation)
@@ -131,6 +161,27 @@ emits:
   - atom: "(Future (Member {subject} {class}))"
     if_filled: class
     when: "predicative and tense == future"
+    project: true
+  # the predicative form's modifiers on the class noun: presupposed like the membership
+  - atom: "(Member {subject} {props})"
+    each: props
+    when: "predicative and tense != past and tense != future"
+    project: true
+  - atom: "(Past (Member {subject} {props}))"
+    each: props
+    when: "predicative and tense == past"
+    project: true
+  - atom: "(Future (Member {subject} {props}))"
+    each: props
+    when: "predicative and tense == future"
+    project: true
+  # the comparison class: what makes a thing one of its members (once per text and class) —
+  # or, when no atom of a member could show it (a dated period), the subject's own membership
+  - atom: "(Implication {class|narrowing} (Member $y {class|narrowed}))"
+    if_narrowed: defined
+    project: true
+  - atom: "(Member {subject} {class|narrowed})"
+    if_narrowed: opaque
     project: true
 
 notes:
@@ -147,7 +198,23 @@ notes:
   - >-
     An ordinal's ordering is what the text gives: the adjective for the n-th ADJ-est, the verb for
     the first to V (the first arrival is Teodor's), the class itself when the text merely counts
-    (the third ferret). "Last" is a rank with no number and keeps its word.
+    (the third ferret). "Last" is a rank with no number and keeps its word. Its last argument is
+    the class ranked within — the class, the comparison class, or for the first to V the verb
+    itself (those who did); the rule rank_orders compares two ranks on one scale in one class.
+  - >-
+    A comparison class is named by what it says, never numbered: two texts that both say "the
+    largest town in the valley" give the same term and the same defining rule, so their
+    superlatives and ranks compare (most_exceeds, most_bounds, rank_orders) without any record
+    of what other texts built. A relational class noun narrows by its relation, (Narrow mayor
+    (Relation mayor sk_calderwick_1)), and the rule tests the relation state alone — a mayor known
+    only as "the mayor of Calderwick" carries no class atom. A dated period narrows by its
+    description, (Narrow glazier (Within (Century 18))); no atom shows that another glazier belongs
+    to the period, so that class has no rule and its subject's membership is stated, and two texts
+    naming the same period still compare. A relative clause narrows by what it says: a copular one
+    by its property, an eventive one as (Event <verb> <the subject's role> (<role> <filler>) …) —
+    an indefinite filler as (Some <class>), so "the first ship that reached a bay" in two texts is one
+    class; the clause's tense stays out of it. An era or a field narrows in a way no atom states yet:
+    those superlatives stay unmapped.
 
 depends_on: [named-entity, witness, activity, motion]
 composes_with: [negation, modal, time, location]
@@ -274,9 +341,142 @@ examples:
     - category: abstain
       text: "Yusra runs fastest."
       expected: {abstain: true, gap: G00, span: "fastest"}            # an adverbial superlative
-    - category: abstain
+    - category: positive
+      note: a place narrows the class — the locative on the subject, listed in within; the comparison class
       text: "Lamine is the oldest locksmith in Calderwick."
-      expected: {abstain: true, gap: G00, span: "the oldest locksmith in Calderwick"}   # a class narrowed by a domain
-    - category: abstain
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: named-entity, id: n2, name: "Calderwick"}
+        - {t: locative, id: l1, thing: "@n1", place: "@n2", head: LocatedIn, preposition: in, tense: present}
+        - {t: superlative, id: s1, subject: "@n1", scale: old, class: locksmith, kind: most, predicative: true, tense: present, within: ["@l1"]}
+    - category: positive
+      note: a modifier inside the phrase narrows the class — the witness's props
       text: "Yusra bought the cheapest woollen quilt."
-      expected: {abstain: true, gap: G00, span: "cheapest"}           # a class narrowed by a modifier
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, class: quilt, definite: true, props: [woollen]}
+        - {t: acquisition, id: e1, verb: buy, acquirer: "@n1", object: "@x1", tense: past}
+        - {t: superlative, id: s1, subject: "@x1", scale: cheap, class: quilt, kind: most}
+    - category: positive
+      note: a possessor narrows a counted ordinal — the ordering and the class are the comparison class
+      text: "Teodor bought Ottoline's second album."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: named-entity, id: n2, name: "Ottoline"}
+        - {t: witness, id: x1, class: album, possessor: "@n2"}
+        - {t: acquisition, id: e1, verb: buy, acquirer: "@n1", object: "@x1", tense: past}
+        - {t: superlative, id: s1, subject: "@x1", scale: album, class: album, kind: ordinal, rank: 2}
+    - category: positive
+      note: an author narrows the class — the postmodifier, listed in within
+      text: "Yusra sang the first song by Lamine."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: witness, id: x1, class: song, definite: true}
+        - {t: postmodifier, id: a1, noun: "@x1", head: By, object: "@n2"}
+        - {t: activity, id: v1, verb: sing, actor: "@n1", patient: "@x1", tense: past}
+        - {t: superlative, id: s1, subject: "@x1", scale: song, class: song, kind: ordinal, rank: 1, within: ["@a1"]}
+    - category: positive
+      note: a whole narrows the class — the part-whole, listed in within
+      text: "Teodor wrote the third chapter of the ledger."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, class: chapter, definite: true}
+        - {t: witness, id: x2, class: ledger, definite: true}
+        - {t: part-whole, id: w1, part: "@x1", whole: "@x2", word: of, tense: present}
+        - {t: creation, id: e1, verb: write, creator: "@n1", product: "@x1", tense: past}
+        - {t: superlative, id: s1, subject: "@x1", scale: chapter, class: chapter, kind: ordinal, rank: 3, within: ["@w1"]}
+    - category: positive
+      note: a rank on a scale in a place — the ordering the adjective, the class the comparison class
+      text: "Ottoline is the second tallest weaver in Calderwick."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: named-entity, id: n2, name: "Calderwick"}
+        - {t: locative, id: l1, thing: "@n1", place: "@n2", head: LocatedIn, preposition: in, tense: present}
+        - {t: superlative, id: s1, subject: "@n1", scale: tall, class: weaver, kind: ordinal, rank: 2, predicative: true, tense: present, within: ["@l1"]}
+    - category: positive
+      note: a predicative modifier on the class noun — props, presupposed beside the membership
+      text: "Lamine is the oldest left-handed glazier."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: superlative, id: s1, subject: "@n1", scale: old, class: glazier, props: [left_handed], kind: most, predicative: true, tense: present}
+    - category: positive
+      note: a phrase that narrows nothing — the superlative over the class itself, the phrase reported
+      text: "Lamine is the oldest potter in the world."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: superlative, id: s1, subject: "@n1", scale: old, class: potter, kind: most, predicative: true, tense: present}
+      unmapped:
+        - {span: "in the world", code: G00}
+    - category: abstain
+      text: "Teodor was the finest glazier of his era."
+      expected: {abstain: true, gap: G00, span: "the finest glazier of his era"}   # a period narrows the class: no form yet
+    - category: positive
+      note: a relational class noun narrows by its relation — the stative-relation in within, the rule tests the relation alone
+      text: "Teodor was the first mayor of Calderwick."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: named-entity, id: n2, name: "Calderwick"}
+        - {t: stative-relation, id: p1, relation: mayor, subject: "@n1", object: "@n2", preposition: of, tense: past}
+        - {t: superlative, id: s1, subject: "@n1", scale: mayor, class: mayor, kind: ordinal, rank: 1, predicative: true, tense: past, within: ["@p1"]}
+    - category: positive
+      note: a kinship noun with a possessor and no name — the witness the bearer, the relation in within
+      text: "Lamine's second wife sang."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: x1, class: wife}
+        - {t: stative-relation, id: p1, relation: wife, subject: "@x1", object: "@n1", tense: present}
+        - {t: activity, id: v1, verb: sing, actor: "@x1", tense: past}
+        - {t: superlative, id: s1, subject: "@x1", scale: wife, class: wife, kind: ordinal, rank: 2, within: ["@p1"]}
+    - category: positive
+      note: a dated period narrows by its description — a time instance with no event in within, the subject's membership stated
+      text: "Lamine was the finest glazier of the 17th century."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: time, id: t1, century: 17}
+        - {t: superlative, id: s1, subject: "@n1", scale: fine, class: glazier, kind: most, predicative: true, tense: past, within: ["@t1"]}
+    - category: positive
+      note: nested ordinals — the episode counted within the season, the season counted on its own
+      text: "Teodor wrote the third episode of the ninth season."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, class: episode, definite: true}
+        - {t: witness, id: x2, class: season, definite: true}
+        - {t: part-whole, id: w1, part: "@x1", whole: "@x2", word: of, tense: present}
+        - {t: creation, id: e1, verb: write, creator: "@n1", product: "@x1", tense: past}
+        - {t: superlative, id: s1, subject: "@x1", scale: episode, class: episode, kind: ordinal, rank: 3, within: ["@w1"]}
+        - {t: superlative, id: s2, subject: "@x2", scale: season, class: season, kind: ordinal, rank: 9}
+    - category: positive
+      note: an eventive relative clause narrows a counted ordinal — its verb and the subject's role, the clause asserted
+      text: "Teodor was the first glazier who sang."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: activity, id: v1, verb: sing, actor: "@n1", tense: past}
+        - {t: superlative, id: s1, subject: "@n1", scale: glazier, class: glazier, kind: ordinal, rank: 1, predicative: true, tense: past, within: ["@v1"]}
+    - category: positive
+      note: an object relative clause narrows the class — the subject the clause's patient, a named participant kept
+      text: "Yusra bought the cheapest quilt that Lamine wove."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: witness, id: x1, class: quilt, definite: true}
+        - {t: acquisition, id: e1, verb: buy, acquirer: "@n1", object: "@x1", tense: past}
+        - {t: creation, id: e2, verb: weave, creator: "@n2", product: "@x1", tense: past}
+        - {t: superlative, id: s1, subject: "@x1", scale: cheap, class: quilt, kind: most, within: ["@e2"]}
+    - category: positive
+      note: an indefinite inside the relative clause — a class in the comparison class, a variable in its rule
+      text: "Ottoline is the tallest weaver who owns a loom."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: witness, id: x1, class: loom}
+        - {t: possession, id: e1, verb: own, holder: "@n1", possessed: "@x1", tense: present}
+        - {t: superlative, id: s1, subject: "@n1", scale: tall, class: weaver, kind: most, predicative: true, tense: present, within: ["@e1"]}
+    - category: positive
+      note: a copular relative clause narrows by its property
+      text: "Teodor bought the cheapest lamp that was broken."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, class: lamp, definite: true}
+        - {t: acquisition, id: e1, verb: buy, acquirer: "@n1", object: "@x1", tense: past}
+        - {t: copular, id: c1, subject: "@x1", predicate: broken, form: adjective, tense: past}
+        - {t: superlative, id: s1, subject: "@x1", scale: cheap, class: lamp, kind: most, within: ["@c1"]}

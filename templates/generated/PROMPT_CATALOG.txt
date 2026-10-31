@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 bd8356bd3341e033 · 58 templates
+catalog sha256 b7c9beb6a56b9f81 · 58 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -138,6 +138,40 @@ fences.
   only when the literal reading is incoherent for these participants; take the literal reading
   whenever it is available.
 - Names: you give the surface string; the program derives the symbol.
+
+## Relative clauses and participles
+
+- A RELATIVE CLAUSE (who, whom, which, that, or no word: the lantern Bram mended) is a clause of
+  its own, parsed with its own template, the noun it modifies filling the role the relative word
+  stands for — the subject (the heron that ate the frog: the heron the eater), the object (the
+  lantern that Bram mended: the lantern the thing mended) or a prepositional object; the
+  relative word is not an instance and never a mention. The clause keeps its own tense. WHOSE
+  makes the noun the possessor of what follows (the woman whose kettle whistled: the kettle's
+  possessor the woman); WHERE, and in / at / on which, make the noun the place of the clause's
+  event (the barn where Ines slept: a location, preposition as written); WHEN makes it what the
+  event falls during (the week when Corvin left: a time relation During, the week its
+  reference).
+- Where a relative clause goes follows its noun. On a name, a definite, a possessed phrase, or
+  between commas (Bram, who knitted, left), it is asserted like any clause. On an INDEFINITE
+  inside a negation, a modal, a hedge or a sealed complement, list it under that scope beside
+  the clause the noun belongs to (did not find a key that fitted: the negation over the finding
+  and the fitting). On a GENERIC or quantified subject it is the rule's `condition`: the generic
+  template's for an action or a quantified statement (every potter who keeps a wheel sells
+  bowls), the conditional-property template's for a property of the class (herons that fish are
+  patient).
+- A PARTICIPLE AFTER A NOUN is a relative clause cut short (the clerk waiting at the gate: who
+  was waiting; the bowl carved by Bram: that was carved): its own clause, the noun in the role
+  the voice gives it — the actor of an -ing participle, the patient, the product or the thing
+  given of an -ed one, a by-phrase its agent — with tense present and no aspect: a participle
+  carries no tense of its own. A participle BEFORE a noun is an adjective (a carved bowl: the
+  property carved). A PARTICIPIAL CLAUSE that opens or closes the sentence (Fearing the storm,
+  Ines left; Bram waved, smiling) is a clause whose actor is the main clause's subject, tense
+  present; how it relates to the main clause (a time, a cause, a manner) is not stated: no link.
+  Having V-ed is aspect perfect.
+- KNOWN AS — also known as, better known as, called, nicknamed + a name (Ines, known as Nell): a
+  second name of the same individual, the named entity's `aliases`; no clause. An infinitive
+  after a noun (a house to rent, the man to ask) and a free relative (what Bram said, whoever
+  wins) are not relative clauses here: report them as unmapped (G00).
 
 ## Choosing a template
 
@@ -316,8 +350,8 @@ Forms:
 - <demonstrative> as a noun phrase
 
 Not this template:
-- a relative pronoun opening a relative clause — the clerk who laughed, the quilt that Yusra
-  sold: a different construction, reported as unmapped
+- a relative pronoun opening a relative clause — the heron that ate the frog, the lantern that
+  Bram mended: no mention; the noun fills the clause's role directly (relative clauses)
 - an expletive — it rained, it is clear that: no referent, no mention
 - a generic or impersonal pronoun — one never knows, you cannot be sure: no referent, reported
   as unmapped; they say that P, people think that P: no referent either, and the clause goes
@@ -363,6 +397,8 @@ Slots:
   (Lamine, a glazier); a predicative is a N is a copular instance, not this slot; a relational
   noun with a possessor (her son Bram, Ilse's husband Corvin) is a relation, not a class: the
   stative-relation template.
+- `aliases` (optional; a list of lemmas): other names of the same individual, each as written:
+  known as, also known as, better known as, called, nicknamed (Ines, known as Nell: Nell).
 - `props` (optional; a list of lemmas): adjectival or nominal modifiers inside the appositive or
   title phrase, each a lemma (a retired harbour pilot: retired, harbour; the northern ferry
   company: northern, ferry).
@@ -3630,7 +3666,18 @@ the instance stands in place of the copular predication: set `predicative: true`
 clause's tense, and the membership in the class is asserted too. Inside a noun phrase, the
 witness is parsed as usual (the tallest weaver: a definite witness of class weaver) and the
 instance adds the superlative with no tense and no `predicative`. The span is the whole clause
-for the predicative form and the superlative phrase for the attributive one.
+for the predicative form and the superlative phrase for the attributive one. A CLASS THE PHRASE
+NARROWS is compared within as narrowed: the witness's own props and possessor narrow it by
+themselves (the largest walled town, her second novel); a place, an author or a whole is parsed
+as its own instance on the subject — the locative (the oldest mill in the valley), the
+postmodifier (the first poem by Bram), the part-whole (the fourth stanza of the hymn), the
+relation a relational class noun states (the first warden of the mill, Bram's second husband:
+the stative-relation, the witness its bearer), the time of a dated period (of the 18th century:
+a time instance with no event), a relative clause on the noun (the oldest bell that still rings,
+the first ship that reached the bay: the clause's own instance) — and listed in `within`; in the
+predicative form the locative is written on the subject (Bram's town in the valley: the town
+located in the valley, the clause's tense) and the modifiers on the class noun go to `props`.
+The program builds the comparison class from all of them.
 
 Forms:
 - <X> is the ADJ-est / the most ADJ <N>
@@ -3639,6 +3686,8 @@ Forms:
 - <X> was the first / last to V
 - the ADJ-est <N> V-ed … / V-ed the ADJ-est <N>
 - the <n-th> <N> …
+- the ADJ-est <N> in <place> / the <n-th> <N> by <author> / of <whole>
+- <possessor>'s <n-th> <N> / the ADJ-est <ADJ2> <N>
 
 Not this template:
 - a comparative with a standard — taller than Yusra, as tall as Teodor: the comparative template
@@ -3653,12 +3702,14 @@ Not this template:
 - a degree word — very tall, too tall: a degree
 - a date or a numbered item — the third of May, page 34, chapter two: a time or a name, not a
   rank in a class
-- a class narrowed by a domain phrase or by a modifier on the noun — the oldest orchard in the
-  valley, the tallest weaver in the guild, the first left-handed glazier, the largest stone
-  bridge: the comparison is within the narrowed class, which no slot carries yet; write no
-  superlative instance (on the bare class it would claim the top of every orchard, weaver,
-  glazier or bridge) and report the superlative phrase as unmapped (G00); the rest of the clause
-  is parsed as usual
+- an era or a field as the domain — the busiest potter of his generation, the best singer in the
+  history of the choir, of the century with no number, a negated relative clause (the oldest
+  mill that never flooded): no restriction the parse can state; write no superlative instance
+  and report the superlative phrase as unmapped (G00), the rest of the clause parsed as usual (a
+  dated period — of the 18th century, of the 1880s, of 1999 — is a time instance in `within`)
+- a phrase that narrows nothing — the tallest tower ever, of all time, in the world, on record:
+  the superlative over the class itself; report the phrase as unmapped (ever: G02, a phrase:
+  G00)
 
 Slots:
 
@@ -3672,8 +3723,8 @@ Slots:
   speak), or the class itself for a plain ordinal (the third ferret → ferret).
 - `class` (optional; a lemma): the class compared within, lemmatized to the singular: the noun
   of the phrase (weaver, quilt) or of the of-phrase (the tallest of the weavers → weaver);
-  absent only for the first / last to V; never a narrowed class: a modifier on the noun or a
-  domain phrase that narrows the comparison means no instance at all (see the boundary).
+  absent only for the first / last to V; the noun alone: what narrows it is the subject's own
+  phrase (its props, its possessor), `props` and `within`.
 - `kind` (required; one of: most, among, ordinal): most for the ADJ-est / the most ADJ (the
   unique top); among for one of the ADJ-est; ordinal for a rank: the n-th, the n-th ADJ-est, the
   first / last to V.
@@ -3685,6 +3736,15 @@ Slots:
   asserted and the tense recorded; absent inside a noun phrase.
 - `tense` (optional; one of: past, present, future): the copular clause's tense for the
   predicative form (is / was / will be the tallest); omit inside a noun phrase.
+- `props` (optional; a list of lemmas): in the predicative form, the modifiers on the class
+  noun, each a lemma (Bram's town is the largest walled town: walled); inside a noun phrase the
+  witness's own props narrow the class instead.
+- `within` (optional; a list of "@id" of other instances, which stay asserted on their own): the
+  ids of the instances that narrow the class, each describing the subject: the locative that
+  places it, the postmodifier that attributes it (by Bram), the part-whole that attaches it (of
+  the hymn), the stative-relation a relational class noun states (the first warden of the mill),
+  the time instance of a dated period (of the 18th century), the instance of a relative clause
+  on the noun (the first ship that reached the bay); never a negated clause.
 
 Example (the predicative superlative — the top of the class, and the membership as a presupposition). TEXT: Lamine is the oldest glazier.
 
@@ -3717,7 +3777,7 @@ The program renders these instances as:
     (Member sk_arrive_1 arrive)
     (Agent sk_arrive_1 sk_teodor_1)
     (Past sk_arrive_1)
-    (Past (Ordinal sk_teodor_1 1 arrive))
+    (Past (Ordinal sk_teodor_1 1 arrive arrive))
 
 Example (attributive — the witness carries the class, the instance adds the superlative). TEXT: The tallest weaver left.
 
@@ -5256,22 +5316,23 @@ at night, in autumn, later, this morning), a measured distance from an anchor (t
 year ago, in two weeks, two days after the audit, a week later), or an anaphoric phrase naming a
 time by one the text stated before it (that evening, the same day, the next day, the following
 morning, the week after). The event is parsed with its own template; the time instance names
-that event and describes the time: a date or a clock time by its fields (year, month, day,
-weekday, hour, minute), a deictic by the `deictic` word with the reference time as its anchor, a
-measured distance by its `offset`, `unit` and `direction` from its anchor (the reference time
-for ago / from now / in n units; a stated event or time for before / after it and for later /
-earlier), an anaphoric phrase likewise from the antecedent event or time (offset 0 for that /
-the same, 1 for next / following / after, a day part as a second instance), a named time by its
-name. One instance per time expression; a day part beside a date or an offset (Monday morning,
-the following morning) is a second instance. A time no clause places an event at — the reference
-of a time relation (before noon), the edge of a window (within three days) — is an instance with
-no event. When the time is predicated of an event noun by "be" or by take place / occur / happen
-(the meeting is at noon, the audit was on Monday, the fair took place in May: these verbs have
-no event of their own), the noun is a witness marked eventive, the time attaches to it, and this
-instance records the clause's tense.
+that event and describes the time: a date or a clock time by its fields (year, decade, century,
+month, day, weekday, hour, minute), a deictic by the `deictic` word with the reference time as
+its anchor, a measured distance by its `offset`, `unit` and `direction` from its anchor (the
+reference time for ago / from now / in n units; a stated event or time for before / after it and
+for later / earlier), an anaphoric phrase likewise from the antecedent event or time (offset 0
+for that / the same, 1 for next / following / after, a day part as a second instance), a named
+time by its name. One instance per time expression; a day part beside a date or an offset
+(Monday morning, the following morning) is a second instance. A time no clause places an event
+at — the reference of a time relation (before noon), the edge of a window (within three days) —
+is an instance with no event. When the time is predicated of an event noun by "be" or by take
+place / occur / happen (the meeting is at noon, the audit was on Monday, the fair took place in
+May: these verbs have no event of their own), the noun is a witness marked eventive, the time
+attaches to it, and this instance records the clause's tense.
 
 Forms:
 - <clause> in <year / month>
+- <clause> in the <n>0s / in the <n>th century
 - <clause> on <date / weekday>
 - <clause> at <clock time>
 - <clause> <deictic>
@@ -5291,8 +5352,8 @@ Not this template:
   frequency (a period of one unit is a range over its class, not a time instance); a clock time
   or a date beside it — at noon every day — is a time instance on the event
 - a duration — for six hours, lasted two days: the measure template, not a time
-- a decade, a century or an era — in the 1990s, in the 19th century: no slot yet; reported as
-  unmapped
+- an era — the Victorian era, in his generation: no slot yet; reported as unmapped (a decade or
+  a century has its slot: in the 1880s, in the 18th century)
 - an approximate time — around noon, about 3 pm: record the time, report the approximator as
   unmapped
 - a place — in the barn, at the market: a location
@@ -5332,6 +5393,10 @@ Slots:
   same period as the anchor (that evening, the same day: offset 0).
 - `year` (optional; an integer): the calendar year (2019); a BCE / BC year as a negative integer
   (44 BC → -44).
+- `decade` (optional; an integer): a decade by its first year (the 1880s → 1880); no year beside
+  it.
+- `century` (optional; an integer): a century by its number (the 18th century → 18; the 3rd
+  century BCE → -3); no year beside it.
 - `month` (optional; a lemma): the month name, lowercase (may).
 - `day` (optional; an integer): the day of the month (3).
 - `weekday` (optional; a lemma): the weekday name, lowercase (monday).
@@ -5710,8 +5775,9 @@ Slots:
   are about.
 - `condition` (required; a list of "@id" of the instances that state the clause): the
   predication(s) that must hold of the member: a copular instance over the range for a state
-  (wet), a locative instance for a place; their ids; a pronoun bound by the range is the range
-  (subject @q1).
+  (wet), a locative instance for a place, or a relative clause on the class (herons that fish
+  are patient: the fishing, its event a variable); their ids; a pronoun bound by the range is
+  the range (subject @q1).
 - `over` (required; a list of "@id" of the instances that state the clause): the copular
   predication over the range that then holds, or the negation / modal over it: its id, nothing
   else.
@@ -6024,7 +6090,9 @@ Slots:
   predication: its id, nothing else.
 - `condition` (optional; a list of "@id" of the instances that state the clause): a predication
   over the range that must hold for the generalization to apply (ferrets bite when cornered: the
-  copular instance for cornered, its subject the range); its id; absent as a rule.
+  copular instance for cornered, its subject the range), or a relative clause on the subject
+  (herons that fish: the fishing; its event becomes a variable, an indefinite inside it too);
+  its id; absent as a rule.
 
 Example (a bare generic — no quantifier word, strength 0.9 at confidence 0.7, no companion). TEXT: Ferrets sleep.
 
@@ -6079,7 +6147,8 @@ Forms:
 Not this template:
 - a first mention — Yusra laughed: nothing to link; the referent's own instance suffices
 - two different referents with the same class — a ferret and another ferret: no link
-- a relative pronoun — the clerk who laughed: a different construction, reported as unmapped
+- a relative pronoun — the heron that ate the frog: no coreference; the noun fills the clause's
+  role directly (relative clauses)
 - an expletive or a generic pronoun — it rained, one never knows: no referent, no link
 
 Slots:

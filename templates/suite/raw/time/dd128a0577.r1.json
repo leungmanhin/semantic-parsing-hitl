@@ -1,0 +1,92 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "377abc821e9e958b662ce6c8fe02dff0be06359edfa0dcd0df7e6becc7e145a2",
+  "item": {
+    "id": "sdd128a0577",
+    "text": "The mill opened in the 1950s."
+  },
+  "usage": {
+    "input": 101621,
+    "output": 152,
+    "thinking": null,
+    "total": 101773,
+    "cached": 99571,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 101621,
+    "candidatesTokenCount": 152,
+    "totalTokenCount": 101773,
+    "cachedContentTokenCount": 99571,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 101621
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 99571
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 152
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sdd128a0577\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"mill\", \"definite\": true, \"span\": \"The mill\"}, {\"t\": \"change-of-state\", \"id\": \"e1\", \"verb\": \"open\", \"undergoer\": \"@x1\", \"tense\": \"past\", \"span\": \"The mill opened\"}, {\"t\": \"time\", \"id\": \"t1\", \"event\": \"@e1\", \"decade\": 1950, \"span\": \"in the 1950s\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sdd128a0577",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "mill",
+        "definite": true,
+        "span": "The mill"
+      },
+      {
+        "t": "change-of-state",
+        "id": "e1",
+        "verb": "open",
+        "undergoer": "@x1",
+        "tense": "past",
+        "span": "The mill opened"
+      },
+      {
+        "t": "time",
+        "id": "t1",
+        "event": "@e1",
+        "decade": 1950,
+        "span": "in the 1950s"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "7c48d5bd0f6942976cf5c17da786c45173f2847bb917577fa46a99fc2a7b3288",
+  "manifest_id": "eb7cf7a52e2a",
+  "run": 1,
+  "case": {
+    "template": "time",
+    "section": "held_out",
+    "index": 32,
+    "category": "positive",
+    "text": "The mill opened in the 1950s.",
+    "key": "dd128a0577"
+  }
+}

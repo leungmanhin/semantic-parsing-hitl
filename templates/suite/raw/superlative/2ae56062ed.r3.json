@@ -1,0 +1,96 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "377abc821e9e958b662ce6c8fe02dff0be06359edfa0dcd0df7e6becc7e145a2",
+  "item": {
+    "id": "s2ae56062ed",
+    "text": "Lamine was the finest glazier of the 17th century."
+  },
+  "usage": {
+    "input": 101623,
+    "output": 170,
+    "thinking": null,
+    "total": 101793,
+    "cached": 99574,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 101623,
+    "candidatesTokenCount": 170,
+    "totalTokenCount": 101793,
+    "cachedContentTokenCount": 99574,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 101623
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 99574
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 170
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s2ae56062ed\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"time\", \"id\": \"t1\", \"century\": 17, \"span\": \"of the 17th century\"}, {\"t\": \"superlative\", \"id\": \"s1\", \"subject\": \"@n1\", \"scale\": \"fine\", \"class\": \"glazier\", \"kind\": \"most\", \"predicative\": true, \"tense\": \"past\", \"within\": [\"@t1\"], \"span\": \"Lamine was the finest glazier of the 17th century\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s2ae56062ed",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "time",
+        "id": "t1",
+        "century": 17,
+        "span": "of the 17th century"
+      },
+      {
+        "t": "superlative",
+        "id": "s1",
+        "subject": "@n1",
+        "scale": "fine",
+        "class": "glazier",
+        "kind": "most",
+        "predicative": true,
+        "tense": "past",
+        "within": [
+          "@t1"
+        ],
+        "span": "Lamine was the finest glazier of the 17th century"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "7c48d5bd0f6942976cf5c17da786c45173f2847bb917577fa46a99fc2a7b3288",
+  "manifest_id": "eb7cf7a52e2a",
+  "run": 3,
+  "case": {
+    "template": "superlative",
+    "section": "held_out",
+    "index": 26,
+    "category": "positive",
+    "text": "Lamine was the finest glazier of the 17th century.",
+    "key": "2ae56062ed"
+  }
+}

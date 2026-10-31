@@ -718,6 +718,123 @@ class EmitTests(unittest.TestCase):
                              {"t": "conditional-property", "id": "r1", "ranges": ["@q1"], "condition": ["@c2"], "over": ["@s1"]}])
         self.assertIn("(Not (And (Holds (sk_soft $x $s) (Member $x soft)) (During (sk_soft $x $s) $s)))", rules[1])   # the denial keeps the state inside
 
+    def test_a_narrowed_class_is_a_comparison_class_named_by_its_description(self):
+        """A superlative or an ordinal whose noun phrase narrows its class (a place, an author or a
+        whole listed in `within`; the witness's props or possessor; the predicative `props`)
+        compares within a COMPARISON CLASS: a term built from the description, the same in two
+        texts that say the same, a pronoun possessor replaced by its certain antecedent, defined by
+        one rule per text; nothing narrowed, the class itself and no rule; an instance in `within`
+        that says nothing of the subject is refused."""
+        def run(insts, iid="a"):
+            return atoms_of(E.emit({"id": iid, "instances": insts}, CATALOG)["statements"])
+        def town(name):
+            return [{"t": "named-entity", "id": "n1", "name": name}, {"t": "named-entity", "id": "n2", "name": "Calderwick"},
+                    {"t": "locative", "id": "l1", "thing": "@n1", "place": "@n2", "head": "LocatedIn", "preposition": "in", "tense": "present"}]
+        def rank(n, sid="s1", kind="ordinal", scale="tall", subject="@n1"):
+            r = {"t": "superlative", "id": sid, "subject": subject, "scale": scale, "class": "weaver", "kind": kind,
+                 "predicative": True, "tense": "present", "within": ["@l1"]}
+            return dict(r, rank=n) if kind == "ordinal" else r
+        term = "(Narrow weaver (LocatedIn sk_calderwick_1))"
+        rule = f"(Implication (And (Member $y weaver) (LocatedIn $y sk_calderwick_1)) (Member $y {term}))"
+        one, two = run(town("Bram") + [rank(2)]), run(town("Ines") + [rank(3)], "b")
+        self.assertIn(f"(Ordinal sk_bram_1 2 tall {term})", one)
+        self.assertIn(f"(Ordinal sk_ines_1 3 tall {term})", two)            # another text: the same term
+        self.assertIn(rule, one)
+        self.assertIn(rule, two)                                               # and the same defining rule
+        both = run(town("Bram") + [rank(None, "s1", "most"), rank(None, "s2", "most", "old")])
+        self.assertIn(f"(Most tall sk_bram_1 {term})", both)
+        self.assertIn(f"(Most old sk_bram_1 {term})", both)
+        self.assertEqual(sum(a.startswith("(Implication") for a in both), 1)   # one class, one definition
+        pron = run([{"t": "named-entity", "id": "n1", "name": "Ottoline"}, {"t": "mention", "id": "m1", "word": "her"},
+                    {"t": "coref", "id": "k1", "mention": "@m1", "antecedent": "@n1", "certainty": "certain"},
+                    {"t": "witness", "id": "x1", "class": "album", "possessor": "@m1"},
+                    {"t": "superlative", "id": "s1", "subject": "@x1", "scale": "album", "class": "album", "kind": "ordinal", "rank": 2}])
+        album = "(Narrow album (Possession sk_ottoline_1))"
+        self.assertIn(f"(Ordinal sk_album_1 2 {album} {album})", pron)         # a counted ordinal: the ordering is the class
+        self.assertIn("(Possession sk_album_1 sk_her_1)", pron)                # the parse's own atom keeps the mention
+        bare = run([{"t": "named-entity", "id": "n1", "name": "Bram"},
+                    {"t": "superlative", "id": "s1", "subject": "@n1", "scale": "tall", "class": "weaver", "kind": "most", "predicative": True, "tense": "present"}])
+        self.assertIn("(Most tall sk_bram_1 weaver)", bare)
+        self.assertFalse(any("Implication" in a or "Narrow" in a for a in bare))
+        with self.assertRaises(E.EmitError):                                   # within names an atom about someone else
+            E.emit({"id": "c", "instances": town("Bram") + [{"t": "named-entity", "id": "n3", "name": "Ines"},
+                                                           rank(2, subject="@n3")]}, CATALOG)
+
+    def test_a_relation_and_a_dated_period_narrow_the_comparison_class(self):
+        """The relatum of a relational class noun narrows the class as (Relation mayor X), its rule
+        testing the relation state alone (no class atom on the member); a dated period narrows it
+        as (Within (Century 17)), with no rule — no atom of a member shows a period — and the
+        subject's membership stated instead; a symmetric relation's other bearer is the relatum."""
+        def run(insts):
+            return atoms_of(E.emit({"id": "a", "instances": insts}, CATALOG)["statements"])
+        mayor = run([{"t": "named-entity", "id": "n1", "name": "Bram"}, {"t": "named-entity", "id": "n2", "name": "Calderwick"},
+                     {"t": "stative-relation", "id": "p1", "relation": "mayor", "subject": "@n1", "object": "@n2", "preposition": "of", "tense": "past"},
+                     {"t": "superlative", "id": "s1", "subject": "@n1", "scale": "mayor", "class": "mayor", "kind": "ordinal", "rank": 1,
+                      "predicative": True, "tense": "past", "within": ["@p1"]}])
+        term = "(Narrow mayor (Relation mayor sk_calderwick_1))"
+        self.assertIn(f"(Past (Ordinal sk_bram_1 1 {term} {term}))", mayor)
+        self.assertIn(f"(Implication (And (Member $s mayor) (Bearer $s $y) (Theme $s sk_calderwick_1)) (Member $y {term}))", mayor)
+        period = run([{"t": "named-entity", "id": "n1", "name": "Bram"}, {"t": "time", "id": "t1", "century": 17},
+                      {"t": "superlative", "id": "s1", "subject": "@n1", "scale": "fine", "class": "glazier", "kind": "most",
+                       "predicative": True, "tense": "past", "within": ["@t1"]}])
+        term = "(Narrow glazier (Within (Century 17)))"
+        self.assertIn(f"(Past (Most fine sk_bram_1 {term}))", period)
+        self.assertIn(f"(Member sk_bram_1 {term})", period)                 # stated: no rule could show it
+        self.assertFalse(any(a.startswith("(Implication") for a in period))
+        cousin = run([{"t": "named-entity", "id": "n1", "name": "Bram"}, {"t": "named-entity", "id": "n2", "name": "Ines"},
+                      {"t": "stative-relation", "id": "p1", "relation": "cousin", "subject": "@n1", "object": "@n2", "tense": "present"},
+                      {"t": "superlative", "id": "s1", "subject": "@n1", "scale": "old", "class": "cousin", "kind": "most",
+                       "predicative": True, "tense": "present", "within": ["@p1"]}])
+        self.assertIn("(Implication (And (Member $s cousin) (Bearer $s $y) (Bearer $s sk_ines_1)) "
+                      "(Member $y (Narrow cousin (Relation cousin sk_ines_1))))", cousin)   # symmetric: the other bearer
+        with self.assertRaises(E.EmitError):                                   # a time that names no period
+            E.emit({"id": "b", "instances": [{"t": "named-entity", "id": "n1", "name": "Bram"}, {"t": "time", "id": "t1", "hour": 12},
+                                             {"t": "superlative", "id": "s1", "subject": "@n1", "scale": "fine", "class": "glazier", "kind": "most",
+                                              "predicative": True, "tense": "past", "within": ["@t1"]}]}, CATALOG)
+
+    def test_an_alias_and_a_relative_clause_on_a_generic_subject(self):
+        """An alias is a second Name of the same individual, its words never declared as a symbol;
+        a relative clause on a generic subject is the rule's condition, its event a variable and an
+        indefinite inside it a variable too, while a stative condition keeps its form."""
+        r = E.emit({"id": "a", "instances": [{"t": "named-entity", "id": "n1", "name": "Ines", "aliases": ["Nell", "Nella"]}]}, CATALOG)
+        atoms = atoms_of(r["statements"])
+        self.assertIn('(Name sk_ines_1 "Ines")', atoms)
+        self.assertIn('(Name sk_ines_1 "Nell")', atoms)
+        self.assertIn('(Name sk_ines_1 "Nella")', atoms)
+        self.assertFalse(any("Nell" in d for d in r["declarations"]))
+        rule = atoms_of(E.emit({"id": "b", "instances": [
+            {"t": "range", "id": "q1", "class": "potter", "quantifier": "every"}, {"t": "witness", "id": "x1", "class": "wheel"},
+            {"t": "possession", "id": "e1", "verb": "own", "holder": "@q1", "possessed": "@x1", "tense": "present"},
+            {"t": "activity", "id": "v1", "verb": "sing", "actor": "@q1", "tense": "present"},
+            {"t": "generic", "id": "r1", "ranges": ["@q1"], "condition": ["@e1"], "over": ["@v1"]}]}, CATALOG)["statements"])
+        self.assertEqual(rule, ["(Implication (And (Member $x potter) (Member $e own) (Holder $e $x) (Theme $e $y) (Member $y wheel)) "
+                                "(And (Member (sk_sing $x $e) sing) (Agent (sk_sing $x $e) $x)))"])
+
+    def test_a_relative_clause_narrows_the_comparison_class(self):
+        """A relative clause listed in `within` narrows the class by what it says: a copular one by
+        its property, an eventive one as (Event verb Role (Role2 filler) …) — an indefinite filler as
+        (Some class) and a variable of that class in the rule, the clause's tense left out — so two
+        texts saying the same give the same term."""
+        def run(name, tense="present"):
+            return atoms_of(E.emit({"id": name, "instances": [
+                {"t": "named-entity", "id": "n1", "name": name}, {"t": "witness", "id": "x1", "class": "wheel"},
+                {"t": "possession", "id": "e1", "verb": "own", "holder": "@n1", "possessed": "@x1", "tense": tense},
+                {"t": "superlative", "id": "s1", "subject": "@n1", "scale": "old", "class": "potter", "kind": "most",
+                 "predicative": True, "tense": "present", "within": ["@e1"]}]}, CATALOG)["statements"])
+        term = "(Narrow potter (Event own Holder (Theme (Some wheel))))"
+        one, two = run("Bram"), run("Ines", "past")
+        self.assertIn(f"(Most old sk_bram_1 {term})", one)
+        self.assertIn(f"(Most old sk_ines_1 {term})", two)                 # another text, another tense: the same class
+        self.assertIn(f"(Implication (And (Member $y potter) (Member $e own) (Holder $e $y) (Theme $e $z1_1) (Member $z1_1 wheel)) "
+                      f"(Member $y {term}))", one)
+        self.assertIn("(Theme sk_own_1 sk_wheel_1)", one)                    # the clause itself stays asserted
+        lamp = atoms_of(E.emit({"id": "c", "instances": [
+            {"t": "witness", "id": "x1", "class": "lamp", "definite": True},
+            {"t": "copular", "id": "c1", "subject": "@x1", "predicate": "broken", "form": "adjective", "tense": "past"},
+            {"t": "superlative", "id": "s1", "subject": "@x1", "scale": "cheap", "class": "lamp", "kind": "most", "within": ["@c1"]}]},
+            CATALOG)["statements"])
+        self.assertIn("(Most cheap sk_lamp_1 (Narrow lamp (Member broken)))", lamp)
+
     def test_malformed_instances_are_refused(self):
         bad = [{"t": "transfer", "id": "e1", "verb": "give", "giver": "@n9", "object": "x", "tense": "past"}]
         with self.assertRaises(E.EmitError) as cm:

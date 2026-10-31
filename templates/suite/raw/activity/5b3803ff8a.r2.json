@@ -1,0 +1,93 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "ab1d66d33186390f3360a1804bcf0c047773b5bffeb60dcea9549c75608a59bd",
+  "item": {
+    "id": "s5b3803ff8a",
+    "text": "The clerk who laughed left."
+  },
+  "usage": {
+    "input": 102384,
+    "output": 145,
+    "thinking": null,
+    "total": 102529,
+    "cached": 100335,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 102384,
+    "candidatesTokenCount": 145,
+    "totalTokenCount": 102529,
+    "cachedContentTokenCount": 100335,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 102384
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 100335
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 145
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s5b3803ff8a\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"clerk\", \"definite\": true, \"span\": \"The clerk\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"laugh\", \"actor\": \"@x1\", \"tense\": \"past\", \"span\": \"who laughed\"}, {\"t\": \"motion\", \"id\": \"e2\", \"verb\": \"leave\", \"mover\": \"@x1\", \"tense\": \"past\", \"span\": \"The clerk who laughed left\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s5b3803ff8a",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "clerk",
+        "definite": true,
+        "span": "The clerk"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "laugh",
+        "actor": "@x1",
+        "tense": "past",
+        "span": "who laughed"
+      },
+      {
+        "t": "motion",
+        "id": "e2",
+        "verb": "leave",
+        "mover": "@x1",
+        "tense": "past",
+        "span": "The clerk who laughed left"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "23715ceda6cf1a9f26da7ddc19072c26ac7ae20b8da2685c250a62434a182d4a",
+  "manifest_id": "c796e2cfa0b5",
+  "run": 2,
+  "case": {
+    "template": "activity",
+    "section": "held_out",
+    "index": 24,
+    "category": "positive",
+    "text": "The clerk who laughed left.",
+    "key": "5b3803ff8a"
+  }
+}

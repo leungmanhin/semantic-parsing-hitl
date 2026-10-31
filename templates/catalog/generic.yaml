@@ -56,8 +56,8 @@ slots:
            doc: "the range instance(s) the rule quantifies over, in text order: one per quantified class noun"}
   over:   {type: refs, class: Proposition, required: true, skolemize: true,
            doc: "the predication (or the part-whole relation) over the range(s), or the negation / modal / norm over that predication: its id, nothing else"}
-  condition: {type: refs, class: Proposition, required: false, state_variable: true,
-              doc: "a predication over the range that must hold for the generalization to apply (ferrets bite when cornered: the copular instance for cornered, its subject the range); its id; absent as a rule"}
+  condition: {type: refs, class: Proposition, required: false, state_variable: true, as_variable: true,
+              doc: "a predication over the range that must hold for the generalization to apply (ferrets bite when cornered: the copular instance for cornered, its subject the range), or a relative clause on the subject (herons that fish: the fishing; its event becomes a variable, an indefinite inside it too); its id; absent as a rule"}
 
 truth:
   strength:
@@ -266,3 +266,12 @@ examples:
         - {t: copular, id: c1, subject: "@q1", predicate: adult, form: adjective, tense: present}
         - {t: activity, id: v1, verb: eat, actor: "@q1", patient: frog, tense: present}
         - {t: generic, id: r1, ranges: ["@q1"], condition: ["@c1"], over: ["@v1"]}
+    - category: positive
+      note: a relative clause on a quantified subject with an indefinite in it — both variables of the condition
+      text: "Every glazier who owns a kiln sells vases."
+      instances:
+        - {t: range, id: q1, class: glazier, quantifier: every}
+        - {t: witness, id: x1, class: kiln}
+        - {t: possession, id: e1, verb: own, holder: "@q1", possessed: "@x1", tense: present}
+        - {t: transfer, id: e2, verb: sell, giver: "@q1", object: vase, tense: present}
+        - {t: generic, id: r1, ranges: ["@q1"], condition: ["@e1"], over: ["@e2"]}

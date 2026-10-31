@@ -65,6 +65,8 @@ def _value_doc(spec: dict, family: str | None = None) -> str:
             return 'a list of "@id" of the instances this one scopes over'
         return 'a list of "@id" of the instances that state the clause'
     if t == "list":
+        if spec.get("class") == "Proposition":   # ids of other instances, read but not scoped over
+            return 'a list of "@id" of other instances, which stay asserted on their own'
         return "a list of lemmas"
     return t
 
@@ -183,6 +185,7 @@ def generate(catalog: dict, general: dict, directory: str = CAT.CATALOG_DIR) -> 
     section("Identifiers and fillers", general["identifiers"], bullets=True)
     section("Spans", general.get("spans") or [], bullets=True)
     section("Lemmas and symbols", general["lemmas"], bullets=True)
+    section("Relative clauses and participles", general.get("relatives") or [], bullets=True)
     section("Choosing a template", general.get("abstain") or [])
     section("Unmapped spans", general["unmapped"])
     add("Codes:")

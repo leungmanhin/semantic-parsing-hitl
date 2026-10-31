@@ -64,8 +64,8 @@ slots:
   id:        {type: id, required: true, doc: "your label for the rule"}
   ranges:    {type: refs, class: Proposition, required: true,
               doc: "the range instance for the class (one, as a rule): the arbitrary member the condition and the property are about"}
-  condition: {type: refs, class: Proposition, required: true, state_variable: true,
-              doc: "the predication(s) that must hold of the member: a copular instance over the range for a state (wet), a locative instance for a place; their ids; a pronoun bound by the range is the range (subject @q1)"}
+  condition: {type: refs, class: Proposition, required: true, state_variable: true, as_variable: true,
+              doc: "the predication(s) that must hold of the member: a copular instance over the range for a state (wet), a locative instance for a place, or a relative clause on the class (herons that fish are patient: the fishing, its event a variable); their ids; a pronoun bound by the range is the range (subject @q1)"}
   over:      {type: refs, class: Proposition, required: true, skolemize: true,
               doc: "the copular predication over the range that then holds, or the negation / modal over it: its id, nothing else"}
 
@@ -220,3 +220,11 @@ examples:
     - category: abstain
       text: "Herons are patient if the weather is sunny."
       expected: {abstain: true, template: conditional}                # a condition about something other than the member
+    - category: positive
+      note: a relative clause on the class of a copular property — the condition, its event a variable
+      text: "Ferrets that bite are dangerous."
+      instances:
+        - {t: range, id: q1, class: ferret}
+        - {t: activity, id: v1, verb: bite, actor: "@q1", tense: present}
+        - {t: copular, id: c1, subject: "@q1", predicate: dangerous, form: adjective, tense: present}
+        - {t: conditional-property, id: r1, ranges: ["@q1"], condition: ["@v1"], over: ["@c1"]}
