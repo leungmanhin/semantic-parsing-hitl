@@ -186,6 +186,23 @@ nouns:
   possessive (Yusra's quilt): the possessor; an of-phrase or any phrase after the noun: its own template. A
   compound whose head does not name what it is — a hot dog is not a dog, a toy gun is not a gun — is ONE lemma
   (hot_dog), with no mods.
+biography:
+- >-
+  BORN — was born (in a place, on a date), or born after a name in brackets (Corvin Hale (born 12 May 1840)):
+  the creation template with the verb bear (born is its participle), the person the thing made, no maker, tense
+  past; the date is a time instance on that event, the place a location on it. Gave birth to: the verb
+  give_birth, the mother the maker, the child the thing made.
+- >-
+  A DATE RANGE in brackets right after a PERSON'S name (Wren Ashby (2 May 1801 – 9 June 1866)) is the person's
+  life: a birth on the first date, as above, and a death on the second — the change-of-state verb die, the
+  person the undergoer —, both past (the bracket stands for was born … and died …); died alone (died 1866) is the
+  death. A range after an office, a reign or a work (the warden (1990–1994)) is a span of time: report it as
+  unmapped (G00).
+- >-
+  NAMES in the bracket — a birth name (born Wren Moreau), a maiden name (née Moreau), the name in another
+  language or script (Russian: Рен Эшби) — are more names of the same individual: the named entity's `aliases`,
+  as written, without the language. A pronunciation (a phonetic spelling between slashes, a respelling) is a tag
+  on the name: report it as unmapped (G03); stray punctuation left in the bracket is nothing and is not reported.
 abstain:
 - >-
   A template fires only where its construction is present. If a clause looks like a template's construction
@@ -223,7 +240,7 @@ gap_codes:
     an evaluation (unfortunately, luckily, sadly), a degree word on a manner adverb, on a class-level statement
     or on an adjective with a complement (laughed very loudly; ferrets are very curious; very fond of Teodor)
   G03: >-
-    a post-nominal tag on a name (a party or district tag, a ticker, a bracketed code)
+    a post-nominal tag on a name (a party or district tag, a ticker, a bracketed code, a pronunciation)
   G04: >-
     an irrealis relative clause ('the bridge that would have collapsed'); a lone would-have main clause is the modal's Would
   G05: >-

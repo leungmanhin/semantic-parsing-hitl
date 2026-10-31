@@ -189,6 +189,7 @@ def generate(catalog: dict, general: dict, directory: str = CAT.CATALOG_DIR) -> 
     section("Lemmas and symbols", general["lemmas"], bullets=True)
     section("Relative clauses and participles", general.get("relatives") or [], bullets=True)
     section("Nouns before nouns", general.get("nouns") or [], bullets=True)
+    section("Life dates and names in brackets", general.get("biography") or [], bullets=True)
     section("Choosing a template", general.get("abstain") or [])
     section("Unmapped spans", general["unmapped"])
     add("Codes:")

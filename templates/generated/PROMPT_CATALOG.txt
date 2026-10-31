@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 5fb2603c117680f7 · 58 templates
+catalog sha256 ac5ba43bd425b046 · 58 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -195,6 +195,24 @@ fences.
   any phrase after the noun: its own template. A compound whose head does not name what it is —
   a hot dog is not a dog, a toy gun is not a gun — is ONE lemma (hot_dog), with no mods.
 
+## Life dates and names in brackets
+
+- BORN — was born (in a place, on a date), or born after a name in brackets (Corvin Hale (born
+  12 May 1840)): the creation template with the verb bear (born is its participle), the person
+  the thing made, no maker, tense past; the date is a time instance on that event, the place a
+  location on it. Gave birth to: the verb give_birth, the mother the maker, the child the thing
+  made.
+- A DATE RANGE in brackets right after a PERSON'S name (Wren Ashby (2 May 1801 – 9 June 1866))
+  is the person's life: a birth on the first date, as above, and a death on the second — the
+  change-of-state verb die, the person the undergoer —, both past (the bracket stands for was
+  born … and died …); died alone (died 1866) is the death. A range after an office, a reign or a
+  work (the warden (1990–1994)) is a span of time: report it as unmapped (G00).
+- NAMES in the bracket — a birth name (born Wren Moreau), a maiden name (née Moreau), the name
+  in another language or script (Russian: Рен Эшби) — are more names of the same individual: the
+  named entity's `aliases`, as written, without the language. A pronunciation (a phonetic
+  spelling between slashes, a respelling) is a tag on the name: report it as unmapped (G03);
+  stray punctuation left in the bracket is nothing and is not reported.
+
 ## Choosing a template
 
 A template fires only where its construction is present. If a clause looks like a template's
@@ -239,7 +257,8 @@ Codes:
   (nationally, locally), an evaluation (unfortunately, luckily, sadly), a degree word on a
   manner adverb, on a class-level statement or on an adjective with a complement (laughed very
   loudly; ferrets are very curious; very fond of Teodor)
-- G03: a post-nominal tag on a name (a party or district tag, a ticker, a bracketed code)
+- G03: a post-nominal tag on a name (a party or district tag, a ticker, a bracketed code, a
+  pronunciation)
 - G04: an irrealis relative clause ('the bridge that would have collapsed'); a lone would-have
   main clause is the modal's Would
 - G05: a connective at the start of the text with no first clause to relate ('But the vote
@@ -429,7 +448,9 @@ Slots:
   (her son Bram, Ilse's husband Corvin) is a relation, not a class: the stative-relation
   template.
 - `aliases` (optional; a list of lemmas): other names of the same individual, each as written:
-  known as, also known as, better known as, called, nicknamed (Ines, known as Nell: Nell).
+  known as, also known as, better known as, called, nicknamed (Ines, known as Nell: Nell); a
+  birth or a maiden name (born X, née X) and the name in another language or script, without the
+  language.
 - `props` (optional; a list of lemmas): adjectives inside the appositive or title phrase, each a
   lemma (a careful harbour pilot: careful; the northern ferry company: northern); a noun before
   the class is a mod, never a property.
@@ -2394,16 +2415,19 @@ When: A verbal clause whose object comes into being through the action the verb 
 the sense of producing a thing), build, construct, assemble, create, produce, form, found,
 establish, invent, design, bake, brew, knit, sew, weave, forge, carve, write, compose, draw,
 paint, print, publish. The subject is the maker, the object the thing made; a thing of any sort
-counts — a shed, a loaf, a letter, a song, a map, a committee, a school.
+counts — a shed, a loaf, a letter, a song, a map, a committee, a school. A BIRTH is a creation
+too: was born (born is the participle of bear) — the verb bear, the person born the thing made,
+the mother the maker when stated; gave birth to — the verb give_birth.
 
 Verbs that anchor the class: make, build, construct, assemble, create, produce, form, found,
 establish, invent, design, bake, brew, knit, sew, weave, forge, carve, write, compose, draw,
-paint, print, publish.
+paint, print, publish, bear, give_birth.
 The list anchors the class; an unlisted verb whose object comes into being belongs here (record
 its lemma as usual). Several listed verbs have other senses that are not creations: make with a
 predicate on its object (made the wax soft), with an event noun (made a decision) or with a
 clause (made Teodor laugh); paint, write and draw with an existing thing as the object (painted
-the shed, drew the curtain); write with an addressee (wrote to Yusra, wrote Yusra a letter). The
+the shed, drew the curtain); write with an addressee (wrote to Yusra, wrote Yusra a letter).
+Bear is a creation only for a birth (bear a weight, could not bear the noise are not). The
 boundary says where each goes.
 
 Forms:
@@ -2412,6 +2436,8 @@ Forms:
 - <maker> V <thing made> with / for …
 - <thing made> was V-ed by <maker>
 - <thing made> was V-ed
+- <person> was born (in <place>) (on <date>)
+- <mother> gave birth to <child>
 
 Not this template:
 - an action on a thing that is already there — painted the shed, read the letter, washed the
@@ -2422,7 +2448,7 @@ Not this template:
 - a message reaching an addressee — wrote to Yusra, wrote Yusra a letter, told Ottoline the
   news: a communication
 - light-verb constructions — made a decision, made a trip, made a call, made a change: the noun
-  carries the event
+  carries the event (gave birth to is not one of them: the verb give_birth, here)
 - make with a clause — made Teodor laugh, made Yusra send the quilt: a causative over a clause,
   a different construction
 - a state of composition or existence — the shed is made of planks: a part-whole relation (the

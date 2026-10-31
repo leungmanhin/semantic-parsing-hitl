@@ -1,0 +1,106 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "cea733e5b6b27694fb24abf6f29472685b1f2422fccc84cfe87d92712d23b471",
+  "item": {
+    "id": "scfa9a8238c",
+    "text": "Lamine was born in Calderwick in 1988."
+  },
+  "usage": {
+    "input": 105799,
+    "output": 220,
+    "thinking": null,
+    "total": 106019,
+    "cached": 103750,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 105799,
+    "candidatesTokenCount": 220,
+    "totalTokenCount": 106019,
+    "cachedContentTokenCount": 103750,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 105799
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 103750
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 220
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"scfa9a8238c\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Calderwick\", \"span\": \"Calderwick\"}, {\"t\": \"creation\", \"id\": \"e1\", \"verb\": \"bear\", \"product\": \"@n1\", \"tense\": \"past\", \"span\": \"Lamine was born\"}, {\"t\": \"location\", \"id\": \"l1\", \"event\": \"@e1\", \"place\": \"@n2\", \"head\": \"Location\", \"preposition\": \"in\", \"span\": \"in Calderwick\"}, {\"t\": \"time\", \"id\": \"t1\", \"event\": \"@e1\", \"year\": 1988, \"span\": \"in 1988\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "scfa9a8238c",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Calderwick",
+        "span": "Calderwick"
+      },
+      {
+        "t": "creation",
+        "id": "e1",
+        "verb": "bear",
+        "product": "@n1",
+        "tense": "past",
+        "span": "Lamine was born"
+      },
+      {
+        "t": "location",
+        "id": "l1",
+        "event": "@e1",
+        "place": "@n2",
+        "head": "Location",
+        "preposition": "in",
+        "span": "in Calderwick"
+      },
+      {
+        "t": "time",
+        "id": "t1",
+        "event": "@e1",
+        "year": 1988,
+        "span": "in 1988"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "24e112f0c7a2484d17127cb2fefd25d88e6ef031cd29d108065ccae9aaf0f8ee",
+  "manifest_id": "40c957026e81",
+  "run": 3,
+  "case": {
+    "template": "creation",
+    "section": "held_out",
+    "index": 19,
+    "category": "positive",
+    "text": "Lamine was born in Calderwick in 1988.",
+    "key": "cfa9a8238c"
+  }
+}

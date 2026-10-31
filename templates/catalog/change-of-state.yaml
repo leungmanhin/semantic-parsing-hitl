@@ -258,3 +258,13 @@ examples:
         - {t: witness, id: x2, class: ladder, possessor: "@x1"}
         - {t: change-of-state, id: c1, verb: break, undergoer: "@x2", tense: past}
         - {t: motion, id: m1, verb: leave, mover: "@x1", tense: past}
+    - category: positive
+      note: a date range in brackets after a person's name — the birth and the death, both past
+      text: "Bram Hale (12 June 1840 – 3 July 1901) was a glazier."
+      instances:
+        - {t: named-entity, id: n1, name: "Bram Hale"}
+        - {t: creation, id: e1, verb: bear, product: "@n1", tense: past}
+        - {t: time, id: t1, event: "@e1", year: 1840, month: june, day: 12}
+        - {t: change-of-state, id: e2, verb: die, undergoer: "@n1", tense: past}
+        - {t: time, id: t2, event: "@e2", year: 1901, month: july, day: 3}
+        - {t: copular, id: c1, subject: "@n1", predicate: glazier, form: noun, tense: past}

@@ -30,7 +30,7 @@ slots:
   class:  {type: lemma, class: Class, required: false, narrowed_by: mods,
           doc: "the class an appositive, a title phrase or an of-phrase naming the place itself states for the name (Lamine, a glazier; the village of Aldmoor: village); a predicative is a N is a copular instance, not this slot; a relational noun with a possessor (her son Bram, Ilse's husband Corvin) is a relation, not a class: the stative-relation template"}
   aliases: {type: list, class: String, required: false,
-           doc: "other names of the same individual, each as written: known as, also known as, better known as, called, nicknamed (Ines, known as Nell: Nell)"}
+           doc: "other names of the same individual, each as written: known as, also known as, better known as, called, nicknamed (Ines, known as Nell: Nell); a birth or a maiden name (born X, née X) and the name in another language or script, without the language"}
   props:  {type: list, class: Class, required: false,
           doc: "adjectives inside the appositive or title phrase, each a lemma (a careful harbour pilot: careful; the northern ferry company: northern); a noun before the class is a mod, never a property"}
   mods:   {type: list, class: Class, ids: [named-entity, time], required: false,
@@ -86,3 +86,17 @@ examples:
       instances:
         - {t: named-entity, id: n1, name: "Calderwick", class: town}
         - {t: change-of-state, id: e1, verb: grow, undergoer: "@n1", tense: past}
+    - category: positive
+      note: a birth name in the bracket — another name of the same individual; the birth on its year
+      text: "Corvin Ashby (born Corvin Moreau, 1950) sang."
+      instances:
+        - {t: named-entity, id: n1, name: "Corvin Ashby", aliases: ["Corvin Moreau"]}
+        - {t: creation, id: e1, verb: bear, product: "@n1", tense: past}
+        - {t: time, id: t1, event: "@e1", year: 1950}
+        - {t: activity, id: v1, verb: sing, actor: "@n1", tense: past}
+    - category: positive
+      note: the name in another script — another name, the language not kept
+      text: "Teodor (Russian: Фёдор) left."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor", aliases: ["Фёдор"]}
+        - {t: motion, id: m1, verb: leave, mover: "@n1", tense: past}

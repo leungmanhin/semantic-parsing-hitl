@@ -20,15 +20,19 @@ trigger:
     sense of producing a thing), build, construct, assemble, create, produce, form, found,
     establish, invent, design, bake, brew, knit, sew, weave, forge, carve, write, compose, draw,
     paint, print, publish. The subject is the maker, the object the thing made; a thing of any sort
-    counts — a shed, a loaf, a letter, a song, a map, a committee, a school.
+    counts — a shed, a loaf, a letter, a song, a map, a committee, a school. A BIRTH is a creation
+    too: was born (born is the participle of bear) — the verb bear, the person born the thing
+    made, the mother the maker when stated; gave birth to — the verb give_birth.
   verbs: [make, build, construct, assemble, create, produce, form, found, establish, invent, design,
-          bake, brew, knit, sew, weave, forge, carve, write, compose, draw, paint, print, publish]
+          bake, brew, knit, sew, weave, forge, carve, write, compose, draw, paint, print, publish,
+          bear, give_birth]
   verbs_note: >
     The list anchors the class; an unlisted verb whose object comes into being belongs here (record
     its lemma as usual). Several listed verbs have other senses that are not creations: make with a
     predicate on its object (made the wax soft), with an event noun (made a decision) or with a
     clause (made Teodor laugh); paint, write and draw with an existing thing as the object (painted
-    the shed, drew the curtain); write with an addressee (wrote to Yusra, wrote Yusra a letter). The
+    the shed, drew the curtain); write with an addressee (wrote to Yusra, wrote Yusra a letter). Bear
+    is a creation only for a birth (bear a weight, could not bear the noise are not). The
     boundary says where each goes.
   surface_forms:
     - "<maker> V <thing made>"                      # Teodor built a shed
@@ -36,6 +40,8 @@ trigger:
     - "<maker> V <thing made> with / for …"         # an instrument or a beneficiary: an adjunct attachment
     - "<thing made> was V-ed by <maker>"            # passive: the roles do not change
     - "<thing made> was V-ed"                       # passive, maker unstated
+    - "<person> was born (in <place>) (on <date>)"  # the verb bear, the person the thing made, past
+    - "<mother> gave birth to <child>"              # the verb give_birth, the mother the maker
   boundary:                   # looks like a creation but is not one
     - >-
       an action on a thing that is already there — painted the shed, read the letter, washed the
@@ -49,7 +55,7 @@ trigger:
       news: a communication
     - >-
       light-verb constructions — made a decision, made a trip, made a call, made a change: the
-      noun carries the event
+      noun carries the event (gave birth to is not one of them: the verb give_birth, here)
     - >-
       make with a clause — made Teodor laugh, made Yusra send the quilt: a causative over a
       clause, a different construction
@@ -251,3 +257,35 @@ examples:
         - {t: witness, id: x1, class: quilt, definite: true}
         - {t: creation, id: e1, verb: weave, creator: "@n1", product: "@x1", tense: present}
         - {t: transfer, id: e2, verb: sell, object: "@x1", tense: past}
+    - category: positive
+      note: born with a date in brackets after a name — bear, the person the thing made, past, the date on the birth
+      text: "Teodor Varga (born 3 May 1921) is a potter."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor Varga"}
+        - {t: creation, id: e1, verb: bear, product: "@n1", tense: past}
+        - {t: time, id: t1, event: "@e1", year: 1921, month: may, day: 3}
+        - {t: copular, id: c1, subject: "@n1", predicate: potter, form: noun, tense: present}
+    - category: positive
+      note: born with a year only, stray punctuation in the bracket not reported
+      text: "Ines Roux ( ; born 1967) is a glazier."
+      instances:
+        - {t: named-entity, id: n1, name: "Ines Roux"}
+        - {t: creation, id: e1, verb: bear, product: "@n1", tense: past}
+        - {t: time, id: t1, event: "@e1", year: 1967}
+        - {t: copular, id: c1, subject: "@n1", predicate: glazier, form: noun, tense: present}
+    - category: positive
+      note: was born in a place in a year — the place a location on the birth
+      text: "Lamine was born in Calderwick in 1988."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: named-entity, id: n2, name: "Calderwick"}
+        - {t: creation, id: e1, verb: bear, product: "@n1", tense: past}
+        - {t: location, id: l1, event: "@e1", place: "@n2", head: Location, preposition: in}
+        - {t: time, id: t1, event: "@e1", year: 1988}
+    - category: positive
+      note: gave birth to — the verb give_birth, the mother the maker
+      text: "Ottoline gave birth to a girl."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: witness, id: x1, class: girl}
+        - {t: creation, id: e1, verb: give_birth, creator: "@n1", product: "@x1", tense: past}

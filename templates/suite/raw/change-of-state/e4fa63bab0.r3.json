@@ -1,0 +1,122 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "cea733e5b6b27694fb24abf6f29472685b1f2422fccc84cfe87d92712d23b471",
+  "item": {
+    "id": "se4fa63bab0",
+    "text": "Bram Hale (12 June 1840 – 3 July 1901) was a glazier."
+  },
+  "usage": {
+    "input": 105809,
+    "output": 320,
+    "thinking": null,
+    "total": 106129,
+    "cached": 103760,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 105809,
+    "candidatesTokenCount": 320,
+    "totalTokenCount": 106129,
+    "cachedContentTokenCount": 103760,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 105809
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 103760
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 320
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"se4fa63bab0\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Bram Hale\", \"span\": \"Bram Hale\"}, {\"t\": \"creation\", \"id\": \"e1\", \"verb\": \"bear\", \"product\": \"@n1\", \"tense\": \"past\", \"span\": \"12 June 1840\"}, {\"t\": \"change-of-state\", \"id\": \"e2\", \"verb\": \"die\", \"undergoer\": \"@n1\", \"tense\": \"past\", \"span\": \"3 July 1901\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@n1\", \"predicate\": \"glazier\", \"form\": \"noun\", \"tense\": \"past\", \"span\": [\"Bram Hale\", \"was a glazier\"]}, {\"t\": \"time\", \"id\": \"t1\", \"event\": \"@e1\", \"year\": 1840, \"month\": \"june\", \"day\": 12, \"span\": \"12 June 1840\"}, {\"t\": \"time\", \"id\": \"t2\", \"event\": \"@e2\", \"year\": 1901, \"month\": \"july\", \"day\": 3, \"span\": \"3 July 1901\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "se4fa63bab0",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Bram Hale",
+        "span": "Bram Hale"
+      },
+      {
+        "t": "creation",
+        "id": "e1",
+        "verb": "bear",
+        "product": "@n1",
+        "tense": "past",
+        "span": "12 June 1840"
+      },
+      {
+        "t": "change-of-state",
+        "id": "e2",
+        "verb": "die",
+        "undergoer": "@n1",
+        "tense": "past",
+        "span": "3 July 1901"
+      },
+      {
+        "t": "copular",
+        "id": "c1",
+        "subject": "@n1",
+        "predicate": "glazier",
+        "form": "noun",
+        "tense": "past",
+        "span": [
+          "Bram Hale",
+          "was a glazier"
+        ]
+      },
+      {
+        "t": "time",
+        "id": "t1",
+        "event": "@e1",
+        "year": 1840,
+        "month": "june",
+        "day": 12,
+        "span": "12 June 1840"
+      },
+      {
+        "t": "time",
+        "id": "t2",
+        "event": "@e2",
+        "year": 1901,
+        "month": "july",
+        "day": 3,
+        "span": "3 July 1901"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "24e112f0c7a2484d17127cb2fefd25d88e6ef031cd29d108065ccae9aaf0f8ee",
+  "manifest_id": "40c957026e81",
+  "run": 3,
+  "case": {
+    "template": "change-of-state",
+    "section": "held_out",
+    "index": 20,
+    "category": "positive",
+    "text": "Bram Hale (12 June 1840 – 3 July 1901) was a glazier.",
+    "key": "e4fa63bab0"
+  }
+}

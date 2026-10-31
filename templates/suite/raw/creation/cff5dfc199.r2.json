@@ -1,0 +1,91 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "cea733e5b6b27694fb24abf6f29472685b1f2422fccc84cfe87d92712d23b471",
+  "item": {
+    "id": "scff5dfc199",
+    "text": "Ottoline gave birth to a girl."
+  },
+  "usage": {
+    "input": 105791,
+    "output": 137,
+    "thinking": null,
+    "total": 105928,
+    "cached": 103742,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 105791,
+    "candidatesTokenCount": 137,
+    "totalTokenCount": 105928,
+    "cachedContentTokenCount": 103742,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 105791
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 103742
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 137
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"scff5dfc199\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"girl\", \"span\": \"a girl\"}, {\"t\": \"creation\", \"id\": \"e1\", \"verb\": \"give_birth\", \"creator\": \"@n1\", \"product\": \"@x1\", \"tense\": \"past\", \"span\": \"Ottoline gave birth to a girl\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "scff5dfc199",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Ottoline",
+        "span": "Ottoline"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "girl",
+        "span": "a girl"
+      },
+      {
+        "t": "creation",
+        "id": "e1",
+        "verb": "give_birth",
+        "creator": "@n1",
+        "product": "@x1",
+        "tense": "past",
+        "span": "Ottoline gave birth to a girl"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "24e112f0c7a2484d17127cb2fefd25d88e6ef031cd29d108065ccae9aaf0f8ee",
+  "manifest_id": "40c957026e81",
+  "run": 2,
+  "case": {
+    "template": "creation",
+    "section": "held_out",
+    "index": 20,
+    "category": "positive",
+    "text": "Ottoline gave birth to a girl.",
+    "key": "cff5dfc199"
+  }
+}

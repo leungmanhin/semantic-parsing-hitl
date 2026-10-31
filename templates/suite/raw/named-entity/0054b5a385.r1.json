@@ -1,0 +1,105 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "cea733e5b6b27694fb24abf6f29472685b1f2422fccc84cfe87d92712d23b471",
+  "item": {
+    "id": "s0054b5a385",
+    "text": "Corvin Ashby (born Corvin Moreau, 1950) sang."
+  },
+  "usage": {
+    "input": 105804,
+    "output": 169,
+    "thinking": null,
+    "total": 105973,
+    "cached": 103742,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 105804,
+    "candidatesTokenCount": 169,
+    "totalTokenCount": 105973,
+    "cachedContentTokenCount": 103742,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 105804
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 103742
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 169
+      }
+    ]
+  },
+  "raw_text": "{\"id\":\"s0054b5a385\",\"instances\":[{\"t\":\"named-entity\",\"id\":\"n1\",\"name\":\"Corvin Ashby\",\"aliases\":[\"Corvin Moreau\"],\"span\":[\"Corvin Ashby\",\"Corvin Moreau\"]},{\"t\":\"creation\",\"id\":\"e1\",\"verb\":\"bear\",\"product\":\"@n1\",\"tense\":\"past\",\"span\":\"born Corvin Moreau, 1950\"},{\"t\":\"activity\",\"id\":\"e2\",\"verb\":\"sing\",\"actor\":\"@n1\",\"tense\":\"past\",\"span\":\"Corvin Ashby (born Corvin Moreau, 1950) sang\"},{\"t\":\"time\",\"id\":\"t1\",\"event\":\"@e1\",\"year\":1950,\"span\":\"1950\"}],\"unmapped\":[],\"issues\":[]}",
+  "response": {
+    "id": "s0054b5a385",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Corvin Ashby",
+        "aliases": [
+          "Corvin Moreau"
+        ],
+        "span": [
+          "Corvin Ashby",
+          "Corvin Moreau"
+        ]
+      },
+      {
+        "t": "creation",
+        "id": "e1",
+        "verb": "bear",
+        "product": "@n1",
+        "tense": "past",
+        "span": "born Corvin Moreau, 1950"
+      },
+      {
+        "t": "activity",
+        "id": "e2",
+        "verb": "sing",
+        "actor": "@n1",
+        "tense": "past",
+        "span": "Corvin Ashby (born Corvin Moreau, 1950) sang"
+      },
+      {
+        "t": "time",
+        "id": "t1",
+        "event": "@e1",
+        "year": 1950,
+        "span": "1950"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "24e112f0c7a2484d17127cb2fefd25d88e6ef031cd29d108065ccae9aaf0f8ee",
+  "manifest_id": "40c957026e81",
+  "run": 1,
+  "case": {
+    "template": "named-entity",
+    "section": "held_out",
+    "index": 5,
+    "category": "positive",
+    "text": "Corvin Ashby (born Corvin Moreau, 1950) sang.",
+    "key": "0054b5a385"
+  }
+}
