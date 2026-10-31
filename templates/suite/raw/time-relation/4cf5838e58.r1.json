@@ -1,0 +1,117 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "88282b43ef33add52ef2f76979d2d377f6e5ae262b03b906e466fb48c2ad3de9",
+  "item": {
+    "id": "s4cf5838e58",
+    "text": "The drought of 1911–1913 was severe."
+  },
+  "usage": {
+    "input": 106290,
+    "output": 305,
+    "thinking": null,
+    "total": 106595,
+    "cached": 104178,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 106290,
+    "candidatesTokenCount": 305,
+    "totalTokenCount": 106595,
+    "cachedContentTokenCount": 104178,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 106290
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 104178
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 305
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s4cf5838e58\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"drought\", \"definite\": true, \"eventive\": true, \"span\": \"The drought of 1911–1913\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@x1\", \"predicate\": \"severe\", \"form\": \"adjective\", \"tense\": \"past\", \"span\": \"The drought of 1911–1913 was severe\"}, {\"t\": \"time\", \"id\": \"t1\", \"year\": 1911, \"span\": \"1911\"}, {\"t\": \"time\", \"id\": \"t2\", \"year\": 1913, \"span\": \"1913\"}, {\"t\": \"time-relation\", \"id\": \"r1\", \"event\": \"@x1\", \"reference\": \"@t1\", \"head\": \"Start\", \"word\": \"of\", \"span\": \"of 1911\"}, {\"t\": \"time-relation\", \"id\": \"r2\", \"event\": \"@x1\", \"reference\": \"@t2\", \"head\": \"End\", \"word\": \"–\", \"span\": \"–1913\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s4cf5838e58",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "drought",
+        "definite": true,
+        "eventive": true,
+        "span": "The drought of 1911–1913"
+      },
+      {
+        "t": "copular",
+        "id": "c1",
+        "subject": "@x1",
+        "predicate": "severe",
+        "form": "adjective",
+        "tense": "past",
+        "span": "The drought of 1911–1913 was severe"
+      },
+      {
+        "t": "time",
+        "id": "t1",
+        "year": 1911,
+        "span": "1911"
+      },
+      {
+        "t": "time",
+        "id": "t2",
+        "year": 1913,
+        "span": "1913"
+      },
+      {
+        "t": "time-relation",
+        "id": "r1",
+        "event": "@x1",
+        "reference": "@t1",
+        "head": "Start",
+        "word": "of",
+        "span": "of 1911"
+      },
+      {
+        "t": "time-relation",
+        "id": "r2",
+        "event": "@x1",
+        "reference": "@t2",
+        "head": "End",
+        "word": "–",
+        "span": "–1913"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "78fb5a515e3eab9b104fb9e1e93d00d2979114ef73381d88a78b2b612cbec1b1",
+  "manifest_id": "304221ed435b",
+  "run": 1,
+  "case": {
+    "template": "time-relation",
+    "section": "held_out",
+    "index": 33,
+    "category": "positive",
+    "text": "The drought of 1911–1913 was severe.",
+    "key": "4cf5838e58"
+  }
+}

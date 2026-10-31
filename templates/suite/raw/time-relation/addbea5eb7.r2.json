@@ -1,0 +1,115 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "88282b43ef33add52ef2f76979d2d377f6e5ae262b03b906e466fb48c2ad3de9",
+  "item": {
+    "id": "saddbea5eb7",
+    "text": "The barn burned between 1901 and 1905."
+  },
+  "usage": {
+    "input": 106285,
+    "output": 276,
+    "thinking": null,
+    "total": 106561,
+    "cached": 104236,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 106285,
+    "candidatesTokenCount": 276,
+    "totalTokenCount": 106561,
+    "cachedContentTokenCount": 104236,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 106285
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 104236
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 276
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"saddbea5eb7\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"barn\", \"definite\": true, \"span\": \"The barn\"}, {\"t\": \"change-of-state\", \"id\": \"e1\", \"verb\": \"burn\", \"undergoer\": \"@x1\", \"tense\": \"past\", \"span\": \"The barn burned\"}, {\"t\": \"time\", \"id\": \"t1\", \"year\": 1901, \"span\": \"1901\"}, {\"t\": \"time\", \"id\": \"t2\", \"year\": 1905, \"span\": \"1905\"}, {\"t\": \"time-relation\", \"id\": \"r1\", \"event\": \"@e1\", \"reference\": \"@t1\", \"head\": \"TimeAtLeast\", \"word\": \"between\", \"span\": \"between 1901\"}, {\"t\": \"time-relation\", \"id\": \"r2\", \"event\": \"@e1\", \"reference\": \"@t2\", \"head\": \"TimeAtMost\", \"word\": \"and\", \"span\": \"and 1905\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "saddbea5eb7",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "barn",
+        "definite": true,
+        "span": "The barn"
+      },
+      {
+        "t": "change-of-state",
+        "id": "e1",
+        "verb": "burn",
+        "undergoer": "@x1",
+        "tense": "past",
+        "span": "The barn burned"
+      },
+      {
+        "t": "time",
+        "id": "t1",
+        "year": 1901,
+        "span": "1901"
+      },
+      {
+        "t": "time",
+        "id": "t2",
+        "year": 1905,
+        "span": "1905"
+      },
+      {
+        "t": "time-relation",
+        "id": "r1",
+        "event": "@e1",
+        "reference": "@t1",
+        "head": "TimeAtLeast",
+        "word": "between",
+        "span": "between 1901"
+      },
+      {
+        "t": "time-relation",
+        "id": "r2",
+        "event": "@e1",
+        "reference": "@t2",
+        "head": "TimeAtMost",
+        "word": "and",
+        "span": "and 1905"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "78fb5a515e3eab9b104fb9e1e93d00d2979114ef73381d88a78b2b612cbec1b1",
+  "manifest_id": "304221ed435b",
+  "run": 2,
+  "case": {
+    "template": "time-relation",
+    "section": "held_out",
+    "index": 35,
+    "category": "positive",
+    "text": "The barn burned between 1901 and 1905.",
+    "key": "addbea5eb7"
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "88282b43ef33add52ef2f76979d2d377f6e5ae262b03b906e466fb48c2ad3de9",
+  "item": {
+    "id": "s2e8496cdb6",
+    "text": "More than 90 weavers sang."
+  },
+  "usage": {
+    "input": 106281,
+    "output": 153,
+    "thinking": null,
+    "total": 106434,
+    "cached": 104232,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 106281,
+    "candidatesTokenCount": 153,
+    "totalTokenCount": 106434,
+    "cachedContentTokenCount": 104232,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 106281
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 104232
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 153
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s2e8496cdb6\", \"instances\": [{\"t\": \"group\", \"id\": \"g1\", \"class\": \"weaver\", \"count_min\": 90, \"span\": \"More than 90 weavers\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"sing\", \"actor\": \"@g1\", \"tense\": \"past\", \"span\": \"More than 90 weavers sang\"}, {\"t\": \"distribution\", \"id\": \"r1\", \"group\": \"@g1\", \"over\": [\"@e1\"], \"span\": \"More than 90 weavers sang\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s2e8496cdb6",
+    "instances": [
+      {
+        "t": "group",
+        "id": "g1",
+        "class": "weaver",
+        "count_min": 90,
+        "span": "More than 90 weavers"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "sing",
+        "actor": "@g1",
+        "tense": "past",
+        "span": "More than 90 weavers sang"
+      },
+      {
+        "t": "distribution",
+        "id": "r1",
+        "group": "@g1",
+        "over": [
+          "@e1"
+        ],
+        "span": "More than 90 weavers sang"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "78fb5a515e3eab9b104fb9e1e93d00d2979114ef73381d88a78b2b612cbec1b1",
+  "manifest_id": "304221ed435b",
+  "run": 1,
+  "case": {
+    "template": "group",
+    "section": "held_out",
+    "index": 14,
+    "category": "positive",
+    "text": "More than 90 weavers sang.",
+    "key": "2e8496cdb6"
+  }
+}

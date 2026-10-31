@@ -396,6 +396,34 @@ class SeededRulesOnTheEngine(unittest.TestCase):
         self.assertAlmostEqual(s, 1.0, places=2)
         self.assertTrue(self.query(b, "(Between sk_feud_1 $who sk_lamine_1)"))
 
+    def test_events_are_ordered_by_their_dates(self):
+        """year_order, month_order and day_order order two events by their stated times — a birth in
+        1937 before one in 1950, March before July in one year, the 3rd before the 20th in one month
+        — and never the reverse; a who-question finds the earlier one."""
+        def birth(n, who, y, m=None, d=None):
+            out = [f"(: b{n}a (Member sk_bear_{n} bear) (STV 1.0 0.99))", f"(: b{n}b (Patient sk_bear_{n} {who}) (STV 1.0 0.99))",
+                   f"(: b{n}c (Time sk_bear_{n} sk_time_{n}) (STV 1.0 0.99))", f"(: b{n}d (Year sk_time_{n} {y}) (STV 1.0 0.99))"]
+            out += [f"(: b{n}e (Month sk_time_{n} {m}) (STV 1.0 0.99))"] if m else []
+            out += [f"(: b{n}f (Day sk_time_{n} {d}) (STV 1.0 0.99))"] if d else []
+            return out
+        h = self.space(birth(1, "sk_ines_1", 1937) + birth(2, "sk_bram_1", 1950, "march") + birth(3, "sk_wren_1", 1950, "july", 3)
+                       + birth(4, "sk_ilse_1", 1950, "july", 20))
+        for a, b in [(1, 2), (2, 3), (3, 4)]:
+            s, c = tv(self.query(h, f"(Before sk_bear_{a} sk_bear_{b})", steps=1500))
+            self.assertAlmostEqual(s, 1.0, places=2)
+            self.assertFalse(self.query(h, f"(Before sk_bear_{b} sk_bear_{a})", steps=1500))
+        self.assertTrue(self.query(h, "(And (Before $e sk_bear_2) (Member $e bear) (Patient $e $who))", steps=1500))
+
+    def test_former_was_and_is_not(self):
+        """A former locksmith was one and is not one now: the present membership answers at strength
+        0 (a NO), the past one at strength 1."""
+        h = self.space(["(: c1 (Past (Member sk_teodor_1 locksmith)) (STV 1.0 0.99))",
+                        "(: c2 (Not (Member sk_teodor_1 locksmith)) (STV 1.0 0.99))"])
+        s, c = tv(self.query(h, "(Member sk_teodor_1 locksmith)"))
+        self.assertAlmostEqual(s, 0.0, places=2)
+        s, c = tv(self.query(h, "(Past (Member sk_teodor_1 locksmith))"))
+        self.assertAlmostEqual(s, 1.0, places=2)
+
     def test_a_relative_clause_comparison_class(self):
         """A comparison class narrowed by a relative clause with an indefinite admits a member whose
         own atoms say the same — any event of the verb, the subject in its role, a filler of the

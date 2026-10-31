@@ -1,0 +1,93 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "88282b43ef33add52ef2f76979d2d377f6e5ae262b03b906e466fb48c2ad3de9",
+  "item": {
+    "id": "sb6675514bd",
+    "text": "The Week 12 duel ended."
+  },
+  "usage": {
+    "input": 106281,
+    "output": 227,
+    "thinking": null,
+    "total": 106508,
+    "cached": 104232,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 106281,
+    "candidatesTokenCount": 227,
+    "totalTokenCount": 106508,
+    "cachedContentTokenCount": 104232,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 106281
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 104232
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 227
+      }
+    ]
+  },
+  "raw_text": "{\n  \"id\": \"sb6675514bd\",\n  \"instances\": [\n    {\n      \"t\": \"witness\",\n      \"id\": \"x1\",\n      \"class\": \"duel\",\n      \"definite\": true,\n      \"eventive\": true,\n      \"span\": \"The Week 12 duel\"\n    },\n    {\n      \"t\": \"change-of-state\",\n      \"id\": \"e1\",\n      \"verb\": \"end\",\n      \"undergoer\": \"@x1\",\n      \"tense\": \"past\",\n      \"span\": \"The Week 12 duel ended\"\n    },\n    {\n      \"t\": \"time\",\n      \"id\": \"t1\",\n      \"event\": \"@x1\",\n      \"week\": 12,\n      \"span\": \"Week 12\"\n    }\n  ],\n  \"unmapped\": [],\n  \"issues\": []\n}",
+  "response": {
+    "id": "sb6675514bd",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "duel",
+        "definite": true,
+        "eventive": true,
+        "span": "The Week 12 duel"
+      },
+      {
+        "t": "change-of-state",
+        "id": "e1",
+        "verb": "end",
+        "undergoer": "@x1",
+        "tense": "past",
+        "span": "The Week 12 duel ended"
+      },
+      {
+        "t": "time",
+        "id": "t1",
+        "event": "@x1",
+        "week": 12,
+        "span": "Week 12"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "78fb5a515e3eab9b104fb9e1e93d00d2979114ef73381d88a78b2b612cbec1b1",
+  "manifest_id": "304221ed435b",
+  "run": 2,
+  "case": {
+    "template": "time",
+    "section": "held_out",
+    "index": 36,
+    "category": "positive",
+    "text": "The Week 12 duel ended.",
+    "key": "b6675514bd"
+  }
+}

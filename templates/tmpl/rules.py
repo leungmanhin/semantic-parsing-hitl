@@ -58,6 +58,7 @@ TEMPLATES = os.path.abspath(os.path.join(HERE, os.pardir))
 sys.path.insert(0, TEMPLATES)
 
 from tmpl import typecheck as T  # noqa: E402
+from tmpl import catalog as CAT  # noqa: E402
 
 RULES = os.path.join(TEMPLATES, "rules.yaml")
 SUBSTRATE = os.path.join(TEMPLATES, "atom-type-substrates.json")
@@ -313,7 +314,7 @@ def load_facts(path: str = RULES, strict: bool = True, rules: list[dict] | None 
     """The facts groups of the source (an empty list when it has none), validated; the rules'
     ids are reserved against the statement names when ``rules`` is given."""
     with open(path, encoding="utf-8") as fh:
-        doc = yaml.safe_load(fh)
+        doc = CAT.load_yaml(fh)
     facts = (doc or {}).get("facts") or []
     if not isinstance(facts, list):
         raise RulesError(f"{path}: `facts` must be a list")
@@ -339,7 +340,7 @@ def statements_of(facts: list[dict], target: str = "pettachainer") -> list[str]:
 
 def load(path: str = RULES, strict: bool = True) -> list[dict]:
     with open(path, encoding="utf-8") as fh:
-        doc = yaml.safe_load(fh)
+        doc = CAT.load_yaml(fh)
     rules = (doc or {}).get("rules")
     if not isinstance(rules, list):
         raise RulesError(f"{path}: no `rules` list")

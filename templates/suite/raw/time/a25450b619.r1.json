@@ -1,0 +1,98 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "88282b43ef33add52ef2f76979d2d377f6e5ae262b03b906e466fb48c2ad3de9",
+  "item": {
+    "id": "sa25450b619",
+    "text": "Bram travelled in 1871 and 1872."
+  },
+  "usage": {
+    "input": 106289,
+    "output": 179,
+    "thinking": null,
+    "total": 106468,
+    "cached": 104234,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 106289,
+    "candidatesTokenCount": 179,
+    "totalTokenCount": 106468,
+    "cachedContentTokenCount": 104234,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 106289
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 104234
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 179
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sa25450b619\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Bram\", \"span\": \"Bram\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"travel\", \"mover\": \"@n1\", \"tense\": \"past\", \"span\": \"Bram travelled\"}, {\"t\": \"time\", \"id\": \"t1\", \"event\": \"@m1\", \"year\": 1871, \"span\": \"in 1871\"}, {\"t\": \"time\", \"id\": \"t2\", \"event\": \"@m1\", \"year\": 1872, \"span\": \"1872\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sa25450b619",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Bram",
+        "span": "Bram"
+      },
+      {
+        "t": "motion",
+        "id": "m1",
+        "verb": "travel",
+        "mover": "@n1",
+        "tense": "past",
+        "span": "Bram travelled"
+      },
+      {
+        "t": "time",
+        "id": "t1",
+        "event": "@m1",
+        "year": 1871,
+        "span": "in 1871"
+      },
+      {
+        "t": "time",
+        "id": "t2",
+        "event": "@m1",
+        "year": 1872,
+        "span": "1872"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "78fb5a515e3eab9b104fb9e1e93d00d2979114ef73381d88a78b2b612cbec1b1",
+  "manifest_id": "304221ed435b",
+  "run": 1,
+  "case": {
+    "template": "time",
+    "section": "held_out",
+    "index": 34,
+    "category": "positive",
+    "text": "Bram travelled in 1871 and 1872.",
+    "key": "a25450b619"
+  }
+}

@@ -927,6 +927,36 @@ class EmitTests(unittest.TestCase):
                 E.emit({"id": "bad", "instances": bad}, CATALOG)
             self.assertTrue(any(why in p for p in cm.exception.args[0]), cm.exception.args[0])
 
+    def test_a_week_and_a_bounded_count(self):
+        """A numbered week is a field of the time with its own granularity (a week, not a year,
+        even beside a year); a bound or a range on a group's size is CardinalityAtLeast / AtMost."""
+        def atoms(insts):
+            return atoms_of(E.emit({"id": "w", "instances": insts}, CATALOG)["statements"])
+        wk = atoms([{"t": "time", "id": "t1", "year": 2009, "week": 16}])
+        self.assertEqual(sorted(wk), ["(Member sk_time_1 week)", "(Week sk_time_1 16)", "(Year sk_time_1 2009)"])
+        g = atoms([{"t": "group", "id": "g1", "class": "pilgrim", "count_min": 300, "count_max": 400}])
+        self.assertEqual(sorted(g), ["(CardinalityAtLeast sk_group_1 300)", "(CardinalityAtMost sk_group_1 400)", "(GroupOf sk_group_1 pilgrim)"])
+
+    def test_former_a_particle_and_a_weekday_this_week(self):
+        """Former: the class in the past (its head beside) and not now (the noun's own class only:
+        a former harbour pilot may still pilot elsewhere); a particle is an atom on the clause's event;
+        this / last / next with a weekday is the week offset from the reference time."""
+        def atoms(insts):
+            return atoms_of(E.emit({"id": "f", "instances": insts}, CATALOG)["statements"])
+        hp = "(Narrow pilot (Mod harbour))"
+        f = atoms([{"t": "named-entity", "id": "n1", "name": "Bram"},
+                   {"t": "copular", "id": "c1", "subject": "@n1", "predicate": "pilot", "form": "noun", "tense": "present",
+                    "mods": ["harbour"], "former": True}])
+        self.assertEqual(sorted(a for a in f if not a.startswith("(Name")),
+                         sorted([f"(Past (Member sk_bram_1 {hp}))", "(Past (Member sk_bram_1 pilot))", f"(Not (Member sk_bram_1 {hp}))"]))
+        p = atoms([{"t": "named-entity", "id": "n1", "name": "Bram"},
+                   {"t": "activity", "id": "v1", "verb": "laugh", "actor": "@n1", "tense": "past"},
+                   {"t": "particle", "id": "p1", "event": "@v1", "head": "Again"}])
+        self.assertIn("(Again sk_laugh_1)", p)
+        w = atoms([{"t": "time", "id": "t1", "weekday": "friday", "relative": "last", "anchor": "@now"}])
+        self.assertIn("(BeforeBy sk_time_1 sk_now_1 1 week)", w)
+        self.assertIn("(Weekday sk_time_1 friday)", w)
+
     def test_malformed_instances_are_refused(self):
         bad = [{"t": "transfer", "id": "e1", "verb": "give", "giver": "@n9", "object": "x", "tense": "past"}]
         with self.assertRaises(E.EmitError) as cm:

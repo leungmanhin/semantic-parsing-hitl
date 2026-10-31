@@ -27,7 +27,7 @@ trigger:
     phrase naming a time by one the text stated before it (that evening, the same day, the next
     day, the following morning, the week after). The event is parsed with its own template; the
     time instance names that event and describes the time: a date or a clock time by its fields
-    (year, decade, century, month, day, weekday, hour, minute), a deictic by the `deictic` word with the reference
+    (year, decade, century, month, week, day, weekday, hour, minute), a deictic by the `deictic` word with the reference
     time as its anchor, a measured distance by its `offset`, `unit` and `direction` from its
     anchor (the reference time for ago / from now / in n units; a stated event or time for before
     / after it and for later / earlier), an anaphoric phrase likewise from the antecedent event or
@@ -40,6 +40,8 @@ trigger:
     an event noun by "be" or by take place / occur / happen (the meeting is at noon, the audit was
     on Monday, the fair took place in May: these verbs have no event of their own), the noun is a witness
     marked eventive, the time attaches to it, and this instance records the clause's tense.
+    Coordinated dates (in 1810 and 1811) are one instance each on the event. A NUMBERED WEEK of a
+    season or a schedule (in week 5) is `week`, with a year when one is stated.
   surface_forms:
     - "<clause> in <year / month>"                   # arrived in 2019; left in May
     - "<clause> in the <n>0s / in the <n>th century"   # a decade by its first year (the 1880s → 1880), a century by its number
@@ -82,7 +84,9 @@ slots:
   event:   {type: filler, class: Event, attaches: true, required: false,
             doc: "the event the time attaches to: the id of the clause's predication instance — a verb's, or a copular, locative, degree, comparative, class-statement, part-whole or measure one (Yusra was tired yesterday, the barn was very cold yesterday: the state's time; the program mints the state) —, or of an eventive witness when the time is predicated of an event noun (the meeting is at noon); absent only for a time no clause places an event at"}
   deictic: {type: enum, values: [now, today, tonight, yesterday, tomorrow, last_week, this_week, next_week, last_month, this_month, next_month, last_year, this_year, next_year], required: false,
-            doc: "a time relative to the moment the text speaks from, as one of the listed words (last Tuesday or two days ago are not deictics here); fill no field beside it"}
+            doc: "a time relative to the moment the text speaks from, as one of the listed words (two days ago is not a deictic here, and last / this / next with a weekday is the weekday with `relative`); fill no field beside it"}
+  relative: {type: enum, values: [last, this, next], required: false,
+            doc: "with a weekday, the week it falls in relative to the moment the text speaks from (last / this / next Wednesday: the week before, this week, the week after), with the anchor"}
   anchor:  {type: filler, class: TimeTerm, required: false, default: "@now",
             doc: "what a deictic or an offset is relative to: \"@now\" (the reserved id; the program supplies the instance) for a deictic and for ago / from now / in n units; the id of a time instance or of an event (a predication, an eventive witness) for an offset before / after it or for later / earlier, when the text states the anchor; the antecedent event or stated time of an anaphoric phrase (that evening: the previous clause's event)"}
   name:    {type: lemma, class: TimeTerm, required: false,
@@ -90,10 +94,11 @@ slots:
   offset:  {type: number, required: false,
             doc: "a measured distance from the anchor: the number of units (three days ago → 3, a week later → 1, that evening → 0 day); fill unit and direction with it, no calendar field"}
   unit:    {type: lemma, class: Class, required: false,
-            doc: "the unit of the offset, singular and lowercase: minute, hour, day, week, month, year"}
+            doc: "the unit of the offset, singular and lowercase: minute, hour, day, week, month, year, or a season of a sport (last season: 1 season before)"}
   direction: {type: enum, values: [before, after], required: false,
             doc: "before when the time precedes its anchor (ago, earlier, before it), after when it follows (from now, in n units, later, after it) and for the same period as the anchor (that evening, the same day: offset 0)"}
   year:    {type: int, required: false, doc: "the calendar year (2019); a BCE / BC year as a negative integer (44 BC → -44)"}
+  week:    {type: int, required: false, doc: "a numbered week of a season or a schedule (in week 5 → 5)"}
   decade:  {type: int, required: false, doc: "a decade by its first year (the 1880s → 1880); no year beside it"}
   century: {type: int, required: false, doc: "a century by its number (the 18th century → 18; the 3rd century BCE → -3); no year beside it"}
   month:   {type: lemma, class: Class, required: false, doc: "the month name, lowercase (may)"}
@@ -117,6 +122,8 @@ emits:
     if_filled: decade
   - atom: "(Century @id {century})"
     if_filled: century
+  - atom: "(Week @id {week})"
+    if_filled: week
   - atom: "(Month @id {month})"
     if_filled: month
   - atom: "(Day @id {day})"
@@ -147,7 +154,13 @@ emits:
     when: "deictic == last_week"
     declare: {week: Class}
   - atom: "(BeforeBy @id {anchor} 0 week)"
-    when: "deictic == this_week"
+    when: "deictic == this_week or relative == this"
+    declare: {week: Class}
+  - atom: "(BeforeBy @id {anchor} 1 week)"         # a weekday last week
+    when: "relative == last"
+    declare: {week: Class}
+  - atom: "(BeforeBy {anchor} @id 1 week)"         # a weekday next week
+    when: "relative == next"
     declare: {week: Class}
   - atom: "(BeforeBy {anchor} @id 1 week)"
     when: "deictic == next_week"
@@ -180,13 +193,13 @@ emits:
     when: "day or weekday or deictic == today or deictic == tonight or deictic == yesterday or deictic == tomorrow"
     declare: {day: Class}
   - atom: "(Member @id week)"
-    when: "deictic == last_week or deictic == this_week or deictic == next_week"
+    when: "week or deictic == last_week or deictic == this_week or deictic == next_week"
     declare: {week: Class}
   - atom: "(Member @id month)"                             # a month with no day
     when: "month and not day and not weekday or deictic == last_month or deictic == this_month or deictic == next_month"
     declare: {month: Class}
   - atom: "(Member @id year)"                              # a bare year
-    when: "year and not month and not day and not weekday or deictic == last_year or deictic == this_year or deictic == next_year"
+    when: "year and not month and not week and not day and not weekday or deictic == last_year or deictic == this_year or deictic == next_year"
     declare: {year: Class}
   - atom: "(Member @id decade)"                            # a decade
     if_filled: decade
@@ -526,3 +539,33 @@ examples:
         - {t: time, id: t1, event: "@x1", year: 1911}
         - {t: witness, id: x2, class: mill, definite: true}
         - {t: change-of-state, id: e1, verb: close, agent: "@x1", undergoer: "@x2", tense: past}
+    - category: positive
+      note: coordinated years — one time instance each on the event
+      text: "Bram travelled in 1871 and 1872."
+      instances:
+        - {t: named-entity, id: n1, name: "Bram"}
+        - {t: motion, id: m1, verb: travel, mover: "@n1", tense: past}
+        - {t: time, id: t1, event: "@m1", year: 1871}
+        - {t: time, id: t2, event: "@m1", year: 1872}
+    - category: positive
+      note: a numbered week on a clause — the week field
+      text: "Calderwick played Aldmoor in Week 9."
+      instances:
+        - {t: named-entity, id: n1, name: "Calderwick"}
+        - {t: named-entity, id: n2, name: "Aldmoor"}
+        - {t: activity, id: v1, verb: play, actor: "@n1", patient: "@n2", tense: past}
+        - {t: time, id: t1, event: "@v1", week: 9}
+    - category: positive
+      note: a numbered week before an event noun — the noun eventive, the week its time
+      text: "The Week 12 duel ended."
+      instances:
+        - {t: witness, id: x1, class: duel, definite: true, eventive: true}
+        - {t: time, id: t1, event: "@x1", week: 12}
+        - {t: change-of-state, id: e1, verb: end, undergoer: "@x1", tense: past}
+    - category: positive
+      note: this with a weekday — the weekday, in the week of the reference time
+      text: "Yusra will leave this Thursday."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: motion, id: m1, verb: leave, mover: "@n1", tense: future}
+        - {t: time, id: t1, event: "@m1", weekday: thursday, relative: this, anchor: "@now"}

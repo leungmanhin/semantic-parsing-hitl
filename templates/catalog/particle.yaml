@@ -1,0 +1,77 @@
+# Template: particle  (again, still, already on a clause: "Lamine laughed again", "the well is still dry")
+#
+# An aspectual particle says something about the clause's event beyond it happening: again — it
+# happened before (or a state is restored); still — it goes on; already — it happened earlier than
+# expected. The clause is parsed with its own template; the particle is an atom on its event (on a
+# predication with no event of its own — the well is still dry — the program mints the state of the
+# fact holding, as for a time). The presupposition the particle carries (an earlier laughing, a time
+# when the barn was cold) is the particle's meaning, not a separate claim.
+
+id: particle
+family: attachment
+shape: attachment
+title: Again, still and already on a clause
+status: draft
+
+trigger:
+  construction: >
+    An aspectual particle on a clause: again (wept again, was wet again), still (still sings, is
+    still warm), already (had already gone, is already open). The clause is parsed with its
+    own template; this instance names its event and the particle, capitalized as the head
+    (again → Again). One instance per particle.
+  surface_forms:
+    - "<clause> again"                    # Lamine sang again
+    - "<subject> still <V> / is still <ADJ>"   # Teodor still knits; the well is still dry
+    - "<subject> already <V> / is already <ADJ>"   # Yusra had already gone; the lamp is already lit
+  boundary:                   # looks like a particle but is not one
+    - >-
+      not yet, yet — had not yet arrived: no slot; report it as unmapped (G02)
+    - >-
+      still or again joining clauses — it rained; still, Corvin went; then again: a connective,
+      not this (the link template between two clauses, G05 at the start of a text)
+    - >-
+      a frequency — again and again, every day: a frequency, not a particle
+
+slots:
+  id:    {type: id, required: true, doc: "your label for the particle (p1, p2 …)"}
+  event: {type: filler, class: Event, attaches: true, required: true,
+          doc: "the clause's predication instance the particle is on: a verb's, or a copular, locative or degree one (the program mints its state)"}
+  head:  {type: enum, values: [Again, Still, Already], required: true,
+          doc: "the particle as written, capitalized: again → Again, still → Still, already → Already"}
+
+emits:
+  - atom: "({head} {event})"
+
+depends_on: [activity, copular]
+composes_with: [negation, modal]
+
+examples:
+  shown:
+    - category: positive
+      text: "Lamine sang again."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine", span: "Lamine"}
+        - {t: activity, id: v1, verb: sing, actor: "@n1", tense: past, span: "Lamine sang"}
+        - {t: particle, id: p1, event: "@v1", head: Again, span: "again"}
+  held_out:
+    - category: positive
+      note: again on a verb's event
+      text: "Bram laughed again."
+      instances:
+        - {t: named-entity, id: n1, name: "Bram"}
+        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past}
+        - {t: particle, id: p1, event: "@v1", head: Again}
+    - category: positive
+      note: still on a copular clause — the program mints the state
+      text: "The barn is still cold."
+      instances:
+        - {t: witness, id: x1, class: barn, definite: true}
+        - {t: copular, id: c1, subject: "@x1", predicate: cold, form: adjective, tense: present}
+        - {t: particle, id: p1, event: "@c1", head: Still}
+    - category: positive
+      note: already with a perfect
+      text: "Teodor had already left."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: motion, id: m1, verb: leave, mover: "@n1", tense: past, aspect: perfect}
+        - {t: particle, id: p1, event: "@m1", head: Already}

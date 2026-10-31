@@ -1,0 +1,92 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "9d531ee8e66e0a9f37ff64cc98eb91c9f656f6c643b7229a6307f78d539dcb6e",
+  "item": {
+    "id": "s8dcb1c581e",
+    "text": "Teodor had already left."
+  },
+  "usage": {
+    "input": 107282,
+    "output": 140,
+    "thinking": null,
+    "total": 107422,
+    "cached": 105233,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 107282,
+    "candidatesTokenCount": 140,
+    "totalTokenCount": 107422,
+    "cachedContentTokenCount": 105233,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 107282
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 105233
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 140
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s8dcb1c581e\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"motion\", \"id\": \"e1\", \"verb\": \"leave\", \"mover\": \"@n1\", \"tense\": \"past\", \"aspect\": \"perfect\", \"span\": \"Teodor had already left\"}, {\"t\": \"particle\", \"id\": \"p1\", \"event\": \"@e1\", \"head\": \"Already\", \"span\": \"already\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s8dcb1c581e",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "motion",
+        "id": "e1",
+        "verb": "leave",
+        "mover": "@n1",
+        "tense": "past",
+        "aspect": "perfect",
+        "span": "Teodor had already left"
+      },
+      {
+        "t": "particle",
+        "id": "p1",
+        "event": "@e1",
+        "head": "Already",
+        "span": "already"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "b09f9212483d1b60d2982607eb5896b2e75a1b40c5f7c581940151e2c616427f",
+  "manifest_id": "a6c6f60174e8",
+  "run": 2,
+  "case": {
+    "template": "particle",
+    "section": "held_out",
+    "index": 2,
+    "category": "positive",
+    "text": "Teodor had already left.",
+    "key": "8dcb1c581e"
+  }
+}

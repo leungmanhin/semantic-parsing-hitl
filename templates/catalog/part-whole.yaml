@@ -36,10 +36,10 @@ trigger:
     clause the part). On a class — every car has an engine, oranges contain juice — the subject
     is a range and the generic template builds the rule with this instance as the predication
     over it; an indefinite part is then a witness, a function of the member. A LIST OF NAMED
-    MEMBERS after a colon, after including or namely, or set off by dashes, brackets or a comma
+    MEMBERS after a colon, after including, such as or namely, or set off by dashes, brackets or a comma
     (two potters stayed: Ines and Corvin; the guild, including Lamine; the two potters — Ines
     and Corvin — stayed) is one instance per named member, the group the whole, the word as
-    written (":", "including", "namely", "—", "(", ","); no count is drawn from the list, and a
+    written (":", "including", "such as", "namely", "—", "(", ","); no count is drawn from the list, and a
     list of kinds (birds — gulls, terns) names no member: report it as unmapped. `tense` is the
     clause's; a link inside a noun phrase is present. A time, a duration, a time relation, a
     link or a focus on the clause (Lamine was a member of the guild until 1990) names this
@@ -362,3 +362,14 @@ examples:
         - {t: part-whole, id: w1, part: "@n2", whole: "@g1", word: namely, tense: present}
         - {t: part-whole, id: w2, part: "@n3", whole: "@g1", word: namely, tense: present}
         - {t: part-whole, id: w3, part: "@n4", whole: "@g1", word: namely, tense: present}
+    - category: positive
+      note: members after such as — one link per named member
+      text: "Several potters, such as Ines and Corvin, laughed."
+      instances:
+        - {t: group, id: g1, class: potter, quantity: several}
+        - {t: named-entity, id: n1, name: "Ines"}
+        - {t: named-entity, id: n2, name: "Corvin"}
+        - {t: activity, id: v1, verb: laugh, actor: "@g1", tense: past}
+        - {t: distribution, id: d1, group: "@g1", over: ["@v1"]}
+        - {t: part-whole, id: w1, part: "@n1", whole: "@g1", word: such as, tense: present}
+        - {t: part-whole, id: w2, part: "@n2", whole: "@g1", word: such as, tense: present}

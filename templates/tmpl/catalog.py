@@ -47,6 +47,29 @@ class CatalogError(Exception):
     pass
 
 
+class _StrictLoader(yaml.SafeLoader):
+    """A safe loader that refuses a key repeated in one mapping: YAML would keep the last value
+    silently (a second `declare` swallowing the first), which no other check can see."""
+
+
+def _no_duplicate_keys(loader, node, deep=False):
+    seen = set()
+    for key_node, _value in node.value:
+        key = loader.construct_object(key_node, deep=deep)
+        if key in seen:
+            raise CatalogError(f"{key_node.start_mark.name}: line {key_node.start_mark.line + 1}: the key {key!r} is repeated in one mapping")
+        seen.add(key)
+    return yaml.SafeLoader.construct_mapping(loader, node, deep)
+
+
+_StrictLoader.add_constructor(yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, _no_duplicate_keys)
+
+
+def load_yaml(fh):
+    """``yaml.safe_load`` that refuses a repeated key."""
+    return yaml.load(fh, Loader=_StrictLoader)
+
+
 def placeholders(atom: str) -> set[str]:
     return {m.group(1) for m in _PLACEHOLDER.finditer(atom)}
 
@@ -274,7 +297,7 @@ def load(directory: str = CATALOG_DIR, strict: bool = True) -> dict:
         if os.path.basename(path).startswith("_"):
             continue                                   # shared files, not templates
         with open(path, encoding="utf-8") as fh:
-            t = yaml.safe_load(fh)
+            t = load_yaml(fh)
         for p in check_template(t, path):
             problems.append(f"{os.path.basename(path)}: {p}")
         catalog[t.get("id")] = t
@@ -287,4 +310,4 @@ def load_general(directory: str = CATALOG_DIR) -> dict:
     """The shared prompt text (``_general.yaml``): intro, output contract, identifiers, lemmas,
     unmapped spans, the global gap codes, the abstain rule."""
     with open(os.path.join(directory, "_general.yaml"), encoding="utf-8") as fh:
-        return yaml.safe_load(fh)
+        return load_yaml(fh)

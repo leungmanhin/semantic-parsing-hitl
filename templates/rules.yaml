@@ -407,6 +407,34 @@ rules:
     truth: {strength: 1.0, confidence: 0.99}
     semantics: deductive
     reads: [superlative, comparative]
+  # Dates: two events whose stated times differ in their year, or in their month within one year, or
+  # in their day within one month, are ordered (a birth in 1937 precedes a birth in 1950).
+  - id: year_order
+    meaning: an event whose time is in an earlier year precedes the other
+    premises: ["(Time $e1 $a)", "(Year $a $y1)", "(Time $e2 $b)", "(Year $b $y2)"]
+    computations: [{result: true, op: "<", args: ["$y1", "$y2"]}]
+    conclusion: "(Before $e1 $e2)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [time]
+  - id: month_order
+    meaning: within one year, an event in an earlier month precedes the other
+    premises: ["(Time $e1 $a)", "(Year $a $y)", "(Month $a $m1)", "(Time $e2 $b)", "(Year $b $y)", "(Month $b $m2)",
+               "(MonthIndex $m1 $i)", "(MonthIndex $m2 $j)"]
+    computations: [{result: true, op: "<", args: ["$i", "$j"]}]
+    conclusion: "(Before $e1 $e2)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [time]
+  - id: day_order
+    meaning: within one month of one year, an event on an earlier day precedes the other
+    premises: ["(Time $e1 $a)", "(Year $a $y)", "(Month $a $m)", "(Day $a $d1)", "(Time $e2 $b)", "(Year $b $y)", "(Month $b $m)",
+               "(Day $b $d2)"]
+    computations: [{result: true, op: "<", args: ["$d1", "$d2"]}]
+    conclusion: "(Before $e1 $e2)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [time]
   - id: rank_orders
     meaning: of two ranks on one scale in one class, the lower is the greater (the second largest exceeds the third)
     premises: ["(Ordinal $a $m $s $c)", "(Ordinal $b $n $s $c)"]
@@ -667,6 +695,24 @@ rules:
 # group id and the entry's symbols — (: pole_short_tall (ScaleOpposite short tall) (STV 1.0 0.99)).
 # Never parser output: the parse keeps the surface pole, the stated unit and the dimension word.
 facts:
+  - id: month_index
+    meaning: the place of each month in the year, for ordering dates (month_order)
+    head: MonthIndex
+    truth: {strength: 1.0, confidence: 0.99}
+    reads: [time]
+    entries:
+      - [january, 1]
+      - [february, 2]
+      - [march, 3]
+      - [april, 4]
+      - [may, 5]
+      - [june, 6]
+      - [july, 7]
+      - [august, 8]
+      - [september, 9]
+      - [october, 10]
+      - [november, 11]
+      - [december, 12]
   - id: pole
     meaning: the two adjectives of one gradable dimension, the lower pole first (so_sym gives the reverse pair)
     head: ScaleOpposite

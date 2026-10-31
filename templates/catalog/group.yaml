@@ -25,6 +25,7 @@ trigger:
   surface_forms:
     - "the <N>s"                        # the ferrets
     - "<numeral> <N>s"                  # three ladders
+    - "more than / up to <n> <N>s; <n>–<m> <N>s"   # a bound or a range: count_min / count_max
     - "several / a few / many / dozens of / a lot of <N>s"
     - "both <N>s"                       # definite, count 2, no phrase
     - "<possessor>'s <N>s"              # Yusra's ferrets
@@ -48,7 +49,9 @@ slots:
   id:        {type: id, required: true, doc: "your label for the group"}
   class:      {type: lemma, class: Class, required: true, narrowed_by: mods, doc: "the head noun's lemma, singular (ferret)"}
   definite:  {type: bool, required: false, doc: "true for the / these / those / both; absent for a possessed group (the possessor presupposes it) and otherwise"}
-  count:     {type: number, required: false, doc: "the exact size when a numeral or both states it (three → 3; both → 2)"}
+  count:     {type: number, required: false, doc: "the exact size when a numeral or both states it (three → 3; both → 2); a bound or a range is count_min / count_max instead"}
+  count_min: {type: number, required: false, doc: "a lower bound on the size: more than / over / at least 200 → 200; the low end of a range (300–400 → 300)"}
+  count_max: {type: number, required: false, doc: "an upper bound on the size: up to / at most / as many as / fewer than / under 60 → 60; the high end of a range (300–400 → 400)"}
   quantity:  {type: string, required: false, doc: "the vague size phrase as written (several, a few, some, many, dozens, a lot, lots, plenty); absent when a numeral or both states the size"}
   hedge:     {type: string, required: false, doc: "an approximation word on the count as written (about, approximately, roughly, nearly, almost, around, some); recorded, not rendered — the count stays the number stated"}
   props:     {type: list, class: Class, required: false, doc: "adjectival properties stated in the phrase; a noun before the head is a mod"}
@@ -67,6 +70,10 @@ emits:
     if_filled: count
   - atom: "(CardinalityPhrase @id \"{quantity}\")"
     if_filled: quantity
+  - atom: "(CardinalityAtLeast @id {count_min})"
+    if_filled: count_min
+  - atom: "(CardinalityAtMost @id {count_max})"
+    if_filled: count_max
   - atom: "(Member @id {props})"
     each: props
   - atom: "(Possession @id {possessor})"
@@ -205,4 +212,18 @@ examples:
       instances:
         - {t: group, id: g1, class: worker, definite: true, mods: [dock]}
         - {t: motion, id: m1, verb: leave, mover: "@g1", tense: past}
+        - {t: distribution, id: d1, group: "@g1", over: ["@m1"]}
+    - category: positive
+      note: a lower bound on the size — count_min
+      text: "More than 90 weavers sang."
+      instances:
+        - {t: group, id: g1, class: weaver, count_min: 90}
+        - {t: activity, id: v1, verb: sing, actor: "@g1", tense: past}
+        - {t: distribution, id: d1, group: "@g1", over: ["@v1"]}
+    - category: positive
+      note: a range of sizes — count_min and count_max
+      text: "400–500 pilgrims arrived."
+      instances:
+        - {t: group, id: g1, class: pilgrim, count_min: 400, count_max: 500}
+        - {t: motion, id: m1, verb: arrive, mover: "@g1", tense: past}
         - {t: distribution, id: d1, group: "@g1", over: ["@m1"]}

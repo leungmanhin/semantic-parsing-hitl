@@ -27,7 +27,8 @@ trigger:
     — the referent id of the subject or object the particle sits on, or the verb's lemma for a
     focus on the verb phrase (Teodor only slept → sleep) — and the clause's event. A
     clause-final too / as well / either focuses the subject unless the text says otherwise.
-    One instance per particle or cleft.
+    One instance per particle or cleft. The only or the sole N predicated of X (Corvin is the only
+    heir) is the copular instance with this template's Only on X, the copular instance its event.
   surface_forms:
     - "only / even / also <subject> V …"           # only Yusra laughed; even Ottoline laughed
     - "<subject> V only <object>"                  # Teodor read only the letter
@@ -287,3 +288,10 @@ examples:
       instances:
         - {t: class-statement, id: k1, subject: heron, predicate: patient, form: adjective, definitional: false, tense: present}
         - {t: focus, id: f1, head: Only, filler: heron, event: "@k1", surface: only}
+    - category: positive
+      note: the sole N said of a name — the copular with Only on the subject
+      text: "Bram is the sole survivor."
+      instances:
+        - {t: named-entity, id: n1, name: "Bram"}
+        - {t: copular, id: c1, subject: "@n1", predicate: survivor, form: noun, tense: present}
+        - {t: focus, id: f1, head: Only, filler: "@n1", event: "@c1", surface: sole}

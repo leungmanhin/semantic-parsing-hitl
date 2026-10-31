@@ -25,7 +25,10 @@ trigger:
     instance with no event of its own. The clause's event is parsed with its own template; the
     relation instance names that event, the reference and the relation as read, and keeps the
     word. One instance per temporal phrase or connective; "from 2015 to 2019" is two, a start and
-    an end. When the relation is predicated of an event noun by "be" (the audit was before the
+    an end. A RANGE written with a dash is the same pair, Start and End — the siege of 1702–1704 (the
+    noun eventive), ruled (1790–1801), on 2–3 May —, and a range in brackets after an office or a
+    reign dates that holding or that reign. BETWEEN two times (flooded between 1820 and 1830) is a
+    window: TimeAtLeast on the first, TimeAtMost on the second. When the relation is predicated of an event noun by "be" (the audit was before the
     meeting), the noun is a witness marked eventive, the relation attaches to it, and the instance
     records the clause's tense. A gerund clause after a temporal preposition (after leaving the
     barn, before eating) is a clause of its own: parse it with its verb's template, its actor the
@@ -43,6 +46,8 @@ trigger:
     - "Before / After / While / When / Until / Once <clause>, <clause>"                 # When Yusra sang, Lamine laughed
     - "<clause>, then <clause>"                                                        # Lamine sang, then Yusra left
     - "<clause> from <time> to / until <time>"                                          # worked from 2015 to 2019: two instances
+    - "<event noun> of <time>–<time>; <clause> (<time>–<time>)"                         # the siege of 1702–1704: Start and End
+    - "<clause> between <time> and <time>"                                              # flooded between 1820 and 1830: TimeAtLeast and TimeAtMost
     - "<event noun> is / was before / after / during <event noun or time>"              # the audit was before the meeting
     - "<clause> after / before / while / since / until <V-ing …>"                       # laughed after leaving the barn: a clause of its own
     - "<clause> within <n> <units>"                                                     # will leave within three days: TimeAtMost on the time at the offset
@@ -456,3 +461,44 @@ examples:
         - {t: activity, id: v1, verb: wave, actor: "@n1", tense: past}
         - {t: copular, id: c1, subject: "@x1", predicate: open, form: adjective, tense: past}
         - {t: time-relation, id: r1, event: "@v1", reference: "@c1", head: During, word: when}
+    - category: positive
+      note: a dash range on an event noun — Start and End on the eventive witness
+      text: "The drought of 1911–1913 was severe."
+      instances:
+        - {t: witness, id: x1, class: drought, definite: true, eventive: true}
+        - {t: time, id: t1, year: 1911}
+        - {t: time, id: t2, year: 1913}
+        - {t: time-relation, id: r1, event: "@x1", reference: "@t1", head: Start, word: of}
+        - {t: time-relation, id: r2, event: "@x1", reference: "@t2", head: End, word: "–"}
+        - {t: copular, id: c1, subject: "@x1", predicate: severe, form: adjective, tense: past}
+    - category: positive
+      note: a range in brackets on a clause — Start and End on its event
+      text: "Corvin chaired the guild (1971–1975)."
+      instances:
+        - {t: named-entity, id: n1, name: "Corvin"}
+        - {t: witness, id: x1, class: guild, definite: true}
+        - {t: activity, id: v1, verb: chair, actor: "@n1", patient: "@x1", tense: past}
+        - {t: time, id: t1, year: 1971}
+        - {t: time, id: t2, year: 1975}
+        - {t: time-relation, id: r1, event: "@v1", reference: "@t1", head: Start, word: "("}
+        - {t: time-relation, id: r2, event: "@v1", reference: "@t2", head: End, word: "–"}
+    - category: positive
+      note: between two times — a window, TimeAtLeast and TimeAtMost
+      text: "The barn burned between 1901 and 1905."
+      instances:
+        - {t: witness, id: x1, class: barn, definite: true}
+        - {t: change-of-state, id: e1, verb: burn, undergoer: "@x1", tense: past}
+        - {t: time, id: t1, year: 1901}
+        - {t: time, id: t2, year: 1905}
+        - {t: time-relation, id: r1, event: "@e1", reference: "@t1", head: TimeAtLeast, word: between}
+        - {t: time-relation, id: r2, event: "@e1", reference: "@t2", head: TimeAtMost, word: and}
+    - category: positive
+      note: a range of days — Start and End, the month on both
+      text: "Lamine fished on 7–8 June."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: activity, id: v1, verb: fish, actor: "@n1", tense: past}
+        - {t: time, id: t1, month: june, day: 7}
+        - {t: time, id: t2, month: june, day: 8}
+        - {t: time-relation, id: r1, event: "@v1", reference: "@t1", head: Start, word: "on"}
+        - {t: time-relation, id: r2, event: "@v1", reference: "@t2", head: End, word: "–"}

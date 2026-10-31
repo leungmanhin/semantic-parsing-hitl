@@ -178,8 +178,8 @@ nouns:
 - >-
   A NAME before a noun (a Calderwick quilt) is its named-entity instance's id in `mods`; a YEAR, a DECADE or a
   CENTURY before a noun (a 1904 almanac, a 1920s radio, an 18th-century clock) is a time instance with no event,
-  its id in `mods`. A year before a noun that names an event or a period (the 1904 flood) is that event's time
-  instead: the noun eventive, the time instance on it.
+  its id in `mods`. A year or a numbered week before a noun that names an event or a period (the 1904 flood, a
+  week 5 match) is that event's time instead: the noun eventive, the time instance on it.
 - >-
   Not a mod: an adjective, also a hyphenated or a participle one (a sky-blue quilt, a self-taught weaver, a
   carved bowl): `props`; a noun naming the whole the head is a part of (the barn roof): a part-whole; a
@@ -196,8 +196,8 @@ biography:
   A DATE RANGE in brackets right after a PERSON'S name (Wren Ashby (2 May 1801 – 9 June 1866)) is the person's
   life: a birth on the first date, as above, and a death on the second — the change-of-state verb die, the
   person the undergoer —, both past (the bracket stands for was born … and died …); died alone (died 1866) is the
-  death. A range after an office, a reign or a work (the warden (1990–1994)) is a span of time: report it as
-  unmapped (G00).
+  death. A range after an office or a reign (the warden (1990–1994)) dates that holding: a start and an end (the
+  time-relation template); a lone year after a work's title stays unmapped (G00).
 - >-
   NAMES in the bracket — a birth name (born Wren Moreau), a maiden name (née Moreau), the name in another
   language or script (Russian: Рен Эшби) — are more names of the same individual: the named entity's `aliases`,

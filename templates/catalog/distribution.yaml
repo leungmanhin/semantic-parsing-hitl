@@ -22,7 +22,9 @@ trigger:
     (each did), the students did not laugh (none did). The instance names the group and the
     predication over it — or the scope operator over that predication, when there is one — and
     nothing else. Do not add it for a collective predicate: surrounded the barn, carried the
-    ladder together, met, gathered, outnumbered.
+    ladder together, met, gathered, outnumbered. A floating both, each or all on a group or a
+    plural pronoun (the potters each left, they both sang) is this instance; both or each on
+    coordinated names (both Ines and Corvin left) adds nothing, and the word is not reported.
   boundary:                   # looks distributive but is not
     - >-
       a collective predicate — surrounded, gathered, met, outnumbered, carried it together:
@@ -117,3 +119,10 @@ examples:
     - category: abstain
       text: "Herons are patient."
       expected: {abstain: true, template: class-statement}             # a class, not a group
+    - category: positive
+      note: a floating each — the distribution over the group
+      text: "The guests each sang."
+      instances:
+        - {t: group, id: g1, class: guest, definite: true}
+        - {t: activity, id: v1, verb: sing, actor: "@g1", tense: past}
+        - {t: distribution, id: d1, group: "@g1", over: ["@v1"]}

@@ -1,0 +1,95 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "88282b43ef33add52ef2f76979d2d377f6e5ae262b03b906e466fb48c2ad3de9",
+  "item": {
+    "id": "s6bb73f5c34",
+    "text": "400–500 pilgrims arrived."
+  },
+  "usage": {
+    "input": 106285,
+    "output": 172,
+    "thinking": null,
+    "total": 106457,
+    "cached": 104232,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 106285,
+    "candidatesTokenCount": 172,
+    "totalTokenCount": 106457,
+    "cachedContentTokenCount": 104232,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 106285
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 104232
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 172
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s6bb73f5c34\", \"instances\": [{\"t\": \"group\", \"id\": \"g1\", \"class\": \"pilgrim\", \"count_min\": 400, \"count_max\": 500, \"span\": \"400–500 pilgrims\"}, {\"t\": \"motion\", \"id\": \"e1\", \"verb\": \"arrive\", \"mover\": \"@g1\", \"tense\": \"past\", \"span\": \"400–500 pilgrims arrived\"}, {\"t\": \"distribution\", \"id\": \"r1\", \"group\": \"@g1\", \"over\": [\"@e1\"], \"span\": \"400–500 pilgrims arrived\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s6bb73f5c34",
+    "instances": [
+      {
+        "t": "group",
+        "id": "g1",
+        "class": "pilgrim",
+        "count_min": 400,
+        "count_max": 500,
+        "span": "400–500 pilgrims"
+      },
+      {
+        "t": "motion",
+        "id": "e1",
+        "verb": "arrive",
+        "mover": "@g1",
+        "tense": "past",
+        "span": "400–500 pilgrims arrived"
+      },
+      {
+        "t": "distribution",
+        "id": "r1",
+        "group": "@g1",
+        "over": [
+          "@e1"
+        ],
+        "span": "400–500 pilgrims arrived"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "78fb5a515e3eab9b104fb9e1e93d00d2979114ef73381d88a78b2b612cbec1b1",
+  "manifest_id": "304221ed435b",
+  "run": 1,
+  "case": {
+    "template": "group",
+    "section": "held_out",
+    "index": 15,
+    "category": "positive",
+    "text": "400–500 pilgrims arrived.",
+    "key": "6bb73f5c34"
+  }
+}

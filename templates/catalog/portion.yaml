@@ -31,7 +31,10 @@ trigger:
     group or the witness; a pronoun is a mention), then one portion instance naming it:
     `members` is the members' class when the whole is a group (ferret), absent for a mass or a
     single thing; exactly one of `count`, `quantity`, `word`, `numerator` (with `denominator`)
-    or `rest` says how much. Number words are converted (two → 2, forty percent → 40 over 100,
+    or `rest` says how much. A share named by a relative pronoun (the crew came, 70% of whom
+    were sailors) has the pronoun's noun as its whole, and a list of shares with the verb left out
+    (70% of whom were sailors, 20% cooks) is one portion and one predication per share, the verb
+    restored. Number words are converted (two → 2, forty percent → 40 over 100,
     a third → 1 over 3; half stays the word half). The portion then fills the clause's slot like
     any referent, and a distribution instance over it says the predicate holds of each member
     when it does (most of the quilts are damp: each is).
@@ -339,3 +342,16 @@ examples:
     - category: abstain
       text: "Yusra's ferrets slept."
       expected: {abstain: true, template: group}                      # a possessed group, no portion
+    - category: positive
+      note: shares named by a relative pronoun, the verb left out of the second — one portion and one predication each
+      text: "Nine hundred settlers founded the town, 60% of whom were farmers, 30% fishers."
+      instances:
+        - {t: group, id: g1, class: settler, count: 900}
+        - {t: witness, id: x1, class: town, definite: true}
+        - {t: creation, id: e1, verb: found, creator: "@g1", product: "@x1", tense: past}
+        - {t: portion, id: g2, whole: "@g1", members: settler, numerator: 60, denominator: 100}
+        - {t: copular, id: c1, subject: "@g2", predicate: farmer, form: noun, tense: past}
+        - {t: distribution, id: d1, group: "@g2", over: ["@c1"]}
+        - {t: portion, id: g3, whole: "@g1", members: settler, numerator: 30, denominator: 100}
+        - {t: copular, id: c2, subject: "@g3", predicate: fisher, form: noun, tense: past}
+        - {t: distribution, id: d2, group: "@g3", over: ["@c2"]}

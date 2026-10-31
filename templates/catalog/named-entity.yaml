@@ -28,11 +28,12 @@ slots:
   name:  {type: string, required: true, doc: "the surface name, capitalised as written"}
   title: {type: string, required: false, doc: "a leading title, if any"}
   class:  {type: lemma, class: Class, required: false, narrowed_by: mods,
-          doc: "the class an appositive, a title phrase or an of-phrase naming the place itself states for the name (Lamine, a glazier; the village of Aldmoor: village); a predicative is a N is a copular instance, not this slot; a relational noun with a possessor (her son Bram, Ilse's husband Corvin) is a relation, not a class: the stative-relation template"}
+          doc: "the class an appositive, a title phrase or an of-phrase naming the place itself states for the name (Lamine, a glazier; the village of Aldmoor: village; a retired weaver: weaver, with `former`); a predicative is a N is a copular instance, not this slot; a relational noun with a possessor (her son Bram, Ilse's husband Corvin) is a relation, not a class: the stative-relation template"}
   aliases: {type: list, class: String, required: false,
            doc: "other names of the same individual, each as written: known as, also known as, better known as, called, nicknamed (Ines, known as Nell: Nell); a birth or a maiden name (born X, née X) and the name in another language or script, without the language"}
   props:  {type: list, class: Class, required: false,
           doc: "adjectives inside the appositive or title phrase, each a lemma (a careful harbour pilot: careful; the northern ferry company: northern); a noun before the class is a mod, never a property"}
+  former: {type: bool, required: false, doc: "with a class, true when former, ex-, one-time or retired makes the noun something the referent was and no longer is (Ines, a retired weaver)"}
   mods:   {type: list, class: Class, ids: [named-entity, time], required: false,
           doc: "the nouns, names and years before the head noun that narrow its class (Nouns before nouns): a lemma for a noun (a harbour pilot: harbour; a sea salt grinder: sea_salt), the id of a named-entity instance for a name (a Calderwick quilt), of a time instance for a year, a decade or a century (a 1904 almanac); never an adjective; with a class only"}
 
@@ -47,6 +48,14 @@ emits:
   - atom: "(Member @id {class|mod})"
     if_filled: class
     with_head: class
+    when: "not former"
+  - atom: "(Past (Member @id {class|mod}))"
+    if_filled: class
+    with_head: class
+    when: "former"
+  - atom: "(Not (Member @id {class|mod}))"
+    if_filled: class
+    when: "former"
   - atom: "(Member @id {props})"
     each: props
 
@@ -100,3 +109,9 @@ examples:
       instances:
         - {t: named-entity, id: n1, name: "Teodor", aliases: ["Фёдор"]}
         - {t: motion, id: m1, verb: leave, mover: "@n1", tense: past}
+    - category: positive
+      note: retired before the appositive's class — former
+      text: "Ilse, a retired glazier, laughed."
+      instances:
+        - {t: named-entity, id: n1, name: "Ilse", class: glazier, former: true}
+        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past}

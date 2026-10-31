@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 ac5ba43bd425b046 · 58 templates
+catalog sha256 46a2af36ca9560ea · 59 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -186,9 +186,9 @@ fences.
   [wool, silk]).
 - A NAME before a noun (a Calderwick quilt) is its named-entity instance's id in `mods`; a YEAR,
   a DECADE or a CENTURY before a noun (a 1904 almanac, a 1920s radio, an 18th-century clock) is
-  a time instance with no event, its id in `mods`. A year before a noun that names an event or a
-  period (the 1904 flood) is that event's time instead: the noun eventive, the time instance on
-  it.
+  a time instance with no event, its id in `mods`. A year or a numbered week before a noun that
+  names an event or a period (the 1904 flood, a week 5 match) is that event's time instead: the
+  noun eventive, the time instance on it.
 - Not a mod: an adjective, also a hyphenated or a participle one (a sky-blue quilt, a
   self-taught weaver, a carved bowl): `props`; a noun naming the whole the head is a part of
   (the barn roof): a part-whole; a possessive (Yusra's quilt): the possessor; an of-phrase or
@@ -205,8 +205,9 @@ fences.
 - A DATE RANGE in brackets right after a PERSON'S name (Wren Ashby (2 May 1801 – 9 June 1866))
   is the person's life: a birth on the first date, as above, and a death on the second — the
   change-of-state verb die, the person the undergoer —, both past (the bracket stands for was
-  born … and died …); died alone (died 1866) is the death. A range after an office, a reign or a
-  work (the warden (1990–1994)) is a span of time: report it as unmapped (G00).
+  born … and died …); died alone (died 1866) is the death. A range after an office or a reign
+  (the warden (1990–1994)) dates that holding: a start and an end (the time-relation template);
+  a lone year after a work's title stays unmapped (G00).
 - NAMES in the bracket — a birth name (born Wren Moreau), a maiden name (née Moreau), the name
   in another language or script (Russian: Рен Эшби) — are more names of the same individual: the
   named entity's `aliases`, as written, without the language. A pronunciation (a phonetic
@@ -301,6 +302,7 @@ and needs no definite mark — the possessor presupposes it.
 Forms:
 - the <N>s
 - <numeral> <N>s
+- more than / up to <n> <N>s; <n>–<m> <N>s
 - several / a few / many / dozens of / a lot of <N>s
 - both <N>s
 - <possessor>'s <N>s
@@ -324,7 +326,11 @@ Slots:
 - `definite` (optional; true / false): true for the / these / those / both; absent for a
   possessed group (the possessor presupposes it) and otherwise.
 - `count` (optional; a number): the exact size when a numeral or both states it (three → 3; both
-  → 2).
+  → 2); a bound or a range is count_min / count_max instead.
+- `count_min` (optional; a number): a lower bound on the size: more than / over / at least 200 →
+  200; the low end of a range (300–400 → 300).
+- `count_max` (optional; a number): an upper bound on the size: up to / at most / as many as /
+  fewer than / under 60 → 60; the high end of a range (300–400 → 400).
 - `quantity` (optional; a string): the vague size phrase as written (several, a few, some, many,
   dozens, a lot, lots, plenty); absent when a numeral or both states the size.
 - `hedge` (optional; a string): an approximation word on the count as written (about,
@@ -443,10 +449,10 @@ Slots:
 - `name` (required; a string): the surface name, capitalised as written.
 - `title` (optional; a string): a leading title, if any.
 - `class` (optional; a lemma): the class an appositive, a title phrase or an of-phrase naming
-  the place itself states for the name (Lamine, a glazier; the village of Aldmoor: village); a
-  predicative is a N is a copular instance, not this slot; a relational noun with a possessor
-  (her son Bram, Ilse's husband Corvin) is a relation, not a class: the stative-relation
-  template.
+  the place itself states for the name (Lamine, a glazier; the village of Aldmoor: village; a
+  retired weaver: weaver, with `former`); a predicative is a N is a copular instance, not this
+  slot; a relational noun with a possessor (her son Bram, Ilse's husband Corvin) is a relation,
+  not a class: the stative-relation template.
 - `aliases` (optional; a list of lemmas): other names of the same individual, each as written:
   known as, also known as, better known as, called, nicknamed (Ines, known as Nell: Nell); a
   birth or a maiden name (born X, née X) and the name in another language or script, without the
@@ -454,6 +460,8 @@ Slots:
 - `props` (optional; a list of lemmas): adjectives inside the appositive or title phrase, each a
   lemma (a careful harbour pilot: careful; the northern ferry company: northern); a noun before
   the class is a mod, never a property.
+- `former` (optional; true / false): with a class, true when former, ex-, one-time or retired
+  makes the noun something the referent was and no longer is (Ines, a retired weaver).
 - `mods` (optional; a list of lemmas, or "@id" of a named-entity or a time instance): the nouns,
   names and years before the head noun that narrow its class (Nouns before nouns): a lemma for a
   noun (a harbour pilot: harbour; a sea salt grinder: sea_salt), the id of a named-entity
@@ -484,10 +492,13 @@ of, 12.5% of, three out of five of), or "the rest of". Write the whole's own ins
 group or the witness; a pronoun is a mention), then one portion instance naming it: `members` is
 the members' class when the whole is a group (ferret), absent for a mass or a single thing;
 exactly one of `count`, `quantity`, `word`, `numerator` (with `denominator`) or `rest` says how
-much. Number words are converted (two → 2, forty percent → 40 over 100, a third → 1 over 3; half
-stays the word half). The portion then fills the clause's slot like any referent, and a
-distribution instance over it says the predicate holds of each member when it does (most of the
-quilts are damp: each is).
+much. A share named by a relative pronoun (the crew came, 70% of whom were sailors) has the
+pronoun's noun as its whole, and a list of shares with the verb left out (70% of whom were
+sailors, 20% cooks) is one portion and one predication per share, the verb restored. Number
+words are converted (two → 2, forty percent → 40 over 100, a third → 1 over 3; half stays the
+word half). The portion then fills the clause's slot like any referent, and a distribution
+instance over it says the predicate holds of each member when it does (most of the quilts are
+damp: each is).
 
 Forms:
 - <n> of the <N>s
@@ -690,6 +701,9 @@ tea, a bag of flour — is a witness of the stuff (the quantity of it the text i
 vague phrase is recorded in `quantity`; a container or measure word is a measure instance on the
 witness. A noun, a name or a year before the head noun (a harbour pilot, a Calderwick quilt, a
 1904 almanac) narrows the class: the head is the class and the words before it are its `mods`.
+Former, ex- or retired before the noun (a former guard) sets `former`: it was one and is not
+now. Another or the other before the noun (another ferret) is a witness of its own, never
+coreferent with the earlier one; the word itself is not reported.
 
 Forms:
 - a <N>
@@ -715,6 +729,8 @@ Slots:
 - `props` (optional; a list of lemmas): adjectival properties stated in the phrase; a property
   with a degree word (a very old spindle) is a degree instance beside the witness, not a
   property here; a noun before the head is a mod, never a property.
+- `former` (optional; true / false): true when former, ex-, one-time or retired makes the noun
+  something the referent was and no longer is (a former guard).
 - `mods` (optional; a list of lemmas, or "@id" of a named-entity or a time instance): the nouns,
   names and years before the head noun that narrow its class (Nouns before nouns): a lemma for a
   noun (a harbour pilot: harbour; a sea salt grinder: sea_salt), the id of a named-entity
@@ -2321,9 +2337,11 @@ takes the predicate as a group; whether it also holds of each member is the dist
 template's business. The predicate's head is the class or the property; an adjective inside a
 predicate noun phrase (is a careful weaver) is a second copular instance with the adjective as
 its predicate, and a noun, a name or a year before the predicate noun (is a harbour pilot) is
-its `mods`. Tense is the clause's; present is recorded and emits nothing. A time, a place, a
-duration, a time relation, a link or a focus particle on the clause names this instance as its
-event, as it would a verb's: the program mints the state of the fact holding and attaches to it.
+its `mods`; former, ex- or retired before it (is a former weaver) sets `former`: the subject was
+one and is not now. Tense is the clause's; present is recorded and emits nothing. A time, a
+place, a duration, a time relation, a link or a focus particle on the clause names this instance
+as its event, as it would a verb's: the program mints the state of the fact holding and attaches
+to it.
 
 Forms:
 - <subject> is a <N>
@@ -2346,8 +2364,9 @@ Not this template:
 - a definite or a name as the predicate — is the locksmith, is Teodor: an identity statement,
   not a class or a property (a possessed relational noun — is Lamine's cousin — is a stative
   relation)
-- a non-intersective modifier in the predicate — a former weaver, an alleged thief: the
-  adjective does not hold of the individual on its own
+- an alleged or so-called predicate — an alleged thief: the adjective does not hold of the
+  individual on its own and has no slot yet; report it as unmapped (former, ex- and retired are
+  `former`)
 - "there is / there are" — there is a thermos: an existential, which is the referent alone
 - an adjective with a degree word — is very crooked, was almost full, is tall for a weaver: a
   degree predication, which decides itself whether the property is asserted
@@ -2364,6 +2383,8 @@ Slots:
 - `subject` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
   the subject: a referent id (a name, a witness, a group, a resolved pronoun).
 - `predicate` (required; a lemma): the class (locksmith) or the property (crooked), lemmatized.
+- `former` (optional; true / false): with form noun, true when former, ex-, one-time or retired
+  makes the noun something the referent was and no longer is (is a former weaver).
 - `mods` (optional; a list of lemmas, or "@id" of a named-entity or a time instance): with form
   noun, the nouns, names and years before the head noun that narrow its class (Nouns before
   nouns): a lemma for a noun (a harbour pilot: harbour; a sea salt grinder: sea_salt), the id of
@@ -2682,7 +2703,7 @@ Not this template:
   report the phrase as unmapped
 - membership, a part or a constituent — on the committee, a member of the guild, the lid of the
   box, the soup contains salt: a part-whole relation, not a place
-- between two times — between May and June: a span of time, not a place; report it as unmapped
+- between two times — between May and June: a window of time, the time-relation template
   (between two places — between the barn and the shed — is head Between, the second place in
   `place2`)
 
@@ -3057,15 +3078,15 @@ instance over the group says that each member is a part. A passive keeps the lin
 was included in the treaty: the clause the part). On a class — every car has an engine, oranges
 contain juice — the subject is a range and the generic template builds the rule with this
 instance as the predication over it; an indefinite part is then a witness, a function of the
-member. A LIST OF NAMED MEMBERS after a colon, after including or namely, or set off by dashes,
-brackets or a comma (two potters stayed: Ines and Corvin; the guild, including Lamine; the two
-potters — Ines and Corvin — stayed) is one instance per named member, the group the whole, the
-word as written (":", "including", "namely", "—", "(", ","); no count is drawn from the list,
-and a list of kinds (birds — gulls, terns) names no member: report it as unmapped. `tense` is
-the clause's; a link inside a noun phrase is present. A time, a duration, a time relation, a
-link or a focus on the clause (Lamine was a member of the guild until 1990) names this instance
-as its event, as it would a copular predication, and the program mints the state of the relation
-holding.
+member. A LIST OF NAMED MEMBERS after a colon, after including, such as or namely, or set off by
+dashes, brackets or a comma (two potters stayed: Ines and Corvin; the guild, including Lamine;
+the two potters — Ines and Corvin — stayed) is one instance per named member, the group the
+whole, the word as written (":", "including", "such as", "namely", "—", "(", ","); no count is
+drawn from the list, and a list of kinds (birds — gulls, terns) names no member: report it as
+unmapped. `tense` is the clause's; a link inside a noun phrase is present. A time, a duration, a
+time relation, a link or a focus on the clause (Lamine was a member of the guild until 1990)
+names this instance as its event, as it would a copular predication, and the program mints the
+state of the relation holding.
 
 Forms:
 - <part> is (a) part of <whole>
@@ -5060,8 +5081,8 @@ Not this template:
 - a place phrase inside a noun phrase — the ferret in the barn slept: a locative predication of
   that thing, not an attachment to the clause's event
 - among a group — among the ferrets: an oblique (among what); between two times — between noon
-  and two: a span of time, not a place; report it as unmapped (between two places — slept
-  between the barn and the shed — is head Between, the second place in `place2`)
+  and two: a window of time, the time-relation template (between two places — slept between the
+  barn and the shed — is head Between, the second place in `place2`)
 
 Slots:
 
@@ -5353,6 +5374,52 @@ Not this template. TEXT: Yusra laughed in the barn. — use `location`.
 
 Not this template. TEXT: Lamine cut the loaf with a knife. — use `adjunct`.
 
+### particle — Again, still and already on a clause
+
+When: An aspectual particle on a clause: again (wept again, was wet again), still (still sings,
+is still warm), already (had already gone, is already open). The clause is parsed with its own
+template; this instance names its event and the particle, capitalized as the head (again →
+Again). One instance per particle.
+
+Forms:
+- <clause> again
+- <subject> still <V> / is still <ADJ>
+- <subject> already <V> / is already <ADJ>
+
+Not this template:
+- not yet, yet — had not yet arrived: no slot; report it as unmapped (G02)
+- still or again joining clauses — it rained; still, Corvin went; then again: a connective, not
+  this (the link template between two clauses, G05 at the start of a text)
+- a frequency — again and again, every day: a frequency, not a particle
+
+Slots:
+
+- `t` (required): "particle"
+- `id` (required; your label for this instance): your label for the particle (p1, p2 …).
+- `event` (required; "@id" of the predication instance this attaches to): the clause's
+  predication instance the particle is on: a verb's, or a copular, locative or degree one (the
+  program mints its state).
+- `head` (required; one of: Again, Still, Already): the particle as written, capitalized: again
+  → Again, still → Still, already → Already.
+
+Example. TEXT: Lamine sang again.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Lamine", "span": "Lamine"},
+      {"t": "activity", "id": "v1", "verb": "sing", "actor": "@n1", "tense": "past", "span": "Lamine sang"},
+      {"t": "particle", "id": "p1", "event": "@v1", "head": "Again", "span": "again"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_lamine_1 "Lamine")
+    (Member sk_sing_1 sing)
+    (Agent sk_sing_1 sk_lamine_1)
+    (Past sk_sing_1)
+    (Again sk_sing_1)
+
 ### postmodifier — A prepositional phrase inside a noun phrase, by its own preposition
 
 When: A prepositional phrase that modifies a noun inside its noun phrase: the man with the hat,
@@ -5390,8 +5457,8 @@ Not this template:
 - an of-phrase naming the thing itself — the village of Aldmoor: the name with its class (the
   named-entity template), one referent, not a phrase
 - a noun before the noun — a harbour pilot: the head's mods (Nouns before nouns), not a phrase
-- between two times — between May and June, between 1990 and 1995: a span of time, not a phrase;
-  report it as unmapped
+- between two times — between May and June, between 1990 and 1995: a window of time, the
+  time-relation template
 
 Slots:
 
@@ -5474,19 +5541,21 @@ year ago, in two weeks, two days after the audit, a week later), or an anaphoric
 time by one the text stated before it (that evening, the same day, the next day, the following
 morning, the week after). The event is parsed with its own template; the time instance names
 that event and describes the time: a date or a clock time by its fields (year, decade, century,
-month, day, weekday, hour, minute), a deictic by the `deictic` word with the reference time as
-its anchor, a measured distance by its `offset`, `unit` and `direction` from its anchor (the
-reference time for ago / from now / in n units; a stated event or time for before / after it and
-for later / earlier), an anaphoric phrase likewise from the antecedent event or time (offset 0
-for that / the same, 1 for next / following / after, a day part as a second instance), a named
-time by its name. One instance per time expression; a day part beside a date or an offset
-(Monday morning, the following morning) is a second instance. A time no clause places an event
-at — the reference of a time relation (before noon), the edge of a window (within three days), a
-year before a noun that names no event (a 1904 almanac: named in the noun's mods) — is an
-instance with no event. When the time is predicated of an event noun by "be" or by take place /
-occur / happen (the meeting is at noon, the audit was on Monday, the fair took place in May:
+month, week, day, weekday, hour, minute), a deictic by the `deictic` word with the reference
+time as its anchor, a measured distance by its `offset`, `unit` and `direction` from its anchor
+(the reference time for ago / from now / in n units; a stated event or time for before / after
+it and for later / earlier), an anaphoric phrase likewise from the antecedent event or time
+(offset 0 for that / the same, 1 for next / following / after, a day part as a second instance),
+a named time by its name. One instance per time expression; a day part beside a date or an
+offset (Monday morning, the following morning) is a second instance. A time no clause places an
+event at — the reference of a time relation (before noon), the edge of a window (within three
+days), a year before a noun that names no event (a 1904 almanac: named in the noun's mods) — is
+an instance with no event. When the time is predicated of an event noun by "be" or by take place
+/ occur / happen (the meeting is at noon, the audit was on Monday, the fair took place in May:
 these verbs have no event of their own), the noun is a witness marked eventive, the time
-attaches to it, and this instance records the clause's tense.
+attaches to it, and this instance records the clause's tense. Coordinated dates (in 1810 and
+1811) are one instance each on the event. A NUMBERED WEEK of a season or a schedule (in week 5)
+is `week`, with a year when one is stated.
 
 Forms:
 - <clause> in <year / month>
@@ -5531,8 +5600,12 @@ Slots:
   only for a time no clause places an event at.
 - `deictic` (optional; one of: now, today, tonight, yesterday, tomorrow, last_week, this_week,
   next_week, last_month, this_month, next_month, last_year, this_year, next_year): a time
-  relative to the moment the text speaks from, as one of the listed words (last Tuesday or two
-  days ago are not deictics here); fill no field beside it.
+  relative to the moment the text speaks from, as one of the listed words (two days ago is not a
+  deictic here, and last / this / next with a weekday is the weekday with `relative`); fill no
+  field beside it.
+- `relative` (optional; one of: last, this, next): with a weekday, the week it falls in relative
+  to the moment the text speaks from (last / this / next Wednesday: the week before, this week,
+  the week after), with the anchor.
 - `anchor` (optional; "@id" of a referent instance, or a bare lemma for a non-specific filler):
   what a deictic or an offset is relative to: "@now" (the reserved id; the program supplies the
   instance) for a deictic and for ago / from now / in n units; the id of a time instance or of
@@ -5546,12 +5619,13 @@ Slots:
   days ago → 3, a week later → 1, that evening → 0 day); fill unit and direction with it, no
   calendar field.
 - `unit` (optional; a lemma): the unit of the offset, singular and lowercase: minute, hour, day,
-  week, month, year.
+  week, month, year, or a season of a sport (last season: 1 season before).
 - `direction` (optional; one of: before, after): before when the time precedes its anchor (ago,
   earlier, before it), after when it follows (from now, in n units, later, after it) and for the
   same period as the anchor (that evening, the same day: offset 0).
 - `year` (optional; an integer): the calendar year (2019); a BCE / BC year as a negative integer
   (44 BC → -44).
+- `week` (optional; an integer): a numbered week of a season or a schedule (in week 5 → 5).
 - `decade` (optional; an integer): a decade by its first year (the 1880s → 1880); no year beside
   it.
 - `century` (optional; an integer): a century by its number (the 18th century → 18; the 3rd
@@ -5641,17 +5715,21 @@ a time: a date, a clock time or a named time (before noon, since 2019, until daw
 instance with no event of its own. The clause's event is parsed with its own template; the
 relation instance names that event, the reference and the relation as read, and keeps the word.
 One instance per temporal phrase or connective; "from 2015 to 2019" is two, a start and an end.
-When the relation is predicated of an event noun by "be" (the audit was before the meeting), the
-noun is a witness marked eventive, the relation attaches to it, and the instance records the
-clause's tense. A gerund clause after a temporal preposition (after leaving the barn, before
-eating) is a clause of its own: parse it with its verb's template, its actor the main clause's
-subject unless the phrase states one (after Yusra's leaving), its tense the main clause's, and
-name its event as the reference. A window — within three days, in the past six months, in the
-last two years — is a bound on a time at an offset: a time instance with no event, offset from
-its anchor (three days after now; six months before now), and the relation TimeAtMost (within)
-or TimeAtLeast (in the past / last) on it. The span is the connective alone when the reference
-is a clause (the clause's words have their own span), the whole phrase when the reference is a
-noun phrase or a time (after the audit, until dawn, by Monday, within three days).
+A RANGE written with a dash is the same pair, Start and End — the siege of 1702–1704 (the noun
+eventive), ruled (1790–1801), on 2–3 May —, and a range in brackets after an office or a reign
+dates that holding or that reign. BETWEEN two times (flooded between 1820 and 1830) is a window:
+TimeAtLeast on the first, TimeAtMost on the second. When the relation is predicated of an event
+noun by "be" (the audit was before the meeting), the noun is a witness marked eventive, the
+relation attaches to it, and the instance records the clause's tense. A gerund clause after a
+temporal preposition (after leaving the barn, before eating) is a clause of its own: parse it
+with its verb's template, its actor the main clause's subject unless the phrase states one
+(after Yusra's leaving), its tense the main clause's, and name its event as the reference. A
+window — within three days, in the past six months, in the last two years — is a bound on a time
+at an offset: a time instance with no event, offset from its anchor (three days after now; six
+months before now), and the relation TimeAtMost (within) or TimeAtLeast (in the past / last) on
+it. The span is the connective alone when the reference is a clause (the clause's words have
+their own span), the whole phrase when the reference is a noun phrase or a time (after the
+audit, until dawn, by Monday, within three days).
 
 Forms:
 - <clause> before / after / until / since / by / during <event noun or time>
@@ -5659,6 +5737,8 @@ Forms:
 - Before / After / While / When / Until / Once <clause>, <clause>
 - <clause>, then <clause>
 - <clause> from <time> to / until <time>
+- <event noun> of <time>–<time>; <clause> (<time>–<time>)
+- <clause> between <time> and <time>
 - <event noun> is / was before / after / during <event noun or time>
 - <clause> after / before / while / since / until <V-ing …>
 - <clause> within <n> <units>
@@ -5984,7 +6064,10 @@ most of the ferrets, two of the quilts) and whose predicate holds of each member
 ferrets are curious (each is), several students laughed (each did), the students did not laugh
 (none did). The instance names the group and the predication over it — or the scope operator
 over that predication, when there is one — and nothing else. Do not add it for a collective
-predicate: surrounded the barn, carried the ladder together, met, gathered, outnumbered.
+predicate: surrounded the barn, carried the ladder together, met, gathered, outnumbered. A
+floating both, each or all on a group or a plural pronoun (the potters each left, they both
+sang) is this instance; both or each on coordinated names (both Ines and Corvin left) adds
+nothing, and the word is not reported.
 
 Not this template:
 - a collective predicate — surrounded, gathered, met, outnumbered, carried it together: holds of
@@ -6388,7 +6471,9 @@ forms under negation — or an it-cleft (it was Lamine who washed the quilt) or 
 were absent; the focus instance names the head, the focused constituent — the referent id of the
 subject or object the particle sits on, or the verb's lemma for a focus on the verb phrase
 (Teodor only slept → sleep) — and the clause's event. A clause-final too / as well / either
-focuses the subject unless the text says otherwise. One instance per particle or cleft.
+focuses the subject unless the text says otherwise. One instance per particle or cleft. The only
+or the sole N predicated of X (Corvin is the only heir) is the copular instance with this
+template's Only on X, the copular instance its event.
 
 Forms:
 - only / even / also <subject> V …

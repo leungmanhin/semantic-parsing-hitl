@@ -24,7 +24,10 @@ trigger:
     (the quantity of it the text introduces): the vague phrase is recorded in `quantity`; a
     container or measure word is a measure instance on the witness. A noun, a name or a year
     before the head noun (a harbour pilot, a Calderwick quilt, a 1904 almanac) narrows the
-    class: the head is the class and the words before it are its `mods`.
+    class: the head is the class and the words before it are its `mods`. Former, ex- or retired
+    before the noun (a former guard) sets `former`: it was one and is not now. Another or the
+    other before the noun (another ferret) is a witness of its own, never coreferent with the
+    earlier one; the word itself is not reported.
   surface_forms:
     - "a <N>"                       # indefinite
     - "the <N>"                     # definite
@@ -48,6 +51,7 @@ slots:
   definite: {type: bool, required: false, doc: "true for the / this / that; absent for a / an and for a possessed phrase (the possessor presupposes it)"}
   props:    {type: list, class: Class, required: false,
              doc: "adjectival properties stated in the phrase; a property with a degree word (a very old spindle) is a degree instance beside the witness, not a property here; a noun before the head is a mod, never a property"}
+  former:   {type: bool, required: false, doc: "true when former, ex-, one-time or retired makes the noun something the referent was and no longer is (a former guard)"}
   mods:     {type: list, class: Class, ids: [named-entity, time], required: false,
              doc: "the nouns, names and years before the head noun that narrow its class (Nouns before nouns): a lemma for a noun (a harbour pilot: harbour; a sea salt grinder: sea_salt), the id of a named-entity instance for a name (a Calderwick quilt), of a time instance for a year, a decade or a century (a 1904 almanac); never an adjective"}
   possessor: {type: filler, class: Entity, required: false,
@@ -64,6 +68,12 @@ presupposed: [definite, possessor]      # a definite or possessed witness exists
 emits:
   - atom: "(Member @id {class|mod})"
     with_head: class                # a harbour pilot is a pilot too
+    when: "not former"
+  - atom: "(Past (Member @id {class|mod}))"
+    with_head: class                # former: it was one
+    when: "former"
+  - atom: "(Not (Member @id {class|mod}))"
+    when: "former"                  # and is not one now
   - atom: "(Member @id {props})"
     each: props
   - atom: "(Possession @id {possessor})"
@@ -141,3 +151,18 @@ examples:
         - {t: named-entity, id: n1, name: "Lamine"}
         - {t: witness, id: x1, class: guinea_pig}
         - {t: perception, id: p1, verb: see, perceiver: "@n1", stimulus: "@x1", tense: past}
+    - category: positive
+      note: former on the noun — it was one and is not one now
+      text: "A former miller opened the gate."
+      instances:
+        - {t: witness, id: x1, class: miller, former: true}
+        - {t: witness, id: x2, class: gate, definite: true}
+        - {t: change-of-state, id: e1, verb: open, agent: "@x1", undergoer: "@x2", tense: past}
+    - category: positive
+      note: another — a referent of its own, no coreference with the first
+      text: "A heron fished, and another heron slept."
+      instances:
+        - {t: witness, id: x1, class: heron}
+        - {t: activity, id: v1, verb: fish, actor: "@x1", tense: past}
+        - {t: witness, id: x2, class: heron}
+        - {t: activity, id: v2, verb: sleep, actor: "@x2", tense: past}

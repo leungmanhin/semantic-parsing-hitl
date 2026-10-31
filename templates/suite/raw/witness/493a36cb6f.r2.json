@@ -1,0 +1,93 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "9d531ee8e66e0a9f37ff64cc98eb91c9f656f6c643b7229a6307f78d539dcb6e",
+  "item": {
+    "id": "s493a36cb6f",
+    "text": "A former miller opened the gate."
+  },
+  "usage": {
+    "input": 107284,
+    "output": 152,
+    "thinking": null,
+    "total": 107436,
+    "cached": 105235,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 107284,
+    "candidatesTokenCount": 152,
+    "totalTokenCount": 107436,
+    "cachedContentTokenCount": 105235,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 107284
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 105235
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 152
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s493a36cb6f\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"miller\", \"former\": true, \"span\": \"A former miller\"}, {\"t\": \"witness\", \"id\": \"x2\", \"class\": \"gate\", \"definite\": true, \"span\": \"the gate\"}, {\"t\": \"change-of-state\", \"id\": \"e1\", \"verb\": \"open\", \"agent\": \"@x1\", \"undergoer\": \"@x2\", \"tense\": \"past\", \"span\": \"A former miller opened the gate\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s493a36cb6f",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "miller",
+        "former": true,
+        "span": "A former miller"
+      },
+      {
+        "t": "witness",
+        "id": "x2",
+        "class": "gate",
+        "definite": true,
+        "span": "the gate"
+      },
+      {
+        "t": "change-of-state",
+        "id": "e1",
+        "verb": "open",
+        "agent": "@x1",
+        "undergoer": "@x2",
+        "tense": "past",
+        "span": "A former miller opened the gate"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "b09f9212483d1b60d2982607eb5896b2e75a1b40c5f7c581940151e2c616427f",
+  "manifest_id": "a6c6f60174e8",
+  "run": 2,
+  "case": {
+    "template": "witness",
+    "section": "held_out",
+    "index": 7,
+    "category": "positive",
+    "text": "A former miller opened the gate.",
+    "key": "493a36cb6f"
+  }
+}

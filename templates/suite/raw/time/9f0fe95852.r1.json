@@ -1,0 +1,93 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "9d531ee8e66e0a9f37ff64cc98eb91c9f656f6c643b7229a6307f78d539dcb6e",
+  "item": {
+    "id": "s9f0fe95852",
+    "text": "Yusra will leave this Thursday."
+  },
+  "usage": {
+    "input": 107284,
+    "output": 218,
+    "thinking": null,
+    "total": 107502,
+    "cached": 105233,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 107284,
+    "candidatesTokenCount": 218,
+    "totalTokenCount": 107502,
+    "cachedContentTokenCount": 105233,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 107284
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 105233
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 218
+      }
+    ]
+  },
+  "raw_text": "{\n  \"id\": \"s9f0fe95852\",\n  \"instances\": [\n    {\n      \"t\": \"named-entity\",\n      \"id\": \"n1\",\n      \"name\": \"Yusra\",\n      \"span\": \"Yusra\"\n    },\n    {\n      \"t\": \"motion\",\n      \"id\": \"e1\",\n      \"verb\": \"leave\",\n      \"mover\": \"@n1\",\n      \"tense\": \"future\",\n      \"span\": \"Yusra will leave\"\n    },\n    {\n      \"t\": \"time\",\n      \"id\": \"t1\",\n      \"event\": \"@e1\",\n      \"weekday\": \"thursday\",\n      \"relative\": \"this\",\n      \"anchor\": \"@now\",\n      \"span\": \"this Thursday\"\n    }\n  ],\n  \"unmapped\": [],\n  \"issues\": []\n}",
+  "response": {
+    "id": "s9f0fe95852",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "motion",
+        "id": "e1",
+        "verb": "leave",
+        "mover": "@n1",
+        "tense": "future",
+        "span": "Yusra will leave"
+      },
+      {
+        "t": "time",
+        "id": "t1",
+        "event": "@e1",
+        "weekday": "thursday",
+        "relative": "this",
+        "anchor": "@now",
+        "span": "this Thursday"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "b09f9212483d1b60d2982607eb5896b2e75a1b40c5f7c581940151e2c616427f",
+  "manifest_id": "a6c6f60174e8",
+  "run": 1,
+  "case": {
+    "template": "time",
+    "section": "held_out",
+    "index": 37,
+    "category": "positive",
+    "text": "Yusra will leave this Thursday.",
+    "key": "9f0fe95852"
+  }
+}

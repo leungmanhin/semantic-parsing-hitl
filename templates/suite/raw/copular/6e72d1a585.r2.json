@@ -1,0 +1,86 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "9d531ee8e66e0a9f37ff64cc98eb91c9f656f6c643b7229a6307f78d539dcb6e",
+  "item": {
+    "id": "s6e72d1a585",
+    "text": "Teodor is a former locksmith."
+  },
+  "usage": {
+    "input": 107285,
+    "output": 118,
+    "thinking": null,
+    "total": 107403,
+    "cached": 105236,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 107285,
+    "candidatesTokenCount": 118,
+    "totalTokenCount": 107403,
+    "cachedContentTokenCount": 105236,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 107285
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 105236
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 118
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s6e72d1a585\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@n1\", \"predicate\": \"locksmith\", \"former\": true, \"form\": \"noun\", \"tense\": \"present\", \"span\": \"Teodor is a former locksmith\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s6e72d1a585",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "copular",
+        "id": "c1",
+        "subject": "@n1",
+        "predicate": "locksmith",
+        "former": true,
+        "form": "noun",
+        "tense": "present",
+        "span": "Teodor is a former locksmith"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "b09f9212483d1b60d2982607eb5896b2e75a1b40c5f7c581940151e2c616427f",
+  "manifest_id": "a6c6f60174e8",
+  "run": 2,
+  "case": {
+    "template": "copular",
+    "section": "held_out",
+    "index": 17,
+    "category": "positive",
+    "text": "Teodor is a former locksmith.",
+    "key": "6e72d1a585"
+  }
+}
