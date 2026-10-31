@@ -56,7 +56,9 @@ trigger:
       membership, a part or a constituent — on the committee, a member of the guild, the lid
       of the box, the soup contains salt: a part-whole relation, not a place
     - >-
-      between two places — between the barn and the shed: no slot here; reported as unmapped
+      between two times — between May and June: a span of time, not a place; report it as
+      unmapped (between two places — between the barn and the shed — is head Between, the
+      second place in `place2`)
 
 slots:
   id:          {type: id, required: true, doc: "your label for the predication (l1, l2 …)"}
@@ -64,7 +66,9 @@ slots:
                 doc: "the thing located: a referent id (a name, a witness, a group)"}
   place:       {type: filler, class: Entity, required: true,
                 doc: "the place: a referent id (a witness for the workbench, a name for Norfolk) or a bare lemma for a class-level place"}
-  head:        {type: enum, values: [LocatedIn, "On", Near, By, Under, Over, Above, Below, Behind, Beside, Outside, Opposite, From], required: true,
+  place2:      {type: filler, class: Entity, required: false, only_when: "head == Between",
+                doc: "with head Between only, the second of the two places (between the barn and the shed: the shed); the order as written"}
+  head:        {type: enum, values: [LocatedIn, "On", Near, By, Under, Over, Above, Below, Behind, Beside, Between, Outside, Opposite, From], required: true,
                 doc: "LocatedIn for in / at / inside / within; otherwise the preposition itself, capitalized (on → On, under → Under); From for an origin (is from)"}
   preposition: {type: string, required: true, doc: "the preposition as written (in, on, under, from …)"}
   tense:       {type: enum, values: [past, present, future], required: true,
@@ -74,16 +78,16 @@ slots:
 mints: {id: Event, literal: located, on_demand: true}      # the state of the fact holding, only when something attaches
 
 emits:
-  - atom: "({head} {thing} {place})"
+  - atom: "({head} {thing} {place} {place2|opt})"
     when: "tense == present and aspect != perfect and aspect != progressive"
-  - atom: "(Past ({head} {thing} {place}))"
+  - atom: "(Past ({head} {thing} {place} {place2|opt}))"
     when: "tense == past or aspect == perfect"
-  - atom: "(Future ({head} {thing} {place}))"
+  - atom: "(Future ({head} {thing} {place} {place2|opt}))"
     when: "tense == future"
-  - atom: "(Ongoing ({head} {thing} {place}))"
+  - atom: "(Ongoing ({head} {thing} {place} {place2|opt}))"
     when: "aspect == progressive"
   # an anchored predication: the state of the fact holding, minted only when something attaches
-  - atom: "(Holds @id ({head} {thing} {place}))"
+  - atom: "(Holds @id ({head} {thing} {place} {place2|opt}))"
     if_minted: true
     state: true
   - atom: "(Past @id)"
@@ -243,3 +247,11 @@ examples:
     - category: abstain
       text: "Lamine is in trouble."
       expected: {abstain: true, gap: G00, span: "in trouble"}         # a state, not a place
+    - category: positive
+      note: a place between two — head Between, the second in place2
+      text: "Calderwick is between the river and the hills."
+      instances:
+        - {t: named-entity, id: n1, name: "Calderwick"}
+        - {t: witness, id: x1, class: river, definite: true}
+        - {t: group, id: g1, class: hill, definite: true}
+        - {t: locative, id: l1, thing: "@n1", place: "@x1", place2: "@g1", head: Between, preposition: between, tense: present}

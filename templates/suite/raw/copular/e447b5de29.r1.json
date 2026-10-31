@@ -1,0 +1,88 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "203017637a80e5d180ad8fbea051ea5b3a9f3a0a47fd55e15383ae058ab2138b",
+  "item": {
+    "id": "se447b5de29",
+    "text": "Bram is a river guide."
+  },
+  "usage": {
+    "input": 104228,
+    "output": 116,
+    "thinking": null,
+    "total": 104344,
+    "cached": 102174,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 104228,
+    "candidatesTokenCount": 116,
+    "totalTokenCount": 104344,
+    "cachedContentTokenCount": 102174,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 104228
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 102174
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 116
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"se447b5de29\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Bram\", \"span\": \"Bram\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@n1\", \"predicate\": \"guide\", \"mods\": [\"river\"], \"form\": \"noun\", \"tense\": \"present\", \"span\": \"Bram is a river guide\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "se447b5de29",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Bram",
+        "span": "Bram"
+      },
+      {
+        "t": "copular",
+        "id": "c1",
+        "subject": "@n1",
+        "predicate": "guide",
+        "mods": [
+          "river"
+        ],
+        "form": "noun",
+        "tense": "present",
+        "span": "Bram is a river guide"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "12605e658914fc5db17e2b6d548588331952976acbad42b2d0f97978fe2c7db4",
+  "manifest_id": "12298c656864",
+  "run": 1,
+  "case": {
+    "template": "copular",
+    "section": "held_out",
+    "index": 16,
+    "category": "positive",
+    "text": "Bram is a river guide.",
+    "key": "e447b5de29"
+  }
+}

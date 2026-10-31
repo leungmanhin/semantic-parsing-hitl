@@ -1,0 +1,100 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "203017637a80e5d180ad8fbea051ea5b3a9f3a0a47fd55e15383ae058ab2138b",
+  "item": {
+    "id": "s6ca9a93dcb",
+    "text": "Yusra washed an Aldmoor shawl."
+  },
+  "usage": {
+    "input": 104229,
+    "output": 178,
+    "thinking": null,
+    "total": 104407,
+    "cached": 102127,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 104229,
+    "candidatesTokenCount": 178,
+    "totalTokenCount": 104407,
+    "cachedContentTokenCount": 102127,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 104229
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 102127
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 178
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s6ca9a93dcb\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Aldmoor\", \"span\": \"Aldmoor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"shawl\", \"mods\": [\"@n2\"], \"span\": \"an Aldmoor shawl\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"wash\", \"actor\": \"@n1\", \"patient\": \"@x1\", \"tense\": \"past\", \"span\": \"Yusra washed an Aldmoor shawl\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s6ca9a93dcb",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Aldmoor",
+        "span": "Aldmoor"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "shawl",
+        "mods": [
+          "@n2"
+        ],
+        "span": "an Aldmoor shawl"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "wash",
+        "actor": "@n1",
+        "patient": "@x1",
+        "tense": "past",
+        "span": "Yusra washed an Aldmoor shawl"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "12605e658914fc5db17e2b6d548588331952976acbad42b2d0f97978fe2c7db4",
+  "manifest_id": "12298c656864",
+  "run": 1,
+  "case": {
+    "template": "witness",
+    "section": "held_out",
+    "index": 3,
+    "category": "positive",
+    "text": "Yusra washed an Aldmoor shawl.",
+    "key": "6ca9a93dcb"
+  }
+}

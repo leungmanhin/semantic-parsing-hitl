@@ -236,8 +236,12 @@ def render_metta(src: dict) -> str:
     if sig and preps:
         lines.append("")
         lines.append(";; open-class oblique prepositions (licensed heads), one signature for all")
-        for prep in preps:
-            lines.extend(type_defs(prep, {"arity": len(sig["arg_types"]), "arg_types": sig["arg_types"]}, sig["out"]))
+        seen = set(lines)
+        for prep in preps:                   # a form a head's own entry already declares (Between) is not repeated
+            for form in type_defs(prep, {"arity": len(sig["arg_types"]), "arg_types": sig["arg_types"]}, sig["out"]):
+                if form not in seen:
+                    lines.append(form)
+                    seen.add(form)
     lines.append("")
     return "\n".join(lines)
 

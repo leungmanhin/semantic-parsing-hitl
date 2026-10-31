@@ -41,7 +41,12 @@ trigger:
     guild's treasurer — states the same relation with a witness as the bearer: the witness for
     the noun (its class the noun, no possessor) is the subject and the possessor the object; a
     noun the possessor owns or is merely associated with (her quilt, Bram's lantern) keeps the
-    witness's possessor, and a plural one (her sons) stays the group's possessor for now. A
+    witness's possessor, and a plural one (her sons) stays the group's possessor for now.
+    KINSHIP WITH HAVE — Wren has a nephew, Ilse has three sons — is the same relation: the
+    relative the subject (a witness for one, the name for one named — has a nephew called
+    Corvin: Corvin —, a group for several, with a distribution over this instance) and the
+    one who has them the object; names listed after the group (three sons, Bram, Teodor and
+    Lamine) are its members, one part-whole each. A
     DEFINITE ROLE TITLE with an of-phrase — the warden of the mill, the president of the guild,
     the author of the letter — is a relational noun too: this template, the holder the subject,
     the of-phrase the object (preposition of), never an identity copular. A passive or participial form (is
@@ -430,3 +435,29 @@ examples:
         - {t: witness, id: x1, class: aunt}
         - {t: stative-relation, id: p1, relation: aunt, subject: "@x1", object: "@m1", tense: present}
         - {t: activity, id: v1, verb: visit, actor: "@n1", patient: "@x1", tense: past}
+    - category: positive
+      note: kinship with have, the relative named — the name the relation's subject
+      text: "Ottoline has a son called Bram."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: named-entity, id: n2, name: "Bram"}
+        - {t: stative-relation, id: p1, relation: son, subject: "@n2", object: "@n1", tense: present}
+    - category: positive
+      note: kinship with have over a group — distributed, the names listed its members
+      text: "Teodor has two daughters, Ines and Wren."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: group, id: g1, class: daughter, count: 2}
+        - {t: stative-relation, id: p1, relation: daughter, subject: "@g1", object: "@n1", tense: present}
+        - {t: distribution, id: d1, group: "@g1", over: ["@p1"]}
+        - {t: named-entity, id: n2, name: "Ines"}
+        - {t: named-entity, id: n3, name: "Wren"}
+        - {t: part-whole, id: w1, part: "@n2", whole: "@g1", word: ",", tense: present}
+        - {t: part-whole, id: w2, part: "@n3", whole: "@g1", word: ",", tense: present}
+    - category: positive
+      note: kinship with have, the relative unnamed — a witness as the relation's subject
+      text: "Ottoline has a brother."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: witness, id: x1, class: brother}
+        - {t: stative-relation, id: p1, relation: brother, subject: "@x1", object: "@n1", tense: present}

@@ -778,7 +778,7 @@
       ],
       "out": "Proposition",
       "opaque": true,
-      "gloss": "Non-distributing property of a class/population as a whole. Order: (ClassProperty class property). Opaque: distributes to no member. Emitted by the class-property template; the frozen prompt line writes it as KindProperty."
+      "gloss": "Non-distributing property of a class/population as a whole. Order: (ClassProperty class property). Opaque: distributes to no member. Also the kind word of a kind-of phrase (the class-statement template): the lurcher is a breed of dog, (ClassProperty lurcher breed) beside (Inheritance lurcher dog) — the lurcher as a whole is a breed, no lurcher is. Emitted by the class-property template; the frozen prompt line writes it as KindProperty."
     },
     "KindProperty": {
       "kind": "relation",
@@ -1043,7 +1043,7 @@
       ],
       "out": "Class",
       "opaque": false,
-      "gloss": "A comparison class: the class as a noun phrase narrows it — (Narrow city (LocatedIn sk_scotland_1)), the cities located in Scotland; (Narrow album (And (Member studio) (Possession sk_ottoline_1))). Each restriction is an atom with its member left out, several in an And in a fixed order; a relational noun's relatum is (Relation mayor sk_calderwick_1), a dated period (Within (Century 18)). Built by the program from the parse, so every text that says the same gets the same term; a rule beside the superlative defines its members."
+      "gloss": "A comparison class: the class as a noun phrase narrows it — (Narrow city (LocatedIn sk_scotland_1)), the cities located in Scotland; (Narrow album (And (Mod jazz) (Possession sk_ottoline_1))). Each restriction is an atom with its member left out, several in an And in a fixed order; a noun, a name or a year before the class noun is (Mod harbour), (Mod sk_calderwick_1), (Mod (Year 1904)) — a class narrowed by its nouns alone, (Narrow pilot (Mod harbour)), is stated by its members beside their plain class, with no rule; a relational noun's relatum is (Relation mayor sk_calderwick_1), a dated period (Within (Century 18)). Built by the program from the parse, so every text that says the same gets the same term; a rule beside the superlative defines its members."
     },
     "Not": {
       "kind": "scope",
@@ -1829,6 +1829,21 @@
       "out": "Proposition",
       "opaque": false,
       "gloss": "Evidential operator over a sealed claim: how things appear by taste ('tastes salty'); the claim is not asserted. The evidential template's head, the verb kept as the head because the sense is the evidence; carries the sealed claim's own truth value. Order: (Taste P)."
+    },
+    "Between": {
+      "kind": "relation",
+      "arity": [
+        2,
+        3
+      ],
+      "arg_types": [
+        "Instance|Class",
+        "Instance|Class|Proposition",
+        "Instance"
+      ],
+      "out": "Proposition",
+      "opaque": false,
+      "gloss": "The preposition between, as written: (Between x a b) — x between a and b, the place, the parties or the two ends, the reading the consumer's; the order of a and b carries nothing (the symmetry rule between_sym). With one object, a group (between the pillows), the two-place form of every preposition head."
     }
   },
   "open_class": {
@@ -1912,10 +1927,10 @@
     "oblique_signature": {
       "arg_types": [
         "Instance|Class",
-        "Instance|Proposition"
+        "Instance|Class|Proposition"
       ],
       "out": "Proposition",
-      "note": "every oblique preposition head attaches a participant to an eventuality (or, as the complement of an adjective, a gerund clause sealed as one term: (Of sk_tired_1 (And ...))), to an entity in a bare position clause ((Under sk_gazetteer_1 sk_lectern_1)), or to a compound property / action class under the compound decomposition; the preposition actually used is the head"
+      "note": "every oblique preposition head attaches a participant to an eventuality (or, as the complement of an adjective, a gerund clause sealed as one term: (Of sk_tired_1 (And ...))), to an entity in a bare position clause ((Under sk_gazetteer_1 sk_lectern_1)), or to a compound property / action class under the compound decomposition; the preposition actually used is the head; a class-level object narrowed by its words is a class term ((Of sk_velloria_1 (Narrow fern (Mod tree))))"
     }
   }
 }

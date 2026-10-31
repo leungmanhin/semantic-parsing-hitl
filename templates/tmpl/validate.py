@@ -122,8 +122,8 @@ def lints(insts: list, catalog: dict, unmapped: list, text: str | None = None) -
             v = r.get(sname)
             if spec["type"] == "filler" and E.is_ref(v):
                 mentioned.add(v[1:])
-            elif spec["type"] == "refs":
-                mentioned.update(x[1:] for x in (v or []) if E.is_ref(x))
+            elif spec["type"] in ("refs", "list") and isinstance(v, list):   # a list may name instances (a name before a noun)
+                mentioned.update(x[1:] for x in v if E.is_ref(x))
     by_id = {r["id"]: r for r in insts if "id" in r}
 
     def content_of(iid: str, seen: set) -> set:

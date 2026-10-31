@@ -15,6 +15,8 @@ trigger:
   surface_forms:
     - "<Name>"                      # Teodor
     - "<Title> <Name>"              # Dr Varga — the title is recorded, not part of the symbol
+    - "the <class> of <Name>"       # the village of Aldmoor: the name with class village, not a second referent
+    - "<N1> <N2> <Name>"            # harbour pilot Bram: class pilot, mods [harbour]
   boundary:
     - >-
       a common noun with an article — the clerk, a thermos: a witness, not a name
@@ -25,12 +27,14 @@ slots:
   id:    {type: id, required: true}
   name:  {type: string, required: true, doc: "the surface name, capitalised as written"}
   title: {type: string, required: false, doc: "a leading title, if any"}
-  class:  {type: lemma, class: Class, required: false,
-          doc: "the class an appositive or a title phrase states for the name (Lamine, a glazier); a predicative is a N is a copular instance, not this slot; a relational noun with a possessor (her son Bram, Ilse's husband Corvin) is a relation, not a class: the stative-relation template"}
+  class:  {type: lemma, class: Class, required: false, narrowed_by: mods,
+          doc: "the class an appositive, a title phrase or an of-phrase naming the place itself states for the name (Lamine, a glazier; the village of Aldmoor: village); a predicative is a N is a copular instance, not this slot; a relational noun with a possessor (her son Bram, Ilse's husband Corvin) is a relation, not a class: the stative-relation template"}
   aliases: {type: list, class: String, required: false,
            doc: "other names of the same individual, each as written: known as, also known as, better known as, called, nicknamed (Ines, known as Nell: Nell)"}
   props:  {type: list, class: Class, required: false,
-          doc: "adjectival or nominal modifiers inside the appositive or title phrase, each a lemma (a retired harbour pilot: retired, harbour; the northern ferry company: northern, ferry)"}
+          doc: "adjectives inside the appositive or title phrase, each a lemma (a careful harbour pilot: careful; the northern ferry company: northern); a noun before the class is a mod, never a property"}
+  mods:   {type: list, class: Class, ids: [named-entity, time], required: false,
+          doc: "the nouns, names and years before the head noun that narrow its class (Nouns before nouns): a lemma for a noun (a harbour pilot: harbour; a sea salt grinder: sea_salt), the id of a named-entity instance for a name (a Calderwick quilt), of a time instance for a year, a decade or a century (a 1904 almanac); never an adjective; with a class only"}
 
 mints: {id: Entity, stem: name}
 
@@ -40,8 +44,9 @@ emits:
   - atom: "(Name @id \"{name}\")"
   - atom: "(Name @id \"{aliases}\")"
     each: aliases
-  - atom: "(Member @id {class})"
+  - atom: "(Member @id {class|mod})"
     if_filled: class
+    with_head: class
   - atom: "(Member @id {props})"
     each: props
 
@@ -69,3 +74,15 @@ examples:
       instances:
         - {t: named-entity, id: n1, name: "Lamine", aliases: ["Bram"]}
         - {t: motion, id: m1, verb: leave, mover: "@n1", tense: past}
+    - category: positive
+      note: a noun before the appositive's class — a mod of the class
+      text: "Corvin, a lighthouse keeper, laughed."
+      instances:
+        - {t: named-entity, id: n1, name: "Corvin", class: keeper, mods: [lighthouse]}
+        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past}
+    - category: positive
+      note: an of-phrase naming the place itself — the name with its class, one referent
+      text: "The town of Calderwick grew."
+      instances:
+        - {t: named-entity, id: n1, name: "Calderwick", class: town}
+        - {t: change-of-state, id: e1, verb: grow, undergoer: "@n1", tense: past}

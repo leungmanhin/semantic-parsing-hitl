@@ -36,16 +36,18 @@ trigger:
     witness is parsed as usual (the tallest weaver: a definite witness of class weaver) and the
     instance adds the superlative with no tense and no `predicative`. The span is the whole clause
     for the predicative form and the superlative phrase for the attributive one. A CLASS THE
-    PHRASE NARROWS is compared within as narrowed: the witness's own props and possessor narrow it
-    by themselves (the largest walled town, her second novel); a place, an author or a whole is
+    PHRASE NARROWS is compared within as narrowed: the witness's own props, mods and possessor
+    narrow it by themselves (the largest walled town, the oldest market town, her second novel); a
+    place, an author or a whole is
     parsed as its own instance on the subject — the locative (the oldest mill in the valley), the
     postmodifier (the first poem by Bram), the part-whole (the fourth stanza of the hymn), the relation a
     relational class noun states (the first warden of the mill, Bram's second husband: the
     stative-relation, the witness its bearer), the time of a dated period (of the 18th century:
     a time instance with no event), a relative clause on the noun (the oldest bell that still rings,
     the first ship that reached the bay: the clause's own instance) — and listed in `within`; in the predicative form the locative is written on the subject (Bram's
-    town in the valley: the town located in the valley, the clause's tense) and the modifiers on
-    the class noun go to `props`. The program builds the comparison class from all of them.
+    town in the valley: the town located in the valley, the clause's tense), the adjectives on
+    the class noun go to `props` and the nouns, names and years before it to `mods`. The program
+    builds the comparison class from all of them.
   surface_forms:
     - "<X> is the ADJ-est / the most ADJ <N>"             # Lamine is the oldest glazier: kind most, predicative
     - "<X> is one of the ADJ-est <N>s"                    # Ottoline is one of the oldest glaziers: kind among
@@ -54,7 +56,7 @@ trigger:
     - "the ADJ-est <N> V-ed … / V-ed the ADJ-est <N>"     # the tallest weaver left; bought the most expensive quilt: attributive
     - "the <n-th> <N> …"                                  # the third ferret slept: kind ordinal, rank 3, scale ferret
     - "the ADJ-est <N> in <place> / the <n-th> <N> by <author> / of <whole>"   # a narrowed class: the instance in `within`
-    - "<possessor>'s <n-th> <N> / the ADJ-est <ADJ2> <N>"   # the witness's possessor and props narrow it
+    - "<possessor>'s <n-th> <N> / the ADJ-est <ADJ2> <N> / the ADJ-est <N1> <N2>"   # the witness's possessor, props and mods narrow it
   boundary:                   # looks like a superlative but is not one
     - >-
       a comparative with a standard — taller than Yusra, as tall as Teodor: the comparative
@@ -93,8 +95,8 @@ slots:
                 doc: "the thing at the top or at the rank: the subject's referent id for the predicative form, the witness whose phrase holds the superlative for the attributive one"}
   scale:       {type: lemma, class: Class, required: true,
                 doc: "what orders the class: the adjective lemmatized (tallest → tall, most careful → careful, best → good, worst → bad), the verb of the first / last to V (arrive, speak), or the class itself for a plain ordinal (the third ferret → ferret)"}
-  class:       {type: lemma, class: Class, required: false,
-                doc: "the class compared within, lemmatized to the singular: the noun of the phrase (weaver, quilt) or of the of-phrase (the tallest of the weavers → weaver); absent only for the first / last to V; the noun alone: what narrows it is the subject's own phrase (its props, its possessor), `props` and `within`"}
+  class:       {type: lemma, class: Class, required: false, narrowed_by: mods,
+                doc: "the class compared within, lemmatized to the singular: the noun of the phrase (weaver, quilt) or of the of-phrase (the tallest of the weavers → weaver); absent only for the first / last to V; the noun alone: what narrows it is the subject's own phrase (its props, its mods, its possessor), `props`, `mods` and `within`"}
   kind:        {type: enum, values: [most, among, ordinal], required: true,
                 doc: "most for the ADJ-est / the most ADJ (the unique top); among for one of the ADJ-est; ordinal for a rank: the n-th, the n-th ADJ-est, the first / last to V"}
   rank:        {type: number, required: false, doc: "the rank of an ordinal: first → 1, second → 2, third → 3; empty for last"}
@@ -104,7 +106,9 @@ slots:
   tense:       {type: enum, values: [past, present, future], required: false, default: present,
                 doc: "the copular clause's tense for the predicative form (is / was / will be the tallest); omit inside a noun phrase"}
   props:       {type: list, class: Class, required: false,
-                doc: "in the predicative form, the modifiers on the class noun, each a lemma (Bram's town is the largest walled town: walled); inside a noun phrase the witness's own props narrow the class instead"}
+                doc: "in the predicative form, the adjectives on the class noun, each a lemma (Bram's town is the largest walled town: walled); inside a noun phrase the witness's own props narrow the class instead"}
+  mods:        {type: list, class: Class, ids: [named-entity, time], required: false,
+                doc: "in the predicative form, the nouns, names and years before the class noun (Calderwick is the largest market town: market), as the mods of Nouns before nouns; inside a noun phrase the witness's own mods narrow the class instead"}
   within:      {type: list, class: Proposition, required: false,
                 doc: "the ids of the instances that narrow the class, each describing the subject: the locative that places it, the postmodifier that attributes it (by Bram), the part-whole that attaches it (of the hymn), the stative-relation a relational class noun states (the first warden of the mill), the time instance of a dated period (of the 18th century), the instance of a relative clause on the noun (the first ship that reached the bay); never a negated clause"}
 
@@ -150,15 +154,18 @@ emits:
     when: "kind == ordinal and last and tense == future"
     declare: {last: Class}
   # the membership the predicative form asserts (a presupposition: it projects through a negation)
-  - atom: "(Member {subject} {class})"
+  - atom: "(Member {subject} {class|mod})"
+    with_head: class
     if_filled: class
     when: "predicative and tense != past and tense != future"
     project: true
-  - atom: "(Past (Member {subject} {class}))"
+  - atom: "(Past (Member {subject} {class|mod}))"
+    with_head: class
     if_filled: class
     when: "predicative and tense == past"
     project: true
-  - atom: "(Future (Member {subject} {class}))"
+  - atom: "(Future (Member {subject} {class|mod}))"
+    with_head: class
     if_filled: class
     when: "predicative and tense == future"
     project: true
@@ -480,3 +487,18 @@ examples:
         - {t: acquisition, id: e1, verb: buy, acquirer: "@n1", object: "@x1", tense: past}
         - {t: copular, id: c1, subject: "@x1", predicate: broken, form: adjective, tense: past}
         - {t: superlative, id: s1, subject: "@x1", scale: cheap, class: lamp, kind: most, within: ["@c1"]}
+    - category: positive
+      note: a noun before the class noun inside the phrase — the witness's mods narrow the comparison class with its possessor
+      text: "Yusra played Lamine's second jazz record."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: witness, id: x1, class: record, possessor: "@n2", mods: [jazz]}
+        - {t: activity, id: v1, verb: play, actor: "@n1", patient: "@x1", tense: past}
+        - {t: superlative, id: s1, subject: "@x1", scale: record, class: record, kind: ordinal, rank: 2}
+    - category: positive
+      note: a noun before the class noun in the predicative form — the superlative's mods
+      text: "The Gull is the oldest fishing boat."
+      instances:
+        - {t: named-entity, id: n1, name: "The Gull"}
+        - {t: superlative, id: s1, subject: "@n1", scale: old, class: boat, mods: [fishing], kind: most, predicative: true, tense: present}

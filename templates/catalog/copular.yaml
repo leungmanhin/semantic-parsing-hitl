@@ -24,7 +24,8 @@ trigger:
     predicate as a group; whether it also holds of each member is the distribution template's
     business. The
     predicate's head is the class or the property; an adjective inside a predicate noun phrase
-    (is a careful weaver) is a second copular instance with the adjective as its predicate.
+    (is a careful weaver) is a second copular instance with the adjective as its predicate,
+    and a noun, a name or a year before the predicate noun (is a harbour pilot) is its `mods`.
     Tense is the clause's; present is recorded and emits nothing. A time, a place, a duration,
     a time relation, a link or a focus particle on the clause names this instance as its event,
     as it would a verb's: the program mints the state of the fact holding and attaches to it.
@@ -75,8 +76,10 @@ slots:
   id:        {type: id, required: true, doc: "your label for the predication"}
   subject:   {type: filler, class: Entity, required: true,
               doc: "the subject: a referent id (a name, a witness, a group, a resolved pronoun)"}
-  predicate: {type: lemma, class: Class, required: true,
+  predicate: {type: lemma, class: Class, required: true, narrowed_by: mods,
               doc: "the class (locksmith) or the property (crooked), lemmatized"}
+  mods:      {type: list, class: Class, ids: [named-entity, time], required: false,
+              doc: "with form noun, the nouns, names and years before the head noun that narrow its class (Nouns before nouns): a lemma for a noun (a harbour pilot: harbour; a sea salt grinder: sea_salt), the id of a named-entity instance for a name (a Calderwick quilt), of a time instance for a year, a decade or a century (a 1904 almanac); never an adjective"}
   form:      {type: enum, values: [noun, adjective], required: true,
               doc: "noun for a class (is a locksmith), adjective for a property (is crooked)"}
   tense:     {type: enum, values: [past, present, future], required: true,
@@ -86,15 +89,19 @@ slots:
 mints: {id: Event, stem: predicate, on_demand: true}      # the state of the fact holding, only when something attaches to the predication
 
 emits:
-  - atom: "(Member {subject} {predicate})"
+  - atom: "(Member {subject} {predicate|mod})"
+    with_head: predicate
     when: "tense == present and aspect != perfect and aspect != progressive"
-  - atom: "(Past (Member {subject} {predicate}))"
+  - atom: "(Past (Member {subject} {predicate|mod}))"
+    with_head: predicate
     when: "tense == past or aspect == perfect"
-  - atom: "(Future (Member {subject} {predicate}))"
+  - atom: "(Future (Member {subject} {predicate|mod}))"
+    with_head: predicate
     when: "tense == future"
   # an anchored predication: the state of the fact holding, minted only when something attaches
   # to this instance (a time, a place, a duration, a relation, a link, a focus); its tense beside it
-  - atom: "(Holds @id (Member {subject} {predicate}))"
+  - atom: "(Holds @id (Member {subject} {predicate|mod}))"
+    with_head: predicate
     if_minted: true
     state: true
   - atom: "(Past @id)"
@@ -103,7 +110,8 @@ emits:
   - atom: "(Future @id)"
     if_minted: true
     when: "tense == future"
-  - atom: "(Ongoing (Member {subject} {predicate}))"
+  - atom: "(Ongoing (Member {subject} {predicate|mod}))"
+    with_head: predicate
     when: "aspect == progressive"
 
 notes:
@@ -245,3 +253,9 @@ examples:
     - category: abstain
       text: "Teodor is extremely tired."
       expected: {abstain: true, template: degree}                     # an adjective with a degree word
+    - category: positive
+      note: a noun before the predicate noun — its mods; the program keeps the head beside
+      text: "Bram is a river guide."
+      instances:
+        - {t: named-entity, id: n1, name: "Bram"}
+        - {t: copular, id: c1, subject: "@n1", predicate: guide, form: noun, tense: present, mods: [river]}

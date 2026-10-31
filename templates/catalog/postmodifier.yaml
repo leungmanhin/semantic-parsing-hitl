@@ -25,6 +25,9 @@ trigger:
     - "the <N> with / without <object>"               # the man with the hat
     - "a <N> about / from / to / for <object>"        # a book about ferrets; a letter from Yusra
     - "the <N> of <object>"                           # the destruction of the shed: the noun's own object
+    - "a <N> by <author>"                             # a ballad by Ines: By, the author or maker of the thing
+    - "<Name> is a <kind word> of <N>"                # Velloria is a genus of ferns: the copular genus, Of on the name, fern a bare lemma
+    - "the <N> between <A> and <B>"                   # the quarrel between Ines and Corvin: Between, Ines the object, Corvin object2
   boundary:                   # looks like a postmodifier but is not one
     - >-
       a possessive of-phrase or genitive — the quilt of Yusra, Yusra's quilt, the sister of
@@ -45,8 +48,18 @@ trigger:
       a locative predication of that thing (in, at, on, near, under …), not a phrase of this
       class; and a place predicated of a thing — the ledger is on the workbench — likewise
     - >-
-      a reduced relative clause — the rules concerning the levy, a skiff moored at the jetty: an
-      event with the noun in its role, not a phrase; report it as unmapped
+      a reduced relative clause — the rules concerning the levy, a skiff moored at the jetty: a
+      clause with the noun in its role (Relative clauses and participles), not a phrase; a
+      by-phrase after a participle (a bowl carved by Bram) is that clause's agent, not By
+    - >-
+      an of-phrase naming the thing itself — the village of Aldmoor: the name with its class
+      (the named-entity template), one referent, not a phrase
+    - >-
+      a noun before the noun — a harbour pilot: the head's mods (Nouns before nouns), not a
+      phrase
+    - >-
+      between two times — between May and June, between 1990 and 1995: a span of time, not a
+      phrase; report it as unmapped
 
 slots:
   id:     {type: id, required: true, doc: "your label for the attachment (a1, a2 …)"}
@@ -54,11 +67,18 @@ slots:
            doc: "the referent the phrase modifies: the id of its witness or named-entity instance"}
   head:   {type: enum, values: [About, Above, Across, Against, Along, Among, Around, As, At, Behind, Below, Beneath, Beside, Besides, Between, Beyond, By, Concerning, Despite, Down, Except, For, From, In, Inside, Into, Like, Near, Of, "Off", "On", Onto, Opposite, Out, Outside, Over, Past, Per, Regarding, Round, Through, To, Toward, Towards, Under, Underneath, Unlike, Up, Upon, Via, With, Within, Without],
            required: true, doc: "the preposition as written, capitalized (with → With, about → About); never a synonym"}
-  object: {type: filler, class: Entity, required: true,
-           doc: "the phrase's object: a referent id (a witness, a name) for a specific thing, or a bare lemma for a non-specific or class-level one (a book about ferrets → ferret, a thermos without a lid → lid)"}
+  object: {type: filler, class: Entity, required: true, narrowed_by: [object_props, object_mods],
+           doc: "the phrase's object: a referent id (a witness, a name) for a specific thing, or a bare lemma for a non-specific or class-level one (a book about ferrets → ferret, a thermos without a lid → lid); with head Between the first of the two"}
+  object_props: {type: list, class: Class, restriction: Member, required: false,
+           doc: "with a bare-lemma object, the adjectives on it (a song about lost sailors: lost)"}
+  object_mods: {type: list, class: Class, ids: [named-entity, time], required: false,
+           doc: "with a bare-lemma object, the nouns before it (a book about harbour pilots: harbour), as the mods of Nouns before nouns"}
+  object2: {type: filler, class: Entity, required: false, only_when: "head == Between",
+           doc: "with head Between only, the second of the two (the quarrel between Ines and Corvin: Corvin); the order as written"}
 
 emits:
-  - atom: "({head} {noun} {object})"
+  - atom: "({head} {noun} {object|mod} {object2|opt})"
+    with_head: object                # a book about harbour pilots is about pilots too
 
 notes:
   - >-
@@ -175,3 +195,26 @@ examples:
     - category: abstain
       text: "Yusra drank a cup of tea."
       expected: {abstain: true, template: measure}                   # a measure or container
+    - category: positive
+      note: a kind word said of a name — the copular kind, the of-phrase Of on the name, its noun's mods
+      text: "Marenthia is a genus of water ferns."
+      instances:
+        - {t: named-entity, id: n1, name: "Marenthia"}
+        - {t: copular, id: c1, subject: "@n1", predicate: genus, form: noun, tense: present}
+        - {t: postmodifier, id: a1, noun: "@n1", head: Of, object: fern, object_mods: [water]}
+    - category: positive
+      note: an adjective on a bare-lemma object — its props
+      text: "Corvisia is a genus of aquatic beetles."
+      instances:
+        - {t: named-entity, id: n1, name: "Corvisia"}
+        - {t: copular, id: c1, subject: "@n1", predicate: genus, form: noun, tense: present}
+        - {t: postmodifier, id: a1, noun: "@n1", head: Of, object: beetle, object_props: [aquatic]}
+    - category: positive
+      note: between two — one phrase, the second in object2
+      text: "The feud between Lamine and Teodor ended."
+      instances:
+        - {t: witness, id: x1, class: feud, definite: true}
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: named-entity, id: n2, name: "Teodor"}
+        - {t: postmodifier, id: a1, noun: "@x1", head: Between, object: "@n1", object2: "@n2"}
+        - {t: change-of-state, id: e1, verb: end, undergoer: "@x1", tense: past}

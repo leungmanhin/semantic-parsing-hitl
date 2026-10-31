@@ -1,0 +1,80 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "bdb538dabaa3b9ba97a85bf15a6e317187cd19475eff41379e97a1dd9d05ad1b",
+  "item": {
+    "id": "s62d68281bc",
+    "text": "The saluki is a breed."
+  },
+  "usage": {
+    "input": 105254,
+    "output": 89,
+    "thinking": null,
+    "total": 105343,
+    "cached": 103205,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 105254,
+    "candidatesTokenCount": 89,
+    "totalTokenCount": 105343,
+    "cachedContentTokenCount": 103205,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 105254
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 103205
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 89
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s62d68281bc\", \"instances\": [{\"t\": \"class-statement\", \"id\": \"c1\", \"subject\": \"saluki\", \"kind\": \"breed\", \"form\": \"noun\", \"definitional\": true, \"tense\": \"present\", \"span\": \"The saluki is a breed\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s62d68281bc",
+    "instances": [
+      {
+        "t": "class-statement",
+        "id": "c1",
+        "subject": "saluki",
+        "kind": "breed",
+        "form": "noun",
+        "definitional": true,
+        "tense": "present",
+        "span": "The saluki is a breed"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "8ebc6c23bbf6996b7b47d4cc9a9755cfd3b370506148f88119af18d1984e2520",
+  "manifest_id": "b1d20da9dfd7",
+  "run": 1,
+  "case": {
+    "template": "class-statement",
+    "section": "held_out",
+    "index": 16,
+    "category": "positive",
+    "text": "The saluki is a breed.",
+    "key": "62d68281bc"
+  }
+}

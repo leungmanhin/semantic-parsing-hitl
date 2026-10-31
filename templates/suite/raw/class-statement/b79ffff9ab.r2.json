@@ -1,0 +1,83 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "203017637a80e5d180ad8fbea051ea5b3a9f3a0a47fd55e15383ae058ab2138b",
+  "item": {
+    "id": "sb79ffff9ab",
+    "text": "Farm cats are lean."
+  },
+  "usage": {
+    "input": 104224,
+    "output": 90,
+    "thinking": null,
+    "total": 104314,
+    "cached": 102175,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 104224,
+    "candidatesTokenCount": 90,
+    "totalTokenCount": 104314,
+    "cachedContentTokenCount": 102175,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 104224
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 102175
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 90
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sb79ffff9ab\", \"instances\": [{\"t\": \"class-statement\", \"id\": \"k1\", \"subject\": \"cat\", \"subject_mods\": [\"farm\"], \"predicate\": \"lean\", \"form\": \"adjective\", \"definitional\": false, \"tense\": \"present\", \"span\": \"Farm cats are lean\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sb79ffff9ab",
+    "instances": [
+      {
+        "t": "class-statement",
+        "id": "k1",
+        "subject": "cat",
+        "subject_mods": [
+          "farm"
+        ],
+        "predicate": "lean",
+        "form": "adjective",
+        "definitional": false,
+        "tense": "present",
+        "span": "Farm cats are lean"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "12605e658914fc5db17e2b6d548588331952976acbad42b2d0f97978fe2c7db4",
+  "manifest_id": "12298c656864",
+  "run": 2,
+  "case": {
+    "template": "class-statement",
+    "section": "held_out",
+    "index": 13,
+    "category": "positive",
+    "text": "Farm cats are lean.",
+    "key": "b79ffff9ab"
+  }
+}

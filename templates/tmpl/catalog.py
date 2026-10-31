@@ -38,9 +38,9 @@ CATALOG_DIR = os.path.abspath(os.path.join(HERE, os.pardir, "catalog"))
 SLOT_TYPES = {"id", "lemma", "filler", "refs", "enum", "bool", "string", "number", "int", "list"}
 CLASSED = {"lemma", "filler", "refs"}
 CATEGORIES = {"positive", "contrast", "scoped", "optional", "abstain"}
-SLOT_KEYS = {"type", "class", "role", "required", "default", "values", "doc", "consumes", "bind", "skolemize", "attaches", "bare_content", "participant", "as_variable", "state_variable"}
+SLOT_KEYS = {"type", "class", "role", "required", "default", "values", "doc", "consumes", "bind", "skolemize", "attaches", "bare_content", "participant", "as_variable", "state_variable", "narrowed_by", "ids", "restriction", "only_when"}
 
-_PLACEHOLDER = re.compile(r"\{([a-z_]+)(?:\|(own|attachments|narrowed|narrowing))?\}")   # {slot}, or {slot|own} / {slot|attachments} for a refs slot, {slot|narrowed} / {slot|narrowing} under a narrowing
+_PLACEHOLDER = re.compile(r"\{([a-z_0-9]+)(?:\|(own|attachments|narrowed|narrowing|mod|opt))?\}")   # {slot}, or {slot|own} / {slot|attachments} for a refs slot, {slot|narrowed} / {slot|narrowing} under a narrowing, {slot|mod} for a class its nouns narrow
 
 
 class CatalogError(Exception):
@@ -131,6 +131,19 @@ def check_template(t: dict, path: str) -> list[str]:
             problems.append(f"slot {sname}: attaches applies to filler slots only")
         if "state_variable" in spec and not (spec["type"] == "refs" and spec["state_variable"] is True):
             problems.append(f"slot {sname}: state_variable: true applies to refs slots only (the on-demand predications it names bind a state rule)")
+        if "narrowed_by" in spec:
+            nb = spec["narrowed_by"]
+            names = [nb] if isinstance(nb, str) else nb if isinstance(nb, list) else []
+            if spec["type"] not in ("lemma", "filler") or not names \
+                    or any((slots.get(n) or {}).get("type") != "list" for n in names):
+                problems.append(f"slot {sname}: narrowed_by applies to a lemma or a filler slot and names one or more list slots of the template")
+        if "only_when" in spec:
+            problems += [f"slot {sname}: only_when: {m}" for m in check_when(str(spec["only_when"]), slots, t.get("lexicon"))]
+        if "restriction" in spec and (spec["type"] != "list" or spec["restriction"] not in ("Mod", "Member")):
+            problems.append(f"slot {sname}: restriction applies to list slots and is Mod (a noun before a noun) or Member (an adjective)")
+        if "ids" in spec and (spec["type"] != "list" or not isinstance(spec["ids"], list) or not spec["ids"]
+                              or not all(isinstance(x, str) for x in spec["ids"])):
+            problems.append(f"slot {sname}: ids applies to list slots and lists the templates whose instances an element may name")
         if "participant" in spec and not ((spec["type"] == "filler" and spec["participant"] is False)
                                           or (spec["type"] == "refs" and spec["participant"] is True)):
             problems.append(f"slot {sname}: participant: false applies to filler slots, participant: true to refs slots (a clause standing as the participant)")
@@ -201,6 +214,13 @@ def check_template(t: dict, path: str) -> list[str]:
             problems.append(f"emits[{i}]: if_narrowed must be true, defined or opaque, on a template with a narrowing")
         if ("|narrowed}" in atom or "|narrowing}" in atom) and not t.get("narrowing"):
             problems.append(f"emits[{i}]: a narrowed placeholder needs the template's narrowing")
+        for m in _PLACEHOLDER.finditer(atom):
+            if m.group(2) == "mod" and not (slots.get(m.group(1)) or {}).get("narrowed_by"):
+                problems.append(f"emits[{i}]: {{{m.group(1)}|mod}} needs the slot's narrowed_by")
+            if m.group(2) == "opt" and (slots.get(m.group(1)) or {}).get("required"):
+                problems.append(f"emits[{i}]: {{{m.group(1)}|opt}} on a required slot")
+        if "with_head" in e and "{" + str(e["with_head"]) + "|mod}" not in atom:
+            problems.append(f"emits[{i}]: with_head must name a slot the atom renders as {{slot|mod}}")
     period = t.get("period")
     if period is not None and not (isinstance(period, dict) and all(k in slots and isinstance(v, str) for k, v in period.items())):
         problems.append("period: a map of the template's slots to the heads that name the period they hold")

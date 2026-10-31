@@ -1,0 +1,90 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "203017637a80e5d180ad8fbea051ea5b3a9f3a0a47fd55e15383ae058ab2138b",
+  "item": {
+    "id": "s0f13203780",
+    "text": "The Gull is the oldest fishing boat."
+  },
+  "usage": {
+    "input": 104232,
+    "output": 131,
+    "thinking": null,
+    "total": 104363,
+    "cached": 102183,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 104232,
+    "candidatesTokenCount": 131,
+    "totalTokenCount": 104363,
+    "cachedContentTokenCount": 102183,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 104232
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 102183
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 131
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s0f13203780\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"The Gull\", \"span\": \"The Gull\"}, {\"t\": \"superlative\", \"id\": \"s1\", \"subject\": \"@n1\", \"scale\": \"old\", \"class\": \"boat\", \"kind\": \"most\", \"predicative\": true, \"tense\": \"present\", \"mods\": [\"fishing\"], \"span\": \"The Gull is the oldest fishing boat\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s0f13203780",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "The Gull",
+        "span": "The Gull"
+      },
+      {
+        "t": "superlative",
+        "id": "s1",
+        "subject": "@n1",
+        "scale": "old",
+        "class": "boat",
+        "kind": "most",
+        "predicative": true,
+        "tense": "present",
+        "mods": [
+          "fishing"
+        ],
+        "span": "The Gull is the oldest fishing boat"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "12605e658914fc5db17e2b6d548588331952976acbad42b2d0f97978fe2c7db4",
+  "manifest_id": "12298c656864",
+  "run": 2,
+  "case": {
+    "template": "superlative",
+    "section": "held_out",
+    "index": 33,
+    "category": "positive",
+    "text": "The Gull is the oldest fishing boat.",
+    "key": "0f13203780"
+  }
+}

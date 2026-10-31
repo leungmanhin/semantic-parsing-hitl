@@ -275,3 +275,10 @@ examples:
         - {t: possession, id: e1, verb: own, holder: "@q1", possessed: "@x1", tense: present}
         - {t: transfer, id: e2, verb: sell, giver: "@q1", object: vase, tense: present}
         - {t: generic, id: r1, ranges: ["@q1"], condition: ["@e1"], over: ["@e2"]}
+    - category: positive
+      note: a noun before the generic subject narrows the range's class
+      text: "Barn owls hunt."
+      instances:
+        - {t: range, id: q1, class: owl, mods: [barn]}
+        - {t: activity, id: v1, verb: hunt, actor: "@q1", tense: present}
+        - {t: generic, id: r1, ranges: ["@q1"], over: ["@v1"]}

@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
+  "prompt_sha256": "bdb538dabaa3b9ba97a85bf15a6e317187cd19475eff41379e97a1dd9d05ad1b",
   "item": {
     "id": "sa6e5619a23",
     "text": "Ottoline has a brother."
   },
   "usage": {
-    "input": 56506,
-    "output": 132,
+    "input": 105253,
+    "output": 139,
     "thinking": null,
-    "total": 56638,
-    "cached": 54457,
+    "total": 105392,
+    "cached": 103204,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 56506,
-    "candidatesTokenCount": 132,
-    "totalTokenCount": 56638,
-    "cachedContentTokenCount": 54457,
+    "promptTokenCount": 105253,
+    "candidatesTokenCount": 139,
+    "totalTokenCount": 105392,
+    "cachedContentTokenCount": 103204,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 56506
+        "tokenCount": 105253
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 54457
+        "tokenCount": 103204
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 132
+        "tokenCount": 139
       }
     ]
   },
-  "raw_text": "{\n  \"id\": \"sa6e5619a23\",\n  \"instances\": [\n    {\n      \"t\": \"named-entity\",\n      \"id\": \"n1\",\n      \"name\": \"Ottoline\",\n      \"span\": \"Ottoline\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"span\": \"has a brother\",\n      \"code\": \"G00\",\n      \"construction\": \"Kinship relation stated with 'have'.\"\n    }\n  ],\n  \"issues\": []\n}",
+  "raw_text": "{\"id\": \"sa6e5619a23\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"brother\", \"span\": \"a brother\"}, {\"t\": \"stative-relation\", \"id\": \"p1\", \"relation\": \"brother\", \"subject\": \"@x1\", \"object\": \"@n1\", \"tense\": \"present\", \"span\": \"Ottoline has a brother\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sa6e5619a23",
     "instances": [
@@ -57,18 +57,28 @@
         "id": "n1",
         "name": "Ottoline",
         "span": "Ottoline"
-      }
-    ],
-    "unmapped": [
+      },
       {
-        "span": "has a brother",
-        "code": "G00",
-        "construction": "Kinship relation stated with 'have'."
+        "t": "witness",
+        "id": "x1",
+        "class": "brother",
+        "span": "a brother"
+      },
+      {
+        "t": "stative-relation",
+        "id": "p1",
+        "relation": "brother",
+        "subject": "@x1",
+        "object": "@n1",
+        "tense": "present",
+        "span": "Ottoline has a brother"
       }
     ],
+    "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
+  "prompt_body_sha256": "8ebc6c23bbf6996b7b47d4cc9a9755cfd3b370506148f88119af18d1984e2520",
+  "manifest_id": "b1d20da9dfd7",
   "run": 1,
   "case": {
     "template": "possession",

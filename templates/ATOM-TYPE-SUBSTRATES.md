@@ -2,7 +2,7 @@
 
 Generated from `templates/atom-type-substrates.json` (schema `atom-type-substrates/1`) by `templates/tmpl/gen_substrate.py`, together with `templates/generated/atom-types.metta`. Do not edit by hand; regenerate with `cd templates && python -m tmpl.gen_substrate`.
 
-160 heads in 14 kinds (7 proposed; 160 with a reviewed type declaration so far). `type-def` is the PeTTa declaration emitted for the head; `?` as the output type means the head is not yet reviewed and is absent from the `.metta` file; `%Undefined%` marks a position the head takes but the JSON does not type.
+161 heads in 14 kinds (7 proposed; 161 with a reviewed type declaration so far). `type-def` is the PeTTa declaration emitted for the head; `?` as the output type means the head is not yet reviewed and is absent from the `.metta` file; `%Undefined%` marks a position the head takes but the JSON does not type.
 
 Every atom is carried as a statement (: <proof-name> <atom> <tv>), tv = (STV strength confidence) or another engine truth value. The carrier is not an atom kind: ':' is never type-declared (it is also PeTTa's type-declaration head) and the truth value is declared by the engine, not by this substrate.
 
@@ -68,7 +68,7 @@ head: Narrow
 kind: core-link
 arity: 2
 type-def: (: Narrow (-> Class Atom Class))
-gloss: A comparison class: the class as a noun phrase narrows it — (Narrow city (LocatedIn sk_scotland_1)), the cities located in Scotland; (Narrow album (And (Member studio) (Possession sk_ottoline_1))). Each restriction is an atom with its member left out, several in an And in a fixed order; a relational noun's relatum is (Relation mayor sk_calderwick_1), a dated period (Within (Century 18)). Built by the program from the parse, so every text that says the same gets the same term; a rule beside the superlative defines its members.
+gloss: A comparison class: the class as a noun phrase narrows it — (Narrow city (LocatedIn sk_scotland_1)), the cities located in Scotland; (Narrow album (And (Mod jazz) (Possession sk_ottoline_1))). Each restriction is an atom with its member left out, several in an And in a fixed order; a noun, a name or a year before the class noun is (Mod harbour), (Mod sk_calderwick_1), (Mod (Year 1904)) — a class narrowed by its nouns alone, (Narrow pilot (Mod harbour)), is stated by its members beside their plain class, with no rule; a relational noun's relatum is (Relation mayor sk_calderwick_1), a dated period (Within (Century 18)). Built by the program from the parse, so every text that says the same gets the same term; a rule beside the superlative defines its members.
 
 
 head: Or
@@ -610,13 +610,20 @@ legacy: (: Year (-> Number TimeTerm))  ; kept until the re-parse
 gloss: Calendar year of a time instance: (Year t 2026). Legacy constructor form (Year 2026) kept until the re-parse.
 
 
-## relation (16)
+## relation (17)
+
+head: Between
+kind: relation
+arity: 2 | 3
+type-def: (: Between (-> Instance Instance Proposition))  ; and 11 more (per arity / per union alternative)
+gloss: The preposition between, as written: (Between x a b) — x between a and b, the place, the parties or the two ends, the reading the consumer's; the order of a and b carries nothing (the symmetry rule between_sym). With one object, a group (between the pillows), the two-place form of every preposition head.
+
 
 head: ClassProperty
 kind: relation
 arity: 2
 type-def: (: ClassProperty (-> Class Class Proposition))
-gloss: Non-distributing property of a class/population as a whole. Order: (ClassProperty class property). Opaque: distributes to no member. Emitted by the class-property template; the frozen prompt line writes it as KindProperty.
+gloss: Non-distributing property of a class/population as a whole. Order: (ClassProperty class property). Opaque: distributes to no member. Also the kind word of a kind-of phrase (the class-statement template): the lurcher is a breed of dog, (ClassProperty lurcher breed) beside (Inheritance lurcher dog) — the lurcher as a whole is a breed, no lurcher is. Emitted by the class-property template; the frozen prompt line writes it as KindProperty.
 
 
 head: ConditionalProperty
@@ -1190,7 +1197,7 @@ Heads the prompt licenses generically; the validator checks position and arity o
 - head of a nominalization class-relation, e.g. (Build dam_builder dam)
 - skolem-function head (sk_<verb>) in a scope construction, e.g. (sk_y $x)
 
-Oblique prepositions (68), all declared `(-> Instance|Class Instance|Proposition Proposition)`: About, Above, Across, After, Against, Along, Among, Around, As, At, BecauseOf, Before, Behind, Below, Beneath, Beside, Besides, Between, Beyond, But, By, Concerning, Despite, Down, DueTo, During, Except, For, From, In, InSpiteOf, Inside, Into, Like, Near, Of, Off, On, OnAccountOf, Onto, Opposite, Out, Outside, Over, OwingTo, Past, Per, Regarding, Round, Since, Than, ThanksTo, Through, Throughout, Till, To, Toward, Towards, Under, Underneath, Unlike, Until, Up, Upon, Via, With, Within, Without.
+Oblique prepositions (68), all declared `(-> Instance|Class Instance|Class|Proposition Proposition)`: About, Above, Across, After, Against, Along, Among, Around, As, At, BecauseOf, Before, Behind, Below, Beneath, Beside, Besides, Between, Beyond, But, By, Concerning, Despite, Down, DueTo, During, Except, For, From, In, InSpiteOf, Inside, Into, Like, Near, Of, Off, On, OnAccountOf, Onto, Opposite, Out, Outside, Over, OwingTo, Past, Per, Regarding, Round, Since, Than, ThanksTo, Through, Throughout, Till, To, Toward, Towards, Under, Underneath, Unlike, Until, Up, Upon, Via, With, Within, Without.
 
 ## notes
 

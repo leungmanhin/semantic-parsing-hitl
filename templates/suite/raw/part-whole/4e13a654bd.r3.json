@@ -1,0 +1,152 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "bdb538dabaa3b9ba97a85bf15a6e317187cd19475eff41379e97a1dd9d05ad1b",
+  "item": {
+    "id": "s4e13a654bd",
+    "text": "Bram helped three potters, namely Ines, Corvin and Ilse."
+  },
+  "usage": {
+    "input": 105263,
+    "output": 424,
+    "thinking": null,
+    "total": 105687,
+    "cached": 103214,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 105263,
+    "candidatesTokenCount": 424,
+    "totalTokenCount": 105687,
+    "cachedContentTokenCount": 103214,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 105263
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 103214
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 424
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s4e13a654bd\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Bram\", \"span\": \"Bram\"}, {\"t\": \"group\", \"id\": \"g1\", \"class\": \"potter\", \"count\": 3, \"span\": \"three potters\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Ines\", \"span\": \"Ines\"}, {\"t\": \"named-entity\", \"id\": \"n3\", \"name\": \"Corvin\", \"span\": \"Corvin\"}, {\"t\": \"named-entity\", \"id\": \"n4\", \"name\": \"Ilse\", \"span\": \"Ilse\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"help\", \"actor\": \"@n1\", \"patient\": \"@g1\", \"tense\": \"past\", \"span\": \"Bram helped three potters\"}, {\"t\": \"part-whole\", \"id\": \"w1\", \"part\": \"@n2\", \"whole\": \"@g1\", \"word\": \"namely\", \"tense\": \"present\", \"span\": \"namely Ines\"}, {\"t\": \"part-whole\", \"id\": \"w2\", \"part\": \"@n3\", \"whole\": \"@g1\", \"word\": \"namely\", \"tense\": \"present\", \"span\": [\"namely\", \"Corvin\"]}, {\"t\": \"part-whole\", \"id\": \"w3\", \"part\": \"@n4\", \"whole\": \"@g1\", \"word\": \"namely\", \"tense\": \"present\", \"span\": [\"namely\", \"Ilse\"]}, {\"t\": \"distribution\", \"id\": \"d1\", \"group\": \"@g1\", \"over\": [\"@e1\"], \"span\": \"Bram helped three potters\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s4e13a654bd",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Bram",
+        "span": "Bram"
+      },
+      {
+        "t": "group",
+        "id": "g1",
+        "class": "potter",
+        "count": 3,
+        "span": "three potters"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Ines",
+        "span": "Ines"
+      },
+      {
+        "t": "named-entity",
+        "id": "n3",
+        "name": "Corvin",
+        "span": "Corvin"
+      },
+      {
+        "t": "named-entity",
+        "id": "n4",
+        "name": "Ilse",
+        "span": "Ilse"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "help",
+        "actor": "@n1",
+        "patient": "@g1",
+        "tense": "past",
+        "span": "Bram helped three potters"
+      },
+      {
+        "t": "part-whole",
+        "id": "w1",
+        "part": "@n2",
+        "whole": "@g1",
+        "word": "namely",
+        "tense": "present",
+        "span": "namely Ines"
+      },
+      {
+        "t": "part-whole",
+        "id": "w2",
+        "part": "@n3",
+        "whole": "@g1",
+        "word": "namely",
+        "tense": "present",
+        "span": [
+          "namely",
+          "Corvin"
+        ]
+      },
+      {
+        "t": "part-whole",
+        "id": "w3",
+        "part": "@n4",
+        "whole": "@g1",
+        "word": "namely",
+        "tense": "present",
+        "span": [
+          "namely",
+          "Ilse"
+        ]
+      },
+      {
+        "t": "distribution",
+        "id": "d1",
+        "group": "@g1",
+        "over": [
+          "@e1"
+        ],
+        "span": "Bram helped three potters"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "8ebc6c23bbf6996b7b47d4cc9a9755cfd3b370506148f88119af18d1984e2520",
+  "manifest_id": "b1d20da9dfd7",
+  "run": 3,
+  "case": {
+    "template": "part-whole",
+    "section": "held_out",
+    "index": 20,
+    "category": "positive",
+    "text": "Bram helped three potters, namely Ines, Corvin and Ilse.",
+    "key": "4e13a654bd"
+  }
+}

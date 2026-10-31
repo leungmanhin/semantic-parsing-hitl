@@ -1,0 +1,96 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "bdb538dabaa3b9ba97a85bf15a6e317187cd19475eff41379e97a1dd9d05ad1b",
+  "item": {
+    "id": "s624ab59ffb",
+    "text": "Marenthia is a genus of water ferns."
+  },
+  "usage": {
+    "input": 105255,
+    "output": 160,
+    "thinking": null,
+    "total": 105415,
+    "cached": 103206,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 105255,
+    "candidatesTokenCount": 160,
+    "totalTokenCount": 105415,
+    "cachedContentTokenCount": 103206,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 105255
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 103206
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 160
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s624ab59ffb\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Marenthia\", \"span\": \"Marenthia\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@n1\", \"predicate\": \"genus\", \"form\": \"noun\", \"tense\": \"present\", \"span\": \"Marenthia is a genus\"}, {\"t\": \"postmodifier\", \"id\": \"a1\", \"noun\": \"@n1\", \"head\": \"Of\", \"object\": \"fern\", \"object_mods\": [\"water\"], \"span\": \"of water ferns\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s624ab59ffb",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Marenthia",
+        "span": "Marenthia"
+      },
+      {
+        "t": "copular",
+        "id": "c1",
+        "subject": "@n1",
+        "predicate": "genus",
+        "form": "noun",
+        "tense": "present",
+        "span": "Marenthia is a genus"
+      },
+      {
+        "t": "postmodifier",
+        "id": "a1",
+        "noun": "@n1",
+        "head": "Of",
+        "object": "fern",
+        "object_mods": [
+          "water"
+        ],
+        "span": "of water ferns"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "8ebc6c23bbf6996b7b47d4cc9a9755cfd3b370506148f88119af18d1984e2520",
+  "manifest_id": "b1d20da9dfd7",
+  "run": 1,
+  "case": {
+    "template": "postmodifier",
+    "section": "held_out",
+    "index": 10,
+    "category": "positive",
+    "text": "Marenthia is a genus of water ferns.",
+    "key": "624ab59ffb"
+  }
+}

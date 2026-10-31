@@ -29,13 +29,18 @@ trigger:
     strength from it and keeps the word beside the statement. A time relation, a date or a
     deictic time, a link or a focus particle on the statement as such (spindles were cheap
     until 1900) names this instance as its event, and the program mints the state of the
-    statement holding.
+    statement holding. A KIND-OF PHRASE — the kestrel is a species of falcon, a ristretto is a
+    kind of espresso — is a definitional statement whose predicate is the of-phrase's noun
+    (form noun) and whose `kind` is the kind word: the class as a whole is of that kind (the
+    kestrel is a species — no single kestrel is), its members are of the of-phrase's class; with no of-phrase (the
+    kestrel is a species) `kind` stands alone, with no predicate.
   surface_forms:
     - "<class>s are <N>s"                       # ferrets are mustelids
     - "<class>s are <ADJ>"                      # ferrets are curious
     - "<mass noun> is a <N>"                   # granite is a rock
     - "a <class> is a <N>"                      # a spindle is a tool (generic indefinite)
     - "all / most / few / no <class>s are <N or ADJ>"   # the quantifier word is recorded
+    - "<class> is a <kind word> of <N>"         # the kestrel is a species of falcon: predicate falcon, kind species
   boundary:                   # looks like a class statement but is not one
     - >-
       an individual as the subject — Teodor is a locksmith, the ladder is crooked: a
@@ -54,11 +59,21 @@ trigger:
     - >-
       a copular verb other than be — herons seem patient: the evidential template over this
       template's instance; ferrets became popular: a change of state
+    - >-
+      a NAME before a kind word — Velloria is a genus of ferns: the name is an individual (a
+      named entity), the kind word the copular predicate (genus), and the of-phrase a
+      postmodifier Of on the name, its noun a bare lemma
 
 slots:
   id:           {type: id, required: true, doc: "your label for the statement"}
-  subject:      {type: lemma, class: Class, required: true, doc: "the class, lemmatized to the singular (ferret, granite, spindle)"}
-  predicate:    {type: lemma, class: Class, required: true, doc: "the class (mustelid) or the property (curious), lemmatized"}
+  subject:      {type: lemma, class: Class, required: true, narrowed_by: subject_mods, doc: "the class, lemmatized to the singular (ferret, granite, spindle)"}
+  predicate:    {type: lemma, class: Class, required: false, narrowed_by: predicate_mods, doc: "the class (mustelid) or the property (curious), lemmatized; absent only for a kind word alone (the kestrel is a species)"}
+  kind:         {type: lemma, class: Class, required: false,
+                 doc: "the kind word of a kind-of phrase, lemmatized (a species of falcon: species; a breed, a genus, a style, a variety of N); kind, type and sort are recorded and state nothing more"}
+  subject_mods: {type: list, class: Class, ids: [named-entity, time], required: false,
+                 doc: "the nouns before the subject's noun (harbour seals are shy: harbour), as the mods of Nouns before nouns"}
+  predicate_mods: {type: list, class: Class, ids: [named-entity, time], required: false,
+                 doc: "with form noun, the nouns before the predicate noun (ferrets are farm animals: farm), as the mods of Nouns before nouns"}
   form:         {type: enum, values: [noun, adjective], required: true,
                  doc: "noun for a class predicate, adjective for a property"}
   definitional: {type: bool, required: true,
@@ -68,6 +83,11 @@ slots:
   tense:        {type: enum, values: [past, present, future], required: true,
                  doc: "the clause's tense; present is recorded, not inferred"}
   aspect:       {type: enum, values: [simple, progressive, perfect], required: false, default: simple}
+
+any_of: [[predicate, kind]]
+
+lexicon:                     # kind words that name no kind of their own: the class statement alone
+  empty_kinds: [kind, type, sort]
 
 truth:
   strength:                    # the quantifier word first; a bare statement by its class
@@ -82,19 +102,44 @@ truth:
 mints: {id: Event, stem: predicate, on_demand: true}      # the state of the statement holding, only when something attaches to it
 
 emits:
-  - atom: "(Inheritance {subject} {predicate})"
+  - atom: "(Inheritance {subject|mod} {predicate|mod})"
+    if_filled: predicate
+    with_head: predicate
     when: "tense == present and aspect != perfect and aspect != progressive"
-  - atom: "(Past (Inheritance {subject} {predicate}))"
+  - atom: "(Past (Inheritance {subject|mod} {predicate|mod}))"
+    if_filled: predicate
+    with_head: predicate
     when: "tense == past or aspect == perfect"
-  - atom: "(Future (Inheritance {subject} {predicate}))"
+  - atom: "(Future (Inheritance {subject|mod} {predicate|mod}))"
+    if_filled: predicate
+    with_head: predicate
     when: "tense == future"
-  - atom: "(Ongoing (Inheritance {subject} {predicate}))"
+  - atom: "(Ongoing (Inheritance {subject|mod} {predicate|mod}))"
+    if_filled: predicate
+    with_head: predicate
     when: "aspect == progressive"
   # an anchored statement: the state of the statement holding, minted only when something
   # attaches to this instance (a time relation, a date, a link, a focus); its tense beside it
-  - atom: "(Holds @id (Inheritance {subject} {predicate}))"
+  - atom: "(Holds @id (Inheritance {subject|mod} {predicate|mod}))"
+    if_filled: predicate
+    with_head: predicate
     if_minted: true
     state: true
+  # a kind-of phrase: being of the kind is a property of the class as a whole (as extinct is), never a subclass
+  - atom: "(ClassProperty {subject|mod} {kind})"
+    if_filled: kind
+    when: "kind not in empty_kinds and tense == present and aspect != perfect and aspect != progressive"
+  - atom: "(Past (ClassProperty {subject|mod} {kind}))"
+    if_filled: kind
+    when: "kind not in empty_kinds and tense == past or kind not in empty_kinds and aspect == perfect"
+  - atom: "(Future (ClassProperty {subject|mod} {kind}))"
+    if_filled: kind
+    when: "kind not in empty_kinds and tense == future"
+  - atom: "(Holds @id (ClassProperty {subject|mod} {kind}))"
+    if_filled: kind
+    if_minted: true
+    state: true
+    when: "kind not in empty_kinds"
   - atom: "(Past @id)"
     if_minted: true
     when: "tense == past or aspect == perfect"
@@ -224,3 +269,28 @@ examples:
     - category: abstain
       text: "Wax is soft when warm."
       expected: {abstain: true, template: conditional-property}         # a property under a condition
+    - category: positive
+      note: a noun before the subject's noun narrows the class the statement is about — no statement about the head alone
+      text: "Farm cats are lean."
+      instances:
+        - {t: class-statement, id: c1, subject: cat, subject_mods: [farm], predicate: lean, form: adjective, definitional: false, tense: present}
+    - category: positive
+      note: a noun before the predicate noun — its mods; the head kept beside
+      text: "Collies are herding dogs."
+      instances:
+        - {t: class-statement, id: c1, subject: collie, predicate: dog, predicate_mods: [herding], form: noun, definitional: true, tense: present}
+    - category: positive
+      note: a kind-of phrase — the kind a property of the class as a whole, the class a subclass of the of-phrase's class
+      text: "The lurcher is a breed of dog."
+      instances:
+        - {t: class-statement, id: c1, subject: lurcher, predicate: dog, kind: breed, form: noun, definitional: true, tense: present}
+    - category: positive
+      note: a kind word with no of-phrase — the kind alone, no predicate
+      text: "The saluki is a breed."
+      instances:
+        - {t: class-statement, id: c1, subject: saluki, kind: breed, form: noun, definitional: true, tense: present}
+    - category: positive
+      note: an empty kind word — recorded, the class statement alone
+      text: "A cortado is a type of coffee."
+      instances:
+        - {t: class-statement, id: c1, subject: cortado, predicate: coffee, kind: type, form: noun, definitional: true, tense: present}

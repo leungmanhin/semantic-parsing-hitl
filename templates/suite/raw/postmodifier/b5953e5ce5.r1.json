@@ -1,0 +1,106 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "bdb538dabaa3b9ba97a85bf15a6e317187cd19475eff41379e97a1dd9d05ad1b",
+  "item": {
+    "id": "sb5953e5ce5",
+    "text": "The feud between Lamine and Teodor ended."
+  },
+  "usage": {
+    "input": 105256,
+    "output": 227,
+    "thinking": null,
+    "total": 105483,
+    "cached": 103206,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 105256,
+    "candidatesTokenCount": 227,
+    "totalTokenCount": 105483,
+    "cachedContentTokenCount": 103206,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 105256
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 103206
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 227
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sb5953e5ce5\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"feud\", \"definite\": true, \"span\": \"The feud\"}, {\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"postmodifier\", \"id\": \"a1\", \"noun\": \"@x1\", \"head\": \"Between\", \"object\": \"@n1\", \"object2\": \"@n2\", \"span\": \"between Lamine and Teodor\"}, {\"t\": \"change-of-state\", \"id\": \"c1\", \"verb\": \"end\", \"undergoer\": \"@x1\", \"tense\": \"past\", \"span\": \"The feud between Lamine and Teodor ended\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sb5953e5ce5",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "feud",
+        "definite": true,
+        "span": "The feud"
+      },
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "postmodifier",
+        "id": "a1",
+        "noun": "@x1",
+        "head": "Between",
+        "object": "@n1",
+        "object2": "@n2",
+        "span": "between Lamine and Teodor"
+      },
+      {
+        "t": "change-of-state",
+        "id": "c1",
+        "verb": "end",
+        "undergoer": "@x1",
+        "tense": "past",
+        "span": "The feud between Lamine and Teodor ended"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "8ebc6c23bbf6996b7b47d4cc9a9755cfd3b370506148f88119af18d1984e2520",
+  "manifest_id": "b1d20da9dfd7",
+  "run": 1,
+  "case": {
+    "template": "postmodifier",
+    "section": "held_out",
+    "index": 12,
+    "category": "positive",
+    "text": "The feud between Lamine and Teodor ended.",
+    "key": "b5953e5ce5"
+  }
+}

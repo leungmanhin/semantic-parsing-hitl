@@ -22,11 +22,14 @@ trigger:
     with a quantity phrase — a lot of water, plenty of rain, lots of sugar, a little salt — or
     with a container or measure word — a cup of tea, a bag of flour — is a witness of the stuff
     (the quantity of it the text introduces): the vague phrase is recorded in `quantity`; a
-    container or measure word is a measure instance on the witness.
+    container or measure word is a measure instance on the witness. A noun, a name or a year
+    before the head noun (a harbour pilot, a Calderwick quilt, a 1904 almanac) narrows the
+    class: the head is the class and the words before it are its `mods`.
   surface_forms:
     - "a <N>"                       # indefinite
     - "the <N>"                     # definite
     - "<Adj> <N>"                   # the property is recorded beside the class
+    - "<N1> <N2>"                   # a harbour pilot: class pilot, mods [harbour]
     - "<possessor>'s <N>"           # the possessor is recorded; definite
     - "the <N> of <possessor>"      # the same
     - "a lot of / plenty of <mass N>"   # a witness of the stuff, the phrase recorded
@@ -41,23 +44,26 @@ trigger:
 
 slots:
   id:       {type: id, required: true}
-  class:     {type: lemma, class: Class, required: true, doc: "the head noun's lemma"}
+  class:     {type: lemma, class: Class, required: true, narrowed_by: mods, doc: "the head noun's lemma"}
   definite: {type: bool, required: false, doc: "true for the / this / that; absent for a / an and for a possessed phrase (the possessor presupposes it)"}
   props:    {type: list, class: Class, required: false,
-             doc: "adjectival properties stated in the phrase; a property with a degree word (a very old spindle) is a degree instance beside the witness, not a property here"}
+             doc: "adjectival properties stated in the phrase; a property with a degree word (a very old spindle) is a degree instance beside the witness, not a property here; a noun before the head is a mod, never a property"}
+  mods:     {type: list, class: Class, ids: [named-entity, time], required: false,
+             doc: "the nouns, names and years before the head noun that narrow its class (Nouns before nouns): a lemma for a noun (a harbour pilot: harbour; a sea salt grinder: sea_salt), the id of a named-entity instance for a name (a Calderwick quilt), of a time instance for a year, a decade or a century (a 1904 almanac); never an adjective"}
   possessor: {type: filler, class: Entity, required: false,
               doc: "the possessor of a possessive phrase: Yusra's quilt, the quilt of Yusra, her quilt — an owner or an associate, NOT a whole the noun is a part of (the lid of the box, the box's lid, the car engine, the top of the ladder: no possessor, the witness definite, and a part-whole instance links the two), NOT the other party of a singular relational noun (her son, Bram's grandmother, the guild's treasurer: no possessor, a stative-relation instance with the witness as its bearer); a referent id (for a possessive pronoun, the id of its mention instance), or a bare lemma for a class-level possessor"}
   quantity: {type: string, required: false,
              doc: "a vague amount phrase on a mass noun, as written (a lot, lots, plenty, a little, a bit, much); absent otherwise"}
   eventive: {type: bool, required: false,
-             doc: "true when the noun names an event or a period and the clause puts the noun itself in time (the meeting is at noon) or places another event relative to it (after the audit, during the meeting); absent otherwise"}
+             doc: "true when the noun names an event or a period and the clause puts the noun itself in time (the meeting is at noon), a year before it names its time (the 1904 flood), or the clause places another event relative to it (after the audit, during the meeting); absent otherwise"}
 
 mints: {id: Entity, stem: class, also: {Event: eventive}}      # an eventive witness is an Event too
 
 presupposed: [definite, possessor]      # a definite or possessed witness exists whatever scope mentions it
 
 emits:
-  - atom: "(Member @id {class})"
+  - atom: "(Member @id {class|mod})"
+    with_head: class                # a harbour pilot is a pilot too
   - atom: "(Member @id {props})"
     each: props
   - atom: "(Possession @id {possessor})"
@@ -77,6 +83,11 @@ examples:
       instances:
         - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
         - {t: witness, id: x1, class: quilt, possessor: "@n1", span: "Yusra's quilt"}
+    - category: positive
+      note: a noun before the noun narrows its class — the head is the class, the noun before it a mod
+      text: "a harbour pilot"
+      instances:
+        - {t: witness, id: x1, class: pilot, mods: [harbour], span: "a harbour pilot"}
   held_out:
     - category: positive
       note: a vague amount of a mass — a witness of the stuff with the phrase recorded
@@ -100,3 +111,33 @@ examples:
         - {t: named-entity, id: n2, name: "Teodor"}
         - {t: witness, id: x1, class: quilt, possessor: "@n2"}
         - {t: activity, id: v1, verb: wash, actor: "@n1", patient: "@x1", tense: past}
+    - category: positive
+      note: a name before the noun — the named entity's id in mods
+      text: "Yusra washed an Aldmoor shawl."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: named-entity, id: n2, name: "Aldmoor"}
+        - {t: witness, id: x1, class: shawl, mods: ["@n2"]}
+        - {t: activity, id: v1, verb: wash, actor: "@n1", patient: "@x1", tense: past}
+    - category: positive
+      note: a year before a noun that names no event — a time instance with no event, its id in mods
+      text: "Bram sold a 1923 tractor."
+      instances:
+        - {t: named-entity, id: n1, name: "Bram"}
+        - {t: time, id: t1, year: 1923}
+        - {t: witness, id: x1, class: tractor, mods: ["@t1"]}
+        - {t: transfer, id: e1, verb: sell, giver: "@n1", object: "@x1", tense: past}
+    - category: positive
+      note: an adjective is a prop, the noun before the head a mod
+      text: "Ines used a three-legged milking stool."
+      instances:
+        - {t: named-entity, id: n1, name: "Ines"}
+        - {t: witness, id: x1, class: stool, props: [three_legged], mods: [milking]}
+        - {t: activity, id: v1, verb: use, actor: "@n1", patient: "@x1", tense: past}
+    - category: positive
+      note: a compound whose head does not name what it is — one lemma, no mods
+      text: "Lamine saw a guinea pig."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: x1, class: guinea_pig}
+        - {t: perception, id: p1, verb: see, perceiver: "@n1", stimulus: "@x1", tense: past}

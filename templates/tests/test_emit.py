@@ -835,6 +835,98 @@ class EmitTests(unittest.TestCase):
             CATALOG)["statements"])
         self.assertIn("(Most cheap sk_lamp_1 (Narrow lamp (Member broken)))", lamp)
 
+    def test_a_noun_before_a_noun_narrows_the_class_and_keeps_its_head(self):
+        """A noun, a name or a year before the head narrows the head's class — (Narrow pilot (Mod
+        harbour)), a name as its symbol, a year by its description — and a predicated class keeps its
+        head beside it (a harbour pilot is a pilot), under the clause's tense; a class a rule or a
+        class statement is ABOUT is the narrowed class alone; two modifiers sit in a fixed order."""
+        def atoms(insts):
+            return atoms_of(E.emit({"id": "m", "instances": insts}, CATALOG)["statements"])
+        pilot = "(Narrow pilot (Mod harbour))"
+        was = atoms([{"t": "named-entity", "id": "n1", "name": "Bram"},
+                     {"t": "copular", "id": "c1", "subject": "@n1", "predicate": "pilot", "form": "noun", "tense": "past",
+                      "mods": ["harbour"]}])
+        self.assertIn(f"(Past (Member sk_bram_1 {pilot}))", was)
+        self.assertIn("(Past (Member sk_bram_1 pilot))", was)                  # the head beside, under the same tense
+        named = atoms([{"t": "named-entity", "id": "n1", "name": "Calderwick"},
+                       {"t": "time", "id": "t1", "century": 18},
+                       {"t": "witness", "id": "x1", "class": "quilt", "mods": ["@n1", "@t1", "wool"]}])
+        self.assertIn("(Member sk_quilt_1 (Narrow quilt (And (Mod (Century 18)) (Mod sk_calderwick_1) (Mod wool))))", named)
+        self.assertIn("(Member sk_quilt_1 quilt)", named)
+        rule = atoms([{"t": "range", "id": "q1", "class": "pilot", "mods": ["harbour"]},
+                      {"t": "copular", "id": "c1", "subject": "@q1", "predicate": "careful", "form": "adjective", "tense": "present"},
+                      {"t": "generic", "id": "r1", "ranges": ["@q1"], "over": ["@c1"]}])
+        self.assertIn(f"(Implication (Member $x {pilot}) (Member $x careful))", rule)    # about harbour pilots only
+        cls = atoms([{"t": "class-statement", "id": "c1", "subject": "cat", "subject_mods": ["farm"], "predicate": "dog",
+                      "predicate_mods": ["herding"], "form": "noun", "definitional": True, "tense": "present"}])
+        self.assertEqual(sorted(cls), ["(Inheritance (Narrow cat (Mod farm)) (Narrow dog (Mod herding)))",
+                                       "(Inheritance (Narrow cat (Mod farm)) dog)"])  # never the plain cat
+        under = atoms([{"t": "named-entity", "id": "n1", "name": "Ines"}, {"t": "witness", "id": "x1", "class": "net", "mods": ["fishing"]},
+                       {"t": "activity", "id": "v1", "verb": "mend", "actor": "@n1", "patient": "@x1", "tense": "past"},
+                       {"t": "negation", "id": "s1", "over": ["@v1"]}])
+        self.assertTrue(any("(Member sk_net_1 (Narrow net (Mod fishing)))" in a and a.startswith("(Not") for a in under))
+        for bad, why in [([{"t": "witness", "id": "x1", "class": "net", "mods": ["@x2"]},
+                           {"t": "witness", "id": "x2", "class": "boat"}], "a noun is its lemma"),
+                         ([{"t": "named-entity", "id": "n1", "name": "Bram", "mods": ["harbour"]}], "which is empty"),
+                         ([{"t": "time", "id": "t1", "deictic": "yesterday"},
+                           {"t": "witness", "id": "x1", "class": "paper", "mods": ["@t1"]}], "a time with no")]:
+            with self.assertRaises(E.EmitError) as cm:
+                E.emit({"id": "bad", "instances": bad}, CATALOG)
+            self.assertTrue(any(why in p for p in cm.exception.args[0]), cm.exception.args[0])
+
+    def test_a_modified_class_noun_narrows_the_comparison_class(self):
+        """The witness's mods narrow a superlative's comparison class with its other restrictions
+        — the rule shows them through the member's own narrowed class —; a class narrowed by its
+        nouns alone is the comparison class itself: no rule, no stated membership beyond the
+        noun's own; the predicative form's mods do the same, its membership with the head."""
+        def atoms(insts):
+            return atoms_of(E.emit({"id": "s", "instances": insts}, CATALOG)["statements"])
+        both = atoms([{"t": "named-entity", "id": "n1", "name": "Lamine"},
+                      {"t": "witness", "id": "x1", "class": "record", "possessor": "@n1", "mods": ["jazz"]},
+                      {"t": "superlative", "id": "s1", "subject": "@x1", "scale": "record", "class": "record", "kind": "ordinal", "rank": 2}])
+        cls = "(Narrow record (And (Mod jazz) (Possession sk_lamine_1)))"
+        self.assertIn(f"(Ordinal sk_record_1 2 {cls} {cls})", both)
+        self.assertIn(f"(Implication (And (Member $y (Narrow record (Mod jazz))) (Possession $y sk_lamine_1)) (Member $y {cls}))", both)
+        alone = atoms([{"t": "named-entity", "id": "n1", "name": "The Gull"},
+                       {"t": "superlative", "id": "s1", "subject": "@n1", "scale": "old", "class": "boat", "mods": ["fishing"],
+                        "kind": "most", "predicative": True, "tense": "present"}])
+        self.assertEqual(sorted(alone), sorted(['(Name sk_the_gull_1 "The Gull")', "(Most old sk_the_gull_1 (Narrow boat (Mod fishing)))",
+                                                "(Member sk_the_gull_1 boat)", "(Member sk_the_gull_1 (Narrow boat (Mod fishing)))"]))
+
+    def test_a_kind_word_is_the_class_s_membership_and_between_takes_two(self):
+        """A kind-of phrase states the kind a property of the class as a whole and the class a
+        subclass of the of-phrase's class (kind, type and sort state no kind); a bare-lemma object's adjectives and nouns
+        narrow it, its head beside; Between takes its second object only with that head; a second
+        object on another head is refused."""
+        def atoms(insts):
+            return atoms_of(E.emit({"id": "k", "instances": insts}, CATALOG)["statements"])
+        self.assertEqual(sorted(atoms([{"t": "class-statement", "id": "c1", "subject": "kestrel", "predicate": "falcon", "kind": "species",
+                                        "form": "noun", "definitional": True, "tense": "past"}])),
+                         ["(Past (ClassProperty kestrel species))", "(Past (Inheritance kestrel falcon))"])
+        self.assertEqual(atoms([{"t": "class-statement", "id": "c1", "subject": "ristretto", "predicate": "espresso", "kind": "kind",
+                                 "form": "noun", "definitional": True, "tense": "present"}]), ["(Inheritance ristretto espresso)"])
+        of = atoms([{"t": "named-entity", "id": "n1", "name": "Velloria"},
+                    {"t": "postmodifier", "id": "a1", "noun": "@n1", "head": "Of", "object": "fern", "object_props": ["tall"], "object_mods": ["tree"]}])
+        self.assertIn("(Of sk_velloria_1 (Narrow fern (And (Member tall) (Mod tree))))", of)
+        self.assertIn("(Of sk_velloria_1 fern)", of)
+        two = atoms([{"t": "named-entity", "id": "n1", "name": "Ines"}, {"t": "named-entity", "id": "n2", "name": "Corvin"},
+                     {"t": "witness", "id": "x1", "class": "quarrel", "definite": True},
+                     {"t": "postmodifier", "id": "a1", "noun": "@x1", "head": "Between", "object": "@n1", "object2": "@n2"}])
+        self.assertIn("(Between sk_quarrel_1 sk_ines_1 sk_corvin_1)", two)
+        one = atoms([{"t": "group", "id": "g1", "class": "pillow", "definite": True}, {"t": "witness", "id": "x1", "class": "cat", "definite": True},
+                     {"t": "activity", "id": "v1", "verb": "sleep", "actor": "@x1", "tense": "past"},
+                     {"t": "location", "id": "l1", "event": "@v1", "place": "@g1", "head": "Between", "preposition": "between"}])
+        self.assertIn("(Between sk_sleep_1 sk_group_1)", one)                   # one object: the two-place form
+        for bad, why in [([{"t": "named-entity", "id": "n1", "name": "Ines"}, {"t": "named-entity", "id": "n2", "name": "Corvin"},
+                           {"t": "witness", "id": "x1", "class": "letter"},
+                           {"t": "postmodifier", "id": "a1", "noun": "@x1", "head": "From", "object": "@n1", "object2": "@n2"}], "only when"),
+                         ([{"t": "named-entity", "id": "n1", "name": "Ines"}, {"t": "witness", "id": "x1", "class": "letter"},
+                           {"t": "postmodifier", "id": "a1", "noun": "@x1", "head": "From", "object": "@n1", "object_mods": ["harbour"]}],
+                          "a referent's words go on its own instance")]:
+            with self.assertRaises(E.EmitError) as cm:
+                E.emit({"id": "bad", "instances": bad}, CATALOG)
+            self.assertTrue(any(why in p for p in cm.exception.args[0]), cm.exception.args[0])
+
     def test_malformed_instances_are_refused(self):
         bad = [{"t": "transfer", "id": "e1", "verb": "give", "giver": "@n9", "object": "x", "tense": "past"}]
         with self.assertRaises(E.EmitError) as cm:

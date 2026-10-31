@@ -347,6 +347,55 @@ class SeededRulesOnTheEngine(unittest.TestCase):
         s, c = tv(self.query(p, "(More fine sk_lamine_1 sk_teodor_1)", steps=1500))   # two texts' stated members compare
         self.assertAlmostEqual(s, 1.0, places=2)
 
+    def test_a_noun_before_a_noun_is_a_narrowed_class_beside_its_head(self):
+        """A harbour pilot is a member of (Narrow pilot (Mod harbour)) and of pilot (the program
+        states both): a rule about harbour pilots reaches him and a statement about pilots too; the
+        modifiers of his two nouns never cross (a harbour pilot and a river guide is no river
+        pilot); a statement about a narrowed class reaches its members only; two texts' superlatives
+        over the same modified noun compare (the same term, no rule)."""
+        hp, rg = "(Narrow pilot (Mod harbour))", "(Narrow guide (Mod river))"
+        fc, fb = "(Narrow cat (Mod farm))", "(Narrow boat (Mod fishing))"
+        h = self.space(["(: a1 (Member sk_bram_1 pilot) (STV 1.0 0.99))", f"(: a2 (Member sk_bram_1 {hp}) (STV 1.0 0.99))",
+                        "(: a3 (Member sk_bram_1 guide) (STV 1.0 0.99))", f"(: a4 (Member sk_bram_1 {rg}) (STV 1.0 0.99))",
+                        f"(: r1 (Implication (Member $x {hp}) (Member $x careful)) (STV 0.9 0.7))",
+                        "(: c1 (Inheritance pilot patient) (STV 0.9 0.7))",
+                        f"(: c2 (Inheritance {fc} lean) (STV 0.9 0.7))",
+                        "(: b1 (Member sk_cat_1 cat) (STV 1.0 0.99))", f"(: b2 (Member sk_cat_1 {fc}) (STV 1.0 0.99))",
+                        "(: b3 (Member sk_cat_2 cat) (STV 1.0 0.99))",
+                        f"(: s1 (Most old sk_gull_1 {fb}) (STV 1.0 0.99))", f"(: s2 (Ordinal sk_wren_1 2 old {fb}) (STV 1.0 0.99))"])
+        s, c = tv(self.query(h, "(Member sk_bram_1 careful)", steps=1500))           # the rule about harbour pilots
+        self.assertAlmostEqual(s, 0.9, places=2)
+        s, c = tv(self.query(h, "(Member sk_bram_1 patient)", steps=1500))           # the statement about pilots, through the head
+        self.assertAlmostEqual(s, 0.9, places=2)
+        self.assertFalse(self.query(h, "(Member sk_bram_1 (Narrow pilot (Mod river)))", steps=1500))   # the modifiers never cross
+        self.assertTrue(self.query(h, "(Member sk_cat_1 lean)", steps=1500))           # a farm cat
+        self.assertFalse(self.query(h, "(Member sk_cat_2 lean)", steps=1500))          # a cat with no modifier: not reached
+        s, c = tv(self.query(h, "(More old sk_gull_1 sk_wren_1)", steps=1500))       # two texts, one modified class
+        self.assertAlmostEqual(s, 1.0, places=2)
+
+    def test_a_kind_a_list_of_members_and_between(self):
+        """A kind word is a property of the class as a whole (ClassProperty, as extinct is) and its
+        members are of the of-phrase's class, never of the kind; a relation with a group as its bearer reaches
+        each listed member through the distribution; between holds in either order (between_sym)."""
+        k = self.space(["(: c1 (Inheritance lurcher dog) (STV 1.0 0.99))", "(: c2 (ClassProperty lurcher breed) (STV 1.0 0.99))",
+                        "(: c3 (Member sk_rex_1 lurcher) (STV 1.0 0.99))"])
+        s, c = tv(self.query(k, "(Member sk_rex_1 dog)"))                         # a lurcher is a dog
+        self.assertAlmostEqual(s, 1.0, places=2)
+        self.assertFalse(self.query(k, "(Member sk_rex_1 breed)", steps=1500))      # a lurcher is not a breed
+        self.assertTrue(self.query(k, "(And (ClassProperty $b breed) (Inheritance $b dog))"))   # which breeds are dogs
+        g = self.space(["(: g1 (GroupOf sk_group_1 daughter) (STV 1.0 0.99))",
+                        "(: p1 (Member sk_daughter_1 daughter) (STV 1.0 0.99))", "(: p2 (Bearer sk_daughter_1 sk_group_1) (STV 1.0 0.99))",
+                        "(: p3 (Theme sk_daughter_1 sk_teodor_1) (STV 1.0 0.99))",
+                        "(: d1 (Implication (PartOf $x sk_group_1) (And (Member (sk_daughter $x) daughter) (Bearer (sk_daughter $x) $x) "
+                        "(Theme (sk_daughter $x) sk_teodor_1))) (STV 1.0 0.9))",
+                        "(: w1 (PartOf sk_ines_1 sk_group_1) (STV 1.0 0.99))", "(: w2 (PartOf sk_wren_1 sk_group_1) (STV 1.0 0.99))"])
+        s, c = tv(self.query(g, "(And (Member $s daughter) (Bearer $s sk_wren_1) (Theme $s sk_teodor_1))", steps=1500))
+        self.assertAlmostEqual(s, 1.0, places=2)                                    # each listed member: the relation
+        b = self.space(["(: a1 (Between sk_feud_1 sk_lamine_1 sk_teodor_1) (STV 1.0 0.99))"])
+        s, c = tv(self.query(b, "(Between sk_feud_1 sk_teodor_1 sk_lamine_1)"))     # the other order
+        self.assertAlmostEqual(s, 1.0, places=2)
+        self.assertTrue(self.query(b, "(Between sk_feud_1 $who sk_lamine_1)"))
+
     def test_a_relative_clause_comparison_class(self):
         """A comparison class narrowed by a relative clause with an indefinite admits a member whose
         own atoms say the same — any event of the verb, the subject in its role, a filler of the

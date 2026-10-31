@@ -39,9 +39,8 @@ trigger:
       noun carries the event
     - >-
       parts, features and members — has a lid, has four legs, has blue eyes: a part-whole
-      relation, not the holding of a thing; kinship with both parties named — is Lamine's
-      cousin, Yusra and Lamine are cousins — is a stative relation; has a brother, with no
-      second party named: no template, report the predicate as unmapped
+      relation, not the holding of a thing; kinship — is Lamine's cousin, Yusra and Lamine are
+      cousins, has a brother, has three sons — is a stative relation, the relative its subject
     - >-
       the possessive inside a noun phrase — Ottoline's quilt, the quilt of Ottoline: a referent
       with a possessor, not a clause
@@ -186,7 +185,7 @@ examples:
       expected: {abstain: true, template: norm}                       # have to: an obligation
     - category: abstain
       text: "Ottoline has a brother."
-      expected: {abstain: true, gap: G00, span: "has a brother"}      # kinship
+      expected: {abstain: true, template: stative-relation}           # kinship: the relation
     - category: abstain
       text: "Teodor bought the spindle from Yusra."
       expected: {abstain: true, template: acquisition}                # coming to have

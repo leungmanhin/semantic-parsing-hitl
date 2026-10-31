@@ -27,6 +27,16 @@ rules:
 
   # Coreference: a stated link (Coref mention antecedent) carries the mention's facts to the
   # antecedent at the link's strength (its probability of identity), and back.
+  - id: between_sym
+    meaning: between a and b is between b and a
+    premises: ["(Between $x $a $b)"]
+    conclusion: "(Between $x $b $a)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: equivalence
+    reads: [oblique, postmodifier, locative, location]
+    notes: >-
+      An equivalence: "between the KDP and the PUK" and "between the PUK and the KDP" say the same,
+      so a question in either order finds the statement, a denial included.
   - id: coref_sym
     meaning: a coreference link holds in both directions
     premises: ["(Coref $a $b)"]

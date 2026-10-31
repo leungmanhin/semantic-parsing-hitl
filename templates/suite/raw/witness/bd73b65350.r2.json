@@ -1,0 +1,100 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "203017637a80e5d180ad8fbea051ea5b3a9f3a0a47fd55e15383ae058ab2138b",
+  "item": {
+    "id": "sbd73b65350",
+    "text": "Bram sold a 1923 tractor."
+  },
+  "usage": {
+    "input": 104233,
+    "output": 184,
+    "thinking": null,
+    "total": 104417,
+    "cached": 102184,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 104233,
+    "candidatesTokenCount": 184,
+    "totalTokenCount": 104417,
+    "cachedContentTokenCount": 102184,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 104233
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 102184
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 184
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sbd73b65350\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Bram\", \"span\": \"Bram\"}, {\"t\": \"time\", \"id\": \"t1\", \"year\": 1923, \"span\": \"1923\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"tractor\", \"mods\": [\"@t1\"], \"span\": \"a 1923 tractor\"}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"sell\", \"giver\": \"@n1\", \"object\": \"@x1\", \"tense\": \"past\", \"span\": \"Bram sold a 1923 tractor\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sbd73b65350",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Bram",
+        "span": "Bram"
+      },
+      {
+        "t": "time",
+        "id": "t1",
+        "year": 1923,
+        "span": "1923"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "tractor",
+        "mods": [
+          "@t1"
+        ],
+        "span": "a 1923 tractor"
+      },
+      {
+        "t": "transfer",
+        "id": "e1",
+        "verb": "sell",
+        "giver": "@n1",
+        "object": "@x1",
+        "tense": "past",
+        "span": "Bram sold a 1923 tractor"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "12605e658914fc5db17e2b6d548588331952976acbad42b2d0f97978fe2c7db4",
+  "manifest_id": "12298c656864",
+  "run": 2,
+  "case": {
+    "template": "witness",
+    "section": "held_out",
+    "index": 4,
+    "category": "positive",
+    "text": "Bram sold a 1923 tractor.",
+    "key": "bd73b65350"
+  }
+}

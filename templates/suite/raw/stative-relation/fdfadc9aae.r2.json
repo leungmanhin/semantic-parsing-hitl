@@ -1,0 +1,131 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "bdb538dabaa3b9ba97a85bf15a6e317187cd19475eff41379e97a1dd9d05ad1b",
+  "item": {
+    "id": "sfdfadc9aae",
+    "text": "Teodor has two daughters, Ines and Wren."
+  },
+  "usage": {
+    "input": 105253,
+    "output": 339,
+    "thinking": null,
+    "total": 105592,
+    "cached": 103204,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 105253,
+    "candidatesTokenCount": 339,
+    "totalTokenCount": 105592,
+    "cachedContentTokenCount": 103204,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 105253
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 103204
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 339
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sfdfadc9aae\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"group\", \"id\": \"g1\", \"class\": \"daughter\", \"count\": 2, \"span\": \"two daughters\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Ines\", \"span\": \"Ines\"}, {\"t\": \"named-entity\", \"id\": \"n3\", \"name\": \"Wren\", \"span\": \"Wren\"}, {\"t\": \"stative-relation\", \"id\": \"p1\", \"relation\": \"daughter\", \"subject\": \"@g1\", \"object\": \"@n1\", \"tense\": \"present\", \"span\": \"Teodor has two daughters\"}, {\"t\": \"part-whole\", \"id\": \"w1\", \"part\": \"@n2\", \"whole\": \"@g1\", \"word\": \",\", \"tense\": \"present\", \"span\": \"two daughters, Ines and Wren\"}, {\"t\": \"part-whole\", \"id\": \"w2\", \"part\": \"@n3\", \"whole\": \"@g1\", \"word\": \",\", \"tense\": \"present\", \"span\": \"two daughters, Ines and Wren\"}, {\"t\": \"distribution\", \"id\": \"d1\", \"group\": \"@g1\", \"over\": [\"@p1\"], \"span\": \"Teodor has two daughters\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sfdfadc9aae",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "group",
+        "id": "g1",
+        "class": "daughter",
+        "count": 2,
+        "span": "two daughters"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Ines",
+        "span": "Ines"
+      },
+      {
+        "t": "named-entity",
+        "id": "n3",
+        "name": "Wren",
+        "span": "Wren"
+      },
+      {
+        "t": "stative-relation",
+        "id": "p1",
+        "relation": "daughter",
+        "subject": "@g1",
+        "object": "@n1",
+        "tense": "present",
+        "span": "Teodor has two daughters"
+      },
+      {
+        "t": "part-whole",
+        "id": "w1",
+        "part": "@n2",
+        "whole": "@g1",
+        "word": ",",
+        "tense": "present",
+        "span": "two daughters, Ines and Wren"
+      },
+      {
+        "t": "part-whole",
+        "id": "w2",
+        "part": "@n3",
+        "whole": "@g1",
+        "word": ",",
+        "tense": "present",
+        "span": "two daughters, Ines and Wren"
+      },
+      {
+        "t": "distribution",
+        "id": "d1",
+        "group": "@g1",
+        "over": [
+          "@p1"
+        ],
+        "span": "Teodor has two daughters"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "8ebc6c23bbf6996b7b47d4cc9a9755cfd3b370506148f88119af18d1984e2520",
+  "manifest_id": "b1d20da9dfd7",
+  "run": 2,
+  "case": {
+    "template": "stative-relation",
+    "section": "held_out",
+    "index": 31,
+    "category": "positive",
+    "text": "Teodor has two daughters, Ines and Wren.",
+    "key": "fdfadc9aae"
+  }
+}

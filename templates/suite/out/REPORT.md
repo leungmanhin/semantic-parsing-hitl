@@ -1,10 +1,10 @@
 # Suite report
 
-prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 f15d8502e132fd89) · manifest 3c0014732900 · type check: ran
+prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 8ebc6c23bbf6996b) · manifest b1d20da9dfd7 · type check: ran
 
 ## Catalog checks
 
-1179 examples checked; findings: 0
+1208 examples checked; findings: 0
 
 Sentences two templates claim with the same expected atoms (composition, fine):
 - "Ottoline bought the quilt for forty euros." — acquisition, measure
@@ -278,22 +278,22 @@ Mismatches: none
 
 ## class-statement — held_out
 
-13 cases, 39 records (ok 39; stale prompt 39; stale manifest 0, unstamped 39) · gemini-4-argon effort=low
+18 cases, 54 records (ok 54; stale prompt 45; stale manifest 6, unstamped 39) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
-| positive | 6 | 18 | 18 | 18 | 18 |
+| positive | 11 | 33 | 33 | 33 | 33 |
 | contrast | 1 | 3 | 3 | 3 | 3 |
 | scoped | 2 | 6 | 6 | 6 | 6 |
 | abstain | 4 | 12 | 0 (false fires) | – | 12 |
 
-- selection: fire cases fired 27/27 · abstain cases false fires 0/12
-- fill: exact 27/27 among fires
-- stability: pairwise agreement 1.0 (13 cases, 39 pairs), unanimous 13/13
-- type check: 39/39 emitted parses type
+- selection: fire cases fired 42/42 · abstain cases false fires 0/12
+- fill: exact 42/42 among fires
+- stability: pairwise agreement 1.0 (18 cases, 54 pairs), unanimous 18/18
+- type check: 54/54 emitted parses type
 - graph lints: none
-- spans: 63/63 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
-- usage: 39 calls · in 2,203,680 · cached 1,905,949 (86% of the input) · out 4,188 · thinking 0 (calls with thought tokens: 0)
+- spans: 78/78 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
+- usage: 54 calls · in 3,776,328 · cached 3,447,801 (91% of the input) · out 5,589 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
 Abstain cases (what the parser did, per run):
@@ -451,23 +451,23 @@ Mismatches: none
 
 ## copular — held_out
 
-16 cases, 48 records (ok 48; stale prompt 48; stale manifest 0, unstamped 48) · gemini-4-argon effort=low
+17 cases, 51 records (ok 51; stale prompt 51; stale manifest 3, unstamped 48) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
-| positive | 6 | 18 | 18 | 18 | 18 |
+| positive | 7 | 21 | 21 | 21 | 21 |
 | contrast | 1 | 3 | 3 | 3 | 3 |
 | scoped | 4 | 12 | 12 | 12 | 12 |
 | optional | 1 | 3 | 3 | 3 | 3 |
 | abstain | 4 | 12 | 0 (false fires) | – | 12 |
 
-- selection: fire cases fired 36/36 · abstain cases false fires 0/12
-- fill: exact 36/36 among fires
-- stability: pairwise agreement 1.0 (16 cases, 48 pairs), unanimous 16/16
-- type check: 48/48 emitted parses type
+- selection: fire cases fired 39/39 · abstain cases false fires 0/12
+- fill: exact 39/39 among fires
+- stability: pairwise agreement 1.0 (17 cases, 51 pairs), unanimous 17/17
+- type check: 51/51 emitted parses type
 - graph lints: none
-- spans: 108/108 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
-- usage: 48 calls · in 3,015,360 · cached 2,862,541 (95% of the input) · out 5,901 · thinking 0 (calls with thought tokens: 0)
+- spans: 114/114 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
+- usage: 51 calls · in 3,328,044 · cached 3,169,073 (95% of the input) · out 6,249 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
 Abstain cases (what the parser did, per run):
@@ -725,22 +725,22 @@ Mismatches: none
 
 ## generic — held_out
 
-20 cases, 60 records (ok 60; stale prompt 60; stale manifest 6, unstamped 54) · gemini-4-argon effort=low
+21 cases, 63 records (ok 63; stale prompt 63; stale manifest 9, unstamped 54) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
-| positive | 15 | 45 | 45 | 45 | 45 |
+| positive | 16 | 48 | 48 | 48 | 48 |
 | contrast | 1 | 3 | 3 | 3 | 3 |
 | scoped | 1 | 3 | 3 | 3 | 3 |
 | abstain | 3 | 9 | 0 (false fires) | – | 9 |
 
-- selection: fire cases fired 51/51 · abstain cases false fires 0/9
-- fill: exact 51/51 among fires
-- stability: pairwise agreement 1.0 (20 cases, 60 pairs), unanimous 20/20
-- type check: 60/60 emitted parses type
+- selection: fire cases fired 54/54 · abstain cases false fires 0/9
+- fill: exact 54/54 among fires
+- stability: pairwise agreement 1.0 (21 cases, 63 pairs), unanimous 21/21
+- type check: 63/63 emitted parses type
 - graph lints: none
-- spans: 210/210 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
-- usage: 60 calls · in 3,793,995 · cached 3,562,085 (94% of the input) · out 10,100 · thinking 0 (calls with thought tokens: 0)
+- spans: 219/219 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
+- usage: 63 calls · in 4,106,664 · cached 3,868,560 (94% of the input) · out 10,511 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
 Abstain cases (what the parser did, per run):
@@ -752,22 +752,22 @@ Mismatches: none
 
 ## group — held_out
 
-13 cases, 39 records (ok 39; stale prompt 39; stale manifest 3, unstamped 36) · gemini-4-argon effort=low
+14 cases, 42 records (ok 42; stale prompt 42; stale manifest 6, unstamped 36) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
-| positive | 8 | 24 | 24 | 24 | 24 |
+| positive | 9 | 27 | 27 | 27 | 27 |
 | contrast | 1 | 3 | 3 | 3 | 3 |
 | scoped | 1 | 3 | 3 | 3 | 3 |
 | abstain | 3 | 9 | 0 (false fires) | – | 9 |
 
-- selection: fire cases fired 30/30 · abstain cases false fires 0/9
-- fill: exact 30/30 among fires
-- stability: pairwise agreement 1.0 (13 cases, 39 pairs), unanimous 13/13
-- type check: 39/39 emitted parses type
+- selection: fire cases fired 33/33 · abstain cases false fires 0/9
+- fill: exact 33/33 among fires
+- stability: pairwise agreement 1.0 (14 cases, 42 pairs), unanimous 14/14
+- type check: 42/42 emitted parses type
 - graph lints: none
-- spans: 123/123 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
-- usage: 39 calls · in 2,426,397 · cached 2,141,271 (88% of the input) · out 5,919 · thinking 0 (calls with thought tokens: 0)
+- spans: 132/132 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
+- usage: 42 calls · in 2,739,078 · cached 2,447,805 (89% of the input) · out 6,357 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
 Abstain cases (what the parser did, per run):
@@ -896,22 +896,22 @@ Mismatches: none
 
 ## location — held_out
 
-18 cases, 54 records (ok 54; stale prompt 54; stale manifest 3, unstamped 51) · gemini-4-argon effort=low
+19 cases, 57 records (ok 57; stale prompt 54; stale manifest 3, unstamped 51) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
-| positive | 11 | 33 | 33 | 33 | 33 |
+| positive | 12 | 36 | 36 | 36 | 36 |
 | scoped | 3 | 9 | 9 | 9 | 9 |
 | optional | 1 | 3 | 3 | 3 | 3 |
 | abstain | 3 | 9 | 0 (false fires) | – | 9 |
 
-- selection: fire cases fired 45/45 · abstain cases false fires 0/9
-- fill: exact 45/45 among fires
-- stability: pairwise agreement 1.0 (18 cases, 54 pairs), unanimous 18/18
-- type check: 54/54 emitted parses type
+- selection: fire cases fired 48/48 · abstain cases false fires 0/9
+- fill: exact 48/48 among fires
+- stability: pairwise agreement 1.0 (19 cases, 57 pairs), unanimous 19/19
+- type check: 57/57 emitted parses type
 - graph lints: none
-- spans: 237/237 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
-- usage: 54 calls · in 3,487,059 · cached 3,376,400 (97% of the input) · out 10,929 · thinking 0 (calls with thought tokens: 0)
+- spans: 252/252 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
+- usage: 57 calls · in 3,802,827 · cached 3,686,021 (97% of the input) · out 11,540 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
 Abstain cases (what the parser did, per run):
@@ -923,22 +923,22 @@ Mismatches: none
 
 ## locative — held_out
 
-16 cases, 48 records (ok 48; stale prompt 48; stale manifest 0, unstamped 48) · gemini-4-argon effort=low
+17 cases, 51 records (ok 51; stale prompt 48; stale manifest 0, unstamped 48) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
-| positive | 10 | 30 | 30 | 30 | 30 |
+| positive | 11 | 33 | 33 | 33 | 33 |
 | contrast | 1 | 3 | 3 | 3 | 3 |
 | scoped | 2 | 6 | 6 | 6 | 6 |
 | abstain | 3 | 9 | 0 (false fires) | – | 9 |
 
-- selection: fire cases fired 39/39 · abstain cases false fires 0/9
-- fill: exact 39/39 among fires
-- stability: pairwise agreement 1.0 (16 cases, 48 pairs), unanimous 16/16
-- type check: 48/48 emitted parses type
+- selection: fire cases fired 42/42 · abstain cases false fires 0/9
+- fill: exact 42/42 among fires
+- stability: pairwise agreement 1.0 (17 cases, 51 pairs), unanimous 17/17
+- type check: 51/51 emitted parses type
 - graph lints: none
-- spans: 150/150 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
-- usage: 48 calls · in 2,778,885 · cached 2,680,521 (96% of the input) · out 7,659 · thinking 0 (calls with thought tokens: 0)
+- spans: 162/162 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
+- usage: 51 calls · in 3,094,659 · cached 2,990,146 (97% of the input) · out 8,247 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
 Abstain cases (what the parser did, per run):
@@ -1057,19 +1057,19 @@ Mismatches: none
 
 ## named-entity — held_out
 
-3 cases, 9 records (ok 9; stale prompt 9; stale manifest 6, unstamped 3) · gemini-4-argon effort=low
+5 cases, 15 records (ok 15; stale prompt 15; stale manifest 12, unstamped 3) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
-| positive | 3 | 9 | 9 | 9 | 9 |
+| positive | 5 | 15 | 15 | 15 | 15 |
 
-- selection: fire cases fired 9/9 · abstain cases false fires 0/0
-- fill: exact 9/9 among fires
-- stability: pairwise agreement 1.0 (3 cases, 9 pairs), unanimous 3/3
-- type check: 9/9 emitted parses type
+- selection: fire cases fired 15/15 · abstain cases false fires 0/0
+- fill: exact 15/15 among fires
+- stability: pairwise agreement 1.0 (5 cases, 15 pairs), unanimous 5/5
+- type check: 15/15 emitted parses type
 - graph lints: none
-- spans: 15/15 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
-- usage: 9 calls · in 771,750 · cached 753,306 (98% of the input) · out 942 · thinking 0 (calls with thought tokens: 0)
+- spans: 27/27 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
+- usage: 15 calls · in 1,397,133 · cached 1,366,388 (98% of the input) · out 1,668 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
 Mismatches: none
@@ -1125,22 +1125,22 @@ Mismatches: none
 
 ## oblique — held_out
 
-26 cases, 78 records (ok 78; stale prompt 78; stale manifest 0, unstamped 78) · gemini-4-argon effort=low
+27 cases, 81 records (ok 81; stale prompt 78; stale manifest 0, unstamped 78) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
-| positive | 14 | 42 | 42 | 42 | 42 |
+| positive | 15 | 45 | 45 | 45 | 45 |
 | scoped | 4 | 12 | 12 | 12 | 12 |
 | optional | 1 | 3 | 3 | 3 | 3 |
 | abstain | 7 | 21 | 0 (false fires) | – | 21 |
 
-- selection: fire cases fired 57/57 · abstain cases false fires 0/21
-- fill: exact 57/57 among fires
-- stability: pairwise agreement 1.0 (26 cases, 78 pairs), unanimous 26/26
-- type check: 78/78 emitted parses type
+- selection: fire cases fired 60/60 · abstain cases false fires 0/21
+- fill: exact 60/60 among fires
+- stability: pairwise agreement 1.0 (27 cases, 81 pairs), unanimous 27/27
+- type check: 81/81 emitted parses type
 - graph lints: none
-- spans: 300/300 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
-- usage: 78 calls · in 5,291,385 · cached 5,131,438 (97% of the input) · out 13,908 · thinking 0 (calls with thought tokens: 0)
+- spans: 315/315 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
+- usage: 81 calls · in 5,607,153 · cached 5,441,059 (97% of the input) · out 14,550 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
 Abstain cases (what the parser did, per run):
@@ -1156,21 +1156,21 @@ Mismatches: none
 
 ## part-whole — held_out
 
-19 cases, 57 records (ok 57; stale prompt 57; stale manifest 3, unstamped 54) · gemini-4-argon effort=low
+21 cases, 63 records (ok 63; stale prompt 57; stale manifest 3, unstamped 54) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
-| positive | 15 | 45 | 45 | 45 | 45 |
+| positive | 17 | 51 | 51 | 51 | 51 |
 | scoped | 1 | 3 | 3 | 3 | 3 |
 | abstain | 3 | 9 | 0 (false fires) | – | 9 |
 
-- selection: fire cases fired 48/48 · abstain cases false fires 0/9
-- fill: exact 48/48 among fires
-- stability: pairwise agreement 1.0 (19 cases, 57 pairs), unanimous 19/19
-- type check: 57/57 emitted parses type
+- selection: fire cases fired 54/54 · abstain cases false fires 0/9
+- fill: exact 54/54 among fires
+- stability: pairwise agreement 1.0 (21 cases, 63 pairs), unanimous 21/21
+- type check: 63/63 emitted parses type
 - graph lints: none
-- spans: 213/213 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
-- usage: 57 calls · in 4,605,888 · cached 4,335,636 (94% of the input) · out 10,536 · thinking 0 (calls with thought tokens: 0)
+- spans: 264/264 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
+- usage: 63 calls · in 5,237,445 · cached 4,954,892 (95% of the input) · out 12,742 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
 Abstain cases (what the parser did, per run):
@@ -1244,7 +1244,7 @@ Mismatches: none
 
 ## possession — held_out
 
-12 cases, 36 records (ok 36; stale prompt 36; stale manifest 0, unstamped 36) · gemini-4-argon effort=low
+12 cases, 36 records (ok 36; stale prompt 33; stale manifest 0, unstamped 33) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -1259,35 +1259,35 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (12 cases, 36 pairs), unanimous 12/12
 - type check: 36/36 emitted parses type
 - graph lints: none
-- spans: 114/114 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
-- usage: 36 calls · in 2,085,156 · cached 2,011,329 (96% of the input) · out 5,686 · thinking 0 (calls with thought tokens: 0)
+- spans: 120/120 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
+- usage: 36 calls · in 2,231,397 · cached 2,157,570 (97% of the input) · out 5,751 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
 Abstain cases (what the parser did, per run):
 - "Teodor bought the spindle from Yusra." (target `acquisition`): r1 target_fired [acquisition×1, named-entity×2, witness×1] · r2 target_fired [acquisition×1, named-entity×2, witness×1] · r3 target_fired [acquisition×1, named-entity×2, witness×1]
 - "Yusra has sent the quilt." (target `transfer`): r1 target_fired [named-entity×1, transfer×1, witness×1] · r2 target_fired [named-entity×1, transfer×1, witness×1] · r3 target_fired [named-entity×1, transfer×1, witness×1]
-- "Ottoline has a brother." (gap G00): r1 gap_reported [named-entity×1; unmapped G00] · r2 gap_reported [named-entity×1; unmapped G00] · r3 gap_reported [named-entity×1; unmapped G00]
+- "Ottoline has a brother." (target `stative-relation`): r1 target_fired [named-entity×1, stative-relation×1, witness×1] · r2 target_fired [named-entity×1, stative-relation×1, witness×1] · r3 target_fired [named-entity×1, stative-relation×1, witness×1]
 - "Yusra has to send the quilt." (target `norm`): r1 target_fired [named-entity×1, norm×1, transfer×1, witness×1] · r2 target_fired [named-entity×1, norm×1, transfer×1, witness×1] · r3 target_fired [named-entity×1, norm×1, transfer×1, witness×1]
 
 Mismatches: none
 
 ## postmodifier — held_out
 
-10 cases, 30 records (ok 30; stale prompt 30; stale manifest 0, unstamped 30) · gemini-4-argon effort=low
+13 cases, 39 records (ok 39; stale prompt 30; stale manifest 0, unstamped 30) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
-| positive | 5 | 15 | 15 | 15 | 15 |
+| positive | 8 | 24 | 24 | 24 | 24 |
 | scoped | 1 | 3 | 3 | 3 | 3 |
 | abstain | 4 | 12 | 0 (false fires) | – | 12 |
 
-- selection: fire cases fired 18/18 · abstain cases false fires 0/12
-- fill: exact 18/18 among fires
-- stability: pairwise agreement 1.0 (10 cases, 30 pairs), unanimous 10/10
-- type check: 30/30 emitted parses type
+- selection: fire cases fired 27/27 · abstain cases false fires 0/12
+- fill: exact 27/27 among fires
+- stability: pairwise agreement 1.0 (13 cases, 39 pairs), unanimous 13/13
+- type check: 39/39 emitted parses type
 - graph lints: none
-- spans: 132/132 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
-- usage: 30 calls · in 1,792,419 · cached 1,671,178 (93% of the input) · out 5,972 · thinking 0 (calls with thought tokens: 0)
+- spans: 165/165 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
+- usage: 39 calls · in 2,739,717 · cached 2,600,034 (95% of the input) · out 7,570 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
 Abstain cases (what the parser did, per run):
@@ -1383,21 +1383,21 @@ Mismatches: none
 
 ## stative-relation — held_out
 
-30 cases, 90 records (ok 90; stale prompt 90; stale manifest 15, unstamped 75) · gemini-4-argon effort=low
+33 cases, 99 records (ok 99; stale prompt 90; stale manifest 15, unstamped 75) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
-| positive | 24 | 72 | 72 | 72 | 72 |
+| positive | 27 | 81 | 81 | 81 | 81 |
 | scoped | 1 | 3 | 3 | 3 | 3 |
 | abstain | 5 | 15 | 0 (false fires) | – | 15 |
 
-- selection: fire cases fired 75/75 · abstain cases false fires 0/15
-- fill: exact 75/75 among fires
-- stability: pairwise agreement 1.0 (30 cases, 90 pairs), unanimous 30/30
-- type check: 87/87 emitted parses type
+- selection: fire cases fired 84/84 · abstain cases false fires 0/15
+- fill: exact 84/84 among fires
+- stability: pairwise agreement 1.0 (33 cases, 99 pairs), unanimous 33/33
+- type check: 96/96 emitted parses type
 - graph lints: none
-- spans: 297/297 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
-- usage: 90 calls · in 7,250,634 · cached 6,917,381 (95% of the input) · out 14,348 · thinking 0 (calls with thought tokens: 0)
+- spans: 339/339 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
+- usage: 99 calls · in 8,197,914 · cached 7,738,115 (94% of the input) · out 16,212 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
 Abstain cases (what the parser did, per run):
@@ -1411,21 +1411,21 @@ Mismatches: none
 
 ## superlative — held_out
 
-32 cases, 96 records (ok 96; stale prompt 84; stale manifest 39, unstamped 45) · gemini-4-argon effort=low
+34 cases, 102 records (ok 102; stale prompt 102; stale manifest 57, unstamped 45) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
-| positive | 25 | 75 | 75 | 75 | 75 |
+| positive | 27 | 81 | 81 | 81 | 81 |
 | scoped | 2 | 6 | 6 | 6 | 6 |
 | abstain | 5 | 15 | 0 (false fires) | – | 15 |
 
-- selection: fire cases fired 81/81 · abstain cases false fires 0/15
-- fill: exact 81/81 among fires
-- stability: pairwise agreement 1.0 (32 cases, 96 pairs), unanimous 32/32
-- type check: 96/96 emitted parses type
+- selection: fire cases fired 87/87 · abstain cases false fires 0/15
+- fill: exact 87/87 among fires
+- stability: pairwise agreement 1.0 (34 cases, 102 pairs), unanimous 34/34
+- type check: 102/102 emitted parses type
 - graph lints: none
-- spans: 330/330 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
-- usage: 96 calls · in 8,267,103 · cached 7,997,773 (97% of the input) · out 17,935 · thinking 0 (calls with thought tokens: 0)
+- spans: 351/351 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
+- usage: 102 calls · in 8,892,501 · cached 8,610,869 (97% of the input) · out 19,075 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
 Abstain cases (what the parser did, per run):
@@ -1439,22 +1439,22 @@ Mismatches: none
 
 ## time — held_out
 
-33 cases, 99 records (ok 99; stale prompt 99; stale manifest 9, unstamped 90) · gemini-4-argon effort=low
+34 cases, 102 records (ok 102; stale prompt 102; stale manifest 12, unstamped 90) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
-| positive | 26 | 78 | 78 | 78 | 78 |
+| positive | 27 | 81 | 81 | 81 | 81 |
 | scoped | 3 | 9 | 9 | 9 | 9 |
 | optional | 1 | 3 | 3 | 3 | 3 |
 | abstain | 3 | 9 | 0 (false fires) | – | 9 |
 
-- selection: fire cases fired 90/90 · abstain cases false fires 0/9
-- fill: exact 90/90 among fires
-- stability: pairwise agreement 1.0 (33 cases, 99 pairs), unanimous 33/33
-- type check: 99/99 emitted parses type
+- selection: fire cases fired 93/93 · abstain cases false fires 0/9
+- fill: exact 93/93 among fires
+- stability: pairwise agreement 1.0 (34 cases, 102 pairs), unanimous 34/34
+- type check: 102/102 emitted parses type
 - graph lints: none
-- spans: 351/351 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
-- usage: 99 calls · in 6,601,575 · cached 6,284,247 (95% of the input) · out 16,739 · thinking 0 (calls with thought tokens: 0)
+- spans: 363/363 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
+- usage: 102 calls · in 6,914,277 · cached 6,590,800 (95% of the input) · out 17,351 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
 Abstain cases (what the parser did, per run):
@@ -1521,19 +1521,19 @@ Mismatches: none
 
 ## witness — held_out
 
-3 cases, 9 records (ok 9; stale prompt 9; stale manifest 0, unstamped 9) · gemini-4-argon effort=low
+7 cases, 21 records (ok 21; stale prompt 21; stale manifest 12, unstamped 9) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
-| positive | 3 | 9 | 9 | 9 | 9 |
+| positive | 7 | 21 | 21 | 21 | 21 |
 
-- selection: fire cases fired 9/9 · abstain cases false fires 0/0
-- fill: exact 9/9 among fires
-- stability: pairwise agreement 1.0 (3 cases, 9 pairs), unanimous 3/3
-- type check: 9/9 emitted parses type
+- selection: fire cases fired 21/21 · abstain cases false fires 0/0
+- fill: exact 21/21 among fires
+- stability: pairwise agreement 1.0 (7 cases, 21 pairs), unanimous 7/7
+- type check: 21/21 emitted parses type
 - graph lints: none
-- spans: 30/30 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
-- usage: 9 calls · in 605,742 · cached 587,298 (97% of the input) · out 1,428 · thinking 0 (calls with thought tokens: 0)
+- spans: 72/72 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
+- usage: 21 calls · in 1,856,505 · cached 1,813,362 (98% of the input) · out 3,490 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
 Mismatches: none

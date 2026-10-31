@@ -1,0 +1,85 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "203017637a80e5d180ad8fbea051ea5b3a9f3a0a47fd55e15383ae058ab2138b",
+  "item": {
+    "id": "sb6a964b929",
+    "text": "The town of Calderwick grew."
+  },
+  "usage": {
+    "input": 104230,
+    "output": 121,
+    "thinking": null,
+    "total": 104351,
+    "cached": 102181,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 104230,
+    "candidatesTokenCount": 121,
+    "totalTokenCount": 104351,
+    "cachedContentTokenCount": 102181,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 104230
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 102181
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 121
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sb6a964b929\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Calderwick\", \"class\": \"town\", \"span\": \"The town of Calderwick\"}, {\"t\": \"change-of-state\", \"id\": \"e1\", \"verb\": \"grow\", \"undergoer\": \"@n1\", \"tense\": \"past\", \"span\": \"The town of Calderwick grew\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sb6a964b929",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Calderwick",
+        "class": "town",
+        "span": "The town of Calderwick"
+      },
+      {
+        "t": "change-of-state",
+        "id": "e1",
+        "verb": "grow",
+        "undergoer": "@n1",
+        "tense": "past",
+        "span": "The town of Calderwick grew"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "12605e658914fc5db17e2b6d548588331952976acbad42b2d0f97978fe2c7db4",
+  "manifest_id": "12298c656864",
+  "run": 2,
+  "case": {
+    "template": "named-entity",
+    "section": "held_out",
+    "index": 4,
+    "category": "positive",
+    "text": "The town of Calderwick grew.",
+    "key": "b6a964b929"
+  }
+}

@@ -45,7 +45,9 @@ trigger:
 
 slots:
   id:         {type: id, required: true, doc: "your label for the range (q1, q2 …)"}
-  class:       {type: lemma, class: Class, required: true, doc: "the class, lemmatized to the singular (ferret) — an adjective on it (adult herons, red ferrets) is not part of the class but a copular instance over the range, listed in the rule's condition; for the occasions of a frequency the unit, day part or weekday (day, morning, sunday), or occasion for a bare adverb"}
+  class:       {type: lemma, class: Class, required: true, narrowed_by: mods, doc: "the class, lemmatized to the singular (ferret) — an adjective on it (adult herons, red ferrets) is not part of the class but a copular instance over the range, listed in the rule's condition, while a noun before it narrows it: mods (harbour seals: class seal, mods [harbour]); for the occasions of a frequency the unit, day part or weekday (day, morning, sunday), or occasion for a bare adverb"}
+  mods:       {type: list, class: Class, ids: [named-entity, time], required: false,
+               doc: "the nouns, names and years before the head noun that narrow its class (Nouns before nouns): a lemma for a noun (a harbour pilot: harbour; a sea salt grinder: sea_salt), the id of a named-entity instance for a name (a Calderwick quilt), of a time instance for a year, a decade or a century (a 1904 almanac); never an adjective"}
   quantifier: {type: string, required: false,
                doc: "the quantifier word as written (every, each, all, most, many, few, no, none); absent for a bare generic"}
   predicate:  {type: lemma, class: Class, required: false,
@@ -54,7 +56,7 @@ slots:
 mints: {id: Entity, variable: true}
 
 emits:
-  - atom: "(Member @id {class})"                              # the premise: an arbitrary member of the class
+  - atom: "(Member @id {class|mod})"                          # the premise: an arbitrary member of the (narrowed) class
 
 notes:
   - >-

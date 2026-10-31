@@ -162,10 +162,30 @@ relatives:
   aspect perfect.
 - >-
   KNOWN AS — also known as, better known as, called, nicknamed + a name (Ines, known as Nell): a second name of the
-  same individual, the named entity's `aliases`; no clause. An infinitive after a noun (a house to rent, the man
+  same individual, the named entity's `aliases`; no clause. After a common noun, called / named + a name is that
+  noun's individual (a nephew called Corvin: Corvin, the noun his class or his relation), not a second name. An infinitive after a noun (a house to rent, the man
   to ask) and a free relative (what Bram said, whoever wins) are not relative clauses here: report them as
   unmapped (G00).
 
+nouns:
+- >-
+  A NOUN BEFORE A NOUN narrows the head noun's class: a harbour pilot is a pilot of a narrower kind. Write the
+  head as the class and the noun before it in the same instance's `mods` (a harbour pilot: class pilot, mods
+  [harbour]); the program builds the narrowed class and keeps the head's class beside it. How the two relate (a
+  pilot who works in a harbour) is not stated: never choose a relation. Words before the head that make one
+  modifier are one lemma (a sea salt grinder: mods [sea_salt]); coordinated ones are one each (a wool and silk
+  merchant: mods [wool, silk]).
+- >-
+  A NAME before a noun (a Calderwick quilt) is its named-entity instance's id in `mods`; a YEAR, a DECADE or a
+  CENTURY before a noun (a 1904 almanac, a 1920s radio, an 18th-century clock) is a time instance with no event,
+  its id in `mods`. A year before a noun that names an event or a period (the 1904 flood) is that event's time
+  instead: the noun eventive, the time instance on it.
+- >-
+  Not a mod: an adjective, also a hyphenated or a participle one (a sky-blue quilt, a self-taught weaver, a
+  carved bowl): `props`; a noun naming the whole the head is a part of (the barn roof): a part-whole; a
+  possessive (Yusra's quilt): the possessor; an of-phrase or any phrase after the noun: its own template. A
+  compound whose head does not name what it is — a hot dog is not a dog, a toy gun is not a gun — is ONE lemma
+  (hot_dog), with no mods.
 abstain:
 - >-
   A template fires only where its construction is present. If a clause looks like a template's construction

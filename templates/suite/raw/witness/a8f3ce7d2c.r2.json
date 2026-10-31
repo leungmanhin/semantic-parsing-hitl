@@ -1,0 +1,97 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "203017637a80e5d180ad8fbea051ea5b3a9f3a0a47fd55e15383ae058ab2138b",
+  "item": {
+    "id": "sa8f3ce7d2c",
+    "text": "Ines used a three-legged milking stool."
+  },
+  "usage": {
+    "input": 104232,
+    "output": 158,
+    "thinking": null,
+    "total": 104390,
+    "cached": 102183,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 104232,
+    "candidatesTokenCount": 158,
+    "totalTokenCount": 104390,
+    "cachedContentTokenCount": 102183,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 104232
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 102183
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 158
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sa8f3ce7d2c\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ines\", \"span\": \"Ines\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"stool\", \"props\": [\"three_legged\"], \"mods\": [\"milking\"], \"span\": \"a three-legged milking stool\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"use\", \"actor\": \"@n1\", \"patient\": \"@x1\", \"tense\": \"past\", \"span\": \"Ines used a three-legged milking stool\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sa8f3ce7d2c",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Ines",
+        "span": "Ines"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "stool",
+        "props": [
+          "three_legged"
+        ],
+        "mods": [
+          "milking"
+        ],
+        "span": "a three-legged milking stool"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "use",
+        "actor": "@n1",
+        "patient": "@x1",
+        "tense": "past",
+        "span": "Ines used a three-legged milking stool"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "12605e658914fc5db17e2b6d548588331952976acbad42b2d0f97978fe2c7db4",
+  "manifest_id": "12298c656864",
+  "run": 2,
+  "case": {
+    "template": "witness",
+    "section": "held_out",
+    "index": 5,
+    "category": "positive",
+    "text": "Ines used a three-legged milking stool.",
+    "key": "a8f3ce7d2c"
+  }
+}

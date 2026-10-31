@@ -67,6 +67,8 @@ def _value_doc(spec: dict, family: str | None = None) -> str:
     if t == "list":
         if spec.get("class") == "Proposition":   # ids of other instances, read but not scoped over
             return 'a list of "@id" of other instances, which stay asserted on their own'
+        if spec.get("ids"):                        # lemmas, or the ids of the instances a name or a year is
+            return 'a list of lemmas, or "@id" of a ' + " or a ".join(spec["ids"]) + " instance"
         return "a list of lemmas"
     return t
 
@@ -186,6 +188,7 @@ def generate(catalog: dict, general: dict, directory: str = CAT.CATALOG_DIR) -> 
     section("Spans", general.get("spans") or [], bullets=True)
     section("Lemmas and symbols", general["lemmas"], bullets=True)
     section("Relative clauses and participles", general.get("relatives") or [], bullets=True)
+    section("Nouns before nouns", general.get("nouns") or [], bullets=True)
     section("Choosing a template", general.get("abstain") or [])
     section("Unmapped spans", general["unmapped"])
     add("Codes:")

@@ -1,0 +1,130 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "bdb538dabaa3b9ba97a85bf15a6e317187cd19475eff41379e97a1dd9d05ad1b",
+  "item": {
+    "id": "sffebfa6fd1",
+    "text": "The founders (Yusra and Teodor) laughed."
+  },
+  "usage": {
+    "input": 105256,
+    "output": 317,
+    "thinking": null,
+    "total": 105573,
+    "cached": 103207,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 105256,
+    "candidatesTokenCount": 317,
+    "totalTokenCount": 105573,
+    "cachedContentTokenCount": 103207,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 105256
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 103207
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 317
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sffebfa6fd1\", \"instances\": [{\"t\": \"group\", \"id\": \"g1\", \"class\": \"founder\", \"definite\": true, \"span\": \"The founders\"}, {\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"part-whole\", \"id\": \"w1\", \"part\": \"@n1\", \"whole\": \"@g1\", \"word\": \"(\", \"tense\": \"present\", \"span\": [\"The founders\", \"(Yusra\"]}, {\"t\": \"part-whole\", \"id\": \"w2\", \"part\": \"@n2\", \"whole\": \"@g1\", \"word\": \"(\", \"tense\": \"present\", \"span\": [\"The founders\", \"Teodor)\"]}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"laugh\", \"actor\": \"@g1\", \"tense\": \"past\", \"span\": \"The founders (Yusra and Teodor) laughed\"}, {\"t\": \"distribution\", \"id\": \"d1\", \"group\": \"@g1\", \"over\": [\"@v1\"], \"span\": \"The founders (Yusra and Teodor) laughed\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sffebfa6fd1",
+    "instances": [
+      {
+        "t": "group",
+        "id": "g1",
+        "class": "founder",
+        "definite": true,
+        "span": "The founders"
+      },
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "part-whole",
+        "id": "w1",
+        "part": "@n1",
+        "whole": "@g1",
+        "word": "(",
+        "tense": "present",
+        "span": [
+          "The founders",
+          "(Yusra"
+        ]
+      },
+      {
+        "t": "part-whole",
+        "id": "w2",
+        "part": "@n2",
+        "whole": "@g1",
+        "word": "(",
+        "tense": "present",
+        "span": [
+          "The founders",
+          "Teodor)"
+        ]
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "laugh",
+        "actor": "@g1",
+        "tense": "past",
+        "span": "The founders (Yusra and Teodor) laughed"
+      },
+      {
+        "t": "distribution",
+        "id": "d1",
+        "group": "@g1",
+        "over": [
+          "@v1"
+        ],
+        "span": "The founders (Yusra and Teodor) laughed"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "8ebc6c23bbf6996b7b47d4cc9a9755cfd3b370506148f88119af18d1984e2520",
+  "manifest_id": "b1d20da9dfd7",
+  "run": 1,
+  "case": {
+    "template": "part-whole",
+    "section": "held_out",
+    "index": 19,
+    "category": "positive",
+    "text": "The founders (Yusra and Teodor) laughed.",
+    "key": "ffebfa6fd1"
+  }
+}

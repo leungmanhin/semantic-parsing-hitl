@@ -123,6 +123,8 @@
 ;; ===== Rules =====
 ;; result_holds: a change's named result holds afterwards (reads: change-of-state)
 (: result_holds (Implication (Result $e (Member $x $s)) (Member $x $s)) (CTV (STV 1.0 0.9) (STV 0.0 0.0)))
+;; between_sym: between a and b is between b and a (reads: oblique, postmodifier, locative, location)
+(: between_sym (Equivalence (Between $x $a $b) (Between $x $b $a)) (STV 1.0 0.99))
 ;; coref_sym: a coreference link holds in both directions (reads: coref)
 (: coref_sym (Equivalence (Coref $a $b) (Coref $b $a)) (STV 1.0 0.99))
 ;; coref_agent: a mention's Agent role holds of its antecedent (reads: coref)

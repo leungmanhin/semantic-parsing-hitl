@@ -1,0 +1,101 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "bdb538dabaa3b9ba97a85bf15a6e317187cd19475eff41379e97a1dd9d05ad1b",
+  "item": {
+    "id": "s4546e0e97f",
+    "text": "Calderwick is between the river and the hills."
+  },
+  "usage": {
+    "input": 105258,
+    "output": 196,
+    "thinking": null,
+    "total": 105454,
+    "cached": 103209,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 105258,
+    "candidatesTokenCount": 196,
+    "totalTokenCount": 105454,
+    "cachedContentTokenCount": 103209,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 105258
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 103209
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 196
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s4546e0e97f\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Calderwick\", \"span\": \"Calderwick\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"river\", \"definite\": true, \"span\": \"the river\"}, {\"t\": \"group\", \"id\": \"g1\", \"class\": \"hill\", \"definite\": true, \"span\": \"the hills\"}, {\"t\": \"locative\", \"id\": \"l1\", \"thing\": \"@n1\", \"place\": \"@x1\", \"place2\": \"@g1\", \"head\": \"Between\", \"preposition\": \"between\", \"tense\": \"present\", \"span\": \"Calderwick is between the river and the hills\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s4546e0e97f",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Calderwick",
+        "span": "Calderwick"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "river",
+        "definite": true,
+        "span": "the river"
+      },
+      {
+        "t": "group",
+        "id": "g1",
+        "class": "hill",
+        "definite": true,
+        "span": "the hills"
+      },
+      {
+        "t": "locative",
+        "id": "l1",
+        "thing": "@n1",
+        "place": "@x1",
+        "place2": "@g1",
+        "head": "Between",
+        "preposition": "between",
+        "tense": "present",
+        "span": "Calderwick is between the river and the hills"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "8ebc6c23bbf6996b7b47d4cc9a9755cfd3b370506148f88119af18d1984e2520",
+  "manifest_id": "b1d20da9dfd7",
+  "run": 2,
+  "case": {
+    "template": "locative",
+    "section": "held_out",
+    "index": 16,
+    "category": "positive",
+    "text": "Calderwick is between the river and the hills.",
+    "key": "4546e0e97f"
+  }
+}

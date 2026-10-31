@@ -1,0 +1,111 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "203017637a80e5d180ad8fbea051ea5b3a9f3a0a47fd55e15383ae058ab2138b",
+  "item": {
+    "id": "s188d8798fd",
+    "text": "Yusra played Lamine's second jazz record."
+  },
+  "usage": {
+    "input": 104234,
+    "output": 249,
+    "thinking": null,
+    "total": 104483,
+    "cached": 102185,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 104234,
+    "candidatesTokenCount": 249,
+    "totalTokenCount": 104483,
+    "cachedContentTokenCount": 102185,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 104234
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 102185
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 249
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s188d8798fd\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"record\", \"mods\": [\"jazz\"], \"possessor\": \"@n2\", \"span\": \"Lamine's second jazz record\"}, {\"t\": \"superlative\", \"id\": \"s1\", \"subject\": \"@x1\", \"scale\": \"record\", \"class\": \"record\", \"kind\": \"ordinal\", \"rank\": 2, \"span\": \"Lamine's second jazz record\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"play\", \"actor\": \"@n1\", \"patient\": \"@x1\", \"tense\": \"past\", \"span\": \"Yusra played Lamine's second jazz record\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s188d8798fd",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "record",
+        "mods": [
+          "jazz"
+        ],
+        "possessor": "@n2",
+        "span": "Lamine's second jazz record"
+      },
+      {
+        "t": "superlative",
+        "id": "s1",
+        "subject": "@x1",
+        "scale": "record",
+        "class": "record",
+        "kind": "ordinal",
+        "rank": 2,
+        "span": "Lamine's second jazz record"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "play",
+        "actor": "@n1",
+        "patient": "@x1",
+        "tense": "past",
+        "span": "Yusra played Lamine's second jazz record"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "12605e658914fc5db17e2b6d548588331952976acbad42b2d0f97978fe2c7db4",
+  "manifest_id": "12298c656864",
+  "run": 2,
+  "case": {
+    "template": "superlative",
+    "section": "held_out",
+    "index": 32,
+    "category": "positive",
+    "text": "Yusra played Lamine's second jazz record.",
+    "key": "188d8798fd"
+  }
+}

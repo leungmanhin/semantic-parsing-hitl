@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 b7c9beb6a56b9f81 · 58 templates
+catalog sha256 5fb2603c117680f7 · 58 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -169,9 +169,31 @@ fences.
   present; how it relates to the main clause (a time, a cause, a manner) is not stated: no link.
   Having V-ed is aspect perfect.
 - KNOWN AS — also known as, better known as, called, nicknamed + a name (Ines, known as Nell): a
-  second name of the same individual, the named entity's `aliases`; no clause. An infinitive
-  after a noun (a house to rent, the man to ask) and a free relative (what Bram said, whoever
-  wins) are not relative clauses here: report them as unmapped (G00).
+  second name of the same individual, the named entity's `aliases`; no clause. After a common
+  noun, called / named + a name is that noun's individual (a nephew called Corvin: Corvin, the
+  noun his class or his relation), not a second name. An infinitive after a noun (a house to
+  rent, the man to ask) and a free relative (what Bram said, whoever wins) are not relative
+  clauses here: report them as unmapped (G00).
+
+## Nouns before nouns
+
+- A NOUN BEFORE A NOUN narrows the head noun's class: a harbour pilot is a pilot of a narrower
+  kind. Write the head as the class and the noun before it in the same instance's `mods` (a
+  harbour pilot: class pilot, mods [harbour]); the program builds the narrowed class and keeps
+  the head's class beside it. How the two relate (a pilot who works in a harbour) is not stated:
+  never choose a relation. Words before the head that make one modifier are one lemma (a sea
+  salt grinder: mods [sea_salt]); coordinated ones are one each (a wool and silk merchant: mods
+  [wool, silk]).
+- A NAME before a noun (a Calderwick quilt) is its named-entity instance's id in `mods`; a YEAR,
+  a DECADE or a CENTURY before a noun (a 1904 almanac, a 1920s radio, an 18th-century clock) is
+  a time instance with no event, its id in `mods`. A year before a noun that names an event or a
+  period (the 1904 flood) is that event's time instead: the noun eventive, the time instance on
+  it.
+- Not a mod: an adjective, also a hyphenated or a participle one (a sky-blue quilt, a
+  self-taught weaver, a carved bowl): `props`; a noun naming the whole the head is a part of
+  (the barn roof): a part-whole; a possessive (Yusra's quilt): the possessor; an of-phrase or
+  any phrase after the noun: its own template. A compound whose head does not name what it is —
+  a hot dog is not a dog, a toy gun is not a gun — is ONE lemma (hot_dog), with no mods.
 
 ## Choosing a template
 
@@ -289,7 +311,13 @@ Slots:
 - `hedge` (optional; a string): an approximation word on the count as written (about,
   approximately, roughly, nearly, almost, around, some); recorded, not rendered — the count
   stays the number stated.
-- `props` (optional; a list of lemmas): adjectival properties stated in the phrase.
+- `props` (optional; a list of lemmas): adjectival properties stated in the phrase; a noun
+  before the head is a mod.
+- `mods` (optional; a list of lemmas, or "@id" of a named-entity or a time instance): the nouns,
+  names and years before the head noun that narrow its class (Nouns before nouns): a lemma for a
+  noun (a harbour pilot: harbour; a sea salt grinder: sea_salt), the id of a named-entity
+  instance for a name (a Calderwick quilt), of a time instance for a year, a decade or a century
+  (a 1904 almanac); never an adjective.
 - `possessor` (optional; "@id" of a referent instance, or a bare lemma for a non-specific
   filler): the possessor of a possessive phrase (Yusra's ferrets).
 
@@ -382,6 +410,8 @@ revisable link, not a matter of spelling.
 Forms:
 - <Name>
 - <Title> <Name>
+- the <class> of <Name>
+- <N1> <N2> <Name>
 
 Not this template:
 - a common noun with an article — the clerk, a thermos: a witness, not a name
@@ -393,15 +423,21 @@ Slots:
 - `id` (required; your label for this instance).
 - `name` (required; a string): the surface name, capitalised as written.
 - `title` (optional; a string): a leading title, if any.
-- `class` (optional; a lemma): the class an appositive or a title phrase states for the name
-  (Lamine, a glazier); a predicative is a N is a copular instance, not this slot; a relational
-  noun with a possessor (her son Bram, Ilse's husband Corvin) is a relation, not a class: the
-  stative-relation template.
+- `class` (optional; a lemma): the class an appositive, a title phrase or an of-phrase naming
+  the place itself states for the name (Lamine, a glazier; the village of Aldmoor: village); a
+  predicative is a N is a copular instance, not this slot; a relational noun with a possessor
+  (her son Bram, Ilse's husband Corvin) is a relation, not a class: the stative-relation
+  template.
 - `aliases` (optional; a list of lemmas): other names of the same individual, each as written:
   known as, also known as, better known as, called, nicknamed (Ines, known as Nell: Nell).
-- `props` (optional; a list of lemmas): adjectival or nominal modifiers inside the appositive or
-  title phrase, each a lemma (a retired harbour pilot: retired, harbour; the northern ferry
-  company: northern, ferry).
+- `props` (optional; a list of lemmas): adjectives inside the appositive or title phrase, each a
+  lemma (a careful harbour pilot: careful; the northern ferry company: northern); a noun before
+  the class is a mod, never a property.
+- `mods` (optional; a list of lemmas, or "@id" of a named-entity or a time instance): the nouns,
+  names and years before the head noun that narrow its class (Nouns before nouns): a lemma for a
+  noun (a harbour pilot: harbour; a sea salt grinder: sea_salt), the id of a named-entity
+  instance for a name (a Calderwick quilt), of a time instance for a year, a decade or a century
+  (a 1904 almanac); never an adjective; with a class only.
 
 Example. TEXT: Teodor
 
@@ -581,8 +617,14 @@ Slots:
 - `id` (required; your label for this instance): your label for the range (q1, q2 …).
 - `class` (required; a lemma): the class, lemmatized to the singular (ferret) — an adjective on
   it (adult herons, red ferrets) is not part of the class but a copular instance over the range,
-  listed in the rule's condition; for the occasions of a frequency the unit, day part or weekday
-  (day, morning, sunday), or occasion for a bare adverb.
+  listed in the rule's condition, while a noun before it narrows it: mods (harbour seals: class
+  seal, mods [harbour]); for the occasions of a frequency the unit, day part or weekday (day,
+  morning, sunday), or occasion for a bare adverb.
+- `mods` (optional; a list of lemmas, or "@id" of a named-entity or a time instance): the nouns,
+  names and years before the head noun that narrow its class (Nouns before nouns): a lemma for a
+  noun (a harbour pilot: harbour; a sea salt grinder: sea_salt), the id of a named-entity
+  instance for a name (a Calderwick quilt), of a time instance for a year, a decade or a century
+  (a 1904 almanac); never an adjective.
 - `quantifier` (optional; a string): the quantifier word as written (every, each, all, most,
   many, few, no, none); absent for a bare generic.
 - `predicate` (optional; a lemma): the lemma of the predication the range takes part in (slept →
@@ -625,12 +667,14 @@ the time or the relation can attach to it. A MASS noun with a quantity phrase �
 plenty of rain, lots of sugar, a little salt — or with a container or measure word — a cup of
 tea, a bag of flour — is a witness of the stuff (the quantity of it the text introduces): the
 vague phrase is recorded in `quantity`; a container or measure word is a measure instance on the
-witness.
+witness. A noun, a name or a year before the head noun (a harbour pilot, a Calderwick quilt, a
+1904 almanac) narrows the class: the head is the class and the words before it are its `mods`.
 
 Forms:
 - a <N>
 - the <N>
 - <Adj> <N>
+- <N1> <N2>
 - <possessor>'s <N>
 - the <N> of <possessor>
 - a lot of / plenty of <mass N>
@@ -649,7 +693,12 @@ Slots:
   possessed phrase (the possessor presupposes it).
 - `props` (optional; a list of lemmas): adjectival properties stated in the phrase; a property
   with a degree word (a very old spindle) is a degree instance beside the witness, not a
-  property here.
+  property here; a noun before the head is a mod, never a property.
+- `mods` (optional; a list of lemmas, or "@id" of a named-entity or a time instance): the nouns,
+  names and years before the head noun that narrow its class (Nouns before nouns): a lemma for a
+  noun (a harbour pilot: harbour; a sea salt grinder: sea_salt), the id of a named-entity
+  instance for a name (a Calderwick quilt), of a time instance for a year, a decade or a century
+  (a 1904 almanac); never an adjective.
 - `possessor` (optional; "@id" of a referent instance, or a bare lemma for a non-specific
   filler): the possessor of a possessive phrase: Yusra's quilt, the quilt of Yusra, her quilt —
   an owner or an associate, NOT a whole the noun is a part of (the lid of the box, the box's
@@ -661,8 +710,9 @@ Slots:
 - `quantity` (optional; a string): a vague amount phrase on a mass noun, as written (a lot,
   lots, plenty, a little, a bit, much); absent otherwise.
 - `eventive` (optional; true / false): true when the noun names an event or a period and the
-  clause puts the noun itself in time (the meeting is at noon) or places another event relative
-  to it (after the audit, during the meeting); absent otherwise.
+  clause puts the noun itself in time (the meeting is at noon), a year before it names its time
+  (the 1904 flood), or the clause places another event relative to it (after the audit, during
+  the meeting); absent otherwise.
 
 Example. TEXT: a thermos
 
@@ -690,6 +740,19 @@ The program renders these instances as:
     (Name sk_yusra_1 "Yusra")
     (Member sk_quilt_1 quilt)
     (Possession sk_quilt_1 sk_yusra_1)
+
+Example (a noun before the noun narrows its class — the head is the class, the noun before it a mod). TEXT: a harbour pilot
+
+Instances:
+
+    [
+      {"t": "witness", "id": "x1", "class": "pilot", "mods": ["harbour"], "span": "a harbour pilot"}
+    ]
+
+The program renders these instances as:
+
+    (Member sk_pilot_1 pilot)
+    (Member sk_pilot_1 (Narrow pilot (Mod harbour)))
 
 ## Predications — what the text states about them
 
@@ -1740,7 +1803,12 @@ are mustelids, a spindle is a tool) and empirical when it generalizes over the c
 belongs to the statement: record it as written; the program sets the strength from it and keeps
 the word beside the statement. A time relation, a date or a deictic time, a link or a focus
 particle on the statement as such (spindles were cheap until 1900) names this instance as its
-event, and the program mints the state of the statement holding.
+event, and the program mints the state of the statement holding. A KIND-OF PHRASE — the kestrel
+is a species of falcon, a ristretto is a kind of espresso — is a definitional statement whose
+predicate is the of-phrase's noun (form noun) and whose `kind` is the kind word: the class as a
+whole is of that kind (the kestrel is a species — no single kestrel is), its members are of the
+of-phrase's class; with no of-phrase (the kestrel is a species) `kind` stands alone, with no
+predicate.
 
 Forms:
 - <class>s are <N>s
@@ -1748,6 +1816,7 @@ Forms:
 - <mass noun> is a <N>
 - a <class> is a <N>
 - all / most / few / no <class>s are <N or ADJ>
+- <class> is a <kind word> of <N>
 
 Not this template:
 - an individual as the subject — Teodor is a locksmith, the ladder is crooked: a predication
@@ -1762,6 +1831,9 @@ Not this template:
   template, the relation naming the instance as its event
 - a copular verb other than be — herons seem patient: the evidential template over this
   template's instance; ferrets became popular: a change of state
+- a NAME before a kind word — Velloria is a genus of ferns: the name is an individual (a named
+  entity), the kind word the copular predicate (genus), and the of-phrase a postmodifier Of on
+  the name, its noun a bare lemma
 
 Slots:
 
@@ -1769,7 +1841,17 @@ Slots:
 - `id` (required; your label for this instance): your label for the statement.
 - `subject` (required; a lemma): the class, lemmatized to the singular (ferret, granite,
   spindle).
-- `predicate` (required; a lemma): the class (mustelid) or the property (curious), lemmatized.
+- `predicate` (optional; a lemma): the class (mustelid) or the property (curious), lemmatized;
+  absent only for a kind word alone (the kestrel is a species).
+- `kind` (optional; a lemma): the kind word of a kind-of phrase, lemmatized (a species of
+  falcon: species; a breed, a genus, a style, a variety of N); kind, type and sort are recorded
+  and state nothing more.
+- `subject_mods` (optional; a list of lemmas, or "@id" of a named-entity or a time instance):
+  the nouns before the subject's noun (harbour seals are shy: harbour), as the mods of Nouns
+  before nouns.
+- `predicate_mods` (optional; a list of lemmas, or "@id" of a named-entity or a time instance):
+  with form noun, the nouns before the predicate noun (ferrets are farm animals: farm), as the
+  mods of Nouns before nouns.
 - `form` (required; one of: noun, adjective): noun for a class predicate, adjective for a
   property.
 - `definitional` (required; true / false): true for a definitional or taxonomic claim (ferrets
@@ -1779,6 +1861,7 @@ Slots:
 - `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
   not inferred.
 - `aspect` (optional; one of: simple, progressive, perfect).
+- At least one of `predicate`, `kind` is filled.
 
 Example (definitional). TEXT: Ferrets are mustelids.
 
@@ -2216,7 +2299,8 @@ indefinite noun phrase (is a locksmith) or an adjective (is crooked). A group as
 takes the predicate as a group; whether it also holds of each member is the distribution
 template's business. The predicate's head is the class or the property; an adjective inside a
 predicate noun phrase (is a careful weaver) is a second copular instance with the adjective as
-its predicate. Tense is the clause's; present is recorded and emits nothing. A time, a place, a
+its predicate, and a noun, a name or a year before the predicate noun (is a harbour pilot) is
+its `mods`. Tense is the clause's; present is recorded and emits nothing. A time, a place, a
 duration, a time relation, a link or a focus particle on the clause names this instance as its
 event, as it would a verb's: the program mints the state of the fact holding and attaches to it.
 
@@ -2259,6 +2343,11 @@ Slots:
 - `subject` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
   the subject: a referent id (a name, a witness, a group, a resolved pronoun).
 - `predicate` (required; a lemma): the class (locksmith) or the property (crooked), lemmatized.
+- `mods` (optional; a list of lemmas, or "@id" of a named-entity or a time instance): with form
+  noun, the nouns, names and years before the head noun that narrow its class (Nouns before
+  nouns): a lemma for a noun (a harbour pilot: harbour; a sea salt grinder: sea_salt), the id of
+  a named-entity instance for a name (a Calderwick quilt), of a time instance for a year, a
+  decade or a century (a 1904 almanac); never an adjective.
 - `form` (required; one of: noun, adjective): noun for a class (is a locksmith), adjective for a
   property (is crooked).
 - `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
@@ -2567,7 +2656,9 @@ Not this template:
   report the phrase as unmapped
 - membership, a part or a constituent — on the committee, a member of the guild, the lid of the
   box, the soup contains salt: a part-whole relation, not a place
-- between two places — between the barn and the shed: no slot here; reported as unmapped
+- between two times — between May and June: a span of time, not a place; report it as unmapped
+  (between two places — between the barn and the shed — is head Between, the second place in
+  `place2`)
 
 Slots:
 
@@ -2578,9 +2669,12 @@ Slots:
 - `place` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
   the place: a referent id (a witness for the workbench, a name for Norfolk) or a bare lemma for
   a class-level place.
+- `place2` (optional; "@id" of a referent instance, or a bare lemma for a non-specific filler):
+  with head Between only, the second of the two places (between the barn and the shed: the
+  shed); the order as written.
 - `head` (required; one of: LocatedIn, On, Near, By, Under, Over, Above, Below, Behind, Beside,
-  Outside, Opposite, From): LocatedIn for in / at / inside / within; otherwise the preposition
-  itself, capitalized (on → On, under → Under); From for an origin (is from).
+  Between, Outside, Opposite, From): LocatedIn for in / at / inside / within; otherwise the
+  preposition itself, capitalized (on → On, under → Under); From for an origin (is from).
 - `preposition` (required; a string): the preposition as written (in, on, under, from …).
 - `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
   not inferred; present for a place phrase inside a noun phrase.
@@ -2937,12 +3031,15 @@ instance over the group says that each member is a part. A passive keeps the lin
 was included in the treaty: the clause the part). On a class — every car has an engine, oranges
 contain juice — the subject is a range and the generic template builds the rule with this
 instance as the predication over it; an indefinite part is then a witness, a function of the
-member. A LIST OF NAMED MEMBERS after a colon or after including (two potters stayed: Ines and
-Corvin; the guild, including Lamine) is one instance per named member, the group the whole, the
-word ":" or including. `tense` is the clause's; a link inside a noun phrase is present. A time,
-a duration, a time relation, a link or a focus on the clause (Lamine was a member of the guild
-until 1990) names this instance as its event, as it would a copular predication, and the program
-mints the state of the relation holding.
+member. A LIST OF NAMED MEMBERS after a colon, after including or namely, or set off by dashes,
+brackets or a comma (two potters stayed: Ines and Corvin; the guild, including Lamine; the two
+potters — Ines and Corvin — stayed) is one instance per named member, the group the whole, the
+word as written (":", "including", "namely", "—", "(", ","); no count is drawn from the list,
+and a list of kinds (birds — gulls, terns) names no member: report it as unmapped. `tense` is
+the clause's; a link inside a noun phrase is present. A time, a duration, a time relation, a
+link or a focus on the clause (Lamine was a member of the guild until 1990) names this instance
+as its event, as it would a copular predication, and the program mints the state of the relation
+holding.
 
 Forms:
 - <part> is (a) part of <whole>
@@ -3194,9 +3291,8 @@ Not this template:
 - "have" with an event noun or in a light-verb use — had lunch, had a word, had a look: the noun
   carries the event
 - parts, features and members — has a lid, has four legs, has blue eyes: a part-whole relation,
-  not the holding of a thing; kinship with both parties named — is Lamine's cousin, Yusra and
-  Lamine are cousins — is a stative relation; has a brother, with no second party named: no
-  template, report the predicate as unmapped
+  not the holding of a thing; kinship — is Lamine's cousin, Yusra and Lamine are cousins, has a
+  brother, has three sons — is a stative relation, the relative its subject
 - the possessive inside a noun phrase — Ottoline's quilt, the quilt of Ottoline: a referent with
   a possessor, not a clause
 
@@ -3491,17 +3587,21 @@ Bram's grandmother, the guild's treasurer — states the same relation with a wi
 bearer: the witness for the noun (its class the noun, no possessor) is the subject and the
 possessor the object; a noun the possessor owns or is merely associated with (her quilt, Bram's
 lantern) keeps the witness's possessor, and a plural one (her sons) stays the group's possessor
-for now. A DEFINITE ROLE TITLE with an of-phrase — the warden of the mill, the president of the
-guild, the author of the letter — is a relational noun too: this template, the holder the
-subject, the of-phrase the object (preposition of), never an identity copular. A passive or
-participial form (is surrounded by a wall, is covered with snow, is connected to the mill) keeps
-the active roles: the by- or with-phrase is the subject and the surface subject the object. A
-relatum that is an action or a clause (deserves to rest, involves selling the barn, means
-leaving early) is parsed with its own template and listed in `complement`, sealed. Whether the
-relation holds the other way round (married, similar, cousin) is not yours to judge: write the
-subject and the object as the sentence gives them, and never a second instance for the reverse.
-An indefinite relatum (needs a ladder) is a witness; a bare plural or mass one (needs water,
-covered with snow) a bare lemma.
+for now. KINSHIP WITH HAVE — Wren has a nephew, Ilse has three sons — is the same relation: the
+relative the subject (a witness for one, the name for one named — has a nephew called Corvin:
+Corvin —, a group for several, with a distribution over this instance) and the one who has them
+the object; names listed after the group (three sons, Bram, Teodor and Lamine) are its members,
+one part-whole each. A DEFINITE ROLE TITLE with an of-phrase — the warden of the mill, the
+president of the guild, the author of the letter — is a relational noun too: this template, the
+holder the subject, the of-phrase the object (preposition of), never an identity copular. A
+passive or participial form (is surrounded by a wall, is covered with snow, is connected to the
+mill) keeps the active roles: the by- or with-phrase is the subject and the surface subject the
+object. A relatum that is an action or a clause (deserves to rest, involves selling the barn,
+means leaving early) is parsed with its own template and listed in `complement`, sealed. Whether
+the relation holds the other way round (married, similar, cousin) is not yours to judge: write
+the subject and the object as the sentence gives them, and never a second instance for the
+reverse. An indefinite relatum (needs a ladder) is a witness; a bare plural or mass one (needs
+water, covered with snow) a bare lemma.
 
 Verbs that anchor the class: need, require, deserve, merit, depend, rely, resemble, look_like,
 differ, match, equal, mean, represent, stand_for, suit, fit, concern, involve, apply, relate,
@@ -3667,17 +3767,18 @@ clause's tense, and the membership in the class is asserted too. Inside a noun p
 witness is parsed as usual (the tallest weaver: a definite witness of class weaver) and the
 instance adds the superlative with no tense and no `predicative`. The span is the whole clause
 for the predicative form and the superlative phrase for the attributive one. A CLASS THE PHRASE
-NARROWS is compared within as narrowed: the witness's own props and possessor narrow it by
-themselves (the largest walled town, her second novel); a place, an author or a whole is parsed
-as its own instance on the subject — the locative (the oldest mill in the valley), the
-postmodifier (the first poem by Bram), the part-whole (the fourth stanza of the hymn), the
-relation a relational class noun states (the first warden of the mill, Bram's second husband:
-the stative-relation, the witness its bearer), the time of a dated period (of the 18th century:
-a time instance with no event), a relative clause on the noun (the oldest bell that still rings,
-the first ship that reached the bay: the clause's own instance) — and listed in `within`; in the
-predicative form the locative is written on the subject (Bram's town in the valley: the town
-located in the valley, the clause's tense) and the modifiers on the class noun go to `props`.
-The program builds the comparison class from all of them.
+NARROWS is compared within as narrowed: the witness's own props, mods and possessor narrow it by
+themselves (the largest walled town, the oldest market town, her second novel); a place, an
+author or a whole is parsed as its own instance on the subject — the locative (the oldest mill
+in the valley), the postmodifier (the first poem by Bram), the part-whole (the fourth stanza of
+the hymn), the relation a relational class noun states (the first warden of the mill, Bram's
+second husband: the stative-relation, the witness its bearer), the time of a dated period (of
+the 18th century: a time instance with no event), a relative clause on the noun (the oldest bell
+that still rings, the first ship that reached the bay: the clause's own instance) — and listed
+in `within`; in the predicative form the locative is written on the subject (Bram's town in the
+valley: the town located in the valley, the clause's tense), the adjectives on the class noun go
+to `props` and the nouns, names and years before it to `mods`. The program builds the comparison
+class from all of them.
 
 Forms:
 - <X> is the ADJ-est / the most ADJ <N>
@@ -3687,7 +3788,7 @@ Forms:
 - the ADJ-est <N> V-ed … / V-ed the ADJ-est <N>
 - the <n-th> <N> …
 - the ADJ-est <N> in <place> / the <n-th> <N> by <author> / of <whole>
-- <possessor>'s <n-th> <N> / the ADJ-est <ADJ2> <N>
+- <possessor>'s <n-th> <N> / the ADJ-est <ADJ2> <N> / the ADJ-est <N1> <N2>
 
 Not this template:
 - a comparative with a standard — taller than Yusra, as tall as Teodor: the comparative template
@@ -3724,7 +3825,7 @@ Slots:
 - `class` (optional; a lemma): the class compared within, lemmatized to the singular: the noun
   of the phrase (weaver, quilt) or of the of-phrase (the tallest of the weavers → weaver);
   absent only for the first / last to V; the noun alone: what narrows it is the subject's own
-  phrase (its props, its possessor), `props` and `within`.
+  phrase (its props, its mods, its possessor), `props`, `mods` and `within`.
 - `kind` (required; one of: most, among, ordinal): most for the ADJ-est / the most ADJ (the
   unique top); among for one of the ADJ-est; ordinal for a rank: the n-th, the n-th ADJ-est, the
   first / last to V.
@@ -3736,9 +3837,13 @@ Slots:
   asserted and the tense recorded; absent inside a noun phrase.
 - `tense` (optional; one of: past, present, future): the copular clause's tense for the
   predicative form (is / was / will be the tallest); omit inside a noun phrase.
-- `props` (optional; a list of lemmas): in the predicative form, the modifiers on the class
+- `props` (optional; a list of lemmas): in the predicative form, the adjectives on the class
   noun, each a lemma (Bram's town is the largest walled town: walled); inside a noun phrase the
   witness's own props narrow the class instead.
+- `mods` (optional; a list of lemmas, or "@id" of a named-entity or a time instance): in the
+  predicative form, the nouns, names and years before the class noun (Calderwick is the largest
+  market town: market), as the mods of Nouns before nouns; inside a noun phrase the witness's
+  own mods narrow the class instead.
 - `within` (optional; a list of "@id" of other instances, which stay asserted on their own): the
   ids of the instances that narrow the class, each describing the subject: the locative that
   places it, the postmodifier that attributes it (by Bram), the part-whole that attaches it (of
@@ -4928,8 +5033,9 @@ Not this template:
   hangs on), and likewise on a comparative, a part-whole or a measure clause
 - a place phrase inside a noun phrase — the ferret in the barn slept: a locative predication of
   that thing, not an attachment to the clause's event
-- between two places, among a group — between the barn and the shed: no slot here; reported as
-  unmapped
+- among a group — among the ferrets: an oblique (among what); between two times — between noon
+  and two: a span of time, not a place; report it as unmapped (between two places — slept
+  between the barn and the shed — is head Between, the second place in `place2`)
 
 Slots:
 
@@ -4940,9 +5046,12 @@ Slots:
 - `place` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
   the place: a referent id (a witness for the barn, a name for Calderwick) or a bare lemma for a
   class-level place (in burrows).
+- `place2` (optional; "@id" of a referent instance, or a bare lemma for a non-specific filler):
+  with head Between only, the second of the two places (slept between the barn and the shed: the
+  shed); the order as written.
 - `head` (required; one of: Location, Near, By, Under, Over, Above, Below, Behind, Beside,
-  Outside, Opposite): Location for in / at / on / inside / within; otherwise the preposition
-  itself, capitalized (under → Under).
+  Between, Outside, Opposite): Location for in / at / on / inside / within; otherwise the
+  preposition itself, capitalized (under → Under).
 - `preposition` (required; a string): the preposition as written (in, at, under …).
 
 Example (the place attaches to the clause's event). TEXT: Yusra laughed in the barn.
@@ -5080,15 +5189,17 @@ about or directed at (talked about the audit, waited for Teodor, voted against t
 over the quilt, complained about the ladder, dealt with the audit), in what capacity or likeness
 (worked as a weaver, sang like a bird), without what (left without the quilt), despite what
 (sang despite the rain), through or along what path (walked through the barn, ran across the
-field), among or between what (sat among the ferrets), and a cause or a concession stated by a
-MULTI-WORD preposition (laughed because of the rain, waited owing to the rain, rested on account
-of the storm, sang thanks to Lamine, sang in spite of the rain: the phrase CamelCased is the
-head — BecauseOf, DueTo, OwingTo, ThanksTo, OnAccountOf, InSpiteOf). The event is parsed with
-its own template; the oblique names the event, the preposition as written (capitalized) and the
-object. A phrase predicated of an EVENT NOUN by be (the delay was due to the rain) attaches to
-that eventive witness, with the clause's tense in `tense`. One instance per phrase. Decide by
-the question the phrase answers: where, when, whence, whither, by what means, with whom, for
-whose benefit and how go to the templates that own them; everything else comes here.
+field), among or between what (sat among the ferrets; chose between the ladder and the quilt,
+mediated between Ines and Corvin: head Between, the second in `object2`; between two places is a
+location), and a cause or a concession stated by a MULTI-WORD preposition (laughed because of
+the rain, waited owing to the rain, rested on account of the storm, sang thanks to Lamine, sang
+in spite of the rain: the phrase CamelCased is the head — BecauseOf, DueTo, OwingTo, ThanksTo,
+OnAccountOf, InSpiteOf). The event is parsed with its own template; the oblique names the event,
+the preposition as written (capitalized) and the object. A phrase predicated of an EVENT NOUN by
+be (the delay was due to the rain) attaches to that eventive witness, with the clause's tense in
+`tense`. One instance per phrase. Decide by the question the phrase answers: where, when,
+whence, whither, by what means, with whom, for whose benefit and how go to the templates that
+own them; everything else comes here.
 
 Forms:
 - <clause> about / against / over / on <object>
@@ -5143,6 +5254,9 @@ Slots:
   preposition as written, capitalized (about → About, without → Without), a multi-word one
   CamelCased (because of → BecauseOf, due to → DueTo, owing to → OwingTo, thanks to → ThanksTo,
   on account of → OnAccountOf, in spite of → InSpiteOf); never a synonym.
+- `object2` (optional; "@id" of a referent instance, or a bare lemma for a non-specific filler):
+  with head Between only, the second of the two (mediated between Ines and Corvin: Corvin); the
+  order as written.
 - `object` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
   the phrase's object: a referent id (a witness, a name) for a specific thing, or a bare lemma
   for a non-specific or class-level one (as a weaver → weaver, without a quilt → quilt, like a
@@ -5226,6 +5340,9 @@ Forms:
 - the <N> with / without <object>
 - a <N> about / from / to / for <object>
 - the <N> of <object>
+- a <N> by <author>
+- <Name> is a <kind word> of <N>
+- the <N> between <A> and <B>
 
 Not this template:
 - a possessive of-phrase or genitive — the quilt of Yusra, Yusra's quilt, the sister of Lamine:
@@ -5241,8 +5358,14 @@ Not this template:
 - a place phrase inside a noun phrase — the ferret in the barn, the ledger on the workbench: a
   locative predication of that thing (in, at, on, near, under …), not a phrase of this class;
   and a place predicated of a thing — the ledger is on the workbench — likewise
-- a reduced relative clause — the rules concerning the levy, a skiff moored at the jetty: an
-  event with the noun in its role, not a phrase; report it as unmapped
+- a reduced relative clause — the rules concerning the levy, a skiff moored at the jetty: a
+  clause with the noun in its role (Relative clauses and participles), not a phrase; a by-phrase
+  after a participle (a bowl carved by Bram) is that clause's agent, not By
+- an of-phrase naming the thing itself — the village of Aldmoor: the name with its class (the
+  named-entity template), one referent, not a phrase
+- a noun before the noun — a harbour pilot: the head's mods (Nouns before nouns), not a phrase
+- between two times — between May and June, between 1990 and 1995: a span of time, not a phrase;
+  report it as unmapped
 
 Slots:
 
@@ -5259,7 +5382,15 @@ Slots:
 - `object` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
   the phrase's object: a referent id (a witness, a name) for a specific thing, or a bare lemma
   for a non-specific or class-level one (a book about ferrets → ferret, a thermos without a lid
-  → lid).
+  → lid); with head Between the first of the two.
+- `object_props` (optional; a list of lemmas): with a bare-lemma object, the adjectives on it (a
+  song about lost sailors: lost).
+- `object_mods` (optional; a list of lemmas, or "@id" of a named-entity or a time instance):
+  with a bare-lemma object, the nouns before it (a book about harbour pilots: harbour), as the
+  mods of Nouns before nouns.
+- `object2` (optional; "@id" of a referent instance, or a bare lemma for a non-specific filler):
+  with head Between only, the second of the two (the quarrel between Ines and Corvin: Corvin);
+  the order as written.
 
 Example (the phrase picks out the referent; no possession is stated). TEXT: The man with the hat laughed.
 
@@ -5324,10 +5455,11 @@ for later / earlier), an anaphoric phrase likewise from the antecedent event or 
 for that / the same, 1 for next / following / after, a day part as a second instance), a named
 time by its name. One instance per time expression; a day part beside a date or an offset
 (Monday morning, the following morning) is a second instance. A time no clause places an event
-at — the reference of a time relation (before noon), the edge of a window (within three days) —
-is an instance with no event. When the time is predicated of an event noun by "be" or by take
-place / occur / happen (the meeting is at noon, the audit was on Monday, the fair took place in
-May: these verbs have no event of their own), the noun is a witness marked eventive, the time
+at — the reference of a time relation (before noon), the edge of a window (within three days), a
+year before a noun that names no event (a 1904 almanac: named in the noun's mods) — is an
+instance with no event. When the time is predicated of an event noun by "be" or by take place /
+occur / happen (the meeting is at noon, the audit was on Monday, the fair took place in May:
+these verbs have no event of their own), the noun is a witness marked eventive, the time
 attaches to it, and this instance records the clause's tense.
 
 Forms:
@@ -5339,6 +5471,7 @@ Forms:
 - <clause> <named time>
 - <time>, <clause>
 - <event noun> is / was at / on <time>
+- the <year> <event noun>
 - <clause> <n> <units> ago / later / earlier
 - <clause> in <n> <units>
 - <clause> <n> <units> before / after <event or time>

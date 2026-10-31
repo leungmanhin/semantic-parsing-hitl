@@ -1,0 +1,97 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "203017637a80e5d180ad8fbea051ea5b3a9f3a0a47fd55e15383ae058ab2138b",
+  "item": {
+    "id": "s8e2d7bbce6",
+    "text": "The dock workers left."
+  },
+  "usage": {
+    "input": 104227,
+    "output": 146,
+    "thinking": null,
+    "total": 104373,
+    "cached": 102178,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 104227,
+    "candidatesTokenCount": 146,
+    "totalTokenCount": 104373,
+    "cachedContentTokenCount": 102178,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 104227
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 102178
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 146
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s8e2d7bbce6\", \"instances\": [{\"t\": \"group\", \"id\": \"g1\", \"class\": \"worker\", \"definite\": true, \"mods\": [\"dock\"], \"span\": \"The dock workers\"}, {\"t\": \"motion\", \"id\": \"e1\", \"verb\": \"leave\", \"mover\": \"@g1\", \"tense\": \"past\", \"span\": \"The dock workers left\"}, {\"t\": \"distribution\", \"id\": \"r1\", \"group\": \"@g1\", \"over\": [\"@e1\"], \"span\": \"The dock workers left\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s8e2d7bbce6",
+    "instances": [
+      {
+        "t": "group",
+        "id": "g1",
+        "class": "worker",
+        "definite": true,
+        "mods": [
+          "dock"
+        ],
+        "span": "The dock workers"
+      },
+      {
+        "t": "motion",
+        "id": "e1",
+        "verb": "leave",
+        "mover": "@g1",
+        "tense": "past",
+        "span": "The dock workers left"
+      },
+      {
+        "t": "distribution",
+        "id": "r1",
+        "group": "@g1",
+        "over": [
+          "@e1"
+        ],
+        "span": "The dock workers left"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "12605e658914fc5db17e2b6d548588331952976acbad42b2d0f97978fe2c7db4",
+  "manifest_id": "12298c656864",
+  "run": 3,
+  "case": {
+    "template": "group",
+    "section": "held_out",
+    "index": 13,
+    "category": "positive",
+    "text": "The dock workers left.",
+    "key": "8e2d7bbce6"
+  }
+}

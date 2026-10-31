@@ -1,0 +1,98 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "203017637a80e5d180ad8fbea051ea5b3a9f3a0a47fd55e15383ae058ab2138b",
+  "item": {
+    "id": "sce3ccf63ea",
+    "text": "Barn owls hunt."
+  },
+  "usage": {
+    "input": 104223,
+    "output": 135,
+    "thinking": null,
+    "total": 104358,
+    "cached": 102174,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 104223,
+    "candidatesTokenCount": 135,
+    "totalTokenCount": 104358,
+    "cachedContentTokenCount": 102174,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 104223
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 102174
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 135
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sce3ccf63ea\", \"instances\": [{\"t\": \"range\", \"id\": \"q1\", \"class\": \"owl\", \"mods\": [\"barn\"], \"span\": \"Barn owls\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"hunt\", \"actor\": \"@q1\", \"tense\": \"present\", \"span\": \"Barn owls hunt\"}, {\"t\": \"generic\", \"id\": \"r1\", \"ranges\": [\"@q1\"], \"over\": [\"@e1\"], \"span\": \"Barn owls hunt\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sce3ccf63ea",
+    "instances": [
+      {
+        "t": "range",
+        "id": "q1",
+        "class": "owl",
+        "mods": [
+          "barn"
+        ],
+        "span": "Barn owls"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "hunt",
+        "actor": "@q1",
+        "tense": "present",
+        "span": "Barn owls hunt"
+      },
+      {
+        "t": "generic",
+        "id": "r1",
+        "ranges": [
+          "@q1"
+        ],
+        "over": [
+          "@e1"
+        ],
+        "span": "Barn owls hunt"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "12605e658914fc5db17e2b6d548588331952976acbad42b2d0f97978fe2c7db4",
+  "manifest_id": "12298c656864",
+  "run": 2,
+  "case": {
+    "template": "generic",
+    "section": "held_out",
+    "index": 20,
+    "category": "positive",
+    "text": "Barn owls hunt.",
+    "key": "ce3ccf63ea"
+  }
+}

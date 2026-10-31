@@ -63,6 +63,17 @@ clause is the property it states, ``(Member broken)``; an eventive one is ``(Eve
 whose template declares a ``period`` (slot -> head) is ``(Within (Century 19))``, which no atom
 of another member shows: such a class has no rule, its subject's membership is stated instead.
 
+Nouns before nouns.  A lemma slot may declare ``narrowed_by: <list slot>``: the nouns, names and
+years the text puts before that noun (a harbour pilot, a Calderwick quilt, a 1904 almanac).
+``{slot|mod}`` renders the class they narrow, ``(Narrow pilot (Mod harbour))`` — several in an
+And in a fixed order, a name as its symbol, a time by its description ``(Mod (Year 1904))`` —
+or the class itself when nothing modifies it (a bare-lemma filler too, its adjectives in a list with
+``restriction: Member`` as ``(Member flowering)``); a shape with ``with_head: <slot>`` is emitted
+again with the class alone, so a harbour pilot is a pilot too. The term is the comparison
+class's: a superlative over a modified noun narrows by the same ``(Mod …)`` restrictions, and a
+class narrowed by its nouns alone needs no rule (its members say so themselves). ``{slot|opt}``
+drops its position when the slot is empty: one shape for (Between x a) and (Between x a b).
+
 Symbols.  A template that ``mints`` a symbol says its class and how it is named:
 ``symbol: name`` derives the symbol from the ``name`` slot (``"Ilse Varga"`` -> ``ilse_varga``,
 duplicates numbered), otherwise a witness ``sk_<stem>_<n>`` whose stem is the ``stem`` slot's value, or the
@@ -202,6 +213,8 @@ def holds(cond: str, inst: dict, lists: dict | None = None) -> bool:
 # --------------------------------------------------------------------------
 
 
+OMIT = object()          # an empty {slot|opt}: the position is dropped from its term
+
 MONTHS = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"]
 WEEKDAYS = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
 
@@ -238,6 +251,8 @@ def rigid(r: dict, t: dict) -> bool:
 class _Emitter:
     def __init__(self, item: dict, catalog: dict):
         self.pending_within: list = []
+        self.bare: set = set()                           # (instance, slot) pairs rendered with the class alone (a twin)
+        self.antecedent: dict = {}                       # a mention's symbol -> its certain antecedent's
         self.state_mode = 0                             # > 0 while a `states: true` shape renders: on-demand predications are state binders / state functions
         self.item, self.cat = item, catalog
         self.insts = [dict(r) if isinstance(r, dict) else r for r in (item.get("instances") or [])]   # never mutate the caller's records
@@ -296,6 +311,27 @@ class _Emitter:
                         problems.append(f"{where}: {sname} references {ref}, which mints no symbol")
                     elif spec["type"] == "refs" and self.is_attachment(target):
                         problems.append(f"{where}: {sname} lists {ref}, an attachment, which follows its head into a scope and is never listed in one")
+            for sname, spec in (t.get("slots") or {}).items():
+                v = r.get(sname)
+                if spec["type"] == "list" and spec.get("ids") and isinstance(v, list):   # a name or a year before a noun
+                    for x in v:
+                        if not is_ref(x):
+                            continue
+                        target = self.by_id.get(x[1:])
+                        if target is None:
+                            problems.append(f"{where}: {sname} references unknown instance {x}")
+                        elif target.get("t") not in spec["ids"]:
+                            problems.append(f"{where}: {sname} names {x}, a {target.get('t')} instance — a noun is its lemma; "
+                                            f"an instance only of {', '.join(spec['ids'])}")
+                if spec.get("only_when") and v not in (None, "", []) and not holds(spec["only_when"], r, t.get("lexicon")):
+                    problems.append(f"{where}: {sname} is filled only when {spec['only_when']}")
+                nb = spec.get("narrowed_by")
+                for lname in ([nb] if isinstance(nb, str) else nb or []):
+                    if r.get(lname) not in (None, [], ""):
+                        if v in (None, ""):
+                            problems.append(f"{where}: {lname} narrows {sname}, which is empty")
+                        elif is_ref(v):
+                            problems.append(f"{where}: {lname} narrows {sname}, which names {v} — a referent's words go on its own instance")
             for sname in r:
                 if sname not in ("t", "id", "span") and sname not in (t.get("slots") or {}):
                     problems.append(f"{where}: unknown slot {sname}")
@@ -470,18 +506,23 @@ class _Emitter:
                 self.homed_in.setdefault(h, []).append(iid)
 
     # ---------------------------------------------------------------- narrowing
-    def compute_narrowing(self):
-        """The comparison class of every instance whose template declares a ``narrowing``: the
-        class with the restrictions the noun phrase states, as a term that is the same in every
-        text saying the same (see the module notes), and the body of the rule that defines its
-        members — None when a restriction (a period) states nothing a member's own atoms show."""
-        antecedent = {}
+    def compute_antecedents(self):
+        """A mention's symbol -> its certain antecedent's: a term built from the text's words (a
+        comparison class, a class narrowed by a name) names the individual, not the pronoun."""
         for r in self.insts:
             if r.get("t") == "coref" and str(r.get("certainty")) == "certain" \
                     and is_ref(r.get("mention")) and is_ref(r.get("antecedent")):
                 m, a = self.sym.get(r["mention"][1:]), self.sym.get(r["antecedent"][1:])
                 if m and a:
-                    antecedent[m] = a
+                    self.antecedent[m] = a
+
+    def compute_narrowing(self):
+        """The comparison class of every instance whose template declares a ``narrowing``: the
+        class with the restrictions the noun phrase states, as a term that is the same in every
+        text saying the same (see the module notes), and the body of the rule that defines its
+        members — None when a restriction (a period) states nothing a member's own atoms show,
+        or when only the noun's own modifiers narrow it (its members state that class)."""
+        antecedent = self.antecedent
 
         def canon(v):
             if is_ref(v):
@@ -509,8 +550,16 @@ class _Emitter:
                 if phrase.get("possessor") not in (None, ""):
                     owner = canon(phrase["possessor"])
                     restrict(["Possession", owner], [["Possession", "$y", owner]])
+                if self.mods_of(phrase, "class"):          # the nouns before it: the member's own narrowed class shows them
+                    for head, m in self.mods_of(phrase, "class"):
+                        restrict([head, self.mod_desc(phrase, m) if head == "Mod" else m], [["Member", "$y", self.mod_term(phrase, "class")]])
+                    covered = True
             for prop in r.get(spec.get("props", ""), None) or []:
                 restrict(["Member", prop], [["Member", "$y", prop]])
+            if self.mods_of(r, spec["class"]):              # the predicative form's nouns before the class noun
+                for head, m in self.mods_of(r, spec["class"]):
+                    restrict([head, self.mod_desc(r, m) if head == "Mod" else m], [["Member", "$y", self.mod_term(r, spec["class"])]])
+                covered = True
             for n_ref, ref in enumerate(r.get(spec.get("within", ""), None) or []):
                 if not is_ref(ref) or ref[1:] not in self.by_id:
                     raise EmitError([f"{r['t']} {r['id']}: within names {ref!r}, not an instance"])
@@ -548,13 +597,19 @@ class _Emitter:
             if not pats:
                 continue
             pats = [p for _k, p in sorted({render(p): p for p in pats}.items())]
+            term = ["Narrow", cls, pats[0] if len(pats) == 1 else ["And", *pats]]
+            if all(p[0] == "Mod" for p in pats):           # the noun's own modifiers alone: the class its members state
+                self.narrow[r["id"]] = {"term": term, "body": None, "stated": True}
+                continue
             body = None
             if not opaque:
                 conj = [] if covered else [["Member", "$y", cls]]   # a relation of the class's own noun shows the class
                 for p in pats:
-                    conj += bodies[render(p)]
+                    for b in bodies[render(p)]:
+                        if b not in conj:
+                            conj.append(b)
                 body = conj[0] if len(conj) == 1 else ["And", *conj]
-            self.narrow[r["id"]] = {"term": ["Narrow", cls, pats[0] if len(pats) == 1 else ["And", *pats]], "body": body}
+            self.narrow[r["id"]] = {"term": term, "body": body}
 
     def relation_of(self, iid: str, subj_sym: str):
         """``(relation, role, other)`` when the instance is a state the subject bears — (Member s
@@ -612,8 +667,9 @@ class _Emitter:
             if src.get("t") == "witness" and not src.get("definite") and src.get("possessor") in (None, ""):
                 k += 1
                 z = f"$z{n + 1}_{k}"
-                pairs.append([head, ["Some", src["class"]]])
-                body += [[head, var, z], ["Member", z, src["class"]]]
+                kind = self.mod_term(src, "class")         # a jazz loom: (Some (Narrow loom (Mod jazz)))
+                pairs.append([head, ["Some", kind]])
+                body += [[head, var, z], ["Member", z, kind]]
             else:
                 f = canon(filler)
                 pairs.append([head, f])
@@ -641,6 +697,57 @@ class _Emitter:
                 return hit
         return None
 
+    def mods_of(self, inst: dict, slot: str) -> list:
+        """``(head, value)`` for each word that narrows the class in ``slot``, from its
+        ``narrowed_by`` list(s): a noun, a name or a year as ``Mod``, an adjective (a list with
+        ``restriction: Member``) as ``Member``. Nothing for an empty slot or a referent."""
+        slots = (self.cat.get(inst.get("t")) or {}).get("slots") or {}
+        names = (slots.get(slot) or {}).get("narrowed_by")
+        if not names or inst.get(slot) in (None, "") or is_ref(inst.get(slot)):
+            return []
+        out = []
+        for name in ([names] if isinstance(names, str) else names):
+            head = (slots.get(name) or {}).get("restriction", "Mod")
+            out += [(head, v) for v in inst.get(name) or []]
+        return out
+
+    def mod_desc(self, inst: dict, value):
+        """What one modifier puts in the narrowed class: a lemma itself, a name its symbol (a
+        pronoun its certain antecedent), a time its description — (Year 1904), the period as a
+        comparison class names it — or, for a time named by a word, that word."""
+        if not is_ref(value):
+            return value
+        rid = value[1:]
+        rr = self.by_id.get(rid)
+        if rr is None:
+            raise EmitError([f"{inst['t']} {inst['id']}: a modifier names {value}, not an instance"])
+        period = self.cat[rr["t"]].get("period")
+        if period:
+            desc = next(([head, rr[s]] for s, head in period.items() if rr.get(s) not in (None, "")), None)
+            if desc is not None:
+                return desc
+            mints = self.cat[rr["t"]].get("mints") or {}
+            if mints.get("constant") and rr.get(mints.get("symbol", "")) not in (None, ""):
+                return self.sym[rid]
+            raise EmitError([f"{inst['t']} {inst['id']}: a modifier names {value}, a time with no {', '.join(period)} and no name"])
+        if rid not in self.sym:
+            raise EmitError([f"{inst['t']} {inst['id']}: a modifier names {value}, which mints no symbol"])
+        sym = self.sym[rid]
+        return self.antecedent.get(sym, sym)
+
+    def mod_term(self, inst: dict, slot: str):
+        """The class in ``slot`` narrowed by the nouns before it — (Narrow pilot (Mod harbour)),
+        several restrictions in an And in a fixed order — or the class itself when none does,
+        or while the shape's head-only twin is being rendered."""
+        cls = inst.get(slot)
+        mods = self.mods_of(inst, slot)
+        if not mods or (inst["id"], slot) in self.bare:
+            return cls
+        self.declare(cls, "Class")                     # a bare filler narrowed is a class too
+        rs = [[head, self.mod_desc(inst, v) if head == "Mod" else v] for head, v in mods]
+        rs = [r for _k, r in sorted({render(x): x for x in rs}.items())]
+        return ["Narrow", cls, rs[0] if len(rs) == 1 else ["And", *rs]]
+
     def narrowed_fill(self, inst: dict, slot: str, part: str):
         spec = self.cat[inst["t"]].get("narrowing") or {}
         n = self.narrow.get(inst["id"])
@@ -659,6 +766,10 @@ class _Emitter:
     def fill(self, inst: dict, slot: str, spec: dict, element=None, within: bool = False, part: str | None = None):
         if part in ("narrowed", "narrowing"):
             return self.narrowed_fill(inst, slot, part)
+        if part == "mod" and not is_ref(inst.get(slot)):   # a referent is its own symbol: its nouns sit on its instance
+            return self.mod_term(inst, slot)
+        if part == "opt" and inst.get(slot) in (None, "", []):   # an optional position: absent, it is not there
+            return OMIT
         v = element if element is not None else inst.get(slot)
         if spec["type"] == "refs":
             if within:                                   # inside a bundle: the first referenced instance's symbol, through any scope over it
@@ -698,7 +809,7 @@ class _Emitter:
 
     def substitute(self, expr, inst: dict, slots: dict, element_slot=None, element=None, within: bool = False):
         if isinstance(expr, list):
-            out = [self.substitute(x, inst, slots, element_slot, element, within) for x in expr]
+            out = [y for y in (self.substitute(x, inst, slots, element_slot, element, within) for x in expr) if y is not OMIT]
             if out and out[0] == "And":                 # a shape's own conjunction absorbs a bundle that is one
                 flat = ["And"]
                 for x in out[1:]:
@@ -754,7 +865,7 @@ class _Emitter:
             if e.get("if_narrowed"):                     # a comparison class: true when narrowed; defined / opaque: its rule, or none
                 n = self.narrow.get(iid)
                 if n is None or (e["if_narrowed"] == "defined" and n["body"] is None) \
-                        or (e["if_narrowed"] == "opaque" and n["body"] is not None):
+                        or (e["if_narrowed"] == "opaque" and (n["body"] is not None or n.get("stated"))):
                     continue
             if "if_filled" in e and r.get(e["if_filled"]) in (None, [], ""):
                 continue
@@ -765,18 +876,26 @@ class _Emitter:
                 self.declare(sym, cls)
             if e.get("states"):
                 self.state_mode += 1
+            head = e.get("with_head")
+            twin = bool(head) and bool(self.mods_of(r, head))   # a modified noun: the shape with the class alone, then narrowed
             try:
-                if "each" in e:
-                    slot = e["each"]
-                    if t["slots"][slot]["type"] == "refs":
-                        b = self.bundle(r.get(slot) or [], iid)
-                        elements = b[1:] if isinstance(b, list) and b and b[0] == "And" else [b]
-                    else:
-                        elements = r.get(slot) or []
-                    for element in elements:
-                        terms.append((self.substitute(shape, r, t["slots"], slot, element), e))
-                else:
-                    terms.append((self.substitute(shape, r, t["slots"]), e))
+                for bare in ([True, False] if twin else [False]):
+                    if bare:
+                        self.bare.add((iid, head))
+                    try:
+                        if "each" in e:
+                            slot = e["each"]
+                            if t["slots"][slot]["type"] == "refs":
+                                b = self.bundle(r.get(slot) or [], iid)
+                                elements = b[1:] if isinstance(b, list) and b and b[0] == "And" else [b]
+                            else:
+                                elements = r.get(slot) or []
+                            for element in elements:
+                                terms.append((self.substitute(shape, r, t["slots"], slot, element), e))
+                        else:
+                            terms.append((self.substitute(shape, r, t["slots"]), e))
+                    finally:
+                        self.bare.discard((iid, head))
             finally:
                 if e.get("states"):
                     self.state_mode -= 1
@@ -1084,6 +1203,7 @@ class _Emitter:
             raise EmitError(problems)
         self.assign_symbols()
         self.compute_homes()
+        self.compute_antecedents()
         self.compute_narrowing()
         for r in self.insts:
             iid = r["id"]

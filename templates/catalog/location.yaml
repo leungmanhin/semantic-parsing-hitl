@@ -52,8 +52,9 @@ trigger:
       a place phrase inside a noun phrase — the ferret in the barn slept: a locative predication
       of that thing, not an attachment to the clause's event
     - >-
-      between two places, among a group — between the barn and the shed: no slot here; reported
-      as unmapped
+      among a group — among the ferrets: an oblique (among what); between two times — between
+      noon and two: a span of time, not a place; report it as unmapped (between two places —
+      slept between the barn and the shed — is head Between, the second place in `place2`)
 
 slots:
   id:          {type: id, required: true, doc: "your label for the attachment (l1, l2 …)"}
@@ -61,12 +62,14 @@ slots:
                 doc: "the predication the place attaches to: the id of the clause's event instance"}
   place:       {type: filler, class: Entity, required: true,
                 doc: "the place: a referent id (a witness for the barn, a name for Calderwick) or a bare lemma for a class-level place (in burrows)"}
-  head:        {type: enum, values: [Location, Near, By, Under, Over, Above, Below, Behind, Beside, Outside, Opposite], required: true,
+  place2:      {type: filler, class: Entity, required: false, only_when: "head == Between",
+                doc: "with head Between only, the second of the two places (slept between the barn and the shed: the shed); the order as written"}
+  head:        {type: enum, values: [Location, Near, By, Under, Over, Above, Below, Behind, Beside, Between, Outside, Opposite], required: true,
                 doc: "Location for in / at / on / inside / within; otherwise the preposition itself, capitalized (under → Under)"}
   preposition: {type: string, required: true, doc: "the preposition as written (in, at, under …)"}
 
 emits:
-  - atom: "({head} {event} {place})"
+  - atom: "({head} {event} {place} {place2|opt})"
 
 notes:
   - >-
@@ -256,3 +259,12 @@ examples:
         - {t: activity, id: v1, verb: visit, actor: "@n1", patient: "@x1", tense: past}
         - {t: activity, id: v2, verb: sing, actor: "@n2", tense: past}
         - {t: location, id: l1, event: "@v2", place: "@x1", head: Location, preposition: where}
+    - category: positive
+      note: an event's place between two — head Between, the second in place2
+      text: "Corvin waited between the kiln and the well."
+      instances:
+        - {t: named-entity, id: n1, name: "Corvin"}
+        - {t: witness, id: x1, class: kiln, definite: true}
+        - {t: witness, id: x2, class: well, definite: true}
+        - {t: activity, id: v1, verb: wait, actor: "@n1", tense: past}
+        - {t: location, id: l1, event: "@v1", place: "@x1", place2: "@x2", head: Between, preposition: between}

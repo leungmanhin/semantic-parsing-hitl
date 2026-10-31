@@ -27,7 +27,9 @@ trigger:
     argued over the quilt, complained about the ladder, dealt with the audit), in what capacity
     or likeness (worked as a weaver, sang like a bird), without what (left without the quilt),
     despite what (sang despite the rain), through or along what path (walked through the barn,
-    ran across the field), among or between what (sat among the ferrets), and a cause or a
+    ran across the field), among or between what (sat among the ferrets; chose between the
+    ladder and the quilt, mediated between Ines and Corvin: head Between, the second in
+    `object2`; between two places is a location), and a cause or a
     concession stated by a MULTI-WORD preposition (laughed because of the rain, waited owing to
     the rain, rested on account of the storm, sang thanks to Lamine, sang in spite of the rain:
     the phrase CamelCased is the head — BecauseOf, DueTo, OwingTo, ThanksTo, OnAccountOf,
@@ -95,13 +97,15 @@ slots:
   head:   {type: enum, values: [About, Above, Across, Against, Along, Among, Around, As, At, Behind, Below, Beneath, Beside, Besides, Between, Beyond, By, Concerning, Despite, Down, Except, For, From, In, Inside, Into, Like, Near, Of, "Off", "On", Onto, Opposite, Out, Outside, Over, Past, Per, Regarding, Round, Through, To, Toward, Towards, Under, Underneath, Unlike, Up, Upon, Via, With, Within, Without,
                          BecauseOf, DueTo, OwingTo, ThanksTo, OnAccountOf, InSpiteOf],
            required: true, doc: "the preposition as written, capitalized (about → About, without → Without), a multi-word one CamelCased (because of → BecauseOf, due to → DueTo, owing to → OwingTo, thanks to → ThanksTo, on account of → OnAccountOf, in spite of → InSpiteOf); never a synonym"}
+  object2: {type: filler, class: Entity, required: false, only_when: "head == Between",
+           doc: "with head Between only, the second of the two (mediated between Ines and Corvin: Corvin); the order as written"}
   object: {type: filler, class: Entity, required: true,
            doc: "the phrase's object: a referent id (a witness, a name) for a specific thing, or a bare lemma for a non-specific or class-level one (as a weaver → weaver, without a quilt → quilt, like a bird → bird)"}
   tense:  {type: enum, values: [past, present, future], required: false,
            doc: "only when the phrase is predicated of an event noun by be (the delay was due to the rain): the clause's tense; otherwise absent, the event's own template records it"}
 
 emits:
-  - atom: "({head} {event} {object})"
+  - atom: "({head} {event} {object} {object2|opt})"
   - atom: "(Past {event})"                  # predicated of an event noun by be: the clause's tense on that event
     when: "tense == past"
   - atom: "(Future {event})"
@@ -345,3 +349,12 @@ examples:
     - category: abstain
       text: "Lamine sang instead of Yusra."
       expected: {abstain: true, gap: G00, span: "instead of Yusra"}     # a substitution: no head yet
+    - category: positive
+      note: between two parties — the second in object2
+      text: "Yusra mediated between Lamine and Teodor."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: named-entity, id: n3, name: "Teodor"}
+        - {t: activity, id: v1, verb: mediate, actor: "@n1", tense: past}
+        - {t: oblique, id: a1, event: "@v1", head: Between, object: "@n2", object2: "@n3"}

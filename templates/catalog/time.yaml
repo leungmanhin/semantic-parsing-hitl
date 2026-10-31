@@ -35,7 +35,8 @@ trigger:
     instance), a named time by its name. One instance per time expression; a day part beside a
     date or an offset (Monday morning, the following morning) is a second instance. A time no
     clause places an event at — the reference of a time relation (before noon), the edge of a
-    window (within three days) — is an instance with no event. When the time is predicated of
+    window (within three days), a year before a noun that names no event (a 1904 almanac: named
+    in the noun's mods) — is an instance with no event. When the time is predicated of
     an event noun by "be" or by take place / occur / happen (the meeting is at noon, the audit was
     on Monday, the fair took place in May: these verbs have no event of their own), the noun is a witness
     marked eventive, the time attaches to it, and this instance records the clause's tense.
@@ -48,6 +49,7 @@ trigger:
     - "<clause> <named time>"                        # slept at night; sang at dawn
     - "<time>, <clause>"                             # In 2019, Teodor arrived
     - "<event noun> is / was at / on <time>"         # the meeting is at noon; the audit was on Monday
+    - "the <year> <event noun>"                      # the 1904 flood: the flood eventive, this instance on it
     - "<clause> <n> <units> ago / later / earlier"   # left three days ago; a week later, Teodor left
     - "<clause> in <n> <units>"                      # will leave in two weeks
     - "<clause> <n> <units> before / after <event or time>"   # arrived two days after the audit
@@ -516,3 +518,11 @@ examples:
         - {t: witness, id: x1, class: mill, definite: true}
         - {t: change-of-state, id: c1, verb: open, undergoer: "@x1", tense: past}
         - {t: time, id: t1, event: "@c1", decade: 1950}
+    - category: positive
+      note: a year before a noun that names an event is that event's time — the noun eventive
+      text: "The 1911 strike closed the mill."
+      instances:
+        - {t: witness, id: x1, class: strike, definite: true, eventive: true}
+        - {t: time, id: t1, event: "@x1", year: 1911}
+        - {t: witness, id: x2, class: mill, definite: true}
+        - {t: change-of-state, id: e1, verb: close, agent: "@x1", undergoer: "@x2", tense: past}
