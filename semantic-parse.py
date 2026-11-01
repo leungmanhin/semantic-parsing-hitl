@@ -7,11 +7,12 @@ issues) is printed.  Providers are pluggable: one small class per provider, sele
 
     python semantic-parse.py "Teodor gave Yusra a thermos."
     python semantic-parse.py "…" --provider google --model gemini-2.5-flash --effort low
+    python semantic-parse.py "…" --provider deepseek --model deepseek-v4-pro --effort low
     python semantic-parse.py "…" --out run.json          # keep the full run record
     python semantic-parse.py "…" --dry-run               # show the request, call nothing
 
 Keys come from the environment: GEMINI_API_KEY (or GOOGLE_API_KEY), OPENAI_API_KEY,
-ANTHROPIC_API_KEY.  Only the standard library is used.
+DEEPSEEK_API_KEY, ANTHROPIC_API_KEY.  Only the standard library is used.
 
 Every reply is validated after the call by the catalog's validator (templates/tmpl/validate.py:
 the emitter's instance checks, graph lints, C9 type check): findings go to stderr and into the run
@@ -64,14 +65,49 @@ class Reply:
 OPENAI_429_WAITS = (5, 10, 20, 40, 80, 160, 300)
 
 
+def _read_sse(resp) -> dict:
+    """A Chat Completions event stream gathered into the shape of a non-streaming reply: the content and
+    the reasoning joined, the finish reason, and the usage that the last chunk carries. Blank lines and
+    keep-alive comments are skipped; a stream cut before ``data: [DONE]`` or a line that is not JSON
+    counts as a reply cut short (``IncompleteRead``), which ``_post_json`` retries like a dropped
+    connection."""
+    content, reasoning, finish, usage, model = [], [], None, None, None
+    for raw_line in resp:
+        line = raw_line.decode("utf-8").strip()
+        if not line.startswith("data:"):
+            continue                                           # blank lines, ": keep-alive" comments
+        data = line[len("data:"):].strip()
+        if data == "[DONE]":
+            break
+        try:
+            chunk = json.loads(data)
+        except json.JSONDecodeError:
+            raise http.client.IncompleteRead(raw_line) from None
+        if chunk.get("error"):
+            raise ProviderError(f"error in the stream: {json.dumps(chunk['error'])[:800]}")
+        model = chunk.get("model") or model
+        usage = chunk.get("usage") or usage
+        for choice in chunk.get("choices") or []:
+            delta = choice.get("delta") or {}
+            content.append(delta.get("content") or "")
+            reasoning.append(delta.get("reasoning_content") or "")
+            finish = choice.get("finish_reason") or finish
+    else:
+        raise http.client.IncompleteRead(b"")                   # no [DONE]: the stream was cut
+    return {"model": model, "usage": usage or {},
+            "choices": [{"finish_reason": finish,
+                         "message": {"content": "".join(content), "reasoning_content": "".join(reasoning) or None}}]}
+
+
 def _post_json(url: str, headers: dict, body: dict, timeout: float, attempts: int = 3,
-               waits_429: tuple = ()) -> dict:
+               waits_429: tuple = (), read=None) -> dict:
     """POST a JSON body; retry on 429 / 5xx with backoff; raise ProviderError otherwise.
 
     ``waits_429`` is a longer schedule for HTTP 429 alone (the seconds before each retry), spent
     without using up ``attempts``; every other failure keeps the short backoff, since a re-send after
     a dropped connection may be billed. A 429 for an exhausted quota does not clear by waiting and
-    is raised at once."""
+    is raised at once. ``read`` turns the open response into the reply (default: the JSON body; a
+    streaming provider passes ``_read_sse``); a body cut short is retried like a dropped connection."""
     data = json.dumps(body).encode("utf-8")
     attempt, waited = 1, 0
     while True:
@@ -79,7 +115,7 @@ def _post_json(url: str, headers: dict, body: dict, timeout: float, attempts: in
                                      headers={"Content-Type": "application/json", **headers})
         try:
             with urllib.request.urlopen(req, timeout=timeout) as resp:
-                return json.loads(resp.read().decode("utf-8"))
+                return read(resp) if read else json.loads(resp.read().decode("utf-8"))
         except urllib.error.HTTPError as exc:
             detail = exc.read().decode("utf-8", "replace")[:2000]
             last = f"HTTP {exc.code}: {detail}"
@@ -97,9 +133,10 @@ def _post_json(url: str, headers: dict, body: dict, timeout: float, attempts: in
             last = f"network error: {exc.reason}"
             if attempt >= attempts:
                 raise ProviderError(last) from None
-        except (http.client.RemoteDisconnected, ConnectionResetError, TimeoutError, OSError) as exc:
-            # the server closed the connection (long thinking runs do this) or the client timed out
-            last = f"connection dropped before a reply ({exc.__class__.__name__}: {exc}); attempt {attempt} of {attempts}"
+        except (http.client.HTTPException, ConnectionResetError, TimeoutError, OSError) as exc:
+            # the server closed the connection (long thinking runs do this), cut the body short
+            # (IncompleteRead), or the client timed out
+            last = f"connection dropped before a complete reply ({exc.__class__.__name__}: {exc}); attempt {attempt} of {attempts}"
             if attempt >= attempts:
                 raise ProviderError(last + " — raise --timeout, lower the thinking level, or retry") from None
         time.sleep(2 ** attempt)
@@ -282,6 +319,82 @@ class OpenAI:
         return reply
 
 
+class DeepSeek:
+    """DeepSeek through its OpenAI-format Chat Completions API.
+
+    Thinking is on by default at effort high: ``--effort`` low / high are sent as ``reasoning_effort``
+    (medium as high, DeepSeek's own mapping) and none turns thinking off (``thinking: disabled``).
+
+    Caching, per DeepSeek's context-caching guide: automatic and on disk, with no write charge (a
+    miss is billed at the input rate, a hit at a small fraction of it), kept for hours to days. A
+    request hits only a stored prefix it matches IN FULL; prefixes are stored at the end of each
+    request's input and output, at fixed intervals inside long inputs, and as a common prefix once
+    several requests are seen to share it. The catalog is therefore the system message, unchanged,
+    ahead of the item: the first requests with different items store it as a shared prefix, and
+    later requests read it. No priming is needed.
+
+    JSON Output replaces a reply it cannot read as JSON with spaces (finish ``stop``): the finish then
+    says so, and the reply fails as not valid JSON, to be collected again.
+
+    Replies are streamed: a non-streaming reply sends nothing while the model thinks, and a long
+    thinking run had its connection closed at sixty seconds with the body unsent; the stream keeps
+    tokens flowing and is gathered back into the usual reply."""
+
+    name = "deepseek"
+    default_model = "deepseek-v4-pro"
+    env_keys = ("DEEPSEEK_API_KEY",)
+    url = "https://api.deepseek.com/chat/completions"
+    efforts = {"low": "low", "medium": "high", "high": "high"}
+
+    def __init__(self, args):
+        self.args = args
+
+    def key(self) -> str:
+        if os.environ.get("DEEPSEEK_API_KEY"):
+            return os.environ["DEEPSEEK_API_KEY"]
+        raise ProviderError("set DEEPSEEK_API_KEY")
+
+    def request(self, system: str, user: str, model: str) -> tuple[str, dict, dict]:
+        a = self.args
+        body = {"model": model, "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}],
+                "stream": True}
+        if not a.no_json_mode:
+            body["response_format"] = {"type": "json_object"}
+        if a.effort == "none":
+            body["thinking"] = {"type": "disabled"}
+        else:
+            body["thinking"] = {"type": "enabled"}
+            body["reasoning_effort"] = self.efforts[a.effort]
+        if a.max_tokens:
+            body["max_tokens"] = a.max_tokens
+        if a.temperature is not None:              # thinking mode ignores it (DeepSeek: no error, no effect)
+            body["temperature"] = a.temperature
+        return self.url, {"Authorization": "Bearer <key>"}, body
+
+    def complete(self, system: str, user: str, model: str) -> Reply:
+        url, headers, body = self.request(system, user, model)
+        headers["Authorization"] = f"Bearer {self.key()}"
+        raw = _post_json(url, headers, body, self.args.timeout, read=_read_sse)
+        choices = raw.get("choices") or []
+        if not choices:
+            raise ProviderError(f"no choices in the reply: {json.dumps(raw)[:800]}")
+        message = choices[0].get("message") or {}
+        text = message.get("content") or ""
+        finish = choices[0].get("finish_reason")
+        if not text.strip():
+            finish = f"{finish}: blank content" + (" (JSON Output blanks a reply it cannot read as JSON)" if finish == "stop" else "")
+        u = raw.get("usage") or {}
+        usage = {"input": u.get("prompt_tokens"), "output": u.get("completion_tokens"),
+                 "thinking": (u.get("completion_tokens_details") or {}).get("reasoning_tokens"),
+                 "total": u.get("total_tokens"), "cached": u.get("prompt_cache_hit_tokens"), "finish": finish}
+        reply = Reply(text, usage, raw)
+        if self.args.include_thoughts and message.get("reasoning_content"):
+            reply.thoughts = [message["reasoning_content"]]
+        reply.config = {k: v for k, v in body.items() if k != "messages"}
+        reply.raw_usage = u
+        return reply
+
+
 class Anthropic:
     """Placeholder: add when needed (Messages API)."""
 
@@ -299,7 +412,7 @@ class Anthropic:
         raise ProviderError("the anthropic provider is not implemented yet")
 
 
-PROVIDERS = {p.name: p for p in (Google, OpenAI, Anthropic)}
+PROVIDERS = {p.name: p for p in (Google, OpenAI, DeepSeek, Anthropic)}
 
 
 # --------------------------------------------------------------------------
@@ -362,7 +475,9 @@ def parse_sentence(text: str, args, item_id: str = "item") -> dict:
                     part["text"] = f"<{len(system)} chars of {record['prompt_path']}>"
         if "instructions" in shown:
             shown["instructions"] = f"<{len(system)} chars of {record['prompt_path']}>"
-        for msg in shown["input"] if isinstance(shown.get("input"), list) else []:
+        for msg in (shown.get("input") if isinstance(shown.get("input"), list) else []) + (shown.get("messages") or []):
+            if msg.get("content") == system:
+                msg["content"] = f"<{len(system)} chars of {record['prompt_path']}>"
             for part in msg["content"] if isinstance(msg.get("content"), list) else []:
                 if part.get("text") == system:
                     part["text"] = f"<{len(system)} chars of {record['prompt_path']}>"
@@ -392,7 +507,8 @@ def add_provider_args(ap: argparse.ArgumentParser) -> None:
     ap.add_argument("--model", default=None, help="model name (default: the provider's default)")
     ap.add_argument("--effort", choices=EFFORTS, default="low",
                     help="reasoning effort (default: low). Gemini 3+: a thinking level (none -> LOW, the lowest level every model offers); Gemini 2.x: a thinking budget (none -> 0); "
-                         "OpenAI: reasoning.effort (none -> not sent, the model's default)")
+                         "OpenAI: reasoning.effort (none -> not sent, the model's default); DeepSeek: reasoning_effort "
+                         "(medium -> high, DeepSeek's own mapping; none -> thinking disabled)")
     ap.add_argument("--prompt", default=DEFAULT_PROMPT, help="instruction set file (default: the generated catalog prompt)")
     ap.add_argument("--temperature", type=float, default=None,
                     help="sampling temperature; default: not sent, the model's own default applies (Gemini 4 Argon ignores "
@@ -407,7 +523,8 @@ def add_provider_args(ap: argparse.ArgumentParser) -> None:
     ap.add_argument("--no-json-mode", action="store_true",
                     help="do not request application/json replies (diagnostic: JSON mode may interact with thinking)")
     ap.add_argument("--include-thoughts", action="store_true",
-                    help="ask for thought summaries (includeThoughts); kept in the run record, counted on stderr")
+                    help="google: ask for thought summaries (includeThoughts); deepseek: keep the reasoning_content; "
+                         "kept in the run record, counted on stderr")
     ap.add_argument("--layout", choices=("turns", "system"), default="turns",
                     help="google: where the instruction set goes. turns (default): the catalog as the first user turn, a fixed "
                          "model acknowledgement, then the item — primable, so the catalog is cached across items; system: as the "
