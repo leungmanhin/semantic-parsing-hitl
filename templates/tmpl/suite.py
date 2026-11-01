@@ -442,6 +442,7 @@ def collect(args, catalog: dict) -> int:
         return 0
     failed = 0
     primes, cached_total, input_total = 0, 0, 0
+    write_total = None                                 # cache-write tokens, where the provider bills and reports them
 
     def prime(reason):
         nonlocal primes
@@ -477,13 +478,19 @@ def collect(args, catalog: dict) -> int:
         status = "error" if rec.get("error") else "ok"
         cached_total += u.get("cached") or 0
         input_total += u.get("input") or 0
+        write = ""
+        if "cache_write" in u:
+            write_total = (write_total or 0) + (u["cache_write"] or 0)
+            write = f" cache_write={u['cache_write']}"
         print(f"[{i}/{len(todo)}] {case['template']} {case['category']:8s} r{n} {status:5s} "
-              f"in={u.get('input')} cached={u.get('cached')} out={u.get('output')} thinking={u.get('thinking')} · {case['text']}")
+              f"in={u.get('input')} cached={u.get('cached')}{write} out={u.get('output')} thinking={u.get('thinking')} · {case['text']}")
         if status == "ok" and i < len(todo) and hasattr(sp, "cache_lost") and sp.cache_lost(u):
             prime("the last reply had no cached tokens")
         if args.delay and i < len(todo):
             time.sleep(args.delay)
     share = f" · cached {cached_total:,} of {input_total:,} input tokens ({cached_total / input_total:.0%})" if input_total else ""
+    if write_total is not None:
+        share += f" · written to the cache {write_total:,}"
     print(f"done: {len(todo) - failed} replies stored, {failed} failed · primes {primes}{share} · {_show(args.raw_dir)}")
     return 1 if failed else 0
 
@@ -512,6 +519,8 @@ def score_record(case: dict, rec: dict, catalog: dict, heads: dict, body_sha: st
            "manifest_id": rec.get("manifest_id"),
            "stale_manifest": (manifest_id is not None and rec.get("manifest_id") not in (None, manifest_id)),
            "usage": {k: (rec.get("usage") or {}).get(k) for k in ("input", "output", "thinking", "total", "cached")}}
+    if "cache_write" in (rec.get("usage") or {}):     # only where the provider reports cache writes
+        row["usage"]["cache_write"] = rec["usage"]["cache_write"]
     resp = rec.get("response")
     if not isinstance(resp, dict):
         err = rec.get("error") or "no response"
@@ -638,7 +647,9 @@ def summarize(rows: list[dict]) -> dict:
         agree += n_agree
         unanimous += n_agree == len(ps)
     usage = {k: sum((r["usage"].get(k) or 0) for r in rows) for k in ("input", "output", "thinking", "total", "cached")}
-    issues = [{**i, "sentence": r["text"], "run": r["run"]} for r in rows for i in (r.get("issues") or []) if isinstance(i, dict)]
+    if any("cache_write" in r["usage"] for r in rows):
+        usage["cache_write"] = sum((r["usage"].get("cache_write") or 0) for r in rows)
+    issues =[{**i, "sentence": r["text"], "run": r["run"]} for r in rows for i in (r.get("issues") or []) if isinstance(i, dict)]
     return {
         "records": len(rows), "cases": len(by_key),
         "status": dict(collections.Counter(r["status"] for r in rows)),
@@ -799,6 +810,8 @@ def render_report(summary: dict, rows: list[dict]) -> str:
                 add(f"- spans: {sp['with_span']}/{sp['instances']} instances carry one · missing {sp['missing']} · "
                     f"not verbatim {sp['not_verbatim']} · malformed {sp['malformed']} (a missing or non-verbatim span fails the record)")
             cached = f" · cached {u['cached']:,} ({u['cached'] / u['input']:.0%} of the input)" if u.get("cached") and u["input"] else ""
+            if u.get("cache_write") is not None:
+                cached += f" · written to the cache {u['cache_write']:,}"
             add(f"- usage: {u['calls']} calls · in {u['input']:,}{cached} · out {u['output']:,} · thinking {u['thinking']:,} "
                 f"(calls with thought tokens: {u['thinking_calls']})" + (f" · null slots {s['null_slots']}" if s["null_slots"] else ""))
             if s["issues"]:

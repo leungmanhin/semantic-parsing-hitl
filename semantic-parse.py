@@ -57,11 +57,24 @@ class Reply:
         self.text, self.usage, self.raw = text, usage, raw
 
 
-def _post_json(url: str, headers: dict, body: dict, timeout: float, attempts: int = 3) -> dict:
-    """POST a JSON body; retry on 429 / 5xx with backoff; raise ProviderError otherwise."""
+#: Seconds to wait before each retry of an HTTP 429 from OpenAI, about ten minutes in all. A 429 is not
+#: billed and clears by waiting: Flex answers "429 Resource Unavailable" when it lacks capacity (OpenAI's
+#: Flex guide: not charged; retry with exponential backoff), and the tokens-per-minute limit, which
+#: cached tokens count toward, refuses a request with a 429 before it is processed.
+OPENAI_429_WAITS = (5, 10, 20, 40, 80, 160, 300)
+
+
+def _post_json(url: str, headers: dict, body: dict, timeout: float, attempts: int = 3,
+               waits_429: tuple = ()) -> dict:
+    """POST a JSON body; retry on 429 / 5xx with backoff; raise ProviderError otherwise.
+
+    ``waits_429`` is a longer schedule for HTTP 429 alone (the seconds before each retry), spent
+    without using up ``attempts``; every other failure keeps the short backoff, since a re-send after
+    a dropped connection may be billed. A 429 for an exhausted quota does not clear by waiting and
+    is raised at once."""
     data = json.dumps(body).encode("utf-8")
-    last = None
-    for attempt in range(1, attempts + 1):
+    attempt, waited = 1, 0
+    while True:
         req = urllib.request.Request(url, data=data, method="POST",
                                      headers={"Content-Type": "application/json", **headers})
         try:
@@ -70,24 +83,27 @@ def _post_json(url: str, headers: dict, body: dict, timeout: float, attempts: in
         except urllib.error.HTTPError as exc:
             detail = exc.read().decode("utf-8", "replace")[:2000]
             last = f"HTTP {exc.code}: {detail}"
-            if exc.code in (429, 500, 502, 503, 504) and attempt < attempts:
-                time.sleep(2 ** attempt)
+            if exc.code == 429 and "insufficient_quota" in detail:
+                raise ProviderError(last) from None
+            if exc.code == 429 and waited < len(waits_429):
+                print(f"[HTTP 429 (not billed): retry {waited + 1} of {len(waits_429)} in {waits_429[waited]} s]",
+                      file=sys.stderr, flush=True)
+                time.sleep(waits_429[waited])
+                waited += 1
                 continue
-            raise ProviderError(last) from None
+            if exc.code not in (429, 500, 502, 503, 504) or attempt >= attempts:
+                raise ProviderError(last) from None
         except urllib.error.URLError as exc:
             last = f"network error: {exc.reason}"
-            if attempt < attempts:
-                time.sleep(2 ** attempt)
-                continue
-            raise ProviderError(last) from None
+            if attempt >= attempts:
+                raise ProviderError(last) from None
         except (http.client.RemoteDisconnected, ConnectionResetError, TimeoutError, OSError) as exc:
             # the server closed the connection (long thinking runs do this) or the client timed out
             last = f"connection dropped before a reply ({exc.__class__.__name__}: {exc}); attempt {attempt} of {attempts}"
-            if attempt < attempts:
-                time.sleep(2 ** attempt)
-                continue
-            raise ProviderError(last + " — raise --timeout, lower the thinking level, or retry") from None
-    raise ProviderError(last or "request failed")
+            if attempt >= attempts:
+                raise ProviderError(last + " — raise --timeout, lower the thinking level, or retry") from None
+        time.sleep(2 ** attempt)
+        attempt += 1
 
 
 class Google:
@@ -192,7 +208,17 @@ class Google:
 
 
 class OpenAI:
-    """OpenAI through the Responses REST API. Written to the documented shape; not yet exercised."""
+    """OpenAI through the Responses REST API.
+
+    Caching, per OpenAI's prompt-caching guide: on GPT-5.6 and later a cache write is billed (1.25x the
+    uncached input rate for the default 30-minute lifetime; a read is 0.1x), and the implicit breakpoint
+    sits at the end of the latest user message — a catalog sent as ``instructions`` with the item after it
+    would be written afresh with every item and never read back ("a shared prefix is not always a cached
+    prefix"). These models therefore get the catalog as a developer message ending in an explicit
+    breakpoint, in explicit-only mode: the first call writes the catalog, later calls read it, and the item
+    after the breakpoint is plain input with no write charge. No priming is needed: the first item call is
+    the write. Earlier models cache a shared prefix implicitly and keep the ``instructions`` layout.
+    Responses are not stored on OpenAI's side (``store: false``); the run record keeps them."""
 
     name = "openai"
     default_model = "gpt-5-mini"
@@ -201,6 +227,12 @@ class OpenAI:
     def __init__(self, args):
         self.args = args
 
+    @staticmethod
+    def explicit_cache(model: str) -> bool:
+        """GPT-5.6 and later take ``prompt_cache_options`` and explicit cache breakpoints."""
+        m = re.match(r"gpt-(\d+)(?:\.(\d+))?", model)
+        return bool(m) and (int(m.group(1)), int(m.group(2) or 0)) >= (5, 6)
+
     def key(self) -> str:
         if os.environ.get("OPENAI_API_KEY"):
             return os.environ["OPENAI_API_KEY"]
@@ -208,28 +240,46 @@ class OpenAI:
 
     def request(self, system: str, user: str, model: str) -> tuple[str, dict, dict]:
         a = self.args
-        body = {"model": model, "instructions": system, "input": user,
-                "text": {"format": {"type": "json_object"}}}
+        body = {"model": model, "text": {"format": {"type": "json_object"}}, "store": False}
+        if self.explicit_cache(model):
+            body["input"] = [
+                {"role": "developer", "content": [{"type": "input_text", "text": system,
+                                                   "prompt_cache_breakpoint": {"mode": "explicit"}}]},
+                {"role": "user", "content": user}]
+            body["prompt_cache_options"] = {"mode": "explicit"}
+        else:
+            body["instructions"], body["input"] = system, user
         if a.effort != "none":
             body["reasoning"] = {"effort": a.effort}
         if a.max_tokens:
             body["max_output_tokens"] = a.max_tokens
+        if getattr(a, "service_tier", None):
+            body["service_tier"] = a.service_tier
         return "https://api.openai.com/v1/responses", {"Authorization": "Bearer <key>"}, body
 
     def complete(self, system: str, user: str, model: str) -> Reply:
         url, headers, body = self.request(system, user, model)
         headers["Authorization"] = f"Bearer {self.key()}"
-        raw = _post_json(url, headers, body, self.args.timeout)
+        raw = _post_json(url, headers, body, self.args.timeout, waits_429=OPENAI_429_WAITS)
         text = ""
         for item in raw.get("output") or []:
             for c in item.get("content") or []:
                 if c.get("type") == "output_text":
                     text += c.get("text", "")
         u = raw.get("usage") or {}
+        d = u.get("input_tokens_details") or {}
+        finish = raw.get("status")
+        if raw.get("incomplete_details"):
+            finish = f"{finish}: {(raw['incomplete_details'] or {}).get('reason')}"
         usage = {"input": u.get("input_tokens"), "output": u.get("output_tokens"),
                  "thinking": (u.get("output_tokens_details") or {}).get("reasoning_tokens"),
-                 "total": u.get("total_tokens"), "finish": raw.get("status")}
-        return Reply(text, usage, raw)
+                 "total": u.get("total_tokens"), "cached": d.get("cached_tokens"),
+                 "cache_write": d.get("cache_write_tokens"), "finish": finish,
+                 "service_tier": raw.get("service_tier")}
+        reply = Reply(text, usage, raw)
+        reply.config = {k: v for k, v in body.items() if k not in ("input", "instructions")}
+        reply.raw_usage = u
+        return reply
 
 
 class Anthropic:
@@ -312,6 +362,10 @@ def parse_sentence(text: str, args, item_id: str = "item") -> dict:
                     part["text"] = f"<{len(system)} chars of {record['prompt_path']}>"
         if "instructions" in shown:
             shown["instructions"] = f"<{len(system)} chars of {record['prompt_path']}>"
+        for msg in shown["input"] if isinstance(shown.get("input"), list) else []:
+            for part in msg["content"] if isinstance(msg.get("content"), list) else []:
+                if part.get("text") == system:
+                    part["text"] = f"<{len(system)} chars of {record['prompt_path']}>"
         record["request"] = {"url": url, "headers": headers, "body": shown}
         return record
     if getattr(args, "prime", False) and hasattr(provider, "prime") and getattr(args, "layout", "turns") == "turns":
@@ -337,7 +391,8 @@ def add_provider_args(ap: argparse.ArgumentParser) -> None:
     ap.add_argument("--provider", choices=sorted(PROVIDERS), default="google")
     ap.add_argument("--model", default=None, help="model name (default: the provider's default)")
     ap.add_argument("--effort", choices=EFFORTS, default="low",
-                    help="reasoning effort (default: low). Gemini 3+: a thinking level (none -> LOW, the lowest level every model offers); Gemini 2.x: a thinking budget (none -> 0)")
+                    help="reasoning effort (default: low). Gemini 3+: a thinking level (none -> LOW, the lowest level every model offers); Gemini 2.x: a thinking budget (none -> 0); "
+                         "OpenAI: reasoning.effort (none -> not sent, the model's default)")
     ap.add_argument("--prompt", default=DEFAULT_PROMPT, help="instruction set file (default: the generated catalog prompt)")
     ap.add_argument("--temperature", type=float, default=None,
                     help="sampling temperature; default: not sent, the model's own default applies (Gemini 4 Argon ignores "
@@ -359,6 +414,10 @@ def add_provider_args(ap: argparse.ArgumentParser) -> None:
                          "system instruction (the layout before 2026-10-18; never cached across items)")
     ap.add_argument("--prime", action="store_true",
                     help="send the catalog alone once before the call, so the catalog is served from the implicit cache (the suite runner primes by itself)")
+    ap.add_argument("--service-tier", choices=("auto", "default", "flex", "priority"), default=None,
+                    help="openai: the processing tier (service_tier); default: not sent, the project's default. flex: half price, "
+                         "slower, and may answer 429 Resource Unavailable, which is not billed: an OpenAI 429 is retried for "
+                         "up to about ten minutes (give flex --timeout 900)")
 
 
 def validate_reply(reply: dict, reference_time=None, text: str | None = None) -> dict:
@@ -426,8 +485,9 @@ def main(argv=None) -> int:
         print("; declarations")
         print("\n".join(v["declarations"]))
     u = record.get("usage") or {}
+    write = f" cache_write={u.get('cache_write')}" if "cache_write" in u else ""
     print(f"[{record['provider']} {record['model']} effort={record['effort']} tokens in={u.get('input')} "
-          f"out={u.get('output')} thinking={u.get('thinking')} total={u.get('total')} "
+          f"cached={u.get('cached')}{write} out={u.get('output')} thinking={u.get('thinking')} total={u.get('total')} "
           f"thought_parts={u.get('thought_parts')} finish={u.get('finish')}]", file=sys.stderr)
     if v:
         print(f"[{v['summary']}]", file=sys.stderr)

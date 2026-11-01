@@ -155,6 +155,7 @@ def parse(args) -> int:
         print(json.dumps(rec["request"], indent=2, ensure_ascii=False))
         return 0
     primes, cached_total, input_total, failed = 0, 0, 0, 0
+    write_total = None                                 # cache-write tokens, where the provider bills and reports them
 
     def prime(reason):
         nonlocal primes
@@ -187,12 +188,18 @@ def parse(args) -> int:
             status = "error" if rec.get("error") else "ok"
             cached_total += u.get("cached") or 0
             input_total += u.get("input") or 0
+            write = ""
+            if "cache_write" in u:
+                write_total = (write_total or 0) + (u["cache_write"] or 0)
+                write = f" cache_write={u['cache_write']}"
             n_inst = len(((rec.get("response") or {}).get("instances") or [])) if isinstance(rec.get("response"), dict) else 0
             n_unm = len(((rec.get("response") or {}).get("unmapped") or [])) if isinstance(rec.get("response"), dict) else 0
-            print(f"[{i}/{len(todo)}] {r['dataset']:14s} {status:5s} inst={n_inst:2d} unmapped={n_unm} in={u.get('input')} cached={u.get('cached')} · {r['text'][:90]}")
+            print(f"[{i}/{len(todo)}] {r['dataset']:14s} {status:5s} inst={n_inst:2d} unmapped={n_unm} in={u.get('input')} cached={u.get('cached')}{write} · {r['text'][:90]}")
             if status == "ok" and i < len(todo) and hasattr(sp, "cache_lost") and sp.cache_lost(u):
                 prime("the last reply had no cached tokens")
     share = f" · cached {cached_total:,} of {input_total:,} input tokens ({cached_total / input_total:.0%})" if input_total else ""
+    if write_total is not None:
+        share += f" · written to the cache {write_total:,}"
     print(f"done: {len(todo) - failed} replies stored, {failed} failed · primes {primes}{share} · {os.path.relpath(args.out, REPO)}")
     return 1 if failed else 0
 
@@ -262,6 +269,8 @@ def assess(parsed: list[dict], catalog: dict, typecheck: bool = False) -> dict:
         fired.update(x["fired"])
     lints = collections.Counter(f["kind"] for x in rows for f in x["findings"] if f["kind"] not in ("contract", "instance"))
     usage = {k: sum((x["usage"].get(k) or 0) for x in rows) for k in ("input", "output", "cached", "total")}
+    if any("cache_write" in x["usage"] for x in rows):   # only where the provider reports cache writes
+        usage["cache_write"] = sum((x["usage"].get("cache_write") or 0) for x in rows)
     return {"overall": table(rows), "by_group": {g: table(rs) for g, rs in groups.items()}, "gap_codes": dict(gaps.most_common()),
             "unmapped_patterns": spans.most_common(40), "fired": dict(fired.most_common()), "lints": dict(lints.most_common()),
             "issues": [{"id": x["id"], "text": x["text"], "issue": i} for x in rows for i in x["issues"]][:40],
@@ -324,7 +333,8 @@ def render_report(a: dict, manifest_id: str | None, model: str | None) -> str:
             add(f"- {g}: {x['text'][:160]} → {spans}")
     add("")
     u = a["usage"]
-    add(f"usage: input {u['input']:,} (cached {u['cached']:,}), output {u['output']:,}")
+    written = f", written to the cache {u['cache_write']:,}" if u.get("cache_write") is not None else ""
+    add(f"usage: input {u['input']:,} (cached {u['cached']:,}{written}), output {u['output']:,}")
     return "\n".join(L) + "\n"
 
 

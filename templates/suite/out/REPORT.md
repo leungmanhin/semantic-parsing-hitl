@@ -1,6 +1,6 @@
 # Suite report
 
-prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 989a125161ae6f33) · manifest bbe0822bd1b2 · type check: ran
+prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 989a125161ae6f33) · manifest ad4cd309ab62 · type check: ran
 
 ## Catalog checks
 
@@ -278,7 +278,7 @@ Mismatches: none
 
 ## class-statement — held_out
 
-19 cases, 57 records (ok 57; stale prompt 54; stale manifest 15, unstamped 39) · gemini-4-argon effort=low
+19 cases, 57 records (ok 57; stale prompt 54; stale manifest 18, unstamped 39) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -451,7 +451,7 @@ Mismatches: none
 
 ## copular — held_out
 
-20 cases, 60 records (ok 60; stale prompt 51; stale manifest 6, unstamped 45) · gemini-4-argon effort=low
+20 cases, 60 records (ok 60; stale prompt 51; stale manifest 15, unstamped 45) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -725,7 +725,7 @@ Mismatches: none
 
 ## generic — held_out
 
-21 cases, 63 records (ok 63; stale prompt 60; stale manifest 6, unstamped 54) · gemini-4-argon effort=low
+21 cases, 63 records (ok 63; stale prompt 60; stale manifest 9, unstamped 54) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -1057,7 +1057,7 @@ Mismatches: none
 
 ## named-entity — held_out
 
-9 cases, 27 records (ok 27; stale prompt 24; stale manifest 21, unstamped 3) · gemini-4-argon effort=low
+9 cases, 27 records (ok 27; stale prompt 24; stale manifest 24, unstamped 3) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -1540,7 +1540,7 @@ Mismatches: none
 
 ## witness — held_out
 
-10 cases, 30 records (ok 30; stale prompt 27; stale manifest 18, unstamped 9) · gemini-4-argon effort=low
+10 cases, 30 records (ok 30; stale prompt 27; stale manifest 21, unstamped 9) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
