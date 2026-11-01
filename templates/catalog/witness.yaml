@@ -47,9 +47,9 @@ trigger:
 
 slots:
   id:       {type: id, required: true}
-  class:     {type: lemma, class: Class, required: true, narrowed_by: mods, doc: "the head noun's lemma"}
+  class:     {type: lemma, class: Class, required: true, narrowed_by: [props, mods], doc: "the head noun's lemma"}
   definite: {type: bool, required: false, doc: "true for the / this / that; absent for a / an and for a possessed phrase (the possessor presupposes it)"}
-  props:    {type: list, class: Class, required: false,
+  props:    {type: list, class: Class, restriction: Member, required: false,
              doc: "adjectival properties stated in the phrase; a property with a degree word (a very old spindle) is a degree instance beside the witness, not a property here; a noun before the head is a mod, never a property"}
   former:   {type: bool, required: false, doc: "true when former, ex-, one-time or retired makes the noun something the referent was and no longer is (a former guard)"}
   mods:     {type: list, class: Class, ids: [named-entity, time], required: false,
@@ -74,8 +74,10 @@ emits:
     when: "former"
   - atom: "(Not (Member @id {class|mod}))"
     when: "former"                  # and is not one now
-  - atom: "(Member @id {props})"
+  - atom: "(Implication (Member @id {class|mod}) (Member @id {props}))"   # the plain adjective, a weaker derivation from the stated narrowed class
     each: props
+    top_level: true
+    stv: [0.9, 0.7]
   - atom: "(Possession @id {possessor})"
     if_filled: possessor
   - atom: "(QuantityPhrase @id \"{quantity}\")"
@@ -166,3 +168,10 @@ examples:
         - {t: activity, id: v1, verb: fish, actor: "@x1", tense: past}
         - {t: witness, id: x2, class: heron}
         - {t: activity, id: v2, verb: sleep, actor: "@x2", tense: past}
+    - category: positive
+      note: two adjectives on the noun — one narrowed class each, both together, each plain adjective derived
+      text: "Lamine sold an old wooden chair."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: x1, class: chair, props: [old, wooden]}
+        - {t: transfer, id: e1, verb: sell, giver: "@n1", object: "@x1", tense: past}

@@ -45,7 +45,9 @@ trigger:
 
 slots:
   id:         {type: id, required: true, doc: "your label for the range (q1, q2 …)"}
-  class:       {type: lemma, class: Class, required: true, narrowed_by: mods, doc: "the class, lemmatized to the singular (ferret) — an adjective on it (adult herons, red ferrets) is not part of the class but a copular instance over the range, listed in the rule's condition, while a noun before it narrows it: mods (harbour seals: class seal, mods [harbour]); for the occasions of a frequency the unit, day part or weekday (day, morning, sunday), or occasion for a bare adverb"}
+  class:       {type: lemma, class: Class, required: true, narrowed_by: [props, mods], doc: "the class, lemmatized to the singular (ferret) — an adjective on it (old ferrets, red kites) narrows it: props, as a noun before it does: mods (harbour seals: class seal, mods [harbour]); a state stated as a condition (ferrets that are cornered, clay when wet) is a copular instance in the rule's condition instead; for the occasions of a frequency the unit, day part or weekday (day, morning, sunday), or occasion for a bare adverb"}
+  props:      {type: list, class: Class, restriction: Member, required: false,
+               doc: "the adjectives on the class noun, each a lemma (old ferrets: old)"}
   mods:       {type: list, class: Class, ids: [named-entity, time], required: false,
                doc: "the nouns, names and years before the head noun that narrow its class (Nouns before nouns): a lemma for a noun (a harbour pilot: harbour; a sea salt grinder: sea_salt), the id of a named-entity instance for a name (a Calderwick quilt), of a time instance for a year, a decade or a century (a 1904 almanac); never an adjective"}
   quantifier: {type: string, required: false,
@@ -57,6 +59,7 @@ mints: {id: Entity, variable: true}
 
 emits:
   - atom: "(Member @id {class|mod})"                          # the premise: an arbitrary member of the (narrowed) class
+    mod_each: class                                             # one narrowed class per modifier, each a premise
 
 notes:
   - >-

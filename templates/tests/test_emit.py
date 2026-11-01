@@ -972,6 +972,35 @@ class EmitTests(unittest.TestCase):
                  "preposition": "near", "tense": "present"}]}, CATALOG)
         self.assertTrue(any("only when" in p for p in cm.exception.args[0]))
 
+    def test_an_adjective_narrows_its_noun_and_derives_the_plain_one(self):
+        """An adjective on a class noun states the narrowed class, one per modifier and all of them
+        together; the plain adjective is a ground implication at 0.9 / 0.7, written only beside a
+        stated fact (none inside a negation); a generic's adjective narrows its premise, one premise
+        per modifier."""
+        out = E.emit({"id": "a", "instances": [
+            {"t": "named-entity", "id": "n1", "name": "Bram"},
+            {"t": "copular", "id": "c1", "subject": "@n1", "predicate": "pilot", "form": "noun", "tense": "present",
+             "props": ["skilled"], "mods": ["harbour"]}]}, CATALOG)["statements"]
+        atoms = atoms_of(out)
+        for a in ["(Member sk_bram_1 pilot)", "(Member sk_bram_1 (Narrow pilot (Member skilled)))",
+                  "(Member sk_bram_1 (Narrow pilot (Mod harbour)))",
+                  "(Member sk_bram_1 (Narrow pilot (And (Member skilled) (Mod harbour))))"]:
+            self.assertIn(a, atoms)
+        self.assertNotIn("(Member sk_bram_1 skilled)", atoms)                 # no plain fact
+        self.assertTrue(any("(Implication (Member sk_bram_1 (Narrow pilot (Member skilled))) (Member sk_bram_1 skilled)) (STV 0.9 0.7)" in s
+                            for s in out))
+        neg = atoms_of(E.emit({"id": "n", "instances": [
+            {"t": "named-entity", "id": "n1", "name": "Ines"}, {"t": "witness", "id": "x1", "class": "chair", "props": ["old"]},
+            {"t": "acquisition", "id": "e1", "verb": "buy", "acquirer": "@n1", "object": "@x1", "tense": "past"},
+            {"t": "negation", "id": "s1", "over": ["@e1"]}]}, CATALOG)["statements"])
+        self.assertFalse(any("Implication" in a for a in neg))                # no derivation from a negated phrase
+        rule = atoms_of(E.emit({"id": "g", "instances": [
+            {"t": "range", "id": "q1", "class": "heron", "props": ["adult"], "mods": ["marsh"]},
+            {"t": "activity", "id": "v1", "verb": "fish", "actor": "@q1", "tense": "present"},
+            {"t": "generic", "id": "r1", "ranges": ["@q1"], "over": ["@v1"]}]}, CATALOG)["statements"])
+        self.assertTrue(any(a.startswith("(Implication (And (Member $x (Narrow heron (Member adult))) (Member $x (Narrow heron (Mod marsh))))")
+                            for a in rule), rule)
+
     def test_malformed_instances_are_refused(self):
         bad = [{"t": "transfer", "id": "e1", "verb": "give", "giver": "@n9", "object": "x", "tense": "past"}]
         with self.assertRaises(E.EmitError) as cm:

@@ -242,8 +242,11 @@ def check_template(t: dict, path: str) -> list[str]:
                 problems.append(f"emits[{i}]: {{{m.group(1)}|mod}} needs the slot's narrowed_by")
             if m.group(2) == "opt" and (slots.get(m.group(1)) or {}).get("required"):
                 problems.append(f"emits[{i}]: {{{m.group(1)}|opt}} on a required slot")
-        if "with_head" in e and "{" + str(e["with_head"]) + "|mod}" not in atom:
-            problems.append(f"emits[{i}]: with_head must name a slot the atom renders as {{slot|mod}}")
+        for key in ("with_head", "mod_each"):
+            if key in e and "{" + str(e[key]) + "|mod}" not in atom:
+                problems.append(f"emits[{i}]: {key} must name a slot the atom renders as {{slot|mod}}")
+        if "top_level" in e and not isinstance(e["top_level"], bool):
+            problems.append(f"emits[{i}]: top_level must be true or false")
     period = t.get("period")
     if period is not None and not (isinstance(period, dict) and all(k in slots and isinstance(v, str) for k, v in period.items())):
         problems.append("period: a map of the template's slots to the heads that name the period they hold")

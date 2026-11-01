@@ -1,0 +1,76 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "160e6ece60cf08648b02f0737337256484f795294023d981076d9f12937a42ae",
+  "item": {
+    "id": "saa2575b96b",
+    "text": "Skilled pilots are careful."
+  },
+  "usage": {
+    "input": 107816,
+    "output": 96,
+    "thinking": null,
+    "total": 107912,
+    "cached": null,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 107816,
+    "candidatesTokenCount": 96,
+    "totalTokenCount": 107912,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 107816
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 96
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"saa2575b96b\", \"instances\": [{\"t\": \"class-statement\", \"id\": \"k1\", \"subject\": \"pilot\", \"predicate\": \"careful\", \"subject_props\": [\"skilled\"], \"form\": \"adjective\", \"definitional\": false, \"tense\": \"present\", \"span\": \"Skilled pilots are careful\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "saa2575b96b",
+    "instances": [
+      {
+        "t": "class-statement",
+        "id": "k1",
+        "subject": "pilot",
+        "predicate": "careful",
+        "subject_props": [
+          "skilled"
+        ],
+        "form": "adjective",
+        "definitional": false,
+        "tense": "present",
+        "span": "Skilled pilots are careful"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "989a125161ae6f33a9a8057a108e5f8e1e3d7b9799d75eb40a7d114c6cca7b39",
+  "manifest_id": "bbe0822bd1b2",
+  "run": 1,
+  "case": {
+    "template": "class-statement",
+    "section": "held_out",
+    "index": 18,
+    "category": "positive",
+    "text": "Skilled pilots are careful.",
+    "key": "aa2575b96b"
+  }
+}

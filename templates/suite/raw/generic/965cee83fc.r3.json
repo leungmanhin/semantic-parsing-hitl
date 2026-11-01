@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "ce6fa789a6c0b988c464083c6a630d6d41d3e9e14f6a2b8c66d58b12f29f7776",
+  "prompt_sha256": "160e6ece60cf08648b02f0737337256484f795294023d981076d9f12937a42ae",
   "item": {
     "id": "s965cee83fc",
     "text": "Adult herons eat frogs."
   },
   "usage": {
-    "input": 98351,
-    "output": 196,
+    "input": 107816,
+    "output": 149,
     "thinking": null,
-    "total": 98547,
-    "cached": 96302,
+    "total": 107965,
+    "cached": 105767,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 98351,
-    "candidatesTokenCount": 196,
-    "totalTokenCount": 98547,
-    "cachedContentTokenCount": 96302,
+    "promptTokenCount": 107816,
+    "candidatesTokenCount": 149,
+    "totalTokenCount": 107965,
+    "cachedContentTokenCount": 105767,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 98351
+        "tokenCount": 107816
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 96302
+        "tokenCount": 105767
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 196
+        "tokenCount": 149
       }
     ]
   },
-  "raw_text": "{\"id\": \"s965cee83fc\", \"instances\": [{\"t\": \"range\", \"id\": \"q1\", \"class\": \"heron\", \"span\": \"Adult herons\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@q1\", \"predicate\": \"adult\", \"form\": \"adjective\", \"tense\": \"present\", \"span\": \"Adult\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"eat\", \"actor\": \"@q1\", \"patient\": \"frog\", \"tense\": \"present\", \"span\": \"Adult herons eat frogs\"}, {\"t\": \"generic\", \"id\": \"r1\", \"ranges\": [\"@q1\"], \"condition\": [\"@c1\"], \"over\": [\"@e1\"], \"span\": \"Adult herons eat frogs\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s965cee83fc\", \"instances\": [{\"t\": \"range\", \"id\": \"q1\", \"class\": \"heron\", \"props\": [\"adult\"], \"span\": \"Adult herons\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"eat\", \"actor\": \"@q1\", \"patient\": \"frog\", \"tense\": \"present\", \"span\": \"Adult herons eat frogs\"}, {\"t\": \"generic\", \"id\": \"r1\", \"ranges\": [\"@q1\"], \"over\": [\"@e1\"], \"span\": \"Adult herons eat frogs\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s965cee83fc",
     "instances": [
@@ -56,16 +56,10 @@
         "t": "range",
         "id": "q1",
         "class": "heron",
+        "props": [
+          "adult"
+        ],
         "span": "Adult herons"
-      },
-      {
-        "t": "copular",
-        "id": "c1",
-        "subject": "@q1",
-        "predicate": "adult",
-        "form": "adjective",
-        "tense": "present",
-        "span": "Adult"
       },
       {
         "t": "activity",
@@ -82,9 +76,6 @@
         "ranges": [
           "@q1"
         ],
-        "condition": [
-          "@c1"
-        ],
         "over": [
           "@e1"
         ],
@@ -94,8 +85,8 @@
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "9c8b43a22f3af76d65eed0b84c134267fad63aaf26a359526f8fb143d6b79392",
-  "manifest_id": "ea25d89bb5ef",
+  "prompt_body_sha256": "989a125161ae6f33a9a8057a108e5f8e1e3d7b9799d75eb40a7d114c6cca7b39",
+  "manifest_id": "bbe0822bd1b2",
   "run": 3,
   "case": {
     "template": "generic",

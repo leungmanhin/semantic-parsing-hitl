@@ -66,10 +66,12 @@ trigger:
 
 slots:
   id:           {type: id, required: true, doc: "your label for the statement"}
-  subject:      {type: lemma, class: Class, required: true, narrowed_by: subject_mods, doc: "the class, lemmatized to the singular (ferret, granite, spindle)"}
+  subject:      {type: lemma, class: Class, required: true, narrowed_by: [subject_props, subject_mods], doc: "the class, lemmatized to the singular (ferret, granite, spindle)"}
   predicate:    {type: lemma, class: Class, required: false, narrowed_by: predicate_mods, doc: "the class (mustelid) or the property (curious), lemmatized; absent only for a kind word alone (the kestrel is a species)"}
   kind:         {type: lemma, class: Class, required: false,
                  doc: "the kind word of a kind-of phrase, lemmatized (a species of falcon: species; a breed, a genus, a style, a variety of N); kind, type and sort are recorded and state nothing more"}
+  subject_props: {type: list, class: Class, restriction: Member, required: false,
+                 doc: "the adjectives on the subject's noun (old ferrets are slow: old); a statement about the class they narrow"}
   subject_mods: {type: list, class: Class, ids: [named-entity, time], required: false,
                  doc: "the nouns before the subject's noun (harbour seals are shy: harbour), as the mods of Nouns before nouns"}
   predicate_mods: {type: list, class: Class, ids: [named-entity, time], required: false,
@@ -294,3 +296,8 @@ examples:
       text: "A cortado is a type of coffee."
       instances:
         - {t: class-statement, id: c1, subject: cortado, predicate: coffee, kind: type, form: noun, definitional: true, tense: present}
+    - category: positive
+      note: an adjective on the subject's noun — a statement about the class it narrows
+      text: "Skilled pilots are careful."
+      instances:
+        - {t: class-statement, id: c1, subject: pilot, subject_props: [skilled], predicate: careful, form: adjective, definitional: false, tense: present}

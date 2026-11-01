@@ -24,7 +24,7 @@ trigger:
     predicate as a group; whether it also holds of each member is the distribution template's
     business. The
     predicate's head is the class or the property; an adjective inside a predicate noun phrase
-    (is a careful weaver) is a second copular instance with the adjective as its predicate,
+    (is a careful weaver) is that noun's `props`, never a second copular instance,
     and a noun, a name or a year before the predicate noun (is a harbour pilot) is its `mods`;
     former, ex- or retired before it (is a former weaver) sets `former`: the subject was one and
     is not now.
@@ -79,8 +79,10 @@ slots:
   id:        {type: id, required: true, doc: "your label for the predication"}
   subject:   {type: filler, class: Entity, required: true,
               doc: "the subject: a referent id (a name, a witness, a group, a resolved pronoun)"}
-  predicate: {type: lemma, class: Class, required: true, narrowed_by: mods,
+  predicate: {type: lemma, class: Class, required: true, narrowed_by: [props, mods],
               doc: "the class (locksmith) or the property (crooked), lemmatized"}
+  props:     {type: list, class: Class, restriction: Member, required: false,
+              doc: "with form noun, the adjectives inside the predicate noun phrase, each a lemma (is a careful weaver: careful); an adjective on its own (is careful) is form adjective instead"}
   former:    {type: bool, required: false, doc: "with form noun, true when former, ex-, one-time or retired makes the noun something the referent was and no longer is (is a former weaver)"}
   mods:      {type: list, class: Class, ids: [named-entity, time], required: false,
               doc: "with form noun, the nouns, names and years before the head noun that narrow its class (Nouns before nouns): a lemma for a noun (a harbour pilot: harbour; a sea salt grinder: sea_salt), the id of a named-entity instance for a name (a Calderwick quilt), of a time instance for a year, a decade or a century (a 1904 almanac); never an adjective"}
@@ -117,6 +119,22 @@ emits:
   - atom: "(Ongoing (Member {subject} {predicate|mod}))"
     with_head: predicate
     when: "not former and aspect == progressive"
+  # an adjective in the predicate noun phrase: the plain adjective, a weaker derivation from the stated narrowed class
+  - atom: "(Implication (Member {subject} {predicate|mod}) (Member {subject} {props}))"
+    each: props
+    top_level: true
+    stv: [0.9, 0.7]
+    when: "not former and tense == present and aspect != perfect and aspect != progressive"
+  - atom: "(Implication (Past (Member {subject} {predicate|mod})) (Past (Member {subject} {props})))"
+    each: props
+    top_level: true
+    stv: [0.9, 0.7]
+    when: "not former and tense == past or not former and aspect == perfect"
+  - atom: "(Implication (Future (Member {subject} {predicate|mod})) (Future (Member {subject} {props})))"
+    each: props
+    top_level: true
+    stv: [0.9, 0.7]
+    when: "not former and tense == future"
   # former: the subject was one (the head beside) and is not one now (the noun's own class only)
   - atom: "(Past (Member {subject} {predicate|mod}))"
     with_head: predicate
@@ -214,8 +232,7 @@ examples:
       text: "Ottoline is a careful weaver."
       instances:
         - {t: named-entity, id: n1, name: "Ottoline"}
-        - {t: copular, id: c1, subject: "@n1", predicate: weaver, form: noun, tense: present}
-        - {t: copular, id: c2, subject: "@n1", predicate: careful, form: adjective, tense: present}
+        - {t: copular, id: c1, subject: "@n1", predicate: weaver, form: noun, tense: present, props: [careful]}
     - category: scoped
       note: under clausal negation
       text: "Teodor is not a locksmith."
@@ -275,3 +292,16 @@ examples:
       instances:
         - {t: named-entity, id: n1, name: "Teodor"}
         - {t: copular, id: c1, subject: "@n1", predicate: locksmith, form: noun, tense: present, former: true}
+    - category: positive
+      note: two predicate nouns, each with its adjective — each adjective narrows its own noun
+      text: "Bram is a skilled pilot and a clumsy dancer."
+      instances:
+        - {t: named-entity, id: n1, name: "Bram"}
+        - {t: copular, id: c1, subject: "@n1", predicate: pilot, form: noun, tense: present, props: [skilled]}
+        - {t: copular, id: c2, subject: "@n1", predicate: dancer, form: noun, tense: present, props: [clumsy]}
+    - category: positive
+      note: two nouns before the predicate noun — one narrowed class each, and both together
+      text: "Ines is a cotton and linen trader."
+      instances:
+        - {t: named-entity, id: n1, name: "Ines"}
+        - {t: copular, id: c1, subject: "@n1", predicate: trader, form: noun, tense: present, mods: [cotton, linen]}

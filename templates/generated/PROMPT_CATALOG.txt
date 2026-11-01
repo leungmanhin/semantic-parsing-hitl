@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 27c880ec26ddab21 · 59 templates
+catalog sha256 d822bf277891e55e · 59 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -649,10 +649,12 @@ Slots:
 - `t` (required): "range"
 - `id` (required; your label for this instance): your label for the range (q1, q2 …).
 - `class` (required; a lemma): the class, lemmatized to the singular (ferret) — an adjective on
-  it (adult herons, red ferrets) is not part of the class but a copular instance over the range,
-  listed in the rule's condition, while a noun before it narrows it: mods (harbour seals: class
-  seal, mods [harbour]); for the occasions of a frequency the unit, day part or weekday (day,
-  morning, sunday), or occasion for a bare adverb.
+  it (old ferrets, red kites) narrows it: props, as a noun before it does: mods (harbour seals:
+  class seal, mods [harbour]); a state stated as a condition (ferrets that are cornered, clay
+  when wet) is a copular instance in the rule's condition instead; for the occasions of a
+  frequency the unit, day part or weekday (day, morning, sunday), or occasion for a bare adverb.
+- `props` (optional; a list of lemmas): the adjectives on the class noun, each a lemma (old
+  ferrets: old).
 - `mods` (optional; a list of lemmas, or "@id" of a named-entity or a time instance): the nouns,
   names and years before the head noun that narrow its class (Nouns before nouns): a lemma for a
   noun (a harbour pilot: harbour; a sea salt grinder: sea_salt), the id of a named-entity
@@ -1884,6 +1886,8 @@ Slots:
 - `kind` (optional; a lemma): the kind word of a kind-of phrase, lemmatized (a species of
   falcon: species; a breed, a genus, a style, a variety of N); kind, type and sort are recorded
   and state nothing more.
+- `subject_props` (optional; a list of lemmas): the adjectives on the subject's noun (old
+  ferrets are slow: old); a statement about the class they narrow.
 - `subject_mods` (optional; a list of lemmas, or "@id" of a named-entity or a time instance):
   the nouns before the subject's noun (harbour seals are shy: harbour), as the mods of Nouns
   before nouns.
@@ -2336,13 +2340,12 @@ member of a conditional property or a generic's condition) — and whose predica
 indefinite noun phrase (is a locksmith) or an adjective (is crooked). A group as the subject
 takes the predicate as a group; whether it also holds of each member is the distribution
 template's business. The predicate's head is the class or the property; an adjective inside a
-predicate noun phrase (is a careful weaver) is a second copular instance with the adjective as
-its predicate, and a noun, a name or a year before the predicate noun (is a harbour pilot) is
-its `mods`; former, ex- or retired before it (is a former weaver) sets `former`: the subject was
-one and is not now. Tense is the clause's; present is recorded and emits nothing. A time, a
-place, a duration, a time relation, a link or a focus particle on the clause names this instance
-as its event, as it would a verb's: the program mints the state of the fact holding and attaches
-to it.
+predicate noun phrase (is a careful weaver) is that noun's `props`, never a second copular
+instance, and a noun, a name or a year before the predicate noun (is a harbour pilot) is its
+`mods`; former, ex- or retired before it (is a former weaver) sets `former`: the subject was one
+and is not now. Tense is the clause's; present is recorded and emits nothing. A time, a place, a
+duration, a time relation, a link or a focus particle on the clause names this instance as its
+event, as it would a verb's: the program mints the state of the fact holding and attaches to it.
 
 Forms:
 - <subject> is a <N>
@@ -2384,6 +2387,9 @@ Slots:
 - `subject` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
   the subject: a referent id (a name, a witness, a group, a resolved pronoun).
 - `predicate` (required; a lemma): the class (locksmith) or the property (crooked), lemmatized.
+- `props` (optional; a list of lemmas): with form noun, the adjectives inside the predicate noun
+  phrase, each a lemma (is a careful weaver: careful); an adjective on its own (is careful) is
+  form adjective instead.
 - `former` (optional; true / false): with form noun, true when former, ex-, one-time or retired
   makes the noun something the referent was and no longer is (is a former weaver).
 - `mods` (optional; a list of lemmas, or "@id" of a named-entity or a time instance): with form
@@ -3177,7 +3183,8 @@ The program renders these instances as:
 
     (Member sk_mill_1 mill)
     (Member sk_roof_1 roof)
-    (Member sk_roof_1 wooden)
+    (Member sk_roof_1 (Narrow roof (Member wooden)))
+    (Implication (Member sk_roof_1 (Narrow roof (Member wooden))) (Member sk_roof_1 wooden))
     (PartOf sk_roof_1 sk_mill_1)
 
 Example (a material — a class, not a referent). TEXT: The quilt is made of wool.

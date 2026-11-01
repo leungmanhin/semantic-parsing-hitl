@@ -1,0 +1,89 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "160e6ece60cf08648b02f0737337256484f795294023d981076d9f12937a42ae",
+  "item": {
+    "id": "s2b4abaece6",
+    "text": "Ines is a cotton and linen trader."
+  },
+  "usage": {
+    "input": 107819,
+    "output": 120,
+    "thinking": null,
+    "total": 107939,
+    "cached": 105770,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 107819,
+    "candidatesTokenCount": 120,
+    "totalTokenCount": 107939,
+    "cachedContentTokenCount": 105770,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 107819
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 105770
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 120
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s2b4abaece6\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ines\", \"span\": \"Ines\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@n1\", \"predicate\": \"trader\", \"mods\": [\"cotton\", \"linen\"], \"form\": \"noun\", \"tense\": \"present\", \"span\": \"Ines is a cotton and linen trader\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s2b4abaece6",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Ines",
+        "span": "Ines"
+      },
+      {
+        "t": "copular",
+        "id": "c1",
+        "subject": "@n1",
+        "predicate": "trader",
+        "mods": [
+          "cotton",
+          "linen"
+        ],
+        "form": "noun",
+        "tense": "present",
+        "span": "Ines is a cotton and linen trader"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "989a125161ae6f33a9a8057a108e5f8e1e3d7b9799d75eb40a7d114c6cca7b39",
+  "manifest_id": "bbe0822bd1b2",
+  "run": 3,
+  "case": {
+    "template": "copular",
+    "section": "held_out",
+    "index": 19,
+    "category": "positive",
+    "text": "Ines is a cotton and linen trader.",
+    "key": "2b4abaece6"
+  }
+}

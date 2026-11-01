@@ -252,6 +252,7 @@ class _Emitter:
     def __init__(self, item: dict, catalog: dict):
         self.pending_within: list = []
         self.bare: set = set()                           # (instance, slot) pairs rendered with the class alone (a twin)
+        self.mod_pick: dict = {}                         # (instance, slot) -> the one modifier a pass renders
         self.antecedent: dict = {}                       # a mention's symbol -> its certain antecedent's
         self.state_mode = 0                             # > 0 while a `states: true` shape renders: on-demand predications are state binders / state functions
         self.item, self.cat = item, catalog
@@ -543,23 +544,25 @@ class _Emitter:
             def restrict(pat, body):
                 pats.append(pat)
                 bodies[render(pat)] = body
+            own = set()                                   # restrictions the subject's own phrase states: its members say them
+            def own_modifiers(inst, slot):
+                nonlocal covered
+                for head, m in self.mods_of(inst, slot):  # each adjective and noun on the class noun: its own narrowed class
+                    rterm = [head, self.mod_desc(inst, m) if head == "Mod" else m]
+                    self.mod_pick[(inst["id"], slot)] = (head, m)
+                    try:
+                        restrict(rterm, [["Member", "$y", self.mod_term(inst, slot)]])
+                    finally:
+                        self.mod_pick.pop((inst["id"], slot), None)
+                    own.add(render(rterm))
+                    covered = True
             phrase = self.by_id.get(subj[1:]) or {}
             if phrase.get("t") == "witness":              # the subject's own phrase: its modifiers and its possessor narrow
-                for prop in phrase.get("props") or []:
-                    restrict(["Member", prop], [["Member", "$y", prop]])
+                own_modifiers(phrase, "class")
                 if phrase.get("possessor") not in (None, ""):
                     owner = canon(phrase["possessor"])
                     restrict(["Possession", owner], [["Possession", "$y", owner]])
-                if self.mods_of(phrase, "class"):          # the nouns before it: the member's own narrowed class shows them
-                    for head, m in self.mods_of(phrase, "class"):
-                        restrict([head, self.mod_desc(phrase, m) if head == "Mod" else m], [["Member", "$y", self.mod_term(phrase, "class")]])
-                    covered = True
-            for prop in r.get(spec.get("props", ""), None) or []:
-                restrict(["Member", prop], [["Member", "$y", prop]])
-            if self.mods_of(r, spec["class"]):              # the predicative form's nouns before the class noun
-                for head, m in self.mods_of(r, spec["class"]):
-                    restrict([head, self.mod_desc(r, m) if head == "Mod" else m], [["Member", "$y", self.mod_term(r, spec["class"])]])
-                covered = True
+            own_modifiers(r, spec["class"])               # the predicative form's adjectives and nouns on the class noun
             for n_ref, ref in enumerate(r.get(spec.get("within", ""), None) or []):
                 if not is_ref(ref) or ref[1:] not in self.by_id:
                     raise EmitError([f"{r['t']} {r['id']}: within names {ref!r}, not an instance"])
@@ -598,7 +601,7 @@ class _Emitter:
                 continue
             pats = [p for _k, p in sorted({render(p): p for p in pats}.items())]
             term = ["Narrow", cls, pats[0] if len(pats) == 1 else ["And", *pats]]
-            if all(p[0] == "Mod" for p in pats):           # the noun's own modifiers alone: the class its members state
+            if all(render(p) in own for p in pats):        # the noun's own modifiers alone: the class its members state
                 self.narrow[r["id"]] = {"term": term, "body": None, "stated": True}
                 continue
             body = None
@@ -743,6 +746,9 @@ class _Emitter:
         mods = self.mods_of(inst, slot)
         if not mods or (inst["id"], slot) in self.bare:
             return cls
+        pick = self.mod_pick.get((inst["id"], slot))
+        if pick is not None:                            # one modifier alone: its own narrowed class
+            mods = [pick]
         self.declare(cls, "Class")                     # a bare filler narrowed is a class too
         rs = [[head, self.mod_desc(inst, v) if head == "Mod" else v] for head, v in mods]
         rs = [r for _k, r in sorted({render(x): x for x in rs}.items())]
@@ -876,12 +882,30 @@ class _Emitter:
                 self.declare(sym, cls)
             if e.get("states"):
                 self.state_mode += 1
-            head = e.get("with_head")
-            twin = bool(head) and bool(self.mods_of(r, head))   # a modified noun: the shape with the class alone, then narrowed
+            if e.get("top_level") and (iid in self.scope_of or self.home.get(iid) is not None):
+                continue                                 # a lexical derivation only beside a stated fact, never inside a scope or a rule
+            head = e.get("with_head") or e.get("mod_each")
+            mods = self.mods_of(r, head) if head else []
+            # a modified noun: with_head renders the class alone, then one narrowed class per modifier, then
+            # (for two or more) all of them together; mod_each renders one per modifier and nothing else
+            if mods and e.get("with_head"):
+                passes = [("bare", None)] + [("pick", m) for m in mods] + ([("all", None)] if len(mods) > 1 else [])
+            elif mods and e.get("mod_each"):
+                passes = [("pick", m) for m in mods]
+            else:
+                passes = [("all", None)]
+            narrowing_lists = {}                          # each over a list that narrows a slot: that element alone narrows it
+            if "each" in e:
+                for sname, sspec in (t.get("slots") or {}).items():
+                    nb = sspec.get("narrowed_by")
+                    if e["each"] in ([nb] if isinstance(nb, str) else nb or []):
+                        narrowing_lists[sname] = (t["slots"][e["each"]].get("restriction", "Mod"))
             try:
-                for bare in ([True, False] if twin else [False]):
-                    if bare:
+                for kind, pick in passes:
+                    if kind == "bare":
                         self.bare.add((iid, head))
+                    elif kind == "pick":
+                        self.mod_pick[(iid, head)] = pick
                     try:
                         if "each" in e:
                             slot = e["each"]
@@ -891,11 +915,19 @@ class _Emitter:
                             else:
                                 elements = r.get(slot) or []
                             for element in elements:
-                                terms.append((self.substitute(shape, r, t["slots"], slot, element), e))
+                                for sname, rhead in narrowing_lists.items():
+                                    self.mod_pick[(iid, sname)] = (rhead, element)
+                                try:
+                                    terms.append((self.substitute(shape, r, t["slots"], slot, element), e))
+                                finally:
+                                    for sname in narrowing_lists:
+                                        self.mod_pick.pop((iid, sname), None)
                         else:
                             terms.append((self.substitute(shape, r, t["slots"]), e))
                     finally:
                         self.bare.discard((iid, head))
+                        if kind == "pick":
+                            self.mod_pick.pop((iid, head), None)
             finally:
                 if e.get("states"):
                     self.state_mode -= 1

@@ -441,6 +441,27 @@ class SeededRulesOnTheEngine(unittest.TestCase):
         self.assertAlmostEqual(s, 1.0, places=2)
         self.assertFalse(self.query(h, "(DirectionFrom sk_bridge_1 sk_mill_1 east)", steps=1500))
 
+    def test_an_adjective_belongs_to_its_noun(self):
+        """Each adjective narrows its own noun: a skilled pilot and a clumsy dancer is no skilled
+        dancer; the plain adjective comes from a ground implication at 0.9; a statement about skilled
+        pilots reaches the skilled pilot and not a pilot who is a skilled dancer; one narrowed class
+        per modifier answers a question about one of them."""
+        sp, cd = "(Narrow pilot (Member skilled))", "(Narrow dancer (Member clumsy))"
+        h = self.space(["(: a (Member sk_bram_1 pilot) (STV 1.0 0.99))", f"(: b (Member sk_bram_1 {sp}) (STV 1.0 0.99))",
+                        f"(: c (Implication (Member sk_bram_1 {sp}) (Member sk_bram_1 skilled)) (STV 0.9 0.7))",
+                        "(: d (Member sk_bram_1 dancer) (STV 1.0 0.99))", f"(: e (Member sk_bram_1 {cd}) (STV 1.0 0.99))",
+                        "(: f (Member sk_corvin_1 pilot) (STV 1.0 0.99))",
+                        "(: g (Member sk_corvin_1 (Narrow dancer (Member skilled))) (STV 1.0 0.99))",
+                        f"(: h (Inheritance {sp} careful) (STV 0.9 0.7))",
+                        "(: i (Member sk_ines_1 (Narrow trader (Mod cotton))) (STV 1.0 0.99))",
+                        "(: j (Member sk_ines_1 (Narrow trader (Mod linen))) (STV 1.0 0.99))"])
+        self.assertFalse(self.query(h, "(Member sk_bram_1 (Narrow dancer (Member skilled)))", steps=1500))
+        s, c = tv(self.query(h, "(Member sk_bram_1 skilled)", steps=1500))
+        self.assertAlmostEqual(s, 0.9, places=2)
+        self.assertTrue(self.query(h, "(Member sk_bram_1 careful)", steps=1500))       # the statement about skilled pilots
+        self.assertFalse(self.query(h, "(Member sk_corvin_1 careful)", steps=1500))    # a pilot who is a skilled dancer: not reached
+        self.assertTrue(self.query(h, "(Member sk_ines_1 (Narrow trader (Mod linen)))", steps=1500))
+
     def test_a_relative_clause_comparison_class(self):
         """A comparison class narrowed by a relative clause with an indefinite admits a member whose
         own atoms say the same — any event of the verb, the subject in its role, a filler of the

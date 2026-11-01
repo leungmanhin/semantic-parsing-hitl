@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
+  "prompt_sha256": "160e6ece60cf08648b02f0737337256484f795294023d981076d9f12937a42ae",
   "item": {
     "id": "s0814cb87d6",
     "text": "Ottoline is a careful weaver."
   },
   "usage": {
-    "input": 56507,
-    "output": 163,
+    "input": 107819,
+    "output": 118,
     "thinking": null,
-    "total": 56670,
-    "cached": 54458,
+    "total": 107937,
+    "cached": 105767,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 56507,
-    "candidatesTokenCount": 163,
-    "totalTokenCount": 56670,
-    "cachedContentTokenCount": 54458,
+    "promptTokenCount": 107819,
+    "candidatesTokenCount": 118,
+    "totalTokenCount": 107937,
+    "cachedContentTokenCount": 105767,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 56507
+        "tokenCount": 107819
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 54458
+        "tokenCount": 105767
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 163
+        "tokenCount": 118
       }
     ]
   },
-  "raw_text": "{\"id\": \"s0814cb87d6\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@n1\", \"predicate\": \"weaver\", \"form\": \"noun\", \"tense\": \"present\", \"span\": \"Ottoline is a careful weaver\"}, {\"t\": \"copular\", \"id\": \"c2\", \"subject\": \"@n1\", \"predicate\": \"careful\", \"form\": \"adjective\", \"tense\": \"present\", \"span\": \"Ottoline is a careful weaver\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s0814cb87d6\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@n1\", \"predicate\": \"weaver\", \"props\": [\"careful\"], \"form\": \"noun\", \"tense\": \"present\", \"span\": \"Ottoline is a careful weaver\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s0814cb87d6",
     "instances": [
@@ -63,16 +63,10 @@
         "id": "c1",
         "subject": "@n1",
         "predicate": "weaver",
+        "props": [
+          "careful"
+        ],
         "form": "noun",
-        "tense": "present",
-        "span": "Ottoline is a careful weaver"
-      },
-      {
-        "t": "copular",
-        "id": "c2",
-        "subject": "@n1",
-        "predicate": "careful",
-        "form": "adjective",
         "tense": "present",
         "span": "Ottoline is a careful weaver"
       }
@@ -80,12 +74,13 @@
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
+  "prompt_body_sha256": "989a125161ae6f33a9a8057a108e5f8e1e3d7b9799d75eb40a7d114c6cca7b39",
+  "manifest_id": "bbe0822bd1b2",
   "run": 1,
   "case": {
     "template": "copular",
     "section": "held_out",
-    "index": 4,
+    "index": 6,
     "category": "positive",
     "text": "Ottoline is a careful weaver.",
     "key": "0814cb87d6"

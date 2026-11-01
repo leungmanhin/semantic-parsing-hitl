@@ -95,7 +95,7 @@ slots:
                 doc: "the thing at the top or at the rank: the subject's referent id for the predicative form, the witness whose phrase holds the superlative for the attributive one"}
   scale:       {type: lemma, class: Class, required: true,
                 doc: "what orders the class: the adjective lemmatized (tallest → tall, most careful → careful, best → good, worst → bad), the verb of the first / last to V (arrive, speak), or the class itself for a plain ordinal (the third ferret → ferret)"}
-  class:       {type: lemma, class: Class, required: false, narrowed_by: mods,
+  class:       {type: lemma, class: Class, required: false, narrowed_by: [props, mods],
                 doc: "the class compared within, lemmatized to the singular: the noun of the phrase (weaver, quilt) or of the of-phrase (the tallest of the weavers → weaver); absent only for the first / last to V; the noun alone: what narrows it is the subject's own phrase (its props, its mods, its possessor), `props`, `mods` and `within`"}
   kind:        {type: enum, values: [most, among, ordinal], required: true,
                 doc: "most for the ADJ-est / the most ADJ (the unique top); among for one of the ADJ-est; ordinal for a rank: the n-th, the n-th ADJ-est, the first / last to V"}
@@ -105,7 +105,7 @@ slots:
                 doc: "true when the superlative is predicated of the subject by be (Yusra is the tallest weaver; Teodor was the first to arrive): the membership is asserted and the tense recorded; absent inside a noun phrase"}
   tense:       {type: enum, values: [past, present, future], required: false, default: present,
                 doc: "the copular clause's tense for the predicative form (is / was / will be the tallest); omit inside a noun phrase"}
-  props:       {type: list, class: Class, required: false,
+  props:       {type: list, class: Class, restriction: Member, required: false,
                 doc: "in the predicative form, the adjectives on the class noun, each a lemma (Bram's town is the largest walled town: walled); inside a noun phrase the witness's own props narrow the class instead"}
   mods:        {type: list, class: Class, ids: [named-entity, time], required: false,
                 doc: "in the predicative form, the nouns, names and years before the class noun (Calderwick is the largest market town: market), as the mods of Nouns before nouns; inside a noun phrase the witness's own mods narrow the class instead"}
@@ -170,18 +170,21 @@ emits:
     when: "predicative and tense == future"
     project: true
   # the predicative form's modifiers on the class noun: presupposed like the membership
-  - atom: "(Member {subject} {props})"
+  - atom: "(Implication (Member {subject} {class|mod}) (Member {subject} {props}))"
     each: props
     when: "predicative and tense != past and tense != future"
     project: true
-  - atom: "(Past (Member {subject} {props}))"
+    stv: [0.9, 0.7]
+  - atom: "(Implication (Past (Member {subject} {class|mod})) (Past (Member {subject} {props})))"
     each: props
     when: "predicative and tense == past"
     project: true
-  - atom: "(Future (Member {subject} {props}))"
+    stv: [0.9, 0.7]
+  - atom: "(Implication (Future (Member {subject} {class|mod})) (Future (Member {subject} {props})))"
     each: props
     when: "predicative and tense == future"
     project: true
+    stv: [0.9, 0.7]
   # the comparison class: what makes a thing one of its members (once per text and class) —
   # or, when no atom of a member could show it (a dated period), the subject's own membership
   - atom: "(Implication {class|narrowing} (Member $y {class|narrowed}))"
