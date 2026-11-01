@@ -1,6 +1,6 @@
 # Suite report
 
-prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 989a125161ae6f33) · manifest ad4cd309ab62 · type check: ran
+prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 989a125161ae6f33) · manifest d0d628b8102e · type check: ran
 
 ## Catalog checks
 

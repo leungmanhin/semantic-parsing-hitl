@@ -10,7 +10,10 @@ names that version so that a record can be re-emitted, compared or excluded late
   (editing a held-out example changes the catalog hash but not what the parser saw);
 * ``substrate`` and ``atom_types`` — the typed substrate and its generated declarations;
 * ``rules`` and ``seeded_rules`` — the background rules and their lowered form;
-* ``emitter`` — the code that turns records into atoms (this package).
+* ``emitter`` — the code that turns a record into atoms: ``validate.py`` and every module of this
+  package it imports, followed transitively (the list is ``files.emitter`` in the written
+  manifest). The runners (``suite``, ``coverage``), the generators (their outputs are parts of
+  their own) and the analysis tools are outside it, so editing them does not version the records.
 
 The ``id`` is the first twelve hex digits of a hash over the parts: a short version name.  The
 parser model is not part of it — a record names its model beside the manifest id, since one
@@ -24,6 +27,7 @@ Run from ``templates/``::
 from __future__ import annotations
 
 import argparse
+import ast
 import glob
 import hashlib
 import json
@@ -35,14 +39,14 @@ TEMPLATES = os.path.abspath(os.path.join(HERE, os.pardir))
 OUT = os.path.join(TEMPLATES, "generated", "MANIFEST.json")
 SCHEMA = "catalog-manifest/1"
 
-PARTS = [                                  # name, the files it covers (globs under templates/)
-    ("catalog", ["catalog/*.yaml"]),
+PARTS = [                                  # name, the files it covers: globs under templates/, or
+    ("catalog", ["catalog/*.yaml"]),       # "imports:M" = module M with the package modules it imports
     ("prompt", ["generated/PROMPT_CATALOG.txt"]),
     ("substrate", ["atom-type-substrates.json"]),
     ("atom_types", ["generated/atom-types.metta"]),
     ("rules", ["rules.yaml"]),
     ("seeded_rules", ["generated/seeded_rules.metta"]),
-    ("emitter", ["tmpl/*.py"]),
+    ("emitter", ["imports:tmpl/validate.py"]),
 ]
 
 
@@ -55,8 +59,50 @@ def prompt_body_sha(text: str) -> str:
 def _files(globs: list[str], root: str) -> list[str]:
     out: list[str] = []
     for g in globs:
-        out.extend(sorted(glob.glob(os.path.join(root, g))))
+        if g.startswith("imports:"):
+            out.extend(_imports(os.path.join(root, g[len("imports:"):])))
+        else:
+            out.extend(sorted(glob.glob(os.path.join(root, g))))
     return out
+
+
+def _imports(entry: str) -> list[str]:
+    """``entry``, the package's ``__init__.py`` and every module of the package that ``entry``
+    imports, followed transitively — ``from . import x``, ``from .x import y``, ``from pkg import x``,
+    ``from pkg.x import y``, ``import pkg.x``, at any depth (an import inside a function counts).
+    Without the entry module the whole package is covered, so nothing on the path goes unhashed."""
+    pkg_dir = os.path.dirname(entry)
+    pkg = os.path.basename(pkg_dir)
+    if not os.path.exists(entry):
+        return sorted(glob.glob(os.path.join(pkg_dir, "*.py")))
+    seen: set[str] = set()
+    todo = [entry]
+    init = os.path.join(pkg_dir, "__init__.py")
+    if os.path.exists(init):
+        todo.append(init)
+    while todo:
+        path = todo.pop()
+        if path in seen:
+            continue
+        seen.add(path)
+        with open(path, encoding="utf-8") as fh:
+            tree = ast.parse(fh.read(), filename=path)
+        for node in ast.walk(tree):
+            names: list[str] = []
+            if isinstance(node, ast.ImportFrom):
+                if node.level == 1:
+                    names = [node.module.split(".")[0]] if node.module else [a.name for a in node.names]
+                elif node.level == 0 and node.module == pkg:
+                    names = [a.name for a in node.names]
+                elif node.level == 0 and (node.module or "").startswith(pkg + "."):
+                    names = [node.module.split(".")[1]]
+            elif isinstance(node, ast.Import):
+                names = [a.name.split(".")[1] for a in node.names if a.name.startswith(pkg + ".")]
+            for name in names:
+                module = os.path.join(pkg_dir, name + ".py")
+                if os.path.exists(module) and module not in seen:
+                    todo.append(module)
+    return sorted(seen)
 
 
 def _hash(paths: list[str]) -> str:
