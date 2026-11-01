@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "00c1d3a38815e1ae95a32f96fad88a4afabbeb50f662bbb7d4a0cb6e9bbd0c60",
+  "prompt_sha256": "1a4a3597c613e74d5f2b5c5a8fca287e528b1d1b994674f16533cac258208fd3",
   "item": {
     "id": "sc2fe7d46f5",
     "text": "The parcel weighs a pound."
   },
   "usage": {
-    "input": 76410,
-    "output": 64,
+    "input": 107974,
+    "output": 151,
     "thinking": null,
-    "total": 76474,
-    "cached": 74361,
+    "total": 108125,
+    "cached": 105925,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,48 +25,68 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 76410,
-    "candidatesTokenCount": 64,
-    "totalTokenCount": 76474,
-    "cachedContentTokenCount": 74361,
+    "promptTokenCount": 107974,
+    "candidatesTokenCount": 151,
+    "totalTokenCount": 108125,
+    "cachedContentTokenCount": 105925,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 76410
+        "tokenCount": 107974
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 74361
+        "tokenCount": 105925
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 64
+        "tokenCount": 151
       }
     ]
   },
-  "raw_text": "{\"id\": \"sc2fe7d46f5\", \"instances\": [], \"unmapped\": [{\"span\": \"The parcel weighs a pound\", \"code\": \"G00\", \"construction\": \"A measure verb clause stating the weight of a thing.\"}], \"issues\": []}",
+  "raw_text": "{\"id\":\"sc2fe7d46f5\",\"instances\":[{\"t\":\"witness\",\"id\":\"x1\",\"class\":\"parcel\",\"definite\":true,\"span\":\"The parcel\"},{\"t\":\"measure\",\"id\":\"m1\",\"bearer\":\"@x1\",\"head\":\"Measure\",\"dimension\":\"weight\",\"magnitude\":1,\"unit\":\"pound\",\"tense\":\"present\",\"span\":\"The parcel weighs a pound\"}],\"unmapped\":[],\"issues\":[{\"code\":\"P00\",\"where\":\"part-whole\",\"text\":\"The boundary notes of part-whole and stative-relation state that 'weighs a pound' has no template yet (G00), contradicting the measure template which explicitly covers 'weighs <n> <unit>'.\"}]}",
   "response": {
     "id": "sc2fe7d46f5",
-    "instances": [],
-    "unmapped": [
+    "instances": [
       {
-        "span": "The parcel weighs a pound",
-        "code": "G00",
-        "construction": "A measure verb clause stating the weight of a thing."
+        "t": "witness",
+        "id": "x1",
+        "class": "parcel",
+        "definite": true,
+        "span": "The parcel"
+      },
+      {
+        "t": "measure",
+        "id": "m1",
+        "bearer": "@x1",
+        "head": "Measure",
+        "dimension": "weight",
+        "magnitude": 1,
+        "unit": "pound",
+        "tense": "present",
+        "span": "The parcel weighs a pound"
       }
     ],
-    "issues": []
+    "unmapped": [],
+    "issues": [
+      {
+        "code": "P00",
+        "where": "part-whole",
+        "text": "The boundary notes of part-whole and stative-relation state that 'weighs a pound' has no template yet (G00), contradicting the measure template which explicitly covers 'weighs <n> <unit>'."
+      }
+    ]
   },
-  "prompt_body_sha256": "8f768497029588efd8f71073a54c11b506fc67161e0952eb46812d3415cd0956",
+  "prompt_body_sha256": "5f93646417041a51e0736d5f53e3d1119e2b0a46b9f7f3b02f46ab5f62970a04",
+  "manifest_id": "db085acebed7",
   "run": 1,
   "case": {
     "template": "stative-relation",
     "section": "held_out",
-    "index": 23,
+    "index": 25,
     "category": "abstain",
     "text": "The parcel weighs a pound.",
     "key": "c2fe7d46f5"

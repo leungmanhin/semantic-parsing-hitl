@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
+  "prompt_sha256": "1a4a3597c613e74d5f2b5c5a8fca287e528b1d1b994674f16533cac258208fd3",
   "item": {
     "id": "sba20cacfc9",
     "text": "Teodor works in a bakery."
   },
   "usage": {
-    "input": 56504,
-    "output": 172,
+    "input": 107973,
+    "output": 201,
     "thinking": null,
-    "total": 56676,
-    "cached": 54455,
+    "total": 108174,
+    "cached": 105873,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 56504,
-    "candidatesTokenCount": 172,
-    "totalTokenCount": 56676,
-    "cachedContentTokenCount": 54455,
+    "promptTokenCount": 107973,
+    "candidatesTokenCount": 201,
+    "totalTokenCount": 108174,
+    "cachedContentTokenCount": 105873,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 56504
+        "tokenCount": 107973
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 54455
+        "tokenCount": 105873
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 172
+        "tokenCount": 201
       }
     ]
   },
-  "raw_text": "{\"id\": \"sba20cacfc9\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"bakery\", \"span\": \"a bakery\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"work\", \"actor\": \"@n1\", \"tense\": \"present\", \"span\": \"Teodor works\"}, {\"t\": \"location\", \"id\": \"l1\", \"event\": \"@e1\", \"place\": \"@x1\", \"head\": \"Location\", \"preposition\": \"in\", \"span\": \"in a bakery\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sba20cacfc9\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"bakery\", \"span\": \"a bakery\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"work\", \"actor\": \"@n1\", \"tense\": \"present\", \"span\": \"Teodor works\"}, {\"t\": \"location\", \"id\": \"l1\", \"event\": \"@v1\", \"place\": \"@x1\", \"head\": \"Location\", \"preposition\": \"in\", \"span\": \"in a bakery\"}, {\"t\": \"habitual\", \"id\": \"h1\", \"event\": \"@v1\", \"span\": \"Teodor works\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sba20cacfc9",
     "instances": [
@@ -66,7 +66,7 @@
       },
       {
         "t": "activity",
-        "id": "e1",
+        "id": "v1",
         "verb": "work",
         "actor": "@n1",
         "tense": "present",
@@ -75,22 +75,29 @@
       {
         "t": "location",
         "id": "l1",
-        "event": "@e1",
+        "event": "@v1",
         "place": "@x1",
         "head": "Location",
         "preposition": "in",
         "span": "in a bakery"
+      },
+      {
+        "t": "habitual",
+        "id": "h1",
+        "event": "@v1",
+        "span": "Teodor works"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
+  "prompt_body_sha256": "5f93646417041a51e0736d5f53e3d1119e2b0a46b9f7f3b02f46ab5f62970a04",
+  "manifest_id": "db085acebed7",
   "run": 1,
   "case": {
     "template": "location",
     "section": "held_out",
-    "index": 6,
+    "index": 7,
     "category": "positive",
     "text": "Teodor works in a bakery.",
     "key": "ba20cacfc9"

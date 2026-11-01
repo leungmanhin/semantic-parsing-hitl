@@ -1,0 +1,91 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "1a4a3597c613e74d5f2b5c5a8fca287e528b1d1b994674f16533cac258208fd3",
+  "item": {
+    "id": "s582629da73",
+    "text": "Yusra knows Lamine."
+  },
+  "usage": {
+    "input": 107975,
+    "output": 145,
+    "thinking": null,
+    "total": 108120,
+    "cached": 105925,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 107975,
+    "candidatesTokenCount": 145,
+    "totalTokenCount": 108120,
+    "cachedContentTokenCount": 105925,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 107975
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 105925
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 145
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s582629da73\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"stative-relation\", \"id\": \"p1\", \"relation\": \"know\", \"subject\": \"@n1\", \"object\": \"@n2\", \"tense\": \"present\", \"span\": \"Yusra knows Lamine\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s582629da73",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "stative-relation",
+        "id": "p1",
+        "relation": "know",
+        "subject": "@n1",
+        "object": "@n2",
+        "tense": "present",
+        "span": "Yusra knows Lamine"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "5f93646417041a51e0736d5f53e3d1119e2b0a46b9f7f3b02f46ab5f62970a04",
+  "manifest_id": "db085acebed7",
+  "run": 1,
+  "case": {
+    "template": "stative-relation",
+    "section": "held_out",
+    "index": 0,
+    "category": "positive",
+    "text": "Yusra knows Lamine.",
+    "key": "582629da73"
+  }
+}

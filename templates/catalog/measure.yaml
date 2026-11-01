@@ -216,6 +216,12 @@ examples:
 
   held_out:                  # tests; never rendered into the prompt
     - category: positive
+      note: a measure verb with the indefinite article as the number — the claim of stative-relation's abstain
+      text: "The parcel weighs a pound."
+      instances:
+        - {t: witness, id: x1, class: parcel, definite: true, span: "The parcel"}
+        - {t: measure, id: m1, bearer: "@x1", head: Measure, dimension: weight, magnitude: 1, unit: pound, tense: present, span: "The parcel weighs a pound"}
+    - category: positive
       note: a duration on a copular clause — the state of being ill lasts six weeks
       text: "Lamine was ill for six weeks."
       instances:

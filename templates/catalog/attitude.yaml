@@ -56,7 +56,8 @@ trigger:
   boundary:                   # looks like an attitude but is not one
     - >-
       an entity object instead of a clause — fears the dog, distrusts Lamine, knows Yusra: a
-      psych state or an acquaintance; nothing is sealed
+      psych state, or for knowing a person an acquaintance, the stative-relation template;
+      nothing is sealed
     - >-
       an effort or an achievement towards an action — tried to sleep, managed to open the shed,
       failed to arrive: a control verb, whose implication about the action is recorded there
@@ -361,7 +362,7 @@ examples:
            tense: present}
     - category: abstain
       text: "Yusra knows Lamine."
-      expected: {abstain: true, gap: G00, span: "knows Lamine"}                 # an entity object: acquaintance
+      expected: {abstain: true, template: stative-relation}           # an entity object: acquaintance
     - category: abstain
       text: "Teodor wonders whether Lamine sold the spindle."
       expected: {abstain: true, gap: G00, span: "wonders whether Lamine sold the spindle"}   # interrogative complement

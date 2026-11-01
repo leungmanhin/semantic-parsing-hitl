@@ -23,7 +23,7 @@ trigger:
     STATIVE VERB with an object or a prepositional object — need, require, deserve, merit,
     depend on, rely on, resemble, look like, differ from, match, equal, mean, represent, stand
     for, suit, fit, concern, involve, apply to, relate to, face, border, adjoin, surround,
-    overlook, cover, support (the beam supports the roof) — or "be" with a RELATIONAL adjective
+    overlook, cover, support (the beam supports the roof), know (a person: an acquaintance) — or "be" with a RELATIONAL adjective
     or noun and its complement: married to, similar to, related to, equal to, different from, a cousin / friend
     / neighbour of, Lamine's cousin, friends with; also the coordinated form (Yusra and Lamine
     are cousins / friends / married). The test is the progressive: a stative verb resists it
@@ -60,7 +60,7 @@ trigger:
     (needs water, covered with snow) a bare lemma.
   verbs: [need, require, deserve, merit, depend, rely, resemble, look_like, differ, match, equal,
           mean, represent, stand_for, suit, fit, concern, involve, apply, relate, face, border,
-          adjoin, surround, overlook, cover, support, connect]
+          adjoin, surround, overlook, cover, support, connect, know]
   verbs_note: >
     The list anchors the class; an unlisted verb that passes the progressive test and relates
     two individuals belongs here. A verb whose preposition is part of its meaning alone (look
@@ -236,6 +236,13 @@ examples:
 
   held_out:                  # tests; never rendered into the prompt
     - category: positive
+      note: knowing a person — an acquaintance, asymmetric; the claim of attitude's abstain
+      text: "Yusra knows Lamine."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: stative-relation, id: p1, relation: know, subject: "@n1", object: "@n2", tense: present}
+    - category: positive
       note: an indefinite relatum — a witness at the top level
       text: "Teodor needs a ladder."
       instances:
@@ -388,7 +395,7 @@ examples:
       expected: {abstain: true, template: locative}                   # a separate thing inside a container
     - category: abstain
       text: "The parcel weighs a pound."
-      expected: {abstain: true, gap: G00, span: "The parcel weighs a pound."}   # a measure: no template yet
+      expected: {abstain: true, template: measure}                    # a measure of weight
     - category: positive
       note: a relational noun in apposition to a name — the relation stated, the name the subject, the possessor the object
       text: "Yusra visited her brother Lamine."

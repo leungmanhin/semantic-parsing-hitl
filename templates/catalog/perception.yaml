@@ -31,10 +31,6 @@ trigger:
     - "<perceiver> V <event clause with -ing>"          # saw Lamine handing Teodor an envelope
     - "<perceiver> looks at / listens to <stimulus>"    # the preposition marks the stimulus
     - "<stimulus> was V-ed"                             # passive, perceiver unstated
-  event_note: >
-    A perceived event is parsed with its own template and referenced in the `event` slot; it
-    takes the tense of the perception clause (the two are simultaneous) and the aspect its
-    form shows (a participle is progressive). The event is stated as having happened.
   boundary:                   # looks like a perception but is not one
     - >-
       a that-clause — saw that P, heard that P, noticed that P: a factive attitude towards a
@@ -60,7 +56,7 @@ slots:
   stimulus:  {type: filler, class: Entity, role: Stimulus, required: false,
               doc: "the thing perceived: the object, or the subject of a passive"}
   event:     {type: filler, class: Event, role: Stimulus, required: false,
-              doc: "the event perceived: the id of the clause's predication instance (saw Lamine hand Teodor an envelope: the transfer's id)"}
+              doc: "the event perceived: the id of the clause's predication instance (saw Lamine hand Teodor an envelope: the transfer's id); that instance takes the perception's tense, the two being simultaneous, and the aspect its form shows — a participle complement is aspect progressive — and is stated as having happened"}
   tense:     {type: enum, values: [past, present, future], required: true,
               doc: "the clause's tense; present is recorded, not inferred"}
   aspect:    {type: enum, values: [simple, progressive, perfect, perfect_progressive, about_to, due_to, would, going_to], required: false, default: simple,

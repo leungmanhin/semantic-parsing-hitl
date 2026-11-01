@@ -245,7 +245,7 @@ examples:
         - {t: witness, id: x2, class: beam, definite: true, span: "the beam"}
         - {t: comparative, id: c1, subject: "@x1", standard: "@x2", scale: long, relation: as, tense: present, span: "The ladder is as long as the beam"}
     - category: positive
-      note: an adverbial comparative — two events, the second elliptical, compared on the adverb's scale
+      note: an adverbial comparative — two events, the second elliptical, compared on the adverb's scale; each in the simple present is a habit
       text: "Yusra swims faster than Lamine."
       instances:
         - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
@@ -253,6 +253,8 @@ examples:
         - {t: activity, id: v1, verb: swim, actor: "@n1", tense: present, span: "Yusra swims"}
         - {t: activity, id: v2, verb: swim, actor: "@n2", tense: present, span: "Lamine"}
         - {t: comparative, id: c1, subject: "@v1", standard: "@v2", scale: fast, relation: more, span: "faster than Lamine"}
+        - {t: habitual, id: h1, event: "@v1", span: "Yusra swims"}
+        - {t: habitual, id: h2, event: "@v2", span: "Lamine"}
     - category: abstain
       text: "The ladder is very crooked."
       expected: {abstain: true, template: degree}                     # a degree word, no standard
@@ -351,6 +353,8 @@ examples:
         - {t: activity, id: v1, verb: sing, actor: "@n1", tense: present}
         - {t: activity, id: v2, verb: sing, actor: "@n2", tense: present}
         - {t: comparative, id: c1, subject: "@v1", standard: "@v2", scale: loud, relation: more}
+        - {t: habitual, id: h1, event: "@v1"}
+        - {t: habitual, id: h2, event: "@v2"}
     - category: scoped
       note: a negated equative
       text: "Lamine is not as tall as Yusra."

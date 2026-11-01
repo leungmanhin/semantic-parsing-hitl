@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 d822bf277891e55e · 59 templates
+catalog sha256 bf031f1e7986c69d · 59 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -1320,7 +1320,8 @@ Forms:
 
 Not this template:
 - an entity object instead of a clause — fears the dog, distrusts Lamine, knows Yusra: a psych
-  state or an acquaintance; nothing is sealed
+  state, or for knowing a person an acquaintance, the stative-relation template; nothing is
+  sealed
 - an effort or an achievement towards an action — tried to sleep, managed to open the shed,
   failed to arrive: a control verb, whose implication about the action is recorded there
 - a liking or a dislike of an action — likes to send quilts, enjoys sending quilts: a psych
@@ -2176,7 +2177,7 @@ The program renders these instances as:
     (Member sk_beam_1 beam)
     (SameDegree long sk_ladder_1 sk_beam_1)
 
-Example (an adverbial comparative — two events, the second elliptical, compared on the adverb's scale). TEXT: Yusra swims faster than Lamine.
+Example (an adverbial comparative — two events, the second elliptical, compared on the adverb's scale; each in the simple present is a habit). TEXT: Yusra swims faster than Lamine.
 
 Instances:
 
@@ -2185,7 +2186,9 @@ Instances:
       {"t": "named-entity", "id": "n2", "name": "Lamine", "span": "Lamine"},
       {"t": "activity", "id": "v1", "verb": "swim", "actor": "@n1", "tense": "present", "span": "Yusra swims"},
       {"t": "activity", "id": "v2", "verb": "swim", "actor": "@n2", "tense": "present", "span": "Lamine"},
-      {"t": "comparative", "id": "c1", "subject": "@v1", "standard": "@v2", "scale": "fast", "relation": "more", "span": "faster than Lamine"}
+      {"t": "comparative", "id": "c1", "subject": "@v1", "standard": "@v2", "scale": "fast", "relation": "more", "span": "faster than Lamine"},
+      {"t": "habitual", "id": "h1", "event": "@v1", "span": "Yusra swims"},
+      {"t": "habitual", "id": "h2", "event": "@v2", "span": "Lamine"}
     ]
 
 The program renders these instances as:
@@ -2194,8 +2197,10 @@ The program renders these instances as:
     (Name sk_lamine_1 "Lamine")
     (Member sk_swim_1 swim)
     (Agent sk_swim_1 sk_yusra_1)
+    (Habitual sk_swim_1)
     (Member sk_swim_2 swim)
     (Agent sk_swim_2 sk_lamine_1)
+    (Habitual sk_swim_2)
     (More fast sk_swim_1 sk_swim_2)
 
 Not this template. TEXT: The ladder is very crooked. — use `degree`.
@@ -3268,7 +3273,9 @@ Slots:
   filler): the thing perceived: the object, or the subject of a passive.
 - `event` (optional; "@id" of a predication instance (the clause's event)): the event perceived:
   the id of the clause's predication instance (saw Lamine hand Teodor an envelope: the
-  transfer's id).
+  transfer's id); that instance takes the perception's tense, the two being simultaneous, and
+  the aspect its form shows — a participle complement is aspect progressive — and is stated as
+  having happened.
 - `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
   not inferred.
 - `aspect` (optional; one of: simple, progressive, perfect, perfect_progressive, about_to,
@@ -3636,43 +3643,43 @@ When: A clause stating that a relation holds between two individuals while nothi
 STATIVE VERB with an object or a prepositional object — need, require, deserve, merit, depend
 on, rely on, resemble, look like, differ from, match, equal, mean, represent, stand for, suit,
 fit, concern, involve, apply to, relate to, face, border, adjoin, surround, overlook, cover,
-support (the beam supports the roof) — or "be" with a RELATIONAL adjective or noun and its
-complement: married to, similar to, related to, equal to, different from, a cousin / friend /
-neighbour of, Lamine's cousin, friends with; also the coordinated form (Yusra and Lamine are
-cousins / friends / married). The test is the progressive: a stative verb resists it (*is
-resembling, *is needing); a verb that takes it is an event. Write one instance with the verb or
-the adjective / noun as `relation`, the subject as `subject` (the bearer of the state) and the
-other relatum as `object`, with the preposition that introduces it recorded; a coordinated
-subject (Yusra and Lamine are cousins) gives the first conjunct as the subject and the second as
-the object, no group; a possessive relatum (Lamine's cousin) is the object, with no witness for
-the relational noun. A relational noun in APPOSITION to a name, with a possessor — her son Bram,
-Ilse's husband Corvin, their aunt, Wren — states the same relation: the name's instance and this
-template's instance with the noun as the relation, the name as the subject and the possessor as
-the object (a pronoun: its mention), as if the text said Bram is her son; the name then takes
-its role in the clause. A SINGULAR relational noun with a possessor and NO name — her son,
-Bram's grandmother, the guild's treasurer — states the same relation with a witness as the
-bearer: the witness for the noun (its class the noun, no possessor) is the subject and the
-possessor the object; a noun the possessor owns or is merely associated with (her quilt, Bram's
-lantern) keeps the witness's possessor, and a plural one (her sons) stays the group's possessor
-for now. KINSHIP WITH HAVE — Wren has a nephew, Ilse has three sons — is the same relation: the
-relative the subject (a witness for one, the name for one named — has a nephew called Corvin:
-Corvin —, a group for several, with a distribution over this instance) and the one who has them
-the object; names listed after the group (three sons, Bram, Teodor and Lamine) are its members,
-one part-whole each. A DEFINITE ROLE TITLE with an of-phrase — the warden of the mill, the
-president of the guild, the author of the letter — is a relational noun too: this template, the
-holder the subject, the of-phrase the object (preposition of), never an identity copular. A
-passive or participial form (is surrounded by a wall, is covered with snow, is connected to the
-mill) keeps the active roles: the by- or with-phrase is the subject and the surface subject the
-object. A relatum that is an action or a clause (deserves to rest, involves selling the barn,
-means leaving early) is parsed with its own template and listed in `complement`, sealed. Whether
-the relation holds the other way round (married, similar, cousin) is not yours to judge: write
-the subject and the object as the sentence gives them, and never a second instance for the
-reverse. An indefinite relatum (needs a ladder) is a witness; a bare plural or mass one (needs
-water, covered with snow) a bare lemma.
+support (the beam supports the roof), know (a person: an acquaintance) — or "be" with a
+RELATIONAL adjective or noun and its complement: married to, similar to, related to, equal to,
+different from, a cousin / friend / neighbour of, Lamine's cousin, friends with; also the
+coordinated form (Yusra and Lamine are cousins / friends / married). The test is the
+progressive: a stative verb resists it (*is resembling, *is needing); a verb that takes it is an
+event. Write one instance with the verb or the adjective / noun as `relation`, the subject as
+`subject` (the bearer of the state) and the other relatum as `object`, with the preposition that
+introduces it recorded; a coordinated subject (Yusra and Lamine are cousins) gives the first
+conjunct as the subject and the second as the object, no group; a possessive relatum (Lamine's
+cousin) is the object, with no witness for the relational noun. A relational noun in APPOSITION
+to a name, with a possessor — her son Bram, Ilse's husband Corvin, their aunt, Wren — states the
+same relation: the name's instance and this template's instance with the noun as the relation,
+the name as the subject and the possessor as the object (a pronoun: its mention), as if the text
+said Bram is her son; the name then takes its role in the clause. A SINGULAR relational noun
+with a possessor and NO name — her son, Bram's grandmother, the guild's treasurer — states the
+same relation with a witness as the bearer: the witness for the noun (its class the noun, no
+possessor) is the subject and the possessor the object; a noun the possessor owns or is merely
+associated with (her quilt, Bram's lantern) keeps the witness's possessor, and a plural one (her
+sons) stays the group's possessor for now. KINSHIP WITH HAVE — Wren has a nephew, Ilse has three
+sons — is the same relation: the relative the subject (a witness for one, the name for one named
+— has a nephew called Corvin: Corvin —, a group for several, with a distribution over this
+instance) and the one who has them the object; names listed after the group (three sons, Bram,
+Teodor and Lamine) are its members, one part-whole each. A DEFINITE ROLE TITLE with an of-phrase
+— the warden of the mill, the president of the guild, the author of the letter — is a relational
+noun too: this template, the holder the subject, the of-phrase the object (preposition of),
+never an identity copular. A passive or participial form (is surrounded by a wall, is covered
+with snow, is connected to the mill) keeps the active roles: the by- or with-phrase is the
+subject and the surface subject the object. A relatum that is an action or a clause (deserves to
+rest, involves selling the barn, means leaving early) is parsed with its own template and listed
+in `complement`, sealed. Whether the relation holds the other way round (married, similar,
+cousin) is not yours to judge: write the subject and the object as the sentence gives them, and
+never a second instance for the reverse. An indefinite relatum (needs a ladder) is a witness; a
+bare plural or mass one (needs water, covered with snow) a bare lemma.
 
 Verbs that anchor the class: need, require, deserve, merit, depend, rely, resemble, look_like,
 differ, match, equal, mean, represent, stand_for, suit, fit, concern, involve, apply, relate,
-face, border, adjoin, surround, overlook, cover, support, connect.
+face, border, adjoin, surround, overlook, cover, support, connect, know.
 The list anchors the class; an unlisted verb that passes the progressive test and relates two
 individuals belongs here. A verb whose preposition is part of its meaning alone (look like,
 stand for) joins it in the lemma (look_like, stand_for); otherwise the lemma is the verb and the

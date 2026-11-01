@@ -39,6 +39,13 @@ SLOT_TYPES = {"id", "lemma", "filler", "refs", "enum", "bool", "string", "number
 CLASSED = {"lemma", "filler", "refs"}
 CATEGORIES = {"positive", "contrast", "scoped", "optional", "abstain"}
 SLOT_KEYS = {"type", "class", "role", "required", "default", "values", "doc", "consumes", "bind", "skolemize", "attaches", "bare_content", "participant", "as_variable", "state_variable", "narrowed_by", "ids", "restriction", "only_when"}
+#: The trigger fields render_prompt renders: text under any other key would never reach the parser.
+TRIGGER_KEYS = {"construction", "verbs", "verbs_note", "surface_forms", "boundary"}
+#: A template's sections. The prompt renders title, trigger, slots, one_of, any_of and the shown
+#: examples; the emitter and the checks read the rest; notes are the maintainers'.
+TEMPLATE_KEYS = {"id", "title", "family", "shape", "status", "trigger", "slots", "one_of", "any_of", "mints", "emits",
+                 "examples", "depends_on", "composes_with", "notes", "truth", "presupposed", "lexicon",
+                 "narrowing", "period"}           # the last two: emitter configuration (superlative, time)
 
 _PLACEHOLDER = re.compile(r"\{([a-z_0-9]+)(?:\|(own|attachments|narrowed|narrowing|mod|opt))?\}")   # {slot}, or {slot|own} / {slot|attachments} for a refs slot, {slot|narrowed} / {slot|narrowing} under a narrowing, {slot|mod} for a class its nouns narrow
 
@@ -133,6 +140,13 @@ def check_template(t: dict, path: str) -> list[str]:
     for key in ("family", "shape", "trigger", "slots", "emits", "examples"):
         if key not in t:
             problems.append(f"missing section {key}")
+    for key in t:
+        if key not in TEMPLATE_KEYS:
+            problems.append(f"unknown section {key!r}")
+    for key in t.get("trigger") or {}:
+        if key not in TRIGGER_KEYS:
+            problems.append(f"trigger: unknown key {key!r} — the prompt renders only {', '.join(sorted(TRIGGER_KEYS))}, "
+                            f"so its text would never reach the parser")
     slots = t.get("slots") or {}
     for sname, spec in slots.items():
         if not isinstance(spec, dict) or spec.get("type") not in SLOT_TYPES:

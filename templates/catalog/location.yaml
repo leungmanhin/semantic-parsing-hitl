@@ -184,13 +184,14 @@ examples:
         - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past}
         - {t: location, id: l1, event: "@v1", place: "@n2", head: Location, preposition: in}
     - category: positive
-      note: an indefinite place, present tense
+      note: an indefinite place; a dynamic verb in the simple present with no frequency word is a habit
       text: "Teodor works in a bakery."
       instances:
         - {t: named-entity, id: n1, name: "Teodor"}
         - {t: witness, id: x1, class: bakery}
         - {t: activity, id: v1, verb: work, actor: "@n1", tense: present}
         - {t: location, id: l1, event: "@v1", place: "@x1", head: Location, preposition: in}
+        - {t: habitual, id: h1, event: "@v1"}
     - category: positive
       note: the place of a creation — the event's place, nothing about where the shed is
       text: "Yusra built a shed in the garden."

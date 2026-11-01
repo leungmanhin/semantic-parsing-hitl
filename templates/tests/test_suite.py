@@ -108,6 +108,16 @@ class CheckTests(unittest.TestCase):
         self.assertEqual(set(checks["pending"]), expected)       # empty once every target is claimed
         self.assertGreater(checks["examples"], 10)
 
+    def test_unknown_trigger_key_or_section_is_refused(self):
+        """Text under a trigger key or a section the prompt does not render would never reach the parser."""
+        t = copy.deepcopy(CATALOG["perception"])
+        self.assertEqual(CAT.check_template(t, "catalog/perception.yaml"), [])
+        t["trigger"]["event_note"] = "a rule the prompt would never show"
+        t["remarks"] = "a misspelt section"
+        problems = CAT.check_template(t, "catalog/perception.yaml")
+        self.assertTrue(any(p.startswith("trigger: unknown key 'event_note'") for p in problems), problems)
+        self.assertIn("unknown section 'remarks'", problems)
+
     MIRROR_TEXT = "Zed took the zither from Quill."
 
     def _with_mirror(self, claim_instances=None):
