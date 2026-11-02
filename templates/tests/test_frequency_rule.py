@@ -30,15 +30,15 @@ def emit(text: str) -> list[str]:
 
 class FrequencyRuleForm(unittest.TestCase):
     def test_a_period_is_a_rule_over_the_occasions(self):
-        terms = emit("Yusra swims every morning.")
+        terms = emit("Marisol swims every morning.")
         rule = [t for t in terms if t.startswith("(Implication")]
         self.assertEqual(len(rule), 1, terms)
-        self.assertIn("(Implication (Member $x morning) (And (Member (sk_swim $x) swim) (Agent (sk_swim $x) sk_yusra_1) (Time (sk_swim $x) $x)))", rule[0])
+        self.assertIn("(Implication (Member $x morning) (And (Member (sk_swim $x) swim) (Agent (sk_swim $x) sk_marisol_1) (Time (sk_swim $x) $x)))", rule[0])
         self.assertNotIn("(Member sk_swim_1 swim)", terms)                      # no top-level episode
         self.assertFalse(any("QuantifierPhrase" in t for t in terms), terms)      # the word stays in the instance record
 
     def test_an_adverb_sets_the_strength(self):
-        ex = example("frequency", "Ottoline often laughs.")
+        ex = example("frequency", "Henrike often laughs.")
         out = E.emit({"id": "t", "instances": [dict(i) for i in ex["instances"]]}, CATALOG)
         rule = [s for s in out["statements"] if "(Implication" in s]
         self.assertEqual(len(rule), 1)
@@ -85,14 +85,14 @@ class FrequencyRuleForm(unittest.TestCase):
         self.assertIn("(Past (sk_hide $e))", whenever)
 
     def test_a_rate_is_a_rule_with_the_count_on_each_occasion(self):
-        terms = emit("Lamine visits the market twice a week.")
+        terms = emit("Odile visits the bazaar twice a week.")
         rule = [t for t in terms if t.startswith("(Implication")]
         self.assertEqual(len(rule), 1, terms)
         self.assertIn("(Member $x week)", rule[0])
         self.assertIn("(Times (sk_visit $x) 2)", rule[0])
         self.assertIn("(Time (sk_visit $x) $x)", rule[0])
         self.assertNotIn("(Member sk_visit_1 visit)", terms)                     # no top-level episode
-        self.assertIn("(Member sk_market_1 market)", terms)                      # the definite stays outside
+        self.assertIn("(Member sk_bazaar_1 bazaar)", terms)                      # the definite stays outside
 
     def test_a_pattern_stays_a_tag_on_a_top_level_event(self):
         self.assertIn("(Times sk_knock_1 2)", emit("Teodor knocked twice."))

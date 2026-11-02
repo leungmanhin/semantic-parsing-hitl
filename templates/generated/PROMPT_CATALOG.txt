@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 3b4afe3537e01803 · 59 templates
+catalog sha256 243e3aa0545a9924 · 59 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -94,6 +94,11 @@ fences.
   is one predication instance per conjunct, each with its own event, never a group. When the
   predicate holds only of the conjuncts together (met, argued, shared a flask), no instance
   fits: report the clause as unmapped.
+- Two clauses joined by a plain and, with or without a comma (Pieter left and Marisol slept),
+  are two predications side by side, each with its own instance; so are two verb phrases sharing
+  a subject (Odile sang and left: one referent, two instances). The and states no relation
+  between them: no link, and the word itself is not reported. With then (and then), the
+  time-relation template orders the two events.
 
 ## Spans
 

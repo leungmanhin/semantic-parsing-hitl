@@ -1,6 +1,6 @@
 # Suite report
 
-prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 9c9ad03d811c3c93) · manifest 4b2e3594475d · type check: ran
+prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 8f5abb9159036f87) · manifest 14ace221510f · type check: ran
 
 ## Catalog checks
 
@@ -978,7 +978,7 @@ Mismatches: none
 
 ## measure — held_out
 
-23 cases, 69 records (ok 69; stale prompt 66; stale manifest 3, unstamped 63) · gemini-4-argon effort=low
+23 cases, 69 records (ok 69; stale prompt 69; stale manifest 6, unstamped 63) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|

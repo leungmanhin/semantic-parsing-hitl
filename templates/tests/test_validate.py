@@ -195,7 +195,7 @@ class SpanTests(unittest.TestCase):
         insts = copy.deepcopy(EXAMPLE["instances"])
         del insts[0]["span"]
         insts[1]["span"] = 42
-        insts[2]["span"] = ["a thermos", "the moon"]
+        insts[2]["span"] = ["a flask", "the moon"]
         res = V.inspect(reply(insts), CATALOG, text=EXAMPLE["text"])
         self.assertEqual(res["status"], "ok")                       # spans never stop the record
         self.assertEqual(kinds(res), ["span-malformed", "span-missing", "span-not-verbatim"])
@@ -260,7 +260,7 @@ class ScriptTests(unittest.TestCase):
         mod.PROVIDERS["google"] = Fake
         out, err = io.StringIO(), io.StringIO()
         with contextlib.redirect_stdout(out), contextlib.redirect_stderr(err):
-            rc = mod.main(["Teodor gave Yusra a thermos.", *argv])
+            rc = mod.main([EXAMPLE["text"], *argv])
         return rc, out.getvalue(), err.getvalue()
 
     def test_valid_reply_is_validated_and_recorded(self):
@@ -270,7 +270,7 @@ class ScriptTests(unittest.TestCase):
             self.assertEqual(rc, 0, err)
             self.assertIn("validation ok · 8 statements", err)
             self.assertIn("; statements", out)
-            self.assertIn("(Agent sk_give_1 sk_teodor_1)", out)
+            self.assertIn("(Agent sk_give_1 sk_pieter_1)", out)
             with open(rec_path, encoding="utf-8") as fh:
                 rec = json.load(fh)
             self.assertEqual(rec["validation"]["status"], "ok")
@@ -283,7 +283,7 @@ class ScriptTests(unittest.TestCase):
         lines = out.strip().splitlines()
         self.assertEqual(len(lines), 8)
         self.assertTrue(all(l.startswith("(: ") and l.endswith(")") for l in lines), lines)
-        self.assertIn("(Agent sk_give_1 sk_teodor_1)", out)
+        self.assertIn("(Agent sk_give_1 sk_pieter_1)", out)
         self.assertNotIn("{", out)                                   # no JSON reply on stdout
         self.assertNotIn("; declarations", out)
         self.assertIn("validation ok", err)                          # the summary still goes to stderr
