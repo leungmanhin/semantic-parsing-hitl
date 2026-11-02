@@ -18,11 +18,11 @@ trigger:
   construction: >
     A verbal clause whose verb denotes that its subject or its object comes to be in a new
     state: on its own — break, melt, crack, dry, freeze, burn, collapse, grow, shrink, expand,
-    fade, wither, improve, recover, die, open, close, begin, end, start, stop (the audit began),
-    fall and rise of a value (the price fell) — or brought about by someone — Yusra broke the
-    ladder, Lamine melted the wax. Become, turn, get and go with a predicate (became a locksmith,
+    fade, wither, improve, recover, die, open, close, begin, end, start, stop (the inspection began),
+    fall and rise of a value (the fare fell) — or brought about by someone — Marisol broke the
+    barrow, Odile melted the wax. Become, turn, get and go with a predicate (became a locksmith,
     turned red, got wet, went bad) name the state the subject comes to be in: record it as the
-    result. Make with a predicate on its object (made the wax soft, made Yusra uncomfortable)
+    result. Make with a predicate on its object (made the wax soft, made Marisol uncomfortable)
     names the state the object comes to be in: the maker is the agent, the object the
     undergoer, the predicate the result.
   verbs: [break, melt, crack, dry, freeze, burn, collapse, grow, shrink, expand, fade, wither,
@@ -30,33 +30,33 @@ trigger:
           get, go, make]
   verbs_note: >
     Intransitive continue, resume and cease with an event-noun subject (the fighting continued,
-    the audit resumed) are changes of state of that event noun; with a verbal complement they are
+    the inspection resumed) are changes of state of that event noun; with a verbal complement they are
     aspectuals. The list anchors the class; an unlisted verb that denotes a change of state belongs here
     (record its lemma as usual). Fall, rise, go and get are of this class only in the
     change-of-state sense (a value fell, went bad, got wet); a physical fall is a motion, and
     get with an object acquired is an acquisition. Make is of this class only with a predicate on
     its object (made the wax soft); making a thing is a creation.
   surface_forms:
-    - "<undergoer> V"                                # the ladder broke; the price fell
-    - "<agent> V <undergoer>"                        # Yusra broke the ladder
+    - "<undergoer> V"                                # the barrow broke; the fare fell
+    - "<agent> V <undergoer>"                        # Marisol broke the barrow
     - "<undergoer> became / turned / got <N or ADJ>" # became a locksmith; got wet
     - "<agent> made <undergoer> <N or ADJ>"          # made the wax soft
     - "<undergoer> was V-ed by <agent>"              # passive: the roles do not change
   boundary:                   # looks like a change of state but is not one
     - >-
-      a change of place — the ladder fell off the shelf, went to the market: a motion
+      a change of place — the barrow fell off the shelf, went to the bazaar: a motion
     - >-
-      a thing coming into being — built a shed, baked a loaf, wrote a letter: a creation
+      a thing coming into being — built a hut, baked a bun, wrote a postcard: a creation
     - >-
       a change of hands — gave, took, bought: a transfer or an acquisition
     - >-
-      an action that leaves its object as it was — read the letter, helped Lamine: an activity
+      an action that leaves its object as it was — read the postcard, helped Odile: an activity
     - >-
       begin, stop, keep, continue with a verbal complement — stopped working, began to sing:
       an aspectual over the action
     - >-
-      get or come with a clause or an infinitive — got Lamine to send the quilt: a causative;
-      came to like the quilt: an aspectual (the inchoative come_to)
+      get or come with a clause or an infinitive — got Odile to send the blanket: a causative;
+      came to like the blanket: an aspectual (the inchoative come_to)
     - >-
       light-verb constructions — made a change, took a turn: the noun carries the event
 
@@ -64,7 +64,7 @@ slots:
   id:        {type: id, required: true, doc: "your label for the change event"}
   verb:      {type: lemma, class: Class, required: true, doc: "the verb lemma"}
   agent:     {type: filler, class: Entity, role: Agent, required: false,
-              doc: "who or what brings the change about: the subject of a transitive use (Yusra broke the ladder), or the by-phrase of a passive"}
+              doc: "who or what brings the change about: the subject of a transitive use (Marisol broke the barrow), or the by-phrase of a passive"}
   undergoer: {type: filler, class: Entity, role: Patient, required: true,
               doc: "the thing that comes to be in the new state: the subject of an intransitive use, the object of a transitive one"}
   result:    {type: lemma, class: Class, required: false,
@@ -72,7 +72,7 @@ slots:
   tense:     {type: enum, values: [past, present, future], required: true,
               doc: "the clause's tense; present is recorded, not inferred"}
   aspect:    {type: enum, values: [simple, progressive, perfect, perfect_progressive, about_to, due_to, would, going_to], required: false, default: simple,
-             doc: "simple; progressive for be V-ing; perfect for have V-ed; perfect_progressive for have been V-ing; about_to for be about to V / on the point of V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word kept as the value (be going to V is the future tense, not a prospective); would for a future seen from a past moment (said the barn would flood, hoped the bridge would hold) and going_to for was / were going to V — the same PROSPECTIVE, with tense past; a would that tells what then happened (would later marry) is the plain past, and a would with no if-clause and no past moment is the modal's Would"}
+             doc: "simple; progressive for be V-ing; perfect for have V-ed; perfect_progressive for have been V-ing; about_to for be about to V / on the point of V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word kept as the value (be going to V is the future tense, not a prospective); would for a future seen from a past moment (said the granary would flood, hoped the bridge would hold) and going_to for was / were going to V — the same PROSPECTIVE, with tense past; a would that tells what then happened (would later marry) is the plain past, and a would with no if-clause and no past moment is the modal's Would"}
 
 mints: {id: Event}
 
@@ -110,38 +110,38 @@ examples:
   shown:                     # rendered into the prompt
     - category: positive
       note: a change on its own
-      text: "The thermos cracked."
+      text: "The flask cracked."
       instances:
-        - {t: witness, id: x1, class: thermos, definite: true, span: "The thermos"}
-        - {t: change-of-state, id: c1, verb: crack, undergoer: "@x1", tense: past, span: "The thermos cracked"}
+        - {t: witness, id: x1, class: flask, definite: true, span: "The flask"}
+        - {t: change-of-state, id: c1, verb: crack, undergoer: "@x1", tense: past, span: "The flask cracked"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
-        - "(Member sk_thermos_1 thermos)"
+        - "(Member sk_flask_1 flask)"
         - "(Member sk_crack_1 crack)"
-        - "(Patient sk_crack_1 sk_thermos_1)"
+        - "(Patient sk_crack_1 sk_flask_1)"
         - "(Past sk_crack_1)"
       declarations:
         - "(: crack Class)"
+        - "(: flask Class)"
         - "(: sk_crack_1 Event)"
-        - "(: sk_thermos_1 Entity)"
-        - "(: thermos Class)"
+        - "(: sk_flask_1 Entity)"
     - category: positive
       note: becoming — the result is named
-      text: "Teodor became a locksmith."
+      text: "Pieter became a locksmith."
       instances:
-        - {t: named-entity, id: n1, name: "Teodor", span: "Teodor"}
-        - {t: change-of-state, id: c1, verb: become, undergoer: "@n1", result: locksmith, tense: past, span: "Teodor became a locksmith"}
+        - {t: named-entity, id: n1, name: "Pieter", span: "Pieter"}
+        - {t: change-of-state, id: c1, verb: become, undergoer: "@n1", result: locksmith, tense: past, span: "Pieter became a locksmith"}
     - category: positive
       note: brought about by someone
-      text: "Yusra broke the ladder."
+      text: "Marisol broke the barrow."
       instances:
-        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
-        - {t: witness, id: x1, class: ladder, definite: true, span: "the ladder"}
-        - {t: change-of-state, id: c1, verb: break, agent: "@n1", undergoer: "@x1", tense: past, span: "Yusra broke the ladder"}
+        - {t: named-entity, id: n1, name: "Marisol", span: "Marisol"}
+        - {t: witness, id: x1, class: barrow, definite: true, span: "the barrow"}
+        - {t: change-of-state, id: c1, verb: break, agent: "@n1", undergoer: "@x1", tense: past, span: "Marisol broke the barrow"}
     - category: abstain
-      text: "Yusra went to the market."
+      text: "Marisol went to the bazaar."
       expected: {abstain: true, template: motion}                     # a change of place
     - category: abstain
-      text: "Lamine baked a loaf."
+      text: "Odile baked a bun."
       expected: {abstain: true, template: creation}                   # a thing coming into being
 
   held_out:                  # tests; never rendered into the prompt

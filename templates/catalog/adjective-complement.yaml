@@ -22,22 +22,21 @@ trigger:
   construction: >
     A clause with "be" whose predicate is a QUALITY ADJECTIVE followed by a prepositional phrase
     that completes it: the adjective selects the preposition and the phrase says what the quality
-    bears on — fond of Teodor, afraid of the ferret, proud of the quilt, full of tea, free from
-    pain, good at chess, keen on chess, interested in chess, responsible for the barn, famous for
-    the mill, angry with Teodor, worried about the audit, sensitive to noise, modest in his
+    bears on — fond of Pieter, afraid of the badger, proud of the blanket, full of tea, free from
+    pain, good at chess, keen on chess, interested in chess, responsible for the granary, famous for
+    the mill, angry with Pieter, worried about the inspection, sensitive to noise, modest in his
     demands. The subject is the bearer of the state; the adjective is the property, lemmatized;
     the preposition is recorded as written, capitalized, as the head; the phrase's object is a
     referent (a name, a witness, a group, a resolved pronoun) or a bare lemma for a non-specific
     or class-level one (good at chess, full of tea). A gerund clause as the complement (afraid of
-    losing the quilt, tired of waiting, good at baking loaves) is parsed with its own template,
+    losing the blanket, tired of waiting, good at baking buns) is parsed with its own template,
     the bearer as its actor and tense present, and listed in `complement`, sealed. The tense and
     aspect are the clause's. Write one instance for the adjective with its complement; no
     copular instance beside it, and no oblique for the phrase. A QUALITY OF AN ACTION stated
-    with a to-infinitive — the quilt is hard to mend, the beam is impossible to lift, chess is
-    difficult to learn, it is important to rest — is this template with NO bearer: the adjective
+    with a to-infinitive — the blanket is hard to mend, the beam is impossible to lift, origami is difficult to learn, it is important to stretch — is this template with NO bearer: the adjective
     holds of the action, which is parsed with its own template and listed in `complement` with
-    the sentence's subject as its patient (the quilt mended, the beam lifted) or with no
-    participant after an expletive it (it is important to rest), tense present; `head` is To,
+    the sentence's subject as its patient (the blanket mended, the beam lifted) or with no
+    participant after an expletive it (it is important to stretch), tense present; `head` is To,
     the word as written. Nothing says the action happens.
   surface_forms:
     - "<X> is fond / afraid / proud / full / sure of <Y>"             # of: the commonest
@@ -54,32 +53,32 @@ trigger:
     - "It is important / necessary / safe to <V>"                      # the same with no subject at all
   boundary:                   # looks like an adjective with a complement but is not one
     - >-
-      a plain adjective with no complement stated — Yusra is tired, Yusra is afraid: a copular
-      predication; a psych verb — fears the ferret, likes Yusra — the psych template, and feels
+      a plain adjective with no complement stated — Marisol is tired, Marisol is afraid: a copular
+      predication; a psych verb — fears the badger, likes Marisol — the psych template, and feels
       tired a sensation
     - >-
-      a relational adjective or noun with its complement — married to Lamine, similar to Teodor,
-      related to Yusra, equal to, parallel to, different from, a cousin of Yusra: a relation
+      a relational adjective or noun with its complement — married to Odile, similar to Pieter,
+      related to Marisol, equal to, parallel to, different from, a cousin of Marisol: a relation
       between two individuals, the stative-relation template; the test: a relation holds between
       the two, a quality holds of the subject about the complement
     - >-
-      a verb's participle with a by-phrase — surrounded by a wall, written by Teodor, frightened
-      by the ferret: the verb's own template (a stative relation, an activity, a psych state, in
+      a verb's participle with a by-phrase — surrounded by a hedge, written by Pieter, frightened
+      by the badger: the verb's own template (a stative relation, an activity, a psych state, in
       the passive); with another preposition the word is an adjective and comes here (interested
-      in chess, worried about the audit, pleased with the quilt); made of oak: part-whole;
-      located in Calderwick: a locative
+      in chess, worried about the inspection, pleased with the blanket); made of oak: part-whole;
+      located in Brackenford: a locative
     - >-
-      a phrase that says where or when — happy in Calderwick, busy on Monday, cold in winter:
+      a phrase that says where or when — happy in Brackenford, busy on Monday, cold in winter:
       not a complement; the adjective is a copular predication and the phrase a location or a
       time on it (the program mints the state they hang on); the test: the phrase answers where
       or when, not what the quality bears on
     - >-
-      a degree word on the adjective — very fond of Teodor, too afraid of the ferret: this
+      a degree word on the adjective — very fond of Pieter, too afraid of the badger: this
       template, with the degree word reported under G02; an approximator — almost full of tea —
       leaves the whole predicate unmapped, since the property is not asserted
     - >-
       an adjective with a that-clause, or a stance adjective with a to-infinitive — sure that
-      Lamine left, aware that the gate is open, glad that Ottoline came, ready to leave, eager /
+      Odile left, aware that the hatch is open, glad that Henrike came, ready to leave, eager /
       willing / afraid to V: a propositional attitude of the subject, the attitude template with
       the adjective as its lemma; able to V — is able to swim: a capability, the modal template;
       supposed / required / allowed to V: a norm; likely, unlikely, bound, certain or sure TO
@@ -88,26 +87,25 @@ trigger:
       aspect (about_to / due_to), not a complement; too tired to sing, tall enough to reach: the
       degree template, the infinitive reported
     - >-
-      a prepositional phrase on a verb — talked about the audit, waited for Teodor: an oblique
-      on the event; on a noun — a book about ferrets, the lid of the box: a postmodifier or a
+      a prepositional phrase on a verb — talked about the inspection, waited for Pieter: an oblique
+      on the event; on a noun — a book about badgers, the lid of the chest: a postmodifier or a
       part-whole
     - >-
       a prepositional idiom with no adjective — in trouble, out of the question, in fashion, at
-      hand: no template; report the predicate as unmapped; due to / owing to — the delay was due
-      to the rain: a cause stated by a preposition, an oblique (DueTo) on the event noun
+      hand: no template; report the predicate as unmapped; due to / owing to — the closure was due to the hail: a cause stated by a preposition, an oblique (DueTo) on the event noun
     - >-
       a partitive or a hedge — one of the weavers, part of the plan, kind of tired: a part-whole,
       a proportion or a hedge, not a quality with a complement
     - >-
-      a copular verb other than be — seems fond of Teodor, looks afraid of the ferret: the
-      evidential template over this template's instance; became fond of Yusra, got interested
+      a copular verb other than be — seems fond of Pieter, looks afraid of the badger: the
+      evidential template over this template's instance; became fond of Marisol, got interested
       in chess: a change of state, whose template has no slot for the complement; report the
       predicate as unmapped
     - >-
-      a class as the subject — herons are sensitive to noise: the generic template builds the
+      a class as the subject — storks are sensitive to noise: the generic template builds the
       rule, with this template's instance as the predication over the range
     - >-
-      a comparative form of the adjective — fonder of Teodor than of Lamine: the comparative
+      a comparative form of the adjective — fonder of Pieter than of Odile: the comparative
       template's business; report the complement phrases as unmapped
 
 slots:
@@ -119,13 +117,13 @@ slots:
   head:       {type: enum, values: [About, At, For, From, In, Of, "On", To, Toward, Towards, With], required: true,
                doc: "the preposition introducing the complement, as written, capitalized (of → Of, at → At); never a synonym"}
   object:     {type: filler, class: Entity, required: false,
-               doc: "the complement as a thing: a referent id (a name, a witness, a group, a resolved pronoun) for a specific one, or a bare lemma for a non-specific or class-level one (good at chess → chess, full of tea → tea, fond of ferrets → ferret)"}
+               doc: "the complement as a thing: a referent id (a name, a witness, a group, a resolved pronoun) for a specific one, or a bare lemma for a non-specific or class-level one (good at chess → chess, full of tea → tea, fond of badgers → badger)"}
   complement: {type: refs, class: Proposition, required: false, bare_content: true, participant: true,
-               doc: "the complement as an action: a gerund (afraid of losing the quilt, tired of waiting, good at baking loaves) — its predication with the bearer as its actor, tense present — or the to-infinitive of a quality of the action (hard to mend: the mending with the subject as its patient; important to rest: the resting with no participant), sealed; never together with object; the referents it mentions are not listed"}
+               doc: "the complement as an action: a gerund (afraid of losing the blanket, tired of waiting, good at baking buns) — its predication with the bearer as its actor, tense present — or the to-infinitive of a quality of the action (hard to mend: the mending with the subject as its patient; important to rest: the resting with no participant), sealed; never together with object; the referents it mentions are not listed"}
   tense:      {type: enum, values: [past, present, future], required: true,
                doc: "the clause's tense; present is recorded, not inferred"}
   aspect:     {type: enum, values: [simple, progressive, perfect, perfect_progressive, about_to, due_to, would, going_to], required: false, default: simple,
-              doc: "simple; progressive for be V-ing; perfect for have V-ed; perfect_progressive for have been V-ing; about_to for be about to V / on the point of V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word kept as the value (be going to V is the future tense, not a prospective); would for a future seen from a past moment (said the barn would flood, hoped the bridge would hold) and going_to for was / were going to V — the same PROSPECTIVE, with tense past; a would that tells what then happened (would later marry) is the plain past, and a would with no if-clause and no past moment is the modal's Would"}
+              doc: "simple; progressive for be V-ing; perfect for have V-ed; perfect_progressive for have been V-ing; about_to for be about to V / on the point of V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word kept as the value (be going to V is the future tense, not a prospective); would for a future seen from a past moment (said the granary would flood, hoped the bridge would hold) and going_to for was / were going to V — the same PROSPECTIVE, with tense past; a would that tells what then happened (would later marry) is the plain past, and a would with no if-clause and no past moment is the modal's Would"}
 
 one_of: [[object, complement]]
 
@@ -176,44 +174,44 @@ examples:
   shown:                     # rendered into the prompt
     - category: positive
       note: the quality a state of its bearer, the complement under the preposition as written; no flat property
-      text: "Yusra is fond of Teodor."
+      text: "Marisol is fond of Pieter."
       instances:
-        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
-        - {t: named-entity, id: n2, name: "Teodor", span: "Teodor"}
-        - {t: adjective-complement, id: p1, bearer: "@n1", property: fond, head: Of, object: "@n2", tense: present, span: "Yusra is fond of Teodor"}
+        - {t: named-entity, id: n1, name: "Marisol", span: "Marisol"}
+        - {t: named-entity, id: n2, name: "Pieter", span: "Pieter"}
+        - {t: adjective-complement, id: p1, bearer: "@n1", property: fond, head: Of, object: "@n2", tense: present, span: "Marisol is fond of Pieter"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
-        - "(Name sk_yusra_1 \"Yusra\")"
-        - "(Name sk_teodor_1 \"Teodor\")"
+        - "(Name sk_marisol_1 \"Marisol\")"
+        - "(Name sk_pieter_1 \"Pieter\")"
         - "(Member sk_fond_1 fond)"
-        - "(Experiencer sk_fond_1 sk_yusra_1)"
-        - "(Of sk_fond_1 sk_teodor_1)"
+        - "(Experiencer sk_fond_1 sk_marisol_1)"
+        - "(Of sk_fond_1 sk_pieter_1)"
       declarations:
         - "(: fond Class)"
         - "(: sk_fond_1 Event)"
-        - "(: sk_teodor_1 Entity)"
-        - "(: sk_yusra_1 Entity)"
+        - "(: sk_marisol_1 Entity)"
+        - "(: sk_pieter_1 Entity)"
     - category: positive
       note: a domain as the complement — a bare lemma; the preposition the head
-      text: "Teodor is good at chess."
+      text: "Pieter is good at chess."
       instances:
-        - {t: named-entity, id: n1, name: "Teodor", span: "Teodor"}
-        - {t: adjective-complement, id: p1, bearer: "@n1", property: good, head: At, object: chess, tense: present, span: "Teodor is good at chess"}
+        - {t: named-entity, id: n1, name: "Pieter", span: "Pieter"}
+        - {t: adjective-complement, id: p1, bearer: "@n1", property: good, head: At, object: chess, tense: present, span: "Pieter is good at chess"}
     - category: positive
       note: a gerund as the complement — parsed with its own template, the bearer its actor, and sealed
-      text: "Lamine is tired of waiting."
+      text: "Odile is tired of waiting."
       instances:
-        - {t: named-entity, id: n1, name: "Lamine", span: "Lamine"}
+        - {t: named-entity, id: n1, name: "Odile", span: "Odile"}
         - {t: activity, id: v1, verb: wait, actor: "@n1", tense: present, span: "waiting"}
-        - {t: adjective-complement, id: p1, bearer: "@n1", property: tired, head: Of, complement: ["@v1"], tense: present, span: "Lamine is tired of waiting"}
+        - {t: adjective-complement, id: p1, bearer: "@n1", property: tired, head: Of, complement: ["@v1"], tense: present, span: "Odile is tired of waiting"}
     - category: positive
       note: a quality of an action — no bearer; the subject is the action's patient inside the sealed complement
-      text: "The quilt is hard to mend."
+      text: "The blanket is hard to mend."
       instances:
-        - {t: witness, id: x1, class: quilt, definite: true, span: "The quilt"}
+        - {t: witness, id: x1, class: blanket, definite: true, span: "The blanket"}
         - {t: activity, id: v1, verb: mend, patient: "@x1", tense: present, span: "mend"}
-        - {t: adjective-complement, id: p1, property: hard, head: To, complement: ["@v1"], tense: present, span: "The quilt is hard to mend"}
+        - {t: adjective-complement, id: p1, property: hard, head: To, complement: ["@v1"], tense: present, span: "The blanket is hard to mend"}
     - category: abstain
-      text: "Yusra talked about the audit."
+      text: "Marisol talked about the inspection."
       expected: {abstain: true, template: oblique}                    # a prepositional phrase on a verb
     - category: abstain
       text: "The ledger is on the workbench."

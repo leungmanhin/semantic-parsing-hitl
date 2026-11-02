@@ -20,66 +20,64 @@ title: A part, a member or a constituent of a whole, or a material
 trigger:
   construction: >
     A clause or a phrase stating that one thing is a PART, a component, a feature, a member or
-    a constituent of another: the lid is part of the box; the box has a lid; the mill has a
-    wooden roof; the table has four legs; Yusra has blue eyes; the soup contains salt; the
-    parade included six bands; the meal consisted of five dishes; a clause was included in the
-    treaty; Lamine is a member of the guild; the top of the ladder; the barn's roof; the car
-    engine. Or what a thing is MADE OF: the quilt is made of wool; a cup made of glass; the
+    a constituent of another: the lid is part of the chest; the chest has a lid; the mill has a
+    wooden roof; the tripod has three legs; Marisol has blue eyes; the broth contains pepper; the festival included four choirs; the supper consisted of four courses; a provision was included in the charter; Odile is a member of the fellowship; the top of the barrow; the granary's roof; the car
+    engine. Or what a thing is MADE OF: the blanket is made of wool; a cup made of glass; the
     atmosphere is made up of oxygen. Write one instance per link: `part` is the part's referent
     (a witness for the lid or for some salt, a group for four legs or six bands, a name for
-    Lamine) and `whole` the whole's referent; `material` (wool, glass, oak) is a lemma, never a
-    referent, and stands instead of `part`. The part inside a noun phrase (the lid of the box,
-    the box's lid, the top of the ladder) is a witness with NO possessor, marked definite, and
+    Odile) and `whole` the whole's referent; `material` (wool, glass, oak) is a lemma, never a
+    referent, and stands instead of `part`. The part inside a noun phrase (the lid of the chest,
+    the chest's lid, the top of the barrow) is a witness with NO possessor, marked definite, and
     this instance links it to the whole. A DIRECTION ADJECTIVE before a place's name (southern
-    Calderwick, central Aldmoor) names a part of that place: a definite witness whose class is the
+    Brackenford, central Fennhollow) names a part of that place: a definite witness whose class is the
     adjective as written (southern; never turned into a noun), this instance linking it to the
     place, the word the adjective; the place phrase in the clause is that witness. A counted or plural part (four legs, six bands, blue
     eyes) is a group instance, and a distribution instance over the group says that each
-    member is a part. A passive keeps the link (the clause was included in the treaty: the
-    clause the part). On a class — every car has an engine, oranges contain juice — the subject
+    member is a part. A passive keeps the link (the provision was included in the charter: the
+    clause the part). On a class — every bicycle has a frame, lemons contain seeds — the subject
     is a range and the generic template builds the rule with this instance as the predication
     over it; an indefinite part is then a witness, a function of the member. A LIST OF NAMED
     MEMBERS after a colon, after including, such as or namely, or set off by dashes, brackets or a comma
-    (two potters stayed: Ines and Corvin; the guild, including Lamine; the two potters — Ines
-    and Corvin — stayed) is one instance per named member, the group the whole, the word as
+    (two potters stayed: Femke and Ludo; the fellowship, including Odile; the two potters — Femke
+    and Ludo — stayed) is one instance per named member, the group the whole, the word as
     written (":", "including", "such as", "namely", "—", "(", ","); no count is drawn from the list, and a
     list of kinds (birds — gulls, terns) names no member: report it as unmapped. `tense` is the
     clause's; a link inside a noun phrase is present. A time, a duration, a time relation, a
-    link or a focus on the clause (Lamine was a member of the guild until 1990) names this
+    link or a focus on the clause (Odile was a member of the fellowship until 1990) names this
     instance as its event, as it would a copular predication, and the program mints the state
     of the relation holding.
   surface_forms:
-    - "<part> is (a) part of <whole>"                     # the lid is part of the box
-    - "<whole> has / contains / includes <part>"          # the box has a lid; the soup contains salt
-    - "<whole> consists of / is composed of <parts>"      # the meal consisted of five dishes
-    - "<part> is a member of <whole>"                     # Lamine is a member of the guild
-    - "the <part> of <whole> / <whole>'s <part> / <whole> <part>"   # the lid of the box; the barn's roof; the car engine
-    - "<whole> is made of / made from / made up of <material>"     # the quilt is made of wool
+    - "<part> is (a) part of <whole>"                     # the lid is part of the chest
+    - "<whole> has / contains / includes <part>"          # the chest has a lid; the broth contains pepper
+    - "<whole> consists of / is composed of <parts>"      # the supper consisted of four courses
+    - "<part> is a member of <whole>"                     # Odile is a member of the fellowship
+    - "the <part> of <whole> / <whole>'s <part> / <whole> <part>"   # the lid of the chest; the granary's roof; the car engine
+    - "<whole> is made of / made from / made up of <material>"     # the blanket is made of wool
   boundary:                   # looks like a part-whole relation but is not one
     - >-
-      a separate thing inside a container — the box contains a letter, the drawer holds a key:
+      a separate thing inside a container — the chest contains a postcard, the drawer holds a key:
       where the thing is, the locative template, the verb recorded as its preposition
     - >-
-      ownership, kinship or a loose association — Teodor has a trowel, Yusra's quilt, Lamine's
+      ownership, kinship or a loose association — Pieter has a trowel, Marisol's blanket, Odile's
       cousin: a possession, a possessor on the witness, a stative relation
     - >-
-      a place inside a place — a village in Norfolk, a district of the city: a locative, never
+      a place inside a place — a village in Westmarch, a district of the city: a locative, never
       a part
     - >-
-      a quantified portion of a definite whole — half of the loaf, most of the students, three
-      of the ferrets, the rest of the loaf: the portion template, a referent of its own; one of
-      the ferrets: a witness of the class that this template links to the group (word one of);
+      a quantified portion of a definite whole — half of the bun, most of the students, three
+      of the badgers, the rest of the bun: the portion template, a referent of its own; one of
+      the badgers: a witness of the class that this template links to the group (word one of);
       a quantity of a substance — a cup of water: a witness with a measure; a plain portion — a
-      piece of the loaf, the top of the ladder — is a part
+      piece of the bun, the top of the barrow — is a part
     - >-
       a composition stated by kinds — consists of scientists and engineers, the ingredients are
       flour and sugar: the members' kinds, which no slot carries; report the clause as unmapped
     - >-
-      a material adjective or a quality — a wooden box, the box is red: a property of the
+      a material adjective or a quality — a wooden chest, the chest is red: a property of the
       thing, recorded on the witness or by a copular
     - >-
-      a group and its kind — the ferrets, three students: the group template, which is not a
-      part of anything by itself; a creation — formed a committee, built a shed: an event
+      a group and its kind — the badgers, three students: the group template, which is not a
+      part of anything by itself; a creation — formed a committee, built a hut: an event
     - >-
       a size, a weight or a price — has three rooms? no: that is a count of parts, here; weighs
       a pound, costs a dollar: a measure, no template yet (G00)
@@ -87,7 +85,7 @@ trigger:
 slots:
   id:       {type: id, required: true, doc: "your label for the link (w1, w2 …)"}
   part:     {type: filler, class: Entity, required: false,
-             doc: "the part, component, member or constituent: a referent id — a witness (the lid, some salt), a group (four legs), a name (Lamine) or a range; never a bare lemma; absent with material"}
+             doc: "the part, component, member or constituent: a referent id — a witness (the lid, some salt), a group (four legs), a name (Odile) or a range; never a bare lemma; absent with material"}
   whole:    {type: filler, class: Entity, required: true,
              doc: "the whole: a referent id — a witness, a name, a group or a range"}
   material: {type: lemma, class: Class, required: false,
@@ -163,19 +161,19 @@ examples:
   shown:                     # rendered into the prompt
     - category: positive
       note: the copular form — one relation between the two referents
-      text: "The lid is part of the box."
+      text: "The lid is part of the chest."
       instances:
         - {t: witness, id: x1, class: lid, definite: true, span: "The lid"}
-        - {t: witness, id: x2, class: box, definite: true, span: "the box"}
-        - {t: part-whole, id: w1, part: "@x1", whole: "@x2", word: "part of", tense: present, span: "The lid is part of the box"}
+        - {t: witness, id: x2, class: chest, definite: true, span: "the chest"}
+        - {t: part-whole, id: w1, part: "@x1", whole: "@x2", word: "part of", tense: present, span: "The lid is part of the chest"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
         - "(Member sk_lid_1 lid)"
-        - "(Member sk_box_1 box)"
-        - "(PartOf sk_lid_1 sk_box_1)"
+        - "(Member sk_chest_1 chest)"
+        - "(PartOf sk_lid_1 sk_chest_1)"
       declarations:
-        - "(: box Class)"
+        - "(: chest Class)"
         - "(: lid Class)"
-        - "(: sk_box_1 Entity)"
+        - "(: sk_chest_1 Entity)"
         - "(: sk_lid_1 Entity)"
     - category: positive
       note: have with a part — the same relation; the part a witness with its property
@@ -186,20 +184,20 @@ examples:
         - {t: part-whole, id: w1, part: "@x2", whole: "@x1", word: has, tense: present, span: "The mill has a wooden roof"}
     - category: positive
       note: a material — a class, not a referent
-      text: "The quilt is made of wool."
+      text: "The blanket is made of wool."
       instances:
-        - {t: witness, id: x1, class: quilt, definite: true, span: "The quilt"}
-        - {t: part-whole, id: w1, whole: "@x1", material: wool, word: "made of", tense: present, span: "The quilt is made of wool"}
+        - {t: witness, id: x1, class: blanket, definite: true, span: "The blanket"}
+        - {t: part-whole, id: w1, whole: "@x1", material: wool, word: "made of", tense: present, span: "The blanket is made of wool"}
     - category: positive
       note: the part inside a noun phrase — a witness with no possessor, definite, linked here
-      text: "The lid of the box is cracked."
+      text: "The lid of the chest is cracked."
       instances:
-        - {t: witness, id: x1, class: lid, definite: true, span: "The lid of the box"}
-        - {t: witness, id: x2, class: box, definite: true, span: "the box"}
-        - {t: part-whole, id: w1, part: "@x1", whole: "@x2", word: of, tense: present, span: "The lid of the box"}
-        - {t: copular, id: c1, subject: "@x1", predicate: cracked, form: adjective, tense: present, span: "The lid of the box is cracked"}
+        - {t: witness, id: x1, class: lid, definite: true, span: "The lid of the chest"}
+        - {t: witness, id: x2, class: chest, definite: true, span: "the chest"}
+        - {t: part-whole, id: w1, part: "@x1", whole: "@x2", word: of, tense: present, span: "The lid of the chest"}
+        - {t: copular, id: c1, subject: "@x1", predicate: cracked, form: adjective, tense: present, span: "The lid of the chest is cracked"}
     - category: abstain
-      text: "Teodor has a trowel."
+      text: "Pieter has a trowel."
       expected: {abstain: true, template: possession}                 # a thing owned, not a part
     - category: abstain
       text: "The ledger is on the workbench."

@@ -37,36 +37,36 @@ trigger:
       a temporal connective — after, before, when, while, until, once, as soon as, then, since
       (a time): a time relation, not a reason or a contrast
     - >-
-      a connective with a noun phrase, not a clause — despite the storm, because of the rain,
-      due to the audit, thanks to Lamine: an oblique on the event with the phrase as its head
+      a connective with a noun phrase, not a clause — despite the storm, because of the hail,
+      due to the inspection, thanks to Odile: an oblique on the event with the phrase as its head
       (Despite, BecauseOf, DueTo, ThanksTo); the rules read a causal one as Because
     - >-
-      a connective opening the text with nothing before it — "But Lamine left.": no first
+      a connective opening the text with nothing before it — "But Odile left.": no first
       clause to relate; parse the clause and report the connective (G05)
     - >-
       a copular, locative, degree, comparative, class-statement, part-whole or measure clause as
-      an endpoint — Yusra left because the gate was open, the ladder is crooked because it is
-      old, Yusra left because the barn was colder than the shed: the endpoint names that
+      an endpoint — Marisol left because the hatch was open, the barrow is crooked because it is
+      old, Marisol left because the granary was colder than the hut: the endpoint names that
       predication instance and the program mints the state it links
     - >-
-      a conditional — if Lamine sings, Yusra leaves: the conditional template; a subjunctive (if
-      Lamine had sung, …): the counterfactual template; unless / if not: still unmapped (G08)
+      a conditional — if Odile sings, Marisol leaves: the conditional template; a subjunctive (if
+      Odile had sung, …): the counterfactual template; unless / if not: still unmapped (G08)
     - >-
-      an exception to a generalization — ferrets sleep, but this one works: the but introduces
+      an exception to a generalization — badgers sleep, but this one works: the but introduces
       a defeasible exception, a different construction; report the clause as unmapped
     - >-
-      a purpose — went to the market to buy a thermos, in order to sleep: a purpose link
+      a purpose — went to the bazaar to buy a flask, in order to sleep: a purpose link
     - >-
-      so that with a clause — left so that Yusra could sleep: a purpose with a finite clause; no
+      so that with a clause — left so that Marisol could sleep: a purpose with a finite clause; no
       head here; report it as unmapped
     - >-
-      a bare sequence of clauses or sentences with no connective — Lamine sang. Yusra left.: no
+      a bare sequence of clauses or sentences with no connective — Odile sang. Marisol left.: no
       relation is stated; no link
 
 slots:
   id:   {type: id, required: true, doc: "your label for the link (k1, k2 …)"}
   head: {type: enum, values: [Because, Since, So, Therefore, Thus, Consequently, AsAResult, Although, EvenThough, Despite, But, Yet, As], required: true,
-         doc: "the connective as written, one word in CamelCase: as a result → AsAResult, even though → EvenThough; since and as only in their causal sense (as the shed was locked, Ottoline waited); a temporal as or since is a time relation"}
+         doc: "the connective as written, one word in CamelCase: as a result → AsAResult, even though → EvenThough; since and as only in their causal sense (as the hut was locked, Henrike waited); a temporal as or since is a time relation"}
   main: {type: filler, class: Event, required: true,
          doc: "the main clause's event: the id of its PREDICATION instance (an activity, a motion, an attitude …) — never the id of a negation or modal instance over it, even when the clause is negated — the clause the connective's clause attaches to (X in 'X because Y', even when Y is fronted), or the first clause for so / but / yet / therefore"}
   sub:  {type: filler, class: Event, required: true,
@@ -93,54 +93,54 @@ examples:
   shown:                     # rendered into the prompt
     - category: positive
       note: the main clause first, the connective's clause second; both events asserted
-      text: "The ferret slept because Yusra sang."
+      text: "The badger slept because Marisol sang."
       instances:
-        - {t: witness, id: x1, class: ferret, definite: true, span: "The ferret"}
-        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
-        - {t: activity, id: v1, verb: sleep, actor: "@x1", tense: past, span: "The ferret slept"}
-        - {t: activity, id: v2, verb: sing, actor: "@n1", tense: past, span: "Yusra sang"}
+        - {t: witness, id: x1, class: badger, definite: true, span: "The badger"}
+        - {t: named-entity, id: n1, name: "Marisol", span: "Marisol"}
+        - {t: activity, id: v1, verb: sleep, actor: "@x1", tense: past, span: "The badger slept"}
+        - {t: activity, id: v2, verb: sing, actor: "@n1", tense: past, span: "Marisol sang"}
         - {t: link, id: k1, head: Because, main: "@v1", sub: "@v2", span: "because"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
-        - "(Member sk_ferret_1 ferret)"
-        - "(Name sk_yusra_1 \"Yusra\")"
+        - "(Member sk_badger_1 badger)"
+        - "(Name sk_marisol_1 \"Marisol\")"
         - "(Member sk_sleep_1 sleep)"
-        - "(Agent sk_sleep_1 sk_ferret_1)"
+        - "(Agent sk_sleep_1 sk_badger_1)"
         - "(Past sk_sleep_1)"
         - "(Member sk_sing_1 sing)"
-        - "(Agent sk_sing_1 sk_yusra_1)"
+        - "(Agent sk_sing_1 sk_marisol_1)"
         - "(Past sk_sing_1)"
         - "(Because sk_sleep_1 sk_sing_1)"
       declarations:
-        - "(: ferret Class)"
+        - "(: badger Class)"
         - "(: sing Class)"
-        - "(: sk_ferret_1 Entity)"
+        - "(: sk_badger_1 Entity)"
+        - "(: sk_marisol_1 Entity)"
         - "(: sk_sing_1 Event)"
         - "(: sk_sleep_1 Event)"
-        - "(: sk_yusra_1 Entity)"
         - "(: sleep Class)"
     - category: positive
       note: a coordinating connective — the first clause is the main one
-      text: "Lamine laughed, so Teodor left."
+      text: "Odile laughed, so Pieter left."
       instances:
-        - {t: named-entity, id: n1, name: "Lamine", span: "Lamine"}
-        - {t: named-entity, id: n2, name: "Teodor", span: "Teodor"}
-        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past, span: "Lamine laughed"}
-        - {t: motion, id: m1, verb: leave, mover: "@n2", tense: past, span: "Teodor left"}
+        - {t: named-entity, id: n1, name: "Odile", span: "Odile"}
+        - {t: named-entity, id: n2, name: "Pieter", span: "Pieter"}
+        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past, span: "Odile laughed"}
+        - {t: motion, id: m1, verb: leave, mover: "@n2", tense: past, span: "Pieter left"}
         - {t: link, id: k1, head: So, main: "@v1", sub: "@m1", span: "so"}
     - category: positive
       note: a fronted concessive — the main clause is still first
-      text: "Although Ottoline waited, Lamine left."
+      text: "Although Henrike waited, Odile left."
       instances:
-        - {t: named-entity, id: n1, name: "Ottoline", span: "Ottoline"}
-        - {t: named-entity, id: n2, name: "Lamine", span: "Lamine"}
-        - {t: activity, id: v1, verb: wait, actor: "@n1", tense: past, span: "Ottoline waited"}
-        - {t: motion, id: m1, verb: leave, mover: "@n2", tense: past, span: "Lamine left"}
+        - {t: named-entity, id: n1, name: "Henrike", span: "Henrike"}
+        - {t: named-entity, id: n2, name: "Odile", span: "Odile"}
+        - {t: activity, id: v1, verb: wait, actor: "@n1", tense: past, span: "Henrike waited"}
+        - {t: motion, id: m1, verb: leave, mover: "@n2", tense: past, span: "Odile left"}
         - {t: link, id: k1, head: Although, main: "@m1", sub: "@v1", span: "Although"}
     - category: abstain
-      text: "Yusra laughed after Lamine sang."
+      text: "Marisol laughed after Odile sang."
       expected: {abstain: true, template: time-relation}              # a temporal connective
     - category: abstain
-      text: "But Lamine left."
+      text: "But Odile left."
       expected: {abstain: true, gap: G05, span: "But"}               # a connective opening the text
 
   held_out:                  # tests; never rendered into the prompt

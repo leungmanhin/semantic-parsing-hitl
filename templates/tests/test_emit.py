@@ -85,12 +85,12 @@ class EmitTests(unittest.TestCase):
             ex = next(e for _, _, e in all_examples() if e["text"] == text)
             return atoms_of(E.emit({"id": "a", "instances": ex["instances"]}, CATALOG)["statements"])
 
-        belief = atoms_for("Teodor believes that Lamine lent Ottoline the trowel.")
+        belief = atoms_for("Pieter believes that Odile lent Henrike the trowel.")
         self.assertTrue(any(a.startswith("(Theme sk_believe_1 (And (Member sk_lend_1 lend)") for a in belief))
         self.assertFalse(any(a.startswith("(Member sk_lend_1") or a.startswith("(Agent sk_lend_1") for a in belief))
-        know = atoms_for("Yusra knows that Teodor sold the spindle.")
-        self.assertIn("(Agent sk_sell_1 sk_teodor_1)", know)                      # the presupposed complement, flat
-        self.assertIn("(Member sk_spindle_1 spindle)", know)
+        know = atoms_for("Marisol knows that Pieter sold the bobbin.")
+        self.assertIn("(Agent sk_sell_1 sk_pieter_1)", know)                      # the presupposed complement, flat
+        self.assertIn("(Member sk_bobbin_1 bobbin)", know)
         self.assertEqual(sum(a.startswith("(Theme sk_know_1 ") for a in know), 1)
         neg_know = atoms_for("Yusra does not know that Teodor sold the spindle.")
         self.assertEqual(sum(a.startswith("(Not (And (Member sk_know_1 know)") for a in neg_know), 1)
@@ -106,15 +106,15 @@ class EmitTests(unittest.TestCase):
             ex = next(e for _, _, e in all_examples() if e["text"] == text)
             return E.emit({"id": "t", "instances": ex["instances"]}, CATALOG)["statements"]
 
-        self.assertTrue(all(st.endswith("(STV 1.0 0.99))") for st in stmts("Ferrets are mustelids.")))
-        self.assertTrue(all(st.endswith("(STV 0.9 0.7))") for st in stmts("Ferrets are curious.")))   # bare: no proportion stated
-        quant = stmts("All ferrets are curious.")
-        self.assertIn("(: k1_inheritance (Inheritance ferret curious) (STV 1.0 0.9))", quant)
+        self.assertTrue(all(st.endswith("(STV 1.0 0.99))") for st in stmts("Badgers are mustelids.")))
+        self.assertTrue(all(st.endswith("(STV 0.9 0.7))") for st in stmts("Badgers are curious.")))   # bare: no proportion stated
+        quant = stmts("All badgers are curious.")
+        self.assertIn("(: k1_inheritance (Inheritance badger curious) (STV 1.0 0.9))", quant)
         self.assertFalse(any("QuantifierPhrase" in st for st in quant))       # the word stays in the instance record
         neg = stmts("Ferrets are not rodents.")
         self.assertEqual(len(neg), 1)
         self.assertTrue(neg[0].startswith("(: s1_not (Not (Inheritance ferret rodent))") and neg[0].endswith("(STV 1.0 0.99))"))
-        self.assertTrue(stmts("Ferrets sleep.")[0].endswith("(STV 0.9 0.7))"))                        # a bare generic rule
+        self.assertTrue(stmts("Badgers sleep.")[0].endswith("(STV 0.9 0.7))"))                        # a bare generic rule
         self.assertTrue(stmts("Most students laugh.")[0].endswith("(STV 0.9 0.9))"))                  # an explicit quantifier
 
     def test_scope_atoms_inherit_the_truth_value_of_their_content(self):
@@ -140,7 +140,7 @@ class EmitTests(unittest.TestCase):
         self.assertTrue(E.emit({"id": "t", "instances": event}, CATALOG)["statements"][-1].endswith("(STV 1.0 0.99))"))
 
     def test_distribution_rule_keeps_the_group_statement_and_skolemizes(self):
-        ex = next(e for _, _, e in all_examples() if e["text"] == "Several ferrets slept.")
+        ex = next(e for _, _, e in all_examples() if e["text"] == "Several badgers slept.")
         out = E.emit({"id": "g", "instances": ex["instances"]}, CATALOG)
         atoms = atoms_of(out["statements"])
         self.assertIn("(Agent sk_sleep_1 sk_group_1)", atoms)                 # the group-level statement stays
@@ -162,7 +162,7 @@ class EmitTests(unittest.TestCase):
         self.assertFalse(any("QuantifierPhrase" in st for st in every))       # the word stays in the range instance
         self.assertTrue(next(st for st in stmts("Few ferrets slept.") if "Implication" in st).endswith("(STV 0.1 0.9))"))
         self.assertTrue(next(st for st in stmts("No ferret slept.") if "Implication" in st).endswith("(STV 0.0 0.9))"))
-        bare = stmts("Ferrets sleep.")
+        bare = stmts("Badgers sleep.")
         self.assertEqual(len(bare), 1)
         self.assertTrue(bare[0].endswith("(STV 0.9 0.7))") and "(Past" not in bare[0])          # a bare generic: confidence 0.7
         indef = [a for a in atoms_of(stmts("Every student read a letter.")) if a.startswith("(Implication")]
@@ -234,8 +234,8 @@ class EmitTests(unittest.TestCase):
         def example(tid, text):
             t = CATALOG[tid]
             return next(e for s in ("shown", "held_out") for e in t["examples"][s] if e["text"] == text)
-        flat = E.emit({"id": "f", "instances": example("location", "Yusra laughed in the barn.")["instances"]}, CATALOG)
-        self.assertIn("(Location sk_laugh_1 sk_barn_1)", atoms_of(flat["statements"]))
+        flat = E.emit({"id": "f", "instances": example("location", "Marisol laughed in the granary.")["instances"]}, CATALOG)
+        self.assertIn("(Location sk_laugh_1 sk_granary_1)", atoms_of(flat["statements"]))
         self.assertEqual([d["inst"] for d in flat["detail"] if d["term"].startswith("(Location")], ["l1"])
         neg = E.emit({"id": "n", "instances": example("location", "Teodor did not laugh in the barn.")["instances"]}, CATALOG)
         natoms = atoms_of(neg["statements"])
@@ -268,7 +268,7 @@ class EmitTests(unittest.TestCase):
         def example(tid, text):
             t = CATALOG[tid]
             return next(e for s in ("shown", "held_out") for e in t["examples"][s] if e["text"] == text)
-        deictic = E.emit({"id": "a", "instances": [dict(i) for i in example("time", "Yusra laughed yesterday.")["instances"]]}, CATALOG)
+        deictic = E.emit({"id": "a", "instances": [dict(i) for i in example("time", "Marisol laughed yesterday.")["instances"]]}, CATALOG)
         datoms = atoms_of(deictic["statements"])
         self.assertIn("(Time sk_laugh_1 sk_time_1)", datoms)
         self.assertIn("(BeforeBy sk_time_1 sk_now_1 1 day)", datoms)                # a deictic is an offset from the anchor

@@ -24,25 +24,25 @@ trigger:
     "have" belongs here only as a main verb of having: as an auxiliary (has sent) it marks the
     perfect aspect of another predication, and "have to" is a modal.
   surface_forms:
-    - "<holder> V <possessed>"                 # Ottoline owns the quilt
-    - "<possessed> belongs to <holder>"        # the quilt belongs to Ottoline: the roles do not change
+    - "<holder> V <possessed>"                 # Henrike owns the blanket
+    - "<possessed> belongs to <holder>"        # the blanket belongs to Henrike: the roles do not change
   boundary:                   # looks like a state of having but is not one
     - >-
       coming to have — took, received, bought, inherited: an event of acquiring, not a state
     - >-
-      "have" as an auxiliary — has sent the quilt, had obtained a trowel: the perfect aspect of
+      "have" as an auxiliary — has sent the blanket, had obtained a trowel: the perfect aspect of
       the other verb; no state of having
     - >-
-      "have to" — has to send the quilt: an obligation; a modal over the clause
+      "have to" — has to send the blanket: an obligation; a modal over the clause
     - >-
       "have" with an event noun or in a light-verb use — had lunch, had a word, had a look: the
       noun carries the event
     - >-
       parts, features and members — has a lid, has four legs, has blue eyes: a part-whole
-      relation, not the holding of a thing; kinship — is Lamine's cousin, Yusra and Lamine are
+      relation, not the holding of a thing; kinship — is Odile's cousin, Marisol and Odile are
       cousins, has a brother, has three sons — is a stative relation, the relative its subject
     - >-
-      the possessive inside a noun phrase — Ottoline's quilt, the quilt of Ottoline: a referent
+      the possessive inside a noun phrase — Henrike's blanket, the blanket of Henrike: a referent
       with a possessor, not a clause
 
 slots:
@@ -55,7 +55,7 @@ slots:
   tense:     {type: enum, values: [past, present, future], required: true,
               doc: "the clause's tense; present is recorded, not inferred"}
   aspect:    {type: enum, values: [simple, progressive, perfect, perfect_progressive, about_to, due_to, would, going_to], required: false, default: simple,
-             doc: "simple; progressive for be V-ing; perfect for have V-ed; perfect_progressive for have been V-ing; about_to for be about to V / on the point of V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word kept as the value (be going to V is the future tense, not a prospective); would for a future seen from a past moment (said the barn would flood, hoped the bridge would hold) and going_to for was / were going to V — the same PROSPECTIVE, with tense past; a would that tells what then happened (would later marry) is the plain past, and a would with no if-clause and no past moment is the modal's Would"}
+             doc: "simple; progressive for be V-ing; perfect for have V-ed; perfect_progressive for have been V-ing; about_to for be about to V / on the point of V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word kept as the value (be going to V is the future tense, not a prospective); would for a future seen from a past moment (said the granary would flood, hoped the bridge would hold) and going_to for was / were going to V — the same PROSPECTIVE, with tense past; a would that tells what then happened (would later marry) is the plain past, and a would with no if-clause and no past moment is the modal's Would"}
 
 mints: {id: Event}
 
@@ -88,35 +88,35 @@ examples:
   shown:                     # rendered into the prompt
     - category: positive
       note: have as a main verb
-      text: "Teodor has a trowel."
+      text: "Pieter has a trowel."
       instances:
-        - {t: named-entity, id: n1, name: "Teodor", span: "Teodor"}
+        - {t: named-entity, id: n1, name: "Pieter", span: "Pieter"}
         - {t: witness, id: x1, class: trowel, span: "a trowel"}
-        - {t: possession, id: p1, verb: have, holder: "@n1", possessed: "@x1", tense: present, span: "Teodor has a trowel"}
+        - {t: possession, id: p1, verb: have, holder: "@n1", possessed: "@x1", tense: present, span: "Pieter has a trowel"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
-        - "(Name sk_teodor_1 \"Teodor\")"
+        - "(Name sk_pieter_1 \"Pieter\")"
         - "(Member sk_trowel_1 trowel)"
         - "(Member sk_have_1 have)"
-        - "(Holder sk_have_1 sk_teodor_1)"
+        - "(Holder sk_have_1 sk_pieter_1)"
         - "(Theme sk_have_1 sk_trowel_1)"
       declarations:
         - "(: have Class)"
         - "(: sk_have_1 Event)"
-        - "(: sk_teodor_1 Entity)"
+        - "(: sk_pieter_1 Entity)"
         - "(: sk_trowel_1 Entity)"
         - "(: trowel Class)"
     - category: positive
       note: belong — the subject is the thing held; the roles do not change
-      text: "The ladder belongs to Lamine."
+      text: "The barrow belongs to Odile."
       instances:
-        - {t: witness, id: x1, class: ladder, definite: true, span: "The ladder"}
-        - {t: named-entity, id: n1, name: "Lamine", span: "Lamine"}
-        - {t: possession, id: p1, verb: belong, holder: "@n1", possessed: "@x1", tense: present, span: "The ladder belongs to Lamine"}
+        - {t: witness, id: x1, class: barrow, definite: true, span: "The barrow"}
+        - {t: named-entity, id: n1, name: "Odile", span: "Odile"}
+        - {t: possession, id: p1, verb: belong, holder: "@n1", possessed: "@x1", tense: present, span: "The barrow belongs to Odile"}
     - category: abstain
-      text: "Yusra received a thermos."
+      text: "Marisol received a flask."
       expected: {abstain: true, template: acquisition}                # coming to have
     - category: abstain
-      text: "Lamine had lunch."
+      text: "Odile had lunch."
       expected: {abstain: true, gap: G00, span: "had lunch"}          # light-verb use of have
 
   held_out:                  # tests; never rendered into the prompt

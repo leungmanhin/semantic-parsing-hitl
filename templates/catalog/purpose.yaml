@@ -18,37 +18,36 @@ status: draft
 trigger:
   construction: >
     A clause with a purpose infinitive — to V, in order to V, so as to V — stating the aim of
-    the clause's action: went to the market to buy a thermos, worked to buy a spindle, sang in
-    order to please Teodor, left so as to sleep. Parse the action with its own template; parse
+    the clause's action: went to the bazaar to buy a flask, worked to buy a bobbin, danced in order to please Pieter, left so as to read. Parse the action with its own template; parse
     the aim with the template its verb takes, its actor the action's subject and its tense
     present; then write the purpose instance naming the action, the aim and the connective. A
-    fronted purpose (In order to sleep, the ferret left the barn) is the same. The purpose
+    fronted purpose (In order to sleep, the badger left the granary) is the same. The purpose
     follows its action into a negation or a modal over the clause: never list it in their
     `over`.
   surface_forms:
-    - "<action> to <V2> …"                           # went to the market to buy a thermos
-    - "<action> in order to / so as to <V2> …"       # sang in order to please Teodor
+    - "<action> to <V2> …"                           # went to the bazaar to buy a flask
+    - "<action> in order to / so as to <V2> …"       # danced in order to please Pieter
     - "In order to <V2> …, <action>"                 # fronted
   boundary:                   # looks like a purpose but is not one
     - >-
       the complement of a control, attitude or causative verb — tried to sleep, wants to leave,
-      got Lamine to send the quilt: the infinitive is the verb's complement, not an aim; those
+      got Odile to send the blanket: the infinitive is the verb's complement, not an aim; those
       templates
     - >-
-      a result or outcome infinitive — woke to find the gate open, rebounded to close at par:
+      a result or outcome infinitive — woke to find the hatch open, rebounded to close at par:
       no aim is stated; report the infinitive as unmapped (G06)
     - >-
       the consequence of too or enough — too tired to sing, tall enough to reach the shelf: a
       degree with a consequence, not an aim; the degree is recorded, the infinitive reported as
       unmapped
     - >-
-      so that with a finite clause — left so that Yusra could sleep: a purpose with its own
+      so that with a finite clause — left so that Marisol could sleep: a purpose with its own
       subject and modal; no head here; report it as unmapped
     - >-
-      a for-phrase naming a purpose — a machine for polishing, money for a spindle: no clause;
+      a for-phrase naming a purpose — a machine for polishing, money for a bobbin: no clause;
       report the phrase as unmapped
     - >-
-      a reason, not an aim — left because Yusra laughed: a link
+      a reason, not an aim — left because Marisol laughed: a link
 
 slots:
   id:     {type: id, required: true, doc: "your label for the purpose link (k1, k2 …)"}
@@ -78,42 +77,42 @@ composes_with: [negation, modal, time, location]
 examples:
   shown:                     # rendered into the prompt
     - category: positive
-      note: the action asserted, the aim sealed — the spindle exists only inside the aim
-      text: "Lamine worked to buy a spindle."
+      note: the action asserted, the aim sealed — the bobbin exists only inside the aim
+      text: "Odile worked to buy a bobbin."
       instances:
-        - {t: named-entity, id: n1, name: "Lamine", span: "Lamine"}
-        - {t: witness, id: x1, class: spindle, span: "a spindle"}
-        - {t: activity, id: v1, verb: work, actor: "@n1", tense: past, span: "Lamine worked"}
-        - {t: acquisition, id: e1, verb: buy, acquirer: "@n1", object: "@x1", tense: present, span: "to buy a spindle"}
+        - {t: named-entity, id: n1, name: "Odile", span: "Odile"}
+        - {t: witness, id: x1, class: bobbin, span: "a bobbin"}
+        - {t: activity, id: v1, verb: work, actor: "@n1", tense: past, span: "Odile worked"}
+        - {t: acquisition, id: e1, verb: buy, acquirer: "@n1", object: "@x1", tense: present, span: "to buy a bobbin"}
         - {t: purpose, id: k1, head: To, action: "@v1", aim: ["@e1"], span: "to"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
-        - "(Name sk_lamine_1 \"Lamine\")"
+        - "(Name sk_odile_1 \"Odile\")"
         - "(Member sk_work_1 work)"
-        - "(Agent sk_work_1 sk_lamine_1)"
+        - "(Agent sk_work_1 sk_odile_1)"
         - "(Past sk_work_1)"
-        - "(To sk_work_1 (And (Member sk_buy_1 buy) (Recipient sk_buy_1 sk_lamine_1) (Theme sk_buy_1 sk_spindle_1) (Member sk_spindle_1 spindle)))"
+        - "(To sk_work_1 (And (Member sk_buy_1 buy) (Recipient sk_buy_1 sk_odile_1) (Theme sk_buy_1 sk_bobbin_1) (Member sk_bobbin_1 bobbin)))"
       declarations:
+        - "(: bobbin Class)"
         - "(: buy Class)"
+        - "(: sk_bobbin_1 Entity)"
         - "(: sk_buy_1 Event)"
-        - "(: sk_lamine_1 Entity)"
-        - "(: sk_spindle_1 Entity)"
+        - "(: sk_odile_1 Entity)"
         - "(: sk_work_1 Event)"
-        - "(: spindle Class)"
         - "(: work Class)"
     - category: positive
       note: in order to, with the aim's actor the action's subject
-      text: "The ferret left the barn in order to sleep."
+      text: "The badger left the granary in order to sleep."
       instances:
-        - {t: witness, id: x1, class: ferret, definite: true, span: "The ferret"}
-        - {t: witness, id: x2, class: barn, definite: true, span: "the barn"}
-        - {t: motion, id: m1, verb: leave, mover: "@x1", source: "@x2", tense: past, span: "The ferret left the barn"}
+        - {t: witness, id: x1, class: badger, definite: true, span: "The badger"}
+        - {t: witness, id: x2, class: granary, definite: true, span: "the granary"}
+        - {t: motion, id: m1, verb: leave, mover: "@x1", source: "@x2", tense: past, span: "The badger left the granary"}
         - {t: activity, id: v1, verb: sleep, actor: "@x1", tense: present, span: "to sleep"}
         - {t: purpose, id: k1, head: InOrderTo, action: "@m1", aim: ["@v1"], span: "in order to"}
     - category: abstain
-      text: "Yusra tried to sleep."
+      text: "Marisol tried to sleep."
       expected: {abstain: true, template: control}                    # the verb's complement, not an aim
     - category: abstain
-      text: "The ferret slept because Yusra sang."
+      text: "The badger slept because Marisol sang."
       expected: {abstain: true, template: link}                       # a reason, not an aim
 
   held_out:                  # tests; never rendered into the prompt

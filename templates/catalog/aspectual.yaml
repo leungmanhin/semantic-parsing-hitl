@@ -19,8 +19,8 @@ trigger:
   construction: >
     A verbal clause whose verb names a phase of the action its complement states: begin, start,
     commence, continue, keep, go on, carry on, resume, stop, cease, quit, finish with a
-    to-infinitive or a gerund (began to sing, kept reading the letter, stopped working, finished
-    washing the quilt); and come to V, the inchoative (came to like the quilt), with the lemma
+    to-infinitive or a gerund (began to sing, kept reading the postcard, stopped working, finished
+    washing the blanket); and come to V, the inchoative (came to like the blanket), with the lemma
     come_to. Parse the action with the template its verb takes, its actor or undergoer the
     sentence's subject and its tense present; then write the aspectual instance naming the phase
     verb and the action.
@@ -28,29 +28,29 @@ trigger:
           finish, come_to]
   verbs_note: >
     These verbs belong here only with a verbal complement. Without one they are a change of
-    state (the audit began, the price stopped) or an ordinary action on an object (started a
-    business, finished the letter, kept the letter); stop / keep X from V-ing is a causative.
+    state (the inspection began, the price stopped) or an ordinary action on an object (started a
+    business, finished the postcard, kept the postcard); stop / keep X from V-ing is a causative.
   surface_forms:
-    - "<subject> began / started / continued to <V2> …"   # Teodor began to sing
-    - "<subject> kept / stopped / finished <V2>-ing …"    # Yusra stopped working
-    - "<subject> came to <V2> …"                          # Yusra came to like the quilt
+    - "<subject> began / started / continued to <V2> …"   # Pieter began to sing
+    - "<subject> kept / stopped / finished <V2>-ing …"    # Marisol stopped working
+    - "<subject> came to <V2> …"                          # Marisol came to like the blanket
   boundary:                   # looks like an aspectual but is not one
     - >-
-      a phase verb without a verbal complement — the audit began, the price stopped, the storm
+      a phase verb without a verbal complement — the inspection began, the price stopped, the storm
       ceased: a change of state of the subject
     - >-
-      a phase verb with a noun object — started a business, finished the letter, kept the
-      letter, continued the audit: an action on a thing, parsed by that action's template
+      a phase verb with a noun object — started a business, finished the postcard, kept the
+      postcard, continued the inspection: an action on a thing, parsed by that action's template
     - >-
-      stop, keep or prevent with an object and a verb — stopped Teodor from leaving, kept Lamine
+      stop, keep or prevent with an object and a verb — stopped Pieter from leaving, kept Odile
       from leaving: a causative
     - >-
       no longer V-s, V-s again, still V-s: a different construction, and the words change the
       claim (no longer works does not say works); report the whole clause as unmapped
     - >-
-      used to V — Lamine used to sing: a past habit, the habitual template
+      used to V — Odile used to sing: a past habit, the habitual template
     - >-
-      begin or start as the motion of setting off — started for the market: a motion
+      begin or start as the motion of setting off — started for the bazaar: a motion
 
 slots:
   id:         {type: id, required: true, doc: "your label for the phase event"}
@@ -60,7 +60,7 @@ slots:
   tense:      {type: enum, values: [past, present, future], required: true,
                doc: "the clause's tense; present is recorded, not inferred"}
   aspect:     {type: enum, values: [simple, progressive, perfect, perfect_progressive, about_to, due_to, would, going_to], required: false, default: simple,
-              doc: "simple; progressive for be V-ing; perfect for have V-ed; perfect_progressive for have been V-ing; about_to for be about to V / on the point of V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word kept as the value (be going to V is the future tense, not a prospective); would for a future seen from a past moment (said the barn would flood, hoped the bridge would hold) and going_to for was / were going to V — the same PROSPECTIVE, with tense past; a would that tells what then happened (would later marry) is the plain past, and a would with no if-clause and no past moment is the modal's Would"}
+              doc: "simple; progressive for be V-ing; perfect for have V-ed; perfect_progressive for have been V-ing; about_to for be about to V / on the point of V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word kept as the value (be going to V is the future tense, not a prospective); would for a future seen from a past moment (said the granary would flood, hoped the bridge would hold) and going_to for was / were going to V — the same PROSPECTIVE, with tense past; a would that tells what then happened (would later marry) is the plain past, and a would with no if-clause and no past moment is the modal's Would"}
 
 mints: {id: Event}
 
@@ -93,23 +93,23 @@ examples:
   shown:                     # rendered into the prompt
     - category: positive
       note: the phase event has no role of its own; the action is sealed as its Theme and marked as entailed
-      text: "Teodor began to sing."
+      text: "Pieter began to sing."
       instances:
-        - {t: named-entity, id: n1, name: "Teodor", span: "Teodor"}
+        - {t: named-entity, id: n1, name: "Pieter", span: "Pieter"}
         - {t: activity, id: v1, verb: sing, actor: "@n1", tense: present, span: "to sing"}
-        - {t: aspectual, id: e1, verb: begin, complement: ["@v1"], tense: past, span: "Teodor began to sing"}
+        - {t: aspectual, id: e1, verb: begin, complement: ["@v1"], tense: past, span: "Pieter began to sing"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
-        - "(Name sk_teodor_1 \"Teodor\")"
+        - "(Name sk_pieter_1 \"Pieter\")"
         - "(Member sk_begin_1 begin)"
-        - "(Theme sk_begin_1 (And (Member sk_sing_1 sing) (Agent sk_sing_1 sk_teodor_1)))"
+        - "(Theme sk_begin_1 (And (Member sk_sing_1 sing) (Agent sk_sing_1 sk_pieter_1)))"
         - "(Entails sk_begin_1)"
         - "(Past sk_begin_1)"
       declarations:
         - "(: begin Class)"
         - "(: sing Class)"
         - "(: sk_begin_1 Event)"
+        - "(: sk_pieter_1 Entity)"
         - "(: sk_sing_1 Event)"
-        - "(: sk_teodor_1 Entity)"
     - category: positive
       note: the subject undergoes the action — no agent anywhere
       text: "The price started to fall."
@@ -118,10 +118,10 @@ examples:
         - {t: change-of-state, id: c1, verb: fall, undergoer: "@x1", tense: present, span: "to fall"}
         - {t: aspectual, id: e1, verb: start, complement: ["@c1"], tense: past, span: "The price started to fall"}
     - category: abstain
-      text: "Yusra tried to sleep."
+      text: "Marisol tried to sleep."
       expected: {abstain: true, template: control}                    # an effort, not a phase
     - category: abstain
-      text: "Lamine prevented Teodor from leaving."
+      text: "Odile prevented Pieter from leaving."
       expected: {abstain: true, template: causative}                  # a causer and a different actor
 
   held_out:                  # tests; never rendered into the prompt

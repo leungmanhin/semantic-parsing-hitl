@@ -34,7 +34,7 @@ trigger:
     believed / thought / reported / known that P: "it" is no referent), or an impersonal active
     (they say that P, people think / believe that P). The clause is parsed with its own
     templates — a copular for "to be a weaver" or "considered a glazier", a locative for "to be
-    in Calderwick", a verb's template for "to win" — with the matrix verb's tense (is said to
+    in Brackenford", a verb's template for "to win" — with the matrix verb's tense (is said to
     be → present, was believed to be → past; a perfect infinitive, is said to have left, is
     past; is expected to win stays present, as likely to does); the hedge instance names its
     predication (or the negation, modal, norm or rule over it) in `over` and the word in `word`
@@ -57,14 +57,13 @@ trigger:
     - >-
       an appearance stated by a verb — seems tired, looks tired: the evidential template
     - >-
-      a report with a NAMED or quantified source — Lamine says that P, Teodor believes that P,
+      a report with a NAMED or quantified source — Odile says that P, Pieter believes that P,
       some people think that P, everyone says that P: that holder's attitude or communication,
-      not an impersonal report; an attribution — according to Lamine, P: no template yet, and
+      not an impersonal report; an attribution — according to Odile, P: no template yet, and
       the claim is not asserted, so report the whole clause as unmapped (G00)
     - >-
       supposed to as a duty or an expectation of conduct — is supposed to wait, is supposed to
-      lock the shed: the norm template's weak obligation; only a report about a fact (is
-      supposed to be rich) is a hedge
+      lock the hut: the norm template's weak obligation; only a report about a fact (is supposed to be clever) is a hedge
     - >-
       a generality adverb on a report — widely / generally / commonly believed: nothing changes
       on the dial; report the adverb as unmapped (G02)
@@ -138,31 +137,31 @@ examples:
   shown:                     # rendered into the prompt
     - category: positive
       note: a sentence adverb — the clause's own atoms at the hedge's truth value, no operator
-      text: "Teodor probably locked the shed."
+      text: "Pieter probably locked the hut."
       instances:
-        - {t: named-entity, id: n1, name: "Teodor", span: "Teodor"}
-        - {t: witness, id: x1, class: shed, definite: true, span: "the shed"}
-        - {t: activity, id: v1, verb: lock, actor: "@n1", patient: "@x1", tense: past, span: "Teodor probably locked the shed"}
+        - {t: named-entity, id: n1, name: "Pieter", span: "Pieter"}
+        - {t: witness, id: x1, class: hut, definite: true, span: "the hut"}
+        - {t: activity, id: v1, verb: lock, actor: "@n1", patient: "@x1", tense: past, span: "Pieter probably locked the hut"}
         - {t: hedge, id: s1, over: ["@v1"], word: probably, span: "probably"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
-        - "(Name sk_teodor_1 \"Teodor\")"
-        - "(Member sk_shed_1 shed)"
+        - "(Name sk_pieter_1 \"Pieter\")"
+        - "(Member sk_hut_1 hut)"
         - "(Member sk_lock_1 lock)"
-        - "(Agent sk_lock_1 sk_teodor_1)"
-        - "(Patient sk_lock_1 sk_shed_1)"
+        - "(Agent sk_lock_1 sk_pieter_1)"
+        - "(Patient sk_lock_1 sk_hut_1)"
         - "(Past sk_lock_1)"
       declarations:
+        - "(: hut Class)"
         - "(: lock Class)"
-        - "(: shed Class)"
+        - "(: sk_hut_1 Entity)"
         - "(: sk_lock_1 Event)"
-        - "(: sk_shed_1 Entity)"
-        - "(: sk_teodor_1 Entity)"
+        - "(: sk_pieter_1 Entity)"
     - category: positive
       note: a hedge on a copular clause
-      text: "The gate is apparently open."
+      text: "The hatch is apparently open."
       instances:
-        - {t: witness, id: x1, class: gate, definite: true, span: "The gate"}
-        - {t: copular, id: c1, subject: "@x1", predicate: open, form: adjective, tense: present, span: "The gate is apparently open"}
+        - {t: witness, id: x1, class: hatch, definite: true, span: "The hatch"}
+        - {t: copular, id: c1, subject: "@x1", predicate: open, form: adjective, tense: present, span: "The hatch is apparently open"}
         - {t: hedge, id: s1, over: ["@c1"], word: apparently, span: "apparently"}
     - category: positive
       note: an impersonal report — the copular clause at the hearsay dial, the participle the word, no holder, nothing sealed
@@ -173,16 +172,16 @@ examples:
         - {t: hedge, id: s1, over: ["@c1"], word: said, span: "is said to"}
     - category: positive
       note: the impersonal extraposition — "it" is no referent; the clause at the dial
-      text: "It is believed that Yusra left."
+      text: "It is believed that Marisol left."
       instances:
-        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
-        - {t: motion, id: m1, verb: leave, mover: "@n1", tense: past, span: "Yusra left"}
+        - {t: named-entity, id: n1, name: "Marisol", span: "Marisol"}
+        - {t: motion, id: m1, verb: leave, mover: "@n1", tense: past, span: "Marisol left"}
         - {t: hedge, id: s1, over: ["@m1"], word: believed, span: "It is believed that"}
     - category: abstain
-      text: "Yusra must be tired."
+      text: "Marisol must be tired."
       expected: {abstain: true, template: modal}                      # an epistemic inference
     - category: abstain
-      text: "The ferret looks tired."
+      text: "The badger looks tired."
       expected: {abstain: true, template: evidential}                 # an appearance stated by a verb
 
   held_out:                  # tests; never rendered into the prompt

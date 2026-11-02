@@ -18,11 +18,11 @@ status: draft
 
 trigger:
   construction: >
-    A clause with "be" as its main verb whose subject names a class — a bare plural (alloys), a
+    A clause with "be" as its main verb whose subject names a class — a bare plural (resins), a
     mass noun (clay) or a generic indefinite singular — and whose predicate adjective holds of
     a member only under a stated condition: an adjective after when / if / while / once (soft
     when wet, brittle if cold, sticky once heated), or a place where the property holds of the
-    members (tame in Calderwick). The subject is a range instance; the property is a copular
+    members (tame in Brackenford). The subject is a range instance; the property is a copular
     instance over the range, listed in `over`; the condition is a predication over the same
     range — a copular instance for a state (wet, cold, heated), a locative instance for a
     place — listed in `condition`; several conditions are several instances. A pronoun in the
@@ -32,25 +32,24 @@ trigger:
     instance per clause.
   surface_forms:
     - "<class>s are <ADJ> when / if <ADJ>"      # clay is soft when wet
-    - "<class>s are <ADJ> in <place>"           # ferrets are tame in Calderwick
+    - "<class>s are <ADJ> in <place>"           # badgers are tame in Brackenford
     - "all / most / few / no <class>s are <ADJ> when <ADJ>"   # the quantifier word on the range
   boundary:                   # looks like a conditional property but is not one
     - >-
-      no condition — clay is soft, ferrets are curious: a class statement; otters are rare: a
+      no condition — clay is soft, badgers are curious: a class statement; voles are rare: a
       class-level property
     - >-
-      a property no member holds, restricted to a place or a time — otters are rare in
-      Norfolk, cranes are rare in winter: a class-level property with a restriction, not a rule
+      a property no member holds, restricted to a place or a time — voles are rare in
+      Westmarch, plovers are rare in winter: a class-level property with a restriction, not a rule
       over the members
     - >-
-      an individual as the subject — the ladder is brittle when cold, Teodor is grumpy when
+      an individual as the subject — the barrow is brittle when cold, Pieter is grumpy when
       tired: not a class; the conditional template
     - >-
-      a verbal predicate under a condition — clay softens when wet, ferrets bite when
+      a verbal predicate under a condition — putty softens when wet, badgers bite when
       cornered: a generic with a condition
     - >-
-      a condition about something other than the member — herons are patient if the weather
-      is sunny, bread is cheap when the harvest is good: the conditional template, with the
+      a condition about something other than the member — storks are drowsy if the weather is windy, bread is cheap when the harvest is good: the conditional template, with the
       class range in its ranges
     - >-
       a circumstance phrase that no template states of a member — solid at room temperature,
@@ -65,7 +64,7 @@ slots:
   ranges:    {type: refs, class: Proposition, required: true,
               doc: "the range instance for the class (one, as a rule): the arbitrary member the condition and the property are about"}
   condition: {type: refs, class: Proposition, required: true, state_variable: true, as_variable: true,
-              doc: "the predication(s) that must hold of the member: a copular instance over the range for a state (wet), a locative instance for a place, or a relative clause on the class (herons that fish are patient: the fishing, its event a variable); their ids; a pronoun bound by the range is the range (subject @q1)"}
+              doc: "the predication(s) that must hold of the member: a copular instance over the range for a state (wet), a locative instance for a place, or a relative clause on the class (storks that fish are patient: the fishing, its event a variable); their ids; a pronoun bound by the range is the range (subject @q1)"}
   over:      {type: refs, class: Proposition, required: true, skolemize: true,
               doc: "the copular predication over the range that then holds, or the negation / modal over it: its id, nothing else"}
 
@@ -130,17 +129,17 @@ examples:
         - "(: sk_soft (-> Atom Atom Event))"
     - category: positive
       note: a quantifier word — on the range, with the property as its predicate
-      text: "All alloys are brittle when cold."
+      text: "All resins are brittle when cold."
       instances:
-        - {t: range, id: q1, class: alloy, quantifier: all, predicate: brittle, span: "All alloys"}
-        - {t: copular, id: c1, subject: "@q1", predicate: brittle, form: adjective, tense: present, span: "All alloys are brittle"}
+        - {t: range, id: q1, class: resin, quantifier: all, predicate: brittle, span: "All resins"}
+        - {t: copular, id: c1, subject: "@q1", predicate: brittle, form: adjective, tense: present, span: "All resins are brittle"}
         - {t: copular, id: c2, subject: "@q1", predicate: cold, form: adjective, tense: present, span: "cold"}
-        - {t: conditional-property, id: r1, ranges: ["@q1"], condition: ["@c2"], over: ["@c1"], span: "All alloys are brittle when cold"}
+        - {t: conditional-property, id: r1, ranges: ["@q1"], condition: ["@c2"], over: ["@c1"], span: "All resins are brittle when cold"}
     - category: abstain
-      text: "Otters are rare in Norfolk."
+      text: "Voles are rare in Westmarch."
       expected: {abstain: true, template: class-property}              # a class-level property, restricted
     - category: abstain
-      text: "Ferrets are curious."
+      text: "Badgers are curious."
       expected: {abstain: true, template: class-statement}             # no condition
 
   held_out:                  # tests; never rendered into the prompt

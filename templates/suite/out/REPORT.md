@@ -1,6 +1,6 @@
 # Suite report
 
-prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 5f93646417041a51) · manifest db085acebed7 · type check: ran
+prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 9c9ad03d811c3c93) · manifest 4b2e3594475d · type check: ran
 
 ## Catalog checks
 
@@ -165,7 +165,7 @@ Mismatches: none
 
 ## attitude — held_out
 
-25 cases, 75 records (ok 75; stale prompt 72; stale manifest 18, unstamped 54) · gemini-4-argon effort=low
+25 cases, 75 records (ok 75; stale prompt 75; stale manifest 21, unstamped 54) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -333,7 +333,7 @@ Mismatches: none
 
 ## comparative — held_out
 
-20 cases, 60 records (ok 60; stale prompt 57; stale manifest 0, unstamped 57) · gemini-4-argon effort=low
+20 cases, 60 records (ok 60; stale prompt 60; stale manifest 3, unstamped 57) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -896,7 +896,7 @@ Mismatches: none
 
 ## location — held_out
 
-20 cases, 60 records (ok 60; stale prompt 57; stale manifest 9, unstamped 48) · gemini-4-argon effort=low
+20 cases, 60 records (ok 60; stale prompt 60; stale manifest 12, unstamped 48) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -978,7 +978,7 @@ Mismatches: none
 
 ## measure — held_out
 
-23 cases, 69 records (ok 69; stale prompt 66; stale manifest 0, unstamped 66) · gemini-4-argon effort=low
+23 cases, 69 records (ok 69; stale prompt 66; stale manifest 3, unstamped 63) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -992,7 +992,7 @@ Mismatches: none
 - type check: 69/69 emitted parses type
 - graph lints: none
 - spans: 192/192 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
-- usage: 69 calls · in 5,774,922 · cached 5,157,743 (89% of the input) · out 11,055 · thinking 0 (calls with thought tokens: 0)
+- usage: 69 calls · in 5,854,455 · cached 5,237,221 (89% of the input) · out 11,055 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: 4
   - P00 · comparative · r1 "The bridge is more than 200 metres long.": The comparative template says under 'Not this template' both that a comparison against a bare number such as 'more than 200 metres long' uses the measure template and, in another bullet, to report a comparison with a measure as unmapped.
   - P00 · part-whole · r1 "The parcel weighs a pound.": The Not this template section of part-whole and stative-relation state that a measure like 'weighs a pound' has no template yet and should be reported as unmapped (G00), contradicting the measure template which explicitly covers 'weighs <n> <unit>'.
@@ -1204,7 +1204,7 @@ Mismatches: none
 
 ## perception — held_out
 
-12 cases, 36 records (ok 36; stale prompt 33; stale manifest 0, unstamped 33) · gemini-4-argon effort=low
+12 cases, 36 records (ok 36; stale prompt 36; stale manifest 3, unstamped 33) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -1405,7 +1405,7 @@ Mismatches: none
 
 ## stative-relation — held_out
 
-34 cases, 102 records (ok 102; stale prompt 96; stale manifest 24, unstamped 72) · gemini-4-argon effort=low
+34 cases, 102 records (ok 102; stale prompt 102; stale manifest 30, unstamped 72) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -1450,7 +1450,7 @@ Mismatches: none
 - type check: 102/102 emitted parses type
 - graph lints: none
 - spans: 351/351 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
-- usage: 102 calls · in 8,892,501 · cached 8,610,869 (97% of the input) · out 19,075 · thinking 0 (calls with thought tokens: 0)
+- usage: 102 calls · in 8,903,172 · cached 8,621,487 (97% of the input) · out 19,072 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
 Abstain cases (what the parser did, per run):

@@ -17,8 +17,8 @@ trigger:
     A verbal clause whose verb denotes perceiving: see, hear, smell, taste, feel (a sensation),
     watch, observe, notice, spot, glimpse, overhear, look at, listen to. The perceiver is the
     subject; what is perceived is a noun phrase (the stimulus) or a clause without "that": a
-    bare infinitive (saw Lamine hand Teodor an envelope) or a participle (saw Lamine handing
-    Teodor an envelope). With "look at" and "listen to" the preposition marks the stimulus and
+    bare infinitive (saw Odile hand Pieter an envelope) or a participle (saw Odile handing
+    Pieter an envelope). With "look at" and "listen to" the preposition marks the stimulus and
     the lemma is look / listen.
   verbs: [see, hear, smell, taste, feel, watch, observe, notice, spot, glimpse, overhear, look,
           listen]
@@ -26,9 +26,9 @@ trigger:
     The list anchors the class; an unlisted verb that denotes perceiving belongs here. Whether
     the perceiving was deliberate (watch, listen) or not (see, hear) stays in the verb lemma.
   surface_forms:
-    - "<perceiver> V <stimulus>"                        # saw the ferret
-    - "<perceiver> V <event clause>"                    # saw Lamine hand Teodor an envelope
-    - "<perceiver> V <event clause with -ing>"          # saw Lamine handing Teodor an envelope
+    - "<perceiver> V <stimulus>"                        # saw the badger
+    - "<perceiver> V <event clause>"                    # saw Odile hand Pieter an envelope
+    - "<perceiver> V <event clause with -ing>"          # saw Odile handing Pieter an envelope
     - "<perceiver> looks at / listens to <stimulus>"    # the preposition marks the stimulus
     - "<stimulus> was V-ed"                             # passive, perceiver unstated
   boundary:                   # looks like a perception but is not one
@@ -36,16 +36,16 @@ trigger:
       a that-clause — saw that P, heard that P, noticed that P: a factive attitude towards a
       proposition
     - >-
-      an emotional or evaluative state — fears the ferret, likes the news: a psych state, not
+      an emotional or evaluative state — fears the badger, likes the news: a psych state, not
       perceiving
     - >-
-      appearance with an adjective — looks tired, sounds odd, the wall feels cold: the
+      appearance with an adjective — looks tired, sounds odd, the hedge feels cold: the
       evidential template, over a copular instance; no perceiver is a participant; feel with
-      an animate subject and a property — Teodor felt tired: the sensation template
+      an animate subject and a property — Pieter felt tired: the sensation template
     - >-
-      understanding and idioms — saw the point, I see, hear from Lamine: not perceiving a thing
+      understanding and idioms — saw the point, I see, hear from Odile: not perceiving a thing
     - >-
-      listen, look or watch with no object, as an intransitive or an imperative — Lamine
+      listen, look or watch with no object, as an intransitive or an imperative — Odile
       listened; Listen!: an activity (listen, look), not a perception, which needs a stimulus
 
 slots:
@@ -56,11 +56,11 @@ slots:
   stimulus:  {type: filler, class: Entity, role: Stimulus, required: false,
               doc: "the thing perceived: the object, or the subject of a passive"}
   event:     {type: filler, class: Event, role: Stimulus, required: false,
-              doc: "the event perceived: the id of the clause's predication instance (saw Lamine hand Teodor an envelope: the transfer's id); that instance takes the perception's tense, the two being simultaneous, and the aspect its form shows — a participle complement is aspect progressive — and is stated as having happened"}
+              doc: "the event perceived: the id of the clause's predication instance (saw Odile hand Pieter an envelope: the transfer's id); that instance takes the perception's tense, the two being simultaneous, and the aspect its form shows — a participle complement is aspect progressive — and is stated as having happened"}
   tense:     {type: enum, values: [past, present, future], required: true,
               doc: "the clause's tense; present is recorded, not inferred"}
   aspect:    {type: enum, values: [simple, progressive, perfect, perfect_progressive, about_to, due_to, would, going_to], required: false, default: simple,
-             doc: "simple; progressive for be V-ing; perfect for have V-ed; perfect_progressive for have been V-ing; about_to for be about to V / on the point of V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word kept as the value (be going to V is the future tense, not a prospective); would for a future seen from a past moment (said the barn would flood, hoped the bridge would hold) and going_to for was / were going to V — the same PROSPECTIVE, with tense past; a would that tells what then happened (would later marry) is the plain past, and a would with no if-clause and no past moment is the modal's Would"}
+             doc: "simple; progressive for be V-ing; perfect for have V-ed; perfect_progressive for have been V-ing; about_to for be about to V / on the point of V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word kept as the value (be going to V is the future tense, not a prospective); would for a future seen from a past moment (said the granary would flood, hoped the bridge would hold) and going_to for was / were going to V — the same PROSPECTIVE, with tense past; a would that tells what then happened (would later marry) is the plain past, and a would with no if-clause and no past moment is the modal's Would"}
 
 one_of: [[stimulus, event]]           # a thing or an event is perceived, never both, never neither
 
@@ -99,39 +99,39 @@ examples:
   shown:                     # rendered into the prompt
     - category: positive
       note: a thing perceived
-      text: "Teodor saw the ferret."
+      text: "Pieter saw the badger."
       instances:
-        - {t: named-entity, id: n1, name: "Teodor", span: "Teodor"}
-        - {t: witness, id: x1, class: ferret, definite: true, span: "the ferret"}
-        - {t: perception, id: p1, verb: see, perceiver: "@n1", stimulus: "@x1", tense: past, span: "Teodor saw the ferret"}
+        - {t: named-entity, id: n1, name: "Pieter", span: "Pieter"}
+        - {t: witness, id: x1, class: badger, definite: true, span: "the badger"}
+        - {t: perception, id: p1, verb: see, perceiver: "@n1", stimulus: "@x1", tense: past, span: "Pieter saw the badger"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
-        - "(Name sk_teodor_1 \"Teodor\")"
-        - "(Member sk_ferret_1 ferret)"
+        - "(Name sk_pieter_1 \"Pieter\")"
+        - "(Member sk_badger_1 badger)"
         - "(Member sk_see_1 see)"
-        - "(Experiencer sk_see_1 sk_teodor_1)"
-        - "(Stimulus sk_see_1 sk_ferret_1)"
+        - "(Experiencer sk_see_1 sk_pieter_1)"
+        - "(Stimulus sk_see_1 sk_badger_1)"
         - "(Past sk_see_1)"
       declarations:
-        - "(: ferret Class)"
+        - "(: badger Class)"
         - "(: see Class)"
-        - "(: sk_ferret_1 Entity)"
+        - "(: sk_badger_1 Entity)"
+        - "(: sk_pieter_1 Entity)"
         - "(: sk_see_1 Event)"
-        - "(: sk_teodor_1 Entity)"
     - category: positive
       note: an event perceived — the transfer is parsed and asserted, the perception points at it
-      text: "Yusra saw Lamine hand Teodor an envelope."
+      text: "Marisol saw Odile hand Pieter an envelope."
       instances:
-        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
-        - {t: named-entity, id: n2, name: "Lamine", span: "Lamine"}
-        - {t: named-entity, id: n3, name: "Teodor", span: "Teodor"}
+        - {t: named-entity, id: n1, name: "Marisol", span: "Marisol"}
+        - {t: named-entity, id: n2, name: "Odile", span: "Odile"}
+        - {t: named-entity, id: n3, name: "Pieter", span: "Pieter"}
         - {t: witness, id: x1, class: envelope, span: "an envelope"}
-        - {t: transfer, id: e1, verb: hand, giver: "@n2", recipient: "@n3", object: "@x1", tense: past, span: "Lamine hand Teodor an envelope"}
-        - {t: perception, id: p1, verb: see, perceiver: "@n1", event: "@e1", tense: past, span: "Yusra saw Lamine hand Teodor an envelope"}
+        - {t: transfer, id: e1, verb: hand, giver: "@n2", recipient: "@n3", object: "@x1", tense: past, span: "Odile hand Pieter an envelope"}
+        - {t: perception, id: p1, verb: see, perceiver: "@n1", event: "@e1", tense: past, span: "Marisol saw Odile hand Pieter an envelope"}
     - category: abstain
-      text: "Teodor saw that Lamine sold the spindle."
+      text: "Pieter saw that Odile sold the bobbin."
       expected: {abstain: true, template: attitude}                   # a that-clause: a factive attitude
     - category: abstain
-      text: "The ferret looks tired."
+      text: "The badger looks tired."
       expected: {abstain: true, template: evidential}                 # appearance with an adjective
 
   held_out:                  # tests; never rendered into the prompt

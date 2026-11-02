@@ -8,25 +8,25 @@ status: stub
 
 trigger:
   construction: >
-    A noun phrase headed by a common noun with a determiner or a modifier — a thermos, the
-    quilt, this spindle, two envelopes' member — introducing an individual of that class. The
+    A noun phrase headed by a common noun with a determiner or a modifier — a flask, the
+    blanket, this bobbin, two envelopes' member — introducing an individual of that class. The
     individual gets a numbered witness symbol; whether the phrase is definite is recorded. A
-    possessive phrase (Yusra's quilt, the quilt of Yusra, her quilt) is a witness with its
+    possessive phrase (Marisol's blanket, the blanket of Marisol, her blanket) is a witness with its
     possessor recorded: the possessor is a referent — a name, a witness, or for a possessive
-    pronoun (her quilt) a mention instance of its own, linked to its antecedent by a coref
+    pronoun (her blanket) a mention instance of its own, linked to its antecedent by a coref
     instance; the possessor presupposes the witness, so no definite mark is needed. A
-    noun that names an event or a period (meeting, audit, war, trip, storm) is a witness like any
-    other; when the clause puts the noun itself in time (the meeting is at noon, the audit was on
-    Monday) or places another event relative to it (left after the audit, slept during the
-    meeting), mark it eventive so that the time or the relation can attach to it. A MASS noun
-    with a quantity phrase — a lot of water, plenty of rain, lots of sugar, a little salt — or
+    noun that names an event or a period (session, inspection, war, trip, storm) is a witness like any
+    other; when the clause puts the noun itself in time (the session is at noon, the inspection was on
+    Monday) or places another event relative to it (left after the inspection, slept during the
+    session), mark it eventive so that the time or the relation can attach to it. A MASS noun
+    with a quantity phrase — a lot of water, plenty of hail, lots of sugar, a little salt — or
     with a container or measure word — a cup of tea, a bag of flour — is a witness of the stuff
     (the quantity of it the text introduces): the vague phrase is recorded in `quantity`; a
     container or measure word is a measure instance on the witness. A noun, a name or a year
-    before the head noun (a harbour pilot, a Calderwick quilt, a 1904 almanac) narrows the
+    before the head noun (a harbour pilot, a Brackenford blanket, a 1904 almanac) narrows the
     class: the head is the class and the words before it are its `mods`. Former, ex- or retired
     before the noun (a former guard) sets `former`: it was one and is not now. Another or the
-    other before the noun (another ferret) is a witness of its own, never coreferent with the
+    other before the noun (another badger) is a witness of its own, never coreferent with the
     earlier one; the word itself is not reported.
   surface_forms:
     - "a <N>"                       # indefinite
@@ -40,26 +40,26 @@ trigger:
     - >-
       a bare plural read generically — dogs bark: a class-level statement, not a witness
     - >-
-      a plural noun phrase — the ferrets, two envelopes: a group of individuals, not one
+      a plural noun phrase — the badgers, two envelopes: a group of individuals, not one
       witness
     - >-
-      a proper name — Teodor: a named entity
+      a proper name — Pieter: a named entity
 
 slots:
   id:       {type: id, required: true}
   class:     {type: lemma, class: Class, required: true, narrowed_by: [props, mods], doc: "the head noun's lemma"}
   definite: {type: bool, required: false, doc: "true for the / this / that; absent for a / an and for a possessed phrase (the possessor presupposes it)"}
   props:    {type: list, class: Class, restriction: Member, required: false,
-             doc: "adjectival properties stated in the phrase; a property with a degree word (a very old spindle) is a degree instance beside the witness, not a property here; a noun before the head is a mod, never a property"}
+             doc: "adjectival properties stated in the phrase; a property with a degree word (a very old bobbin) is a degree instance beside the witness, not a property here; a noun before the head is a mod, never a property"}
   former:   {type: bool, required: false, doc: "true when former, ex-, one-time or retired makes the noun something the referent was and no longer is (a former guard)"}
   mods:     {type: list, class: Class, ids: [named-entity, time], required: false,
-             doc: "the nouns, names and years before the head noun that narrow its class (Nouns before nouns): a lemma for a noun (a harbour pilot: harbour; a sea salt grinder: sea_salt), the id of a named-entity instance for a name (a Calderwick quilt), of a time instance for a year, a decade or a century (a 1904 almanac); never an adjective"}
+             doc: "the nouns, names and years before the head noun that narrow its class (Nouns before nouns): a lemma for a noun (a harbour pilot: harbour; a sea salt grinder: sea_salt), the id of a named-entity instance for a name (a Brackenford blanket), of a time instance for a year, a decade or a century (a 1904 almanac); never an adjective"}
   possessor: {type: filler, class: Entity, required: false,
-              doc: "the possessor of a possessive phrase: Yusra's quilt, the quilt of Yusra, her quilt — an owner or an associate, NOT a whole the noun is a part of (the lid of the box, the box's lid, the car engine, the top of the ladder: no possessor, the witness definite, and a part-whole instance links the two), NOT the other party of a singular relational noun (her son, Bram's grandmother, the guild's treasurer: no possessor, a stative-relation instance with the witness as its bearer); a referent id (for a possessive pronoun, the id of its mention instance), or a bare lemma for a class-level possessor"}
+              doc: "the possessor of a possessive phrase: Marisol's blanket, the blanket of Marisol, her blanket — an owner or an associate, NOT a whole the noun is a part of (the lid of the chest, the chest's lid, the car engine, the top of the barrow: no possessor, the witness definite, and a part-whole instance links the two), NOT the other party of a singular relational noun (her son, Joost's grandmother, the fellowship's treasurer: no possessor, a stative-relation instance with the witness as its bearer); a referent id (for a possessive pronoun, the id of its mention instance), or a bare lemma for a class-level possessor"}
   quantity: {type: string, required: false,
              doc: "a vague amount phrase on a mass noun, as written (a lot, lots, plenty, a little, a bit, much); absent otherwise"}
   eventive: {type: bool, required: false,
-             doc: "true when the noun names an event or a period and the clause puts the noun itself in time (the meeting is at noon), a year before it names its time (the 1904 flood), or the clause places another event relative to it (after the audit, during the meeting); absent otherwise"}
+             doc: "true when the noun names an event or a period and the clause puts the noun itself in time (the session is at noon), a year before it names its time (the 1904 flood), or the clause places another event relative to it (after the inspection, during the session); absent otherwise"}
 
 mints: {id: Entity, stem: class, also: {Event: eventive}}      # an eventive witness is an Event too
 
@@ -86,15 +86,15 @@ emits:
 examples:
   shown:
     - category: positive
-      text: "a thermos"
+      text: "a flask"
       instances:
-        - {t: witness, id: n1, class: thermos, span: "a thermos"}
+        - {t: witness, id: n1, class: flask, span: "a flask"}
     - category: positive
       note: a possessive phrase — the possessor is a referent of its own
-      text: "Yusra's quilt"
+      text: "Marisol's blanket"
       instances:
-        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
-        - {t: witness, id: x1, class: quilt, possessor: "@n1", span: "Yusra's quilt"}
+        - {t: named-entity, id: n1, name: "Marisol", span: "Marisol"}
+        - {t: witness, id: x1, class: blanket, possessor: "@n1", span: "Marisol's blanket"}
     - category: positive
       note: a noun before the noun narrows its class — the head is the class, the noun before it a mod
       text: "a harbour pilot"

@@ -21,34 +21,34 @@ trigger:
   construction: >
     A focus particle on a constituent of a verbal clause — only, just, solely, alone
     (exclusive); even (scalar); also, too, as well (additive), with either and neither as their
-    forms under negation — or an it-cleft (it was Lamine who washed the quilt) or a
-    pseudo-cleft (what Teodor read was the letter). The clause is parsed with its own template
+    forms under negation — or an it-cleft (it was Odile who washed the blanket) or a
+    pseudo-cleft (what Pieter read was the postcard). The clause is parsed with its own template
     as if the particle were absent; the focus instance names the head, the focused constituent
     — the referent id of the subject or object the particle sits on, or the verb's lemma for a
-    focus on the verb phrase (Teodor only slept → sleep) — and the clause's event. A
+    focus on the verb phrase (Pieter only slept → sleep) — and the clause's event. A
     clause-final too / as well / either focuses the subject unless the text says otherwise.
-    One instance per particle or cleft. The only or the sole N predicated of X (Corvin is the only
+    One instance per particle or cleft. The only or the sole N predicated of X (Ludo is the only
     heir) is the copular instance with this template's Only on X, the copular instance its event.
   surface_forms:
-    - "only / even / also <subject> V …"           # only Yusra laughed; even Ottoline laughed
-    - "<subject> V only <object>"                  # Teodor read only the letter
-    - "<subject> only / even V"                    # Teodor only slept: the verb phrase
-    - "<subject> V … too / as well / either"       # Lamine laughed too
-    - "it was <X> who / that <clause>"             # it was Lamine who washed the quilt
-    - "what <clause> was <X>"                      # what Teodor read was the letter
+    - "only / even / also <subject> V …"           # only Marisol laughed; even Henrike laughed
+    - "<subject> V only <object>"                  # Pieter read only the postcard
+    - "<subject> only / even V"                    # Pieter only slept: the verb phrase
+    - "<subject> V … too / as well / either"       # Odile laughed too
+    - "it was <X> who / that <clause>"             # it was Odile who washed the blanket
+    - "what <clause> was <X>"                      # what Pieter read was the postcard
   boundary:                   # looks like a focus but is not one
     - >-
-      a particle on a count — only one ferret, only three letters: no carrier for the
+      a particle on a count — only one badger, only three postcards: no carrier for the
       exclusivity on a number; report the particle under G07
     - >-
-      a particle on a class-level property — herons are also common, ferrets are even
+      a particle on a class-level property — storks are also common, badgers are even
       widespread: the clause has no event for the atom to name; keep the predication and report
       the particle as unmapped (on a copular, locative, degree, comparative, class-statement,
-      part-whole or measure clause — only the ladder is crooked, only herons are patient — the
+      part-whole or measure clause — only the barrow is crooked, only storks are patient — the
       predication is the event: the program mints the state the particle names; on a class
       statement the filler is the class lemma)
     - >-
-      a particle on a generalization — only ferrets sleep in burrows: the event is a rule's
+      a particle on a generalization — only badgers sleep in burrows: the event is a rule's
       variable, no top-level atom can name it; report the clause as unmapped
     - >-
       "even though", "even if" — a connective or a conditional, not a scalar particle
@@ -56,10 +56,10 @@ trigger:
       "just" meaning recently — has just arrived: a time adverb with no slot (G02); "alone"
       meaning without company — slept alone: a manner
     - >-
-      "also" or "too" opening a sentence as a discourse connective — Also, Teodor left: a
+      "also" or "too" opening a sentence as a discourse connective — Also, Pieter left: a
       connective with no clause to relate here (G05)
     - >-
-      a negated cleft — it was not Lamine who washed the quilt: the backgrounded clause would
+      a negated cleft — it was not Odile who washed the blanket: the backgrounded clause would
       need an actorless predication; report the clause as unmapped
     - >-
       "the only N" — the only locksmith: an adjective inside the noun phrase, not a particle;
@@ -70,7 +70,7 @@ slots:
   head:    {type: enum, values: [Only, Even, Also, Cleft], required: true,
             doc: "Only for only / just / solely / alone; Even for even; Also for also / too / as well / either / neither; Cleft for an it-cleft or a pseudo-cleft"}
   filler:  {type: filler, class: Class, required: true,
-            doc: "the focused constituent: the referent id of the subject or object the particle sits on (@n1, @x1), the class lemma for a particle on a class statement's subject (only herons are patient → heron), or the verb's lemma for a focus on the verb phrase (sleep)"}
+            doc: "the focused constituent: the referent id of the subject or object the particle sits on (@n1, @x1), the class lemma for a particle on a class statement's subject (only storks are patient → stork), or the verb's lemma for a focus on the verb phrase (sleep)"}
   event:   {type: filler, class: Event, required: true,
             doc: "the clause's event: the id of its predication instance — never the id of a negation or modal over it"}
   surface: {type: string, required: false,
@@ -100,39 +100,39 @@ examples:
   shown:                     # rendered into the prompt
     - category: positive
       note: subject focus — the prejacent asserted, one atom on top
-      text: "Only Yusra laughed."
+      text: "Only Marisol laughed."
       instances:
-        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
-        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past, span: "Yusra laughed"}
+        - {t: named-entity, id: n1, name: "Marisol", span: "Marisol"}
+        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past, span: "Marisol laughed"}
         - {t: focus, id: f1, head: Only, filler: "@n1", event: "@v1", surface: only, span: "Only"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
-        - "(Name sk_yusra_1 \"Yusra\")"
+        - "(Name sk_marisol_1 \"Marisol\")"
         - "(Member sk_laugh_1 laugh)"
-        - "(Agent sk_laugh_1 sk_yusra_1)"
+        - "(Agent sk_laugh_1 sk_marisol_1)"
         - "(Past sk_laugh_1)"
-        - "(Only sk_yusra_1 sk_laugh_1)"
+        - "(Only sk_marisol_1 sk_laugh_1)"
       declarations:
         - "(: laugh Class)"
         - "(: sk_laugh_1 Event)"
-        - "(: sk_yusra_1 Entity)"
+        - "(: sk_marisol_1 Entity)"
     - category: positive
       note: object focus — the particle sits on the object
-      text: "Teodor read only the letter."
+      text: "Pieter read only the postcard."
       instances:
-        - {t: named-entity, id: n1, name: "Teodor", span: "Teodor"}
-        - {t: witness, id: x1, class: letter, definite: true, span: "the letter"}
-        - {t: activity, id: v1, verb: read, actor: "@n1", patient: "@x1", tense: past, span: "Teodor read only the letter"}
+        - {t: named-entity, id: n1, name: "Pieter", span: "Pieter"}
+        - {t: witness, id: x1, class: postcard, definite: true, span: "the postcard"}
+        - {t: activity, id: v1, verb: read, actor: "@n1", patient: "@x1", tense: past, span: "Pieter read only the postcard"}
         - {t: focus, id: f1, head: Only, filler: "@x1", event: "@v1", surface: only, span: "only"}
     - category: positive
       note: an it-cleft — the backgrounded clause is the prejacent, the clefted phrase the focus
-      text: "It was Lamine who washed the quilt."
+      text: "It was Odile who washed the blanket."
       instances:
-        - {t: named-entity, id: n1, name: "Lamine", span: "Lamine"}
-        - {t: witness, id: x1, class: quilt, definite: true, span: "the quilt"}
-        - {t: activity, id: v1, verb: wash, actor: "@n1", patient: "@x1", tense: past, span: "Lamine who washed the quilt"}
+        - {t: named-entity, id: n1, name: "Odile", span: "Odile"}
+        - {t: witness, id: x1, class: blanket, definite: true, span: "the blanket"}
+        - {t: activity, id: v1, verb: wash, actor: "@n1", patient: "@x1", tense: past, span: "Odile who washed the blanket"}
         - {t: focus, id: f1, head: Cleft, filler: "@n1", event: "@v1", span: ["It was", "who"]}
     - category: abstain
-      text: "Only one ferret slept."
+      text: "Only one badger slept."
       expected: {abstain: true, gap: G07, span: "only"}                # a particle on a count
 
   held_out:                  # tests; never rendered into the prompt

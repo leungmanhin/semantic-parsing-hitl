@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "203017637a80e5d180ad8fbea051ea5b3a9f3a0a47fd55e15383ae058ab2138b",
+  "prompt_sha256": "bd1820ef45698097a86d0a4421f254a138b47d647f3ea25b6fdfb2ff38d9a897",
   "item": {
     "id": "s0f13203780",
     "text": "The Gull is the oldest fishing boat."
   },
   "usage": {
-    "input": 104232,
-    "output": 131,
+    "input": 107789,
+    "output": 130,
     "thinking": null,
-    "total": 104363,
-    "cached": 102183,
+    "total": 107919,
+    "cached": 105740,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -22,40 +22,41 @@
     "responseMimeType": "application/json",
     "thinkingConfig": {
       "thinkingLevel": "LOW"
-    }
+    },
+    "service_tier": "flex"
   },
   "raw_usage": {
-    "promptTokenCount": 104232,
-    "candidatesTokenCount": 131,
-    "totalTokenCount": 104363,
-    "cachedContentTokenCount": 102183,
+    "promptTokenCount": 107789,
+    "candidatesTokenCount": 130,
+    "totalTokenCount": 107919,
+    "cachedContentTokenCount": 105740,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 104232
+        "tokenCount": 107789
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 102183
+        "tokenCount": 105740
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 131
+        "tokenCount": 130
       }
     ]
   },
-  "raw_text": "{\"id\": \"s0f13203780\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"The Gull\", \"span\": \"The Gull\"}, {\"t\": \"superlative\", \"id\": \"s1\", \"subject\": \"@n1\", \"scale\": \"old\", \"class\": \"boat\", \"kind\": \"most\", \"predicative\": true, \"tense\": \"present\", \"mods\": [\"fishing\"], \"span\": \"The Gull is the oldest fishing boat\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"s0f13203780\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Gull\", \"span\": \"The Gull\"}, {\"t\": \"superlative\", \"id\": \"s1\", \"subject\": \"@n1\", \"scale\": \"old\", \"class\": \"boat\", \"mods\": [\"fishing\"], \"kind\": \"most\", \"predicative\": true, \"tense\": \"present\", \"span\": \"The Gull is the oldest fishing boat\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s0f13203780",
     "instances": [
       {
         "t": "named-entity",
         "id": "n1",
-        "name": "The Gull",
+        "name": "Gull",
         "span": "The Gull"
       },
       {
@@ -64,20 +65,20 @@
         "subject": "@n1",
         "scale": "old",
         "class": "boat",
-        "kind": "most",
-        "predicative": true,
-        "tense": "present",
         "mods": [
           "fishing"
         ],
+        "kind": "most",
+        "predicative": true,
+        "tense": "present",
         "span": "The Gull is the oldest fishing boat"
       }
     ],
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "12605e658914fc5db17e2b6d548588331952976acbad42b2d0f97978fe2c7db4",
-  "manifest_id": "12298c656864",
+  "prompt_body_sha256": "d50a2a2e4bc30ce43b31d80c730124948208ff63db81024b28f2812dd2085eee",
+  "manifest_id": "76edb2f0fab4",
   "run": 2,
   "case": {
     "template": "superlative",

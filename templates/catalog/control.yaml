@@ -31,37 +31,37 @@ trigger:
           happen, struggle, hesitate, choose]
   verbs_note: >
     Remember, forget and learn belong here only with a to-infinitive (remembered to send the
-    letter); with a that-clause they are attitudes. An unlisted verb of this pattern belongs
+    postcard); with a that-clause they are attitudes. An unlisted verb of this pattern belongs
     here, with `implication` decided by what the verb entails about the complement.
   surface_forms:
-    - "<subject> V to <V2> …"                        # Yusra tried to sleep
+    - "<subject> V to <V2> …"                        # Marisol tried to sleep
     - "<subject> V-ed to <V2> …"                     # the tense is the matrix verb's
     - "<subject> V to have <V2>-ed …"                # a perfect infinitive: the complement is past
   boundary:                   # looks like a control verb but is not one
     - >-
       a desire, intention, decision or commitment — wants to leave, hopes to win, intends /
-      plans / decides / promises / agrees / offers to send the quilt: an attitude whose complement is the
+      plans / decides / promises / agrees / offers to send the blanket: an attitude whose complement is the
       clause, sealed and never asserted
     - >-
-      a liking or a dislike of an action — likes to send quilts, enjoys sending quilts, hates
+      a liking or a dislike of an action — likes to send blankets, enjoys sending blankets, hates
       waiting: a psych state whose stimulus is the clause
     - >-
-      a causer and a different actor — made Teodor laugh, let Ottoline leave, got Lamine to send
-      the quilt: a causative
+      a causer and a different actor — made Pieter laugh, let Henrike leave, got Odile to send
+      the blanket: a causative
     - >-
       a phase of the action — began to sing, stopped working, kept reading: an aspectual
     - >-
-      a request to someone — asked Ottoline to send the quilt, told Lamine to lock the shed: a
+      a request to someone — asked Henrike to send the blanket, told Odile to lock the hut: a
       communication whose content is an imperative
     - >-
-      a purpose infinitive — went to the market to buy a thermos, worked to buy a spindle: the
+      a purpose infinitive — went to the bazaar to buy a flask, worked to buy a bobbin: the
       infinitive states an aim of the main clause's action, not a complement of its verb; a
       purpose link
     - >-
       seem, appear — seems to be tired, appears to have left: the evidential template, over
       the clause; tend to — tends to wait: a habit over the clause, reported as unmapped
     - >-
-      a finite that-clause — remembered that Lamine left, learned that the shed burned: an
+      a finite that-clause — remembered that Odile left, learned that the hut burned: an
       attitude
 
 slots:
@@ -76,7 +76,7 @@ slots:
   tense:       {type: enum, values: [past, present, future], required: true,
                 doc: "the matrix clause's tense; present is recorded, not inferred"}
   aspect:      {type: enum, values: [simple, progressive, perfect, perfect_progressive, about_to, due_to, would, going_to], required: false, default: simple,
-               doc: "simple; progressive for be V-ing; perfect for have V-ed; perfect_progressive for have been V-ing; about_to for be about to V / on the point of V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word kept as the value (be going to V is the future tense, not a prospective); would for a future seen from a past moment (said the barn would flood, hoped the bridge would hold) and going_to for was / were going to V — the same PROSPECTIVE, with tense past; a would that tells what then happened (would later marry) is the plain past, and a would with no if-clause and no past moment is the modal's Would"}
+               doc: "simple; progressive for be V-ing; perfect for have V-ed; perfect_progressive for have been V-ing; about_to for be about to V / on the point of V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word kept as the value (be going to V is the future tense, not a prospective); would for a future seen from a past moment (said the granary would flood, hoped the bridge would hold) and going_to for was / were going to V — the same PROSPECTIVE, with tense past; a would that tells what then happened (would later marry) is the plain past, and a would with no if-clause and no past moment is the modal's Would"}
 
 mints: {id: Event}
 
@@ -118,43 +118,43 @@ examples:
   shown:                     # rendered into the prompt
     - category: positive
       note: no implication — the complement is sealed, nothing is said about the sleeping
-      text: "Yusra tried to sleep."
+      text: "Marisol tried to sleep."
       instances:
-        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
+        - {t: named-entity, id: n1, name: "Marisol", span: "Marisol"}
         - {t: activity, id: v1, verb: sleep, actor: "@n1", tense: present, span: "to sleep"}
-        - {t: control, id: e1, verb: try, subject: "@n1", complement: ["@v1"], implication: none, tense: past, span: "Yusra tried to sleep"}
+        - {t: control, id: e1, verb: try, subject: "@n1", complement: ["@v1"], implication: none, tense: past, span: "Marisol tried to sleep"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
-        - "(Name sk_yusra_1 \"Yusra\")"
+        - "(Name sk_marisol_1 \"Marisol\")"
         - "(Member sk_try_1 try)"
-        - "(Agent sk_try_1 sk_yusra_1)"
-        - "(Theme sk_try_1 (And (Member sk_sleep_1 sleep) (Agent sk_sleep_1 sk_yusra_1)))"
+        - "(Agent sk_try_1 sk_marisol_1)"
+        - "(Theme sk_try_1 (And (Member sk_sleep_1 sleep) (Agent sk_sleep_1 sk_marisol_1)))"
         - "(Past sk_try_1)"
       declarations:
+        - "(: sk_marisol_1 Entity)"
         - "(: sk_sleep_1 Event)"
         - "(: sk_try_1 Event)"
-        - "(: sk_yusra_1 Entity)"
         - "(: sleep Class)"
         - "(: try Class)"
     - category: positive
       note: a positive implication — the marker lets a background rule derive the opening, in the past
-      text: "Lamine managed to open the shed."
+      text: "Odile managed to open the hut."
       instances:
-        - {t: named-entity, id: n1, name: "Lamine", span: "Lamine"}
-        - {t: witness, id: x1, class: shed, definite: true, span: "the shed"}
-        - {t: change-of-state, id: c1, verb: open, agent: "@n1", undergoer: "@x1", tense: present, span: "to open the shed"}
-        - {t: control, id: e1, verb: manage, subject: "@n1", complement: ["@c1"], implication: positive, tense: past, span: "Lamine managed to open the shed"}
+        - {t: named-entity, id: n1, name: "Odile", span: "Odile"}
+        - {t: witness, id: x1, class: hut, definite: true, span: "the hut"}
+        - {t: change-of-state, id: c1, verb: open, agent: "@n1", undergoer: "@x1", tense: present, span: "to open the hut"}
+        - {t: control, id: e1, verb: manage, subject: "@n1", complement: ["@c1"], implication: positive, tense: past, span: "Odile managed to open the hut"}
     - category: positive
       note: a negative implication — the marker lets a background rule derive that no arriving happened
-      text: "Teodor failed to arrive."
+      text: "Pieter failed to arrive."
       instances:
-        - {t: named-entity, id: n1, name: "Teodor", span: "Teodor"}
+        - {t: named-entity, id: n1, name: "Pieter", span: "Pieter"}
         - {t: motion, id: m1, verb: arrive, mover: "@n1", tense: present, span: "to arrive"}
-        - {t: control, id: e1, verb: fail, subject: "@n1", complement: ["@m1"], implication: negative, tense: past, span: "Teodor failed to arrive"}
+        - {t: control, id: e1, verb: fail, subject: "@n1", complement: ["@m1"], implication: negative, tense: past, span: "Pieter failed to arrive"}
     - category: abstain
-      text: "Ottoline wants to send the quilt."
+      text: "Henrike wants to send the blanket."
       expected: {abstain: true, template: attitude}                   # a desire
     - category: abstain
-      text: "Yusra made Teodor laugh."
+      text: "Marisol made Pieter laugh."
       expected: {abstain: true, template: causative}                  # a causer and a different actor
 
   held_out:                  # tests; never rendered into the prompt

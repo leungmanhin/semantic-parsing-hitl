@@ -16,57 +16,57 @@ status: draft
 trigger:
   construction: >
     A prepositional phrase naming the place where the clause's event takes place: in / at / on /
-    inside / within a place (laughed in the barn, waited at the gate, slept on the rug), or
+    inside / within a place (laughed in the granary, waited at the hatch, slept on the rug), or
     near / by / under / over / above / below / behind / beside / outside / opposite it, or in a
     direction from it (fished west of the bridge: head DirectionFrom, the compass word in
     `direction`). The event is parsed with its own template; the location instance names that
     event and the place. One instance per place phrase.
   surface_forms:
-    - "<clause> in / at / on <place>"                 # Yusra laughed in the barn
-    - "<clause> near / under / behind … <place>"      # the ferret slept under the ladder
-    - "<place phrase>, <clause>"                      # In the barn, Lamine laughed
+    - "<clause> in / at / on <place>"                 # Marisol laughed in the granary
+    - "<clause> near / under / behind … <place>"      # the badger slept under the barrow
+    - "<place phrase>, <clause>"                      # In the granary, Odile laughed
   boundary:                   # looks like the place of an event but is not one
     - >-
-      a destination or an origin of a motion — went to the market, came from the barn, entered
-      the shed: the motion's goal or source
+      a destination or an origin of a motion — went to the bazaar, came from the granary, entered
+      the hut: the motion's goal or source
     - >-
-      the origin of an acquisition or a transfer — took the envelope from Lamine: the source slot
+      the origin of an acquisition or a transfer — took the envelope from Odile: the source slot
       of that template
     - >-
-      where a THING is, with no event — the ledger is on the workbench, Calderwick is in Norfolk:
+      where a THING is, with no event — the ledger is on the workbench, Brackenford is in Westmarch:
       a locative predication
     - >-
-      a path of a motion — ran across the field, walked along the river, went through the gate:
+      a path of a motion — ran across the field, walked along the river, went through the hatch:
       an oblique on the motion, by its preposition
     - >-
       a time phrase — in 2019, at noon, on Monday: a time, not a place
     - >-
-      a non-spatial in / on / at on an event — works on the audit: no place; an oblique on the
+      a non-spatial in / on / at on an event — works on the inspection: no place; an oblique on the
       event, by its preposition
     - >-
       a non-spatial phrase on an adjective — good at chess, modest in its demands: an adjective
       with a complement, the adjective-complement template; a place phrase on an adjective —
-      happy in Calderwick, empty in the village, very busy in the mill: this template on the
+      happy in Brackenford, empty in the village, very busy in the forge: this template on the
       copular or degree predication (the event slot names that instance; the program mints the
       state the place hangs on), and likewise on a comparative, a part-whole or a measure clause
     - >-
-      a place phrase inside a noun phrase — the ferret in the barn slept: a locative predication
+      a place phrase inside a noun phrase — the badger in the granary slept: a locative predication
       of that thing, not an attachment to the clause's event
     - >-
-      among a group — among the ferrets: an oblique (among what); between two times — between
+      among a group — among the badgers: an oblique (among what); between two times — between
       noon and two: a window of time, the time-relation template (between two places — slept
-      between the barn and the shed — is head Between, the second place in `place2`)
+      between the granary and the hut — is head Between, the second place in `place2`)
 
 slots:
   id:          {type: id, required: true, doc: "your label for the attachment (l1, l2 …)"}
   event:       {type: filler, class: Event, attaches: true, required: true,
                 doc: "the predication the place attaches to: the id of the clause's event instance"}
   place:       {type: filler, class: Entity, required: true,
-                doc: "the place: a referent id (a witness for the barn, a name for Calderwick) or a bare lemma for a class-level place (in burrows)"}
+                doc: "the place: a referent id (a witness for the granary, a name for Brackenford) or a bare lemma for a class-level place (in burrows)"}
   place2:      {type: filler, class: Entity, required: false, only_when: "head == Between",
-                doc: "with head Between only, the second of the two places (slept between the barn and the shed: the shed); the order as written"}
+                doc: "with head Between only, the second of the two places (slept between the granary and the hut: the hut); the order as written"}
   direction:   {type: enum, class: Class, values: [north, south, east, west, northeast, northwest, southeast, southwest], required: false, only_when: "head == DirectionFrom",
-                doc: "with head DirectionFrom only, the compass direction of the thing from the place, as one word (west of the barn: west; north-east of: northeast)"}
+                doc: "with head DirectionFrom only, the compass direction of the thing from the place, as one word (west of the granary: west; north-east of: northeast)"}
   head:        {type: enum, values: [Location, Near, By, Under, Over, Above, Below, Behind, Beside, Between, Outside, Opposite, DirectionFrom], required: true,
                 doc: "Location for in / at / on / inside / within; otherwise the preposition itself, capitalized (under → Under)"}
   preposition: {type: string, required: true, doc: "the preposition as written (in, at, under …)"}
@@ -91,38 +91,38 @@ examples:
   shown:                     # rendered into the prompt
     - category: positive
       note: the place attaches to the clause's event
-      text: "Yusra laughed in the barn."
+      text: "Marisol laughed in the granary."
       instances:
-        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
-        - {t: witness, id: x1, class: barn, definite: true, span: "the barn"}
-        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past, span: "Yusra laughed"}
-        - {t: location, id: l1, event: "@v1", place: "@x1", head: Location, preposition: in, span: "in the barn"}
+        - {t: named-entity, id: n1, name: "Marisol", span: "Marisol"}
+        - {t: witness, id: x1, class: granary, definite: true, span: "the granary"}
+        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past, span: "Marisol laughed"}
+        - {t: location, id: l1, event: "@v1", place: "@x1", head: Location, preposition: in, span: "in the granary"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
-        - "(Name sk_yusra_1 \"Yusra\")"
-        - "(Member sk_barn_1 barn)"
+        - "(Name sk_marisol_1 \"Marisol\")"
+        - "(Member sk_granary_1 granary)"
         - "(Member sk_laugh_1 laugh)"
-        - "(Agent sk_laugh_1 sk_yusra_1)"
+        - "(Agent sk_laugh_1 sk_marisol_1)"
         - "(Past sk_laugh_1)"
-        - "(Location sk_laugh_1 sk_barn_1)"
+        - "(Location sk_laugh_1 sk_granary_1)"
       declarations:
-        - "(: barn Class)"
+        - "(: granary Class)"
         - "(: laugh Class)"
-        - "(: sk_barn_1 Entity)"
+        - "(: sk_granary_1 Entity)"
         - "(: sk_laugh_1 Event)"
-        - "(: sk_yusra_1 Entity)"
+        - "(: sk_marisol_1 Entity)"
     - category: positive
       note: a preposition other than in / at / on keeps its own head
-      text: "The ferret slept under the ladder."
+      text: "The badger slept under the barrow."
       instances:
-        - {t: witness, id: x1, class: ferret, definite: true, span: "The ferret"}
-        - {t: witness, id: x2, class: ladder, definite: true, span: "the ladder"}
-        - {t: activity, id: v1, verb: sleep, actor: "@x1", tense: past, span: "The ferret slept"}
-        - {t: location, id: l1, event: "@v1", place: "@x2", head: Under, preposition: under, span: "under the ladder"}
+        - {t: witness, id: x1, class: badger, definite: true, span: "The badger"}
+        - {t: witness, id: x2, class: barrow, definite: true, span: "the barrow"}
+        - {t: activity, id: v1, verb: sleep, actor: "@x1", tense: past, span: "The badger slept"}
+        - {t: location, id: l1, event: "@v1", place: "@x2", head: Under, preposition: under, span: "under the barrow"}
     - category: abstain
-      text: "Yusra went to the market."
+      text: "Marisol went to the bazaar."
       expected: {abstain: true, template: motion}                     # a destination
     - category: abstain
-      text: "Ottoline took the envelope from Lamine."
+      text: "Henrike took the envelope from Odile."
       expected: {abstain: true, template: acquisition}                # the source of an acquisition
     - category: abstain
       text: "The ledger is on the workbench."

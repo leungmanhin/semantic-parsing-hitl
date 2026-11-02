@@ -20,7 +20,7 @@ trigger:
     - "<S> would not <V> … (a refusal)"            # the lid would not budge: the clause past
   boundary:
     - >-
-      not only — the negation scopes over the FOCUS instance ("not only Yusra laughed" denies
+      not only — the negation scopes over the FOCUS instance ("not only Marisol laughed" denies
       the exclusivity, the clause stays asserted); "only … not", "not even", "not … either"
       scope over the clause, with the focus atom outside
     - >-
@@ -42,11 +42,11 @@ emits:
 examples:
   shown:
     - category: positive
-      text: "Teodor did not send the quilt."
+      text: "Pieter did not send the blanket."
       instances:
-        - {t: named-entity, id: n1, name: "Teodor", span: "Teodor"}
-        - {t: witness, id: x1, class: quilt, definite: true, span: "the quilt"}
-        - {t: transfer, id: e1, verb: send, giver: "@n1", object: "@x1", tense: past, span: "Teodor did not send the quilt"}
+        - {t: named-entity, id: n1, name: "Pieter", span: "Pieter"}
+        - {t: witness, id: x1, class: blanket, definite: true, span: "the blanket"}
+        - {t: transfer, id: e1, verb: send, giver: "@n1", object: "@x1", tense: past, span: "Pieter did not send the blanket"}
         - {t: negation, id: s1, over: ["@e1"], span: "did not"}
   held_out:                  # tests; never rendered into the prompt
     - category: positive

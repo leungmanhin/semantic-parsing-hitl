@@ -23,21 +23,21 @@ trigger:
     construction's marker and needs no slot.
   verbs: [feel]
   surface_forms:
-    - "<X> feels / felt <ADJ>"                       # Yusra feels tired; Ottoline felt guilty
+    - "<X> feels / felt <ADJ>"                       # Marisol feels tired; Henrike felt guilty
     - "<X> is feeling <ADJ>"                         # progressive: the state ongoing
   boundary:                   # looks like a sensation but is not one
     - >-
-      feel with a thing as the subject — the wall feels cold, the cloth feels soft: the
+      feel with a thing as the subject — the hedge feels cold, the cloth feels soft: the
       speaker's touch judging the thing; the evidential template
     - >-
       feel with an object perceived — felt the heat, felt a hand on the shoulder: a perception
     - >-
-      feel that — feels that Lamine is right: an attitude with a clause
+      feel that — feels that Odile is right: an attitude with a clause
     - >-
       feel like with a noun or a verb — feels like a fool, feels like leaving: a resemblance or
       a wish; no template here, report the predicate as unmapped
     - >-
-      be with a property — Yusra is tired: a copular predication, the property itself
+      be with a property — Marisol is tired: a copular predication, the property itself
 
 slots:
   id:          {type: id, required: true, doc: "your label for the state (p1, p2 …)"}
@@ -48,7 +48,7 @@ slots:
   tense:       {type: enum, values: [past, present, future], required: true,
                 doc: "the clause's tense; present is recorded, not inferred"}
   aspect:      {type: enum, values: [simple, progressive, perfect, perfect_progressive, about_to, due_to, would, going_to], required: false, default: simple,
-               doc: "simple; progressive for be V-ing; perfect for have V-ed; perfect_progressive for have been V-ing; about_to for be about to V / on the point of V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word kept as the value (be going to V is the future tense, not a prospective); would for a future seen from a past moment (said the barn would flood, hoped the bridge would hold) and going_to for was / were going to V — the same PROSPECTIVE, with tense past; a would that tells what then happened (would later marry) is the plain past, and a would with no if-clause and no past moment is the modal's Would"}
+               doc: "simple; progressive for be V-ing; perfect for have V-ed; perfect_progressive for have been V-ing; about_to for be about to V / on the point of V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word kept as the value (be going to V is the future tense, not a prospective); would for a future seen from a past moment (said the granary would flood, hoped the bridge would hold) and going_to for was / were going to V — the same PROSPECTIVE, with tense past; a would that tells what then happened (would later marry) is the plain past, and a would with no if-clause and no past moment is the modal's Would"}
 
 mints: {id: Event, stem: state}
 
@@ -82,26 +82,26 @@ examples:
   shown:                     # rendered into the prompt
     - category: positive
       note: a felt state — the state an eventuality with its experiencer, no flat property
-      text: "Lamine feels cold."
+      text: "Odile feels cold."
       instances:
-        - {t: named-entity, id: n1, name: "Lamine", span: "Lamine"}
-        - {t: sensation, id: p1, experiencer: "@n1", state: cold, tense: present, span: "Lamine feels cold"}
+        - {t: named-entity, id: n1, name: "Odile", span: "Odile"}
+        - {t: sensation, id: p1, experiencer: "@n1", state: cold, tense: present, span: "Odile feels cold"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
-        - "(Name sk_lamine_1 \"Lamine\")"
+        - "(Name sk_odile_1 \"Odile\")"
         - "(Member sk_cold_1 cold)"
-        - "(Experiencer sk_cold_1 sk_lamine_1)"
+        - "(Experiencer sk_cold_1 sk_odile_1)"
       declarations:
         - "(: cold Class)"
         - "(: sk_cold_1 Event)"
-        - "(: sk_lamine_1 Entity)"
+        - "(: sk_odile_1 Entity)"
     - category: positive
       note: past
-      text: "Ottoline felt guilty."
+      text: "Henrike felt guilty."
       instances:
-        - {t: named-entity, id: n1, name: "Ottoline", span: "Ottoline"}
-        - {t: sensation, id: p1, experiencer: "@n1", state: guilty, tense: past, span: "Ottoline felt guilty"}
+        - {t: named-entity, id: n1, name: "Henrike", span: "Henrike"}
+        - {t: sensation, id: p1, experiencer: "@n1", state: guilty, tense: past, span: "Henrike felt guilty"}
     - category: abstain
-      text: "The ferret looks tired."
+      text: "The badger looks tired."
       expected: {abstain: true, template: evidential}                 # an appearance judged from outside
 
   held_out:                  # tests; never rendered into the prompt

@@ -15,44 +15,44 @@ status: draft
 
 trigger:
   construction: >
-    A prepositional phrase that modifies a noun inside its noun phrase: the man with the hat, a
-    book about ferrets, a letter from Yusra, the key to the shed, a thermos without a lid, the
-    destruction of the shed. The noun's referent is parsed as usual
+    A prepositional phrase that modifies a noun inside its noun phrase: the man with the beret, a
+    book about badgers, a postcard from Marisol, the key to the hut, a flask without a lid, the
+    destruction of the hut. The noun's referent is parsed as usual
     (a witness or a name); the postmodifier names that referent, the preposition as written
     (capitalized) and the phrase's object. One instance per phrase. It is part of the noun
     phrase, so it follows the referent wherever the referent is rendered.
   surface_forms:
-    - "the <N> with / without <object>"               # the man with the hat
-    - "a <N> about / from / to / for <object>"        # a book about ferrets; a letter from Yusra
-    - "the <N> of <object>"                           # the destruction of the shed: the noun's own object
-    - "a <N> by <author>"                             # a ballad by Ines: By, the author or maker of the thing
+    - "the <N> with / without <object>"               # the man with the beret
+    - "a <N> about / from / to / for <object>"        # a book about badgers; a postcard from Marisol
+    - "the <N> of <object>"                           # the destruction of the hut: the noun's own object
+    - "a <N> by <author>"                             # a ballad by Femke: By, the author or maker of the thing
     - "<Name> is a <kind word> of <N>"                # Velloria is a genus of ferns: the copular genus, Of on the name, fern a bare lemma
-    - "the <N> between <A> and <B>"                   # the quarrel between Ines and Corvin: Between, Ines the object, Corvin object2
+    - "the <N> between <A> and <B>"                   # the quarrel between Femke and Ludo: Between, Femke the object, Ludo object2
   boundary:                   # looks like a postmodifier but is not one
     - >-
-      a possessive of-phrase or genitive — the quilt of Yusra, Yusra's quilt, the sister of
-      Lamine: the witness's possessor, not a phrase of this kind
+      a possessive of-phrase or genitive — the blanket of Marisol, Marisol's blanket, the sister of
+      Odile: the witness's possessor, not a phrase of this kind
     - >-
-      a phrase on the clause, not on the noun — read the letter in the barn (the reading is in
-      the barn), talked about the audit: a location or an oblique on the event; decide by what
+      a phrase on the clause, not on the noun — read the postcard in the granary (the reading is in
+      the granary), talked about the inspection: a location or an oblique on the event; decide by what
       the phrase modifies
     - >-
-      a partitive — two of the ferrets, some of the quilts: a portion of the group (the portion
-      template), not a modified noun; one of the ferrets: a witness that is a member (part-whole)
+      a partitive — two of the badgers, some of the blankets: a portion of the group (the portion
+      template), not a modified noun; one of the badgers: a witness that is a member (part-whole)
     - >-
       a measure or a container — a cup of tea, three metres of cloth: a witness of the substance
       with a measure on it (unit cup, metre), the measure template; a lot of water: the
       witness's quantity phrase
     - >-
-      a place phrase inside a noun phrase — the ferret in the barn, the ledger on the workbench:
+      a place phrase inside a noun phrase — the badger in the granary, the ledger on the workbench:
       a locative predication of that thing (in, at, on, near, under …), not a phrase of this
       class; and a place predicated of a thing — the ledger is on the workbench — likewise
     - >-
       a reduced relative clause — the rules concerning the levy, a skiff moored at the jetty: a
       clause with the noun in its role (Relative clauses and participles), not a phrase; a
-      by-phrase after a participle (a bowl carved by Bram) is that clause's agent, not By
+      by-phrase after a participle (a bowl carved by Joost) is that clause's agent, not By
     - >-
-      an of-phrase naming the thing itself — the village of Aldmoor: the name with its class
+      an of-phrase naming the thing itself — the village of Fennhollow: the name with its class
       (the named-entity template), one referent, not a phrase
     - >-
       a noun before the noun — a harbour pilot: the head's mods (Nouns before nouns), not a
@@ -68,13 +68,13 @@ slots:
   head:   {type: enum, values: [About, Above, Across, Against, Along, Among, Around, As, At, Behind, Below, Beneath, Beside, Besides, Between, Beyond, By, Concerning, Despite, Down, Except, For, From, In, Inside, Into, Like, Near, Of, "Off", "On", Onto, Opposite, Out, Outside, Over, Past, Per, Regarding, Round, Through, To, Toward, Towards, Under, Underneath, Unlike, Up, Upon, Via, With, Within, Without],
            required: true, doc: "the preposition as written, capitalized (with → With, about → About); never a synonym"}
   object: {type: filler, class: Entity, required: true, narrowed_by: [object_props, object_mods],
-           doc: "the phrase's object: a referent id (a witness, a name) for a specific thing, or a bare lemma for a non-specific or class-level one (a book about ferrets → ferret, a thermos without a lid → lid); with head Between the first of the two"}
+           doc: "the phrase's object: a referent id (a witness, a name) for a specific thing, or a bare lemma for a non-specific or class-level one (a book about badgers → badger, a flask without a lid → lid); with head Between the first of the two"}
   object_props: {type: list, class: Class, restriction: Member, required: false,
            doc: "with a bare-lemma object, the adjectives on it (a song about lost sailors: lost)"}
   object_mods: {type: list, class: Class, ids: [named-entity, time], required: false,
            doc: "with a bare-lemma object, the nouns before it (a book about harbour pilots: harbour), as the mods of Nouns before nouns"}
   object2: {type: filler, class: Entity, required: false, only_when: "head == Between",
-           doc: "with head Between only, the second of the two (the quarrel between Ines and Corvin: Corvin); the order as written"}
+           doc: "with head Between only, the second of the two (the quarrel between Femke and Ludo: Ludo); the order as written"}
 
 emits:
   - atom: "({head} {noun} {object|mod} {object2|opt})"
@@ -96,39 +96,39 @@ examples:
   shown:                     # rendered into the prompt
     - category: positive
       note: the phrase picks out the referent; no possession is stated
-      text: "The man with the hat laughed."
+      text: "The man with the beret laughed."
       instances:
         - {t: witness, id: x1, class: man, definite: true, span: "The man"}
-        - {t: witness, id: x2, class: hat, definite: true, span: "the hat"}
-        - {t: postmodifier, id: a1, noun: "@x1", head: With, object: "@x2", span: "with the hat"}
-        - {t: activity, id: v1, verb: laugh, actor: "@x1", tense: past, span: "The man with the hat laughed"}
+        - {t: witness, id: x2, class: beret, definite: true, span: "the beret"}
+        - {t: postmodifier, id: a1, noun: "@x1", head: With, object: "@x2", span: "with the beret"}
+        - {t: activity, id: v1, verb: laugh, actor: "@x1", tense: past, span: "The man with the beret laughed"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
         - "(Member sk_man_1 man)"
-        - "(With sk_man_1 sk_hat_1)"
-        - "(Member sk_hat_1 hat)"
+        - "(With sk_man_1 sk_beret_1)"
+        - "(Member sk_beret_1 beret)"
         - "(Member sk_laugh_1 laugh)"
         - "(Agent sk_laugh_1 sk_man_1)"
         - "(Past sk_laugh_1)"
       declarations:
-        - "(: hat Class)"
+        - "(: beret Class)"
         - "(: laugh Class)"
         - "(: man Class)"
-        - "(: sk_hat_1 Entity)"
+        - "(: sk_beret_1 Entity)"
         - "(: sk_laugh_1 Event)"
         - "(: sk_man_1 Entity)"
     - category: positive
       note: what a thing is about — a class-level object as a bare lemma
-      text: "Yusra read a book about ferrets."
+      text: "Marisol read a book about badgers."
       instances:
-        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
+        - {t: named-entity, id: n1, name: "Marisol", span: "Marisol"}
         - {t: witness, id: x1, class: book, span: "a book"}
-        - {t: postmodifier, id: a1, noun: "@x1", head: About, object: ferret, span: "about ferrets"}
-        - {t: activity, id: v1, verb: read, actor: "@n1", patient: "@x1", tense: past, span: "Yusra read a book about ferrets"}
+        - {t: postmodifier, id: a1, noun: "@x1", head: About, object: badger, span: "about badgers"}
+        - {t: activity, id: v1, verb: read, actor: "@n1", patient: "@x1", tense: past, span: "Marisol read a book about badgers"}
     - category: abstain
-      text: "Yusra's quilt"
+      text: "Marisol's blanket"
       expected: {abstain: true, template: witness}                    # a possessive: the witness's possessor
     - category: abstain
-      text: "Yusra talked about the audit."
+      text: "Marisol talked about the inspection."
       expected: {abstain: true, template: oblique}                    # a phrase on the clause
 
   held_out:                  # tests; never rendered into the prompt

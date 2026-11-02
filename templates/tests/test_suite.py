@@ -118,6 +118,17 @@ class CheckTests(unittest.TestCase):
         self.assertTrue(any(p.startswith("trigger: unknown key 'event_note'") for p in problems), problems)
         self.assertIn("unknown section 'remarks'", problems)
 
+    def test_a_held_out_sentence_in_the_prompt_is_a_prompt_quote(self):
+        """A test sentence the parser has seen is no test: the whole sentence, or five words of it, in the prompt."""
+        general = CAT.load_general()
+        whole = case("transfer", "held_out", "Lamine handed Teodor an envelope.")["text"]
+        part = case("transfer", "held_out", "Lamine did not hand Teodor an envelope.")["text"]
+        cat = copy.deepcopy(CATALOG)
+        cat["copular"]["trigger"]["construction"] += f" For instance: {whole} Or one that did not hand Teodor an envelope."
+        found = {(q["template"], q["text"]): q["detail"] for q in S.prompt_quotes(cat, general)}
+        self.assertEqual(found.get(("transfer", whole)), "the whole sentence is in the rendered prompt")
+        self.assertRegex(found.get(("transfer", part), ""), r"^«(\S+ ){4}\S+» is in the rendered prompt$")   # a five-word run
+
     MIRROR_TEXT = "Zed took the zither from Quill."
 
     def _with_mirror(self, claim_instances=None):
@@ -168,7 +179,8 @@ class CheckTests(unittest.TestCase):
         cat["transfer"]["examples"]["held_out"].append({"category": "abstain", "text": shown0["text"],
                                                         "expected": {"abstain": True, "gap": "G99", "span": "x"}})
         kinds = sorted(f["kind"] for f in S.catalog_checks(cat, freshness=False)["findings"])
-        self.assertEqual(kinds, ["held-out-leak", "held-out-leak", "stale-gap", "unknown-gap-code"])   # both added examples leak
+        self.assertEqual(kinds, ["held-out-leak", "held-out-leak", "prompt-quote", "prompt-quote", "stale-gap",
+                                 "unknown-gap-code"])   # both added examples leak, and a shown example is in the prompt
 
 
 class ScoreTests(unittest.TestCase):

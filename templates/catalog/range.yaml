@@ -16,10 +16,10 @@ status: draft
 trigger:
   construction: >
     The subject or object of a verbal generalization over a class: a quantifier word with a class
-    noun (every ferret, each student, all ferrets, most students, many herons, few ferrets, no
-    ferret, none of the ferrets) or a bare plural read generically (ferrets sleep). It stands
+    noun (every badger, each student, all badgers, most students, many storks, few badgers, no
+    badger, none of the badgers) or a bare plural read generically (badgers sleep). It stands
     for an arbitrary member of the class, not for a particular individual or a particular group.
-    One range per quantified class noun: "every ferret feared every heron" has two. A quantified
+    One range per quantified class noun: "every badger feared every stork" has two. A quantified
     TIME is a range too — every day, every morning, on Sundays, every Monday — over the class of
     the occasions (day, morning, sunday, monday), and a frequency adverb with no stated period
     (often, rarely) ranges over the class occasion; the frequency template builds that rule.
@@ -32,24 +32,24 @@ trigger:
     - "<adverb of frequency>"                    # often, rarely: a range over the class occasion
   boundary:                   # looks like a range but is not one
     - >-
-      a specific group — the ferrets, several ferrets, three students, some students: a group
+      a specific group — the badgers, several badgers, three students, some students: a group
       referent, and what is said of its members is a distribution
     - >-
-      a quantified portion of a definite group — most of the ferrets, two of the ferrets: a
-      portion referent, not a range; none of the ferrets stays a range
+      a quantified portion of a definite group — most of the badgers, two of the badgers: a
+      portion referent, not a range; none of the badgers stays a range
     - >-
-      a bare plural with "be" — ferrets are curious: a class statement, which carries its own
+      a bare plural with "be" — badgers are curious: a class statement, which carries its own
       quantifier
     - >-
-      an existential singular — some ferret slept, a ferret slept: an indefinite witness
+      an existential singular — some badger slept, a badger slept: an indefinite witness
 
 slots:
   id:         {type: id, required: true, doc: "your label for the range (q1, q2 …)"}
-  class:       {type: lemma, class: Class, required: true, narrowed_by: [props, mods], doc: "the class, lemmatized to the singular (ferret) — an adjective on it (old ferrets, red kites) narrows it: props, as a noun before it does: mods (harbour seals: class seal, mods [harbour]); a state stated as a condition (ferrets that are cornered, clay when wet) is a copular instance in the rule's condition instead; for the occasions of a frequency the unit, day part or weekday (day, morning, sunday), or occasion for a bare adverb"}
+  class:       {type: lemma, class: Class, required: true, narrowed_by: [props, mods], doc: "the class, lemmatized to the singular (badger) — an adjective on it (old badgers, red kites) narrows it: props, as a noun before it does: mods (harbour seals: class seal, mods [harbour]); a state stated as a condition (badgers that are cornered, clay when wet) is a copular instance in the rule's condition instead; for the occasions of a frequency the unit, day part or weekday (day, morning, sunday), or occasion for a bare adverb"}
   props:      {type: list, class: Class, restriction: Member, required: false,
-               doc: "the adjectives on the class noun, each a lemma (old ferrets: old)"}
+               doc: "the adjectives on the class noun, each a lemma (old badgers: old)"}
   mods:       {type: list, class: Class, ids: [named-entity, time], required: false,
-               doc: "the nouns, names and years before the head noun that narrow its class (Nouns before nouns): a lemma for a noun (a harbour pilot: harbour; a sea salt grinder: sea_salt), the id of a named-entity instance for a name (a Calderwick quilt), of a time instance for a year, a decade or a century (a 1904 almanac); never an adjective"}
+               doc: "the nouns, names and years before the head noun that narrow its class (Nouns before nouns): a lemma for a noun (a harbour pilot: harbour; a sea salt grinder: sea_salt), the id of a named-entity instance for a name (a Brackenford blanket), of a time instance for a year, a decade or a century (a 1904 almanac); never an adjective"}
   quantifier: {type: string, required: false,
                doc: "the quantifier word as written (every, each, all, most, many, few, no, none); absent for a bare generic"}
   predicate:  {type: lemma, class: Class, required: false,

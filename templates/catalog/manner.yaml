@@ -16,13 +16,15 @@ trigger:
   construction: >
     An adverb or an adverbial phrase saying how the clause's event is done: loudly, quietly,
     carefully, slowly, quickly, patiently, well, badly, hard, alone, together, by hand, with care,
-    in a hurry. The event is parsed with its own template; the manner instance names that event
+    in a hurry; early and late, the event's timing against what was expected (came late, left
+    early — unlike later or finally, which place it in a sequence). The event is parsed with its
+    own template; the manner instance names that event
     and records the adverb as written (a phrase by its head word: with care → carefully is wrong,
     record care; in a hurry → hurry). One instance per manner expression.
   surface_forms:
-    - "<clause> <adverb>"                            # Yusra laughed loudly
-    - "<adverb>, <clause>"                           # Quietly, the ferret slept
-    - "<clause> with <manner noun>"                  # read the letter with care
+    - "<clause> <adverb>"                            # Marisol laughed loudly
+    - "<adverb>, <clause>"                           # Quietly, the badger slept
+    - "<clause> with <manner noun>"                  # read the postcard with care
   boundary:                   # looks like a manner but is not one
     - >-
       a degree adverb — deeply distrusts, really likes, barely moved, sharply, slightly: how much,
@@ -42,7 +44,7 @@ trigger:
       a direction particle — climbed back, went away, came out: part of the motion's path; reported
       as unmapped
     - >-
-      an instrument or a companion phrase — with a knife, with Yusra: an adjunct role, not a manner
+      an instrument or a companion phrase — with a knife, with Marisol: an adjunct role, not a manner
     - >-
       an adjective on a copular clause — is loud, was careful: a copular predication, not an
       adverb on an event
@@ -72,35 +74,35 @@ examples:
   shown:                     # rendered into the prompt
     - category: positive
       note: an adverb attaches to the clause's event
-      text: "Yusra laughed loudly."
+      text: "Marisol laughed loudly."
       instances:
-        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
-        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past, span: "Yusra laughed"}
+        - {t: named-entity, id: n1, name: "Marisol", span: "Marisol"}
+        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past, span: "Marisol laughed"}
         - {t: manner, id: a1, event: "@v1", manner: loudly, span: "loudly"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
-        - "(Name sk_yusra_1 \"Yusra\")"
+        - "(Name sk_marisol_1 \"Marisol\")"
         - "(Member sk_laugh_1 laugh)"
-        - "(Agent sk_laugh_1 sk_yusra_1)"
+        - "(Agent sk_laugh_1 sk_marisol_1)"
         - "(Past sk_laugh_1)"
         - "(Manner sk_laugh_1 loudly)"
       declarations:
         - "(: laugh Class)"
         - "(: loudly Class)"
         - "(: sk_laugh_1 Event)"
-        - "(: sk_yusra_1 Entity)"
+        - "(: sk_marisol_1 Entity)"
     - category: positive
       note: a manner phrase by its head word
-      text: "Teodor read the letter with care."
+      text: "Pieter read the postcard with care."
       instances:
-        - {t: named-entity, id: n1, name: "Teodor", span: "Teodor"}
-        - {t: witness, id: x1, class: letter, definite: true, span: "the letter"}
-        - {t: activity, id: v1, verb: read, actor: "@n1", patient: "@x1", tense: past, span: "Teodor read the letter"}
+        - {t: named-entity, id: n1, name: "Pieter", span: "Pieter"}
+        - {t: witness, id: x1, class: postcard, definite: true, span: "the postcard"}
+        - {t: activity, id: v1, verb: read, actor: "@n1", patient: "@x1", tense: past, span: "Pieter read the postcard"}
         - {t: manner, id: a1, event: "@v1", manner: care, span: "with care"}
     - category: abstain
-      text: "Yusra laughed in the barn."
+      text: "Marisol laughed in the granary."
       expected: {abstain: true, template: location}                   # where, not how
     - category: abstain
-      text: "Lamine sold the spindle on Monday."
+      text: "Odile sold the bobbin on Monday."
       expected: {abstain: true, template: time}                       # when, not how
 
   held_out:                  # tests; never rendered into the prompt

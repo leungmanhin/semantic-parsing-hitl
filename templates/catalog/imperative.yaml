@@ -18,39 +18,39 @@ status: draft
 trigger:
   construction: >
     A clause in the imperative mood: a bare verb with no subject, addressed to the hearer — close
-    the gate, wash the quilt carefully, send Yusra the quilt, go to the market, bring a ladder —
-    with or without please, with or without a vocative naming the addressee (Teodor, wash the
-    quilt). Parse the commanded clause with the template its verb takes, its tense present and
+    the hatch, wash the blanket carefully, send Marisol the blanket, go to the bazaar, bring a barrow —
+    with or without please, with or without a vocative naming the addressee (Pieter, wash the
+    blanket). Parse the commanded clause with the template its verb takes, its tense present and
     its actor slot EMPTY unless a vocative fills it; then write the imperative instance over that
     clause. For a negative imperative (don't, do not, never) write a negation instance over the
-    clause and the imperative instance over the negation. A coordinated command (wash the quilt
+    clause and the imperative instance over the negation. A coordinated command (wash the blanket
     and wait) is one imperative instance over both predications. A command or request reported
-    by a communication verb (asked Ottoline to send the quilt, told Lamine to lock the shed) is
+    by a communication verb (asked Henrike to send the blanket, told Odile to lock the hut) is
     an imperative instance too — over the requested clause, whose actor is the addressee —
     filling the communication's content.
   surface_forms:
-    - "<V> <object>."                                # Close the gate.
-    - "Don't / Do not / Never <V> …"                 # Don't touch the spindle.
-    - "<Name>, <V> …"                                # Teodor, wash the quilt: the vocative fills the actor
+    - "<V> <object>."                                # Close the hatch.
+    - "Don't / Do not / Never <V> …"                 # Don't touch the bobbin.
+    - "<Name>, <V> …"                                # Pieter, wash the blanket: the vocative fills the actor
     - "Please <V> … / <V> …, please"                 # politeness, not recorded
   boundary:                   # looks like a command but is not one
     - >-
-      a declarative with the same verb — Yusra closed the gate, the quilt was washed: an
+      a declarative with the same verb — Marisol closed the hatch, the blanket was washed: an
       ordinary predication, asserted
     - >-
-      an obligation or a permission stated of someone — Yusra must send the quilt, Lamine may
+      an obligation or a permission stated of someone — Marisol must send the blanket, Odile may
       leave: a norm over the clause, not a command
     - >-
-      a reported command or request stands inside a communication — told Lamine to lock the
-      shed: the imperative instance is the communication's content, not a top-level directive
+      a reported command or request stands inside a communication — told Odile to lock the
+      hut: the imperative instance is the communication's content, not a top-level directive
     - >-
-      a question that asks for an action — could you lock the shed?: a question; report it as
+      a question that asks for an action — could you lock the hut?: a question; report it as
       unmapped
     - >-
-      a hortative — let's go to the market, let us wait: the speaker is included; report it as
+      a hortative — let's go to the bazaar, let us wait: the speaker is included; report it as
       unmapped
     - >-
-      a conditional command — if it rains, close the gate: the command holds only under the
+      a conditional command — if it rains, close the hatch: the command holds only under the
       condition; report the whole sentence as unmapped
 
 slots:
@@ -80,40 +80,40 @@ examples:
   shown:                     # rendered into the prompt
     - category: positive
       note: the commanded event is sealed, tenseless and without an actor; the definite object stays a top-level referent
-      text: "Close the gate."
+      text: "Close the hatch."
       instances:
-        - {t: witness, id: x1, class: gate, definite: true, span: "the gate"}
-        - {t: change-of-state, id: c1, verb: close, undergoer: "@x1", tense: present, span: "Close the gate"}
-        - {t: imperative, id: s1, over: ["@c1"], span: "Close the gate"}
+        - {t: witness, id: x1, class: hatch, definite: true, span: "the hatch"}
+        - {t: change-of-state, id: c1, verb: close, undergoer: "@x1", tense: present, span: "Close the hatch"}
+        - {t: imperative, id: s1, over: ["@c1"], span: "Close the hatch"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
-        - "(Member sk_gate_1 gate)"
-        - "(Directive (And (Member sk_close_1 close) (Patient sk_close_1 sk_gate_1)))"
+        - "(Member sk_hatch_1 hatch)"
+        - "(Directive (And (Member sk_close_1 close) (Patient sk_close_1 sk_hatch_1)))"
       declarations:
         - "(: close Class)"
-        - "(: gate Class)"
+        - "(: hatch Class)"
         - "(: sk_close_1 Event)"
-        - "(: sk_gate_1 Entity)"
+        - "(: sk_hatch_1 Entity)"
     - category: positive
       note: a negative imperative — the directive over the negation
-      text: "Don't touch the spindle."
+      text: "Don't touch the bobbin."
       instances:
-        - {t: witness, id: x1, class: spindle, definite: true, span: "the spindle"}
-        - {t: activity, id: v1, verb: touch, patient: "@x1", tense: present, span: "touch the spindle"}
+        - {t: witness, id: x1, class: bobbin, definite: true, span: "the bobbin"}
+        - {t: activity, id: v1, verb: touch, patient: "@x1", tense: present, span: "touch the bobbin"}
         - {t: negation, id: s1, over: ["@v1"], span: "Don't"}
-        - {t: imperative, id: s2, over: ["@s1"], span: "Don't touch the spindle"}
+        - {t: imperative, id: s2, over: ["@s1"], span: "Don't touch the bobbin"}
     - category: positive
       note: a vocative — the named addressee fills the actor slot
-      text: "Teodor, wash the quilt."
+      text: "Pieter, wash the blanket."
       instances:
-        - {t: named-entity, id: n1, name: "Teodor", span: "Teodor"}
-        - {t: witness, id: x1, class: quilt, definite: true, span: "the quilt"}
-        - {t: activity, id: v1, verb: wash, actor: "@n1", patient: "@x1", tense: present, span: "Teodor, wash the quilt"}
-        - {t: imperative, id: s1, over: ["@v1"], span: "Teodor, wash the quilt"}
+        - {t: named-entity, id: n1, name: "Pieter", span: "Pieter"}
+        - {t: witness, id: x1, class: blanket, definite: true, span: "the blanket"}
+        - {t: activity, id: v1, verb: wash, actor: "@n1", patient: "@x1", tense: present, span: "Pieter, wash the blanket"}
+        - {t: imperative, id: s1, over: ["@v1"], span: "Pieter, wash the blanket"}
     - category: abstain
-      text: "Yusra laughed."
+      text: "Marisol laughed."
       expected: {abstain: true, template: activity}                   # a declarative, asserted
     - category: abstain
-      text: "Teodor gave Yusra a thermos."
+      text: "Pieter gave Marisol a flask."
       expected: {abstain: true, template: transfer}                   # a declarative, asserted
 
   held_out:                  # tests; never rendered into the prompt

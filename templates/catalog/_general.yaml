@@ -80,37 +80,37 @@ identifiers:
   the resolution, stated where it can be checked and revised. An event anaphor ("That surprised everyone")
   is a `mention` linked to the event.
 - >-
-  The one pronoun that is NOT a mention: a pronoun bound by a range — "they" in "herons are patient
-  if they are healthy", "it" in "every ferret sleeps when it is tired" — is the range itself, the
+  The one pronoun that is NOT a mention: a pronoun bound by a range — "they" in "storks are patient
+  if they are healthy", "it" in "every badger sleeps when it is tired" — is the range itself, the
   arbitrary member. Fill the slot with the range's id (`"subject": "@q1"`); no mention instance and no
   coref, since there is no separate referent.
 - >-
   A TEXT of several sentences is parsed together: a later sentence's mentions of earlier referents are
   new instances linked by `coref` to the first ones.
 - >-
-  A coordinated subject or object (Teodor and Yusra laughed; read the letter and the note) is one predication
+  A coordinated subject or object (Pieter and Marisol laughed; read the postcard and the note) is one predication
   instance per conjunct, each with its own event, never a group. When the predicate holds only of the
-  conjuncts together (met, argued, shared a thermos), no instance fits: report the clause as unmapped.
+  conjuncts together (met, argued, shared a flask), no instance fits: report the clause as unmapped.
 spans:
 - >-
   Every instance carries `span`: the words of the TEXT it is built from, copied verbatim — one string, or a
   list of strings when the words are not contiguous. Spans may overlap; together with the unmapped spans
   they should account for every content word of the TEXT.
 - >-
-  What a span covers. A REFERENT: its phrase as written — the name (`"Lamine"`), the noun phrase with its
-  determiner or possessor (`"the envelope"`, `"Yusra's quilt"`), the pronoun (`"she"`), the quantified phrase
-  (`"All alloys"`). A PREDICATION: the stretch from the first to the last word of its verb and its own
-  arguments as written (`"Ottoline took the envelope from Lamine"`, `"Yusra laughed"`); words of an operator
-  or attachment that fall inside that stretch are included (`"Teodor read only the letter"`), those outside it
-  are not (`"Lamine cut the loaf"` beside the adjunct `"with a knife"`). An EMBEDDED clause: the clause's own
-  words only (`"Lamine lent Ottoline the trowel"` under *believes that*, `"to sing"` under *began*,
-  `"Teodor laugh"` under *made*). A SCOPE OPERATOR, FOCUS or LINK: the word or words that signal it
+  What a span covers. A REFERENT: its phrase as written — the name (`"Odile"`), the noun phrase with its
+  determiner or possessor (`"the envelope"`, `"Marisol's blanket"`), the pronoun (`"she"`), the quantified phrase
+  (`"All resins"`). A PREDICATION: the stretch from the first to the last word of its verb and its own
+  arguments as written (`"Henrike took the envelope from Odile"`, `"Marisol laughed"`); words of an operator
+  or attachment that fall inside that stretch are included (`"Pieter read only the postcard"`), those outside it
+  are not (`"Odile cut the bun"` beside the adjunct `"with a knife"`). An EMBEDDED clause: the clause's own
+  words only (`"Odile lent Henrike the trowel"` under *believes that*, `"to sing"` under *began*,
+  `"Pieter laugh"` under *made*). A SCOPE OPERATOR, FOCUS or LINK: the word or words that signal it
   (`"did not"`, `"Don't"`, `"might"`, `"Only"`, `"because"`, `"in order to"`; `["It was", "who"]` for a cleft);
   an imperative with no marker word spans its clause. An ATTACHMENT: its phrase with its preposition
-  (`"with a knife"`, `"in the barn"`, `"on Monday"`, `"loudly"`, `"with care"`, `"about ferrets"`); a time
+  (`"with a knife"`, `"in the granary"`, `"on Monday"`, `"loudly"`, `"with care"`, `"about badgers"`); a time
   relation whose reference is a clause spans its connective alone (`"after"`, `"while"`), the clause having
   its own span. A COREF: the
-  two mentions' words as a list (`["Lamine", "she"]`). A RULE (a generalization, a conditional property, a
+  two mentions' words as a list (`["Odile", "she"]`). A RULE (a generalization, a conditional property, a
   distribution) or a class statement: the whole clause it generalizes (`"Clay is soft when wet"`).
 - >-
   A span is provenance, not meaning: it says which words licensed the instance, so that every fact can be
@@ -135,36 +135,36 @@ lemmas:
 - 'Names: you give the surface string; the program derives the symbol.'
 relatives:
 - >-
-  A RELATIVE CLAUSE (who, whom, which, that, or no word: the lantern Bram mended) is a clause of its own,
+  A RELATIVE CLAUSE (who, whom, which, that, or no word: the lantern Joost mended) is a clause of its own,
   parsed with its own template, the noun it modifies filling the role the relative word stands for — the
-  subject (the heron that ate the frog: the heron the eater), the object (the lantern that Bram mended: the
+  subject (the stork that ate the frog: the stork the eater), the object (the lantern that Joost mended: the
   lantern the thing mended) or a prepositional object; the relative word is not an instance and never a
   mention. The clause keeps its own tense. WHOSE makes the noun the possessor of what follows (the woman whose
   kettle whistled: the kettle's possessor the woman); WHERE, and in / at / on which, make the noun the place
-  of the clause's event (the barn where Ines slept: a location, preposition as written); WHEN makes it what
-  the event falls during (the week when Corvin left: a time relation During, the week its reference).
+  of the clause's event (the granary where Femke slept: a location, preposition as written); WHEN makes it what
+  the event falls during (the week when Ludo left: a time relation During, the week its reference).
 - >-
   Where a relative clause goes follows its noun. On a name, a definite, a possessed phrase, or between commas
-  (Bram, who knitted, left), it is asserted like any clause. On an INDEFINITE inside a negation, a modal, a
+  (Joost, who knitted, left), it is asserted like any clause. On an INDEFINITE inside a negation, a modal, a
   hedge or a sealed complement, list it under that scope beside the clause the noun belongs to (did not find
   a key that fitted: the negation over the finding and the fitting). On a GENERIC or quantified subject it is
   the rule's `condition`: the generic template's for an action or a quantified statement (every potter who
-  keeps a wheel sells bowls), the conditional-property template's for a property of the class (herons that
+  keeps a wheel sells bowls), the conditional-property template's for a property of the class (storks that
   fish are patient).
 - >-
-  A PARTICIPLE AFTER A NOUN is a relative clause cut short (the clerk waiting at the gate: who was waiting; the
-  bowl carved by Bram: that was carved): its own clause, the noun in the role the voice gives it — the actor
+  A PARTICIPLE AFTER A NOUN is a relative clause cut short (the clerk waiting at the hatch: who was waiting; the
+  bowl carved by Joost: that was carved): its own clause, the noun in the role the voice gives it — the actor
   of an -ing participle, the patient, the product or the thing given of an -ed one, a by-phrase its agent —
   with tense present and no aspect: a participle carries no tense of its own. A participle BEFORE a noun is an
   adjective (a carved bowl: the property carved). A PARTICIPIAL CLAUSE that opens or closes the sentence
-  (Fearing the storm, Ines left; Bram waved, smiling) is a clause whose actor is the main clause's subject, tense
+  (Fearing the storm, Femke left; Joost waved, smiling) is a clause whose actor is the main clause's subject, tense
   present; how it relates to the main clause (a time, a cause, a manner) is not stated: no link. Having V-ed is
   aspect perfect.
 - >-
-  KNOWN AS — also known as, better known as, called, nicknamed + a name (Ines, known as Nell): a second name of the
+  KNOWN AS — also known as, better known as, called, nicknamed + a name (Femke, known as Nell): a second name of the
   same individual, the named entity's `aliases`; no clause. After a common noun, called / named + a name is that
-  noun's individual (a nephew called Corvin: Corvin, the noun his class or his relation), not a second name. An infinitive after a noun (a house to rent, the man
-  to ask) and a free relative (what Bram said, whoever wins) are not relative clauses here: report them as
+  noun's individual (a nephew called Ludo: Ludo, the noun his class or his relation), not a second name. An infinitive after a noun (a house to rent, the man
+  to ask) and a free relative (what Joost said, whoever wins) are not relative clauses here: report them as
   unmapped (G00).
 
 nouns:
@@ -176,30 +176,30 @@ nouns:
   modifier are one lemma (a sea salt grinder: mods [sea_salt]); coordinated ones are one each (a wool and silk
   merchant: mods [wool, silk]).
 - >-
-  A NAME before a noun (a Calderwick quilt) is its named-entity instance's id in `mods`; a YEAR, a DECADE or a
+  A NAME before a noun (a Brackenford blanket) is its named-entity instance's id in `mods`; a YEAR, a DECADE or a
   CENTURY before a noun (a 1904 almanac, a 1920s radio, an 18th-century clock) is a time instance with no event,
   its id in `mods`. A year or a numbered week before a noun that names an event or a period (the 1904 flood, a
   week 5 match) is that event's time instead: the noun eventive, the time instance on it.
 - >-
-  Not a mod: an adjective, also a hyphenated or a participle one (a sky-blue quilt, a self-taught weaver, a
-  carved bowl): `props`; a noun naming the whole the head is a part of (the barn roof): a part-whole; a
-  possessive (Yusra's quilt): the possessor; an of-phrase or any phrase after the noun: its own template. A
+  Not a mod: an adjective, also a hyphenated or a participle one (a sky-blue blanket, a self-taught weaver, a
+  carved bowl): `props`; a noun naming the whole the head is a part of (the granary roof): a part-whole; a
+  possessive (Marisol's blanket): the possessor; an of-phrase or any phrase after the noun: its own template. A
   compound whose head does not name what it is — a hot dog is not a dog, a toy gun is not a gun — is ONE lemma
   (hot_dog), with no mods.
 biography:
 - >-
-  BORN — was born (in a place, on a date), or born after a name in brackets (Corvin Hale (born 12 May 1840)):
+  BORN — was born (in a place, on a date), or born after a name in brackets (Ludo Hale (born 12 May 1840)):
   the creation template with the verb bear (born is its participle), the person the thing made, no maker, tense
   past; the date is a time instance on that event, the place a location on it. Gave birth to: the verb
   give_birth, the mother the maker, the child the thing made.
 - >-
-  A DATE RANGE in brackets right after a PERSON'S name (Wren Ashby (2 May 1801 – 9 June 1866)) is the person's
+  A DATE RANGE in brackets right after a PERSON'S name (Saskia Ashby (2 May 1801 – 9 June 1866)) is the person's
   life: a birth on the first date, as above, and a death on the second — the change-of-state verb die, the
   person the undergoer —, both past (the bracket stands for was born … and died …); died alone (died 1866) is the
   death. A range after an office or a reign (the warden (1990–1994)) dates that holding: a start and an end (the
   time-relation template); a lone year after a work's title stays unmapped (G00).
 - >-
-  NAMES in the bracket — a birth name (born Wren Moreau), a maiden name (née Moreau), the name in another
+  NAMES in the bracket — a birth name (born Saskia Moreau), a maiden name (née Moreau), the name in another
   language or script (Russian: Рен Эшби) — are more names of the same individual: the named entity's `aliases`,
   as written, without the language. A pronunciation (a phonetic spelling between slashes, a respelling) is a tag
   on the name: report it as unmapped (G03); stray punctuation left in the bracket is nothing and is not reported.
@@ -221,9 +221,9 @@ unmapped:
   keep the instances the templates license and report just that part: an added time, date bound, duration,
   place, manner, amount or tag leaves the event itself true ("was demolished before 1960" still says it
   was demolished). When the rest would NOT follow without the unmapped part, leave the whole claim out
-  and report the whole clause: a negated condition ("unless it rains, Lamine sings"), an attribution to a source
-  that no template carries ("according to Lamine, the gate is open"), an unencodable quantity ("too much salt"). An evaluative adverb ("unfortunately,
-  Yusra left") leaves the clause entailed: keep the clause and report the adverb (G02).
+  and report the whole clause: a negated condition ("unless it rains, Odile sings"), an attribution to a source
+  that no template carries ("according to Odile, the hatch is open"), an unencodable quantity ("too much salt"). An evaluative adverb ("unfortunately,
+  Marisol left") leaves the clause entailed: keep the clause and report the adverb (G02).
 - >-
   Referents inside an unmapped span: a NAME still gets its instance (a name is rigid, the same individual
   wherever it appears in the text), but a common-noun phrase or a pronoun does not. A witness is introduced only by a clause a
@@ -238,7 +238,7 @@ gap_codes:
   G02: >-
     an adverb with no slot: sequence (initially, eventually, finally), scope or domain (nationally, locally),
     an evaluation (unfortunately, luckily, sadly), a degree word on a manner adverb, on a class-level statement
-    or on an adjective with a complement (laughed very loudly; ferrets are very curious; very fond of Teodor)
+    or on an adjective with a complement (laughed very loudly; badgers are very curious; very fond of Pieter)
   G03: >-
     a post-nominal tag on a name (a party or district tag, a ticker, a bracketed code, a pronunciation)
   G04: >-

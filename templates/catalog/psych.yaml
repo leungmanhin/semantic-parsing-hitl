@@ -17,14 +17,14 @@ trigger:
     A verbal clause whose verb denotes an emotional or evaluative state that an experiencer
     holds towards a stimulus: liking, disliking, fear, trust, admiration, envy, enjoyment,
     dread. With a fear-type verb the subject is the experiencer and the object the stimulus
-    (fears the ferret); with a frighten-type verb the subject is the stimulus and the object
-    the experiencer (the ferret frightens Yusra). The stimulus is a noun phrase — a thing, a
-    named individual or an event named by a noun (dreaded the audit) — or an action the
-    experiencer likes, enjoys, hates, prefers or fears doing (likes to send quilts, enjoys
-    sending quilts): then the stimulus is a clause, parsed with the experiencer as its actor
+    (fears the badger); with a frighten-type verb the subject is the stimulus and the object
+    the experiencer (the badger frightens Marisol). The stimulus is a noun phrase — a thing, a
+    named individual or an event named by a noun (dreaded the inspection) — or an action the
+    experiencer likes, enjoys, hates, prefers or fears doing (likes to send blankets, enjoys
+    sending blankets): then the stimulus is a clause, parsed with the experiencer as its actor
     and tense present, and sealed. A WISH for a thing with would — would like a cup, would love
     a ride — is want in the present tense with the words in `word`; a thing wanted that is not
-    a particular one is a bare lemma (wants a ladder: ladder), never a witness.
+    a particular one is a bare lemma (wants a barrow: barrow), never a witness.
   verbs: [like, dislike, love, hate, adore, despise, fear, dread, trust, distrust, admire, want,
           respect, envy, resent, miss, enjoy, prefer, pity,
           frighten, scare, worry, annoy, bother, please, delight, amuse, surprise, upset,
@@ -34,8 +34,8 @@ trigger:
     class (experiencer as object). An unlisted verb that denotes such a state belongs here, with
     the roles assigned by meaning: who feels, and what the feeling is about.
   surface_forms:
-    - "<experiencer> V <stimulus>"              # fear-type: Yusra fears the ferret
-    - "<stimulus> V <experiencer>"              # frighten-type: the ferret frightens Yusra
+    - "<experiencer> V <stimulus>"              # fear-type: Marisol fears the badger
+    - "<stimulus> V <experiencer>"              # frighten-type: the badger frightens Marisol
     - "<experiencer> was V-ed by <stimulus>"    # frighten-type passive: the roles do not change
     - "<experiencer> was V-ed"                  # frighten-type passive, stimulus unstated
     - "<experiencer> would like / love <thing>"  # a wish: want, present, the words in `word`
@@ -44,17 +44,17 @@ trigger:
       feel with a property — feels tired, felt guilty: a felt state of the subject, the
       sensation template; no stimulus
     - >-
-      a relation that is not a feeling — needs a ladder, resembles Lamine, depends on the pump,
+      a relation that is not a feeling — needs a barrow, resembles Odile, depends on the pump,
       deserves a prize: a stative relation
     - >-
       a clause as the object — fears that P, hopes that P, likes that P: an attitude towards a
       proposition; nothing is felt about a thing
     - >-
-      an adjectival state with a complement — is afraid of the ferret, is fond of Lamine, is
-      worried about the audit: the adjective-complement template; a bare one — is angry: a
+      an adjectival state with a complement — is afraid of the badger, is fond of Odile, is
+      worried about the inspection: the adjective-complement template; a bare one — is angry: a
       copular property; neither is a verb of this class
     - >-
-      perception — saw the ferret, heard the news: perceiving something, not feeling something
+      perception — saw the badger, heard the news: perceiving something, not feeling something
       about it
     - >-
       a degree adverb on the verb (deeply distrusts, really likes): the state is parsed and the
@@ -74,7 +74,7 @@ slots:
   word:    {type: string, required: false,
             doc: "the words as written when the verb is a wish with would: would like, would love (want); would rather, would prefer (prefer); absent otherwise"}
   aspect:      {type: enum, values: [simple, progressive, perfect, perfect_progressive, about_to, due_to, would, going_to], required: false, default: simple,
-               doc: "simple; progressive for be V-ing; perfect for have V-ed; perfect_progressive for have been V-ing; about_to for be about to V / on the point of V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word kept as the value (be going to V is the future tense, not a prospective); would for a future seen from a past moment (said the barn would flood, hoped the bridge would hold) and going_to for was / were going to V — the same PROSPECTIVE, with tense past; a would that tells what then happened (would later marry) is the plain past, and a would with no if-clause and no past moment is the modal's Would"}
+               doc: "simple; progressive for be V-ing; perfect for have V-ed; perfect_progressive for have been V-ing; about_to for be about to V / on the point of V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word kept as the value (be going to V is the future tense, not a prospective); would for a future seen from a past moment (said the granary would flood, hoped the bridge would hold) and going_to for was / were going to V — the same PROSPECTIVE, with tense past; a would that tells what then happened (would later marry) is the plain past, and a would with no if-clause and no past moment is the modal's Would"}
 
 mints: {id: Event}
 
@@ -110,39 +110,39 @@ examples:
   shown:                     # rendered into the prompt
     - category: positive
       note: fear-type, experiencer as subject
-      text: "Yusra distrusts Lamine."
+      text: "Marisol distrusts Odile."
       instances:
-        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
-        - {t: named-entity, id: n2, name: "Lamine", span: "Lamine"}
-        - {t: psych, id: p1, verb: distrust, experiencer: "@n1", stimulus: "@n2", tense: present, span: "Yusra distrusts Lamine"}
+        - {t: named-entity, id: n1, name: "Marisol", span: "Marisol"}
+        - {t: named-entity, id: n2, name: "Odile", span: "Odile"}
+        - {t: psych, id: p1, verb: distrust, experiencer: "@n1", stimulus: "@n2", tense: present, span: "Marisol distrusts Odile"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
-        - "(Name sk_yusra_1 \"Yusra\")"
-        - "(Name sk_lamine_1 \"Lamine\")"
+        - "(Name sk_marisol_1 \"Marisol\")"
+        - "(Name sk_odile_1 \"Odile\")"
         - "(Member sk_distrust_1 distrust)"
-        - "(Experiencer sk_distrust_1 sk_yusra_1)"
-        - "(Stimulus sk_distrust_1 sk_lamine_1)"
+        - "(Experiencer sk_distrust_1 sk_marisol_1)"
+        - "(Stimulus sk_distrust_1 sk_odile_1)"
       declarations:
         - "(: distrust Class)"
         - "(: sk_distrust_1 Event)"
-        - "(: sk_lamine_1 Entity)"
-        - "(: sk_yusra_1 Entity)"
+        - "(: sk_marisol_1 Entity)"
+        - "(: sk_odile_1 Entity)"
     - category: positive
       note: frighten-type, experiencer as object — the same roles
-      text: "The ferret frightens Teodor."
+      text: "The badger frightens Pieter."
       instances:
-        - {t: witness, id: x1, class: ferret, definite: true, span: "The ferret"}
-        - {t: named-entity, id: n1, name: "Teodor", span: "Teodor"}
-        - {t: psych, id: p1, verb: frighten, experiencer: "@n1", stimulus: "@x1", tense: present, span: "The ferret frightens Teodor"}
+        - {t: witness, id: x1, class: badger, definite: true, span: "The badger"}
+        - {t: named-entity, id: n1, name: "Pieter", span: "Pieter"}
+        - {t: psych, id: p1, verb: frighten, experiencer: "@n1", stimulus: "@x1", tense: present, span: "The badger frightens Pieter"}
     - category: abstain
-      text: "Teodor saw the ferret."
+      text: "Pieter saw the badger."
       expected: {abstain: true, template: perception}                 # perception, not a feeling
     - category: positive
       note: an action as the stimulus — the clause is sealed, the experiencer acts in it
-      text: "Yusra likes to send quilts."
+      text: "Marisol likes to send blankets."
       instances:
-        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
-        - {t: transfer, id: e1, verb: send, giver: "@n1", object: quilt, tense: present, span: "to send quilts"}
-        - {t: psych, id: p1, verb: like, experiencer: "@n1", complement: ["@e1"], tense: present, span: "Yusra likes to send quilts"}
+        - {t: named-entity, id: n1, name: "Marisol", span: "Marisol"}
+        - {t: transfer, id: e1, verb: send, giver: "@n1", object: blanket, tense: present, span: "to send blankets"}
+        - {t: psych, id: p1, verb: like, experiencer: "@n1", complement: ["@e1"], tense: present, span: "Marisol likes to send blankets"}
 
   held_out:                  # tests; never rendered into the prompt
     - category: positive

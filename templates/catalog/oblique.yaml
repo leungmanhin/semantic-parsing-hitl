@@ -23,86 +23,86 @@ trigger:
   construction: >
     A prepositional phrase on a clause whose preposition is neither a place, a time, a
     destination or origin, a means, a companion, a beneficiary nor a manner: what the action is
-    about or directed at (talked about the audit, waited for Teodor, voted against the plan,
-    argued over the quilt, complained about the ladder, dealt with the audit), in what capacity
-    or likeness (worked as a weaver, sang like a bird), without what (left without the quilt),
-    despite what (sang despite the rain), through or along what path (walked through the barn,
-    ran across the field), among or between what (sat among the ferrets; chose between the
-    ladder and the quilt, mediated between Ines and Corvin: head Between, the second in
+    about or directed at (talked about the inspection, waited for Pieter, voted against the plan,
+    argued over the blanket, complained about the barrow, dealt with the inspection), in what capacity
+    or likeness (worked as a weaver, sang like a bird), without what (left without the blanket),
+    despite what (sang despite the hail), through or along what path (walked through the granary,
+    ran across the field), among or between what (sat among the badgers; chose between the
+    barrow and the blanket, mediated between Femke and Ludo: head Between, the second in
     `object2`; between two places is a location), and a cause or a
-    concession stated by a MULTI-WORD preposition (laughed because of the rain, waited owing to
-    the rain, rested on account of the storm, sang thanks to Lamine, sang in spite of the rain:
+    concession stated by a MULTI-WORD preposition (laughed because of the hail, waited owing to
+    the hail, slept on account of the flood, sang thanks to Odile, danced in spite of the hail:
     the phrase CamelCased is the head — BecauseOf, DueTo, OwingTo, ThanksTo, OnAccountOf,
     InSpiteOf). The event is parsed with its own template; the oblique names the event, the
     preposition as written (capitalized) and the object. A phrase predicated of an EVENT NOUN by
-    be (the delay was due to the rain) attaches to that eventive witness, with the clause's
+    be (the closure was due to the hail) attaches to that eventive witness, with the clause's
     tense in `tense`. One instance per phrase. Decide by the question the phrase answers: where,
     when, whence, whither, by what means, with whom, for whose benefit and how go to the
     templates that own them; everything else comes here.
   surface_forms:
-    - "<clause> about / against / over / on <object>"   # talked about the audit; voted against the plan
-    - "<clause> for / at / to / with <object>"          # waited for Teodor; dealt with the audit: a prepositional verb's object
+    - "<clause> about / against / over / on <object>"   # talked about the inspection; voted against the plan
+    - "<clause> for / at / to / with <object>"          # waited for Pieter; dealt with the inspection: a prepositional verb's object
     - "<clause> as / like <object>"                     # worked as a weaver; sang like a bird
-    - "<clause> without / despite <object>"             # left without the quilt; sang despite the rain
-    - "<clause> through / across / along <object>"      # walked through the barn: a path
+    - "<clause> without / despite <object>"             # left without the blanket; sang despite the hail
+    - "<clause> through / across / along <object>"      # walked through the granary: a path
     - "<clause> because of / due to / owing to / thanks to / on account of <object>"   # a cause stated by a preposition: BecauseOf, DueTo … the head; the rules read it as Because
     - "<clause> in spite of <object>"                   # a concession: InSpiteOf, beside Despite
     - "<event noun> was due to <object>"                # predicated of an event noun by be: on the eventive witness, the clause's tense recorded
   boundary:                   # looks like an oblique but is not one
     - >-
-      where the event takes place — in the barn, at the market, on the roof, near the shed: a
-      location; where a thing is — the key is under the quilt: a locative
+      where the event takes place — in the granary, at the bazaar, on the roof, near the hut: a
+      location; where a thing is — the key is under the blanket: a locative
     - >-
-      a destination or an origin — went to the market, came from the barn, into the shed, out of
-      the barn: the motion's goal or source; the source of a transfer or an acquisition
+      a destination or an origin — went to the bazaar, came from the granary, into the hut, out of
+      the granary: the motion's goal or source; the source of a transfer or an acquisition
     - >-
       when — in 2019, on Monday, at noon: a time; after / before / during / until / since an
       event or a time: a time relation
     - >-
-      a means, a companion or a beneficiary — with a knife, by train, with Yusra, for Teodor's
-      benefit: an adjunct; the by-phrase of a passive — washed by Yusra: the clause's own actor
+      a means, a companion or a beneficiary — with a knife, by train, with Marisol, for Pieter's
+      benefit: an adjunct; the by-phrase of a passive — washed by Marisol: the clause's own actor
     - >-
       how — with care, in a hurry: a manner
     - >-
       the prepositional object of a stative relation verb — depends on the pump, differs from
-      Lamine, relies on the stream, applies to visitors: the relation's own object, the
+      Odile, relies on the stream, applies to visitors: the relation's own object, the
       stative-relation template
     - >-
       a verb's particle — gave up, set off, broke down: part of the verb's lemma (give_up), no
       phrase
     - >-
-      a prepositional phrase inside a noun phrase — the man with the hat, a book about ferrets:
+      a prepositional phrase inside a noun phrase — the man with the beret, a book about badgers:
       a postmodifier of that noun, not an attachment to the event
     - >-
-      a comparison — taller than Yusra, as tall as Teodor: the comparative template; a than-phrase
+      a comparison — taller than Marisol, as tall as Pieter: the comparative template; a than-phrase
       is never an oblique
     - >-
       a gerund clause as the object — without saying a word, by working hard: not yet (without
       denies the event, by asserts it: a scope question); report the phrase as unmapped; a gerund
       after a temporal preposition — after leaving: a time relation
     - >-
-      a multi-word preposition that is neither a cause nor a concession — instead of Lamine, on
-      behalf of Yusra, in front of the shed: no head yet; report the phrase as unmapped
+      a multi-word preposition that is neither a cause nor a concession — instead of Odile, on
+      behalf of Marisol, in front of the hut: no head yet; report the phrase as unmapped
     - >-
       due to with a verb — is due to arrive: the clause's prospective aspect (due_to), not a
       cause
     - >-
-      the price or the exchange of a transfer — sold the spindle for forty euros: a measure, no
+      the price or the exchange of a transfer — sold the bobbin for forty florins: a measure, no
       slot here; report the phrase as unmapped
 
 slots:
   id:     {type: id, required: true, doc: "your label for the attachment (a1, a2 …)"}
   event:  {type: filler, class: Event, attaches: true, required: true,
-           doc: "the predication the phrase attaches to: the id of the clause's event instance, or of an eventive witness when the phrase is predicated of an event noun by be (the delay was due to the rain: the delay)"}
+           doc: "the predication the phrase attaches to: the id of the clause's event instance, or of an eventive witness when the phrase is predicated of an event noun by be (the closure was due to the hail: the delay)"}
   head:   {type: enum, values: [About, Above, Across, Against, Along, Among, Around, As, At, Behind, Below, Beneath, Beside, Besides, Between, Beyond, By, Concerning, Despite, Down, Except, For, From, In, Inside, Into, Like, Near, Of, "Off", "On", Onto, Opposite, Out, Outside, Over, Past, Per, Regarding, Round, Through, To, Toward, Towards, Under, Underneath, Unlike, Up, Upon, Via, With, Within, Without,
                          BecauseOf, DueTo, OwingTo, ThanksTo, OnAccountOf, InSpiteOf],
            required: true, doc: "the preposition as written, capitalized (about → About, without → Without), a multi-word one CamelCased (because of → BecauseOf, due to → DueTo, owing to → OwingTo, thanks to → ThanksTo, on account of → OnAccountOf, in spite of → InSpiteOf); never a synonym"}
   object2: {type: filler, class: Entity, required: false, only_when: "head == Between",
-           doc: "with head Between only, the second of the two (mediated between Ines and Corvin: Corvin); the order as written"}
+           doc: "with head Between only, the second of the two (mediated between Femke and Ludo: Ludo); the order as written"}
   object: {type: filler, class: Entity, required: true,
-           doc: "the phrase's object: a referent id (a witness, a name) for a specific thing, or a bare lemma for a non-specific or class-level one (as a weaver → weaver, without a quilt → quilt, like a bird → bird)"}
+           doc: "the phrase's object: a referent id (a witness, a name) for a specific thing, or a bare lemma for a non-specific or class-level one (as a weaver → weaver, without a blanket → blanket, like a bird → bird)"}
   tense:  {type: enum, values: [past, present, future], required: false,
-           doc: "only when the phrase is predicated of an event noun by be (the delay was due to the rain): the clause's tense; otherwise absent, the event's own template records it"}
+           doc: "only when the phrase is predicated of an event noun by be (the closure was due to the hail): the clause's tense; otherwise absent, the event's own template records it"}
 
 emits:
   - atom: "({head} {event} {object} {object2|opt})"
@@ -133,45 +133,45 @@ examples:
   shown:                     # rendered into the prompt
     - category: positive
       note: what the action is about — the preposition is the head
-      text: "Yusra talked about the audit."
+      text: "Marisol talked about the inspection."
       instances:
-        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
-        - {t: witness, id: x1, class: audit, definite: true, span: "the audit"}
-        - {t: activity, id: v1, verb: talk, actor: "@n1", tense: past, span: "Yusra talked"}
-        - {t: oblique, id: a1, event: "@v1", head: About, object: "@x1", span: "about the audit"}
+        - {t: named-entity, id: n1, name: "Marisol", span: "Marisol"}
+        - {t: witness, id: x1, class: inspection, definite: true, span: "the inspection"}
+        - {t: activity, id: v1, verb: talk, actor: "@n1", tense: past, span: "Marisol talked"}
+        - {t: oblique, id: a1, event: "@v1", head: About, object: "@x1", span: "about the inspection"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
-        - "(Name sk_yusra_1 \"Yusra\")"
-        - "(Member sk_audit_1 audit)"
+        - "(Name sk_marisol_1 \"Marisol\")"
+        - "(Member sk_inspection_1 inspection)"
         - "(Member sk_talk_1 talk)"
-        - "(Agent sk_talk_1 sk_yusra_1)"
+        - "(Agent sk_talk_1 sk_marisol_1)"
         - "(Past sk_talk_1)"
-        - "(About sk_talk_1 sk_audit_1)"
+        - "(About sk_talk_1 sk_inspection_1)"
       declarations:
-        - "(: audit Class)"
-        - "(: sk_audit_1 Entity)"
+        - "(: inspection Class)"
+        - "(: sk_inspection_1 Entity)"
+        - "(: sk_marisol_1 Entity)"
         - "(: sk_talk_1 Event)"
-        - "(: sk_yusra_1 Entity)"
         - "(: talk Class)"
     - category: positive
       note: a prepositional verb's object — not a beneficiary, not a direct object
-      text: "Lamine waited for Teodor."
+      text: "Odile waited for Pieter."
       instances:
-        - {t: named-entity, id: n1, name: "Lamine", span: "Lamine"}
-        - {t: named-entity, id: n2, name: "Teodor", span: "Teodor"}
-        - {t: activity, id: v1, verb: wait, actor: "@n1", tense: past, span: "Lamine waited"}
-        - {t: oblique, id: a1, event: "@v1", head: For, object: "@n2", span: "for Teodor"}
+        - {t: named-entity, id: n1, name: "Odile", span: "Odile"}
+        - {t: named-entity, id: n2, name: "Pieter", span: "Pieter"}
+        - {t: activity, id: v1, verb: wait, actor: "@n1", tense: past, span: "Odile waited"}
+        - {t: oblique, id: a1, event: "@v1", head: For, object: "@n2", span: "for Pieter"}
     - category: positive
       note: a capacity — the object is a bare lemma
-      text: "Teodor worked as a weaver."
+      text: "Pieter worked as a weaver."
       instances:
-        - {t: named-entity, id: n1, name: "Teodor", span: "Teodor"}
-        - {t: activity, id: v1, verb: work, actor: "@n1", tense: past, span: "Teodor worked"}
+        - {t: named-entity, id: n1, name: "Pieter", span: "Pieter"}
+        - {t: activity, id: v1, verb: work, actor: "@n1", tense: past, span: "Pieter worked"}
         - {t: oblique, id: a1, event: "@v1", head: As, object: weaver, span: "as a weaver"}
     - category: abstain
-      text: "Yusra laughed in the barn."
+      text: "Marisol laughed in the granary."
       expected: {abstain: true, template: location}                   # where
     - category: abstain
-      text: "Lamine cut the loaf with a knife."
+      text: "Odile cut the bun with a knife."
       expected: {abstain: true, template: adjunct}                    # a means
 
   held_out:                  # tests; never rendered into the prompt

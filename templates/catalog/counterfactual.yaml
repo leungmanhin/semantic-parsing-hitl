@@ -15,9 +15,9 @@ title: A subjunctive conditional
 trigger:
   construction: >
     A conditional in the subjunctive: a past-perfect antecedent with a would-have consequent (if
-    Lamine had sung, Yusra would have left; had Lamine sung, …), or a past-tense antecedent with
-    a would / could / might consequent about the present (if Yusra sang, Teodor would leave; if
-    the gate were open, the ferret would leave). Parse both clauses with their own templates —
+    Odile had sung, Marisol would have left; had Odile sung, …), or a past-tense antecedent with
+    a would / could / might consequent about the present (if Marisol sang, Pieter would leave; if
+    the hatch were open, the badger would leave). Parse both clauses with their own templates —
     tense past for both, the modal of the consequent not written as a modal instance — and name
     them in `antecedent` and `consequent`. Nothing is asserted: both clauses are sealed. The span
     is the whole sentence.
@@ -27,18 +27,18 @@ trigger:
     - "If <X> V-ed / were ADJ, <Y> would V"                 # the hypothetical about the present
   boundary:                   # looks like a counterfactual but is not one
     - >-
-      an indicative conditional — if Lamine sings, Yusra leaves; if Yusra arrives, Teodor will
+      an indicative conditional — if Odile sings, Marisol leaves; if Marisol arrives, Pieter will
       leave: a rule, the conditional template
     - >-
-      a lone would-have consequent — Bram would have stayed: no antecedent to seal, the modal
+      a lone would-have consequent — Joost would have stayed: no antecedent to seal, the modal
       template's Would; an irrealis relative clause (the bridge that would have collapsed):
       unmapped (G04)
     - >-
-      a would with no if-clause — a wish (Yusra would like a thermos), a past habit, a future seen
+      a would with no if-clause — a wish (Marisol would like a flask), a past habit, a future seen
       from a past moment, a hypothetical whose condition is unstated: not a conditional; the
       modal template's boundary sends each to its form
     - >-
-      an embedded question with if — asked if Yusra had left: a sealed question under the verb
+      an embedded question with if — asked if Marisol had left: a sealed question under the verb
 
 slots:
   id:         {type: id, required: true, doc: "your label for the counterfactual (k1, k2 …)"}
@@ -67,26 +67,26 @@ examples:
   shown:                     # rendered into the prompt
     - category: positive
       note: the past counterfactual — both clauses sealed, neither asserted
-      text: "If Teodor had arrived, Lamine would have stayed."
+      text: "If Pieter had arrived, Odile would have stayed."
       instances:
-        - {t: named-entity, id: n1, name: "Teodor", span: "Teodor"}
-        - {t: named-entity, id: n2, name: "Lamine", span: "Lamine"}
-        - {t: motion, id: m1, verb: arrive, mover: "@n1", tense: past, span: "Teodor had arrived"}
-        - {t: activity, id: v1, verb: stay, actor: "@n2", tense: past, span: "Lamine would have stayed"}
-        - {t: counterfactual, id: k1, antecedent: ["@m1"], consequent: ["@v1"], span: "If Teodor had arrived, Lamine would have stayed"}
+        - {t: named-entity, id: n1, name: "Pieter", span: "Pieter"}
+        - {t: named-entity, id: n2, name: "Odile", span: "Odile"}
+        - {t: motion, id: m1, verb: arrive, mover: "@n1", tense: past, span: "Pieter had arrived"}
+        - {t: activity, id: v1, verb: stay, actor: "@n2", tense: past, span: "Odile would have stayed"}
+        - {t: counterfactual, id: k1, antecedent: ["@m1"], consequent: ["@v1"], span: "If Pieter had arrived, Odile would have stayed"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
-        - "(Name sk_teodor_1 \"Teodor\")"
-        - "(Name sk_lamine_1 \"Lamine\")"
-        - "(Counterfactual (And (Member sk_arrive_1 arrive) (Agent sk_arrive_1 sk_teodor_1) (Past sk_arrive_1)) (And (Member sk_stay_1 stay) (Agent sk_stay_1 sk_lamine_1) (Past sk_stay_1)))"
+        - "(Name sk_pieter_1 \"Pieter\")"
+        - "(Name sk_odile_1 \"Odile\")"
+        - "(Counterfactual (And (Member sk_arrive_1 arrive) (Agent sk_arrive_1 sk_pieter_1) (Past sk_arrive_1)) (And (Member sk_stay_1 stay) (Agent sk_stay_1 sk_odile_1) (Past sk_stay_1)))"
       declarations:
         - "(: arrive Class)"
         - "(: sk_arrive_1 Event)"
-        - "(: sk_lamine_1 Entity)"
+        - "(: sk_odile_1 Entity)"
+        - "(: sk_pieter_1 Entity)"
         - "(: sk_stay_1 Event)"
-        - "(: sk_teodor_1 Entity)"
         - "(: stay Class)"
     - category: abstain
-      text: "If Teodor arrives, Ottoline leaves."
+      text: "If Pieter arrives, Henrike leaves."
       expected: {abstain: true, template: conditional}                # an indicative conditional
 
   held_out:                  # tests; never rendered into the prompt

@@ -18,45 +18,45 @@ status: draft
 
 trigger:
   construction: >
-    A clause with "be" as its main verb whose subject names a class — a bare plural (herons), a
+    A clause with "be" as its main verb whose subject names a class — a bare plural (storks), a
     mass noun (lichen) or a definite singular naming the class (the quagga, the great auk) — and
     whose predicate adjective is a property only a class as a whole can have: extinct,
     endangered, widespread, common, rare, scarce, abundant, numerous, plentiful, ubiquitous,
-    prevalent. The test: could one individual be it? A single heron cannot be widespread or
+    prevalent. The test: could one individual be it? A single stork cannot be widespread or
     rare; it can be patient or grey, and those are class statements. The property is
     lemmatized. A definite singular with such a property can only name the class: no witness.
-    A phrase restricting the claim to a place (rare in Norfolk, common in the marsh), a time
+    A phrase restricting the claim to a place (rare in Westmarch, common in the marsh), a time
     (rare in winter) or a circumstance goes in `restriction`: the claim holds there, not at
     large.
   surface_forms:
-    - "<class>s are <ADJ>"                      # herons are widespread
+    - "<class>s are <ADJ>"                      # storks are widespread
     - "the <class> is <ADJ>"                    # the quagga is extinct
     - "<mass noun> is <ADJ>"                   # lichen is abundant
-    - "<class>s are <ADJ> in <place / time>"    # otters are rare in Norfolk; cranes are rare in winter
+    - "<class>s are <ADJ> in <place / time>"    # voles are rare in Westmarch; plovers are rare in winter
   boundary:                   # looks like a class-level property but is not one
     - >-
-      a property a member can hold — herons are patient, ferrets are curious, granite is hard:
+      a property a member can hold — storks are patient, badgers are curious, slate is hard:
       a class statement, which generalizes over the members
     - >-
-      a property a member can hold, under a condition — clay is soft when wet, ferrets are
-      tame in Calderwick: a conditional property, a rule over the members
+      a property a member can hold, under a condition — clay is soft when wet, badgers are
+      tame in Brackenford: a conditional property, a rule over the members
     - >-
-      a verbal predicate — ferrets are dying out, herons are declining: no slot; report the
+      a verbal predicate — badgers are dying out, storks are declining: no slot; report the
       clause as unmapped
     - >-
-      a specific group — the ferrets are numerous, these herons are rare: a group as the
+      a specific group — the badgers are numerous, these storks are rare: a group as the
       subject of a copular predication
     - >-
-      a class as a class — ferrets are mustelids, the quagga was a zebra: a class statement
+      a class as a class — badgers are mustelids, the quagga was a zebra: a class statement
 
 slots:
   id:          {type: id, required: true, doc: "your label for the statement"}
   subject:     {type: lemma, class: Class, required: true,
-                doc: "the class, lemmatized to the singular (heron, quagga, lichen)"}
+                doc: "the class, lemmatized to the singular (stork, quagga, lichen)"}
   property:    {type: lemma, class: Class, required: true,
                 doc: "the property, lemmatized (widespread, extinct, rare)"}
   restriction: {type: filler, class: Class, required: false, participant: false,
-                doc: "a restriction of the claim to a place, a time or a circumstance: the id of a referent instance for a place or a thing (@n1 for Norfolk, @x1 for the marsh), or a lemma for a time or circumstance (winter, night); absent for a claim at large"}
+                doc: "a restriction of the claim to a place, a time or a circumstance: the id of a referent instance for a place or a thing (@n1 for Westmarch, @x1 for the marsh), or a lemma for a time or circumstance (winter, night); absent for a claim at large"}
   tense:       {type: enum, values: [past, present, future], required: true,
                 doc: "the clause's tense; present is recorded, not inferred"}
 
@@ -100,14 +100,14 @@ composes_with: [negation, modal, named-entity, witness]
 examples:
   shown:                     # rendered into the prompt
     - category: positive
-      note: a property no single heron can have
-      text: "Herons are widespread."
+      note: a property no single stork can have
+      text: "Storks are widespread."
       instances:
-        - {t: class-property, id: k1, subject: heron, property: widespread, tense: present, span: "Herons are widespread"}
+        - {t: class-property, id: k1, subject: stork, property: widespread, tense: present, span: "Storks are widespread"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
-        - "(ClassProperty heron widespread)"
+        - "(ClassProperty stork widespread)"
       declarations:
-        - "(: heron Class)"
+        - "(: stork Class)"
         - "(: widespread Class)"
     - category: positive
       note: a definite singular naming the class — no witness
@@ -116,12 +116,12 @@ examples:
         - {t: class-property, id: k1, subject: quagga, property: extinct, tense: present, span: "The quagga is extinct"}
     - category: positive
       note: a place restricting the claim — kept in the atom, still about the class
-      text: "Otters are rare in Norfolk."
+      text: "Voles are rare in Westmarch."
       instances:
-        - {t: named-entity, id: n1, name: "Norfolk", span: "Norfolk"}
-        - {t: class-property, id: k1, subject: otter, property: rare, restriction: "@n1", tense: present, span: "Otters are rare in Norfolk"}
+        - {t: named-entity, id: n1, name: "Westmarch", span: "Westmarch"}
+        - {t: class-property, id: k1, subject: vole, property: rare, restriction: "@n1", tense: present, span: "Voles are rare in Westmarch"}
     - category: abstain
-      text: "Ferrets are curious."
+      text: "Badgers are curious."
       expected: {abstain: true, template: class-statement}             # a property a member can hold
 
   held_out:                  # tests; never rendered into the prompt

@@ -21,7 +21,9 @@ trigger:
     cross, reach, escape, flee; or a causer moving something: carry, bring, take (somewhere),
     push, pull, roll, drag, lead, send is a transfer when the object changes hands. The mover
     is the Agent when it moves under its own power and the Theme when it is moved or moves
-    without acting; a destination phrase is the Goal, an origin phrase the Source. With enter
+    without acting — a vehicle that something else pulls or pushes, a wagon or a barrow, moves
+    without acting even as the subject of travel or roll; a self-powered one, a ferry, is the
+    Agent; a destination phrase is the Goal, an origin phrase the Source. With enter
     and reach the object is the Goal; with leave and exit the object is the Source.
   verbs: [go, come, arrive, leave, depart, enter, exit, return, move, travel, walk, run, climb,
           fall, rise, fly, swim, drive, ride, cross, reach, escape, flee, carry, bring, push,
@@ -31,21 +33,21 @@ trigger:
     (record its lemma as usual; a particle verb keeps its particle: set_off, come_back). The
     class is semantic, the list is guidance.
   surface_forms:
-    - "<mover> V"                                    # Teodor arrived
-    - "<mover> V to / into <goal>"                   # Yusra went to the market
-    - "<mover> V from <source> to <goal>"            # walked from the barn to the shed
+    - "<mover> V"                                    # Pieter arrived
+    - "<mover> V to / into <goal>"                   # Marisol went to the bazaar
+    - "<mover> V from <source> to <goal>"            # walked from the granary to the hut
     - "<mover> left / entered <place>"               # the object is the source / the goal
-    - "<causer> V <moved> to <goal>"                 # carried the ladder to the shed
-    - "<moved> V"                                    # the crate arrived; the ladder fell
+    - "<causer> V <moved> to <goal>"                 # carried the barrow to the hut
+    - "<moved> V"                                    # the trunk arrived; the barrow fell
     - "<moved> was V-ed to <goal>"                   # passive of a caused motion
   boundary:                   # looks like a change of place but is not one
     - >-
       a change of hands — gave, handed, sent, sold, delivered: the object comes to belong to
       someone; a transfer
     - >-
-      an action with no change of place — laughed, worked, read the letter: a plain activity
+      an action with no change of place — laughed, worked, read the postcard: a plain activity
     - >-
-      a figurative fall or rise — the price fell, hopes rose: a change in a value or a state,
+      a figurative fall or rise — the fare fell, hopes rose: a change in a value or a state,
       not of place
     - >-
       go, come, turn as become — went bad, came true, turned red: a change of state
@@ -53,12 +55,12 @@ trigger:
       light-verb constructions — made a trip, took a walk, had a run: the noun carries the
       event
     - >-
-      come with an infinitive — came to like the quilt: an aspectual (the inchoative come_to);
-      go with a purpose infinitive — went to buy a thermos: the motion is parsed, the purpose is
+      come with an infinitive — came to like the blanket: an aspectual (the inchoative come_to);
+      go with a purpose infinitive — went to buy a flask: the motion is parsed, the purpose is
       a purpose link
     - >-
       a path phrase other than to or from — across the field, along the river, through the
-      gate: an oblique on the motion, by its preposition (Across, Along, Through)
+      hatch: an oblique on the motion, by its preposition (Across, Along, Through)
 
 slots:
   id:     {type: id, required: true, doc: "your label for the motion event"}
@@ -66,17 +68,17 @@ slots:
   mover:  {type: filler, class: Entity, role: Agent, required: false,
            doc: "who or what moves under its own power, or who moves the moved thing: the subject; absent when the subject is moved or moves without acting, and in an agentless passive"}
   moved:  {type: filler, class: Entity, role: Theme, required: false,
-           doc: "what is moved by someone (the object of carry, push), or what moves without acting (the crate arrived, the ladder fell)"}
+           doc: "what is moved by someone (the object of carry, push), or what moves without acting (the trunk arrived, the barrow fell), a pulled or pushed vehicle included (the wagon travelled, the barrow rolled downhill)"}
   goal:   {type: filler, class: Entity, role: Goal, required: false,
            doc: "the destination: a to / into / onto phrase, or the object of enter, reach"}
   path:   {type: filler, class: Entity, role: Path, required: false,
-           doc: "the landmark passed, crossed or followed as the verb's direct object (passed the forge, crossed a bridge, climbed the hill): a referent id or a bare lemma; a prepositional path (through the barn, along the river) is an oblique"}
+           doc: "the landmark passed, crossed or followed as the verb's direct object (passed the forge, crossed a bridge, climbed the hill): a referent id or a bare lemma; a prepositional path (through the granary, along the river) is an oblique"}
   source: {type: filler, class: Entity, role: Source, required: false,
            doc: "the origin: a from / off / out of phrase, or the object of leave, exit"}
   tense:  {type: enum, values: [past, present, future], required: true,
            doc: "the clause's tense; present is recorded, not inferred"}
   aspect: {type: enum, values: [simple, progressive, perfect, perfect_progressive, about_to, due_to, would, going_to], required: false, default: simple,
-          doc: "simple; progressive for be V-ing; perfect for have V-ed; perfect_progressive for have been V-ing; about_to for be about to V / on the point of V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word kept as the value (be going to V is the future tense, not a prospective); would for a future seen from a past moment (said the barn would flood, hoped the bridge would hold) and going_to for was / were going to V — the same PROSPECTIVE, with tense past; a would that tells what then happened (would later marry) is the plain past, and a would with no if-clause and no past moment is the modal's Would"}
+          doc: "simple; progressive for be V-ing; perfect for have V-ed; perfect_progressive for have been V-ing; about_to for be about to V / on the point of V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word kept as the value (be going to V is the future tense, not a prospective); would for a future seen from a past moment (said the granary would flood, hoped the bridge would hold) and going_to for was / were going to V — the same PROSPECTIVE, with tense past; a would that tells what then happened (would later marry) is the plain past, and a would with no if-clause and no past moment is the modal's Would"}
 
 mints: {id: Event}
 
@@ -118,43 +120,43 @@ examples:
   shown:                     # rendered into the prompt
     - category: positive
       note: a self-mover and a destination
-      text: "Yusra went to the market."
+      text: "Marisol went to the bazaar."
       instances:
-        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
-        - {t: witness, id: x1, class: market, definite: true, span: "the market"}
-        - {t: motion, id: m1, verb: go, mover: "@n1", goal: "@x1", tense: past, span: "Yusra went to the market"}
+        - {t: named-entity, id: n1, name: "Marisol", span: "Marisol"}
+        - {t: witness, id: x1, class: bazaar, definite: true, span: "the bazaar"}
+        - {t: motion, id: m1, verb: go, mover: "@n1", goal: "@x1", tense: past, span: "Marisol went to the bazaar"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
-        - "(Name sk_yusra_1 \"Yusra\")"
-        - "(Member sk_market_1 market)"
+        - "(Name sk_marisol_1 \"Marisol\")"
+        - "(Member sk_bazaar_1 bazaar)"
         - "(Member sk_go_1 go)"
-        - "(Agent sk_go_1 sk_yusra_1)"
-        - "(Goal sk_go_1 sk_market_1)"
+        - "(Agent sk_go_1 sk_marisol_1)"
+        - "(Goal sk_go_1 sk_bazaar_1)"
         - "(Past sk_go_1)"
       declarations:
+        - "(: bazaar Class)"
         - "(: go Class)"
-        - "(: market Class)"
+        - "(: sk_bazaar_1 Entity)"
         - "(: sk_go_1 Event)"
-        - "(: sk_market_1 Entity)"
-        - "(: sk_yusra_1 Entity)"
+        - "(: sk_marisol_1 Entity)"
     - category: positive
       note: a caused motion — the causer is the mover, the thing moved is the moved
-      text: "Lamine carried the ladder to the shed."
+      text: "Odile carried the barrow to the hut."
       instances:
-        - {t: named-entity, id: n1, name: "Lamine", span: "Lamine"}
-        - {t: witness, id: x1, class: ladder, definite: true, span: "the ladder"}
-        - {t: witness, id: x2, class: shed, definite: true, span: "the shed"}
-        - {t: motion, id: m1, verb: carry, mover: "@n1", moved: "@x1", goal: "@x2", tense: past, span: "Lamine carried the ladder to the shed"}
+        - {t: named-entity, id: n1, name: "Odile", span: "Odile"}
+        - {t: witness, id: x1, class: barrow, definite: true, span: "the barrow"}
+        - {t: witness, id: x2, class: hut, definite: true, span: "the hut"}
+        - {t: motion, id: m1, verb: carry, mover: "@n1", moved: "@x1", goal: "@x2", tense: past, span: "Odile carried the barrow to the hut"}
     - category: positive
       note: the prospective aspect — about to V, the event upcoming at the clause's time, the word kept as the aspect value
-      text: "Yusra is about to leave."
+      text: "Marisol is about to leave."
       instances:
-        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
-        - {t: motion, id: m1, verb: leave, mover: "@n1", tense: present, aspect: about_to, span: "Yusra is about to leave"}
+        - {t: named-entity, id: n1, name: "Marisol", span: "Marisol"}
+        - {t: motion, id: m1, verb: leave, mover: "@n1", tense: present, aspect: about_to, span: "Marisol is about to leave"}
     - category: abstain
-      text: "Teodor gave Yusra a thermos."
+      text: "Pieter gave Marisol a flask."
       expected: {abstain: true, template: transfer}                   # a change of hands
     - category: abstain
-      text: "Yusra laughed."
+      text: "Marisol laughed."
       expected: {abstain: true, template: activity}                   # no change of place
 
   held_out:                  # tests; never rendered into the prompt

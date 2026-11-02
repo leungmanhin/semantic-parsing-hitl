@@ -18,7 +18,7 @@ status: draft
 trigger:
   construction: >
     A clause with "be" as its main verb whose subject is a referent instance — a name, a
-    witness, a group (the ferrets), a resolved pronoun, or a range inside a rule (the
+    witness, a group (the badgers), a resolved pronoun, or a range inside a rule (the
     arbitrary member of a conditional property or a generic's condition) — and whose predicate
     is an indefinite noun phrase (is a locksmith) or an adjective (is crooked). A group as the subject takes the
     predicate as a group; whether it also holds of each member is the distribution template's
@@ -32,16 +32,16 @@ trigger:
     a time relation, a link or a focus particle on the clause names this instance as its event,
     as it would a verb's: the program mints the state of the fact holding and attaches to it.
   surface_forms:
-    - "<subject> is a <N>"                     # Teodor is a locksmith
-    - "<subject> is <ADJ>"                     # the ladder is crooked
+    - "<subject> is a <N>"                     # Pieter is a locksmith
+    - "<subject> is <ADJ>"                     # the barrow is crooked
     - "<subject> was / will be <N or ADJ>"     # the tense wraps the atom
   boundary:                   # looks like a copular clause but is not one
     - >-
-      a class as the subject — ferrets are mustelids, granite is a rock, a spindle is a tool:
+      a class as the subject — badgers are mustelids, slate is a rock, a bobbin is a tool:
       a statement about a class, not an individual (a range instance, "@q1", is not a class: it
       is the member a rule ranges over, and takes this template)
     - >-
-      a quantifier word on the subject — all ferrets are curious, most herons are patient:
+      a quantifier word on the subject — all badgers are curious, most storks are patient:
       a quantified generalization
     - >-
       a copular verb other than be — seems tired, looks tired, tastes salty: the evidential
@@ -49,31 +49,31 @@ trigger:
       sensation; remains open: an aspectual verb; became a locksmith, got tired: a change of
       state
     - >-
-      a relational adjective or noun with its complement — married to Lamine, similar to
-      Teodor, a cousin of Yusra, Lamine's cousin, friends with Ottoline: a stative relation
-      between the two; a quality adjective with a complement — afraid of the ferret, fond of
-      Lamine, full of water, good at chess: the adjective-complement template, a state of the
+      a relational adjective or noun with its complement — married to Odile, similar to
+      Pieter, a cousin of Marisol, Odile's cousin, friends with Henrike: a stative relation
+      between the two; a quality adjective with a complement — afraid of the badger, fond of
+      Odile, full of water, good at chess: the adjective-complement template, a state of the
       subject with its complement
     - >-
-      a definite or a name as the predicate — is the locksmith, is Teodor: an identity
-      statement, not a class or a property (a possessed relational noun — is Lamine's cousin —
+      a definite or a name as the predicate — is the locksmith, is Pieter: an identity
+      statement, not a class or a property (a possessed relational noun — is Odile's cousin —
       is a stative relation)
     - >-
       an alleged or so-called predicate — an alleged thief: the adjective does not hold of the
       individual on its own and has no slot yet; report it as unmapped (former, ex- and retired
       are `former`)
     - >-
-      "there is / there are" — there is a thermos: an existential, which is the referent alone
+      "there is / there are" — there is a flask: an existential, which is the referent alone
     - >-
       an adjective with a degree word — is very crooked, was almost full, is tall for a weaver:
       a degree predication, which decides itself whether the property is asserted
     - >-
-      about to be, due to be — is about to be a father, is due to be in Calderwick: a prospective
+      about to be, due to be — is about to be a father, is due to be in Brackenford: a prospective
       state, no form yet; report the predicate as unmapped (on a verb the clause's own template
       takes the aspect about_to / due_to)
     - >-
-      a definite role title with an of-phrase — Ottoline is the warden of the mill, he is the
-      president of the guild: a relational noun, the stative-relation template, not an identity
+      a definite role title with an of-phrase — Henrike is the warden of the mill, he is the
+      president of the fellowship: a relational noun, the stative-relation template, not an identity
 
 slots:
   id:        {type: id, required: true, doc: "your label for the predication"}
@@ -85,7 +85,7 @@ slots:
               doc: "with form noun, the adjectives inside the predicate noun phrase, each a lemma (is a careful weaver: careful); an adjective on its own (is careful) is form adjective instead"}
   former:    {type: bool, required: false, doc: "with form noun, true when former, ex-, one-time or retired makes the noun something the referent was and no longer is (is a former weaver)"}
   mods:      {type: list, class: Class, ids: [named-entity, time], required: false,
-              doc: "with form noun, the nouns, names and years before the head noun that narrow its class (Nouns before nouns): a lemma for a noun (a harbour pilot: harbour; a sea salt grinder: sea_salt), the id of a named-entity instance for a name (a Calderwick quilt), of a time instance for a year, a decade or a century (a 1904 almanac); never an adjective"}
+              doc: "with form noun, the nouns, names and years before the head noun that narrow its class (Nouns before nouns): a lemma for a noun (a harbour pilot: harbour; a sea salt grinder: sea_salt), the id of a named-entity instance for a name (a Brackenford blanket), of a time instance for a year, a decade or a century (a 1904 almanac); never an adjective"}
   form:      {type: enum, values: [noun, adjective], required: true,
               doc: "noun for a class (is a locksmith), adjective for a property (is crooked)"}
   tense:     {type: enum, values: [past, present, future], required: true,
@@ -165,30 +165,30 @@ examples:
   shown:                     # rendered into the prompt
     - category: positive
       note: a class
-      text: "Teodor is a locksmith."
+      text: "Pieter is a locksmith."
       instances:
-        - {t: named-entity, id: n1, name: "Teodor", span: "Teodor"}
-        - {t: copular, id: c1, subject: "@n1", predicate: locksmith, form: noun, tense: present, span: "Teodor is a locksmith"}
+        - {t: named-entity, id: n1, name: "Pieter", span: "Pieter"}
+        - {t: copular, id: c1, subject: "@n1", predicate: locksmith, form: noun, tense: present, span: "Pieter is a locksmith"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
-        - "(Name sk_teodor_1 \"Teodor\")"
-        - "(Member sk_teodor_1 locksmith)"
+        - "(Name sk_pieter_1 \"Pieter\")"
+        - "(Member sk_pieter_1 locksmith)"
       declarations:
         - "(: locksmith Class)"
-        - "(: sk_teodor_1 Entity)"
+        - "(: sk_pieter_1 Entity)"
     - category: positive
       note: a property, past tense — the tense wraps the atom
-      text: "The audit was difficult."
+      text: "The inspection was difficult."
       instances:
-        - {t: witness, id: x1, class: audit, definite: true, span: "The audit"}
-        - {t: copular, id: c1, subject: "@x1", predicate: difficult, form: adjective, tense: past, span: "The audit was difficult"}
+        - {t: witness, id: x1, class: inspection, definite: true, span: "The inspection"}
+        - {t: copular, id: c1, subject: "@x1", predicate: difficult, form: adjective, tense: past, span: "The inspection was difficult"}
     - category: abstain
-      text: "Ferrets are mustelids."
+      text: "Badgers are mustelids."
       expected: {abstain: true, template: class-statement}             # a class as the subject
     - category: abstain
-      text: "Teodor became a locksmith."
+      text: "Pieter became a locksmith."
       expected: {abstain: true, template: change-of-state}            # a change of state
     - category: abstain
-      text: "The thermos was almost full."
+      text: "The flask was almost full."
       expected: {abstain: true, template: degree}                     # an adjective with a degree word
 
   held_out:                  # tests; never rendered into the prompt

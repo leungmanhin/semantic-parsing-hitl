@@ -21,25 +21,24 @@ title: A number with a unit on a dimension of a thing or an eventuality
 trigger:
   construction: >
     A clause or a phrase stating a NUMBER WITH A UNIT on a dimension: of a THING — the rope is
-    3 metres long, Lamine is 30 years old, the crate weighs 12 kilograms, the thermos costs 12
-    euros, the audit took three hours, the meeting lasted an hour, the village has a population
-    of 3000, the crates weighed 180 kilograms, a 20 kilogram sack — or of the clause's EVENT —
-    slept for eight hours (a duration), ran five kilometres (a distance), bought the quilt for
-    forty euros (the price paid), travels at 30 kilometres per hour (a rate), fell by 8 percent
-    and rose from 9 to 12 degrees (a scalar change). With a thing, fill `bearer` with its
+    3 metres long, Odile is 30 years old, the crate weighs 12 kilograms, the flask costs 12
+    florins, the inspection took three hours, the session lasted an hour, the hamlet has a population of 2400, the sacks weighed 140 kilograms, a 20 kilogram sack — or of the clause's EVENT —
+    slept for eight hours (a duration), ran five kilometres (a distance), bought the blanket for
+    forty florins (the price paid), travels at 40 kilometres per hour (a rate), fell by 8 percent
+    and rose from 4 to 7 degrees (a scalar change). With a thing, fill `bearer` with its
     referent: a witness, a name, a group (a plural bearer measures the whole, with no
-    distribution) or an eventive witness (the audit took three hours); with the clause's event,
+    distribution) or an eventive witness (the inspection took three hours); with the clause's event,
     fill `event` with its predication instance instead. `dimension` is the word the text
     supplies — the adjective as written (long, tall, high, wide, deep, old), else the noun the
     clause gives (weighs → weight, costs → cost, took / lasted / for → duration, a population of
-    → population, the price fell → price, the temperature rose → temperature, bought for →
+    → population, the fare fell → price, the temperature rose → temperature, bought for →
     price) — and `unspecified` when no word names it (ran five kilometres, a 20 kilogram sack);
-    `unit` is the unit lemmatized to the singular (metre, kilogram, year, hour, euro, percent;
-    a rate as kilometre_per_hour) and `unspecified` when none is stated (a population of 3000).
+    `unit` is the unit lemmatized to the singular (metre, kilogram, year, hour, florin, percent;
+    a rate as kilometre_per_hour) and `unspecified` when none is stated (a population of 2400).
     `head` is Measure for a stated value; MeasureAtLeast for at least / more than / over / above
     / up from; MeasureAtMost for at most / no more than / less than / under / below / up to (a
     strict bound uses the same head); on a change event, MeasureBy for the amount of the change
-    (fell by 8 percent), MeasureFrom and MeasureTo for a start and an end value (rose from 9 to 12
+    (fell by 8 percent), MeasureFrom and MeasureTo for a start and an end value (rose from 4 to 7
     degrees: two instances). A hedge (about, roughly, nearly) is recorded in `hedge`; the
     magnitude stays the number stated. A measure phrase inside a noun phrase (a 20 kilogram
     sack) is a measure of that witness, in the present. Number words are converted (forty →
@@ -48,19 +47,18 @@ trigger:
     a witness of the stuff (the indefinite quantity the text introduces) with this template's
     instance on it: `bearer` the witness, `unit` the container or measure word (cup, bag, litre,
     metre), `dimension` unspecified, `magnitude` the number (a cup → 1). A time, a time relation,
-    a link or a focus on a measure clause of a thing (the village had a population of 3000 in
-    1990) names this instance as its event, as it would a copular predication, and the program
+    a link or a focus on a measure clause of a thing (the hamlet had a population of 2400 in 1985) names this instance as its event, as it would a copular predication, and the program
     mints the state of the measure holding; a measure on an event is itself the attachment and
     has no state.
   surface_forms:
-    - "<X> is <n> <unit> <ADJ>"                           # the rope is 3 metres long; Lamine is 30 years old
+    - "<X> is <n> <unit> <ADJ>"                           # the rope is 3 metres long; Odile is 30 years old
     - "<X> weighs / costs / measures <n> <unit>"           # the crate weighs 12 kilograms: dimension weight
-    - "<X> took / lasted <n> <unit>"                       # the audit took three hours: dimension duration
-    - "<X> has a <dimension> of <n> (<unit>)"             # a population of 3000: unit unspecified
+    - "<X> took / lasted <n> <unit>"                       # the inspection took three hours: dimension duration
+    - "<X> has a <dimension> of <n> (<unit>)"             # a population of 2400: unit unspecified
     - "<clause> for <n> <unit>"                            # slept for eight hours: a duration on the event
     - "<X> is at least / more than / no more than <n> <unit> <ADJ>"   # a bound: MeasureAtLeast / MeasureAtMost
     - "<X> is about / roughly <n> <unit> <ADJ>"            # a hedge, recorded
-    - "<change verb> by <n> <unit> / from <n> to <n> <unit>"   # fell by 8 percent; rose from 9 to 12 degrees
+    - "<change verb> by <n> <unit> / from <n> to <n> <unit>"   # fell by 8 percent; rose from 4 to 7 degrees
     - "a cup / two bags / a litre of <substance>"          # a quantity of a substance: a witness of the stuff, the unit cup / bag / litre
   boundary:                   # looks like a measure but is not one
     - >-
@@ -73,7 +71,7 @@ trigger:
     - >-
       a degree word with no number — very tall, too heavy, a lot heavier: a degree or an extent
     - >-
-      a proportion or a subset of a definite whole — half of the loaf, 40 percent of the
+      a proportion or a subset of a definite whole — half of the bun, 40 percent of the
       students: the portion template; a percentage as a value — unemployment is 5 percent, fell
       by 8 percent — is a measure with the unit percent
     - >-
@@ -84,10 +82,10 @@ trigger:
       kilometres per hour — is a measure
     - >-
       a vague duration with no number — all day, for years: no slot here; report the phrase as
-      unmapped (G00); a vague amount of a substance — a lot of water, plenty of rain: the
+      unmapped (G00); a vague amount of a substance — a lot of water, plenty of hail: the
       witness's own quantity phrase, no measure
     - >-
-      a bare number with neither a dimension nor a unit — Lamine is 30, the bridge is 200: no
+      a bare number with neither a dimension nor a unit — Odile is 30, the bridge is 200: no
       dimension and no unit to record; report the clause as unmapped (G00)
     - >-
       a stated distance between a thing and a place — the hotel is 800 metres from the river: a
@@ -96,16 +94,16 @@ trigger:
 slots:
   id:        {type: id, required: true, doc: "your label for the measure (m1, m2 …)"}
   bearer:    {type: filler, class: Instance, required: false,
-              doc: "the thing measured: a referent id — a witness, a name, a group (the crates weighed 180 kilograms: the whole, no distribution) or an eventive witness (the audit took three hours); absent when the measure sits on the clause's event"}
+              doc: "the thing measured: a referent id — a witness, a name, a group (the sacks weighed 140 kilograms: the whole, no distribution) or an eventive witness (the inspection took three hours); absent when the measure sits on the clause's event"}
   event:     {type: filler, class: Event, attaches: true, required: false,
-              doc: "the clause's predication instance when the measure phrase is on the event — a verb's, or a copular, locative, degree, comparative, class-statement or part-whole one (was ill for six weeks, was a member of the guild for ten years: the state's duration; the program mints the state) —: a duration (slept for eight hours), a distance (ran five kilometres), a price paid (bought the quilt for forty euros), a rate (travels at 30 kilometres per hour), a change's amount or its start / end value (fell by 8 percent); absent with bearer"}
+              doc: "the clause's predication instance when the measure phrase is on the event — a verb's, or a copular, locative, degree, comparative, class-statement or part-whole one (was ill for nine days, was a member of the fellowship for ten years: the state's duration; the program mints the state) —: a duration (slept for eight hours), a distance (ran five kilometres), a price paid (bought the blanket for forty florins), a rate (travels at 40 kilometres per hour), a change's amount or its start / end value (fell by 8 percent); absent with bearer"}
   head:      {type: enum, values: [Measure, MeasureAtLeast, MeasureAtMost, MeasureBy, MeasureFrom, MeasureTo], required: true,
               doc: "Measure for a stated value; MeasureAtLeast for at least / more than / over / above; MeasureAtMost for at most / no more than / less than / under / below / up to; MeasureBy for the amount of a change, MeasureFrom / MeasureTo for its start / end value (with event only)"}
   dimension: {type: lemma, class: Class, required: true,
               doc: "the dimension word the text supplies: the adjective as written (long, tall, high, wide, deep, old) or the noun the clause gives (weight, cost, duration, population, price, temperature); unspecified when no word names it"}
   magnitude: {type: number, required: true, doc: "the number as stated (40, 3000, 0.5, 7.5), number words converted; never a range"}
   unit:      {type: lemma, class: Class, required: true,
-              doc: "the unit, singular and lowercase (metre, foot, kilogram, year, hour, euro, dollar, degree, percent); a rate as unit_per_unit (kilometre_per_hour); unspecified when no unit is stated"}
+              doc: "the unit, singular and lowercase (metre, foot, kilogram, year, hour, florin, dollar, degree, percent); a rate as unit_per_unit (kilometre_per_hour); unspecified when no unit is stated"}
   hedge:     {type: string, required: false,
               doc: "the approximation word as written (about, around, roughly, approximately, nearly, almost, some, or so); recorded, not rendered"}
   word:      {type: string, required: false,
@@ -199,19 +197,19 @@ examples:
         - {t: measure, id: m1, bearer: "@x1", head: Measure, dimension: weight, magnitude: 12, unit: kilogram, tense: present, span: "The crate weighs 12 kilograms"}
     - category: positive
       note: an age — the adjective old, the unit year
-      text: "Lamine is 30 years old."
+      text: "Odile is 30 years old."
       instances:
-        - {t: named-entity, id: n1, name: "Lamine", span: "Lamine"}
-        - {t: measure, id: m1, bearer: "@n1", head: Measure, dimension: old, magnitude: 30, unit: year, tense: present, span: "Lamine is 30 years old"}
+        - {t: named-entity, id: n1, name: "Odile", span: "Odile"}
+        - {t: measure, id: m1, bearer: "@n1", head: Measure, dimension: old, magnitude: 30, unit: year, tense: present, span: "Odile is 30 years old"}
     - category: positive
       note: a duration on the clause's event — an attachment, the dimension duration
-      text: "Lamine waited for six hours."
+      text: "Odile waited for six hours."
       instances:
-        - {t: named-entity, id: n1, name: "Lamine", span: "Lamine"}
-        - {t: activity, id: v1, verb: wait, actor: "@n1", tense: past, span: "Lamine waited"}
+        - {t: named-entity, id: n1, name: "Odile", span: "Odile"}
+        - {t: activity, id: v1, verb: wait, actor: "@n1", tense: past, span: "Odile waited"}
         - {t: measure, id: m1, event: "@v1", head: Measure, dimension: duration, magnitude: 6, unit: hour, span: "for six hours"}
     - category: abstain
-      text: "Three days ago, Yusra left."
+      text: "Three days ago, Marisol left."
       expected: {abstain: true, template: time}                       # a measured distance in time: a time point
 
   held_out:                  # tests; never rendered into the prompt
@@ -346,7 +344,7 @@ examples:
       text: "The cart travels at 30 kilometres per hour."
       instances:
         - {t: witness, id: x1, class: cart, definite: true}
-        - {t: motion, id: m1, verb: travel, mover: "@x1", tense: present}
+        - {t: motion, id: m1, verb: travel, moved: "@x1", tense: present}
         - {t: habitual, id: h1, event: "@m1"}
         - {t: measure, id: m2, event: "@m1", head: Measure, dimension: unspecified, magnitude: 30, unit: kilometre_per_hour}
     - category: scoped

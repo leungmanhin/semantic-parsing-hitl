@@ -38,15 +38,15 @@ trigger:
     period), the clause is parsed with its own template, and this instance names the range in
     `occasion` and the predication in `over`, with `every: 1` for a period, `times` for a rate
     (the count in each occasion: twice a week → 2 with a range over week) or `level` for the
-    adverb; a generic subject or object (ferrets often bite, every ferret sleeps every night) is
+    adverb; a generic subject or object (badgers often bite, every badger sleeps every night) is
     a range listed in `ranges`, and no generic instance is written. Two cases take their
     restrictor from the sentence instead of an occasion range. (1b) An ADVERB ON A CLAUSE WITH AN
-    ATTACHMENT — Teodor always arrives at noon, Yusra usually swims in the lake, Lamine often
+    ATTACHMENT — Pieter always arrives at noon, Marisol usually swims in the lake, Odile often
     sings loudly: the rule ranges over the clause's own events and asserts the attachment of
     them; name the predication in `restrictor` (no `occasion`, no `over`) and leave its time,
     place or manner attached to it as usual; "never" here is the same rule at strength 0
-    (Teodor never arrives late). (1c) A WHEN / WHENEVER / EVERY TIME CLAUSE — when Lamine sings,
-    Yusra usually leaves; whenever the bell rang, the ferret hid: the when-clause's predication
+    (Pieter never arrives late). (1c) A WHEN / WHENEVER / EVERY TIME CLAUSE — when Odile sings,
+    Marisol usually leaves; whenever the bell rang, the badger hid: the when-clause's predication
     is the restrictor, named in `restrictor`, and the main clause's predication is named in
     `over`; `every: 1` for whenever / every time / each time, `level` for an adverb in the main
     clause, and `every: 1` again for a bare "when" clause read as a generalization. (2) A PATTERN
@@ -62,19 +62,19 @@ trigger:
     - "<clause> daily / weekly / monthly / yearly / nightly"   # bakes bread daily: a range over day; every: 1
     - "<subject> <adverb> V … / <clause> <adverb>"             # often laughs: a range over occasion; level: often
     - "<subject> <adverb> V … <attachment>"                    # always arrives at noon: restrictor = the clause, the time asserted of its events
-    - "When / Whenever / Every time <clause>, <clause> [<adverb>]"   # whenever the bell rang, the ferret hid: restrictor = the when-clause; every: 1
-    - "<class>s <adverb> V … / every <class> V … every <unit>"   # ferrets often bite: the class range in ranges
-    - "<clause> once / twice / <n> times a / per <unit>"       # visits the market twice a week: a range over week; times: 2
+    - "When / Whenever / Every time <clause>, <clause> [<adverb>]"   # whenever the bell rang, the badger hid: restrictor = the when-clause; every: 1
+    - "<class>s <adverb> V … / every <class> V … every <unit>"   # badgers often bite: the class range in ranges
+    - "<clause> once / twice / <n> times a / per <unit>"       # visits the bazaar twice a week: a range over week; times: 2
     - "<clause> every <n> <units> / every other <unit>"        # visits every two weeks: event, every: 2, unit: week
     - "<clause> once / twice / <n> times"                      # knocked twice: event, times: 2
   boundary:                   # looks like a frequency but is not one
     - >-
-      a quantifier on a non-temporal noun with no frequency — every ferret slept, most students
+      a quantifier on a non-temporal noun with no frequency — every badger slept, most students
       laugh: a generalization over a class, the generic template
     - >-
-      never on a bare clause — Yusra never laughs: a negation of the clause, with no frequency
+      never on a bare clause — Marisol never laughs: a negation of the clause, with no frequency
       instance; never with an attachment or a when-clause (never arrives late) is this template's
-      rule at strength 0; never under a norm — must never feed the ferrets, should never be done:
+      rule at strength 0; never under a norm — must never feed the badgers, should never be done:
       a prohibition (weak with should), the never its universality, no frequency instance
     - >-
       again, still, already, yet — laughed again, still waits: an aspectual particle, a
@@ -84,16 +84,16 @@ trigger:
       years: no slot anywhere; report
       the phrase as unmapped
     - >-
-      an if-clause — if the bell rings, the ferret hides: the conditional template; a stative
-      when-clause — the ladder is brittle when cold — is a condition there too, not a frequency
+      an if-clause — if the bell rings, the badger hides: the conditional template; a stative
+      when-clause — the barrow is brittle when cold — is a condition there too, not a frequency
     - >-
-      a habit with no frequency expression — Yusra swims, Lamine used to sing: the habitual
+      a habit with no frequency expression — Marisol swims, Odile used to sing: the habitual
       template marks the clause's event; no rule, no range
     - >-
       a time the event takes place at — in 2019, on Monday, at noon, yesterday: a time; a time
       stated once is not a recurrence (on Monday is a time, on Mondays a frequency)
     - >-
-      once meaning formerly — Lamine once lived in Calderwick: a vague past time, not one
+      once meaning formerly — Odile once lived in Brackenford: a vague past time, not one
       occurrence; report the word as unmapped
     - >-
       a vague count — several times a week, a few times a year, many times: no number to
@@ -110,11 +110,11 @@ slots:
   occasion: {type: refs, class: Proposition, required: false,
              doc: "the range this rule quantifies over: the id of a range instance whose class is the occasion — day, week, month or year for a period of one unit (every day, daily, weekly), the day part or weekday for every morning / every night / on Sundays / every Monday (morning, night, sunday, monday), and occasion for a frequency adverb with no stated period (often); required with over"}
   restrictor: {type: refs, class: Proposition, required: false, as_variable: true,
-             doc: "the predication the rule ranges over when the sentence states it: the clause's own predication for an adverb on a clause with an attachment (Teodor always arrives at noon — the attachment stays on it), or the when / whenever clause's predication (whenever the bell rang, …); its id; never together with occasion"}
+             doc: "the predication the rule ranges over when the sentence states it: the clause's own predication for an adverb on a clause with an attachment (Pieter always arrives at noon — the attachment stays on it), or the when / whenever clause's predication (whenever the bell rang, …); its id; never together with occasion"}
   ranges:   {type: refs, class: Proposition, required: false,
-             doc: "the class range(s) of a generic subject or object in the same clause (ferrets often bite, every ferret sleeps every night): their ids in text order; absent otherwise"}
+             doc: "the class range(s) of a generic subject or object in the same clause (badgers often bite, every badger sleeps every night): their ids in text order; absent otherwise"}
   over:     {type: refs, class: Proposition, required: false, skolemize: true,
-             doc: "the predication over the occasions: its id, nothing else — or the id of the NORM over it (must lock the shed every night, may use the kitchen on Sundays, should always lock the shed: the norm instance over the act, so that the rule's consequent is the obligation or permission on each occasion); a negation or a modal over the clause names THIS instance instead; filled with occasion for a period of one unit, a rate or an adverb, and with restrictor for the main clause of a when-clause; empty for an adverb on a clause with an attachment; never together with event"}
+             doc: "the predication over the occasions: its id, nothing else — or the id of the NORM over it (must lock the hut every night, may use the workshop on Sundays, should always lock the hut: the norm instance over the act, so that the rule's consequent is the obligation or permission on each occasion); a negation or a modal over the clause names THIS instance instead; filled with occasion for a period of one unit, a rate or an adverb, and with restrictor for the main clause of a when-clause; empty for an adverb on a clause with an attachment; never together with event"}
   event:    {type: filler, class: Event, attaches: true, required: false,
              doc: "for a pattern recorded on the event instead — a period of more than one unit, or a bare count: the id of the clause's predication instance; never together with over"}
   every:    {type: number, required: false,
@@ -241,52 +241,52 @@ examples:
   shown:                     # rendered into the prompt
     - category: positive
       note: a period of one unit — a rule over the mornings, with the swim a function of the morning
-      text: "Yusra swims every morning."
+      text: "Marisol swims every morning."
       instances:
-        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
-        - {t: activity, id: v1, verb: swim, actor: "@n1", tense: present, span: "Yusra swims"}
+        - {t: named-entity, id: n1, name: "Marisol", span: "Marisol"}
+        - {t: activity, id: v1, verb: swim, actor: "@n1", tense: present, span: "Marisol swims"}
         - {t: range, id: q1, class: morning, quantifier: every, span: "every morning"}
         - {t: frequency, id: f1, occasion: ["@q1"], over: ["@v1"], every: 1, word: "every morning", span: "every morning"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
-        - "(Name sk_yusra_1 \"Yusra\")"
-        - "(Implication (Member $x morning) (And (Member (sk_swim $x) swim) (Agent (sk_swim $x) sk_yusra_1) (Time (sk_swim $x) $x)))"
+        - "(Name sk_marisol_1 \"Marisol\")"
+        - "(Implication (Member $x morning) (And (Member (sk_swim $x) swim) (Agent (sk_swim $x) sk_marisol_1) (Time (sk_swim $x) $x)))"
       declarations:
         - "(: morning Class)"
+        - "(: sk_marisol_1 Entity)"
         - "(: sk_swim_1 Event)"
-        - "(: sk_yusra_1 Entity)"
         - "(: swim Class)"
         - "(: sk_swim (-> Atom Event))"
     - category: positive
       note: a frequency adverb — a rule over occasions whose strength is the adverb's
-      text: "Ottoline often laughs."
+      text: "Henrike often laughs."
       instances:
-        - {t: named-entity, id: n1, name: "Ottoline", span: "Ottoline"}
-        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: present, span: "Ottoline often laughs"}
+        - {t: named-entity, id: n1, name: "Henrike", span: "Henrike"}
+        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: present, span: "Henrike often laughs"}
         - {t: range, id: q1, class: occasion, span: "often"}
         - {t: frequency, id: f1, occasion: ["@q1"], over: ["@v1"], level: often, word: often, span: "often"}
     - category: positive
       note: an adverb on a clause with a place — the restrictor is the clause's own events, the place is asserted of them
-      text: "Yusra usually swims in the lake."
+      text: "Marisol usually swims in the lake."
       instances:
-        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
+        - {t: named-entity, id: n1, name: "Marisol", span: "Marisol"}
         - {t: witness, id: x1, class: lake, definite: true, span: "the lake"}
-        - {t: activity, id: v1, verb: swim, actor: "@n1", tense: present, span: "Yusra usually swims"}
+        - {t: activity, id: v1, verb: swim, actor: "@n1", tense: present, span: "Marisol usually swims"}
         - {t: location, id: l1, event: "@v1", place: "@x1", head: Location, preposition: in, span: "in the lake"}
         - {t: frequency, id: f1, restrictor: ["@v1"], level: usually, word: usually, span: "usually"}
     - category: positive
       note: a rate — a rule over the weeks, each week's episode carrying the count
-      text: "Lamine visits the market twice a week."
+      text: "Odile visits the bazaar twice a week."
       instances:
-        - {t: named-entity, id: n1, name: "Lamine", span: "Lamine"}
-        - {t: witness, id: x1, class: market, definite: true, span: "the market"}
-        - {t: activity, id: v1, verb: visit, actor: "@n1", patient: "@x1", tense: present, span: "Lamine visits the market"}
+        - {t: named-entity, id: n1, name: "Odile", span: "Odile"}
+        - {t: witness, id: x1, class: bazaar, definite: true, span: "the bazaar"}
+        - {t: activity, id: v1, verb: visit, actor: "@n1", patient: "@x1", tense: present, span: "Odile visits the bazaar"}
         - {t: range, id: q1, class: week, span: "a week"}
         - {t: frequency, id: f1, occasion: ["@q1"], over: ["@v1"], times: 2, word: "twice a week", span: "twice a week"}
     - category: abstain
       text: "Most students laugh."
       expected: {abstain: true, template: generic}                    # a quantifier over a class, no frequency
     - category: abstain
-      text: "Lamine waited all day."
+      text: "Odile waited all day."
       expected: {abstain: true, gap: G00, span: "all day"}            # a duration
 
   held_out:                  # tests; never rendered into the prompt

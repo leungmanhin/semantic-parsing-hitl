@@ -16,8 +16,8 @@ trigger:
   construction: >
     A verbal clause whose verb denotes an action the subject performs: intransitive (laugh,
     sleep, work, wait, dance, sing, rest, give up, carry on) or with a patient the action is
-    done to or with (read the letter, cook dinner, wash the quilt, use the ladder, help
-    Lamine, eat the soup). The patient is used, handled or affected; it does not come into
+    done to or with (read the postcard, cook dinner, wash the blanket, use the barrow, help
+    Odile, eat the soup). The patient is used, handled or affected; it does not come into
     being, cease to be, change place or change hands.
   verbs: [laugh, sleep, work, wait, dance, sing, play, rest, read, cook, wash, clean, use,
           help, eat, drink, study, practise, give_up, carry_on]
@@ -27,18 +27,18 @@ trigger:
     change of state or the creation of its object is not of this class even if unlisted
     elsewhere: report it as a gap with the lemma in the span.
   surface_forms:
-    - "<actor> V"                                # Yusra laughed
-    - "<actor> V <patient>"                      # Teodor read the letter
+    - "<actor> V"                                # Marisol laughed
+    - "<actor> V <patient>"                      # Pieter read the postcard
     - "<patient> was V-ed by <actor>"            # passive: the roles do not change
     - "<patient> was V-ed"                       # passive, actor unstated
   boundary:                   # looks like an activity but is not one
     - >-
-      movement — went to the market, arrived, left, travelled: a change of place
+      movement — went to the bazaar, arrived, left, travelled: a change of place
     - >-
       a change of state — broke, melted, died, grew: the subject or the object ends up in a
       new state
     - >-
-      creation — built a shed, baked a loaf, wrote a letter: the object comes into being
+      creation — built a hut, baked a bun, wrote a postcard: the object comes into being
     - >-
       a transfer, an acquisition, a state of having, a perception, a feeling or a
       communication — gave, took, owns, saw, fears, told: each has its own class
@@ -46,11 +46,11 @@ trigger:
       light-verb constructions — had a rest, took a walk, gave a speech, made a call: the
       noun carries the event
     - >-
-      an infinitival or gerund complement — tried to sleep, stopped working, made Teodor laugh:
+      an infinitival or gerund complement — tried to sleep, stopped working, made Pieter laugh:
       a control, aspectual or causative verb; the action is parsed as its complement
     - >-
-      a companion, an instrument, a beneficiary or a manner phrase — danced with Yusra, cut it
-      with a knife, baked it for Teodor, laughed loudly: attachments with their own templates
+      a companion, an instrument, a beneficiary or a manner phrase — danced with Marisol, cut it
+      with a knife, baked it for Pieter, laughed loudly: attachments with their own templates
       (adjunct, manner); the action is parsed, the phrase attaches to it
 
 slots:
@@ -63,7 +63,7 @@ slots:
   tense:   {type: enum, values: [past, present, future], required: true,
             doc: "the clause's tense; present is recorded, not inferred"}
   aspect:  {type: enum, values: [simple, progressive, perfect, perfect_progressive, about_to, due_to, would, going_to], required: false, default: simple,
-           doc: "simple; progressive for be V-ing; perfect for have V-ed; perfect_progressive for have been V-ing; about_to for be about to V / on the point of V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word kept as the value (be going to V is the future tense, not a prospective); would for a future seen from a past moment (said the barn would flood, hoped the bridge would hold) and going_to for was / were going to V — the same PROSPECTIVE, with tense past; a would that tells what then happened (would later marry) is the plain past, and a would with no if-clause and no past moment is the modal's Would"}
+           doc: "simple; progressive for be V-ing; perfect for have V-ed; perfect_progressive for have been V-ing; about_to for be about to V / on the point of V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word kept as the value (be going to V is the future tense, not a prospective); would for a future seen from a past moment (said the granary would flood, hoped the bridge would hold) and going_to for was / were going to V — the same PROSPECTIVE, with tense past; a would that tells what then happened (would later marry) is the plain past, and a would with no if-clause and no past moment is the modal's Would"}
 
 mints: {id: Event}
 
@@ -99,30 +99,30 @@ examples:
   shown:                     # rendered into the prompt
     - category: positive
       note: intransitive
-      text: "Yusra laughed."
+      text: "Marisol laughed."
       instances:
-        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
-        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past, span: "Yusra laughed"}
+        - {t: named-entity, id: n1, name: "Marisol", span: "Marisol"}
+        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past, span: "Marisol laughed"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
-        - "(Name sk_yusra_1 \"Yusra\")"
+        - "(Name sk_marisol_1 \"Marisol\")"
         - "(Member sk_laugh_1 laugh)"
-        - "(Agent sk_laugh_1 sk_yusra_1)"
+        - "(Agent sk_laugh_1 sk_marisol_1)"
         - "(Past sk_laugh_1)"
       declarations:
         - "(: laugh Class)"
         - "(: sk_laugh_1 Event)"
-        - "(: sk_yusra_1 Entity)"
+        - "(: sk_marisol_1 Entity)"
     - category: positive
       note: a non-specific patient as a bare lemma
-      text: "Lamine cooked dinner."
+      text: "Odile cooked dinner."
       instances:
-        - {t: named-entity, id: n1, name: "Lamine", span: "Lamine"}
-        - {t: activity, id: v1, verb: cook, actor: "@n1", patient: dinner, tense: past, span: "Lamine cooked dinner"}
+        - {t: named-entity, id: n1, name: "Odile", span: "Odile"}
+        - {t: activity, id: v1, verb: cook, actor: "@n1", patient: dinner, tense: past, span: "Odile cooked dinner"}
     - category: abstain
-      text: "Teodor gave Yusra a thermos."
+      text: "Pieter gave Marisol a flask."
       expected: {abstain: true, template: transfer}                   # a change of hands
     - category: abstain
-      text: "Yusra went to the market."
+      text: "Marisol went to the bazaar."
       expected: {abstain: true, template: motion}                     # a change of place
 
   held_out:                  # tests; never rendered into the prompt

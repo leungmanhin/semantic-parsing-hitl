@@ -19,7 +19,7 @@ trigger:
     A clause whose verb expresses a mental or reporting attitude of its subject (the holder)
     towards a complement clause: a finite clause introduced by "that" or bare, or a
     to-infinitive naming what the holder wants, hopes, intends, plans, decides, promises or
-    agrees to do (wants to send the quilt) or expects of someone (expects Lamine to come).
+    agrees to do (wants to send the blanket) or expects of someone (expects Odile to come).
     Non-factive verbs (believe, think, suppose, assume, suspect, doubt, hope, fear, expect,
     claim, say, want, wish, intend, plan, decide, promise, agree) do not assert the complement;
     factive verbs (know, realize, discover, learn, notice, remember, regret) presuppose it. A
@@ -29,9 +29,9 @@ trigger:
     V: prefer — is the attitude in the present tense with the words in `word`.
     An ADJECTIVE with "be" takes the same construction: a that-clause naming what the subject
     is sure, certain, confident, convinced, aware, glad, sorry, surprised, upset, proud, afraid
-    or worried of (Teodor is aware that the gate is open), or a to-infinitive naming what the
+    or worried of (Pieter is aware that the hatch is open), or a to-infinitive naming what the
     subject is eager, willing, unwilling, reluctant, keen, anxious, happy, glad, afraid, ready
-    or prepared to do (Ottoline is ready to leave). Write the adjective as the `verb` lemma;
+    or prepared to do (Henrike is ready to leave). Write the adjective as the `verb` lemma;
     the copula is the construction's marker and the clause's tense is the copula's. The
     factive adjectives — aware, glad, sorry, surprised, upset, proud, and happy or angry with a
     that-clause — presuppose the complement; sure, certain, confident, convinced, afraid,
@@ -46,46 +46,46 @@ trigger:
   surface_forms:
     - "<holder> is sure / aware / glad / afraid that <clause>"    # an adjectival attitude: the adjective the lemma
     - "<holder> is eager / willing / ready to <V> …"              # a stance toward the holder's own action, sealed
-    - "<holder> V that <clause>"                 # believes that Lamine lent Ottoline the trowel
-    - "<holder> V <clause>"                      # thinks Lamine lent Ottoline the trowel
+    - "<holder> V that <clause>"                 # believes that Odile lent Henrike the trowel
+    - "<holder> V <clause>"                      # thinks Odile lent Henrike the trowel
     - "<holder> V-ed that <clause>"              # tense on the attitude; the clause keeps its own
-    - "<holder> V to <V2> …"                     # wants to send the quilt: the holder acts in the complement
-    - "<holder> V <object> to <V2> …"            # expects Lamine to come: the object acts in it
+    - "<holder> V to <V2> …"                     # wants to send the blanket: the holder acts in the complement
+    - "<holder> V <object> to <V2> …"            # expects Odile to come: the object acts in it
     - "<holder> would like / love to <V2> …"     # a wish: want, present, the words in `word`
     - "<holder> would rather <V2> …"             # prefer, present, the words in `word`
   boundary:                   # looks like an attitude but is not one
     - >-
-      an entity object instead of a clause — fears the dog, distrusts Lamine, knows Yusra: a
+      an entity object instead of a clause — fears the dog, distrusts Odile, knows Marisol: a
       psych state, or for knowing a person an acquaintance, the stative-relation template;
       nothing is sealed
     - >-
-      an effort or an achievement towards an action — tried to sleep, managed to open the shed,
+      an effort or an achievement towards an action — tried to sleep, managed to open the hut,
       failed to arrive: a control verb, whose implication about the action is recorded there
     - >-
-      a liking or a dislike of an action — likes to send quilts, enjoys sending quilts: a psych
+      a liking or a dislike of an action — likes to send blankets, enjoys sending blankets: a psych
       state whose stimulus is the clause
     - >-
       an interrogative complement — wonders whether, knows whether, asks if: the complement is
       a question, not a proposition
     - >-
-      an addressee — told Ottoline that P, informed Yusra that P: a communication with a
+      an addressee — told Henrike that P, informed Marisol that P: a communication with a
       recipient of the message, not an attitude of the subject alone
     - >-
       a parenthetical or discourse use — I think, you know, as far as I know: no attitude is
       predicated of anyone
     - >-
-      an impersonal report — it is believed that P, Yusra is said / thought / expected to V,
-      Lamine is considered a glazier, they say that P: no holder is stated; the hedge template
+      an impersonal report — it is believed that P, Marisol is said / thought / expected to V,
+      Odile is considered a glazier, they say that P: no holder is stated; the hedge template
       over the clause, nothing sealed; a quantified holder — some people think that P: this
       template, the group as its holder
     - >-
-      an adjective with a noun-phrase complement — afraid of the ferret, sure of the result,
-      fond of Lamine: the adjective-complement template; able to V — is able to swim: a
-      capability, the modal template; likely, bound, certain or sure TO V — Yusra is likely to
+      an adjective with a noun-phrase complement — afraid of the badger, sure of the result,
+      fond of Odile: the adjective-complement template; able to V — is able to swim: a
+      capability, the modal template; likely, bound, certain or sure TO V — Marisol is likely to
       win: the speaker's hedge over the clause, not a stance of the subject, the hedge template;
       about to, due to: the clause's prospective aspect (about_to / due_to), not an attitude;
       hard, easy, difficult, impossible, important
-      or safe to V — the quilt is hard to mend, it is important to rest: a quality of the
+      or safe to V — the blanket is hard to mend, it is important to stretch: a quality of the
       action, the adjective-complement template with no bearer
 
 slots:
@@ -102,7 +102,7 @@ slots:
   word:    {type: string, required: false,
             doc: "the words as written when the verb is a wish with would: would like, would love (want); would rather, would prefer (prefer); absent otherwise"}
   aspect:  {type: enum, values: [simple, progressive, perfect, perfect_progressive, about_to, due_to, would, going_to], required: false, default: simple,
-           doc: "simple; progressive for be V-ing; perfect for have V-ed; perfect_progressive for have been V-ing; about_to for be about to V / on the point of V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word kept as the value (be going to V is the future tense, not a prospective); would for a future seen from a past moment (said the barn would flood, hoped the bridge would hold) and going_to for was / were going to V — the same PROSPECTIVE, with tense past; a would that tells what then happened (would later marry) is the plain past, and a would with no if-clause and no past moment is the modal's Would"}
+           doc: "simple; progressive for be V-ing; perfect for have V-ed; perfect_progressive for have been V-ing; about_to for be about to V / on the point of V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word kept as the value (be going to V is the future tense, not a prospective); would for a future seen from a past moment (said the granary would flood, hoped the bridge would hold) and going_to for was / were going to V — the same PROSPECTIVE, with tense past; a would that tells what then happened (would later marry) is the plain past, and a would with no if-clause and no past moment is the modal's Would"}
 
 mints: {id: Event}
 
@@ -142,85 +142,85 @@ composes_with: [negation, modal, time]
 examples:
   shown:                     # rendered into the prompt
     - category: positive
-      text: "Teodor believes that Lamine lent Ottoline the trowel."
+      text: "Pieter believes that Odile lent Henrike the trowel."
       instances:
-        - {t: named-entity, id: n1, name: "Teodor", span: "Teodor"}
-        - {t: named-entity, id: n2, name: "Lamine", span: "Lamine"}
-        - {t: named-entity, id: n3, name: "Ottoline", span: "Ottoline"}
+        - {t: named-entity, id: n1, name: "Pieter", span: "Pieter"}
+        - {t: named-entity, id: n2, name: "Odile", span: "Odile"}
+        - {t: named-entity, id: n3, name: "Henrike", span: "Henrike"}
         - {t: witness, id: x1, class: trowel, definite: true, span: "the trowel"}
-        - {t: transfer, id: e1, verb: lend, giver: "@n2", recipient: "@n3", object: "@x1", tense: past, span: "Lamine lent Ottoline the trowel"}
+        - {t: transfer, id: e1, verb: lend, giver: "@n2", recipient: "@n3", object: "@x1", tense: past, span: "Odile lent Henrike the trowel"}
         - {t: attitude, id: a1, verb: believe, holder: "@n1", content: ["@e1"], factive: false,
-           tense: present, span: "Teodor believes that Lamine lent Ottoline the trowel"}
+           tense: present, span: "Pieter believes that Odile lent Henrike the trowel"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
-        - "(Name sk_teodor_1 \"Teodor\")"
-        - "(Name sk_lamine_1 \"Lamine\")"
-        - "(Name sk_ottoline_1 \"Ottoline\")"
+        - "(Name sk_pieter_1 \"Pieter\")"
+        - "(Name sk_odile_1 \"Odile\")"
+        - "(Name sk_henrike_1 \"Henrike\")"
         - "(Member sk_trowel_1 trowel)"
         - "(Member sk_believe_1 believe)"
-        - "(Experiencer sk_believe_1 sk_teodor_1)"
-        - "(Theme sk_believe_1 (And (Member sk_lend_1 lend) (Agent sk_lend_1 sk_lamine_1) (Recipient sk_lend_1 sk_ottoline_1) (Theme sk_lend_1 sk_trowel_1) (Past sk_lend_1)))"
+        - "(Experiencer sk_believe_1 sk_pieter_1)"
+        - "(Theme sk_believe_1 (And (Member sk_lend_1 lend) (Agent sk_lend_1 sk_odile_1) (Recipient sk_lend_1 sk_henrike_1) (Theme sk_lend_1 sk_trowel_1) (Past sk_lend_1)))"
       declarations:
         - "(: believe Class)"
         - "(: lend Class)"
         - "(: sk_believe_1 Event)"
-        - "(: sk_lamine_1 Entity)"
+        - "(: sk_henrike_1 Entity)"
         - "(: sk_lend_1 Event)"
-        - "(: sk_ottoline_1 Entity)"
-        - "(: sk_teodor_1 Entity)"
+        - "(: sk_odile_1 Entity)"
+        - "(: sk_pieter_1 Entity)"
         - "(: sk_trowel_1 Entity)"
         - "(: trowel Class)"
     - category: positive
       note: factive — the complement is also stated flat
-      text: "Yusra knows that Teodor sold the spindle."
+      text: "Marisol knows that Pieter sold the bobbin."
       instances:
-        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
-        - {t: named-entity, id: n2, name: "Teodor", span: "Teodor"}
-        - {t: witness, id: x1, class: spindle, definite: true, span: "the spindle"}
-        - {t: transfer, id: e1, verb: sell, giver: "@n2", object: "@x1", tense: past, span: "Teodor sold the spindle"}
+        - {t: named-entity, id: n1, name: "Marisol", span: "Marisol"}
+        - {t: named-entity, id: n2, name: "Pieter", span: "Pieter"}
+        - {t: witness, id: x1, class: bobbin, definite: true, span: "the bobbin"}
+        - {t: transfer, id: e1, verb: sell, giver: "@n2", object: "@x1", tense: past, span: "Pieter sold the bobbin"}
         - {t: attitude, id: a1, verb: know, holder: "@n1", content: ["@e1"], factive: true,
-           tense: present, span: "Yusra knows that Teodor sold the spindle"}
+           tense: present, span: "Marisol knows that Pieter sold the bobbin"}
     - category: positive
       note: a reporting verb with no addressee is an attitude
-      text: "Teodor said that Lamine sold the spindle."
+      text: "Pieter said that Odile sold the bobbin."
       instances:
-        - {t: named-entity, id: n1, name: "Teodor", span: "Teodor"}
-        - {t: named-entity, id: n2, name: "Lamine", span: "Lamine"}
-        - {t: witness, id: x1, class: spindle, definite: true, span: "the spindle"}
-        - {t: transfer, id: e1, verb: sell, giver: "@n2", object: "@x1", tense: past, span: "Lamine sold the spindle"}
+        - {t: named-entity, id: n1, name: "Pieter", span: "Pieter"}
+        - {t: named-entity, id: n2, name: "Odile", span: "Odile"}
+        - {t: witness, id: x1, class: bobbin, definite: true, span: "the bobbin"}
+        - {t: transfer, id: e1, verb: sell, giver: "@n2", object: "@x1", tense: past, span: "Odile sold the bobbin"}
         - {t: attitude, id: a1, verb: say, holder: "@n1", content: ["@e1"], factive: false,
-           tense: past, span: "Teodor said that Lamine sold the spindle"}
+           tense: past, span: "Pieter said that Odile sold the bobbin"}
     - category: positive
       note: a perception verb with a that-clause is a factive attitude
-      text: "Teodor saw that Lamine sold the spindle."
+      text: "Pieter saw that Odile sold the bobbin."
       instances:
-        - {t: named-entity, id: n1, name: "Teodor", span: "Teodor"}
-        - {t: named-entity, id: n2, name: "Lamine", span: "Lamine"}
-        - {t: witness, id: x1, class: spindle, definite: true, span: "the spindle"}
-        - {t: transfer, id: e1, verb: sell, giver: "@n2", object: "@x1", tense: past, span: "Lamine sold the spindle"}
+        - {t: named-entity, id: n1, name: "Pieter", span: "Pieter"}
+        - {t: named-entity, id: n2, name: "Odile", span: "Odile"}
+        - {t: witness, id: x1, class: bobbin, definite: true, span: "the bobbin"}
+        - {t: transfer, id: e1, verb: sell, giver: "@n2", object: "@x1", tense: past, span: "Odile sold the bobbin"}
         - {t: attitude, id: a1, verb: see, holder: "@n1", content: ["@e1"], factive: true,
-           tense: past, span: "Teodor saw that Lamine sold the spindle"}
+           tense: past, span: "Pieter saw that Odile sold the bobbin"}
     - category: abstain
-      text: "Teodor told Ottoline that Lamine sold the spindle."
+      text: "Pieter told Henrike that Odile sold the bobbin."
       expected: {abstain: true, template: communication}             # an addressee
     - category: abstain
-      text: "Yusra distrusts Lamine."
+      text: "Marisol distrusts Odile."
       expected: {abstain: true, template: psych}                     # an entity object
     - category: positive
       note: an infinitival complement — the holder acts in it; nothing is asserted about the sending
-      text: "Ottoline wants to send the quilt."
+      text: "Henrike wants to send the blanket."
       instances:
-        - {t: named-entity, id: n1, name: "Ottoline", span: "Ottoline"}
-        - {t: witness, id: x1, class: quilt, definite: true, span: "the quilt"}
-        - {t: transfer, id: e1, verb: send, giver: "@n1", object: "@x1", tense: present, span: "to send the quilt"}
-        - {t: attitude, id: a1, verb: want, holder: "@n1", content: ["@e1"], factive: false, tense: present, span: "Ottoline wants to send the quilt"}
+        - {t: named-entity, id: n1, name: "Henrike", span: "Henrike"}
+        - {t: witness, id: x1, class: blanket, definite: true, span: "the blanket"}
+        - {t: transfer, id: e1, verb: send, giver: "@n1", object: "@x1", tense: present, span: "to send the blanket"}
+        - {t: attitude, id: a1, verb: want, holder: "@n1", content: ["@e1"], factive: false, tense: present, span: "Henrike wants to send the blanket"}
     - category: positive
       note: an adjectival attitude — the adjective is the lemma, the that-clause its sealed complement; a factive adjective presupposes it
-      text: "Teodor is aware that the gate is open."
+      text: "Pieter is aware that the hatch is open."
       instances:
-        - {t: named-entity, id: n1, name: "Teodor", span: "Teodor"}
-        - {t: witness, id: x1, class: gate, definite: true, span: "the gate"}
-        - {t: copular, id: c1, subject: "@x1", predicate: open, form: adjective, tense: present, span: "the gate is open"}
-        - {t: attitude, id: a1, verb: aware, holder: "@n1", content: ["@c1"], factive: true, tense: present, span: "Teodor is aware that the gate is open"}
+        - {t: named-entity, id: n1, name: "Pieter", span: "Pieter"}
+        - {t: witness, id: x1, class: hatch, definite: true, span: "the hatch"}
+        - {t: copular, id: c1, subject: "@x1", predicate: open, form: adjective, tense: present, span: "the hatch is open"}
+        - {t: attitude, id: a1, verb: aware, holder: "@n1", content: ["@c1"], factive: true, tense: present, span: "Pieter is aware that the hatch is open"}
 
   held_out:                  # tests; never rendered into the prompt
     - category: positive

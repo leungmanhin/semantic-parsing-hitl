@@ -20,7 +20,7 @@ trigger:
     (might have lent); the modal instance carries nothing about tense. WOULD with no if-clause
     in the sentence and no past moment it is seen from — the conditional mood, true under
     circumstances the text does not state: the mill would need a new wheel, a bigger cart would
-    help, Bram would have stayed — is Would with `surface` would; a lone would-have puts its
+    help, Joost would have stayed — is Would with `surface` would; a lone would-have puts its
     clause in the past with aspect perfect. The other readings of would are not this head (the
     boundary lists them).
   surface_forms:
@@ -30,7 +30,7 @@ trigger:
     - "<S> is able / unable to <V>"             # a capability stated by an adjective: Can, unable under a negation
     - "Perhaps / maybe <clause>; <S> possibly <V> …"   # a possibility adverb: Might
     - "<S> would <V> … (no if-clause)"          # the mill would need a new wheel: Would, the condition unstated
-    - "<S> would have <V>-ed …"                 # Bram would have stayed: Would over a past clause, aspect perfect
+    - "<S> would have <V>-ed …"                 # Joost would have stayed: Would over a past clause, aspect perfect
   boundary:
     - >-
       a modal word used deontically — must as an obligation, may or can as a permission, must
@@ -46,10 +46,10 @@ trigger:
       template, which sets the clause's truth value and adds no operator; only a possibility
       (perhaps, maybe, possibly) is Might
     - >-
-      would in the consequence of a subjunctive conditional — if Yusra sang, Teodor would
+      would in the consequence of a subjunctive conditional — if Marisol sang, Pieter would
       leave: the counterfactual template
     - >-
-      would seen from a past moment — said the barn would flood, knew she would recover: the
+      would seen from a past moment — said the granary would flood, knew she would recover: the
       clause's own template with aspect would and tense past, no modal
     - >-
       a would that tells what then happened in a past narrative — would later marry, would go
@@ -84,16 +84,16 @@ examples:
   shown:
     - category: positive
       note: epistemic must over a copular clause — an inference about what is the case, not an obligation
-      text: "Yusra must be tired."
+      text: "Marisol must be tired."
       instances:
-        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
-        - {t: copular, id: c1, subject: "@n1", predicate: tired, form: adjective, tense: present, span: "Yusra must be tired"}
+        - {t: named-entity, id: n1, name: "Marisol", span: "Marisol"}
+        - {t: copular, id: c1, subject: "@n1", predicate: tired, form: adjective, tense: present, span: "Marisol must be tired"}
         - {t: modal, id: s1, over: ["@c1"], head: Must, surface: must, span: "must"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
-        - "(Name sk_yusra_1 \"Yusra\")"
-        - "(Must (Member sk_yusra_1 tired))"
+        - "(Name sk_marisol_1 \"Marisol\")"
+        - "(Must (Member sk_marisol_1 tired))"
       declarations:
-        - "(: sk_yusra_1 Entity)"
+        - "(: sk_marisol_1 Entity)"
         - "(: tired Class)"
   held_out:
     - category: positive

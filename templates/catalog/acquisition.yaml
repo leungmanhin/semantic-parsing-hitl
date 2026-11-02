@@ -25,8 +25,8 @@ trigger:
     belongs here (record its lemma as usual; a particle verb keeps its particle, pick_up).
     The class is semantic, the list is guidance.
   surface_forms:
-    - "<acquirer> V <object>"                        # received a thermos
-    - "<acquirer> V <object> from <source>"          # took the envelope from Lamine
+    - "<acquirer> V <object>"                        # received a flask
+    - "<acquirer> V <object> from <source>"          # took the envelope from Odile
     - "<object> was V-ed by <acquirer>"              # passive: the roles do not change
     - "<object> was V-ed"                            # passive, acquirer unstated
   boundary:                   # looks like an acquisition but is not one
@@ -34,18 +34,18 @@ trigger:
       told from the giver's side — gave, handed, sent, sold, lent: the subject is the party who
       parts with the object; a transfer
     - >-
-      a state of having — owns the quilt, has a trowel: no event of coming to have it
+      a state of having — owns the blanket, has a trowel: no event of coming to have it
     - >-
       light-verb constructions — took a walk, took a look, had a word: the noun carries the
       event; nothing is acquired
     - >-
       get as become — got tired, got wet: a change of state; get with a verb phrase on its
-      object — got Lamine to send the quilt: a causative; nothing is acquired either way
+      object — got Odile to send the blanket: a causative; nothing is acquired either way
     - >-
       win or earn with a contest or an activity as the object — won the race: nothing changes
       hands; with a prize or a sum as the object it is an acquisition
     - >-
-      the price — bought the quilt for forty euros: the amount is never the object; it is a
+      the price — bought the blanket for forty florins: the amount is never the object; it is a
       measure on the event (the measure template) while the acquisition is parsed
 
 slots:
@@ -60,7 +60,7 @@ slots:
   tense:    {type: enum, values: [past, present, future], required: true,
              doc: "the clause's tense; present is recorded, not inferred"}
   aspect:   {type: enum, values: [simple, progressive, perfect, perfect_progressive, about_to, due_to, would, going_to], required: false, default: simple,
-            doc: "simple; progressive for be V-ing; perfect for have V-ed; perfect_progressive for have been V-ing; about_to for be about to V / on the point of V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word kept as the value (be going to V is the future tense, not a prospective); would for a future seen from a past moment (said the barn would flood, hoped the bridge would hold) and going_to for was / were going to V — the same PROSPECTIVE, with tense past; a would that tells what then happened (would later marry) is the plain past, and a would with no if-clause and no past moment is the modal's Would"}
+            doc: "simple; progressive for be V-ing; perfect for have V-ed; perfect_progressive for have been V-ing; about_to for be about to V / on the point of V-ing and due_to for be due to V / be to V / be set to V — the PROSPECTIVE aspect, the event upcoming at the clause's time, the word kept as the value (be going to V is the future tense, not a prospective); would for a future seen from a past moment (said the granary would flood, hoped the bridge would hold) and going_to for was / were going to V — the same PROSPECTIVE, with tense past; a would that tells what then happened (would later marry) is the plain past, and a would with no if-clause and no past moment is the modal's Would"}
 
 mints: {id: Event}
 
@@ -99,41 +99,41 @@ examples:
   shown:                     # rendered into the prompt
     - category: positive
       note: with the source stated
-      text: "Ottoline took the envelope from Lamine."
+      text: "Henrike took the envelope from Odile."
       instances:
-        - {t: named-entity, id: n1, name: "Ottoline", span: "Ottoline"}
+        - {t: named-entity, id: n1, name: "Henrike", span: "Henrike"}
         - {t: witness, id: x1, class: envelope, definite: true, span: "the envelope"}
-        - {t: named-entity, id: n2, name: "Lamine", span: "Lamine"}
+        - {t: named-entity, id: n2, name: "Odile", span: "Odile"}
         - {t: acquisition, id: q1, verb: take, acquirer: "@n1", object: "@x1", source: "@n2",
-           tense: past, span: "Ottoline took the envelope from Lamine"}
+           tense: past, span: "Henrike took the envelope from Odile"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
-        - "(Name sk_ottoline_1 \"Ottoline\")"
+        - "(Name sk_henrike_1 \"Henrike\")"
         - "(Member sk_envelope_1 envelope)"
-        - "(Name sk_lamine_1 \"Lamine\")"
+        - "(Name sk_odile_1 \"Odile\")"
         - "(Member sk_take_1 take)"
-        - "(Recipient sk_take_1 sk_ottoline_1)"
+        - "(Recipient sk_take_1 sk_henrike_1)"
         - "(Theme sk_take_1 sk_envelope_1)"
-        - "(Source sk_take_1 sk_lamine_1)"
+        - "(Source sk_take_1 sk_odile_1)"
         - "(Past sk_take_1)"
       declarations:
         - "(: envelope Class)"
         - "(: sk_envelope_1 Entity)"
-        - "(: sk_lamine_1 Entity)"
-        - "(: sk_ottoline_1 Entity)"
+        - "(: sk_henrike_1 Entity)"
+        - "(: sk_odile_1 Entity)"
         - "(: sk_take_1 Event)"
         - "(: take Class)"
     - category: positive
       note: by receiving, no source stated
-      text: "Yusra received a thermos."
+      text: "Marisol received a flask."
       instances:
-        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
-        - {t: witness, id: x1, class: thermos, span: "a thermos"}
-        - {t: acquisition, id: q1, verb: receive, acquirer: "@n1", object: "@x1", tense: past, span: "Yusra received a thermos"}
+        - {t: named-entity, id: n1, name: "Marisol", span: "Marisol"}
+        - {t: witness, id: x1, class: flask, span: "a flask"}
+        - {t: acquisition, id: q1, verb: receive, acquirer: "@n1", object: "@x1", tense: past, span: "Marisol received a flask"}
     - category: abstain
-      text: "Teodor gave Yusra a thermos."
+      text: "Pieter gave Marisol a flask."
       expected: {abstain: true, template: transfer}                   # the giver's side
     - category: abstain
-      text: "Lamine took a walk."
+      text: "Odile took a walk."
       expected: {abstain: true, gap: G00, span: "took a walk"}        # light-verb construction
 
   held_out:                  # tests; never rendered into the prompt

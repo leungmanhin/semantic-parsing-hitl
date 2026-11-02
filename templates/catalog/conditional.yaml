@@ -18,42 +18,42 @@ title: An indicative conditional
 trigger:
   construction: >
     "If P, Q" and its kin — if … then, provided that, as long as, in case, even if — and a
-    stative when-clause (the ladder is brittle when cold; Teodor is grumpy when tired). Parse
-    the condition with its own template (a predication for an event — Lamine sings; a copular
+    stative when-clause (the barrow is brittle when cold; Pieter is grumpy when tired). Parse
+    the condition with its own template (a predication for an event — Odile sings; a copular
     instance for a state — cold, open, tired, with the subject it is said of) and the consequence
     with its own (a predication, or a negation, modal or norm over it, or a copular instance for a
     state), and name them in `condition` and `over`. With an eventive condition the rule ranges
     over the condition's events, and the consequence's event is a function of each; with a
     stative condition the rule holds between the states as stated. When the subject is a class —
-    herons are patient if the weather is sunny — it is a range instance listed in `ranges`, the
+    storks are drowsy if the weather is windy — it is a range instance listed in `ranges`, the
     consequence a copular instance over it, and `generic: true` marks a bare plural (no
     quantifier word). The mood is indicative: the clauses are real possibilities; a subjunctive
-    (if Lamine had sung, Yusra would have left; if Yusra sang, Teodor would leave) is a
+    (if Odile had sung, Marisol would have left; if Marisol sang, Pieter would leave) is a
     counterfactual. The span is the whole sentence.
   surface_forms:
-    - "If <P>, <Q> / <Q> if <P>"                           # if Lamine sings, Yusra leaves: condition v1, over v2
-    - "<X> is ADJ when / if ADJ"                           # the ladder is brittle when cold: a stative condition, the copular for cold
-    - "<class>s are ADJ if <P>"                            # herons are patient if the weather is sunny: ranges + condition + over
+    - "If <P>, <Q> / <Q> if <P>"                           # if Odile sings, Marisol leaves: condition v1, over v2
+    - "<X> is ADJ when / if ADJ"                           # the barrow is brittle when cold: a stative condition, the copular for cold
+    - "<class>s are ADJ if <P>"                            # storks are drowsy if the weather is windy: ranges + condition + over
     - "Provided that / as long as / in case <P>, <Q>"      # the same rule, the words recorded
   boundary:                   # looks like a conditional but is not one
     - >-
-      a counterfactual or a hypothetical with would — if Lamine had sung, Yusra would have left;
-      if Yusra sang, Teodor would leave: the counterfactual template
+      a counterfactual or a hypothetical with would — if Odile had sung, Marisol would have left;
+      if Marisol sang, Pieter would leave: the counterfactual template
     - >-
-      unless, or if not — unless it rains, Lamine sings; if Yusra does not sing, Lamine leaves:
+      unless, or if not — unless it rains, Odile sings; if Marisol does not sing, Odile leaves:
       a negated condition, with no form yet; report the clause as unmapped (G08)
     - >-
-      an eventive when-clause — when Lamine sings, Yusra leaves; whenever the bell rang: a
+      an eventive when-clause — when Odile sings, Marisol leaves; whenever the bell rang: a
       generalization over the when-clause's events, the frequency template
     - >-
-      a class's property under a state of its members — clay is soft when wet, all alloys are
+      a class's property under a state of its members — clay is soft when wet, all resins are
       brittle when cold: the conditional-property template; here the subject is an individual,
       or the condition is about something else than the member
     - >-
       a causal connective — because, since, so: a link between two asserted clauses, not a
       condition
     - >-
-      "if" introducing an embedded question — asked if Yusra had left: a sealed question under
+      "if" introducing an embedded question — asked if Marisol had left: a sealed question under
       the verb, not a condition
     - >-
       a purpose or a result infinitive — left to sleep, woke to find the door open: not a
@@ -66,9 +66,9 @@ slots:
   over:      {type: refs, class: Proposition, required: true, skolemize: true,
               doc: "the consequence: the id of its predication, or of the negation, modal or norm over it, or of its copular instance for a state; nothing else"}
   ranges:    {type: refs, class: Proposition, required: false,
-              doc: "the range instance of a class subject (herons are patient if the weather is sunny): its id; absent otherwise"}
+              doc: "the range instance of a class subject (storks are drowsy if the weather is windy): its id; absent otherwise"}
   generic:   {type: bool, required: false,
-              doc: "true when the subject is a bare plural or mass noun read generically, with no quantifier word (herons are …): a bare generalization; absent otherwise"}
+              doc: "true when the subject is a bare plural or mass noun read generically, with no quantifier word (storks are …): a bare generalization; absent otherwise"}
   word:      {type: string, required: false, doc: "the conditional word as written when it is not if (provided that, as long as, in case, even if, when); recorded, not rendered"}
 
 truth:
@@ -127,40 +127,40 @@ composes_with: [negation, modal, norm]
 examples:
   shown:                     # rendered into the prompt
     - category: positive
-      note: an eventive condition — the rule ranges over Teodor's arrivals, Ottoline's leaving a function of each
-      text: "If Teodor arrives, Ottoline leaves."
+      note: an eventive condition — the rule ranges over Pieter's arrivals, Henrike's leaving a function of each
+      text: "If Pieter arrives, Henrike leaves."
       instances:
-        - {t: named-entity, id: n1, name: "Teodor", span: "Teodor"}
-        - {t: named-entity, id: n2, name: "Ottoline", span: "Ottoline"}
-        - {t: motion, id: m1, verb: arrive, mover: "@n1", tense: present, span: "Teodor arrives"}
-        - {t: motion, id: m2, verb: leave, mover: "@n2", tense: present, span: "Ottoline leaves"}
-        - {t: conditional, id: r1, condition: ["@m1"], over: ["@m2"], span: "If Teodor arrives, Ottoline leaves"}
+        - {t: named-entity, id: n1, name: "Pieter", span: "Pieter"}
+        - {t: named-entity, id: n2, name: "Henrike", span: "Henrike"}
+        - {t: motion, id: m1, verb: arrive, mover: "@n1", tense: present, span: "Pieter arrives"}
+        - {t: motion, id: m2, verb: leave, mover: "@n2", tense: present, span: "Henrike leaves"}
+        - {t: conditional, id: r1, condition: ["@m1"], over: ["@m2"], span: "If Pieter arrives, Henrike leaves"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
-        - "(Name sk_teodor_1 \"Teodor\")"
-        - "(Name sk_ottoline_1 \"Ottoline\")"
-        - "(Implication (And (Member $e arrive) (Agent $e sk_teodor_1)) (And (Member (sk_leave $e) leave) (Agent (sk_leave $e) sk_ottoline_1)))"
+        - "(Name sk_pieter_1 \"Pieter\")"
+        - "(Name sk_henrike_1 \"Henrike\")"
+        - "(Implication (And (Member $e arrive) (Agent $e sk_pieter_1)) (And (Member (sk_leave $e) leave) (Agent (sk_leave $e) sk_henrike_1)))"
       declarations:
         - "(: arrive Class)"
         - "(: leave Class)"
         - "(: sk_arrive_1 Event)"
+        - "(: sk_henrike_1 Entity)"
         - "(: sk_leave_1 Event)"
-        - "(: sk_ottoline_1 Entity)"
-        - "(: sk_teodor_1 Entity)"
+        - "(: sk_pieter_1 Entity)"
         - "(: sk_leave (-> Atom Event))"
     - category: positive
       note: a stative condition on an individual — the rule holds between the two states
-      text: "The barn is cold when the door is open."
+      text: "The granary is cold when the door is open."
       instances:
-        - {t: witness, id: x1, class: barn, definite: true, span: "The barn"}
+        - {t: witness, id: x1, class: granary, definite: true, span: "The granary"}
         - {t: witness, id: x2, class: door, definite: true, span: "the door"}
-        - {t: copular, id: c1, subject: "@x1", predicate: cold, form: adjective, tense: present, span: "The barn is cold"}
+        - {t: copular, id: c1, subject: "@x1", predicate: cold, form: adjective, tense: present, span: "The granary is cold"}
         - {t: copular, id: c2, subject: "@x2", predicate: open, form: adjective, tense: present, span: "the door is open"}
-        - {t: conditional, id: r1, condition: ["@c2"], over: ["@c1"], word: when, span: "The barn is cold when the door is open"}
+        - {t: conditional, id: r1, condition: ["@c2"], over: ["@c1"], word: when, span: "The granary is cold when the door is open"}
     - category: abstain
-      text: "All alloys are brittle when cold."
+      text: "All resins are brittle when cold."
       expected: {abstain: true, template: conditional-property}        # a class's property under a state of its members
     - category: abstain
-      text: "Unless it rains, Lamine sings."
+      text: "Unless it rains, Odile sings."
       expected: {abstain: true, gap: G08, span: "Unless it rains"}     # a negated condition
 
   held_out:                  # tests; never rendered into the prompt

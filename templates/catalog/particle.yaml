@@ -20,14 +20,14 @@ trigger:
     own template; this instance names its event and the particle, capitalized as the head
     (again → Again). One instance per particle.
   surface_forms:
-    - "<clause> again"                    # Lamine sang again
-    - "<subject> still <V> / is still <ADJ>"   # Teodor still knits; the well is still dry
-    - "<subject> already <V> / is already <ADJ>"   # Yusra had already gone; the lamp is already lit
+    - "<clause> again"                    # Odile sang again
+    - "<subject> still <V> / is still <ADJ>"   # Pieter still knits; the well is still dry
+    - "<subject> already <V> / is already <ADJ>"   # Marisol had already gone; the lamp is already lit
   boundary:                   # looks like a particle but is not one
     - >-
       not yet, yet — had not yet arrived: no slot; report it as unmapped (G02)
     - >-
-      still or again joining clauses — it rained; still, Corvin went; then again: a connective,
+      still or again joining clauses — it rained; still, Ludo went; then again: a connective,
       not this (the link template between two clauses, G05 at the start of a text)
     - >-
       a frequency — again and again, every day: a frequency, not a particle
@@ -48,10 +48,10 @@ composes_with: [negation, modal]
 examples:
   shown:
     - category: positive
-      text: "Lamine sang again."
+      text: "Odile sang again."
       instances:
-        - {t: named-entity, id: n1, name: "Lamine", span: "Lamine"}
-        - {t: activity, id: v1, verb: sing, actor: "@n1", tense: past, span: "Lamine sang"}
+        - {t: named-entity, id: n1, name: "Odile", span: "Odile"}
+        - {t: activity, id: v1, verb: sing, actor: "@n1", tense: past, span: "Odile sang"}
         - {t: particle, id: p1, event: "@v1", head: Again, span: "again"}
   held_out:
     - category: positive

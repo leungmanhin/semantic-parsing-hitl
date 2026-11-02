@@ -14,40 +14,40 @@ status: draft
 
 trigger:
   construction: >
-    A plural noun phrase headed by a common noun — the ferrets, several students, three
-    ladders, a few children, dozens of protesters, a lot of rocks, both ladders, Yusra's
-    ferrets — introducing
+    A plural noun phrase headed by a common noun — the badgers, several students, three
+    barrows, a few children, dozens of protesters, a lot of rocks, both barrows, Marisol's
+    badgers — introducing
     a group of individuals of that class. The group gets one witness symbol. Its size is
     recorded as an exact count when a numeral or "both" states it (three → 3, both → 2) and as
     the vague phrase as written otherwise (several, a few, dozens). A definite group ("the",
-    "these", "those", "both") is marked definite; a possessed group (Yusra's ferrets) records
+    "these", "those", "both") is marked definite; a possessed group (Marisol's badgers) records
     its possessor and needs no definite mark — the possessor presupposes it.
   surface_forms:
-    - "the <N>s"                        # the ferrets
-    - "<numeral> <N>s"                  # three ladders
+    - "the <N>s"                        # the badgers
+    - "<numeral> <N>s"                  # three barrows
     - "more than / up to <n> <N>s; <n>–<m> <N>s"   # a bound or a range: count_min / count_max
     - "several / a few / many / dozens of / a lot of <N>s"
     - "both <N>s"                       # definite, count 2, no phrase
-    - "<possessor>'s <N>s"              # Yusra's ferrets
+    - "<possessor>'s <N>s"              # Marisol's badgers
   boundary:                   # looks like a group but is not one
     - >-
-      coordinated names or referents — Teodor and Yusra, the ladder and the quilt: one
+      coordinated names or referents — Pieter and Marisol, the barrow and the blanket: one
       instance per conjunct, no group
     - >-
-      a bare plural read generically — ferrets are curious: a statement about the class
+      a bare plural read generically — badgers are curious: a statement about the class
     - >-
-      a quantifier word — all ferrets, every ferret, each ferret, most ferrets, no ferret: a
+      a quantifier word — all badgers, every badger, each badger, most badgers, no badger: a
       quantified generalization, not a group
     - >-
-      a quantified portion of a definite group — two of the ferrets, most of the ferrets, the
-      rest of the ferrets: a portion, with this group as its whole; all of / each of / both of
-      the ferrets: this group itself, with a distribution; none of the ferrets: a range
+      a quantified portion of a definite group — two of the badgers, most of the badgers, the
+      rest of the badgers: a portion, with this group as its whole; all of / each of / both of
+      the badgers: this group itself, with a distribution; none of the badgers: a range
     - >-
-      a singular noun phrase — the ferret, a ladder: a witness
+      a singular noun phrase — the badger, a barrow: a witness
 
 slots:
   id:        {type: id, required: true, doc: "your label for the group"}
-  class:      {type: lemma, class: Class, required: true, narrowed_by: [props, mods], doc: "the head noun's lemma, singular (ferret)"}
+  class:      {type: lemma, class: Class, required: true, narrowed_by: [props, mods], doc: "the head noun's lemma, singular (badger)"}
   definite:  {type: bool, required: false, doc: "true for the / these / those / both; absent for a possessed group (the possessor presupposes it) and otherwise"}
   count:     {type: number, required: false, doc: "the exact size when a numeral or both states it (three → 3; both → 2); a bound or a range is count_min / count_max instead"}
   count_min: {type: number, required: false, doc: "a lower bound on the size: more than / over / at least 200 → 200; the low end of a range (300–400 → 300)"}
@@ -56,8 +56,8 @@ slots:
   hedge:     {type: string, required: false, doc: "an approximation word on the count as written (about, approximately, roughly, nearly, almost, around, some); recorded, not rendered — the count stays the number stated"}
   props:     {type: list, class: Class, restriction: Member, required: false, doc: "adjectival properties stated in the phrase; a noun before the head is a mod"}
   mods:      {type: list, class: Class, ids: [named-entity, time], required: false,
-              doc: "the nouns, names and years before the head noun that narrow its class (Nouns before nouns): a lemma for a noun (a harbour pilot: harbour; a sea salt grinder: sea_salt), the id of a named-entity instance for a name (a Calderwick quilt), of a time instance for a year, a decade or a century (a 1904 almanac); never an adjective"}
-  possessor: {type: filler, class: Entity, required: false, doc: "the possessor of a possessive phrase (Yusra's ferrets)"}
+              doc: "the nouns, names and years before the head noun that narrow its class (Nouns before nouns): a lemma for a noun (a harbour pilot: harbour; a sea salt grinder: sea_salt), the id of a named-entity instance for a name (a Brackenford blanket), of a time instance for a year, a decade or a century (a 1904 almanac); never an adjective"}
+  possessor: {type: filler, class: Entity, required: false, doc: "the possessor of a possessive phrase (Marisol's badgers)"}
 
 mints: {id: Entity, literal: group}
 
@@ -93,34 +93,34 @@ composes_with: [distribution]
 examples:
   shown:                     # rendered into the prompt
     - category: positive
-      note: a vague size; the sleeping distributes to each ferret
-      text: "Several ferrets slept."
+      note: a vague size; the sleeping distributes to each badger
+      text: "Several badgers slept."
       instances:
-        - {t: group, id: g1, class: ferret, quantity: several, span: "Several ferrets"}
-        - {t: activity, id: v1, verb: sleep, actor: "@g1", tense: past, span: "Several ferrets slept"}
-        - {t: distribution, id: d1, group: "@g1", over: ["@v1"], span: "Several ferrets slept"}
+        - {t: group, id: g1, class: badger, quantity: several, span: "Several badgers"}
+        - {t: activity, id: v1, verb: sleep, actor: "@g1", tense: past, span: "Several badgers slept"}
+        - {t: distribution, id: d1, group: "@g1", over: ["@v1"], span: "Several badgers slept"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
-        - "(GroupOf sk_group_1 ferret)"
+        - "(GroupOf sk_group_1 badger)"
         - "(CardinalityPhrase sk_group_1 \"several\")"
         - "(Member sk_sleep_1 sleep)"
         - "(Agent sk_sleep_1 sk_group_1)"
         - "(Past sk_sleep_1)"
         - "(Implication (PartOf $x sk_group_1) (And (Member (sk_sleep $x) sleep) (Agent (sk_sleep $x) $x) (Past (sk_sleep $x))))"
       declarations:
-        - "(: ferret Class)"
+        - "(: badger Class)"
         - "(: sk_group_1 Entity)"
         - "(: sk_sleep_1 Event)"
         - "(: sleep Class)"
         - "(: sk_sleep (-> Atom Event))"
     - category: positive
       note: an exact count; a collective predicate — no distribution
-      text: "Three ferrets surrounded the barn."
+      text: "Three badgers surrounded the granary."
       instances:
-        - {t: group, id: g1, class: ferret, count: 3, span: "Three ferrets"}
-        - {t: witness, id: x1, class: barn, definite: true, span: "the barn"}
-        - {t: activity, id: v1, verb: surround, actor: "@g1", patient: "@x1", tense: past, span: "Three ferrets surrounded the barn"}
+        - {t: group, id: g1, class: badger, count: 3, span: "Three badgers"}
+        - {t: witness, id: x1, class: granary, definite: true, span: "the granary"}
+        - {t: activity, id: v1, verb: surround, actor: "@g1", patient: "@x1", tense: past, span: "Three badgers surrounded the granary"}
     - category: abstain
-      text: "Ferrets are curious."
+      text: "Badgers are curious."
       expected: {abstain: true, template: class-statement}             # a bare plural: the class
 
   held_out:                  # tests; never rendered into the prompt

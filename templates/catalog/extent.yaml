@@ -23,16 +23,16 @@ trigger:
     instance names that event and records the adverb as written (a phrase as one snake_case
     symbol: a_lot, very_much). One instance per degree expression.
   surface_forms:
-    - "<subject> <adverb> V …"                       # Yusra deeply distrusts Lamine
-    - "<clause> <adverb>"                            # the price fell sharply; likes the quilt a lot
-    - "<subject> V <object> <adverb>"               # Teodor cleaned the shed thoroughly
+    - "<subject> <adverb> V …"                       # Marisol deeply distrusts Odile
+    - "<clause> <adverb>"                            # the fare fell sharply; likes the blanket a lot
+    - "<subject> V <object> <adverb>"               # Pieter cleaned the hut thoroughly
   boundary:                   # looks like a degree on an event but is not one
     - >-
       a manner adverb — loudly, carefully, slowly, well: how, not how much; a manner
     - >-
       a frequency adverb — often, always, twice: how often; a frequency
     - >-
-      a degree word on an adjective — is very crooked, a very old spindle: a degree predication
+      a degree word on an adjective — is very crooked, a very old bobbin: a degree predication
     - >-
       an approximator on a verb — almost fell, nearly broke: the event did not happen; no slot
       here; report the clause as unmapped
@@ -44,7 +44,7 @@ trigger:
       template (MeasureBy on the change event), with no
       slot here; report the phrase as unmapped
     - >-
-      a comparative adverb — fell faster than the rent, works harder than Yusra: a comparison;
+      a comparative adverb — fell faster than the rent, works harder than Marisol: a comparison;
       report the span as unmapped
     - >-
       a quantity as the object — ate a lot, said much: the object, not a degree on the event;
@@ -76,36 +76,36 @@ examples:
   shown:                     # rendered into the prompt
     - category: positive
       note: a magnitude adverb on a change
-      text: "The price fell sharply."
+      text: "The fare fell sharply."
       instances:
-        - {t: witness, id: x1, class: price, definite: true, span: "The price"}
-        - {t: change-of-state, id: c1, verb: fall, undergoer: "@x1", tense: past, span: "The price fell"}
+        - {t: witness, id: x1, class: fare, definite: true, span: "The fare"}
+        - {t: change-of-state, id: c1, verb: fall, undergoer: "@x1", tense: past, span: "The fare fell"}
         - {t: extent, id: a1, event: "@c1", level: sharply, span: "sharply"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
-        - "(Member sk_price_1 price)"
+        - "(Member sk_fare_1 fare)"
         - "(Member sk_fall_1 fall)"
-        - "(Patient sk_fall_1 sk_price_1)"
+        - "(Patient sk_fall_1 sk_fare_1)"
         - "(Past sk_fall_1)"
         - "(Extent sk_fall_1 sharply)"
       declarations:
         - "(: fall Class)"
-        - "(: price Class)"
+        - "(: fare Class)"
         - "(: sharply Level)"
         - "(: sk_fall_1 Event)"
-        - "(: sk_price_1 Entity)"
+        - "(: sk_fare_1 Entity)"
     - category: positive
       note: an intensifier on a state
-      text: "Teodor really likes the quilt."
+      text: "Pieter really likes the blanket."
       instances:
-        - {t: named-entity, id: n1, name: "Teodor", span: "Teodor"}
-        - {t: witness, id: x1, class: quilt, definite: true, span: "the quilt"}
-        - {t: psych, id: p1, verb: like, experiencer: "@n1", stimulus: "@x1", tense: present, span: "Teodor really likes the quilt"}
+        - {t: named-entity, id: n1, name: "Pieter", span: "Pieter"}
+        - {t: witness, id: x1, class: blanket, definite: true, span: "the blanket"}
+        - {t: psych, id: p1, verb: like, experiencer: "@n1", stimulus: "@x1", tense: present, span: "Pieter really likes the blanket"}
         - {t: extent, id: a1, event: "@p1", level: really, span: "really"}
     - category: abstain
-      text: "Yusra laughed loudly."
+      text: "Marisol laughed loudly."
       expected: {abstain: true, template: manner}                     # how, not how much
     - category: abstain
-      text: "The ladder is very crooked."
+      text: "The barrow is very crooked."
       expected: {abstain: true, template: degree}                     # a degree word on an adjective
 
   held_out:                  # tests; never rendered into the prompt

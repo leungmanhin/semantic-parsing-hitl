@@ -16,20 +16,19 @@ title: A verb of appearance or sensation over a claim
 trigger:
   construction: >
     A copular verb of appearance or sensation — seem, appear, look, sound, feel, smell, taste —
-    with a property or a class (the ferret looks tired, the soup tastes salty, the voice
-    sounded distorted, the wall feels cold, Teodor seems tired, Ottoline appears to be a
-    weaver), with "to be" (seems to be tired), or over a clause (Ottoline appears to have left;
-    it seems that Yusra left; it looks like the ladder is broken). Parse the claim with its own
+    with a property or a class (the badger looks tired, the soup tastes salty, the radio sounded distorted, the hedge feels cold, Pieter seems tired, Henrike appears to be a
+    weaver), with "to be" (seems to be tired), or over a clause (Henrike appears to have left;
+    it seems that Marisol left; it looks like the barrow is broken). Parse the claim with its own
     template as if it were asserted — a copular instance for a property or a class, its subject
-    the thing and its tense present; a class statement for a class subject (herons seem
+    the thing and its tense present; a class statement for a class subject (storks seem
     patient); the predication with its own tense and aspect for a clause (appears to have left
     → past) — and write the evidential instance over it, `head` the verb capitalized and
     `tense` the clause's (seemed, looked, sounded → past). The expletive "it" of "it seems
     that" and "it looks like" is not a referent. The claim is not asserted: nothing says the
-    ferret is tired. A negated evidential (does not seem tired) is a negation instance over
+    badger is tired. A negated evidential (does not seem tired) is a negation instance over
     this one.
   surface_forms:
-    - "<X> seems / looks / sounds / feels / smells / tastes <ADJ>"      # the ferret looks tired
+    - "<X> seems / looks / sounds / feels / smells / tastes <ADJ>"      # the badger looks tired
     - "<X> seems / appears (to be) <ADJ> / a <N>"                       # appears to be a weaver
     - "<X> seems / appears to <V> …"                                    # appears to have left: the clause sealed
     - "It seems / appears that <clause>; it looks like <clause>"        # the clause sealed, no referent for it
@@ -39,10 +38,10 @@ trigger:
       smells like a locker room: a stative relation (look_like, sound_like, smell_like), not an
       appearance claim
     - >-
-      a perception with a perceiver — Teodor saw the ferret, Yusra heard the news: a perception
+      a perception with a perceiver — Pieter saw the badger, Marisol heard the news: a perception
       event; here no perceiver is a participant
     - >-
-      feel with an animate subject and a property — Yusra feels tired, felt guilty: the
+      feel with an animate subject and a property — Marisol feels tired, felt guilty: the
       subject's own felt state, asserted, not an appearance judged from outside; the sensation
       template
     - >-
@@ -54,7 +53,7 @@ trigger:
     - >-
       an epistemic modal — might be tired, must be tired: the modal template; a report with no
       source — is said / believed / thought to be tired: the hedge template, which sets the
-      clause's truth value; an attribution — according to Lamine: no template yet, the whole
+      clause's truth value; an attribution — according to Odile: no template yet, the whole
       clause reported as unmapped
     - >-
       a hedge adverb — probably tired, apparently tired: the hedge template over the clause,
@@ -100,17 +99,17 @@ examples:
   shown:                     # rendered into the prompt
     - category: positive
       note: an appearance with a property — the copular sealed under the verb
-      text: "The ferret looks tired."
+      text: "The badger looks tired."
       instances:
-        - {t: witness, id: x1, class: ferret, definite: true, span: "The ferret"}
-        - {t: copular, id: c1, subject: "@x1", predicate: tired, form: adjective, tense: present, span: "The ferret looks tired"}
+        - {t: witness, id: x1, class: badger, definite: true, span: "The badger"}
+        - {t: copular, id: c1, subject: "@x1", predicate: tired, form: adjective, tense: present, span: "The badger looks tired"}
         - {t: evidential, id: s1, over: ["@c1"], head: Look, span: "looks"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
-        - "(Member sk_ferret_1 ferret)"
-        - "(Look (Member sk_ferret_1 tired))"
+        - "(Member sk_badger_1 badger)"
+        - "(Look (Member sk_badger_1 tired))"
       declarations:
-        - "(: ferret Class)"
-        - "(: sk_ferret_1 Entity)"
+        - "(: badger Class)"
+        - "(: sk_badger_1 Entity)"
         - "(: tired Class)"
     - category: positive
       note: a sensation verb — the sense as the head
@@ -121,13 +120,13 @@ examples:
         - {t: evidential, id: s1, over: ["@c1"], head: Taste, span: "tastes"}
     - category: positive
       note: appear to be with a class
-      text: "Ottoline appears to be a weaver."
+      text: "Henrike appears to be a weaver."
       instances:
-        - {t: named-entity, id: n1, name: "Ottoline", span: "Ottoline"}
-        - {t: copular, id: c1, subject: "@n1", predicate: weaver, form: noun, tense: present, span: "Ottoline appears to be a weaver"}
+        - {t: named-entity, id: n1, name: "Henrike", span: "Henrike"}
+        - {t: copular, id: c1, subject: "@n1", predicate: weaver, form: noun, tense: present, span: "Henrike appears to be a weaver"}
         - {t: evidential, id: s1, over: ["@c1"], head: Appear, span: "appears to be"}
     - category: abstain
-      text: "Teodor saw the ferret."
+      text: "Pieter saw the badger."
       expected: {abstain: true, template: perception}                 # a perceiver perceives
 
   held_out:                  # tests; never rendered into the prompt

@@ -16,24 +16,24 @@ status: draft
 trigger:
   construction: >
     The judgement that a later mention stands for a referent introduced earlier in the text: a
-    pronoun (he, it, her), a repeated name (Yusra … Yusra), an anaphoric definite (a sluice … the
-    sluice), a demonstrative for an event (that surprised Yusra). State it as an instance naming
+    pronoun (he, it, her), a repeated name (Marisol … Marisol), an anaphoric definite (a sluice … the
+    sluice), a demonstrative for an event (that surprised Marisol). State it as an instance naming
     the later mention, the referent's FIRST instance in the text, and the certainty: certain when
     only one antecedent fits, likely when one fits clearly better than another, unsure when the
     text leaves it open, unlikely for the other candidate when you state both. One instance per
     later mention; for an open choice between two candidates, one instance per candidate.
   surface_forms:
-    - "<N> … <pronoun>"                 # Teodor ate the loaf and he liked it
-    - "<Name> … <Name>"                 # Yusra laughed. Yusra left.
-    - "a <N> … the <N>"                 # a ferret arrived; the ferret slept
-    - "<clause>. That <V> …"            # Teodor arrived. That frightened Yusra.
+    - "<N> … <pronoun>"                 # Pieter ate the bun and he liked it
+    - "<Name> … <Name>"                 # Marisol laughed. Marisol left.
+    - "a <N> … the <N>"                 # a badger arrived; the badger slept
+    - "<clause>. That <V> …"            # Pieter arrived. That frightened Marisol.
   boundary:                   # looks like coreference but is not one
     - >-
-      a first mention — Yusra laughed: nothing to link; the referent's own instance suffices
+      a first mention — Marisol laughed: nothing to link; the referent's own instance suffices
     - >-
-      two different referents with the same class — a ferret and another ferret: no link
+      two different referents with the same class — a badger and another badger: no link
     - >-
-      a relative pronoun — the heron that ate the frog: no coreference; the noun fills the clause's
+      a relative pronoun — the stork that ate the frog: no coreference; the noun fills the clause's
       role directly (relative clauses)
     - >-
       an expletive or a generic pronoun — it rained, one never knows: no referent, no link
@@ -73,50 +73,50 @@ examples:
   shown:                     # rendered into the prompt
     - category: positive
       note: two pronouns, each its own mention, each linked to the first instance of its referent
-      text: "Lamine baked a loaf and she ate it."
+      text: "Odile baked a bun and she ate it."
       instances:
-        - {t: named-entity, id: n1, name: "Lamine", span: "Lamine"}
-        - {t: witness, id: x1, class: loaf, span: "a loaf"}
-        - {t: creation, id: e1, verb: bake, creator: "@n1", product: "@x1", tense: past, span: "Lamine baked a loaf"}
+        - {t: named-entity, id: n1, name: "Odile", span: "Odile"}
+        - {t: witness, id: x1, class: bun, span: "a bun"}
+        - {t: creation, id: e1, verb: bake, creator: "@n1", product: "@x1", tense: past, span: "Odile baked a bun"}
         - {t: mention, id: m1, word: she, span: "she"}
         - {t: mention, id: m2, word: it, span: "it"}
         - {t: activity, id: v1, verb: eat, actor: "@m1", patient: "@m2", tense: past, span: "she ate it"}
-        - {t: coref, id: c1, mention: "@m1", antecedent: "@n1", certainty: certain, span: ["Lamine", "she"]}
-        - {t: coref, id: c2, mention: "@m2", antecedent: "@x1", certainty: certain, span: ["a loaf", "it"]}
+        - {t: coref, id: c1, mention: "@m1", antecedent: "@n1", certainty: certain, span: ["Odile", "she"]}
+        - {t: coref, id: c2, mention: "@m2", antecedent: "@x1", certainty: certain, span: ["a bun", "it"]}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
-        - "(Name sk_lamine_1 \"Lamine\")"
-        - "(Member sk_loaf_1 loaf)"
+        - "(Name sk_odile_1 \"Odile\")"
+        - "(Member sk_bun_1 bun)"
         - "(Member sk_bake_1 bake)"
-        - "(Agent sk_bake_1 sk_lamine_1)"
-        - "(Patient sk_bake_1 sk_loaf_1)"
+        - "(Agent sk_bake_1 sk_odile_1)"
+        - "(Patient sk_bake_1 sk_bun_1)"
         - "(Past sk_bake_1)"
         - "(Member sk_eat_1 eat)"
         - "(Agent sk_eat_1 sk_she_1)"
         - "(Patient sk_eat_1 sk_it_1)"
         - "(Past sk_eat_1)"
-        - "(Coref sk_she_1 sk_lamine_1)"
-        - "(Coref sk_it_1 sk_loaf_1)"
+        - "(Coref sk_she_1 sk_odile_1)"
+        - "(Coref sk_it_1 sk_bun_1)"
       declarations:
         - "(: bake Class)"
+        - "(: bun Class)"
         - "(: eat Class)"
-        - "(: loaf Class)"
         - "(: sk_bake_1 Event)"
+        - "(: sk_bun_1 Entity)"
         - "(: sk_eat_1 Event)"
         - "(: sk_it_1 Entity)"
-        - "(: sk_lamine_1 Entity)"
-        - "(: sk_loaf_1 Entity)"
+        - "(: sk_odile_1 Entity)"
         - "(: sk_she_1 Entity)"
     - category: positive
       note: a repeated name is a second instance, linked
-      text: "Yusra laughed. Yusra left."
+      text: "Marisol laughed. Marisol left."
       instances:
-        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
-        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past, span: "Yusra laughed"}
-        - {t: named-entity, id: n2, name: "Yusra", span: "Yusra"}
-        - {t: motion, id: m1, verb: leave, mover: "@n2", tense: past, span: "Yusra left"}
-        - {t: coref, id: c1, mention: "@n2", antecedent: "@n1", certainty: certain, span: ["Yusra", "Yusra"]}
+        - {t: named-entity, id: n1, name: "Marisol", span: "Marisol"}
+        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past, span: "Marisol laughed"}
+        - {t: named-entity, id: n2, name: "Marisol", span: "Marisol"}
+        - {t: motion, id: m1, verb: leave, mover: "@n2", tense: past, span: "Marisol left"}
+        - {t: coref, id: c1, mention: "@n2", antecedent: "@n1", certainty: certain, span: ["Marisol", "Marisol"]}
     - category: abstain
-      text: "Yusra laughed."
+      text: "Marisol laughed."
       expected: {abstain: true, template: activity}                   # a first mention: nothing to link
 
   held_out:                  # tests; never rendered into the prompt

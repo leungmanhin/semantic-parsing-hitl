@@ -23,7 +23,7 @@ trigger:
     at midnight), a deictic relative to the moment the text speaks from (now, today, tonight,
     yesterday, tomorrow, last / this / next week, month or year), a time named by a word (at
     dawn, at night, in autumn, later, this morning), a measured distance from an anchor (three
-    days ago, a year ago, in two weeks, two days after the audit, a week later), or an anaphoric
+    days ago, a year ago, in two weeks, two days after the inspection, a week later), or an anaphoric
     phrase naming a time by one the text stated before it (that evening, the same day, the next
     day, the following morning, the week after). The event is parsed with its own template; the
     time instance names that event and describes the time: a date or a clock time by its fields
@@ -37,7 +37,7 @@ trigger:
     clause places an event at — the reference of a time relation (before noon), the edge of a
     window (within three days), a year before a noun that names no event (a 1904 almanac: named
     in the noun's mods) — is an instance with no event. When the time is predicated of
-    an event noun by "be" or by take place / occur / happen (the meeting is at noon, the audit was
+    an event noun by "be" or by take place / occur / happen (the session is at noon, the inspection was
     on Monday, the fair took place in May: these verbs have no event of their own), the noun is a witness
     marked eventive, the time attaches to it, and this instance records the clause's tense.
     Coordinated dates (in 1810 and 1811) are one instance each on the event. A NUMBERED WEEK of a
@@ -45,22 +45,22 @@ trigger:
   surface_forms:
     - "<clause> in <year / month>"                   # arrived in 2019; left in May
     - "<clause> in the <n>0s / in the <n>th century"   # a decade by its first year (the 1880s → 1880), a century by its number
-    - "<clause> on <date / weekday>"                 # baked a loaf on 3 May 2019; sold the spindle on Monday
+    - "<clause> on <date / weekday>"                 # baked a bun on 3 May 2019; sold the bobbin on Monday
     - "<clause> at <clock time>"                     # left at 3 pm; arrived at noon
     - "<clause> <deictic>"                           # laughed yesterday; will leave tomorrow; left last week
     - "<clause> <named time>"                        # slept at night; sang at dawn
-    - "<time>, <clause>"                             # In 2019, Teodor arrived
-    - "<event noun> is / was at / on <time>"         # the meeting is at noon; the audit was on Monday
+    - "<time>, <clause>"                             # In 2019, Pieter arrived
+    - "<event noun> is / was at / on <time>"         # the session is at noon; the inspection was on Monday
     - "the <year> <event noun>"                      # the 1904 flood: the flood eventive, this instance on it
-    - "<clause> <n> <units> ago / later / earlier"   # left three days ago; a week later, Teodor left
+    - "<clause> <n> <units> ago / later / earlier"   # left three days ago; a week later, Pieter left
     - "<clause> in <n> <units>"                      # will leave in two weeks
-    - "<clause> <n> <units> before / after <event or time>"   # arrived two days after the audit
-    - "<clause>. That / the same <day part or unit>, <clause>"   # Lamine sang. That evening, Yusra left: offset 0 from the singing, plus evening
-    - "<clause>. The next / following <unit or day part>, <clause>"   # The following morning, Yusra left: offset 1 day, plus morning
+    - "<clause> <n> <units> before / after <event or time>"   # arrived two days after the inspection
+    - "<clause>. That / the same <day part or unit>, <clause>"   # Odile sang. That evening, Marisol left: offset 0 from the singing, plus evening
+    - "<clause>. The next / following <unit or day part>, <clause>"   # The following morning, Marisol left: offset 1 day, plus morning
   boundary:                   # looks like the time of an event but is not one
     - >-
-      a relation with no measured distance — before the audit, after noon, until noon, since
-      May, by Monday, during the meeting, while Yusra sang: a time relation
+      a relation with no measured distance — before the inspection, after noon, until noon, since
+      May, by Monday, during the session, while Marisol sang: a time relation
     - >-
       a frequency or a schedule — every day, every morning, on Sundays as a habit, twice a week:
       a frequency (a period of one unit is a range over its class, not a time instance); a clock
@@ -74,7 +74,7 @@ trigger:
       an approximate time — around noon, about 3 pm: record the time, report the approximator
       as unmapped
     - >-
-      a place — in the barn, at the market: a location
+      a place — in the granary, at the bazaar: a location
     - >-
       tense alone — arrived, will arrive: the event's own template records it; a time instance
       needs a time expression
@@ -82,7 +82,7 @@ trigger:
 slots:
   id:      {type: id, required: true, doc: "your label for the time (t1, t2 …)"}
   event:   {type: filler, class: Event, attaches: true, required: false,
-            doc: "the event the time attaches to: the id of the clause's predication instance — a verb's, or a copular, locative, degree, comparative, class-statement, part-whole or measure one (Yusra was tired yesterday, the barn was very cold yesterday: the state's time; the program mints the state) —, or of an eventive witness when the time is predicated of an event noun (the meeting is at noon); absent only for a time no clause places an event at"}
+            doc: "the event the time attaches to: the id of the clause's predication instance — a verb's, or a copular, locative, degree, comparative, class-statement, part-whole or measure one (Marisol was tired yesterday, the granary was very cold yesterday: the state's time; the program mints the state) —, or of an eventive witness when the time is predicated of an event noun (the session is at noon); absent only for a time no clause places an event at"}
   deictic: {type: enum, values: [now, today, tonight, yesterday, tomorrow, last_week, this_week, next_week, last_month, this_month, next_month, last_year, this_year, next_year], required: false,
             doc: "a time relative to the moment the text speaks from, as one of the listed words (two days ago is not a deictic here, and last / this / next with a weekday is the weekday with `relative`); fill no field beside it"}
   relative: {type: enum, values: [last, this, next], required: false,
@@ -107,7 +107,7 @@ slots:
   hour:    {type: int, required: false, doc: "the clock hour in 24-hour form (3 pm → 15, noon → 12, midnight → 0)"}
   minute:  {type: int, required: false, doc: "the clock minute (2:30 → 30); absent for a whole hour"}
   tense:   {type: enum, values: [past, present, future], required: false,
-            doc: "only when the time is predicated of an event noun by be or by take place / occur / happen (the meeting was at noon, the fair took place in May): the clause's tense; otherwise absent, the event's own template records it"}
+            doc: "only when the time is predicated of an event noun by be or by take place / occur / happen (the session was at noon, the fair took place in May): the clause's tense; otherwise absent, the event's own template records it"}
 
 mints: {id: TimeTerm, symbol: name, constant: true, literal: time}   # a named time is its word; otherwise sk_time_n (a date, a clock time, a deictic, an offset)
 
@@ -255,15 +255,15 @@ examples:
   shown:                     # rendered into the prompt
     - category: positive
       note: a deictic — an offset from the reference time, which the program supplies as `now`
-      text: "Yusra laughed yesterday."
+      text: "Marisol laughed yesterday."
       instances:
-        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
-        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past, span: "Yusra laughed"}
+        - {t: named-entity, id: n1, name: "Marisol", span: "Marisol"}
+        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past, span: "Marisol laughed"}
         - {t: time, id: t1, event: "@v1", deictic: yesterday, anchor: "@now", span: "yesterday"}
       emitted:               # what the emitter produces (illustration; the emitter is the authority)
-        - "(Name sk_yusra_1 \"Yusra\")"
+        - "(Name sk_marisol_1 \"Marisol\")"
         - "(Member sk_laugh_1 laugh)"
-        - "(Agent sk_laugh_1 sk_yusra_1)"
+        - "(Agent sk_laugh_1 sk_marisol_1)"
         - "(Past sk_laugh_1)"
         - "(Time sk_laugh_1 sk_time_1)"
         - "(BeforeBy sk_time_1 sk_now_1 1 day)"
@@ -272,26 +272,26 @@ examples:
         - "(: day Class)"
         - "(: laugh Class)"
         - "(: sk_laugh_1 Event)"
+        - "(: sk_marisol_1 Entity)"
         - "(: sk_now_1 TimeTerm)"
         - "(: sk_time_1 TimeTerm)"
-        - "(: sk_yusra_1 Entity)"
     - category: positive
       note: a weekday — a time instance described by a field
-      text: "Lamine sold the spindle on Monday."
+      text: "Odile sold the bobbin on Monday."
       instances:
-        - {t: named-entity, id: n1, name: "Lamine", span: "Lamine"}
-        - {t: witness, id: x1, class: spindle, definite: true, span: "the spindle"}
-        - {t: transfer, id: e1, verb: sell, giver: "@n1", object: "@x1", tense: past, span: "Lamine sold the spindle"}
+        - {t: named-entity, id: n1, name: "Odile", span: "Odile"}
+        - {t: witness, id: x1, class: bobbin, definite: true, span: "the bobbin"}
+        - {t: transfer, id: e1, verb: sell, giver: "@n1", object: "@x1", tense: past, span: "Odile sold the bobbin"}
         - {t: time, id: t1, event: "@e1", weekday: monday, span: "on Monday"}
     - category: positive
       note: a measured distance from the reference time — a deictic with a number
-      text: "Three days ago, Yusra left."
+      text: "Three days ago, Marisol left."
       instances:
-        - {t: named-entity, id: n1, name: "Yusra", span: "Yusra"}
-        - {t: motion, id: m1, verb: leave, mover: "@n1", tense: past, span: "Yusra left"}
+        - {t: named-entity, id: n1, name: "Marisol", span: "Marisol"}
+        - {t: motion, id: m1, verb: leave, mover: "@n1", tense: past, span: "Marisol left"}
         - {t: time, id: t1, event: "@m1", offset: 3, unit: day, direction: before, anchor: "@now", span: "Three days ago"}
     - category: abstain
-      text: "Yusra laughed in the barn."
+      text: "Marisol laughed in the granary."
       expected: {abstain: true, template: location}                   # a place
 
   held_out:                  # tests; never rendered into the prompt

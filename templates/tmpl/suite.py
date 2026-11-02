@@ -289,6 +289,38 @@ def _seen_sentences() -> set[str]:
     return seen
 
 
+QUOTE_RUN = 5                   # consecutive words a held-out case may not share with the prompt
+_QUOTE_STOP = set("a an the of to in on at by for with and or is are was were be been it its his her their this that "
+                  "these those as from into not no do does did has have had".split())
+
+
+def _words(s: str) -> list[str]:
+    return re.findall(r"[a-z0-9'-]+", s.lower())
+
+
+def prompt_quotes(catalog: dict, general: dict, run: int = QUOTE_RUN) -> list[dict]:
+    """Held-out cases the rendered prompt quotes — the whole sentence (three words or more), or a run of
+    ``run`` consecutive words with at least two content words: a test sentence the parser has seen is
+    no test of the instructions. The prompt is rendered from the catalog as it stands."""
+    from . import render_prompt as R
+    words = _words(R.generate(catalog, general))
+    whole = " " + " ".join(words) + " "
+    runs = {" ".join(words[i:i + run]) for i in range(len(words) - run + 1)}
+    out = []
+    for tid in sorted(catalog):
+        for case in cases_of(catalog, tid, ("held_out",)):
+            w = _words(case["text"])
+            if len(w) >= 3 and f" {' '.join(w)} " in whole:
+                out.append({"template": tid, "text": case["text"], "detail": "the whole sentence is in the rendered prompt"})
+                continue
+            for i in range(len(w) - run + 1):
+                g = w[i:i + run]
+                if sum(x not in _QUOTE_STOP for x in g) >= 2 and " ".join(g) in runs:
+                    out.append({"template": tid, "text": case["text"], "detail": f"«{' '.join(g)}» is in the rendered prompt"})
+                    break
+    return out
+
+
 def catalog_checks(catalog: dict, general: dict | None = None, freshness: bool = True) -> dict:
     """The static checks; ``findings`` are defects, ``pending`` is the worklist of abstain
     targets no template covers yet, ``shared`` lists sentences two templates agree on."""
@@ -365,6 +397,8 @@ def catalog_checks(catalog: dict, general: dict | None = None, freshness: bool =
             if text in shown_texts:
                 findings.append({"kind": "held-out-leak", "template": tid, "text": text,
                                  "detail": f"also a shown example of {shown_texts[text]} (rendered into the prompt)"})
+    for q in prompt_quotes(catalog, general):
+        findings.append({"kind": "prompt-quote", **q})
     if freshness:
         seen = _seen_sentences()
         for tid in sorted(catalog):
