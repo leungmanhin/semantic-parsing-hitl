@@ -2,8 +2,22 @@
   "name": "hotpotqa",
   "homepage": "https://hotpotqa.github.io/",
   "license": "CC BY-SA 4.0",
-  "notes": "Wikipedia-based multi-hop QA with supporting-fact sentences; the distractor setting. Parquet columns: id, question, answer, type, level, supporting_facts, context.",
+  "notes": "Wikipedia-based multi-hop QA with supporting-fact sentences; the distractor setting: validation by default, train (two parquet files, ~330 MB) with --all; the test set's answers are not public (a leaderboard). Parquet columns: id, question, answer, type, level, supporting_facts, context.",
   "files": [
+    {
+      "path": "distractor.train-0.parquet",
+      "url": "https://huggingface.co/datasets/hotpotqa/hotpot_qa/resolve/main/distractor/train-00000-of-00002.parquet",
+      "how": "download",
+      "sha256": "76d3bb3048a7cc73c1958107c0c5872a00d7e7d00c105b81e92f6769e7822e68",
+      "bytes": 165624177
+    },
+    {
+      "path": "distractor.train-1.parquet",
+      "url": "https://huggingface.co/datasets/hotpotqa/hotpot_qa/resolve/main/distractor/train-00001-of-00002.parquet",
+      "how": "download",
+      "sha256": "713661628434fbb19fff7392e2e321e4ed107e3c7c7784d0690946e5f722763f",
+      "bytes": 166162479
+    },
     {
       "path": "distractor.validation.parquet",
       "url": "https://huggingface.co/datasets/hotpotqa/hotpot_qa/resolve/main/distractor/validation-00000-of-00001.parquet",

@@ -11,10 +11,12 @@ Sources, as verified when the registry was written:
 * HotpotQA and WikiText-103 as parquet files on the Hugging Face hub (pyarrow reads them);
 * CLUTRR, bAbI (task 1) and the OpenWebText slice through the hub's rows API, written as JSON lines;
 * DROP from AI2's public bucket; CounterFact and zsRE from the ROME project's site; MQuAKE and GSM8K
-  from their GitHub repositories; LAMBADA from OpenAI's public store; PG-19 from DeepMind's bucket.
+  from their GitHub repositories; LAMBADA from OpenAI's public store; PG-19 from DeepMind's bucket;
+* MRPC from a GitHub mirror of the original release (untokenized); SICK from Zenodo.
 
-The big corpora come in as SLICES: the default set is sized for inspection and a coverage sample;
-``--all`` adds the training splits and larger slices.
+The default set is sized for inspection and a coverage sample; ``--all`` adds the training splits
+and larger slices. Where a dataset has official splits, every public split is in the registry
+(HotpotQA's and DROP's test answers are not public: leaderboards).
 
     python datasets/fetch.py --list            # the registry
     python datasets/fetch.py                   # the default set
@@ -27,6 +29,7 @@ import argparse
 import hashlib
 import io
 import json
+import math
 import os
 import re
 import sys
@@ -40,6 +43,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 UA = {"User-Agent": "semantic-parsing-hitl datasets/fetch.py"}
 ROWS_API = "https://datasets-server.huggingface.co/rows"
 HF_RESOLVE = "https://huggingface.co/datasets/{repo}/resolve/main/{path}"
+MRPC_MIRROR = "https://raw.githubusercontent.com/wasiahmad/paraphrase_identification/master/dataset/msr-paraphrase-corpus/"
+WHOLE = None          # a rows item's count: the whole split
 
 
 def hf(repo: str, path: str) -> str:
@@ -47,12 +52,13 @@ def hf(repo: str, path: str) -> str:
 
 
 # name -> {homepage, license, notes, default: [item…], all: [item…]}
-# item kinds: ("file", url, relpath) · ("zip", url, relpath-of-zip) · ("rows", dataset, config, split, n, relpath)
-#             ("gcs_list", bucket_url, prefix, n, dirname)
+# item kinds: ("file", url, relpath) · ("zip", url, relpath-of-zip)
+#             ("rows", dataset, config, split, n or WHOLE, relpath) · ("gcs_list", bucket_url, prefix, n, dirname)
 REGISTRY = {
     "hotpotqa": {
         "homepage": "https://hotpotqa.github.io/", "license": "CC BY-SA 4.0",
-        "notes": "Wikipedia-based multi-hop QA with supporting-fact sentences; the distractor setting. "
+        "notes": "Wikipedia-based multi-hop QA with supporting-fact sentences; the distractor setting: validation by default, "
+                 "train (two parquet files, ~330 MB) with --all; the test set's answers are not public (a leaderboard). "
                  "Parquet columns: id, question, answer, type, level, supporting_facts, context.",
         "default": [("file", hf("hotpotqa/hotpot_qa", "distractor/validation-00000-of-00001.parquet"), "distractor.validation.parquet")],
         "all": [("file", hf("hotpotqa/hotpot_qa", "distractor/train-00000-of-00002.parquet"), "distractor.train-0.parquet"),
@@ -61,19 +67,23 @@ REGISTRY = {
     "drop": {
         "homepage": "https://allenai.org/data/drop", "license": "CC BY-SA 4.0",
         "notes": "Reading comprehension with discrete reasoning over paragraphs (numbers, dates, spans); "
-                 "the zip holds drop_dataset_train.json and drop_dataset_dev.json.",
+                 "the zip holds the official train and dev splits, drop_dataset_train.json and drop_dataset_dev.json; "
+                 "the test set is not public (a leaderboard).",
         "default": [("zip", "https://ai2-public-datasets.s3.amazonaws.com/drop/drop_dataset.zip", "drop_dataset.zip")],
         "all": [],
     },
     "clutrr": {
         "homepage": "https://github.com/facebookresearch/clutrr", "license": "CC BY-NC 4.0 (non-commercial; verify before any publication)",
         "notes": "Kinship stories with a queried relation; the generalization configurations (trained on chains of "
-                 "length 2-3 or 2-4, tested on 2-10). Rows: id, story, query, target, target_text, clean_story.",
-        "default": [("rows", "CLUTRR/v1", "gen_train23_test2to10", "test", 2000, "gen_train23_test2to10.test.jsonl"),
-                    ("rows", "CLUTRR/v1", "gen_train23_test2to10", "validation", 2000, "gen_train23_test2to10.validation.jsonl"),
-                    ("rows", "CLUTRR/v1", "gen_train234_test2to10", "test", 2000, "gen_train234_test2to10.test.jsonl")],
-        "all": [("rows", "CLUTRR/v1", "gen_train23_test2to10", "train", 20000, "gen_train23_test2to10.train.jsonl"),
-                ("rows", "CLUTRR/v1", "gen_train234_test2to10", "train", 20000, "gen_train234_test2to10.train.jsonl")],
+                 "length 2-3 or 2-4, tested on 2-10), each split whole: validation and test by default, train with --all. "
+                 "The robustness configurations (rob_*: noise facts added) are not fetched. "
+                 "Rows: id, story, query, target, target_text, clean_story.",
+        "default": [("rows", "CLUTRR/v1", "gen_train23_test2to10", "test", WHOLE, "gen_train23_test2to10.test.jsonl"),
+                    ("rows", "CLUTRR/v1", "gen_train23_test2to10", "validation", WHOLE, "gen_train23_test2to10.validation.jsonl"),
+                    ("rows", "CLUTRR/v1", "gen_train234_test2to10", "test", WHOLE, "gen_train234_test2to10.test.jsonl"),
+                    ("rows", "CLUTRR/v1", "gen_train234_test2to10", "validation", WHOLE, "gen_train234_test2to10.validation.jsonl")],
+        "all": [("rows", "CLUTRR/v1", "gen_train23_test2to10", "train", WHOLE, "gen_train23_test2to10.train.jsonl"),
+                ("rows", "CLUTRR/v1", "gen_train234_test2to10", "train", WHOLE, "gen_train234_test2to10.train.jsonl")],
     },
     "babi": {
         "homepage": "https://research.facebook.com/downloads/babi/", "license": "CC BY 3.0",
@@ -113,7 +123,7 @@ REGISTRY = {
     "wikitext-103": {
         "homepage": "https://huggingface.co/datasets/Salesforce/wikitext", "license": "CC BY-SA 3.0",
         "notes": "Good and featured Wikipedia articles, the raw (untokenized) variant; parquet column: text, one line per row "
-                 "(headings, paragraphs, blank lines).",
+                 "(headings, paragraphs, blank lines). Validation and test by default; train (two files, ~314 MB) with --all.",
         "default": [("file", hf("Salesforce/wikitext", "wikitext-103-raw-v1/validation-00000-of-00001.parquet"), "raw-v1.validation.parquet"),
                     ("file", hf("Salesforce/wikitext", "wikitext-103-raw-v1/test-00000-of-00001.parquet"), "raw-v1.test.parquet")],
         "all": [("file", hf("Salesforce/wikitext", "wikitext-103-raw-v1/train-00000-of-00002.parquet"), "raw-v1.train-0.parquet"),
@@ -139,6 +149,28 @@ REGISTRY = {
                  "part is ordinary prose about quantities and transfers).",
         "default": [],
         "all": [("file", "https://raw.githubusercontent.com/openai/grade-school-math/master/grade_school_math/data/test.jsonl", "test.jsonl")],
+    },
+    "mrpc": {
+        "homepage": "https://www.microsoft.com/en-us/download/details.aspx?id=52398",
+        "license": "Microsoft Research's terms on its download page (the mirror carries none; verify before any publication)",
+        "notes": "The Microsoft Research Paraphrase Corpus: 5,801 sentence pairs from news clusters, each judged by annotators "
+                 "as semantically equivalent or not (Quality 1 / 0); the official train (4,076) and test (1,725) splits in "
+                 "their original untokenized text, from a GitHub mirror (the SentEval and GLUE copies are tokenized). "
+                 "Tab-separated, UTF-8 with a byte-order mark: Quality, #1 ID, #2 ID, #1 String, #2 String.",
+        "default": [("file", MRPC_MIRROR + "msr_paraphrase_train.txt", "msr_paraphrase_train.txt"),
+                    ("file", MRPC_MIRROR + "msr_paraphrase_test.txt", "msr_paraphrase_test.txt")],
+        "all": [],
+    },
+    "sick": {
+        "homepage": "https://zenodo.org/records/2787612",
+        "license": "CC BY-NC-SA 3.0 (non-commercial, share-alike; verify before any publication)",
+        "notes": "Sentences Involving Compositional Knowledge: 9,840 sentence pairs built from image and video captions "
+                 "(Flickr8K, the SemEval-2012 video descriptions) by meaning-preserving and meaning-changing rewrites, each "
+                 "labelled for entailment (NEUTRAL / ENTAILMENT / CONTRADICTION, both directions) and relatedness (1-5); the "
+                 "official SemEval-2014 Task 1 split is a column (TRAIN 4,439 · TRIAL 495 · TEST 4,906), and each sentence "
+                 "keeps the caption it was derived from. The zip holds SICK.txt (tab-separated) and readme.txt.",
+        "default": [("zip", "https://zenodo.org/records/2787612/files/SICK.zip", "SICK.zip")],
+        "all": [],
     },
 }
 
@@ -175,13 +207,14 @@ def download(url: str, path: str) -> None:
     os.replace(path + ".part", path)
 
 
-def fetch_rows(dataset: str, config: str, split: str, n: int, path: str) -> int:
-    """Up to ``n`` rows of a hub dataset through the rows API, one JSON object per line."""
+def fetch_rows(dataset: str, config: str, split: str, n: int | None, path: str) -> int:
+    """Up to ``n`` rows of a hub dataset through the rows API (``WHOLE``: the whole split), one JSON object per line."""
     os.makedirs(os.path.dirname(path), exist_ok=True)
+    limit = math.inf if n is WHOLE else n
     written, offset, total = 0, 0, None
     with open(path + ".part", "w", encoding="utf-8") as fh:
-        while written < n and (total is None or offset < total):
-            length = min(100, n - written)
+        while written < limit and (total is None or offset < total):
+            length = int(min(100, limit - written))
             q = urllib.parse.urlencode({"dataset": dataset, "config": config, "split": split, "offset": offset, "length": length})
             data = json.loads(get(f"{ROWS_API}?{q}"))
             time.sleep(1.0)                           # the rows API rate-limits bursts
@@ -203,6 +236,15 @@ def gcs_keys(bucket_url: str, prefix: str, n: int) -> list[str]:
     q = urllib.parse.urlencode({"prefix": prefix, "max-keys": n})
     xml = get(f"{bucket_url}?{q}").decode("utf-8")
     return re.findall(r"<Key>([^<]+)</Key>", xml)[:n]
+
+
+def rows_satisfied(prev: dict, n: int | None) -> bool:
+    """Does a recorded rows fetch already answer a request for ``n`` rows (``WHOLE``: the whole split)?
+    An older capped fetch that got fewer rows than its cap had already reached the end of the split."""
+    asked, got = prev.get("requested"), prev.get("rows", 0)
+    if n is WHOLE:
+        return asked == "all" or (isinstance(asked, int) and got < asked)
+    return asked == n
 
 
 def load_source(ddir: str) -> dict:
@@ -247,12 +289,18 @@ def fetch(name: str, full: bool, refresh: bool) -> list[str]:
             say(f"  CHANGED at the source: {relpath} ({prev['sha256'][:12]} -> {entry['sha256'][:12]})")
         files[relpath] = entry
 
-    def want(relpath: str) -> bool:
+    def want(relpath: str, rows: tuple = ()) -> bool:
+        """``rows`` = (n,) for a rows item: a file fetched under a different request is fetched again."""
         path = os.path.join(ddir, relpath)
         if refresh or not os.path.exists(path):
             return True
         prev = files.get(relpath)
         if prev and prev.get("sha256") == sha256_of(path):
+            if rows and not rows_satisfied(prev, rows[0]):
+                asked = "the whole split" if rows[0] is WHOLE else f"{rows[0]} rows"
+                say(f"  re-fetching {relpath}: it holds {prev.get('rows')} rows of a request for {prev.get('requested')}, now {asked}")
+                files.pop(relpath)            # superseded by the new request: a different hash is expected, not a change at the source
+                return True
             say(f"  kept {relpath} ({prev['bytes']:,} bytes, hash unchanged)")
             return False
         return True
@@ -278,9 +326,10 @@ def fetch(name: str, full: bool, refresh: bool) -> list[str]:
                     say(f"  fetched {relpath} ({files[relpath]['bytes']:,} bytes) and extracted {len(names)} files")
             elif kind == "rows":
                 _, dataset, config, split, n, relpath = item
-                if want(relpath):
+                if want(relpath, rows=(n,)):
                     got = fetch_rows(dataset, config, split, n, os.path.join(ddir, relpath))
-                    record(relpath, f"{ROWS_API}?dataset={dataset}&config={config}&split={split}", "rows API", {"rows": got, "requested": n})
+                    record(relpath, f"{ROWS_API}?dataset={dataset}&config={config}&split={split}", "rows API",
+                           {"rows": got, "requested": "all" if n is WHOLE else n})
                     say(f"  fetched {relpath} ({got} rows)")
             elif kind == "gcs_list":
                 _, bucket, prefix, n, dirname = item

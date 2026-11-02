@@ -39,7 +39,7 @@ import urllib.request
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 DEFAULT_PROMPT = os.path.join(ROOT, "templates", "generated", "PROMPT_CATALOG.txt")
-EFFORTS = ("none", "low", "medium", "high")
+EFFORTS = ("none", "low", "medium", "high", "xhigh", "max")
 ACK = "Understood. Send the item."          # the fixed model turn between the catalog and the item (turn layout)
 CACHE_MIN_TOKENS = 4096                     # below this Gemini never caches; above it a reply without cached tokens means the cache was lost
 
@@ -58,11 +58,12 @@ class Reply:
         self.text, self.usage, self.raw = text, usage, raw
 
 
-#: Seconds to wait before each retry of an HTTP 429 from OpenAI, about ten minutes in all. A 429 is not
-#: billed and clears by waiting: Flex answers "429 Resource Unavailable" when it lacks capacity (OpenAI's
-#: Flex guide: not charged; retry with exponential backoff), and the tokens-per-minute limit, which
-#: cached tokens count toward, refuses a request with a 429 before it is processed.
-OPENAI_429_WAITS = (5, 10, 20, 40, 80, 160, 300)
+#: Seconds to wait before each retry while a provider has no capacity, about ten minutes in all; such an
+#: answer is not billed and clears by waiting. OpenAI: a 429 — Flex's "Resource Unavailable" (OpenAI's
+#: Flex guide: not charged; retry with exponential backoff), or the tokens-per-minute limit, which cached
+#: tokens count toward. Gemini's Flex tier: a 503 "at capacity" or a 429 (Google's Flex guide: no fallback
+#: to the standard tier; retry with exponential backoff).
+PATIENT_WAITS = (5, 10, 20, 40, 80, 160, 300)
 
 
 def _read_sse(resp) -> dict:
@@ -100,14 +101,16 @@ def _read_sse(resp) -> dict:
 
 
 def _post_json(url: str, headers: dict, body: dict, timeout: float, attempts: int = 3,
-               waits_429: tuple = (), read=None) -> dict:
+               long_waits: tuple = (), long_codes: tuple = (429,), read=None) -> dict:
     """POST a JSON body; retry on 429 / 5xx with backoff; raise ProviderError otherwise.
 
-    ``waits_429`` is a longer schedule for HTTP 429 alone (the seconds before each retry), spent
-    without using up ``attempts``; every other failure keeps the short backoff, since a re-send after
-    a dropped connection may be billed. A 429 for an exhausted quota does not clear by waiting and
-    is raised at once. ``read`` turns the open response into the reply (default: the JSON body; a
-    streaming provider passes ``_read_sse``); a body cut short is retried like a dropped connection."""
+    ``long_waits`` is a longer schedule (the seconds before each retry) for the HTTP codes in
+    ``long_codes`` — a provider out of capacity — spent without using up ``attempts``; every other
+    failure keeps the short backoff, since a re-send after a dropped connection may be billed. A 429
+    for an exhausted quota (OpenAI's insufficient_quota, a Gemini quota per day) does not clear by
+    waiting and is raised at once. ``read`` turns the open response into the reply (default: the
+    JSON body; a streaming provider passes ``_read_sse``); a body cut short is retried like a dropped
+    connection."""
     data = json.dumps(body).encode("utf-8")
     attempt, waited = 1, 0
     while True:
@@ -119,12 +122,12 @@ def _post_json(url: str, headers: dict, body: dict, timeout: float, attempts: in
         except urllib.error.HTTPError as exc:
             detail = exc.read().decode("utf-8", "replace")[:2000]
             last = f"HTTP {exc.code}: {detail}"
-            if exc.code == 429 and "insufficient_quota" in detail:
+            if exc.code == 429 and ("insufficient_quota" in detail or "PerDay" in detail):
                 raise ProviderError(last) from None
-            if exc.code == 429 and waited < len(waits_429):
-                print(f"[HTTP 429 (not billed): retry {waited + 1} of {len(waits_429)} in {waits_429[waited]} s]",
+            if exc.code in long_codes and waited < len(long_waits):
+                print(f"[HTTP {exc.code} (not billed): retry {waited + 1} of {len(long_waits)} in {long_waits[waited]} s]",
                       file=sys.stderr, flush=True)
-                time.sleep(waits_429[waited])
+                time.sleep(long_waits[waited])
                 waited += 1
                 continue
             if exc.code not in (429, 500, 502, 503, 504) or attempt >= attempts:
@@ -155,8 +158,8 @@ class Google:
     #: where the model allows it, -1 lets the model choose) for the 2.x family. The thinking
     #: guide's table gives each model's allowed levels (gemini-4-argon: low / medium / high,
     #: default medium). Thinking tokens come back as usageMetadata.thoughtsTokenCount.
-    budgets = {"none": 0, "low": 1024, "medium": 8192, "high": 24576}
-    levels = {"none": "LOW", "low": "LOW", "medium": "MEDIUM", "high": "HIGH"}
+    budgets = {"none": 0, "low": 1024, "medium": 8192, "high": 24576, "xhigh": 24576, "max": 24576}
+    levels = {"none": "LOW", "low": "LOW", "medium": "MEDIUM", "high": "HIGH", "xhigh": "HIGH", "max": "HIGH"}
 
     @staticmethod
     def takes_levels(model: str) -> bool:
@@ -206,8 +209,16 @@ class Google:
                                  {"role": "model", "parts": [{"text": ACK}]},
                                  {"role": "user", "parts": [{"text": user}]}],
                     "generationConfig": gen}
+        if getattr(a, "service_tier", None):
+            body["service_tier"] = a.service_tier      # flex: half price, minutes of queueing (Google's Flex guide)
         url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
         return url, {"x-goog-api-key": "<key>"}, body
+
+    def _post(self, url: str, headers: dict, body: dict) -> dict:
+        """The Flex tier answers 503 or 429 while it has no capacity: wait it out on the long schedule."""
+        flex = body.get("service_tier") == "flex"
+        return _post_json(url, headers, body, self.args.timeout,
+                          long_waits=PATIENT_WAITS if flex else (), long_codes=(429, 503))
 
     def prime(self, system: str, model: str) -> dict:
         """Send the catalog alone, so that later requests starting with it hit the implicit cache.
@@ -217,7 +228,7 @@ class Google:
             raise ProviderError("priming needs the turn layout (--layout turns)")
         body["contents"] = body["contents"][:1]
         headers["x-goog-api-key"] = self.key()
-        raw = _post_json(url, headers, body, self.args.timeout)
+        raw = self._post(url, headers, body)
         u = raw.get("usageMetadata") or {}
         return {"input": u.get("promptTokenCount"), "output": u.get("candidatesTokenCount"),
                 "cached": u.get("cachedContentTokenCount"), "total": u.get("totalTokenCount")}
@@ -225,7 +236,7 @@ class Google:
     def complete(self, system: str, user: str, model: str) -> Reply:
         url, headers, body = self.request(system, user, model)
         headers["x-goog-api-key"] = self.key()
-        raw = _post_json(url, headers, body, self.args.timeout)
+        raw = self._post(url, headers, body)
         cands = raw.get("candidates") or []
         if not cands:
             raise ProviderError(f"no candidates in the reply: {json.dumps(raw)[:800]}")
@@ -239,7 +250,7 @@ class Google:
                  "finish": cands[0].get("finishReason"), "thought_parts": len(thoughts)}
         reply = Reply(text, usage, raw)
         reply.thoughts = thoughts
-        reply.config = body["generationConfig"]
+        reply.config = {**body["generationConfig"], **({"service_tier": body["service_tier"]} if "service_tier" in body else {})}
         reply.raw_usage = u
         return reply
 
@@ -297,7 +308,7 @@ class OpenAI:
     def complete(self, system: str, user: str, model: str) -> Reply:
         url, headers, body = self.request(system, user, model)
         headers["Authorization"] = f"Bearer {self.key()}"
-        raw = _post_json(url, headers, body, self.args.timeout, waits_429=OPENAI_429_WAITS)
+        raw = _post_json(url, headers, body, self.args.timeout, long_waits=PATIENT_WAITS)
         text = ""
         for item in raw.get("output") or []:
             for c in item.get("content") or []:
@@ -344,7 +355,7 @@ class DeepSeek:
     default_model = "deepseek-v4-pro"
     env_keys = ("DEEPSEEK_API_KEY",)
     url = "https://api.deepseek.com/chat/completions"
-    efforts = {"low": "low", "medium": "high", "high": "high"}
+    efforts = {"low": "low", "medium": "high", "high": "high", "xhigh": "high", "max": "max"}
 
     def __init__(self, args):
         self.args = args
@@ -506,9 +517,10 @@ def add_provider_args(ap: argparse.ArgumentParser) -> None:
     ap.add_argument("--provider", choices=sorted(PROVIDERS), default="google")
     ap.add_argument("--model", default=None, help="model name (default: the provider's default)")
     ap.add_argument("--effort", choices=EFFORTS, default="low",
-                    help="reasoning effort (default: low). Gemini 3+: a thinking level (none -> LOW, the lowest level every model offers); Gemini 2.x: a thinking budget (none -> 0); "
-                         "OpenAI: reasoning.effort (none -> not sent, the model's default); DeepSeek: reasoning_effort "
-                         "(medium -> high, DeepSeek's own mapping; none -> thinking disabled)")
+                    help="reasoning effort (default: low). Gemini 3+: a thinking level (none -> LOW, the lowest level every model offers; "
+                         "xhigh / max -> HIGH, the highest); Gemini 2.x: a thinking budget (none -> 0); "
+                         "OpenAI: reasoning.effort, xhigh and max as sent (none -> not sent, the model's default); DeepSeek: reasoning_effort "
+                         "(medium / xhigh -> high, DeepSeek's own mapping; max as sent; none -> thinking disabled)")
     ap.add_argument("--prompt", default=DEFAULT_PROMPT, help="instruction set file (default: the generated catalog prompt)")
     ap.add_argument("--temperature", type=float, default=None,
                     help="sampling temperature; default: not sent, the model's own default applies (Gemini 4 Argon ignores "
@@ -532,9 +544,10 @@ def add_provider_args(ap: argparse.ArgumentParser) -> None:
     ap.add_argument("--prime", action="store_true",
                     help="send the catalog alone once before the call, so the catalog is served from the implicit cache (the suite runner primes by itself)")
     ap.add_argument("--service-tier", choices=("auto", "default", "flex", "priority"), default=None,
-                    help="openai: the processing tier (service_tier); default: not sent, the project's default. flex: half price, "
-                         "slower, and may answer 429 Resource Unavailable, which is not billed: an OpenAI 429 is retried for "
-                         "up to about ten minutes (give flex --timeout 900)")
+                    help="openai and google: the processing tier (service_tier; google takes flex or priority); default: not sent, "
+                         "the standard tier. flex: half price and slower — OpenAI may answer 429 Resource Unavailable, Gemini 503 or 429 "
+                         "while at capacity (not billed), retried for up to about ten minutes; Gemini's Flex queue can hold a request "
+                         "for minutes (give it --timeout 1200; OpenAI's flex --timeout 900)")
 
 
 def validate_reply(reply: dict, reference_time=None, text: str | None = None) -> dict:

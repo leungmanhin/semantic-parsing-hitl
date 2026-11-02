@@ -1,0 +1,22 @@
+{
+  "name": "mrpc",
+  "homepage": "https://www.microsoft.com/en-us/download/details.aspx?id=52398",
+  "license": "Microsoft Research's terms on its download page (the mirror carries none; verify before any publication)",
+  "notes": "The Microsoft Research Paraphrase Corpus: 5,801 sentence pairs from news clusters, each judged by annotators as semantically equivalent or not (Quality 1 / 0); the official train (4,076) and test (1,725) splits in their original untokenized text, from a GitHub mirror (the SentEval and GLUE copies are tokenized). Tab-separated, UTF-8 with a byte-order mark: Quality, #1 ID, #2 ID, #1 String, #2 String.",
+  "files": [
+    {
+      "path": "msr_paraphrase_test.txt",
+      "url": "https://raw.githubusercontent.com/wasiahmad/paraphrase_identification/master/dataset/msr-paraphrase-corpus/msr_paraphrase_test.txt",
+      "how": "download",
+      "sha256": "0360d0d3427a0ae14882e2b3a799df0fab6cb5203d5e8ee481949283da62acb6",
+      "bytes": 431156
+    },
+    {
+      "path": "msr_paraphrase_train.txt",
+      "url": "https://raw.githubusercontent.com/wasiahmad/paraphrase_identification/master/dataset/msr-paraphrase-corpus/msr_paraphrase_train.txt",
+      "how": "download",
+      "sha256": "61a88818ec384d8465297dda1883b469f1b22d442ab90183d13e06233b180591",
+      "bytes": 1022669
+    }
+  ]
+}

@@ -2,7 +2,7 @@
   "name": "clutrr",
   "homepage": "https://github.com/facebookresearch/clutrr",
   "license": "CC BY-NC 4.0 (non-commercial; verify before any publication)",
-  "notes": "Kinship stories with a queried relation; the generalization configurations (trained on chains of length 2-3 or 2-4, tested on 2-10). Rows: id, story, query, target, target_text, clean_story.",
+  "notes": "Kinship stories with a queried relation; the generalization configurations (trained on chains of length 2-3 or 2-4, tested on 2-10), each split whole: validation and test by default, train with --all. The robustness configurations (rob_*: noise facts added) are not fetched. Rows: id, story, query, target, target_text, clean_story.",
   "files": [
     {
       "path": "gen_train234_test2to10.test.jsonl",
@@ -14,6 +14,24 @@
       "requested": 2000
     },
     {
+      "path": "gen_train234_test2to10.train.jsonl",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=CLUTRR/v1&config=gen_train234_test2to10&split=train",
+      "how": "rows API",
+      "sha256": "a035d1c5cdf331b1f18ab84466d1bae9201cfa356f1d5b668d59c513f80c75c2",
+      "bytes": 12535412,
+      "rows": 12064,
+      "requested": "all"
+    },
+    {
+      "path": "gen_train234_test2to10.validation.jsonl",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=CLUTRR/v1&config=gen_train234_test2to10&split=validation",
+      "how": "rows API",
+      "sha256": "4591dcc1086e88b44725eed6ca496d910918fa2bbebfb45c97296483a7d6d2b6",
+      "bytes": 3138237,
+      "rows": 3019,
+      "requested": "all"
+    },
+    {
       "path": "gen_train23_test2to10.test.jsonl",
       "url": "https://datasets-server.huggingface.co/rows?dataset=CLUTRR/v1&config=gen_train23_test2to10&split=test",
       "how": "rows API",
@@ -23,13 +41,22 @@
       "requested": 2000
     },
     {
+      "path": "gen_train23_test2to10.train.jsonl",
+      "url": "https://datasets-server.huggingface.co/rows?dataset=CLUTRR/v1&config=gen_train23_test2to10&split=train",
+      "how": "rows API",
+      "sha256": "dc0e8e2ce2c4ec99049517c19fbc74d8b2dae794e526f9f2ce2c79c261a97d42",
+      "bytes": 8350255,
+      "rows": 9074,
+      "requested": "all"
+    },
+    {
       "path": "gen_train23_test2to10.validation.jsonl",
       "url": "https://datasets-server.huggingface.co/rows?dataset=CLUTRR/v1&config=gen_train23_test2to10&split=validation",
       "how": "rows API",
-      "sha256": "6d1322466de17988ec4aa22b26843f64a130fb6ff85513e21e566149040f4738",
-      "bytes": 1811827,
-      "rows": 2000,
-      "requested": 2000
+      "sha256": "f52fde364e39373bd212cf61f82ff3fd2db86afa44b28ba67daf735621b176c1",
+      "bytes": 1833099,
+      "rows": 2020,
+      "requested": "all"
     }
   ]
 }
