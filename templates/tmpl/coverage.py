@@ -417,13 +417,15 @@ def render_report(a: dict, manifest_id: str | None, model: str | None) -> str:
 
 
 def latest(rows: list[dict]) -> list[dict]:
-    """One record per sentence id: its last successful reply, else its last attempt (a resumed run
-    appends the retried sentences after their failed attempts)."""
-    best: dict[str, dict] = {}
+    """One record per sentence — its id AND its text (an older sample cut ids to 16 characters, so two
+    paragraphs of one article could share an id): its last successful reply, else its last attempt
+    (a resumed run appends the retried sentences after their failed attempts)."""
+    best: dict[tuple, dict] = {}
     for r in rows:
-        prev = best.get(r["id"])
+        key = (r["id"], r.get("text"))
+        prev = best.get(key)
         if prev is None or not (r.get("reply") or {}).get("error") or (prev.get("reply") or {}).get("error"):
-            best[r["id"]] = r
+            best[key] = r
     return list(best.values())
 
 

@@ -1,0 +1,95 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "2ced495766491831a53ca775f2d7a2fcec486267b7f4101eab269173dbf43b86",
+  "item": {
+    "id": "s9bd0c614ca",
+    "text": "Teodor sang on a rainy day."
+  },
+  "usage": {
+    "input": 109711,
+    "output": 107,
+    "thinking": null,
+    "total": 109818,
+    "cached": 107662,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 109711,
+    "candidatesTokenCount": 107,
+    "totalTokenCount": 109818,
+    "cachedContentTokenCount": 107662,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 109711
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 107662
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 107
+      }
+    ]
+  },
+  "raw_text": "{\"id\":\"s9bd0c614ca\",\"instances\":[{\"t\":\"named-entity\",\"id\":\"n1\",\"name\":\"Teodor\",\"span\":\"Teodor\"},{\"t\":\"activity\",\"id\":\"e1\",\"verb\":\"sing\",\"actor\":\"@n1\",\"tense\":\"past\",\"span\":\"Teodor sang\"},{\"t\":\"time\",\"id\":\"t1\",\"event\":\"@e1\",\"noun\":\"day\",\"props\":[\"rainy\"],\"span\":\"on a rainy day\"}],\"unmapped\":[],\"issues\":[]}",
+  "response": {
+    "id": "s9bd0c614ca",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "sing",
+        "actor": "@n1",
+        "tense": "past",
+        "span": "Teodor sang"
+      },
+      {
+        "t": "time",
+        "id": "t1",
+        "event": "@e1",
+        "noun": "day",
+        "props": [
+          "rainy"
+        ],
+        "span": "on a rainy day"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "7ab2226c67a2b0b4b4950da1a006f81f06b0c4735649c9d8c2d0832954e83f0a",
+  "manifest_id": "3a52b3358252",
+  "run": 2,
+  "case": {
+    "template": "time",
+    "section": "held_out",
+    "index": 0,
+    "category": "positive",
+    "text": "Teodor sang on a rainy day.",
+    "key": "9bd0c614ca"
+  }
+}

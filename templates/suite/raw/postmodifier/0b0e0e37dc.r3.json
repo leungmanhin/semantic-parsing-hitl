@@ -1,0 +1,94 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "21f023233de2b35539bf800234dc3865601645a4534322d5456df6d8ea37be25",
+  "item": {
+    "id": "s0b0e0e37dc",
+    "text": "The weaver in grey sang."
+  },
+  "usage": {
+    "input": 108811,
+    "output": 145,
+    "thinking": null,
+    "total": 108956,
+    "cached": 106762,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 108811,
+    "candidatesTokenCount": 145,
+    "totalTokenCount": 108956,
+    "cachedContentTokenCount": 106762,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 108811
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 106762
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 145
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s0b0e0e37dc\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"weaver\", \"definite\": true, \"span\": \"The weaver\"}, {\"t\": \"postmodifier\", \"id\": \"a1\", \"noun\": \"@x1\", \"head\": \"In\", \"object\": \"grey\", \"span\": \"in grey\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"sing\", \"actor\": \"@x1\", \"tense\": \"past\", \"span\": \"The weaver in grey sang\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s0b0e0e37dc",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "weaver",
+        "definite": true,
+        "span": "The weaver"
+      },
+      {
+        "t": "postmodifier",
+        "id": "a1",
+        "noun": "@x1",
+        "head": "In",
+        "object": "grey",
+        "span": "in grey"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "sing",
+        "actor": "@x1",
+        "tense": "past",
+        "span": "The weaver in grey sang"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "60dcc155849c898de4da7c4be89215a42826d2ea4dce2ae063f69218ae2a39dc",
+  "manifest_id": "c837af642edf",
+  "run": 3,
+  "case": {
+    "template": "postmodifier",
+    "section": "held_out",
+    "index": 1,
+    "category": "positive",
+    "text": "The weaver in grey sang.",
+    "key": "0b0e0e37dc"
+  }
+}

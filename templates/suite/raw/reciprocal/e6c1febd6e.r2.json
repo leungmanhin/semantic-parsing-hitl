@@ -1,0 +1,102 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "2ced495766491831a53ca775f2d7a2fcec486267b7f4101eab269173dbf43b86",
+  "item": {
+    "id": "se6c1febd6e",
+    "text": "Two herons slept side by side."
+  },
+  "usage": {
+    "input": 109710,
+    "output": 192,
+    "thinking": null,
+    "total": 109902,
+    "cached": 107661,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 109710,
+    "candidatesTokenCount": 192,
+    "totalTokenCount": 109902,
+    "cachedContentTokenCount": 107661,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 109710
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 107661
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 192
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"se6c1febd6e\", \"instances\": [{\"t\": \"group\", \"id\": \"g1\", \"class\": \"heron\", \"count\": 2, \"span\": \"Two herons\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"sleep\", \"actor\": \"@g1\", \"tense\": \"past\", \"span\": \"Two herons slept\"}, {\"t\": \"location\", \"id\": \"l1\", \"event\": \"@e1\", \"place\": \"@g1\", \"head\": \"NextTo\", \"preposition\": \"side by side\", \"span\": \"side by side\"}, {\"t\": \"reciprocal\", \"id\": \"rc1\", \"event\": \"@e1\", \"word\": \"side by side\", \"span\": \"side by side\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "se6c1febd6e",
+    "instances": [
+      {
+        "t": "group",
+        "id": "g1",
+        "class": "heron",
+        "count": 2,
+        "span": "Two herons"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "sleep",
+        "actor": "@g1",
+        "tense": "past",
+        "span": "Two herons slept"
+      },
+      {
+        "t": "location",
+        "id": "l1",
+        "event": "@e1",
+        "place": "@g1",
+        "head": "NextTo",
+        "preposition": "side by side",
+        "span": "side by side"
+      },
+      {
+        "t": "reciprocal",
+        "id": "rc1",
+        "event": "@e1",
+        "word": "side by side",
+        "span": "side by side"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "7ab2226c67a2b0b4b4950da1a006f81f06b0c4735649c9d8c2d0832954e83f0a",
+  "manifest_id": "3a52b3358252",
+  "run": 2,
+  "case": {
+    "template": "reciprocal",
+    "section": "held_out",
+    "index": 2,
+    "category": "positive",
+    "text": "Two herons slept side by side.",
+    "key": "e6c1febd6e"
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "2ced495766491831a53ca775f2d7a2fcec486267b7f4101eab269173dbf43b86",
+  "item": {
+    "id": "s7c89df14b9",
+    "text": "There is no glazier singing and dancing."
+  },
+  "usage": {
+    "input": 109713,
+    "output": 201,
+    "thinking": null,
+    "total": 109914,
+    "cached": 107664,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 109713,
+    "candidatesTokenCount": 201,
+    "totalTokenCount": 109914,
+    "cachedContentTokenCount": 107664,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 109713
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 107664
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 201
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s7c89df14b9\", \"instances\": [{\"t\": \"range\", \"id\": \"q1\", \"class\": \"glazier\", \"quantifier\": \"no\", \"span\": \"no glazier\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"sing\", \"actor\": \"@q1\", \"tense\": \"present\", \"aspect\": \"progressive\", \"span\": \"singing\"}, {\"t\": \"activity\", \"id\": \"e2\", \"verb\": \"dance\", \"actor\": \"@q1\", \"tense\": \"present\", \"aspect\": \"progressive\", \"span\": \"dancing\"}, {\"t\": \"generic\", \"id\": \"r1\", \"ranges\": [\"@q1\"], \"over\": [\"@e1\", \"@e2\"], \"span\": \"There is no glazier singing and dancing\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s7c89df14b9",
+    "instances": [
+      {
+        "t": "range",
+        "id": "q1",
+        "class": "glazier",
+        "quantifier": "no",
+        "span": "no glazier"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "sing",
+        "actor": "@q1",
+        "tense": "present",
+        "aspect": "progressive",
+        "span": "singing"
+      },
+      {
+        "t": "activity",
+        "id": "e2",
+        "verb": "dance",
+        "actor": "@q1",
+        "tense": "present",
+        "aspect": "progressive",
+        "span": "dancing"
+      },
+      {
+        "t": "generic",
+        "id": "r1",
+        "ranges": [
+          "@q1"
+        ],
+        "over": [
+          "@e1",
+          "@e2"
+        ],
+        "span": "There is no glazier singing and dancing"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "7ab2226c67a2b0b4b4950da1a006f81f06b0c4735649c9d8c2d0832954e83f0a",
+  "manifest_id": "3a52b3358252",
+  "run": 2,
+  "case": {
+    "template": "generic",
+    "section": "held_out",
+    "index": 6,
+    "category": "positive",
+    "text": "There is no glazier singing and dancing.",
+    "key": "7c89df14b9"
+  }
+}

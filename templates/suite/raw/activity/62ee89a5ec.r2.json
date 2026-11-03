@@ -1,0 +1,91 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "21f023233de2b35539bf800234dc3865601645a4534322d5456df6d8ea37be25",
+  "item": {
+    "id": "s62ee89a5ec",
+    "text": "Corvin took a stroll."
+  },
+  "usage": {
+    "input": 108810,
+    "output": 171,
+    "thinking": null,
+    "total": 108981,
+    "cached": 106761,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 108810,
+    "candidatesTokenCount": 171,
+    "totalTokenCount": 108981,
+    "cachedContentTokenCount": 106761,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 108810
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 106761
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 171
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s62ee89a5ec\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Corvin\", \"span\": \"Corvin\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"take_a_stroll\", \"actor\": \"@n1\", \"tense\": \"past\", \"span\": \"Corvin took a stroll\"}], \"unmapped\": [], \"issues\": [{\"code\": \"P00\", \"where\": \"Lemmas and symbols\", \"text\": \"The general instructions say a light verb with an event noun is parsed with the activity template as a single symbol, whereas the acquisition template example says to report 'took a walk' as unmapped (G00).\"}]}",
+  "response": {
+    "id": "s62ee89a5ec",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Corvin",
+        "span": "Corvin"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "take_a_stroll",
+        "actor": "@n1",
+        "tense": "past",
+        "span": "Corvin took a stroll"
+      }
+    ],
+    "unmapped": [],
+    "issues": [
+      {
+        "code": "P00",
+        "where": "Lemmas and symbols",
+        "text": "The general instructions say a light verb with an event noun is parsed with the activity template as a single symbol, whereas the acquisition template example says to report 'took a walk' as unmapped (G00)."
+      }
+    ]
+  },
+  "prompt_body_sha256": "60dcc155849c898de4da7c4be89215a42826d2ea4dce2ae063f69218ae2a39dc",
+  "manifest_id": "c837af642edf",
+  "run": 2,
+  "case": {
+    "template": "activity",
+    "section": "held_out",
+    "index": 0,
+    "category": "positive",
+    "text": "Corvin took a stroll.",
+    "key": "62ee89a5ec"
+  }
+}

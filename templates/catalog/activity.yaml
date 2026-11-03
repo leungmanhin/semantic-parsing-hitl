@@ -125,7 +125,27 @@ examples:
       text: "Marisol went to the bazaar."
       expected: {abstain: true, template: motion}                     # a change of place
 
+    - category: positive
+      note: a light verb with an event noun — one surface symbol keeping its words, never the noun's verb
+      text: "Odile took a walk."
+      instances:
+        - {t: named-entity, id: n1, name: "Odile", span: "Odile"}
+        - {t: activity, id: v1, verb: take_a_walk, actor: "@n1", tense: past, span: "Odile took a walk"}
   held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      note: each other after coordinated names — one predication per conjunct, the other conjunct the patient
+      text: "Yusra and Teodor hugged each other."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: named-entity, id: n2, name: "Teodor"}
+        - {t: activity, id: v1, verb: hug, actor: "@n1", patient: "@n2", tense: past}
+        - {t: activity, id: v2, verb: hug, actor: "@n2", patient: "@n1", tense: past}
+    - category: positive
+      note: a light verb with an event noun — one surface symbol keeping its words, never the noun's verb
+      text: "Corvin took a stroll."
+      instances:
+        - {t: named-entity, id: n1, name: "Corvin"}
+        - {t: activity, id: v1, verb: take_a_stroll, actor: "@n1", tense: past}
     - category: positive
       note: a particle verb keeps its particle
       text: "Yusra gave up."

@@ -1,0 +1,93 @@
+# Template: reciprocal  (each other / one another: the roles of a predication pair different members of one group)
+#
+# A reciprocal after a plural subject (two badgers groomed each other) names the same group as the
+# subject, member paired with member: the group fills the reciprocal's slot as it fills the subject's,
+# and this attachment marks the predication — (Reciprocal e): the roles the group fills pair
+# different members, so the group neither acts on itself as a whole nor each member on itself. The
+# predication is NOT distributed (no distribution instance): a distribution would put each member
+# in both roles, a reflexive reading. After coordinated names (Odile and Henrike thanked each other)
+# there is no group: one predication per conjunct with the other conjunct in the role says it
+# exactly, and no reciprocal instance is needed.
+
+id: reciprocal
+family: attachment
+shape: attachment
+title: Each other — the roles of a predication pair different members of one group
+status: draft
+
+trigger:
+  construction: >
+    The reciprocal words each other or one another (also after a preposition: with each other, at
+    one another) or side by side, after a plural subject. The predication is parsed with its own
+    template; the slot the reciprocal fills — a patient, the participant of with, the place of side
+    by side (a location, head NextTo) — takes the subject's group id; this instance names the
+    predication: its roles pair different members of the group (the badgers groomed each other:
+    each groomed another). The predication gets no distribution instance. One instance per
+    reciprocal.
+  surface_forms:
+    - "<plural> V each other / one another"           # the badgers groomed each other: patient the group
+    - "<plural> V with each other"                    # the storks bickered with each other: CoAgent the group
+    - "<plural> V side by side"                       # two storks waded side by side: NextTo, place the group
+  boundary:                   # looks like a reciprocal but is not one
+    - >-
+      coordinated names — Odile and Henrike thanked each other: no group; one predication per
+      conjunct with the other conjunct in the role (Odile thanked Henrike, Henrike thanked Odile),
+      and no reciprocal instance
+    - >-
+      a plural acting together with no reciprocal word — the storks met, the badgers argued: a
+      predicate that holds only of them together; report the clause as unmapped
+
+slots:
+  id:    {type: id, required: true, doc: "your label for the reciprocal (rc1, rc2 …)"}
+  event: {type: filler, class: Event, attaches: true, required: true,
+          doc: "the predication whose roles pair the members: the id of its event instance"}
+  word:  {type: string, required: true, doc: "the reciprocal words as written (each other, one another, side by side)"}
+
+emits:
+  - atom: "(Reciprocal {event})"
+
+notes:
+  - >-
+    An attachment has no symbol of its own: (Reciprocal e) is rendered wherever its event is —
+    under a negation, inside a rule. The group fills two roles of one event; the mark says those
+    roles pair different members.
+
+depends_on: [group]
+composes_with: [negation, modal, location, adjunct]
+
+examples:
+  shown:
+    - category: positive
+      text: "The badgers groomed each other."
+      instances:
+        - {t: group, id: g1, class: badger, definite: true, span: "The badgers"}
+        - {t: activity, id: v1, verb: groom, actor: "@g1", patient: "@g1", tense: past, span: "The badgers groomed each other"}
+        - {t: reciprocal, id: rc1, event: "@v1", word: "each other", span: "each other"}
+  held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      note: a counted plural — the group in both roles, no distribution, the event marked
+      text: "Two ferrets were fighting each other."
+      instances:
+        - {t: group, id: g1, class: ferret, count: 2}
+        - {t: activity, id: v1, verb: fight, actor: "@g1", patient: "@g1", tense: past, aspect: progressive}
+        - {t: reciprocal, id: rc1, event: "@v1", word: "each other"}
+    - category: positive
+      note: with one another — the companion is the group
+      text: "The herons squabbled with one another."
+      instances:
+        - {t: group, id: g1, class: heron, definite: true}
+        - {t: activity, id: v1, verb: squabble, actor: "@g1", tense: past}
+        - {t: adjunct, id: a1, event: "@v1", participant: "@g1", head: CoAgent, preposition: with}
+        - {t: reciprocal, id: rc1, event: "@v1", word: "one another"}
+    - category: positive
+      note: side by side — a NextTo place that is the group itself
+      text: "Two herons slept side by side."
+      instances:
+        - {t: group, id: g1, class: heron, count: 2}
+        - {t: activity, id: v1, verb: sleep, actor: "@g1", tense: past}
+        - {t: location, id: l1, event: "@v1", place: "@g1", head: NextTo, preposition: "side by side"}
+        - {t: reciprocal, id: rc1, event: "@v1", word: "side by side"}
+    - category: abstain
+      note: coordinated names — no group; one predication per conjunct (the activity template), no reciprocal
+      text: "Yusra and Teodor hugged each other."
+      expected: {abstain: true, template: activity}

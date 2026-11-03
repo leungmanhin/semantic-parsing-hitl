@@ -1,0 +1,110 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "d4b0d364b06854e5925eccd0ae4606e0cc21d5f30d2f6813a45238efb90d3b88",
+  "item": {
+    "id": "sec7233a4c5",
+    "text": "Yusra opened the shed and waited inside."
+  },
+  "usage": {
+    "input": 108410,
+    "output": 235,
+    "thinking": null,
+    "total": 108645,
+    "cached": 106361,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 108410,
+    "candidatesTokenCount": 235,
+    "totalTokenCount": 108645,
+    "cachedContentTokenCount": 106361,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 108410
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 106361
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 235
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sec7233a4c5\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"shed\", \"definite\": true, \"span\": \"the shed\"}, {\"t\": \"change-of-state\", \"id\": \"e1\", \"verb\": \"open\", \"agent\": \"@n1\", \"undergoer\": \"@x1\", \"tense\": \"past\", \"span\": \"Yusra opened the shed\"}, {\"t\": \"activity\", \"id\": \"e2\", \"verb\": \"wait\", \"actor\": \"@n1\", \"tense\": \"past\", \"span\": \"waited\"}, {\"t\": \"location\", \"id\": \"l1\", \"event\": \"@e2\", \"place\": \"inside\", \"head\": \"Location\", \"preposition\": \"inside\", \"span\": \"inside\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sec7233a4c5",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "shed",
+        "definite": true,
+        "span": "the shed"
+      },
+      {
+        "t": "change-of-state",
+        "id": "e1",
+        "verb": "open",
+        "agent": "@n1",
+        "undergoer": "@x1",
+        "tense": "past",
+        "span": "Yusra opened the shed"
+      },
+      {
+        "t": "activity",
+        "id": "e2",
+        "verb": "wait",
+        "actor": "@n1",
+        "tense": "past",
+        "span": "waited"
+      },
+      {
+        "t": "location",
+        "id": "l1",
+        "event": "@e2",
+        "place": "inside",
+        "head": "Location",
+        "preposition": "inside",
+        "span": "inside"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "f05cf77e07cde3dfd514d468f06f43511bbdf5803c271a3bbaea337dca5e84d7",
+  "manifest_id": "920f33f0989b",
+  "run": 3,
+  "case": {
+    "template": "location",
+    "section": "held_out",
+    "index": 7,
+    "category": "positive",
+    "text": "Yusra opened the shed and waited inside.",
+    "key": "ec7233a4c5"
+  }
+}

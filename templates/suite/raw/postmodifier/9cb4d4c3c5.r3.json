@@ -1,0 +1,97 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "4c62a33723167c178bfd9ad39c4a7e6b90f80ce5548754ae31b3f27029e9a906",
+  "item": {
+    "id": "s9cb4d4c3c5",
+    "text": "A heron in mid dive was fishing."
+  },
+  "usage": {
+    "input": 109885,
+    "output": 158,
+    "thinking": null,
+    "total": 110043,
+    "cached": 107836,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 109885,
+    "candidatesTokenCount": 158,
+    "totalTokenCount": 110043,
+    "cachedContentTokenCount": 107836,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 109885
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 107836
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 158
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s9cb4d4c3c5\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"heron\", \"span\": \"A heron\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"fish\", \"actor\": \"@x1\", \"tense\": \"past\", \"aspect\": \"progressive\", \"span\": \"A heron in mid dive was fishing\"}, {\"t\": \"postmodifier\", \"id\": \"a1\", \"noun\": \"@x1\", \"head\": \"In\", \"object\": \"dive\", \"object_props\": [\"mid\"], \"span\": \"in mid dive\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s9cb4d4c3c5",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "heron",
+        "span": "A heron"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "fish",
+        "actor": "@x1",
+        "tense": "past",
+        "aspect": "progressive",
+        "span": "A heron in mid dive was fishing"
+      },
+      {
+        "t": "postmodifier",
+        "id": "a1",
+        "noun": "@x1",
+        "head": "In",
+        "object": "dive",
+        "object_props": [
+          "mid"
+        ],
+        "span": "in mid dive"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "e7122d89d39fa87267a6b929e0a94a6d93f05f49b3ce15f7b006667d564fe291",
+  "manifest_id": "de5df9f2713e",
+  "run": 3,
+  "case": {
+    "template": "postmodifier",
+    "section": "held_out",
+    "index": 0,
+    "category": "positive",
+    "text": "A heron in mid dive was fishing.",
+    "key": "9cb4d4c3c5"
+  }
+}

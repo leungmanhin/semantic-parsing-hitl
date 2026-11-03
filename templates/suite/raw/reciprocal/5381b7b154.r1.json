@@ -1,0 +1,95 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "2ced495766491831a53ca775f2d7a2fcec486267b7f4101eab269173dbf43b86",
+  "item": {
+    "id": "s5381b7b154",
+    "text": "Two ferrets were fighting each other."
+  },
+  "usage": {
+    "input": 109713,
+    "output": 158,
+    "thinking": null,
+    "total": 109871,
+    "cached": 107664,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 109713,
+    "candidatesTokenCount": 158,
+    "totalTokenCount": 109871,
+    "cachedContentTokenCount": 107664,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 109713
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 107664
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 158
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s5381b7b154\", \"instances\": [{\"t\": \"group\", \"id\": \"g1\", \"class\": \"ferret\", \"count\": 2, \"span\": \"Two ferrets\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"fight\", \"actor\": \"@g1\", \"patient\": \"@g1\", \"tense\": \"past\", \"aspect\": \"progressive\", \"span\": \"Two ferrets were fighting each other\"}, {\"t\": \"reciprocal\", \"id\": \"rc1\", \"event\": \"@v1\", \"word\": \"each other\", \"span\": \"each other\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s5381b7b154",
+    "instances": [
+      {
+        "t": "group",
+        "id": "g1",
+        "class": "ferret",
+        "count": 2,
+        "span": "Two ferrets"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "fight",
+        "actor": "@g1",
+        "patient": "@g1",
+        "tense": "past",
+        "aspect": "progressive",
+        "span": "Two ferrets were fighting each other"
+      },
+      {
+        "t": "reciprocal",
+        "id": "rc1",
+        "event": "@v1",
+        "word": "each other",
+        "span": "each other"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "7ab2226c67a2b0b4b4950da1a006f81f06b0c4735649c9d8c2d0832954e83f0a",
+  "manifest_id": "3a52b3358252",
+  "run": 1,
+  "case": {
+    "template": "reciprocal",
+    "section": "held_out",
+    "index": 0,
+    "category": "positive",
+    "text": "Two ferrets were fighting each other.",
+    "key": "5381b7b154"
+  }
+}

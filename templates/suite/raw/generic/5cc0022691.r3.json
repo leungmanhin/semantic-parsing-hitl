@@ -1,0 +1,114 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "2ced495766491831a53ca775f2d7a2fcec486267b7f4101eab269173dbf43b86",
+  "item": {
+    "id": "s5cc0022691",
+    "text": "There is no heron fishing in the pond."
+  },
+  "usage": {
+    "input": 109713,
+    "output": 229,
+    "thinking": null,
+    "total": 109942,
+    "cached": 107664,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 109713,
+    "candidatesTokenCount": 229,
+    "totalTokenCount": 109942,
+    "cachedContentTokenCount": 107664,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 109713
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 107664
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 229
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s5cc0022691\", \"instances\": [{\"t\": \"range\", \"id\": \"q1\", \"class\": \"heron\", \"quantifier\": \"no\", \"span\": \"no heron\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"pond\", \"definite\": true, \"span\": \"the pond\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"fish\", \"actor\": \"@q1\", \"tense\": \"present\", \"aspect\": \"progressive\", \"span\": \"fishing\"}, {\"t\": \"location\", \"id\": \"l1\", \"event\": \"@e1\", \"place\": \"@x1\", \"head\": \"Location\", \"preposition\": \"in\", \"span\": \"in the pond\"}, {\"t\": \"generic\", \"id\": \"r1\", \"ranges\": [\"@q1\"], \"over\": [\"@e1\"], \"span\": \"There is no heron fishing in the pond\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s5cc0022691",
+    "instances": [
+      {
+        "t": "range",
+        "id": "q1",
+        "class": "heron",
+        "quantifier": "no",
+        "span": "no heron"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "pond",
+        "definite": true,
+        "span": "the pond"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "fish",
+        "actor": "@q1",
+        "tense": "present",
+        "aspect": "progressive",
+        "span": "fishing"
+      },
+      {
+        "t": "location",
+        "id": "l1",
+        "event": "@e1",
+        "place": "@x1",
+        "head": "Location",
+        "preposition": "in",
+        "span": "in the pond"
+      },
+      {
+        "t": "generic",
+        "id": "r1",
+        "ranges": [
+          "@q1"
+        ],
+        "over": [
+          "@e1"
+        ],
+        "span": "There is no heron fishing in the pond"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "7ab2226c67a2b0b4b4950da1a006f81f06b0c4735649c9d8c2d0832954e83f0a",
+  "manifest_id": "3a52b3358252",
+  "run": 3,
+  "case": {
+    "template": "generic",
+    "section": "held_out",
+    "index": 5,
+    "category": "positive",
+    "text": "There is no heron fishing in the pond.",
+    "key": "5cc0022691"
+  }
+}

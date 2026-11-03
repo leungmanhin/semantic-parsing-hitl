@@ -29,7 +29,16 @@ trigger:
     (badgers eat mice, spiders spin webs) is a bare lemma filler of the predication: the rule
     says an arbitrary badger eats mice. A condition under which the generalization holds
     (badgers bite when cornered, putty softens when wet) is a predication over the range — a
-    copular instance for the state — listed in `condition`.
+    copular instance for the state — listed in `condition`. A NEGATED EXISTENTIAL — there is no
+    N …, there are no Ns … — is the clause no N … : there is no badger sleeping on the barrow is
+    no badger is sleeping on the barrow, so this template with a range over N with quantifier no
+    (the noun's own adjectives and nouns on it), each predication after the noun that nothing
+    satisfies (a participle, a place phrase) parsed with its template — a participle with aspect
+    progressive, as in no badger is sleeping — the range its filler, and listed in `over` (several
+    make one conjunction the rule denies as a whole), a relative clause
+    on the noun a `condition` as in any generalization; an adjective after the noun (there is no
+    badger awake) is a class statement, as no badger is awake would be. Never a witness with a
+    negation over its predications: that would say that some N does not ….
   boundary:                   # looks like a generalization but is not one
     - >-
       a copular predicate — all badgers are curious, most storks are patient: a class statement,
@@ -171,6 +180,23 @@ examples:
         - {t: range, id: q1, class: ferret, quantifier: "no", predicate: sleep}
         - {t: activity, id: v1, verb: sleep, actor: "@q1", tense: past}
         - {t: generic, id: r1, ranges: ["@q1"], over: ["@v1"]}
+    - category: positive
+      note: a negated existential — the clause no N is …ing, a range with no; the place on the event
+      text: "There is no heron fishing in the pond."
+      instances:
+        - {t: range, id: q1, class: heron, quantifier: "no", predicate: fish}
+        - {t: witness, id: x1, class: pond, definite: true}
+        - {t: activity, id: v1, verb: fish, actor: "@q1", tense: present, aspect: progressive}
+        - {t: location, id: l1, event: "@v1", place: "@x1", head: Location, preposition: in}
+        - {t: generic, id: r1, ranges: ["@q1"], over: ["@v1"]}
+    - category: positive
+      note: a negated existential with two participles — one rule denying their conjunction
+      text: "There is no glazier singing and dancing."
+      instances:
+        - {t: range, id: q1, class: glazier, quantifier: "no"}
+        - {t: activity, id: v1, verb: sing, actor: "@q1", tense: present, aspect: progressive}
+        - {t: activity, id: v2, verb: dance, actor: "@q1", tense: present, aspect: progressive}
+        - {t: generic, id: r1, ranges: ["@q1"], over: ["@v1", "@v2"]}
     - category: positive
       note: an indefinite object depends on the member — each student their own letter
       text: "Every student read a letter."

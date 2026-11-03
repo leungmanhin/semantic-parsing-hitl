@@ -37,7 +37,7 @@ trigger:
       a state of having — owns the blanket, has a trowel: no event of coming to have it
     - >-
       light-verb constructions — took a walk, took a look, had a word: the noun carries the
-      event; nothing is acquired
+      event; nothing is acquired: one surface symbol (take_a_walk), the activity template
     - >-
       get as become — got tired, got wet: a change of state; get with a verb phrase on its
       object — got Odile to send the blanket: a causative; nothing is acquired either way
@@ -135,7 +135,7 @@ examples:
       expected: {abstain: true, template: transfer}                   # the giver's side
     - category: abstain
       text: "Odile took a walk."
-      expected: {abstain: true, gap: G00, span: "took a walk"}        # light-verb construction
+      expected: {abstain: true, template: activity}                   # a light verb: one surface symbol, take_a_walk
 
   held_out:                  # tests; never rendered into the prompt
     - category: positive

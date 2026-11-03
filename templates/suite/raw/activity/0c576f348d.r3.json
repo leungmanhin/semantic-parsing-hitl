@@ -1,0 +1,101 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "4c62a33723167c178bfd9ad39c4a7e6b90f80ce5548754ae31b3f27029e9a906",
+  "item": {
+    "id": "s0c576f348d",
+    "text": "Yusra and Teodor hugged each other."
+  },
+  "usage": {
+    "input": 109887,
+    "output": 155,
+    "thinking": null,
+    "total": 110042,
+    "cached": 107838,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 109887,
+    "candidatesTokenCount": 155,
+    "totalTokenCount": 110042,
+    "cachedContentTokenCount": 107838,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 109887
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 107838
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 155
+      }
+    ]
+  },
+  "raw_text": "{\"id\":\"s0c576f348d\",\"instances\":[{\"t\":\"named-entity\",\"id\":\"n1\",\"name\":\"Yusra\",\"span\":\"Yusra\"},{\"t\":\"named-entity\",\"id\":\"n2\",\"name\":\"Teodor\",\"span\":\"Teodor\"},{\"t\":\"activity\",\"id\":\"e1\",\"verb\":\"hug\",\"actor\":\"@n1\",\"patient\":\"@n2\",\"tense\":\"past\",\"span\":\"Yusra and Teodor hugged each other\"},{\"t\":\"activity\",\"id\":\"e2\",\"verb\":\"hug\",\"actor\":\"@n2\",\"patient\":\"@n1\",\"tense\":\"past\",\"span\":\"Yusra and Teodor hugged each other\"}],\"unmapped\":[],\"issues\":[]}",
+  "response": {
+    "id": "s0c576f348d",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "hug",
+        "actor": "@n1",
+        "patient": "@n2",
+        "tense": "past",
+        "span": "Yusra and Teodor hugged each other"
+      },
+      {
+        "t": "activity",
+        "id": "e2",
+        "verb": "hug",
+        "actor": "@n2",
+        "patient": "@n1",
+        "tense": "past",
+        "span": "Yusra and Teodor hugged each other"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "e7122d89d39fa87267a6b929e0a94a6d93f05f49b3ce15f7b006667d564fe291",
+  "manifest_id": "de5df9f2713e",
+  "run": 3,
+  "case": {
+    "template": "activity",
+    "section": "held_out",
+    "index": 0,
+    "category": "positive",
+    "text": "Yusra and Teodor hugged each other.",
+    "key": "0c576f348d"
+  }
+}

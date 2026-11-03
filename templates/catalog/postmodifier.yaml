@@ -23,6 +23,8 @@ trigger:
     phrase, so it follows the referent wherever the referent is rendered.
   surface_forms:
     - "the <N> with / without <object>"               # the man with the beret
+    - "a <N> in <garment or colour>"                  # a stork in a red cap: In, cap; badgers in blue and grey: In blue, In grey
+    - "a <N> in mid <noun>"                           # a stork in mid flight: In, flight, object_props [mid] (mid an adjective, never a mod)
     - "a <N> about / from / to / for <object>"        # a book about badgers; a postcard from Marisol
     - "the <N> of <object>"                           # the destruction of the hut: the noun's own object
     - "a <N> by <author>"                             # a ballad by Femke: By, the author or maker of the thing
@@ -132,6 +134,28 @@ examples:
       expected: {abstain: true, template: oblique}                    # a phrase on the clause
 
   held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      note: in mid + a noun — In, the noun a bare lemma object, mid its adjective
+      text: "A heron in mid dive was fishing."
+      instances:
+        - {t: witness, id: x1, class: heron}
+        - {t: postmodifier, id: a1, noun: "@x1", head: In, object: dive, object_props: [mid]}
+        - {t: activity, id: v1, verb: fish, actor: "@x1", tense: past, aspect: progressive}
+    - category: positive
+      note: in with a garment — what the referent wears, In, never a locative
+      text: "The glazier in a blue coat laughed."
+      instances:
+        - {t: witness, id: x1, class: glazier, definite: true}
+        - {t: witness, id: x2, class: coat, props: [blue]}
+        - {t: postmodifier, id: a1, noun: "@x1", head: In, object: "@x2"}
+        - {t: activity, id: v1, verb: laugh, actor: "@x1", tense: past}
+    - category: positive
+      note: in with a colour and no garment — the colour a bare lemma object
+      text: "The weaver in grey sang."
+      instances:
+        - {t: witness, id: x1, class: weaver, definite: true}
+        - {t: postmodifier, id: a1, noun: "@x1", head: In, object: grey}
+        - {t: activity, id: v1, verb: sing, actor: "@x1", tense: past}
     - category: positive
       text: "A letter from Yusra arrived."
       instances:

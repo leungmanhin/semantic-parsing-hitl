@@ -1,0 +1,93 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "2ced495766491831a53ca775f2d7a2fcec486267b7f4101eab269173dbf43b86",
+  "item": {
+    "id": "s603a8a8ff8",
+    "text": "Yusra was with a potter."
+  },
+  "usage": {
+    "input": 109711,
+    "output": 114,
+    "thinking": null,
+    "total": 109825,
+    "cached": 107662,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 109711,
+    "candidatesTokenCount": 114,
+    "totalTokenCount": 109825,
+    "cachedContentTokenCount": 107662,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 109711
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 107662
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 114
+      }
+    ]
+  },
+  "raw_text": "{\"id\":\"s603a8a8ff8\",\"instances\":[{\"t\":\"named-entity\",\"id\":\"n1\",\"name\":\"Yusra\",\"span\":\"Yusra\"},{\"t\":\"witness\",\"id\":\"x1\",\"class\":\"potter\",\"span\":\"a potter\"},{\"t\":\"locative\",\"id\":\"l1\",\"thing\":\"@n1\",\"place\":\"@x1\",\"head\":\"With\",\"preposition\":\"with\",\"tense\":\"past\",\"span\":\"Yusra was with a potter\"}],\"unmapped\":[],\"issues\":[]}",
+  "response": {
+    "id": "s603a8a8ff8",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "potter",
+        "span": "a potter"
+      },
+      {
+        "t": "locative",
+        "id": "l1",
+        "thing": "@n1",
+        "place": "@x1",
+        "head": "With",
+        "preposition": "with",
+        "tense": "past",
+        "span": "Yusra was with a potter"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "7ab2226c67a2b0b4b4950da1a006f81f06b0c4735649c9d8c2d0832954e83f0a",
+  "manifest_id": "3a52b3358252",
+  "run": 1,
+  "case": {
+    "template": "locative",
+    "section": "held_out",
+    "index": 0,
+    "category": "positive",
+    "text": "Yusra was with a potter.",
+    "key": "603a8a8ff8"
+  }
+}

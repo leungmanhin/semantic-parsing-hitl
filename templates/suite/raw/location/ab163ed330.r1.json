@@ -1,0 +1,94 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "d4b0d364b06854e5925eccd0ae4606e0cc21d5f30d2f6813a45238efb90d3b88",
+  "item": {
+    "id": "sab163ed330",
+    "text": "Bram slept outdoors."
+  },
+  "usage": {
+    "input": 108404,
+    "output": 147,
+    "thinking": null,
+    "total": 108551,
+    "cached": 106306,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 108404,
+    "candidatesTokenCount": 147,
+    "totalTokenCount": 108551,
+    "cachedContentTokenCount": 106306,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 108404
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 106306
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 147
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sab163ed330\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Bram\", \"span\": \"Bram\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"sleep\", \"actor\": \"@n1\", \"tense\": \"past\", \"span\": \"Bram slept\"}, {\"t\": \"location\", \"id\": \"l1\", \"event\": \"@e1\", \"place\": \"outdoors\", \"head\": \"Location\", \"preposition\": \"outdoors\", \"span\": \"outdoors\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sab163ed330",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Bram",
+        "span": "Bram"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "sleep",
+        "actor": "@n1",
+        "tense": "past",
+        "span": "Bram slept"
+      },
+      {
+        "t": "location",
+        "id": "l1",
+        "event": "@e1",
+        "place": "outdoors",
+        "head": "Location",
+        "preposition": "outdoors",
+        "span": "outdoors"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "f05cf77e07cde3dfd514d468f06f43511bbdf5803c271a3bbaea337dca5e84d7",
+  "manifest_id": "920f33f0989b",
+  "run": 1,
+  "case": {
+    "template": "location",
+    "section": "held_out",
+    "index": 6,
+    "category": "positive",
+    "text": "Bram slept outdoors.",
+    "key": "ab163ed330"
+  }
+}

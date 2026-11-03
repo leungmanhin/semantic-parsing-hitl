@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 513045ba4dbb0101 · 59 templates
+catalog sha256 bf6bedf313862152 · 60 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -142,6 +142,11 @@ fences.
 - A fixed multi-word idiom is one surface symbol keeping every word (`spill_the_beans`), used
   only when the literal reading is incoherent for these participants; take the literal reading
   whenever it is available.
+- A LIGHT VERB with an event noun — took a nap, take a look, had a swim, made a face — is such a
+  fixed phrase: one surface symbol keeping its words (`take_a_nap`, `make_a_face`), the activity
+  template with the subject as its actor; never the noun's own verb in its place (took a nap is
+  not napped: whether the two are one event is for the normalization downstream). An adjective
+  on the noun (took a short nap) is reported as unmapped (G02).
 - Names: you give the surface string; the program derives the symbol.
 
 ## Relative clauses and participles
@@ -831,7 +836,7 @@ Not this template:
   parts with the object; a transfer
 - a state of having — owns the blanket, has a trowel: no event of coming to have it
 - light-verb constructions — took a walk, took a look, had a word: the noun carries the event;
-  nothing is acquired
+  nothing is acquired: one surface symbol (take_a_walk), the activity template
 - get as become — got tired, got wet: a change of state; get with a verb phrase on its object —
   got Odile to send the blanket: a causative; nothing is acquired either way
 - win or earn with a contest or an activity as the object — won the regatta, won the vote:
@@ -908,8 +913,7 @@ The program renders these instances as:
 
 Not this template. TEXT: Pieter gave Marisol a flask. — use `transfer`.
 
-Not this template. TEXT: Odile took a walk. — report it as unmapped: {"span": "took a walk",
-"code": "G00"}.
+Not this template. TEXT: Odile took a walk. — use `activity`.
 
 ### activity — An action by an actor, with or without a patient
 
@@ -1006,6 +1010,22 @@ The program renders these instances as:
 Not this template. TEXT: Pieter gave Marisol a flask. — use `transfer`.
 
 Not this template. TEXT: Marisol went to the bazaar. — use `motion`.
+
+Example (a light verb with an event noun — one surface symbol keeping its words, never the noun's verb). TEXT: Odile took a walk.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Odile", "span": "Odile"},
+      {"t": "activity", "id": "v1", "verb": "take_a_walk", "actor": "@n1", "tense": "past", "span": "Odile took a walk"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_odile_1 "Odile")
+    (Member sk_take_a_walk_1 take_a_walk)
+    (Agent sk_take_a_walk_1 sk_odile_1)
+    (Past sk_take_a_walk_1)
 
 ### adjective-complement — A quality adjective with its prepositional complement
 
@@ -2387,7 +2407,8 @@ Not this template:
 - an alleged or so-called predicate — an alleged thief: the adjective does not hold of the
   individual on its own and has no slot yet; report it as unmapped (former, ex- and retired are
   `former`)
-- "there is / there are" — there is a flask: an existential, which is the referent alone
+- "there is / there are" — there is a flask: an existential, which is the referent alone; there
+  is no N … is the negative generalization no N … (the generic template)
 - an adjective with a degree word — is very crooked, was almost full, is tall for a weaver: a
   degree predication, which decides itself whether the property is asserted
 - about to be, due to be — is about to be a father, is due to be in Brackenford: a prospective
@@ -2704,7 +2725,10 @@ drawer holds a key — locates the thing in the container: head LocatedIn, the v
 the preposition, the thing in `thing` and the container in `place`. A DIRECTION FROM A LANDMARK
 (the well is west of the granary) is head DirectionFrom with the compass word in `direction`; a
 distance on it (three miles south of the granary) is a measure on this instance (dimension
-distance; the program mints the state of the fact holding).
+distance; the program mints the state of the fact holding). BEING WITH SOMEONE (the badgers are
+with a stork) is the company a thing is in: head With, the companion in `place`. A PLACE WORD
+with no object (the barrow is outdoors, a blanket left outside) is itself the place: head
+LocatedIn, the word as written in `place` and in `preposition`.
 
 Forms:
 - <thing> is in / at / on / under … <place>
@@ -2717,6 +2741,8 @@ Forms:
 Not this template:
 - the place of an EVENT — laughed in the granary, waited at the hatch: an attachment to that
   event, not a locative
+- in with a garment or a colour on a person or an animal — a stork in a red cap, badgers in blue
+  and grey: what the referent wears, not where it is: the postmodifier template, head In
 - nearby with no place named (a nearby farm): no slot; report it as unmapped
 - a verb of residence or posture — lives in Brackenford, stood by the door, lay on the
   workbench: the verb's own event with a location attachment
@@ -2742,8 +2768,9 @@ Slots:
 - `thing` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
   the thing located: a referent id (a name, a witness, a group).
 - `place` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
-  the place: a referent id (a witness for the workbench, a name for Westmarch) or a bare lemma
-  for a class-level place.
+  the place: a referent id (a witness for the workbench, a name for Westmarch), a bare lemma for
+  a class-level place, or a place word with no object, as written (the barrow is outdoors:
+  outdoors).
 - `place2` (optional; "@id" of a referent instance, or a bare lemma for a non-specific filler):
   with head Between only, the second of the two places (between the granary and the hut: the
   hut); the order as written.
@@ -2751,10 +2778,10 @@ Slots:
   southwest): with head DirectionFrom only, the compass direction of the thing from the place,
   as one word (west of the granary: west; north-east of: northeast).
 - `head` (required; one of: LocatedIn, On, Near, NextTo, By, Under, Over, Above, Below, Behind,
-  InFrontOf, Beside, Between, Outside, Opposite, From, DirectionFrom): LocatedIn for in / at /
-  inside / within; otherwise the preposition itself, capitalized (on → On, under → Under), a
-  multi-word one CamelCased (in front of → InFrontOf, next to → NextTo); From for an origin (is
-  from).
+  InFrontOf, Beside, Alongside, Between, Outside, Opposite, From, With, DirectionFrom):
+  LocatedIn for in / at / inside / within; otherwise the preposition itself, capitalized (on →
+  On, under → Under), a multi-word one CamelCased (in front of → InFrontOf, next to → NextTo);
+  From for an origin (is from); With for company (is with a stork).
 - `preposition` (required; a string): the preposition as written (in, on, under, from …).
 - `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
   not inferred; present for a place phrase inside a noun phrase.
@@ -5098,18 +5125,27 @@ Not this template. TEXT: Badgers sleep. — use `generic`.
 
 When: A prepositional phrase naming the place where the clause's event takes place: in / at / on
 / inside / within a place (laughed in the granary, waited at the hatch, slept on the rug), or
-near / next to / by / under / over / above / below / behind / in front of / beside / outside /
-opposite it, or in a direction from it (fished west of the bridge: head DirectionFrom, the
-compass word in `direction`). The event is parsed with its own template; the location instance
-names that event and the place. One instance per place phrase.
+near / next to / by / under / over / above / below / behind / in front of / beside / alongside /
+outside / opposite it, or in a direction from it (fished west of the bridge: head DirectionFrom,
+the compass word in `direction`). The event is parsed with its own template; the location
+instance names that event and the place. One instance per place phrase. A PLACE WORD with no
+object — outdoors, indoors, outside, inside, nearby, upstairs, downstairs, abroad (slept
+outdoors, waited upstairs) — is itself the place: head Location, the word as written in `place`
+and in `preposition`, never another word for it; when the object is understood from the text
+(opened the barrow and climbed inside), the word is still the place and the understood object is
+not filled in.
 
 Forms:
 - <clause> in / at / on <place>
 - <clause> near / under / behind … <place>
 - <clause> in front of / next to <place>
+- <clause> outdoors / upstairs / inside …
 - <place phrase>, <clause>
 
 Not this template:
+- a word with no object that is not a place — around (splashed around), away (walked away), here
+  and there (they point at the speaker's place), right or high sharpening a place phrase (right
+  at the hatch, high above the barrow): report the word as unmapped (G02)
 - a destination or an origin of a motion — went to the bazaar, came from the granary, entered
   the hut: the motion's goal or source
 - the origin of an acquisition or a transfer — took the envelope from Odile: the source slot of
@@ -5139,8 +5175,9 @@ Slots:
 - `event` (required; "@id" of the predication instance this attaches to): the predication the
   place attaches to: the id of the clause's event instance.
 - `place` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
-  the place: a referent id (a witness for the granary, a name for Brackenford) or a bare lemma
-  for a class-level place (in burrows).
+  the place: a referent id (a witness for the granary, a name for Brackenford), a bare lemma for
+  a class-level place (in burrows), or a place word with no object, as written (outdoors,
+  upstairs).
 - `place2` (optional; "@id" of a referent instance, or a bare lemma for a non-specific filler):
   with head Between only, the second of the two places (slept between the granary and the hut:
   the hut); the order as written.
@@ -5148,9 +5185,9 @@ Slots:
   southwest): with head DirectionFrom only, the compass direction of the thing from the place,
   as one word (west of the granary: west; north-east of: northeast).
 - `head` (required; one of: Location, Near, NextTo, By, Under, Over, Above, Below, Behind,
-  InFrontOf, Beside, Between, Outside, Opposite, DirectionFrom): Location for in / at / on /
-  inside / within; otherwise the preposition itself, capitalized (under → Under), a multi-word
-  one CamelCased (in front of → InFrontOf, next to → NextTo).
+  InFrontOf, Beside, Alongside, Between, Outside, Opposite, DirectionFrom): Location for in / at
+  / on / inside / within; otherwise the preposition itself, capitalized (under → Under), a
+  multi-word one CamelCased (in front of → InFrontOf, next to → NextTo).
 - `preposition` (required; a string): the preposition as written (in, at, under …).
 
 Example (the place attaches to the clause's event). TEXT: Marisol laughed in the granary.
@@ -5487,6 +5524,8 @@ wherever the referent is rendered.
 
 Forms:
 - the <N> with / without <object>
+- a <N> in <garment or colour>
+- a <N> in mid <noun>
 - a <N> about / from / to / for <object>
 - the <N> of <object>
 - a <N> by <author>
@@ -5586,6 +5625,55 @@ Not this template. TEXT: Marisol's blanket — use `witness`.
 
 Not this template. TEXT: Marisol talked about the inspection. — use `oblique`.
 
+### reciprocal — Each other — the roles of a predication pair different members of one group
+
+When: The reciprocal words each other or one another (also after a preposition: with each other,
+at one another) or side by side, after a plural subject. The predication is parsed with its own
+template; the slot the reciprocal fills — a patient, the participant of with, the place of side
+by side (a location, head NextTo) — takes the subject's group id; this instance names the
+predication: its roles pair different members of the group (the badgers groomed each other: each
+groomed another). The predication gets no distribution instance. One instance per reciprocal.
+
+Forms:
+- <plural> V each other / one another
+- <plural> V with each other
+- <plural> V side by side
+
+Not this template:
+- coordinated names — Odile and Henrike thanked each other: no group; one predication per
+  conjunct with the other conjunct in the role (Odile thanked Henrike, Henrike thanked Odile),
+  and no reciprocal instance
+- a plural acting together with no reciprocal word — the storks met, the badgers argued: a
+  predicate that holds only of them together; report the clause as unmapped
+
+Slots:
+
+- `t` (required): "reciprocal"
+- `id` (required; your label for this instance): your label for the reciprocal (rc1, rc2 …).
+- `event` (required; "@id" of the predication instance this attaches to): the predication whose
+  roles pair the members: the id of its event instance.
+- `word` (required; a string): the reciprocal words as written (each other, one another, side by
+  side).
+
+Example. TEXT: The badgers groomed each other.
+
+Instances:
+
+    [
+      {"t": "group", "id": "g1", "class": "badger", "definite": true, "span": "The badgers"},
+      {"t": "activity", "id": "v1", "verb": "groom", "actor": "@g1", "patient": "@g1", "tense": "past", "span": "The badgers groomed each other"},
+      {"t": "reciprocal", "id": "rc1", "event": "@v1", "word": "each other", "span": "each other"}
+    ]
+
+The program renders these instances as:
+
+    (GroupOf sk_group_1 badger)
+    (Member sk_groom_1 groom)
+    (Agent sk_groom_1 sk_group_1)
+    (Patient sk_groom_1 sk_group_1)
+    (Past sk_groom_1)
+    (Reciprocal sk_groom_1)
+
 ### time — The time at which an event takes place
 
 When: A time expression saying when the clause's event takes place: a calendar date or any part
@@ -5611,12 +5699,16 @@ noun's mods) — is an instance with no event. When the time is predicated of an
 the fair took place in May: these verbs have no event of their own), the noun is a witness
 marked eventive, the time attaches to it, and this instance records the clause's tense.
 Coordinated dates (in 1810 and 1811) are one instance each on the event. A NUMBERED WEEK of a
-season or a schedule (in week 5) is `week`, with a year when one is stated.
+season or a schedule (in week 5) is `week`, with a year when one is stated. AN UNDATED TIME
+DESCRIBED BY A NOUN — on a foggy day, on a cold morning — is a time instance with that noun in
+`noun` and its adjectives in `props` and no calendar field; it attaches to the event like any
+time (never a witness marked eventive: a day is a time, not an event).
 
 Forms:
 - <clause> in <year / month>
 - <clause> in the <n>0s / in the <n>th century
 - <clause> on <date / weekday>
+- <clause> on a <adjective> <time noun>
 - <clause> at <clock time>
 - <clause> <deictic>
 - <clause> <named time>
@@ -5668,6 +5760,11 @@ Slots:
   an event (a predication, an eventive witness) for an offset before / after it or for later /
   earlier, when the text states the anchor; the antecedent event or stated time of an anaphoric
   phrase (that evening: the previous clause's event).
+- `noun` (optional; a lemma): the time noun of an undated time described by it (on a foggy day:
+  day; on a cold morning: morning), with its adjectives in props; fill no calendar field beside
+  it.
+- `props` (optional; a list of lemmas): the adjectives on an undated time's noun, each a lemma
+  (a foggy day: foggy).
 - `name` (optional; a lemma): a time named by a word or a fixed phrase that no deictic word
   covers, lowercase, joined with underscores: dawn, dusk, morning, afternoon, evening, night,
   spring, summer, autumn, winter, later, this_morning; fill no field beside it.
@@ -6132,6 +6229,9 @@ Not this template:
 - a size or a measure of the group — are three in number, weigh ten kilos together: a property
   of the whole
 - a class as the subject — badgers are curious: a statement about the class, there is no group
+- a reciprocal — the badgers groomed each other, two storks waded side by side: the group fills
+  both roles and the reciprocal template marks the event; distributing would make each member
+  act on itself
 
 Slots:
 
@@ -6362,7 +6462,15 @@ however many ranges it has. An object that is itself a bare class (badgers eat m
 spin webs) is a bare lemma filler of the predication: the rule says an arbitrary badger eats
 mice. A condition under which the generalization holds (badgers bite when cornered, putty
 softens when wet) is a predication over the range — a copular instance for the state — listed in
-`condition`.
+`condition`. A NEGATED EXISTENTIAL — there is no N …, there are no Ns … — is the clause no N … :
+there is no badger sleeping on the barrow is no badger is sleeping on the barrow, so this
+template with a range over N with quantifier no (the noun's own adjectives and nouns on it),
+each predication after the noun that nothing satisfies (a participle, a place phrase) parsed
+with its template — a participle with aspect progressive, as in no badger is sleeping — the
+range its filler, and listed in `over` (several make one conjunction the rule denies as a
+whole), a relative clause on the noun a `condition` as in any generalization; an adjective after
+the noun (there is no badger awake) is a class statement, as no badger is awake would be. Never
+a witness with a negation over its predications: that would say that some N does not ….
 
 Not this template:
 - a copular predicate — all badgers are curious, most storks are patient: a class statement,

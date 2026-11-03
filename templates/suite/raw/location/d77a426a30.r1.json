@@ -1,0 +1,94 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "21f023233de2b35539bf800234dc3865601645a4534322d5456df6d8ea37be25",
+  "item": {
+    "id": "sd77a426a30",
+    "text": "Ilse waited alongside the canal."
+  },
+  "usage": {
+    "input": 108812,
+    "output": 182,
+    "thinking": null,
+    "total": 108994,
+    "cached": null,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 108812,
+    "candidatesTokenCount": 182,
+    "totalTokenCount": 108994,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 108812
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 182
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sd77a426a30\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ilse\", \"span\": \"Ilse\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"canal\", \"definite\": true, \"span\": \"the canal\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"wait\", \"actor\": \"@n1\", \"tense\": \"past\", \"span\": \"Ilse waited\"}, {\"t\": \"location\", \"id\": \"l1\", \"event\": \"@e1\", \"place\": \"@x1\", \"head\": \"Alongside\", \"preposition\": \"alongside\", \"span\": \"alongside the canal\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sd77a426a30",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Ilse",
+        "span": "Ilse"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "canal",
+        "definite": true,
+        "span": "the canal"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "wait",
+        "actor": "@n1",
+        "tense": "past",
+        "span": "Ilse waited"
+      },
+      {
+        "t": "location",
+        "id": "l1",
+        "event": "@e1",
+        "place": "@x1",
+        "head": "Alongside",
+        "preposition": "alongside",
+        "span": "alongside the canal"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "60dcc155849c898de4da7c4be89215a42826d2ea4dce2ae063f69218ae2a39dc",
+  "manifest_id": "c837af642edf",
+  "run": 1,
+  "case": {
+    "template": "location",
+    "section": "held_out",
+    "index": 6,
+    "category": "positive",
+    "text": "Ilse waited alongside the canal.",
+    "key": "d77a426a30"
+  }
+}

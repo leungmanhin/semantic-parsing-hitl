@@ -41,11 +41,15 @@ trigger:
     on Monday, the fair took place in May: these verbs have no event of their own), the noun is a witness
     marked eventive, the time attaches to it, and this instance records the clause's tense.
     Coordinated dates (in 1810 and 1811) are one instance each on the event. A NUMBERED WEEK of a
-    season or a schedule (in week 5) is `week`, with a year when one is stated.
+    season or a schedule (in week 5) is `week`, with a year when one is stated. AN UNDATED TIME
+    DESCRIBED BY A NOUN — on a foggy day, on a cold morning — is a time instance with that noun in
+    `noun` and its adjectives in `props` and no calendar field; it attaches to the event like any
+    time (never a witness marked eventive: a day is a time, not an event).
   surface_forms:
     - "<clause> in <year / month>"                   # arrived in 2019; left in May
     - "<clause> in the <n>0s / in the <n>th century"   # a decade by its first year (the 1880s → 1880), a century by its number
     - "<clause> on <date / weekday>"                 # baked a bun on 3 May 2019; sold the bobbin on Monday
+    - "<clause> on a <adjective> <time noun>"        # slept on a foggy day: noun day, props [foggy]
     - "<clause> at <clock time>"                     # left at 3 pm; arrived at noon
     - "<clause> <deictic>"                           # laughed yesterday; will leave tomorrow; left last week
     - "<clause> <named time>"                        # slept at night; sang at dawn
@@ -89,6 +93,10 @@ slots:
             doc: "with a weekday, the week it falls in relative to the moment the text speaks from (last / this / next Wednesday: the week before, this week, the week after), with the anchor"}
   anchor:  {type: filler, class: TimeTerm, required: false, default: "@now",
             doc: "what a deictic or an offset is relative to: \"@now\" (the reserved id; the program supplies the instance) for a deictic and for ago / from now / in n units; the id of a time instance or of an event (a predication, an eventive witness) for an offset before / after it or for later / earlier, when the text states the anchor; the antecedent event or stated time of an anaphoric phrase (that evening: the previous clause's event)"}
+  noun:    {type: lemma, class: Class, required: false,
+            doc: "the time noun of an undated time described by it (on a foggy day: day; on a cold morning: morning), with its adjectives in props; fill no calendar field beside it"}
+  props:   {type: list, class: Class, required: false,
+            doc: "the adjectives on an undated time's noun, each a lemma (a foggy day: foggy)"}
   name:    {type: lemma, class: TimeTerm, required: false,
             doc: "a time named by a word or a fixed phrase that no deictic word covers, lowercase, joined with underscores: dawn, dusk, morning, afternoon, evening, night, spring, summer, autumn, winter, later, this_morning; fill no field beside it"}
   offset:  {type: number, required: false,
@@ -209,6 +217,10 @@ emits:
     declare: {century: Class}
   - atom: "(Member @id {unit})"                            # an offset: the unit it is counted in
     if_filled: offset
+  - atom: "(Member @id {noun})"                            # an undated time described by its noun: a day
+    if_filled: noun
+  - atom: "(Member @id {props})"                           # and by its adjectives: foggy
+    each: props
   - atom: "(Past {event})"
     if_filled: event
     when: "tense == past"
@@ -295,6 +307,13 @@ examples:
       expected: {abstain: true, template: location}                   # a place
 
   held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      note: an undated time described by a noun and an adjective — a time instance, never an eventive witness
+      text: "Teodor sang on a rainy day."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: activity, id: v1, verb: sing, actor: "@n1", tense: past}
+        - {t: time, id: t1, event: "@v1", noun: day, props: [rainy]}
     - category: positive
       note: a deictic time on a copular clause — the state of the fact holding is minted and carries the time
       text: "Yusra was tired yesterday."

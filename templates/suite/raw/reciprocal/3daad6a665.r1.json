@@ -1,0 +1,102 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "2ced495766491831a53ca775f2d7a2fcec486267b7f4101eab269173dbf43b86",
+  "item": {
+    "id": "s3daad6a665",
+    "text": "The herons squabbled with one another."
+  },
+  "usage": {
+    "input": 109712,
+    "output": 191,
+    "thinking": null,
+    "total": 109903,
+    "cached": 107608,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 109712,
+    "candidatesTokenCount": 191,
+    "totalTokenCount": 109903,
+    "cachedContentTokenCount": 107608,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 109712
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 107608
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 191
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s3daad6a665\", \"instances\": [{\"t\": \"group\", \"id\": \"g1\", \"class\": \"heron\", \"definite\": true, \"span\": \"The herons\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"squabble\", \"actor\": \"@g1\", \"tense\": \"past\", \"span\": \"The herons squabbled\"}, {\"t\": \"adjunct\", \"id\": \"a1\", \"event\": \"@e1\", \"participant\": \"@g1\", \"head\": \"CoAgent\", \"preposition\": \"with\", \"span\": \"with one another\"}, {\"t\": \"reciprocal\", \"id\": \"rc1\", \"event\": \"@e1\", \"word\": \"one another\", \"span\": \"one another\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s3daad6a665",
+    "instances": [
+      {
+        "t": "group",
+        "id": "g1",
+        "class": "heron",
+        "definite": true,
+        "span": "The herons"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "squabble",
+        "actor": "@g1",
+        "tense": "past",
+        "span": "The herons squabbled"
+      },
+      {
+        "t": "adjunct",
+        "id": "a1",
+        "event": "@e1",
+        "participant": "@g1",
+        "head": "CoAgent",
+        "preposition": "with",
+        "span": "with one another"
+      },
+      {
+        "t": "reciprocal",
+        "id": "rc1",
+        "event": "@e1",
+        "word": "one another",
+        "span": "one another"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "7ab2226c67a2b0b4b4950da1a006f81f06b0c4735649c9d8c2d0832954e83f0a",
+  "manifest_id": "3a52b3358252",
+  "run": 1,
+  "case": {
+    "template": "reciprocal",
+    "section": "held_out",
+    "index": 1,
+    "category": "positive",
+    "text": "The herons squabbled with one another.",
+    "key": "3daad6a665"
+  }
+}

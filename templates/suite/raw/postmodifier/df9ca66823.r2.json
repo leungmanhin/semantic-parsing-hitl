@@ -1,0 +1,103 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "21f023233de2b35539bf800234dc3865601645a4534322d5456df6d8ea37be25",
+  "item": {
+    "id": "sdf9ca66823",
+    "text": "The glazier in a blue coat laughed."
+  },
+  "usage": {
+    "input": 108812,
+    "output": 184,
+    "thinking": null,
+    "total": 108996,
+    "cached": 106763,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 108812,
+    "candidatesTokenCount": 184,
+    "totalTokenCount": 108996,
+    "cachedContentTokenCount": 106763,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 108812
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 106763
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 184
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sdf9ca66823\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"glazier\", \"definite\": true, \"span\": \"The glazier\"}, {\"t\": \"witness\", \"id\": \"x2\", \"class\": \"coat\", \"props\": [\"blue\"], \"span\": \"a blue coat\"}, {\"t\": \"postmodifier\", \"id\": \"a1\", \"noun\": \"@x1\", \"head\": \"In\", \"object\": \"@x2\", \"span\": \"in a blue coat\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"laugh\", \"actor\": \"@x1\", \"tense\": \"past\", \"span\": \"The glazier in a blue coat laughed\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sdf9ca66823",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "glazier",
+        "definite": true,
+        "span": "The glazier"
+      },
+      {
+        "t": "witness",
+        "id": "x2",
+        "class": "coat",
+        "props": [
+          "blue"
+        ],
+        "span": "a blue coat"
+      },
+      {
+        "t": "postmodifier",
+        "id": "a1",
+        "noun": "@x1",
+        "head": "In",
+        "object": "@x2",
+        "span": "in a blue coat"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "laugh",
+        "actor": "@x1",
+        "tense": "past",
+        "span": "The glazier in a blue coat laughed"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "60dcc155849c898de4da7c4be89215a42826d2ea4dce2ae063f69218ae2a39dc",
+  "manifest_id": "c837af642edf",
+  "run": 2,
+  "case": {
+    "template": "postmodifier",
+    "section": "held_out",
+    "index": 0,
+    "category": "positive",
+    "text": "The glazier in a blue coat laughed.",
+    "key": "df9ca66823"
+  }
+}

@@ -27,7 +27,10 @@ trigger:
     preposition, the thing in `thing` and the container in `place`. A DIRECTION FROM A LANDMARK
     (the well is west of the granary) is head DirectionFrom with the compass word in `direction`;
     a distance on it (three miles south of the granary) is a measure on this instance (dimension
-    distance; the program mints the state of the fact holding).
+    distance; the program mints the state of the fact holding). BEING WITH SOMEONE (the badgers are
+    with a stork) is the company a thing is in: head With, the companion in `place`. A PLACE WORD with no object (the
+    barrow is outdoors, a blanket left outside) is itself the place: head LocatedIn, the word as
+    written in `place` and in `preposition`.
   surface_forms:
     - "<thing> is in / at / on / under … <place>"     # the ledger is on the workbench
     - "there is <thing> <place phrase>"               # there is a trowel on the workbench
@@ -39,6 +42,9 @@ trigger:
     - >-
       the place of an EVENT — laughed in the granary, waited at the hatch: an attachment to that
       event, not a locative
+    - >-
+      in with a garment or a colour on a person or an animal — a stork in a red cap, badgers in
+      blue and grey: what the referent wears, not where it is: the postmodifier template, head In
     - >-
       nearby with no place named (a nearby farm): no slot; report it as unmapped
     - >-
@@ -71,13 +77,13 @@ slots:
   thing:       {type: filler, class: Entity, required: true,
                 doc: "the thing located: a referent id (a name, a witness, a group)"}
   place:       {type: filler, class: Entity, required: true,
-                doc: "the place: a referent id (a witness for the workbench, a name for Westmarch) or a bare lemma for a class-level place"}
+                doc: "the place: a referent id (a witness for the workbench, a name for Westmarch), a bare lemma for a class-level place, or a place word with no object, as written (the barrow is outdoors: outdoors)"}
   place2:      {type: filler, class: Entity, required: false, only_when: "head == Between",
                 doc: "with head Between only, the second of the two places (between the granary and the hut: the hut); the order as written"}
   direction:   {type: enum, class: Class, values: [north, south, east, west, northeast, northwest, southeast, southwest], required: false, only_when: "head == DirectionFrom",
                 doc: "with head DirectionFrom only, the compass direction of the thing from the place, as one word (west of the granary: west; north-east of: northeast)"}
-  head:        {type: enum, values: [LocatedIn, "On", Near, NextTo, By, Under, Over, Above, Below, Behind, InFrontOf, Beside, Between, Outside, Opposite, From, DirectionFrom], required: true,
-                doc: "LocatedIn for in / at / inside / within; otherwise the preposition itself, capitalized (on → On, under → Under), a multi-word one CamelCased (in front of → InFrontOf, next to → NextTo); From for an origin (is from)"}
+  head:        {type: enum, values: [LocatedIn, "On", Near, NextTo, By, Under, Over, Above, Below, Behind, InFrontOf, Beside, Alongside, Between, Outside, Opposite, From, With, DirectionFrom], required: true,
+                doc: "LocatedIn for in / at / inside / within; otherwise the preposition itself, capitalized (on → On, under → Under), a multi-word one CamelCased (in front of → InFrontOf, next to → NextTo); From for an origin (is from); With for company (is with a stork)"}
   preposition: {type: string, required: true, doc: "the preposition as written (in, on, under, from …)"}
   tense:       {type: enum, values: [past, present, future], required: true,
                 doc: "the clause's tense; present is recorded, not inferred; present for a place phrase inside a noun phrase"}
@@ -152,6 +158,13 @@ examples:
 
   held_out:                  # tests; never rendered into the prompt
     - category: positive
+      note: being with someone — the company a thing is in, head With
+      text: "Yusra was with a potter."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, class: potter}
+        - {t: locative, id: l1, thing: "@n1", place: "@x1", head: With, preposition: with, tense: past}
+    - category: positive
       note: a container verb — the thing is in the container, the verb recorded as the preposition
       text: "The box contains a letter."
       instances:
@@ -214,6 +227,12 @@ examples:
         - {t: witness, id: x1, class: anvil, definite: true}
         - {t: witness, id: x2, class: stove, definite: true}
         - {t: locative, id: l1, thing: "@x1", place: "@x2", head: NextTo, preposition: "next to", tense: present}
+    - category: positive
+      note: a place word with no object — the word itself is the place, LocatedIn
+      text: "The ferret is outdoors."
+      instances:
+        - {t: witness, id: x1, class: ferret, definite: true}
+        - {t: locative, id: l1, thing: "@x1", place: outdoors, head: LocatedIn, preposition: outdoors, tense: present}
     - category: positive
       note: a named thing
       text: "Teodor is in the barn."

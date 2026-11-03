@@ -2,7 +2,7 @@
 
 Generated from `templates/atom-type-substrates.json` (schema `atom-type-substrates/1`) by `templates/tmpl/gen_substrate.py`, together with `templates/generated/atom-types.metta`. Do not edit by hand; regenerate with `cd templates && python -m tmpl.gen_substrate`.
 
-165 heads in 14 kinds (7 proposed; 165 with a reviewed type declaration so far). `type-def` is the PeTTa declaration emitted for the head; `?` as the output type means the head is not yet reviewed and is absent from the `.metta` file; `%Undefined%` marks a position the head takes but the JSON does not type.
+166 heads in 14 kinds (7 proposed; 166 with a reviewed type declaration so far). `type-def` is the PeTTa declaration emitted for the head; `?` as the output type means the head is not yet reviewed and is absent from the `.metta` file; `%Undefined%` marks a position the head takes but the JSON does not type.
 
 Every atom is carried as a statement (: <proof-name> <atom> <tv>), tv = (STV strength confidence) or another engine truth value. The carrier is not an atom kind: ':' is never type-declared (it is also PeTTa's type-declaration head) and the truth value is declared by the engine, not by this substrate.
 
@@ -93,7 +93,7 @@ type-def: (: Xor (-> Proposition Proposition Proposition))
 gloss: Exclusive disjunction: exactly one of two disjuncts holds.
 
 
-## role (17)
+## role (18)
 
 head: Agent
 kind: role
@@ -184,6 +184,13 @@ kind: role
 arity: 2
 type-def: (: Recipient (-> Event Entity Proposition))
 gloss: Goal of a transfer (indirect object / 'to'); the addressee of a communication. A compound-action class symbol under the compound decomposition ((Patient use_crosswalk crosswalk)) is declared both Class and Event.
+
+
+head: Reciprocal
+kind: role
+arity: 1
+type-def: (: Reciprocal (-> Event Proposition))
+gloss: Marks an eventuality whose roles one group fills pair DIFFERENT members of it (each other, one another, side by side): (Reciprocal sk_groom_1) with (Agent sk_groom_1 g) (Patient sk_groom_1 g) — each member groomed another, never itself and never the group as a whole. The predication is not distributed.
 
 
 head: Source
@@ -1225,7 +1232,7 @@ Heads the prompt licenses generically; the validator checks position and arity o
 - head of a nominalization class-relation, e.g. (Build dam_builder dam)
 - skolem-function head (sk_<verb>) in a scope construction, e.g. (sk_y $x)
 
-Oblique prepositions (70), all declared `(-> Instance|Class Instance|Class|Proposition Proposition)`: About, Above, Across, After, Against, Along, Among, Around, As, At, BecauseOf, Before, Behind, Below, Beneath, Beside, Besides, Between, Beyond, But, By, Concerning, Despite, Down, DueTo, During, Except, For, From, In, InFrontOf, InSpiteOf, Inside, Into, Like, Near, NextTo, Of, Off, On, OnAccountOf, Onto, Opposite, Out, Outside, Over, OwingTo, Past, Per, Regarding, Round, Since, Than, ThanksTo, Through, Throughout, Till, To, Toward, Towards, Under, Underneath, Unlike, Until, Up, Upon, Via, With, Within, Without.
+Oblique prepositions (71), all declared `(-> Instance|Class Instance|Class|Proposition Proposition)`: About, Above, Across, After, Against, Along, Alongside, Among, Around, As, At, BecauseOf, Before, Behind, Below, Beneath, Beside, Besides, Between, Beyond, But, By, Concerning, Despite, Down, DueTo, During, Except, For, From, In, InFrontOf, InSpiteOf, Inside, Into, Like, Near, NextTo, Of, Off, On, OnAccountOf, Onto, Opposite, Out, Outside, Over, OwingTo, Past, Per, Regarding, Round, Since, Than, ThanksTo, Through, Throughout, Till, To, Toward, Towards, Under, Underneath, Unlike, Until, Up, Upon, Via, With, Within, Without.
 
 ## notes
 
