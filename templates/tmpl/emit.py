@@ -856,6 +856,8 @@ class _Emitter:
         r = self.by_id[iid]
         t = self.cat[r["t"]]
         terms = []
+        if iid in getattr(self, "description_only", ()):   # a time that is only a modifier's description
+            return terms
         on_demand = self.state_mode and self.is_on_demand(iid)
         for e in t.get("emits") or []:
             if e.get("within"):                          # rendered inside that slot's bundle, see within_terms
@@ -1160,6 +1162,8 @@ class _Emitter:
 
     def declarations(self) -> list[str]:
         for r in self.insts:
+            if r["id"] in getattr(self, "description_only", ()):   # emits nothing, so declares nothing
+                continue
             t = self.cat[r["t"]]
             m = t.get("mints")
             if m and r["id"] in self.sym:
@@ -1229,6 +1233,25 @@ class _Emitter:
             return True
         return False
 
+    def compute_description_only(self):
+        """The times that are only a description: a year before a noun (a 1923 tractor narrows to
+        ``(Narrow tractor (Mod (Year 1923)))``) or a period as a comparison class (``Within``), with
+        no event of their own and named by no other slot. Their own atoms would describe a time
+        nothing refers to, so they emit none."""
+        desc_uses, sym_uses = {}, {}
+        for r in self.insts:
+            t = self.cat[r["t"]]
+            within = (t.get("narrowing") or {}).get("within")
+            for sname, spec in (t.get("slots") or {}).items():
+                vals = r.get(sname)
+                for v in (vals if isinstance(vals, list) else [vals]):
+                    if is_ref(v):
+                        uses = desc_uses if (spec.get("type") == "list" and spec.get("ids")) or sname == within else sym_uses
+                        uses[v[1:]] = uses.get(v[1:], 0) + 1
+        self.description_only = {r["id"] for r in self.insts
+                                 if self.cat[r["t"]].get("period") and r.get("event") in (None, "")
+                                 and desc_uses.get(r["id"]) and not sym_uses.get(r["id"])}
+
     def run(self) -> dict:
         self.prepare()
         problems = self.check()
@@ -1236,6 +1259,7 @@ class _Emitter:
             raise EmitError(problems)
         self.assign_symbols()
         self.compute_homes()
+        self.compute_description_only()
         self.compute_antecedents()
         self.compute_narrowing()
         for r in self.insts:

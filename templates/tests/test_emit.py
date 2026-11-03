@@ -264,6 +264,19 @@ class EmitTests(unittest.TestCase):
             E.emit({"id": "b", "instances": bad}, CATALOG)
         self.assertTrue(any("boolean where a word is expected" in p for p in cm.exception.args[0]))
 
+    def test_a_year_before_a_noun_is_only_its_description(self):
+        """A time that only narrows a noun (a 1923 tractor) emits and declares nothing of its own;
+        a time another instance names as itself (since 2019) keeps its atoms."""
+        tractor = next(ex for _, _, ex in all_examples() if ex["text"] == "Bram sold a 1923 tractor.")
+        out = E.emit({"id": "t", "instances": [dict(i) for i in tractor["instances"]]}, CATALOG)
+        atoms = atoms_of(out["statements"])
+        self.assertIn("(Member sk_tractor_1 (Narrow tractor (Mod (Year 1923))))", atoms)
+        self.assertEqual([a for a in atoms if "sk_time" in a], [])
+        self.assertEqual([d for d in out["declarations"] if "sk_time" in d], [])
+        since = next(ex for _, _, ex in all_examples() if ex["text"] == "Yusra has worked at the mill since 2019.")
+        atoms = atoms_of(E.emit({"id": "t", "instances": [dict(i) for i in since["instances"]]}, CATALOG)["statements"])
+        self.assertIn("(Year sk_time_1 2019)", atoms)
+
     def test_time_attaches_names_are_constants_and_eventive_witnesses_are_events(self):
         def example(tid, text):
             t = CATALOG[tid]

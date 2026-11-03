@@ -17,13 +17,15 @@ trigger:
   construction: >
     A prepositional phrase naming the place where the clause's event takes place: in / at / on /
     inside / within a place (laughed in the granary, waited at the hatch, slept on the rug), or
-    near / by / under / over / above / below / behind / beside / outside / opposite it, or in a
+    near / next to / by / under / over / above / below / behind / in front of / beside / outside /
+    opposite it, or in a
     direction from it (fished west of the bridge: head DirectionFrom, the compass word in
     `direction`). The event is parsed with its own template; the location instance names that
     event and the place. One instance per place phrase.
   surface_forms:
     - "<clause> in / at / on <place>"                 # Marisol laughed in the granary
     - "<clause> near / under / behind … <place>"      # the badger slept under the barrow
+    - "<clause> in front of / next to <place>"        # Odile sang in front of the hut: InFrontOf
     - "<place phrase>, <clause>"                      # In the granary, Odile laughed
   boundary:                   # looks like the place of an event but is not one
     - >-
@@ -67,8 +69,8 @@ slots:
                 doc: "with head Between only, the second of the two places (slept between the granary and the hut: the hut); the order as written"}
   direction:   {type: enum, class: Class, values: [north, south, east, west, northeast, northwest, southeast, southwest], required: false, only_when: "head == DirectionFrom",
                 doc: "with head DirectionFrom only, the compass direction of the thing from the place, as one word (west of the granary: west; north-east of: northeast)"}
-  head:        {type: enum, values: [Location, Near, By, Under, Over, Above, Below, Behind, Beside, Between, Outside, Opposite, DirectionFrom], required: true,
-                doc: "Location for in / at / on / inside / within; otherwise the preposition itself, capitalized (under → Under)"}
+  head:        {type: enum, values: [Location, Near, NextTo, By, Under, Over, Above, Below, Behind, InFrontOf, Beside, Between, Outside, Opposite, DirectionFrom], required: true,
+                doc: "Location for in / at / on / inside / within; otherwise the preposition itself, capitalized (under → Under), a multi-word one CamelCased (in front of → InFrontOf, next to → NextTo)"}
   preposition: {type: string, required: true, doc: "the preposition as written (in, at, under …)"}
 
 emits:
@@ -168,6 +170,14 @@ examples:
         - {t: witness, id: x1, class: shed, definite: true}
         - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past}
         - {t: location, id: l1, event: "@v1", place: "@x1", head: Behind, preposition: behind}
+    - category: positive
+      note: a multi-word preposition — its words CamelCased as the head
+      text: "Ines waited in front of the forge."
+      instances:
+        - {t: named-entity, id: n1, name: "Ines"}
+        - {t: witness, id: x1, class: forge, definite: true}
+        - {t: activity, id: v1, verb: wait, actor: "@n1", tense: past}
+        - {t: location, id: l1, event: "@v1", place: "@x1", head: InFrontOf, preposition: "in front of"}
     - category: positive
       text: "Ottoline sang near the barn."
       instances:

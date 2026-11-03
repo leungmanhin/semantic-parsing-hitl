@@ -76,8 +76,8 @@ slots:
                 doc: "with head Between only, the second of the two places (between the granary and the hut: the hut); the order as written"}
   direction:   {type: enum, class: Class, values: [north, south, east, west, northeast, northwest, southeast, southwest], required: false, only_when: "head == DirectionFrom",
                 doc: "with head DirectionFrom only, the compass direction of the thing from the place, as one word (west of the granary: west; north-east of: northeast)"}
-  head:        {type: enum, values: [LocatedIn, "On", Near, By, Under, Over, Above, Below, Behind, Beside, Between, Outside, Opposite, From, DirectionFrom], required: true,
-                doc: "LocatedIn for in / at / inside / within; otherwise the preposition itself, capitalized (on → On, under → Under); From for an origin (is from)"}
+  head:        {type: enum, values: [LocatedIn, "On", Near, NextTo, By, Under, Over, Above, Below, Behind, InFrontOf, Beside, Between, Outside, Opposite, From, DirectionFrom], required: true,
+                doc: "LocatedIn for in / at / inside / within; otherwise the preposition itself, capitalized (on → On, under → Under), a multi-word one CamelCased (in front of → InFrontOf, next to → NextTo); From for an origin (is from)"}
   preposition: {type: string, required: true, doc: "the preposition as written (in, on, under, from …)"}
   tense:       {type: enum, values: [past, present, future], required: true,
                 doc: "the clause's tense; present is recorded, not inferred; present for a place phrase inside a noun phrase"}
@@ -207,6 +207,13 @@ examples:
         - {t: witness, id: x1, class: barn, definite: true}
         - {t: witness, id: x2, class: market, definite: true}
         - {t: locative, id: l1, thing: "@x1", place: "@x2", head: Near, preposition: near, tense: present}
+    - category: positive
+      note: next to — a multi-word preposition, its words CamelCased as the head
+      text: "The anvil is next to the stove."
+      instances:
+        - {t: witness, id: x1, class: anvil, definite: true}
+        - {t: witness, id: x2, class: stove, definite: true}
+        - {t: locative, id: l1, thing: "@x1", place: "@x2", head: NextTo, preposition: "next to", tense: present}
     - category: positive
       note: a named thing
       text: "Teodor is in the barn."

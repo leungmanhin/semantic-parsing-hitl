@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
+  "prompt_sha256": "1be5efdd2477bc9e0440efb160095f8406deb2dbd7be2646a82aee2ecaa7cb50",
   "item": {
     "id": "s72d070cb57",
     "text": "Teodor won the race."
   },
   "usage": {
-    "input": 56506,
-    "output": 92,
+    "input": 108048,
+    "output": 90,
     "thinking": null,
-    "total": 56598,
-    "cached": 54456,
+    "total": 108138,
+    "cached": 105946,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -22,33 +22,34 @@
     "responseMimeType": "application/json",
     "thinkingConfig": {
       "thinkingLevel": "LOW"
-    }
+    },
+    "service_tier": "flex"
   },
   "raw_usage": {
-    "promptTokenCount": 56506,
-    "candidatesTokenCount": 92,
-    "totalTokenCount": 56598,
-    "cachedContentTokenCount": 54456,
+    "promptTokenCount": 108048,
+    "candidatesTokenCount": 90,
+    "totalTokenCount": 108138,
+    "cachedContentTokenCount": 105946,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 56506
+        "tokenCount": 108048
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 54456
+        "tokenCount": 105946
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 92
+        "tokenCount": 90
       }
     ]
   },
-  "raw_text": "{\"id\": \"s72d070cb57\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}], \"unmapped\": [{\"span\": \"won the race\", \"code\": \"G00\", \"construction\": \"Verb of winning with a contest or activity as the object.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"s72d070cb57\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}], \"unmapped\": [{\"span\": \"won the race\", \"code\": \"G00\", \"construction\": \"Win with a contest or activity as the object.\"}], \"issues\": []}",
   "response": {
     "id": "s72d070cb57",
     "instances": [
@@ -63,12 +64,13 @@
       {
         "span": "won the race",
         "code": "G00",
-        "construction": "Verb of winning with a contest or activity as the object."
+        "construction": "Win with a contest or activity as the object."
       }
     ],
     "issues": []
   },
-  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
+  "prompt_body_sha256": "6db98205165022739f2b6854255a326f43efedb63c672823e0e85acaeafaa21b",
+  "manifest_id": "1c2fe9f8d36d",
   "run": 1,
   "case": {
     "template": "acquisition",

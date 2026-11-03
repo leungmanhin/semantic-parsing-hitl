@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 243e3aa0545a9924 · 59 templates
+catalog sha256 513045ba4dbb0101 · 59 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -212,8 +212,11 @@ fences.
   is the person's life: a birth on the first date, as above, and a death on the second — the
   change-of-state verb die, the person the undergoer —, both past (the bracket stands for was
   born … and died …); died alone (died 1866) is the death. A range after an office or a reign
-  (the warden (1990–1994)) dates that holding: a start and an end (the time-relation template);
-  a lone year after a work's title stays unmapped (G00).
+  (the warden (1990–1994)) dates that holding: a start and an end (the time-relation template).
+  A lone year in brackets right after a WORK'S title (Tidewater (1932) is a ballad) is the year
+  the work came into being: the creation template with the verb create, the work the thing made,
+  no maker, tense past, the year a time instance on that event (the bracket stands for was
+  created in …).
 - NAMES in the bracket — a birth name (born Saskia Moreau), a maiden name (née Moreau), the name
   in another language or script (Russian: Рен Эшби) — are more names of the same individual: the
   named entity's `aliases`, as written, without the language. A pronunciation (a phonetic
@@ -831,8 +834,9 @@ Not this template:
   nothing is acquired
 - get as become — got tired, got wet: a change of state; get with a verb phrase on its object —
   got Odile to send the blanket: a causative; nothing is acquired either way
-- win or earn with a contest or an activity as the object — won the race: nothing changes hands;
-  with a prize or a sum as the object it is an acquisition
+- win or earn with a contest or an activity as the object — won the regatta, won the vote:
+  nothing changes hands and no template covers it yet, so report the phrase as unmapped (G00);
+  with a prize or a sum as the object (won a cup, earned forty florins) it is an acquisition
 - the price — bought the blanket for forty florins: the amount is never the object; it is a
   measure on the event (the measure template) while the acquisition is parsed
 
@@ -2746,9 +2750,10 @@ Slots:
 - `direction` (optional; one of: north, south, east, west, northeast, northwest, southeast,
   southwest): with head DirectionFrom only, the compass direction of the thing from the place,
   as one word (west of the granary: west; north-east of: northeast).
-- `head` (required; one of: LocatedIn, On, Near, By, Under, Over, Above, Below, Behind, Beside,
-  Between, Outside, Opposite, From, DirectionFrom): LocatedIn for in / at / inside / within;
-  otherwise the preposition itself, capitalized (on → On, under → Under); From for an origin (is
+- `head` (required; one of: LocatedIn, On, Near, NextTo, By, Under, Over, Above, Below, Behind,
+  InFrontOf, Beside, Between, Outside, Opposite, From, DirectionFrom): LocatedIn for in / at /
+  inside / within; otherwise the preposition itself, capitalized (on → On, under → Under), a
+  multi-word one CamelCased (in front of → InFrontOf, next to → NextTo); From for an origin (is
   from).
 - `preposition` (required; a string): the preposition as written (in, on, under, from …).
 - `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
@@ -5093,14 +5098,15 @@ Not this template. TEXT: Badgers sleep. — use `generic`.
 
 When: A prepositional phrase naming the place where the clause's event takes place: in / at / on
 / inside / within a place (laughed in the granary, waited at the hatch, slept on the rug), or
-near / by / under / over / above / below / behind / beside / outside / opposite it, or in a
-direction from it (fished west of the bridge: head DirectionFrom, the compass word in
-`direction`). The event is parsed with its own template; the location instance names that event
-and the place. One instance per place phrase.
+near / next to / by / under / over / above / below / behind / in front of / beside / outside /
+opposite it, or in a direction from it (fished west of the bridge: head DirectionFrom, the
+compass word in `direction`). The event is parsed with its own template; the location instance
+names that event and the place. One instance per place phrase.
 
 Forms:
 - <clause> in / at / on <place>
 - <clause> near / under / behind … <place>
+- <clause> in front of / next to <place>
 - <place phrase>, <clause>
 
 Not this template:
@@ -5141,9 +5147,10 @@ Slots:
 - `direction` (optional; one of: north, south, east, west, northeast, northwest, southeast,
   southwest): with head DirectionFrom only, the compass direction of the thing from the place,
   as one word (west of the granary: west; north-east of: northeast).
-- `head` (required; one of: Location, Near, By, Under, Over, Above, Below, Behind, Beside,
-  Between, Outside, Opposite, DirectionFrom): Location for in / at / on / inside / within;
-  otherwise the preposition itself, capitalized (under → Under).
+- `head` (required; one of: Location, Near, NextTo, By, Under, Over, Above, Below, Behind,
+  InFrontOf, Beside, Between, Outside, Opposite, DirectionFrom): Location for in / at / on /
+  inside / within; otherwise the preposition itself, capitalized (under → Under), a multi-word
+  one CamelCased (in front of → InFrontOf, next to → NextTo).
 - `preposition` (required; a string): the preposition as written (in, at, under …).
 
 Example (the place attaches to the clause's event). TEXT: Marisol laughed in the granary.
@@ -5328,8 +5335,9 @@ Not this template:
 - a gerund clause as the object — without saying a word, by working hard: not yet (without
   denies the event, by asserts it: a scope question); report the phrase as unmapped; a gerund
   after a temporal preposition — after leaving: a time relation
-- a multi-word preposition that is neither a cause nor a concession — instead of Odile, on
-  behalf of Marisol, in front of the hut: no head yet; report the phrase as unmapped
+- a multi-word preposition that is neither a cause nor a concession nor a place — instead of
+  Odile, on behalf of Marisol: no head yet; report the phrase as unmapped (in front of and next
+  to name places: the location or the locative template)
 - due to with a verb — is due to arrive: the clause's prospective aspect (due_to), not a cause
 - the price or the exchange of a transfer — sold the bobbin for forty florins: a measure, no
   slot here; report the phrase as unmapped

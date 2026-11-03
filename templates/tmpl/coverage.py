@@ -19,6 +19,7 @@ from __future__ import annotations
 
 import argparse
 import collections
+import concurrent.futures
 import glob
 import json
 import os
@@ -26,6 +27,8 @@ import random
 import re
 import statistics
 import sys
+import threading
+import time
 
 from . import catalog as CAT, manifest as MF, suite as S, validate as V
 
@@ -52,6 +55,18 @@ PLANS = {
         ("babi.qa1.test", 60, "documents", None),
         ("lambada.test", 30, "spread", None),
         ("pg19.validation", 30, "spread", None),
+    ],
+    # The paraphrase sets, in whole families by role. The fold is the start of the full draw (same
+    # seed, same order), so its replies are reused when the full selection is parsed into the same file.
+    "paraphrase-fold": [
+        ("sick.all", 300, "families", lambda r: r.get("role") == "mine"),
+        ("mrpc.train", 300, "families", lambda r: r.get("role") == "mine"),
+    ],
+    "paraphrase": [
+        ("sick.all", 1000, "families", lambda r: r.get("role") == "mine"),
+        ("mrpc.train", 1000, "families", lambda r: r.get("role") == "mine"),
+        ("sick.all", 800, "families", lambda r: r.get("role") == "evaluate"),
+        ("mrpc.test", 550, "families", lambda r: r.get("role") == "evaluate"),
     ],
 }
 
@@ -82,6 +97,15 @@ def sample(plan: str = "default", seed: int = 7, prepared_dir: str = PREPARED, o
         path = os.path.join(prepared_dir, f"{stem}.jsonl")
         if not os.path.exists(path):
             print(f"  missing {os.path.relpath(path, REPO)} — run datasets/prepare.py", file=sys.stderr)
+            continue
+        if how == "families":
+            picked = _whole_families([r for r in _read_jsonl(path) if keep is None or keep(r)], quota, rng, avoid, max_words)
+            group = stem if keep is None else f"{stem}/{picked[0].get('role') if picked else n}"
+            for r in picked:
+                key = S._norm_sentence(r["text"])
+                if key not in seen_text:
+                    seen_text.add(key)
+                    chosen.append({**r, "sample": {"plan": plan, "seed": seed, "group": group}})
             continue
         records = [r for r in _read_jsonl(path) if (keep is None or keep(r))
                    and len(r["text"].split()) <= max_words and S._norm_sentence(r["text"]) not in avoid]
@@ -115,6 +139,30 @@ def sample(plan: str = "default", seed: int = 7, prepared_dir: str = PREPARED, o
         for r in chosen:
             fh.write(json.dumps(r, ensure_ascii=False) + "\n")
     return chosen
+
+
+FAMILY_CAP = 50        # a family larger than this is left out of a "families" draw (SICK has one of 1,081 sentences)
+
+
+def _whole_families(records: list[dict], quota: int, rng: random.Random, avoid: set, max_words: int) -> list[dict]:
+    """Whole families in a seeded order until ``quota`` sentences: a pair's two sentences, a caption's
+    rewrites, a story — never part of one. A family is skipped when any of its sentences is too long
+    or is a catalog example, or when it is larger than FAMILY_CAP; the order does not depend on the
+    quota, so a smaller draw is the start of a larger one with the same seed."""
+    by_fam: dict[str, list[dict]] = collections.OrderedDict()
+    for r in records:
+        by_fam.setdefault(r.get("family") or r["doc"], []).append(r)
+    fams = sorted(by_fam)
+    rng.shuffle(fams)
+    picked: list[dict] = []
+    for f in fams:
+        rs = by_fam[f]
+        if len(rs) > FAMILY_CAP or any(len(r["text"].split()) > max_words or S._norm_sentence(r["text"]) in avoid for r in rs):
+            continue
+        picked.extend(rs)
+        if len(picked) >= quota:
+            break
+    return picked
 
 
 def _composition(records: list[dict]) -> list[str]:
@@ -154,54 +202,77 @@ def parse(args) -> int:
         rec = sp.parse_sentence(todo[0]["text"], args, todo[0]["id"])
         print(json.dumps(rec["request"], indent=2, ensure_ascii=False))
         return 0
-    primes, cached_total, input_total, failed = 0, 0, 0, 0
-    write_total = None                                 # cache-write tokens, where the provider bills and reports them
+    st = {"primes": 0, "cached": 0, "input": 0, "failed": 0, "write": None, "done": 0, "last_prime": 0.0, "streak": 0}
+    out_lock, prime_lock = threading.Lock(), threading.Lock()   # one writer at a time; one re-prime per cache loss
 
     def prime(reason):
-        nonlocal primes
         if args.no_prime or not hasattr(sp, "prime"):
             return
         try:
             pu = sp.prime(args)
         except Exception as exc:
-            print(f"prime failed ({exc})")
+            print(f"prime failed ({exc})", flush=True)
             return
         if pu is not None:
-            primes += 1
-            print(f"primed ({reason}): catalog alone, in={pu.get('input')} cached={pu.get('cached')}")
+            st["primes"] += 1
+            print(f"primed ({reason}): catalog alone, in={pu.get('input')} cached={pu.get('cached')}", flush=True)
 
-    prime("start")
-    mode = "a" if (os.path.exists(args.out) and not args.force) else "w"
-    with open(args.out, mode, encoding="utf-8") as out:
-        for i, r in enumerate(todo, 1):
-            try:
-                rec = sp.parse_sentence(r["text"], args, r["id"])
-            except sp.ProviderError as exc:
-                rec = {"provider": args.provider, "model": model, "effort": args.effort,
-                       "item": {"id": r["id"], "text": r["text"]}, "response": None, "error": f"request failed: {exc}"}
-                failed += 1
-            rec["prompt_body_sha256"] = body_sha
-            rec["manifest_id"] = manifest_id
+    def one(r, out):
+        t0 = time.time()
+        try:
+            rec = sp.parse_sentence(r["text"], args, r["id"])
+        except sp.ProviderError as exc:
+            rec = {"provider": args.provider, "model": model, "effort": args.effort,
+                   "item": {"id": r["id"], "text": r["text"]}, "response": None, "error": f"request failed: {exc}"}
+        rec["prompt_body_sha256"] = body_sha
+        rec["manifest_id"] = manifest_id
+        rec["timing"] = {"start": round(t0, 3), "end": round(time.time(), 3), "worker": threading.current_thread().name}
+        u = rec.get("usage") or {}
+        status = "error" if rec.get("error") else "ok"
+        n_inst = len(((rec.get("response") or {}).get("instances") or [])) if isinstance(rec.get("response"), dict) else 0
+        n_unm = len(((rec.get("response") or {}).get("unmapped") or [])) if isinstance(rec.get("response"), dict) else 0
+        with out_lock:
             out.write(json.dumps({**r, "reply": rec}, ensure_ascii=False) + "\n")
             out.flush()
-            u = rec.get("usage") or {}
-            status = "error" if rec.get("error") else "ok"
-            cached_total += u.get("cached") or 0
-            input_total += u.get("input") or 0
+            st["done"] += 1
+            st["failed"] += status == "error"
+            st["cached"] += u.get("cached") or 0
+            st["input"] += u.get("input") or 0
             write = ""
             if "cache_write" in u:
-                write_total = (write_total or 0) + (u["cache_write"] or 0)
+                st["write"] = (st["write"] or 0) + (u["cache_write"] or 0)
                 write = f" cache_write={u['cache_write']}"
-            n_inst = len(((rec.get("response") or {}).get("instances") or [])) if isinstance(rec.get("response"), dict) else 0
-            n_unm = len(((rec.get("response") or {}).get("unmapped") or [])) if isinstance(rec.get("response"), dict) else 0
-            print(f"[{i}/{len(todo)}] {r['dataset']:14s} {status:5s} inst={n_inst:2d} unmapped={n_unm} in={u.get('input')} cached={u.get('cached')}{write} · {r['text'][:90]}")
-            if status == "ok" and i < len(todo) and hasattr(sp, "cache_lost") and sp.cache_lost(u):
-                prime("the last reply had no cached tokens")
-    share = f" · cached {cached_total:,} of {input_total:,} input tokens ({cached_total / input_total:.0%})" if input_total else ""
-    if write_total is not None:
-        share += f" · written to the cache {write_total:,}"
-    print(f"done: {len(todo) - failed} replies stored, {failed} failed · primes {primes}{share} · {os.path.relpath(args.out, REPO)}")
-    return 1 if failed else 0
+            print(f"[{st['done']}/{len(todo)}] {r['dataset']:14s} {status:5s} inst={n_inst:2d} unmapped={n_unm} in={u.get('input')} "
+                  f"cached={u.get('cached')}{write} · {r['text'][:90]}", flush=True)
+        # Gemini's implicit cache misses about one call in six under load, singly and whatever the time since the
+        # last prime (measured on the first paraphrase slice): a single miss is not a lost cache and a re-prime
+        # does not prevent the next one. Re-prime only after `reprime_after` misses in a row (0 = never).
+        if status == "ok" and hasattr(sp, "cache_lost"):
+            with prime_lock:
+                st["streak"] = st["streak"] + 1 if sp.cache_lost(u) else 0
+                if (args.reprime_after and st["streak"] >= args.reprime_after and t0 > st["last_prime"]
+                        and st["done"] < len(todo)):
+                    prime(f"{st['streak']} replies in a row had no cached tokens")
+                    st["last_prime"] = time.time()
+                    st["streak"] = 0
+
+    prime("start")
+    st["last_prime"] = time.time()
+    mode = "a" if (os.path.exists(args.out) and not args.force) else "w"
+    with open(args.out, mode, encoding="utf-8") as out:
+        if args.workers <= 1:
+            for r in todo:
+                one(r, out)
+        else:
+            with concurrent.futures.ThreadPoolExecutor(max_workers=args.workers, thread_name_prefix="w") as pool:
+                for f in concurrent.futures.as_completed([pool.submit(one, r, out) for r in todo]):
+                    f.result()
+    share = f" · cached {st['cached']:,} of {st['input']:,} input tokens ({st['cached'] / st['input']:.0%})" if st["input"] else ""
+    if st["write"] is not None:
+        share += f" · written to the cache {st['write']:,}"
+    print(f"done: {len(todo) - st['failed']} replies stored, {st['failed']} failed · primes {st['primes']}{share} · "
+          f"{os.path.relpath(args.out, REPO)}")
+    return 1 if st["failed"] else 0
 
 
 # ------------------------------------------------------------------ report
@@ -220,7 +291,9 @@ def _pattern(span: str) -> str:
 
 
 def assess(parsed: list[dict], catalog: dict, typecheck: bool = False) -> dict:
-    rows = []
+    """Classify every reply. C9 (the type check) runs ONCE over all the replies in one engine session
+    (one session per reply grew past 3 GB on 1,827 replies); its findings are lints, never a class."""
+    rows, inspected = [], []
     for r in parsed:
         reply = r.get("reply") or {}
         resp = reply.get("response")
@@ -229,7 +302,8 @@ def assess(parsed: list[dict], catalog: dict, typecheck: bool = False) -> dict:
                "instances": 0, "fired": {}, "unmapped": [], "issues": [], "findings": [], "outcome": "none", "usage": reply.get("usage") or {}}
         if row["status"] == "ok":
             try:
-                res = V.validate(resp, catalog, typecheck=typecheck, text=r["text"]) if typecheck else V.inspect(resp, catalog, text=r["text"])
+                res = V.inspect(resp, catalog, text=r["text"])
+                inspected.append((row, res))
             except Exception as exc:                       # a reply the emitter or the validator cannot take: malformed, with the reason
                 res = {"instances": [], "fired": {}, "unmapped": [], "issues": [], "findings": [{"kind": "instance", "detail": f"{type(exc).__name__}: {str(exc)[:200]}"}]}
             row["instances"] = len(res["instances"])
@@ -248,6 +322,10 @@ def assess(parsed: list[dict], catalog: dict, typecheck: bool = False) -> dict:
         else:
             row["outcome"] = "error"
         rows.append(row)
+    if typecheck and inspected:
+        typed = V.typecheck_records([res for _, res in inspected])
+        for i, (row, _) in enumerate(inspected):
+            row["findings"].extend((typed or {}).get(i, []))
 
     def table(rs):
         n = len(rs)
@@ -338,8 +416,19 @@ def render_report(a: dict, manifest_id: str | None, model: str | None) -> str:
     return "\n".join(L) + "\n"
 
 
+def latest(rows: list[dict]) -> list[dict]:
+    """One record per sentence id: its last successful reply, else its last attempt (a resumed run
+    appends the retried sentences after their failed attempts)."""
+    best: dict[str, dict] = {}
+    for r in rows:
+        prev = best.get(r["id"])
+        if prev is None or not (r.get("reply") or {}).get("error") or (prev.get("reply") or {}).get("error"):
+            best[r["id"]] = r
+    return list(best.values())
+
+
 def report(args, catalog: dict) -> int:
-    parsed = _read_jsonl(args.parsed)
+    parsed = latest(_read_jsonl(args.parsed))
     a = assess(parsed, catalog, typecheck=not args.no_typecheck)
     ids = {(r.get("reply") or {}).get("manifest_id") for r in parsed}
     models = {(r.get("reply") or {}).get("model") for r in parsed}
@@ -370,6 +459,8 @@ def main(argv=None) -> int:
     p.add_argument("--limit", type=int, default=None)
     p.add_argument("--force", action="store_true", help="re-parse everything")
     p.add_argument("--no-prime", action="store_true")
+    p.add_argument("--workers", type=int, default=1, help="parallel calls (each reply is written as it arrives)")
+    p.add_argument("--reprime-after", type=int, default=3, help="re-prime after this many cache misses in a row (0: never)")
     p.add_argument("--dry-run", action="store_true")
     p.add_argument("--parse-script", default=S.PARSE_SCRIPT)
     S.load_parse_script(S.PARSE_SCRIPT).add_provider_args(p)

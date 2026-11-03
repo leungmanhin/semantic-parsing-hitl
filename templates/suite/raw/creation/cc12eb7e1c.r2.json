@@ -1,0 +1,101 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "1be5efdd2477bc9e0440efb160095f8406deb2dbd7be2646a82aee2ecaa7cb50",
+  "item": {
+    "id": "scc12eb7e1c",
+    "text": "Ashgrove (1911) is a novel."
+  },
+  "usage": {
+    "input": 108053,
+    "output": 197,
+    "thinking": null,
+    "total": 108250,
+    "cached": 106004,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 108053,
+    "candidatesTokenCount": 197,
+    "totalTokenCount": 108250,
+    "cachedContentTokenCount": 106004,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 108053
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 106004
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 197
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"scc12eb7e1c\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ashgrove\", \"span\": \"Ashgrove\"}, {\"t\": \"creation\", \"id\": \"e1\", \"verb\": \"create\", \"product\": \"@n1\", \"tense\": \"past\", \"span\": \"Ashgrove (1911)\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@n1\", \"predicate\": \"novel\", \"form\": \"noun\", \"tense\": \"present\", \"span\": \"Ashgrove (1911) is a novel\"}, {\"t\": \"time\", \"id\": \"t1\", \"event\": \"@e1\", \"year\": 1911, \"span\": \"1911\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "scc12eb7e1c",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Ashgrove",
+        "span": "Ashgrove"
+      },
+      {
+        "t": "creation",
+        "id": "e1",
+        "verb": "create",
+        "product": "@n1",
+        "tense": "past",
+        "span": "Ashgrove (1911)"
+      },
+      {
+        "t": "copular",
+        "id": "c1",
+        "subject": "@n1",
+        "predicate": "novel",
+        "form": "noun",
+        "tense": "present",
+        "span": "Ashgrove (1911) is a novel"
+      },
+      {
+        "t": "time",
+        "id": "t1",
+        "event": "@e1",
+        "year": 1911,
+        "span": "1911"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "6db98205165022739f2b6854255a326f43efedb63c672823e0e85acaeafaa21b",
+  "manifest_id": "1c2fe9f8d36d",
+  "run": 2,
+  "case": {
+    "template": "creation",
+    "section": "held_out",
+    "index": 18,
+    "category": "positive",
+    "text": "Ashgrove (1911) is a novel.",
+    "key": "cc12eb7e1c"
+  }
+}

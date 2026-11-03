@@ -1,0 +1,95 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "cdbcd4e3d959b832a0dd4f2582869466929998a5f05bbc500147a8d6b12ebf8c",
+  "item": {
+    "id": "s22d264f0b5",
+    "text": "The anvil is next to the stove."
+  },
+  "usage": {
+    "input": 108149,
+    "output": 156,
+    "thinking": null,
+    "total": 108305,
+    "cached": 106100,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 108149,
+    "candidatesTokenCount": 156,
+    "totalTokenCount": 108305,
+    "cachedContentTokenCount": 106100,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 108149
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 106100
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 156
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s22d264f0b5\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"anvil\", \"definite\": true, \"span\": \"The anvil\"}, {\"t\": \"witness\", \"id\": \"x2\", \"class\": \"stove\", \"definite\": true, \"span\": \"the stove\"}, {\"t\": \"locative\", \"id\": \"l1\", \"thing\": \"@x1\", \"place\": \"@x2\", \"head\": \"NextTo\", \"preposition\": \"next to\", \"tense\": \"present\", \"span\": \"The anvil is next to the stove\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s22d264f0b5",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "anvil",
+        "definite": true,
+        "span": "The anvil"
+      },
+      {
+        "t": "witness",
+        "id": "x2",
+        "class": "stove",
+        "definite": true,
+        "span": "the stove"
+      },
+      {
+        "t": "locative",
+        "id": "l1",
+        "thing": "@x1",
+        "place": "@x2",
+        "head": "NextTo",
+        "preposition": "next to",
+        "tense": "present",
+        "span": "The anvil is next to the stove"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "fa3be8553b90b94ba1b6f6c34fa31691178c5fa435affcb0f2e118604b2e0a03",
+  "manifest_id": "e21bca07cbc0",
+  "run": 3,
+  "case": {
+    "template": "locative",
+    "section": "held_out",
+    "index": 8,
+    "category": "positive",
+    "text": "The anvil is next to the stove.",
+    "key": "22d264f0b5"
+  }
+}

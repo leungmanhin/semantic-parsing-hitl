@@ -266,6 +266,14 @@ examples:
         - {t: time, id: t1, event: "@e1", year: 1921, month: may, day: 3}
         - {t: copular, id: c1, subject: "@n1", predicate: potter, form: noun, tense: present}
     - category: positive
+      note: a lone year in brackets after a work's title — create, the work the thing made, past, the year on that event
+      text: "Ashgrove (1911) is a novel."
+      instances:
+        - {t: named-entity, id: n1, name: "Ashgrove"}
+        - {t: creation, id: e1, verb: create, product: "@n1", tense: past}
+        - {t: time, id: t1, event: "@e1", year: 1911}
+        - {t: copular, id: c1, subject: "@n1", predicate: novel, form: noun, tense: present}
+    - category: positive
       note: born with a year only, stray punctuation in the bracket not reported
       text: "Ines Roux ( ; born 1967) is a glazier."
       instances:

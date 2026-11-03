@@ -1,0 +1,101 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "cdbcd4e3d959b832a0dd4f2582869466929998a5f05bbc500147a8d6b12ebf8c",
+  "item": {
+    "id": "s6c40190268",
+    "text": "Ines waited in front of the forge."
+  },
+  "usage": {
+    "input": 108150,
+    "output": 187,
+    "thinking": null,
+    "total": 108337,
+    "cached": 106044,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 108150,
+    "candidatesTokenCount": 187,
+    "totalTokenCount": 108337,
+    "cachedContentTokenCount": 106044,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 108150
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 106044
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 187
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s6c40190268\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ines\", \"span\": \"Ines\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"forge\", \"definite\": true, \"span\": \"the forge\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"wait\", \"actor\": \"@n1\", \"tense\": \"past\", \"span\": \"Ines waited\"}, {\"t\": \"location\", \"id\": \"l1\", \"event\": \"@e1\", \"place\": \"@x1\", \"head\": \"InFrontOf\", \"preposition\": \"in front of\", \"span\": \"in front of the forge\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s6c40190268",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Ines",
+        "span": "Ines"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "forge",
+        "definite": true,
+        "span": "the forge"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "wait",
+        "actor": "@n1",
+        "tense": "past",
+        "span": "Ines waited"
+      },
+      {
+        "t": "location",
+        "id": "l1",
+        "event": "@e1",
+        "place": "@x1",
+        "head": "InFrontOf",
+        "preposition": "in front of",
+        "span": "in front of the forge"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "fa3be8553b90b94ba1b6f6c34fa31691178c5fa435affcb0f2e118604b2e0a03",
+  "manifest_id": "e21bca07cbc0",
+  "run": 1,
+  "case": {
+    "template": "location",
+    "section": "held_out",
+    "index": 5,
+    "category": "positive",
+    "text": "Ines waited in front of the forge.",
+    "key": "6c40190268"
+  }
+}
