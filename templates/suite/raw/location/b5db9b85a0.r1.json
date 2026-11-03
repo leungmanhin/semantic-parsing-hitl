@@ -1,0 +1,101 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "b3d4b88d99f85baedb333633c92fcb908d10f807674b2cd112e81178ddf0037f",
+  "item": {
+    "id": "sb5db9b85a0",
+    "text": "Yusra waited before the mill."
+  },
+  "usage": {
+    "input": 109995,
+    "output": 182,
+    "thinking": null,
+    "total": 110177,
+    "cached": 107893,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 109995,
+    "candidatesTokenCount": 182,
+    "totalTokenCount": 110177,
+    "cachedContentTokenCount": 107893,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 109995
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 107893
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 182
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sb5db9b85a0\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"mill\", \"definite\": true, \"span\": \"the mill\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"wait\", \"actor\": \"@n1\", \"tense\": \"past\", \"span\": \"Yusra waited\"}, {\"t\": \"location\", \"id\": \"l1\", \"event\": \"@e1\", \"place\": \"@x1\", \"head\": \"Before\", \"preposition\": \"before\", \"span\": \"before the mill\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sb5db9b85a0",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "mill",
+        "definite": true,
+        "span": "the mill"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "wait",
+        "actor": "@n1",
+        "tense": "past",
+        "span": "Yusra waited"
+      },
+      {
+        "t": "location",
+        "id": "l1",
+        "event": "@e1",
+        "place": "@x1",
+        "head": "Before",
+        "preposition": "before",
+        "span": "before the mill"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "57065e6fc1ee1ea8986248bbc0aafe2c75cf986954fba4ae2a341cc3e78ef8d8",
+  "manifest_id": "4deb31707ce3",
+  "run": 1,
+  "case": {
+    "template": "location",
+    "section": "held_out",
+    "index": 24,
+    "category": "positive",
+    "text": "Yusra waited before the mill.",
+    "key": "b5db9b85a0"
+  }
+}

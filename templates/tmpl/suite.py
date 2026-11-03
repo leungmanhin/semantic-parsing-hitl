@@ -447,8 +447,31 @@ def plan(catalog: dict, templates: list[str], sections: tuple, runs: int, raw_di
     return todo
 
 
+def stale_prompt(prompt_path: str) -> str | None:
+    """Why the rendered prompt no longer matches the catalog sources — they were edited after the
+    last render — or None. A run stamps the manifest of the SOURCES, so a run on a stale prompt
+    would label its replies with a catalog version that was never sent."""
+    from . import render_prompt as R
+    try:
+        with open(prompt_path, encoding="utf-8") as fh:
+            head = [fh.readline() for _ in range(6)]
+    except OSError:
+        return None
+    for line in head:
+        if line.startswith("catalog sha256 "):
+            have, want = line.split()[2], R._catalog_hash(CAT.CATALOG_DIR)[:16]
+            if have != want:
+                return (f"the prompt was rendered from catalog {have} but the catalog is now {want}: render it first "
+                        f"(python -m tmpl.render_prompt), and never edit the catalog while a run is going")
+    return None
+
+
 def collect(args, catalog: dict) -> int:
     sp = load_parse_script(args.parse_script)
+    stale = None if args.dry_run else stale_prompt(args.prompt)
+    if stale:
+        print(f"error: {stale}", file=sys.stderr)
+        return 2
     sections = {"held_out": ("held_out",), "shown": ("shown",), "both": ("shown", "held_out")}[args.section]
     templates = sorted(catalog) if args.all else args.template
     for tid in templates:

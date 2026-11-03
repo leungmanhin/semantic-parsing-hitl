@@ -53,6 +53,7 @@ trigger:
     - "<holder> V <object> to <V2> …"            # expects Odile to come: the object acts in it
     - "<holder> would like / love to <V2> …"     # a wish: want, present, the words in `word`
     - "<holder> would rather <V2> …"             # prefer, present, the words in `word`
+    - "<event noun> was <place> <time>, <holder> V-ed"   # the closure was in the granary on Friday, Marisol said: the content names the eventive witness; its place and time follow it
   boundary:                   # looks like an attitude but is not one
     - >-
       an entity object instead of a clause — fears the dog, distrusts Odile, knows Marisol: a
@@ -94,7 +95,7 @@ slots:
   holder:  {type: filler, class: Entity, role: Experiencer, required: true,
             doc: "who holds the attitude: the subject"}
   content: {type: refs, class: Proposition, required: true,
-            doc: "the complement clause: the ids of the instances that state it, that is its predication or the scope operator (negation, modal) over that predication; for an infinitival complement, its predication with the holder (or the object) as its actor; the referents it mentions are not listed"}
+            doc: "the complement clause: the ids of the instances that state it, that is its predication or the scope operator (negation, modal) over that predication; for an infinitival complement, its predication with the holder (or the object) as its actor; the referents it mentions are not listed — except an EVENT NOUN predicated of a place or a time by be (the closure was in the granary on Friday, Marisol said), which has no predication: list the eventive witness itself, and its place and time follow it into the seal"}
   factive: {type: bool, required: true,
             doc: "true when the verb or adjective presupposes the complement (know, realize, discover, learn, notice, remember, regret; aware, glad, sorry, surprised, upset, proud, happy / angry that), false otherwise (believe, think, suppose, assume, suspect, doubt, hope, fear, expect, claim, say, want, wish, intend, plan, decide, promise, agree; sure, certain, confident, convinced, afraid, worried, and every adjective with a to-infinitive)"}
   tense:   {type: enum, values: [past, present, future], required: true,
@@ -430,3 +431,23 @@ examples:
         - {t: activity, id: v1, verb: win, actor: "@n1", tense: present}
         - {t: attitude, id: a1, verb: hope, holder: "@n1", content: ["@v1"], factive: false, tense: present}
         - {t: activity, id: v2, verb: train, actor: "@n1", tense: past}
+    - category: positive
+      note: an event noun predicated of a place and a time by be, reported — the content names the eventive witness; definite, so its class stays presupposed and only its place and time are sealed
+      text: "The audit was in the hall on Sunday, Yusra said."
+      instances:
+        - {t: witness, id: x1, class: audit, definite: true, eventive: true}
+        - {t: witness, id: x2, class: hall, definite: true}
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: location, id: l1, event: "@x1", place: "@x2", head: Location, preposition: in}
+        - {t: time, id: t1, event: "@x1", weekday: sunday, tense: past}
+        - {t: attitude, id: a1, verb: say, holder: "@n1", content: ["@x1"], factive: false, tense: past}
+    - category: positive
+      note: the same with an indefinite event noun — its existence is part of what is said, so the witness is sealed whole
+      text: "A fire was at the mill on Monday, Teodor said."
+      instances:
+        - {t: witness, id: x1, class: fire, eventive: true}
+        - {t: witness, id: x2, class: mill, definite: true}
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: location, id: l1, event: "@x1", place: "@x2", head: Location, preposition: at}
+        - {t: time, id: t1, event: "@x1", weekday: monday, tense: past}
+        - {t: attitude, id: a1, verb: say, holder: "@n1", content: ["@x1"], factive: false, tense: past}

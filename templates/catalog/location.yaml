@@ -30,6 +30,7 @@ trigger:
     - "<clause> in / at / on <place>"                 # Marisol laughed in the granary
     - "<clause> near / under / behind … <place>"      # the badger slept under the barrow
     - "<clause> in front of / next to <place>"        # Odile sang in front of the hut: InFrontOf
+    - "<clause> before <place>"                       # the storks stood before the hut: Before, as written
     - "<clause> outdoors / upstairs / inside …"       # Marisol slept outdoors: place outdoors
     - "<place phrase>, <clause>"                      # In the granary, Odile laughed
   boundary:                   # looks like the place of an event but is not one
@@ -78,8 +79,8 @@ slots:
                 doc: "with head Between only, the second of the two places (slept between the granary and the hut: the hut); the order as written"}
   direction:   {type: enum, class: Class, values: [north, south, east, west, northeast, northwest, southeast, southwest], required: false, only_when: "head == DirectionFrom",
                 doc: "with head DirectionFrom only, the compass direction of the thing from the place, as one word (west of the granary: west; north-east of: northeast)"}
-  head:        {type: enum, values: [Location, Near, NextTo, By, Under, Over, Above, Below, Behind, InFrontOf, Beside, Alongside, Between, Outside, Opposite, DirectionFrom], required: true,
-                doc: "Location for in / at / on / inside / within; otherwise the preposition itself, capitalized (under → Under), a multi-word one CamelCased (in front of → InFrontOf, next to → NextTo)"}
+  head:        {type: enum, values: [Location, Near, NextTo, By, Under, Over, Above, Below, Behind, InFrontOf, Before, Beside, Alongside, Between, Outside, Opposite, DirectionFrom], required: true,
+                doc: "Location for in / at / on / inside / within; otherwise the preposition itself, capitalized (under → Under), a multi-word one CamelCased (in front of → InFrontOf, next to → NextTo); before a building or a crowd (stood before the hut) is Before, as written — before a time is a time"}
   preposition: {type: string, required: true, doc: "the preposition as written (in, at, under …)"}
 
 emits:
@@ -323,3 +324,11 @@ examples:
         - {t: witness, id: x1, class: river, definite: true}
         - {t: activity, id: v1, verb: camp, actor: "@n1", tense: past}
         - {t: location, id: l1, event: "@v1", place: "@x1", head: DirectionFrom, direction: west, preposition: west of}
+    - category: positive
+      note: before a building — the place, the preposition as written
+      text: "Yusra waited before the mill."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, class: mill, definite: true}
+        - {t: activity, id: v1, verb: wait, actor: "@n1", tense: past}
+        - {t: location, id: l1, event: "@v1", place: "@x1", head: Before, preposition: before}

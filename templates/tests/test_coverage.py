@@ -81,6 +81,31 @@ class CoverageTests(unittest.TestCase):
         self.assertIn("| hotpotqa.validation | 2 | 1 | 1 |", text)
         self.assertIn("G02: 1", text)
 
+    def test_spans_reported_by_convention_are_not_gaps(self):
+        """A quotation's wording (G10), a ticker tag (G03) or a connective opening the text (G05) is reported by
+        the catalog's own convention: a sentence whose only unmapped spans carry such a code is covered, and
+        one with a gap code beside them is partial. Both stay in the gap-code tally."""
+        insts = [{"t": "named-entity", "id": "n1", "name": "Yusra", "span": "Yusra"},
+                 {"t": "activity", "id": "v1", "verb": "sing", "actor": "@n1", "tense": "past", "span": "Yusra sang"}]
+        parsed = [
+            {**rec("mrpc", 1, 0, '"Yusra sang," she said.'), "sample": {"group": "mrpc.train/mine"},
+             "reply": {"model": "fake", "manifest_id": "abc", "usage": {},
+                       "response": {"id": "a", "instances": insts, "unmapped": [{"span": '"Yusra sang,"', "code": "G10"}]}}},
+            {**rec("mrpc", 2, 0, 'But "Yusra sang," she said eventually.'), "sample": {"group": "mrpc.train/mine"},
+             "reply": {"model": "fake", "manifest_id": "abc", "usage": {},
+                       "response": {"id": "b", "instances": insts,
+                                    "unmapped": [{"span": "But", "code": "G05"}, {"span": "eventually", "code": "G02"}]}}},
+        ]
+        a = C.assess(parsed, CATALOG, typecheck=False)
+        self.assertEqual([x["outcome"] for x in a["rows"]], ["covered", "partial"])
+        self.assertEqual(a["overall"]["covered"], 1)
+        self.assertEqual(a["overall"]["reported"], 1)                            # the covered one carries a reported span
+        self.assertEqual(a["gap_codes"], {"G10": 1, "G05": 1, "G02": 1})
+        text = C.render_report(a, "abc", "fake")
+        self.assertIn("reported by convention, not gaps: G10: 1, G05: 1", text)
+        self.assertIn("- G02: 1", text)
+        self.assertNotIn("- G10: 1", text)
+
     def test_families_are_drawn_whole_and_a_small_draw_starts_a_large_one(self):
         rows = []
         for f in range(30):                                   # families of 1-3 sentences, roles alternating
@@ -136,6 +161,14 @@ class CoverageTests(unittest.TestCase):
         self.assertTrue(all("timing" in r["reply"] and r["reply"]["timing"]["worker"].startswith("w") for r in rows))
         self.assertEqual(C.main(argv), 0)                     # resumable: nothing left to parse, nothing appended
         self.assertEqual(len(open(out).readlines()), len(rows))
+
+    def test_a_stale_prompt_stops_a_run(self):
+        from tmpl import suite as S
+        stale = os.path.join(self.dir, "stale.txt")
+        with open(stale, "w", encoding="utf-8") as fh:
+            fh.write("# prompt\n\ncatalog sha256 0000000000000000 · 1 templates\n")
+        self.assertIn("render it first", S.stale_prompt(stale))
+        self.assertIsNone(S.stale_prompt(os.path.join(TEMPLATES, "generated", "PROMPT_CATALOG.txt")))   # rendered from today's catalog
 
 
 if __name__ == "__main__":

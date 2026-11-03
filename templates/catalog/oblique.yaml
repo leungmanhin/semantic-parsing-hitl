@@ -27,7 +27,7 @@ trigger:
     argued over the blanket, complained about the barrow, dealt with the inspection), in what capacity
     or likeness (worked as a weaver, sang like a bird), without what (left without the blanket),
     despite what (sang despite the hail), through or along what path (walked through the granary,
-    ran across the field), among or between what (sat among the badgers; chose between the
+    ran across the field), among, amid or between what (sat among the badgers, paced amid the rubble; chose between the
     barrow and the blanket, mediated between Femke and Ludo: head Between, the second in
     `object2`; between two places is a location), and a cause or a
     concession stated by a MULTI-WORD preposition (laughed because of the hail, waited owing to
@@ -47,6 +47,8 @@ trigger:
     - "<clause> through / across / along <object>"      # walked through the granary: a path
     - "<clause> because of / due to / owing to / thanks to / on account of <object>"   # a cause stated by a preposition: BecauseOf, DueTo … the head; the rules read it as Because
     - "<clause> in spite of <object>"                   # a concession: InSpiteOf, beside Despite
+    - "<clause> amid <object>"                          # stumbled amid the rubble: Amid, as written, beside Among
+    - "<clause> before <person or body>"                # spoke before the council: Before, in whose presence; before a time or an event is a time relation
     - "<event noun> was due to <object>"                # predicated of an event noun by be: on the eventive witness, the clause's tense recorded
   boundary:                   # looks like an oblique but is not one
     - >-
@@ -95,7 +97,7 @@ slots:
   id:     {type: id, required: true, doc: "your label for the attachment (a1, a2 …)"}
   event:  {type: filler, class: Event, attaches: true, required: true,
            doc: "the predication the phrase attaches to: the id of the clause's event instance, or of an eventive witness when the phrase is predicated of an event noun by be (the closure was due to the hail: the delay)"}
-  head:   {type: enum, values: [About, Above, Across, Against, Along, Among, Around, As, At, Behind, Below, Beneath, Beside, Besides, Between, Beyond, By, Concerning, Despite, Down, Except, For, From, In, Inside, Into, Like, Near, Of, "Off", "On", Onto, Opposite, Out, Outside, Over, Past, Per, Regarding, Round, Through, To, Toward, Towards, Under, Underneath, Unlike, Up, Upon, Via, With, Within, Without,
+  head:   {type: enum, values: [About, Above, Across, Against, Along, Amid, Among, Around, As, At, Before, Behind, Below, Beneath, Beside, Besides, Between, Beyond, By, Concerning, Despite, Down, Except, For, From, In, Inside, Into, Like, Near, Of, "Off", "On", Onto, Opposite, Out, Outside, Over, Past, Per, Regarding, Round, Through, To, Toward, Towards, Under, Underneath, Unlike, Up, Upon, Via, With, Within, Without,
                          BecauseOf, DueTo, OwingTo, ThanksTo, OnAccountOf, InSpiteOf],
            required: true, doc: "the preposition as written, capitalized (about → About, without → Without), a multi-word one CamelCased (because of → BecauseOf, due to → DueTo, owing to → OwingTo, thanks to → ThanksTo, on account of → OnAccountOf, in spite of → InSpiteOf); never a synonym"}
   object2: {type: filler, class: Entity, required: false, only_when: "head == Between",
@@ -359,3 +361,19 @@ examples:
         - {t: named-entity, id: n3, name: "Teodor"}
         - {t: activity, id: v1, verb: mediate, actor: "@n1", tense: past}
         - {t: oblique, id: a1, event: "@v1", head: Between, object: "@n2", object2: "@n3"}
+    - category: positive
+      note: amid — the preposition as written, beside Among
+      text: "Teodor wandered amid the ruins."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: group, id: g1, class: ruin, definite: true}
+        - {t: activity, id: v1, verb: wander, actor: "@n1", tense: past}
+        - {t: oblique, id: a1, event: "@v1", head: Amid, object: "@g1"}
+    - category: positive
+      note: before a body — in whose presence, not a time
+      text: "Lamine testified before the assembly."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: x1, class: assembly, definite: true}
+        - {t: activity, id: v1, verb: testify, actor: "@n1", tense: past}
+        - {t: oblique, id: a1, event: "@v1", head: Before, object: "@x1"}

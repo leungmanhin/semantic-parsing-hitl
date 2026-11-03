@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 bf6bedf313862152 · 60 templates
+catalog sha256 a6748744fe88443f · 60 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -473,9 +473,10 @@ Slots:
   birth or a maiden name (born X, née X) and the name in another language or script, without the
   language.
 - `props` (optional; a list of lemmas): adjectives inside the appositive or title phrase, each a
-  lemma (a careful harbour pilot: careful; the northern ferry company: northern); a noun before
-  the class is a mod, never a property; a direction adjective before a place's own name
-  (southern Brackenford) is a part of the place (part-whole), never a property.
+  lemma (a careful harbour pilot: careful; the northern ferry company: northern); with no class
+  noun the adjective is the name's own property (the venerable Kestrel: venerable, no class); a
+  noun before the class is a mod, never a property; a direction adjective before a place's own
+  name (southern Brackenford) is a part of the place (part-whole), never a property.
 - `former` (optional; true / false): with a class, true when former, ex-, one-time or retired
   makes the noun something the referent was and no longer is (Femke, a retired weaver).
 - `mods` (optional; a list of lemmas, or "@id" of a named-entity or a time instance): the nouns,
@@ -1349,6 +1350,7 @@ Forms:
 - <holder> V <object> to <V2> …
 - <holder> would like / love to <V2> …
 - <holder> would rather <V2> …
+- <event noun> was <place> <time>, <holder> V-ed
 
 Not this template:
 - an entity object instead of a clause — fears the dog, distrusts Odile, knows Marisol: a psych
@@ -1387,7 +1389,10 @@ Slots:
 - `content` (required; a list of "@id" of the instances that state the clause): the complement
   clause: the ids of the instances that state it, that is its predication or the scope operator
   (negation, modal) over that predication; for an infinitival complement, its predication with
-  the holder (or the object) as its actor; the referents it mentions are not listed.
+  the holder (or the object) as its actor; the referents it mentions are not listed — except an
+  EVENT NOUN predicated of a place or a time by be (the closure was in the granary on Friday,
+  Marisol said), which has no predication: list the eventive witness itself, and its place and
+  time follow it into the seal.
 - `factive` (required; true / false): true when the verb or adjective presupposes the complement
   (know, realize, discover, learn, notice, remember, regret; aware, glad, sorry, surprised,
   upset, proud, happy / angry that), false otherwise (believe, think, suppose, assume, suspect,
@@ -5139,6 +5144,7 @@ Forms:
 - <clause> in / at / on <place>
 - <clause> near / under / behind … <place>
 - <clause> in front of / next to <place>
+- <clause> before <place>
 - <clause> outdoors / upstairs / inside …
 - <place phrase>, <clause>
 
@@ -5185,9 +5191,10 @@ Slots:
   southwest): with head DirectionFrom only, the compass direction of the thing from the place,
   as one word (west of the granary: west; north-east of: northeast).
 - `head` (required; one of: Location, Near, NextTo, By, Under, Over, Above, Below, Behind,
-  InFrontOf, Beside, Alongside, Between, Outside, Opposite, DirectionFrom): Location for in / at
-  / on / inside / within; otherwise the preposition itself, capitalized (under → Under), a
-  multi-word one CamelCased (in front of → InFrontOf, next to → NextTo).
+  InFrontOf, Before, Beside, Alongside, Between, Outside, Opposite, DirectionFrom): Location for
+  in / at / on / inside / within; otherwise the preposition itself, capitalized (under → Under),
+  a multi-word one CamelCased (in front of → InFrontOf, next to → NextTo); before a building or
+  a crowd (stood before the hut) is Before, as written — before a time is a time.
 - `preposition` (required; a string): the preposition as written (in, at, under …).
 
 Example (the place attaches to the clause's event). TEXT: Marisol laughed in the granary.
@@ -5328,17 +5335,18 @@ about or directed at (talked about the inspection, waited for Pieter, voted agai
 argued over the blanket, complained about the barrow, dealt with the inspection), in what
 capacity or likeness (worked as a weaver, sang like a bird), without what (left without the
 blanket), despite what (sang despite the hail), through or along what path (walked through the
-granary, ran across the field), among or between what (sat among the badgers; chose between the
-barrow and the blanket, mediated between Femke and Ludo: head Between, the second in `object2`;
-between two places is a location), and a cause or a concession stated by a MULTI-WORD
-preposition (laughed because of the hail, waited owing to the hail, slept on account of the
-flood, sang thanks to Odile, danced in spite of the hail: the phrase CamelCased is the head —
-BecauseOf, DueTo, OwingTo, ThanksTo, OnAccountOf, InSpiteOf). The event is parsed with its own
-template; the oblique names the event, the preposition as written (capitalized) and the object.
-A phrase predicated of an EVENT NOUN by be (the closure was due to the hail) attaches to that
-eventive witness, with the clause's tense in `tense`. One instance per phrase. Decide by the
-question the phrase answers: where, when, whence, whither, by what means, with whom, for whose
-benefit and how go to the templates that own them; everything else comes here.
+granary, ran across the field), among, amid or between what (sat among the badgers, paced amid
+the rubble; chose between the barrow and the blanket, mediated between Femke and Ludo: head
+Between, the second in `object2`; between two places is a location), and a cause or a concession
+stated by a MULTI-WORD preposition (laughed because of the hail, waited owing to the hail, slept
+on account of the flood, sang thanks to Odile, danced in spite of the hail: the phrase
+CamelCased is the head — BecauseOf, DueTo, OwingTo, ThanksTo, OnAccountOf, InSpiteOf). The event
+is parsed with its own template; the oblique names the event, the preposition as written
+(capitalized) and the object. A phrase predicated of an EVENT NOUN by be (the closure was due to
+the hail) attaches to that eventive witness, with the clause's tense in `tense`. One instance
+per phrase. Decide by the question the phrase answers: where, when, whence, whither, by what
+means, with whom, for whose benefit and how go to the templates that own them; everything else
+comes here.
 
 Forms:
 - <clause> about / against / over / on <object>
@@ -5348,6 +5356,8 @@ Forms:
 - <clause> through / across / along <object>
 - <clause> because of / due to / owing to / thanks to / on account of <object>
 - <clause> in spite of <object>
+- <clause> amid <object>
+- <clause> before <person or body>
 - <event noun> was due to <object>
 
 Not this template:
@@ -5386,14 +5396,15 @@ Slots:
 - `event` (required; "@id" of the predication instance this attaches to): the predication the
   phrase attaches to: the id of the clause's event instance, or of an eventive witness when the
   phrase is predicated of an event noun by be (the closure was due to the hail: the delay).
-- `head` (required; one of: About, Above, Across, Against, Along, Among, Around, As, At, Behind,
-  Below, Beneath, Beside, Besides, Between, Beyond, By, Concerning, Despite, Down, Except, For,
-  From, In, Inside, Into, Like, Near, Of, Off, On, Onto, Opposite, Out, Outside, Over, Past,
-  Per, Regarding, Round, Through, To, Toward, Towards, Under, Underneath, Unlike, Up, Upon, Via,
-  With, Within, Without, BecauseOf, DueTo, OwingTo, ThanksTo, OnAccountOf, InSpiteOf): the
-  preposition as written, capitalized (about → About, without → Without), a multi-word one
-  CamelCased (because of → BecauseOf, due to → DueTo, owing to → OwingTo, thanks to → ThanksTo,
-  on account of → OnAccountOf, in spite of → InSpiteOf); never a synonym.
+- `head` (required; one of: About, Above, Across, Against, Along, Amid, Among, Around, As, At,
+  Before, Behind, Below, Beneath, Beside, Besides, Between, Beyond, By, Concerning, Despite,
+  Down, Except, For, From, In, Inside, Into, Like, Near, Of, Off, On, Onto, Opposite, Out,
+  Outside, Over, Past, Per, Regarding, Round, Through, To, Toward, Towards, Under, Underneath,
+  Unlike, Up, Upon, Via, With, Within, Without, BecauseOf, DueTo, OwingTo, ThanksTo,
+  OnAccountOf, InSpiteOf): the preposition as written, capitalized (about → About, without →
+  Without), a multi-word one CamelCased (because of → BecauseOf, due to → DueTo, owing to →
+  OwingTo, thanks to → ThanksTo, on account of → OnAccountOf, in spite of → InSpiteOf); never a
+  synonym.
 - `object2` (optional; "@id" of a referent instance, or a bare lemma for a non-specific filler):
   with head Between only, the second of the two (mediated between Femke and Ludo: Ludo); the
   order as written.
@@ -5531,6 +5542,7 @@ Forms:
 - a <N> by <author>
 - <Name> is a <kind word> of <N>
 - the <N> between <A> and <B>
+- a <N> before <person or body>
 
 Not this template:
 - a possessive of-phrase or genitive — the blanket of Marisol, Marisol's blanket, the sister of
@@ -5561,12 +5573,12 @@ Slots:
 - `id` (required; your label for this instance): your label for the attachment (a1, a2 …).
 - `noun` (required; "@id" of the predication instance this attaches to): the referent the phrase
   modifies: the id of its witness or named-entity instance.
-- `head` (required; one of: About, Above, Across, Against, Along, Among, Around, As, At, Behind,
-  Below, Beneath, Beside, Besides, Between, Beyond, By, Concerning, Despite, Down, Except, For,
-  From, In, Inside, Into, Like, Near, Of, Off, On, Onto, Opposite, Out, Outside, Over, Past,
-  Per, Regarding, Round, Through, To, Toward, Towards, Under, Underneath, Unlike, Up, Upon, Via,
-  With, Within, Without): the preposition as written, capitalized (with → With, about → About);
-  never a synonym.
+- `head` (required; one of: About, Above, Across, Against, Along, Among, Around, As, At, Before,
+  Behind, Below, Beneath, Beside, Besides, Between, Beyond, By, Concerning, Despite, Down,
+  Except, For, From, In, Inside, Into, Like, Near, Of, Off, On, Onto, Opposite, Out, Outside,
+  Over, Past, Per, Regarding, Round, Through, To, Toward, Towards, Under, Underneath, Unlike,
+  Up, Upon, Via, With, Within, Without): the preposition as written, capitalized (with → With,
+  about → About); never a synonym.
 - `object` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
   the phrase's object: a referent id (a witness, a name) for a specific thing, or a bare lemma
   for a non-specific or class-level one (a book about badgers → badger, a flask without a lid →

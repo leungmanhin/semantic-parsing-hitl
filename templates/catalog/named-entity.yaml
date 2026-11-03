@@ -27,12 +27,12 @@ slots:
   id:    {type: id, required: true}
   name:  {type: string, required: true, doc: "the surface name, capitalised as written, without a leading article: the Kestrel and The Kestrel are both Kestrel"}
   title: {type: string, required: false, doc: "a leading title, if any"}
-  class:  {type: lemma, class: Class, required: false, narrowed_by: [props, mods],
+  class:  {type: lemma, class: Class, required: false, narrowed_by: [props, mods], stands_alone: [props],
           doc: "the class an appositive, a title phrase or an of-phrase naming the place itself states for the name (Odile, a glazier; the village of Fennhollow: village; a retired weaver: weaver, with `former`); a predicative is a N is a copular instance, not this slot; a relational noun with a possessor (her son Joost, Anouk's husband Ludo) is a relation, not a class: the stative-relation template"}
   aliases: {type: list, class: String, required: false,
            doc: "other names of the same individual, each as written: known as, also known as, better known as, called, nicknamed (Femke, known as Nell: Nell); a birth or a maiden name (born X, née X) and the name in another language or script, without the language"}
   props:  {type: list, class: Class, restriction: Member, required: false,
-          doc: "adjectives inside the appositive or title phrase, each a lemma (a careful harbour pilot: careful; the northern ferry company: northern); a noun before the class is a mod, never a property; a direction adjective before a place's own name (southern Brackenford) is a part of the place (part-whole), never a property"}
+          doc: "adjectives inside the appositive or title phrase, each a lemma (a careful harbour pilot: careful; the northern ferry company: northern); with no class noun the adjective is the name's own property (the venerable Kestrel: venerable, no class); a noun before the class is a mod, never a property; a direction adjective before a place's own name (southern Brackenford) is a part of the place (part-whole), never a property"}
   former: {type: bool, required: false, doc: "with a class, true when former, ex-, one-time or retired makes the noun something the referent was and no longer is (Femke, a retired weaver)"}
   mods:   {type: list, class: Class, ids: [named-entity, time], required: false,
           doc: "the nouns, names and years before the head noun that narrow its class (Nouns before nouns): a lemma for a noun (a harbour pilot: harbour; a sea salt grinder: sea_salt), the id of a named-entity instance for a name (a Brackenford blanket), of a time instance for a year, a decade or a century (a 1904 almanac); never an adjective; with a class only"}
@@ -127,3 +127,9 @@ examples:
       instances:
         - {t: named-entity, id: n1, name: "Corvin", class: carver, props: [talented]}
         - {t: activity, id: v1, verb: sing, actor: "@n1", tense: past}
+    - category: positive
+      note: an adjective before a name with no class noun — the name's own property
+      text: "The ancient Harrowgate Bridge creaked."
+      instances:
+        - {t: named-entity, id: n1, name: "Harrowgate Bridge", props: [ancient]}
+        - {t: activity, id: v1, verb: creak, actor: "@n1", tense: past}

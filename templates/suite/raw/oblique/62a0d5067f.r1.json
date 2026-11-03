@@ -1,0 +1,100 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "b3d4b88d99f85baedb333633c92fcb908d10f807674b2cd112e81178ddf0037f",
+  "item": {
+    "id": "s62a0d5067f",
+    "text": "Lamine testified before the assembly."
+  },
+  "usage": {
+    "input": 109997,
+    "output": 176,
+    "thinking": null,
+    "total": 110173,
+    "cached": 107947,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 109997,
+    "candidatesTokenCount": 176,
+    "totalTokenCount": 110173,
+    "cachedContentTokenCount": 107947,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 109997
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 107947
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 176
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s62a0d5067f\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"assembly\", \"definite\": true, \"span\": \"the assembly\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"testify\", \"actor\": \"@n1\", \"tense\": \"past\", \"span\": \"Lamine testified\"}, {\"t\": \"oblique\", \"id\": \"a1\", \"event\": \"@e1\", \"head\": \"Before\", \"object\": \"@x1\", \"span\": \"before the assembly\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s62a0d5067f",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "assembly",
+        "definite": true,
+        "span": "the assembly"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "testify",
+        "actor": "@n1",
+        "tense": "past",
+        "span": "Lamine testified"
+      },
+      {
+        "t": "oblique",
+        "id": "a1",
+        "event": "@e1",
+        "head": "Before",
+        "object": "@x1",
+        "span": "before the assembly"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "57065e6fc1ee1ea8986248bbc0aafe2c75cf986954fba4ae2a341cc3e78ef8d8",
+  "manifest_id": "4deb31707ce3",
+  "run": 1,
+  "case": {
+    "template": "oblique",
+    "section": "held_out",
+    "index": 28,
+    "category": "positive",
+    "text": "Lamine testified before the assembly.",
+    "key": "62a0d5067f"
+  }
+}

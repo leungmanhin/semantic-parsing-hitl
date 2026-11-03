@@ -1,0 +1,121 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "e4c4a76c7666d70f6d019fd7fea9391d91b01528f8f89132ae05d842fdd8207e",
+  "item": {
+    "id": "s47292168a7",
+    "text": "The audit was in the hall on Sunday, Yusra said."
+  },
+  "usage": {
+    "input": 110083,
+    "output": 282,
+    "thinking": null,
+    "total": 110365,
+    "cached": 108034,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 110083,
+    "candidatesTokenCount": 282,
+    "totalTokenCount": 110365,
+    "cachedContentTokenCount": 108034,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 110083
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 108034
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 282
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s47292168a7\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"audit\", \"definite\": true, \"eventive\": true, \"span\": \"The audit\"}, {\"t\": \"witness\", \"id\": \"x2\", \"class\": \"hall\", \"definite\": true, \"span\": \"the hall\"}, {\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"attitude\", \"id\": \"a1\", \"verb\": \"say\", \"holder\": \"@n1\", \"content\": [\"@x1\"], \"factive\": false, \"tense\": \"past\", \"span\": \"The audit was in the hall on Sunday, Yusra said\"}, {\"t\": \"location\", \"id\": \"l1\", \"event\": \"@x1\", \"place\": \"@x2\", \"head\": \"Location\", \"preposition\": \"in\", \"span\": \"in the hall\"}, {\"t\": \"time\", \"id\": \"t1\", \"event\": \"@x1\", \"weekday\": \"sunday\", \"tense\": \"past\", \"span\": \"on Sunday\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s47292168a7",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "audit",
+        "definite": true,
+        "eventive": true,
+        "span": "The audit"
+      },
+      {
+        "t": "witness",
+        "id": "x2",
+        "class": "hall",
+        "definite": true,
+        "span": "the hall"
+      },
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "attitude",
+        "id": "a1",
+        "verb": "say",
+        "holder": "@n1",
+        "content": [
+          "@x1"
+        ],
+        "factive": false,
+        "tense": "past",
+        "span": "The audit was in the hall on Sunday, Yusra said"
+      },
+      {
+        "t": "location",
+        "id": "l1",
+        "event": "@x1",
+        "place": "@x2",
+        "head": "Location",
+        "preposition": "in",
+        "span": "in the hall"
+      },
+      {
+        "t": "time",
+        "id": "t1",
+        "event": "@x1",
+        "weekday": "sunday",
+        "tense": "past",
+        "span": "on Sunday"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "7a4ce1a39e064ce0578dc38019f39e3b41ac396557385dd81a05170e5f80b32b",
+  "manifest_id": "38a56abbf8e5",
+  "run": 2,
+  "case": {
+    "template": "attitude",
+    "section": "held_out",
+    "index": 25,
+    "category": "positive",
+    "text": "The audit was in the hall on Sunday, Yusra said.",
+    "key": "47292168a7"
+  }
+}

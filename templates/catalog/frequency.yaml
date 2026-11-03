@@ -508,3 +508,12 @@ examples:
         - {t: activity, id: v1, verb: sing, actor: "@n1", tense: past}
         - {t: range, id: q1, class: occasion}
         - {t: frequency, id: f1, occasion: ["@q1"], over: ["@v1"], level: often, word: often}
+    - category: positive
+      note: an adverb over a state — the rule quantifies the locative over the occasions
+      text: "Teodor was often in the forge."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, class: forge, definite: true}
+        - {t: range, id: q1, class: occasion}
+        - {t: locative, id: l1, thing: "@n1", place: "@x1", head: LocatedIn, preposition: in, tense: past}
+        - {t: frequency, id: f1, occasion: ["@q1"], over: ["@l1"], level: often, word: often}

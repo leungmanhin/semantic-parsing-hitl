@@ -49,6 +49,18 @@ class FrequencyRuleForm(unittest.TestCase):
         rule = [s for s in out["statements"] if "(Implication" in s]
         self.assertTrue(rule[0].endswith("(STV 0.5 0.7))"), rule[0])                 # existential: no proportion stated
 
+    def test_an_adverb_over_a_state_quantifies_the_state(self):
+        """A frequency adverb over a locative (was often in the forge) builds the same rule as over a verb:
+        the state is a function of the occasion, holds the flat fact and sits at the occasion's time —
+        the on-demand state gets its symbol because the rule's shapes name it."""
+        terms = emit("Teodor was often in the forge.")
+        rule = [t for t in terms if t.startswith("(Implication")]
+        self.assertEqual(len(rule), 1, terms)
+        self.assertIn("(Member $x occasion)", rule[0])
+        self.assertIn("(Holds (sk_located $x) (LocatedIn sk_teodor_1 sk_forge_1))", rule[0])
+        self.assertIn("(Time (sk_located $x) $x)", rule[0])
+        self.assertNotIn("(LocatedIn sk_teodor_1 sk_forge_1)", " ".join(t for t in terms if not t.startswith("(Implication")))   # no top-level fact
+
     def test_two_ranges_give_a_function_of_both(self):
         terms = emit("Every ferret sleeps every night.")
         rule = [t for t in terms if t.startswith("(Implication")][0]

@@ -190,6 +190,10 @@ def parse(args) -> int:
     todo = [r for r in records if r["id"] not in done]
     if args.limit:
         todo = todo[: args.limit]
+    stale = None if args.dry_run else S.stale_prompt(args.prompt)
+    if stale:
+        print(f"error: {stale}", file=sys.stderr)
+        return 2
     with open(args.prompt, encoding="utf-8") as fh:
         body_sha = S.prompt_body_sha(fh.read())
     manifest_id = MF.current_id()
@@ -290,6 +294,13 @@ def _pattern(span: str) -> str:
     return " ".join(out)[:60]
 
 
+#: Gap codes the catalog asks the parser to REPORT rather than map — a post-nominal tag on a name (G03), a
+#: connective opening the text with no first clause (G05), the wording of a quotation whose content is parsed
+#: (G10): a convention each, never a gap in the catalog, so a sentence whose only unmapped spans carry one
+#: counts as covered. The named gaps (G01, G02, G04, G06 … G09) and the catch-all G00 stay gaps.
+REPORTED = {"G03", "G05", "G10"}
+
+
 def assess(parsed: list[dict], catalog: dict, typecheck: bool = False) -> dict:
     """Classify every reply. C9 (the type check) runs ONCE over all the replies in one engine session
     (one session per reply grew past 3 GB on 1,827 replies); its findings are lints, never a class."""
@@ -299,7 +310,8 @@ def assess(parsed: list[dict], catalog: dict, typecheck: bool = False) -> dict:
         resp = reply.get("response")
         row = {"id": r["id"], "dataset": r["dataset"], "group": r.get("sample", {}).get("group", r["dataset"]), "text": r["text"],
                "status": "error" if reply.get("error") or not isinstance(resp, dict) else "ok",
-               "instances": 0, "fired": {}, "unmapped": [], "issues": [], "findings": [], "outcome": "none", "usage": reply.get("usage") or {}}
+               "instances": 0, "fired": {}, "unmapped": [], "reported": [], "issues": [], "findings": [], "outcome": "none",
+               "usage": reply.get("usage") or {}}
         if row["status"] == "ok":
             try:
                 res = V.inspect(resp, catalog, text=r["text"])
@@ -309,13 +321,15 @@ def assess(parsed: list[dict], catalog: dict, typecheck: bool = False) -> dict:
             row["instances"] = len(res["instances"])
             row["fired"] = res["fired"]
             row["unmapped"] = [u for u in res["unmapped"] if isinstance(u, dict)]
+            row["reported"] = [u for u in row["unmapped"] if (u.get("code") or "G00") in REPORTED]
+            gaps = [u for u in row["unmapped"] if (u.get("code") or "G00") not in REPORTED]
             row["issues"] = res["issues"]
             row["findings"] = [f for f in res["findings"] if not f["kind"].startswith("span-")]
             hard = [f for f in row["findings"] if f["kind"] in ("contract", "instance")]
             predications = sum(n for t, n in row["fired"].items() if t not in ("named-entity", "witness", "group", "range", "mention", "coref", "reference-time"))
             if hard:
                 row["outcome"] = "malformed"
-            elif row["unmapped"]:
+            elif gaps:
                 row["outcome"] = "partial" if predications else "none"
             else:
                 row["outcome"] = "covered" if predications else "none"
@@ -333,6 +347,7 @@ def assess(parsed: list[dict], catalog: dict, typecheck: bool = False) -> dict:
         inst = [x["instances"] for x in rs if x["status"] == "ok"]
         return {"sentences": n, **{k: c.get(k, 0) for k in ("covered", "partial", "none", "malformed", "error")},
                 "covered_rate": round(c.get("covered", 0) / n, 3) if n else None,
+                "reported": sum(1 for x in rs if x["outcome"] == "covered" and x["reported"]),
                 "median_instances": statistics.median(inst) if inst else None,
                 "lints": sum(1 for x in rs for f in x["findings"] if f["kind"] not in ("contract", "instance")),
                 "issues": sum(len(x["issues"]) for x in rs)}
@@ -362,23 +377,30 @@ def render_report(a: dict, manifest_id: str | None, model: str | None) -> str:
     add("# Coverage report")
     add("")
     add(f"{o['sentences']} sentences · manifest {manifest_id or '—'} · parser {model or '—'} · "
-        f"covered {o['covered']} ({(o['covered_rate'] or 0):.0%}), partial {o['partial']}, none {o['none']}, malformed {o['malformed']}, errors {o['error']}")
+        f"covered {o['covered']} ({(o['covered_rate'] or 0):.0%}, {o['reported']} of them with spans reported by convention), "
+        f"partial {o['partial']}, none {o['none']}, malformed {o['malformed']}, errors {o['error']}")
     add("")
-    add("covered = every span mapped and at least one predication fired; partial = predications beside unmapped spans; "
+    add("covered = every span mapped or reported by convention (a tag on a name G03, a connective opening the text G05, "
+        "a quotation's wording G10) and at least one predication fired; partial = predications beside spans with a gap code; "
         "none = nothing but referents or everything unmapped; malformed = the reply broke the contract or the emitter refused it.")
     add("")
     add("## By source")
     add("")
-    add("| source | sentences | covered | partial | none | malformed | errors | covered rate | median instances | lints | issue reports |")
-    add("|---|---|---|---|---|---|---|---|---|---|---|")
+    add("| source | sentences | covered | partial | none | malformed | errors | covered rate | median instances | lints | issue reports | reported |")
+    add("|---|---|---|---|---|---|---|---|---|---|---|---|")
     for g, t in a["by_group"].items():
         add(f"| {g} | {t['sentences']} | {t['covered']} | {t['partial']} | {t['none']} | {t['malformed']} | {t['error']} | "
-            f"{(t['covered_rate'] or 0):.0%} | {t['median_instances'] if t['median_instances'] is not None else '—'} | {t['lints']} | {t['issues']} |")
+            f"{(t['covered_rate'] or 0):.0%} | {t['median_instances'] if t['median_instances'] is not None else '—'} | {t['lints']} | {t['issues']} | {t['reported']} |")
     add("")
     add("## Gap codes on the unmapped spans")
     add("")
     for code, n in a["gap_codes"].items():
-        add(f"- {code}: {n}")
+        if code not in REPORTED:
+            add(f"- {code}: {n}")
+    conv = [(code, n) for code, n in a["gap_codes"].items() if code in REPORTED]
+    if conv:
+        add("")
+        add("reported by convention, not gaps: " + ", ".join(f"{code}: {n}" for code, n in conv))
     add("")
     add("## Unmapped span shapes (capitalized words N, numbers #)")
     add("")

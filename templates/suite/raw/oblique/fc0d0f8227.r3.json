@@ -1,0 +1,100 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "b3d4b88d99f85baedb333633c92fcb908d10f807674b2cd112e81178ddf0037f",
+  "item": {
+    "id": "sfc0d0f8227",
+    "text": "Teodor wandered amid the ruins."
+  },
+  "usage": {
+    "input": 109996,
+    "output": 174,
+    "thinking": null,
+    "total": 110170,
+    "cached": 107947,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 109996,
+    "candidatesTokenCount": 174,
+    "totalTokenCount": 110170,
+    "cachedContentTokenCount": 107947,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 109996
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 107947
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 174
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sfc0d0f8227\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"group\", \"id\": \"g1\", \"class\": \"ruin\", \"definite\": true, \"span\": \"the ruins\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"wander\", \"mover\": \"@n1\", \"tense\": \"past\", \"span\": \"Teodor wandered\"}, {\"t\": \"oblique\", \"id\": \"a1\", \"event\": \"@m1\", \"head\": \"Amid\", \"object\": \"@g1\", \"span\": \"amid the ruins\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sfc0d0f8227",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "group",
+        "id": "g1",
+        "class": "ruin",
+        "definite": true,
+        "span": "the ruins"
+      },
+      {
+        "t": "motion",
+        "id": "m1",
+        "verb": "wander",
+        "mover": "@n1",
+        "tense": "past",
+        "span": "Teodor wandered"
+      },
+      {
+        "t": "oblique",
+        "id": "a1",
+        "event": "@m1",
+        "head": "Amid",
+        "object": "@g1",
+        "span": "amid the ruins"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "57065e6fc1ee1ea8986248bbc0aafe2c75cf986954fba4ae2a341cc3e78ef8d8",
+  "manifest_id": "4deb31707ce3",
+  "run": 3,
+  "case": {
+    "template": "oblique",
+    "section": "held_out",
+    "index": 27,
+    "category": "positive",
+    "text": "Teodor wandered amid the ruins.",
+    "key": "fc0d0f8227"
+  }
+}

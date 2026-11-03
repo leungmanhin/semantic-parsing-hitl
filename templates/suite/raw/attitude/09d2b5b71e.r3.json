@@ -1,0 +1,120 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "e4c4a76c7666d70f6d019fd7fea9391d91b01528f8f89132ae05d842fdd8207e",
+  "item": {
+    "id": "s09d2b5b71e",
+    "text": "A fire was at the mill on Monday, Teodor said."
+  },
+  "usage": {
+    "input": 110083,
+    "output": 275,
+    "thinking": null,
+    "total": 110358,
+    "cached": 108034,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 110083,
+    "candidatesTokenCount": 275,
+    "totalTokenCount": 110358,
+    "cachedContentTokenCount": 108034,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 110083
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 108034
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 275
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s09d2b5b71e\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"fire\", \"eventive\": true, \"span\": \"A fire\"}, {\"t\": \"witness\", \"id\": \"x2\", \"class\": \"mill\", \"definite\": true, \"span\": \"the mill\"}, {\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"location\", \"id\": \"l1\", \"event\": \"@x1\", \"place\": \"@x2\", \"head\": \"Location\", \"preposition\": \"at\", \"span\": \"at the mill\"}, {\"t\": \"time\", \"id\": \"t1\", \"event\": \"@x1\", \"weekday\": \"monday\", \"tense\": \"past\", \"span\": \"on Monday\"}, {\"t\": \"attitude\", \"id\": \"a1\", \"verb\": \"say\", \"holder\": \"@n1\", \"content\": [\"@x1\"], \"factive\": false, \"tense\": \"past\", \"span\": \"A fire was at the mill on Monday, Teodor said\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s09d2b5b71e",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "fire",
+        "eventive": true,
+        "span": "A fire"
+      },
+      {
+        "t": "witness",
+        "id": "x2",
+        "class": "mill",
+        "definite": true,
+        "span": "the mill"
+      },
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "location",
+        "id": "l1",
+        "event": "@x1",
+        "place": "@x2",
+        "head": "Location",
+        "preposition": "at",
+        "span": "at the mill"
+      },
+      {
+        "t": "time",
+        "id": "t1",
+        "event": "@x1",
+        "weekday": "monday",
+        "tense": "past",
+        "span": "on Monday"
+      },
+      {
+        "t": "attitude",
+        "id": "a1",
+        "verb": "say",
+        "holder": "@n1",
+        "content": [
+          "@x1"
+        ],
+        "factive": false,
+        "tense": "past",
+        "span": "A fire was at the mill on Monday, Teodor said"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "7a4ce1a39e064ce0578dc38019f39e3b41ac396557385dd81a05170e5f80b32b",
+  "manifest_id": "38a56abbf8e5",
+  "run": 3,
+  "case": {
+    "template": "attitude",
+    "section": "held_out",
+    "index": 26,
+    "category": "positive",
+    "text": "A fire was at the mill on Monday, Teodor said.",
+    "key": "09d2b5b71e"
+  }
+}

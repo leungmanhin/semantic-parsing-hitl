@@ -38,7 +38,7 @@ CATALOG_DIR = os.path.abspath(os.path.join(HERE, os.pardir, "catalog"))
 SLOT_TYPES = {"id", "lemma", "filler", "refs", "enum", "bool", "string", "number", "int", "list"}
 CLASSED = {"lemma", "filler", "refs"}
 CATEGORIES = {"positive", "contrast", "scoped", "optional", "abstain"}
-SLOT_KEYS = {"type", "class", "role", "required", "default", "values", "doc", "consumes", "bind", "skolemize", "attaches", "bare_content", "participant", "as_variable", "state_variable", "narrowed_by", "ids", "restriction", "only_when"}
+SLOT_KEYS = {"type", "class", "role", "required", "default", "values", "doc", "consumes", "bind", "skolemize", "attaches", "bare_content", "participant", "as_variable", "state_variable", "narrowed_by", "stands_alone", "ids", "restriction", "only_when"}
 #: The trigger fields render_prompt renders: text under any other key would never reach the parser.
 TRIGGER_KEYS = {"construction", "verbs", "verbs_note", "surface_forms", "boundary"}
 #: A template's sections. The prompt renders title, trigger, slots, one_of, any_of and the shown
@@ -174,6 +174,12 @@ def check_template(t: dict, path: str) -> list[str]:
             if spec["type"] not in ("lemma", "filler") or not names \
                     or any((slots.get(n) or {}).get("type") != "list" for n in names):
                 problems.append(f"slot {sname}: narrowed_by applies to a lemma or a filler slot and names one or more list slots of the template")
+        if "stands_alone" in spec:
+            nb = spec.get("narrowed_by")
+            nb = [nb] if isinstance(nb, str) else nb if isinstance(nb, list) else []
+            sa = spec["stands_alone"]
+            if not isinstance(sa, list) or not sa or any(n not in nb for n in sa):
+                problems.append(f"slot {sname}: stands_alone names narrowers of narrowed_by that may be filled while the slot is empty")
         if "only_when" in spec:
             problems += [f"slot {sname}: only_when: {m}" for m in check_when(str(spec["only_when"]), slots, t.get("lexicon"))]
         if "restriction" in spec and (spec["type"] != "list" or spec["restriction"] not in ("Mod", "Member")):

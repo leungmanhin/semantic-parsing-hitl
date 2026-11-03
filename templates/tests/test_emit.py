@@ -40,6 +40,15 @@ def atoms_of(statements):
     return out
 
 
+def example(tid: str, text: str) -> dict:
+    """The catalog example of a template with this text (shown or held out)."""
+    for section in ("shown", "held_out"):
+        for ex in CATALOG[tid]["examples"][section]:
+            if ex["text"] == text:
+                return ex
+    raise KeyError(text)
+
+
 def all_examples():
     for tid, t in CATALOG.items():
         for section in ("shown", "held_out"):
@@ -677,6 +686,33 @@ class EmitTests(unittest.TestCase):
                             {"t": "link", "id": "k1", "head": "Because", "main": "@v1", "sub": "@m1"}])
         self.assertTrue(any("(Holds sk_weight_1 (Measure sk_sack_1 weight 40 kilogram))" in st for st in r["statements"]), r["statements"])
         self.assertIn(["Because", "sk_rest_1", "sk_weight_1"], terms)                                # the measure's state as the cause
+
+    def test_an_eventive_witness_as_a_scopes_content_seals_its_place_and_time(self):
+        """An event noun predicated of a place and a time by be under a reporting verb has no predication:
+        the attitude's content names the eventive witness. A definite one is presupposed — its class atom
+        stays at the top level and only the attachments that take it as an event (its place, its time) are
+        sealed; an indefinite one is sealed whole; an attachment that takes it as an entity (a postmodifier)
+        stays with it outside the seal."""
+        ex = example("attitude", "The audit was in the hall on Sunday, Yusra said.")
+        out = E.emit({"id": "t", "instances": [dict(i) for i in ex["instances"]]}, CATALOG)
+        top = [s for s in out["statements"] if "(Theme " not in s]
+        theme = next(s for s in out["statements"] if "(Theme " in s)
+        self.assertTrue(any("(Member sk_audit_1 audit)" in s for s in top), top)         # presupposed, outside the seal
+        self.assertNotIn("(Member sk_audit_1 audit)", theme)
+        for atom in ("(Location sk_audit_1 sk_hall_1)", "(Time sk_audit_1 sk_time_1)", "(Past sk_audit_1)"):
+            self.assertIn(atom, theme)
+            self.assertFalse(any(atom in s for s in top), atom)                           # sealed, not asserted
+        ex = example("attitude", "A fire was at the mill on Monday, Teodor said.")
+        out = E.emit({"id": "t", "instances": [dict(i) for i in ex["instances"]]}, CATALOG)
+        theme = next(s for s in out["statements"] if "(Theme " in s)
+        self.assertIn("(Member sk_fire_1 fire)", theme)                                    # indefinite: its existence is said
+        self.assertFalse(any("(Member sk_fire_1 fire)" in s for s in out["statements"] if "(Theme " not in s))
+        insts = [dict(i) for i in example("attitude", "The audit was in the hall on Sunday, Yusra said.")["instances"]]
+        insts.insert(2, {"t": "witness", "id": "x3", "class": "forge", "definite": True})
+        insts.append({"t": "postmodifier", "id": "p1", "noun": "@x1", "head": "Of", "object": "@x3"})
+        out = E.emit({"id": "t", "instances": insts}, CATALOG)
+        self.assertTrue(any(s.startswith("(: p1_of (Of sk_audit_1 sk_forge_1)") for s in out["statements"]), out["statements"])
+        self.assertNotIn("(Of sk_audit_1", next(s for s in out["statements"] if "(Theme " in s))
 
     def test_a_stative_condition_yields_a_state_rule_beside_the_flat_one(self):
         """A rule whose condition is a stative predication (a copular, a locative …) is emitted

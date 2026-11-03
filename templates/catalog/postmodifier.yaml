@@ -30,6 +30,7 @@ trigger:
     - "a <N> by <author>"                             # a ballad by Femke: By, the author or maker of the thing
     - "<Name> is a <kind word> of <N>"                # Velloria is a genus of ferns: the copular genus, Of on the name, fern a bare lemma
     - "the <N> between <A> and <B>"                   # the quarrel between Femke and Ludo: Between, Femke the object, Ludo object2
+    - "a <N> before <person or body>"                 # a hearing before the magistrate: Before, in whose presence
   boundary:                   # looks like a postmodifier but is not one
     - >-
       a possessive of-phrase or genitive — the blanket of Marisol, Marisol's blanket, the sister of
@@ -67,7 +68,7 @@ slots:
   id:     {type: id, required: true, doc: "your label for the attachment (a1, a2 …)"}
   noun:   {type: filler, class: Entity, attaches: true, required: true,
            doc: "the referent the phrase modifies: the id of its witness or named-entity instance"}
-  head:   {type: enum, values: [About, Above, Across, Against, Along, Among, Around, As, At, Behind, Below, Beneath, Beside, Besides, Between, Beyond, By, Concerning, Despite, Down, Except, For, From, In, Inside, Into, Like, Near, Of, "Off", "On", Onto, Opposite, Out, Outside, Over, Past, Per, Regarding, Round, Through, To, Toward, Towards, Under, Underneath, Unlike, Up, Upon, Via, With, Within, Without],
+  head:   {type: enum, values: [About, Above, Across, Against, Along, Among, Around, As, At, Before, Behind, Below, Beneath, Beside, Besides, Between, Beyond, By, Concerning, Despite, Down, Except, For, From, In, Inside, Into, Like, Near, Of, "Off", "On", Onto, Opposite, Out, Outside, Over, Past, Per, Regarding, Round, Through, To, Toward, Towards, Under, Underneath, Unlike, Up, Upon, Via, With, Within, Without],
            required: true, doc: "the preposition as written, capitalized (with → With, about → About); never a synonym"}
   object: {type: filler, class: Entity, required: true, narrowed_by: [object_props, object_mods],
            doc: "the phrase's object: a referent id (a witness, a name) for a specific thing, or a bare lemma for a non-specific or class-level one (a book about badgers → badger, a flask without a lid → lid); with head Between the first of the two"}
@@ -242,3 +243,11 @@ examples:
         - {t: named-entity, id: n2, name: "Teodor"}
         - {t: postmodifier, id: a1, noun: "@x1", head: Between, object: "@n1", object2: "@n2"}
         - {t: change-of-state, id: e1, verb: end, undergoer: "@x1", tense: past}
+    - category: positive
+      note: before a body, on a noun — in whose presence
+      text: "The prisoner before the court trembled."
+      instances:
+        - {t: witness, id: x1, class: prisoner, definite: true}
+        - {t: witness, id: x2, class: court, definite: true}
+        - {t: postmodifier, id: a1, noun: "@x1", head: Before, object: "@x2"}
+        - {t: activity, id: v1, verb: tremble, actor: "@x1", tense: past}

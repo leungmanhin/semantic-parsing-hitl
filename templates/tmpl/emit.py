@@ -312,6 +312,11 @@ class _Emitter:
                         problems.append(f"{where}: {sname} references {ref}, which mints no symbol")
                     elif spec["type"] == "refs" and self.is_attachment(target):
                         problems.append(f"{where}: {sname} lists {ref}, an attachment, which follows its head into a scope and is never listed in one")
+                    elif spec["type"] == "refs" and "Proposition" in str(spec.get("class", "")) \
+                            and (self.cat.get(target.get("t")) or {}).get("family") == "referent" and not target.get("eventive") \
+                            and not ((self.cat.get(target.get("t")) or {}).get("mints") or {}).get("variable"):   # a range is a quantifier's domain
+                        problems.append(f"{where}: {sname} lists {ref}, a referent: the content is a predication, a scope operator, "
+                                        f"or an eventive witness whose place and time state the clause")
             for sname, spec in (t.get("slots") or {}).items():
                 v = r.get(sname)
                 if spec["type"] == "list" and spec.get("ids") and isinstance(v, list):   # a name or a year before a noun
@@ -327,10 +332,12 @@ class _Emitter:
                 if spec.get("only_when") and v not in (None, "", []) and not holds(spec["only_when"], r, t.get("lexicon")):
                     problems.append(f"{where}: {sname} is filled only when {spec['only_when']}")
                 nb = spec.get("narrowed_by")
+                alone = spec.get("stands_alone") or []           # narrowers whose own shapes take them with no base
                 for lname in ([nb] if isinstance(nb, str) else nb or []):
                     if r.get(lname) not in (None, [], ""):
                         if v in (None, ""):
-                            problems.append(f"{where}: {lname} narrows {sname}, which is empty")
+                            if lname not in alone:
+                                problems.append(f"{where}: {lname} narrows {sname}, which is empty")
                         elif is_ref(v):
                             problems.append(f"{where}: {lname} narrows {sname}, which names {v} — a referent's words go on its own instance")
             for sname in r:
@@ -379,16 +386,22 @@ class _Emitter:
     # ---------------------------------------------------------------- symbols
     def demanded(self) -> set:
         """The instances some other instance names as an EVENT (a filler slot of class Event: a
-        time's, a location's, a measure's, a relation's, a link's or a focus's). A template that
-        mints ``on_demand`` gets its symbol only for these: a copular or locative predication
-        is a flat atom until something attaches to it, and then also the state of that fact
-        holding."""
+        time's, a location's, a measure's, a relation's, a link's or a focus's) or quantifies over
+        as one (a ``skolemize`` refs slot whose plain ``within`` shapes name the slot's symbol: a
+        frequency's rule puts the episode of a state at the occasion's time — was often in the
+        hall; a conditional's state shapes are its state rule's, handled apart). A template that
+        mints ``on_demand`` gets its symbol only for these: a copular or locative predication is a
+        flat atom until something attaches to it, and then also the state of that fact holding."""
         out = set()
         for r in self.insts:
             t = self.cat.get(r.get("t")) or {}
             for sname, spec in (t.get("slots") or {}).items():
                 if spec["type"] == "filler" and "Event" in str(spec.get("class", "")) and is_ref(r.get(sname)):
                     out.add(r[sname][1:])
+                elif spec["type"] == "refs" and spec.get("skolemize") and any(
+                        e.get("within") == sname and not e.get("states") and re.search(r"\{%s\}" % re.escape(sname), e.get("atom") or "")
+                        for e in t.get("emits") or []):
+                    out.update(x[1:] for x in (r.get(sname) or []) if is_ref(x))
         return out
 
     def mint_stem(self, r: dict) -> str:
@@ -446,6 +459,13 @@ class _Emitter:
         return any(spec["type"] == "filler" and spec.get("attaches") and is_ref(r.get(sname))
                    for sname, spec in (t.get("slots") or {}).items())
 
+    def attaches_as_event(self, aid: str) -> bool:
+        """An attachment whose attaching slot takes its head as an EVENT (a time's, a location's, an
+        oblique's event slot), not as an entity (a postmodifier's noun)."""
+        r = self.by_id[aid]
+        return any(spec["type"] == "filler" and spec.get("attaches") and is_ref(r.get(sname)) and "Event" in str(spec.get("class", ""))
+                   for sname, spec in (self.cat[r["t"]].get("slots") or {}).items())
+
     # ---------------------------------------------------------------- homes
     def is_rigid(self, iid: str) -> bool:
         """A name, a presupposed referent (definite, possessed) or a variable: never scoped or skolemized."""
@@ -453,13 +473,23 @@ class _Emitter:
         return rigid(r, self.cat[r["t"]])
 
     def compute_homes(self):
-        # content instance -> the scope instance whose refs slot names it
+        # content instance -> the scope instance whose refs slot names it. A PRESUPPOSED REFERENT named as a
+        # scope's content (an eventive witness — the audit was in the hall on Sunday, Marisol said) is not
+        # consumed: it stays at the top level and only the attachments that take it as an EVENT (its place,
+        # its time, an oblique predicated of it by be) are sealed; an indefinite one (a fire was at the mill,
+        # Pieter said) is consumed whole, as a predication is.
         self.scope_of: dict[str, str] = {}
+        self.referent_content: dict[str, str] = {}
         for r in self.insts:
             for sname, spec in (self.cat[r["t"]].get("slots") or {}).items():
                 if spec["type"] == "refs" and spec.get("consumes", True):
                     for ref in r.get(sname) or []:
-                        self.scope_of[ref[1:]] = r["id"]
+                        rid = ref[1:]
+                        target = self.by_id.get(rid)
+                        if target and self.cat[target["t"]].get("family") == "referent" and target.get("eventive") and self.is_rigid(rid):
+                            self.referent_content[rid] = r["id"]
+                        else:
+                            self.scope_of[rid] = r["id"]
 
         # attachment instance -> its head (a slot with ``attaches: true``); rendered wherever the head is
         self.head_of = {}
@@ -470,6 +500,8 @@ class _Emitter:
         self.attachments_of = {}
         for a, h in self.head_of.items():
             self.attachments_of.setdefault(h, []).append(a)
+        self.sealed_attachments: set = {a for a, h in self.head_of.items()
+                                        if h in self.referent_content and self.attaches_as_event(a)}
 
         def enclosing(iid):
             chain = []
@@ -477,8 +509,11 @@ class _Emitter:
                 if iid in self.scope_of:
                     iid = self.scope_of[iid]
                     chain.append(iid)
-                elif iid in self.head_of:               # an attachment is enclosed by whatever encloses its head
-                    iid = self.head_of[iid]
+                elif iid in self.head_of:               # an attachment is enclosed by whatever encloses its head …
+                    a, iid = iid, self.head_of[iid]
+                    if a in self.sealed_attachments:    # … or, sealed with a presupposed referent content, by that scope
+                        iid = self.referent_content[iid]
+                        chain.append(iid)
                 else:
                     return chain
 
@@ -847,6 +882,8 @@ class _Emitter:
         out = [(term, e, iid) for term, e in self.shapes_of(iid, projecting)]
         if not projecting:
             for a in self.attachments_of.get(iid, []):
+                if a in self.sealed_attachments:
+                    continue                             # rendered inside the scope whose content its head is
                 out.extend(self.rendered(a))
         return out
 
@@ -987,7 +1024,10 @@ class _Emitter:
                 if spec["type"] == "refs":
                     todo.extend(x[1:] for x in (r.get(sname) or []) if is_ref(x))
             todo.extend(self.homed_in.get(iid, []))
-            todo.extend(self.attachments_of.get(iid, []))
+            atts = self.attachments_of.get(iid, [])
+            if iid in self.referent_content:
+                atts = [a for a in atts if a in self.sealed_attachments]
+            todo.extend(atts)
         return out
 
     def event_variables(self, scope_iid: str) -> tuple[dict, list]:
@@ -1094,7 +1134,13 @@ class _Emitter:
                         terms.extend(self.atoms_of(iid))
             else:
                 for ref in refs:
-                    terms.extend(self.atoms_of(ref[1:]))
+                    rid = ref[1:]
+                    if rid in self.referent_content:     # a presupposed referent: its sealed attachments state the clause
+                        for a in self.attachments_of.get(rid, []):
+                            if a in self.sealed_attachments:
+                                terms.extend(self.atoms_of(a))
+                    else:
+                        terms.extend(self.atoms_of(rid))
                 for iid in self.attached(refs, scope_iid):
                     terms.extend(self.atoms_of(iid))
             if slot and part is None and not pushed:

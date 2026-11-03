@@ -53,6 +53,20 @@ def kinds(res):
 
 
 class ContractTests(unittest.TestCase):
+    def test_props_on_a_name_with_no_class_are_its_own_properties(self):
+        """A name's props narrow its class when there is one; with no class noun (the venerable Kestrel) the
+        adjective stands alone as the name's property instead of tripping the empty-base check, while a mod
+        still needs the class it narrows."""
+        ok = V.inspect({"id": "t", "instances": [
+            {"t": "named-entity", "id": "n1", "name": "Kestrel", "props": ["venerable"]},
+            {"t": "activity", "id": "v1", "verb": "sail", "actor": "@n1", "tense": "past"}], "unmapped": [], "issues": []}, CATALOG)
+        self.assertFalse([f for f in ok["findings"] if f["kind"] in ("contract", "instance")], ok["findings"])
+        self.assertTrue(any("(Member sk_kestrel_1 venerable)" in s for s in ok["statements"]), ok["statements"])
+        bad = V.inspect({"id": "t", "instances": [
+            {"t": "named-entity", "id": "n1", "name": "Kestrel", "mods": ["harbour"]},
+            {"t": "activity", "id": "v1", "verb": "sail", "actor": "@n1", "tense": "past"}], "unmapped": [], "issues": []}, CATALOG)
+        self.assertTrue(any("mods narrows class, which is empty" in f["detail"] for f in bad["findings"]), bad["findings"])
+
     def test_optional_non_participant_filler_is_not_bare(self):
         """A predication whose only filler is marked participant: false (class-property's restriction)
         trips no bare-predication lint when the filler is empty; a verb-class predication with no

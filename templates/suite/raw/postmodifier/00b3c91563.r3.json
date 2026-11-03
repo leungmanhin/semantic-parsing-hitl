@@ -1,0 +1,101 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "b3d4b88d99f85baedb333633c92fcb908d10f807674b2cd112e81178ddf0037f",
+  "item": {
+    "id": "s00b3c91563",
+    "text": "The prisoner before the court trembled."
+  },
+  "usage": {
+    "input": 109997,
+    "output": 265,
+    "thinking": null,
+    "total": 110262,
+    "cached": 107948,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 109997,
+    "candidatesTokenCount": 265,
+    "totalTokenCount": 110262,
+    "cachedContentTokenCount": 107948,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 109997
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 107948
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 265
+      }
+    ]
+  },
+  "raw_text": "{\n  \"id\": \"s00b3c91563\",\n  \"instances\": [\n    {\n      \"t\": \"witness\",\n      \"id\": \"x1\",\n      \"class\": \"prisoner\",\n      \"definite\": true,\n      \"span\": \"The prisoner\"\n    },\n    {\n      \"t\": \"witness\",\n      \"id\": \"x2\",\n      \"class\": \"court\",\n      \"definite\": true,\n      \"span\": \"the court\"\n    },\n    {\n      \"t\": \"postmodifier\",\n      \"id\": \"a1\",\n      \"noun\": \"@x1\",\n      \"head\": \"Before\",\n      \"object\": \"@x2\",\n      \"span\": \"before the court\"\n    },\n    {\n      \"t\": \"activity\",\n      \"id\": \"e1\",\n      \"verb\": \"tremble\",\n      \"actor\": \"@x1\",\n      \"tense\": \"past\",\n      \"span\": \"The prisoner before the court trembled\"\n    }\n  ],\n  \"unmapped\": [],\n  \"issues\": []\n}",
+  "response": {
+    "id": "s00b3c91563",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "prisoner",
+        "definite": true,
+        "span": "The prisoner"
+      },
+      {
+        "t": "witness",
+        "id": "x2",
+        "class": "court",
+        "definite": true,
+        "span": "the court"
+      },
+      {
+        "t": "postmodifier",
+        "id": "a1",
+        "noun": "@x1",
+        "head": "Before",
+        "object": "@x2",
+        "span": "before the court"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "tremble",
+        "actor": "@x1",
+        "tense": "past",
+        "span": "The prisoner before the court trembled"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "57065e6fc1ee1ea8986248bbc0aafe2c75cf986954fba4ae2a341cc3e78ef8d8",
+  "manifest_id": "4deb31707ce3",
+  "run": 3,
+  "case": {
+    "template": "postmodifier",
+    "section": "held_out",
+    "index": 16,
+    "category": "positive",
+    "text": "The prisoner before the court trembled.",
+    "key": "00b3c91563"
+  }
+}

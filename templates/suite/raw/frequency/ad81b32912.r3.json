@@ -1,0 +1,113 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "b3d4b88d99f85baedb333633c92fcb908d10f807674b2cd112e81178ddf0037f",
+  "item": {
+    "id": "sad81b32912",
+    "text": "Teodor was often in the forge."
+  },
+  "usage": {
+    "input": 109996,
+    "output": 221,
+    "thinking": null,
+    "total": 110217,
+    "cached": 107947,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 109996,
+    "candidatesTokenCount": 221,
+    "totalTokenCount": 110217,
+    "cachedContentTokenCount": 107947,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 109996
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 107947
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 221
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sad81b32912\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"forge\", \"definite\": true, \"span\": \"the forge\"}, {\"t\": \"range\", \"id\": \"q1\", \"class\": \"occasion\", \"span\": \"often\"}, {\"t\": \"locative\", \"id\": \"l1\", \"thing\": \"@n1\", \"place\": \"@x1\", \"head\": \"LocatedIn\", \"preposition\": \"in\", \"tense\": \"past\", \"span\": \"Teodor was often in the forge\"}, {\"t\": \"frequency\", \"id\": \"f1\", \"occasion\": [\"@q1\"], \"over\": [\"@l1\"], \"level\": \"often\", \"word\": \"often\", \"span\": \"often\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sad81b32912",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "forge",
+        "definite": true,
+        "span": "the forge"
+      },
+      {
+        "t": "range",
+        "id": "q1",
+        "class": "occasion",
+        "span": "often"
+      },
+      {
+        "t": "locative",
+        "id": "l1",
+        "thing": "@n1",
+        "place": "@x1",
+        "head": "LocatedIn",
+        "preposition": "in",
+        "tense": "past",
+        "span": "Teodor was often in the forge"
+      },
+      {
+        "t": "frequency",
+        "id": "f1",
+        "occasion": [
+          "@q1"
+        ],
+        "over": [
+          "@l1"
+        ],
+        "level": "often",
+        "word": "often",
+        "span": "often"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "57065e6fc1ee1ea8986248bbc0aafe2c75cf986954fba4ae2a341cc3e78ef8d8",
+  "manifest_id": "4deb31707ce3",
+  "run": 3,
+  "case": {
+    "template": "frequency",
+    "section": "held_out",
+    "index": 29,
+    "category": "positive",
+    "text": "Teodor was often in the forge.",
+    "key": "ad81b32912"
+  }
+}
