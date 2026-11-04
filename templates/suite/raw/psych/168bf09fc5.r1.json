@@ -1,0 +1,86 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "2e3484bdb44eeeac47e8c618de12265e1394cdc570afa7b342a693626604028b",
+  "item": {
+    "id": "s168bf09fc5",
+    "text": "The quilt was admired."
+  },
+  "usage": {
+    "input": 110536,
+    "output": 105,
+    "thinking": null,
+    "total": 110641,
+    "cached": 108487,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 110536,
+    "candidatesTokenCount": 105,
+    "totalTokenCount": 110641,
+    "cachedContentTokenCount": 108487,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 110536
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 108487
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 105
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s168bf09fc5\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"quilt\", \"definite\": true, \"span\": \"The quilt\"}, {\"t\": \"psych\", \"id\": \"p1\", \"verb\": \"admire\", \"stimulus\": \"@x1\", \"tense\": \"past\", \"span\": \"The quilt was admired\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s168bf09fc5",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "quilt",
+        "definite": true,
+        "span": "The quilt"
+      },
+      {
+        "t": "psych",
+        "id": "p1",
+        "verb": "admire",
+        "stimulus": "@x1",
+        "tense": "past",
+        "span": "The quilt was admired"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "ab56beadbdde02d32bd7577272a9c315e2e6927415c5e274ac9cf5c43a001727",
+  "manifest_id": "bf1a23773cfa",
+  "run": 1,
+  "case": {
+    "template": "psych",
+    "section": "held_out",
+    "index": 15,
+    "category": "positive",
+    "text": "The quilt was admired.",
+    "key": "168bf09fc5"
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "2e3484bdb44eeeac47e8c618de12265e1394cdc570afa7b342a693626604028b",
+  "item": {
+    "id": "s3cbf58fdb4",
+    "text": "Yusra visited a northern village."
+  },
+  "usage": {
+    "input": 110536,
+    "output": 144,
+    "thinking": null,
+    "total": 110680,
+    "cached": 108487,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 110536,
+    "candidatesTokenCount": 144,
+    "totalTokenCount": 110680,
+    "cachedContentTokenCount": 108487,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 110536
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 108487
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 144
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s3cbf58fdb4\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"village\", \"props\": [\"northern\"], \"span\": \"a northern village\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"visit\", \"actor\": \"@n1\", \"patient\": \"@x1\", \"tense\": \"past\", \"span\": \"Yusra visited a northern village\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s3cbf58fdb4",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "village",
+        "props": [
+          "northern"
+        ],
+        "span": "a northern village"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "visit",
+        "actor": "@n1",
+        "patient": "@x1",
+        "tense": "past",
+        "span": "Yusra visited a northern village"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "ab56beadbdde02d32bd7577272a9c315e2e6927415c5e274ac9cf5c43a001727",
+  "manifest_id": "bf1a23773cfa",
+  "run": 3,
+  "case": {
+    "template": "witness",
+    "section": "held_out",
+    "index": 10,
+    "category": "positive",
+    "text": "Yusra visited a northern village.",
+    "key": "3cbf58fdb4"
+  }
+}

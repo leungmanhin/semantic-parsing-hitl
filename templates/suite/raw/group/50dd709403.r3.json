@@ -1,0 +1,97 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "2e3484bdb44eeeac47e8c618de12265e1394cdc570afa7b342a693626604028b",
+  "item": {
+    "id": "s50dd709403",
+    "text": "The three audits were on Monday."
+  },
+  "usage": {
+    "input": 110539,
+    "output": 153,
+    "thinking": null,
+    "total": 110692,
+    "cached": 108490,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 110539,
+    "candidatesTokenCount": 153,
+    "totalTokenCount": 110692,
+    "cachedContentTokenCount": 108490,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 110539
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 108490
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 153
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s50dd709403\", \"instances\": [{\"t\": \"group\", \"id\": \"g1\", \"class\": \"audit\", \"definite\": true, \"eventive\": true, \"count\": 3, \"span\": \"The three audits\"}, {\"t\": \"time\", \"id\": \"t1\", \"event\": \"@g1\", \"weekday\": \"monday\", \"tense\": \"past\", \"span\": \"on Monday\"}, {\"t\": \"distribution\", \"id\": \"d1\", \"group\": \"@g1\", \"over\": [\"@g1\"], \"span\": \"The three audits were on Monday\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s50dd709403",
+    "instances": [
+      {
+        "t": "group",
+        "id": "g1",
+        "class": "audit",
+        "definite": true,
+        "eventive": true,
+        "count": 3,
+        "span": "The three audits"
+      },
+      {
+        "t": "time",
+        "id": "t1",
+        "event": "@g1",
+        "weekday": "monday",
+        "tense": "past",
+        "span": "on Monday"
+      },
+      {
+        "t": "distribution",
+        "id": "d1",
+        "group": "@g1",
+        "over": [
+          "@g1"
+        ],
+        "span": "The three audits were on Monday"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "ab56beadbdde02d32bd7577272a9c315e2e6927415c5e274ac9cf5c43a001727",
+  "manifest_id": "bf1a23773cfa",
+  "run": 3,
+  "case": {
+    "template": "group",
+    "section": "held_out",
+    "index": 16,
+    "category": "positive",
+    "text": "The three audits were on Monday.",
+    "key": "50dd709403"
+  }
+}

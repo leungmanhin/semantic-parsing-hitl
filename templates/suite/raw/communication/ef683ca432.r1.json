@@ -1,0 +1,108 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "2e3484bdb44eeeac47e8c618de12265e1394cdc570afa7b342a693626604028b",
+  "item": {
+    "id": "sef683ca432",
+    "text": "Asked about the flood, Yusra laughed."
+  },
+  "usage": {
+    "input": 110540,
+    "output": 216,
+    "thinking": null,
+    "total": 110756,
+    "cached": 108436,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 110540,
+    "candidatesTokenCount": 216,
+    "totalTokenCount": 110756,
+    "cachedContentTokenCount": 108436,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 110540
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 108436
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 216
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sef683ca432\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"flood\", \"definite\": true, \"span\": \"the flood\"}, {\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"communication\", \"id\": \"e1\", \"verb\": \"ask\", \"addressee\": \"@n1\", \"tense\": \"present\", \"span\": \"Asked\"}, {\"t\": \"oblique\", \"id\": \"a1\", \"event\": \"@e1\", \"head\": \"About\", \"object\": \"@x1\", \"span\": \"about the flood\"}, {\"t\": \"activity\", \"id\": \"e2\", \"verb\": \"laugh\", \"actor\": \"@n1\", \"tense\": \"past\", \"span\": \"Yusra laughed\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sef683ca432",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "flood",
+        "definite": true,
+        "span": "the flood"
+      },
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "communication",
+        "id": "e1",
+        "verb": "ask",
+        "addressee": "@n1",
+        "tense": "present",
+        "span": "Asked"
+      },
+      {
+        "t": "oblique",
+        "id": "a1",
+        "event": "@e1",
+        "head": "About",
+        "object": "@x1",
+        "span": "about the flood"
+      },
+      {
+        "t": "activity",
+        "id": "e2",
+        "verb": "laugh",
+        "actor": "@n1",
+        "tense": "past",
+        "span": "Yusra laughed"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "ab56beadbdde02d32bd7577272a9c315e2e6927415c5e274ac9cf5c43a001727",
+  "manifest_id": "bf1a23773cfa",
+  "run": 1,
+  "case": {
+    "template": "communication",
+    "section": "held_out",
+    "index": 13,
+    "category": "positive",
+    "text": "Asked about the flood, Yusra laughed.",
+    "key": "ef683ca432"
+  }
+}

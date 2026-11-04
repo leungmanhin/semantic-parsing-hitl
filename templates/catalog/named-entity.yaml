@@ -35,7 +35,7 @@ slots:
           doc: "adjectives inside the appositive or title phrase, each a lemma (a careful harbour pilot: careful; the northern ferry company: northern); with no class noun the adjective is the name's own property (the venerable Kestrel: venerable, no class); a noun before the class is a mod, never a property; a direction adjective before a place's own name (southern Brackenford) is a part of the place (part-whole), never a property"}
   former: {type: bool, required: false, doc: "with a class, true when former, ex-, one-time or retired makes the noun something the referent was and no longer is (Femke, a retired weaver)"}
   mods:   {type: list, class: Class, ids: [named-entity, time], required: false,
-          doc: "the nouns, names and years before the head noun that narrow its class (Nouns before nouns): a lemma for a noun (a harbour pilot: harbour; a sea salt grinder: sea_salt), the id of a named-entity instance for a name (a Brackenford blanket), of a time instance for a year, a decade or a century (a 1904 almanac); never an adjective; with a class only"}
+          doc: "the nouns, names and years before the head noun that narrow its class (Nouns before nouns): a lemma for a noun (a harbour pilot: harbour; a sea salt grinder: sea_salt), the id of a named-entity instance for a name (a Brackenford blanket), of a time instance for a year, a decade or a century (a 1904 almanac); never an adjective; with a class only — a noun before a name with no class noun (county Alderman Pieter; the county Hall of Guilds) is not a mod: part of the title when it qualifies one (title county Alderman), else report it as unmapped (G00)"}
 
 mints: {id: Entity, stem: name}
 
@@ -133,3 +133,9 @@ examples:
       instances:
         - {t: named-entity, id: n1, name: "Harrowgate Bridge", props: [ancient]}
         - {t: activity, id: v1, verb: creak, actor: "@n1", tense: past}
+    - category: positive
+      note: a noun qualifying a title — part of the title, never a mod on a name with no class
+      text: "County Alderman Yusra spoke."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra", title: "County Alderman"}
+        - {t: activity, id: v1, verb: speak, actor: "@n1", tense: past}

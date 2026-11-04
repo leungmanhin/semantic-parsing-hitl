@@ -49,6 +49,7 @@ slots:
   id:        {type: id, required: true, doc: "your label for the group"}
   class:      {type: lemma, class: Class, required: true, narrowed_by: [props, mods], doc: "the head noun's lemma, singular (badger)"}
   definite:  {type: bool, required: false, doc: "true for the / these / those / both; absent for a possessed group (the possessor presupposes it) and otherwise"}
+  eventive:  {type: bool, required: false, doc: "true when the plural noun names events or periods and the clause puts them in time or place (the two inspections were on Friday; 28 deaths this year), as for a witness; absent otherwise"}
   count:     {type: number, required: false, doc: "the exact size when a numeral or both states it (three → 3; both → 2); a bound or a range is count_min / count_max instead"}
   count_min: {type: number, required: false, doc: "a lower bound on the size: more than / over / at least 200 → 200; the low end of a range (300–400 → 300)"}
   count_max: {type: number, required: false, doc: "an upper bound on the size: up to / at most / as many as / fewer than / under 60 → 60; the high end of a range (300–400 → 400)"}
@@ -59,7 +60,7 @@ slots:
               doc: "the nouns, names and years before the head noun that narrow its class (Nouns before nouns): a lemma for a noun (a harbour pilot: harbour; a sea salt grinder: sea_salt), the id of a named-entity instance for a name (a Brackenford blanket), of a time instance for a year, a decade or a century (a 1904 almanac); never an adjective"}
   possessor: {type: filler, class: Entity, required: false, doc: "the possessor of a possessive phrase (Marisol's badgers)"}
 
-mints: {id: Entity, literal: group}
+mints: {id: Entity, literal: group, also: {Event: eventive}}      # an eventive group is an Event too
 
 presupposed: [definite, possessor]      # a definite or possessed group exists whatever scope mentions it
 
@@ -225,3 +226,10 @@ examples:
         - {t: group, id: g1, class: pilgrim, count_min: 400, count_max: 500}
         - {t: motion, id: m1, verb: arrive, mover: "@g1", tense: past}
         - {t: distribution, id: d1, group: "@g1", over: ["@m1"]}
+    - category: positive
+      note: a plural event noun placed in time — the group is eventive, the time attaches to it with the clause's tense
+      text: "The three audits were on Monday."
+      instances:
+        - {t: group, id: g1, class: audit, definite: true, count: 3, eventive: true}
+        - {t: time, id: t1, event: "@g1", weekday: monday, tense: past}
+        - {t: distribution, id: d1, group: "@g1", over: ["@g1"]}

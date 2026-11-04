@@ -1,0 +1,95 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "2e3484bdb44eeeac47e8c618de12265e1394cdc570afa7b342a693626604028b",
+  "item": {
+    "id": "s70f5650cd1",
+    "text": "Teodor thinks that there is a ghost."
+  },
+  "usage": {
+    "input": 110541,
+    "output": 145,
+    "thinking": null,
+    "total": 110686,
+    "cached": 108492,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 110541,
+    "candidatesTokenCount": 145,
+    "totalTokenCount": 110686,
+    "cachedContentTokenCount": 108492,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 110541
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 108492
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 145
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s70f5650cd1\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"ghost\", \"span\": \"a ghost\"}, {\"t\": \"attitude\", \"id\": \"a1\", \"verb\": \"think\", \"holder\": \"@n1\", \"content\": [\"@x1\"], \"factive\": false, \"tense\": \"present\", \"span\": \"Teodor thinks that there is a ghost\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s70f5650cd1",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "ghost",
+        "span": "a ghost"
+      },
+      {
+        "t": "attitude",
+        "id": "a1",
+        "verb": "think",
+        "holder": "@n1",
+        "content": [
+          "@x1"
+        ],
+        "factive": false,
+        "tense": "present",
+        "span": "Teodor thinks that there is a ghost"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "ab56beadbdde02d32bd7577272a9c315e2e6927415c5e274ac9cf5c43a001727",
+  "manifest_id": "bf1a23773cfa",
+  "run": 3,
+  "case": {
+    "template": "attitude",
+    "section": "held_out",
+    "index": 27,
+    "category": "positive",
+    "text": "Teodor thinks that there is a ghost.",
+    "key": "70f5650cd1"
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "2e3484bdb44eeeac47e8c618de12265e1394cdc570afa7b342a693626604028b",
+  "item": {
+    "id": "s03fe8d574d",
+    "text": "County Alderman Yusra spoke."
+  },
+  "usage": {
+    "input": 110538,
+    "output": 113,
+    "thinking": null,
+    "total": 110651,
+    "cached": 108489,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 110538,
+    "candidatesTokenCount": 113,
+    "totalTokenCount": 110651,
+    "cachedContentTokenCount": 108489,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 110538
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 108489
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 113
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s03fe8d574d\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"title\": \"County Alderman\", \"span\": \"County Alderman Yusra\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"speak\", \"actor\": \"@n1\", \"tense\": \"past\", \"span\": \"County Alderman Yusra spoke\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s03fe8d574d",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "title": "County Alderman",
+        "span": "County Alderman Yusra"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "speak",
+        "actor": "@n1",
+        "tense": "past",
+        "span": "County Alderman Yusra spoke"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "ab56beadbdde02d32bd7577272a9c315e2e6927415c5e274ac9cf5c43a001727",
+  "manifest_id": "bf1a23773cfa",
+  "run": 3,
+  "case": {
+    "template": "named-entity",
+    "section": "held_out",
+    "index": 10,
+    "category": "positive",
+    "text": "County Alderman Yusra spoke.",
+    "key": "03fe8d574d"
+  }
+}

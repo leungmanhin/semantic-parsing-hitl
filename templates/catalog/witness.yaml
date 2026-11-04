@@ -53,7 +53,7 @@ slots:
              doc: "adjectival properties stated in the phrase; a property with a degree word (a very old bobbin) is a degree instance beside the witness, not a property here; a noun before the head is a mod, never a property"}
   former:   {type: bool, required: false, doc: "true when former, ex-, one-time or retired makes the noun something the referent was and no longer is (a former guard)"}
   mods:     {type: list, class: Class, ids: [named-entity, time], required: false,
-             doc: "the nouns, names and years before the head noun that narrow its class (Nouns before nouns): a lemma for a noun (a harbour pilot: harbour; a sea salt grinder: sea_salt), the id of a named-entity instance for a name (a Brackenford blanket), of a time instance for a year, a decade or a century (a 1904 almanac); never an adjective"}
+             doc: "the nouns, names and years before the head noun that narrow its class (Nouns before nouns): a lemma for a noun (a harbour pilot: harbour; a sea salt grinder: sea_salt), the id of a named-entity instance for a name (a Brackenford blanket), of a time instance for a year, a decade or a century (a 1904 almanac); never an adjective — a compass word before a common noun (a northern cottage) is a prop (northern), never a witness or a mod"}
   possessor: {type: filler, class: Entity, required: false,
               doc: "the possessor of a possessive phrase: Marisol's blanket, the blanket of Marisol, her blanket — an owner or an associate, NOT a whole the noun is a part of (the lid of the chest, the chest's lid, the car engine, the top of the barrow: no possessor, the witness definite, and a part-whole instance links the two), NOT the other party of a singular relational noun (her son, Joost's grandmother, the fellowship's treasurer: no possessor, a stative-relation instance with the witness as its bearer); a referent id (for a possessive pronoun, the id of its mention instance), or a bare lemma for a class-level possessor"}
   quantity: {type: string, required: false,
@@ -175,3 +175,10 @@ examples:
         - {t: named-entity, id: n1, name: "Lamine"}
         - {t: witness, id: x1, class: chair, props: [old, wooden]}
         - {t: transfer, id: e1, verb: sell, giver: "@n1", object: "@x1", tense: past}
+    - category: positive
+      note: a compass word before a common noun — a plain property
+      text: "Yusra visited a northern village."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, class: village, props: [northern]}
+        - {t: activity, id: v1, verb: visit, actor: "@n1", patient: "@x1", tense: past}

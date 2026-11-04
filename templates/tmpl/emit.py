@@ -314,9 +314,10 @@ class _Emitter:
                         problems.append(f"{where}: {sname} lists {ref}, an attachment, which follows its head into a scope and is never listed in one")
                     elif spec["type"] == "refs" and "Proposition" in str(spec.get("class", "")) \
                             and (self.cat.get(target.get("t")) or {}).get("family") == "referent" and not target.get("eventive") \
-                            and not ((self.cat.get(target.get("t")) or {}).get("mints") or {}).get("variable"):   # a range is a quantifier's domain
-                        problems.append(f"{where}: {sname} lists {ref}, a referent: the content is a predication, a scope operator, "
-                                        f"or an eventive witness whose place and time state the clause")
+                            and not ((self.cat.get(target.get("t")) or {}).get("mints") or {}).get("variable") \
+                            and rigid(target, self.cat[target["t"]]):          # an indefinite witness is an existential claim, sealed whole
+                        problems.append(f"{where}: {sname} lists {ref}, a presupposed referent: the content is a predication, a scope operator, "
+                                        f"an eventive witness whose place and time state the clause, or an indefinite witness whose existence is the claim")
             for sname, spec in (t.get("slots") or {}).items():
                 v = r.get(sname)
                 if spec["type"] == "list" and spec.get("ids") and isinstance(v, list):   # a name or a year before a noun
@@ -350,6 +351,10 @@ class _Emitter:
             for group in t.get("any_of") or []:
                 if not any(r.get(s) not in (None, [], "") for s in group):
                     problems.append(f"{where}: at least one of {', '.join(group)} must be filled")
+            for group in t.get("at_most_one") or []:
+                filled = [s for s in group if r.get(s) not in (None, [], "")]
+                if len(filled) > 1:
+                    problems.append(f"{where}: at most one of {', '.join(group)} may be filled ({len(filled)} are)")
         problems.extend(self.scope_cycles())
         return list(dict.fromkeys(problems))
 
@@ -482,16 +487,22 @@ class _Emitter:
         # Pieter said) is consumed whole, as a predication is.
         self.scope_of: dict[str, str] = {}
         self.referent_content: dict[str, str] = {}
-        for r in self.insts:
+        self.referent_over: dict[str, str] = {}          # the same under a NON-consuming slot (a distribution's over): the
+        for r in self.insts:                              # group-level atoms stay at the top, the sealed attachments distribute
             for sname, spec in (self.cat[r["t"]].get("slots") or {}).items():
-                if spec["type"] == "refs" and spec.get("consumes", True):
-                    for ref in r.get(sname) or []:
-                        rid = ref[1:]
-                        target = self.by_id.get(rid)
-                        if target and self.cat[target["t"]].get("family") == "referent" and target.get("eventive") and self.is_rigid(rid):
+                if spec["type"] != "refs":
+                    continue
+                for ref in r.get(sname) or []:
+                    rid = ref[1:]
+                    target = self.by_id.get(rid)
+                    eventive = bool(target and self.cat[target["t"]].get("family") == "referent" and target.get("eventive") and self.is_rigid(rid))
+                    if spec.get("consumes", True):
+                        if eventive:
                             self.referent_content[rid] = r["id"]
                         else:
                             self.scope_of[rid] = r["id"]
+                    elif eventive:
+                        self.referent_over[rid] = r["id"]
 
         # attachment instance -> its head (a slot with ``attaches: true``); rendered wherever the head is
         self.head_of = {}
@@ -503,7 +514,7 @@ class _Emitter:
         for a, h in self.head_of.items():
             self.attachments_of.setdefault(h, []).append(a)
         self.sealed_attachments: set = {a for a, h in self.head_of.items()
-                                        if h in self.referent_content and self.attaches_as_event(a)}
+                                        if (h in self.referent_content or h in self.referent_over) and self.attaches_as_event(a)}
 
         def enclosing(iid):
             chain = []
@@ -513,7 +524,7 @@ class _Emitter:
                     chain.append(iid)
                 elif iid in self.head_of:               # an attachment is enclosed by whatever encloses its head …
                     a, iid = iid, self.head_of[iid]
-                    if a in self.sealed_attachments:    # … or, sealed with a presupposed referent content, by that scope
+                    if a in self.sealed_attachments and iid in self.referent_content:   # … or, sealed with a presupposed referent content, by that scope
                         iid = self.referent_content[iid]
                         chain.append(iid)
                 else:
@@ -884,7 +895,7 @@ class _Emitter:
         out = [(term, e, iid) for term, e in self.shapes_of(iid, projecting)]
         if not projecting:
             for a in self.attachments_of.get(iid, []):
-                if a in self.sealed_attachments:
+                if a in self.sealed_attachments and iid in self.referent_content:
                     continue                             # rendered inside the scope whose content its head is
                 out.extend(self.rendered(a))
         return out
@@ -1027,7 +1038,7 @@ class _Emitter:
                     todo.extend(x[1:] for x in (r.get(sname) or []) if is_ref(x))
             todo.extend(self.homed_in.get(iid, []))
             atts = self.attachments_of.get(iid, [])
-            if iid in self.referent_content:
+            if iid in self.referent_content or iid in self.referent_over:
                 atts = [a for a in atts if a in self.sealed_attachments]
             todo.extend(atts)
         return out
@@ -1144,7 +1155,7 @@ class _Emitter:
             else:
                 for ref in refs:
                     rid = ref[1:]
-                    if rid in self.referent_content:     # a presupposed referent: its sealed attachments state the clause
+                    if rid in self.referent_content or rid in self.referent_over:   # a presupposed referent: its sealed attachments state the clause
                         for a in self.attachments_of.get(rid, []):
                             if a in self.sealed_attachments:
                                 terms.extend(self.atoms_of(a))

@@ -95,7 +95,7 @@ slots:
   holder:  {type: filler, class: Entity, role: Experiencer, required: true,
             doc: "who holds the attitude: the subject"}
   content: {type: refs, class: Proposition, required: true,
-            doc: "the complement clause: the ids of the instances that state it, that is its predication or the scope operator (negation, modal) over that predication; for an infinitival complement, its predication with the holder (or the object) as its actor; the referents it mentions are not listed — except an EVENT NOUN predicated of a place or a time by be (the closure was in the granary on Friday, Marisol said), which has no predication: list the eventive witness itself, and its place and time follow it into the seal"}
+            doc: "the complement clause: the ids of the instances that state it, that is its predication or the scope operator (negation, modal) over that predication; for an infinitival complement, its predication with the holder (or the object) as its actor; the referents it mentions are not listed — except an EVENT NOUN predicated of a place or a time by be (the closure was in the granary on Friday, Marisol said), which has no predication: list the eventive witness itself, and its place and time follow it into the seal; an EXISTENTIAL complement (Marisol suspects that there is a stork) is the indefinite witness itself, sealed whole — its existence is the claim; never an attachment (a time, an oblique, a purpose): it follows its head"}
   factive: {type: bool, required: true,
             doc: "true when the verb or adjective presupposes the complement (know, realize, discover, learn, notice, remember, regret; aware, glad, sorry, surprised, upset, proud, happy / angry that), false otherwise (believe, think, suppose, assume, suspect, doubt, hope, fear, expect, claim, say, want, wish, intend, plan, decide, promise, agree; sure, certain, confident, convinced, afraid, worried, and every adjective with a to-infinitive)"}
   tense:   {type: enum, values: [past, present, future], required: true,
@@ -451,3 +451,10 @@ examples:
         - {t: location, id: l1, event: "@x1", place: "@x2", head: Location, preposition: at}
         - {t: time, id: t1, event: "@x1", weekday: monday, tense: past}
         - {t: attitude, id: a1, verb: say, holder: "@n1", content: ["@x1"], factive: false, tense: past}
+    - category: positive
+      note: an existential complement — the indefinite witness is the content, its existence the claim
+      text: "Teodor thinks that there is a ghost."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, class: ghost}
+        - {t: attitude, id: a1, verb: think, holder: "@n1", content: ["@x1"], factive: false, tense: present}

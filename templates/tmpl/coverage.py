@@ -62,6 +62,13 @@ PLANS = {
         ("sick.all", 300, "families", lambda r: r.get("role") == "mine"),
         ("mrpc.train", 300, "families", lambda r: r.get("role") == "mine"),
     ],
+    # More SICK mining families: the same seed and the same first item as "paraphrase", so its first ~1,000
+    # sentences are the families already parsed (skipped by the runner) and the rest are new. A separate plan
+    # because the sampler's random state is shared across a plan's items: widening "paraphrase" itself would
+    # redraw its MRPC and evaluation items.
+    "paraphrase-2": [
+        ("sick.all", 2000, "families", lambda r: r.get("role") == "mine"),
+    ],
     "paraphrase": [
         ("sick.all", 1000, "families", lambda r: r.get("role") == "mine"),
         ("mrpc.train", 1000, "families", lambda r: r.get("role") == "mine"),

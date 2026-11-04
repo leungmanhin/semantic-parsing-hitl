@@ -16,7 +16,7 @@ Structural invariants checked here (content is reviewed by people, not checked h
   ``within`` names a refs slot (the shape is rendered inside that slot's bundle); a refs
   placeholder may carry ``|own`` or ``|attachments`` (the referenced predication's own atoms,
   or its attachments' — the two halves of a rule restricted to the clause's events);
-* ``one_of`` (exactly one filled) and ``any_of`` (at least one filled) groups list two or more
+* ``one_of`` (exactly one filled), ``any_of`` (at least one filled) and ``at_most_one`` groups list two or more
   slots each; ``truth`` gives ``strength`` / ``confidence``
   clause lists (numbers, or ``{slot, values}`` / ``{from, slot, values}``); a shape's ``stv`` is a
   pair of numbers; ``presupposed`` lists slots of the template;
@@ -43,7 +43,7 @@ SLOT_KEYS = {"type", "class", "role", "required", "default", "values", "doc", "c
 TRIGGER_KEYS = {"construction", "verbs", "verbs_note", "surface_forms", "boundary"}
 #: A template's sections. The prompt renders title, trigger, slots, one_of, any_of and the shown
 #: examples; the emitter and the checks read the rest; notes are the maintainers'.
-TEMPLATE_KEYS = {"id", "title", "family", "shape", "status", "trigger", "slots", "one_of", "any_of", "mints", "emits",
+TEMPLATE_KEYS = {"id", "title", "family", "shape", "status", "trigger", "slots", "one_of", "any_of", "at_most_one", "mints", "emits",
                  "examples", "depends_on", "composes_with", "notes", "truth", "presupposed", "lexicon",
                  "narrowing", "period"}           # the last two: emitter configuration (superlative, time)
 
@@ -190,7 +190,7 @@ def check_template(t: dict, path: str) -> list[str]:
         if "participant" in spec and not ((spec["type"] == "filler" and spec["participant"] is False)
                                           or (spec["type"] == "refs" and spec["participant"] is True)):
             problems.append(f"slot {sname}: participant: false applies to filler slots, participant: true to refs slots (a clause standing as the participant)")
-    for key in ("one_of", "any_of"):
+    for key in ("one_of", "any_of", "at_most_one"):
         for i, group in enumerate(t.get(key) or []):
             if not isinstance(group, list) or len(group) < 2 or any(g not in slots for g in group):
                 problems.append(f"{key}[{i}]: must list two or more slots of the template")

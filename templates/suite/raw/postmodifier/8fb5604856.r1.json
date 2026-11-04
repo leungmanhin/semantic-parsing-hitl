@@ -1,0 +1,107 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "2e3484bdb44eeeac47e8c618de12265e1394cdc570afa7b342a693626604028b",
+  "item": {
+    "id": "s8fb5604856",
+    "text": "Yusra led a search for three ferrets."
+  },
+  "usage": {
+    "input": 110542,
+    "output": 216,
+    "thinking": null,
+    "total": 110758,
+    "cached": 108493,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 110542,
+    "candidatesTokenCount": 216,
+    "totalTokenCount": 110758,
+    "cachedContentTokenCount": 108493,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 110542
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 108493
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 216
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s8fb5604856\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"search\", \"span\": \"a search\"}, {\"t\": \"group\", \"id\": \"g1\", \"class\": \"ferret\", \"count\": 3, \"span\": \"three ferrets\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"lead\", \"actor\": \"@n1\", \"patient\": \"@x1\", \"tense\": \"past\", \"span\": \"Yusra led a search\"}, {\"t\": \"postmodifier\", \"id\": \"a1\", \"noun\": \"@x1\", \"head\": \"For\", \"object\": \"@g1\", \"span\": \"for three ferrets\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s8fb5604856",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "search",
+        "span": "a search"
+      },
+      {
+        "t": "group",
+        "id": "g1",
+        "class": "ferret",
+        "count": 3,
+        "span": "three ferrets"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "lead",
+        "actor": "@n1",
+        "patient": "@x1",
+        "tense": "past",
+        "span": "Yusra led a search"
+      },
+      {
+        "t": "postmodifier",
+        "id": "a1",
+        "noun": "@x1",
+        "head": "For",
+        "object": "@g1",
+        "span": "for three ferrets"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "ab56beadbdde02d32bd7577272a9c315e2e6927415c5e274ac9cf5c43a001727",
+  "manifest_id": "bf1a23773cfa",
+  "run": 1,
+  "case": {
+    "template": "postmodifier",
+    "section": "held_out",
+    "index": 17,
+    "category": "positive",
+    "text": "Yusra led a search for three ferrets.",
+    "key": "8fb5604856"
+  }
+}

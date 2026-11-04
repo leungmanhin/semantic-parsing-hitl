@@ -97,7 +97,7 @@ trigger:
 slots:
   id:        {type: id, required: true, doc: "your label for the relation (r1, r2 …)"}
   event:     {type: filler, class: Event, attaches: true, required: true,
-              doc: "the event placed in time: the id of the clause's predication instance, or of an eventive witness when the relation is predicated of an event noun (the inspection was before the session)"}
+              doc: "the event placed in time: the id of the clause's predication instance, or of an eventive witness or group when the relation is predicated of an event noun (the inspection was before the session)"}
   reference: {type: filler, class: "Event|Instance", required: true,
               doc: "what the event is placed relative to: the id of the other clause's predication instance (after Odile sang), of an eventive witness (after the inspection), of a time instance with no event of its own (before noon, since 2019, until dawn, the edge of a window: within three days), or of a copular / locative / degree instance for a STATE the event falls within (sang while the oven was hot, waved when she was close enough: the program mints the state); never a bare lemma"}
   head:      {type: enum, values: [Before, After, During, Start, End, TimeAtMost, TimeAtLeast], required: true,

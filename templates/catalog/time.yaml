@@ -86,7 +86,7 @@ trigger:
 slots:
   id:      {type: id, required: true, doc: "your label for the time (t1, t2 …)"}
   event:   {type: filler, class: Event, attaches: true, required: false,
-            doc: "the event the time attaches to: the id of the clause's predication instance — a verb's, or a copular, locative, degree, comparative, class-statement, part-whole or measure one (Marisol was tired yesterday, the granary was very cold yesterday: the state's time; the program mints the state) —, or of an eventive witness when the time is predicated of an event noun (the session is at noon); absent only for a time no clause places an event at"}
+            doc: "the event the time attaches to: the id of the clause's predication instance — a verb's, or a copular, locative, degree, comparative, class-statement, part-whole or measure one (Marisol was tired yesterday, the granary was very cold yesterday: the state's time; the program mints the state) —, or of an eventive witness or group when the time is predicated of an event noun (the session is at noon; the two inspections were on Friday); absent only for a time no clause places an event at"}
   deictic: {type: enum, values: [now, today, tonight, yesterday, tomorrow, last_week, this_week, next_week, last_month, this_month, next_month, last_year, this_year, next_year], required: false,
             doc: "a time relative to the moment the text speaks from, as one of the listed words (two days ago is not a deictic here, and last / this / next with a weekday is the weekday with `relative`); fill no field beside it"}
   relative: {type: enum, values: [last, this, next], required: false,

@@ -1,0 +1,96 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "2e3484bdb44eeeac47e8c618de12265e1394cdc570afa7b342a693626604028b",
+  "item": {
+    "id": "sfef393e05b",
+    "text": "The ruling is a first step toward recovery."
+  },
+  "usage": {
+    "input": 110540,
+    "output": 170,
+    "thinking": null,
+    "total": 110710,
+    "cached": 108491,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 110540,
+    "candidatesTokenCount": 170,
+    "totalTokenCount": 110710,
+    "cachedContentTokenCount": 108491,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 110540
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 108491
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 170
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sfef393e05b\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"ruling\", \"definite\": true, \"span\": \"The ruling\"}, {\"t\": \"superlative\", \"id\": \"s1\", \"subject\": \"@x1\", \"scale\": \"step\", \"class\": \"step\", \"kind\": \"ordinal\", \"rank\": 1, \"predicative\": true, \"tense\": \"present\", \"span\": \"The ruling is a first step\"}], \"unmapped\": [{\"span\": \"toward recovery\", \"code\": \"G00\", \"construction\": \"A prepositional phrase on a predicative superlative noun has no event or witness to attach to.\"}], \"issues\": []}",
+  "response": {
+    "id": "sfef393e05b",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "ruling",
+        "definite": true,
+        "span": "The ruling"
+      },
+      {
+        "t": "superlative",
+        "id": "s1",
+        "subject": "@x1",
+        "scale": "step",
+        "class": "step",
+        "kind": "ordinal",
+        "rank": 1,
+        "predicative": true,
+        "tense": "present",
+        "span": "The ruling is a first step"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "toward recovery",
+        "code": "G00",
+        "construction": "A prepositional phrase on a predicative superlative noun has no event or witness to attach to."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "ab56beadbdde02d32bd7577272a9c315e2e6927415c5e274ac9cf5c43a001727",
+  "manifest_id": "bf1a23773cfa",
+  "run": 2,
+  "case": {
+    "template": "oblique",
+    "section": "held_out",
+    "index": 29,
+    "category": "abstain",
+    "text": "The ruling is a first step toward recovery.",
+    "key": "fef393e05b"
+  }
+}

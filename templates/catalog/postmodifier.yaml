@@ -251,3 +251,12 @@ examples:
         - {t: witness, id: x2, class: court, definite: true}
         - {t: postmodifier, id: a1, noun: "@x1", head: Before, object: "@x2"}
         - {t: activity, id: v1, verb: tremble, actor: "@x1", tense: past}
+    - category: positive
+      note: a counted group as the phrase's object — the group is only the object; no distribution over it
+      text: "Yusra led a search for three ferrets."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, class: search}
+        - {t: group, id: g1, class: ferret, count: 3}
+        - {t: activity, id: v1, verb: lead, actor: "@n1", patient: "@x1", tense: past}
+        - {t: postmodifier, id: a1, noun: "@x1", head: For, object: "@g1"}

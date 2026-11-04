@@ -43,7 +43,7 @@ slots:
   id:    {type: id, required: true, doc: "your label for the rule"}
   group: {type: filler, class: Entity, required: true, doc: "the group instance's id, or a portion's"}
   over:  {type: refs, class: Proposition, required: true, consumes: false, bind: group, skolemize: true,
-          doc: "the predication over the group, or the negation / modal over that predication: its id, nothing else — never an attachment (a location, a time, an oblique), which follows its head"}
+          doc: "the predication over the group, or the negation / modal over that predication: its id, nothing else — never an attachment (a location, a time, an oblique), which follows its head; a phrase whose OBJECT the group is (a search for three badgers, those with weak eyes) is no predication over the group: no distribution instance at all; when a time or a place is predicated of a plural EVENT noun (the two inspections were on Friday) there is no predication either — name the eventive group itself, and its time and place distribute over the members"}
 
 truth: {strength: [1.0], confidence: [0.9]}
 
@@ -130,3 +130,7 @@ examples:
         - {t: group, id: g1, class: guest, definite: true}
         - {t: activity, id: v1, verb: sing, actor: "@g1", tense: past}
         - {t: distribution, id: d1, group: "@g1", over: ["@v1"]}
+    - category: abstain
+      note: the group is only the object of a phrase on a noun — nothing is predicated of its members
+      text: "Yusra led a search for three ferrets."
+      expected: {abstain: true, template: postmodifier}

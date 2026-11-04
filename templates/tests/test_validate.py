@@ -67,6 +67,31 @@ class ContractTests(unittest.TestCase):
             {"t": "activity", "id": "v1", "verb": "sail", "actor": "@n1", "tense": "past"}], "unmapped": [], "issues": []}, CATALOG)
         self.assertTrue(any("mods narrows class, which is empty" in f["detail"] for f in bad["findings"]), bad["findings"])
 
+    def test_at_most_one_group_and_an_existential_content(self):
+        """A communication may state neither a message nor a content (a topic alone) but never both; an
+        attitude's content may be an indefinite witness (an existential claim), never a presupposed one."""
+        both = V.inspect({"id": "t", "instances": [
+            {"t": "named-entity", "id": "n1", "name": "Yusra"}, {"t": "witness", "id": "x1", "class": "secret"},
+            {"t": "activity", "id": "v1", "verb": "leave", "actor": "@n1", "tense": "past"},
+            {"t": "communication", "id": "e1", "verb": "tell", "speaker": "@n1", "message": "@x1", "content": ["@v1"], "tense": "past"}],
+            "unmapped": [], "issues": []}, CATALOG)
+        self.assertTrue(any("at most one of message, content" in f["detail"] for f in both["findings"]), both["findings"])
+        neither = V.inspect({"id": "t", "instances": [
+            {"t": "named-entity", "id": "n1", "name": "Yusra"},
+            {"t": "communication", "id": "e1", "verb": "ask", "addressee": "@n1", "tense": "past"}], "unmapped": [], "issues": []}, CATALOG)
+        self.assertFalse([f for f in neither["findings"] if f["kind"] in ("contract", "instance")], neither["findings"])
+        ok = V.inspect({"id": "t", "instances": [
+            {"t": "named-entity", "id": "n1", "name": "Teodor"}, {"t": "witness", "id": "x1", "class": "ghost"},
+            {"t": "attitude", "id": "a1", "verb": "think", "holder": "@n1", "content": ["@x1"], "factive": False, "tense": "present"}],
+            "unmapped": [], "issues": []}, CATALOG)
+        self.assertFalse([f for f in ok["findings"] if f["kind"] in ("contract", "instance")], ok["findings"])
+        self.assertTrue(any("(Theme sk_think_1 (Member sk_ghost_1 ghost))" in s for s in ok["statements"]), ok["statements"])
+        bad = V.inspect({"id": "t", "instances": [
+            {"t": "named-entity", "id": "n1", "name": "Teodor"}, {"t": "witness", "id": "x1", "class": "ghost", "definite": True},
+            {"t": "attitude", "id": "a1", "verb": "think", "holder": "@n1", "content": ["@x1"], "factive": False, "tense": "present"}],
+            "unmapped": [], "issues": []}, CATALOG)
+        self.assertTrue(any("a presupposed referent" in f["detail"] for f in bad["findings"]), bad["findings"])
+
     def test_optional_non_participant_filler_is_not_bare(self):
         """A predication whose only filler is marked participant: false (class-property's restriction)
         trips no bare-predication lint when the filler is empty; a verb-class predication with no
