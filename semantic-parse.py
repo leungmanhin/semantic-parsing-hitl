@@ -8,11 +8,13 @@ issues) is printed.  Providers are pluggable: one small class per provider, sele
     python semantic-parse.py "Teodor gave Yusra a thermos."
     python semantic-parse.py "…" --provider google --model gemini-2.5-flash --effort low
     python semantic-parse.py "…" --provider deepseek --model deepseek-v4-pro --effort low
+    python semantic-parse.py "…" --provider chat-completions --base-url http://127.0.0.1:8000/v1 --model <name>
     python semantic-parse.py "…" --out run.json          # keep the full run record
     python semantic-parse.py "…" --dry-run               # show the request, call nothing
 
 Keys come from the environment: GEMINI_API_KEY (or GOOGLE_API_KEY), OPENAI_API_KEY,
-DEEPSEEK_API_KEY, ANTHROPIC_API_KEY.  Only the standard library is used.
+DEEPSEEK_API_KEY, ANTHROPIC_API_KEY; for ``--provider chat-completions --base-url <url>`` (any
+OpenAI-compatible server) the variable named by --api-key-env.  Only the standard library is used.
 
 Every reply is validated after the call by the catalog's validator (templates/tmpl/validate.py:
 the emitter's instance checks, graph lints, C9 type check): findings go to stderr and into the run
@@ -406,6 +408,56 @@ class DeepSeek:
         return reply
 
 
+class ChatCompletions(DeepSeek):
+    """Any OpenAI-compatible Chat Completions endpoint at ``--base-url`` (a self-hosted model server, a
+    gateway or proxy): ``<base-url>/chat/completions``, streamed like DeepSeek, with the bearer key read from
+    the environment variable named by ``--api-key-env`` (default CHAT_COMPLETIONS_API_KEY).
+
+    Only the portable request fields are sent (model, messages, stream with usage, max_tokens,
+    temperature): no thinking or JSON-mode fields, whose names differ between servers. Usage is reported in
+    the shared shape; the cache read is taken from ``prompt_tokens_details.cached_tokens`` (OpenAI's field)
+    or ``prompt_cache_hit_tokens`` (DeepSeek's), the cache write from ``cache_creation_input_tokens`` where a
+    server reports it. A field the server does not report stays None (unknown), never zero."""
+
+    name = "chat-completions"
+    default_model = None
+    env_keys = ("CHAT_COMPLETIONS_API_KEY",)
+
+    def __init__(self, args):
+        self.args = args
+        base = getattr(args, "base_url", None)
+        if not base:
+            raise ProviderError("--provider chat-completions needs --base-url (e.g. http://127.0.0.1:8000/v1)")
+        self.url = base.rstrip("/") + "/chat/completions"
+        self.key_env = getattr(args, "api_key_env", None) or "CHAT_COMPLETIONS_API_KEY"
+        self.env_keys = (self.key_env,)
+
+    def key(self) -> str:
+        if os.environ.get(self.key_env):
+            return os.environ[self.key_env]
+        raise ProviderError(f"set {self.key_env}")
+
+    def request(self, system: str, user: str, model: str) -> tuple[str, dict, dict]:
+        a = self.args
+        if not model:
+            raise ProviderError("--provider chat-completions needs --model (the server has no default here)")
+        body = {"model": model, "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}],
+                "stream": True, "stream_options": {"include_usage": True}}
+        if a.max_tokens:
+            body["max_tokens"] = a.max_tokens
+        if a.temperature is not None:
+            body["temperature"] = a.temperature
+        return self.url, {"Authorization": "Bearer <key>"}, body
+
+    def complete(self, system: str, user: str, model: str) -> Reply:
+        reply = super().complete(system, user, model)
+        u = reply.raw_usage or {}
+        cached = (u.get("prompt_tokens_details") or {}).get("cached_tokens")
+        reply.usage["cached"] = cached if cached is not None else u.get("prompt_cache_hit_tokens")
+        reply.usage["cache_write"] = u.get("cache_creation_input_tokens")
+        return reply
+
+
 class Anthropic:
     """Anthropic (the Claude models) through the Messages REST API.
 
@@ -481,7 +533,7 @@ class Anthropic:
         return reply
 
 
-PROVIDERS = {p.name: p for p in (Google, OpenAI, DeepSeek, Anthropic)}
+PROVIDERS = {p.name: p for p in (Google, OpenAI, DeepSeek, ChatCompletions, Anthropic)}
 
 
 # --------------------------------------------------------------------------
@@ -577,6 +629,10 @@ def add_provider_args(ap: argparse.ArgumentParser) -> None:
     shared with the suite runner (templates/tmpl/suite.py), which adds them to its own parser."""
     ap.add_argument("--provider", choices=sorted(PROVIDERS), default="google")
     ap.add_argument("--model", default=None, help="model name (default: the provider's default)")
+    ap.add_argument("--base-url", default=None,
+                    help="chat-completions: the OpenAI-compatible API base, e.g. http://127.0.0.1:8000/v1 (required for it)")
+    ap.add_argument("--api-key-env", default="CHAT_COMPLETIONS_API_KEY",
+                    help="chat-completions: environment variable holding the bearer key (default: CHAT_COMPLETIONS_API_KEY)")
     ap.add_argument("--effort", choices=EFFORTS, default="low",
                     help="reasoning effort (default: low). Gemini 3+: a thinking level (none -> LOW, the lowest level every model offers; "
                          "xhigh / max -> HIGH, the highest); Gemini 2.x: a thinking budget (none -> 0); "
