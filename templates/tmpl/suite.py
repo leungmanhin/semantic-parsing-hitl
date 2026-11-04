@@ -267,6 +267,8 @@ def _seen_sentences() -> set[str]:
     seen = set()
     for path in FRESHNESS_FILES:
         if not os.path.exists(path):
+            continue                               # the legacy line left the tree (tag legacy-line)
+        if not os.path.exists(path):
             continue
         with open(path, encoding="utf-8") as fh:
             for piece in re.split(r"(?<=[.!?])\s+|\n", fh.read()):

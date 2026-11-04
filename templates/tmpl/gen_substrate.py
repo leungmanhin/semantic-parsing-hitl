@@ -2,7 +2,7 @@
 
 Outputs:
 
-* ``templates/ATOM-TYPE-SUBSTRATES.md`` — the reviewable rendering, one block per head;
+* ``templates/generated/ATOM-TYPE-SUBSTRATES.md`` — the reviewable rendering, one block per head;
 * ``templates/generated/atom-types.metta`` — PeTTa type declarations for every head whose
   ``out`` type is set (``(: Head (-> In … Out))``), plus the type declarations.  This is the
   file a type checker loads before asking ``(get-type <atom>)``; a well-typed atom answers
@@ -37,7 +37,7 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.abspath(os.path.join(HERE, os.pardir, os.pardir))
 SRC_PATH = os.path.join(REPO, "templates", "atom-type-substrates.json")
-OUT_MD = os.path.join(REPO, "templates", "ATOM-TYPE-SUBSTRATES.md")
+OUT_MD = os.path.join(REPO, "templates", "generated", "ATOM-TYPE-SUBSTRATES.md")
 OUT_METTA = os.path.join(REPO, "templates", "generated", "atom-types.metta")
 
 KIND_ORDER = [

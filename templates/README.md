@@ -1,13 +1,13 @@
 # Logical templates — the catalog
 
 Parsing as recognition: a blind parser fills pre-defined templates; code renders the atoms.
-Nothing here changes `prompt.txt`, the briefs under `fusenf/briefs/`, or any pipeline store.
+The legacy parser line (`prompt.txt`, `seeded_rules.metta`, the regression harness) lives at the git tag `legacy-line`; nothing here depends on it.
 
 | path | what |
 |---|---|
 | `catalog/<id>.yaml` | one template per file: trigger, slots, mints, emits, notes, examples (`shown` / `held_out`) |
 | `catalog/_general.yaml` | the shared prompt text: intro, output contract, identifiers, lemmas, abstain rule, gap codes, issue codes |
-| `atom-type-substrates.json` | the typed substrate, hand-maintained; rendered to `ATOM-TYPE-SUBSTRATES.md` (review) and `generated/atom-types.metta` (PeTTa declarations) |
+| `atom-type-substrates.json` | the typed substrate, hand-maintained; rendered to `generated/ATOM-TYPE-SUBSTRATES.md` (review) and `generated/atom-types.metta` (PeTTa declarations) |
 | `generated/PROMPT_CATALOG.txt` | the parser's instruction set, rendered from the catalog; never edited by hand |
 | `generated/MANIFEST.json` | the catalog's VERSION MANIFEST: the hashes of the templates, the prompt (and its body), the substrate and its declarations, the rules and their lowered form, and the emitter code (`tmpl/validate.py` and the package modules it imports — the runners and tools are outside it), under one twelve-digit id; rewritten by `render_prompt`, `gen_substrate` and `rules`; its id is stamped into each record a `collect` stores (`manifest_id`) and into each `score` summary, which counts the records whose version differs (stale) or predates the stamp (unstamped) |
 | `tmpl/manifest.py` | computes, writes and checks the manifest (`python -m tmpl.manifest [--check]`) |
@@ -21,8 +21,6 @@ Nothing here changes `prompt.txt`, the briefs under `fusenf/briefs/`, or any pip
 | `tmpl/gen_substrate.py` | substrate source → review document + declarations |
 | `tmpl/refresh_illustrations.py` | rewrites every example's `emitted:` / `declarations:` block from the emitter (after any emitter or template change) |
 | `suite/raw/<template>/` · `suite/out/` | stored run records · scores, summary, `REPORT.md` |
-| `INVENTORY.md` | prompt.txt read as a registry of constructions: the coverage worklist (its template ids are historical) |
-| `tmpl/frequency.py` → `FREQUENCY.md` | which verb classes and constructions the parsed corpora contain, and what share the live templates claim |
 | `../semantic-parse.py` | one sentence → instances via an LLM, validated |
 | `rules.yaml` | the catalog's background rules in a consumer-neutral form: premises, conclusion, arithmetic steps, reliability, semantics (a change's named result holds afterwards; a coref link carries a mention's roles to its antecedent; dates from the reference time, …) |
 | `tmpl/rules.py` | validates `rules.yaml` (heads in the substrate — a skolem function term such as `(sk_sym $s)` in a conclusion mints a dependent individual —, variables bound, truth in range) and lowers it for a consumer; a rule over a sealed clause expands per matrix tense, and a rule that `requires` a capability the consumer lacks (the chainer's sealed-term projection) is listed as pending in the generated file instead of written; its `facts` section holds the background lexicon (the poles of a dimension, unit factors to a canonical unit, dimension scales) as ground statements written before the rules; a rule with `semantics: equivalence` (a symmetric relation read from either side) lowers to the chainer's Equivalence link, used in both directions, a denied side denying the other |
@@ -41,7 +39,6 @@ Nothing here changes `prompt.txt`, the briefs under `fusenf/briefs/`, or any pip
         --provider google --model gemini-4-argon --effort low    # one call per held-out case and run
     $P -m tmpl.suite score --template <id>                   # or --all → suite/out/REPORT.md
     $P ../suite.py <check|collect|score> …                   # the same runner from any directory
-    $P -m tmpl.frequency                                     # verb-class / construction frequencies → FREQUENCY.md
     $P ../semantic-parse.py "<sentence>" --atoms             # one parse, validated, atoms shown
     $P ../semantic-parse.py "<sentence>" --statements-only   # only the statements, one per line: the chainer's input
     $P ../semantic-parse.py "<sentence>" --reference-time today   # the anchor `now` gets the date's calendar fields
@@ -102,7 +99,7 @@ Nothing here changes `prompt.txt`, the briefs under `fusenf/briefs/`, or any pip
   templates to write) and, when they exist, claim the sentence in their own examples without firing
   the abstaining template; a sentence that is a firing example of two templates with different
   expected atoms is an OVERLAP; no held-out sentence is a shown sentence anywhere; gap codes exist;
-  no example sentence comes from prompt.txt, the goldens or a corpus.
+  no example sentence comes from the legacy prompt (tag `legacy-line`), the goldens or a corpus.
 - `collect` stores one run record per call under `suite/raw/<template>/<key>.r<n>.json` and is
   resumable (stored replies are skipped; `--force` re-requests). `--section shown` parses the prompt's
   own examples (a smoke test, not a regression); `--only <words>`, `--category abstain` (repeatable),
@@ -119,7 +116,7 @@ Nothing here changes `prompt.txt`, the briefs under `fusenf/briefs/`, or any pip
 ### Atom-type substrate and type checker (C9)
 
 - Source: `atom-type-substrates.json` (hand-maintained). Render: `python -m tmpl.gen_substrate` →
-  `ATOM-TYPE-SUBSTRATES.md` (review) + `generated/atom-types.metta` (PeTTa declarations). Never edit
+  `generated/ATOM-TYPE-SUBSTRATES.md` (review) + `generated/atom-types.metta` (PeTTa declarations). Never edit
   the generated files.
 - Check statements: `python -m tmpl.typecheck <statements.jsonl|.metta> [--no-infer] [--report out.json]`
   (needs the `petta` package). A record may carry `declarations` (the emitter's `(: sym Type)` lines);
@@ -155,6 +152,6 @@ Nothing here changes `prompt.txt`, the briefs under `fusenf/briefs/`, or any pip
   `QuantifierPhrase` companion is retired for that reason.
 - Freeze before collect: never regenerate the instruction set while a collect is in flight (the scorer
   flags records collected under another instruction set as stale).
-- Example sentences never reuse a sentence from prompt.txt, the goldens or any corpus, and a held-out
+- Example sentences never reuse a sentence from the legacy prompt, the goldens or any corpus, and a held-out
   sentence never appears in the prompt (both enforced by `tmpl.suite check`).
 - Suite output never enters `fusenf/raw` or `fusenf/parses`.
