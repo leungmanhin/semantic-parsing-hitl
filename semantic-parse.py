@@ -407,20 +407,78 @@ class DeepSeek:
 
 
 class Anthropic:
-    """Placeholder: add when needed (Messages API)."""
+    """Anthropic (the Claude models) through the Messages REST API.
+
+    Caching, per Anthropic's prompt-caching guide: explicit only. A ``cache_control`` breakpoint on a
+    content block caches the whole prefix up to it (a write is billed at 1.25x the input rate for the
+    default 5-minute lifetime, a read at 0.1x); a prefix shorter than the model's minimum is sent
+    uncached without an error. The catalog is therefore the system prompt, one text block ending in a
+    breakpoint, and the item is the user message after it: the first call writes the catalog, later
+    calls read it, and the item is plain input. No priming is needed. ``--no-cache`` drops the breakpoint.
+
+    Thinking: ``--effort`` none sends no thinking configuration; low / medium / high / xhigh / max send
+    extended thinking with the token budget below (the budget must be at least 1024 and below
+    ``max_tokens``, so ``max_tokens`` defaults to the budget plus ``REPLY_TOKENS``). With thinking on
+    the API refuses a temperature other than 1, so ``--temperature`` is then not sent. Thinking blocks
+    come back as ``thoughts`` with ``--include-thoughts``.
+
+    The Messages API has no JSON mode here: the reply is read by ``extract_json`` like any other.
+    Usage is reported in the shape the other providers use: ``input`` is the whole prompt (uncached +
+    cache read + cache write, Anthropic counts them apart), ``cached`` the cache read, ``cache_write``
+    the cache write; ``raw_usage`` keeps Anthropic's own fields."""
 
     name = "anthropic"
     default_model = "claude-sonnet-5-5"
     env_keys = ("ANTHROPIC_API_KEY",)
+    url = "https://api.anthropic.com/v1/messages"
+    version = "2023-06-01"
+    budgets = {"low": 1024, "medium": 4096, "high": 16384, "xhigh": 32768, "max": 63999}
+    REPLY_TOKENS = 8192
 
     def __init__(self, args):
         self.args = args
 
-    def request(self, system, user, model):
-        raise ProviderError("the anthropic provider is not implemented yet")
+    def key(self) -> str:
+        if os.environ.get("ANTHROPIC_API_KEY"):
+            return os.environ["ANTHROPIC_API_KEY"]
+        raise ProviderError("set ANTHROPIC_API_KEY")
 
-    def complete(self, system, user, model):
-        raise ProviderError("the anthropic provider is not implemented yet")
+    def request(self, system: str, user: str, model: str) -> tuple[str, dict, dict]:
+        a = self.args
+        block = {"type": "text", "text": system}
+        if not getattr(a, "no_cache", False):
+            block["cache_control"] = {"type": "ephemeral"}
+        body = {"model": model, "system": [block], "messages": [{"role": "user", "content": user}]}
+        budget = None if getattr(a, "no_thinking", False) else self.budgets.get(a.effort)
+        if budget:
+            body["thinking"] = {"type": "enabled", "budget_tokens": budget}
+            body["max_tokens"] = a.max_tokens or budget + self.REPLY_TOKENS
+        else:
+            body["max_tokens"] = a.max_tokens or self.REPLY_TOKENS
+            if a.temperature is not None:
+                body["temperature"] = a.temperature
+        return self.url, {"x-api-key": "<key>", "anthropic-version": self.version}, body
+
+    def complete(self, system: str, user: str, model: str) -> Reply:
+        url, headers, body = self.request(system, user, model)
+        headers["x-api-key"] = self.key()
+        raw = _post_json(url, headers, body, self.args.timeout, long_waits=PATIENT_WAITS, long_codes=(429, 529))
+        blocks = raw.get("content") or []
+        text = "".join(b.get("text", "") for b in blocks if b.get("type") == "text")
+        thoughts = [b.get("thinking", "") for b in blocks if b.get("type") == "thinking"]
+        u = raw.get("usage") or {}
+        uncached, read, write = (u.get("input_tokens") or 0), (u.get("cache_read_input_tokens") or 0), \
+            (u.get("cache_creation_input_tokens") or 0)
+        usage = {"input": uncached + read + write, "output": u.get("output_tokens"),
+                 "total": uncached + read + write + (u.get("output_tokens") or 0),
+                 "cached": read, "cache_write": write, "finish": raw.get("stop_reason"),
+                 "service_tier": u.get("service_tier")}
+        reply = Reply(text, usage, raw)
+        if self.args.include_thoughts and thoughts:
+            reply.thoughts = thoughts
+        reply.config = {k: v for k, v in body.items() if k not in ("system", "messages")}
+        reply.raw_usage = u
+        return reply
 
 
 PROVIDERS = {p.name: p for p in (Google, OpenAI, DeepSeek, Anthropic)}
@@ -486,6 +544,9 @@ def parse_sentence(text: str, args, item_id: str = "item") -> dict:
                     part["text"] = f"<{len(system)} chars of {record['prompt_path']}>"
         if "instructions" in shown:
             shown["instructions"] = f"<{len(system)} chars of {record['prompt_path']}>"
+        for block in shown.get("system") if isinstance(shown.get("system"), list) else []:  # anthropic: system blocks
+            if block.get("text") == system:
+                block["text"] = f"<{len(system)} chars of {record['prompt_path']}>"
         for msg in (shown.get("input") if isinstance(shown.get("input"), list) else []) + (shown.get("messages") or []):
             if msg.get("content") == system:
                 msg["content"] = f"<{len(system)} chars of {record['prompt_path']}>"
@@ -543,6 +604,8 @@ def add_provider_args(ap: argparse.ArgumentParser) -> None:
                          "system instruction (the layout before 2026-10-18; never cached across items)")
     ap.add_argument("--prime", action="store_true",
                     help="send the catalog alone once before the call, so the catalog is served from the implicit cache (the suite runner primes by itself)")
+    ap.add_argument("--no-cache", action="store_true",
+                    help="anthropic: send the catalog without a cache_control breakpoint (default: cached, the first call writes the catalog and later calls read it)")
     ap.add_argument("--service-tier", choices=("auto", "default", "flex", "priority"), default=None,
                     help="openai and google: the processing tier (service_tier; google takes flex or priority); default: not sent, "
                          "the standard tier. flex: half price and slower — OpenAI may answer 429 Resource Unavailable, Gemini 503 or 429 "
