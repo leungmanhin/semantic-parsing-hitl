@@ -428,6 +428,8 @@ class _Emitter:
         named: dict[str, list[str]] = {}
         counters: dict[str, int] = {}
         n_vars = 0
+        if any(sp.get("bind") for r in self.insts for sp in (self.cat[r["t"]].get("slots") or {}).values()):
+            n_vars = 1          # a distribution binds its member to $x in its own shape: the ranges start at $y (a generic under a distribution)
         demanded = self.demanded()
         for r in self.insts:
             t = self.cat[r["t"]]
@@ -1093,20 +1095,27 @@ class _Emitter:
                 reached = set(self.inside(all_refs, scope_iid))
                 for r2 in self.insts:
                     if r2["id"] in reached and (self.cat[r2["t"]].get("mints") or {}).get("variable"):
+                        binder = self.scope_of.get(r2["id"])
+                        if binder is not None and binder != scope_iid and binder in reached:
+                            continue              # bound by a scope nested inside this bundle (a generic under a reported clause): not this bundle's variable
                         variables.append(self.sym[r2["id"]])
                 variables.extend(evars)
                 for iid in self.inside(refs, scope_iid):
                     m = self.cat[self.by_id[iid]["t"]].get("mints") or {}
                     if not m or self.is_rigid(iid) or iid in mapping or not variables:
                         continue                              # no variable in scope: the constant stays
-                    if iid in self.sym:
+                    outer: list = []
+                    if iid in self.sym and isinstance(self.sym[iid], list):   # already a function of an outer scope's variables
+                        stem, outer = self.sym[iid][0], list(self.sym[iid][1:])   # (a distribution over a conditional over the same event)
+                    elif iid in self.sym:
                         stem = self.sym[iid].rsplit("_", 1)[0]
                     elif self.state_mode and m.get("on_demand"):
                         stem = "sk_" + self.mint_stem(self.by_id[iid])   # a stative consequence: its state, a function of the binders
                     else:
                         continue
-                    overlay[iid] = [stem] + variables
-                    self.sk_functions[(stem, len(variables))] = m.get("id", "Entity")
+                    args = outer + [v for v in variables if v not in outer]
+                    overlay[iid] = [stem] + args
+                    self.sk_functions[(stem, len(args))] = m.get("id", "Entity")
         saved = self.sym
         if overlay is not None:
             self.sym = overlay

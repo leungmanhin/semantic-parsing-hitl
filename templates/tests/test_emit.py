@@ -714,6 +714,38 @@ class EmitTests(unittest.TestCase):
         self.assertTrue(any(s.startswith("(: p1_of (Of sk_audit_1 sk_forge_1)") for s in out["statements"]), out["statements"])
         self.assertNotIn("(Of sk_audit_1", next(s for s in out["statements"] if "(Theme " in s))
 
+    def test_a_scope_under_a_distribution_nests_its_skolem_functions(self):
+        """A rule or a reported clause under a distribution: an event skolemized by both scopes is a function of
+        both variables, in order (the member, then the inner binder); a range bound by a scope nested inside
+        a bundle is not that bundle's variable (its name starts at $y, since the distribution's member is $x)."""
+        group = [{"t": "group", "id": "g1", "class": "ferret", "definite": True}]
+        out = E.emit({"id": "t", "instances": group + [
+            {"t": "activity", "id": "e1", "verb": "sleep", "actor": "@g1", "tense": "past"},
+            {"t": "activity", "id": "e2", "verb": "eat", "actor": "@g1", "tense": "past"},
+            {"t": "conditional", "id": "r1", "condition": ["@e2"], "over": ["@e1"], "word": "if"},
+            {"t": "distribution", "id": "d1", "group": "@g1", "over": ["@r1"]}]}, CATALOG)
+        dist = next(s for s in out["statements"] if "d1_implication" in s)
+        self.assertIn("(Member (sk_sleep $x $e) sleep)", dist)                            # a function of the member and the eating
+        self.assertIn("(Agent $e $x)", dist)
+        out = E.emit({"id": "t", "instances": group + [
+            {"t": "range", "id": "q1", "class": "beetle"},
+            {"t": "activity", "id": "e1", "verb": "chase", "actor": "@g1", "patient": "@q1", "tense": "present"},
+            {"t": "generic", "id": "r1", "ranges": ["@q1"], "over": ["@e1"]},
+            {"t": "distribution", "id": "d1", "group": "@g1", "over": ["@r1"]}]}, CATALOG)
+        dist = next(s for s in out["statements"] if "d1_implication" in s)
+        self.assertIn("(Implication (PartOf $x sk_group_1) (Implication (Member $y beetle)", dist)   # the range is $y, never the member's $x
+        self.assertIn("(Patient (sk_chase $x $y) $y)", dist)
+        out = E.emit({"id": "t", "instances": [
+            {"t": "group", "id": "g1", "class": "keeper", "definite": True},
+            {"t": "range", "id": "q1", "class": "beetle"},
+            {"t": "activity", "id": "e1", "verb": "bite", "actor": "@q1", "tense": "present"},
+            {"t": "generic", "id": "r1", "ranges": ["@q1"], "over": ["@e1"]},
+            {"t": "attitude", "id": "a1", "verb": "say", "holder": "@g1", "content": ["@r1"], "factive": False, "tense": "past"},
+            {"t": "distribution", "id": "d1", "group": "@g1", "over": ["@a1"]}]}, CATALOG)
+        dist = next(s for s in out["statements"] if "d1_implication" in s)
+        self.assertIn("(Member (sk_say $x) say)", dist)                                  # the saying depends on the member only
+        self.assertIn("(Theme (sk_say $x) (Implication (Member $y beetle)", dist)        # the generic's variable is bound inside
+
     def test_a_stative_condition_yields_a_state_rule_beside_the_flat_one(self):
         """A rule whose condition is a stative predication (a copular, a locative …) is emitted
         twice: between the flat atoms, as before, and over the condition's STATE — the Holds

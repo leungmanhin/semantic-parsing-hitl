@@ -96,14 +96,19 @@ class CoverageTests(unittest.TestCase):
                        "response": {"id": "b", "instances": insts,
                                     "unmapped": [{"span": "But", "code": "G05"}, {"span": "eventually", "code": "G02"}]}}},
         ]
+        parsed.append({**rec("mrpc", 3, 0, "Yusra sang, loudly, she said."), "sample": {"group": "mrpc.train/mine"},
+                       "reply": {"model": "fake", "manifest_id": "abc", "usage": {},
+                                 "response": {"id": "c", "instances": insts,
+                                              "unmapped": [{"span": ["sang,", "loudly"], "code": "G02"}]}}})   # a discontinuous span: a list
         a = C.assess(parsed, CATALOG, typecheck=False)
-        self.assertEqual([x["outcome"] for x in a["rows"]], ["covered", "partial"])
+        self.assertEqual([x["outcome"] for x in a["rows"]], ["covered", "partial", "partial"])
         self.assertEqual(a["overall"]["covered"], 1)
         self.assertEqual(a["overall"]["reported"], 1)                            # the covered one carries a reported span
-        self.assertEqual(a["gap_codes"], {"G10": 1, "G05": 1, "G02": 1})
+        self.assertEqual(a["gap_codes"], {"G10": 1, "G05": 1, "G02": 2})
+        self.assertIn(("sang loudly", 1), a["unmapped_patterns"])
         text = C.render_report(a, "abc", "fake")
         self.assertIn("reported by convention, not gaps: G10: 1, G05: 1", text)
-        self.assertIn("- G02: 1", text)
+        self.assertIn("- G02: 2", text)
         self.assertNotIn("- G10: 1", text)
 
     def test_families_are_drawn_whole_and_a_small_draw_starts_a_large_one(self):

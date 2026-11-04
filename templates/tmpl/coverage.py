@@ -281,7 +281,10 @@ def parse(args) -> int:
 
 # ------------------------------------------------------------------ report
 def _pattern(span: str) -> str:
-    """A crude shape of an unmapped span: capitalized words become N, numbers #, the rest lowercased."""
+    """A crude shape of an unmapped span: capitalized words become N, numbers #, the rest lowercased.
+    A discontinuous span comes as a list of its pieces."""
+    if isinstance(span, list):
+        span = " ".join(str(x) for x in span)
     toks = re.findall(r"[A-Za-z][A-Za-z'\-]*|\d[\d.,]*", span)
     out = []
     for t in toks:
