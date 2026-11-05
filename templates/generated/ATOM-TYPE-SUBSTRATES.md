@@ -15,7 +15,7 @@ Declared type list (PeTTa convention, capitalized): Atom = unchecked position; P
 head: And
 kind: core-link
 arity: 2+ (variadic)
-type-def: (: And (-> Proposition Proposition Proposition))  ; and 7 more (per arity / per union alternative)
+type-def: (: And (-> Proposition Proposition Proposition))  ; and 30 more (per arity / per union alternative)
 gloss: Conjunction bundle; one fact, one truth value.
 
 
@@ -74,7 +74,7 @@ gloss: A comparison class: the class as a noun phrase narrows it — (Narrow cit
 head: Or
 kind: core-link
 arity: 2+ (variadic)
-type-def: (: Or (-> Proposition Proposition Proposition))  ; and 7 more (per arity / per union alternative)
+type-def: (: Or (-> Proposition Proposition Proposition))  ; and 30 more (per arity / per union alternative)
 gloss: Inclusive disjunction: at least one disjunct holds, unspecified which.
 
 
@@ -1232,7 +1232,7 @@ Heads the prompt licenses generically; the validator checks position and arity o
 - head of a nominalization class-relation, e.g. (Build dam_builder dam)
 - skolem-function head (sk_<verb>) in a scope construction, e.g. (sk_y $x)
 
-Oblique prepositions (72), all declared `(-> Instance|Class Instance|Class|Proposition Proposition)`: About, Above, Across, After, Against, Along, Alongside, Amid, Among, Around, As, At, BecauseOf, Before, Behind, Below, Beneath, Beside, Besides, Between, Beyond, But, By, Concerning, Despite, Down, DueTo, During, Except, For, From, In, InFrontOf, InSpiteOf, Inside, Into, Like, Near, NextTo, Of, Off, On, OnAccountOf, Onto, Opposite, Out, Outside, Over, OwingTo, Past, Per, Regarding, Round, Since, Than, ThanksTo, Through, Throughout, Till, To, Toward, Towards, Under, Underneath, Unlike, Until, Up, Upon, Via, With, Within, Without.
+Oblique prepositions (72), all declared `(-> Instance|Class Instance|Class|Proposition Proposition)`: About, Above, Across, After, Against, Along, Alongside, Amid, Among, Around, As, At, BecauseOf, Before, Behind, Below, Beneath, Beside, Besides, Between, Beyond, But, By, Concerning, Despite, Down, DueTo, During, Except, For, From, In, InFrontOf, InSpiteOf, Inside, Into, Like, Near, NextTo, Of, Off, On, OnAccountOf, Onto, Opposite, Out, Outside, Over, OwingTo, PastPlace, Per, Regarding, Round, Since, Than, ThanksTo, Through, Throughout, Till, To, Toward, Towards, Under, Underneath, Unlike, Until, Up, Upon, Via, With, Within, Without.
 
 ## notes
 

@@ -22,6 +22,8 @@ Checks, in order:
   ``bare_content`` (an imperative's addressee is implicit), a refs slot marked ``participant: true`` is
   filled (a quality of an action: the clause is the participant), an optional
   scope with an empty ``refs`` list (``empty-scope``);
+* statement lints on what was emitted: a variable in a statement that is no rule (``free-variable``: a
+  referent tied to a rule's range from outside the rule; the statement is not a fact);
 * span lints, when the caller supplies the TEXT: an instance without ``span`` (``span-missing``), a
   span that is not a string or a list of strings (``span-malformed``), a span that is not a verbatim
   substring of the text (``span-not-verbatim``); spans are provenance and never affect emission;
@@ -97,9 +99,43 @@ def inspect(reply, catalog: dict | None = None, reference_time=None, text: str |
         return res
     res["statements"], res["declarations"], res["detail"] = out["statements"], out["declarations"], out["detail"]
     res["findings"].extend(lints(cleaned, catalog, res["unmapped"], text))
+    res["findings"].extend(statement_lints(res["statements"], res["detail"]))
     if text is not None:
         res["findings"].extend(span_lints(cleaned, text))
     return res
+
+
+def free_variables(term, bound: bool = False) -> set:
+    """The variables of a term that no rule binds: a variable is bound when it sits inside an Implication (or
+    an Equivalence), whose two sides share their variables."""
+    if isinstance(term, str):
+        return {term} if term.startswith("$") and not bound else set()
+    if not isinstance(term, list) or not term:
+        return set()
+    inside = bound or term[0] in ("Implication", "Equivalence")
+    out: set = set()
+    for x in term:
+        out |= free_variables(x, inside)
+    return out
+
+
+def statement_lints(statements: list | None, detail: list | None = None) -> list:
+    """Lints on the EMITTED statements. ``free-variable``: a statement that is not a rule holds a variable — a
+    referent tied to a rule's range from outside the rule ("no woman combing HER hair": the hair's part-of link
+    names the range's variable). Such a statement is no fact: an engine reads it as a pattern that matches
+    anything, or refuses it."""
+    out = []
+    for n, st in enumerate(statements or []):
+        try:
+            name, term = T.split_statement(st)
+        except ValueError:
+            continue
+        free = sorted(free_variables(term))
+        if free:
+            inst = (detail[n] or {}).get("inst") if detail and n < len(detail) else None
+            out.append({"kind": "free-variable", "instance": inst, "statement": name,
+                        "detail": f"{', '.join(free)} outside every rule: {T.render(term)[:200]}"})
+    return out
 
 
 def _covers_text(insts: list, text: str) -> bool:

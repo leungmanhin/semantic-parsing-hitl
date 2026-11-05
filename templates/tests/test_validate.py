@@ -189,6 +189,32 @@ class LintTests(unittest.TestCase):
         self.assertEqual(kinds(res), [])
         self.assertEqual(res["fired"], {"named-entity": 2, "witness": 1, "transfer": 1})
 
+    def test_a_variable_outside_every_rule_is_reported(self):
+        """A range's variable in a plain statement is reported, since such a statement is no fact. The emitter
+        takes a referent the rule USES into the rule ("no heron preening its wing": clean); what is left is a
+        referent tied to the range that the rule never uses (the wing, of a heron said only to be wading), or
+        a range no rule ranges over."""
+        base = [{"t": "range", "id": "q1", "class": "heron", "quantifier": "no"},
+                {"t": "witness", "id": "x1", "class": "wing", "definite": True},
+                {"t": "activity", "id": "e1", "verb": "preen", "actor": "@q1", "patient": "@x1", "tense": "present", "aspect": "progressive"},
+                {"t": "generic", "id": "r1", "ranges": ["@q1"], "over": ["@e1"]}]
+        tie = {"t": "part-whole", "id": "w1", "part": "@x1", "whole": "@q1", "word": "its", "tense": "present"}
+        self.assertNotIn("free-variable", kinds(V.inspect(reply(base), CATALOG)))
+        self.assertNotIn("free-variable", kinds(V.inspect(reply(base + [tie]), CATALOG)))     # used by the rule: taken inside
+        unused = [base[0], base[1], dict(base[2], verb="wade", patient=None), base[3], tie]
+        res = V.inspect(reply(unused), CATALOG)
+        found = [f for f in res["findings"] if f["kind"] == "free-variable"]
+        self.assertEqual(len(found), 1, res["findings"])
+        self.assertEqual(found[0]["instance"], "w1")
+        self.assertIn("$x outside every rule", found[0]["detail"])
+        self.assertEqual(res["status"], "ok")                                # a lint: the record is not stopped
+        unbound = V.inspect(reply([base[0], dict(base[2], patient=None)]), CATALOG)
+        self.assertIn("free-variable", kinds(unbound))                       # a range no rule ranges over
+        self.assertEqual(V.free_variables(["Implication", ["Member", "$x", "heron"], ["Member", "$x", "bird"]]), set())
+        self.assertEqual(V.free_variables(["Not", ["Implication", ["P", "$x"], ["Q", "$x"]]]), set())
+        self.assertEqual(V.free_variables(["PartOf", "sk_wing_1", "$x"]), {"$x"})
+        self.assertEqual(V.free_variables(["Agent", ["sk_preen", "$x"], "sk_a_1"]), {"$x"})   # also inside a skolem term
+
     def test_a_directive_licenses_a_bare_predication(self):
         """An imperative's content may fill no participant slot (the addressee is implicit), also
         through a negation under the imperative; the same clause on its own is still bare."""

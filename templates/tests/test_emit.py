@@ -1082,6 +1082,71 @@ class EmitTests(unittest.TestCase):
         self.assertTrue(any(a.startswith("(Implication (And (Member $x (Narrow heron (Member adult))) (Member $x (Narrow heron (Mod marsh))))")
                             for a in rule), rule)
 
+    def test_a_referent_owned_by_a_rules_range_lives_inside_the_rule(self):
+        """Her hair, of no woman: a referent tied to a rule's range — by a part-whole outside the rule, by its own
+        possessor, by a kinship state — is a function of the range inside the rule, described in the consequent
+        as an indefinite is, and the tie follows it; nothing outside the rule holds the range's variable."""
+        def emit(insts):
+            return atoms_of(E.emit({"id": "t", "instances": insts}, CATALOG)["statements"])
+
+        def rule(atoms):
+            return next(a for a in atoms if a.startswith("(Implication (Member $"))
+
+        heron = {"t": "range", "id": "q1", "class": "heron", "quantifier": "no"}
+        preen = {"t": "activity", "id": "e1", "verb": "preen", "actor": "@q1", "patient": "@x1", "tense": "present", "aspect": "progressive"}
+        over = {"t": "generic", "id": "r1", "ranges": ["@q1"], "over": ["@e1"]}
+        # "No heron is preening its wing": the wing is definite, a part-whole ties it to the range
+        atoms = emit([heron, {"t": "witness", "id": "x1", "class": "wing", "definite": True},
+                      {"t": "part-whole", "id": "w1", "part": "@x1", "whole": "@q1", "word": "its", "tense": "present"}, preen, over])
+        self.assertEqual(atoms, ["(Implication (Member $x heron) (And (Member (sk_preen $x) preen) (Agent (sk_preen $x) $x) "
+                                 "(Patient (sk_preen $x) (sk_wing $x)) (Ongoing (sk_preen $x)) (Member (sk_wing $x) wing) (PartOf (sk_wing $x) $x)))"])
+        # "Every heron preens its wing", the wing possessed by the range: the same, through the witness's own slot
+        every = emit([dict(heron, quantifier="every"), {"t": "witness", "id": "x1", "class": "wing", "possessor": "@q1"},
+                      dict(preen, aspect="simple"), over])
+        self.assertEqual(len(every), 1)
+        self.assertIn("(Member (sk_wing $x) wing) (Possession (sk_wing $x) $x)", every[0])
+        # a wing that is somebody's by name stays where it was: nothing depends on the range
+        named = emit([heron, {"t": "named-entity", "id": "n1", "name": "Yusra"}, {"t": "witness", "id": "x1", "class": "wing", "definite": True},
+                      {"t": "part-whole", "id": "w1", "part": "@x1", "whole": "@n1", "word": "her", "tense": "present"}, preen, over])
+        self.assertIn("(PartOf sk_wing_1 sk_yusra_1)", named)
+        self.assertIn("(Patient (sk_preen $x) sk_wing_1)", rule(named))
+        # "No ferret plays with its mother": the mother and the state of being it are two functions, not one
+        mother = emit([{"t": "range", "id": "q1", "class": "ferret", "quantifier": "no"}, {"t": "witness", "id": "x2", "class": "mother"},
+                       {"t": "stative-relation", "id": "p1", "relation": "mother", "subject": "@x2", "object": "@q1", "tense": "present"},
+                       {"t": "activity", "id": "e1", "verb": "play", "actor": "@q1", "tense": "present"},
+                       {"t": "oblique", "id": "a1", "event": "@e1", "head": "With", "object": "@x2"}, over])
+        self.assertEqual(len(mother), 1)
+        self.assertIn("(With (sk_play $x) (sk_mother $x))", mother[0])
+        self.assertIn("(Bearer (sk_mother_2 $x) (sk_mother $x)) (Theme (sk_mother_2 $x) $x)", mother[0])
+        # "No heron is flapping its wings": the distribution over the wings lives where the wings live
+        wings = emit([heron, {"t": "group", "id": "g1", "class": "wing", "possessor": "@q1"}, dict(preen, verb="flap", patient="@g1"),
+                      {"t": "distribution", "id": "d1", "group": "@g1", "over": ["@e1"]}, over])
+        self.assertEqual(len(wings), 1)
+        self.assertIn("(Implication (PartOf $x (sk_group $y)) (And (Member (sk_flap $y $x) flap) (Agent (sk_flap $y $x) $y) (Patient (sk_flap $y $x) $x)", wings[0])
+        self.assertIn("(Possession (sk_group $y) $y)", wings[0])
+
+    def test_two_things_of_one_stem_under_one_rule_stay_two(self):
+        """No weaver wears a hat and wears a scarf: two wearings inside the rule are two functions of the range."""
+        atoms = atoms_of(E.emit({"id": "t", "instances": [
+            {"t": "range", "id": "q1", "class": "weaver", "quantifier": "no"},
+            {"t": "witness", "id": "x1", "class": "hat"}, {"t": "witness", "id": "x2", "class": "scarf"},
+            {"t": "activity", "id": "e1", "verb": "wear", "actor": "@q1", "patient": "@x1", "tense": "present"},
+            {"t": "activity", "id": "e2", "verb": "wear", "actor": "@q1", "patient": "@x2", "tense": "present"},
+            {"t": "generic", "id": "r1", "ranges": ["@q1"], "over": ["@e1", "@e2"]}]}, CATALOG)["statements"])
+        self.assertIn("(Patient (sk_wear $x) (sk_hat $x))", atoms[0])
+        self.assertIn("(Patient (sk_wear_2 $x) (sk_scarf $x))", atoms[0])
+
+    def test_the_preposition_past_is_not_the_tense(self):
+        """Teodor walked past the mill: the parser writes the preposition as its head, Past; the atom's head is
+        PastPlace, and Past stays the tense tag alone."""
+        atoms = atoms_of(E.emit({"id": "t", "instances": [
+            {"t": "named-entity", "id": "n1", "name": "Teodor"}, {"t": "witness", "id": "x1", "class": "mill", "definite": True},
+            {"t": "activity", "id": "e1", "verb": "walk", "actor": "@n1", "tense": "past"},
+            {"t": "oblique", "id": "a1", "event": "@e1", "head": "Past", "object": "@x1"}]}, CATALOG)["statements"])
+        self.assertIn("(PastPlace sk_walk_1 sk_mill_1)", atoms)
+        self.assertIn("(Past sk_walk_1)", atoms)
+        self.assertFalse(any(a.startswith("(Past sk_walk_1 ") for a in atoms))
+
     def test_malformed_instances_are_refused(self):
         bad = [{"t": "transfer", "id": "e1", "verb": "give", "giver": "@n9", "object": "x", "tense": "past"}]
         with self.assertRaises(E.EmitError) as cm:

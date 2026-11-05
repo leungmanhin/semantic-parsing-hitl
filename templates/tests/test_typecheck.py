@@ -25,6 +25,35 @@ except Exception:  # pragma: no cover
 
 from tmpl import typecheck  # noqa: E402
 
+class ArityLintTests(unittest.TestCase):
+    """No engine needed: the substrate's own heads. The sets are PINNED — a new head at two arities fails here,
+    and so does fixing a known one without updating the pin."""
+
+    def test_heads_declared_at_several_arities_are_the_known_ones(self):
+        lint = typecheck.arity_lints()
+        # none since the preposition "past" is emitted as PastPlace (it was written as its own head, Past, and
+        # collided with the tense tag: both type-checked, and a consumer wanting one arity a head refused the text)
+        self.assertEqual(lint["collisions"], {})
+        self.assertEqual(sorted(lint["several"]), ["Between", "Day", "Hour", "Minute", "Month", "Weekday", "Year", "Yet"])
+
+    def test_a_preposition_colliding_with_a_head_of_another_arity_is_reported(self):
+        src = {"heads": {"Up": {"kind": "temporal", "arity": 1, "arg_types": ["Event"], "out": "Proposition"},
+                         "During": {"kind": "temporal", "arity": 2, "arg_types": ["Event", "Event"], "out": "Proposition"}},
+               "open_class": {"oblique_prepositions": ["Up", "During", "Near"],
+                              "oblique_signature": {"arg_types": ["Instance", "Instance"], "out": "Proposition"}}}
+        self.assertEqual(typecheck.arity_lints(src), {"collisions": {"Up": {"declared": [1], "kind": "temporal", "oblique": 2}}, "several": {}})
+
+
+    def test_a_head_that_is_also_a_preposition_accepts_both_readings_of_a_nested_term(self):
+        """(To e <clause>) is the purpose link, (To e <thing>) the preposition: a skolem term after it is a thing."""
+        heads = typecheck.load_substrate()["heads"]
+        self.assertEqual(typecheck.arg_types_here_for(heads["To"], 2), ["Event", "Proposition"])       # the head's own entry
+        self.assertEqual(typecheck.expected_types(heads["To"], 2),
+                         ["Event|Instance|Class", "Proposition|Instance|Class"])                      # what a nested term may be
+        self.assertEqual(typecheck.expected_types(heads["Agent"], 2), typecheck.arg_types_here_for(heads["Agent"], 2))
+        self.assertEqual(typecheck.expected_types(heads["Past"], 1), ["Event|Proposition"])           # no preposition now
+
+
 DECLS = ["(: e1 Event)", "(: e1 Instance)", "(: marta Entity)", "(: marta Instance)", "(: cook Class)"]
 GOOD = [
     "(: ok1 (Member e1 cook) (STV 1.0 0.9))",

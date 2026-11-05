@@ -475,7 +475,10 @@ class _Emitter:
 
     # ---------------------------------------------------------------- homes
     def is_rigid(self, iid: str) -> bool:
-        """A name, a presupposed referent (definite, possessed) or a variable: never scoped or skolemized."""
+        """A name, a presupposed referent (definite, possessed) or a variable: never scoped or skolemized —
+        unless the referent is owned by a rule's range (``dependent``): her hair, of no woman."""
+        if iid in getattr(self, "dependent", ()):
+            return False
         r = self.by_id[iid]
         return rigid(r, self.cat[r["t"]])
 
@@ -538,6 +541,58 @@ class _Emitter:
                 if spec["type"] == "filler" and is_ref(r.get(sname)) and not spec.get("attaches"):
                     mentions.setdefault(r[sname][1:], []).append(r["id"])
         self.mentions = mentions
+
+        # A REFERENT OWNED BY A RULE'S RANGE (no woman combing HER hair; each child's hut; no boy playing with HIS
+        # mother): tied to the range by its own slot (a possessor) or by a predication or a link outside every scope
+        # (a part-whole, a kinship state, a coreference), and used inside the rule. It is no top-level thing: it is
+        # homed in the rule, whose skolemizing slot makes it a function of the range, and the tying instance follows it
+        # there like an attachment. A referent the rule's content never uses stays where it is, and the range's
+        # variable in its tie is reported (validate: free-variable).
+        self.dependent: dict[str, str] = {}              # referent -> the rule binding the range it depends on
+        self.ties: dict[str, str] = {}                   # tying instance -> the dependent referent it follows
+        source = {r["id"]: self.scope_of[r["id"]] for r in self.insts
+                  if (self.cat[r["t"]].get("mints") or {}).get("variable") and r["id"] in self.scope_of}
+
+        def free_referent(iid):                          # a referent a rule may turn into a function: no name, no variable
+            r = self.by_id[iid]
+            m = self.cat[r["t"]].get("mints") or {}
+            return self.cat[r["t"]].get("family") == "referent" and bool(m) and not m.get("variable") \
+                and not (m.get("symbol") and r.get(m["symbol"]) not in (None, "", []))
+
+        def used_inside(iid, rule, but=None):
+            return any(rule in enclosing(m) for m in mentions.get(iid, []) if m != but and m not in self.ties)
+
+        changed = bool(source)
+        while changed:
+            changed = False
+            for r in self.insts:
+                iid = r["id"]
+                t = self.cat[r["t"]]
+                named = [r[s][1:] for s, sp in (t.get("slots") or {}).items()
+                         if sp["type"] == "filler" and is_ref(r.get(s)) and not sp.get("attaches") and r[s][1:] in self.by_id]
+                rules = [source[x] for x in named if x in source]
+                if not rules or iid in source or iid in self.ties:
+                    continue
+                if t.get("family") == "referent":
+                    if free_referent(iid) and used_inside(iid, rules[0]):
+                        source[iid] = self.dependent[iid] = rules[0]
+                        changed = True
+                elif t.get("family") in ("predication", "link") and iid not in self.scope_of and iid not in self.head_of:
+                    tied = [x for x in named if x not in source and free_referent(x) and used_inside(x, rules[0], but=iid)]
+                    if tied:
+                        for x in tied:
+                            source[x] = self.dependent[x] = rules[0]
+                        self.ties[iid] = tied[0]
+                        changed = True
+                elif t.get("family") == "rule" and iid not in self.scope_of and iid not in self.head_of:
+                    owned = [x for x in named if x in self.dependent]      # a distribution over a group the range owns (his
+                    if owned:                                             # eyes): the rule lives where its group lives
+                        self.ties[iid] = owned[0]
+                        changed = True
+        for tie, ref in self.ties.items():               # rendered wherever its referent is
+            self.head_of[tie] = ref
+            self.attachments_of.setdefault(ref, []).append(tie)
+
         # referent instance -> the innermost scope enclosing every mention, or None (top level);
         # only a REFERENT is placed by its mentions: a predication named by a link or a focus atom
         # stays where its own scope puts it (a negated focus leaves the prejacent asserted)
@@ -547,7 +602,7 @@ class _Emitter:
             if iid in self.scope_of or not mentions.get(iid) or self.is_rigid(iid) or self.cat[r["t"]].get("family") != "referent":
                 self.home[iid] = None
                 continue
-            chains = [enclosing(m) for m in mentions[iid]]
+            chains = [enclosing(m) for m in mentions[iid] if m not in self.ties] or [[]]   # a tie follows; it places nothing
             self.home[iid] = next((c for c in chains[0] if all(c in ch for ch in chains)), None)
         self.homed_in: dict[str, list[str]] = {}
         for iid, h in self.home.items():
@@ -837,6 +892,8 @@ class _Emitter:
             return self.sym[v[1:]]
         if spec["type"] == "string":
             return Str(str(v))
+        if isinstance(v, str) and v in (spec.get("emit_as") or {}):
+            return spec["emit_as"][v]                     # the word as written, emitted under another symbol (past: PastPlace)
         return v
 
     def is_scope(self, iid: str) -> bool:
@@ -1111,6 +1168,7 @@ class _Emitter:
                             continue              # bound by a scope nested inside this bundle (a generic under a reported clause): not this bundle's variable
                         variables.append(self.sym[r2["id"]])
                 variables.extend(evars)
+                taken: dict[str, str] = {}                # a function term -> the instance it names, in this bundle
                 for iid in self.inside(refs, scope_iid):
                     m = self.cat[self.by_id[iid]["t"]].get("mints") or {}
                     if not m or self.is_rigid(iid) or iid in mapping or not variables:
@@ -1125,6 +1183,9 @@ class _Emitter:
                     else:
                         continue
                     args = outer + [v for v in variables if v not in outer]
+                    if taken.get(render([stem] + args), iid) != iid and isinstance(self.sym.get(iid), str):
+                        stem = self.sym[iid]              # two things of one stem under one rule (his mother: the person, and
+                    taken[render([stem] + args)] = iid    # the state of being it): the later one keeps its number, sk_mother_2
                     overlay[iid] = [stem] + args
                     self.sk_functions[(stem, len(args))] = m.get("id", "Entity")
         saved = self.sym

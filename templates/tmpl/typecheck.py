@@ -121,7 +121,34 @@ def load_substrate(path: str = SRC_PATH) -> dict:
     for prep in oc.get("oblique_prepositions") or []:
         if prep not in heads and sig:
             heads[prep] = {"kind": "oblique", "arity": len(sig["arg_types"]), "arg_types": sig["arg_types"], "out": sig["out"]}
+        elif sig:                                    # a declared head that is also a preposition written as itself
+            heads[prep]["oblique_types"] = list(sig["arg_types"])     # (To, Before, During …): both readings are typed
     return src
+
+
+def arity_lints(src: dict | None = None) -> dict:
+    """Heads the substrate admits at more than one arity. ``collisions``: an open-class preposition written as
+    its own head ("past" → ``Past``) that is also a declared head of ANOTHER arity (the tense ``Past``): both
+    type-check, because each has its declarations, and nothing else tells them apart. ``several``: every other
+    head declared at several arities (a variadic connective, a legacy constructor signature). A consumer that
+    wants one arity a head sees the first kind as a clash in real text."""
+    if src is None:
+        with open(SRC_PATH, encoding="utf-8") as fh:
+            src = json.load(fh)
+    heads = src["heads"]
+    oc = src.get("open_class") or {}
+    sig = oc.get("oblique_signature") or {}
+    n_obl = len(sig.get("arg_types") or [])
+    collisions, several = {}, {}
+    for prep in oc.get("oblique_prepositions") or []:
+        e = heads.get(prep)
+        if e and e.get("kind") != "oblique" and n_obl and n_obl not in arities_of(e) and not e.get("variadic"):
+            collisions[prep] = {"declared": arities_of(e), "kind": e.get("kind"), "oblique": n_obl}
+    for h, e in heads.items():
+        ar = sorted({len(a) for a, _ in signatures(e) if a and not a[0].startswith("*")} | set(arities_of(e)))
+        if len(ar) > 1 and not e.get("variadic") and h not in collisions:
+            several[h] = ar
+    return {"collisions": collisions, "several": several}
 
 
 def arities_of(entry: dict) -> list[int]:
@@ -159,6 +186,19 @@ def arg_types_here_for(entry: dict, nargs: int) -> list[str]:
         if len(arg_types) == nargs:
             return arg_types
     return []
+
+
+def expected_types(entry: dict, nargs: int) -> list[str]:
+    """What each argument position of a head accepts when a NESTED term fills it: the head's own types for this
+    arity, joined with the oblique signature when the head is also a preposition written as its own head — the
+    purpose link (To e <clause>) and the preposition (To e <thing>) are one head with two readings."""
+    own = arg_types_here_for(entry, nargs)
+    obl = entry.get("oblique_types") or []
+    if len(obl) != nargs:
+        return own
+    if not own:
+        return list(obl)
+    return ["|".join(dict.fromkeys(a.split("|") + b.split("|"))) for a, b in zip(own, obl)]
 
 
 # --------------------------------------------------------------------------
@@ -253,7 +293,7 @@ def check_expr(expr, expected: set | None, heads: dict, rename, checker) -> tupl
         return True, [], []
     head, args = expr[0], expr[1:]
     entry = heads.get(head) if isinstance(head, str) else None
-    arg_types_here = arg_types_here_for(entry, len(args)) if entry else []
+    arg_types_here = expected_types(entry, len(args)) if entry else []
     out_type = (entry or {}).get("out") or "Proposition"
     query = [head]
     ok = True

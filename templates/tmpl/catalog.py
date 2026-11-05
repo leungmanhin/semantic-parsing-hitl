@@ -38,7 +38,7 @@ CATALOG_DIR = os.path.abspath(os.path.join(HERE, os.pardir, "catalog"))
 SLOT_TYPES = {"id", "lemma", "filler", "refs", "enum", "bool", "string", "number", "int", "list"}
 CLASSED = {"lemma", "filler", "refs"}
 CATEGORIES = {"positive", "contrast", "scoped", "optional", "abstain"}
-SLOT_KEYS = {"type", "class", "role", "required", "default", "values", "doc", "consumes", "bind", "skolemize", "attaches", "bare_content", "participant", "as_variable", "state_variable", "narrowed_by", "stands_alone", "ids", "restriction", "only_when"}
+SLOT_KEYS = {"type", "class", "role", "required", "default", "values", "doc", "consumes", "bind", "skolemize", "attaches", "bare_content", "participant", "as_variable", "state_variable", "narrowed_by", "stands_alone", "ids", "restriction", "only_when", "emit_as"}
 #: The trigger fields render_prompt renders: text under any other key would never reach the parser.
 TRIGGER_KEYS = {"construction", "verbs", "verbs_note", "surface_forms", "boundary"}
 #: A template's sections. The prompt renders title, trigger, slots, one_of, any_of and the shown
@@ -159,6 +159,11 @@ def check_template(t: dict, path: str) -> list[str]:
             problems.append(f"slot {sname}: a {spec['type']} slot needs a substrate class")
         if spec["type"] == "enum" and not spec.get("values"):
             problems.append(f"slot {sname}: an enum slot needs values")
+        if "emit_as" in spec:                                   # a value written one way and emitted as another symbol
+            ea = spec["emit_as"]
+            if spec["type"] != "enum" or not isinstance(ea, dict) or not ea \
+                    or any(k not in (spec.get("values") or []) or not isinstance(v, str) or not v for k, v in ea.items()):
+                problems.append(f"slot {sname}: emit_as maps values of an enum slot to the symbols they are emitted as")
         for key in ("consumes", "bind", "skolemize", "bare_content", "as_variable"):
             if key in spec and spec["type"] != "refs":
                 problems.append(f"slot {sname}: {key} applies to refs slots only")

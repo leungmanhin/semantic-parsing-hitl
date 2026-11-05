@@ -56,8 +56,10 @@ KIND_ORDER = [
     "computation",
 ]
 
-#: PeTTa types are fixed-arity, so a variadic head gets one declaration per arity up to this.
-VARIADIC_MAX = 9
+#: PeTTa types are fixed-arity, so a variadic head gets one declaration per arity up to this. A bundle with more
+#: conjuncts than this is a type finding. 32 since 2026-11-05 (it was 9): the longest bundle among the 4,368 parsed
+#: SICK + MRPC sentences has 26 conjuncts, and 96 of those sentences had one over 9.
+VARIADIC_MAX = 32
 
 #: Type shown for a position the head takes but the JSON does not type (PeTTa's "unknown").
 UNTYPED = "%Undefined%"
