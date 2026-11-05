@@ -6,7 +6,7 @@ questions). Embeds a small word list, times load and encode, and checks in-proce
 rerun determinism. Writes everything to --out as JSON.
 
 Usage:
-  /home/manhin/Dev/.venv-dev/bin/python embed_spike.py --out out2/embed_spike.json
+  python embed_spike.py --out out2/embed_spike.json
 """
 
 from __future__ import annotations

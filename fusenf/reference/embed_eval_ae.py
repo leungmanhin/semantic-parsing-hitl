@@ -13,7 +13,7 @@ judges' job, the prior only kills siblings).
 Writes out2/embed_eval_ae.json (+ eval/embed_pilot.md report).
 
 Usage:
-  /home/manhin/Dev/.venv-dev/bin/python embed_eval_ae.py --date 2026-08-21
+  python embed_eval_ae.py --date 2026-08-21
 """
 
 from __future__ import annotations
