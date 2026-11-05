@@ -8,11 +8,14 @@ issues) is printed.  Providers are pluggable: one small class per provider, sele
     python semantic-parse.py "Teodor gave Yusra a thermos."
     python semantic-parse.py "…" --provider google --model gemini-2.5-flash --effort low
     python semantic-parse.py "…" --provider deepseek --model deepseek-v4-pro --effort low
+    python semantic-parse.py "…" --provider anthropic --model claude-opus-5-5 --effort low
+    python semantic-parse.py "…" --provider chat-completions --base-url http://127.0.0.1:8000/v1 --model <name>
     python semantic-parse.py "…" --out run.json          # keep the full run record
     python semantic-parse.py "…" --dry-run               # show the request, call nothing
 
 Keys come from the environment: GEMINI_API_KEY (or GOOGLE_API_KEY), OPENAI_API_KEY,
-DEEPSEEK_API_KEY, ANTHROPIC_API_KEY.  Only the standard library is used.
+DEEPSEEK_API_KEY, ANTHROPIC_API_KEY; for ``--provider chat-completions --base-url <url>`` (any
+OpenAI-compatible server) the variable named by --api-key-env.  Only the standard library is used.
 
 Every reply is validated after the call by the catalog's validator (templates/tmpl/validate.py:
 the emitter's instance checks, graph lints, C9 type check): findings go to stderr and into the run
@@ -406,24 +409,141 @@ class DeepSeek:
         return reply
 
 
+class ChatCompletions(DeepSeek):
+    """Any OpenAI-compatible Chat Completions endpoint at ``--base-url`` (a self-hosted model server, a
+    gateway or proxy): ``<base-url>/chat/completions``, streamed like DeepSeek, with the bearer key read from
+    the environment variable named by ``--api-key-env`` (default CHAT_COMPLETIONS_API_KEY).
+
+    Only the portable request fields are sent (model, messages, stream with usage, max_tokens,
+    temperature): no thinking or JSON-mode fields, whose names differ between servers. Usage is reported in
+    the shared shape; the cache read is taken from ``prompt_tokens_details.cached_tokens`` (OpenAI's field)
+    or ``prompt_cache_hit_tokens`` (DeepSeek's), the cache write from ``cache_creation_input_tokens`` where a
+    server reports it. A field the server does not report stays None (unknown), never zero."""
+
+    name = "chat-completions"
+    default_model = None
+    env_keys = ("CHAT_COMPLETIONS_API_KEY",)
+
+    def __init__(self, args):
+        self.args = args
+        base = getattr(args, "base_url", None)
+        if not base:
+            raise ProviderError("--provider chat-completions needs --base-url (e.g. http://127.0.0.1:8000/v1)")
+        self.url = base.rstrip("/") + "/chat/completions"
+        self.key_env = getattr(args, "api_key_env", None) or "CHAT_COMPLETIONS_API_KEY"
+        self.env_keys = (self.key_env,)
+
+    def key(self) -> str:
+        if os.environ.get(self.key_env):
+            return os.environ[self.key_env]
+        raise ProviderError(f"set {self.key_env}")
+
+    def request(self, system: str, user: str, model: str) -> tuple[str, dict, dict]:
+        a = self.args
+        if not model:
+            raise ProviderError("--provider chat-completions needs --model (the server has no default here)")
+        body = {"model": model, "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}],
+                "stream": True, "stream_options": {"include_usage": True}}
+        if a.max_tokens:
+            body["max_tokens"] = a.max_tokens
+        if a.temperature is not None:
+            body["temperature"] = a.temperature
+        return self.url, {"Authorization": "Bearer <key>"}, body
+
+    def complete(self, system: str, user: str, model: str) -> Reply:
+        reply = super().complete(system, user, model)
+        u = reply.raw_usage or {}
+        cached = (u.get("prompt_tokens_details") or {}).get("cached_tokens")
+        reply.usage["cached"] = cached if cached is not None else u.get("prompt_cache_hit_tokens")
+        reply.usage["cache_write"] = u.get("cache_creation_input_tokens")
+        return reply
+
+
 class Anthropic:
-    """Placeholder: add when needed (Messages API)."""
+    """Anthropic (the Claude models) through the Messages REST API.
+
+    Caching, per Anthropic's prompt-caching guide: explicit only. A ``cache_control`` breakpoint on a
+    content block caches the whole prefix up to it (a write is billed at 1.25x the input rate for the
+    default 5-minute lifetime, a read at 0.1x); a prefix shorter than the model's minimum is sent
+    uncached without an error. The catalog is therefore the system prompt, one text block ending in a
+    breakpoint, and the item is the user message after it: the first call writes the catalog, later
+    calls read it, and the item is plain input. No priming is needed. ``--no-cache`` drops the breakpoint.
+
+    Thinking: on the current models (Claude Sonnet 5.5, Opus 5.5, Fable 5.1 and their predecessors from
+    4.7) thinking is adaptive and always on — a token budget (``thinking: {type: enabled, budget_tokens}``)
+    or ``{type: disabled}`` is refused with a 400 —, and the depth is set by ``output_config.effort``, whose
+    levels are ours (low / medium / high / xhigh / max); ``--effort none`` and ``--no-thinking`` send the
+    lowest, low. Thinking tokens count against ``max_tokens`` (default ``MAX_TOKENS``). Sampling settings
+    are not sent: the API version below refuses a temperature on every model. With ``--include-thoughts``
+    the request asks for the summarized thinking (``display: summarized``; the text is empty otherwise)
+    and the blocks come back as ``thoughts``.
+
+    A reply the model's safety classifiers decline arrives with ``stop_reason: refusal`` and no text: it is
+    raised as a ProviderError naming the category, like a Gemini safety block, never parsed; a reply cut
+    by ``max_tokens`` is raised too. The Messages API has no JSON mode here: the reply is read by
+    ``extract_json`` like any other.
+    Usage is reported in the shape the other providers use: ``input`` is the whole prompt (uncached +
+    cache read + cache write, Anthropic counts them apart), ``cached`` the cache read, ``cache_write``
+    the cache write; ``raw_usage`` keeps Anthropic's own fields."""
 
     name = "anthropic"
     default_model = "claude-sonnet-5-5"
     env_keys = ("ANTHROPIC_API_KEY",)
+    url = "https://api.anthropic.com/v1/messages"
+    version = "2026-10-21"                                 # the current API version: no sampling fields
+    EFFORTS = ("low", "medium", "high", "xhigh", "max")    # output_config.effort, the same names as ours
+    MAX_TOKENS = 16000                                     # thinking tokens count against it
 
     def __init__(self, args):
         self.args = args
 
-    def request(self, system, user, model):
-        raise ProviderError("the anthropic provider is not implemented yet")
+    def key(self) -> str:
+        if os.environ.get("ANTHROPIC_API_KEY"):
+            return os.environ["ANTHROPIC_API_KEY"]
+        raise ProviderError("set ANTHROPIC_API_KEY")
 
-    def complete(self, system, user, model):
-        raise ProviderError("the anthropic provider is not implemented yet")
+    def request(self, system: str, user: str, model: str) -> tuple[str, dict, dict]:
+        a = self.args
+        block = {"type": "text", "text": system}
+        if not getattr(a, "no_cache", False):
+            block["cache_control"] = {"type": "ephemeral"}
+        effort = a.effort if a.effort in self.EFFORTS and not getattr(a, "no_thinking", False) else "low"
+        body = {"model": model, "system": [block], "messages": [{"role": "user", "content": user}],
+                "max_tokens": a.max_tokens or self.MAX_TOKENS, "output_config": {"effort": effort}}
+        if getattr(a, "include_thoughts", False):
+            body["thinking"] = {"type": "adaptive", "display": "summarized"}
+        return self.url, {"x-api-key": "<key>", "anthropic-version": self.version}, body
+
+    def complete(self, system: str, user: str, model: str) -> Reply:
+        url, headers, body = self.request(system, user, model)
+        headers["x-api-key"] = self.key()
+        raw = _post_json(url, headers, body, self.args.timeout, long_waits=PATIENT_WAITS, long_codes=(429, 529))
+        stop = raw.get("stop_reason")
+        if stop == "refusal":                              # declined by the safety classifiers: no text to parse
+            details = raw.get("stop_details") or {}
+            raise ProviderError(f"refused by the model (stop_reason refusal, category {details.get('category')!r}): "
+                                f"{details.get('explanation') or ''}".rstrip(": "))
+        if stop == "max_tokens":
+            raise ProviderError(f"the reply was cut by max_tokens ({body.get('max_tokens')}): raise --max-tokens")
+        blocks = raw.get("content") or []
+        text = "".join(b.get("text", "") for b in blocks if b.get("type") == "text")
+        thoughts = [b.get("thinking", "") for b in blocks if b.get("type") == "thinking"]
+        u = raw.get("usage") or {}
+        uncached, read, write = (u.get("input_tokens") or 0), (u.get("cache_read_input_tokens") or 0), \
+            (u.get("cache_creation_input_tokens") or 0)
+        usage = {"input": uncached + read + write, "output": u.get("output_tokens"),
+                 "total": uncached + read + write + (u.get("output_tokens") or 0),
+                 "cached": read, "cache_write": write, "finish": raw.get("stop_reason"),
+                 "service_tier": u.get("service_tier")}
+        reply = Reply(text, usage, raw)
+        if self.args.include_thoughts and thoughts:
+            reply.thoughts = thoughts
+        reply.config = {k: v for k, v in body.items() if k not in ("system", "messages")}
+        reply.raw_usage = u
+        return reply
 
 
-PROVIDERS = {p.name: p for p in (Google, OpenAI, DeepSeek, Anthropic)}
+PROVIDERS = {p.name: p for p in (Google, OpenAI, DeepSeek, ChatCompletions, Anthropic)}
 
 
 # --------------------------------------------------------------------------
@@ -486,6 +606,9 @@ def parse_sentence(text: str, args, item_id: str = "item") -> dict:
                     part["text"] = f"<{len(system)} chars of {record['prompt_path']}>"
         if "instructions" in shown:
             shown["instructions"] = f"<{len(system)} chars of {record['prompt_path']}>"
+        for block in shown.get("system") if isinstance(shown.get("system"), list) else []:  # anthropic: system blocks
+            if block.get("text") == system:
+                block["text"] = f"<{len(system)} chars of {record['prompt_path']}>"
         for msg in (shown.get("input") if isinstance(shown.get("input"), list) else []) + (shown.get("messages") or []):
             if msg.get("content") == system:
                 msg["content"] = f"<{len(system)} chars of {record['prompt_path']}>"
@@ -516,11 +639,16 @@ def add_provider_args(ap: argparse.ArgumentParser) -> None:
     shared with the suite runner (templates/tmpl/suite.py), which adds them to its own parser."""
     ap.add_argument("--provider", choices=sorted(PROVIDERS), default="google")
     ap.add_argument("--model", default=None, help="model name (default: the provider's default)")
+    ap.add_argument("--base-url", default=None,
+                    help="chat-completions: the OpenAI-compatible API base, e.g. http://127.0.0.1:8000/v1 (required for it)")
+    ap.add_argument("--api-key-env", default="CHAT_COMPLETIONS_API_KEY",
+                    help="chat-completions: environment variable holding the bearer key (default: CHAT_COMPLETIONS_API_KEY)")
     ap.add_argument("--effort", choices=EFFORTS, default="low",
                     help="reasoning effort (default: low). Gemini 3+: a thinking level (none -> LOW, the lowest level every model offers; "
                          "xhigh / max -> HIGH, the highest); Gemini 2.x: a thinking budget (none -> 0); "
                          "OpenAI: reasoning.effort, xhigh and max as sent (none -> not sent, the model's default); DeepSeek: reasoning_effort "
-                         "(medium / xhigh -> high, DeepSeek's own mapping; max as sent; none -> thinking disabled)")
+                         "(medium / xhigh -> high, DeepSeek's own mapping; max as sent; none -> thinking disabled); "
+                         "Anthropic: output_config.effort as named (none -> low; thinking is adaptive and always on)")
     ap.add_argument("--prompt", default=DEFAULT_PROMPT, help="instruction set file (default: the generated catalog prompt)")
     ap.add_argument("--temperature", type=float, default=None,
                     help="sampling temperature; default: not sent, the model's own default applies (Gemini 4 Argon ignores "
@@ -543,6 +671,8 @@ def add_provider_args(ap: argparse.ArgumentParser) -> None:
                          "system instruction (the layout before 2026-10-18; never cached across items)")
     ap.add_argument("--prime", action="store_true",
                     help="send the catalog alone once before the call, so the catalog is served from the implicit cache (the suite runner primes by itself)")
+    ap.add_argument("--no-cache", action="store_true",
+                    help="anthropic: send the catalog without a cache_control breakpoint (default: cached, the first call writes the catalog and later calls read it)")
     ap.add_argument("--service-tier", choices=("auto", "default", "flex", "priority"), default=None,
                     help="openai and google: the processing tier (service_tier; google takes flex or priority); default: not sent, "
                          "the standard tier. flex: half price and slower — OpenAI may answer 429 Resource Unavailable, Gemini 503 or 429 "
