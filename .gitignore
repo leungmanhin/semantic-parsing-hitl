@@ -10,7 +10,8 @@ datasets/*/*
 !datasets/sample/COVERAGE.md
 !datasets/sample/coverage.json
 
-# mining runs: the large per-run outputs are regenerable (python -m fusenf.mine lift …); summaries and candidate records stay
+# mining runs: the large per-run outputs are regenerable (python -m fusenf.mine lift / patterns …); the summaries stay
 fusenf/runs/*/graphs.jsonl
 fusenf/runs/*/lifted.jsonl
 fusenf/runs/*/presence.jsonl
+fusenf/runs/*/patterns.*.jsonl

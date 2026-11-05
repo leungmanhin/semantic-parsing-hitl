@@ -3,6 +3,12 @@
     lift     --parsed FILE [FILE …] --run NAME [--polarity three|two|none|0.25,0.75] [--tense evidence|key]
              [--shape lexicalized|shape] [--limit N]
              → fusenf/runs/NAME/graphs.jsonl, lifted.jsonl, presence.jsonl, summary.md
+
+    patterns --run NAME [--min-families 3] [--min-atoms 2] [--max-atoms 5] [--max-variables N]
+             [--exclude-heads A,B] [--support-role mine] [--keep 12] [--tests full|sample|none] [--summary-only]
+             → fusenf/runs/NAME/patterns.lexicalized.jsonl, patterns.shape.jsonl, patterns.report.json, patterns.md
+             (§5.1: connected patterns with shared typed variables, their generalization and the two tests;
+             the key dials are those of the run's lift)
 """
 from __future__ import annotations
 
@@ -67,6 +73,33 @@ def cmd_lift(args) -> int:
     return 0
 
 
+def cmd_patterns(args) -> int:
+    from . import patterns as P, subtree as S
+    out = os.path.join(RUNS, args.run)
+    if args.summary_only:
+        S.resummarize(args.run)
+        print(f"→ {os.path.relpath(out, os.getcwd())}/patterns.md written again from the run's files")
+        return 0
+    key = None
+    lifted = os.path.join(out, "lifted.jsonl")
+    if os.path.exists(lifted):                                # the dials the run was lifted with
+        with open(lifted, encoding="utf-8") as fh:
+            first = fh.readline()
+        key = (json.loads(first).get("key") if first.strip() else None)
+    params = P.params_of(min_families=args.min_families, min_atoms=args.min_atoms, max_atoms=args.max_atoms,
+                         max_variables=args.max_variables, support_role=args.support_role, max_embeddings=args.max_embeddings,
+                         exclude_heads=[h for h in (args.exclude_heads or "").split(",") if h] or None)
+    print(f"patterns of run `{args.run}` — parameters {json.dumps(params)}")
+    res = S.run(args.run, params, key, keep=args.keep, tests=args.tests)
+    for view in P.VIEWS:
+        rep = res["views"][view]["report"]
+        sizes = ", ".join(f"{lv['size']} atoms: {lv['frequent']:,}" for lv in rep["levels"])
+        capped = sorted({s for lv in rep["levels"] for s in lv["capped_sentences"]})
+        print(f"- {view}: {len(res['views'][view]['records']):,} candidates ({sizes})" + (f"; CAPPED sentences: {len(capped)}" if capped else ""))
+    print(f"→ {os.path.relpath(out, os.getcwd())}/ (patterns.lexicalized.jsonl, patterns.shape.jsonl, patterns.md) in {res['seconds']['total']} s")
+    return 0
+
+
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(prog="python -m fusenf.mine", description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -78,8 +111,20 @@ def main(argv=None) -> int:
     p.add_argument("--habitual", default=None, choices=("evidence", "key"))
     p.add_argument("--shape", default=None, choices=("lexicalized", "shape"))
     p.add_argument("--limit", type=int, default=None)
+    q = sub.add_parser("patterns", help="§5.1: connected patterns of a lifted run, generalized and tested")
+    q.add_argument("--run", required=True, help="the run's folder name under fusenf/runs/ (its graphs.jsonl is read)")
+    q.add_argument("--min-families", type=int, default=None, help="support threshold in families of the support share (default 3)")
+    q.add_argument("--min-atoms", type=int, default=None)
+    q.add_argument("--max-atoms", type=int, default=None, help="the largest pattern, in atoms (default 5)")
+    q.add_argument("--max-variables", type=int, default=None, help="free variables in a pattern (default: no limit)")
+    q.add_argument("--exclude-heads", default=None, help="relation types kept out of patterns, comma-separated")
+    q.add_argument("--support-role", default=None, help="the share whose families decide frequency (default mine)")
+    q.add_argument("--max-embeddings", type=int, default=None, help="cap on one sentence's atom sets at one size (default 200000)")
+    q.add_argument("--keep", type=int, default=12, help="sample matches kept on a candidate")
+    q.add_argument("--tests", default="full", choices=("full", "sample", "none"))
+    q.add_argument("--summary-only", action="store_true", help="write patterns.md again from the run's files, without mining")
     args = ap.parse_args(argv)
-    return {"lift": cmd_lift}[args.cmd](args)
+    return {"lift": cmd_lift, "patterns": cmd_patterns}[args.cmd](args)
 
 
 if __name__ == "__main__":

@@ -12,8 +12,10 @@ variables named by first occurrence, class symbols kept (the lexicalized view) o
     shape:     "lexicalized" (default) · "shape"   — class symbols kept or variablized
     surface:   always evidence (a name, a quantifier word)
 
-A lifted atom is a string such as ``Theme:$e2|Agent($e1,$x1)|asserted``; a lifted graph lists them, the
-variable map back to the sentence's symbols, and the evidence record.
+A lifted atom is a string such as ``Theme:$e2|Agent($e1,$x1)|asserted``; a lifted graph lists them, the maps
+back to the sentence's symbols (``varmap`` symbol → variable, ``rulemap`` rule statement → ``$r``, ``classmap``
+class → ``$c`` in the shape view), and the evidence record (``tenses`` by event symbol, ``atom_tenses`` by atom
+index for a tense wrapper over a flat predication, the names, the surface records, the truth values).
 """
 from __future__ import annotations
 
@@ -61,15 +63,16 @@ class Lifter:
         self.rules: dict[str, str] = {}
         self.positions: dict[str, set] = {}                 # a symbol or function term → the argument types it fills
         for a in graph["atoms"]:
+            rule = rule_of(a["scope"])
             for x, ty in zip(a["args"], A.arg_types(a["head"], len(a["args"]))):
-                k = _render(x) if isinstance(x, list) else x
-                if isinstance(k, str) and (k.startswith("sk_") or k.startswith("$") or k.startswith("(")):
+                k = scoped(x, rule)
+                if k.startswith("sk_") or k.startswith("$") or k.startswith("("):
                     self.positions.setdefault(k, set()).update(ty.split("|"))
 
     def _type(self, sym: str, position_type: str) -> str:
         """Declared types first (an eventive witness is an Event); else the most specific type among every
         position the symbol fills in the graph; else the position at hand."""
-        declared = set(self.types.get(sym) or [])
+        declared = set(self.types.get(sym.split("@", 1)[0]) or [])
         if "Event" in declared:
             return "Event"
         for t in ("TimeTerm", "Entity", "Instance"):
@@ -96,21 +99,22 @@ class Lifter:
             self.classes[sym] = f"$c{len(self.classes) + 1}"
         return self.classes[sym]
 
-    def term(self, t, position_type: str = "?") -> str:
+    def term(self, t, position_type: str = "?", rule: str | None = None) -> str:
         """One argument lifted: a skolem symbol → its variable, a class → itself or a class variable, a
-        number or a placeholder kept, a nested term (a Narrow, a skolem function) lifted inside."""
+        number or a placeholder kept, a nested term (a Narrow, a skolem function) lifted inside. ``rule`` is the
+        rule the atom sits in: a rule's own variables, and the skolem terms over them, are that rule's."""
         if isinstance(t, list):
             if A.is_function_term(t):
-                return self.variable(_render(t), position_type)
+                return self.variable(scoped(t, rule), position_type)
             head = t[0]
             types = A.arg_types(head, len(t) - 1)
-            return "(" + head + " " + " ".join(self.term(a, ty) for a, ty in zip(t[1:], types)) + ")"
+            return "(" + head + " " + " ".join(self.term(a, ty, rule) for a, ty in zip(t[1:], types)) + ")"
         if not isinstance(t, str):
             return str(t)
         if t.startswith("§") or t.startswith('"'):
             return t
         if A.is_variable(t) or t.startswith("sk_"):
-            return self.variable(t, position_type)
+            return self.variable(scoped(t, rule), position_type)
         if "Class" in position_type:
             return self.class_symbol(t)
         try:
@@ -127,9 +131,10 @@ class Lifter:
 
     def scope(self, scope: list) -> str:
         parts = []
+        rule = rule_of(scope)
         for marker, anchor in scope:
             if isinstance(anchor, list) or (anchor and (anchor.startswith("sk_") or A.is_variable(anchor))):
-                anchor = self.term(anchor, "Event")
+                anchor = self.term(anchor, "Event", rule)
             elif anchor and marker.startswith("Implication"):     # a rule's statement name → a rule index
                 anchor = self.rules.setdefault(anchor, f"$r{len(self.rules) + 1}")
             parts.append(f"{marker}:{anchor}" if anchor else marker)
@@ -138,6 +143,22 @@ class Lifter:
 
 def _render(t) -> str:
     return "(" + " ".join(_render(x) for x in t) + ")" if isinstance(t, list) else str(t)
+
+
+def rule_of(scope: list) -> str | None:
+    """The rule an atom sits in: the statement name of the outermost Implication above it, or ``None``."""
+    for marker, anchor in scope:
+        if marker.startswith("Implication") and isinstance(anchor, str) and anchor:
+            return anchor
+    return None
+
+
+def scoped(t, rule: str | None) -> str:
+    """A token as the lifter keys it. A rule's variable (``$x``) and a skolem term over one (``(sk_sing $x)``)
+    belong to their rule — ``$x@r1_implication`` — because the emitter reuses the same letters in every rule of
+    a sentence and two rules' ``$x`` are two variables. Everything else is itself."""
+    k = _render(t)
+    return f"{k}@{rule}" if rule and "$" in k else k
 
 
 _VAR = re.compile(r"\$([a-z]+)(\d+)")
@@ -164,7 +185,7 @@ def lift(graph: dict, key: dict | None = None) -> dict:
     source atom indices), ``varmap``, and ``evidence``."""
     key = key or DEFAULT_KEY
     L = Lifter(graph, key)
-    units, evidence = [], {"tenses": {}, "habitual": [], "surface": [], "strengths": [], "confidences": [], "names": {}}
+    units, evidence = [], {"tenses": {}, "atom_tenses": {}, "habitual": [], "surface": [], "strengths": [], "confidences": [], "names": {}}
     for a in graph["atoms"]:
         kind = a["kind"]
         if kind == "surface":
@@ -172,19 +193,20 @@ def lift(graph: dict, key: dict | None = None) -> dict:
             if a["head"] == "Name" and len(a["args"]) == 2:
                 evidence["names"][str(a["args"][0])] = str(a["args"][1]).strip('"')
             continue
+        rule = rule_of(a["scope"])
         if kind == "tense":
-            ev = str(a["args"][0]) if a["args"] else ""
+            ev = scoped(a["args"][0], rule) if a["args"] else ""   # the event's symbol, or its skolem term in its rule
             evidence["tenses"].setdefault(ev, []).append(a["head"])
             if a["head"] == "Habitual":
                 evidence["habitual"].append(ev)
             if key.get("tense") != "key" and not (a["head"] == "Habitual" and key.get("habitual") == "key"):
                 continue
         types = A.arg_types(a["head"], len(a["args"]))
-        args = [L.term(x, ty) for x, ty in zip(a["args"], types)]
+        args = [L.term(x, ty, rule) for x, ty in zip(a["args"], types)]
         b = band(a["s"], key.get("polarity"))
         tense = a.get("tense")
-        if tense:
-            evidence["tenses"].setdefault(args[0] if args else "", []).append(tense)
+        if tense:                                                # a tense wrapper over a flat predication: on the atom
+            evidence["atom_tenses"][str(a["i"])] = tense
         parts = [L.scope(a["scope"]), f"{a['head']}({','.join(args)})"]
         if b:
             parts.append(b)
@@ -198,4 +220,4 @@ def lift(graph: dict, key: dict | None = None) -> dict:
     return {"id": graph["id"], "text": graph.get("text"), "dataset": graph.get("dataset"), "family": graph.get("family"),
             "role": graph.get("role"), "key": key, "atoms": [u["key"] for u in units], "units": units,
             "canonical": sorted({u["unit"] for u in units}),
-            "varmap": L.varmap, "evidence": evidence}
+            "varmap": L.varmap, "rulemap": L.rules, "classmap": L.classes, "evidence": evidence}

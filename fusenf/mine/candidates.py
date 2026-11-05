@@ -19,8 +19,10 @@ import json
 import os
 
 
-def new(method: str, number: int, pattern_atoms: list[str], level: str, key: dict, run: str, params: dict | None = None) -> dict:
-    return {"id": f"{method}-{number:06d}", "method": method,
+def new(method: str, number: int, pattern_atoms: list[str], level: str, key: dict, run: str, params: dict | None = None,
+        tag: str = "") -> dict:
+    """A fresh record; ``tag`` separates the numbering of two series of one method (``subtree-L000012``)."""
+    return {"id": f"{method}-{tag}{number:06d}", "method": method,
             "pattern": {"atoms": list(pattern_atoms), "level": level, "variables": {}},
             "key": dict(key), "support": {"families": 0, "sentences": 0, "datasets": {}, "roles": {}},
             "matches": [], "evidence": {}, "tests": {},
@@ -51,6 +53,7 @@ def finish(cand: dict, lifted_by_id: dict, manifests_by_id: dict | None = None, 
             ev = g.get("evidence") or {}
             for _e, ts in (ev.get("tenses") or {}).items():
                 tenses.update(ts)
+            tenses.update((ev.get("atom_tenses") or {}).values())
             strengths.extend(ev.get("strengths") or [])
             confidences.extend(ev.get("confidences") or [])
             surface.update(ev.get("surface") or [])
@@ -78,4 +81,5 @@ def write(cands: list[dict], path: str):
 
 
 def read(path: str) -> list[dict]:
-    return [json.loads(l) for l in open(path, encoding="utf-8") if l.strip()]
+    with open(path, encoding="utf-8") as fh:
+        return [json.loads(l) for l in fh if l.strip()]

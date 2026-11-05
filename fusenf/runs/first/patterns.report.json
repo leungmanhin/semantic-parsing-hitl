@@ -1,0 +1,135 @@
+{
+ "params": {
+  "min_atoms": 2,
+  "max_atoms": 5,
+  "min_families": 3,
+  "support_role": "mine",
+  "max_variables": null,
+  "exclude_heads": [],
+  "max_embeddings": 200000,
+  "restating_templates": [
+   "distribution"
+  ]
+ },
+ "key": {
+  "polarity": "three",
+  "tense": "evidence",
+  "habitual": "evidence",
+  "shape": "lexicalized"
+ },
+ "views": {
+  "lexicalized": {
+   "sentences": 4257,
+   "units": 7459,
+   "frequent_units": 818,
+   "levels": [
+    {
+     "size": 2,
+     "embeddings": 54586,
+     "patterns": 7828,
+     "frequent": 1830,
+     "embeddings_kept": 41810,
+     "largest_sentence": 173,
+     "capped_sentences": []
+    },
+    {
+     "size": 3,
+     "embeddings": 91969,
+     "patterns": 22942,
+     "frequent": 3018,
+     "embeddings_kept": 50985,
+     "largest_sentence": 992,
+     "capped_sentences": []
+    },
+    {
+     "size": 4,
+     "embeddings": 132417,
+     "patterns": 40094,
+     "frequent": 3525,
+     "embeddings_kept": 51357,
+     "largest_sentence": 2713,
+     "capped_sentences": []
+    },
+    {
+     "size": 5,
+     "embeddings": 140089,
+     "patterns": 43029,
+     "frequent": 3151,
+     "embeddings_kept": 43063,
+     "largest_sentence": 3541,
+     "capped_sentences": []
+    }
+   ]
+  },
+  "shape": {
+   "sentences": 4257,
+   "units": 1527,
+   "frequent_units": 405,
+   "levels": [
+    {
+     "size": 2,
+     "embeddings": 101363,
+     "patterns": 6859,
+     "frequent": 2201,
+     "embeddings_kept": 91164,
+     "largest_sentence": 327,
+     "capped_sentences": []
+    },
+    {
+     "size": 3,
+     "embeddings": 249122,
+     "patterns": 43110,
+     "frequent": 6669,
+     "embeddings_kept": 171688,
+     "largest_sentence": 2815,
+     "capped_sentences": []
+    },
+    {
+     "size": 4,
+     "embeddings": 542739,
+     "patterns": 136426,
+     "frequent": 13752,
+     "embeddings_kept": 273177,
+     "largest_sentence": 14283,
+     "capped_sentences": []
+    },
+    {
+     "size": 5,
+     "embeddings": 978480,
+     "patterns": 282028,
+     "frequent": 21479,
+     "embeddings_kept": 373178,
+     "largest_sentence": 40755,
+     "capped_sentences": []
+    }
+   ]
+  }
+ },
+ "seconds": {
+  "lexicalized": 23.7,
+  "shape": 148.4,
+  "tests": 149.0,
+  "renamed_corpus": 195.4,
+  "total": 519.3
+ },
+ "tests": "full",
+ "corpus": {
+  "sentences": 4257,
+  "families": {
+   "evaluate": 368,
+   "mine": 714
+  }
+ },
+ "renamed_corpus": {
+  "lexicalized": {
+   "patterns": 11524,
+   "identical": true,
+   "differing": 0
+  },
+  "shape": {
+   "patterns": 44101,
+   "identical": true,
+   "differing": 0
+  }
+ }
+}
