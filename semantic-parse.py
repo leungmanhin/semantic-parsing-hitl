@@ -8,6 +8,7 @@ issues) is printed.  Providers are pluggable: one small class per provider, sele
     python semantic-parse.py "Teodor gave Yusra a thermos."
     python semantic-parse.py "…" --provider google --model gemini-2.5-flash --effort low
     python semantic-parse.py "…" --provider deepseek --model deepseek-v4-pro --effort low
+    python semantic-parse.py "…" --provider anthropic --model claude-opus-5-5 --effort low
     python semantic-parse.py "…" --provider chat-completions --base-url http://127.0.0.1:8000/v1 --model <name>
     python semantic-parse.py "…" --out run.json          # keep the full run record
     python semantic-parse.py "…" --dry-run               # show the request, call nothing
@@ -468,13 +469,19 @@ class Anthropic:
     breakpoint, and the item is the user message after it: the first call writes the catalog, later
     calls read it, and the item is plain input. No priming is needed. ``--no-cache`` drops the breakpoint.
 
-    Thinking: ``--effort`` none sends no thinking configuration; low / medium / high / xhigh / max send
-    extended thinking with the token budget below (the budget must be at least 1024 and below
-    ``max_tokens``, so ``max_tokens`` defaults to the budget plus ``REPLY_TOKENS``). With thinking on
-    the API refuses a temperature other than 1, so ``--temperature`` is then not sent. Thinking blocks
-    come back as ``thoughts`` with ``--include-thoughts``.
+    Thinking: on the current models (Claude Sonnet 5.5, Opus 5.5, Fable 5.1 and their predecessors from
+    4.7) thinking is adaptive and always on — a token budget (``thinking: {type: enabled, budget_tokens}``)
+    or ``{type: disabled}`` is refused with a 400 —, and the depth is set by ``output_config.effort``, whose
+    levels are ours (low / medium / high / xhigh / max); ``--effort none`` and ``--no-thinking`` send the
+    lowest, low. Thinking tokens count against ``max_tokens`` (default ``MAX_TOKENS``). Sampling settings
+    are not sent: the API version below refuses a temperature on every model. With ``--include-thoughts``
+    the request asks for the summarized thinking (``display: summarized``; the text is empty otherwise)
+    and the blocks come back as ``thoughts``.
 
-    The Messages API has no JSON mode here: the reply is read by ``extract_json`` like any other.
+    A reply the model's safety classifiers decline arrives with ``stop_reason: refusal`` and no text: it is
+    raised as a ProviderError naming the category, like a Gemini safety block, never parsed; a reply cut
+    by ``max_tokens`` is raised too. The Messages API has no JSON mode here: the reply is read by
+    ``extract_json`` like any other.
     Usage is reported in the shape the other providers use: ``input`` is the whole prompt (uncached +
     cache read + cache write, Anthropic counts them apart), ``cached`` the cache read, ``cache_write``
     the cache write; ``raw_usage`` keeps Anthropic's own fields."""
@@ -483,9 +490,9 @@ class Anthropic:
     default_model = "claude-sonnet-5-5"
     env_keys = ("ANTHROPIC_API_KEY",)
     url = "https://api.anthropic.com/v1/messages"
-    version = "2023-06-01"
-    budgets = {"low": 1024, "medium": 4096, "high": 16384, "xhigh": 32768, "max": 63999}
-    REPLY_TOKENS = 8192
+    version = "2026-10-21"                                 # the current API version: no sampling fields
+    EFFORTS = ("low", "medium", "high", "xhigh", "max")    # output_config.effort, the same names as ours
+    MAX_TOKENS = 16000                                     # thinking tokens count against it
 
     def __init__(self, args):
         self.args = args
@@ -500,21 +507,24 @@ class Anthropic:
         block = {"type": "text", "text": system}
         if not getattr(a, "no_cache", False):
             block["cache_control"] = {"type": "ephemeral"}
-        body = {"model": model, "system": [block], "messages": [{"role": "user", "content": user}]}
-        budget = None if getattr(a, "no_thinking", False) else self.budgets.get(a.effort)
-        if budget:
-            body["thinking"] = {"type": "enabled", "budget_tokens": budget}
-            body["max_tokens"] = a.max_tokens or budget + self.REPLY_TOKENS
-        else:
-            body["max_tokens"] = a.max_tokens or self.REPLY_TOKENS
-            if a.temperature is not None:
-                body["temperature"] = a.temperature
+        effort = a.effort if a.effort in self.EFFORTS and not getattr(a, "no_thinking", False) else "low"
+        body = {"model": model, "system": [block], "messages": [{"role": "user", "content": user}],
+                "max_tokens": a.max_tokens or self.MAX_TOKENS, "output_config": {"effort": effort}}
+        if getattr(a, "include_thoughts", False):
+            body["thinking"] = {"type": "adaptive", "display": "summarized"}
         return self.url, {"x-api-key": "<key>", "anthropic-version": self.version}, body
 
     def complete(self, system: str, user: str, model: str) -> Reply:
         url, headers, body = self.request(system, user, model)
         headers["x-api-key"] = self.key()
         raw = _post_json(url, headers, body, self.args.timeout, long_waits=PATIENT_WAITS, long_codes=(429, 529))
+        stop = raw.get("stop_reason")
+        if stop == "refusal":                              # declined by the safety classifiers: no text to parse
+            details = raw.get("stop_details") or {}
+            raise ProviderError(f"refused by the model (stop_reason refusal, category {details.get('category')!r}): "
+                                f"{details.get('explanation') or ''}".rstrip(": "))
+        if stop == "max_tokens":
+            raise ProviderError(f"the reply was cut by max_tokens ({body.get('max_tokens')}): raise --max-tokens")
         blocks = raw.get("content") or []
         text = "".join(b.get("text", "") for b in blocks if b.get("type") == "text")
         thoughts = [b.get("thinking", "") for b in blocks if b.get("type") == "thinking"]
@@ -637,7 +647,8 @@ def add_provider_args(ap: argparse.ArgumentParser) -> None:
                     help="reasoning effort (default: low). Gemini 3+: a thinking level (none -> LOW, the lowest level every model offers; "
                          "xhigh / max -> HIGH, the highest); Gemini 2.x: a thinking budget (none -> 0); "
                          "OpenAI: reasoning.effort, xhigh and max as sent (none -> not sent, the model's default); DeepSeek: reasoning_effort "
-                         "(medium / xhigh -> high, DeepSeek's own mapping; max as sent; none -> thinking disabled)")
+                         "(medium / xhigh -> high, DeepSeek's own mapping; max as sent; none -> thinking disabled); "
+                         "Anthropic: output_config.effort as named (none -> low; thinking is adaptive and always on)")
     ap.add_argument("--prompt", default=DEFAULT_PROMPT, help="instruction set file (default: the generated catalog prompt)")
     ap.add_argument("--temperature", type=float, default=None,
                     help="sampling temperature; default: not sent, the model's own default applies (Gemini 4 Argon ignores "
