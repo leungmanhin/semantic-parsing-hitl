@@ -45,7 +45,9 @@ DEFAULT = {
     "exclude_heads": [],                 # relation types kept out of every pattern
     "max_embeddings": 200000,            # per sentence and size: growth stops there and the run names the sentence —
     #                                      a capped sentence's counts are a lower bound and depend on its atom order
-    "restating_templates": ["distribution"],   # templates whose rule restates other instances' atoms (a label, never a filter)
+    "derived_rule_templates": ["distribution"],   # templates whose rule the emitter derives from other instances' atoms
+    #                                      (the distribution's rule says of each member what is said of the group):
+    #                                      a candidate that uses such a rule is labelled, never dropped
 }
 _PLAIN_CLASS = re.compile(r"^\|Member\((\$[a-z]+\d+),([^(),$\"§]+)\)\|asserted$")
 
@@ -140,22 +142,26 @@ def bindings(ordered_keys: list[str]) -> dict[str, str]:
 
 def labels(atoms: list[str]) -> dict:
     """What kind of structure a pattern is. ``links``: the variables two or more atoms share. ``view``: "tree"
-    when a rooted-subtree miner could express it — no thing shared between two events, no cycle among the
+    when a rooted-subtree miner could express it — nothing shared between two events, no cycle among the
     individuals — and "join" otherwise (the cross-event bindings the tree view cannot state). ``cross_event``:
-    the things that are an argument of two different events; ``cyclic``: the atoms' arguments close a loop;
-    ``in_rule`` / ``sealed``: how many atoms sit on a side of a rule, or under another operator (a reported
-    clause, a negation)."""
+    what is an argument of two different events — a thing, a time, or an event itself (two events during a
+    third); ``cyclic``: the atoms' arguments close a loop; ``in_rule`` / ``sealed``: how many atoms sit on a side
+    of a rule, or under another operator (a reported clause, a negation)."""
     occ: dict[str, set] = {}
     for i, a in enumerate(atoms):
         for v in variables(a):
             occ.setdefault(v, set()).add(i)
     links = sorted(v for v, s in occ.items() if len(s) >= 2 and v[1] != "c")
     own = {}                                                    # an atom's own event: an event variable as its first argument
+    args: dict[str, set] = {}                                   # a variable → the atoms it is an ARGUMENT of
     for i, a in enumerate(atoms):
-        first = a.split("|", 2)[1].split("(", 1)[1].split(",", 1)[0].rstrip(")")
+        body = a.split("|", 2)[1]
+        first = body.split("(", 1)[1].split(",", 1)[0].rstrip(")")
         if first.startswith("$e"):
             own[i] = first
-    cross = sorted(v for v, s in occ.items() if v[1] in "xtivp" and len({own[i] for i in s if i in own and own[i] != v}) >= 2)
+        for v in variables(body):
+            args.setdefault(v, set()).add(i)
+    cross = sorted(v for v, s in args.items() if v[1] != "c" and len({own[i] for i in s if i in own and own[i] != v}) >= 2)
     inc = [(i, v) for i, a in enumerate(atoms) for v in variables(a.split("|", 2)[1]) if v[1] != "c"]   # arguments only:
     #                                 a scope anchor (the clause an atom sits in, a rule's side) is structure, not a cycle
     nodes = {("a", i) for i, _ in inc} | {("v", v) for _, v in inc}

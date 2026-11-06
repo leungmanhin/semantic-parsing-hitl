@@ -11,6 +11,10 @@ never certificates). One JSON object per candidate::
                "residual": ...},
      "provenance": {"run": ..., "manifests": [...], "params": {...}},
      "status": "candidate" | "note" | "admitted" | "split" | "rejected"}
+
+A method adds its own fields. §5.1 (``fusenf.mine.subtree``) counts ``support`` on the mining share and puts the
+other shares beside it — ``"held_out": {"families": n, "sentences": n, "embeddings": n}`` — and gives every record
+a ``generalization`` with its own ``held_out`` check.
 """
 from __future__ import annotations
 

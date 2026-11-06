@@ -43,6 +43,26 @@ def helper(gid: str, family: str, verb1: str = "hold", verb2: str = "open", thin
     return graph(gid, family, atoms, role)
 
 
+def group(gid: str, family: str, role: str = "mine") -> dict:
+    """"Three women are sitting": the group's event, and the distribution template's rule saying it again of each member."""
+    rule = "r1_implication"
+
+    def atom(head, args, inst, template, scope=(), kind="content", name=None):
+        return {"head": head, "args": args, "scope": [list(x) for x in scope], "tense": None, "name": name or f"{inst}_{head.lower()}",
+                "inst": inst, "template": template, "s": 1.0, "c": 0.99, "kind": kind}
+    prem, cons = [("Implication:premise", rule)], [("Implication:consequent", rule)]
+    atoms = [atom("GroupOf", ["sk_group_1", "woman"], "g1", "group"),
+             atom("Member", ["sk_sit_1", "sit"], "e1", "activity"), atom("Agent", ["sk_sit_1", "sk_group_1"], "e1", "activity"),
+             atom("Implication", ["§premise", "§consequent"], "r1", "distribution", kind="scope", name=rule),
+             atom("PartOf", ["$x", "sk_group_1"], "r1", "distribution", prem, name=rule),
+             atom("Member", [["sk_sit", "$x"], "sit"], "r1", "distribution", cons, name=rule),
+             atom("Agent", [["sk_sit", "$x"], "$x"], "r1", "distribution", cons, name=rule)]
+    for i, a in enumerate(atoms):
+        a["i"] = i
+    return {"id": gid, "text": gid, "dataset": "toy", "family": family, "role": role, "manifest": "test",
+            "types": {"sk_group_1": ["Entity"], "sk_sit_1": ["Event"]}, "atoms": atoms, "unmapped": []}
+
+
 def corpus_graphs() -> list[dict]:
     return [helper("a1", "A"), helper("a2", "A"), helper("b1", "B"), helper("c1", "C"),
             helper("d1", "D", joined=False),                               # two keys: the atoms without the link
@@ -83,6 +103,12 @@ class CanonicalFormTests(unittest.TestCase):
         self.assertTrue(P.labels(P.atoms_of(loop))["cyclic"])
         sealed = "Theme:$e1|Agent($e2,$x1)|asserted & Theme:$e1|Member($e2,leave)|asserted"
         self.assertEqual(P.labels(P.atoms_of(sealed))["view"], "tree")      # a scope anchor is structure, not a loop
+        during = "|During($e1,$e3)|asserted & |During($e2,$e3)|asserted"
+        self.assertEqual(P.labels(P.atoms_of(during))["cross_event"], ["$e3"])   # an event is an argument of two other events
+        self.assertEqual(P.labels(P.atoms_of(during))["view"], "join")
+        nested = "Theme:$e1|Agent($e2,$x1)|asserted & Theme:$e1|Agent($e3,$x2)|asserted"
+        self.assertEqual(P.labels(P.atoms_of(nested))["cross_event"], [])   # two events inside one clause: its anchor is no argument
+        self.assertEqual(P.labels(P.atoms_of(nested))["view"], "tree")
 
 
 class MinerTests(unittest.TestCase):
@@ -95,7 +121,8 @@ class MinerTests(unittest.TestCase):
         c = find(self.lex, JOIN)
         self.assertEqual(c["support"]["families"], 3)                       # A (two sentences), B, C — not D, whose keys differ
         self.assertEqual(c["support"]["roles"], {"evaluate": 1, "mine": 3})  # the held-out family is reported beside it
-        self.assertEqual(c["support"]["sentences"], 5)
+        self.assertEqual(c["support"]["sentences"], 4)                      # the sentences of the mining share
+        self.assertEqual(c["support"]["held_out"], {"families": 1, "sentences": 1, "embeddings": 1})
         apart = "|Agent($e1,$x1)|asserted & |Member($e1,hold)|asserted"
         self.assertEqual(find(self.lex, apart)["support"]["families"], 4)   # D has the atoms, not the link
 
@@ -103,9 +130,10 @@ class MinerTests(unittest.TestCase):
         c = find(self.lex, JOIN)
         self.assertEqual(c["pattern"]["variables"], {"$e1": "Event", "$x1": "Entity", "$e2": "Event"})
         self.assertEqual(c["pattern"]["labels"]["view"], "join")
-        self.assertEqual(c["evidence"]["instances"], {"one": 0, "several": 5})       # two template instances in every match
-        self.assertEqual(c["evidence"]["fillers"]["$x1"]["top"], {"key": 5})          # what the shared thing is
-        self.assertEqual(c["evidence"]["fillers"]["$e1"]["top"], {"open": 5})
+        self.assertEqual(c["evidence"]["instances"], {"one": 0, "several": 4})       # two template instances in every match
+        self.assertEqual(c["evidence"]["fillers"]["$x1"]["top"], {"key": 4})          # what the shared thing is
+        self.assertEqual(c["evidence"]["fillers"]["$e1"]["top"], {"open": 4})         # the held-out sentence adds nothing here
+        self.assertEqual({m["role"] for m in c["matches"]}, {"mine"})                 # nor to the sample
         self.assertEqual(c["matches"][0]["bindings"]["$x1"], "sk_a_1")
         self.assertTrue(all(m["family"] != c["matches"][0]["family"] for m in c["matches"][1:]))   # one match a family
 
@@ -124,18 +152,56 @@ class MinerTests(unittest.TestCase):
         self.assertTrue(big["pattern"]["match_class"]["is_largest"])
         self.assertEqual(big["pattern"]["size"], 5)
         self.assertEqual(big["support"]["sentences"], small["support"]["sentences"])
-        self.assertGreater(small["pattern"]["match_class"]["patterns"], 1)
+        self.assertGreater(small["pattern"]["match_class"]["candidates"], 1)
         self.assertNotEqual(find(self.lex, JOIN)["pattern"]["match_class"]["largest"], big["id"])  # D has one, not the other
 
     def test_labels_are_fields_and_the_summary_reads_them(self):
         c = find(self.lex, JOIN)
         self.assertEqual((c["pattern"]["labels"]["in_rule"], c["pattern"]["labels"]["sealed"]), (0, 0))
-        self.assertEqual(c["evidence"]["restated"], 0)
+        self.assertEqual(c["evidence"]["derived_rule"], 0)
         text = S.summary("toy", self.result)
         self.assertIn("Joins between events", text)
+        for column in ("connected atoms", "inside one template instance", "after merging candidates with identical matches",
+                       "candidates merged into this row", "using a distribution rule", "without a distribution rule"):
+            self.assertIn(column, text)
         self.assertIn(c["id"], text + "".join(x["id"] for x in self.lex))
         self.assertEqual(S.stands_for(c), "$e1 open; $e2 hold; $x1 key")
         self.assertIn("keeps hold, open", text)                             # the shape table shows what the generalizer kept
+
+    def test_the_held_out_share_checks_the_generalization(self):
+        shape = "|Agent($e1,$x1)|asserted & |Member($e1,$c1)|asserted & |Patient($e2,$x1)|asserted"
+        same = find(self.shape, shape)                                      # the held-out sentence opens a box too
+        self.assertEqual(same["generalization"]["held_out"], {"fragments": 1, "holds": True, "lost_constants": []})
+        graphs = corpus_graphs()[:-1] + [helper("e1", "E", verb2="unlock", role="evaluate")]
+        res = S.run("toy", P.params_of(min_families=3), graphs=graphs, write=False, tests="none", log=lambda *_: None)
+        other = find(res["views"]["shape"]["records"], shape)
+        self.assertEqual(other["generalization"]["constants"], ["open"])    # what the four mining matches share …
+        self.assertEqual(other["generalization"]["held_out"], {"fragments": 1, "holds": False, "lost_constants": ["open"]})   # … fails there
+        self.assertIn("fails held-out: open", S.summary("toy", res))
+        alone = S.run("toy", P.params_of(min_families=3), graphs=corpus_graphs()[:-1], write=False, tests="none", log=lambda *_: None)
+        self.assertIsNone(find(alone["views"]["shape"]["records"], shape)["generalization"]["held_out"]["holds"])   # nothing to check with
+
+    def test_a_candidate_that_uses_a_derived_rule_is_labelled_and_kept_apart(self):
+        graphs = [group("g1", "G"), group("h1", "H"), group("i1", "I"), group("i2", "I"), group("j1", "J", role="evaluate")]
+        res = S.run("toy", P.params_of(min_families=3), graphs=graphs, write=False, tests="full", log=lambda *_: None)
+        lex = res["views"]["lexicalized"]["records"]
+        own = find(lex, "|Agent($e1,$x1)|asserted & |GroupOf($x1,woman)|asserted")             # the group's own event
+        copy = find(lex, "Implication:consequent:$r1|Agent($e1,$x1)|asserted & Implication:premise:$r1|PartOf($x1,$x2)|asserted")
+        both = find(lex, "Implication:premise:$r1|PartOf($x1,$x2)|asserted & |Agent($e1,$x2)|asserted")   # the rule beside the event
+        self.assertEqual([c["evidence"]["derived_rule"] for c in (own, copy, both)], [0, 4, 4])
+        self.assertEqual(copy["evidence"]["instances"], {"one": 4, "several": 0})        # inside the distribution instance
+        self.assertEqual(both["evidence"]["instances"], {"one": 0, "several": 4})        # … which "inside one instance" misses
+        ids = {c["id"]: c for c in lex}
+        largest = ids[own["pattern"]["match_class"]["largest"]]                          # the same sentences, yet merged apart:
+        self.assertEqual((largest["pattern"]["size"], largest["evidence"]["derived_rule"]), (3, 0))   # a lean row shows a lean pattern
+        self.assertTrue(ids[both["pattern"]["match_class"]["largest"]]["evidence"]["derived_rule"])
+        self.assertTrue(all(c["tests"]["renaming"]["pass"] and c["tests"]["broken_link"]["pass"] for c in lex))
+        text = S.summary("toy", res)
+        view = text[text.index("## The lexicalized view"):text.index("## The shape view")]
+        head, _, tail = view.partition("### Candidates using a distribution rule")
+        rows = [line for line in head.splitlines() if line.startswith("| subtree-")]
+        self.assertTrue(rows and not any("rule " in line for line in rows))              # the tables lead with the others
+        self.assertIn("rule premise:$r1 ▸ PartOf", tail)
 
     def test_the_generalization_of_a_lexicalized_pattern_is_the_pattern(self):
         self.assertTrue(self.lex and all(c["generalization"]["equals_pattern"] for c in self.lex))
