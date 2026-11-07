@@ -1,0 +1,100 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "023dc2f4de091cfd9e386fefb57824aee229530ff936ade5f49a9a51ef0b99e0",
+  "item": {
+    "id": "s5a51c5f42d",
+    "text": "Teodor rode a donkey to the mill."
+  },
+  "usage": {
+    "input": 112493,
+    "output": 136,
+    "thinking": null,
+    "total": 112629,
+    "cached": 110444,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 112493,
+    "candidatesTokenCount": 136,
+    "totalTokenCount": 112629,
+    "cachedContentTokenCount": 110444,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 112493
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 110444
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 136
+      }
+    ]
+  },
+  "raw_text": "{\"id\":\"s5a51c5f42d\",\"instances\":[{\"t\":\"named-entity\",\"id\":\"n1\",\"name\":\"Teodor\",\"span\":\"Teodor\"},{\"t\":\"witness\",\"id\":\"x1\",\"class\":\"donkey\",\"span\":\"a donkey\"},{\"t\":\"witness\",\"id\":\"x2\",\"class\":\"mill\",\"definite\":true,\"span\":\"the mill\"},{\"t\":\"motion\",\"id\":\"e1\",\"verb\":\"ride\",\"mover\":\"@n1\",\"moved\":\"@x1\",\"goal\":\"@x2\",\"tense\":\"past\",\"span\":\"Teodor rode a donkey to the mill\"}],\"unmapped\":[],\"issues\":[]}",
+  "response": {
+    "id": "s5a51c5f42d",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "donkey",
+        "span": "a donkey"
+      },
+      {
+        "t": "witness",
+        "id": "x2",
+        "class": "mill",
+        "definite": true,
+        "span": "the mill"
+      },
+      {
+        "t": "motion",
+        "id": "e1",
+        "verb": "ride",
+        "mover": "@n1",
+        "moved": "@x1",
+        "goal": "@x2",
+        "tense": "past",
+        "span": "Teodor rode a donkey to the mill"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "491b10c2ce2f77fd1fec8ae72ac2f6806b805fc0d0be9c257136ff953d6f96ed",
+  "manifest_id": "4b57b880ed85",
+  "run": 2,
+  "case": {
+    "template": "motion",
+    "section": "held_out",
+    "index": 1,
+    "category": "positive",
+    "text": "Teodor rode a donkey to the mill.",
+    "key": "5a51c5f42d"
+  }
+}

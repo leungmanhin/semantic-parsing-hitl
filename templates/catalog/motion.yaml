@@ -5,8 +5,10 @@
 # moved by someone, or that moves without acting, is the Theme (Lamine carried the ladder, the
 # crate arrived, the ladder fell); a causer who moves it is the Agent beside it. The path is
 # recorded as Goal (to, into, onto; the object of enter, reach) and Source (from, off, out of;
-# the object of leave, exit). Other path phrases (across, along, through, past) have no slot
-# here: the motion is parsed and the phrase reported as unmapped.
+# the object of leave, exit). Other path phrases (across, along, through, past) are obliques
+# as written; a bare direction word (away, up, uphill) is a direction attachment. The animal or
+# vehicle someone rides or drives (rode a horse, is riding a bicycle, drove the cart) is the
+# Theme beside the rider or driver as the Agent.
 
 id: motion
 family: predication
@@ -24,7 +26,10 @@ trigger:
     without acting — a vehicle that something else pulls or pushes, a wagon or a barrow, moves
     without acting even as the subject of travel or roll; a self-powered one, a ferry, is the
     Agent; a destination phrase is the Goal, an origin phrase the Source. With enter
-    and reach the object is the Goal; with leave and exit the object is the Source.
+    and reach the object is the Goal; with leave and exit the object is the Source. With ride
+    and drive the animal or vehicle ridden or driven (rode a horse, is riding a bicycle, drove the
+    cart) is the moved thing and the rider or driver the mover — in a passive too (the mule was
+    ridden by Pieter: Pieter the mover, the mule the moved).
   verbs: [go, come, arrive, leave, depart, enter, exit, return, move, travel, walk, run, climb,
           fall, rise, fly, swim, drive, ride, cross, reach, escape, flee, carry, bring, push,
           pull, roll, drag, lead]
@@ -68,7 +73,7 @@ slots:
   mover:  {type: filler, class: Entity, role: Agent, required: false,
            doc: "who or what moves under its own power, or who moves the moved thing: the subject; absent when the subject is moved or moves without acting, and in an agentless passive"}
   moved:  {type: filler, class: Entity, role: Theme, required: false,
-           doc: "what is moved by someone (the object of carry, push), or what moves without acting (the trunk arrived, the barrow fell), a pulled or pushed vehicle included (the wagon travelled, the barrow rolled downhill)"}
+           doc: "what is moved by someone (the object of carry, push), or what moves without acting (the trunk arrived, the barrow fell), a pulled or pushed vehicle included (the wagon travelled, the barrow rolled downhill); the animal or vehicle ridden or driven (rode a horse, riding a bicycle, drove the cart)"}
   goal:   {type: filler, class: Entity, role: Goal, required: false,
            doc: "the destination: a to / into / onto phrase, or the object of enter, reach"}
   path:   {type: filler, class: Entity, role: Path, required: false,
@@ -165,6 +170,21 @@ examples:
       instances:
         - {t: named-entity, id: n1, name: "Teodor"}
         - {t: motion, id: m1, verb: arrive, mover: "@n1", tense: past}
+    - category: positive
+      note: the animal ridden is the moved thing, the rider the mover
+      text: "Teodor rode a donkey to the mill."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, class: donkey}
+        - {t: witness, id: x2, class: mill, definite: true}
+        - {t: motion, id: m1, verb: ride, mover: "@n1", moved: "@x1", goal: "@x2", tense: past}
+    - category: positive
+      note: a passive — the vehicle ridden stays the moved thing
+      text: "A bicycle is being ridden by a heron."
+      instances:
+        - {t: witness, id: x1, class: bicycle}
+        - {t: witness, id: x2, class: heron}
+        - {t: motion, id: m1, verb: ride, mover: "@x2", moved: "@x1", tense: present, aspect: progressive}
     - category: contrast
       note: a thing that moves without acting is the moved, not the mover
       text: "The crate arrived."

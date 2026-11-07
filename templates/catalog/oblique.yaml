@@ -182,6 +182,14 @@ examples:
 
   held_out:                  # tests; never rendered into the prompt
     - category: positive
+      note: a direction word with an object is the preposition as written, not a direction
+      text: "The ferret ran around the hut."
+      instances:
+        - {t: witness, id: x1, class: ferret, definite: true}
+        - {t: witness, id: x2, class: hut, definite: true}
+        - {t: motion, id: m1, verb: run, mover: "@x1", tense: past}
+        - {t: oblique, id: a1, event: "@m1", head: Around, object: "@x2"}
+    - category: positive
       text: "Teodor voted against the plan."
       instances:
         - {t: named-entity, id: n1, name: "Teodor"}

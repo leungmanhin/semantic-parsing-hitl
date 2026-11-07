@@ -1,0 +1,109 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "f9dce0a996dea3285ec6592cd4707b6a99799f29ef40f21ef1d5cb5d469e65a2",
+  "item": {
+    "id": "s0f593fa835",
+    "text": "The postcards from Lamine are old."
+  },
+  "usage": {
+    "input": 112519,
+    "output": 224,
+    "thinking": null,
+    "total": 112743,
+    "cached": 110415,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 112519,
+    "candidatesTokenCount": 224,
+    "totalTokenCount": 112743,
+    "cachedContentTokenCount": 110415,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 112519
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 110415
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 224
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s0f593fa835\", \"instances\": [{\"t\": \"group\", \"id\": \"g1\", \"class\": \"postcard\", \"definite\": true, \"span\": \"The postcards\"}, {\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@g1\", \"predicate\": \"old\", \"form\": \"adjective\", \"tense\": \"present\", \"span\": \"The postcards from Lamine are old\"}, {\"t\": \"postmodifier\", \"id\": \"a1\", \"noun\": \"@g1\", \"head\": \"From\", \"object\": \"@n1\", \"span\": \"from Lamine\"}, {\"t\": \"distribution\", \"id\": \"d1\", \"group\": \"@g1\", \"over\": [\"@c1\"], \"span\": \"The postcards from Lamine are old\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s0f593fa835",
+    "instances": [
+      {
+        "t": "group",
+        "id": "g1",
+        "class": "postcard",
+        "definite": true,
+        "span": "The postcards"
+      },
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "copular",
+        "id": "c1",
+        "subject": "@g1",
+        "predicate": "old",
+        "form": "adjective",
+        "tense": "present",
+        "span": "The postcards from Lamine are old"
+      },
+      {
+        "t": "postmodifier",
+        "id": "a1",
+        "noun": "@g1",
+        "head": "From",
+        "object": "@n1",
+        "span": "from Lamine"
+      },
+      {
+        "t": "distribution",
+        "id": "d1",
+        "group": "@g1",
+        "over": [
+          "@c1"
+        ],
+        "span": "The postcards from Lamine are old"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "3b8d14d749aa855d772551473237f63fc8f5971dcbff16bb4c35336e6fb64a02",
+  "manifest_id": "ad32d36d7e68",
+  "run": 1,
+  "case": {
+    "template": "postmodifier",
+    "section": "held_out",
+    "index": 0,
+    "category": "positive",
+    "text": "The postcards from Lamine are old.",
+    "key": "0f593fa835"
+  }
+}

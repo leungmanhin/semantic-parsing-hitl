@@ -1,0 +1,101 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "023dc2f4de091cfd9e386fefb57824aee229530ff936ade5f49a9a51ef0b99e0",
+  "item": {
+    "id": "sdd2e21635b",
+    "text": "The ferret jumped high into the air."
+  },
+  "usage": {
+    "input": 112491,
+    "output": 178,
+    "thinking": null,
+    "total": 112669,
+    "cached": 110442,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 112491,
+    "candidatesTokenCount": 178,
+    "totalTokenCount": 112669,
+    "cachedContentTokenCount": 110442,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 112491
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 110442
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 178
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sdd2e21635b\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"ferret\", \"definite\": true, \"span\": \"The ferret\"}, {\"t\": \"witness\", \"id\": \"x2\", \"class\": \"air\", \"definite\": true, \"span\": \"the air\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"jump\", \"mover\": \"@x1\", \"goal\": \"@x2\", \"tense\": \"past\", \"span\": \"The ferret jumped high into the air\"}, {\"t\": \"extent\", \"id\": \"a1\", \"event\": \"@m1\", \"level\": \"high\", \"span\": \"high\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sdd2e21635b",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "ferret",
+        "definite": true,
+        "span": "The ferret"
+      },
+      {
+        "t": "witness",
+        "id": "x2",
+        "class": "air",
+        "definite": true,
+        "span": "the air"
+      },
+      {
+        "t": "motion",
+        "id": "m1",
+        "verb": "jump",
+        "mover": "@x1",
+        "goal": "@x2",
+        "tense": "past",
+        "span": "The ferret jumped high into the air"
+      },
+      {
+        "t": "extent",
+        "id": "a1",
+        "event": "@m1",
+        "level": "high",
+        "span": "high"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "491b10c2ce2f77fd1fec8ae72ac2f6806b805fc0d0be9c257136ff953d6f96ed",
+  "manifest_id": "4b57b880ed85",
+  "run": 3,
+  "case": {
+    "template": "extent",
+    "section": "held_out",
+    "index": 1,
+    "category": "positive",
+    "text": "The ferret jumped high into the air.",
+    "key": "dd2e21635b"
+  }
+}

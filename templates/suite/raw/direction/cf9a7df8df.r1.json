@@ -1,0 +1,101 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "023dc2f4de091cfd9e386fefb57824aee229530ff936ade5f49a9a51ef0b99e0",
+  "item": {
+    "id": "scf9a7df8df",
+    "text": "The ferret ran away from the heron."
+  },
+  "usage": {
+    "input": 112489,
+    "output": 176,
+    "thinking": null,
+    "total": 112665,
+    "cached": 110387,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 112489,
+    "candidatesTokenCount": 176,
+    "totalTokenCount": 112665,
+    "cachedContentTokenCount": 110387,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 112489
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 110387
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 176
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"scf9a7df8df\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"ferret\", \"definite\": true, \"span\": \"The ferret\"}, {\"t\": \"witness\", \"id\": \"x2\", \"class\": \"heron\", \"definite\": true, \"span\": \"the heron\"}, {\"t\": \"motion\", \"id\": \"e1\", \"verb\": \"run\", \"mover\": \"@x1\", \"source\": \"@x2\", \"tense\": \"past\", \"span\": \"The ferret ran away from the heron\"}, {\"t\": \"direction\", \"id\": \"d1\", \"event\": \"@e1\", \"word\": \"away\", \"span\": \"away\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "scf9a7df8df",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "ferret",
+        "definite": true,
+        "span": "The ferret"
+      },
+      {
+        "t": "witness",
+        "id": "x2",
+        "class": "heron",
+        "definite": true,
+        "span": "the heron"
+      },
+      {
+        "t": "motion",
+        "id": "e1",
+        "verb": "run",
+        "mover": "@x1",
+        "source": "@x2",
+        "tense": "past",
+        "span": "The ferret ran away from the heron"
+      },
+      {
+        "t": "direction",
+        "id": "d1",
+        "event": "@e1",
+        "word": "away",
+        "span": "away"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "491b10c2ce2f77fd1fec8ae72ac2f6806b805fc0d0be9c257136ff953d6f96ed",
+  "manifest_id": "4b57b880ed85",
+  "run": 1,
+  "case": {
+    "template": "direction",
+    "section": "held_out",
+    "index": 0,
+    "category": "positive",
+    "text": "The ferret ran away from the heron.",
+    "key": "cf9a7df8df"
+  }
+}

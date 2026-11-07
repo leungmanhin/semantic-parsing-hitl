@@ -1,0 +1,112 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "023dc2f4de091cfd9e386fefb57824aee229530ff936ade5f49a9a51ef0b99e0",
+  "item": {
+    "id": "s9a6d307916",
+    "text": "A group of herons is standing in the marsh."
+  },
+  "usage": {
+    "input": 112495,
+    "output": 242,
+    "thinking": null,
+    "total": 112737,
+    "cached": 110446,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 112495,
+    "candidatesTokenCount": 242,
+    "totalTokenCount": 112737,
+    "cachedContentTokenCount": 110446,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 112495
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 110446
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 242
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s9a6d307916\", \"instances\": [{\"t\": \"group\", \"id\": \"g1\", \"class\": \"heron\", \"quantity\": \"a group of\", \"span\": \"A group of herons\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"marsh\", \"definite\": true, \"span\": \"the marsh\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"stand\", \"actor\": \"@g1\", \"tense\": \"present\", \"aspect\": \"progressive\", \"span\": \"A group of herons is standing\"}, {\"t\": \"location\", \"id\": \"l1\", \"event\": \"@e1\", \"place\": \"@x1\", \"head\": \"Location\", \"preposition\": \"in\", \"span\": \"in the marsh\"}, {\"t\": \"distribution\", \"id\": \"r1\", \"group\": \"@g1\", \"over\": [\"@e1\"], \"span\": \"A group of herons is standing in the marsh\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s9a6d307916",
+    "instances": [
+      {
+        "t": "group",
+        "id": "g1",
+        "class": "heron",
+        "quantity": "a group of",
+        "span": "A group of herons"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "marsh",
+        "definite": true,
+        "span": "the marsh"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "stand",
+        "actor": "@g1",
+        "tense": "present",
+        "aspect": "progressive",
+        "span": "A group of herons is standing"
+      },
+      {
+        "t": "location",
+        "id": "l1",
+        "event": "@e1",
+        "place": "@x1",
+        "head": "Location",
+        "preposition": "in",
+        "span": "in the marsh"
+      },
+      {
+        "t": "distribution",
+        "id": "r1",
+        "group": "@g1",
+        "over": [
+          "@e1"
+        ],
+        "span": "A group of herons is standing in the marsh"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "491b10c2ce2f77fd1fec8ae72ac2f6806b805fc0d0be9c257136ff953d6f96ed",
+  "manifest_id": "4b57b880ed85",
+  "run": 2,
+  "case": {
+    "template": "group",
+    "section": "held_out",
+    "index": 5,
+    "category": "positive",
+    "text": "A group of herons is standing in the marsh.",
+    "key": "9a6d307916"
+  }
+}

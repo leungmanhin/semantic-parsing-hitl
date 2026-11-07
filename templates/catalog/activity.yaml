@@ -153,6 +153,13 @@ examples:
         - {t: named-entity, id: n1, name: "Yusra"}
         - {t: activity, id: v1, verb: give_up, actor: "@n1", tense: past}
     - category: positive
+      note: a particle verb with an object — the particle is the verb's, not a direction
+      text: "Lamine put away the quilt."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: x1, class: quilt, definite: true}
+        - {t: activity, id: v1, verb: put_away, actor: "@n1", patient: "@x1", tense: past}
+    - category: positive
       note: a specific patient
       text: "Teodor read the letter."
       instances:

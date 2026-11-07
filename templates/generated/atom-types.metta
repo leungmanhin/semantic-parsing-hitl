@@ -108,6 +108,7 @@
 (: Degree (-> Instance Class Level Proposition))
 (: Despite (-> Event Event Proposition))
 (: DimensionScale (-> Class Class Proposition))
+(: Direction (-> Event Class Proposition))
 (: DirectionFrom (-> Instance Instance Class Proposition))
 (: Directive (-> Proposition Proposition))
 (: DueTo (-> Event Instance Proposition))

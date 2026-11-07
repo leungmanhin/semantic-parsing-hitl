@@ -27,6 +27,7 @@ trigger:
     - "<numeral> <N>s"                  # three barrows
     - "more than / up to <n> <N>s; <n>–<m> <N>s"   # a bound or a range: count_min / count_max
     - "several / a few / many / dozens of / a lot of <N>s"
+    - "a group / crowd / bunch / couple / herd of <N>s"   # the collective phrase is the size phrase: quantity "a group of"
     - "both <N>s"                       # definite, count 2, no phrase
     - "<possessor>'s <N>s"              # Marisol's badgers
   boundary:                   # looks like a group but is not one
@@ -53,7 +54,7 @@ slots:
   count:     {type: number, required: false, doc: "the exact size when a numeral or both states it (three → 3; both → 2); a bound or a range is count_min / count_max instead"}
   count_min: {type: number, required: false, doc: "a lower bound on the size: more than / over / at least 200 → 200; the low end of a range (300–400 → 300)"}
   count_max: {type: number, required: false, doc: "an upper bound on the size: up to / at most / as many as / fewer than / under 60 → 60; the high end of a range (300–400 → 400)"}
-  quantity:  {type: string, required: false, doc: "the vague size phrase as written (several, a few, some, many, dozens, a lot, lots, plenty); absent when a numeral or both states the size"}
+  quantity:  {type: string, required: false, doc: "the vague size phrase as written (several, a few, some, many, dozens, a lot, lots, plenty), a collective phrase included with its adjective (a group of, a large group of, a crowd of, a bunch of, a couple of, a herd of): a group of children is a group of class child, quantity a group of; absent when a numeral or both states the size"}
   hedge:     {type: string, required: false, doc: "an approximation word on the count as written (about, approximately, roughly, nearly, almost, around, some); recorded, not rendered — the count stays the number stated"}
   props:     {type: list, class: Class, restriction: Member, required: false, doc: "adjectival properties stated in the phrase; a noun before the head is a mod"}
   mods:      {type: list, class: Class, ids: [named-entity, time], required: false,
@@ -159,6 +160,15 @@ examples:
         - {t: group, id: g1, class: ferret, definite: true}
         - {t: witness, id: x1, class: barn, definite: true}
         - {t: activity, id: v1, verb: surround, actor: "@g1", patient: "@x1", tense: past}
+    - category: positive
+      note: a collective phrase is the size phrase — a group of class heron, quantity a group of
+      text: "A group of herons is standing in the marsh."
+      instances:
+        - {t: group, id: g1, class: heron, quantity: a group of}
+        - {t: witness, id: x1, class: marsh, definite: true}
+        - {t: activity, id: v1, verb: stand, actor: "@g1", tense: present, aspect: progressive}
+        - {t: location, id: l1, event: "@v1", place: "@x1", head: Location, preposition: in}
+        - {t: distribution, id: d1, group: "@g1", over: ["@v1"]}
     - category: positive
       note: a vague phrase
       text: "A few students laughed."

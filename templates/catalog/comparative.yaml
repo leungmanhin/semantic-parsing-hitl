@@ -50,9 +50,13 @@ trigger:
       things; a bounded measure (the measure template), with the unit unspecified when none is
       stated
     - >-
-      a comparative with no stated standard — a sturdier bracket, prices ended lower, this one is
-      better: nothing fills the standard; the rest of the clause is parsed and the comparative
-      reported as unmapped (G01)
+      a comparative before a noun with no stated standard — a sturdier bracket, an older weaver,
+      a bigger barn: an ordinary adjective of the noun, kept as written (sturdier) among the
+      witness's properties; no comparison
+    - >-
+      a predicative or adverbial comparative with no stated standard — prices ended lower, this
+      one is better, Pieter ran faster: nothing fills the standard; the rest of the clause is
+      parsed and the comparative reported as unmapped (G01)
     - >-
       a superlative or an ordinal — the tallest weaver, one of the oldest orchards, the third
       climber: the superlative template
@@ -260,9 +264,16 @@ examples:
       expected: {abstain: true, template: degree}                     # a degree word, no standard
     - category: abstain
       text: "Odile bought a sturdier bracket."
-      expected: {abstain: true, gap: G01, span: "sturdier"}           # no stated standard
+      expected: {abstain: true, template: witness}                    # before a noun: the adjective as written, no comparison
+    - category: abstain
+      text: "Prices ended lower."
+      expected: {abstain: true, gap: G01, span: "lower"}              # predicative, no stated standard
 
   held_out:                  # tests; never rendered into the prompt
+    - category: abstain
+      note: a comparative before a noun with no standard — the witness's adjective, no comparison
+      text: "An older weaver is mending a quilt."
+      expected: {abstain: true, template: witness}
     - category: positive
       note: a comparative between two names
       text: "Teodor is taller than Yusra."

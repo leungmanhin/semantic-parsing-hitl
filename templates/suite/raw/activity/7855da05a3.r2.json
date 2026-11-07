@@ -1,0 +1,93 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "023dc2f4de091cfd9e386fefb57824aee229530ff936ade5f49a9a51ef0b99e0",
+  "item": {
+    "id": "s7855da05a3",
+    "text": "Lamine put away the quilt."
+  },
+  "usage": {
+    "input": 112490,
+    "output": 145,
+    "thinking": null,
+    "total": 112635,
+    "cached": 110441,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 112490,
+    "candidatesTokenCount": 145,
+    "totalTokenCount": 112635,
+    "cachedContentTokenCount": 110441,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 112490
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 110441
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 145
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s7855da05a3\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"quilt\", \"definite\": true, \"span\": \"the quilt\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"put_away\", \"actor\": \"@n1\", \"patient\": \"@x1\", \"tense\": \"past\", \"span\": \"Lamine put away the quilt\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s7855da05a3",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "quilt",
+        "definite": true,
+        "span": "the quilt"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "put_away",
+        "actor": "@n1",
+        "patient": "@x1",
+        "tense": "past",
+        "span": "Lamine put away the quilt"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "491b10c2ce2f77fd1fec8ae72ac2f6806b805fc0d0be9c257136ff953d6f96ed",
+  "manifest_id": "4b57b880ed85",
+  "run": 2,
+  "case": {
+    "template": "activity",
+    "section": "held_out",
+    "index": 3,
+    "category": "positive",
+    "text": "Lamine put away the quilt.",
+    "key": "7855da05a3"
+  }
+}

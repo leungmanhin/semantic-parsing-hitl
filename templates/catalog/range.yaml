@@ -51,7 +51,7 @@ slots:
   mods:       {type: list, class: Class, ids: [named-entity, time], required: false,
                doc: "the nouns, names and years before the head noun that narrow its class (Nouns before nouns): a lemma for a noun (a harbour pilot: harbour; a sea salt grinder: sea_salt), the id of a named-entity instance for a name (a Brackenford blanket), of a time instance for a year, a decade or a century (a 1904 almanac); never an adjective"}
   quantifier: {type: string, required: false,
-               doc: "the quantifier word as written (every, each, all, most, many, few, no, none); absent for a bare generic"}
+               doc: "the quantifier word as written (every, each, all, most, many, few, no, none); for a pronoun the quantifier it carries (nobody, no one, nothing → no; everyone, everybody, everything → every); absent for a bare generic"}
   predicate:  {type: lemma, class: Class, required: false,
                doc: "the lemma of the predication the range takes part in (slept → sleep); recorded, not rendered; optional"}
 

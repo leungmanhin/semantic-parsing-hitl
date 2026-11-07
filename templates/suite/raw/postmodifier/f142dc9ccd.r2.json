@@ -1,0 +1,121 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "a5aaf8a1fb44dbf0f0daa2cd51c6d2182032075a9f6c66a8a8c89fa5de6e5e90",
+  "item": {
+    "id": "sf142dc9ccd",
+    "text": "The ferrets from the valley are sleeping."
+  },
+  "usage": {
+    "input": 112515,
+    "output": 278,
+    "thinking": null,
+    "total": 112793,
+    "cached": 110466,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 112515,
+    "candidatesTokenCount": 278,
+    "totalTokenCount": 112793,
+    "cachedContentTokenCount": 110466,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 112515
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 110466
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 278
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sf142dc9ccd\", \"instances\": [{\"t\": \"group\", \"id\": \"g1\", \"class\": \"ferret\", \"definite\": true, \"span\": \"The ferrets\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"valley\", \"definite\": true, \"span\": \"the valley\"}, {\"t\": \"locative\", \"id\": \"l1\", \"thing\": \"@g1\", \"place\": \"@x1\", \"head\": \"From\", \"preposition\": \"from\", \"tense\": \"present\", \"span\": \"from the valley\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"sleep\", \"actor\": \"@g1\", \"tense\": \"present\", \"aspect\": \"progressive\", \"span\": \"The ferrets from the valley are sleeping\"}, {\"t\": \"distribution\", \"id\": \"d1\", \"group\": \"@g1\", \"over\": [\"@l1\"], \"span\": \"The ferrets from the valley\"}, {\"t\": \"distribution\", \"id\": \"d2\", \"group\": \"@g1\", \"over\": [\"@e1\"], \"span\": \"The ferrets from the valley are sleeping\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sf142dc9ccd",
+    "instances": [
+      {
+        "t": "group",
+        "id": "g1",
+        "class": "ferret",
+        "definite": true,
+        "span": "The ferrets"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "valley",
+        "definite": true,
+        "span": "the valley"
+      },
+      {
+        "t": "locative",
+        "id": "l1",
+        "thing": "@g1",
+        "place": "@x1",
+        "head": "From",
+        "preposition": "from",
+        "tense": "present",
+        "span": "from the valley"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "sleep",
+        "actor": "@g1",
+        "tense": "present",
+        "aspect": "progressive",
+        "span": "The ferrets from the valley are sleeping"
+      },
+      {
+        "t": "distribution",
+        "id": "d1",
+        "group": "@g1",
+        "over": [
+          "@l1"
+        ],
+        "span": "The ferrets from the valley"
+      },
+      {
+        "t": "distribution",
+        "id": "d2",
+        "group": "@g1",
+        "over": [
+          "@e1"
+        ],
+        "span": "The ferrets from the valley are sleeping"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "3b8d14d749aa855d772551473237f63fc8f5971dcbff16bb4c35336e6fb64a02",
+  "manifest_id": "0fb52597383f",
+  "run": 2,
+  "case": {
+    "template": "postmodifier",
+    "section": "held_out",
+    "index": 0,
+    "category": "positive",
+    "text": "The ferrets from the valley are sleeping.",
+    "key": "f142dc9ccd"
+  }
+}

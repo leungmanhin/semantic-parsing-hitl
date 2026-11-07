@@ -18,11 +18,16 @@ trigger:
     A prepositional phrase that modifies a noun inside its noun phrase: the man with the beret, a
     book about badgers, a postcard from Marisol, the key to the hut, a flask without a lid, the
     destruction of the hut. The noun's referent is parsed as usual
-    (a witness or a name); the postmodifier names that referent, the preposition as written
-    (capitalized) and the phrase's object. One instance per phrase. It is part of the noun
-    phrase, so it follows the referent wherever the referent is rendered.
+    (a witness, a name, a group or a range); the postmodifier names that referent, the
+    preposition as written (capitalized) and the phrase's object. One instance per phrase. It is
+    part of the noun phrase, so it follows the referent wherever the referent is rendered: on a
+    range (there is no stork with a fish …) it narrows the range inside the generalization's
+    premise, and the generic instance lists the predication only, never the postmodifier; an
+    indefinite object there is non-specific, a bare lemma (no stork with a fish: With, fish).
+    With no is Without (a man with no hat: Without, hat).
   surface_forms:
     - "the <N> with / without <object>"               # the man with the beret
+    - "a <N> with no <object>"                        # a stork with no nest: Without, nest
     - "a <N> in <garment or colour>"                  # a stork in a red cap: In, cap; badgers in blue and grey: In blue, In grey
     - "a <N> in mid <noun>"                           # a stork in mid flight: In, flight, object_props [mid] (mid an adjective, never a mod)
     - "a <N> about / from / to / for <object>"        # a book about badgers; a postcard from Marisol
@@ -67,7 +72,7 @@ trigger:
 slots:
   id:     {type: id, required: true, doc: "your label for the attachment (a1, a2 …)"}
   noun:   {type: filler, class: Entity, attaches: true, required: true,
-           doc: "the referent the phrase modifies: the id of its witness or named-entity instance"}
+           doc: "the referent the phrase modifies: the id of its witness, named-entity, group or range instance"}
   head:   {type: enum, values: [About, Above, Across, Against, Along, Among, Around, As, At, Before, Behind, Below, Beneath, Beside, Besides, Between, Beyond, By, Concerning, Despite, Down, Except, For, From, In, Inside, Into, Like, Near, Of, "Off", "On", Onto, Opposite, Out, Outside, Over, Past, Per, Regarding, Round, Through, To, Toward, Towards, Under, Underneath, Unlike, Up, Upon, Via, With, Within, Without], emit_as: {Past: PastPlace},
            required: true, doc: "the preposition as written, capitalized (with → With, about → About); never a synonym"}
   object: {type: filler, class: Entity, required: true, narrowed_by: [object_props, object_mods],
@@ -135,6 +140,32 @@ examples:
       expected: {abstain: true, template: oblique}                    # a phrase on the clause
 
   held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      note: a phrase on a group — a sender, not a place
+      text: "The postcards from Lamine are old."
+      instances:
+        - {t: group, id: g1, class: postcard, definite: true}
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: postmodifier, id: a1, noun: "@g1", head: From, object: "@n1"}
+        - {t: copular, id: c1, subject: "@g1", predicate: old, form: adjective, tense: present}
+        - {t: distribution, id: d1, group: "@g1", over: ["@c1"]}
+    - category: positive
+      note: a phrase on a range — it narrows the range, its indefinite object a bare lemma; the generic lists the predication only
+      text: "There is no heron with a fish flying over the marsh."
+      instances:
+        - {t: range, id: q1, class: heron, quantifier: "no", predicate: fly}
+        - {t: witness, id: x2, class: marsh, definite: true}
+        - {t: postmodifier, id: a1, noun: "@q1", head: With, object: fish}
+        - {t: motion, id: m1, verb: fly, mover: "@q1", tense: present, aspect: progressive}
+        - {t: oblique, id: a2, event: "@m1", head: Over, object: "@x2"}
+        - {t: generic, id: r1, ranges: ["@q1"], over: ["@m1"]}
+    - category: positive
+      note: with no — Without
+      text: "A weaver with no hat is waiting."
+      instances:
+        - {t: witness, id: x1, class: weaver}
+        - {t: postmodifier, id: a1, noun: "@x1", head: Without, object: hat}
+        - {t: activity, id: v1, verb: wait, actor: "@x1", tense: present, aspect: progressive}
     - category: positive
       note: in mid + a noun — In, the noun a bare lemma object, mid its adjective
       text: "A heron in mid dive was fishing."

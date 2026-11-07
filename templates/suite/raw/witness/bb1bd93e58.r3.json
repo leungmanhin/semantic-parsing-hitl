@@ -1,0 +1,102 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "023dc2f4de091cfd9e386fefb57824aee229530ff936ade5f49a9a51ef0b99e0",
+  "item": {
+    "id": "sbb1bd93e58",
+    "text": "Something is burning in the kitchen."
+  },
+  "usage": {
+    "input": 112489,
+    "output": 188,
+    "thinking": null,
+    "total": 112677,
+    "cached": 110440,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 112489,
+    "candidatesTokenCount": 188,
+    "totalTokenCount": 112677,
+    "cachedContentTokenCount": 110440,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 112489
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 110440
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 188
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sbb1bd93e58\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"thing\", \"span\": \"Something\"}, {\"t\": \"witness\", \"id\": \"x2\", \"class\": \"kitchen\", \"definite\": true, \"span\": \"the kitchen\"}, {\"t\": \"change-of-state\", \"id\": \"e1\", \"verb\": \"burn\", \"undergoer\": \"@x1\", \"tense\": \"present\", \"aspect\": \"progressive\", \"span\": \"Something is burning\"}, {\"t\": \"location\", \"id\": \"l1\", \"event\": \"@e1\", \"place\": \"@x2\", \"head\": \"Location\", \"preposition\": \"in\", \"span\": \"in the kitchen\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sbb1bd93e58",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "thing",
+        "span": "Something"
+      },
+      {
+        "t": "witness",
+        "id": "x2",
+        "class": "kitchen",
+        "definite": true,
+        "span": "the kitchen"
+      },
+      {
+        "t": "change-of-state",
+        "id": "e1",
+        "verb": "burn",
+        "undergoer": "@x1",
+        "tense": "present",
+        "aspect": "progressive",
+        "span": "Something is burning"
+      },
+      {
+        "t": "location",
+        "id": "l1",
+        "event": "@e1",
+        "place": "@x2",
+        "head": "Location",
+        "preposition": "in",
+        "span": "in the kitchen"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "491b10c2ce2f77fd1fec8ae72ac2f6806b805fc0d0be9c257136ff953d6f96ed",
+  "manifest_id": "4b57b880ed85",
+  "run": 3,
+  "case": {
+    "template": "witness",
+    "section": "held_out",
+    "index": 1,
+    "category": "positive",
+    "text": "Something is burning in the kitchen.",
+    "key": "bb1bd93e58"
+  }
+}

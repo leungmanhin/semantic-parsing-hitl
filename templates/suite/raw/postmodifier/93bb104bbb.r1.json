@@ -1,0 +1,120 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "a5aaf8a1fb44dbf0f0daa2cd51c6d2182032075a9f6c66a8a8c89fa5de6e5e90",
+  "item": {
+    "id": "s93bb104bbb",
+    "text": "There is no heron with a fish flying over the marsh."
+  },
+  "usage": {
+    "input": 112519,
+    "output": 268,
+    "thinking": null,
+    "total": 112787,
+    "cached": 110466,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 112519,
+    "candidatesTokenCount": 268,
+    "totalTokenCount": 112787,
+    "cachedContentTokenCount": 110466,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 112519
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 110466
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 268
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s93bb104bbb\", \"instances\": [{\"t\": \"range\", \"id\": \"q1\", \"class\": \"heron\", \"quantifier\": \"no\", \"span\": \"no heron\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"marsh\", \"definite\": true, \"span\": \"the marsh\"}, {\"t\": \"motion\", \"id\": \"e1\", \"verb\": \"fly\", \"mover\": \"@q1\", \"tense\": \"present\", \"aspect\": \"progressive\", \"span\": \"flying over the marsh\"}, {\"t\": \"postmodifier\", \"id\": \"a1\", \"noun\": \"@q1\", \"head\": \"With\", \"object\": \"fish\", \"span\": \"with a fish\"}, {\"t\": \"oblique\", \"id\": \"a2\", \"event\": \"@e1\", \"head\": \"Over\", \"object\": \"@x1\", \"span\": \"over the marsh\"}, {\"t\": \"generic\", \"id\": \"r1\", \"ranges\": [\"@q1\"], \"over\": [\"@e1\"], \"span\": \"There is no heron with a fish flying over the marsh\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s93bb104bbb",
+    "instances": [
+      {
+        "t": "range",
+        "id": "q1",
+        "class": "heron",
+        "quantifier": "no",
+        "span": "no heron"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "marsh",
+        "definite": true,
+        "span": "the marsh"
+      },
+      {
+        "t": "motion",
+        "id": "e1",
+        "verb": "fly",
+        "mover": "@q1",
+        "tense": "present",
+        "aspect": "progressive",
+        "span": "flying over the marsh"
+      },
+      {
+        "t": "postmodifier",
+        "id": "a1",
+        "noun": "@q1",
+        "head": "With",
+        "object": "fish",
+        "span": "with a fish"
+      },
+      {
+        "t": "oblique",
+        "id": "a2",
+        "event": "@e1",
+        "head": "Over",
+        "object": "@x1",
+        "span": "over the marsh"
+      },
+      {
+        "t": "generic",
+        "id": "r1",
+        "ranges": [
+          "@q1"
+        ],
+        "over": [
+          "@e1"
+        ],
+        "span": "There is no heron with a fish flying over the marsh"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "3b8d14d749aa855d772551473237f63fc8f5971dcbff16bb4c35336e6fb64a02",
+  "manifest_id": "0fb52597383f",
+  "run": 1,
+  "case": {
+    "template": "postmodifier",
+    "section": "held_out",
+    "index": 1,
+    "category": "positive",
+    "text": "There is no heron with a fish flying over the marsh.",
+    "key": "93bb104bbb"
+  }
+}

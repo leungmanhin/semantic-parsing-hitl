@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 a5bbdc1f13d65767 · 60 templates
+catalog sha256 23246c9b2e9890d9 · 61 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -270,7 +270,9 @@ nothing.
 Codes:
 
 - G00: anything no template here covers and no other code names
-- G01: a comparative with no stated standard ('a sturdier bracket', 'prices ended lower')
+- G01: a predicative or adverbial comparative with no stated standard ('prices ended lower',
+  'this one is better'); before a noun ('a sturdier bracket') the comparative is an ordinary
+  adjective of the noun
 - G02: an adverb with no slot: sequence (initially, eventually, finally), scope or domain
   (nationally, locally), an evaluation (unfortunately, luckily, sadly), a degree word on a
   manner adverb, on a class-level statement or on an adjective with a complement (laughed very
@@ -300,7 +302,8 @@ construction fits the span best) and add an issue record:
 Codes: P00 — an instruction is contradictory, ambiguous or missing for this item; P01 — two
 templates both seem to apply to one span (name both in `text`). An issue is a report about the
 instructions, never about the text: a construction the templates do not cover is an unmapped
-span, not an issue.
+span, not an issue; a slip of your own while writing the item is not an issue either — correct
+the item instead.
 
 ## Templates
 
@@ -321,6 +324,7 @@ Forms:
 - <numeral> <N>s
 - more than / up to <n> <N>s; <n>–<m> <N>s
 - several / a few / many / dozens of / a lot of <N>s
+- a group / crowd / bunch / couple / herd of <N>s
 - both <N>s
 - <possessor>'s <N>s
 
@@ -352,7 +356,9 @@ Slots:
 - `count_max` (optional; a number): an upper bound on the size: up to / at most / as many as /
   fewer than / under 60 → 60; the high end of a range (300–400 → 400).
 - `quantity` (optional; a string): the vague size phrase as written (several, a few, some, many,
-  dozens, a lot, lots, plenty); absent when a numeral or both states the size.
+  dozens, a lot, lots, plenty), a collective phrase included with its adjective (a group of, a
+  large group of, a crowd of, a bunch of, a couple of, a herd of): a group of children is a
+  group of class child, quantity a group of; absent when a numeral or both states the size.
 - `hedge` (optional; a string): an approximation word on the count as written (about,
   approximately, roughly, nearly, almost, around, some); recorded, not rendered — the count
   stays the number stated.
@@ -686,7 +692,8 @@ Slots:
   instance for a name (a Brackenford blanket), of a time instance for a year, a decade or a
   century (a 1904 almanac); never an adjective.
 - `quantifier` (optional; a string): the quantifier word as written (every, each, all, most,
-  many, few, no, none); absent for a bare generic.
+  many, few, no, none); for a pronoun the quantifier it carries (nobody, no one, nothing → no;
+  everyone, everybody, everything → every); absent for a bare generic.
 - `predicate` (optional; a lemma): the lemma of the predication the range takes part in (slept →
   sleep); recorded, not rendered; optional.
 
@@ -731,7 +738,11 @@ measure instance on the witness. A noun, a name or a year before the head noun (
 a Brackenford blanket, a 1904 almanac) narrows the class: the head is the class and the words
 before it are its `mods`. Former, ex- or retired before the noun (a former guard) sets `former`:
 it was one and is not now. Another or the other before the noun (another badger) is a witness of
-its own, never coreferent with the earlier one; the word itself is not reported.
+its own, never coreferent with the earlier one; the word itself is not reported. An INDEFINITE
+PRONOUN introduces a witness like an indefinite noun phrase: someone, somebody, anyone, anybody
+are a witness of class person; something, anything a witness of class thing (somebody is
+knitting: a witness person, indefinite). Nearby before a noun (a nearby farm) is an ordinary
+adjective of the noun, recorded with the others.
 
 Forms:
 - a <N>
@@ -741,9 +752,12 @@ Forms:
 - <possessor>'s <N>
 - the <N> of <possessor>
 - a lot of / plenty of <mass N>
+- someone / somebody / something
 
 Not this template:
 - a bare plural read generically — dogs bark: a class-level statement, not a witness
+- a negative or universal pronoun — nobody, no one, nothing, everyone, everybody, everything: a
+  range over person or thing with its quantifier (no, every), a generalization, not a witness
 - a plural noun phrase — the badgers, two envelopes: a group of individuals, not one witness
 - a proper name — Pieter: a named entity
 
@@ -791,6 +805,27 @@ Instances:
 The program renders these instances as:
 
     (Member sk_flask_1 flask)
+
+Example (a comparative before the noun with no standard stated — the adjective as written, no comparison). TEXT: Odile bought a sturdier bracket.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Odile", "span": "Odile"},
+      {"t": "witness", "id": "x1", "class": "bracket", "props": ["sturdier"], "span": "a sturdier bracket"},
+      {"t": "acquisition", "id": "q1", "verb": "buy", "acquirer": "@n1", "object": "@x1", "tense": "past", "span": "Odile bought a sturdier bracket"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_odile_1 "Odile")
+    (Member sk_bracket_1 bracket)
+    (Member sk_bracket_1 (Narrow bracket (Member sturdier)))
+    (Implication (Member sk_bracket_1 (Narrow bracket (Member sturdier))) (Member sk_bracket_1 sturdier))
+    (Member sk_buy_1 buy)
+    (Recipient sk_buy_1 sk_odile_1)
+    (Theme sk_buy_1 sk_bracket_1)
+    (Past sk_buy_1)
 
 Example (a possessive phrase — the possessor is a referent of its own). TEXT: Marisol's blanket
 
@@ -2145,9 +2180,12 @@ Not this template:
 - a comparison against a number — taller than 2 metres, more than 150 metres long, weighs over
   20 kilograms, older than thirty: a threshold on a measure, not a comparison of two things; a
   bounded measure (the measure template), with the unit unspecified when none is stated
-- a comparative with no stated standard — a sturdier bracket, prices ended lower, this one is
-  better: nothing fills the standard; the rest of the clause is parsed and the comparative
-  reported as unmapped (G01)
+- a comparative before a noun with no stated standard — a sturdier bracket, an older weaver, a
+  bigger barn: an ordinary adjective of the noun, kept as written (sturdier) among the witness's
+  properties; no comparison
+- a predicative or adverbial comparative with no stated standard — prices ended lower, this one
+  is better, Pieter ran faster: nothing fills the standard; the rest of the clause is parsed and
+  the comparative reported as unmapped (G01)
 - a superlative or an ordinal — the tallest weaver, one of the oldest orchards, the third
   climber: the superlative template
 - a degree word with no standard — very tall, too tall, tall enough, tall for a weaver: a degree
@@ -2253,8 +2291,10 @@ The program renders these instances as:
 
 Not this template. TEXT: The barrow is very crooked. — use `degree`.
 
-Not this template. TEXT: Odile bought a sturdier bracket. — report it as unmapped: {"span":
-"sturdier", "code": "G01"}.
+Not this template. TEXT: Odile bought a sturdier bracket. — use `witness`.
+
+Not this template. TEXT: Prices ended lower. — report it as unmapped: {"span": "lower", "code":
+"G01"}.
 
 ### control — A verb whose complement is an action of its own subject
 
@@ -2760,7 +2800,9 @@ Not this template:
   event, not a locative
 - in with a garment or a colour on a person or an animal — a stork in a red cap, badgers in blue
   and grey: what the referent wears, not where it is: the postmodifier template, head In
-- nearby with no place named (a nearby farm): no slot; report it as unmapped
+- nearby before a noun with no place named (a nearby farm, the nearby statue): an ordinary
+  adjective of the noun, the witness's property; nearby after a verb (waited nearby) is a place
+  word, the location template
 - a verb of residence or posture — lives in Brackenford, stood by the door, lay on the
   workbench: the verb's own event with a location attachment
 - a spatial relation stated by a verb — faces the river, borders the marsh, surrounds the house,
@@ -3015,7 +3057,10 @@ it moves under its own power and the Theme when it is moved or moves without act
 that something else pulls or pushes, a wagon or a barrow, moves without acting even as the
 subject of travel or roll; a self-powered one, a ferry, is the Agent; a destination phrase is
 the Goal, an origin phrase the Source. With enter and reach the object is the Goal; with leave
-and exit the object is the Source.
+and exit the object is the Source. With ride and drive the animal or vehicle ridden or driven
+(rode a horse, is riding a bicycle, drove the cart) is the moved thing and the rider or driver
+the mover — in a passive too (the mule was ridden by Pieter: Pieter the mover, the mule the
+moved).
 
 Verbs that anchor the class: go, come, arrive, leave, depart, enter, exit, return, move, travel,
 walk, run, climb, fall, rise, fly, swim, drive, ride, cross, reach, escape, flee, carry, bring,
@@ -3058,7 +3103,8 @@ Slots:
 - `moved` (optional; "@id" of a referent instance, or a bare lemma for a non-specific filler):
   what is moved by someone (the object of carry, push), or what moves without acting (the trunk
   arrived, the barrow fell), a pulled or pushed vehicle included (the wagon travelled, the
-  barrow rolled downhill).
+  barrow rolled downhill); the animal or vehicle ridden or driven (rode a horse, riding a
+  bicycle, drove the cart).
 - `goal` (optional; "@id" of a referent instance, or a bare lemma for a non-specific filler):
   the destination: a to / into / onto phrase, or the object of enter, reach.
 - `path` (optional; "@id" of a referent instance, or a bare lemma for a non-specific filler):
@@ -4973,14 +5019,80 @@ Not this template. TEXT: Marisol laughed in the granary. — use `location`.
 
 Not this template. TEXT: Pieter read the postcard with care. — use `manner`.
 
+### direction — A bare direction word on a verb
+
+When: A direction word with no object of its own on a verb of motion, perception or posture:
+away, up, down, around, back, out, in, over, along, forward, backward, ahead, aside, uphill,
+downhill, upstairs, downstairs, sideways, to the left, to the right, a bare compass word (flew
+north). The clause is parsed with its own template; this instance names its event and the word.
+A direction word beside a source or a goal phrase keeps both: walked away from the hut is a
+motion with the hut as its source and away as its direction; looked up at the loft is a
+perception with the loft as its stimulus and up as its direction (looked around, with nothing
+looked at, is an activity with its direction). One instance per direction word.
+
+Forms:
+- <clause> away / up / down / around / back / out
+- <clause> <direction> from / to / at <object>
+- <clause> uphill / downhill / upstairs / downstairs
+- <clause> to the left / to the right / sideways
+
+Not this template:
+- the same word with an object — ran around the hut, walked up the lane, went back to the forge:
+  a preposition as written (an oblique), a path (the lane) or a goal (the forge); no direction
+  instance
+- a particle that belongs to the verb — put away the lantern, set off, took off, turned up: the
+  verb keeps its particle in its lemma (put_away, set_off); no direction instance
+- a place word — outside, indoors, nearby, upstairs as where something is or happens (waited
+  upstairs, stood outside): the location template; upstairs as where a motion heads (ran
+  upstairs) is a direction
+- a compass direction from a landmark — north of the mill: the location or locative template's
+  direction from a landmark; a bare compass word on a motion (flew north) is a direction
+- how or how far — walked slowly, jumped high, ran far: a manner or an extent, not a direction
+- together or apart — stood close together, drifted apart: no slot; report the word as unmapped
+  (G02)
+
+Slots:
+
+- `t` (required): "direction"
+- `id` (required; your label for this instance): your label for the direction (d1, d2 …).
+- `event` (required; "@id" of the predication instance this attaches to): the clause's
+  predication instance the direction is on: a motion, an activity, a perception or a locative
+  one (the program mints the state of a flat predication).
+- `word` (required; a lemma): the direction word as written, lowercase, one symbol: away, up,
+  down, around, back, out, uphill, upstairs, north; left for to the left, right for to the
+  right.
+
+Example. TEXT: Marisol walked away from the forge.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Marisol", "span": "Marisol"},
+      {"t": "witness", "id": "x1", "class": "forge", "definite": true, "span": "the forge"},
+      {"t": "motion", "id": "m1", "verb": "walk", "mover": "@n1", "source": "@x1", "tense": "past", "span": "Marisol walked away from the forge"},
+      {"t": "direction", "id": "d1", "event": "@m1", "word": "away", "span": "away"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_marisol_1 "Marisol")
+    (Member sk_forge_1 forge)
+    (Member sk_walk_1 walk)
+    (Agent sk_walk_1 sk_marisol_1)
+    (Source sk_walk_1 sk_forge_1)
+    (Past sk_walk_1)
+    (Direction sk_walk_1 away)
+
 ### extent — How much an event holds
 
 When: A degree adverb or phrase on a verb: an intensifier (deeply, really, greatly, strongly,
 much, a lot, very much, completely, thoroughly, entirely), a downtoner or a minimizer (slightly,
-a little, somewhat, barely, hardly, scarcely), or a magnitude adverb on a change (sharply,
-steeply, considerably, marginally). The event is parsed with its own template; the extent
-instance names that event and records the adverb as written (a phrase as one snake_case symbol:
-a_lot, very_much). One instance per degree expression.
+a little, somewhat, barely, hardly, scarcely), a magnitude adverb on a change (sharply, steeply,
+considerably, marginally), or an adverb of distance or height on a motion (leapt high, ran far,
+dived deep — how far the motion goes, even before a path or goal phrase: leapt high over the
+hedge). The event is parsed with its own template; the extent instance names that event and
+records the adverb as written (a phrase as one snake_case symbol: a_lot, very_much). One
+instance per degree expression.
 
 Forms:
 - <subject> <adverb> V …
@@ -5283,8 +5395,10 @@ Not this template:
 - a hedge — probably, certainly, apparently: the speaker's commitment to the clause, the hedge
   template, which sets the clause's truth value; an evaluation — unfortunately, luckily: the
   speaker's feeling, reported as unmapped (G02), the clause kept
-- a direction particle — climbed back, went away, came out: part of the motion's path; reported
-  as unmapped
+- a direction word — climbed back, went away, looked up, ran uphill: where the motion heads, the
+  direction template; a particle that belongs to the verb (came out, set off) stays in the
+  verb's lemma
+- how far or how high — jumped high, ran far: an extent, not a manner
 - an instrument or a companion phrase — with a knife, with Marisol: an adjunct role, not a
   manner
 - an adjective on a copular clause — is loud, was careful: a copular predication, not an adverb
@@ -5546,13 +5660,17 @@ The program renders these instances as:
 
 When: A prepositional phrase that modifies a noun inside its noun phrase: the man with the
 beret, a book about badgers, a postcard from Marisol, the key to the hut, a flask without a lid,
-the destruction of the hut. The noun's referent is parsed as usual (a witness or a name); the
-postmodifier names that referent, the preposition as written (capitalized) and the phrase's
-object. One instance per phrase. It is part of the noun phrase, so it follows the referent
-wherever the referent is rendered.
+the destruction of the hut. The noun's referent is parsed as usual (a witness, a name, a group
+or a range); the postmodifier names that referent, the preposition as written (capitalized) and
+the phrase's object. One instance per phrase. It is part of the noun phrase, so it follows the
+referent wherever the referent is rendered: on a range (there is no stork with a fish …) it
+narrows the range inside the generalization's premise, and the generic instance lists the
+predication only, never the postmodifier; an indefinite object there is non-specific, a bare
+lemma (no stork with a fish: With, fish). With no is Without (a man with no hat: Without, hat).
 
 Forms:
 - the <N> with / without <object>
+- a <N> with no <object>
 - a <N> in <garment or colour>
 - a <N> in mid <noun>
 - a <N> about / from / to / for <object>
@@ -5590,7 +5708,7 @@ Slots:
 - `t` (required): "postmodifier"
 - `id` (required; your label for this instance): your label for the attachment (a1, a2 …).
 - `noun` (required; "@id" of the predication instance this attaches to): the referent the phrase
-  modifies: the id of its witness or named-entity instance.
+  modifies: the id of its witness, named-entity, group or range instance.
 - `head` (required; one of: About, Above, Across, Against, Along, Among, Around, As, At, Before,
   Behind, Below, Beneath, Beside, Besides, Between, Beyond, By, Concerning, Despite, Down,
   Except, For, From, In, Inside, Into, Like, Near, Of, Off, On, Onto, Opposite, Out, Outside,
@@ -6490,22 +6608,25 @@ Not this template. TEXT: Odile waited all day. — report it as unmapped: {"span
 When: A clause whose subject (or another argument) is a range — a quantified class noun or a
 bare plural read generically — and whose predicate is a verb other than "be", or a part-whole
 relation (every bicycle has a frame, lemons contain seeds): every badger slept, badgers sleep,
-most students laugh, few storks migrate, no badger slept. The predication is parsed with its own
-template, with the range as its filler; the generic instance names the range(s) and the
-predication (or the negation, modal or norm over it) and nothing else. One generic per clause,
-however many ranges it has. An object that is itself a bare class (badgers eat mice, spiders
-spin webs) is a bare lemma filler of the predication: the rule says an arbitrary badger eats
-mice. A condition under which the generalization holds (badgers bite when cornered, putty
-softens when wet) is a predication over the range — a copular instance for the state — listed in
-`condition`. A NEGATED EXISTENTIAL — there is no N …, there are no Ns … — is the clause no N … :
-there is no badger sleeping on the barrow is no badger is sleeping on the barrow, so this
-template with a range over N with quantifier no (the noun's own adjectives and nouns on it),
-each predication after the noun that nothing satisfies (a participle, a place phrase) parsed
-with its template — a participle with aspect progressive, as in no badger is sleeping — the
-range its filler, and listed in `over` (several make one conjunction the rule denies as a
-whole), a relative clause on the noun a `condition` as in any generalization; an adjective after
-the noun (there is no badger awake) is a class statement, as no badger is awake would be. Never
-a witness with a negation over its predications: that would say that some N does not ….
+most students laugh, few storks migrate, no badger slept; a negative or universal pronoun is
+such a range — nobody, no one, nothing are a range over person or thing with quantifier no,
+everyone, everybody, everything a range with every (nobody is cooking: a range person with no,
+as there is no cook cooking). The predication is parsed with its own template, with the range as
+its filler; the generic instance names the range(s) and the predication (or the negation, modal
+or norm over it) and nothing else. One generic per clause, however many ranges it has. An object
+that is itself a bare class (badgers eat mice, spiders spin webs) is a bare lemma filler of the
+predication: the rule says an arbitrary badger eats mice. A condition under which the
+generalization holds (badgers bite when cornered, putty softens when wet) is a predication over
+the range — a copular instance for the state — listed in `condition`. A NEGATED EXISTENTIAL —
+there is no N …, there are no Ns … — is the clause no N … : there is no badger sleeping on the
+barrow is no badger is sleeping on the barrow, so this template with a range over N with
+quantifier no (the noun's own adjectives and nouns on it), each predication after the noun that
+nothing satisfies (a participle, a place phrase) parsed with its template — a participle with
+aspect progressive, as in no badger is sleeping — the range its filler, and listed in `over`
+(several make one conjunction the rule denies as a whole), a relative clause on the noun a
+`condition` as in any generalization; an adjective after the noun (there is no badger awake) is
+a class statement, as no badger is awake would be. Never a witness with a negation over its
+predications: that would say that some N does not ….
 
 Not this template:
 - a copular predicate — all badgers are curious, most storks are patient: a class statement,

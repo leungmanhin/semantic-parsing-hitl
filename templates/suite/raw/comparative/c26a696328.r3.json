@@ -1,0 +1,102 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "023dc2f4de091cfd9e386fefb57824aee229530ff936ade5f49a9a51ef0b99e0",
+  "item": {
+    "id": "sc26a696328",
+    "text": "An older weaver is mending a quilt."
+  },
+  "usage": {
+    "input": 112491,
+    "output": 174,
+    "thinking": null,
+    "total": 112665,
+    "cached": 110441,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 112491,
+    "candidatesTokenCount": 174,
+    "totalTokenCount": 112665,
+    "cachedContentTokenCount": 110441,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 112491
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 110441
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 174
+      }
+    ]
+  },
+  "raw_text": "{\"id\":\"sc26a696328\",\"instances\":[{\"t\":\"witness\",\"id\":\"x1\",\"class\":\"weaver\",\"props\":[\"older\"],\"span\":\"An older weaver\"},{\"t\":\"witness\",\"id\":\"x2\",\"class\":\"quilt\",\"span\":\"a quilt\"},{\"t\":\"activity\",\"id\":\"e1\",\"verb\":\"mend\",\"actor\":\"@x1\",\"patient\":\"@x2\",\"tense\":\"present\",\"aspect\":\"progressive\",\"span\":\"An older weaver is mending a quilt\"}],\"unmapped\":[],\"issues\":[{\"code\":\"P00\",\"where\":\"Lemmas and symbols / witness\",\"text\":\"'Lemmas and symbols' says to lemmatize adjectives to the base (taller -> tall), while the 'witness' example keeps a comparative before a noun with no stated standard in its comparative form ('sturdier').\"}]}",
+  "response": {
+    "id": "sc26a696328",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "weaver",
+        "props": [
+          "older"
+        ],
+        "span": "An older weaver"
+      },
+      {
+        "t": "witness",
+        "id": "x2",
+        "class": "quilt",
+        "span": "a quilt"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "mend",
+        "actor": "@x1",
+        "patient": "@x2",
+        "tense": "present",
+        "aspect": "progressive",
+        "span": "An older weaver is mending a quilt"
+      }
+    ],
+    "unmapped": [],
+    "issues": [
+      {
+        "code": "P00",
+        "where": "Lemmas and symbols / witness",
+        "text": "'Lemmas and symbols' says to lemmatize adjectives to the base (taller -> tall), while the 'witness' example keeps a comparative before a noun with no stated standard in its comparative form ('sturdier')."
+      }
+    ]
+  },
+  "prompt_body_sha256": "491b10c2ce2f77fd1fec8ae72ac2f6806b805fc0d0be9c257136ff953d6f96ed",
+  "manifest_id": "4b57b880ed85",
+  "run": 3,
+  "case": {
+    "template": "comparative",
+    "section": "held_out",
+    "index": 0,
+    "category": "abstain",
+    "text": "An older weaver is mending a quilt.",
+    "key": "c26a696328"
+  }
+}

@@ -22,7 +22,10 @@ trigger:
     A clause whose subject (or another argument) is a range — a quantified class noun or a bare
     plural read generically — and whose predicate is a verb other than "be", or a part-whole
     relation (every bicycle has a frame, lemons contain seeds): every badger slept,
-    badgers sleep, most students laugh, few storks migrate, no badger slept. The predication is
+    badgers sleep, most students laugh, few storks migrate, no badger slept; a negative or
+    universal pronoun is such a range — nobody, no one, nothing are a range over person or thing
+    with quantifier no, everyone, everybody, everything a range with every (nobody is cooking:
+    a range person with no, as there is no cook cooking). The predication is
     parsed with its own template, with the range as its filler; the generic instance names the
     range(s) and the predication (or the negation, modal or norm over it) and nothing else. One
     generic per clause, however many ranges it has. An object that is itself a bare class
@@ -188,6 +191,21 @@ examples:
         - {t: witness, id: x1, class: pond, definite: true}
         - {t: activity, id: v1, verb: fish, actor: "@q1", tense: present, aspect: progressive}
         - {t: location, id: l1, event: "@v1", place: "@x1", head: Location, preposition: in}
+        - {t: generic, id: r1, ranges: ["@q1"], over: ["@v1"]}
+    - category: positive
+      note: nobody — a range over person with no
+      text: "Nobody is feeding the ferret."
+      instances:
+        - {t: range, id: q1, class: person, quantifier: "no", predicate: feed}
+        - {t: witness, id: x1, class: ferret, definite: true}
+        - {t: activity, id: v1, verb: feed, actor: "@q1", patient: "@x1", tense: present, aspect: progressive}
+        - {t: generic, id: r1, ranges: ["@q1"], over: ["@v1"]}
+    - category: positive
+      note: everyone — a range over person with every
+      text: "Everyone is dancing."
+      instances:
+        - {t: range, id: q1, class: person, quantifier: every, predicate: dance}
+        - {t: activity, id: v1, verb: dance, actor: "@q1", tense: present, aspect: progressive}
         - {t: generic, id: r1, ranges: ["@q1"], over: ["@v1"]}
     - category: positive
       note: a negated existential with two participles — one rule denying their conjunction

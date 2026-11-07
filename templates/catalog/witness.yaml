@@ -27,7 +27,11 @@ trigger:
     class: the head is the class and the words before it are its `mods`. Former, ex- or retired
     before the noun (a former guard) sets `former`: it was one and is not now. Another or the
     other before the noun (another badger) is a witness of its own, never coreferent with the
-    earlier one; the word itself is not reported.
+    earlier one; the word itself is not reported. An INDEFINITE PRONOUN introduces a witness
+    like an indefinite noun phrase: someone, somebody, anyone, anybody are a witness of class
+    person; something, anything a witness of class thing (somebody is knitting: a witness
+    person, indefinite). Nearby before a noun (a nearby farm) is an ordinary adjective of the
+    noun, recorded with the others.
   surface_forms:
     - "a <N>"                       # indefinite
     - "the <N>"                     # definite
@@ -36,9 +40,14 @@ trigger:
     - "<possessor>'s <N>"           # the possessor is recorded; definite
     - "the <N> of <possessor>"      # the same
     - "a lot of / plenty of <mass N>"   # a witness of the stuff, the phrase recorded
+    - "someone / somebody / something"   # a witness of class person or thing
   boundary:
     - >-
       a bare plural read generically — dogs bark: a class-level statement, not a witness
+    - >-
+      a negative or universal pronoun — nobody, no one, nothing, everyone, everybody,
+      everything: a range over person or thing with its quantifier (no, every), a
+      generalization, not a witness
     - >-
       a plural noun phrase — the badgers, two envelopes: a group of individuals, not one
       witness
@@ -90,6 +99,13 @@ examples:
       instances:
         - {t: witness, id: n1, class: flask, span: "a flask"}
     - category: positive
+      note: a comparative before the noun with no standard stated — the adjective as written, no comparison
+      text: "Odile bought a sturdier bracket."
+      instances:
+        - {t: named-entity, id: n1, name: "Odile", span: "Odile"}
+        - {t: witness, id: x1, class: bracket, props: [sturdier], span: "a sturdier bracket"}
+        - {t: acquisition, id: q1, verb: buy, acquirer: "@n1", object: "@x1", tense: past, span: "Odile bought a sturdier bracket"}
+    - category: positive
       note: a possessive phrase — the possessor is a referent of its own
       text: "Marisol's blanket"
       instances:
@@ -101,6 +117,35 @@ examples:
       instances:
         - {t: witness, id: x1, class: pilot, mods: [harbour], span: "a harbour pilot"}
   held_out:
+    - category: positive
+      note: an indefinite pronoun for a person — a witness of class person
+      text: "Somebody is knitting a quilt."
+      instances:
+        - {t: witness, id: x1, class: person}
+        - {t: witness, id: x2, class: quilt}
+        - {t: activity, id: v1, verb: knit, actor: "@x1", patient: "@x2", tense: present, aspect: progressive}
+    - category: positive
+      note: an indefinite pronoun for a thing — a witness of class thing
+      text: "Something is burning in the kitchen."
+      instances:
+        - {t: witness, id: x1, class: thing}
+        - {t: witness, id: x2, class: kitchen, definite: true}
+        - {t: change-of-state, id: c1, verb: burn, undergoer: "@x1", tense: present, aspect: progressive}
+        - {t: location, id: l1, event: "@c1", place: "@x2", head: Location, preposition: in}
+    - category: positive
+      note: a comparative before the noun with no standard — the adjective as written, no comparison
+      text: "An older weaver is mending a quilt."
+      instances:
+        - {t: witness, id: x1, class: weaver, props: [older]}
+        - {t: witness, id: x2, class: quilt}
+        - {t: activity, id: v1, verb: mend, actor: "@x1", patient: "@x2", tense: present, aspect: progressive}
+    - category: positive
+      note: nearby before a noun is an adjective of the noun
+      text: "Yusra is watching the nearby mill."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, class: mill, definite: true, props: [nearby]}
+        - {t: perception, id: p1, verb: watch, perceiver: "@n1", stimulus: "@x1", tense: present, aspect: progressive}
     - category: positive
       note: a vague amount of a mass — a witness of the stuff with the phrase recorded
       text: "Lamine drank a lot of water."

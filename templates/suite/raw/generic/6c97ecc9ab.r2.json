@@ -1,0 +1,99 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "023dc2f4de091cfd9e386fefb57824aee229530ff936ade5f49a9a51ef0b99e0",
+  "item": {
+    "id": "s6c97ecc9ab",
+    "text": "Everyone is dancing."
+  },
+  "usage": {
+    "input": 112485,
+    "output": 149,
+    "thinking": null,
+    "total": 112634,
+    "cached": 110436,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 112485,
+    "candidatesTokenCount": 149,
+    "totalTokenCount": 112634,
+    "cachedContentTokenCount": 110436,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 112485
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 110436
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 149
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s6c97ecc9ab\", \"instances\": [{\"t\": \"range\", \"id\": \"q1\", \"class\": \"person\", \"quantifier\": \"every\", \"predicate\": \"dance\", \"span\": \"Everyone\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"dance\", \"actor\": \"@q1\", \"tense\": \"present\", \"aspect\": \"progressive\", \"span\": \"Everyone is dancing\"}, {\"t\": \"generic\", \"id\": \"r1\", \"ranges\": [\"@q1\"], \"over\": [\"@v1\"], \"span\": \"Everyone is dancing\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s6c97ecc9ab",
+    "instances": [
+      {
+        "t": "range",
+        "id": "q1",
+        "class": "person",
+        "quantifier": "every",
+        "predicate": "dance",
+        "span": "Everyone"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "dance",
+        "actor": "@q1",
+        "tense": "present",
+        "aspect": "progressive",
+        "span": "Everyone is dancing"
+      },
+      {
+        "t": "generic",
+        "id": "r1",
+        "ranges": [
+          "@q1"
+        ],
+        "over": [
+          "@v1"
+        ],
+        "span": "Everyone is dancing"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "491b10c2ce2f77fd1fec8ae72ac2f6806b805fc0d0be9c257136ff953d6f96ed",
+  "manifest_id": "4b57b880ed85",
+  "run": 2,
+  "case": {
+    "template": "generic",
+    "section": "held_out",
+    "index": 7,
+    "category": "positive",
+    "text": "Everyone is dancing.",
+    "key": "6c97ecc9ab"
+  }
+}

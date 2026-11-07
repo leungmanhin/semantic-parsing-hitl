@@ -1,0 +1,101 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "023dc2f4de091cfd9e386fefb57824aee229530ff936ade5f49a9a51ef0b99e0",
+  "item": {
+    "id": "s76fcd3700d",
+    "text": "The ferret ran around the hut."
+  },
+  "usage": {
+    "input": 112489,
+    "output": 176,
+    "thinking": null,
+    "total": 112665,
+    "cached": 110440,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 112489,
+    "candidatesTokenCount": 176,
+    "totalTokenCount": 112665,
+    "cachedContentTokenCount": 110440,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 112489
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 110440
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 176
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s76fcd3700d\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"ferret\", \"definite\": true, \"span\": \"The ferret\"}, {\"t\": \"witness\", \"id\": \"x2\", \"class\": \"hut\", \"definite\": true, \"span\": \"the hut\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"run\", \"mover\": \"@x1\", \"tense\": \"past\", \"span\": \"The ferret ran\"}, {\"t\": \"oblique\", \"id\": \"a1\", \"event\": \"@m1\", \"head\": \"Around\", \"object\": \"@x2\", \"span\": \"around the hut\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s76fcd3700d",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "ferret",
+        "definite": true,
+        "span": "The ferret"
+      },
+      {
+        "t": "witness",
+        "id": "x2",
+        "class": "hut",
+        "definite": true,
+        "span": "the hut"
+      },
+      {
+        "t": "motion",
+        "id": "m1",
+        "verb": "run",
+        "mover": "@x1",
+        "tense": "past",
+        "span": "The ferret ran"
+      },
+      {
+        "t": "oblique",
+        "id": "a1",
+        "event": "@m1",
+        "head": "Around",
+        "object": "@x2",
+        "span": "around the hut"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "491b10c2ce2f77fd1fec8ae72ac2f6806b805fc0d0be9c257136ff953d6f96ed",
+  "manifest_id": "4b57b880ed85",
+  "run": 2,
+  "case": {
+    "template": "oblique",
+    "section": "held_out",
+    "index": 0,
+    "category": "positive",
+    "text": "The ferret ran around the hut.",
+    "key": "76fcd3700d"
+  }
+}

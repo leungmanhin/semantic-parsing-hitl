@@ -18,10 +18,12 @@ trigger:
   construction: >
     A degree adverb or phrase on a verb: an intensifier (deeply, really, greatly, strongly, much,
     a lot, very much, completely, thoroughly, entirely), a downtoner or a minimizer (slightly, a
-    little, somewhat, barely, hardly, scarcely), or a magnitude adverb on a change (sharply,
-    steeply, considerably, marginally). The event is parsed with its own template; the extent
-    instance names that event and records the adverb as written (a phrase as one snake_case
-    symbol: a_lot, very_much). One instance per degree expression.
+    little, somewhat, barely, hardly, scarcely), a magnitude adverb on a change (sharply,
+    steeply, considerably, marginally), or an adverb of distance or height on a motion (leapt
+    high, ran far, dived deep — how far the motion goes, even before a path or goal phrase:
+    leapt high over the hedge). The event is parsed with its own template; the extent instance
+    names that event and records the adverb as written (a phrase as one snake_case symbol:
+    a_lot, very_much). One instance per degree expression.
   surface_forms:
     - "<subject> <adverb> V …"                       # Marisol deeply distrusts Odile
     - "<clause> <adverb>"                            # the fare fell sharply; likes the blanket a lot
@@ -117,6 +119,14 @@ examples:
         - {t: named-entity, id: n2, name: "Lamine"}
         - {t: psych, id: p1, verb: distrust, experiencer: "@n1", stimulus: "@n2", tense: present}
         - {t: extent, id: a1, event: "@p1", level: deeply}
+    - category: positive
+      note: an adverb of height on a motion, before its goal phrase
+      text: "The ferret jumped high into the air."
+      instances:
+        - {t: witness, id: x1, class: ferret, definite: true}
+        - {t: witness, id: x2, class: air, definite: true}
+        - {t: motion, id: m1, verb: jump, mover: "@x1", goal: "@x2", tense: past}
+        - {t: extent, id: a1, event: "@m1", level: high}
     - category: positive
       note: a minimizer — the event is still asserted
       text: "Lamine barely moved."

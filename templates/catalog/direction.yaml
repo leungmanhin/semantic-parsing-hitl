@@ -1,0 +1,119 @@
+# Template: direction  (a bare direction word on a verb: "walked away", "looked up", "water is splashing around")
+#
+# A direction word with no object of its own says where a motion, a gaze or a posture heads: away,
+# up, down, around, back, out, uphill, to the left. It is an attachment on the clause's event —
+# (Direction event word), the word kept as written (away, up, uphill, left) — and, like a manner or
+# a place, it travels with the event into a negation, a modal or a rule. The same word with an
+# object is the preposition as written (ran around the hut: an oblique), a destination is the
+# motion's goal (jumped into the air), and a particle that belongs to the verb stays in the verb's
+# lemma (put away the lantern: put_away).
+
+id: direction
+family: attachment
+shape: attachment
+title: A bare direction word on a verb
+status: draft
+
+trigger:
+  construction: >
+    A direction word with no object of its own on a verb of motion, perception or posture: away,
+    up, down, around, back, out, in, over, along, forward, backward, ahead, aside, uphill,
+    downhill, upstairs, downstairs, sideways, to the left, to the right, a bare compass word
+    (flew north). The clause is parsed with its own template; this instance names its event and
+    the word. A direction word beside a source or a goal phrase keeps both: walked away from the
+    hut is a motion with the hut as its source and away as its direction; looked up at the loft
+    is a perception with the loft as its stimulus and up as its direction (looked around, with
+    nothing looked at, is an activity with its direction). One instance per direction word.
+  surface_forms:
+    - "<clause> away / up / down / around / back / out"      # Odile walked away; the stork looked up
+    - "<clause> <direction> from / to / at <object>"          # ran away from the badger; looked up at the loft
+    - "<clause> uphill / downhill / upstairs / downstairs"    # the goat climbed uphill
+    - "<clause> to the left / to the right / sideways"        # Pieter pointed to the left
+  boundary:                   # looks like a direction but is not one
+    - >-
+      the same word with an object — ran around the hut, walked up the lane, went back to the
+      forge: a preposition as written (an oblique), a path (the lane) or a goal (the forge); no
+      direction instance
+    - >-
+      a particle that belongs to the verb — put away the lantern, set off, took off, turned up:
+      the verb keeps its particle in its lemma (put_away, set_off); no direction instance
+    - >-
+      a place word — outside, indoors, nearby, upstairs as where something is or happens (waited
+      upstairs, stood outside): the location template; upstairs as where a motion heads (ran
+      upstairs) is a direction
+    - >-
+      a compass direction from a landmark — north of the mill: the location or locative template's
+      direction from a landmark; a bare compass word on a motion (flew north) is a direction
+    - >-
+      how or how far — walked slowly, jumped high, ran far: a manner or an extent, not a direction
+    - >-
+      together or apart — stood close together, drifted apart: no slot; report the word as unmapped (G02)
+
+slots:
+  id:    {type: id, required: true, doc: "your label for the direction (d1, d2 …)"}
+  event: {type: filler, class: Event, attaches: true, required: true,
+          doc: "the clause's predication instance the direction is on: a motion, an activity, a perception or a locative one (the program mints the state of a flat predication)"}
+  word:  {type: lemma, class: Class, required: true,
+          doc: "the direction word as written, lowercase, one symbol: away, up, down, around, back, out, uphill, upstairs, north; left for to the left, right for to the right"}
+
+emits:
+  - atom: "(Direction {event} {word})"
+
+depends_on: [motion, activity, perception]
+composes_with: [negation, modal, oblique]
+
+examples:
+  shown:
+    - category: positive
+      text: "Marisol walked away from the forge."
+      instances:
+        - {t: named-entity, id: n1, name: "Marisol", span: "Marisol"}
+        - {t: witness, id: x1, class: forge, definite: true, span: "the forge"}
+        - {t: motion, id: m1, verb: walk, mover: "@n1", source: "@x1", tense: past, span: "Marisol walked away from the forge"}
+        - {t: direction, id: d1, event: "@m1", word: away, span: "away"}
+  held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      note: a direction beside a source phrase on a motion
+      text: "The ferret ran away from the heron."
+      instances:
+        - {t: witness, id: x1, class: ferret, definite: true}
+        - {t: witness, id: x2, class: heron, definite: true}
+        - {t: motion, id: m1, verb: run, mover: "@x1", source: "@x2", tense: past}
+        - {t: direction, id: d1, event: "@m1", word: away}
+    - category: positive
+      note: a direction on a perception verb, beside its at-phrase
+      text: "Yusra is looking up at the loft."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, class: loft, definite: true}
+        - {t: perception, id: p1, verb: look, perceiver: "@n1", stimulus: "@x1", tense: present, aspect: progressive}
+        - {t: direction, id: d1, event: "@p1", word: up}
+    - category: positive
+      note: a direction word alone on the clause — look with nothing looked at is an activity
+      text: "A ferret is looking around."
+      instances:
+        - {t: witness, id: x1, class: ferret}
+        - {t: activity, id: v1, verb: look, actor: "@x1", tense: present, aspect: progressive}
+        - {t: direction, id: d1, event: "@v1", word: around}
+    - category: positive
+      note: uphill on a motion
+      text: "The goat climbed uphill."
+      instances:
+        - {t: witness, id: x1, class: goat, definite: true}
+        - {t: motion, id: m1, verb: climb, mover: "@x1", tense: past}
+        - {t: direction, id: d1, event: "@m1", word: uphill}
+    - category: positive
+      note: to the left — the word is left
+      text: "Teodor pointed to the left."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: activity, id: v1, verb: point, actor: "@n1", tense: past}
+        - {t: direction, id: d1, event: "@v1", word: left}
+    - category: abstain
+      note: a particle that belongs to the verb — the lemma keeps it, no direction
+      text: "Lamine put away the quilt."
+      expected: {abstain: true, template: activity, lemma: put_away}
+    - category: abstain
+      note: the same word with an object — an oblique, no direction
+      text: "The ferret ran around the hut."
+      expected: {abstain: true, template: oblique}
