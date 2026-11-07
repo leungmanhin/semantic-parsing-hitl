@@ -69,6 +69,13 @@ PLANS = {
     "paraphrase-2": [
         ("sick.all", 2000, "families", lambda r: r.get("role") == "mine"),
     ],
+    # The rest of SICK: every family the sampler can take (50 sentences or fewer), the evaluation share first,
+    # then the mining share — the quotas are above the totals. A separate plan for the reason given above; the
+    # runner skips the sentences already parsed into the shared file.
+    "paraphrase-3": [
+        ("sick.all", 5000, "families", lambda r: r.get("role") == "evaluate"),
+        ("sick.all", 5000, "families", lambda r: r.get("role") == "mine"),
+    ],
     "paraphrase": [
         ("sick.all", 1000, "families", lambda r: r.get("role") == "mine"),
         ("mrpc.train", 1000, "families", lambda r: r.get("role") == "mine"),
