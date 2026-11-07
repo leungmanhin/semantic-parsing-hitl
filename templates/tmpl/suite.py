@@ -517,11 +517,19 @@ def collect(args, catalog: dict) -> int:
             print(f"primed ({reason}): catalog alone, in={pu.get('input')} cached={pu.get('cached')}")
 
     prime("start")
+    fatal = getattr(sp, "FatalProviderError", ())
+    stopped, made = None, 0
     for i, job in enumerate(todo, 1):
         case, n, path = job["case"], job["run"], job["path"]
         item_id = "s" + case["key"]
+        made = i
         try:
             rec = sp.parse_sentence(case["text"], args, item_id)
+        except fatal as exc:                                # the account cannot pay: stop after this record
+            stopped = str(exc).splitlines()[0][:200]
+            rec = {"provider": args.provider, "model": args.model, "effort": args.effort,
+                   "item": {"id": item_id, "text": case["text"]}, "response": None, "error": f"request failed: {exc}"}
+            failed += 1
         except sp.ProviderError as exc:
             rec = {"provider": args.provider, "model": args.model, "effort": args.effort,
                    "item": {"id": item_id, "text": case["text"]}, "response": None, "error": f"request failed: {exc}"}
@@ -543,6 +551,9 @@ def collect(args, catalog: dict) -> int:
             write = f" cache_write={u['cache_write']}"
         print(f"[{i}/{len(todo)}] {case['template']} {case['category']:8s} r{n} {status:5s} "
               f"in={u.get('input')} cached={u.get('cached')}{write} out={u.get('output')} thinking={u.get('thinking')} · {case['text']}")
+        if stopped:
+            print(f"STOPPED: {stopped} — {len(todo) - i} calls not made (a later collect requests them)", flush=True)
+            break
         if status == "ok" and i < len(todo) and hasattr(sp, "cache_lost") and sp.cache_lost(u):
             prime("the last reply had no cached tokens")
         if args.delay and i < len(todo):
@@ -550,8 +561,8 @@ def collect(args, catalog: dict) -> int:
     share = f" · cached {cached_total:,} of {input_total:,} input tokens ({cached_total / input_total:.0%})" if input_total else ""
     if write_total is not None:
         share += f" · written to the cache {write_total:,}"
-    print(f"done: {len(todo) - failed} replies stored, {failed} failed · primes {primes}{share} · {_show(args.raw_dir)}")
-    return 1 if failed else 0
+    print(f"done: {made - failed} replies stored, {failed} failed · primes {primes}{share} · {_show(args.raw_dir)}")
+    return 3 if stopped else 1 if failed else 0
 
 
 # --------------------------------------------------------------------------

@@ -22,7 +22,7 @@ threshold and the share it is counted on, the number of free variables, the rela
 on the embeddings of one sentence at one size (a run reports every sentence that reached it).
 
 The two LEVELS coexist (decision 4): the lexicalized view keeps the class symbols (``take``, ``bike``), the shape
-view turns them into class variables. ``Corpus`` holds both lifts of every sentence; ``fusenf.mine.subtree``
+view turns them into class variables. ``Corpus`` holds both lifts of every sentence; ``fusenf.mine.freq_pattern``
 turns the miner's matches into candidate records and links the two levels.
 """
 from __future__ import annotations

@@ -119,7 +119,7 @@ class TableAndCandidateTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             rows = TB.write_table(table, os.path.join(d, "p.jsonl"), min_families=1)
             self.assertTrue(rows and rows[0]["families"] >= rows[-1]["families"])
-        cand = CD.new("subtree", 1, ["|Member($e1,say)|asserted"], "lexicalized", L.DEFAULT_KEY, run="t")
+        cand = CD.new("freq-pattern", 1, ["|Member($e1,say)|asserted"], "lexicalized", L.DEFAULT_KEY, run="t")
         for g in (a, b):
             CD.add_match(cand, g)
         CD.finish(cand, {g["id"]: g for g in (a, b, c)}, {"s1": "m1", "s2": "m2"})
@@ -128,7 +128,7 @@ class TableAndCandidateTests(unittest.TestCase):
         self.assertEqual(cand["provenance"]["manifests"], ["m1", "m2"])
         with tempfile.TemporaryDirectory() as d:
             CD.write([cand], os.path.join(d, "c.jsonl"))
-            self.assertEqual(CD.read(os.path.join(d, "c.jsonl"))[0]["id"], "subtree-000001")
+            self.assertEqual(CD.read(os.path.join(d, "c.jsonl"))[0]["id"], "freq-pattern-000001")
 
 
 if __name__ == "__main__":

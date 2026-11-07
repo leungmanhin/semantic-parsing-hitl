@@ -167,6 +167,34 @@ class CoverageTests(unittest.TestCase):
         self.assertEqual(C.main(argv), 0)                     # resumable: nothing left to parse, nothing appended
         self.assertEqual(len(open(out).readlines()), len(rows))
 
+    def test_a_billing_failure_stops_the_run_and_leaves_the_rest_for_a_resume(self):
+        script = os.path.join(self.dir, "fatal_parse.py")
+        with open(script, "w") as fh:
+            fh.write(
+                "import threading\n"
+                "class ProviderError(Exception):\n    pass\n"
+                "class FatalProviderError(ProviderError):\n    pass\n"
+                "class _P:\n    default_model = 'fake-1'\n"
+                "PROVIDERS = {'google': _P}\n"
+                "calls = []\n"
+                "lock = threading.Lock()\n"
+                "def parse_sentence(text, args, item_id='item'):\n"
+                "    with lock:\n        calls.append(item_id)\n        n = len(calls)\n"
+                "    if n >= 3:\n        raise FatalProviderError('HTTP 402: Your prepayment credits are depleted.')\n"
+                "    return {'provider': 'google', 'model': 'fake-1', 'item': {'id': item_id, 'text': text},\n"
+                "            'response': {'id': item_id, 'instances': []}, 'usage': {'input': 10, 'cached': 8}}\n")
+        sample = os.path.join(self.dir, "s.jsonl")
+        C.sample("tiny", 3, self.prepared, sample)
+        total = len(open(sample).readlines())
+        out = os.path.join(self.dir, "parsed.jsonl")
+        argv = ["parse", "--sample", sample, "--out", out, "--parse-script", script, "--provider", "google", "--workers", "1", "--no-prime"]
+        self.assertEqual(C.main(argv), 3)                     # stopped
+        rows = [json.loads(l) for l in open(out)]
+        self.assertEqual(len(rows), 3)                        # two replies and the failing one; nothing else was attempted
+        self.assertEqual(sum(1 for r in rows if (r.get("reply") or {}).get("error")), 1)
+        self.assertIn("402", rows[-1]["reply"]["error"])
+        self.assertGreater(total, 3)                          # the rest is left for a resume
+
     def test_a_stale_prompt_stops_a_run(self):
         from tmpl import suite as S
         stale = os.path.join(self.dir, "stale.txt")

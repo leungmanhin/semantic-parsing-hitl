@@ -56,6 +56,11 @@ class ProviderError(Exception):
     pass
 
 
+class FatalProviderError(ProviderError):
+    """The account cannot pay for the call — HTTP 402 (prepaid credits depleted), or a 429 for an exhausted
+    quota — so no later call in the same run can succeed either: a runner stops the run on it."""
+
+
 class Reply:
     def __init__(self, text: str, usage: dict, raw: dict):
         self.text, self.usage, self.raw = text, usage, raw
@@ -125,8 +130,8 @@ def _post_json(url: str, headers: dict, body: dict, timeout: float, attempts: in
         except urllib.error.HTTPError as exc:
             detail = exc.read().decode("utf-8", "replace")[:2000]
             last = f"HTTP {exc.code}: {detail}"
-            if exc.code == 429 and ("insufficient_quota" in detail or "PerDay" in detail):
-                raise ProviderError(last) from None
+            if exc.code == 402 or (exc.code == 429 and ("insufficient_quota" in detail or "PerDay" in detail)):
+                raise FatalProviderError(last) from None       # the account cannot pay: nothing later can succeed
             if exc.code in long_codes and waited < len(long_waits):
                 print(f"[HTTP {exc.code} (not billed): retry {waited + 1} of {len(long_waits)} in {long_waits[waited]} s]",
                       file=sys.stderr, flush=True)

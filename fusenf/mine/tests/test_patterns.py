@@ -11,7 +11,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.abspath(os.path.join(HERE, os.pardir, os.pardir, os.pardir))
 sys.path.insert(0, REPO)
 
-from fusenf.mine import generalize as G, lift as L, patterns as P, subtree as S  # noqa: E402
+from fusenf.mine import freq_pattern as S, generalize as G, lift as L, patterns as P  # noqa: E402
 
 JOIN = "|Agent($e1,$x1)|asserted & |Patient($e2,$x1)|asserted"          # one thing: the agent of one event, the patient of another
 
@@ -199,7 +199,7 @@ class MinerTests(unittest.TestCase):
         text = S.summary("toy", res)
         view = text[text.index("## The lexicalized view"):text.index("## The shape view")]
         head, _, tail = view.partition("### Candidates using a distribution rule")
-        rows = [line for line in head.splitlines() if line.startswith("| subtree-")]
+        rows = [line for line in head.splitlines() if line.startswith("| freq-pattern-")]
         self.assertTrue(rows and not any("rule " in line for line in rows))              # the tables lead with the others
         self.assertIn("rule premise:$r1 ▸ PartOf", tail)
 

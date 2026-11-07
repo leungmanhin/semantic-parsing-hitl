@@ -10,4 +10,4 @@ Outputs of the mining runs, one folder per run. Everything here is regenerable f
 | `patterns.lexicalized.jsonl`, `patterns.shape.jsonl` | `patterns` | §5.1's candidate records, one JSON object a line (not versioned: large) |
 | `patterns.md` | `patterns` | §5.1's summary: the parameters, the counts per view and size with what each column means, the held-out checks and the two tests, the tables to read |
 
-A candidate record is described in `fusenf/mine/candidates.py` and, for §5.1, in `fusenf/mine/subtree.py`.
+A candidate record is described in `fusenf/mine/candidates.py` and, for §5.1, in `fusenf/mine/freq_pattern.py`.

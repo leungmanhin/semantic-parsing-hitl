@@ -4,7 +4,9 @@ two tests, link the views, and write the candidate records with a summary to rea
     python -m fusenf.mine patterns --run NAME [--min-families 3] [--max-atoms 5] [--max-variables N]
                                    [--exclude-heads A,B] [--keep 12] [--tests full|sample|none] [--summary-only]
 
-    → fusenf/runs/NAME/patterns.lexicalized.jsonl, patterns.shape.jsonl   (candidate records, method "subtree")
+    → fusenf/runs/NAME/patterns.lexicalized.jsonl, patterns.shape.jsonl   (candidate records, method "freq-pattern":
+      the §5.1 method, the concept paper's "frequent subtree mining" with its binding-aware view — the ids are
+      freq-pattern-L… and freq-pattern-S… for the two views)
       fusenf/runs/NAME/patterns.report.json, patterns.md                    (the run's counts; the summary)
 
 A candidate record carries: the pattern (atoms, typed variables, size, structure labels, cost fields, its shape or
@@ -141,7 +143,7 @@ class Collector:
         ranked = sorted(self.stats.items(), key=lambda kv: (kv[1].size, -len(kv[1].families.get(role, ())), kv[0]))
         for number, (pattern, st) in enumerate(ranked, 1):
             atoms = P.atoms_of(pattern)
-            c = CD.new("subtree", number, atoms, self.view, {**self.corpus.key, "shape": self.view}, run, dict(self.params),
+            c = CD.new("freq-pattern", number, atoms, self.view, {**self.corpus.key, "shape": self.view}, run, dict(self.params),
                        tag=self.view[0].upper())
             c["pattern"]["size"] = st.size
             c["pattern"]["variables"] = {v: P.TYPES.get(v[1], "Any") for v in P.variables(pattern)}
@@ -428,9 +430,10 @@ def summary(name: str, result: dict) -> str:
               "class variable (`$c1`), so one shape covers many lexicalized patterns.",
               "- *connected atoms*: the size of a pattern — the number of atoms in it, each tied to another by a shared variable (the "
               "same event, thing, time or rule). A row counts the patterns of exactly that size; the `all` row adds the rows up.",
-              "- *atom sets found*: occurrences, not patterns. Every connected set of that many atoms inside one sentence counts once, "
-              "over the sentences of every share, so a pattern found in 500 sentences counts 500 times. A set is only looked at when "
-              "its smaller parts are already frequent (a pattern cannot be frequent unless its parts are).",
+              "- *atom sets found*: the number of occurrences the miner looked at — every connected set of that many atoms inside "
+              "one sentence, counted once each, over the sentences of every share; a pattern found in 500 sentences contributes 500 "
+              "here and 1 to the next column. A set is only looked at when its smaller parts are already frequent (a pattern cannot "
+              "be frequent unless its parts are).",
               "- *distinct patterns*: the different patterns among those atom sets. Two atom sets are the same pattern when they "
               "differ only in which events and things they name.",
               f"- *candidates*: the distinct patterns found in at least {m} families of the `{role}` share (it has {n_role:,}). Each "
@@ -529,23 +532,36 @@ def summary(name: str, result: dict) -> str:
         plain = [c for c in across if lab(c)["view"] == "join" and not lab(c)["in_rule"] and not lab(c)["sealed"]]
         lines += [f"## The {view} view", "",
                   f"One row per group, by mining families. Every table but the last holds only candidates {without}.", ""]
-        top("Joins between events: 2–3 atoms", "Something in two events, or a loop among the arguments; no rule, no sealed clause; "
-            "the match spans several template instances.", [c for c in plain if c["pattern"]["size"] <= 3], 20)
-        top("Joins between events: 4–5 atoms", "The same, larger.", [c for c in plain if c["pattern"]["size"] >= 4], 20)
-        top("Across a sealed clause", "Something inside a reported or negated clause tied to something outside it.",
+        top("Joins between events: 2–3 atoms",
+            "What the binding-aware view adds that a rooted-subtree miner could not state: one thing in two events, or a loop "
+            "among the arguments — kept clean: no rule, no sealed clause, and the match spans several template instances, so "
+            "the pattern is not one template's own output.", [c for c in plain if c["pattern"]["size"] <= 3], 20)
+        top("Joins between events: 4–5 atoms", "The same question, the longer joins.", [c for c in plain if c["pattern"]["size"] >= 4], 20)
+        top("Across a sealed clause",
+            "The scope question: something inside a reported or negated clause tied to something outside it. A tree miner "
+            "cannot state this either, and a scope error in the parses or the emitter would show here first.",
             [c for c in across if lab(c)["sealed"] and lab(c)["sealed"] < c["pattern"]["size"] and not lab(c)["in_rule"]], 12)
-        top("With a rule of the sentence", "Atoms on a side of a rule — a generic statement (\"There is no …\"), a frequency, or the "
-            "default by which an adjective's narrowed class implies the plain adjective — together with atoms outside the rule.",
+        top("With a rule of the sentence",
+            "How the sentence's own rules relate to the atoms around them: atoms on a side of a rule — a generic statement "
+            "(\"There is no …\"), a frequency, or the default by which an adjective's narrowed class implies the plain adjective — "
+            "together with atoms outside the rule. A rule mis-scoped by the lifter or the emitter would show here.",
             [c for c in across if lab(c)["in_rule"] and lab(c)["in_rule"] < c["pattern"]["size"]], 12)
-        top("The most widespread overall", "Any structure, any label.", by, 10)
+        top("The most widespread overall",
+            "The plain top by support, any structure, any label: what dominates the corpus — mostly a template's own output, "
+            "which is why the tables above exclude it.", by, 10)
         if view == "shape":
             prod = sorted(by, key=lambda c: (-c["evidence"]["lexicalizations"]["distinct"], c["id"]))
-            top("The shapes with the most lexicalizations", "By the number of different class tuples that filled the shape.", prod, 12,
+            top("The shapes with the most lexicalizations",
+                "The two levels (decision 4): the shapes that abstract over the most lexical variety, by the number of different "
+                "class tuples that filled them. A shape filled by hundreds of tuples is a structural regularity of the corpus, not "
+                "of a few words.", prod, 12,
                 lambda c: _row(c, note=f"**{c['evidence']['lexicalizations']['distinct']:,} lexicalizations** — "))
-            top("Shapes whose matches all share a class", f"The generalizer keeps a class that every `{role}` match has; the pattern "
-                "shown is that generalization (the record's `generalization`), with the outcome of the held-out check.",
+            top("Shapes whose matches all share a class",
+                f"The generalizer's own contribution: where it says more than the pattern — a class that every `{role}` match has. "
+                "The pattern shown is that generalization (the record's `generalization`), with the outcome of the held-out check.",
                 [c for c in by if c["generalization"]["constants"]], 12,
                 lambda c: _row(c, atoms=c["generalization"]["atoms"], note=_kept(c), legend=False))
-        top(f"Candidates {uses}", f"The candidates left out of the tables above (the *{uses}* column). Unfiltered, these would lead "
-            "every ranking.", [c for c in groups if _derived(c)], 5)
+        top(f"Candidates {uses}",
+            f"The artifact set, last: the candidates the *{uses}* label took out of the tables above. Unfiltered, these would "
+            "lead every ranking.", [c for c in groups if _derived(c)], 5)
     return "\n".join(lines) + "\n"

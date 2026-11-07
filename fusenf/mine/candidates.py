@@ -1,7 +1,7 @@
 """THE CANDIDATE RECORD shared by the five methods (§5 intro: candidates carrying different kinds of evidence,
 never certificates). One JSON object per candidate::
 
-    {"id": "subtree-000123", "method": "subtree" | "generalizer" | "correspondence" | "mi" | "paraphrase" | "ae",
+    {"id": "freq-pattern-L000123", "method": "freq-pattern" | "generalizer" | "correspondence" | "mi" | "paraphrase" | "ae",
      "pattern": {"atoms": [...lifted atom strings...], "level": "lexicalized" | "shape", "variables": {...}},
      "key": {the key dials the run used}, "support": {"families": n, "sentences": n, "datasets": {}, "roles": {}},
      "matches": [{"id": sentence id, "family": ..., "bindings": {variable: symbol}}, ...],
@@ -12,7 +12,7 @@ never certificates). One JSON object per candidate::
      "provenance": {"run": ..., "manifests": [...], "params": {...}},
      "status": "candidate" | "note" | "admitted" | "split" | "rejected"}
 
-A method adds its own fields. §5.1 (``fusenf.mine.subtree``) counts ``support`` on the mining share and puts the
+A method adds its own fields. §5.1 (``fusenf.mine.freq_pattern``) counts ``support`` on the mining share and puts the
 other shares beside it — ``"held_out": {"families": n, "sentences": n, "embeddings": n}`` — and gives every record
 a ``generalization`` with its own ``held_out`` check.
 """
@@ -25,7 +25,8 @@ import os
 
 def new(method: str, number: int, pattern_atoms: list[str], level: str, key: dict, run: str, params: dict | None = None,
         tag: str = "") -> dict:
-    """A fresh record; ``tag`` separates the numbering of two series of one method (``subtree-L000012``)."""
+    """A fresh record; ``tag`` separates the numbering of two series of one method (``freq-pattern-L000012`` for the
+    lexicalized view, ``freq-pattern-S000012`` for the shape view)."""
     return {"id": f"{method}-{tag}{number:06d}", "method": method,
             "pattern": {"atoms": list(pattern_atoms), "level": level, "variables": {}},
             "key": dict(key), "support": {"families": 0, "sentences": 0, "datasets": {}, "roles": {}},

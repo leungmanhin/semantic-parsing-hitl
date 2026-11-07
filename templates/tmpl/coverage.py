@@ -220,7 +220,7 @@ def parse(args) -> int:
         rec = sp.parse_sentence(todo[0]["text"], args, todo[0]["id"])
         print(json.dumps(rec["request"], indent=2, ensure_ascii=False))
         return 0
-    st = {"primes": 0, "cached": 0, "input": 0, "failed": 0, "write": None, "done": 0, "last_prime": 0.0, "streak": 0}
+    st = {"primes": 0, "cached": 0, "input": 0, "failed": 0, "write": None, "done": 0, "last_prime": 0.0, "streak": 0, "stop": None}
     out_lock, prime_lock = threading.Lock(), threading.Lock()   # one writer at a time; one re-prime per cache loss
 
     def prime(reason):
@@ -235,10 +235,18 @@ def parse(args) -> int:
             st["primes"] += 1
             print(f"primed ({reason}): catalog alone, in={pu.get('input')} cached={pu.get('cached')}", flush=True)
 
+    fatal = getattr(sp, "FatalProviderError", ())
+
     def one(r, out):
+        if st["stop"]:                                      # the run is stopped: not attempted, left for a resume
+            return
         t0 = time.time()
         try:
             rec = sp.parse_sentence(r["text"], args, r["id"])
+        except fatal as exc:                                # the account cannot pay: stop the run on this reply
+            st["stop"] = str(exc).splitlines()[0][:200]
+            rec = {"provider": args.provider, "model": model, "effort": args.effort,
+                   "item": {"id": r["id"], "text": r["text"]}, "response": None, "error": f"request failed: {exc}"}
         except sp.ProviderError as exc:
             rec = {"provider": args.provider, "model": model, "effort": args.effort,
                    "item": {"id": r["id"], "text": r["text"]}, "response": None, "error": f"request failed: {exc}"}
@@ -288,9 +296,11 @@ def parse(args) -> int:
     share = f" · cached {st['cached']:,} of {st['input']:,} input tokens ({st['cached'] / st['input']:.0%})" if st["input"] else ""
     if st["write"] is not None:
         share += f" · written to the cache {st['write']:,}"
-    print(f"done: {len(todo) - st['failed']} replies stored, {st['failed']} failed · primes {st['primes']}{share} · "
+    if st["stop"]:
+        print(f"STOPPED: {st['stop']} — {len(todo) - st['done']} sentences not attempted (a resume parses them)", flush=True)
+    print(f"done: {st['done'] - st['failed']} replies stored, {st['failed']} failed · primes {st['primes']}{share} · "
           f"{os.path.relpath(args.out, REPO)}")
-    return 1 if st["failed"] else 0
+    return 3 if st["stop"] else 1 if st["failed"] else 0
 
 
 # ------------------------------------------------------------------ report

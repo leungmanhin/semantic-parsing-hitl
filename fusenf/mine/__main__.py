@@ -74,7 +74,7 @@ def cmd_lift(args) -> int:
 
 
 def cmd_patterns(args) -> int:
-    from . import patterns as P, subtree as S
+    from . import freq_pattern as S, patterns as P
     out = os.path.join(RUNS, args.run)
     if args.summary_only:
         S.resummarize(args.run)
