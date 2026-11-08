@@ -84,7 +84,9 @@ identifiers:
   The one pronoun that is NOT a mention: a pronoun bound by a range — "they" in "storks are patient
   if they are healthy", "it" in "every badger sleeps when it is tired" — is the range itself, the
   arbitrary member. Fill the slot with the range's id (`"subject": "@q1"`); no mention instance and no
-  coref, since there is no separate referent.
+  coref, since there is no separate referent. Never link a pronoun by coref to a range: outside the rule
+  that ranges over it (no badger was asleep, and no stork stood near it), the pronoun has no antecedent —
+  its mention only.
 - >-
   A TEXT of several sentences is parsed together: a later sentence's mentions of earlier referents are
   new instances linked by `coref` to the first ones.
@@ -137,6 +139,11 @@ lemmas:
   A phrasal or particle verb is ONE symbol joining the lemmatized verb and its particle (`go_out`, `break_down`,
   `bring_in`, `switch_on`). Never swap in a single-word synonym, never split off or drop the particle.
 - >-
+  A PREPOSITIONAL PASSIVE — the rules were complied with, the hatch was looked into, Henrike was relied on —
+  keeps the verb's lemma without the preposition (comply, look, rely) and puts the subject where the active
+  puts the prepositional object: an oblique's object on the event (With, Into), a stative relation's or a
+  psych verb's object slot; a by-phrase is the actor, and with none the actor is absent.
+- >-
   A fixed multi-word idiom is one surface symbol keeping every word (`spill_the_beans`), used only when
   the literal reading is incoherent for these participants; take the literal reading whenever it is available.
 - >-
@@ -175,10 +182,12 @@ relatives:
   aspect perfect.
 - >-
   KNOWN AS — also known as, better known as, called, nicknamed + a name (Femke, known as Nell): a second name of the
-  same individual, the named entity's `aliases`; no clause. After a common noun, called / named + a name is that
-  noun's individual (a nephew called Ludo: Ludo, the noun his class or his relation), not a second name. An infinitive after a noun (a house to rent, the man
-  to ask) and a free relative (what Joost said, whoever wins) are not relative clauses here: report them as
-  unmapped (G00).
+  same individual, the named entity's `aliases`; no clause. After a common noun, called / named / known as + a
+  name is that noun's individual (a nephew called Ludo: Ludo, the noun his class or his relation; the guild's new
+  charter, known as the Red Book: the Red Book, class charter, the guild its `possessor`), not a second name. An
+  infinitive that gives a noun's content (a plan to sell the granary) is the postmodifier's (To, the clause
+  sealed); one that is a relative clause cut short (a house to rent, the man to ask) and a free relative (what
+  Joost said, whoever wins) are not relative clauses here: report them as unmapped (G00).
 
 nouns:
 - >-
@@ -189,7 +198,9 @@ nouns:
   modifier are one lemma (a sea salt grinder: mods [sea_salt]); coordinated ones are one each (a wool and silk
   merchant: mods [wool, silk]). A month, a date, a weekday or a relative time before a noun (the June edition, last
   weekend's takings) is NOT a mod — only a year, a decade or a century narrows a class: report those time words as
-  unmapped (G00).
+  unmapped (G00). A BARE-LEMMA FILLER (a non-specific noun in a role slot: sold harbour skiffs → skiff) has no place
+  for the words before it unless its template names one (an oblique's or a postmodifier's `object_mods` /
+  `object_props`): write the bare lemma and report the words before it as unmapped (G00).
 - >-
   A NAME before a noun (a Brackenford blanket) is its named-entity instance's id in `mods`; a YEAR, a DECADE or a
   CENTURY before a noun (a 1904 almanac, a 1920s radio, an 18th-century clock) is a time instance with no event,
@@ -238,25 +249,28 @@ unmapped:
   keep the instances the templates license and report just that part: an added time, date bound, duration,
   place, manner, amount or tag leaves the event itself true ("was demolished before 1960" still says it
   was demolished). When the rest would NOT follow without the unmapped part, leave the whole claim out
-  and report the whole clause: a negated condition ("unless it rains, Odile sings"), an attribution to a source
-  that no template carries ("according to Odile, the hatch is open"), an unencodable quantity ("too much salt"). An evaluative adverb ("unfortunately,
-  Marisol left") leaves the clause entailed: keep the clause and report the adverb (G02).
+  and report the whole clause: a negated condition ("unless it rains, Odile sings"), an unencodable quantity
+  ("too much salt"). An evaluative adverb ("unfortunately, Marisol left") leaves the clause entailed: keep the
+  clause and report the adverb (G02).
 - >-
   Referents inside an unmapped span: a NAME still gets its instance (a name is rigid, the same individual
   wherever it appears in the text), but a common-noun phrase or a pronoun does not. A witness is introduced only by a clause a
   template covers; the span carries the noun verbatim, and if a covered clause mentions the same thing,
   that clause's instance is the referent. Never introduce a witness for something stated only in words
-  you report as unmapped; the same holds for a group or a range: a plural or quantified phrase inside an
-  unmapped span introduces nothing.
+  you report as unmapped — a part or a possessed noun included (its beak, her hat: no witness, no part-whole,
+  no possessor link); the same holds for a group or a range: a plural or quantified phrase inside an
+  unmapped span introduces nothing. A RANGE is introduced only with the rule that ranges over it: when no
+  covered predication is said of the quantified noun (there is no need for … with the rest unmapped),
+  introduce no range and report the clause.
 gap_codes:
   G00: anything no template here covers and no other code names
   G01: >-
     a predicative or adverbial comparative with no stated standard ('prices ended lower', 'this one is
     better'); before a noun ('a sturdier bracket') the comparative is an ordinary adjective of the noun
   G02: >-
-    an adverb with no slot: sequence (initially, eventually, finally), scope or domain (nationally, locally),
-    an evaluation (unfortunately, luckily, sadly), a degree word on a manner adverb, on a class-level statement
-    or on an adjective with a complement (laughed very loudly; badgers are very curious; very fond of Pieter)
+    an adverb with no slot: scope or domain (nationally, locally), an evaluation (unfortunately, luckily,
+    sadly), a degree word on a manner adverb or on a class-level statement (laughed very loudly; badgers are
+    very curious)
   G03: >-
     a post-nominal tag on a name (a party or district tag, a ticker, a bracketed code, a pronunciation)
   G04: >-
@@ -266,7 +280,8 @@ gap_codes:
   G06: a result or outcome infinitive ('woke to find the door open')
   G07: '''only one N'' — a focus particle on a bare count'
   G08: an 'unless' or 'if not' conditional
-  G09: stay / remain / keep with a locative continuation ('stayed in the hall')
+  G09: >-
+    keep with an object and a property ('kept the hatch open'): a causer keeping another thing in a state
   G10: >-
     the verbatim wording of a quotation (its content is parsed; the wording itself is not kept)
 issues:

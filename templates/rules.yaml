@@ -639,10 +639,12 @@ rules:
   # Theme and the parse marks what the verb implies — (Entails e): the complement holds;
   # (Precludes e): it does not. These rules derive the complement, or its negation, with the
   # matrix event's tense carried onto the complement's event (the `clause-event` computation names
-  # it: the event of the clause's first atom). They conclude a bound term's conjuncts, which the
-  # chainer cannot do yet: writing them out per clause size instead (a variable per conjunct) makes
-  # its backward search try every rule for every goal — measured at seconds to minutes per query —
-  # so they wait for the chainer's sealed-term projection and are not lowered until then.
+  # it: the event of the clause's first atom). They conclude a bound term's conjuncts, which needs the
+  # chainer's sealed-term projection (writing them out per clause size instead, a variable per
+  # conjunct, makes its backward search try every rule for every goal — measured at seconds to
+  # minutes per query); a consumer without that capability lists them as pending. A CONTINUATION
+  # of a state (remained closed, stayed in the hall) is marked (Continues e) instead: its state is
+  # sealed in its own tense, as a copular or locative clause of its own, and is derived as sealed.
   - id: theme_entailed
     meaning: an entailing event's sealed Theme holds, at the event's tense
     requires: sealed-term-projection
@@ -659,6 +661,21 @@ rules:
       atoms and (Past sk_open_1). Under a negation or a modal the marker is inside the bundle, so
       nothing is derived: an implication is an entailment of the asserted clause, not a
       presupposition.
+  - id: state_continued
+    meaning: a continuing event's sealed state holds, in the tense it is sealed in
+    requires: sealed-term-projection
+    premises: ["(Continues $m)", "(Theme $m $c)"]
+    conclusion: "$c"
+    truth: {strength: 1.0, confidence: 0.9}
+    semantics: deductive
+    reads: [aspectual]
+    notes: >-
+      "The mill remained closed" seals the state with the clause's tense under the remaining's
+      Theme, (Theme sk_remain_1 (Past (Member sk_mill_1 closed))), and marks the remaining
+      (Continues sk_remain_1); the rule derives (Past (Member sk_mill_1 closed)), the catalog's own
+      form for "the mill was closed". A present state is derived flat ("the door stays open": (Member
+      sk_door_1 open)), a place as its locative ((LocatedIn sk_teodor_1 sk_hall_1)). Under a negation
+      the marker is inside the bundle and nothing is derived.
   - id: theme_precluded
     meaning: a precluding event's sealed Theme does not hold, at the event's tense
     requires: sealed-term-projection

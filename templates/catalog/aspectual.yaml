@@ -1,4 +1,4 @@
-# Template: aspectual  (a phase of an action: "began to sing", "stopped working", "kept reading the letter", "came to like the quilt")
+# Template: aspectual  (a phase of an action: "began to sing", "stopped working", "kept reading the letter", "came to like the quilt"; a continuation of a state: "remained closed")
 #
 # An aspectual verb says that an action started, went on, resumed or ended; the action is the
 # complement, parsed with its own template with the sentence's subject as its actor (or
@@ -7,7 +7,12 @@
 # underway — began to sing is singing, stopped working was working — so the phase event is
 # marked (Entails e) and a background rule derives the action at the phase event's tense; the
 # parse asserts nothing about it. The phase itself (begin, continue, stop, finish) is the verb
-# lemma; when an action started relative to when it ended is a matter for the consumer.
+# lemma; when an action started relative to when it ended is a matter for the consumer. A
+# CONTINUATION OF A STATE — remain, stay, keep with a property or a place (the mill remained
+# closed) — seals the state in the clause's own tense, as a copular or locative clause of its own,
+# (Theme sk_remain_1 (Past (Member sk_mill_1 closed))), and the program marks it (Continues e)
+# instead of (Entails e): a background rule derives the state as sealed, the catalog's own form
+# for "the mill was closed".
 
 id: aspectual
 family: predication
@@ -23,21 +28,33 @@ trigger:
     washing the blanket); and come to V, the inchoative (came to like the blanket), with the lemma
     come_to. Parse the action with the template its verb takes, its actor or undergoer the
     sentence's subject and its tense present; then write the aspectual instance naming the phase
-    verb and the action.
+    verb and the action. A CONTINUATION OF A STATE — remain, stay, keep or continue to be with a
+    property, a noun or a place (the gate remained shut, Pieter stayed in the granary, Odile kept
+    silent, the hatch remains a hazard) — is the same construction over a STATE: parse the state
+    with its own template (a copular instance for a property or a noun, a locative for a place),
+    the sentence's subject its subject, and with THE CLAUSE'S TENSE (remained shut: the copular
+    in the past; remains a hazard: present), unlike an action; the aspectual instance names the
+    phase verb (remain, stay, keep, continue) and the state, and the program marks the
+    continuation.
   verbs: [begin, start, commence, continue, keep, go_on, carry_on, resume, stop, cease, quit,
-          finish, come_to]
+          finish, come_to, remain, stay]
   verbs_note: >
-    These verbs belong here only with a verbal complement. Without one they are a change of
+    These verbs belong here only with a verbal complement, or, for remain, stay, keep and
+    continue to be, with a property, a noun or a place (a state). Without one they are a change of
     state (the inspection began, the price stopped) or an ordinary action on an object (started a
     business, finished the postcard, kept the postcard); stop / keep X from V-ing is a causative.
   surface_forms:
     - "<subject> began / started / continued to <V2> …"   # Pieter began to sing
     - "<subject> kept / stopped / finished <V2>-ing …"    # Marisol stopped working
     - "<subject> came to <V2> …"                          # Marisol came to like the blanket
+    - "<subject> remained / stayed / kept <ADJ, N or place>"   # the gate remained shut: the state in the clause's tense, a continuation
   boundary:                   # looks like an aspectual but is not one
     - >-
       a phase verb without a verbal complement — the inspection began, the price stopped, the storm
       ceased: a change of state of the subject
+    - >-
+      keep with an object and a property — kept the hatch open, kept Pieter awake: a causer keeping
+      another thing in a state; no template yet, report the clause as unmapped (G09)
     - >-
       a phase verb with a noun object — started a business, finished the postcard, kept the
       postcard, continued the inspection: an action on a thing, parsed by that action's template
@@ -56,7 +73,7 @@ slots:
   id:         {type: id, required: true, doc: "your label for the phase event"}
   verb:       {type: lemma, class: Class, required: true, doc: "the phase verb lemma (begin, start, continue, keep, stop, finish, come_to …)"}
   complement: {type: refs, class: Proposition, required: true,
-               doc: "the action: the ids of the instances that state it (its predication, with the sentence's subject as its actor or undergoer); the referents it mentions are not listed"}
+               doc: "the action: the ids of the instances that state it (its predication, with the sentence's subject as its actor or undergoer, tense present); for a continuation of a state, the id of the copular or locative instance that states it, with the sentence's subject and THE CLAUSE'S TENSE; the referents it mentions are not listed"}
   tense:      {type: enum, values: [past, present, future], required: true,
                doc: "the clause's tense; present is recorded, not inferred"}
   aspect:     {type: enum, values: [simple, progressive, perfect, perfect_progressive, about_to, due_to, would, going_to], required: false, default: simple,
@@ -68,6 +85,9 @@ emits:
   - atom: "(Member @id {verb})"
   - atom: "(Theme @id {complement})"        # the action, sealed as one term
   - atom: "(Entails @id)"                   # the action was underway: a background rule derives it at this event's tense
+    unless_stative: complement
+  - atom: "(Continues @id)"                 # a state that went on: a background rule derives it in the tense it is sealed in
+    if_stative: complement
   - atom: "(Past @id)"
     when: "tense == past or aspect == perfect or aspect == perfect_progressive"
   - atom: "(Future @id)"
@@ -85,8 +105,14 @@ notes:
   - >-
     The marker sits inside whatever scope the phase event sits in, as a control verb's is: "did
     not stop working" denies the bundle and the background rule derives no working.
+  - >-
+    A continuation of a state is marked (Continues e), not (Entails e): a copular or a locative
+    clause has no event to carry a tense, so the state is sealed in its own tense — (Past (Member
+    sk_mill_1 closed)) — and the background rule derives it as sealed; the program picks the mark
+    from the complement's template, the parser only names the state. "did not remain closed"
+    denies the bundle and derives nothing.
 
-depends_on: [named-entity, witness, activity, change-of-state, psych, negation]
+depends_on: [named-entity, witness, activity, change-of-state, psych, negation, copular, locative]
 composes_with: [negation, modal, time]
 
 examples:
@@ -117,6 +143,13 @@ examples:
         - {t: witness, id: x1, class: price, definite: true, span: "The price"}
         - {t: change-of-state, id: c1, verb: fall, undergoer: "@x1", tense: present, span: "to fall"}
         - {t: aspectual, id: e1, verb: start, complement: ["@c1"], tense: past, span: "The price started to fall"}
+    - category: positive
+      note: a continuation of a state — the state in the clause's tense, sealed; the program marks it Continues
+      text: "The hatch stayed open."
+      instances:
+        - {t: witness, id: x1, class: hatch, definite: true, span: "The hatch"}
+        - {t: copular, id: c1, subject: "@x1", predicate: open, form: adjective, tense: past, span: "open"}
+        - {t: aspectual, id: e1, verb: stay, complement: ["@c1"], tense: past, span: "The hatch stayed open"}
     - category: abstain
       text: "Marisol tried to sleep."
       expected: {abstain: true, template: control}                    # an effort, not a phase
@@ -192,3 +225,33 @@ examples:
     - category: abstain
       text: "Yusra no longer works."
       expected: {abstain: true, gap: G00, span: "no longer works"}    # a cessation construction
+    - category: positive
+      note: a continuation of a property — the copular in the clause's tense, sealed; Continues
+      text: "The mill remained closed."
+      instances:
+        - {t: witness, id: x1, class: mill, definite: true}
+        - {t: copular, id: c1, subject: "@x1", predicate: closed, form: adjective, tense: past}
+        - {t: aspectual, id: e1, verb: remain, complement: ["@c1"], tense: past}
+    - category: positive
+      note: a continuation of a place — the locative in the clause's tense, sealed
+      text: "Teodor stayed in the barn."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, class: barn, definite: true}
+        - {t: locative, id: l1, thing: "@n1", place: "@x1", head: LocatedIn, preposition: in, tense: past}
+        - {t: aspectual, id: e1, verb: stay, complement: ["@l1"], tense: past}
+    - category: positive
+      note: keep with a property and no object — a continuation of the subject's own state
+      text: "Lamine kept quiet."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: copular, id: c1, subject: "@n1", predicate: quiet, form: adjective, tense: past}
+        - {t: aspectual, id: e1, verb: keep, complement: ["@c1"], tense: past}
+    - category: positive
+      note: a present continuation of a place
+      text: "The ferret remains in the hut."
+      instances:
+        - {t: witness, id: x1, class: ferret, definite: true}
+        - {t: witness, id: x2, class: hut, definite: true}
+        - {t: locative, id: l1, thing: "@x1", place: "@x2", head: LocatedIn, preposition: in, tense: present}
+        - {t: aspectual, id: e1, verb: remain, complement: ["@l1"], tense: present}

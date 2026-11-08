@@ -31,7 +31,11 @@ trigger:
     like an indefinite noun phrase: someone, somebody, anyone, anybody are a witness of class
     person; something, anything a witness of class thing (somebody is knitting: a witness
     person, indefinite). Nearby before a noun (a nearby farm) is an ordinary adjective of the
-    noun, recorded with the others.
+    noun, recorded with the others. An EPISTEMIC or a distancing adjective before the noun —
+    alleged, suspected, probable, presumed, so-called, would-be (an alleged smuggler, three
+    probable cases) — is not a property: the noun does not hold of the referent on its own, and
+    there is no slot yet; report the noun phrase as unmapped (G00), and the whole clause when
+    its claim depends on the noun.
   surface_forms:
     - "a <N>"                       # indefinite
     - "the <N>"                     # definite
@@ -227,3 +231,7 @@ examples:
         - {t: named-entity, id: n1, name: "Yusra"}
         - {t: witness, id: x1, class: village, props: [northern]}
         - {t: activity, id: v1, verb: visit, actor: "@n1", patient: "@x1", tense: past}
+    - category: abstain
+      note: an epistemic adjective before the noun — not a property; the noun phrase, and the clause that needs it, unmapped
+      text: "Lamine chased a suspected thief."
+      expected: {abstain: true, gap: G00, span: "a suspected thief"}

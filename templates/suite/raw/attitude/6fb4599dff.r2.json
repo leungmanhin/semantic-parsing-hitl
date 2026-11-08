@@ -1,0 +1,105 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "c54f74eeb310b41d38762d14aca76799d961fa90279b92a27a86d7d86d1fbaca",
+  "item": {
+    "id": "s6fb4599dff",
+    "text": "According to Lamine, the gate is open."
+  },
+  "usage": {
+    "input": 116834,
+    "output": 200,
+    "thinking": null,
+    "total": 117034,
+    "cached": 114785,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 116834,
+    "candidatesTokenCount": 200,
+    "totalTokenCount": 117034,
+    "cachedContentTokenCount": 114785,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 116834
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 114785
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 200
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s6fb4599dff\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"gate\", \"definite\": true, \"span\": \"the gate\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@x1\", \"predicate\": \"open\", \"form\": \"adjective\", \"tense\": \"present\", \"span\": \"the gate is open\"}, {\"t\": \"attitude\", \"id\": \"a1\", \"verb\": \"according_to\", \"holder\": \"@n1\", \"content\": [\"@c1\"], \"factive\": false, \"tense\": \"present\", \"span\": \"According to Lamine, the gate is open\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s6fb4599dff",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "gate",
+        "definite": true,
+        "span": "the gate"
+      },
+      {
+        "t": "copular",
+        "id": "c1",
+        "subject": "@x1",
+        "predicate": "open",
+        "form": "adjective",
+        "tense": "present",
+        "span": "the gate is open"
+      },
+      {
+        "t": "attitude",
+        "id": "a1",
+        "verb": "according_to",
+        "holder": "@n1",
+        "content": [
+          "@c1"
+        ],
+        "factive": false,
+        "tense": "present",
+        "span": "According to Lamine, the gate is open"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "2f3c68208265ec4d36c5565dbff575774dfa151dab0f5b72e7ac622888cb1b1d",
+  "manifest_id": "73ea89e8548c",
+  "run": 2,
+  "case": {
+    "template": "attitude",
+    "section": "held_out",
+    "index": 28,
+    "category": "positive",
+    "text": "According to Lamine, the gate is open.",
+    "key": "6fb4599dff"
+  }
+}

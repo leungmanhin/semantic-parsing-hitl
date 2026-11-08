@@ -21,8 +21,11 @@ trigger:
     little, somewhat, barely, hardly, scarcely), a magnitude adverb on a change (sharply,
     steeply, considerably, marginally), or an adverb of distance or height on a motion (leapt
     high, ran far, dived deep — how far the motion goes, even before a path or goal phrase:
-    leapt high over the hedge). The event is parsed with its own template; the extent instance
-    names that event and records the adverb as written (a phrase as one snake_case symbol:
+    leapt high over the hedge); and a DEGREE WORD ON AN ADJECTIVE THAT HAS A COMPLEMENT — very fond
+    of Pieter, too afraid of the badger, totally dependent on the mill, very sure that the hatch
+    is shut: the state that the adjective-complement, stative-relation or attitude instance
+    stands for is the event, the degree word the level. The event is parsed with its own
+    template; the extent instance names that event and records the adverb as written (a phrase as one snake_case symbol:
     a_lot, very_much). One instance per degree expression.
   surface_forms:
     - "<subject> <adverb> V …"                       # Marisol deeply distrusts Odile
@@ -34,7 +37,8 @@ trigger:
     - >-
       a frequency adverb — often, always, twice: how often; a frequency
     - >-
-      a degree word on an adjective — is very crooked, a very old bobbin: a degree predication
+      a degree word on an adjective with no complement — is very crooked, a very old bobbin: a
+      degree predication
     - >-
       an approximator on a verb — almost fell, nearly broke: the event did not happen; no slot
       here; report the clause as unmapped
@@ -55,7 +59,7 @@ trigger:
 slots:
   id:    {type: id, required: true, doc: "your label for the attachment (a1, a2 …)"}
   event: {type: filler, class: Event, attaches: true, required: true,
-          doc: "the predication the degree attaches to: the id of the clause's event instance"}
+          doc: "the predication the degree attaches to: the id of the clause's event instance, or of the adjective-complement, stative-relation or attitude instance an adjective with a complement makes (very fond of Pieter, very sure that P)"}
   level: {type: lemma, class: Level, required: true,
           doc: "the degree adverb as written, lowercase (deeply, really, barely, sharply, slightly); a phrase as one snake_case symbol (a_lot, very_much)"}
 
@@ -103,6 +107,13 @@ examples:
         - {t: witness, id: x1, class: blanket, definite: true, span: "the blanket"}
         - {t: psych, id: p1, verb: like, experiencer: "@n1", stimulus: "@x1", tense: present, span: "Pieter really likes the blanket"}
         - {t: extent, id: a1, event: "@p1", level: really, span: "really"}
+    - category: positive
+      note: a degree word on an adjective with a complement — the extent on the state the adjective-complement makes
+      text: "Henrike is very fond of badgers."
+      instances:
+        - {t: named-entity, id: n1, name: "Henrike", span: "Henrike"}
+        - {t: adjective-complement, id: p1, bearer: "@n1", property: fond, head: Of, object: badger, tense: present, span: "Henrike is very fond of badgers"}
+        - {t: extent, id: a1, event: "@p1", level: very, span: "very"}
     - category: abstain
       text: "Marisol laughed loudly."
       expected: {abstain: true, template: manner}                     # how, not how much
@@ -212,3 +223,19 @@ examples:
     - category: abstain
       text: "Yusra laughed very loudly."
       expected: {abstain: true, gap: G02, span: "very"}               # a degree word on a manner adverb
+    - category: positive
+      note: a degree word on an adjective with a complement — the extent on the adjective-complement's state
+      text: "Yusra is very fond of herons."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: adjective-complement, id: p1, bearer: "@n1", property: fond, head: Of, object: heron, tense: present}
+        - {t: extent, id: a1, event: "@p1", level: very}
+    - category: positive
+      note: a degree word on an adjectival attitude — the extent on the attitude's event
+      text: "Teodor was very sure that Lamine left."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: motion, id: m1, verb: leave, mover: "@n2", tense: past}
+        - {t: attitude, id: a1, verb: sure, holder: "@n1", content: ["@m1"], factive: false, tense: past}
+        - {t: extent, id: a2, event: "@a1", level: very}

@@ -1,0 +1,107 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "c54f74eeb310b41d38762d14aca76799d961fa90279b92a27a86d7d86d1fbaca",
+  "item": {
+    "id": "sce3a22b0e0",
+    "text": "Teodor, 31, sold the quilt."
+  },
+  "usage": {
+    "input": 116836,
+    "output": 207,
+    "thinking": null,
+    "total": 117043,
+    "cached": 114787,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 116836,
+    "candidatesTokenCount": 207,
+    "totalTokenCount": 117043,
+    "cachedContentTokenCount": 114787,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 116836
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 114787
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 207
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sce3a22b0e0\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"quilt\", \"definite\": true, \"span\": \"the quilt\"}, {\"t\": \"measure\", \"id\": \"m1\", \"bearer\": \"@n1\", \"head\": \"Measure\", \"dimension\": \"old\", \"magnitude\": 31, \"unit\": \"year\", \"tense\": \"present\", \"span\": \"Teodor, 31\"}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"sell\", \"giver\": \"@n1\", \"object\": \"@x1\", \"tense\": \"past\", \"span\": [\"Teodor\", \"sold the quilt\"]}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sce3a22b0e0",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "quilt",
+        "definite": true,
+        "span": "the quilt"
+      },
+      {
+        "t": "measure",
+        "id": "m1",
+        "bearer": "@n1",
+        "head": "Measure",
+        "dimension": "old",
+        "magnitude": 31,
+        "unit": "year",
+        "tense": "present",
+        "span": "Teodor, 31"
+      },
+      {
+        "t": "transfer",
+        "id": "e1",
+        "verb": "sell",
+        "giver": "@n1",
+        "object": "@x1",
+        "tense": "past",
+        "span": [
+          "Teodor",
+          "sold the quilt"
+        ]
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "2f3c68208265ec4d36c5565dbff575774dfa151dab0f5b72e7ac622888cb1b1d",
+  "manifest_id": "73ea89e8548c",
+  "run": 3,
+  "case": {
+    "template": "measure",
+    "section": "held_out",
+    "index": 23,
+    "category": "positive",
+    "text": "Teodor, 31, sold the quilt.",
+    "key": "ce3a22b0e0"
+  }
+}

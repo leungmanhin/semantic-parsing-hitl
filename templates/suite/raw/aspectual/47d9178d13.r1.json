@@ -1,0 +1,105 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "c54f74eeb310b41d38762d14aca76799d961fa90279b92a27a86d7d86d1fbaca",
+  "item": {
+    "id": "s47d9178d13",
+    "text": "The ferret remains in the hut."
+  },
+  "usage": {
+    "input": 116834,
+    "output": 197,
+    "thinking": null,
+    "total": 117031,
+    "cached": 114784,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 116834,
+    "candidatesTokenCount": 197,
+    "totalTokenCount": 117031,
+    "cachedContentTokenCount": 114784,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 116834
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 114784
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 197
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s47d9178d13\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"ferret\", \"definite\": true, \"span\": \"The ferret\"}, {\"t\": \"witness\", \"id\": \"x2\", \"class\": \"hut\", \"definite\": true, \"span\": \"the hut\"}, {\"t\": \"locative\", \"id\": \"l1\", \"thing\": \"@x1\", \"place\": \"@x2\", \"head\": \"LocatedIn\", \"preposition\": \"in\", \"tense\": \"present\", \"span\": \"in the hut\"}, {\"t\": \"aspectual\", \"id\": \"e1\", \"verb\": \"remain\", \"complement\": [\"@l1\"], \"tense\": \"present\", \"span\": \"The ferret remains in the hut\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s47d9178d13",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "ferret",
+        "definite": true,
+        "span": "The ferret"
+      },
+      {
+        "t": "witness",
+        "id": "x2",
+        "class": "hut",
+        "definite": true,
+        "span": "the hut"
+      },
+      {
+        "t": "locative",
+        "id": "l1",
+        "thing": "@x1",
+        "place": "@x2",
+        "head": "LocatedIn",
+        "preposition": "in",
+        "tense": "present",
+        "span": "in the hut"
+      },
+      {
+        "t": "aspectual",
+        "id": "e1",
+        "verb": "remain",
+        "complement": [
+          "@l1"
+        ],
+        "tense": "present",
+        "span": "The ferret remains in the hut"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "2f3c68208265ec4d36c5565dbff575774dfa151dab0f5b72e7ac622888cb1b1d",
+  "manifest_id": "73ea89e8548c",
+  "run": 1,
+  "case": {
+    "template": "aspectual",
+    "section": "held_out",
+    "index": 14,
+    "category": "positive",
+    "text": "The ferret remains in the hut.",
+    "key": "47d9178d13"
+  }
+}

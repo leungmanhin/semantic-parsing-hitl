@@ -1,0 +1,122 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "c54f74eeb310b41d38762d14aca76799d961fa90279b92a27a86d7d86d1fbaca",
+  "item": {
+    "id": "s6f8498ad4d",
+    "text": "No ferret plays with its mother."
+  },
+  "usage": {
+    "input": 116833,
+    "output": 276,
+    "thinking": null,
+    "total": 117109,
+    "cached": 114784,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 116833,
+    "candidatesTokenCount": 276,
+    "totalTokenCount": 117109,
+    "cachedContentTokenCount": 114784,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 116833
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 114784
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 276
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s6f8498ad4d\", \"instances\": [{\"t\": \"range\", \"id\": \"q1\", \"class\": \"ferret\", \"quantifier\": \"no\", \"predicate\": \"play\", \"span\": \"No ferret\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"mother\", \"span\": \"its mother\"}, {\"t\": \"stative-relation\", \"id\": \"p1\", \"relation\": \"mother\", \"subject\": \"@x1\", \"object\": \"@q1\", \"tense\": \"present\", \"span\": \"its mother\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"play\", \"actor\": \"@q1\", \"tense\": \"present\", \"span\": \"No ferret plays\"}, {\"t\": \"adjunct\", \"id\": \"a1\", \"event\": \"@e1\", \"participant\": \"@x1\", \"head\": \"CoAgent\", \"preposition\": \"with\", \"span\": \"with its mother\"}, {\"t\": \"generic\", \"id\": \"r1\", \"ranges\": [\"@q1\"], \"over\": [\"@e1\"], \"span\": \"No ferret plays with its mother\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s6f8498ad4d",
+    "instances": [
+      {
+        "t": "range",
+        "id": "q1",
+        "class": "ferret",
+        "quantifier": "no",
+        "predicate": "play",
+        "span": "No ferret"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "mother",
+        "span": "its mother"
+      },
+      {
+        "t": "stative-relation",
+        "id": "p1",
+        "relation": "mother",
+        "subject": "@x1",
+        "object": "@q1",
+        "tense": "present",
+        "span": "its mother"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "play",
+        "actor": "@q1",
+        "tense": "present",
+        "span": "No ferret plays"
+      },
+      {
+        "t": "adjunct",
+        "id": "a1",
+        "event": "@e1",
+        "participant": "@x1",
+        "head": "CoAgent",
+        "preposition": "with",
+        "span": "with its mother"
+      },
+      {
+        "t": "generic",
+        "id": "r1",
+        "ranges": [
+          "@q1"
+        ],
+        "over": [
+          "@e1"
+        ],
+        "span": "No ferret plays with its mother"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "2f3c68208265ec4d36c5565dbff575774dfa151dab0f5b72e7ac622888cb1b1d",
+  "manifest_id": "73ea89e8548c",
+  "run": 3,
+  "case": {
+    "template": "generic",
+    "section": "held_out",
+    "index": 27,
+    "category": "positive",
+    "text": "No ferret plays with its mother.",
+    "key": "6f8498ad4d"
+  }
+}

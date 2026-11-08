@@ -5,7 +5,10 @@
 # ferret), (From sk_letter_1 sk_yusra_1). The phrase says which thing is meant, or what it is
 # about, from, for or without; it is not a predication of its own (the man is not said to have
 # a hat) and not an attachment to the clause's event. A possessive of-phrase (the quilt of Yusra)
-# is the witness's possessor, not a postmodifier.
+# is the witness's possessor, not a postmodifier. A GERUND or a TO-INFINITIVE giving the noun's
+# content (the chance of sailing, a plan to mend the mill) is that clause sealed as one term under
+# the preposition, or under To for the infinitive: (To sk_plan_1 (And (Member sk_mend_1 mend) …)) —
+# what the plan is, not a claim that the mending happens.
 
 id: postmodifier
 family: attachment
@@ -24,7 +27,16 @@ trigger:
     range (there is no stork with a fish …) it narrows the range inside the generalization's
     premise, and the generic instance lists the predication only, never the postmodifier; an
     indefinite object there is non-specific, a bare lemma (no stork with a fish: With, fish).
-    With no is Without (a man with no hat: Without, hat).
+    With no is Without (a man with no hat: Without, hat). A GERUND or a TO-INFINITIVE that gives
+    the noun's CONTENT — the chance of winning the fair, the risk of flooding, a plan to sell
+    the granary, Odile's attempt to mend the beret, the right to graze the
+    meadow, the decision to close the bazaar — is parsed with its own template, its actor the
+    noun's possessor or the one the text says acts (none when it names no one), tense present,
+    and listed in `complement`, sealed under the preposition as written (Of, For, At …) or, for
+    the infinitive, under To, with no `object`: what the plan or the chance is, not a claim that
+    the action happens. An infinitive that is a RELATIVE CLAUSE cut short — a house to rent, the
+    man to ask, much to be done, the first to arrive — gives no content: report it as unmapped
+    (G00).
   surface_forms:
     - "the <N> with / without <object>"               # the man with the beret
     - "a <N> with no <object>"                        # a stork with no nest: Without, nest
@@ -36,6 +48,8 @@ trigger:
     - "<Name> is a <kind word> of <N>"                # Velloria is a genus of ferns: the copular genus, Of on the name, fern a bare lemma
     - "the <N> between <A> and <B>"                   # the quarrel between Femke and Ludo: Between, Femke the object, Ludo object2
     - "a <N> before <person or body>"                 # a hearing before the magistrate: Before, in whose presence
+    - "the <N> of / for / at <V>-ing …"               # the chance of winning the fair: Of, the gerund's clause sealed in `complement`
+    - "a <N> to <V> …"                                # a plan to sell the granary: To, the infinitive's clause sealed in `complement`
   boundary:                   # looks like a postmodifier but is not one
     - >-
       a possessive of-phrase or genitive — the blanket of Marisol, Marisol's blanket, the sister of
@@ -75,8 +89,10 @@ slots:
            doc: "the referent the phrase modifies: the id of its witness, named-entity, group or range instance"}
   head:   {type: enum, values: [About, Above, Across, Against, Along, Among, Around, As, At, Before, Behind, Below, Beneath, Beside, Besides, Between, Beyond, By, Concerning, Despite, Down, Except, For, From, In, Inside, Into, Like, Near, Of, "Off", "On", Onto, Opposite, Out, Outside, Over, Past, Per, Regarding, Round, Through, To, Toward, Towards, Under, Underneath, Unlike, Up, Upon, Via, With, Within, Without], emit_as: {Past: PastPlace},
            required: true, doc: "the preposition as written, capitalized (with → With, about → About); never a synonym"}
-  object: {type: filler, class: Entity, required: true, narrowed_by: [object_props, object_mods],
-           doc: "the phrase's object: a referent id (a witness, a name) for a specific thing, or a bare lemma for a non-specific or class-level one (a book about badgers → badger, a flask without a lid → lid); with head Between the first of the two"}
+  object: {type: filler, class: Entity, required: false, narrowed_by: [object_props, object_mods],
+           doc: "the phrase's object: a referent id (a witness, a name) for a specific thing, or a bare lemma for a non-specific or class-level one (a book about badgers → badger, a flask without a lid → lid); with head Between the first of the two; absent when the noun's content is a clause (complement)"}
+  complement: {type: refs, class: Proposition, required: false, bare_content: true,
+           doc: "a GERUND or a TO-INFINITIVE giving the noun's content (the chance of winning the fair, a plan to sell the granary): the id of its predication, parsed with its own template — its actor the noun's possessor or the one the text says acts, none when it names no one —, tense present; sealed under the head (To for the infinitive), never together with object; the referents it mentions are not listed"}
   object_props: {type: list, class: Class, restriction: Member, required: false,
            doc: "with a bare-lemma object, the adjectives on it (a song about lost sailors: lost)"}
   object_mods: {type: list, class: Class, ids: [named-entity, time], required: false,
@@ -84,9 +100,14 @@ slots:
   object2: {type: filler, class: Entity, required: false, only_when: "head == Between",
            doc: "with head Between only, the second of the two (the quarrel between Femke and Ludo: Ludo); the order as written"}
 
+one_of: [[object, complement]]
+
 emits:
   - atom: "({head} {noun} {object|mod} {object2|opt})"
+    if_filled: object
     with_head: object                # a book about harbour pilots is about pilots too
+  - atom: "({head} {noun} {complement})"   # the noun's content as a clause, sealed as one term
+    if_filled: complement
 
 notes:
   - >-
@@ -132,6 +153,17 @@ examples:
         - {t: witness, id: x1, class: book, span: "a book"}
         - {t: postmodifier, id: a1, noun: "@x1", head: About, object: badger, span: "about badgers"}
         - {t: activity, id: v1, verb: read, actor: "@n1", patient: "@x1", tense: past, span: "Marisol read a book about badgers"}
+    - category: positive
+      note: a to-infinitive giving the noun's content — sealed under To, its actor the noun's possessor; no object
+      text: "Marisol liked Pieter's plan to sell the granary."
+      instances:
+        - {t: named-entity, id: n1, name: "Marisol", span: "Marisol"}
+        - {t: named-entity, id: n2, name: "Pieter", span: "Pieter"}
+        - {t: witness, id: x1, class: plan, possessor: "@n2", span: "Pieter's plan"}
+        - {t: witness, id: x2, class: granary, definite: true, span: "the granary"}
+        - {t: transfer, id: e1, verb: sell, giver: "@n2", object: "@x2", tense: present, span: "sell the granary"}
+        - {t: postmodifier, id: a1, noun: "@x1", head: To, complement: ["@e1"], span: "to sell the granary"}
+        - {t: psych, id: p1, verb: like, experiencer: "@n1", stimulus: "@x1", tense: past, span: "Marisol liked Pieter's plan to sell the granary"}
     - category: abstain
       text: "Marisol's blanket"
       expected: {abstain: true, template: witness}                    # a possessive: the witness's possessor
@@ -291,3 +323,24 @@ examples:
         - {t: group, id: g1, class: ferret, count: 3}
         - {t: activity, id: v1, verb: lead, actor: "@n1", patient: "@x1", tense: past}
         - {t: postmodifier, id: a1, noun: "@x1", head: For, object: "@g1"}
+    - category: positive
+      note: a to-infinitive giving a possessed noun's content — sealed under To, the possessor its actor
+      text: "Teodor rejected Yusra's plan to mend the mill."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: named-entity, id: n2, name: "Yusra"}
+        - {t: witness, id: x1, class: plan, possessor: "@n2"}
+        - {t: witness, id: x2, class: mill, definite: true}
+        - {t: activity, id: v1, verb: reject, actor: "@n1", patient: "@x1", tense: past}
+        - {t: activity, id: v2, verb: mend, actor: "@n2", patient: "@x2", tense: present}
+        - {t: postmodifier, id: a1, noun: "@x1", head: To, complement: ["@v2"]}
+    - category: positive
+      note: an of-gerund giving the noun's content — sealed under Of, the possessor its actor
+      text: "Teodor envied Lamine's chance of sailing."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: witness, id: x1, class: chance, possessor: "@n2"}
+        - {t: motion, id: m1, verb: sail, mover: "@n2", tense: present}
+        - {t: postmodifier, id: a1, noun: "@x1", head: Of, complement: ["@m1"]}
+        - {t: psych, id: p1, verb: envy, experiencer: "@n1", stimulus: "@x1", tense: past}

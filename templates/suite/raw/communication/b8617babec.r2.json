@@ -1,0 +1,86 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "c54f74eeb310b41d38762d14aca76799d961fa90279b92a27a86d7d86d1fbaca",
+  "item": {
+    "id": "sb8617babec",
+    "text": "Ottoline announced the winner."
+  },
+  "usage": {
+    "input": 116829,
+    "output": 138,
+    "thinking": null,
+    "total": 116967,
+    "cached": null,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 116829,
+    "candidatesTokenCount": 138,
+    "totalTokenCount": 116967,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 116829
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 138
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sb8617babec\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"winner\", \"definite\": true, \"span\": \"the winner\"}, {\"t\": \"communication\", \"id\": \"c1\", \"verb\": \"announce\", \"speaker\": \"@n1\", \"message\": \"@x1\", \"tense\": \"past\", \"span\": \"Ottoline announced the winner\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sb8617babec",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Ottoline",
+        "span": "Ottoline"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "winner",
+        "definite": true,
+        "span": "the winner"
+      },
+      {
+        "t": "communication",
+        "id": "c1",
+        "verb": "announce",
+        "speaker": "@n1",
+        "message": "@x1",
+        "tense": "past",
+        "span": "Ottoline announced the winner"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "2f3c68208265ec4d36c5565dbff575774dfa151dab0f5b72e7ac622888cb1b1d",
+  "manifest_id": "73ea89e8548c",
+  "run": 2,
+  "case": {
+    "template": "communication",
+    "section": "held_out",
+    "index": 14,
+    "category": "positive",
+    "text": "Ottoline announced the winner.",
+    "key": "b8617babec"
+  }
+}

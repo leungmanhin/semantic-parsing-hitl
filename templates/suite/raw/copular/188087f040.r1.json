@@ -1,0 +1,97 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "c54f74eeb310b41d38762d14aca76799d961fa90279b92a27a86d7d86d1fbaca",
+  "item": {
+    "id": "s188087f040",
+    "text": "The mill remained closed."
+  },
+  "usage": {
+    "input": 116832,
+    "output": 152,
+    "thinking": null,
+    "total": 116984,
+    "cached": 114783,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 116832,
+    "candidatesTokenCount": 152,
+    "totalTokenCount": 116984,
+    "cachedContentTokenCount": 114783,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 116832
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 114783
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 152
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s188087f040\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"mill\", \"definite\": true, \"span\": \"The mill\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@x1\", \"predicate\": \"closed\", \"form\": \"adjective\", \"tense\": \"past\", \"span\": \"closed\"}, {\"t\": \"aspectual\", \"id\": \"e1\", \"verb\": \"remain\", \"complement\": [\"@c1\"], \"tense\": \"past\", \"span\": \"The mill remained closed\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s188087f040",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "mill",
+        "definite": true,
+        "span": "The mill"
+      },
+      {
+        "t": "copular",
+        "id": "c1",
+        "subject": "@x1",
+        "predicate": "closed",
+        "form": "adjective",
+        "tense": "past",
+        "span": "closed"
+      },
+      {
+        "t": "aspectual",
+        "id": "e1",
+        "verb": "remain",
+        "complement": [
+          "@c1"
+        ],
+        "tense": "past",
+        "span": "The mill remained closed"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "2f3c68208265ec4d36c5565dbff575774dfa151dab0f5b72e7ac622888cb1b1d",
+  "manifest_id": "73ea89e8548c",
+  "run": 1,
+  "case": {
+    "template": "copular",
+    "section": "held_out",
+    "index": 20,
+    "category": "scoped",
+    "text": "The mill remained closed.",
+    "key": "188087f040"
+  }
+}

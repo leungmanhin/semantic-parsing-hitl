@@ -1,0 +1,116 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "c54f74eeb310b41d38762d14aca76799d961fa90279b92a27a86d7d86d1fbaca",
+  "item": {
+    "id": "sf6c4c24eb2",
+    "text": "No heron is preening its wing."
+  },
+  "usage": {
+    "input": 116833,
+    "output": 249,
+    "thinking": null,
+    "total": 117082,
+    "cached": 114784,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 116833,
+    "candidatesTokenCount": 249,
+    "totalTokenCount": 117082,
+    "cachedContentTokenCount": 114784,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 116833
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 114784
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 249
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sf6c4c24eb2\", \"instances\": [{\"t\": \"range\", \"id\": \"q1\", \"class\": \"heron\", \"quantifier\": \"no\", \"predicate\": \"preen\", \"span\": \"No heron\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"wing\", \"definite\": true, \"span\": \"its wing\"}, {\"t\": \"part-whole\", \"id\": \"w1\", \"part\": \"@x1\", \"whole\": \"@q1\", \"word\": \"its\", \"tense\": \"present\", \"span\": \"its wing\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"preen\", \"actor\": \"@q1\", \"patient\": \"@x1\", \"tense\": \"present\", \"aspect\": \"progressive\", \"span\": \"No heron is preening its wing\"}, {\"t\": \"generic\", \"id\": \"r1\", \"ranges\": [\"@q1\"], \"over\": [\"@e1\"], \"span\": \"No heron is preening its wing\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sf6c4c24eb2",
+    "instances": [
+      {
+        "t": "range",
+        "id": "q1",
+        "class": "heron",
+        "quantifier": "no",
+        "predicate": "preen",
+        "span": "No heron"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "wing",
+        "definite": true,
+        "span": "its wing"
+      },
+      {
+        "t": "part-whole",
+        "id": "w1",
+        "part": "@x1",
+        "whole": "@q1",
+        "word": "its",
+        "tense": "present",
+        "span": "its wing"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "preen",
+        "actor": "@q1",
+        "patient": "@x1",
+        "tense": "present",
+        "aspect": "progressive",
+        "span": "No heron is preening its wing"
+      },
+      {
+        "t": "generic",
+        "id": "r1",
+        "ranges": [
+          "@q1"
+        ],
+        "over": [
+          "@e1"
+        ],
+        "span": "No heron is preening its wing"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "2f3c68208265ec4d36c5565dbff575774dfa151dab0f5b72e7ac622888cb1b1d",
+  "manifest_id": "73ea89e8548c",
+  "run": 2,
+  "case": {
+    "template": "generic",
+    "section": "held_out",
+    "index": 25,
+    "category": "positive",
+    "text": "No heron is preening its wing.",
+    "key": "f6c4c24eb2"
+  }
+}

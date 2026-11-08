@@ -325,3 +325,30 @@ examples:
         - {t: range, id: q1, class: owl, mods: [barn]}
         - {t: activity, id: v1, verb: hunt, actor: "@q1", tense: present}
         - {t: generic, id: r1, ranges: ["@q1"], over: ["@v1"]}
+    - category: positive
+      note: a part of the range's member under no — the part a function of the member, inside the rule
+      text: "No heron is preening its wing."
+      instances:
+        - {t: range, id: q1, class: heron, quantifier: "no", predicate: preen}
+        - {t: witness, id: x1, class: wing, definite: true}
+        - {t: part-whole, id: w1, part: "@x1", whole: "@q1"}
+        - {t: activity, id: v1, verb: preen, actor: "@q1", patient: "@x1", tense: present, aspect: progressive}
+        - {t: generic, id: r1, ranges: ["@q1"], over: ["@v1"]}
+    - category: positive
+      note: a thing the range's member owns under every — a function of the member, inside the rule
+      text: "Every weaver mends her loom."
+      instances:
+        - {t: range, id: q1, class: weaver, quantifier: every, predicate: mend}
+        - {t: witness, id: x1, class: loom, possessor: "@q1"}
+        - {t: activity, id: v1, verb: mend, actor: "@q1", patient: "@x1", tense: present}
+        - {t: generic, id: r1, ranges: ["@q1"], over: ["@v1"]}
+    - category: positive
+      note: a relative of the range's member under no — the kinship state follows the relative into the rule
+      text: "No ferret plays with its mother."
+      instances:
+        - {t: range, id: q1, class: ferret, quantifier: "no", predicate: play}
+        - {t: witness, id: x1, class: mother}
+        - {t: stative-relation, id: p1, relation: mother, subject: "@x1", object: "@q1", tense: present}
+        - {t: activity, id: v1, verb: play, actor: "@q1", tense: present}
+        - {t: adjunct, id: a1, event: "@v1", participant: "@x1", head: CoAgent, preposition: with}
+        - {t: generic, id: r1, ranges: ["@q1"], over: ["@v1"]}

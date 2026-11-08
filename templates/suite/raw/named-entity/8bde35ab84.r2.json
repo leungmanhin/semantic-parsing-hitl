@@ -1,0 +1,93 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "c54f74eeb310b41d38762d14aca76799d961fa90279b92a27a86d7d86d1fbaca",
+  "item": {
+    "id": "s8bde35ab84",
+    "text": "Lamine's ferret, known as Pip, escaped."
+  },
+  "usage": {
+    "input": 116836,
+    "output": 157,
+    "thinking": null,
+    "total": 116993,
+    "cached": 114787,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 116836,
+    "candidatesTokenCount": 157,
+    "totalTokenCount": 116993,
+    "cachedContentTokenCount": 114787,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 116836
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 114787
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 157
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s8bde35ab84\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Pip\", \"class\": \"ferret\", \"possessor\": \"@n1\", \"span\": \"Lamine's ferret, known as Pip\"}, {\"t\": \"motion\", \"id\": \"e1\", \"verb\": \"escape\", \"mover\": \"@n2\", \"tense\": \"past\", \"span\": \"Lamine's ferret, known as Pip, escaped\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s8bde35ab84",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Pip",
+        "class": "ferret",
+        "possessor": "@n1",
+        "span": "Lamine's ferret, known as Pip"
+      },
+      {
+        "t": "motion",
+        "id": "e1",
+        "verb": "escape",
+        "mover": "@n2",
+        "tense": "past",
+        "span": "Lamine's ferret, known as Pip, escaped"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "2f3c68208265ec4d36c5565dbff575774dfa151dab0f5b72e7ac622888cb1b1d",
+  "manifest_id": "73ea89e8548c",
+  "run": 2,
+  "case": {
+    "template": "named-entity",
+    "section": "held_out",
+    "index": 12,
+    "category": "positive",
+    "text": "Lamine's ferret, known as Pip, escaped.",
+    "key": "8bde35ab84"
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "c54f74eeb310b41d38762d14aca76799d961fa90279b92a27a86d7d86d1fbaca",
+  "item": {
+    "id": "s5265423514",
+    "text": "Every weaver mends her loom."
+  },
+  "usage": {
+    "input": 116834,
+    "output": 194,
+    "thinking": null,
+    "total": 117028,
+    "cached": 114785,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 116834,
+    "candidatesTokenCount": 194,
+    "totalTokenCount": 117028,
+    "cachedContentTokenCount": 114785,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 116834
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 114785
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 194
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s5265423514\", \"instances\": [{\"t\": \"range\", \"id\": \"q1\", \"class\": \"weaver\", \"quantifier\": \"every\", \"predicate\": \"mend\", \"span\": \"Every weaver\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"loom\", \"possessor\": \"@q1\", \"span\": \"her loom\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"mend\", \"actor\": \"@q1\", \"patient\": \"@x1\", \"tense\": \"present\", \"span\": \"Every weaver mends her loom\"}, {\"t\": \"generic\", \"id\": \"r1\", \"ranges\": [\"@q1\"], \"over\": [\"@e1\"], \"span\": \"Every weaver mends her loom\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s5265423514",
+    "instances": [
+      {
+        "t": "range",
+        "id": "q1",
+        "class": "weaver",
+        "quantifier": "every",
+        "predicate": "mend",
+        "span": "Every weaver"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "loom",
+        "possessor": "@q1",
+        "span": "her loom"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "mend",
+        "actor": "@q1",
+        "patient": "@x1",
+        "tense": "present",
+        "span": "Every weaver mends her loom"
+      },
+      {
+        "t": "generic",
+        "id": "r1",
+        "ranges": [
+          "@q1"
+        ],
+        "over": [
+          "@e1"
+        ],
+        "span": "Every weaver mends her loom"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "2f3c68208265ec4d36c5565dbff575774dfa151dab0f5b72e7ac622888cb1b1d",
+  "manifest_id": "73ea89e8548c",
+  "run": 2,
+  "case": {
+    "template": "generic",
+    "section": "held_out",
+    "index": 26,
+    "category": "positive",
+    "text": "Every weaver mends her loom.",
+    "key": "5265423514"
+  }
+}

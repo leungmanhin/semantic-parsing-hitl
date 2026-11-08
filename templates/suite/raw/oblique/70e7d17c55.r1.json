@@ -1,0 +1,119 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "c54f74eeb310b41d38762d14aca76799d961fa90279b92a27a86d7d86d1fbaca",
+  "item": {
+    "id": "s70e7d17c55",
+    "text": "Teodor cleaned the barn by sweeping the floor."
+  },
+  "usage": {
+    "input": 116837,
+    "output": 265,
+    "thinking": null,
+    "total": 117102,
+    "cached": 114783,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 116837,
+    "candidatesTokenCount": 265,
+    "totalTokenCount": 117102,
+    "cachedContentTokenCount": 114783,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 116837
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 114783
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 265
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s70e7d17c55\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"barn\", \"definite\": true, \"span\": \"the barn\"}, {\"t\": \"witness\", \"id\": \"x2\", \"class\": \"floor\", \"definite\": true, \"span\": \"the floor\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"clean\", \"actor\": \"@n1\", \"patient\": \"@x1\", \"tense\": \"past\", \"span\": \"Teodor cleaned the barn\"}, {\"t\": \"activity\", \"id\": \"e2\", \"verb\": \"sweep\", \"actor\": \"@n1\", \"patient\": \"@x2\", \"tense\": \"present\", \"span\": \"sweeping the floor\"}, {\"t\": \"oblique\", \"id\": \"a1\", \"event\": \"@e1\", \"head\": \"By\", \"complement\": [\"@e2\"], \"span\": \"by sweeping the floor\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s70e7d17c55",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "barn",
+        "definite": true,
+        "span": "the barn"
+      },
+      {
+        "t": "witness",
+        "id": "x2",
+        "class": "floor",
+        "definite": true,
+        "span": "the floor"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "clean",
+        "actor": "@n1",
+        "patient": "@x1",
+        "tense": "past",
+        "span": "Teodor cleaned the barn"
+      },
+      {
+        "t": "activity",
+        "id": "e2",
+        "verb": "sweep",
+        "actor": "@n1",
+        "patient": "@x2",
+        "tense": "present",
+        "span": "sweeping the floor"
+      },
+      {
+        "t": "oblique",
+        "id": "a1",
+        "event": "@e1",
+        "head": "By",
+        "complement": [
+          "@e2"
+        ],
+        "span": "by sweeping the floor"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "2f3c68208265ec4d36c5565dbff575774dfa151dab0f5b72e7ac622888cb1b1d",
+  "manifest_id": "73ea89e8548c",
+  "run": 1,
+  "case": {
+    "template": "oblique",
+    "section": "held_out",
+    "index": 19,
+    "category": "positive",
+    "text": "Teodor cleaned the barn by sweeping the floor.",
+    "key": "70e7d17c55"
+  }
+}

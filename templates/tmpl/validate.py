@@ -20,7 +20,8 @@ Checks, in order:
   predication with filler slots none of which is filled (``bare-predication``) unless it is the
   content, directly or through another scope, of a scope whose refs slot declares
   ``bare_content`` (an imperative's addressee is implicit), a refs slot marked ``participant: true`` is
-  filled (a quality of an action: the clause is the participant), an optional
+  filled (a quality of an action: the clause is the participant), or an oblique with an object
+  attaches to it (a prepositional passive with no by-phrase: the leak was dealt with), an optional
   scope with an empty ``refs`` list (``empty-scope``);
 * statement lints on what was emitted: a variable in a statement that is no rule (``free-variable``: a
   referent tied to a rule's range from outside the rule; the statement is not a fact);
@@ -185,6 +186,9 @@ def lints(insts: list, catalog: dict, unmapped: list, text: str | None = None) -
                     if E.is_ref(x):
                         bare_ok.add(x[1:])
                         bare_ok |= content_of(x[1:], set())
+    for r in insts:                             # a prepositional verb's object rides on an oblique (the leak was dealt with)
+        if r.get("t") == "oblique" and E.is_ref(r.get("event")) and (r.get("object") not in (None, "") or r.get("complement")):
+            bare_ok.add(r["event"][1:])
     covered = text is not None and _covers_text(insts, text)   # a bare-phrase text ("Yusra, a locksmith") is its referent alone
     out = []
     for r in insts:

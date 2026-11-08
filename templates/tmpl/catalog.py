@@ -242,6 +242,9 @@ def check_template(t: dict, path: str) -> list[str]:
         for key in ("if_filled", "each"):
             if key in e and e[key] not in slots:
                 problems.append(f"emits[{i}]: {key} names unknown slot {e[key]}")
+        for key in ("if_stative", "unless_stative"):
+            if key in e and (slots.get(e[key]) or {}).get("type") != "refs":
+                problems.append(f"emits[{i}]: {key} must name a refs slot of the template")
         if "when" in e:
             problems += [f"emits[{i}]: {m}" for m in check_when(e["when"], slots, lexicon)]
         if "project" in e and not isinstance(e["project"], bool):

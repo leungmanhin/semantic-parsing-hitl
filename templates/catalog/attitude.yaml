@@ -36,6 +36,11 @@ trigger:
     factive adjectives — aware, glad, sorry, surprised, upset, proud, and happy or angry with a
     that-clause — presuppose the complement; sure, certain, confident, convinced, afraid,
     worried and every infinitival stance do not.
+    An ATTRIBUTION — according to X, P; P, according to X — is the same construction with no
+    verb: X (a person, a body or a document) is the holder, P the content, `verb` according_to,
+    `factive` false and tense present (the attribution has no tense of its own; the clause keeps
+    its own). The clause is X's claim, sealed, and the sentence commits to nothing more, as with
+    X says that P.
   verbs: [believe, think, suppose, assume, suspect, doubt, hope, fear, expect, claim, say,
           want, wish, prefer, intend, plan, decide, promise, agree, offer, vow,
           know, realize, discover, learn, notice, remember, regret]
@@ -53,6 +58,8 @@ trigger:
     - "<holder> V <object> to <V2> …"            # expects Odile to come: the object acts in it
     - "<holder> would like / love to <V2> …"     # a wish: want, present, the words in `word`
     - "<holder> would rather <V2> …"             # prefer, present, the words in `word`
+    - "According to <holder>, <clause>"          # an attribution: verb according_to, not factive, present
+    - "<clause>, according to <holder>"          # the same, after the clause
     - "<event noun> was <place> <time>, <holder> V-ed"   # the closure was in the granary on Friday, Marisol said: the content names the eventive witness; its place and time follow it
   boundary:                   # looks like an attitude but is not one
     - >-
@@ -91,13 +98,13 @@ trigger:
 
 slots:
   id:      {type: id, required: true, doc: "your label for the attitude event"}
-  verb:    {type: lemma, class: Class, required: true, doc: "the attitude verb lemma, or the adjective of an adjectival attitude (is sure / aware / glad that P, is eager / ready to V), lemmatized"}
+  verb:    {type: lemma, class: Class, required: true, doc: "the attitude verb lemma, or the adjective of an adjectival attitude (is sure / aware / glad that P, is eager / ready to V), lemmatized; according_to for an attribution (according to X, P)"}
   holder:  {type: filler, class: Entity, role: Experiencer, required: true,
-            doc: "who holds the attitude: the subject"}
+            doc: "who holds the attitude: the subject; for an attribution, the source named after according to (a person, a body, a document)"}
   content: {type: refs, class: Proposition, required: true,
             doc: "the complement clause: the ids of the instances that state it, that is its predication or the scope operator (negation, modal) over that predication; for an infinitival complement, its predication with the holder (or the object) as its actor; the referents it mentions are not listed — except an EVENT NOUN predicated of a place or a time by be (the closure was in the granary on Friday, Marisol said), which has no predication: list the eventive witness itself, and its place and time follow it into the seal; an EXISTENTIAL complement (Marisol suspects that there is a stork) is the indefinite witness itself, sealed whole — its existence is the claim; never an attachment (a time, an oblique, a purpose): it follows its head"}
   factive: {type: bool, required: true,
-            doc: "true when the verb or adjective presupposes the complement (know, realize, discover, learn, notice, remember, regret; aware, glad, sorry, surprised, upset, proud, happy / angry that), false otherwise (believe, think, suppose, assume, suspect, doubt, hope, fear, expect, claim, say, want, wish, intend, plan, decide, promise, agree; sure, certain, confident, convinced, afraid, worried, and every adjective with a to-infinitive)"}
+            doc: "true when the verb or adjective presupposes the complement (know, realize, discover, learn, notice, remember, regret; aware, glad, sorry, surprised, upset, proud, happy / angry that), false otherwise (believe, think, suppose, assume, suspect, doubt, hope, fear, expect, claim, say, want, wish, intend, plan, decide, promise, agree; sure, certain, confident, convinced, afraid, worried, and every adjective with a to-infinitive; an attribution, according_to)"}
   tense:   {type: enum, values: [past, present, future], required: true,
             doc: "the attitude clause's tense; present is recorded, not inferred"}
   word:    {type: string, required: false,
@@ -190,6 +197,16 @@ examples:
         - {t: transfer, id: e1, verb: sell, giver: "@n2", object: "@x1", tense: past, span: "Odile sold the bobbin"}
         - {t: attitude, id: a1, verb: say, holder: "@n1", content: ["@e1"], factive: false,
            tense: past, span: "Pieter said that Odile sold the bobbin"}
+    - category: positive
+      note: an attribution — the source is the holder, the clause sealed; verb according_to, present, not factive
+      text: "According to Pieter, Odile sold the bobbin."
+      instances:
+        - {t: named-entity, id: n1, name: "Pieter", span: "Pieter"}
+        - {t: named-entity, id: n2, name: "Odile", span: "Odile"}
+        - {t: witness, id: x1, class: bobbin, definite: true, span: "the bobbin"}
+        - {t: transfer, id: e1, verb: sell, giver: "@n2", object: "@x1", tense: past, span: "Odile sold the bobbin"}
+        - {t: attitude, id: a1, verb: according_to, holder: "@n1", content: ["@e1"], factive: false,
+           tense: present, span: "According to Pieter, Odile sold the bobbin"}
     - category: positive
       note: a perception verb with a that-clause is a factive attitude
       text: "Pieter saw that Odile sold the bobbin."
@@ -458,3 +475,19 @@ examples:
         - {t: named-entity, id: n1, name: "Teodor"}
         - {t: witness, id: x1, class: ghost}
         - {t: attitude, id: a1, verb: think, holder: "@n1", content: ["@x1"], factive: false, tense: present}
+    - category: positive
+      note: an attribution before the clause — the source's claim, sealed; the gate presupposed
+      text: "According to Lamine, the gate is open."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: x1, class: gate, definite: true}
+        - {t: copular, id: c1, subject: "@x1", predicate: open, form: adjective, tense: present}
+        - {t: attitude, id: a1, verb: according_to, holder: "@n1", content: ["@c1"], factive: false, tense: present}
+    - category: positive
+      note: an attribution after the clause, a document as the source
+      text: "The ferret escaped, according to the ledger."
+      instances:
+        - {t: witness, id: x1, class: ferret, definite: true}
+        - {t: witness, id: x2, class: ledger, definite: true}
+        - {t: motion, id: m1, verb: escape, mover: "@x1", tense: past}
+        - {t: attitude, id: a1, verb: according_to, holder: "@x2", content: ["@m1"], factive: false, tense: present}

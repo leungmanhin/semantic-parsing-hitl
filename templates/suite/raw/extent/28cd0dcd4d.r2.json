@@ -1,0 +1,103 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "c54f74eeb310b41d38762d14aca76799d961fa90279b92a27a86d7d86d1fbaca",
+  "item": {
+    "id": "s28cd0dcd4d",
+    "text": "Teodor was very sure that Lamine left."
+  },
+  "usage": {
+    "input": 116834,
+    "output": 220,
+    "thinking": null,
+    "total": 117054,
+    "cached": null,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 116834,
+    "candidatesTokenCount": 220,
+    "totalTokenCount": 117054,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 116834
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 220
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s28cd0dcd4d\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"motion\", \"id\": \"e1\", \"verb\": \"leave\", \"mover\": \"@n2\", \"tense\": \"past\", \"span\": \"Lamine left\"}, {\"t\": \"attitude\", \"id\": \"e2\", \"verb\": \"sure\", \"holder\": \"@n1\", \"content\": [\"@e1\"], \"factive\": false, \"tense\": \"past\", \"span\": \"Teodor was very sure that Lamine left\"}, {\"t\": \"extent\", \"id\": \"a1\", \"event\": \"@e2\", \"level\": \"very\", \"span\": \"very\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s28cd0dcd4d",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "motion",
+        "id": "e1",
+        "verb": "leave",
+        "mover": "@n2",
+        "tense": "past",
+        "span": "Lamine left"
+      },
+      {
+        "t": "attitude",
+        "id": "e2",
+        "verb": "sure",
+        "holder": "@n1",
+        "content": [
+          "@e1"
+        ],
+        "factive": false,
+        "tense": "past",
+        "span": "Teodor was very sure that Lamine left"
+      },
+      {
+        "t": "extent",
+        "id": "a1",
+        "event": "@e2",
+        "level": "very",
+        "span": "very"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "2f3c68208265ec4d36c5565dbff575774dfa151dab0f5b72e7ac622888cb1b1d",
+  "manifest_id": "73ea89e8548c",
+  "run": 2,
+  "case": {
+    "template": "extent",
+    "section": "held_out",
+    "index": 17,
+    "category": "positive",
+    "text": "Teodor was very sure that Lamine left.",
+    "key": "28cd0dcd4d"
+  }
+}

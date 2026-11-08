@@ -1,0 +1,92 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "c54f74eeb310b41d38762d14aca76799d961fa90279b92a27a86d7d86d1fbaca",
+  "item": {
+    "id": "sdd24116fc9",
+    "text": "Initially, Lamine laughed."
+  },
+  "usage": {
+    "input": 116831,
+    "output": 132,
+    "thinking": null,
+    "total": 116963,
+    "cached": 114782,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 116831,
+    "candidatesTokenCount": 132,
+    "totalTokenCount": 116963,
+    "cachedContentTokenCount": 114782,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 116831
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 114782
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 132
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sdd24116fc9\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"laugh\", \"actor\": \"@n1\", \"tense\": \"past\", \"span\": \"Lamine laughed\"}, {\"t\": \"time\", \"id\": \"t1\", \"event\": \"@e1\", \"name\": \"initially\", \"span\": \"Initially\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sdd24116fc9",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "laugh",
+        "actor": "@n1",
+        "tense": "past",
+        "span": "Lamine laughed"
+      },
+      {
+        "t": "time",
+        "id": "t1",
+        "event": "@e1",
+        "name": "initially",
+        "span": "Initially"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "2f3c68208265ec4d36c5565dbff575774dfa151dab0f5b72e7ac622888cb1b1d",
+  "manifest_id": "73ea89e8548c",
+  "run": 2,
+  "case": {
+    "template": "time",
+    "section": "held_out",
+    "index": 9,
+    "category": "positive",
+    "text": "Initially, Lamine laughed.",
+    "key": "dd24116fc9"
+  }
+}

@@ -100,6 +100,7 @@
 (: ConditionalProperty (-> Class Class Class Proposition))
 (: ConditionalProperty (-> Class Class Entity Proposition))
 (: Consequently (-> Event Event Proposition))
+(: Continues (-> Event Proposition))
 (: Coref (-> Instance Instance Proposition))
 (: Counterfactual (-> Proposition Proposition Proposition))
 (: Day (-> TimeTerm Number Proposition))

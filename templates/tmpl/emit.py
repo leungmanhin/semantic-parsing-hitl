@@ -29,7 +29,10 @@ slot values with ``slot == value`` / ``slot != value`` clauses joined by ``and``
 list of the template's ``lexicon`` (a fact about the words, applied here, never judged by the
 parser), ``project: true`` emits the shape
 at the top level whatever scope the instance sits in (a presupposition projects through
-negation), and ``within: <refs slot>`` renders the shape INSIDE that slot's bundle, under the
+negation), ``if_stative`` / ``unless_stative: <refs slot>`` emit the shape only when every instance
+the slot names is (or is not) a STATE predication — a template that mints its state on demand: a
+copular, a locative, a degree … (a continuation of a state, remained closed, is marked apart from a
+phase of an action, kept reading) —, and ``within: <refs slot>`` renders the shape INSIDE that slot's bundle, under the
 same variable / skolem substitution as the bundle (a rule over occasions adds ``(Time
 (sk_swim $t) $t)`` to its consequent); in such a shape a refs-slot placeholder stands for the
 symbol of the first instance the slot names, not for the bundle.
@@ -415,6 +418,11 @@ class _Emitter:
         stem_slot = m.get("stem")
         stem = r.get(stem_slot) if stem_slot else m.get("literal") or r.get("verb") or r.get("class") or self.cat[r["t"]]["id"]
         return slug(stem)
+
+    def all_stative(self, refs) -> bool:
+        """Every instance a refs value names is a state predication (its template mints on demand)."""
+        ids = [x[1:] for x in (refs or []) if is_ref(x) and x[1:] in self.by_id]
+        return bool(ids) and all(self.is_on_demand(i) for i in ids)
 
     def is_on_demand(self, iid: str) -> bool:
         """A predication whose template mints its state only on demand (a copular, a locative, a degree …)."""
@@ -985,6 +993,10 @@ class _Emitter:
             if "if_filled" in e and r.get(e["if_filled"]) in (None, [], ""):
                 continue
             if "when" in e and not holds(e["when"], r, t.get("lexicon")):
+                continue
+            if "if_stative" in e and not self.all_stative(r.get(e["if_stative"])):
+                continue
+            if "unless_stative" in e and self.all_stative(r.get(e["unless_stative"])):
                 continue
             shape = parse_shape(e["atom"])
             for sym, cls in (e.get("declare") or {}).items():

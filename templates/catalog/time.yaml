@@ -22,7 +22,10 @@ trigger:
     one (in 2019, in May, on 3 May 2019, on Monday), a clock time (at 3 pm, at 2:30 pm, at noon,
     at midnight), a deictic relative to the moment the text speaks from (now, today, tonight,
     yesterday, tomorrow, last / this / next week, month or year), a time named by a word (at
-    dawn, at night, in autumn, later, this morning), a measured distance from an anchor (three
+    dawn, at night, in autumn, later, this morning), a VAGUE OR SEQUENCE TIME ADVERB named by its
+    word (recently, lately, previously, formerly, earlier, originally, initially, at first,
+    eventually, finally, ultimately, soon, shortly: the word the time's name, at_first joined;
+    currently and at present are the deictic now), a measured distance from an anchor (three
     days ago, a year ago, in two weeks, two days after the inspection, a week later), or an anaphoric
     phrase naming a time by one the text stated before it (that evening, the same day, the next
     day, the following morning, the week after). The event is parsed with its own template; the
@@ -53,6 +56,7 @@ trigger:
     - "<clause> at <clock time>"                     # left at 3 pm; arrived at noon
     - "<clause> <deictic>"                           # laughed yesterday; will leave tomorrow; left last week
     - "<clause> <named time>"                        # slept at night; sang at dawn
+    - "<subject> recently / eventually / initially <V> …"   # Odile eventually left: the named time eventually
     - "<time>, <clause>"                             # In 2019, Pieter arrived
     - "<event noun> is / was at / on <time>"         # the session is at noon; the inspection was on Monday
     - "the <year> <event noun>"                      # the 1904 flood: the flood eventive, this instance on it
@@ -98,7 +102,7 @@ slots:
   props:   {type: list, class: Class, required: false,
             doc: "the adjectives on an undated time's noun, each a lemma (a foggy day: foggy)"}
   name:    {type: lemma, class: TimeTerm, required: false,
-            doc: "a time named by a word or a fixed phrase that no deictic word covers, lowercase, joined with underscores: dawn, dusk, morning, afternoon, evening, night, spring, summer, autumn, winter, later, this_morning; fill no field beside it"}
+            doc: "a time named by a word or a fixed phrase that no deictic word covers, lowercase, joined with underscores: dawn, dusk, morning, afternoon, evening, night, spring, summer, autumn, winter, later, this_morning; a vague or sequence time adverb as written: recently, lately, previously, formerly, earlier, originally, initially, at_first, eventually, finally, ultimately, soon, shortly, once (meaning formerly); fill no field beside it"}
   offset:  {type: number, required: false,
             doc: "a measured distance from the anchor: the number of units (three days ago → 3, a week later → 1, that evening → 0 day); fill unit and direction with it, no calendar field"}
   unit:    {type: lemma, class: Class, required: false,
@@ -356,6 +360,29 @@ examples:
         - {t: named-entity, id: n1, name: "Ottoline"}
         - {t: activity, id: v1, verb: sing, actor: "@n1", tense: past}
         - {t: time, id: t1, event: "@v1", name: dawn}
+    - category: positive
+      note: a vague time adverb — the word is the time's name, like later
+      text: "Yusra recently sold the quilt."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, class: quilt, definite: true}
+        - {t: transfer, id: e1, verb: sell, giver: "@n1", object: "@x1", tense: past}
+        - {t: time, id: t1, event: "@e1", name: recently}
+    - category: positive
+      note: a sequence adverb — the word is the time's name
+      text: "Teodor eventually left the mill."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, class: mill, definite: true}
+        - {t: motion, id: m1, verb: leave, mover: "@n1", source: "@x1", tense: past}
+        - {t: time, id: t1, event: "@m1", name: eventually}
+    - category: positive
+      note: a sequence adverb opening the clause
+      text: "Initially, Lamine laughed."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past}
+        - {t: time, id: t1, event: "@v1", name: initially}
     - category: positive
       note: a deictic after the reference time, with a future event
       text: "Teodor will leave tomorrow."

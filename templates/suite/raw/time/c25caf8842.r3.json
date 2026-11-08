@@ -1,0 +1,93 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "c54f74eeb310b41d38762d14aca76799d961fa90279b92a27a86d7d86d1fbaca",
+  "item": {
+    "id": "sc25caf8842",
+    "text": "Teodor eventually left the mill."
+  },
+  "usage": {
+    "input": 116831,
+    "output": 172,
+    "thinking": null,
+    "total": 117003,
+    "cached": null,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 116831,
+    "candidatesTokenCount": 172,
+    "totalTokenCount": 117003,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 116831
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 172
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sc25caf8842\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"mill\", \"definite\": true, \"span\": \"the mill\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n1\", \"source\": \"@x1\", \"tense\": \"past\", \"span\": \"Teodor eventually left the mill\"}, {\"t\": \"time\", \"id\": \"t1\", \"event\": \"@m1\", \"name\": \"eventually\", \"span\": \"eventually\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sc25caf8842",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "mill",
+        "definite": true,
+        "span": "the mill"
+      },
+      {
+        "t": "motion",
+        "id": "m1",
+        "verb": "leave",
+        "mover": "@n1",
+        "source": "@x1",
+        "tense": "past",
+        "span": "Teodor eventually left the mill"
+      },
+      {
+        "t": "time",
+        "id": "t1",
+        "event": "@m1",
+        "name": "eventually",
+        "span": "eventually"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "2f3c68208265ec4d36c5565dbff575774dfa151dab0f5b72e7ac622888cb1b1d",
+  "manifest_id": "73ea89e8548c",
+  "run": 3,
+  "case": {
+    "template": "time",
+    "section": "held_out",
+    "index": 8,
+    "category": "positive",
+    "text": "Teodor eventually left the mill.",
+    "key": "c25caf8842"
+  }
+}

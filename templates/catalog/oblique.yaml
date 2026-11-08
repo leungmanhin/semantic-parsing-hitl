@@ -11,7 +11,12 @@
 # template takes the rest. A multi-word preposition keeps its words as the head, CamelCased —
 # (BecauseOf sk_laugh_1 sk_rain_1), (DueTo sk_delay_1 sk_rain_1), (InSpiteOf sk_sing_1 sk_rain_1)
 # —, and the background rules read each causal one (because of, due to, owing to, thanks to, on
-# account of) as Because.
+# account of) as Because. A GERUND CLAUSE as the object (left without waving, accused of hiding the
+# quilt) is sealed as one term under the preposition, as an adjective's or a psych verb's gerund
+# complement is: (Without sk_leave_1 (And (Member sk_wave_1 wave) (Agent sk_wave_1 sk_lamine_1))).
+# Whether the action happened is not stated by the parse — by V-ing says it did, without V-ing that
+# it did not, accused of V-ing neither —: the preposition is kept, and the reading is a background
+# matter per preposition.
 
 id: oblique
 family: attachment
@@ -38,7 +43,21 @@ trigger:
     be (the closure was due to the hail) attaches to that eventive witness, with the clause's
     tense in `tense`. One instance per phrase. Decide by the question the phrase answers: where,
     when, whence, whither, by what means, with whom, for whose benefit and how go to the
-    templates that own them; everything else comes here.
+    templates that own them; everything else comes here. A GERUND CLAUSE as the object — left
+    without locking the hatch, mended the barrow by replacing the wheel, was accused of
+    stealing the trowel, decided against selling the granary, complained about waiting — is
+    parsed with its own template, its actor the one the phrase is about (the clause's subject;
+    the object of a verb of accusing, charging, blaming or thanking: accused Pieter of stealing
+    → Pieter; none when the text names no one), tense present, and listed in `complement`,
+    sealed as one term under the preposition, with no `object`: the parse does not say whether
+    the action happened (by replacing the wheel: it did; without locking the hatch: it did not;
+    accused of stealing: neither) — the preposition and the verb are the record. A BARE-LEMMA
+    OBJECT keeps the words that narrow it: its adjectives in `object_props`, the nouns before it
+    in `object_mods` (argued about wet weather: weather, object_props [wet]; dealt with harbour
+    pilots: pilot, object_mods [harbour]). A PREPOSITIONAL PASSIVE — the hatch was looked into,
+    the rules were complied with by Pieter — is the active's phrase: the verb's own template
+    with no stated actor or the by-phrase as its actor, and this instance with the subject as
+    the object, the stranded preposition the head.
   surface_forms:
     - "<clause> about / against / over / on <object>"   # talked about the inspection; voted against the plan
     - "<clause> for / at / to / with <object>"          # waited for Pieter; dealt with the inspection: a prepositional verb's object
@@ -50,6 +69,9 @@ trigger:
     - "<clause> amid <object>"                          # stumbled amid the rubble: Amid, as written, beside Among
     - "<clause> before <person or body>"                # spoke before the council: Before, in whose presence; before a time or an event is a time relation
     - "<event noun> was due to <object>"                # predicated of an event noun by be: on the eventive witness, the clause's tense recorded
+    - "<clause> without / by / of / against / about <V>-ing …"   # left without locking the hatch: the gerund's clause sealed in `complement`, no object
+    - "<clause> <preposition> <adjective> <noun>"       # argued about wet weather: the bare lemma, object_props [wet]
+    - "<subject> was V-ed <preposition> (by <actor>)"   # the rules were complied with: a prepositional passive, the subject the object
   boundary:                   # looks like an oblique but is not one
     - >-
       where the event takes place — in the granary, at the bazaar, on the roof, near the hut: a
@@ -79,9 +101,10 @@ trigger:
       a comparison — taller than Marisol, as tall as Pieter: the comparative template; a than-phrase
       is never an oblique
     - >-
-      a gerund clause as the object — without saying a word, by working hard: not yet (without
-      denies the event, by asserts it: a scope question); report the phrase as unmapped; a gerund
-      after a temporal preposition — after leaving: a time relation
+      a gerund after a temporal preposition — after leaving, before eating: a time relation, its
+      clause one of its own; a gerund as the direct object of a verb no template takes it with —
+      justified closing the granary, ruled out selling the barrow — or as the subject of a clause
+      — selling the barrow saved the farm: no slot yet; report the gerund clause as unmapped (G00)
     - >-
       a multi-word preposition that is neither a cause nor a concession nor a place — instead of
       Odile, on behalf of Marisol: no head yet; report the phrase as unmapped (in front of and next
@@ -105,13 +128,25 @@ slots:
            required: true, doc: "the preposition as written, capitalized (about → About, without → Without), a multi-word one CamelCased (because of → BecauseOf, due to → DueTo, owing to → OwingTo, thanks to → ThanksTo, on account of → OnAccountOf, in spite of → InSpiteOf); never a synonym"}
   object2: {type: filler, class: Entity, required: false, only_when: "head == Between",
            doc: "with head Between only, the second of the two (mediated between Femke and Ludo: Ludo); the order as written"}
-  object: {type: filler, class: Entity, required: true,
-           doc: "the phrase's object: a referent id (a witness, a name) for a specific thing, or a bare lemma for a non-specific or class-level one (as a weaver → weaver, without a blanket → blanket, like a bird → bird)"}
+  object: {type: filler, class: Entity, required: false, narrowed_by: [object_props, object_mods],
+           doc: "the phrase's object: a referent id (a witness, a name) for a specific thing, or a bare lemma for a non-specific or class-level one (as a weaver → weaver, without a blanket → blanket, like a bird → bird); absent when the object is a gerund clause (complement)"}
+  object_props: {type: list, class: Class, restriction: Member, required: false,
+           doc: "with a bare-lemma object, the adjectives on it (argued about wet weather: wet)"}
+  object_mods: {type: list, class: Class, ids: [named-entity, time], required: false,
+           doc: "with a bare-lemma object, the nouns before it (dealt with harbour pilots: harbour), as the mods of Nouns before nouns"}
+  complement: {type: refs, class: Proposition, required: false, bare_content: true,
+           doc: "a GERUND CLAUSE as the object (without locking the hatch, by replacing the wheel, accused of stealing the trowel): the id of its predication, parsed with its own template — its actor the clause's subject, or the object of a verb of accusing, charging, blaming or thanking, or none when the text names no one —, tense present; sealed under the preposition, never together with object; the referents it mentions are not listed"}
   tense:  {type: enum, values: [past, present, future], required: false,
            doc: "only when the phrase is predicated of an event noun by be (the closure was due to the hail): the clause's tense; otherwise absent, the event's own template records it"}
 
+one_of: [[object, complement]]
+
 emits:
-  - atom: "({head} {event} {object} {object2|opt})"
+  - atom: "({head} {event} {object|mod} {object2|opt})"
+    if_filled: object
+    with_head: object                         # argued about wet weather: about weather too
+  - atom: "({head} {event} {complement})"     # a gerund clause as the object, sealed as one term
+    if_filled: complement
   - atom: "(Past {event})"                  # predicated of an event noun by be: the clause's tense on that event
     when: "tense == past"
   - atom: "(Future {event})"
@@ -173,6 +208,15 @@ examples:
         - {t: named-entity, id: n1, name: "Pieter", span: "Pieter"}
         - {t: activity, id: v1, verb: work, actor: "@n1", tense: past, span: "Pieter worked"}
         - {t: oblique, id: a1, event: "@v1", head: As, object: weaver, span: "as a weaver"}
+    - category: positive
+      note: a gerund clause as the object — its actor the clause's subject, sealed under the preposition; no object
+      text: "Odile left without locking the hatch."
+      instances:
+        - {t: named-entity, id: n1, name: "Odile", span: "Odile"}
+        - {t: witness, id: x1, class: hatch, definite: true, span: "the hatch"}
+        - {t: motion, id: m1, verb: leave, mover: "@n1", tense: past, span: "Odile left"}
+        - {t: activity, id: v1, verb: lock, actor: "@n1", patient: "@x1", tense: present, span: "locking the hatch"}
+        - {t: oblique, id: a1, event: "@m1", head: Without, complement: ["@v1"], span: "without locking the hatch"}
     - category: abstain
       text: "Marisol laughed in the granary."
       expected: {abstain: true, template: location}                   # where
@@ -307,9 +351,63 @@ examples:
     - category: abstain
       text: "Yusra left after the audit."
       expected: {abstain: true, template: time-relation}              # a time relation
-    - category: abstain
-      text: "Lamine left without saying a word."
-      expected: {abstain: true, gap: G00, span: "without saying a word"}   # a gerund as the object
+    - category: positive
+      note: a gerund clause as the object — the clause's subject its actor, sealed under Without
+      text: "Lamine left without waving."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: motion, id: m1, verb: leave, mover: "@n1", tense: past}
+        - {t: activity, id: v1, verb: wave, actor: "@n1", tense: present}
+        - {t: oblique, id: a1, event: "@m1", head: Without, complement: ["@v1"]}
+    - category: positive
+      note: a means stated by a gerund — sealed under By like any gerund object; the parse does not assert the sweeping
+      text: "Teodor cleaned the barn by sweeping the floor."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, class: barn, definite: true}
+        - {t: witness, id: x2, class: floor, definite: true}
+        - {t: activity, id: v1, verb: clean, actor: "@n1", patient: "@x1", tense: past}
+        - {t: activity, id: v2, verb: sweep, actor: "@n1", patient: "@x2", tense: present}
+        - {t: oblique, id: a1, event: "@v1", head: By, complement: ["@v2"]}
+    - category: positive
+      note: a gerund after for on a passive — the one punished is the gerund's actor
+      text: "Ottoline was punished for hiding the ferret."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: witness, id: x1, class: ferret, definite: true}
+        - {t: activity, id: v1, verb: punish, patient: "@n1", tense: past}
+        - {t: activity, id: v2, verb: hide, actor: "@n1", patient: "@x1", tense: present}
+        - {t: oblique, id: a1, event: "@v1", head: For, complement: ["@v2"]}
+    - category: positive
+      note: a bare-lemma object keeps its adjective in object_props
+      text: "Yusra waited for warm weather."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: activity, id: v1, verb: wait, actor: "@n1", tense: past}
+        - {t: oblique, id: a1, event: "@v1", head: For, object: weather, object_props: [warm]}
+    - category: positive
+      note: a prepositional passive with its by-phrase — the subject is the object, the by-phrase the actor
+      text: "The rule was complied with by Teodor."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, class: rule, definite: true}
+        - {t: activity, id: v1, verb: comply, actor: "@n1", tense: past}
+        - {t: oblique, id: a1, event: "@v1", head: With, object: "@x1"}
+    - category: positive
+      note: a prepositional passive with no by-phrase — no actor; the oblique carries the verb's object
+      text: "The leak was dealt with."
+      instances:
+        - {t: witness, id: x1, class: leak, definite: true}
+        - {t: activity, id: v1, verb: deal, tense: past}
+        - {t: oblique, id: a1, event: "@v1", head: With, object: "@x1"}
+    - category: positive
+      note: past as a path on a motion — the head Past, emitted PastPlace
+      text: "Teodor walked past the mill."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, class: mill, definite: true}
+        - {t: motion, id: m1, verb: walk, mover: "@n1", tense: past}
+        - {t: oblique, id: a1, event: "@m1", head: Past, object: "@x1"}
     - category: abstain
       text: "Teodor is taller than Yusra."
       expected: {abstain: true, template: comparative}                # a comparison with a standard

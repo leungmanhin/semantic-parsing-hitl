@@ -2,7 +2,7 @@
 
 Generated from `templates/atom-type-substrates.json` (schema `atom-type-substrates/1`) by `templates/tmpl/gen_substrate.py`, together with `templates/generated/atom-types.metta`. Do not edit by hand; regenerate with `cd templates && python -m tmpl.gen_substrate`.
 
-167 heads in 14 kinds (7 proposed; 167 with a reviewed type declaration so far). `type-def` is the PeTTa declaration emitted for the head; `?` as the output type means the head is not yet reviewed and is absent from the `.metta` file; `%Undefined%` marks a position the head takes but the JSON does not type.
+168 heads in 14 kinds (7 proposed; 168 with a reviewed type declaration so far). `type-def` is the PeTTa declaration emitted for the head; `?` as the output type means the head is not yet reviewed and is absent from the `.metta` file; `%Undefined%` marks a position the head takes but the JSON does not type.
 
 Every atom is carried as a statement (: <proof-name> <atom> <tv>), tv = (STV strength confidence) or another engine truth value. The carrier is not an atom kind: ':' is never type-declared (it is also PeTTa's type-declaration head) and the truth value is declared by the engine, not by this substrate.
 
@@ -631,7 +631,7 @@ legacy: (: Year (-> Number TimeTerm))  ; kept until the re-parse
 gloss: Calendar year of a time instance: (Year t 2026). Legacy constructor form (Year 2026) kept until the re-parse.
 
 
-## relation (18)
+## relation (19)
 
 head: Between
 kind: relation
@@ -652,6 +652,13 @@ kind: relation
 arity: 3
 type-def: (: ConditionalProperty (-> Class Class Class Proposition))  ; and 1 more (per arity / per union alternative)
 gloss: A class-level property restricted to a place, a time or a circumstance: the class as found there has the property (otters are rare in Norfolk; cranes are rare in winter). Order: (ConditionalProperty class property restriction); the restriction is an entity (a place, a thing) or a class (a time, a circumstance). Opaque like KindProperty: distributes to no member. A member-level property under a condition is a parser-emitted rule instead, never this atom.
+
+
+head: Continues
+kind: relation
+arity: 1
+type-def: (: Continues (-> Event Proposition))
+gloss: The event's sealed Theme is a STATE that holds: the parse's record that the matrix verb continues a state (remain, stay, keep with a property or a place; the program writes it in place of Entails when the sealed complement is a state predication). The state is sealed in its own tense (remained closed: (Past (Member x closed))); a background rule derives it as sealed. Order: (Continues matrix-event).
 
 
 head: DirectionFrom

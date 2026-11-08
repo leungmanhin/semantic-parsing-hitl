@@ -18,7 +18,8 @@ trigger:
     result) or a finite clause introduced by "that" or bare. Verbs that take an addressee by
     nature (tell, inform, notify, remind, warn, text, phone) belong here even when the text
     leaves the addressee out; a reporting verb (say, claim, report, announce, explain,
-    mention) belongs here only when an addressee is stated. A request or an instruction (asked
+    mention) belongs here only when an addressee is stated or the message is a noun phrase
+    (announced the verdict, said the reverse: the message filled, no addressee). A request or an instruction (asked
     Henrike to send the blanket, told Odile to lock the hut) is a message too: its content is
     an imperative instance over the requested clause, whose actor is the addressee.
   verbs: [tell, inform, notify, remind, warn, announce, report, explain, mention, say, write,
@@ -37,8 +38,9 @@ trigger:
     - "<addressee> was asked about <topic>"      # a topic alone: neither message nor content; the topic an oblique About on the event
   boundary:                   # looks like a communication but is not one
     - >-
-      a reporting verb with no addressee — said that P, claimed that P, announced that P: the
-      subject's attitude towards the clause; nothing is conveyed to anyone
+      a reporting verb with no addressee and a CLAUSE — said that P, claimed that P, announced
+      that P: the subject's attitude towards the clause; nothing is conveyed to anyone (with a
+      noun-phrase message and no addressee — announced the verdict: this template)
     - >-
       an impersonal report — it is reported that P, Marisol is said to V, they say that P: no
       speaker; the hedge template over the clause
@@ -280,3 +282,10 @@ examples:
         - {t: communication, id: e1, verb: ask, addressee: "@n1", tense: present}
         - {t: oblique, id: a1, event: "@e1", head: About, object: "@x1"}
         - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: past}
+    - category: positive
+      note: a reporting verb with a noun-phrase message and no addressee — this template, the message filled
+      text: "Ottoline announced the winner."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: witness, id: x1, class: winner, definite: true}
+        - {t: communication, id: e1, verb: announce, speaker: "@n1", message: "@x1", tense: past}

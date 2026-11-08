@@ -454,6 +454,29 @@ class EmitTests(unittest.TestCase):
         self.assertEqual(sum(a.startswith("(Not (And (Member sk_manage_1 manage)") and "(Entails sk_manage_1)" in a for a in denied), 1)
         self.assertIn("(Member sk_shed_1 shed)", denied)                                          # the definite shed stays presupposed
 
+    def test_a_continued_state_is_sealed_in_its_tense_and_marked_continues(self):
+        """An aspectual over a STATE (remain / stay / keep with a property or a place) seals the
+        copular or locative clause in its own tense and is marked (Continues e), not (Entails e);
+        over an action it keeps (Entails e). The program picks the mark from the complement's
+        template; under a negation the mark is inside the Not."""
+        def phase(verb, comp, negated=False):
+            inst = [{"t": "witness", "id": "x1", "class": "mill", "definite": True}, comp,
+                    {"t": "aspectual", "id": "e1", "verb": verb, "complement": [f"@{comp['id']}"], "tense": "past"}]
+            if negated:
+                inst.append({"t": "negation", "id": "s1", "over": ["@e1"]})
+            return atoms_of(E.emit({"id": "a", "instances": inst}, CATALOG)["statements"])
+        closed = {"t": "copular", "id": "c1", "subject": "@x1", "predicate": "closed", "form": "adjective", "tense": "past"}
+        state = phase("remain", closed)
+        self.assertIn("(Theme sk_remain_1 (Past (Member sk_mill_1 closed)))", state)
+        self.assertIn("(Continues sk_remain_1)", state)
+        self.assertFalse(any(a.startswith(("(Entails", "(Past (Member sk_mill_1", "(Member sk_mill_1 closed")) for a in state))
+        action = phase("keep", {"t": "change-of-state", "id": "c1", "verb": "turn", "undergoer": "@x1", "tense": "present"})
+        self.assertIn("(Entails sk_keep_1)", action)
+        self.assertFalse(any(a.startswith("(Continues") for a in action))
+        denied = phase("remain", closed, negated=True)
+        self.assertFalse(any(a.startswith(("(Continues", "(Entails")) for a in denied))
+        self.assertEqual(sum(a.startswith("(Not (And (Member sk_remain_1 remain)") and "(Continues sk_remain_1)" in a for a in denied), 1)
+
     def test_links_relate_event_symbols_and_a_purpose_seals_its_aim(self):
         """A link is one top-level atom over the two clauses' event symbols, whatever scope a clause
         sits in; a purpose seals the aim as one term, its indefinite inside, nothing asserted."""

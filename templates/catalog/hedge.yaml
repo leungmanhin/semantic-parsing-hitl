@@ -13,7 +13,7 @@
 # atom is added and no holder, speaker or attitude event is minted. A possibility word (might,
 # may, perhaps, maybe, possibly) is the modal's Might, an appearance verb (seems, looks) the
 # evidential's head, a report with a named source the source's attitude or communication, an
-# attribution (according to X) still unmapped, and a hedge on a number the measure's own slot.
+# attribution (according to X) the source's attitude, and a hedge on a number the measure's own slot.
 
 id: hedge
 family: scope
@@ -59,8 +59,8 @@ trigger:
     - >-
       a report with a NAMED or quantified source — Odile says that P, Pieter believes that P,
       some people think that P, everyone says that P: that holder's attitude or communication,
-      not an impersonal report; an attribution — according to Odile, P: no template yet, and
-      the claim is not asserted, so report the whole clause as unmapped (G00)
+      not an impersonal report; an attribution — according to Odile, P: Odile's claim, not the
+      speaker's — the attitude template with the verb according_to, the clause sealed
     - >-
       supposed to as a duty or an expectation of conduct — is supposed to wait, is supposed to
       lock the hut: the norm template's weak obligation; only a report about a fact (is supposed to be clever) is a hedge
@@ -127,8 +127,8 @@ notes:
     stated at the hearsay dial, 0.9 at 0.7, as under reportedly or supposedly, with the
     participle as the provenance; "known to be" is established, 1.0 at 0.9, as certainly is. A
     report with a source — Lamine says that P, according to Lamine — is that source's claim,
-    and the sentence commits to nothing: the attitude or communication templates seal it, and
-    the according-to attribution stays unmapped until it has a template.
+    and the sentence commits to nothing: the attitude or communication templates seal it, an
+    attribution (according to Lamine) included, as the attitude with the verb according_to.
 
 depends_on: []
 composes_with: [negation, modal, generic, attitude, copular, locative]
@@ -364,4 +364,4 @@ examples:
       expected: {abstain: true, template: norm}                       # supposed to as a duty
     - category: abstain
       text: "According to Lamine, the gate is open."
-      expected: {abstain: true, gap: G00, span: "According to Lamine, the gate is open"}   # an attribution: no template yet, the claim not asserted
+      expected: {abstain: true, template: attitude}                   # an attribution: the source's attitude, the claim sealed

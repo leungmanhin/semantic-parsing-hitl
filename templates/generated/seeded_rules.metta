@@ -281,6 +281,8 @@
 (: theme_entailed (Implication (And (Entails $m) (Theme $m $c) (Compute clause-event ($c) -> $o)) $c) (CTV (STV 1.0 0.9) (STV 0.0 0.0)))
 (: theme_entailed_past (Implication (And (Entails $m) (Theme $m $c) (Past $m) (Compute clause-event ($c) -> $o)) (And $c (Past $o))) (CTV (STV 1.0 0.9) (STV 0.0 0.0)))
 (: theme_entailed_future (Implication (And (Entails $m) (Theme $m $c) (Future $m) (Compute clause-event ($c) -> $o)) (And $c (Future $o))) (CTV (STV 1.0 0.9) (STV 0.0 0.0)))
+;; state_continued: a continuing event's sealed state holds, in the tense it is sealed in (reads: aspectual)
+(: state_continued (Implication (And (Continues $m) (Theme $m $c)) $c) (CTV (STV 1.0 0.9) (STV 0.0 0.0)))
 ;; theme_precluded: a precluding event's sealed Theme does not hold, at the event's tense (reads: control, causative) — 3 variants, by the matrix event's tense
 (: theme_precluded (Implication (And (Precludes $m) (Theme $m $c) (Compute clause-event ($c) -> $o)) (Not $c)) (CTV (STV 1.0 0.9) (STV 0.0 0.0)))
 (: theme_precluded_past (Implication (And (Precludes $m) (Theme $m $c) (Past $m) (Compute clause-event ($c) -> $o)) (Not (And $c (Past $o)))) (CTV (STV 1.0 0.9) (STV 0.0 0.0)))

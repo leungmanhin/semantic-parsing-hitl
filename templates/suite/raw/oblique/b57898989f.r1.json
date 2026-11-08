@@ -1,0 +1,111 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "c54f74eeb310b41d38762d14aca76799d961fa90279b92a27a86d7d86d1fbaca",
+  "item": {
+    "id": "sb57898989f",
+    "text": "Ottoline was punished for hiding the ferret."
+  },
+  "usage": {
+    "input": 116835,
+    "output": 227,
+    "thinking": null,
+    "total": 117062,
+    "cached": 114783,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 116835,
+    "candidatesTokenCount": 227,
+    "totalTokenCount": 117062,
+    "cachedContentTokenCount": 114783,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 116835
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 114783
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 227
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sb57898989f\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"ferret\", \"definite\": true, \"span\": \"the ferret\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"punish\", \"patient\": \"@n1\", \"tense\": \"past\", \"span\": \"Ottoline was punished\"}, {\"t\": \"activity\", \"id\": \"v2\", \"verb\": \"hide\", \"actor\": \"@n1\", \"patient\": \"@x1\", \"tense\": \"present\", \"span\": \"hiding the ferret\"}, {\"t\": \"oblique\", \"id\": \"a1\", \"event\": \"@v1\", \"head\": \"For\", \"complement\": [\"@v2\"], \"span\": \"for hiding the ferret\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sb57898989f",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Ottoline",
+        "span": "Ottoline"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "ferret",
+        "definite": true,
+        "span": "the ferret"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "punish",
+        "patient": "@n1",
+        "tense": "past",
+        "span": "Ottoline was punished"
+      },
+      {
+        "t": "activity",
+        "id": "v2",
+        "verb": "hide",
+        "actor": "@n1",
+        "patient": "@x1",
+        "tense": "present",
+        "span": "hiding the ferret"
+      },
+      {
+        "t": "oblique",
+        "id": "a1",
+        "event": "@v1",
+        "head": "For",
+        "complement": [
+          "@v2"
+        ],
+        "span": "for hiding the ferret"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "2f3c68208265ec4d36c5565dbff575774dfa151dab0f5b72e7ac622888cb1b1d",
+  "manifest_id": "73ea89e8548c",
+  "run": 1,
+  "case": {
+    "template": "oblique",
+    "section": "held_out",
+    "index": 20,
+    "category": "positive",
+    "text": "Ottoline was punished for hiding the ferret.",
+    "key": "b57898989f"
+  }
+}

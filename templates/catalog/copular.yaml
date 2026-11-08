@@ -46,8 +46,8 @@ trigger:
     - >-
       a copular verb other than be — seems tired, looks tired, tastes salty: the evidential
       template, over this template's instance; feels tired with an animate subject: a
-      sensation; remains open: an aspectual verb; became a locksmith, got tired: a change of
-      state
+      sensation; remains open, stayed warm: a continuation, the aspectual template over this
+      template's instance; became a locksmith, got tired: a change of state
     - >-
       a relational adjective or noun with its complement — married to Odile, similar to
       Pieter, a cousin of Marisol, Odile's cousin, friends with Henrike: a stative relation
@@ -306,3 +306,10 @@ examples:
       instances:
         - {t: named-entity, id: n1, name: "Ines"}
         - {t: copular, id: c1, subject: "@n1", predicate: trader, form: noun, tense: present, mods: [cotton, linen]}
+    - category: scoped
+      note: a continuation — the copular in the clause's tense, sealed under the aspectual's Theme
+      text: "The mill remained closed."
+      instances:
+        - {t: witness, id: x1, class: mill, definite: true}
+        - {t: copular, id: c1, subject: "@x1", predicate: closed, form: adjective, tense: past}
+        - {t: aspectual, id: e1, verb: remain, complement: ["@c1"], tense: past}

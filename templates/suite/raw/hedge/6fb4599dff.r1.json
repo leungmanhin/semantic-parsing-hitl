@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "08c196e30a4fe4862e0cd24e37b2d743181a1db41ad56e597d0605df397034c3",
+  "prompt_sha256": "c54f74eeb310b41d38762d14aca76799d961fa90279b92a27a86d7d86d1fbaca",
   "item": {
     "id": "s6fb4599dff",
     "text": "According to Lamine, the gate is open."
   },
   "usage": {
-    "input": 94216,
-    "output": 96,
+    "input": 116834,
+    "output": 293,
     "thinking": null,
-    "total": 94312,
-    "cached": 92164,
+    "total": 117127,
+    "cached": 114785,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -22,33 +22,34 @@
     "responseMimeType": "application/json",
     "thinkingConfig": {
       "thinkingLevel": "LOW"
-    }
+    },
+    "service_tier": "flex"
   },
   "raw_usage": {
-    "promptTokenCount": 94216,
-    "candidatesTokenCount": 96,
-    "totalTokenCount": 94312,
-    "cachedContentTokenCount": 92164,
+    "promptTokenCount": 116834,
+    "candidatesTokenCount": 293,
+    "totalTokenCount": 117127,
+    "cachedContentTokenCount": 114785,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 94216
+        "tokenCount": 116834
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 92164
+        "tokenCount": 114785
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 96
+        "tokenCount": 293
       }
     ]
   },
-  "raw_text": "{\"id\": \"s6fb4599dff\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}], \"unmapped\": [{\"span\": \"According to Lamine, the gate is open.\", \"code\": \"G00\", \"construction\": \"A clause qualified by an 'according to' attribution phrase.\"}], \"issues\": []}",
+  "raw_text": "{\n  \"id\": \"s6fb4599dff\",\n  \"instances\": [\n    {\n      \"t\": \"named-entity\",\n      \"id\": \"n1\",\n      \"name\": \"Lamine\",\n      \"span\": \"Lamine\"\n    },\n    {\n      \"t\": \"witness\",\n      \"id\": \"x1\",\n      \"class\": \"gate\",\n      \"definite\": true,\n      \"span\": \"the gate\"\n    },\n    {\n      \"t\": \"copular\",\n      \"id\": \"c1\",\n      \"subject\": \"@x1\",\n      \"predicate\": \"open\",\n      \"form\": \"adjective\",\n      \"tense\": \"present\",\n      \"span\": \"the gate is open\"\n    },\n    {\n      \"t\": \"attitude\",\n      \"id\": \"a1\",\n      \"verb\": \"according_to\",\n      \"holder\": \"@n1\",\n      \"content\": [\n        \"@c1\"\n      ],\n      \"factive\": false,\n      \"tense\": \"present\",\n      \"span\": \"According to Lamine, the gate is open\"\n    }\n  ],\n  \"unmapped\": [],\n  \"issues\": []\n}",
   "response": {
     "id": "s6fb4599dff",
     "instances": [
@@ -57,18 +58,41 @@
         "id": "n1",
         "name": "Lamine",
         "span": "Lamine"
-      }
-    ],
-    "unmapped": [
+      },
       {
-        "span": "According to Lamine, the gate is open.",
-        "code": "G00",
-        "construction": "A clause qualified by an 'according to' attribution phrase."
+        "t": "witness",
+        "id": "x1",
+        "class": "gate",
+        "definite": true,
+        "span": "the gate"
+      },
+      {
+        "t": "copular",
+        "id": "c1",
+        "subject": "@x1",
+        "predicate": "open",
+        "form": "adjective",
+        "tense": "present",
+        "span": "the gate is open"
+      },
+      {
+        "t": "attitude",
+        "id": "a1",
+        "verb": "according_to",
+        "holder": "@n1",
+        "content": [
+          "@c1"
+        ],
+        "factive": false,
+        "tense": "present",
+        "span": "According to Lamine, the gate is open"
       }
     ],
+    "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "5542c07bfd76ceb7f7c16fe6c1f32c04b4f2fbe305514f723335894a9baa7f17",
+  "prompt_body_sha256": "2f3c68208265ec4d36c5565dbff575774dfa151dab0f5b72e7ac622888cb1b1d",
+  "manifest_id": "73ea89e8548c",
   "run": 1,
   "case": {
     "template": "hedge",

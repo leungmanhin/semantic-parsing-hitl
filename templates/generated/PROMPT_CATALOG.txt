@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 23246c9b2e9890d9 · 61 templates
+catalog sha256 04e86358cf6ab406 · 61 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -88,7 +88,9 @@ fences.
 - The one pronoun that is NOT a mention: a pronoun bound by a range — "they" in "storks are
   patient if they are healthy", "it" in "every badger sleeps when it is tired" — is the range
   itself, the arbitrary member. Fill the slot with the range's id (`"subject": "@q1"`); no
-  mention instance and no coref, since there is no separate referent.
+  mention instance and no coref, since there is no separate referent. Never link a pronoun by
+  coref to a range: outside the rule that ranges over it (no badger was asleep, and no stork
+  stood near it), the pronoun has no antecedent — its mention only.
 - A TEXT of several sentences is parsed together: a later sentence's mentions of earlier
   referents are new instances linked by `coref` to the first ones.
 - A coordinated subject or object (Pieter and Marisol laughed; read the postcard and the note)
@@ -140,6 +142,11 @@ fences.
 - A phrasal or particle verb is ONE symbol joining the lemmatized verb and its particle
   (`go_out`, `break_down`, `bring_in`, `switch_on`). Never swap in a single-word synonym, never
   split off or drop the particle.
+- A PREPOSITIONAL PASSIVE — the rules were complied with, the hatch was looked into, Henrike was
+  relied on — keeps the verb's lemma without the preposition (comply, look, rely) and puts the
+  subject where the active puts the prepositional object: an oblique's object on the event
+  (With, Into), a stative relation's or a psych verb's object slot; a by-phrase is the actor,
+  and with none the actor is absent.
 - A fixed multi-word idiom is one surface symbol keeping every word (`spill_the_beans`), used
   only when the literal reading is incoherent for these participants; take the literal reading
   whenever it is available.
@@ -181,10 +188,13 @@ fences.
   Having V-ed is aspect perfect.
 - KNOWN AS — also known as, better known as, called, nicknamed + a name (Femke, known as Nell):
   a second name of the same individual, the named entity's `aliases`; no clause. After a common
-  noun, called / named + a name is that noun's individual (a nephew called Ludo: Ludo, the noun
-  his class or his relation), not a second name. An infinitive after a noun (a house to rent,
-  the man to ask) and a free relative (what Joost said, whoever wins) are not relative clauses
-  here: report them as unmapped (G00).
+  noun, called / named / known as + a name is that noun's individual (a nephew called Ludo:
+  Ludo, the noun his class or his relation; the guild's new charter, known as the Red Book: the
+  Red Book, class charter, the guild its `possessor`), not a second name. An infinitive that
+  gives a noun's content (a plan to sell the granary) is the postmodifier's (To, the clause
+  sealed); one that is a relative clause cut short (a house to rent, the man to ask) and a free
+  relative (what Joost said, whoever wins) are not relative clauses here: report them as
+  unmapped (G00).
 
 ## Nouns before nouns
 
@@ -196,7 +206,10 @@ fences.
   salt grinder: mods [sea_salt]); coordinated ones are one each (a wool and silk merchant: mods
   [wool, silk]). A month, a date, a weekday or a relative time before a noun (the June edition,
   last weekend's takings) is NOT a mod — only a year, a decade or a century narrows a class:
-  report those time words as unmapped (G00).
+  report those time words as unmapped (G00). A BARE-LEMMA FILLER (a non-specific noun in a role
+  slot: sold harbour skiffs → skiff) has no place for the words before it unless its template
+  names one (an oblique's or a postmodifier's `object_mods` / `object_props`): write the bare
+  lemma and report the words before it as unmapped (G00).
 - A NAME before a noun (a Brackenford blanket) is its named-entity instance's id in `mods`; a
   YEAR, a DECADE or a CENTURY before a noun (a 1904 almanac, a 1920s radio, an 18th-century
   clock) is a time instance with no event, its id in `mods`. A year or a numbered week before a
@@ -254,8 +267,7 @@ part, keep the instances the templates license and report just that part: an add
 bound, duration, place, manner, amount or tag leaves the event itself true ("was demolished
 before 1960" still says it was demolished). When the rest would NOT follow without the unmapped
 part, leave the whole claim out and report the whole clause: a negated condition ("unless it
-rains, Odile sings"), an attribution to a source that no template carries ("according to Odile,
-the hatch is open"), an unencodable quantity ("too much salt"). An evaluative adverb
+rains, Odile sings"), an unencodable quantity ("too much salt"). An evaluative adverb
 ("unfortunately, Marisol left") leaves the clause entailed: keep the clause and report the
 adverb (G02).
 
@@ -263,9 +275,12 @@ Referents inside an unmapped span: a NAME still gets its instance (a name is rig
 individual wherever it appears in the text), but a common-noun phrase or a pronoun does not. A
 witness is introduced only by a clause a template covers; the span carries the noun verbatim,
 and if a covered clause mentions the same thing, that clause's instance is the referent. Never
-introduce a witness for something stated only in words you report as unmapped; the same holds
-for a group or a range: a plural or quantified phrase inside an unmapped span introduces
-nothing.
+introduce a witness for something stated only in words you report as unmapped — a part or a
+possessed noun included (its beak, her hat: no witness, no part-whole, no possessor link); the
+same holds for a group or a range: a plural or quantified phrase inside an unmapped span
+introduces nothing. A RANGE is introduced only with the rule that ranges over it: when no
+covered predication is said of the quantified noun (there is no need for … with the rest
+unmapped), introduce no range and report the clause.
 
 Codes:
 
@@ -273,10 +288,9 @@ Codes:
 - G01: a predicative or adverbial comparative with no stated standard ('prices ended lower',
   'this one is better'); before a noun ('a sturdier bracket') the comparative is an ordinary
   adjective of the noun
-- G02: an adverb with no slot: sequence (initially, eventually, finally), scope or domain
-  (nationally, locally), an evaluation (unfortunately, luckily, sadly), a degree word on a
-  manner adverb, on a class-level statement or on an adjective with a complement (laughed very
-  loudly; badgers are very curious; very fond of Pieter)
+- G02: an adverb with no slot: scope or domain (nationally, locally), an evaluation
+  (unfortunately, luckily, sadly), a degree word on a manner adverb or on a class-level
+  statement (laughed very loudly; badgers are very curious)
 - G03: a post-nominal tag on a name (a party or district tag, a ticker, a bracketed code, a
   pronunciation)
 - G04: an irrealis relative clause ('the bridge that would have collapsed'); a lone would-have
@@ -286,7 +300,8 @@ Codes:
 - G06: a result or outcome infinitive ('woke to find the door open')
 - G07: 'only one N' — a focus particle on a bare count
 - G08: an 'unless' or 'if not' conditional
-- G09: stay / remain / keep with a locative continuation ('stayed in the hall')
+- G09: keep with an object and a property ('kept the hatch open'): a causer keeping another
+  thing in a state
 - G10: the verbatim wording of a quotation (its content is parsed; the wording itself is not
   kept)
 
@@ -463,6 +478,7 @@ Forms:
 - <Title> <Name>
 - the <class> of <Name>
 - <N1> <N2> <Name>
+- <Possessor>'s <Name>
 
 Not this template:
 - a common noun with an article — the clerk, a flask: a witness, not a name
@@ -491,6 +507,10 @@ Slots:
   name (southern Brackenford) is a part of the place (part-whole), never a property.
 - `former` (optional; true / false): with a class, true when former, ex-, one-time or retired
   makes the noun something the referent was and no longer is (Femke, a retired weaver).
+- `possessor` (optional; "@id" of a referent instance, or a bare lemma for a non-specific
+  filler): a possessive on the name — Brackenford's Harbour Museum, the guild's Pieter Hale, his
+  firm's Kestrel Ledger: an owner or an associate, as on a witness; a referent id (a possessive
+  pronoun: its mention instance) or a bare lemma for a class-level possessor.
 - `mods` (optional; a list of lemmas, or "@id" of a named-entity or a time instance): the nouns,
   names and years before the head noun that narrow its class (Nouns before nouns): a lemma for a
   noun (a harbour pilot: harbour; a sea salt grinder: sea_salt), the id of a named-entity
@@ -742,7 +762,11 @@ its own, never coreferent with the earlier one; the word itself is not reported.
 PRONOUN introduces a witness like an indefinite noun phrase: someone, somebody, anyone, anybody
 are a witness of class person; something, anything a witness of class thing (somebody is
 knitting: a witness person, indefinite). Nearby before a noun (a nearby farm) is an ordinary
-adjective of the noun, recorded with the others.
+adjective of the noun, recorded with the others. An EPISTEMIC or a distancing adjective before
+the noun — alleged, suspected, probable, presumed, so-called, would-be (an alleged smuggler,
+three probable cases) — is not a property: the noun does not hold of the referent on its own,
+and there is no slot yet; report the noun phrase as unmapped (G00), and the whole clause when
+its claim depends on the noun.
 
 Forms:
 - a <N>
@@ -1126,7 +1150,7 @@ Not this template:
   (the program mints the state they hang on); the test: the phrase answers where or when, not
   what the quality bears on
 - a degree word on the adjective — very fond of Pieter, too afraid of the badger: this template,
-  with the degree word reported under G02; an approximator — almost full of tea — leaves the
+  with an extent on its state (very, too); an approximator — almost full of tea — leaves the
   whole predicate unmapped, since the property is not asserted
 - an adjective with a that-clause, or a stance adjective with a to-infinitive — sure that Odile
   left, aware that the hatch is open, glad that Henrike came, ready to leave, eager / willing /
@@ -1269,22 +1293,32 @@ to-infinitive or a gerund (began to sing, kept reading the postcard, stopped wor
 washing the blanket); and come to V, the inchoative (came to like the blanket), with the lemma
 come_to. Parse the action with the template its verb takes, its actor or undergoer the
 sentence's subject and its tense present; then write the aspectual instance naming the phase
-verb and the action.
+verb and the action. A CONTINUATION OF A STATE — remain, stay, keep or continue to be with a
+property, a noun or a place (the gate remained shut, Pieter stayed in the granary, Odile kept
+silent, the hatch remains a hazard) — is the same construction over a STATE: parse the state
+with its own template (a copular instance for a property or a noun, a locative for a place), the
+sentence's subject its subject, and with THE CLAUSE'S TENSE (remained shut: the copular in the
+past; remains a hazard: present), unlike an action; the aspectual instance names the phase verb
+(remain, stay, keep, continue) and the state, and the program marks the continuation.
 
 Verbs that anchor the class: begin, start, commence, continue, keep, go_on, carry_on, resume,
-stop, cease, quit, finish, come_to.
-These verbs belong here only with a verbal complement. Without one they are a change of state
-(the inspection began, the price stopped) or an ordinary action on an object (started a
-business, finished the postcard, kept the postcard); stop / keep X from V-ing is a causative.
+stop, cease, quit, finish, come_to, remain, stay.
+These verbs belong here only with a verbal complement, or, for remain, stay, keep and continue
+to be, with a property, a noun or a place (a state). Without one they are a change of state (the
+inspection began, the price stopped) or an ordinary action on an object (started a business,
+finished the postcard, kept the postcard); stop / keep X from V-ing is a causative.
 
 Forms:
 - <subject> began / started / continued to <V2> …
 - <subject> kept / stopped / finished <V2>-ing …
 - <subject> came to <V2> …
+- <subject> remained / stayed / kept <ADJ, N or place>
 
 Not this template:
 - a phase verb without a verbal complement — the inspection began, the price stopped, the storm
   ceased: a change of state of the subject
+- keep with an object and a property — kept the hatch open, kept Pieter awake: a causer keeping
+  another thing in a state; no template yet, report the clause as unmapped (G09)
 - a phase verb with a noun object — started a business, finished the postcard, kept the
   postcard, continued the inspection: an action on a thing, parsed by that action's template
 - stop, keep or prevent with an object and a verb — stopped Pieter from leaving, kept Odile from
@@ -1302,7 +1336,9 @@ Slots:
   come_to …).
 - `complement` (required; a list of "@id" of the instances that state the clause): the action:
   the ids of the instances that state it (its predication, with the sentence's subject as its
-  actor or undergoer); the referents it mentions are not listed.
+  actor or undergoer, tense present); for a continuation of a state, the id of the copular or
+  locative instance that states it, with the sentence's subject and THE CLAUSE'S TENSE; the
+  referents it mentions are not listed.
 - `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
   not inferred.
 - `aspect` (optional; one of: simple, progressive, perfect, perfect_progressive, about_to,
@@ -1351,6 +1387,24 @@ The program renders these instances as:
     (Entails sk_start_1)
     (Past sk_start_1)
 
+Example (a continuation of a state — the state in the clause's tense, sealed; the program marks it Continues). TEXT: The hatch stayed open.
+
+Instances:
+
+    [
+      {"t": "witness", "id": "x1", "class": "hatch", "definite": true, "span": "The hatch"},
+      {"t": "copular", "id": "c1", "subject": "@x1", "predicate": "open", "form": "adjective", "tense": "past", "span": "open"},
+      {"t": "aspectual", "id": "e1", "verb": "stay", "complement": ["@c1"], "tense": "past", "span": "The hatch stayed open"}
+    ]
+
+The program renders these instances as:
+
+    (Member sk_hatch_1 hatch)
+    (Member sk_stay_1 stay)
+    (Theme sk_stay_1 (Past (Member sk_hatch_1 open)))
+    (Continues sk_stay_1)
+    (Past sk_stay_1)
+
 Not this template. TEXT: Marisol tried to sleep. — use `control`.
 
 Not this template. TEXT: Odile prevented Pieter from leaving. — use `causative`.
@@ -1375,7 +1429,11 @@ afraid, ready or prepared to do (Henrike is ready to leave). Write the adjective
 lemma; the copula is the construction's marker and the clause's tense is the copula's. The
 factive adjectives — aware, glad, sorry, surprised, upset, proud, and happy or angry with a
 that-clause — presuppose the complement; sure, certain, confident, convinced, afraid, worried
-and every infinitival stance do not.
+and every infinitival stance do not. An ATTRIBUTION — according to X, P; P, according to X — is
+the same construction with no verb: X (a person, a body or a document) is the holder, P the
+content, `verb` according_to, `factive` false and tense present (the attribution has no tense of
+its own; the clause keeps its own). The clause is X's claim, sealed, and the sentence commits to
+nothing more, as with X says that P.
 
 Verbs that anchor the class: believe, think, suppose, assume, suspect, doubt, hope, fear,
 expect, claim, say, want, wish, prefer, intend, plan, decide, promise, agree, offer, vow, know,
@@ -1394,6 +1452,8 @@ Forms:
 - <holder> V <object> to <V2> …
 - <holder> would like / love to <V2> …
 - <holder> would rather <V2> …
+- According to <holder>, <clause>
+- <clause>, according to <holder>
 - <event noun> was <place> <time>, <holder> V-ed
 
 Not this template:
@@ -1427,9 +1487,11 @@ Slots:
 - `t` (required): "attitude"
 - `id` (required; your label for this instance): your label for the attitude event.
 - `verb` (required; a lemma): the attitude verb lemma, or the adjective of an adjectival
-  attitude (is sure / aware / glad that P, is eager / ready to V), lemmatized.
+  attitude (is sure / aware / glad that P, is eager / ready to V), lemmatized; according_to for
+  an attribution (according to X, P).
 - `holder` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
-  who holds the attitude: the subject.
+  who holds the attitude: the subject; for an attribution, the source named after according to
+  (a person, a body, a document).
 - `content` (required; a list of "@id" of the instances that state the clause): the complement
   clause: the ids of the instances that state it, that is its predication or the scope operator
   (negation, modal) over that predication; for an infinitival complement, its predication with
@@ -1443,7 +1505,8 @@ Slots:
   (know, realize, discover, learn, notice, remember, regret; aware, glad, sorry, surprised,
   upset, proud, happy / angry that), false otherwise (believe, think, suppose, assume, suspect,
   doubt, hope, fear, expect, claim, say, want, wish, intend, plan, decide, promise, agree; sure,
-  certain, confident, convinced, afraid, worried, and every adjective with a to-infinitive).
+  certain, confident, convinced, afraid, worried, and every adjective with a to-infinitive; an
+  attribution, according_to).
 - `tense` (required; one of: past, present, future): the attitude clause's tense; present is
   recorded, not inferred.
 - `word` (optional; a string): the words as written when the verb is a wish with would: would
@@ -1527,6 +1590,27 @@ The program renders these instances as:
     (Experiencer sk_say_1 sk_pieter_1)
     (Theme sk_say_1 (And (Member sk_sell_1 sell) (Agent sk_sell_1 sk_odile_1) (Theme sk_sell_1 sk_bobbin_1) (Past sk_sell_1)))
     (Past sk_say_1)
+
+Example (an attribution — the source is the holder, the clause sealed; verb according_to, present, not factive). TEXT: According to Pieter, Odile sold the bobbin.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Pieter", "span": "Pieter"},
+      {"t": "named-entity", "id": "n2", "name": "Odile", "span": "Odile"},
+      {"t": "witness", "id": "x1", "class": "bobbin", "definite": true, "span": "the bobbin"},
+      {"t": "transfer", "id": "e1", "verb": "sell", "giver": "@n2", "object": "@x1", "tense": "past", "span": "Odile sold the bobbin"},
+      {"t": "attitude", "id": "a1", "verb": "according_to", "holder": "@n1", "content": ["@e1"], "factive": false, "tense": "present", "span": "According to Pieter, Odile sold the bobbin"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_pieter_1 "Pieter")
+    (Name sk_odile_1 "Odile")
+    (Member sk_bobbin_1 bobbin)
+    (Member sk_according_to_1 according_to)
+    (Experiencer sk_according_to_1 sk_pieter_1)
+    (Theme sk_according_to_1 (And (Member sk_sell_1 sell) (Agent sk_sell_1 sk_odile_1) (Theme sk_sell_1 sk_bobbin_1) (Past sk_sell_1)))
 
 Example (a perception verb with a that-clause is a factive attitude). TEXT: Pieter saw that Odile sold the bobbin.
 
@@ -2033,9 +2117,10 @@ indirect object or a to-phrase; the message is a noun phrase (the news, a secret
 a finite clause introduced by "that" or bare. Verbs that take an addressee by nature (tell,
 inform, notify, remind, warn, text, phone) belong here even when the text leaves the addressee
 out; a reporting verb (say, claim, report, announce, explain, mention) belongs here only when an
-addressee is stated. A request or an instruction (asked Henrike to send the blanket, told Odile
-to lock the hut) is a message too: its content is an imperative instance over the requested
-clause, whose actor is the addressee.
+addressee is stated or the message is a noun phrase (announced the verdict, said the reverse:
+the message filled, no addressee). A request or an instruction (asked Henrike to send the
+blanket, told Odile to lock the hut) is a message too: its content is an imperative instance
+over the requested clause, whose actor is the addressee.
 
 Verbs that anchor the class: tell, inform, notify, remind, warn, announce, report, explain,
 mention, say, write, text, email, phone, ask, order, urge, instruct.
@@ -2053,8 +2138,9 @@ Forms:
 - <addressee> was asked about <topic>
 
 Not this template:
-- a reporting verb with no addressee — said that P, claimed that P, announced that P: the
-  subject's attitude towards the clause; nothing is conveyed to anyone
+- a reporting verb with no addressee and a CLAUSE — said that P, claimed that P, announced that
+  P: the subject's attitude towards the clause; nothing is conveyed to anyone (with a
+  noun-phrase message and no addressee — announced the verdict: this template)
 - an impersonal report — it is reported that P, Marisol is said to V, they say that P: no
   speaker; the hedge template over the clause
 - an object that changes hands rather than a message — handed Henrike the postcard, sent Marisol
@@ -2453,7 +2539,8 @@ Not this template:
   quantified generalization
 - a copular verb other than be — seems tired, looks tired, tastes salty: the evidential
   template, over this template's instance; feels tired with an animate subject: a sensation;
-  remains open: an aspectual verb; became a locksmith, got tired: a change of state
+  remains open, stayed warm: a continuation, the aspectual template over this template's
+  instance; became a locksmith, got tired: a change of state
 - a relational adjective or noun with its complement — married to Odile, similar to Pieter, a
   cousin of Marisol, Odile's cousin, friends with Henrike: a stative relation between the two; a
   quality adjective with a complement — afraid of the badger, fond of Odile, full of water, good
@@ -2701,7 +2788,7 @@ Not this template:
 - a degree word on a manner adverb — laughed very loudly: the manner is recorded, the degree
   word reported (G02)
 - an adjective with a complement — too fond of Marisol, very afraid of the badger: the
-  adjective-complement template, with the degree word reported under G02
+  adjective-complement template, with an extent on its state
 - the consequence of too, enough or so — too young to vote, so tired that she slept: the degree
   is recorded; the infinitive or the that-clause is reported as unmapped
 
@@ -2913,10 +3000,15 @@ on it: `bearer` the witness, `unit` the container or measure word (cup, bag, lit
 `dimension` unspecified, `magnitude` the number (a cup → 1). A time, a time relation, a link or
 a focus on a measure clause of a thing (the hamlet had a population of 2400 in 1985) names this
 instance as its event, as it would a copular predication, and the program mints the state of the
-measure holding; a measure on an event is itself the attachment and has no state.
+measure holding; a measure on an event is itself the attachment and has no state. A BARE NUMBER
+ON A PERSON — predicated (Odile is 30) or in apposition between commas after the name (Pieter,
+41, mended the barrow) — is the person's age in years, as English writes it: `dimension` old,
+`unit` year, the number the magnitude, tense present for the apposition (the clause's own tense
+for be).
 
 Forms:
 - <X> is <n> <unit> <ADJ>
+- <Name>, <n>, …
 - <X> weighs / costs / measures <n> <unit>
 - <X> took / lasted <n> <unit>
 - <X> has a <dimension> of <n> (<unit>)
@@ -2943,8 +3035,9 @@ Not this template:
 - a vague duration with no number — all day, for years: no slot here; report the phrase as
   unmapped (G00); a vague amount of a substance — a lot of water, plenty of hail: the witness's
   own quantity phrase, no measure
-- a bare number with neither a dimension nor a unit — Odile is 30, the bridge is 200: no
-  dimension and no unit to record; report the clause as unmapped (G00)
+- a bare number with neither a dimension nor a unit on a THING — the bridge is 200, the ledger
+  was 90: no dimension and no unit to record; report the clause as unmapped (G00); on a person
+  it is the age (Odile is 30: old, year)
 - a stated distance between a thing and a place — the hotel is 800 metres from the river: a
   locative with a measure no template carries; report the clause as unmapped
 
@@ -4302,12 +4395,12 @@ Not this template:
   own felt state, asserted, not an appearance judged from outside; the sensation template
 - appear as showing up — appeared in the hall, appeared on Monday: a motion or an event, not an
   appearance claim
-- remain, stay, keep with a property — remains open, stayed warm: a continuation, an aspectual
-  or the clause's own state; become, get, turn — became tired: a change of state
+- remain, stay, keep with a property — remains open, stayed warm: a continuation, the aspectual
+  template over the copular instance; become, get, turn — became tired: a change of state
 - an epistemic modal — might be tired, must be tired: the modal template; a report with no
   source — is said / believed / thought to be tired: the hedge template, which sets the clause's
-  truth value; an attribution — according to Odile: no template yet, the whole clause reported
-  as unmapped
+  truth value; an attribution — according to Odile: Odile's claim, the attitude template (verb
+  according_to), the clause sealed
 - a hedge adverb — probably tired, apparently tired: the hedge template over the clause, which
   sets its truth value; no appearance is stated
 
@@ -4409,8 +4502,8 @@ Not this template:
 - an appearance stated by a verb — seems tired, looks tired: the evidential template
 - a report with a NAMED or quantified source — Odile says that P, Pieter believes that P, some
   people think that P, everyone says that P: that holder's attitude or communication, not an
-  impersonal report; an attribution — according to Odile, P: no template yet, and the claim is
-  not asserted, so report the whole clause as unmapped (G00)
+  impersonal report; an attribution — according to Odile, P: Odile's claim, not the speaker's —
+  the attitude template with the verb according_to, the clause sealed
 - supposed to as a duty or an expectation of conduct — is supposed to wait, is supposed to lock
   the hut: the norm template's weak obligation; only a report about a fact (is supposed to be
   clever) is a hedge
@@ -4930,6 +5023,8 @@ Not this template:
   it as unmapped
 - a coordinated subject — Pieter and Marisol danced: one instance per conjunct, no companion
 - a material — built a hut from planks: an oblique (From) on the event
+- a means stated by a gerund clause — mended the barrow by replacing the wheel: the oblique
+  (By), the gerund's clause sealed in its `complement`; a means is an adjunct only as a thing
 
 Slots:
 
@@ -5090,9 +5185,12 @@ much, a lot, very much, completely, thoroughly, entirely), a downtoner or a mini
 a little, somewhat, barely, hardly, scarcely), a magnitude adverb on a change (sharply, steeply,
 considerably, marginally), or an adverb of distance or height on a motion (leapt high, ran far,
 dived deep — how far the motion goes, even before a path or goal phrase: leapt high over the
-hedge). The event is parsed with its own template; the extent instance names that event and
-records the adverb as written (a phrase as one snake_case symbol: a_lot, very_much). One
-instance per degree expression.
+hedge); and a DEGREE WORD ON AN ADJECTIVE THAT HAS A COMPLEMENT — very fond of Pieter, too
+afraid of the badger, totally dependent on the mill, very sure that the hatch is shut: the state
+that the adjective-complement, stative-relation or attitude instance stands for is the event,
+the degree word the level. The event is parsed with its own template; the extent instance names
+that event and records the adverb as written (a phrase as one snake_case symbol: a_lot,
+very_much). One instance per degree expression.
 
 Forms:
 - <subject> <adverb> V …
@@ -5102,7 +5200,8 @@ Forms:
 Not this template:
 - a manner adverb — loudly, carefully, slowly, well: how, not how much; a manner
 - a frequency adverb — often, always, twice: how often; a frequency
-- a degree word on an adjective — is very crooked, a very old bobbin: a degree predication
+- a degree word on an adjective with no complement — is very crooked, a very old bobbin: a
+  degree predication
 - an approximator on a verb — almost fell, nearly broke: the event did not happen; no slot here;
   report the clause as unmapped
 - a degree word on a manner adverb — laughed very loudly: the manner is recorded, the degree
@@ -5119,7 +5218,9 @@ Slots:
 - `t` (required): "extent"
 - `id` (required; your label for this instance): your label for the attachment (a1, a2 …).
 - `event` (required; "@id" of the predication instance this attaches to): the predication the
-  degree attaches to: the id of the clause's event instance.
+  degree attaches to: the id of the clause's event instance, or of the adjective-complement,
+  stative-relation or attitude instance an adjective with a complement makes (very fond of
+  Pieter, very sure that P).
 - `level` (required; a lemma): the degree adverb as written, lowercase (deeply, really, barely,
   sharply, slightly); a phrase as one snake_case symbol (a_lot, very_much).
 
@@ -5160,6 +5261,24 @@ The program renders these instances as:
     (Experiencer sk_like_1 sk_pieter_1)
     (Stimulus sk_like_1 sk_blanket_1)
     (Extent sk_like_1 really)
+
+Example (a degree word on an adjective with a complement — the extent on the state the adjective-complement makes). TEXT: Henrike is very fond of badgers.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Henrike", "span": "Henrike"},
+      {"t": "adjective-complement", "id": "p1", "bearer": "@n1", "property": "fond", "head": "Of", "object": "badger", "tense": "present", "span": "Henrike is very fond of badgers"},
+      {"t": "extent", "id": "a1", "event": "@p1", "level": "very", "span": "very"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_henrike_1 "Henrike")
+    (Member sk_fond_1 fond)
+    (Experiencer sk_fond_1 sk_henrike_1)
+    (Of sk_fond_1 badger)
+    (Extent sk_fond_1 very)
 
 Not this template. TEXT: Marisol laughed loudly. — use `manner`.
 
@@ -5389,8 +5508,8 @@ Not this template:
 - a degree adverb — deeply distrusts, really likes, barely moved, sharply, slightly: how much,
   not how; an extent attachment on the event
 - a frequency adverb — often, always, twice, every day: how often; a frequency
-- a sequence or time adverb — finally, eventually, initially, later, now, yesterday: when; a
-  time or a gap
+- a sequence or time adverb — finally, eventually, initially, recently, later, now, yesterday:
+  when; the time template (a named time, or a deictic for now and yesterday)
 - a domain or scope adverb — nationally, internationally, locally: reported as unmapped
 - a hedge — probably, certainly, apparently: the speaker's commitment to the clause, the hedge
   template, which sets the clause's truth value; an evaluation — unfortunately, luckily: the
@@ -5475,7 +5594,20 @@ is parsed with its own template; the oblique names the event, the preposition as
 the hail) attaches to that eventive witness, with the clause's tense in `tense`. One instance
 per phrase. Decide by the question the phrase answers: where, when, whence, whither, by what
 means, with whom, for whose benefit and how go to the templates that own them; everything else
-comes here.
+comes here. A GERUND CLAUSE as the object — left without locking the hatch, mended the barrow by
+replacing the wheel, was accused of stealing the trowel, decided against selling the granary,
+complained about waiting — is parsed with its own template, its actor the one the phrase is
+about (the clause's subject; the object of a verb of accusing, charging, blaming or thanking:
+accused Pieter of stealing → Pieter; none when the text names no one), tense present, and listed
+in `complement`, sealed as one term under the preposition, with no `object`: the parse does not
+say whether the action happened (by replacing the wheel: it did; without locking the hatch: it
+did not; accused of stealing: neither) — the preposition and the verb are the record. A
+BARE-LEMMA OBJECT keeps the words that narrow it: its adjectives in `object_props`, the nouns
+before it in `object_mods` (argued about wet weather: weather, object_props [wet]; dealt with
+harbour pilots: pilot, object_mods [harbour]). A PREPOSITIONAL PASSIVE — the hatch was looked
+into, the rules were complied with by Pieter — is the active's phrase: the verb's own template
+with no stated actor or the by-phrase as its actor, and this instance with the subject as the
+object, the stranded preposition the head.
 
 Forms:
 - <clause> about / against / over / on <object>
@@ -5488,6 +5620,9 @@ Forms:
 - <clause> amid <object>
 - <clause> before <person or body>
 - <event noun> was due to <object>
+- <clause> without / by / of / against / about <V>-ing …
+- <clause> <preposition> <adjective> <noun>
+- <subject> was V-ed <preposition> (by <actor>)
 
 Not this template:
 - where the event takes place — in the granary, at the bazaar, on the roof, near the hut: a
@@ -5508,9 +5643,10 @@ Not this template:
   postmodifier of that noun, not an attachment to the event
 - a comparison — taller than Marisol, as tall as Pieter: the comparative template; a than-phrase
   is never an oblique
-- a gerund clause as the object — without saying a word, by working hard: not yet (without
-  denies the event, by asserts it: a scope question); report the phrase as unmapped; a gerund
-  after a temporal preposition — after leaving: a time relation
+- a gerund after a temporal preposition — after leaving, before eating: a time relation, its
+  clause one of its own; a gerund as the direct object of a verb no template takes it with —
+  justified closing the granary, ruled out selling the barrow — or as the subject of a clause —
+  selling the barrow saved the farm: no slot yet; report the gerund clause as unmapped (G00)
 - a multi-word preposition that is neither a cause nor a concession nor a place — instead of
   Odile, on behalf of Marisol: no head yet; report the phrase as unmapped (in front of and next
   to name places: the location or the locative template)
@@ -5540,13 +5676,25 @@ Slots:
 - `object2` (optional; "@id" of a referent instance, or a bare lemma for a non-specific filler):
   with head Between only, the second of the two (mediated between Femke and Ludo: Ludo); the
   order as written.
-- `object` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
+- `object` (optional; "@id" of a referent instance, or a bare lemma for a non-specific filler):
   the phrase's object: a referent id (a witness, a name) for a specific thing, or a bare lemma
   for a non-specific or class-level one (as a weaver → weaver, without a blanket → blanket, like
-  a bird → bird).
+  a bird → bird); absent when the object is a gerund clause (complement).
+- `object_props` (optional; a list of lemmas): with a bare-lemma object, the adjectives on it
+  (argued about wet weather: wet).
+- `object_mods` (optional; a list of lemmas, or "@id" of a named-entity or a time instance):
+  with a bare-lemma object, the nouns before it (dealt with harbour pilots: harbour), as the
+  mods of Nouns before nouns.
+- `complement` (optional; a list of "@id" of the instances that state the clause): a GERUND
+  CLAUSE as the object (without locking the hatch, by replacing the wheel, accused of stealing
+  the trowel): the id of its predication, parsed with its own template — its actor the clause's
+  subject, or the object of a verb of accusing, charging, blaming or thanking, or none when the
+  text names no one —, tense present; sealed under the preposition, never together with object;
+  the referents it mentions are not listed.
 - `tense` (optional; one of: past, present, future): only when the phrase is predicated of an
   event noun by be (the closure was due to the hail): the clause's tense; otherwise absent, the
   event's own template records it.
+- Exactly one of `object`, `complement` is filled.
 
 Example (what the action is about — the preposition is the head). TEXT: Marisol talked about the inspection.
 
@@ -5605,6 +5753,27 @@ The program renders these instances as:
     (Agent sk_work_1 sk_pieter_1)
     (Past sk_work_1)
     (As sk_work_1 weaver)
+
+Example (a gerund clause as the object — its actor the clause's subject, sealed under the preposition; no object). TEXT: Odile left without locking the hatch.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Odile", "span": "Odile"},
+      {"t": "witness", "id": "x1", "class": "hatch", "definite": true, "span": "the hatch"},
+      {"t": "motion", "id": "m1", "verb": "leave", "mover": "@n1", "tense": "past", "span": "Odile left"},
+      {"t": "activity", "id": "v1", "verb": "lock", "actor": "@n1", "patient": "@x1", "tense": "present", "span": "locking the hatch"},
+      {"t": "oblique", "id": "a1", "event": "@m1", "head": "Without", "complement": ["@v1"], "span": "without locking the hatch"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_odile_1 "Odile")
+    (Member sk_hatch_1 hatch)
+    (Member sk_leave_1 leave)
+    (Agent sk_leave_1 sk_odile_1)
+    (Past sk_leave_1)
+    (Without sk_leave_1 (And (Member sk_lock_1 lock) (Agent sk_lock_1 sk_odile_1) (Patient sk_lock_1 sk_hatch_1)))
 
 Not this template. TEXT: Marisol laughed in the granary. — use `location`.
 
@@ -5667,6 +5836,14 @@ referent wherever the referent is rendered: on a range (there is no stork with a
 narrows the range inside the generalization's premise, and the generic instance lists the
 predication only, never the postmodifier; an indefinite object there is non-specific, a bare
 lemma (no stork with a fish: With, fish). With no is Without (a man with no hat: Without, hat).
+A GERUND or a TO-INFINITIVE that gives the noun's CONTENT — the chance of winning the fair, the
+risk of flooding, a plan to sell the granary, Odile's attempt to mend the beret, the right to
+graze the meadow, the decision to close the bazaar — is parsed with its own template, its actor
+the noun's possessor or the one the text says acts (none when it names no one), tense present,
+and listed in `complement`, sealed under the preposition as written (Of, For, At …) or, for the
+infinitive, under To, with no `object`: what the plan or the chance is, not a claim that the
+action happens. An infinitive that is a RELATIVE CLAUSE cut short — a house to rent, the man to
+ask, much to be done, the first to arrive — gives no content: report it as unmapped (G00).
 
 Forms:
 - the <N> with / without <object>
@@ -5679,6 +5856,8 @@ Forms:
 - <Name> is a <kind word> of <N>
 - the <N> between <A> and <B>
 - a <N> before <person or body>
+- the <N> of / for / at <V>-ing …
+- a <N> to <V> …
 
 Not this template:
 - a possessive of-phrase or genitive — the blanket of Marisol, Marisol's blanket, the sister of
@@ -5715,10 +5894,17 @@ Slots:
   Over, Past, Per, Regarding, Round, Through, To, Toward, Towards, Under, Underneath, Unlike,
   Up, Upon, Via, With, Within, Without): the preposition as written, capitalized (with → With,
   about → About); never a synonym.
-- `object` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
+- `object` (optional; "@id" of a referent instance, or a bare lemma for a non-specific filler):
   the phrase's object: a referent id (a witness, a name) for a specific thing, or a bare lemma
   for a non-specific or class-level one (a book about badgers → badger, a flask without a lid →
-  lid); with head Between the first of the two.
+  lid); with head Between the first of the two; absent when the noun's content is a clause
+  (complement).
+- `complement` (optional; a list of "@id" of the instances that state the clause): a GERUND or a
+  TO-INFINITIVE giving the noun's content (the chance of winning the fair, a plan to sell the
+  granary): the id of its predication, parsed with its own template — its actor the noun's
+  possessor or the one the text says acts, none when it names no one —, tense present; sealed
+  under the head (To for the infinitive), never together with object; the referents it mentions
+  are not listed.
 - `object_props` (optional; a list of lemmas): with a bare-lemma object, the adjectives on it (a
   song about lost sailors: lost).
 - `object_mods` (optional; a list of lemmas, or "@id" of a named-entity or a time instance):
@@ -5727,6 +5913,7 @@ Slots:
 - `object2` (optional; "@id" of a referent instance, or a bare lemma for a non-specific filler):
   with head Between only, the second of the two (the quarrel between Femke and Ludo: Ludo); the
   order as written.
+- Exactly one of `object`, `complement` is filled.
 
 Example (the phrase picks out the referent; no possession is stated). TEXT: The man with the beret laughed.
 
@@ -5768,6 +5955,33 @@ The program renders these instances as:
     (Agent sk_read_1 sk_marisol_1)
     (Patient sk_read_1 sk_book_1)
     (Past sk_read_1)
+
+Example (a to-infinitive giving the noun's content — sealed under To, its actor the noun's possessor; no object). TEXT: Marisol liked Pieter's plan to sell the granary.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Marisol", "span": "Marisol"},
+      {"t": "named-entity", "id": "n2", "name": "Pieter", "span": "Pieter"},
+      {"t": "witness", "id": "x1", "class": "plan", "possessor": "@n2", "span": "Pieter's plan"},
+      {"t": "witness", "id": "x2", "class": "granary", "definite": true, "span": "the granary"},
+      {"t": "transfer", "id": "e1", "verb": "sell", "giver": "@n2", "object": "@x2", "tense": "present", "span": "sell the granary"},
+      {"t": "postmodifier", "id": "a1", "noun": "@x1", "head": "To", "complement": ["@e1"], "span": "to sell the granary"},
+      {"t": "psych", "id": "p1", "verb": "like", "experiencer": "@n1", "stimulus": "@x1", "tense": "past", "span": "Marisol liked Pieter's plan to sell the granary"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_marisol_1 "Marisol")
+    (Name sk_pieter_1 "Pieter")
+    (Member sk_plan_1 plan)
+    (Possession sk_plan_1 sk_pieter_1)
+    (To sk_plan_1 (And (Member sk_sell_1 sell) (Agent sk_sell_1 sk_pieter_1) (Theme sk_sell_1 sk_granary_1)))
+    (Member sk_granary_1 granary)
+    (Member sk_like_1 like)
+    (Experiencer sk_like_1 sk_marisol_1)
+    (Stimulus sk_like_1 sk_plan_1)
+    (Past sk_like_1)
 
 Not this template. TEXT: Marisol's blanket — use `witness`.
 
@@ -5828,29 +6042,32 @@ When: A time expression saying when the clause's event takes place: a calendar d
 of one (in 2019, in May, on 3 May 2019, on Monday), a clock time (at 3 pm, at 2:30 pm, at noon,
 at midnight), a deictic relative to the moment the text speaks from (now, today, tonight,
 yesterday, tomorrow, last / this / next week, month or year), a time named by a word (at dawn,
-at night, in autumn, later, this morning), a measured distance from an anchor (three days ago, a
-year ago, in two weeks, two days after the inspection, a week later), or an anaphoric phrase
-naming a time by one the text stated before it (that evening, the same day, the next day, the
-following morning, the week after). The event is parsed with its own template; the time instance
-names that event and describes the time: a date or a clock time by its fields (year, decade,
-century, month, week, day, weekday, hour, minute), a deictic by the `deictic` word with the
-reference time as its anchor, a measured distance by its `offset`, `unit` and `direction` from
-its anchor (the reference time for ago / from now / in n units; a stated event or time for
-before / after it and for later / earlier), an anaphoric phrase likewise from the antecedent
-event or time (offset 0 for that / the same, 1 for next / following / after, a day part as a
-second instance), a named time by its name. One instance per time expression; a day part beside
-a date or an offset (Monday morning, the following morning) is a second instance. A time no
-clause places an event at — the reference of a time relation (before noon), the edge of a window
-(within three days), a year before a noun that names no event (a 1904 almanac: named in the
-noun's mods) — is an instance with no event. When the time is predicated of an event noun by
-"be" or by take place / occur / happen (the session is at noon, the inspection was on Monday,
-the fair took place in May: these verbs have no event of their own), the noun is a witness
-marked eventive, the time attaches to it, and this instance records the clause's tense.
-Coordinated dates (in 1810 and 1811) are one instance each on the event. A NUMBERED WEEK of a
-season or a schedule (in week 5) is `week`, with a year when one is stated. AN UNDATED TIME
-DESCRIBED BY A NOUN — on a foggy day, on a cold morning — is a time instance with that noun in
-`noun` and its adjectives in `props` and no calendar field; it attaches to the event like any
-time (never a witness marked eventive: a day is a time, not an event).
+at night, in autumn, later, this morning), a VAGUE OR SEQUENCE TIME ADVERB named by its word
+(recently, lately, previously, formerly, earlier, originally, initially, at first, eventually,
+finally, ultimately, soon, shortly: the word the time's name, at_first joined; currently and at
+present are the deictic now), a measured distance from an anchor (three days ago, a year ago, in
+two weeks, two days after the inspection, a week later), or an anaphoric phrase naming a time by
+one the text stated before it (that evening, the same day, the next day, the following morning,
+the week after). The event is parsed with its own template; the time instance names that event
+and describes the time: a date or a clock time by its fields (year, decade, century, month,
+week, day, weekday, hour, minute), a deictic by the `deictic` word with the reference time as
+its anchor, a measured distance by its `offset`, `unit` and `direction` from its anchor (the
+reference time for ago / from now / in n units; a stated event or time for before / after it and
+for later / earlier), an anaphoric phrase likewise from the antecedent event or time (offset 0
+for that / the same, 1 for next / following / after, a day part as a second instance), a named
+time by its name. One instance per time expression; a day part beside a date or an offset
+(Monday morning, the following morning) is a second instance. A time no clause places an event
+at — the reference of a time relation (before noon), the edge of a window (within three days), a
+year before a noun that names no event (a 1904 almanac: named in the noun's mods) — is an
+instance with no event. When the time is predicated of an event noun by "be" or by take place /
+occur / happen (the session is at noon, the inspection was on Monday, the fair took place in
+May: these verbs have no event of their own), the noun is a witness marked eventive, the time
+attaches to it, and this instance records the clause's tense. Coordinated dates (in 1810 and
+1811) are one instance each on the event. A NUMBERED WEEK of a season or a schedule (in week 5)
+is `week`, with a year when one is stated. AN UNDATED TIME DESCRIBED BY A NOUN — on a foggy day,
+on a cold morning — is a time instance with that noun in `noun` and its adjectives in `props`
+and no calendar field; it attaches to the event like any time (never a witness marked eventive:
+a day is a time, not an event).
 
 Forms:
 - <clause> in <year / month>
@@ -5860,6 +6077,7 @@ Forms:
 - <clause> at <clock time>
 - <clause> <deictic>
 - <clause> <named time>
+- <subject> recently / eventually / initially <V> …
 - <time>, <clause>
 - <event noun> is / was at / on <time>
 - the <year> <event noun>
@@ -5916,7 +6134,10 @@ Slots:
   (a foggy day: foggy).
 - `name` (optional; a lemma): a time named by a word or a fixed phrase that no deictic word
   covers, lowercase, joined with underscores: dawn, dusk, morning, afternoon, evening, night,
-  spring, summer, autumn, winter, later, this_morning; fill no field beside it.
+  spring, summer, autumn, winter, later, this_morning; a vague or sequence time adverb as
+  written: recently, lately, previously, formerly, earlier, originally, initially, at_first,
+  eventually, finally, ultimately, soon, shortly, once (meaning formerly); fill no field beside
+  it.
 - `offset` (optional; a number): a measured distance from the anchor: the number of units (three
   days ago → 3, a week later → 1, that evening → 0 day); fill unit and direction with it, no
   calendar field.
@@ -6069,8 +6290,9 @@ Not this template:
   the barrow was crooked until Monday, Marisol was in the granary during the inspection, the
   flask was almost empty until noon, Odile was a member of the fellowship during the war: the
   relation's event names that predication instance and the program mints the state it relates
-- a gerund after a non-temporal preposition — without saying a word, by working hard, instead of
-  leaving: not a relation in time; an oblique's business, reported as unmapped there
+- a gerund after a non-temporal preposition — without saying a word, by working hard: not a
+  relation in time; the oblique template, the gerund's clause sealed under the preposition
+  (instead of leaving: no head yet, reported as unmapped there)
 - an ordering only the tense implies, with no connective — Odile had left. Marisol arrived.: the
   perfect is the clause's own aspect; no relation is stated
 - a vague distance beside the relation — long before the inspection, shortly after noon, just
@@ -6476,7 +6698,7 @@ Not this template:
 - a time the event takes place at — in 2019, on Monday, at noon, yesterday: a time; a time
   stated once is not a recurrence (on Monday is a time, on Mondays a frequency)
 - once meaning formerly — Odile once lived in Brackenford: a vague past time, not one
-  occurrence; report the word as unmapped
+  occurrence; the time template's named time once
 - a vague count — several times a week, a few times a year, many times: no number to record;
   report the phrase as unmapped
 - a rate per something that is not a time — one per person, twice per visit: a distribution, no

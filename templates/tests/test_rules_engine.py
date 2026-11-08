@@ -139,6 +139,30 @@ class SeededRulesOnTheEngine(unittest.TestCase):
         self.assertTrue(denied and "theme_precluded_past" in denied[0], denied)
         self.assertFalse(self.query(h, "(Member sk_arrive_1 arrive)"))
 
+    def test_a_continued_state_derives_in_the_tense_it_is_sealed_in(self):
+        """A continuation of a state (remained closed, stays in the hut) seals the state in its own
+        tense and is marked (Continues e): state_continued derives it as sealed — no tense on the
+        thing itself, no untensed copy —; under a negation nothing follows."""
+        mill = ['(: x1 (Member sk_mill_1 mill) (STV 1.0 0.99))',
+                '(: e1_member (Member sk_remain_1 remain) (STV 1.0 0.99))',
+                '(: e1_theme (Theme sk_remain_1 (Past (Member sk_mill_1 closed))) (STV 1.0 0.99))',
+                '(: e1_continues (Continues sk_remain_1) (STV 1.0 0.99))',
+                '(: e1_past (Past sk_remain_1) (STV 1.0 0.99))']
+        h = self.space(mill)
+        res = self.query(h, "(Past (Member sk_mill_1 closed))")
+        self.assertTrue(res and "state_continued" in res[0], res)
+        self.assertGreater(tv(res)[1], 0.85)
+        self.assertFalse(self.query(h, "(Past sk_mill_1)"))
+        self.assertFalse(self.query(h, "(Member sk_mill_1 closed)"))
+        hut = ['(: x1 (Member sk_ferret_1 ferret) (STV 1.0 0.99))',
+               '(: e1_member (Member sk_remain_1 remain) (STV 1.0 0.99))',
+               '(: e1_theme (Theme sk_remain_1 (LocatedIn sk_ferret_1 sk_hut_1)) (STV 1.0 0.99))',
+               '(: e1_continues (Continues sk_remain_1) (STV 1.0 0.99))']
+        self.assertTrue(self.query(self.space(hut), "(LocatedIn sk_ferret_1 sk_hut_1)"))
+        denied = ['(: x1 (Member sk_mill_1 mill) (STV 1.0 0.99))',
+                  '(: s1 (Not (And (Member sk_remain_1 remain) (Theme sk_remain_1 (Past (Member sk_mill_1 closed))) (Continues sk_remain_1) (Past sk_remain_1))) (STV 1.0 0.99))']
+        self.assertFalse(self.query(self.space(denied), "(Past (Member sk_mill_1 closed))"))
+
     def test_dates_resolve_against_the_anchor(self):
         facts = ['(: t1 (Time sk_bake_1 sk_time_1) (STV 1.0 0.99))',
                  '(: t1b (BeforeBy sk_time_1 sk_now_1 1 day) (STV 1.0 0.99))',

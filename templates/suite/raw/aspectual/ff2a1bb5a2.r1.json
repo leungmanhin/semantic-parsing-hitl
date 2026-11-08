@@ -1,0 +1,96 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "c54f74eeb310b41d38762d14aca76799d961fa90279b92a27a86d7d86d1fbaca",
+  "item": {
+    "id": "sff2a1bb5a2",
+    "text": "Lamine kept quiet."
+  },
+  "usage": {
+    "input": 116830,
+    "output": 148,
+    "thinking": null,
+    "total": 116978,
+    "cached": 110592,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 116830,
+    "candidatesTokenCount": 148,
+    "totalTokenCount": 116978,
+    "cachedContentTokenCount": 110592,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 116830
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 110592
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 148
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sff2a1bb5a2\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@n1\", \"predicate\": \"quiet\", \"form\": \"adjective\", \"tense\": \"past\", \"span\": \"quiet\"}, {\"t\": \"aspectual\", \"id\": \"e1\", \"verb\": \"keep\", \"complement\": [\"@c1\"], \"tense\": \"past\", \"span\": \"Lamine kept quiet\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sff2a1bb5a2",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "copular",
+        "id": "c1",
+        "subject": "@n1",
+        "predicate": "quiet",
+        "form": "adjective",
+        "tense": "past",
+        "span": "quiet"
+      },
+      {
+        "t": "aspectual",
+        "id": "e1",
+        "verb": "keep",
+        "complement": [
+          "@c1"
+        ],
+        "tense": "past",
+        "span": "Lamine kept quiet"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "2f3c68208265ec4d36c5565dbff575774dfa151dab0f5b72e7ac622888cb1b1d",
+  "manifest_id": "73ea89e8548c",
+  "run": 1,
+  "case": {
+    "template": "aspectual",
+    "section": "held_out",
+    "index": 13,
+    "category": "positive",
+    "text": "Lamine kept quiet.",
+    "key": "ff2a1bb5a2"
+  }
+}

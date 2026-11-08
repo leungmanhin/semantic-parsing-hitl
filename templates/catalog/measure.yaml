@@ -49,9 +49,13 @@ trigger:
     metre), `dimension` unspecified, `magnitude` the number (a cup → 1). A time, a time relation,
     a link or a focus on a measure clause of a thing (the hamlet had a population of 2400 in 1985) names this instance as its event, as it would a copular predication, and the program
     mints the state of the measure holding; a measure on an event is itself the attachment and
-    has no state.
+    has no state. A BARE NUMBER ON A PERSON — predicated (Odile is 30) or in apposition between
+    commas after the name (Pieter, 41, mended the barrow) — is the person's age in years, as
+    English writes it: `dimension` old, `unit` year, the number the magnitude, tense present for
+    the apposition (the clause's own tense for be).
   surface_forms:
     - "<X> is <n> <unit> <ADJ>"                           # the rope is 3 metres long; Odile is 30 years old
+    - "<Name>, <n>, …"                                    # Pieter, 41, mended the barrow: the age, dimension old, unit year
     - "<X> weighs / costs / measures <n> <unit>"           # the crate weighs 12 kilograms: dimension weight
     - "<X> took / lasted <n> <unit>"                       # the inspection took three hours: dimension duration
     - "<X> has a <dimension> of <n> (<unit>)"             # a population of 2400: unit unspecified
@@ -85,8 +89,9 @@ trigger:
       unmapped (G00); a vague amount of a substance — a lot of water, plenty of hail: the
       witness's own quantity phrase, no measure
     - >-
-      a bare number with neither a dimension nor a unit — Odile is 30, the bridge is 200: no
-      dimension and no unit to record; report the clause as unmapped (G00)
+      a bare number with neither a dimension nor a unit on a THING — the bridge is 200, the
+      ledger was 90: no dimension and no unit to record; report the clause as unmapped (G00); on
+      a person it is the age (Odile is 30: old, year)
     - >-
       a stated distance between a thing and a place — the hotel is 800 metres from the river: a
       locative with a measure no template carries; report the clause as unmapped
@@ -365,3 +370,17 @@ examples:
         - {t: witness, id: x1, class: guild, definite: true}
         - {t: part-whole, id: w1, part: "@n1", whole: "@x1", word: "member of", tense: past}
         - {t: measure, id: m1, event: "@w1", head: Measure, dimension: duration, magnitude: 10, unit: year}
+    - category: positive
+      note: a bare number in apposition after a person's name — the age, old and year; present
+      text: "Teodor, 31, sold the quilt."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, class: quilt, definite: true}
+        - {t: transfer, id: e1, verb: sell, giver: "@n1", object: "@x1", tense: past}
+        - {t: measure, id: m1, bearer: "@n1", head: Measure, dimension: old, magnitude: 31, unit: year, tense: present}
+    - category: positive
+      note: a bare number predicated of a person — the age
+      text: "Yusra is 40."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: measure, id: m1, bearer: "@n1", head: Measure, dimension: old, magnitude: 40, unit: year, tense: present}
