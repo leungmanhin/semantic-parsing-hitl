@@ -109,6 +109,14 @@ dependent indefinite, while names and presupposed referents stay constants.
 Declarations.  Every minted symbol is declared with its class, every bare filler with its slot's
 class, every lemma with ``Class``; ``Entity`` / ``Event`` / ``TimeTerm`` also declare
 ``Instance``.
+
+Records and lowering.  The emitter decides WHAT is stated; ``tmpl.lower`` decides how a consumer writes
+it.  ``emit`` returns the RECORDS — per statement ``{"name", "term", "truth": [s, c], "owner", "inst"}``,
+the term a tree of heads, symbols, ``$`` variables, numbers and ``Str`` literals — and the symbols' types
+as DATA (``types``: symbol → classes; ``functions``: a skolem function's stem, arity and classes), and,
+for the callers that read text, their lowering for our engine line under the keys ``statements``,
+``declarations`` and ``detail``.  Another consumer's syntax is a target in ``tmpl.lower``, never a
+branch here.
 """
 from __future__ import annotations
 
@@ -116,6 +124,8 @@ import re
 import unicodedata
 
 from . import catalog as CAT
+from . import lower as L
+from .lower import Str, fmt_num, render  # noqa: F401  (the term syntax lives with the lowering; re-exported)
 
 DEFAULT_STV = (1.0, 0.99)
 VARIABLES = ["$x", "$y", "$z", "$u", "$v", "$w"]
@@ -128,10 +138,6 @@ class EmitError(Exception):
     pass
 
 
-class Str(str):
-    """A string literal (rendered with quotes)."""
-
-
 # --------------------------------------------------------------------------
 # small helpers
 # --------------------------------------------------------------------------
@@ -139,23 +145,6 @@ class Str(str):
 
 def is_ref(v) -> bool:
     return isinstance(v, str) and v.startswith("@") and len(v) > 1
-
-
-def fmt_num(v) -> str:
-    """Numbers as the corpus writes them: floats keep a decimal point (1.0), ints stay ints."""
-    if isinstance(v, bool):
-        return str(v).lower()
-    return str(v)
-
-
-def render(term) -> str:
-    if isinstance(term, list):
-        return "(" + " ".join(render(x) for x in term) + ")"
-    if isinstance(term, Str):
-        return '"' + term.replace("\\", "\\\\").replace('"', '\\"') + '"'
-    if isinstance(term, (int, float)):
-        return fmt_num(term)
-    return str(term)
 
 
 def slug(text: str) -> str:
@@ -1290,8 +1279,7 @@ class _Emitter:
         self._names[base] = n
         name = base if n == 1 else f"{base}_{n}"
         stv = (float(stv[0]), float(stv[1])) if stv else self.truth_of(inst)
-        self.out.append({"name": name, "term": term, "owner": owner, "inst": inst,
-                         "text": f"(: {name} {render(term)} (STV {fmt_num(stv[0])} {fmt_num(stv[1])}))"})
+        self.out.append({"name": name, "term": term, "truth": [stv[0], stv[1]], "owner": owner, "inst": inst})
 
     # ---------------------------------------------------------------- declarations
     def declare(self, sym, cls):
@@ -1299,7 +1287,9 @@ class _Emitter:
             return
         self.types.setdefault(str(sym), set()).add(cls)
 
-    def declarations(self) -> list[str]:
+    def type_table(self) -> tuple[dict, list]:
+        """The symbols' types as data: ``types`` symbol → classes (sorted; ``Instance`` beside an instance
+        subtype), ``functions`` the skolem functions' ``{"stem", "arity", "classes"}`` — the lowering writes them."""
         for r in self.insts:
             if r["id"] in getattr(self, "description_only", ()):   # emits nothing, so declares nothing
                 continue
@@ -1323,17 +1313,21 @@ class _Emitter:
                     if is_ref(x) or isinstance(x, (int, float)) or not cls:
                         continue
                     self.declare(x, cls)
-        lines = []
+        types = {}
         for sym in sorted(self.types):
             full = set(self.types[sym])
             if full & set(INSTANCE_SUBTYPES):
                 full.add("Instance")
-            lines += [f"(: {sym} {c})" for c in sorted(full)]
-        for (stem, arity), cls in sorted(self.sk_functions.items()):   # skolem functions: (sk_letter $x) is an Entity
-            args = " ".join(["Atom"] * arity)
-            for c in sorted({cls, "Instance"} if cls in INSTANCE_SUBTYPES else {cls}):
-                lines.append(f"(: {stem} (-> {args} {c}))")
-        return lines
+            types[sym] = sorted(full)
+        functions = [{"stem": stem, "arity": arity,                   # skolem functions: (sk_letter $x) is an Entity
+                      "classes": sorted({cls, "Instance"} if cls in INSTANCE_SUBTYPES else {cls})}
+                     for (stem, arity), cls in sorted(self.sk_functions.items())]
+        return types, functions
+
+    def declarations(self) -> list[str]:
+        """The type declarations for our engine line (``tmpl.lower``)."""
+        types, functions = self.type_table()
+        return L.declarations(types, functions)
 
     # ---------------------------------------------------------------- run
     def prepare(self):
@@ -1418,11 +1412,16 @@ class _Emitter:
         fired: dict[str, int] = {}
         for r in self.insts:
             fired[r["t"]] = fired.get(r["t"], 0) + 1
-        return {"id": self.item.get("id"),
-                "statements": [s["text"] for s in self.out],
+        types, functions = self.type_table()
+        emitted = {"records": [{"name": s["name"], "term": s["term"], "truth": s["truth"], "owner": s["owner"],
+                                "inst": s["inst"]} for s in self.out],
+                   "types": types, "functions": functions}
+        text = L.lower(emitted)                                 # our engine line's syntax, for the callers that read text
+        return {"id": self.item.get("id"), **emitted,
+                "statements": text["statements"],
                 "detail": [{"name": s["name"], "term": render(s["term"]), "owner": s["owner"], "inst": s["inst"]}
                            for s in self.out],
-                "declarations": self.declarations(),
+                "declarations": text["declarations"],
                 "fired": {k: fired[k] for k in sorted(fired)},
                 "unmapped": self.item.get("unmapped") or []}
 

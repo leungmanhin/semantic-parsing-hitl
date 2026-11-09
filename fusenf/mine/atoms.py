@@ -24,7 +24,7 @@ import json
 import os
 
 from . import TEMPLATES  # noqa: F401  (puts templates/ on the path)
-from tmpl import catalog as CAT, typecheck as T, validate as V
+from tmpl import catalog as CAT, lower as L, typecheck as T, validate as V
 
 SUBSTRATE = T.load_substrate()
 HEADS: dict = SUBSTRATE["heads"]
@@ -85,16 +85,24 @@ def graph_of(record: dict, catalog: dict | None = None, inspected: dict | None =
     if hard:
         return None
     types: dict[str, set] = {}
-    for d in res.get("declarations") or []:
-        e = T.parse(d)
-        if isinstance(e, list) and len(e) == 3 and e[0] == ":" and isinstance(e[1], str) and isinstance(e[2], str):
-            types.setdefault(e[1], set()).add(e[2])          # a function term's declaration ((sk_f $x) Event) is skipped
     atoms: list[dict] = []
-    for stmt, det in zip(res["statements"], res["detail"]):
-        name, term = T.split_statement(stmt)
-        s, c = _truth(stmt)
-        meta = {"name": name, "inst": det.get("inst"), "template": det.get("owner"), "s": s, "c": c}
-        _walk(term, [], None, atoms, meta)
+    if res.get("records") is not None:                       # the emitter's records: terms and truth values as data
+        for sym, classes in (res.get("types") or {}).items():
+            types.setdefault(sym, set()).update(classes)     # skolem functions are declared apart and not read here
+        for rec in res["records"]:
+            meta = {"name": rec["name"], "inst": rec.get("inst"), "template": rec.get("owner"),
+                    "s": float(rec["truth"][0]), "c": float(rec["truth"][1])}
+            _walk(L.leaves(rec["term"]), [], None, atoms, meta)   # leaves as the statement's text writes them
+    else:                                                    # an inspection without records: read the lowered text
+        for d in res.get("declarations") or []:
+            e = T.parse(d)
+            if isinstance(e, list) and len(e) == 3 and e[0] == ":" and isinstance(e[1], str) and isinstance(e[2], str):
+                types.setdefault(e[1], set()).add(e[2])      # a function term's declaration ((sk_f $x) Event) is skipped
+        for stmt, det in zip(res["statements"], res["detail"]):
+            name, term = T.split_statement(stmt)
+            s, c = _truth(stmt)
+            meta = {"name": name, "inst": det.get("inst"), "template": det.get("owner"), "s": s, "c": c}
+            _walk(term, [], None, atoms, meta)
     for i, a in enumerate(atoms):
         a["i"] = i
     return {"id": record["id"], "text": record.get("text", ""), "dataset": record.get("dataset"), "family": record.get("family"),

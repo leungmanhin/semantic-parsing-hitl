@@ -58,7 +58,8 @@ def inspect(reply, catalog: dict | None = None, reference_time=None, text: str |
     if catalog is None:
         catalog = CAT.load()
     res = {"status": "ok", "findings": [], "instances": [], "unmapped": [], "issues": [], "fired": {},
-           "null_slots": 0, "statements": None, "declarations": None, "detail": None, "typecheck": "not run"}
+           "null_slots": 0, "statements": None, "declarations": None, "detail": None,
+           "records": None, "types": None, "functions": None, "typecheck": "not run"}
     if not isinstance(reply, dict):
         res["status"] = "not-an-object"
         res["findings"].append({"kind": "contract", "detail": "the reply is not a JSON object"})
@@ -99,6 +100,7 @@ def inspect(reply, catalog: dict | None = None, reference_time=None, text: str |
         res["status"] = "malformed"
         return res
     res["statements"], res["declarations"], res["detail"] = out["statements"], out["declarations"], out["detail"]
+    res["records"], res["types"], res["functions"] = out["records"], out["types"], out["functions"]   # the same, as data
     res["findings"].extend(lints(cleaned, catalog, res["unmapped"], text))
     res["findings"].extend(statement_lints(res["statements"], res["detail"]))
     if text is not None:
