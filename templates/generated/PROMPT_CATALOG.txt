@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 48aa6b1c777b9bbc · 63 templates
+catalog sha256 bf0f705791aab7c4 · 64 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -213,11 +213,12 @@ fences.
   a second name of the same individual, the named entity's `aliases`; no clause. After a common
   noun, called / named / known as + a name is that noun's individual (a nephew called Ludo:
   Ludo, the noun his class or his relation; the guild's new charter, known as the Red Book: the
-  Red Book, class charter, the guild its `possessor`), not a second name. An infinitive that
-  gives a noun's content (a plan to sell the granary) is the postmodifier's (To, the clause
-  sealed); one that is a relative clause cut short (a house to rent, the man to ask) and a free
-  relative (what Joost said, whoever wins) are not relative clauses here: report them as
-  unmapped (G00).
+  Red Book, class charter, the guild its `possessor`), not a second name. A naming CLAUSE about
+  a referent that is not itself a name — her name is Odile, the boy is called Ludo — is the
+  identity template. An infinitive that gives a noun's content (a plan to sell the granary) is
+  the postmodifier's (To, the clause sealed); one that is a relative clause cut short (a house
+  to rent, the man to ask) and a free relative (what Joost said, whoever wins) are not relative
+  clauses here: report them as unmapped (G00).
 
 ## Nouns before nouns
 
@@ -2668,8 +2669,8 @@ Not this template:
   quality adjective with a complement — afraid of the badger, fond of Odile, full of water, good
   at chess: the adjective-complement template, a state of the subject with its complement
 - a definite or a name as the predicate — is the locksmith, is Pieter: an identity statement,
-  not a class or a property (a possessed relational noun — is Odile's cousin — is a stative
-  relation)
+  not a class or a property — the identity template (a possessed relational noun — is Odile's
+  cousin — is a stative relation)
 - an alleged or so-called predicate — an alleged thief: the adjective does not hold of the
   individual on its own and has no slot yet; report it as unmapped (former, ex- and retired are
   `former`)
@@ -2978,6 +2979,104 @@ The program renders these instances as:
 Not this template. TEXT: The inspection was difficult. — use `copular`.
 
 Not this template. TEXT: The fare fell sharply. — use `extent`.
+
+### identity — Two phrases that name the same individual — X is <Name>, X is the Y, X's name is N
+
+When: A clause with be stating that two phrases pick out the SAME individual: a name or a
+definite on both sides of be — Anouk's son is Ludo; the winner was Pieter; Marisol is the
+locksmith; the tallest weaver is Femke — or a NAMING clause — her name is Odile; the stork's
+name was Pip; the boy is called Ludo; the hut is named Fennhollow. Write each phrase's own
+instance as usual (a name its named-entity instance, a definite or a possessed noun its witness
+— a relational noun with a possessor its stative relation —, a pronoun its mention with its
+coref) and one identity instance: the first phrase the `subject`, the second the `object`. In a
+naming clause the word name is no instance and called / named is no verb: the subject is the
+referent whose name it is (her name is Odile: her, the mention), the object the name's
+named-entity instance. Was and is both state one individual: no tense. Negated or modalised, the
+identity is the predication the scope takes (the thief was not Pieter).
+
+Forms:
+- <X> is <Name> / <Name> is <X>
+- <X> is the <N>
+- <X>'s name is <Name> / her name was <Name>
+- <X> is called / named <Name>
+
+Not this template:
+- a class or a property after be — Pieter is a weaver, Pieter is tall: a copular; an indefinite
+  is a class (is a locksmith), a definite an individual (is the locksmith)
+- a possessed relational noun or a definite role title with an of-phrase — Ludo is Anouk's son,
+  Henrike is the warden of the mill: a stative relation
+- a name's own second name — Femke, known as Nell; Femke is also known as Nell: the named
+  entity's aliases
+- called / named / known as inside a noun phrase — a nephew called Ludo: the named entity for
+  Ludo, the noun its class or its relation (Relative clauses and participles)
+- a later mention of an earlier referent with no be — Odile … she: a coref; a cleft — it was
+  Pieter who left: the focus template
+
+Slots:
+
+- `t` (required): "identity"
+- `id` (required; your label for this instance): your label for the identity (i1, i2 …).
+- `subject` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
+  the first phrase: a referent id (a name, a witness, a mention); in a naming clause the
+  referent whose name it is.
+- `object` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
+  the second phrase: a referent id; in a naming clause the name's named-entity instance.
+
+Example (a possessed relational noun and a name — one individual). TEXT: Anouk's son is Ludo.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Anouk", "span": "Anouk"},
+      {"t": "witness", "id": "x1", "class": "son", "span": "Anouk's son"},
+      {"t": "stative-relation", "id": "p1", "relation": "son", "subject": "@x1", "object": "@n1", "tense": "present", "span": "Anouk's son"},
+      {"t": "named-entity", "id": "n2", "name": "Ludo", "span": "Ludo"},
+      {"t": "identity", "id": "i1", "subject": "@x1", "object": "@n2", "span": "Anouk's son is Ludo"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_anouk_1 "Anouk")
+    (Member sk_son_1 son)
+    (Member sk_son_2 son)
+    (Bearer sk_son_2 sk_son_1)
+    (Theme sk_son_2 sk_anouk_1)
+    (Name sk_ludo_1 "Ludo")
+    (Same sk_son_1 sk_ludo_1)
+
+Example (a naming clause — the subject is the referent whose name it is). TEXT: Her name was Odile.
+
+Instances:
+
+    [
+      {"t": "mention", "id": "m1", "word": "her", "span": "Her"},
+      {"t": "named-entity", "id": "n1", "name": "Odile", "span": "Odile"},
+      {"t": "identity", "id": "i1", "subject": "@m1", "object": "@n1", "span": "Her name was Odile"}
+    ]
+
+The program renders these instances as:
+
+    (Member sk_her_1 female)
+    (Name sk_odile_1 "Odile")
+    (Same sk_her_1 sk_odile_1)
+
+Example (a definite after be is an individual, not a class). TEXT: The winner was Pieter.
+
+Instances:
+
+    [
+      {"t": "witness", "id": "x1", "class": "winner", "definite": true, "span": "The winner"},
+      {"t": "named-entity", "id": "n1", "name": "Pieter", "span": "Pieter"},
+      {"t": "identity", "id": "i1", "subject": "@x1", "object": "@n1", "span": "The winner was Pieter"}
+    ]
+
+The program renders these instances as:
+
+    (Member sk_winner_1 winner)
+    (Name sk_pieter_1 "Pieter")
+    (Same sk_winner_1 sk_pieter_1)
+
+Not this template. TEXT: Pieter is a locksmith. — use `copular`.
 
 ### locative — Where a thing is
 
@@ -7057,6 +7156,9 @@ Not this template:
 - a relative pronoun — the stork that ate the frog: no coreference; the noun fills the clause's
   role directly (relative clauses)
 - an expletive or a generic pronoun — it rained, one never knows: no referent, no link
+- a stated identity with be — her son is Ludo, the winner was Pieter, her name was Odile: the
+  identity template, the text's claim; a coref is your judgment of what a later mention stands
+  for
 
 Slots:
 

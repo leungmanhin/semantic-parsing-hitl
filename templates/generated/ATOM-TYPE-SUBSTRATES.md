@@ -2,7 +2,7 @@
 
 Generated from `templates/atom-type-substrates.json` (schema `atom-type-substrates/1`) by `templates/tmpl/gen_substrate.py`, together with `templates/generated/atom-types.metta`. Do not edit by hand; regenerate with `cd templates && python -m tmpl.gen_substrate`.
 
-178 heads in 15 kinds (7 proposed; 178 with a reviewed type declaration so far). `type-def` is the PeTTa declaration emitted for the head; `?` as the output type means the head is not yet reviewed and is absent from the `.metta` file; `%Undefined%` marks a position the head takes but the JSON does not type.
+179 heads in 15 kinds (7 proposed; 179 with a reviewed type declaration so far). `type-def` is the PeTTa declaration emitted for the head; `?` as the output type means the head is not yet reviewed and is absent from the `.metta` file; `%Undefined%` marks a position the head takes but the JSON does not type.
 
 Every atom is carried as a statement (: <proof-name> <atom> <tv>), tv = (STV strength confidence) or another engine truth value. The carrier is not an atom kind: ':' is never type-declared (it is also PeTTa's type-declaration head) and the truth value is declared by the engine, not by this substrate.
 
@@ -631,7 +631,7 @@ legacy: (: Year (-> Number TimeTerm))  ; kept until the re-parse
 gloss: Calendar year of a time instance: (Year t 2026). Legacy constructor form (Year 2026) kept until the re-parse.
 
 
-## relation (19)
+## relation (20)
 
 head: Between
 kind: relation
@@ -758,6 +758,13 @@ kind: relation
 arity: 2
 type-def: (: Result (-> Event Event Proposition))  ; and 1 more (per arity / per union alternative)
 gloss: Links a change event to its result. Order: (Result event result). The result is the outcome proposition as a sealed term in the catalog form ((Result sk_become_1 (Member teodor locksmith))); that the outcome holds afterwards is a background rule (the catalog's seeded rules), not a flat emission; the legacy form linked a reified result-state eventuality.
+
+
+head: Same
+kind: relation
+arity: 2
+type-def: (: Same (-> Entity Entity Proposition))
+gloss: A stated identity: the two phrases pick out one individual (the winner was Pieter; her name was Odile — the mention and the name). The text's claim, not an anaphora judgment (that is Coref); negatable like any predication; the background rule same_coref reads it as a coreference. Order: (Same first-phrase second-phrase).
 
 
 head: SubsetOf

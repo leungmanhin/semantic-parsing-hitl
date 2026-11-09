@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
+  "prompt_sha256": "1585e873fc3151b887e5bdf412d7f2bd32dbd20447d8f6fc43503af246682b5c",
   "item": {
     "id": "s63063caa4d",
     "text": "Teodor is the locksmith."
   },
   "usage": {
-    "input": 56505,
-    "output": 95,
+    "input": 122073,
+    "output": 128,
     "thinking": null,
-    "total": 56600,
-    "cached": 54456,
+    "total": 122201,
+    "cached": 120024,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,30 +25,30 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 56505,
-    "candidatesTokenCount": 95,
-    "totalTokenCount": 56600,
-    "cachedContentTokenCount": 54456,
+    "promptTokenCount": 122073,
+    "candidatesTokenCount": 128,
+    "totalTokenCount": 122201,
+    "cachedContentTokenCount": 120024,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 56505
+        "tokenCount": 122073
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 54456
+        "tokenCount": 120024
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 95
+        "tokenCount": 128
       }
     ]
   },
-  "raw_text": "{\"id\": \"s63063caa4d\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}], \"unmapped\": [{\"span\": \"Teodor is the locksmith\", \"code\": \"G00\", \"construction\": \"Equative copular clause with a definite noun phrase as the predicate.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"s63063caa4d\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"locksmith\", \"definite\": true, \"span\": \"the locksmith\"}, {\"t\": \"identity\", \"id\": \"i1\", \"subject\": \"@n1\", \"object\": \"@x1\", \"span\": \"Teodor is the locksmith\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "s63063caa4d",
     "instances": [
@@ -57,23 +57,32 @@
         "id": "n1",
         "name": "Teodor",
         "span": "Teodor"
-      }
-    ],
-    "unmapped": [
+      },
       {
-        "span": "Teodor is the locksmith",
-        "code": "G00",
-        "construction": "Equative copular clause with a definite noun phrase as the predicate."
+        "t": "witness",
+        "id": "x1",
+        "class": "locksmith",
+        "definite": true,
+        "span": "the locksmith"
+      },
+      {
+        "t": "identity",
+        "id": "i1",
+        "subject": "@n1",
+        "object": "@x1",
+        "span": "Teodor is the locksmith"
       }
     ],
+    "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
+  "prompt_body_sha256": "7423b953801b8633ab6e438d6fcef235bb0473d3842b65613554c9f6b5322ffe",
+  "manifest_id": "a00bfbea4ce5",
   "run": 2,
   "case": {
     "template": "copular",
     "section": "held_out",
-    "index": 12,
+    "index": 14,
     "category": "abstain",
     "text": "Teodor is the locksmith.",
     "key": "63063caa4d"

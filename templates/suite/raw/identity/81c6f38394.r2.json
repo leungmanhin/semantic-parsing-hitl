@@ -1,0 +1,89 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "1585e873fc3151b887e5bdf412d7f2bd32dbd20447d8f6fc43503af246682b5c",
+  "item": {
+    "id": "s81c6f38394",
+    "text": "His name was Lamine."
+  },
+  "usage": {
+    "input": 122075,
+    "output": 123,
+    "thinking": null,
+    "total": 122198,
+    "cached": 120024,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 122075,
+    "candidatesTokenCount": 123,
+    "totalTokenCount": 122198,
+    "cachedContentTokenCount": 120024,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 122075
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 120024
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 123
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s81c6f38394\", \"instances\": [{\"t\": \"mention\", \"id\": \"m1\", \"word\": \"his\", \"span\": \"His\"}, {\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"identity\", \"id\": \"i1\", \"subject\": \"@m1\", \"object\": \"@n1\", \"span\": \"His name was Lamine\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s81c6f38394",
+    "instances": [
+      {
+        "t": "mention",
+        "id": "m1",
+        "word": "his",
+        "span": "His"
+      },
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "identity",
+        "id": "i1",
+        "subject": "@m1",
+        "object": "@n1",
+        "span": "His name was Lamine"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "7423b953801b8633ab6e438d6fcef235bb0473d3842b65613554c9f6b5322ffe",
+  "manifest_id": "a00bfbea4ce5",
+  "run": 2,
+  "case": {
+    "template": "identity",
+    "section": "held_out",
+    "index": 2,
+    "category": "positive",
+    "text": "His name was Lamine.",
+    "key": "81c6f38394"
+  }
+}

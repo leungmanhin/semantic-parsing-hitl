@@ -1,0 +1,98 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "1585e873fc3151b887e5bdf412d7f2bd32dbd20447d8f6fc43503af246682b5c",
+  "item": {
+    "id": "sa73e9bfaab",
+    "text": "The thief was not Teodor."
+  },
+  "usage": {
+    "input": 122072,
+    "output": 154,
+    "thinking": null,
+    "total": 122226,
+    "cached": 119972,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 122072,
+    "candidatesTokenCount": 154,
+    "totalTokenCount": 122226,
+    "cachedContentTokenCount": 119972,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 122072
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 119972
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 154
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sa73e9bfaab\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"thief\", \"definite\": true, \"span\": \"The thief\"}, {\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"identity\", \"id\": \"i1\", \"subject\": \"@x1\", \"object\": \"@n1\", \"span\": \"The thief was not Teodor\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@i1\"], \"span\": \"not\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sa73e9bfaab",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "thief",
+        "definite": true,
+        "span": "The thief"
+      },
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "identity",
+        "id": "i1",
+        "subject": "@x1",
+        "object": "@n1",
+        "span": "The thief was not Teodor"
+      },
+      {
+        "t": "negation",
+        "id": "s1",
+        "over": [
+          "@i1"
+        ],
+        "span": "not"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "7423b953801b8633ab6e438d6fcef235bb0473d3842b65613554c9f6b5322ffe",
+  "manifest_id": "a00bfbea4ce5",
+  "run": 2,
+  "case": {
+    "template": "identity",
+    "section": "held_out",
+    "index": 3,
+    "category": "positive",
+    "text": "The thief was not Teodor.",
+    "key": "a73e9bfaab"
+  }
+}

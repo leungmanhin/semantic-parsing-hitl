@@ -1,0 +1,98 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "1585e873fc3151b887e5bdf412d7f2bd32dbd20447d8f6fc43503af246682b5c",
+  "item": {
+    "id": "sc1f7acfed1",
+    "text": "His name is Teodor.",
+    "context_sha256": "50b6d36b743f249ebf7ccb3c799cf3205bf92d23d322aa8a12e40b64fa22cb27"
+  },
+  "usage": {
+    "input": 122322,
+    "output": 164,
+    "thinking": null,
+    "total": 122486,
+    "cached": 120273,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 122322,
+    "candidatesTokenCount": 164,
+    "totalTokenCount": 122486,
+    "cachedContentTokenCount": 120273,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 122322
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 120273
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 164
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sc1f7acfed1\", \"instances\": [{\"t\": \"mention\", \"id\": \"m1\", \"word\": \"his\", \"span\": \"His\"}, {\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"identity\", \"id\": \"i1\", \"subject\": \"@m1\", \"object\": \"@n1\", \"span\": \"His name is Teodor\"}, {\"t\": \"coref\", \"id\": \"c1\", \"mention\": \"@m1\", \"antecedent\": \"@s1.x1\", \"certainty\": \"certain\", \"span\": \"His\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sc1f7acfed1",
+    "instances": [
+      {
+        "t": "mention",
+        "id": "m1",
+        "word": "his",
+        "span": "His"
+      },
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "identity",
+        "id": "i1",
+        "subject": "@m1",
+        "object": "@n1",
+        "span": "His name is Teodor"
+      },
+      {
+        "t": "coref",
+        "id": "c1",
+        "mention": "@m1",
+        "antecedent": "@s1.x1",
+        "certainty": "certain",
+        "span": "His"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "7423b953801b8633ab6e438d6fcef235bb0473d3842b65613554c9f6b5322ffe",
+  "manifest_id": "a00bfbea4ce5",
+  "run": 3,
+  "case": {
+    "template": "identity",
+    "section": "held_out",
+    "index": 4,
+    "category": "positive",
+    "text": "His name is Teodor.",
+    "key": "c1f7acfed1"
+  }
+}

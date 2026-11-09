@@ -37,6 +37,16 @@ rules:
     notes: >-
       An equivalence: "between the KDP and the PUK" and "between the PUK and the KDP" say the same,
       so a question in either order finds the statement, a denial included.
+  - id: same_coref
+    meaning: a stated identity is a coreference (the coref rules then carry roles, classes, possessions and gender)
+    premises: ["(Same $x $y)"]
+    conclusion: "(Coref $x $y)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [identity]
+    notes: >-
+      "His name is Craig" gives (Same sk_his_1 sk_craig_1); read as (Coref sk_his_1 sk_craig_1), coref_sym and the
+      role rules give Craig the son's relations, and the son Craig's name.
   - id: coref_sym
     meaning: a coreference link holds in both directions
     premises: ["(Coref $a $b)"]

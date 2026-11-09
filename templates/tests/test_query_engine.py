@@ -244,6 +244,56 @@ KIN_QUESTIONS = [
 ]
 
 
+# A naming clause (the identity template): "His name is Craig." names the son of the first sentence, so the closure
+# relates Craig to Mark (Marian's two sons) and to Mark's sister; Darnell's relation to Craig needs the default that
+# siblings share their parents (a half-sister would break it), hence its lower strength.
+NAMING_SENTENCES = [
+    ("Marian cooked for her son.",
+     [N("n1", "Marian"), {"t": "mention", "id": "m1", "word": "her"}, C("c1", "@m1", "@n1"), {"t": "witness", "id": "x1", "class": "son"},
+      {"t": "stative-relation", "id": "p1", "relation": "son", "subject": "@x1", "object": "@m1", "tense": "present"},
+      {"t": "activity", "id": "e1", "verb": "cook", "actor": "@n1", "tense": "past"}]),
+    ("His name is Craig.",
+     [{"t": "mention", "id": "m1", "word": "his"}, C("c1", "@m1", "@s1.x1"), N("n1", "Craig"),
+      {"t": "identity", "id": "i1", "subject": "@m1", "object": "@n1"}]),
+    ("Marian hugged her son Mark.",
+     [N("n1", "Marian"), C("c1", "@n1", "@s1.n1"), {"t": "mention", "id": "m1", "word": "her"}, C("c2", "@m1", "@s1.n1"), N("n2", "Mark"),
+      {"t": "stative-relation", "id": "p1", "relation": "son", "subject": "@n2", "object": "@m1", "tense": "present"},
+      {"t": "activity", "id": "e1", "verb": "hug", "actor": "@n1", "patient": "@n2", "tense": "past"}]),
+    ("Mark hugged his sister Darnell.",
+     [N("n1", "Mark"), C("c1", "@n1", "@s3.n2"), {"t": "mention", "id": "m1", "word": "his"}, C("c2", "@m1", "@s3.n2"), N("n2", "Darnell"),
+      {"t": "stative-relation", "id": "p1", "relation": "sister", "subject": "@n2", "object": "@m1", "tense": "present"},
+      {"t": "activity", "id": "e1", "verb": "hug", "actor": "@n1", "patient": "@n2", "tense": "past"}]),
+]
+NAMING_STATEMENTS = [
+    '(: s1_n1_name (Name sk_marian_1 "Marian") (STV 1.0 0.99))', "(: s1_m1_member (Member sk_her_1 female) (STV 1.0 0.99))",
+    "(: s1_c1_coref (Coref sk_her_1 sk_marian_1) (STV 0.99 0.9))", "(: s1_x1_member (Member sk_son_1 son) (STV 1.0 0.99))",
+    "(: s1_p1_member (Member sk_son_2 son) (STV 1.0 0.99))", "(: s1_p1_bearer (Bearer sk_son_2 sk_son_1) (STV 1.0 0.99))",
+    "(: s1_p1_theme (Theme sk_son_2 sk_her_1) (STV 1.0 0.99))", "(: s1_e1_member (Member sk_cook_1 cook) (STV 1.0 0.99))",
+    "(: s1_e1_agent (Agent sk_cook_1 sk_marian_1) (STV 1.0 0.99))", "(: s1_e1_past (Past sk_cook_1) (STV 1.0 0.99))",
+    "(: s2_m1_member (Member sk_his_1 male) (STV 1.0 0.99))", "(: s2_c1_coref (Coref sk_his_1 sk_son_1) (STV 0.99 0.9))",
+    '(: s2_n1_name (Name sk_craig_1 "Craig") (STV 1.0 0.99))', "(: s2_i1_same (Same sk_his_1 sk_craig_1) (STV 1.0 0.99))",
+    '(: s3_n1_name (Name sk_marian_2 "Marian") (STV 1.0 0.99))', "(: s3_c1_coref (Coref sk_marian_2 sk_marian_1) (STV 0.99 0.9))",
+    "(: s3_m1_member (Member sk_her_2 female) (STV 1.0 0.99))", "(: s3_c2_coref (Coref sk_her_2 sk_marian_1) (STV 0.99 0.9))",
+    '(: s3_n2_name (Name sk_mark_1 "Mark") (STV 1.0 0.99))', "(: s3_p1_member (Member sk_son_3 son) (STV 1.0 0.99))",
+    "(: s3_p1_bearer (Bearer sk_son_3 sk_mark_1) (STV 1.0 0.99))", "(: s3_p1_theme (Theme sk_son_3 sk_her_2) (STV 1.0 0.99))",
+    "(: s3_e1_member (Member sk_hug_1 hug) (STV 1.0 0.99))", "(: s3_e1_agent (Agent sk_hug_1 sk_marian_2) (STV 1.0 0.99))",
+    "(: s3_e1_patient (Patient sk_hug_1 sk_mark_1) (STV 1.0 0.99))", "(: s3_e1_past (Past sk_hug_1) (STV 1.0 0.99))",
+    '(: s4_n1_name (Name sk_mark_2 "Mark") (STV 1.0 0.99))', "(: s4_c1_coref (Coref sk_mark_2 sk_mark_1) (STV 0.99 0.9))",
+    "(: s4_m1_member (Member sk_his_2 male) (STV 1.0 0.99))", "(: s4_c2_coref (Coref sk_his_2 sk_mark_1) (STV 0.99 0.9))",
+    '(: s4_n2_name (Name sk_darnell_1 "Darnell") (STV 1.0 0.99))', "(: s4_p1_member (Member sk_sister_1 sister) (STV 1.0 0.99))",
+    "(: s4_p1_bearer (Bearer sk_sister_1 sk_darnell_1) (STV 1.0 0.99))", "(: s4_p1_theme (Theme sk_sister_1 sk_his_2) (STV 1.0 0.99))",
+    "(: s4_e1_member (Member sk_hug_2 hug) (STV 1.0 0.99))", "(: s4_e1_agent (Agent sk_hug_2 sk_mark_2) (STV 1.0 0.99))",
+    "(: s4_e1_patient (Patient sk_hug_2 sk_darnell_1) (STV 1.0 0.99))", "(: s4_e1_past (Past sk_hug_2) (STV 1.0 0.99))",
+]
+NAMING_QUESTIONS = [
+    {"name": "How is Darnell related to Craig? — Craig named by a naming clause", "question": RELATION_QUESTION("Darnell", "@s4.n2", "Craig", "@s2.n1"),
+     "queries": ["(: $prf (And (Member $wh_1 $how) (Bearer $wh_1 sk_darnell_1) (Theme $wh_1 sk_craig_1)) $tv)",
+                 "(: $prf (And (Member $wh_1 $how) (Bearer $wh_1 sk_darnell_1) (Bearer $wh_1 sk_craig_1)) $tv)"],
+     "expect": {"sibling", "sister"}},
+]
+KIN_STORIES = [(KIN_SENTENCES, KIN_STATEMENTS, KIN_QUESTIONS), (NAMING_SENTENCES, NAMING_STATEMENTS, NAMING_QUESTIONS)]
+
+
 def pattern_of(query: str):
     """The pattern of ``(: $prf <pattern> $tv)``."""
     return A.parse(query)[2]
@@ -294,9 +344,10 @@ class QuestionsOnTheEngine(unittest.TestCase):
         in the neutral word, and in the gendered word when the text states the gender — and nothing else."""
         sets = R.rule_sets_from_files(RULES, CLOSURE)
         self.assertTrue(sets["closure"])
-        for q in KIN_QUESTIONS:
+        cases = [(statements, q) for _sentences, statements, questions in KIN_STORIES for q in questions]
+        for statements, q in cases:
             with self.subTest(q["name"]):
-                job = R.question_job(KIN_STATEMENTS, q["queries"], sets)
+                job = R.question_job(statements, q["queries"], sets)
                 out = A.run_job(job)
                 self.assertEqual(out["refused"], [])
                 self.assertTrue(out["derived"])

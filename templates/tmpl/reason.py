@@ -2,7 +2,8 @@
 may become unnecessary there). Neither changes a record: what NESS receives is the emitter's records as they are.
 
 1. THE RESOLVED VIEW (a lowering for reasoning). Every CERTAIN coref link (strength ≥ 0.99: the parser's "certain")
-   merges its mention into its antecedent, chains followed; the merged Coref statements and the duplicate atoms are
+   and every stated identity at that strength ((Same x y): the identity template) merges its first symbol into its
+   second, chains followed; the merged Coref statements and the duplicate atoms are
    dropped; a weaker link (likely, unsure) stays a link for the coref rules. Why: each mention is its own symbol and the
    coref rules copy every role across the links, so a chain of compositions multiplies its search per mention; on our
    line the chainer then runs out of memory or loses the nested proofs (2026-11-09 probes on the CLUTRR trial). The
@@ -37,23 +38,32 @@ CERTAIN = 0.99
 
 
 def view(statements: list[str], threshold: float = CERTAIN) -> dict:
-    """The resolved view of a text's statements: ``{"statements", "canon"}``, ``canon`` mapping each merged mention's
-    symbol to its antecedent's (chains followed)."""
-    links: dict = {}
-    for st in statements:
-        p = A.statement_parts(st)
-        if p and isinstance(p[1], list) and len(p[1]) == 3 and p[1][0] == "Coref" and p[2] and p[2][0] >= threshold \
-                and isinstance(p[1][1], str) and isinstance(p[1][2], str):
-            links.setdefault(p[1][1], p[1][2])
+    """The resolved view of a text's statements: ``{"statements", "canon"}``. Every certain link joins its two symbols
+    in one class (a mention can be linked twice — to its antecedent by coref and to a name by a stated identity); each
+    class is named by its member mentioned first in the statements, and ``canon`` maps every other member to it."""
+    first: dict = {}
+    for i, st in enumerate(statements):
+        for tok in A._TOKEN.findall(st):
+            if tok.startswith("sk_"):
+                first.setdefault(tok, i)
+    parent: dict = {}
 
     def find(s):
-        seen = set()
-        while s in links and s not in seen:
-            seen.add(s)
-            s = links[s]
+        while parent.get(s, s) != s:
+            parent[s] = parent.get(parent[s], parent[s])
+            s = parent[s]
         return s
 
-    canon = {k: find(k) for k in links if find(k) != k}
+    for st in statements:
+        p = A.statement_parts(st)
+        if p and isinstance(p[1], list) and len(p[1]) == 3 and p[1][0] in ("Coref", "Same") and p[2] and p[2][0] >= threshold \
+                and isinstance(p[1][1], str) and isinstance(p[1][2], str):
+            a, b = find(p[1][1]), find(p[1][2])
+            if a != b:                                      # the class keeps the member mentioned first
+                keep, drop = sorted((a, b), key=lambda s: (first.get(s, len(statements)), s))
+                parent[drop] = keep
+
+    canon = {k: find(k) for k in list(parent) if find(k) != k}
 
     def sub(t):
         return [sub(x) for x in t] if isinstance(t, list) else canon.get(t, t)
@@ -66,7 +76,7 @@ def view(statements: list[str], threshold: float = CERTAIN) -> dict:
             continue
         name, term, tv = p
         t2 = sub(term)
-        if isinstance(t2, list) and len(t2) == 3 and t2[0] == "Coref" and t2[1] == t2[2]:
+        if isinstance(t2, list) and len(t2) == 3 and t2[0] in ("Coref", "Same") and t2[1] == t2[2]:
             continue                                        # a merged link: it holds by the merge
         key = A.render(t2)
         if key in seen:

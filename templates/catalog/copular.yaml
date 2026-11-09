@@ -56,8 +56,8 @@ trigger:
       subject with its complement
     - >-
       a definite or a name as the predicate — is the locksmith, is Pieter: an identity
-      statement, not a class or a property (a possessed relational noun — is Odile's cousin —
-      is a stative relation)
+      statement, not a class or a property — the identity template (a possessed relational noun
+      — is Odile's cousin — is a stative relation)
     - >-
       an alleged or so-called predicate — an alleged thief: the adjective does not hold of the
       individual on its own and has no slot yet; report it as unmapped (former, ex- and retired
@@ -277,7 +277,7 @@ examples:
       expected: {abstain: true, template: adjective-complement}         # an adjective with a complement
     - category: abstain
       text: "Teodor is the locksmith."
-      expected: {abstain: true, gap: G00, span: "is the locksmith"}   # an identity statement
+      expected: {abstain: true, template: identity}                   # an identity statement
     - category: abstain
       text: "Teodor is extremely tired."
       expected: {abstain: true, template: degree}                     # an adjective with a degree word

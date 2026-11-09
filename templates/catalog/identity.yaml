@@ -1,0 +1,156 @@
+# Template: identity  (two phrases naming the same individual: "Yusra's daughter is Ottoline", "Teodor is the locksmith", "His name was Lamine")
+#
+# A clause with be can state that two phrases pick out ONE individual: a name or a definite on both
+# sides (the winner was Teodor), and a naming clause (her name is Ottoline, the boy is called Lamine),
+# which says that the referent is the one the name names. Both phrases keep their own instances — a
+# name its named-entity, a definite its witness, a pronoun its mention with its coref — and this
+# template states that they are the same: (Same sk_son_1 sk_ottoline_1). It is the text's claim, not
+# the parser's judgment of an anaphor (that is coref), so it can be negated or hedged like any
+# predication; a background rule reads a stated identity as a coreference, so every role, name and
+# gender carries across. Identity is not tense: in a past narrative "was" still names one individual.
+
+id: identity
+family: predication
+shape: copular
+title: Two phrases that name the same individual — X is <Name>, X is the Y, X's name is N
+
+trigger:
+  construction: >
+    A clause with be stating that two phrases pick out the SAME individual: a name or a definite on both sides of be
+    — Anouk's son is Ludo; the winner was Pieter; Marisol is the locksmith; the tallest weaver is Femke — or a NAMING
+    clause — her name is Odile; the stork's name was Pip; the boy is called Ludo; the hut is named Fennhollow.
+    Write each phrase's own instance as usual (a name its named-entity instance, a definite or a possessed noun its
+    witness — a relational noun with a possessor its stative relation —, a pronoun its mention with its coref) and
+    one identity instance: the first phrase the `subject`, the second the `object`. In a naming clause the word
+    name is no instance and called / named is no verb: the subject is the referent whose name it is (her name is
+    Odile: her, the mention), the object the name's named-entity instance. Was and is both state one individual: no
+    tense. Negated or modalised, the identity is the predication the scope takes (the thief was not Pieter).
+  surface_forms:
+    - "<X> is <Name> / <Name> is <X>"          # Anouk's son is Ludo; the winner was Pieter
+    - "<X> is the <N>"                         # Marisol is the locksmith: a definite, not a class
+    - "<X>'s name is <Name> / her name was <Name>"   # the subject is the possessor; the word name is no instance
+    - "<X> is called / named <Name>"           # a clause; a noun phrase (a nephew called Ludo) is the named-entity's own phrase
+  boundary:                   # looks like an identity but is not one
+    - >-
+      a class or a property after be — Pieter is a weaver, Pieter is tall: a copular; an indefinite is a class (is a
+      locksmith), a definite an individual (is the locksmith)
+    - >-
+      a possessed relational noun or a definite role title with an of-phrase — Ludo is Anouk's son, Henrike is the
+      warden of the mill: a stative relation
+    - >-
+      a name's own second name — Femke, known as Nell; Femke is also known as Nell: the named entity's aliases
+    - >-
+      called / named / known as inside a noun phrase — a nephew called Ludo: the named entity for Ludo, the noun its
+      class or its relation (Relative clauses and participles)
+    - >-
+      a later mention of an earlier referent with no be — Odile … she: a coref; a cleft — it was Pieter who left: the
+      focus template
+
+slots:
+  id:      {type: id, required: true, doc: "your label for the identity (i1, i2 …)"}
+  subject: {type: filler, class: Entity, required: true,
+            doc: "the first phrase: a referent id (a name, a witness, a mention); in a naming clause the referent whose name it is"}
+  object:  {type: filler, class: Entity, required: true,
+            doc: "the second phrase: a referent id; in a naming clause the name's named-entity instance"}
+
+emits:
+  - atom: "(Same {subject} {object})"
+
+notes:
+  - >-
+    A stated identity is the text's claim: (Same x y) at the claim's truth value, negatable and hedged like any
+    predication. The background rule same_coref reads it as a coreference, so the coref rules carry roles, classes,
+    possessions and gender between the two symbols, and a reasoner's resolved view merges a certain one like a
+    certain coref.
+  - >-
+    A naming clause states the name of a referent the text already has: "Marian baked for her son. His name is
+    Craig." gives the son his name through the mention his — (Same sk_his_1 sk_craig_1), his linked to the son.
+
+depends_on: [named-entity, witness, mention, coref]
+composes_with: [negation, modal, hedge, stative-relation]
+
+examples:
+  shown:                     # rendered into the prompt
+    - category: positive
+      note: a possessed relational noun and a name — one individual
+      text: "Anouk's son is Ludo."
+      instances:
+        - {t: named-entity, id: n1, name: "Anouk", span: "Anouk"}
+        - {t: witness, id: x1, class: son, span: "Anouk's son"}
+        - {t: stative-relation, id: p1, relation: son, subject: "@x1", object: "@n1", tense: present, span: "Anouk's son"}
+        - {t: named-entity, id: n2, name: "Ludo", span: "Ludo"}
+        - {t: identity, id: i1, subject: "@x1", object: "@n2", span: "Anouk's son is Ludo"}
+    - category: positive
+      note: a naming clause — the subject is the referent whose name it is
+      text: "Her name was Odile."
+      instances:
+        - {t: mention, id: m1, word: her, span: "Her"}
+        - {t: named-entity, id: n1, name: "Odile", span: "Odile"}
+        - {t: identity, id: i1, subject: "@m1", object: "@n1", span: "Her name was Odile"}
+    - category: positive
+      note: a definite after be is an individual, not a class
+      text: "The winner was Pieter."
+      instances:
+        - {t: witness, id: x1, class: winner, definite: true, span: "The winner"}
+        - {t: named-entity, id: n1, name: "Pieter", span: "Pieter"}
+        - {t: identity, id: i1, subject: "@x1", object: "@n1", span: "The winner was Pieter"}
+    - category: abstain
+      text: "Pieter is a locksmith."
+      expected: {abstain: true, template: copular}                   # an indefinite: a class (beside "Marisol is the locksmith")
+
+  held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      note: a name and a definite (moved from copular's abstain — an identity statement)
+      text: "Teodor is the locksmith."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, class: locksmith, definite: true}
+        - {t: identity, id: i1, subject: "@n1", object: "@x1"}
+    - category: positive
+      note: a possessed relational noun and a name
+      text: "Yusra's daughter is Ottoline."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, class: daughter}
+        - {t: stative-relation, id: p1, relation: daughter, subject: "@x1", object: "@n1", tense: present}
+        - {t: named-entity, id: n2, name: "Ottoline"}
+        - {t: identity, id: i1, subject: "@x1", object: "@n2"}
+    - category: positive
+      note: a naming clause with a pronoun
+      text: "His name was Lamine."
+      instances:
+        - {t: mention, id: m1, word: his}
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: identity, id: i1, subject: "@m1", object: "@n1"}
+    - category: positive
+      note: a negated identity
+      text: "The thief was not Teodor."
+      instances:
+        - {t: witness, id: x1, class: thief, definite: true}
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: identity, id: i1, subject: "@x1", object: "@n1"}
+        - {t: negation, id: s1, over: ["@i1"]}
+    - category: positive
+      note: read after a context — the naming clause names the earlier son, through the mention's coref
+      context:
+        - text: "Yusra hugged her son."
+          instances:
+            - {t: named-entity, id: n1, name: "Yusra"}
+            - {t: mention, id: m1, word: her}
+            - {t: coref, id: c1, mention: "@m1", antecedent: "@n1", certainty: certain}
+            - {t: witness, id: x1, class: son}
+            - {t: stative-relation, id: p1, relation: son, subject: "@x1", object: "@m1", tense: present}
+            - {t: activity, id: e1, verb: hug, actor: "@n1", patient: "@x1", tense: past}
+      text: "His name is Teodor."
+      instances:
+        - {t: mention, id: m1, word: his}
+        - {t: coref, id: c1, mention: "@m1", antecedent: "@s1.x1", certainty: certain}
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: identity, id: i1, subject: "@m1", object: "@n1"}
+    - category: positive
+      note: a naming clause with called, the subject a definite
+      text: "The ferret is called Pip."
+      instances:
+        - {t: witness, id: x1, class: ferret, definite: true}
+        - {t: named-entity, id: n1, name: "Pip"}
+        - {t: identity, id: i1, subject: "@x1", object: "@n1"}

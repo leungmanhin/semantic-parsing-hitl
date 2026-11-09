@@ -1,0 +1,105 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "1585e873fc3151b887e5bdf412d7f2bd32dbd20447d8f6fc43503af246682b5c",
+  "item": {
+    "id": "s203e1e090b",
+    "text": "Yusra's daughter is Ottoline."
+  },
+  "usage": {
+    "input": 122078,
+    "output": 217,
+    "thinking": null,
+    "total": 122295,
+    "cached": 120024,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 122078,
+    "candidatesTokenCount": 217,
+    "totalTokenCount": 122295,
+    "cachedContentTokenCount": 120024,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 122078
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 120024
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 217
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s203e1e090b\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"daughter\", \"span\": \"Yusra's daughter\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"stative-relation\", \"id\": \"p1\", \"relation\": \"daughter\", \"subject\": \"@x1\", \"object\": \"@n1\", \"tense\": \"present\", \"span\": \"Yusra's daughter\"}, {\"t\": \"identity\", \"id\": \"i1\", \"subject\": \"@x1\", \"object\": \"@n2\", \"span\": \"Yusra's daughter is Ottoline\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s203e1e090b",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "daughter",
+        "span": "Yusra's daughter"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Ottoline",
+        "span": "Ottoline"
+      },
+      {
+        "t": "stative-relation",
+        "id": "p1",
+        "relation": "daughter",
+        "subject": "@x1",
+        "object": "@n1",
+        "tense": "present",
+        "span": "Yusra's daughter"
+      },
+      {
+        "t": "identity",
+        "id": "i1",
+        "subject": "@x1",
+        "object": "@n2",
+        "span": "Yusra's daughter is Ottoline"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "7423b953801b8633ab6e438d6fcef235bb0473d3842b65613554c9f6b5322ffe",
+  "manifest_id": "a00bfbea4ce5",
+  "run": 1,
+  "case": {
+    "template": "identity",
+    "section": "held_out",
+    "index": 1,
+    "category": "positive",
+    "text": "Yusra's daughter is Ottoline.",
+    "key": "203e1e090b"
+  }
+}

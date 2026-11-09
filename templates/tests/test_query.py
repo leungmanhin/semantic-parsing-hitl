@@ -15,7 +15,7 @@ sys.path.insert(0, os.path.join(HERE, os.pardir))
 sys.path.insert(0, HERE)
 
 from tmpl import answers as A, blocks as B, catalog as CAT, emit as E, lower as L, query as Q, suite as S, validate as V  # noqa: E402
-from test_query_engine import CASES, KIN_QUESTIONS, KIN_SENTENCES, KIN_STATEMENTS  # noqa: E402
+from test_query_engine import CASES, KIN_STORIES  # noqa: E402
 
 CATALOG = CAT.load()
 
@@ -45,12 +45,13 @@ class TheEngineCases(unittest.TestCase):
                 self.assertEqual([a["var"] for a in asked["asked"]], case["asked"])
                 self.assertEqual(asked["findings"], [])
 
-    def test_the_kinship_case_is_what_the_program_writes(self):
-        ctx = context(KIN_SENTENCES)
-        self.assertEqual([s for r in B.block_records(ctx, CATALOG) for s in r["statements"]], KIN_STATEMENTS)
-        for q in KIN_QUESTIONS:
-            with self.subTest(q["name"]):
-                self.assertEqual(L.question(ask_after(KIN_SENTENCES, q["question"]))["queries"], q["queries"])
+    def test_the_kinship_cases_are_what_the_program_writes(self):
+        for sentences, statements, questions in KIN_STORIES:
+            ctx = context(sentences)
+            self.assertEqual([s for r in B.block_records(ctx, CATALOG) for s in r["statements"]], statements)
+            for q in questions:
+                with self.subTest(q["name"]):
+                    self.assertEqual(L.question(ask_after(sentences, q["question"]))["queries"], q["queries"])
 
 
 class Asking(unittest.TestCase):

@@ -1,0 +1,90 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "1585e873fc3151b887e5bdf412d7f2bd32dbd20447d8f6fc43503af246682b5c",
+  "item": {
+    "id": "s8018c3e523",
+    "text": "The ferret is called Pip."
+  },
+  "usage": {
+    "input": 122075,
+    "output": 128,
+    "thinking": null,
+    "total": 122203,
+    "cached": 120026,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 122075,
+    "candidatesTokenCount": 128,
+    "totalTokenCount": 122203,
+    "cachedContentTokenCount": 120026,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 122075
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 120026
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 128
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s8018c3e523\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"ferret\", \"definite\": true, \"span\": \"The ferret\"}, {\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Pip\", \"span\": \"Pip\"}, {\"t\": \"identity\", \"id\": \"i1\", \"subject\": \"@x1\", \"object\": \"@n1\", \"span\": \"The ferret is called Pip\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s8018c3e523",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "ferret",
+        "definite": true,
+        "span": "The ferret"
+      },
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Pip",
+        "span": "Pip"
+      },
+      {
+        "t": "identity",
+        "id": "i1",
+        "subject": "@x1",
+        "object": "@n1",
+        "span": "The ferret is called Pip"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "7423b953801b8633ab6e438d6fcef235bb0473d3842b65613554c9f6b5322ffe",
+  "manifest_id": "a00bfbea4ce5",
+  "run": 2,
+  "case": {
+    "template": "identity",
+    "section": "held_out",
+    "index": 5,
+    "category": "positive",
+    "text": "The ferret is called Pip.",
+    "key": "8018c3e523"
+  }
+}

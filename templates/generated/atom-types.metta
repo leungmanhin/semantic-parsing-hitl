@@ -277,6 +277,7 @@
 (: RestOf (-> Entity Entity Proposition))
 (: Result (-> Event Event Proposition))
 (: Result (-> Event Proposition Proposition))
+(: Same (-> Entity Entity Proposition))
 (: SameDegree (-> Class Instance Instance Proposition))
 (: SameDegree (-> Class Instance Class Proposition))
 (: SameDegree (-> Class Class Instance Proposition))

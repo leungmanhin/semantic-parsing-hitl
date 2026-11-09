@@ -2035,6 +2035,17 @@
       "out": "Proposition",
       "opaque": false,
       "gloss": "A kinship word the catalog states with two bearers (sibling, spouse, cousin, twin, married): either bearer is the other's. Order: (KinSymmetric word). Background fact (seeded), never parser output."
+    },
+    "Same": {
+      "kind": "relation",
+      "arity": 2,
+      "arg_types": [
+        "Entity",
+        "Entity"
+      ],
+      "out": "Proposition",
+      "opaque": false,
+      "gloss": "A stated identity: the two phrases pick out one individual (the winner was Pieter; her name was Odile — the mention and the name). The text's claim, not an anaphora judgment (that is Coref); negatable like any predication; the background rule same_coref reads it as a coreference. Order: (Same first-phrase second-phrase)."
     }
   },
   "open_class": {

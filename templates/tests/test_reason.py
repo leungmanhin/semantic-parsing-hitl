@@ -35,6 +35,19 @@ class ResolvedView(unittest.TestCase):
         self.assertEqual(text.count('(Name sk_stanley_1 "Stanley")'), 1)   # the second mention's Name, stated once
         self.assertEqual(R.on_view("(: $prf (Theme $s sk_his_1) $tv)", v["canon"]), "(: $prf (Theme $s sk_stanley_1) $tv)")
 
+    def test_a_stated_identity_merges_like_a_certain_link_and_one_mention_can_join_two(self):
+        """His name is Craig: the mention his is the son by coref and Craig by a stated identity — one person."""
+        st = ["(: a (Member sk_son_1 son) (STV 1.0 0.99))", "(: b (Member sk_his_1 male) (STV 1.0 0.99))",
+              "(: c (Coref sk_his_1 sk_son_1) (STV 0.99 0.9))", '(: d (Name sk_craig_1 "Craig") (STV 1.0 0.99))',
+              "(: e (Same sk_his_1 sk_craig_1) (STV 1.0 0.99))", "(: f (Not (Same sk_thief_1 sk_teodor_1)) (STV 1.0 0.99))"]
+        v = R.view(st)
+        self.assertEqual(v["canon"], {"sk_his_1": "sk_son_1", "sk_craig_1": "sk_son_1"})   # the class named by its first mention
+        text = " ".join(v["statements"])
+        self.assertIn('(Name sk_son_1 "Craig")', text)
+        self.assertIn("(Member sk_son_1 male)", text)
+        self.assertNotIn("(Same ", text.replace("(Not (Same sk_thief_1 sk_teodor_1))", ""))   # a denied identity merges nothing
+        self.assertIn("(Not (Same sk_thief_1 sk_teodor_1))", text)
+
     def test_no_link_no_change(self):
         plain = ["(: x (Member sk_ferret_1 ferret) (STV 1.0 0.99))"]
         self.assertEqual(R.view(plain), {"statements": plain, "canon": {}})

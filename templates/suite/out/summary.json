@@ -1,21 +1,21 @@
 {
   "prompt": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_body_sha256": "868e642e529b83a79c84d8d33a44dd6b836490bab06db8cfa8f54d1b23b1eb05",
+  "prompt_body_sha256": "7423b953801b8633ab6e438d6fcef235bb0473d3842b65613554c9f6b5322ffe",
   "manifest": {
-    "id": "f8e6b7bd3fb9",
+    "id": "a00bfbea4ce5",
     "parts": {
-      "catalog": "48aa6b1c777b9bbce22e459e26c2215e4676c7e8f0f1e09fbe6d7b1c9887dc5e",
-      "prompt": "dee99e9ca90896c3fefadb36d189aee8982063007bfee5a79bf525a0278682a6",
-      "substrate": "10216d0ab4bc513d29cf3ec05a5991da440a90058b2c9c763fca503f04422d31",
-      "atom_types": "1ba4cea9b5ecd4738c9fe2fd0db781fdb1bab56a34a4513f00e0611a12728870",
-      "rules": "44500673771b934e60333bc9d1fa2bada2a5853dd67f449eabe2ba8065690996",
-      "seeded_rules": "e8ec29589248ae7a73ae5d4297aa3065dae477f0ba3ae80694810178df89348a",
+      "catalog": "bf0f705791aab7c43d9dc1f0455a735135de539b85db8401beb64bdb20555046",
+      "prompt": "5b46a12124bf6bc4b1ad16b38c43058e7b940c74a6ed296b2da89ecf4cc79245",
+      "substrate": "8aed1522d851ca4052e77db2a684cf20212c76d17e437eb0c1ce71e178e61a7a",
+      "atom_types": "b00b77430fd888c21161697c21dd9300026c593cacbafc172d960bacbac69220",
+      "rules": "67facb6a97552f05691d659ea7bc591df8d5e6e864b764dec58a3255074c3e65",
+      "seeded_rules": "19b0e62d687cef63fc747e3469155ad8ce2417415ca9a38742547fa74ae14283",
       "emitter": "80f2061d2d6211b1ec60b5282643f7850b1ed2343269ef45d8b4933a4e9253e3"
     }
   },
   "typecheck": "ran",
   "checks": {
-    "examples": 1379,
+    "examples": 1389,
     "findings": [],
     "pending": {},
     "shared": [
@@ -1506,9 +1506,9 @@
         "status": {
           "ok": 63
         },
-        "stale_prompt": 63,
+        "stale_prompt": 60,
         "stale_manifest": 18,
-        "unstamped": 45,
+        "unstamped": 42,
         "by_category": {
           "positive": {
             "cases": 10,
@@ -1544,8 +1544,7 @@
             "pass": 12,
             "false_fires": 0,
             "outcomes": {
-              "target_fired": 9,
-              "gap_reported": 3
+              "target_fired": 12
             }
           }
         },
@@ -1572,11 +1571,11 @@
           "passed": 63
         },
         "usage": {
-          "input": 4801254,
-          "output": 7824,
+          "input": 4997958,
+          "output": 7923,
           "thinking": 0,
-          "total": 4809078,
-          "cached": 4617526,
+          "total": 5005881,
+          "cached": 4814229,
           "calls": 63,
           "thinking_calls": 0
         },
@@ -1584,8 +1583,8 @@
         "null_slots": 0,
         "lints": {},
         "spans": {
-          "instances": 141,
-          "with_span": 141,
+          "instances": 147,
+          "with_span": 147,
           "missing": 0,
           "not_verbatim": 0,
           "malformed": 0
@@ -2774,6 +2773,71 @@
         "spans": {
           "instances": 300,
           "with_span": 300,
+          "missing": 0,
+          "not_verbatim": 0,
+          "malformed": 0
+        },
+        "models": [
+          "gemini-4-argon effort=low"
+        ]
+      }
+    },
+    "identity": {
+      "held_out": {
+        "records": 18,
+        "cases": 6,
+        "status": {
+          "ok": 18
+        },
+        "stale_prompt": 0,
+        "stale_manifest": 0,
+        "unstamped": 0,
+        "by_category": {
+          "positive": {
+            "cases": 6,
+            "runs": 18,
+            "pass": 18,
+            "fired": 18,
+            "exact": 18
+          }
+        },
+        "pass": 18,
+        "selection": {
+          "fire_runs": 18,
+          "fired": 18,
+          "abstain_runs": 0,
+          "false_fires": 0
+        },
+        "fill": {
+          "fired": 18,
+          "exact": 18,
+          "rate": 1.0
+        },
+        "stability": {
+          "cases": 6,
+          "pairs": 18,
+          "pairwise_agreement": 1.0,
+          "unanimous": 6
+        },
+        "typecheck": {
+          "checked": 18,
+          "passed": 18
+        },
+        "usage": {
+          "input": 2198085,
+          "output": 2712,
+          "thinking": 0,
+          "total": 2200797,
+          "cached": 2155503,
+          "calls": 18,
+          "thinking_calls": 0
+        },
+        "issues": [],
+        "null_slots": 0,
+        "lints": {},
+        "spans": {
+          "instances": 66,
+          "with_span": 66,
           "missing": 0,
           "not_verbatim": 0,
           "malformed": 0
@@ -4527,7 +4591,7 @@
         "status": {
           "ok": 30
         },
-        "stale_prompt": 0,
+        "stale_prompt": 30,
         "stale_manifest": 30,
         "unstamped": 0,
         "by_category": {
@@ -5213,7 +5277,7 @@
         "status": {
           "ok": 24
         },
-        "stale_prompt": 0,
+        "stale_prompt": 24,
         "stale_manifest": 24,
         "unstamped": 0,
         "by_category": {

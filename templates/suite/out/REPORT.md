@@ -1,10 +1,10 @@
 # Suite report
 
-prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 868e642e529b83a7) · manifest f8e6b7bd3fb9 · type check: ran
+prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 7423b953801b8633) · manifest a00bfbea4ce5 · type check: ran
 
 ## Catalog checks
 
-1379 examples checked; findings: 0
+1389 examples checked; findings: 0
 
 Sentences two templates claim with the same expected atoms (composition, fine):
 - "Ottoline bought the quilt for forty euros." — acquisition, measure
@@ -457,7 +457,7 @@ Mismatches: none
 
 ## copular — held_out
 
-21 cases, 63 records (ok 63; stale prompt 63; stale manifest 18, unstamped 45) · gemini-4-argon effort=low
+21 cases, 63 records (ok 63; stale prompt 60; stale manifest 18, unstamped 42) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -472,13 +472,13 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (21 cases, 63 pairs), unanimous 21/21
 - type check: 63/63 emitted parses type
 - graph lints: none
-- spans: 141/141 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
-- usage: 63 calls · in 4,801,254 · cached 4,617,526 (96% of the input) · out 7,824 · thinking 0 (calls with thought tokens: 0)
+- spans: 147/147 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
+- usage: 63 calls · in 4,997,958 · cached 4,814,229 (96% of the input) · out 7,923 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
 Abstain cases (what the parser did, per run):
 - "Herons are birds." (target `class-statement`): r1 target_fired [class-statement×1] · r2 target_fired [class-statement×1] · r3 target_fired [class-statement×1]
-- "Teodor is the locksmith." (gap G00): r1 gap_reported [named-entity×1; unmapped G00] · r2 gap_reported [named-entity×1; unmapped G00] · r3 gap_reported [named-entity×1; unmapped G00]
+- "Teodor is the locksmith." (target `identity`): r1 target_fired [identity×1, named-entity×1, witness×1] · r2 target_fired [identity×1, named-entity×1, witness×1] · r3 target_fired [identity×1, named-entity×1, witness×1]
 - "Teodor is extremely tired." (target `degree`): r1 target_fired [degree×1, named-entity×1] · r2 target_fired [degree×1, named-entity×1] · r3 target_fired [degree×1, named-entity×1]
 - "Lamine is fond of Yusra." (target `adjective-complement`): r1 target_fired [adjective-complement×1, named-entity×2] · r2 target_fired [adjective-complement×1, named-entity×2] · r3 target_fired [adjective-complement×1, named-entity×2]
 
@@ -867,6 +867,25 @@ Abstain cases (what the parser did, per run):
 - "Ottoline is about 40 years old." (target `measure`): r1 target_fired [measure×1, named-entity×1] · r2 target_fired [measure×1, named-entity×1] · r3 target_fired [measure×1, named-entity×1]
 - "Lamine is sure that Yusra left." (target `attitude`): r1 target_fired [attitude×1, motion×1, named-entity×2] · r2 target_fired [attitude×1, motion×1, named-entity×2] · r3 target_fired [attitude×1, motion×1, named-entity×2]
 - "Teodor is supposed to wait." (target `norm`): r1 target_fired [activity×1, named-entity×1, norm×1] · r2 target_fired [activity×1, named-entity×1, norm×1] · r3 target_fired [activity×1, named-entity×1, norm×1]
+
+Mismatches: none
+
+## identity — held_out
+
+6 cases, 18 records (ok 18; stale prompt 0; stale manifest 0, unstamped 0) · gemini-4-argon effort=low
+
+| category | cases | runs | fired | exact | pass |
+|---|---|---|---|---|---|
+| positive | 6 | 18 | 18 | 18 | 18 |
+
+- selection: fire cases fired 18/18 · abstain cases false fires 0/0
+- fill: exact 18/18 among fires
+- stability: pairwise agreement 1.0 (6 cases, 18 pairs), unanimous 6/6
+- type check: 18/18 emitted parses type
+- graph lints: none
+- spans: 66/66 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
+- usage: 18 calls · in 2,198,085 · cached 2,155,503 (98% of the input) · out 2,712 · thinking 0 (calls with thought tokens: 0)
+- issues reported by the parser: none
 
 Mismatches: none
 
@@ -1412,7 +1431,7 @@ Mismatches: none
 
 ## question — held_out
 
-10 cases, 30 records (ok 30; stale prompt 0; stale manifest 30, unstamped 0) · gemini-4-argon effort=low
+10 cases, 30 records (ok 30; stale prompt 30; stale manifest 30, unstamped 0) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -1625,7 +1644,7 @@ Mismatches: none
 
 ## wh — held_out
 
-8 cases, 24 records (ok 24; stale prompt 0; stale manifest 24, unstamped 0) · gemini-4-argon effort=low
+8 cases, 24 records (ok 24; stale prompt 24; stale manifest 24, unstamped 0) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|

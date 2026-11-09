@@ -1,0 +1,91 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "1585e873fc3151b887e5bdf412d7f2bd32dbd20447d8f6fc43503af246682b5c",
+  "item": {
+    "id": "s63063caa4d",
+    "text": "Teodor is the locksmith."
+  },
+  "usage": {
+    "input": 122073,
+    "output": 128,
+    "thinking": null,
+    "total": 122201,
+    "cached": 120024,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 122073,
+    "candidatesTokenCount": 128,
+    "totalTokenCount": 122201,
+    "cachedContentTokenCount": 120024,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 122073
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 120024
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 128
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s63063caa4d\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"locksmith\", \"definite\": true, \"span\": \"the locksmith\"}, {\"t\": \"identity\", \"id\": \"i1\", \"subject\": \"@n1\", \"object\": \"@x1\", \"span\": \"Teodor is the locksmith\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s63063caa4d",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "locksmith",
+        "definite": true,
+        "span": "the locksmith"
+      },
+      {
+        "t": "identity",
+        "id": "i1",
+        "subject": "@n1",
+        "object": "@x1",
+        "span": "Teodor is the locksmith"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "7423b953801b8633ab6e438d6fcef235bb0473d3842b65613554c9f6b5322ffe",
+  "manifest_id": "a00bfbea4ce5",
+  "run": 3,
+  "case": {
+    "template": "identity",
+    "section": "held_out",
+    "index": 0,
+    "category": "positive",
+    "text": "Teodor is the locksmith.",
+    "key": "63063caa4d"
+  }
+}
