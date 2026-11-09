@@ -1,0 +1,94 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "1dda51d8bc8ae35a6d5165170fd4c2ab428b37a1030a1f0b61a8956f3e553619",
+  "item": {
+    "id": "s9dc9bda003",
+    "text": "He smiled.",
+    "context_sha256": "6239c8198e5f5b5b681efc9f94c8e2634b494466ba10d58f552358045df251f4"
+  },
+  "usage": {
+    "input": 117492,
+    "output": 139,
+    "thinking": null,
+    "total": 117631,
+    "cached": 115443,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 117492,
+    "candidatesTokenCount": 139,
+    "totalTokenCount": 117631,
+    "cachedContentTokenCount": 115443,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 117492
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 115443
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 139
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s9dc9bda003\", \"instances\": [{\"t\": \"mention\", \"id\": \"m1\", \"word\": \"he\", \"span\": \"He\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"smile\", \"actor\": \"@m1\", \"tense\": \"past\", \"span\": \"He smiled\"}, {\"t\": \"coref\", \"id\": \"c1\", \"mention\": \"@m1\", \"antecedent\": \"@s1.n1\", \"certainty\": \"certain\", \"span\": \"He\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s9dc9bda003",
+    "instances": [
+      {
+        "t": "mention",
+        "id": "m1",
+        "word": "he",
+        "span": "He"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "smile",
+        "actor": "@m1",
+        "tense": "past",
+        "span": "He smiled"
+      },
+      {
+        "t": "coref",
+        "id": "c1",
+        "mention": "@m1",
+        "antecedent": "@s1.n1",
+        "certainty": "certain",
+        "span": "He"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "c3beb0b769bb476b5b036942d61ca6b8518bfe892ad3f6648e7c9e1ef87e2bb6",
+  "manifest_id": "11d5fcbcee76",
+  "run": 1,
+  "case": {
+    "template": "coref",
+    "section": "held_out",
+    "index": 8,
+    "category": "positive",
+    "text": "He smiled.",
+    "key": "9dc9bda003"
+  }
+}

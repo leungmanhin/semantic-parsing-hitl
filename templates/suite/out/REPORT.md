@@ -1,10 +1,10 @@
 # Suite report
 
-prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 2f3c68208265ec4d) · manifest ec2e3c7d6e50 · type check: ran
+prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 c3beb0b769bb476b) · manifest 11d5fcbcee76 · type check: ran
 
 ## Catalog checks
 
-1348 examples checked; findings: 0
+1353 examples checked; findings: 0
 
 Sentences two templates claim with the same expected atoms (composition, fine):
 - "Ottoline bought the quilt for forty euros." — acquisition, measure
@@ -140,7 +140,7 @@ Mismatches: none
 
 ## aspectual — held_out
 
-15 cases, 45 records (ok 45; stale prompt 33; stale manifest 12, unstamped 33) · gemini-4-argon effort=low
+15 cases, 45 records (ok 45; stale prompt 45; stale manifest 12, unstamped 33) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -167,7 +167,7 @@ Mismatches: none
 
 ## attitude — held_out
 
-30 cases, 90 records (ok 90; stale prompt 84; stale manifest 36, unstamped 54) · gemini-4-argon effort=low
+30 cases, 90 records (ok 90; stale prompt 90; stale manifest 36, unstamped 54) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -308,7 +308,7 @@ Mismatches: none
 
 ## communication — held_out
 
-15 cases, 45 records (ok 45; stale prompt 42; stale manifest 6, unstamped 39) · gemini-4-argon effort=low
+15 cases, 45 records (ok 45; stale prompt 45; stale manifest 6, unstamped 39) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -457,7 +457,7 @@ Mismatches: none
 
 ## copular — held_out
 
-21 cases, 63 records (ok 63; stale prompt 60; stale manifest 18, unstamped 45) · gemini-4-argon effort=low
+21 cases, 63 records (ok 63; stale prompt 63; stale manifest 18, unstamped 45) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -486,25 +486,26 @@ Mismatches: none
 
 ## coref — held_out
 
-8 cases, 24 records (ok 24; stale prompt 24; stale manifest 3, unstamped 21) · gemini-4-argon effort=low
+13 cases, 39 records (ok 39; stale prompt 24; stale manifest 3, unstamped 21) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
-| positive | 4 | 12 | 12 | 12 | 12 |
+| positive | 8 | 24 | 24 | 24 | 24 |
 | scoped | 1 | 3 | 3 | 3 | 3 |
 | optional | 1 | 3 | 3 | 3 | 3 |
-| abstain | 2 | 6 | 0 (false fires) | – | 6 |
+| abstain | 3 | 9 | 0 (false fires) | – | 9 |
 
-- selection: fire cases fired 18/18 · abstain cases false fires 0/6
-- fill: exact 18/18 among fires
-- stability: pairwise agreement 1.0 (8 cases, 24 pairs), unanimous 8/8
-- type check: 24/24 emitted parses type
+- selection: fire cases fired 30/30 · abstain cases false fires 0/9
+- fill: exact 30/30 among fires
+- stability: pairwise agreement 1.0 (13 cases, 39 pairs), unanimous 13/13
+- type check: 39/39 emitted parses type
 - graph lints: none
-- spans: 138/138 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
-- usage: 24 calls · in 1,493,814 · cached 1,444,627 (97% of the input) · out 6,105 · thinking 0 (calls with thought tokens: 0)
+- spans: 174/174 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
+- usage: 39 calls · in 3,256,599 · cached 3,176,449 (98% of the input) · out 8,043 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
 Abstain cases (what the parser did, per run):
+- "That is false." (gap G11): r1 gap_reported [nothing fired; unmapped G11] · r2 gap_reported [nothing fired; unmapped G11] · r3 gap_reported [nothing fired; unmapped G11]
 - "Yusra gave up." (target `activity`): r1 target_fired [activity×1, named-entity×1] · r2 target_fired [activity×1, named-entity×1] · r3 target_fired [activity×1, named-entity×1]
 - "The clerk who laughed left." (target `activity`): r1 target_fired [activity×1, motion×1, witness×1] · r2 target_fired [activity×1, motion×1, witness×1] · r3 target_fired [activity×1, motion×1, witness×1]
 
@@ -673,7 +674,7 @@ Mismatches: none
 
 ## extent — held_out
 
-18 cases, 54 records (ok 54; stale prompt 48; stale manifest 9, unstamped 45) · gemini-4-argon effort=low
+18 cases, 54 records (ok 54; stale prompt 54; stale manifest 9, unstamped 45) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -756,7 +757,7 @@ Mismatches: none
 
 ## generic — held_out
 
-28 cases, 84 records (ok 84; stale prompt 75; stale manifest 30, unstamped 54) · gemini-4-argon effort=low
+28 cases, 84 records (ok 84; stale prompt 84; stale manifest 30, unstamped 54) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -838,7 +839,7 @@ Mismatches: none
 
 ## hedge — held_out
 
-31 cases, 93 records (ok 93; stale prompt 90; stale manifest 3, unstamped 90) · gemini-4-argon effort=low
+31 cases, 93 records (ok 93; stale prompt 93; stale manifest 3, unstamped 90) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -1009,7 +1010,7 @@ Mismatches: none
 
 ## measure — held_out
 
-25 cases, 75 records (ok 75; stale prompt 69; stale manifest 12, unstamped 63) · gemini-4-argon effort=low
+25 cases, 75 records (ok 75; stale prompt 75; stale manifest 12, unstamped 63) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -1091,7 +1092,7 @@ Mismatches: none
 
 ## named-entity — held_out
 
-13 cases, 39 records (ok 39; stale prompt 33; stale manifest 36, unstamped 3) · gemini-4-argon effort=low
+13 cases, 39 records (ok 39; stale prompt 39; stale manifest 36, unstamped 3) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -1159,7 +1160,7 @@ Mismatches: none
 
 ## oblique — held_out
 
-37 cases, 111 records (ok 111; stale prompt 90; stale manifest 36, unstamped 75) · gemini-4-argon effort=low
+37 cases, 111 records (ok 111; stale prompt 111; stale manifest 36, unstamped 75) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -1326,7 +1327,7 @@ Mismatches: none
 
 ## postmodifier — held_out
 
-23 cases, 69 records (ok 69; stale prompt 63; stale manifest 39, unstamped 30) · gemini-4-argon effort=low
+23 cases, 69 records (ok 69; stale prompt 69; stale manifest 39, unstamped 30) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -1518,7 +1519,7 @@ Mismatches: none
 
 ## time — held_out
 
-42 cases, 126 records (ok 126; stale prompt 117; stale manifest 36, unstamped 90) · gemini-4-argon effort=low
+42 cases, 126 records (ok 126; stale prompt 126; stale manifest 36, unstamped 90) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -1600,7 +1601,7 @@ Mismatches: none
 
 ## witness — held_out
 
-16 cases, 48 records (ok 48; stale prompt 45; stale manifest 39, unstamped 9) · gemini-4-argon effort=low
+16 cases, 48 records (ok 48; stale prompt 48; stale manifest 39, unstamped 9) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|

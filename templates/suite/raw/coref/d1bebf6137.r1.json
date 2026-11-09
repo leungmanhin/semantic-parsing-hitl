@@ -1,0 +1,95 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "1dda51d8bc8ae35a6d5165170fd4c2ab428b37a1030a1f0b61a8956f3e553619",
+  "item": {
+    "id": "sd1bebf6137",
+    "text": "It was asleep.",
+    "context_sha256": "4851bd77174d59c951ac8bdfbb133dd7d2577fcff33da0b97f70e5dba1f6d55f"
+  },
+  "usage": {
+    "input": 117493,
+    "output": 148,
+    "thinking": null,
+    "total": 117641,
+    "cached": 115443,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 117493,
+    "candidatesTokenCount": 148,
+    "totalTokenCount": 117641,
+    "cachedContentTokenCount": 115443,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 117493
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 115443
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 148
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sd1bebf6137\", \"instances\": [{\"t\": \"mention\", \"id\": \"m1\", \"word\": \"it\", \"span\": \"It\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@m1\", \"predicate\": \"asleep\", \"form\": \"adjective\", \"tense\": \"past\", \"span\": \"It was asleep\"}, {\"t\": \"coref\", \"id\": \"k1\", \"mention\": \"@m1\", \"antecedent\": \"@s1.x1\", \"certainty\": \"certain\", \"span\": \"It\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sd1bebf6137",
+    "instances": [
+      {
+        "t": "mention",
+        "id": "m1",
+        "word": "it",
+        "span": "It"
+      },
+      {
+        "t": "copular",
+        "id": "c1",
+        "subject": "@m1",
+        "predicate": "asleep",
+        "form": "adjective",
+        "tense": "past",
+        "span": "It was asleep"
+      },
+      {
+        "t": "coref",
+        "id": "k1",
+        "mention": "@m1",
+        "antecedent": "@s1.x1",
+        "certainty": "certain",
+        "span": "It"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "c3beb0b769bb476b5b036942d61ca6b8518bfe892ad3f6648e7c9e1ef87e2bb6",
+  "manifest_id": "11d5fcbcee76",
+  "run": 1,
+  "case": {
+    "template": "coref",
+    "section": "held_out",
+    "index": 9,
+    "category": "positive",
+    "text": "It was asleep.",
+    "key": "d1bebf6137"
+  }
+}

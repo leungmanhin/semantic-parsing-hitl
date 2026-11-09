@@ -1,0 +1,94 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "1dda51d8bc8ae35a6d5165170fd4c2ab428b37a1030a1f0b61a8956f3e553619",
+  "item": {
+    "id": "sd7d256d935",
+    "text": "Ottoline left.",
+    "context_sha256": "6c0a3d464f7c63a6bbbd23b62fa39dd21f1064090e5084ef6461d3619e318627"
+  },
+  "usage": {
+    "input": 117500,
+    "output": 147,
+    "thinking": null,
+    "total": 117647,
+    "cached": 115444,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 117500,
+    "candidatesTokenCount": 147,
+    "totalTokenCount": 117647,
+    "cachedContentTokenCount": 115444,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 117500
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 115444
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 147
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sd7d256d935\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n1\", \"tense\": \"past\", \"span\": \"Ottoline left\"}, {\"t\": \"coref\", \"id\": \"c1\", \"mention\": \"@n1\", \"antecedent\": \"@s1.n1\", \"certainty\": \"certain\", \"span\": \"Ottoline\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sd7d256d935",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Ottoline",
+        "span": "Ottoline"
+      },
+      {
+        "t": "motion",
+        "id": "m1",
+        "verb": "leave",
+        "mover": "@n1",
+        "tense": "past",
+        "span": "Ottoline left"
+      },
+      {
+        "t": "coref",
+        "id": "c1",
+        "mention": "@n1",
+        "antecedent": "@s1.n1",
+        "certainty": "certain",
+        "span": "Ottoline"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "c3beb0b769bb476b5b036942d61ca6b8518bfe892ad3f6648e7c9e1ef87e2bb6",
+  "manifest_id": "11d5fcbcee76",
+  "run": 1,
+  "case": {
+    "template": "coref",
+    "section": "held_out",
+    "index": 10,
+    "category": "positive",
+    "text": "Ottoline left.",
+    "key": "d7d256d935"
+  }
+}

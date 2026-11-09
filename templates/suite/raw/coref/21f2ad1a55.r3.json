@@ -1,0 +1,77 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "1dda51d8bc8ae35a6d5165170fd4c2ab428b37a1030a1f0b61a8956f3e553619",
+  "item": {
+    "id": "s21f2ad1a55",
+    "text": "That is false.",
+    "context_sha256": "35e022ffa7e0661b2ffae43e5b47ab76948b7b83d9430f1601c78f92db93c4ce"
+  },
+  "usage": {
+    "input": 117500,
+    "output": 65,
+    "thinking": null,
+    "total": 117565,
+    "cached": 115451,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 117500,
+    "candidatesTokenCount": 65,
+    "totalTokenCount": 117565,
+    "cachedContentTokenCount": 115451,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 117500
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 115451
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 65
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s21f2ad1a55\", \"instances\": [], \"unmapped\": [{\"span\": \"That is false\", \"code\": \"G11\", \"construction\": \"A sentence that denies what an earlier sentence of the text stated.\"}], \"issues\": []}",
+  "response": {
+    "id": "s21f2ad1a55",
+    "instances": [],
+    "unmapped": [
+      {
+        "span": "That is false",
+        "code": "G11",
+        "construction": "A sentence that denies what an earlier sentence of the text stated."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "c3beb0b769bb476b5b036942d61ca6b8518bfe892ad3f6648e7c9e1ef87e2bb6",
+  "manifest_id": "11d5fcbcee76",
+  "run": 3,
+  "case": {
+    "template": "coref",
+    "section": "held_out",
+    "index": 12,
+    "category": "abstain",
+    "text": "That is false.",
+    "key": "21f2ad1a55"
+  }
+}

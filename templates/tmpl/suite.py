@@ -101,15 +101,42 @@ def load_parse_script(path: str = PARSE_SCRIPT):
 
 
 def cases_of(catalog: dict, tid: str, sections=("held_out",)) -> list[dict]:
+    """A template's cases. A case may carry a ``context`` — the earlier sentences of its text with their instances
+    (the sentence-by-sentence mode): it is then read after them, and its key and its ``full_text`` cover them too,
+    so one sentence after two different contexts is two cases."""
     out = []
     for section in sections:
         for i, ex in enumerate((catalog[tid].get("examples") or {}).get(section) or []):
+            context = ex.get("context") or []
+            full = " ".join([c.get("text") or "" for c in context] + [ex["text"]])
             out.append({"template": tid, "section": section, "index": i, "category": ex["category"],
                         "text": ex["text"], "note": ex.get("note"), "instances": ex.get("instances"),
                         "reference_time": ex.get("reference_time"),
                         "expected": ex.get("expected"), "unmapped": ex.get("unmapped") or [],
-                        "key": key_of(ex["text"])})
+                        "context": context, "full_text": full, "key": key_of(full)})
     return out
+
+
+def case_statements(case: dict, instances: list, catalog: dict, unmapped=None) -> list[str]:
+    """What a case's sentence states: its emission, or — after a context — its share of the block's emission
+    (``tmpl.blocks``). Raises ``EmitError`` when the instances or the context cannot be emitted."""
+    if not case.get("context"):
+        return E.emit({"id": "case", "instances": instances, "reference_time": case.get("reference_time")},
+                      catalog)["statements"]
+    from . import blocks as B
+    rec = B.sentence_record(B.context_of(case["context"]), case["text"], instances, catalog, unmapped,
+                            case.get("reference_time"))
+    if rec["status"] != "ok":
+        raise E.EmitError([f["detail"] for f in rec["findings"]])
+    return rec["statements"]
+
+
+def case_context(case: dict) -> str | None:
+    """The CONTEXT section a case's request carries, or None."""
+    if not case.get("context"):
+        return None
+    from . import blocks as B
+    return B.context_section(B.context_of(case["context"])) or None
 
 
 def raw_path(raw_dir: str, tid: str, key: str, run: int) -> str:
@@ -311,15 +338,16 @@ def prompt_quotes(catalog: dict, general: dict, run: int = QUOTE_RUN) -> list[di
     out = []
     for tid in sorted(catalog):
         for case in cases_of(catalog, tid, ("held_out",)):
-            w = _words(case["text"])
-            if len(w) >= 3 and f" {' '.join(w)} " in whole:
-                out.append({"template": tid, "text": case["text"], "detail": "the whole sentence is in the rendered prompt"})
-                continue
-            for i in range(len(w) - run + 1):
-                g = w[i:i + run]
-                if sum(x not in _QUOTE_STOP for x in g) >= 2 and " ".join(g) in runs:
-                    out.append({"template": tid, "text": case["text"], "detail": f"«{' '.join(g)}» is in the rendered prompt"})
-                    break
+            for sentence in [c.get("text") or "" for c in case.get("context") or []] + [case["text"]]:
+                w = _words(sentence)
+                if len(w) >= 3 and f" {' '.join(w)} " in whole:
+                    out.append({"template": tid, "text": sentence, "detail": "the whole sentence is in the rendered prompt"})
+                    continue
+                for i in range(len(w) - run + 1):
+                    g = w[i:i + run]
+                    if sum(x not in _QUOTE_STOP for x in g) >= 2 and " ".join(g) in runs:
+                        out.append({"template": tid, "text": sentence, "detail": f"«{' '.join(g)}» is in the rendered prompt"})
+                        break
     return out
 
 
@@ -336,7 +364,7 @@ def catalog_checks(catalog: dict, general: dict | None = None, freshness: bool =
     for tid in sorted(catalog):
         for case in cases_of(catalog, tid, ("shown", "held_out")):
             n_examples += 1
-            text = norm(case["text"])
+            text = norm(case["full_text"])
             if case["section"] == "shown":
                 shown_texts.setdefault(text, tid)
             if case["category"] in FIRING:
@@ -345,8 +373,7 @@ def catalog_checks(catalog: dict, general: dict | None = None, freshness: bool =
                         findings.append({"kind": "unknown-gap-code", "template": tid, "text": case["text"],
                                          "detail": f"expected unmapped record {u!r}"})
                 try:
-                    out = E.emit({"id": "check", "instances": case["instances"], "reference_time": case.get("reference_time")}, catalog)
-                    units = units_of(out["statements"])
+                    units = units_of(case_statements(case, case["instances"], catalog))
                 except (E.EmitError, ValueError) as exc:
                     findings.append({"kind": "emit-error", "template": tid, "section": case["section"],
                                      "text": case["text"], "detail": str(exc.args[0] if exc.args else exc)})
@@ -367,7 +394,7 @@ def catalog_checks(catalog: dict, general: dict | None = None, freshness: bool =
                 findings.append({"kind": "overlap", "template": ta, "text": text,
                                  "detail": f"also a firing example of {tb} with different expected atoms"})
     for case in abstains:
-        tid, text, exp = case["template"], norm(case["text"]), case["expected"] or {}
+        tid, text, exp = case["template"], norm(case["full_text"]), case["expected"] or {}
         target, gap = exp.get("template"), exp.get("gap")
         if target:
             if target == tid:
@@ -405,7 +432,7 @@ def catalog_checks(catalog: dict, general: dict | None = None, freshness: bool =
         seen = _seen_sentences()
         for tid in sorted(catalog):
             for case in cases_of(catalog, tid, ("shown", "held_out")):
-                for s in re.split(r"(?<=[.!?])\s+", case["text"]):
+                for s in re.split(r"(?<=[.!?])\s+", case["full_text"]):
                     if len(s.split()) >= 3 and _norm_sentence(s) in seen:
                         findings.append({"kind": "not-fresh", "template": tid, "section": case["section"],
                                          "text": s, "detail": "a sentence of prompt.txt, the goldens or a corpus"})
@@ -496,7 +523,9 @@ def collect(args, catalog: dict) -> int:
         return 0
     if args.dry_run:
         first = todo[0]
-        rec = sp.parse_sentence(first["case"]["text"], args, "s" + first["case"]["key"])
+        ctx = case_context(first["case"])
+        rec = (sp.parse_sentence(first["case"]["text"], args, "s" + first["case"]["key"], context=ctx) if ctx
+               else sp.parse_sentence(first["case"]["text"], args, "s" + first["case"]["key"]))
         print(json.dumps(rec["request"], indent=2, ensure_ascii=False))
         return 0
     failed = 0
@@ -523,8 +552,10 @@ def collect(args, catalog: dict) -> int:
         case, n, path = job["case"], job["run"], job["path"]
         item_id = "s" + case["key"]
         made = i
+        ctx = case_context(case)
         try:
-            rec = sp.parse_sentence(case["text"], args, item_id)
+            rec = (sp.parse_sentence(case["text"], args, item_id, context=ctx) if ctx
+                   else sp.parse_sentence(case["text"], args, item_id))
         except fatal as exc:                                # the account cannot pay: stop after this record
             stopped = str(exc).splitlines()[0][:200]
             rec = {"provider": args.provider, "model": args.model, "effort": args.effort,
@@ -580,6 +611,35 @@ def span_counts(instances: list, span_lints: list) -> dict:
             "malformed": kinds.get("span-malformed", 0)}
 
 
+def _inspect_in_context(case: dict, resp: dict, catalog: dict):
+    """A reply to a case read after a context: validated as the block's prefix (the context's instances, given, then
+    the reply's own, qualified), with the span lints and the fired templates of the reply's own instances; the units
+    are the sentence's share of the block's emission (``None`` when it cannot be emitted)."""
+    from . import blocks as B
+    prior = B.context_of(case["context"])
+    k = len(prior) + 1
+    own_raw = [i for i in resp["instances"] if isinstance(i, dict)] if isinstance(resp.get("instances"), list) else []
+    own = B.qualify(own_raw, k)
+    problems = B.prefix_problems(own, k, {i["id"] for p in prior for i in p["instances"] if isinstance(i, dict)})
+    prefix = dict(resp, instances=[i for p in prior for i in p["instances"]] + own) if isinstance(resp.get("instances"), list) else resp
+    ins = V.inspect(prefix, catalog, case.get("reference_time"), text=None)
+    ins["findings"] = [f for f in ins["findings"] if not f["kind"].startswith("span-")] + V.span_lints(own, case["text"])
+    ins["fired"] = dict(collections.Counter(i.get("t") for i in own))          # the sentence's own templates
+    ins["instances"] = own
+    units = None
+    if problems:
+        ins["status"] = "malformed"
+        ins["findings"] += [{"kind": "instance", "detail": p} for p in problems]
+    elif ins["status"] == "ok":
+        rec = B.sentence_record(prior, case["text"], own_raw, catalog, resp.get("unmapped"), case.get("reference_time"))
+        if rec["status"] != "ok":
+            ins["status"] = "malformed"
+            ins["findings"] += [{"kind": "instance", "detail": f["detail"]} for f in rec["findings"]]
+        else:
+            units = units_of(rec["statements"])
+    return ins, units
+
+
 def score_record(case: dict, rec: dict, catalog: dict, heads: dict, body_sha: str | None, manifest_id: str | None = None) -> dict:
     tid, category = case["template"], case["category"]
     row = {"template": tid, "section": case["section"], "category": category, "text": case["text"],
@@ -597,7 +657,10 @@ def score_record(case: dict, rec: dict, catalog: dict, heads: dict, body_sha: st
         row["status"] = "no_json" if "not valid JSON" in err else "failed"
         row["reasons"].append(err)
         return row
-    ins = V.inspect(resp, catalog, case.get("reference_time"), text=case["text"])
+    if case.get("context"):                          # read after its context: the sentence's share of the block
+        ins, ctx_units = _inspect_in_context(case, resp, catalog)
+    else:
+        ins, ctx_units = V.inspect(resp, catalog, case.get("reference_time"), text=case["text"]), None
     row["unmapped"], row["issues"], row["fired"], row["null_slots"] = ins["unmapped"], ins["issues"], ins["fired"], ins["null_slots"]
     row["lints"] = [f for f in ins["findings"] if f["kind"] not in ("instance", "contract") and not f["kind"].startswith("span-")]
     row["span_lints"] = [f for f in ins["findings"] if f["kind"].startswith("span-")]
@@ -610,10 +673,9 @@ def score_record(case: dict, rec: dict, catalog: dict, heads: dict, body_sha: st
         row["reasons"].append("the emitter refused the instances")
     else:
         row["statements"], row["declarations"] = ins["statements"], ins["declarations"]
-        units = units_of(ins["statements"])
+        units = ctx_units if case.get("context") else units_of(ins["statements"])
     if category in FIRING:
-        expected = units_of(E.emit({"id": "expected", "instances": case["instances"],
-                                    "reference_time": case.get("reference_time")}, catalog)["statements"])
+        expected = units_of(case_statements(case, case["instances"], catalog))
         row["fired_template"] = fired_t
         if not fired_t:
             row["reasons"].append(f"{tid} did not fire")

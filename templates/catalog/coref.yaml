@@ -190,3 +190,70 @@ examples:
     - category: abstain
       text: "The clerk who laughed left."
       expected: {abstain: true, template: activity}                   # a relative pronoun: the noun fills the clause
+    - category: positive
+      note: read after a context — a pronoun linked to the earlier sentence's referent by its qualified id
+      context:
+        - text: "Lamine sold a quilt."
+          instances:
+            - {t: named-entity, id: n1, name: "Lamine"}
+            - {t: witness, id: x1, class: quilt}
+            - {t: transfer, id: e1, verb: sell, giver: "@n1", object: "@x1", tense: past}
+      text: "He smiled."
+      instances:
+        - {t: mention, id: m1, word: he}
+        - {t: coref, id: c1, mention: "@m1", antecedent: "@s1.n1", certainty: certain}
+        - {t: activity, id: v1, verb: smile, actor: "@m1", tense: past}
+    - category: positive
+      note: read after a context — a pronoun for a thing, the earlier witness its antecedent
+      context:
+        - text: "Teodor fed a ferret."
+          instances:
+            - {t: named-entity, id: n1, name: "Teodor"}
+            - {t: witness, id: x1, class: ferret}
+            - {t: activity, id: v1, verb: feed, actor: "@n1", patient: "@x1", tense: past}
+      text: "It was asleep."
+      instances:
+        - {t: mention, id: m1, word: it}
+        - {t: coref, id: c1, mention: "@m1", antecedent: "@s1.x1", certainty: certain}
+        - {t: copular, id: c2, subject: "@m1", predicate: asleep, form: adjective, tense: past}
+    - category: positive
+      note: read after a context — a repeated name gets its own instance, linked to the first
+      context:
+        - text: "Ottoline mended the barn."
+          instances:
+            - {t: named-entity, id: n1, name: "Ottoline"}
+            - {t: witness, id: x1, class: barn, definite: true}
+            - {t: activity, id: v1, verb: mend, actor: "@n1", patient: "@x1", tense: past}
+      text: "Ottoline left."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: coref, id: c1, mention: "@n1", antecedent: "@s1.n1", certainty: certain}
+        - {t: motion, id: m1, verb: leave, mover: "@n1", tense: past}
+    - category: positive
+      note: read after two sentences — an anaphoric definite whose antecedent is two sentences back
+      context:
+        - text: "Yusra bought a ferret."
+          instances:
+            - {t: named-entity, id: n1, name: "Yusra"}
+            - {t: witness, id: x1, class: ferret}
+            - {t: acquisition, id: e1, verb: buy, acquirer: "@n1", object: "@x1", tense: past}
+        - text: "Teodor mended the barn."
+          instances:
+            - {t: named-entity, id: n1, name: "Teodor"}
+            - {t: witness, id: x1, class: barn, definite: true}
+            - {t: activity, id: v1, verb: mend, actor: "@n1", patient: "@x1", tense: past}
+      text: "The ferret escaped."
+      instances:
+        - {t: witness, id: x1, class: ferret, definite: true}
+        - {t: coref, id: c1, mention: "@x1", antecedent: "@s1.x1", certainty: certain}
+        - {t: motion, id: m1, verb: escape, mover: "@x1", tense: past}
+    - category: abstain
+      note: read after a context — a sentence denying the earlier one is reported (G11); the earlier sentence stays as parsed
+      context:
+        - text: "Lamine sold the quilt."
+          instances:
+            - {t: named-entity, id: n1, name: "Lamine"}
+            - {t: witness, id: x1, class: quilt, definite: true}
+            - {t: transfer, id: e1, verb: sell, giver: "@n1", object: "@x1", tense: past}
+      text: "That is false."
+      expected: {abstain: true, gap: G11, span: "That is false"}

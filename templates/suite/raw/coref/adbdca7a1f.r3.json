@@ -1,0 +1,95 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "1dda51d8bc8ae35a6d5165170fd4c2ab428b37a1030a1f0b61a8956f3e553619",
+  "item": {
+    "id": "sadbdca7a1f",
+    "text": "The ferret escaped.",
+    "context_sha256": "101bd954e77af205c86e2880c6646ace892fb3589f1e20f821fd92c38665a921"
+  },
+  "usage": {
+    "input": 117610,
+    "output": 147,
+    "thinking": null,
+    "total": 117757,
+    "cached": 115451,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 117610,
+    "candidatesTokenCount": 147,
+    "totalTokenCount": 117757,
+    "cachedContentTokenCount": 115451,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 117610
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 115451
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 147
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sadbdca7a1f\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"ferret\", \"definite\": true, \"span\": \"The ferret\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"escape\", \"mover\": \"@x1\", \"tense\": \"past\", \"span\": \"The ferret escaped\"}, {\"t\": \"coref\", \"id\": \"c1\", \"mention\": \"@x1\", \"antecedent\": \"@s1.x1\", \"certainty\": \"certain\", \"span\": \"The ferret\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sadbdca7a1f",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "ferret",
+        "definite": true,
+        "span": "The ferret"
+      },
+      {
+        "t": "motion",
+        "id": "m1",
+        "verb": "escape",
+        "mover": "@x1",
+        "tense": "past",
+        "span": "The ferret escaped"
+      },
+      {
+        "t": "coref",
+        "id": "c1",
+        "mention": "@x1",
+        "antecedent": "@s1.x1",
+        "certainty": "certain",
+        "span": "The ferret"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "c3beb0b769bb476b5b036942d61ca6b8518bfe892ad3f6648e7c9e1ef87e2bb6",
+  "manifest_id": "11d5fcbcee76",
+  "run": 3,
+  "case": {
+    "template": "coref",
+    "section": "held_out",
+    "index": 11,
+    "category": "positive",
+    "text": "The ferret escaped.",
+    "key": "adbdca7a1f"
+  }
+}

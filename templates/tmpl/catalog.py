@@ -290,6 +290,12 @@ def check_template(t: dict, path: str) -> list[str]:
         for j, ex in enumerate((t.get("examples") or {}).get(section) or []):
             if ex.get("category") not in CATEGORIES:
                 problems.append(f"examples.{section}[{j}]: unknown category {ex.get('category')!r}")
+            if ex.get("context") is not None:                # read after earlier sentences: the sentence-by-sentence mode
+                if section != "held_out":
+                    problems.append(f"examples.{section}[{j}]: a case with a context is held out (the prompt shows no context)")
+                if not (isinstance(ex["context"], list) and ex["context"] and all(
+                        isinstance(c, dict) and c.get("text") and isinstance(c.get("instances"), list) for c in ex["context"])):
+                    problems.append(f"examples.{section}[{j}]: context must be a list of {{text, instances}} (the earlier sentences)")
             if ex.get("category") == "abstain":
                 if not isinstance(ex.get("expected"), dict) or not ex["expected"].get("abstain"):
                     problems.append(f"examples.{section}[{j}]: an abstain example needs expected: {{abstain: true, …}}")

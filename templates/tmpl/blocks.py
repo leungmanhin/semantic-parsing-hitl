@@ -21,7 +21,10 @@ negates or scopes over an earlier claim), the earlier record keeps what it said 
 counted first.
 
 CONTEXT. ``context_section`` writes the earlier sentences and their qualified instances for the request, the
-earliest first: the context of sentence k+1 extends the context of sentence k, so it is a growing, cacheable prefix.
+earliest first, each instance as the parser wrote it WITHOUT its span (the sentence line above it holds those
+words; decided with the owner 2026-11-09: "full without spans", 71 % of the full size); the context of sentence
+k+1 extends the context of sentence k, so it is a growing, cacheable prefix. The parser's instructions for it are
+the prompt's section "Earlier sentences as context" (``catalog/_general.yaml``, key ``context``).
 
     python -m tmpl.blocks parse --sample SEL.jsonl --out OUT.parsed.jsonl [provider flags]   # walk the blocks in order
     python -m tmpl.blocks records --parsed OUT.parsed.jsonl [--doc DOC]                      # the per-sentence records
@@ -46,10 +49,7 @@ from . import suite as S
 RESERVED = {"now"}                                   # ids the program supplies (the text's reference time)
 QUALIFIED = re.compile(r"^s(\d+)\.(.+)$")
 
-CONTEXT_HEADER = ("CONTEXT — the earlier sentences of this text, already parsed, each with its instances under "
-                  "qualified ids (s<k>.<id>). Refer to those instances by these ids where this sentence mentions them "
-                  "again (a pronoun's antecedent, an event a later phrase attaches to); never repeat them; write this "
-                  "sentence's own instances with local ids (n1, x1, e1 …).")
+CONTEXT_HEADER = "CONTEXT — the earlier sentences of this text, already parsed (Earlier sentences as context):"
 
 
 # --------------------------------------------------------------------------
@@ -127,7 +127,7 @@ def prefix_problems(qualified: list, k: int, earlier_ids: set) -> list[str]:
 # --------------------------------------------------------------------------
 
 
-def block_records(sentences: list[dict], catalog: dict | None = None) -> list[dict]:
+def block_records(sentences: list[dict], catalog: dict | None = None, reference_time=None) -> list[dict]:
     """Per sentence of a block (``[{"k", "text", "instances" (qualified), "unmapped"}]`` in order) its record:
     ``{"k", "available_from", "text", "status", "statements", "declarations", "records", "findings"}`` — the
     statements and declarations prefix 1..k adds to prefix 1..k−1, with the emitter's records of those statements.
@@ -151,7 +151,10 @@ def block_records(sentences: list[dict], catalog: dict | None = None) -> list[di
             continue
         prefix = accepted + list(s["instances"])
         try:
-            em = E.emit({"id": "block", "instances": prefix, "unmapped": s.get("unmapped") or []}, catalog)
+            item = {"id": "block", "instances": prefix, "unmapped": s.get("unmapped") or []}
+            if reference_time is not None:
+                item["reference_time"] = reference_time
+            em = E.emit(item, catalog)
         except E.EmitError as exc:
             rec["status"] = "malformed"
             details = exc.args[0] if exc.args and isinstance(exc.args[0], list) else [str(exc)]
@@ -186,8 +189,31 @@ def context_section(prior: list[dict]) -> str:
     lines = [CONTEXT_HEADER]
     for s in prior:
         lines.append(f"[s{s['k']}] {s['text']}")
-        lines += [json.dumps(inst, ensure_ascii=False) for inst in s["instances"]]
+        lines += [json.dumps({k: v for k, v in inst.items() if k != "span"} if isinstance(inst, dict) else inst,
+                             ensure_ascii=False) for inst in s["instances"]]
     return "\n".join(lines)
+
+
+def context_of(example_context: list) -> list[dict]:
+    """A catalog case's ``context`` (``[{"text", "instances"}]``, local ids as the parser wrote them) as the qualified
+    earlier sentences of a block."""
+    return [{"k": i, "text": c["text"], "instances": qualify(c.get("instances") or [], i)}
+            for i, c in enumerate(example_context or [], start=1)]
+
+
+def sentence_record(context: list, text: str, instances: list, catalog: dict | None = None, unmapped=None,
+                    reference_time=None) -> dict:
+    """The record of a sentence read after a context (``context_of``): its share of the prefix's emission. The
+    context's own records must come out clean; a problem there is the case's, reported as a malformed record."""
+    k = len(context) + 1
+    recs = block_records(list(context) + [{"k": k, "text": text, "instances": qualify(instances, k),
+                                           "unmapped": unmapped or []}], catalog, reference_time)
+    bad = [r for r in recs[:-1] if r["status"] != "ok"]
+    if bad:
+        return {**recs[-1], "status": "malformed",
+                "findings": [{"kind": "context", "detail": f"the context's sentence s{r['k']} is {r['status']}: "
+                              + "; ".join(f["detail"] for f in r["findings"])[:300]} for r in bad]}
+    return recs[-1]
 
 
 def _sha(text: str) -> str:

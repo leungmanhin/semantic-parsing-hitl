@@ -100,6 +100,45 @@ class BlockRecords(unittest.TestCase):
         self.assertTrue(c2.startswith(c1))
         self.assertIn('[s1] Lamine sold a quilt.', c1)
         self.assertIn('"id": "s1.x1"', c1)
+        self.assertNotIn('"span"', c1)
+
+
+class SuiteCasesWithContext(unittest.TestCase):
+    """A catalog case may carry a context (the earlier sentences with their instances): its key covers the context,
+    its request carries the context without spans, and a reply is scored as the sentence's share of the block."""
+
+    def case(self, text):
+        from tmpl import suite as S
+        return next(c for c in S.cases_of(CATALOG, "coref", ("held_out",)) if c.get("context") and c["text"] == text)
+
+    def test_key_request_and_expected_statements(self):
+        from tmpl import suite as S
+        c = self.case("He smiled.")
+        self.assertNotEqual(c["key"], S.key_of("He smiled."))                     # the context is part of the case
+        ctx = S.case_context(c)
+        self.assertTrue(ctx.startswith("CONTEXT"))
+        self.assertIn("[s1] Lamine sold a quilt.", ctx)
+        self.assertNotIn('"span"', ctx)                                            # full records without spans
+        st = S.case_statements(c, c["instances"], CATALOG)
+        self.assertIn("(: s2_c1_coref (Coref sk_he_1 sk_lamine_1) (STV 0.99 0.9))", st)
+        self.assertFalse(any("Lamine" in x for x in st))                          # the context is not restated
+
+    def test_a_reply_in_context_is_scored_as_the_sentences_share(self):
+        from tmpl import suite as S, typecheck as T
+        c = self.case("The ferret escaped.")
+        spans = {"x1": "The ferret", "c1": "The ferret", "m1": "The ferret escaped"}
+        good = [dict(i, span=spans[i["id"]]) for i in c["instances"]]
+        heads = T.load_substrate()["heads"]
+        row = S.score_record(c, {"run": 1, "response": {"instances": good, "unmapped": []}}, CATALOG, heads, None)
+        self.assertTrue(row["pass"], row["reasons"])
+        self.assertEqual(row["fired"], {"witness": 1, "coref": 1, "motion": 1})   # the sentence's own templates
+        later = [dict(i, antecedent="@s4.x1") if i["t"] == "coref" else i for i in good]
+        row = S.score_record(c, {"run": 1, "response": {"instances": later, "unmapped": []}}, CATALOG, heads, None)
+        self.assertEqual(row["status"], "malformed")                               # prefix causality broken
+        stated = [i for i in good if i["t"] != "coref"] + [
+            {"t": "witness", "id": "x9", "class": "ferret", "span": "The ferret"}]   # a second ferret, no link back
+        row = S.score_record(c, {"run": 1, "response": {"instances": stated, "unmapped": []}}, CATALOG, heads, None)
+        self.assertFalse(row["pass"])
 
 
 FAKE = r'''

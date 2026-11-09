@@ -96,6 +96,8 @@ def _catalog_sentences(catalog: dict) -> set[str]:
         for section in ("shown", "held_out"):
             for ex in (t.get("examples") or {}).get(section) or []:
                 out.add(S._norm_sentence(ex.get("text") or ""))
+                for c in ex.get("context") or []:
+                    out.add(S._norm_sentence(c.get("text") or ""))
     out.discard("")
     return out
 

@@ -53,7 +53,7 @@ def all_examples():
     for tid, t in CATALOG.items():
         for section in ("shown", "held_out"):
             for ex in (t.get("examples") or {}).get(section) or []:
-                if ex.get("instances"):
+                if ex.get("instances") and not ex.get("context"):     # a case read after a context: tests/test_blocks.py
                     yield tid, section, ex
 
 

@@ -41,7 +41,7 @@ class LoweringTests(unittest.TestCase):
         for tid, t in CATALOG.items():
             for section in ("shown", "held_out"):
                 for ex in (t.get("examples") or {}).get(section) or []:
-                    if not ex.get("instances"):
+                    if not ex.get("instances") or ex.get("context"):     # a case read after a context: test_blocks
                         continue
                     out = E.emit({"id": "x", "instances": ex["instances"]}, CATALOG)
                     low = L.lower(out)

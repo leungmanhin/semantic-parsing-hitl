@@ -88,8 +88,9 @@ identifiers:
   that ranges over it (no badger was asleep, and no stork stood near it), the pronoun has no antecedent —
   its mention only.
 - >-
-  A TEXT of several sentences is parsed together: a later sentence's mentions of earlier referents are
-  new instances linked by `coref` to the first ones.
+  A TEXT of several sentences given in one item is parsed together: a later sentence's mentions of earlier
+  referents are new instances linked by `coref` to the first ones (one sentence at a time with a CONTEXT: Earlier
+  sentences as context).
 - >-
   A coordinated subject or object (Pieter and Marisol laughed; read the postcard and the note) is one predication
   instance per conjunct, each with its own event, never a group. When the predicate holds only of the
@@ -100,6 +101,27 @@ identifiers:
   (Odile sang and left: one referent, two instances). The and states no relation between them: no
   link, and the word itself is not reported. With then (and then), the time-relation template orders
   the two events.
+context:
+- >-
+  When an item opens with a CONTEXT section, its TEXT is one sentence of a longer text, and the CONTEXT holds
+  the sentences before it, the earliest first: each as `[s<k>] <sentence>` followed by its instances, already
+  parsed, under QUALIFIED ids `s<k>.<id>` (s1.n1, s2.x3). Parse only the TEXT. Write its own instances with
+  local ids (n1, x1, e1 …) as always; never write an instance of the CONTEXT again, never change one, and never
+  list one in a scope of the TEXT (a negation, a modal, a hedge, a rule).
+- >-
+  The TEXT refers to the CONTEXT only through coreference. A mention in the TEXT of a referent the CONTEXT
+  introduced — a pronoun, a repeated name, an anaphoric definite (a badger … the badger), a demonstrative for
+  an event — is a later mention as always (Identifiers and fillers): its own instance in the TEXT, filling its
+  slots there, and a `coref` whose antecedent is that referent's FIRST instance, written with its qualified id.
+  With "[s1] Marisol mended the blanket." in the CONTEXT, the TEXT "She left." is:
+- |-
+  {"t": "mention", "id": "m1", "word": "she", "span": "She"},
+  {"t": "coref", "id": "c1", "mention": "@m1", "antecedent": "@s1.n1", "certainty": "certain", "span": "She"},
+  {"t": "motion", "id": "e1", "verb": "leave", "mover": "@m1", "tense": "past", "span": "She left"}
+- >-
+  A TEXT that denies, corrects or re-reads what the CONTEXT stated — that is not so, in fact it was on Friday —
+  revises an earlier sentence, which stays as it was parsed: report the TEXT, or the part of it that revises,
+  as unmapped (G11), and parse the rest as usual.
 spans:
 - >-
   Every instance carries `span`: the words of the TEXT it is built from, copied verbatim — one string, or a
@@ -284,6 +306,9 @@ gap_codes:
     keep with an object and a property ('kept the hatch open'): a causer keeping another thing in a state
   G10: >-
     the verbatim wording of a quotation (its content is parsed; the wording itself is not kept)
+  G11: >-
+    a sentence that denies or corrects what an earlier sentence of the text stated (that is not so; in fact it
+    was on Friday): the earlier sentence stays as it was parsed
 issues:
 - >-
   If, while parsing an item, an instruction in this document seems contradictory, ambiguous, or missing
