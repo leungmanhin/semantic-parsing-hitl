@@ -19,6 +19,10 @@ spelling is the target's. The background rules (``tmpl.rules``) are lowered by t
     declarations(types, functions, target)
     leaves(term)                -> the term as an s-expression reader sees its text (numbers and string
                                    literals in their written form): for consumers that work on token trees
+    query(pattern, target)      -> one query's text: for pettachainer ``(: $prf <pattern> $tv)``, the proof and
+                                   the truth value left open (a question asks for both)
+    question(asked, target)     -> a question (``tmpl.query.ask``) → {"queries": [one per reading],
+                                   "definitions": [the statements its readings need beside the knowledge base]}
 """
 from __future__ import annotations
 
@@ -87,3 +91,24 @@ def lower(emitted: dict, target: str = "pettachainer") -> dict:
     _check(target)
     return {"statements": [statement(r, target) for r in emitted["records"]],
             "declarations": declarations(emitted["types"], emitted["functions"], target)}
+
+
+def query(pattern, target: str = "pettachainer") -> str:
+    """A query pattern (a term with ``$`` variables) in the target's syntax: the proof and the truth value open."""
+    _check(target)
+    return f"(: $prf {render(pattern)} $tv)"
+
+
+def question(asked: dict, target: str = "pettachainer") -> dict:
+    """A question's readings (``tmpl.query.ask``) in the target's syntax: one query per reading, and the definitions
+    the readings need beside the knowledge base (each once)."""
+    _check(target)
+    queries = [query(rd["pattern"], target) for rd in asked["readings"]]
+    defs, seen = [], set()
+    for rd in asked["readings"]:
+        for d in rd["definitions"]:
+            text = statement(d, target)
+            if text not in seen:
+                seen.add(text)
+                defs.append(text)
+    return {"queries": queries, "definitions": defs}

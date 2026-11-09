@@ -110,6 +110,15 @@ Declarations.  Every minted symbol is declared with its class, every bare filler
 class, every lemma with ``Class``; ``Entity`` / ``Event`` / ``TimeTerm`` also declare
 ``Instance``.
 
+Questions.  A template of family ``question`` marks the item as a question (one at most per item), and a template
+whose ``mints`` says ``asked: true`` is an ASKED referent (a wh-word: the thing the question asks for); asked
+referents appear only in a question.  An asked referent may also fill a LEMMA slot, as a reference (``"relation":
+"@w1"``: the question asks for the class, the relation, the verb); every other lemma slot holds a word.  The emitter
+renders a question's instances like a statement's — the question's literal content, which ``tmpl.query`` turns into a
+query — and declares an asked referent in a lemma slot with that slot's class.  A ``lexicon`` test on a slot holding
+an asked word has no word to look up: it fails, unless the emitter is built with ``unknown_lexicon=True`` (every list
+then holds it); ``tmpl.query`` reads both outcomes.
+
 Records and lowering.  The emitter decides WHAT is stated; ``tmpl.lower`` decides how a consumer writes
 it.  ``emit`` returns the RECORDS — per statement ``{"name", "term", "truth": [s, c], "owner", "inst"}``,
 the term a tree of heads, symbols, ``$`` variables, numbers and ``Str`` literals — and the symbols' types
@@ -240,8 +249,12 @@ def rigid(r: dict, t: dict) -> bool:
         any(r.get(s) not in (None, False, [], "") for s in t.get("presupposed") or [])
 
 
+_LEXICON_TEST = re.compile(r"([a-z_0-9]+)\s+(?:not\s+)?in\s+[a-z_]+")
+
+
 class _Emitter:
-    def __init__(self, item: dict, catalog: dict):
+    def __init__(self, item: dict, catalog: dict, unknown_lexicon: bool | None = None):
+        self.unknown_lexicon = unknown_lexicon           # a lexicon test on an asked word: True puts it in every list
         self.pending_within: list = []
         self.bare: set = set()                           # (instance, slot) pairs rendered with the class alone (a twin)
         self.mod_pick: dict = {}                         # (instance, slot) -> the one modifier a pass renders
@@ -259,10 +272,43 @@ class _Emitter:
         self.attachments_of: dict[str, list[str]] = {}  # head instance -> its attachments, in order
         self.narrow: dict[str, dict] = {}               # instance -> its comparison class: {"term": …, "body": …}
 
+    # ---------------------------------------------------------------- questions
+    def is_asked(self, iid: str) -> bool:
+        """An asked referent: the thing a question asks for (its template mints ``asked: true``)."""
+        r = self.by_id.get(iid)
+        return bool(r) and bool((self.cat.get(r.get("t")) or {}).get("mints", {}).get("asked"))
+
+    def lexicon_of(self, r: dict, t: dict):
+        """The template's lexicon lists as this instance's tests read them: a slot holding an asked word is in no
+        list, unless ``unknown_lexicon`` is True, when every list holds it."""
+        lists = t.get("lexicon")
+        if not self.unknown_lexicon or not lists:
+            return lists
+        asked = [v for v in r.values() if is_ref(v) and self.is_asked(v[1:])]
+        return {name: list(vals) + asked for name, vals in lists.items()} if asked else lists
+
+    def asks_lexicon(self) -> bool:
+        """Some lexicon test (a shape's ``when``, a slot's ``only_when``) reads a slot that holds an asked word."""
+        for r in self.insts:
+            t = self.cat.get(r.get("t")) or {}
+            if not t.get("lexicon"):
+                continue
+            tests = [e.get("when") or "" for e in t.get("emits") or []] + \
+                    [sp.get("only_when") or "" for sp in (t.get("slots") or {}).values()]
+            for cond in tests:
+                for slot in _LEXICON_TEST.findall(cond):
+                    v = r.get(slot)
+                    if is_ref(v) and self.is_asked(v[1:]):
+                        return True
+        return False
+
     # ---------------------------------------------------------------- checks
     def check(self) -> list[str]:
         problems = []
         seen = set()
+        questions = [r for r in self.insts if isinstance(r, dict) and (self.cat.get(r.get("t")) or {}).get("family") == "question"]
+        if len(questions) > 1:
+            problems.append(f"{len(questions)} question instances: a question TEXT has exactly one")
         for i, r in enumerate(self.insts):
             t = self.cat.get(r.get("t"))
             where = f"instance {i} ({r.get('t')})"
@@ -275,6 +321,8 @@ class _Emitter:
                 problems.append(f"{where}: duplicate id {r['id']}")
             else:
                 seen.add(r["id"])
+            if (t.get("mints") or {}).get("asked") and not questions:
+                problems.append(f"{where}: an asked word belongs to a question, and this item has no question instance")
             for sname, spec in (t.get("slots") or {}).items():
                 v = r.get(sname)
                 if v is None or v == [] or v == "":
@@ -283,6 +331,10 @@ class _Emitter:
                     continue
                 if isinstance(v, bool) and spec["type"] != "bool":
                     problems.append(f"{where}: {sname}={v!r} is a boolean where a word is expected (an unquoted On / Off / Yes / No in YAML?)")
+                    continue
+                if spec["type"] == "lemma" and is_ref(v):        # a word, or the word a question asks for (any other
+                    if v[1:] not in self.by_id:                  # reference here is the validator's lemma-reference lint)
+                        problems.append(f"{where}: {sname} references unknown instance {v}")
                     continue
                 if spec["type"] == "enum" and str(v) not in [str(x) for x in spec.get("values") or []]:
                     problems.append(f"{where}: {sname}={v!r} is not one of {spec.get('values')}")
@@ -322,7 +374,7 @@ class _Emitter:
                         elif target.get("t") not in spec["ids"]:
                             problems.append(f"{where}: {sname} names {x}, a {target.get('t')} instance — a noun is its lemma; "
                                             f"an instance only of {', '.join(spec['ids'])}")
-                if spec.get("only_when") and v not in (None, "", []) and not holds(spec["only_when"], r, t.get("lexicon")):
+                if spec.get("only_when") and v not in (None, "", []) and not holds(spec["only_when"], r, self.lexicon_of(r, t)):
                     problems.append(f"{where}: {sname} is filled only when {spec['only_when']}")
                 nb = spec.get("narrowed_by")
                 alone = spec.get("stands_alone") or []           # narrowers whose own shapes take them with no base
@@ -406,6 +458,8 @@ class _Emitter:
         m = self.cat[r["t"]].get("mints") or {}
         stem_slot = m.get("stem")
         stem = r.get(stem_slot) if stem_slot else m.get("literal") or r.get("verb") or r.get("class") or self.cat[r["t"]]["id"]
+        if is_ref(stem) and self.is_asked(stem[1:]):      # the asked word of a question (What did Lamine do?): no word to name it by
+            stem = "wh"
         return slug(stem)
 
     def all_stative(self, refs) -> bool:
@@ -981,7 +1035,7 @@ class _Emitter:
                     continue
             if "if_filled" in e and r.get(e["if_filled"]) in (None, [], ""):
                 continue
-            if "when" in e and not holds(e["when"], r, t.get("lexicon")):
+            if "when" in e and not holds(e["when"], r, self.lexicon_of(r, t)):
                 continue
             if "if_stative" in e and not self.all_stative(r.get(e["if_stative"])):
                 continue
@@ -1056,7 +1110,7 @@ class _Emitter:
                 continue
             if "if_filled" in e and r.get(e["if_filled"]) in (None, [], ""):
                 continue
-            if "when" in e and not holds(e["when"], r, t.get("lexicon")):
+            if "when" in e and not holds(e["when"], r, self.lexicon_of(r, t)):
                 continue
             for sym, cls in (e.get("declare") or {}).items():
                 self.declare(sym, cls)
@@ -1310,6 +1364,9 @@ class _Emitter:
                 if cls == "String":                         # words as written (an alias): quoted strings, not symbols
                     continue
                 for x in (v if isinstance(v, list) else [v]):
+                    if is_ref(x) and spec["type"] == "lemma" and cls and self.is_asked(x[1:]) and x[1:] in self.sym:
+                        self.declare(self.sym[x[1:]], cls)          # the asked word stands for a word of the slot's class
+                        continue
                     if is_ref(x) or isinstance(x, (int, float)) or not cls:
                         continue
                     self.declare(x, cls)
@@ -1361,7 +1418,7 @@ class _Emitter:
                 continue
             if "if_filled" in e and e["if_filled"] != slot and r.get(e["if_filled"]) in (None, [], ""):
                 continue
-            if "when" in e and not holds(e["when"], filled, t.get("lexicon")):
+            if "when" in e and not holds(e["when"], filled, self.lexicon_of(r, t)):
                 continue
             return True
         return False
@@ -1431,3 +1488,12 @@ def emit(item: dict, catalog: dict | None = None) -> dict:
     if catalog is None:
         catalog = CAT.load()
     return _Emitter(item, catalog).run()
+
+
+def run_emitter(item: dict, catalog: dict | None = None, unknown_lexicon: bool | None = None):
+    """``(result, emitter)``: the emission and the emitter that made it, for a caller that reads its tables — the
+    symbols, the attachments, the scopes (``tmpl.query`` turns a question's records into a query). Raises EmitError."""
+    if catalog is None:
+        catalog = CAT.load()
+    em = _Emitter(item, catalog, unknown_lexicon)
+    return em.run(), em

@@ -1,10 +1,10 @@
 # Suite report
 
-prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 c3beb0b769bb476b) · manifest 11d5fcbcee76 · type check: ran
+prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 868e642e529b83a7) · manifest f8e6b7bd3fb9 · type check: ran
 
 ## Catalog checks
 
-1353 examples checked; findings: 0
+1379 examples checked; findings: 0
 
 Sentences two templates claim with the same expected atoms (composition, fine):
 - "Ottoline bought the quilt for forty euros." — acquisition, measure
@@ -486,7 +486,7 @@ Mismatches: none
 
 ## coref — held_out
 
-13 cases, 39 records (ok 39; stale prompt 24; stale manifest 3, unstamped 21) · gemini-4-argon effort=low
+13 cases, 39 records (ok 39; stale prompt 39; stale manifest 18, unstamped 21) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -1410,6 +1410,30 @@ Abstain cases (what the parser did, per run):
 
 Mismatches: none
 
+## question — held_out
+
+10 cases, 30 records (ok 30; stale prompt 0; stale manifest 30, unstamped 0) · gemini-4-argon effort=low
+
+| category | cases | runs | fired | exact | pass |
+|---|---|---|---|---|---|
+| positive | 8 | 24 | 24 | 24 | 24 |
+| abstain | 2 | 6 | 0 (false fires) | – | 6 |
+
+- selection: fire cases fired 24/24 · abstain cases false fires 0/6
+- fill: exact 24/24 among fires
+- stability: pairwise agreement 1.0 (10 cases, 30 pairs), unanimous 10/10
+- type check: 30/30 emitted parses type
+- graph lints: none
+- spans: 114/114 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
+- usage: 30 calls · in 3,618,696 · cached 3,316,048 (92% of the input) · out 5,024 · thinking 0 (calls with thought tokens: 0)
+- issues reported by the parser: none
+
+Abstain cases (what the parser did, per run):
+- "Yusra asked who mended the barn." (gap G00): r1 gap_reported [named-entity×1; unmapped G00] · r2 gap_reported [named-entity×1; unmapped G00] · r3 gap_reported [named-entity×1; unmapped G00]
+- "How many quilts did Lamine sell?" (gap G12): r1 gap_reported [named-entity×1; unmapped G12] · r2 gap_reported [named-entity×1; unmapped G12] · r3 gap_reported [named-entity×1; unmapped G12]
+
+Mismatches: none
+
 ## reciprocal — held_out
 
 4 cases, 12 records (ok 12; stale prompt 12; stale manifest 12, unstamped 0) · gemini-4-argon effort=low
@@ -1596,6 +1620,25 @@ Abstain cases (what the parser did, per run):
 - "Lamine paid Yusra a visit." (gap G00): r1 gap_reported [named-entity×2; unmapped G00] · r2 gap_reported [named-entity×2; unmapped G00] · r3 gap_reported [named-entity×2; unmapped G00]
 - "Yusra gave up." (target `activity`): r1 target_fired [activity×1, named-entity×1] · r2 target_fired [activity×1, named-entity×1] · r3 target_fired [activity×1, named-entity×1]
 - "Teodor told Ottoline the news." (target `communication`): r1 target_fired [communication×1, named-entity×2, witness×1] · r2 target_fired [communication×1, named-entity×2, witness×1] · r3 target_fired [communication×1, named-entity×2, witness×1]
+
+Mismatches: none
+
+## wh — held_out
+
+8 cases, 24 records (ok 24; stale prompt 0; stale manifest 24, unstamped 0) · gemini-4-argon effort=low
+
+| category | cases | runs | fired | exact | pass |
+|---|---|---|---|---|---|
+| positive | 8 | 24 | 24 | 24 | 24 |
+
+- selection: fire cases fired 24/24 · abstain cases false fires 0/0
+- fill: exact 24/24 among fires
+- stability: pairwise agreement 1.0 (8 cases, 24 pairs), unanimous 8/8
+- type check: 24/24 emitted parses type
+- graph lints: none
+- spans: 102/102 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
+- usage: 24 calls · in 2,894,010 · cached 2,714,758 (94% of the input) · out 4,194 · thinking 0 (calls with thought tokens: 0)
+- issues reported by the parser: none
 
 Mismatches: none
 

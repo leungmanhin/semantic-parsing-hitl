@@ -48,7 +48,8 @@ identifiers:
 - >-
   Every instance carries an `id`: a short lowercase label you choose, unique within the item. Suggested
   prefixes: `n` named individual, `x` witness, `g` group or portion, `e` event, `s` scope operator (negation, modal, norm, evidential, hedge),
-  `c` copular predication, `l` location, `q` quantified range, `r` rule, `d` comparison or degree, `m` measure, `t` time, `k` link, `f` focus (n1, x1, e1, s1 …).
+  `c` copular predication, `l` location, `q` quantified range, `r` rule, `d` comparison or degree, `m` measure, `t` time, `k` link, `f` focus,
+  `w` the asked word of a question, `a` the question (n1, x1, e1, s1 …).
 - >-
   A slot that points to another instance holds `"@<id>"`, for example `"Agent": "@n1"`. An EVENT slot — a time's,
   a place's, a duration's, a relation's, a link's, a focus's — names a PREDICATION instance, never a negation,
@@ -66,7 +67,9 @@ identifiers:
   the clause's predication, or the scope operator over it when it has one (`["@s1"]` for a negated or
   modalised clause); never the referents the clause mentions.
 - >-
-  A slot that holds a class, property, verb, scale or unit holds the bare LEMMA, for example `"class": "book"`.
+  A slot that holds a class, property, verb, scale or unit holds the bare LEMMA, for example `"class": "book"`. The
+  one exception is a QUESTION that asks for that word (What is Odile? What did Henrike do?): the slot holds the asked
+  word's reference, `"@w1"` (the wh template).
 - >-
   A participant slot holds either one: `"@x1"` for a specific referent, or a bare lemma for a non-specific
   or class-level filler ("pays tax", "cooked dinner" gives `"Patient": "dinner"`). Reserve the bare lemma
@@ -309,6 +312,9 @@ gap_codes:
   G11: >-
     a sentence that denies or corrects what an earlier sentence of the text stated (that is not so; in fact it
     was on Friday): the earlier sentence stays as it was parsed
+  G12: >-
+    a question the question template does not ask yet — why, how many, how much, how long, how often — or a request
+    worded as a question (Could you open the hatch?): the whole question
 issues:
 - >-
   If, while parsing an item, an instruction in this document seems contradictory, ambiguous, or missing

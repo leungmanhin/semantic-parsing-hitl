@@ -1,0 +1,199 @@
+# Template: question  (a TEXT that asks: "Did Teodor feed the ferret?", "Who fed the ferret?", "Is the ferret asleep or awake?")
+#
+# A question states nothing: it asks whether its content holds, or what fills its asked slots. It
+# is parsed LITERALLY (decided with the owner 2026-11-08), with the templates of the statement it
+# asks about — "Who fed the ferret?" as "X fed the ferret", X the asked word (the wh template) — and
+# one question instance marks the TEXT as a question. The program (tmpl.query) turns the parse into
+# a QUERY for the reasoner: the asked words, the events and the indefinites become variables; a
+# name or a definite read with no context is bound by its name or its class; one read after a
+# context is the context's referent itself, through the question's coref. The question never adds
+# a fact. Whatever wording separates the question from the text it is asked against is closed by
+# background rules, never by the parse.
+
+id: question
+family: question
+shape: question
+title: A TEXT that asks — a yes / no question, a wh-question, or a choice between alternatives
+status: draft
+
+trigger:
+  construction: >
+    A TEXT that ASKS: a direct question, usually ending in a question mark — a yes / no question (Did
+    Pieter feed the stork? Is Odile a weaver? Can Marisol swim?), a wh-question (Who fed the stork?
+    Which badger escaped? Where did Femke sleep?) or a choice question (Is the badger asleep or awake?
+    Did Pieter or Odile feed the stork?). Write ONE question instance for the TEXT, and parse the rest
+    exactly as the STATEMENT the question asks about, with every template as usual: Did Pieter feed the
+    stork? as Pieter fed the stork; Is Odile a weaver? as Odile is a weaver. The auxiliary that opens the
+    question (did, does, is, was, has, can, will) is no instance of its own: it gives the clause its tense,
+    its aspect or its modal as it would in the statement (Did … feed: tense past; Has … left: aspect
+    perfect; Can … swim: the modal). A wh-word is a wh instance filling the slot it asks about (the wh
+    template). A choice question writes each alternative as its own clause, and the question instance
+    lists them in `options`, in the order written; what the alternatives share is written once (Is the
+    badger asleep or awake?: one witness, two copulars). A question introduces nothing: a name, a
+    definite or a pronoun in it is its own instance as usual, and after a CONTEXT a coref links it to
+    the referent of the context it means. Its span is the whole question.
+  surface_forms:
+    - "<aux> <X> <V> …?"                     # yes / no: the statement's templates, the auxiliary its tense, aspect or modal
+    - "<wh-word> … ?"                         # a wh-question: a wh instance in the asked slot
+    - "<aux> <X> <A> or <B>?"                 # a choice: each alternative a clause, listed in options
+  boundary:                   # looks like a question but is not one
+    - >-
+      an embedded or indirect question — Pieter asked who fed the stork; Odile wonders whether it rained: a
+      statement about asking or wondering, not a question; no question instance (the asking clause is reported as
+      unmapped, G00, as the communication template says)
+    - >-
+      a question tag after a statement — the badger is asleep, isn't it?: the statement as stated, the tag
+      reported as unmapped (G02)
+    - >-
+      a request worded as a question — Could you open the hatch?: report the TEXT as unmapped (G12)
+    - >-
+      a why, how many, how much, how long or how often question — Why did Pieter leave? How many storks did
+      Odile see?: no template states its answer yet; report the whole question as unmapped (G12)
+
+slots:
+  id:      {type: id, required: true, doc: "your label for the question (a1)"}
+  options: {type: refs, class: Proposition, consumes: false, required: false,
+            doc: "a choice question only: the alternatives, each the predication (or the scope operator over it) that states it, in the order written; two or more"}
+
+emits: []                    # a question states nothing; tmpl.query turns its instances into a query
+
+notes:
+  - >-
+    The query keeps the question's literal content: its templates' atoms as the statement would have
+    them, the asked words, the events and the indefinites as variables, the tense and the scope
+    operators as written. A name or a definite with no context is bound by its own atoms (Name,
+    Member); after a context, the question's coref names the context's referent and the program
+    uses that referent's symbol, dropping the mention's own description.
+  - >-
+    A choice question is one query per option: the option's atoms and those of the shared referents
+    they name. A lexicon test on an asked word (a symmetric relation, for instance) cannot be decided
+    without the word, so the program asks both readings.
+
+depends_on: [wh]
+composes_with: [coref]
+
+examples:
+  shown:                     # rendered into the prompt
+    - category: positive
+      note: a wh-question — the statement's templates, the asked word in the slot it asks about
+      text: "Who fed the stork?"
+      instances:
+        - {t: wh, id: w1, word: who, span: "Who"}
+        - {t: witness, id: x1, class: stork, definite: true, span: "the stork"}
+        - {t: activity, id: e1, verb: feed, actor: "@w1", patient: "@x1", tense: past, span: "Who fed the stork"}
+        - {t: question, id: a1, span: "Who fed the stork?"}
+    - category: positive
+      note: a yes / no question — the auxiliary gives the tense
+      text: "Did Marisol mend the blanket?"
+      instances:
+        - {t: named-entity, id: n1, name: "Marisol", span: "Marisol"}
+        - {t: witness, id: x1, class: blanket, definite: true, span: "the blanket"}
+        - {t: activity, id: e1, verb: mend, actor: "@n1", patient: "@x1", tense: past, span: "Did Marisol mend the blanket"}
+        - {t: question, id: a1, span: "Did Marisol mend the blanket?"}
+    - category: positive
+      note: a choice question — one clause per alternative, listed in options
+      text: "Is the badger asleep or awake?"
+      instances:
+        - {t: witness, id: x1, class: badger, definite: true, span: "the badger"}
+        - {t: copular, id: c1, subject: "@x1", predicate: asleep, form: adjective, tense: present, span: "Is the badger asleep"}
+        - {t: copular, id: c2, subject: "@x1", predicate: awake, form: adjective, tense: present, span: ["Is the badger", "awake"]}
+        - {t: question, id: a1, options: ["@c1", "@c2"], span: "Is the badger asleep or awake?"}
+    - category: abstain
+      text: "Pieter asked who fed the stork."
+      expected: {abstain: true, gap: G00, span: "asked who fed the stork"}
+    - category: abstain
+      text: "Why did Odile leave?"
+      expected: {abstain: true, gap: G12, span: "Why did Odile leave?"}
+
+  held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      note: a wh-word as the subject's filler
+      text: "Who mended the barn?"
+      instances:
+        - {t: wh, id: w1, word: who}
+        - {t: witness, id: x1, class: barn, definite: true}
+        - {t: activity, id: e1, verb: mend, actor: "@w1", patient: "@x1", tense: past}
+        - {t: question, id: a1}
+    - category: positive
+      note: a wh-word as the object's filler, the auxiliary giving the tense
+      text: "What did Yusra buy?"
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: wh, id: w1, word: what}
+        - {t: acquisition, id: e1, verb: buy, acquirer: "@n1", object: "@w1", tense: past}
+        - {t: question, id: a1}
+    - category: positive
+      note: a yes / no question over a transfer
+      text: "Did Lamine sell the quilt?"
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: x1, class: quilt, definite: true}
+        - {t: transfer, id: e1, verb: sell, giver: "@n1", object: "@x1", tense: past}
+        - {t: question, id: a1}
+    - category: positive
+      note: a yes / no question over a copular
+      text: "Is Ottoline a locksmith?"
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: copular, id: c1, subject: "@n1", predicate: locksmith, form: noun, tense: present}
+        - {t: question, id: a1}
+    - category: positive
+      note: the auxiliary has gives the aspect
+      text: "Has Teodor left?"
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: motion, id: e1, verb: leave, mover: "@n1", tense: present, aspect: perfect}
+        - {t: question, id: a1}
+    - category: positive
+      note: a choice between two subjects — two clauses, listed in options
+      text: "Did Teodor or Yusra feed the ferret?"
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: named-entity, id: n2, name: "Yusra"}
+        - {t: witness, id: x1, class: ferret, definite: true}
+        - {t: activity, id: e1, verb: feed, actor: "@n1", patient: "@x1", tense: past}
+        - {t: activity, id: e2, verb: feed, actor: "@n2", patient: "@x1", tense: past}
+        - {t: question, id: a1, options: ["@e1", "@e2"]}
+    - category: positive
+      note: read after a context — the definite is the context's ferret, through its coref
+      context:
+        - text: "Teodor fed a ferret."
+          instances:
+            - {t: named-entity, id: n1, name: "Teodor"}
+            - {t: witness, id: x1, class: ferret}
+            - {t: activity, id: v1, verb: feed, actor: "@n1", patient: "@x1", tense: past}
+      text: "Who fed the ferret?"
+      instances:
+        - {t: wh, id: w1, word: who}
+        - {t: witness, id: x1, class: ferret, definite: true}
+        - {t: coref, id: c1, mention: "@x1", antecedent: "@s1.x1", certainty: certain}
+        - {t: activity, id: e1, verb: feed, actor: "@w1", patient: "@x1", tense: past}
+        - {t: question, id: a1}
+    - category: positive
+      note: read after a context — a relation question, both names the context's people
+      context:
+        - text: "Lamine hugged his daughter Yusra."
+          instances:
+            - {t: named-entity, id: n1, name: "Lamine"}
+            - {t: mention, id: m1, word: his}
+            - {t: coref, id: c1, mention: "@m1", antecedent: "@n1", certainty: certain}
+            - {t: named-entity, id: n2, name: "Yusra"}
+            - {t: stative-relation, id: p1, relation: daughter, subject: "@n2", object: "@m1", tense: present}
+            - {t: activity, id: e1, verb: hug, actor: "@n1", patient: "@n2", tense: past}
+      text: "How is Yusra related to Lamine?"
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: coref, id: c1, mention: "@n1", antecedent: "@s1.n2", certainty: certain}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: coref, id: c2, mention: "@n2", antecedent: "@s1.n1", certainty: certain}
+        - {t: wh, id: w1, word: how}
+        - {t: stative-relation, id: p1, relation: "@w1", subject: "@n1", object: "@n2", tense: present}
+        - {t: question, id: a1}
+    - category: abstain
+      note: a how-many question — no template states a count of answers yet
+      text: "How many quilts did Lamine sell?"
+      expected: {abstain: true, gap: G12, span: "How many quilts did Lamine sell?"}
+    - category: abstain
+      note: an embedded question is a statement about asking; the embedded question is reported
+      text: "Yusra asked who mended the barn."
+      expected: {abstain: true, gap: G00, span: "asked who mended the barn"}

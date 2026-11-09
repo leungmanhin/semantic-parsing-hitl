@@ -1,0 +1,123 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "12f5880a35c90ec1e11d06b3c54acc2d3465a1272ecfe4b95004d8d5f1288d2f",
+  "item": {
+    "id": "saf127da9c2",
+    "text": "Did Teodor or Yusra feed the ferret?"
+  },
+  "usage": {
+    "input": 120586,
+    "output": 267,
+    "thinking": null,
+    "total": 120853,
+    "cached": 118535,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 120586,
+    "candidatesTokenCount": 267,
+    "totalTokenCount": 120853,
+    "cachedContentTokenCount": 118535,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 120586
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 118535
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 267
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"saf127da9c2\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"ferret\", \"definite\": true, \"span\": \"the ferret\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"feed\", \"actor\": \"@n1\", \"patient\": \"@x1\", \"tense\": \"past\", \"span\": [\"Did Teodor\", \"feed the ferret\"]}, {\"t\": \"activity\", \"id\": \"e2\", \"verb\": \"feed\", \"actor\": \"@n2\", \"patient\": \"@x1\", \"tense\": \"past\", \"span\": [\"Did\", \"Yusra feed the ferret\"]}, {\"t\": \"question\", \"id\": \"a1\", \"options\": [\"@e1\", \"@e2\"], \"span\": \"Did Teodor or Yusra feed the ferret?\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "saf127da9c2",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "ferret",
+        "definite": true,
+        "span": "the ferret"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "feed",
+        "actor": "@n1",
+        "patient": "@x1",
+        "tense": "past",
+        "span": [
+          "Did Teodor",
+          "feed the ferret"
+        ]
+      },
+      {
+        "t": "activity",
+        "id": "e2",
+        "verb": "feed",
+        "actor": "@n2",
+        "patient": "@x1",
+        "tense": "past",
+        "span": [
+          "Did",
+          "Yusra feed the ferret"
+        ]
+      },
+      {
+        "t": "question",
+        "id": "a1",
+        "options": [
+          "@e1",
+          "@e2"
+        ],
+        "span": "Did Teodor or Yusra feed the ferret?"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "868e642e529b83a79c84d8d33a44dd6b836490bab06db8cfa8f54d1b23b1eb05",
+  "manifest_id": "1ce9518366dc",
+  "run": 1,
+  "case": {
+    "template": "question",
+    "section": "held_out",
+    "index": 5,
+    "category": "positive",
+    "text": "Did Teodor or Yusra feed the ferret?",
+    "key": "af127da9c2"
+  }
+}

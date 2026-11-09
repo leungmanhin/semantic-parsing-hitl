@@ -1,0 +1,172 @@
+# Template: wh  (the asked word of a question: "Who fed the ferret?", "Which ferret escaped?", "How is Yusra related to Lamine?")
+#
+# A question is parsed with the templates of the statement it asks about, and the word it asks with is
+# a referent of its own: the wh instance fills the slot the answer would fill — a participant, a
+# possessor, a place — and the program makes it the query's answer variable. When the question asks
+# for a class, a property, a relation or a verb (What is Yusra? How is Yusra related to Lamine?), the
+# wh fills that LEMMA slot as a reference: the answer is a word, not an individual (the one place a
+# lemma slot takes a reference). WHEN asks for the time of an event: the wh names the event, and the
+# program writes the time link (Time e w) as a time instance would.
+
+id: wh
+family: referent
+shape: referent
+title: The asked word of a question — who, what, which, whose, where, when, how
+status: draft
+
+trigger:
+  construction: >
+    The word a QUESTION asks with — who, whom, whose, what, which, where, when, how — standing for the
+    unknown the question asks about: one instance per asked word, the word recorded, in a TEXT with a
+    question instance. It fills the slot the answer would fill in the statement the question asks about: a
+    participant (Who fed the stork: the one feeding; What did Odile bake: the thing baked; Whom did Pieter
+    visit: the one visited), a possessor (Whose blanket did Marisol mend: the blanket's possessor), a place
+    (Where did Femke sleep: a location on the sleeping, its place the wh, head Location, preposition where;
+    Where is the lantern: a locative, its place the wh, head LocatedIn, preposition where). WHICH or WHAT
+    before a noun (which badger, what tool) asks for an individual of that kind: the noun's lemma is the
+    wh's `class`, and the wh fills the slot (Which badger escaped: the wh with class badger is the one that
+    moved). When the question asks for a CLASS, a PROPERTY, a RELATION or a VERB — What is Odile? What is
+    Joost to Anouk? How is Joost related to Anouk? What did Henrike do? — the wh fills that lemma slot,
+    written as its reference ("predicate": "@w1", "relation": "@w1", "verb": "@w1"): the answer is a word.
+    How is X related to Y? and What is X to Y? ask for the relation: the stative relation with the wh as
+    its relation, X the subject and Y the object. Who is X's <relative>? (Who is Anouk's son?) asks for the
+    bearer of that relation: the stative relation with the noun as its relation, the wh the subject and X
+    the object, no witness for the noun. WHEN asks for the time of an event: the wh's `event` names the
+    predication, with no time instance. HOW asking for a manner (How did Pieter feed the stork?) fills the
+    manner template's word.
+  surface_forms:
+    - "Who / What <V> …?"                          # the wh fills the subject's slot
+    - "Who / What did <X> <V>?"                    # the wh fills the object's slot
+    - "Whose <N> …?"                               # the wh is the witness's possessor
+    - "Which / What <N> …?"                        # the wh with the noun as its class
+    - "Where did <X> <V>? / Where is <X>?"         # the place of a location or of a locative
+    - "When did <X> <V>?"                          # the wh's event: the predication
+    - "What is <X>? / What is <X> to <Y>? / How is <X> related to <Y>?"   # the wh fills a lemma slot
+  boundary:                   # looks like an asked word but is not one
+    - >-
+      a wh-word opening a relative clause — the badger which escaped, the hut where Femke slept: a relative
+      clause, no wh instance
+    - >-
+      a wh-word in an embedded question — Pieter asked who fed the stork: no wh instance (the question template)
+    - >-
+      why, how many, how much, how long, how often: no wh instance yet; report the question as unmapped (G12)
+
+slots:
+  id:    {type: id, required: true, doc: "your label for the asked word (w1, w2 …)"}
+  word:  {type: string, required: true, doc: "the wh-word as written, lowercase (who, whom, whose, what, which, where, when, how)"}
+  class: {type: lemma, class: Class, required: false, doc: "after which or what, the noun's lemma (which badger: badger)"}
+  event: {type: filler, class: Event, attaches: true, required: false, only_when: "word == when",
+          doc: "with when only: the predication whose time the question asks for"}
+
+mints: {id: Entity, stem: word, asked: true, also: {TimeTerm: event}}   # sk_who_1; the query's answer variable
+
+presupposed: [word]          # the answer is outside every scope of the question: Which badger did not escape? asks of badgers
+
+emits:
+  - atom: "(Member @id {class})"
+    if_filled: class
+  - atom: "(Time {event} @id)"
+    if_filled: event
+
+notes:
+  - >-
+    An asked word is never a fact: it appears only in a question, whose instances the program turns
+    into a query (tmpl.query) in which the wh is the answer variable ($who, $which …).
+
+depends_on: [question]
+composes_with: [question, stative-relation, copular, location, locative, manner]
+
+examples:
+  shown:                     # rendered into the prompt
+    - category: positive
+      note: which with a noun — the wh carries the noun as its class
+      text: "Which badger escaped?"
+      instances:
+        - {t: wh, id: w1, word: which, class: badger, span: "Which badger"}
+        - {t: motion, id: e1, verb: escape, mover: "@w1", tense: past, span: "Which badger escaped"}
+        - {t: question, id: a1, span: "Which badger escaped?"}
+    - category: positive
+      note: a relation question — the wh fills the relation, a lemma slot, as its reference
+      text: "How is Joost related to Anouk?"
+      instances:
+        - {t: named-entity, id: n1, name: "Joost", span: "Joost"}
+        - {t: named-entity, id: n2, name: "Anouk", span: "Anouk"}
+        - {t: wh, id: w1, word: how, span: "How"}
+        - {t: stative-relation, id: p1, relation: "@w1", subject: "@n1", object: "@n2", tense: present, span: "How is Joost related to Anouk"}
+        - {t: question, id: a1, span: "How is Joost related to Anouk?"}
+    - category: positive
+      note: when — the wh names the event whose time is asked
+      text: "When did Femke leave?"
+      instances:
+        - {t: named-entity, id: n1, name: "Femke", span: "Femke"}
+        - {t: motion, id: e1, verb: leave, mover: "@n1", tense: past, span: "did Femke leave"}
+        - {t: wh, id: w1, word: when, event: "@e1", span: "When"}
+        - {t: question, id: a1, span: "When did Femke leave?"}
+
+  held_out:                  # tests; never rendered into the prompt
+    - category: positive
+      note: which with a noun as the mover
+      text: "Which ferret escaped?"
+      instances:
+        - {t: wh, id: w1, word: which, class: ferret}
+        - {t: motion, id: e1, verb: escape, mover: "@w1", tense: past}
+        - {t: question, id: a1}
+    - category: positive
+      note: whose — the wh is the witness's possessor
+      text: "Whose quilt did Teodor sell?"
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: wh, id: w1, word: whose}
+        - {t: witness, id: x1, class: quilt, possessor: "@w1"}
+        - {t: transfer, id: e1, verb: sell, giver: "@n1", object: "@x1", tense: past}
+        - {t: question, id: a1}
+    - category: positive
+      note: where — the place of a location on the event
+      text: "Where did Yusra sleep?"
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: activity, id: e1, verb: sleep, actor: "@n1", tense: past}
+        - {t: wh, id: w1, word: where}
+        - {t: location, id: l1, event: "@e1", place: "@w1", head: Location, preposition: where}
+        - {t: question, id: a1}
+    - category: positive
+      note: where with be — the place of a locative
+      text: "Where is the spindle?"
+      instances:
+        - {t: witness, id: x1, class: spindle, definite: true}
+        - {t: wh, id: w1, word: where}
+        - {t: locative, id: l1, thing: "@x1", place: "@w1", head: LocatedIn, preposition: where, tense: present}
+        - {t: question, id: a1}
+    - category: positive
+      note: when — the wh names the event
+      text: "When did Lamine leave?"
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: motion, id: e1, verb: leave, mover: "@n1", tense: past}
+        - {t: wh, id: w1, word: when, event: "@e1"}
+        - {t: question, id: a1}
+    - category: positive
+      note: what is X to Y — the relation asked, a lemma slot holding the wh
+      text: "What is Ottoline to Teodor?"
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: named-entity, id: n2, name: "Teodor"}
+        - {t: wh, id: w1, word: what}
+        - {t: stative-relation, id: p1, relation: "@w1", subject: "@n1", object: "@n2", tense: present}
+        - {t: question, id: a1}
+    - category: positive
+      note: who is X's relative — the bearer of the relation asked, no witness for the noun
+      text: "Who is Lamine's daughter?"
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: wh, id: w1, word: who}
+        - {t: stative-relation, id: p1, relation: daughter, subject: "@w1", object: "@n1", tense: present}
+        - {t: question, id: a1}
+    - category: positive
+      note: what did X do — the verb asked
+      text: "What did Teodor do?"
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: wh, id: w1, word: what}
+        - {t: activity, id: e1, verb: "@w1", actor: "@n1", tense: past}
+        - {t: question, id: a1}

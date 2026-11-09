@@ -1,0 +1,83 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "12f5880a35c90ec1e11d06b3c54acc2d3465a1272ecfe4b95004d8d5f1288d2f",
+  "item": {
+    "id": "scbd95d0bff",
+    "text": "How many quilts did Lamine sell?"
+  },
+  "usage": {
+    "input": 120583,
+    "output": 93,
+    "thinking": null,
+    "total": 120676,
+    "cached": 118534,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 120583,
+    "candidatesTokenCount": 93,
+    "totalTokenCount": 120676,
+    "cachedContentTokenCount": 118534,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 120583
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 118534
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 93
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"scbd95d0bff\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}], \"unmapped\": [{\"span\": \"How many quilts did Lamine sell?\", \"code\": \"G12\", \"construction\": \"A how-many question asking for a count of objects.\"}], \"issues\": []}",
+  "response": {
+    "id": "scbd95d0bff",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "How many quilts did Lamine sell?",
+        "code": "G12",
+        "construction": "A how-many question asking for a count of objects."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "868e642e529b83a79c84d8d33a44dd6b836490bab06db8cfa8f54d1b23b1eb05",
+  "manifest_id": "1ce9518366dc",
+  "run": 2,
+  "case": {
+    "template": "question",
+    "section": "held_out",
+    "index": 8,
+    "category": "abstain",
+    "text": "How many quilts did Lamine sell?",
+    "key": "cbd95d0bff"
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "12f5880a35c90ec1e11d06b3c54acc2d3465a1272ecfe4b95004d8d5f1288d2f",
+  "item": {
+    "id": "s1ebb2235cb",
+    "text": "Yusra asked who mended the barn."
+  },
+  "usage": {
+    "input": 120585,
+    "output": 97,
+    "thinking": null,
+    "total": 120682,
+    "cached": null,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 120585,
+    "candidatesTokenCount": 97,
+    "totalTokenCount": 120682,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 120585
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 97
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s1ebb2235cb\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}], \"unmapped\": [{\"span\": \"asked who mended the barn\", \"code\": \"G00\", \"construction\": \"A verb of asking with an embedded wh-question as its complement.\"}], \"issues\": []}",
+  "response": {
+    "id": "s1ebb2235cb",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "asked who mended the barn",
+        "code": "G00",
+        "construction": "A verb of asking with an embedded wh-question as its complement."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "868e642e529b83a79c84d8d33a44dd6b836490bab06db8cfa8f54d1b23b1eb05",
+  "manifest_id": "1ce9518366dc",
+  "run": 2,
+  "case": {
+    "template": "question",
+    "section": "held_out",
+    "index": 9,
+    "category": "abstain",
+    "text": "Yusra asked who mended the barn.",
+    "key": "1ebb2235cb"
+  }
+}

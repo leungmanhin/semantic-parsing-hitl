@@ -1,0 +1,99 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "12f5880a35c90ec1e11d06b3c54acc2d3465a1272ecfe4b95004d8d5f1288d2f",
+  "item": {
+    "id": "s667e189197",
+    "text": "Where is the spindle?"
+  },
+  "usage": {
+    "input": 120584,
+    "output": 170,
+    "thinking": null,
+    "total": 120754,
+    "cached": 118535,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 120584,
+    "candidatesTokenCount": 170,
+    "totalTokenCount": 120754,
+    "cachedContentTokenCount": 118535,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 120584
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 118535
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 170
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s667e189197\", \"instances\": [{\"t\": \"wh\", \"id\": \"w1\", \"word\": \"where\", \"span\": \"Where\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"spindle\", \"definite\": true, \"span\": \"the spindle\"}, {\"t\": \"locative\", \"id\": \"l1\", \"thing\": \"@x1\", \"place\": \"@w1\", \"head\": \"LocatedIn\", \"preposition\": \"where\", \"tense\": \"present\", \"span\": \"Where is the spindle\"}, {\"t\": \"question\", \"id\": \"a1\", \"span\": \"Where is the spindle?\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s667e189197",
+    "instances": [
+      {
+        "t": "wh",
+        "id": "w1",
+        "word": "where",
+        "span": "Where"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "spindle",
+        "definite": true,
+        "span": "the spindle"
+      },
+      {
+        "t": "locative",
+        "id": "l1",
+        "thing": "@x1",
+        "place": "@w1",
+        "head": "LocatedIn",
+        "preposition": "where",
+        "tense": "present",
+        "span": "Where is the spindle"
+      },
+      {
+        "t": "question",
+        "id": "a1",
+        "span": "Where is the spindle?"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "868e642e529b83a79c84d8d33a44dd6b836490bab06db8cfa8f54d1b23b1eb05",
+  "manifest_id": "1ce9518366dc",
+  "run": 3,
+  "case": {
+    "template": "wh",
+    "section": "held_out",
+    "index": 3,
+    "category": "positive",
+    "text": "Where is the spindle?",
+    "key": "667e189197"
+  }
+}

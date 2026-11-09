@@ -1,0 +1,120 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "12f5880a35c90ec1e11d06b3c54acc2d3465a1272ecfe4b95004d8d5f1288d2f",
+  "item": {
+    "id": "s32c677f0ec",
+    "text": "How is Yusra related to Lamine?",
+    "context_sha256": "533e997b414f0bd828668101185447ffd5b462db2f8c8d291d4e7ecbe5b882d4"
+  },
+  "usage": {
+    "input": 120843,
+    "output": 293,
+    "thinking": null,
+    "total": 121136,
+    "cached": 118794,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 120843,
+    "candidatesTokenCount": 293,
+    "totalTokenCount": 121136,
+    "cachedContentTokenCount": 118794,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 120843
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 118794
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 293
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s32c677f0ec\", \"instances\": [{\"t\": \"wh\", \"id\": \"w1\", \"word\": \"how\", \"span\": \"How\"}, {\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"stative-relation\", \"id\": \"p1\", \"relation\": \"@w1\", \"subject\": \"@n1\", \"object\": \"@n2\", \"tense\": \"present\", \"span\": \"How is Yusra related to Lamine\"}, {\"t\": \"coref\", \"id\": \"c1\", \"mention\": \"@n1\", \"antecedent\": \"@s1.n2\", \"certainty\": \"certain\", \"span\": \"Yusra\"}, {\"t\": \"coref\", \"id\": \"c2\", \"mention\": \"@n2\", \"antecedent\": \"@s1.n1\", \"certainty\": \"certain\", \"span\": \"Lamine\"}, {\"t\": \"question\", \"id\": \"a1\", \"span\": \"How is Yusra related to Lamine?\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s32c677f0ec",
+    "instances": [
+      {
+        "t": "wh",
+        "id": "w1",
+        "word": "how",
+        "span": "How"
+      },
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "stative-relation",
+        "id": "p1",
+        "relation": "@w1",
+        "subject": "@n1",
+        "object": "@n2",
+        "tense": "present",
+        "span": "How is Yusra related to Lamine"
+      },
+      {
+        "t": "coref",
+        "id": "c1",
+        "mention": "@n1",
+        "antecedent": "@s1.n2",
+        "certainty": "certain",
+        "span": "Yusra"
+      },
+      {
+        "t": "coref",
+        "id": "c2",
+        "mention": "@n2",
+        "antecedent": "@s1.n1",
+        "certainty": "certain",
+        "span": "Lamine"
+      },
+      {
+        "t": "question",
+        "id": "a1",
+        "span": "How is Yusra related to Lamine?"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "868e642e529b83a79c84d8d33a44dd6b836490bab06db8cfa8f54d1b23b1eb05",
+  "manifest_id": "1ce9518366dc",
+  "run": 1,
+  "case": {
+    "template": "question",
+    "section": "held_out",
+    "index": 7,
+    "category": "positive",
+    "text": "How is Yusra related to Lamine?",
+    "key": "32c677f0ec"
+  }
+}

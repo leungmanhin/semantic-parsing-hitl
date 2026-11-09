@@ -1,0 +1,98 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "12f5880a35c90ec1e11d06b3c54acc2d3465a1272ecfe4b95004d8d5f1288d2f",
+  "item": {
+    "id": "s4687517e5b",
+    "text": "Did Lamine sell the quilt?"
+  },
+  "usage": {
+    "input": 120586,
+    "output": 169,
+    "thinking": null,
+    "total": 120755,
+    "cached": 118537,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 120586,
+    "candidatesTokenCount": 169,
+    "totalTokenCount": 120755,
+    "cachedContentTokenCount": 118537,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 120586
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 118537
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 169
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s4687517e5b\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"quilt\", \"definite\": true, \"span\": \"the quilt\"}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"sell\", \"giver\": \"@n1\", \"object\": \"@x1\", \"tense\": \"past\", \"span\": \"Did Lamine sell the quilt\"}, {\"t\": \"question\", \"id\": \"a1\", \"span\": \"Did Lamine sell the quilt?\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s4687517e5b",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "quilt",
+        "definite": true,
+        "span": "the quilt"
+      },
+      {
+        "t": "transfer",
+        "id": "e1",
+        "verb": "sell",
+        "giver": "@n1",
+        "object": "@x1",
+        "tense": "past",
+        "span": "Did Lamine sell the quilt"
+      },
+      {
+        "t": "question",
+        "id": "a1",
+        "span": "Did Lamine sell the quilt?"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "868e642e529b83a79c84d8d33a44dd6b836490bab06db8cfa8f54d1b23b1eb05",
+  "manifest_id": "1ce9518366dc",
+  "run": 2,
+  "case": {
+    "template": "question",
+    "section": "held_out",
+    "index": 2,
+    "category": "positive",
+    "text": "Did Lamine sell the quilt?",
+    "key": "4687517e5b"
+  }
+}

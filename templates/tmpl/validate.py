@@ -22,7 +22,9 @@ Checks, in order:
   ``bare_content`` (an imperative's addressee is implicit), a refs slot marked ``participant: true`` is
   filled (a quality of an action: the clause is the participant), or an oblique with an object
   attaches to it (a prepositional passive with no by-phrase: the leak was dealt with), an optional
-  scope with an empty ``refs`` list (``empty-scope``);
+  scope with an empty ``refs`` list (``empty-scope``), a reference in a lemma slot that names no asked word of a
+  question (``lemma-reference``: a lemma slot holds a word; the emitter renders the referent's symbol there, as it
+  always has);
 * statement lints on what was emitted: a variable in a statement that is no rule (``free-variable``: a
   referent tied to a rule's range from outside the rule; the statement is not a fact);
 * span lints, when the caller supplies the TEXT: an instance without ``span`` (``span-missing``), a
@@ -32,7 +34,9 @@ Checks, in order:
   (needs the ``petta`` package, otherwise ``typecheck`` is ``skipped``).
 
 ``inspect`` does everything but C9 (no engine needed); ``typecheck_records`` runs C9 over many
-records in one engine session; ``validate`` does both for one reply.
+records in one engine session; ``validate`` does both for one reply. A QUESTION (a reply with an instance of the
+``question`` family) is checked the same way and flagged ``question``: its records are its literal content, which
+``tmpl.query`` turns into a query — no fact of a knowledge base, so C9 does not type them.
 """
 from __future__ import annotations
 
@@ -59,7 +63,7 @@ def inspect(reply, catalog: dict | None = None, reference_time=None, text: str |
         catalog = CAT.load()
     res = {"status": "ok", "findings": [], "instances": [], "unmapped": [], "issues": [], "fired": {},
            "null_slots": 0, "statements": None, "declarations": None, "detail": None,
-           "records": None, "types": None, "functions": None, "typecheck": "not run"}
+           "records": None, "types": None, "functions": None, "typecheck": "not run", "question": False}
     if not isinstance(reply, dict):
         res["status"] = "not-an-object"
         res["findings"].append({"kind": "contract", "detail": "the reply is not a JSON object"})
@@ -91,6 +95,7 @@ def inspect(reply, catalog: dict | None = None, reference_time=None, text: str |
         cleaned.append(c)
     res["instances"] = cleaned
     res["fired"] = dict(collections.Counter(str(r.get("t")) for r in cleaned))
+    res["question"] = any((catalog.get(r.get("t")) or {}).get("family") == "question" for r in cleaned)
     try:
         out = E.emit({"id": reply.get("id") or "parse", "instances": cleaned, "unmapped": res["unmapped"],
                       "reference_time": reference_time}, catalog)
@@ -159,11 +164,19 @@ def lints(insts: list, catalog: dict, unmapped: list, text: str | None = None) -
     for r in insts:
         for sname, spec in (catalog[r["t"]].get("slots") or {}).items():
             v = r.get(sname)
-            if spec["type"] == "filler" and E.is_ref(v):
+            if spec["type"] in ("filler", "lemma") and E.is_ref(v):          # a lemma slot names the asked word of a question
                 mentioned.add(v[1:])
             elif spec["type"] in ("refs", "list") and isinstance(v, list):   # a list may name instances (a name before a noun)
                 mentioned.update(x[1:] for x in v if E.is_ref(x))
     by_id = {r["id"]: r for r in insts if "id" in r}
+
+    def asked(iid: str) -> bool:
+        t = catalog.get((by_id.get(iid) or {}).get("t")) or {}
+        return bool((t.get("mints") or {}).get("asked"))
+
+    def attached(r: dict) -> bool:                  # an instance whose attaching slot is filled (when: the asked time of an event)
+        return any(spec["type"] == "filler" and spec.get("attaches") and E.is_ref(r.get(sname))
+                   for sname, spec in (catalog[r["t"]].get("slots") or {}).items())
 
     def content_of(iid: str, seen: set) -> set:
         """The ids an instance scopes over, through its refs slots, transitively."""
@@ -196,7 +209,13 @@ def lints(insts: list, catalog: dict, unmapped: list, text: str | None = None) -
     for r in insts:
         t = catalog[r["t"]]
         slots = t.get("slots") or {}
-        if t.get("family") == "referent" and r["id"] not in mentioned and not covered:
+        for sname, spec in slots.items():
+            v = r.get(sname)
+            if spec["type"] == "lemma" and E.is_ref(v) and v[1:] in by_id and not asked(v[1:]):
+                out.append({"kind": "lemma-reference", "instance": r["id"],
+                            "detail": f"{r['t']} {r['id']}: {sname} holds {v}, a reference — a lemma slot holds a word; only the "
+                                      f"asked word of a question fills it as a reference"})
+        if t.get("family") == "referent" and r["id"] not in mentioned and not covered and not (asked(r["id"]) and attached(r)):
             mints = t.get("mints") or {}
             is_name = mints.get("stem") == "name" or mints.get("symbol") == "name"   # a name may stand inside an unmapped span
             if not is_name:
@@ -278,7 +297,9 @@ def validate(reply, catalog: dict | None = None, typecheck: bool = True, referen
              text: str | None = None) -> dict:
     """Everything for one reply: contract, emission, lints (span lints when the text is given) and C9."""
     res = inspect(reply, catalog, reference_time, text)
-    if typecheck and res["statements"]:
+    if res["question"]:
+        res["typecheck"] = "skipped (a question: its records are a query's content, not facts)"
+    elif typecheck and res["statements"]:
         typed = typecheck_records([res])
         if typed is None:
             res["typecheck"] = "skipped (no petta package)"

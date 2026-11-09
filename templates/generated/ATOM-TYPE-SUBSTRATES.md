@@ -2,7 +2,7 @@
 
 Generated from `templates/atom-type-substrates.json` (schema `atom-type-substrates/1`) by `templates/tmpl/gen_substrate.py`, together with `templates/generated/atom-types.metta`. Do not edit by hand; regenerate with `cd templates && python -m tmpl.gen_substrate`.
 
-168 heads in 14 kinds (7 proposed; 168 with a reviewed type declaration so far). `type-def` is the PeTTa declaration emitted for the head; `?` as the output type means the head is not yet reviewed and is absent from the `.metta` file; `%Undefined%` marks a position the head takes but the JSON does not type.
+178 heads in 15 kinds (7 proposed; 178 with a reviewed type declaration so far). `type-def` is the PeTTa declaration emitted for the head; `?` as the output type means the head is not yet reviewed and is absent from the `.metta` file; `%Undefined%` marks a position the head takes but the JSON does not type.
 
 Every atom is carried as a statement (: <proof-name> <atom> <tv>), tv = (STV strength confidence) or another engine truth value. The carrier is not an atom kind: ':' is never type-declared (it is also PeTTa's type-declaration head) and the truth value is declared by the engine, not by this substrate.
 
@@ -909,13 +909,69 @@ type-def: (: forClass (-> Class Level))
 gloss: Comparison-class marker: ADJ relative to the norm for a class. A value term, not a statement: stands in the level slot of Degree.
 
 
-## lexicon (9)
+## lexicon (17)
 
 head: DimensionScale
 kind: lexicon
 arity: 2
 type-def: (: DimensionScale (-> Class Class Proposition))
 gloss: A dimension noun's positive adjective scale (weight heavy, age old, cost expensive). Order: (DimensionScale noun adjective). Background fact (the rules file's lexicon), never parser output; the rules carry an ordering derived on the noun onto the adjective's scale.
+
+
+head: KinCompose
+kind: lexicon
+arity: 3
+type-def: (: KinCompose (-> Class Class Class Proposition))
+gloss: A composition of kinship relations: x is y's A and y is z's B, so x is z's C (parent parent grandparent). Order: (KinCompose A B C). Background fact (seeded), never parser output.
+
+
+head: KinComposeDefault
+kind: lexicon
+arity: 3
+type-def: (: KinComposeDefault (-> Class Class Class Proposition))
+gloss: A composition that USUALLY holds, applied at a lower strength a later fact can overturn (parent sibling parent: a sibling's parent is one's own, siblings sharing their parents; child spouse child: a spouse's child). Order: (KinComposeDefault A B C). Background fact (seeded), never parser output.
+
+
+head: KinComposeDefaultDistinct
+kind: lexicon
+arity: 3
+type-def: (: KinComposeDefaultDistinct (-> Class Class Class Proposition))
+gloss: A default composition drawn only between two named people with different names (parent child spouse: the two parents of one child are spouses). Order: (KinComposeDefaultDistinct A B C). Background fact (seeded), never parser output.
+
+
+head: KinComposeDistinct
+kind: lexicon
+arity: 3
+type-def: (: KinComposeDistinct (-> Class Class Class Proposition))
+gloss: A composition that may return to its start, drawn only between two named people with different names (child parent sibling: two children of one parent). Order: (KinComposeDistinct A B C). Background fact (seeded), never parser output.
+
+
+head: KinConverse
+kind: lexicon
+arity: 2
+type-def: (: KinConverse (-> Class Class Proposition))
+gloss: The relation read from the other side (child parent, niece_or_nephew aunt_or_uncle; a symmetric one is its own: sibling sibling). Order: (KinConverse relation converse). Background fact (seeded), never parser output.
+
+
+head: KinGender
+kind: lexicon
+arity: 2
+type-def: (: KinGender (-> Class Class Proposition))
+gloss: The gender a gendered kinship word gives its bearer (son male, aunt female). Order: (KinGender word gender). Background fact (seeded), never parser output.
+
+
+head: KinGeneral
+kind: lexicon
+arity: 2
+type-def: (: KinGeneral (-> Class Class Proposition))
+gloss: A kinship word's neutral relation (son child, aunt aunt_or_uncle); a neutral word is its own (child child). Order: (KinGeneral word neutral). Background fact (seeded), never parser output.
+
+
+head: KinSymmetric
+kind: lexicon
+arity: 1
+type-def: (: KinSymmetric (-> Class Proposition))
+gloss: A kinship word the catalog states with two bearers (sibling, spouse, cousin, twin, married): either bearer is the other's. Order: (KinSymmetric word). Background fact (seeded), never parser output.
 
 
 head: MonthIndex
@@ -1226,6 +1282,22 @@ kind: computation
 arity: 2
 type-def: (: ParticleFromNormal (-> Number Number Distribution))
 gloss: Approximate magnitude as a normal distribution: mean and sigma. Generic meaning (an approximate magnitude, "about 200 kg"); engine-named; other engines get it by lowering.
+
+
+## derived (2)
+
+head: Kin
+kind: derived
+arity: 3
+type-def: (: Kin (-> Class Entity Entity Proposition))
+gloss: A kinship relation in its NEUTRAL word (child, parent, sibling, spouse, grandparent, grandchild, aunt_or_uncle, niece_or_nephew, cousin, parent_in_law, child_in_law, sibling_in_law): (Kin relation x y) — x is y's relation. Built by the recursive rules of the closure `kin` (rules.yaml), never parser output. Our engine line's lowering unrolls the closure and gives the head a depth slot first, (Kin depth relation x y) (tmpl.rules `unroll`).
+
+
+head: KinWord
+kind: derived
+arity: 3
+type-def: (: KinWord (-> Class Entity Entity Proposition))
+gloss: A stated kinship relation, lifted by the kinship rules from a stative-relation state whose class is a kinship word: (KinWord daughter x y) — x is y's daughter. Order: (KinWord word bearer other). Derived by a rule, never parser output.
 
 
 ## state (1)

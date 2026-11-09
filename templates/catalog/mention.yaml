@@ -3,8 +3,11 @@
 # A pronoun is a referent of its own — sk_he_1, sk_it_1 — that fills the slots of the clause it
 # appears in; which earlier referent it stands for is stated separately by a coref instance, with
 # the certainty the text gives. Nothing is folded silently: the roles stay on the mention, the
-# identity is a link that can be checked and revised downstream. A mention emits no atom of its
-# own; its symbol is typed by the emitter and the link says who it is.
+# identity is a link that can be checked and revised downstream. A gendered pronoun states the
+# gender of what it stands for — he, him, his, himself: (Member sk_he_1 male); she, her, hers,
+# herself: (Member sk_she_1 female) — the text's own word, which the coref rules carry to the
+# antecedent (decided with the owner 2026-11-09: gender only from the text's words, never from a
+# name). Any other mention emits no atom of its own; the link says who it is.
 
 id: mention
 family: referent
@@ -55,13 +58,28 @@ mints: {id: Entity, stem: word}          # sk_he_1, sk_it_1
 
 presupposed: [word]                      # anaphoric: never introduced inside a scope
 
-emits: []
+lexicon:                                 # the pronouns whose word states a gender (the program applies it; the parser records the word)
+  masculine: [he, him, his, himself]
+  feminine: [she, her, hers, herself]
+
+emits:
+  - atom: "(Member @id male)"            # the gender the pronoun's word states, carried to the antecedent by the coref rules
+    when: "word in masculine"
+    declare: {male: Class}
+  - atom: "(Member @id female)"
+    when: "word in feminine"
+    declare: {female: Class}
 
 notes:
   - >-
-    The mention has no atom of its own: the clause's roles say what it does, the coref link says
-    who it is. A downstream reasoner carries the roles across the link at the link's strength
+    The mention has no other atom of its own: the clause's roles say what it does, the coref link
+    says who it is. A downstream reasoner carries the roles across the link at the link's strength
     (the seeded congruence rules), so nothing is lost and the identity stays revisable.
+  - >-
+    A gendered pronoun's gender is the word's, said of the mention and carried to the antecedent
+    by coref_member: "Stanley … his daughter" makes Stanley male at the link's strength. It is the
+    only gender a person gets from a pronoun; a gendered noun (son, sister, uncle) gives its own
+    through the kinship rules, and a name gives none.
 
 depends_on: []
 composes_with: [coref]

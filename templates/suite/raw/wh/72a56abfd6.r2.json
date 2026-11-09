@@ -1,0 +1,104 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "12f5880a35c90ec1e11d06b3c54acc2d3465a1272ecfe4b95004d8d5f1288d2f",
+  "item": {
+    "id": "s72a56abfd6",
+    "text": "What is Ottoline to Teodor?"
+  },
+  "usage": {
+    "input": 120585,
+    "output": 202,
+    "thinking": null,
+    "total": 120787,
+    "cached": 118536,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 120585,
+    "candidatesTokenCount": 202,
+    "totalTokenCount": 120787,
+    "cachedContentTokenCount": 118536,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 120585
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 118536
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 202
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s72a56abfd6\", \"instances\": [{\"t\": \"wh\", \"id\": \"w1\", \"word\": \"what\", \"span\": \"What\"}, {\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"stative-relation\", \"id\": \"p1\", \"relation\": \"@w1\", \"subject\": \"@n1\", \"object\": \"@n2\", \"preposition\": \"to\", \"tense\": \"present\", \"span\": \"What is Ottoline to Teodor\"}, {\"t\": \"question\", \"id\": \"a1\", \"span\": \"What is Ottoline to Teodor?\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s72a56abfd6",
+    "instances": [
+      {
+        "t": "wh",
+        "id": "w1",
+        "word": "what",
+        "span": "What"
+      },
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Ottoline",
+        "span": "Ottoline"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "stative-relation",
+        "id": "p1",
+        "relation": "@w1",
+        "subject": "@n1",
+        "object": "@n2",
+        "preposition": "to",
+        "tense": "present",
+        "span": "What is Ottoline to Teodor"
+      },
+      {
+        "t": "question",
+        "id": "a1",
+        "span": "What is Ottoline to Teodor?"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "868e642e529b83a79c84d8d33a44dd6b836490bab06db8cfa8f54d1b23b1eb05",
+  "manifest_id": "1ce9518366dc",
+  "run": 2,
+  "case": {
+    "template": "wh",
+    "section": "held_out",
+    "index": 5,
+    "category": "positive",
+    "text": "What is Ottoline to Teodor?",
+    "key": "72a56abfd6"
+  }
+}

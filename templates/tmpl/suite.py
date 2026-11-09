@@ -131,6 +131,62 @@ def case_statements(case: dict, instances: list, catalog: dict, unmapped=None) -
     return rec["statements"]
 
 
+def is_question_case(case: dict, catalog: dict) -> bool:
+    """A case whose expected instances ask (an instance of the ``question`` family): compared by its queries."""
+    from . import query as Q
+    return Q.question_of(case.get("instances") or [], catalog) is not None
+
+
+def case_query(case: dict, instances: list, catalog: dict) -> dict:
+    """A question case's query (``tmpl.query.ask``), read after the case's context when it has one. Raises
+    QueryError when the instances do not ask, EmitError when they cannot be emitted."""
+    from . import query as Q
+    if not case.get("context"):
+        return Q.ask(instances, catalog, None, case.get("reference_time"))
+    from . import blocks as B
+    prior = B.context_of(case["context"])
+    own = B.qualify(instances, len(prior) + 1)
+    return Q.ask(own, catalog, [i for p in prior for i in p["instances"]], case.get("reference_time"))
+
+
+def _query_token(v: str) -> str:
+    """A query variable as a witness token, so two queries compare modulo a renaming of their variables of the same
+    stem: ``$feed_1`` → ``sk_feed_1``, ``$who`` → ``sk_who_0``."""
+    body = v[1:]
+    return f"sk_{body}" if re.search(r"_\d+$", body) else f"sk_{body}_0"
+
+
+def query_units(asked: dict) -> list:
+    """A question's readings as comparison units, compared like statements: per reading the form, the option's place
+    in the question, the lexicon outcome, the pattern and the definitions; beside it the answer variables. Variables
+    match variables of the same stem, as witnesses do."""
+    from .lower import leaves
+
+    def tok(term):
+        if isinstance(term, list):
+            return [tok(x) for x in term]
+        return _query_token(term) if isinstance(term, str) and term.startswith("$") else term
+
+    options = []
+    for rd in asked["readings"]:
+        if rd["option"] is not None and rd["option"] not in options:
+            options.append(rd["option"])
+    out = []
+    for rd in asked["readings"]:
+        place = str(options.index(rd["option"]) + 1) if rd["option"] is not None else "-"
+        unit = ["Query", asked["form"], place, str(rd["lexicon"]).lower(), tok(leaves(rd["pattern"])),
+                ["Definitions", *[tok(leaves(d["term"])) for d in rd["definitions"]]]]
+        out.append([unit, ["Asked", *sorted(_query_token(a["var"]) for a in asked["asked"])]])
+    return out
+
+
+def case_units(case: dict, instances: list, catalog: dict, unmapped=None) -> list:
+    """What a case's sentence says as comparison units: a question case's queries, any other case's statements."""
+    if is_question_case(case, catalog):
+        return query_units(case_query(case, instances, catalog))
+    return units_of(case_statements(case, instances, catalog, unmapped))
+
+
 def case_context(case: dict) -> str | None:
     """The CONTEXT section a case's request carries, or None."""
     if not case.get("context"):
@@ -373,7 +429,7 @@ def catalog_checks(catalog: dict, general: dict | None = None, freshness: bool =
                         findings.append({"kind": "unknown-gap-code", "template": tid, "text": case["text"],
                                          "detail": f"expected unmapped record {u!r}"})
                 try:
-                    units = units_of(case_statements(case, case["instances"], catalog))
+                    units = case_units(case, case["instances"], catalog)
                 except (E.EmitError, ValueError) as exc:
                     findings.append({"kind": "emit-error", "template": tid, "section": case["section"],
                                      "text": case["text"], "detail": str(exc.args[0] if exc.args else exc)})
@@ -675,7 +731,19 @@ def score_record(case: dict, rec: dict, catalog: dict, heads: dict, body_sha: st
         row["statements"], row["declarations"] = ins["statements"], ins["declarations"]
         units = ctx_units if case.get("context") else units_of(ins["statements"])
     if category in FIRING:
-        expected = units_of(case_statements(case, case["instances"], catalog))
+        expected = case_units(case, case["instances"], catalog)
+        if units is not None and is_question_case(case, catalog):   # a question: compared by what it asks
+            from . import lower as L, query as Q
+            try:
+                asked = case_query(case, ins["instances"], catalog)
+                units = query_units(asked)
+                row["queries"] = L.question(asked)["queries"]
+            except Q.QueryError:
+                units = None
+                row["reasons"].append("the reply does not ask: no question instance")
+            except E.EmitError as exc:
+                units = None
+                row["reasons"].append(f"the question cannot be emitted: {exc}")
         row["fired_template"] = fired_t
         if not fired_t:
             row["reasons"].append(f"{tid} did not fire")

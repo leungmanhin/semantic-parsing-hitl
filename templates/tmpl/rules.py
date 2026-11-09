@@ -34,6 +34,21 @@ rule's confidence, and whose denied side denies the other; it never lowers to tw
 no skolem function term (a term against a bare variable makes the search explode) and need no
 computation.
 
+CLOSURES. A ``closures`` list names a family of RECURSIVE rules by the relation they build (``{id, meaning, head,
+depth}``: kinship's ``Kin``), and each of its rules says ``closure: {name, role}``: ``input`` (feeds the closure:
+kinship's lifts), ``base`` (concludes the head from no head), ``converse`` (reads one head atom, concludes it the other
+way round) or ``compose`` (reads two head atoms, concludes a third). The source states the closure as it is meant —
+recursive, unbounded. How it is lowered is the target's: for our engine line (``pettachainer``) ``unroll`` makes it
+ACYCLIC, since that line's backward chaining loses deep proofs and its forward chaining revises an atom again and again
+around a cycle — the head gains a DEPTH slot first (0 for a base conclusion, d + 1 for a composition of a depth-d atom
+with a depth-0 one, below the closure's ``depth``), each converse rule is FOLDED into every base and compose rule (a
+variant concluding the other way round) instead of reading the head, and a rule outside the closure that reads the head
+reads it at any depth. The unrolled closure is the CLOSURE STAGE: written to its own file,
+``generated/closure_rules.metta``, forward-chained once over a text's statements before a question is asked
+(``tmpl.reason``), never beside the query-stage rules of ``seeded_rules.metta`` (a closure rule beside its own
+conclusions would count them twice). Both are workarounds for our engine line, to re-test after the switch to upstream
+PeTTaChainer (whose own gaps with recursive rules are measured in the engine checkout's repros of 2026-11-09).
+
 FACTS. ``rules.yaml`` may also hold a ``facts`` list: background LEXICON atoms with no variables —
 the poles of a gradable dimension (``ScaleOpposite short tall``), unit factors to a canonical unit
 (``UnitFactor centimetre metre 0.01``), a dimension noun's adjective scale (``DimensionScale
@@ -64,8 +79,11 @@ RULES = os.path.join(TEMPLATES, "rules.yaml")
 SUBSTRATE = os.path.join(TEMPLATES, "atom-type-substrates.json")
 CATALOG_DIR = os.path.join(TEMPLATES, "catalog")
 GENERATED = os.path.join(TEMPLATES, "generated", "seeded_rules.metta")
+GENERATED_CLOSURE = os.path.join(TEMPLATES, "generated", "closure_rules.metta")
 
 SEMANTICS = ("deductive", "equivalence")
+CLOSURE_ROLES = ("input", "base", "converse", "compose")
+CLOSURE_KEYS = ("id", "meaning", "head", "depth", "notes")
 OPS = ("+", "-", "*", "/", "clause-event", "!=", ">", "<")   # arithmetic, the event of a sealed clause, and boolean guards (result: true)
 TENSES = {"none": None, "past": "Past", "future": "Future"}
 CAPABILITIES = ("sealed-term-projection",)
@@ -219,8 +237,14 @@ def _check_one(r: dict, i: int, heads, templates, seen: set, expanded: bool = Fa
                 if t not in templates:
                     problems.append(f"{where}: reads unknown template {t!r}")
         for key in r:
-            if key not in ("id", "meaning", "premises", "computations", "conclusion", "truth", "semantics", "reads", "notes", "expand", "requires"):
+            if key not in ("id", "meaning", "premises", "computations", "conclusion", "truth", "semantics", "reads", "notes", "expand", "requires", "closure"):
                 problems.append(f"{where}: unknown key {key!r}")
+        cl = r.get("closure")
+        if cl is not None:
+            if not (isinstance(cl, dict) and set(cl) == {"name", "role"} and cl.get("role") in CLOSURE_ROLES):
+                problems.append(f"{where}: closure must be {{name, role}} with role one of {', '.join(CLOSURE_ROLES)}")
+            elif r.get("semantics") == "equivalence" or r.get("expand") or r.get("requires"):
+                problems.append(f"{where}: a closure rule is a plain deductive implication (no expand, no requires)")
         if not expanded:
             for atom in prem + ([concl] if concl else []):
                 if "{" in atom:
@@ -381,11 +405,204 @@ def runnable(rule: dict, target: str = "pettachainer") -> bool:
     return req is None or req in TARGET_CAPABILITIES.get(target, set())
 
 
-def render(rules: list[dict], target: str = "pettachainer", facts: list[dict] | None = None) -> str:
+def load_closures(path: str = RULES, rules: list[dict] | None = None, strict: bool = True) -> list[dict]:
+    """The closures of the source (an empty list when it has none), checked against its rules: a known head, a depth,
+    each member rule's shape fitting its role, and no rule outside a closure concluding its head."""
+    with open(path, encoding="utf-8") as fh:
+        doc = CAT.load_yaml(fh)
+    closures = (doc or {}).get("closures") or []
+    problems = check_closures(closures, rules if rules is not None else load(path, strict), substrate_heads())
+    if problems and strict:
+        raise RulesError("\n".join(problems))
+    return closures
+
+
+def _head_atoms(atoms: list[str], head: str) -> list[int]:
+    return [i for i, a in enumerate(atoms) if T.parse(a)[:1] == [head]]
+
+
+def check_closures(closures: list, rules: list[dict], heads: set | None = None) -> list[str]:
+    problems = []
+    if not isinstance(closures, list):
+        return ["`closures` must be a list"]
+    by_id = {}
+    for i, c in enumerate(closures):
+        where = f"closures[{i}] ({c.get('id', '?') if isinstance(c, dict) else '?'})"
+        if not isinstance(c, dict) or set(c) - set(CLOSURE_KEYS) or not all(k in c for k in ("id", "meaning", "head", "depth")):
+            problems.append(f"{where}: a closure is {{id, meaning, head, depth}} (notes optional)")
+            continue
+        if heads is not None and c["head"] not in heads:
+            problems.append(f"{where}: unknown head {c['head']!r} (not in the substrate)")
+        if not (isinstance(c["depth"], int) and c["depth"] >= 1):
+            problems.append(f"{where}: depth must be a positive integer (the unrolled closure's bound)")
+        by_id[c["id"]] = c
+    for r in rules:
+        cl, where = r.get("closure"), f"rule {r.get('id')}"
+        if not cl:
+            for c in by_id.values():
+                if T.parse(r.get("conclusion") or "()")[:1] == [c["head"]]:
+                    problems.append(f"{where}: concludes {c['head']}, the head of closure {c['id']}, but is not one of its rules")
+            continue
+        c = by_id.get(cl.get("name"))
+        if c is None:
+            problems.append(f"{where}: closure {cl.get('name')!r} is not declared")
+            continue
+        n = len(_head_atoms(r.get("premises") or [], c["head"]))
+        concl = T.parse(r.get("conclusion") or "()")[:1] == [c["head"]]
+        role = cl.get("role")
+        want = {"input": (0, False), "base": (0, True), "converse": (1, True), "compose": (2, True)}.get(role)
+        if want and (n, concl) != want:
+            problems.append(f"{where}: a {role} rule reads {want[0]} {c['head']} atom(s) and "
+                            f"{'concludes' if want[1] else 'does not conclude'} one (it reads {n})")
+        if role == "converse":
+            p = T.parse(r["premises"][_head_atoms(r["premises"], c["head"])[0]])
+            if not all(isinstance(a, str) and a.startswith("$") for a in p[1:]):
+                problems.append(f"{where}: a converse rule's head premise holds variables only")
+    return problems
+
+
+def _vars(tree) -> set:
+    if isinstance(tree, list):
+        return set().union(*[_vars(x) for x in tree]) if tree else set()
+    return {tree} if isinstance(tree, str) and tree.startswith("$") else set()
+
+
+def _sub(tree, m: dict):
+    if isinstance(tree, list):
+        return [_sub(x, m) for x in tree]
+    return m.get(tree, tree) if isinstance(tree, str) else tree
+
+
+def _fresh(name: str, taken: set) -> str:
+    if name not in taken:
+        return name
+    for ch in "fghijklmnopqrstuvw":
+        if f"${ch}" not in taken:
+            return f"${ch}"
+    k = 2
+    while f"{name}{k}" in taken:
+        k += 1
+    return f"{name}{k}"
+
+
+def _fold(producer: dict, converse: dict, head: str) -> dict:
+    """The producer rule concluding the other way round: the converse rule's head premise unified with the producer's
+    conclusion, its other premises inserted after the producer's first, its conclusion the variant's."""
+    p_concl = T.parse(producer["conclusion"])
+    taken = set().union(*[_vars(T.parse(a)) for a in producer["premises"] + [producer["conclusion"]]])
+    taken |= {c["result"] for c in producer.get("computations") or [] if isinstance(c.get("result"), str)}
+    cv_prem = [T.parse(a) for a in converse["premises"]]
+    hi = _head_atoms(converse["premises"], head)[0]
+    rename = {}
+    for v in sorted(set().union(*[_vars(a) for a in cv_prem]) | _vars(T.parse(converse["conclusion"]))):
+        if v not in _vars(cv_prem[hi]):
+            rename[v] = _fresh(v, taken | set(rename.values()))
+    unify = {v: arg for v, arg in zip(cv_prem[hi][1:], p_concl[1:])}
+    m = {**rename, **unify}
+    others = [T.render(_sub(a, m)) for i, a in enumerate(cv_prem) if i != hi]
+    return {**producer, "id": f"{producer['id']}_converse",
+            "meaning": f"{producer['meaning']} — read the other way round ({converse['meaning']})",
+            "premises": producer["premises"][:1] + others + producer["premises"][1:],
+            "conclusion": T.render(_sub(T.parse(converse["conclusion"]), m))}
+
+
+def _at_depth(atom: str, head: str, depth) -> str:
+    t = T.parse(atom)
+    return T.render([t[0], str(depth)] + t[1:]) if t[:1] == [head] else atom
+
+
+def unroll(rules: list[dict], closures: list[dict]) -> list[dict]:
+    """The rules for our engine line: each closure made ACYCLIC (see the module notes) and marked ``stage: closure``,
+    every other rule unchanged (``stage: query``) except that a premise on a closure's head reads any depth."""
+    out = []
+    by_name = {c["id"]: c for c in closures}
+    for r in rules:
+        cl = r.get("closure")
+        if not cl:
+            heads = [c["head"] for c in closures if _head_atoms(r["premises"], c["head"])]
+            if heads:
+                taken = set().union(*[_vars(T.parse(a)) for a in r["premises"] + [r["conclusion"]]])
+                dv = _fresh("$d", taken)
+                prem = r["premises"]
+                for h in heads:
+                    prem = [_at_depth(a, h, dv) for a in prem]
+                r = {**r, "premises": prem}
+            out.append({**r, "stage": "query"})
+            continue
+        c = by_name[cl["name"]]
+        head, role = c["head"], cl["role"]
+        if role == "converse":
+            continue                                     # folded into every producer below
+        if role == "input":
+            out.append({**r, "stage": "closure"})
+            continue
+        converses = [x for x in rules if (x.get("closure") or {}) == {"name": c["id"], "role": "converse"}]
+        for variant in [r] + [_fold(r, cv, head) for cv in converses]:
+            if role == "base":
+                out.append({**variant, "conclusion": _at_depth(variant["conclusion"], head, 0), "stage": "closure"})
+                continue
+            taken = set().union(*[_vars(T.parse(a)) for a in variant["premises"] + [variant["conclusion"]]])
+            d = _fresh("$d", taken)
+            e = _fresh("$e", taken | {d})
+            idx = _head_atoms(variant["premises"], head)
+            prem = list(variant["premises"])
+            prem[idx[0]] = _at_depth(prem[idx[0]], head, d)
+            prem[idx[1]] = _at_depth(prem[idx[1]], head, 0)
+            comps = [{"result": e, "op": "+", "args": [d, 1]}, {"result": True, "op": "<", "args": [e, c["depth"]]}]
+            out.append({**variant, "premises": prem, "computations": comps + list(variant.get("computations") or []),
+                        "conclusion": _at_depth(variant["conclusion"], head, e), "stage": "closure"})
+    return out
+
+
+def stage_of(rule: dict) -> str:
+    return rule.get("stage") or "query"
+
+
+def lowered(rules: list[dict], closures: list[dict] | None = None, target: str = "pettachainer") -> list[dict]:
+    """The rules as the target runs them, each ``{"id", "meaning", "reads", "stage", "text"}`` in source order: for our
+    engine line the closures unrolled (``unroll``), a rule pending a capability left out."""
+    closures = closures if closures is not None else []
+    out = []
+    for r in unroll([r for r in rules if runnable(r, target)], closures):
+        for v in expand(r):
+            out.append({"id": v["id"], "meaning": v.get("meaning"), "reads": v.get("reads") or [], "stage": stage_of(r),
+                        "text": lower(v, target)})
+    return out
+
+
+def render_closure(rules: list[dict], target: str = "pettachainer", closures: list[dict] | None = None) -> str:
+    """The closure stage's file: the unrolled closures, forward-chained once over a text's statements with the lexicon
+    facts of the seeded rules' file, before a question is asked (``tmpl.reason``)."""
+    if closures is None:
+        closures = load_closures(rules=rules)
+    lines = [
+        ";; The CLOSURE stage of the catalog's background rules (rules.yaml `closures`), UNROLLED for our engine line —",
+        ";; generated by `python -m tmpl.rules`; never edited by hand. The source states each closure as recursive rules;",
+        ";; here every closure head carries a depth (0 for a base conclusion, one more per composition, below the closure's",
+        ";; bound) and each converse rule is folded into the rules it reads from, so no rule's conclusion feeds its own",
+        ";; premises. These rules are FORWARD-CHAINED ONCE over a text's statements, with the lexicon facts of",
+        ";; seeded_rules.metta, before a question is asked; what they derive is loaded beside the statements, and the",
+        ";; question is asked with seeded_rules.metta alone (a closure rule beside its own conclusions would count them",
+        ";; twice). A workaround for our engine line (tmpl.reason), to re-test after the switch to upstream PeTTaChainer.",
+        "",
+    ]
+    for r in lowered(rules, closures, target):
+        if r["stage"] != "closure":
+            continue
+        reads = f" (reads: {', '.join(r['reads'])})" if r["reads"] else ""
+        lines.append(f";; {r['id']}: {r['meaning']}{reads}")
+        lines.append(r["text"])
+    return "\n".join(lines) + "\n"
+
+
+def render(rules: list[dict], target: str = "pettachainer", facts: list[dict] | None = None,
+           closures: list[dict] | None = None) -> str:
     """The consumer's file: the lexicon facts (loaded from the source unless given), then the
-    rules."""
+    query-stage rules (the closure stage has its own file: ``render_closure``)."""
     if facts is None:
         facts = load_facts(rules=rules)
+    if closures is None:
+        closures = load_closures(rules=rules)
     lines = [
         ";; The catalog's background rules, lowered for the chainer from rules.yaml — generated by",
         ";; `python -m tmpl.rules`; never edited by hand. Loaded beside the emitted statements by a",
@@ -413,8 +630,8 @@ def render(rules: list[dict], target: str = "pettachainer", facts: list[dict] | 
                 lines.append(lower_fact(g, e, target))
         lines.append("")
         lines.append(";; ===== Rules =====")
-    for src in rules:
-        if not runnable(src, target):
+    for src in unroll([r for r in rules if runnable(r, target)], closures):
+        if stage_of(src) != "query":
             continue
         reads = f" (reads: {', '.join(src['reads'])})" if src.get("reads") else ""
         variants = expand(src)
@@ -433,19 +650,30 @@ def main(argv=None) -> int:
     args = ap.parse_args(argv)
     rules = load(args.rules)
     facts = load_facts(args.rules, rules=rules)
-    text = render(rules, facts=facts)
-    n = len([v for r in rules if runnable(r) for v in expand(r)])
+    closures = load_closures(args.rules, rules=rules)
+    text = render(rules, facts=facts, closures=closures)
+    closure = render_closure(rules, closures=closures)
+    closure_out = os.path.join(os.path.dirname(args.out), os.path.basename(GENERATED_CLOSURE))
+    low = lowered(rules, closures)
+    n = sum(1 for r in low if r["stage"] == "query")
+    nc = sum(1 for r in low if r["stage"] == "closure")
     nf = len(statements_of(facts))
     pending = [r["id"] for r in rules if not runnable(r)]
     note = f", {len(pending)} pending the chainer's {', '.join(sorted({r['requires'] for r in rules if not runnable(r)}))}" if pending else ""
     if args.check:
         current = open(args.out, encoding="utf-8").read() if os.path.exists(args.out) else ""
-        print(f"{len(rules)} rules ({n} lowered{note}) + {nf} lexicon facts valid · generated file {'fresh' if current == text else 'STALE'}")
-        return 0 if current == text else 1
+        current_c = open(closure_out, encoding="utf-8").read() if os.path.exists(closure_out) else ""
+        fresh = current == text and current_c == closure
+        print(f"{len(rules)} rules ({n} lowered{note}; {nc} in the closure stage) + {nf} lexicon facts valid · generated files "
+              f"{'fresh' if fresh else 'STALE'}")
+        return 0 if fresh else 1
     os.makedirs(os.path.dirname(args.out), exist_ok=True)
     with open(args.out, "w", encoding="utf-8") as fh:
         fh.write(text)
-    print(f"wrote {os.path.relpath(args.out, TEMPLATES)} ({len(rules)} rules, {n} lowered{note}; {nf} lexicon facts)")
+    with open(closure_out, "w", encoding="utf-8") as fh:
+        fh.write(closure)
+    print(f"wrote {os.path.relpath(args.out, TEMPLATES)} ({len(rules)} rules, {n} lowered{note}; {nf} lexicon facts) and "
+          f"{os.path.relpath(closure_out, TEMPLATES)} ({nc} closure rules)")
     if args.out == GENERATED:
         from . import manifest as MF
         print(f"manifest {MF.write()['id']}")

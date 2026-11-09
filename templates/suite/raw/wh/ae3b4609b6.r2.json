@@ -1,0 +1,104 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "12f5880a35c90ec1e11d06b3c54acc2d3465a1272ecfe4b95004d8d5f1288d2f",
+  "item": {
+    "id": "sae3b4609b6",
+    "text": "Whose quilt did Teodor sell?"
+  },
+  "usage": {
+    "input": 120585,
+    "output": 196,
+    "thinking": null,
+    "total": 120781,
+    "cached": 118536,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 120585,
+    "candidatesTokenCount": 196,
+    "totalTokenCount": 120781,
+    "cachedContentTokenCount": 118536,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 120585
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 118536
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 196
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sae3b4609b6\", \"instances\": [{\"t\": \"wh\", \"id\": \"w1\", \"word\": \"whose\", \"span\": \"Whose\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"quilt\", \"possessor\": \"@w1\", \"span\": \"Whose quilt\"}, {\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"sell\", \"giver\": \"@n1\", \"object\": \"@x1\", \"tense\": \"past\", \"span\": \"Whose quilt did Teodor sell\"}, {\"t\": \"question\", \"id\": \"a1\", \"span\": \"Whose quilt did Teodor sell?\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sae3b4609b6",
+    "instances": [
+      {
+        "t": "wh",
+        "id": "w1",
+        "word": "whose",
+        "span": "Whose"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "quilt",
+        "possessor": "@w1",
+        "span": "Whose quilt"
+      },
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "transfer",
+        "id": "e1",
+        "verb": "sell",
+        "giver": "@n1",
+        "object": "@x1",
+        "tense": "past",
+        "span": "Whose quilt did Teodor sell"
+      },
+      {
+        "t": "question",
+        "id": "a1",
+        "span": "Whose quilt did Teodor sell?"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "868e642e529b83a79c84d8d33a44dd6b836490bab06db8cfa8f54d1b23b1eb05",
+  "manifest_id": "1ce9518366dc",
+  "run": 2,
+  "case": {
+    "template": "wh",
+    "section": "held_out",
+    "index": 1,
+    "category": "positive",
+    "text": "Whose quilt did Teodor sell?",
+    "key": "ae3b4609b6"
+  }
+}

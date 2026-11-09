@@ -1920,6 +1920,121 @@
       "out": "Proposition",
       "opaque": false,
       "gloss": "Marks an eventuality whose roles one group fills pair DIFFERENT members of it (each other, one another, side by side): (Reciprocal sk_groom_1) with (Agent sk_groom_1 g) (Patient sk_groom_1 g) — each member groomed another, never itself and never the group as a whole. The predication is not distributed."
+    },
+    "KinWord": {
+      "kind": "derived",
+      "arity": 3,
+      "arg_types": [
+        "Class",
+        "Entity",
+        "Entity"
+      ],
+      "out": "Proposition",
+      "opaque": false,
+      "gloss": "A stated kinship relation, lifted by the kinship rules from a stative-relation state whose class is a kinship word: (KinWord daughter x y) — x is y's daughter. Order: (KinWord word bearer other). Derived by a rule, never parser output."
+    },
+    "Kin": {
+      "kind": "derived",
+      "arity": 3,
+      "arg_types": [
+        "Class",
+        "Entity",
+        "Entity"
+      ],
+      "out": "Proposition",
+      "opaque": false,
+      "gloss": "A kinship relation in its NEUTRAL word (child, parent, sibling, spouse, grandparent, grandchild, aunt_or_uncle, niece_or_nephew, cousin, parent_in_law, child_in_law, sibling_in_law): (Kin relation x y) — x is y's relation. Built by the recursive rules of the closure `kin` (rules.yaml), never parser output. Our engine line's lowering unrolls the closure and gives the head a depth slot first, (Kin depth relation x y) (tmpl.rules `unroll`)."
+    },
+    "KinGeneral": {
+      "kind": "lexicon",
+      "arity": 2,
+      "arg_types": [
+        "Class",
+        "Class"
+      ],
+      "out": "Proposition",
+      "opaque": false,
+      "gloss": "A kinship word's neutral relation (son child, aunt aunt_or_uncle); a neutral word is its own (child child). Order: (KinGeneral word neutral). Background fact (seeded), never parser output."
+    },
+    "KinGender": {
+      "kind": "lexicon",
+      "arity": 2,
+      "arg_types": [
+        "Class",
+        "Class"
+      ],
+      "out": "Proposition",
+      "opaque": false,
+      "gloss": "The gender a gendered kinship word gives its bearer (son male, aunt female). Order: (KinGender word gender). Background fact (seeded), never parser output."
+    },
+    "KinConverse": {
+      "kind": "lexicon",
+      "arity": 2,
+      "arg_types": [
+        "Class",
+        "Class"
+      ],
+      "out": "Proposition",
+      "opaque": false,
+      "gloss": "The relation read from the other side (child parent, niece_or_nephew aunt_or_uncle; a symmetric one is its own: sibling sibling). Order: (KinConverse relation converse). Background fact (seeded), never parser output."
+    },
+    "KinCompose": {
+      "kind": "lexicon",
+      "arity": 3,
+      "arg_types": [
+        "Class",
+        "Class",
+        "Class"
+      ],
+      "out": "Proposition",
+      "opaque": false,
+      "gloss": "A composition of kinship relations: x is y's A and y is z's B, so x is z's C (parent parent grandparent). Order: (KinCompose A B C). Background fact (seeded), never parser output."
+    },
+    "KinComposeDistinct": {
+      "kind": "lexicon",
+      "arity": 3,
+      "arg_types": [
+        "Class",
+        "Class",
+        "Class"
+      ],
+      "out": "Proposition",
+      "opaque": false,
+      "gloss": "A composition that may return to its start, drawn only between two named people with different names (child parent sibling: two children of one parent). Order: (KinComposeDistinct A B C). Background fact (seeded), never parser output."
+    },
+    "KinComposeDefault": {
+      "kind": "lexicon",
+      "arity": 3,
+      "arg_types": [
+        "Class",
+        "Class",
+        "Class"
+      ],
+      "out": "Proposition",
+      "opaque": false,
+      "gloss": "A composition that USUALLY holds, applied at a lower strength a later fact can overturn (parent sibling parent: a sibling's parent is one's own, siblings sharing their parents; child spouse child: a spouse's child). Order: (KinComposeDefault A B C). Background fact (seeded), never parser output."
+    },
+    "KinComposeDefaultDistinct": {
+      "kind": "lexicon",
+      "arity": 3,
+      "arg_types": [
+        "Class",
+        "Class",
+        "Class"
+      ],
+      "out": "Proposition",
+      "opaque": false,
+      "gloss": "A default composition drawn only between two named people with different names (parent child spouse: the two parents of one child are spouses). Order: (KinComposeDefaultDistinct A B C). Background fact (seeded), never parser output."
+    },
+    "KinSymmetric": {
+      "kind": "lexicon",
+      "arity": 1,
+      "arg_types": [
+        "Class"
+      ],
+      "out": "Proposition",
+      "opaque": false,
+      "gloss": "A kinship word the catalog states with two bearers (sibling, spouse, cousin, twin, married): either bearer is the other's. Order: (KinSymmetric word). Background fact (seeded), never parser output."
     }
   },
   "open_class": {

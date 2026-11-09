@@ -1,0 +1,91 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "12f5880a35c90ec1e11d06b3c54acc2d3465a1272ecfe4b95004d8d5f1288d2f",
+  "item": {
+    "id": "sac4905c610",
+    "text": "Which ferret escaped?"
+  },
+  "usage": {
+    "input": 120581,
+    "output": 126,
+    "thinking": null,
+    "total": 120707,
+    "cached": 114688,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 120581,
+    "candidatesTokenCount": 126,
+    "totalTokenCount": 120707,
+    "cachedContentTokenCount": 114688,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 120581
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 114688
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 126
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sac4905c610\", \"instances\": [{\"t\": \"wh\", \"id\": \"w1\", \"word\": \"which\", \"class\": \"ferret\", \"span\": \"Which ferret\"}, {\"t\": \"motion\", \"id\": \"e1\", \"verb\": \"escape\", \"mover\": \"@w1\", \"tense\": \"past\", \"span\": \"Which ferret escaped\"}, {\"t\": \"question\", \"id\": \"a1\", \"span\": \"Which ferret escaped?\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sac4905c610",
+    "instances": [
+      {
+        "t": "wh",
+        "id": "w1",
+        "word": "which",
+        "class": "ferret",
+        "span": "Which ferret"
+      },
+      {
+        "t": "motion",
+        "id": "e1",
+        "verb": "escape",
+        "mover": "@w1",
+        "tense": "past",
+        "span": "Which ferret escaped"
+      },
+      {
+        "t": "question",
+        "id": "a1",
+        "span": "Which ferret escaped?"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "868e642e529b83a79c84d8d33a44dd6b836490bab06db8cfa8f54d1b23b1eb05",
+  "manifest_id": "1ce9518366dc",
+  "run": 1,
+  "case": {
+    "template": "wh",
+    "section": "held_out",
+    "index": 0,
+    "category": "positive",
+    "text": "Which ferret escaped?",
+    "key": "ac4905c610"
+  }
+}

@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 acce2274ed5dba8c · 61 templates
+catalog sha256 48aa6b1c777b9bbc · 63 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -54,7 +54,7 @@ fences.
   Suggested prefixes: `n` named individual, `x` witness, `g` group or portion, `e` event, `s`
   scope operator (negation, modal, norm, evidential, hedge), `c` copular predication, `l`
   location, `q` quantified range, `r` rule, `d` comparison or degree, `m` measure, `t` time, `k`
-  link, `f` focus (n1, x1, e1, s1 …).
+  link, `f` focus, `w` the asked word of a question, `a` the question (n1, x1, e1, s1 …).
 - A slot that points to another instance holds `"@<id>"`, for example `"Agent": "@n1"`. An EVENT
   slot — a time's, a place's, a duration's, a relation's, a link's, a focus's — names a
   PREDICATION instance, never a negation, modal, norm or hedge instance over it; a
@@ -71,7 +71,8 @@ fences.
   it has one (`["@s1"]` for a negated or modalised clause); never the referents the clause
   mentions.
 - A slot that holds a class, property, verb, scale or unit holds the bare LEMMA, for example
-  `"class": "book"`.
+  `"class": "book"`. The one exception is a QUESTION that asks for that word (What is Odile?
+  What did Henrike do?): the slot holds the asked word's reference, `"@w1"` (the wh template).
 - A participant slot holds either one: `"@x1"` for a specific referent, or a bare lemma for a
   non-specific or class-level filler ("pays tax", "cooked dinner" gives `"Patient": "dinner"`).
   Reserve the bare lemma for a non-specific filler; a specific definite or indefinite thing is
@@ -328,6 +329,8 @@ Codes:
   kept)
 - G11: a sentence that denies or corrects what an earlier sentence of the text stated (that is
   not so; in fact it was on Friday): the earlier sentence stays as it was parsed
+- G12: a question the question template does not ask yet — why, how many, how much, how long,
+  how often — or a request worded as a question (Could you open the hatch?): the whole question
 
 ## Reporting a problem with the instructions
 
@@ -761,6 +764,101 @@ Slots:
 - `weekday` (optional; a lemma): the weekday name, lowercase.
 - `hour` (optional; an integer): the clock hour, 24-hour.
 - `minute` (optional; an integer): the clock minute.
+
+### wh — The asked word of a question — who, what, which, whose, where, when, how
+
+When: The word a QUESTION asks with — who, whom, whose, what, which, where, when, how — standing
+for the unknown the question asks about: one instance per asked word, the word recorded, in a
+TEXT with a question instance. It fills the slot the answer would fill in the statement the
+question asks about: a participant (Who fed the stork: the one feeding; What did Odile bake: the
+thing baked; Whom did Pieter visit: the one visited), a possessor (Whose blanket did Marisol
+mend: the blanket's possessor), a place (Where did Femke sleep: a location on the sleeping, its
+place the wh, head Location, preposition where; Where is the lantern: a locative, its place the
+wh, head LocatedIn, preposition where). WHICH or WHAT before a noun (which badger, what tool)
+asks for an individual of that kind: the noun's lemma is the wh's `class`, and the wh fills the
+slot (Which badger escaped: the wh with class badger is the one that moved). When the question
+asks for a CLASS, a PROPERTY, a RELATION or a VERB — What is Odile? What is Joost to Anouk? How
+is Joost related to Anouk? What did Henrike do? — the wh fills that lemma slot, written as its
+reference ("predicate": "@w1", "relation": "@w1", "verb": "@w1"): the answer is a word. How is X
+related to Y? and What is X to Y? ask for the relation: the stative relation with the wh as its
+relation, X the subject and Y the object. Who is X's <relative>? (Who is Anouk's son?) asks for
+the bearer of that relation: the stative relation with the noun as its relation, the wh the
+subject and X the object, no witness for the noun. WHEN asks for the time of an event: the wh's
+`event` names the predication, with no time instance. HOW asking for a manner (How did Pieter
+feed the stork?) fills the manner template's word.
+
+Forms:
+- Who / What <V> …?
+- Who / What did <X> <V>?
+- Whose <N> …?
+- Which / What <N> …?
+- Where did <X> <V>? / Where is <X>?
+- When did <X> <V>?
+- What is <X>? / What is <X> to <Y>? / How is <X> related to <Y>?
+
+Not this template:
+- a wh-word opening a relative clause — the badger which escaped, the hut where Femke slept: a
+  relative clause, no wh instance
+- a wh-word in an embedded question — Pieter asked who fed the stork: no wh instance (the
+  question template)
+- why, how many, how much, how long, how often: no wh instance yet; report the question as
+  unmapped (G12)
+
+Slots:
+
+- `t` (required): "wh"
+- `id` (required; your label for this instance): your label for the asked word (w1, w2 …).
+- `word` (required; a string): the wh-word as written, lowercase (who, whom, whose, what, which,
+  where, when, how).
+- `class` (optional; a lemma): after which or what, the noun's lemma (which badger: badger).
+- `event` (optional; "@id" of the predication instance this attaches to): with when only: the
+  predication whose time the question asks for.
+
+Example (which with a noun — the wh carries the noun as its class). TEXT: Which badger escaped?
+
+Instances:
+
+    [
+      {"t": "wh", "id": "w1", "word": "which", "class": "badger", "span": "Which badger"},
+      {"t": "motion", "id": "e1", "verb": "escape", "mover": "@w1", "tense": "past", "span": "Which badger escaped"},
+      {"t": "question", "id": "a1", "span": "Which badger escaped?"}
+    ]
+
+The program asks the reasoner:
+
+    (And (Member $which badger) (Member $escape_1 escape) (Agent $escape_1 $which) (Past $escape_1))
+
+Example (a relation question — the wh fills the relation, a lemma slot, as its reference). TEXT: How is Joost related to Anouk?
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Joost", "span": "Joost"},
+      {"t": "named-entity", "id": "n2", "name": "Anouk", "span": "Anouk"},
+      {"t": "wh", "id": "w1", "word": "how", "span": "How"},
+      {"t": "stative-relation", "id": "p1", "relation": "@w1", "subject": "@n1", "object": "@n2", "tense": "present", "span": "How is Joost related to Anouk"},
+      {"t": "question", "id": "a1", "span": "How is Joost related to Anouk?"}
+    ]
+
+The program asks the reasoner (one query per reading):
+
+    (And (Name $joost_1 "Joost") (Name $anouk_1 "Anouk") (Member $wh_1 $how) (Bearer $wh_1 $joost_1) (Theme $wh_1 $anouk_1))
+    (And (Name $joost_1 "Joost") (Name $anouk_1 "Anouk") (Member $wh_1 $how) (Bearer $wh_1 $joost_1) (Bearer $wh_1 $anouk_1))
+
+Example (when — the wh names the event whose time is asked). TEXT: When did Femke leave?
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Femke", "span": "Femke"},
+      {"t": "motion", "id": "e1", "verb": "leave", "mover": "@n1", "tense": "past", "span": "did Femke leave"},
+      {"t": "wh", "id": "w1", "word": "when", "event": "@e1", "span": "When"},
+      {"t": "question", "id": "a1", "span": "When did Femke leave?"}
+    ]
+
+The program asks the reasoner:
+
+    (And (Name $femke_1 "Femke") (Member $leave_1 leave) (Agent $leave_1 $femke_1) (Past $leave_1) (Time $leave_1 $when))
 
 ### witness — A common-noun phrase introducing an individual
 
@@ -6996,6 +7094,7 @@ The program renders these instances as:
     (Agent sk_bake_1 sk_odile_1)
     (Patient sk_bake_1 sk_bun_1)
     (Past sk_bake_1)
+    (Member sk_she_1 female)
     (Member sk_eat_1 eat)
     (Agent sk_eat_1 sk_she_1)
     (Patient sk_eat_1 sk_it_1)
@@ -7373,3 +7472,99 @@ The program renders these instances as:
 Not this template. TEXT: Marisol tried to sleep. — use `control`.
 
 Not this template. TEXT: The badger slept because Marisol sang. — use `link`.
+
+## Questions — a TEXT that asks
+
+### question — A TEXT that asks — a yes / no question, a wh-question, or a choice between alternatives
+
+When: A TEXT that ASKS: a direct question, usually ending in a question mark — a yes / no
+question (Did Pieter feed the stork? Is Odile a weaver? Can Marisol swim?), a wh-question (Who
+fed the stork? Which badger escaped? Where did Femke sleep?) or a choice question (Is the badger
+asleep or awake? Did Pieter or Odile feed the stork?). Write ONE question instance for the TEXT,
+and parse the rest exactly as the STATEMENT the question asks about, with every template as
+usual: Did Pieter feed the stork? as Pieter fed the stork; Is Odile a weaver? as Odile is a
+weaver. The auxiliary that opens the question (did, does, is, was, has, can, will) is no
+instance of its own: it gives the clause its tense, its aspect or its modal as it would in the
+statement (Did … feed: tense past; Has … left: aspect perfect; Can … swim: the modal). A wh-word
+is a wh instance filling the slot it asks about (the wh template). A choice question writes each
+alternative as its own clause, and the question instance lists them in `options`, in the order
+written; what the alternatives share is written once (Is the badger asleep or awake?: one
+witness, two copulars). A question introduces nothing: a name, a definite or a pronoun in it is
+its own instance as usual, and after a CONTEXT a coref links it to the referent of the context
+it means. Its span is the whole question.
+
+Forms:
+- <aux> <X> <V> …?
+- <wh-word> … ?
+- <aux> <X> <A> or <B>?
+
+Not this template:
+- an embedded or indirect question — Pieter asked who fed the stork; Odile wonders whether it
+  rained: a statement about asking or wondering, not a question; no question instance (the
+  asking clause is reported as unmapped, G00, as the communication template says)
+- a question tag after a statement — the badger is asleep, isn't it?: the statement as stated,
+  the tag reported as unmapped (G02)
+- a request worded as a question — Could you open the hatch?: report the TEXT as unmapped (G12)
+- a why, how many, how much, how long or how often question — Why did Pieter leave? How many
+  storks did Odile see?: no template states its answer yet; report the whole question as
+  unmapped (G12)
+
+Slots:
+
+- `t` (required): "question"
+- `id` (required; your label for this instance): your label for the question (a1).
+- `options` (optional; a list of "@id" of the instances that state the clause): a choice
+  question only: the alternatives, each the predication (or the scope operator over it) that
+  states it, in the order written; two or more.
+
+Example (a wh-question — the statement's templates, the asked word in the slot it asks about). TEXT: Who fed the stork?
+
+Instances:
+
+    [
+      {"t": "wh", "id": "w1", "word": "who", "span": "Who"},
+      {"t": "witness", "id": "x1", "class": "stork", "definite": true, "span": "the stork"},
+      {"t": "activity", "id": "e1", "verb": "feed", "actor": "@w1", "patient": "@x1", "tense": "past", "span": "Who fed the stork"},
+      {"t": "question", "id": "a1", "span": "Who fed the stork?"}
+    ]
+
+The program asks the reasoner:
+
+    (And (Member $stork_1 stork) (Member $feed_1 feed) (Agent $feed_1 $who) (Patient $feed_1 $stork_1) (Past $feed_1))
+
+Example (a yes / no question — the auxiliary gives the tense). TEXT: Did Marisol mend the blanket?
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Marisol", "span": "Marisol"},
+      {"t": "witness", "id": "x1", "class": "blanket", "definite": true, "span": "the blanket"},
+      {"t": "activity", "id": "e1", "verb": "mend", "actor": "@n1", "patient": "@x1", "tense": "past", "span": "Did Marisol mend the blanket"},
+      {"t": "question", "id": "a1", "span": "Did Marisol mend the blanket?"}
+    ]
+
+The program asks the reasoner:
+
+    (And (Name $marisol_1 "Marisol") (Member $blanket_1 blanket) (Member $mend_1 mend) (Agent $mend_1 $marisol_1) (Patient $mend_1 $blanket_1) (Past $mend_1))
+
+Example (a choice question — one clause per alternative, listed in options). TEXT: Is the badger asleep or awake?
+
+Instances:
+
+    [
+      {"t": "witness", "id": "x1", "class": "badger", "definite": true, "span": "the badger"},
+      {"t": "copular", "id": "c1", "subject": "@x1", "predicate": "asleep", "form": "adjective", "tense": "present", "span": "Is the badger asleep"},
+      {"t": "copular", "id": "c2", "subject": "@x1", "predicate": "awake", "form": "adjective", "tense": "present", "span": ["Is the badger", "awake"]},
+      {"t": "question", "id": "a1", "options": ["@c1", "@c2"], "span": "Is the badger asleep or awake?"}
+    ]
+
+The program asks the reasoner (one query per reading):
+
+    (And (Member $badger_1 badger) (Member $badger_1 asleep))
+    (And (Member $badger_1 badger) (Member $badger_1 awake))
+
+Not this template. TEXT: Pieter asked who fed the stork. — report it as unmapped: {"span":
+"asked who fed the stork", "code": "G00"}.
+
+Not this template. TEXT: Why did Odile leave? — report it as unmapped: {"span": "Why did Odile
+leave?", "code": "G12"}.

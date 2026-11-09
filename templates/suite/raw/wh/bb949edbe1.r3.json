@@ -1,0 +1,97 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "12f5880a35c90ec1e11d06b3c54acc2d3465a1272ecfe4b95004d8d5f1288d2f",
+  "item": {
+    "id": "sbb949edbe1",
+    "text": "Who is Lamine's daughter?"
+  },
+  "usage": {
+    "input": 120584,
+    "output": 164,
+    "thinking": null,
+    "total": 120748,
+    "cached": 118535,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 120584,
+    "candidatesTokenCount": 164,
+    "totalTokenCount": 120748,
+    "cachedContentTokenCount": 118535,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 120584
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 118535
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 164
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sbb949edbe1\", \"instances\": [{\"t\": \"wh\", \"id\": \"w1\", \"word\": \"who\", \"span\": \"Who\"}, {\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"stative-relation\", \"id\": \"p1\", \"relation\": \"daughter\", \"subject\": \"@w1\", \"object\": \"@n1\", \"tense\": \"present\", \"span\": \"Who is Lamine's daughter\"}, {\"t\": \"question\", \"id\": \"a1\", \"span\": \"Who is Lamine's daughter?\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sbb949edbe1",
+    "instances": [
+      {
+        "t": "wh",
+        "id": "w1",
+        "word": "who",
+        "span": "Who"
+      },
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "stative-relation",
+        "id": "p1",
+        "relation": "daughter",
+        "subject": "@w1",
+        "object": "@n1",
+        "tense": "present",
+        "span": "Who is Lamine's daughter"
+      },
+      {
+        "t": "question",
+        "id": "a1",
+        "span": "Who is Lamine's daughter?"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "868e642e529b83a79c84d8d33a44dd6b836490bab06db8cfa8f54d1b23b1eb05",
+  "manifest_id": "1ce9518366dc",
+  "run": 3,
+  "case": {
+    "template": "wh",
+    "section": "held_out",
+    "index": 6,
+    "category": "positive",
+    "text": "Who is Lamine's daughter?",
+    "key": "bb949edbe1"
+  }
+}

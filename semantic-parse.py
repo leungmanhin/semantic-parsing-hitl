@@ -19,7 +19,8 @@ OpenAI-compatible server) the variable named by --api-key-env.  Only the standar
 
 Every reply is validated after the call by the catalog's validator (templates/tmpl/validate.py:
 the emitter's instance checks, graph lints, C9 type check): findings go to stderr and into the run
-record, the reply itself is never changed.  ``--atoms`` also prints the emitted statements and
+record, the reply itself is never changed (a QUESTION — the parse holds a question instance — states nothing:
+``--atoms`` and ``--statements-only`` print its queries instead, ``tmpl.query``).  ``--atoms`` also prints the emitted statements and
 declarations; ``--statements-only`` prints nothing but the statements, one per line — the
 chainer's input, ready to feed to add_atom beside templates/generated/seeded_rules.metta;
 ``--no-validate`` skips the step.
@@ -700,8 +701,13 @@ def validate_reply(reply: dict, reference_time=None, text: str | None = None) ->
     except Exception as exc:  # no pyyaml, or the templates tree is missing
         return {"status": "skipped", "summary": f"validation skipped: {exc}", "findings": [], "typecheck": "not run"}
     res = V.validate(reply, reference_time=reference_time, text=text)
-    keep = {k: res.get(k) for k in ("status", "findings", "typecheck", "statements", "declarations", "fired", "null_slots")}
+    keep = {k: res.get(k) for k in ("status", "findings", "typecheck", "statements", "declarations", "fired", "null_slots", "question")}
     keep["summary"] = V.summary(res)
+    if res.get("question") and res.get("status") == "ok":   # a question states nothing: what the chainer gets is its query
+        from tmpl import lower as L, query as Q
+        asked = Q.ask(res["instances"], None, None, reference_time)
+        keep["queries"] = L.question(asked)["queries"]
+        keep["query_findings"] = asked["findings"]
     return keep
 
 
@@ -740,10 +746,12 @@ def main(argv=None) -> int:
         print(json.dumps(record["request"], indent=2, ensure_ascii=False))
         return 0
     v = record.get("validation")
-    if args.statements_only:                      # stdout carries the statements alone
+    if args.statements_only:                      # stdout carries the statements alone (a question's: its queries)
         if record.get("response") is None:
             print(record["raw_text"], file=sys.stderr)
-        elif v and v.get("statements"):
+        elif v and v.get("queries"):
+            print("\n".join(v["queries"]))
+        elif v and v.get("statements") and not v.get("question"):
             print("\n".join(v["statements"]))
         elif v:
             print(f"[no statements: {v['summary']}]", file=sys.stderr)
@@ -751,7 +759,10 @@ def main(argv=None) -> int:
         print(record["raw_text"])
     else:
         print(json.dumps(record["response"], indent=2, ensure_ascii=False))
-    if args.atoms and not args.statements_only and v and v.get("statements"):
+    if args.atoms and not args.statements_only and v and v.get("queries"):
+        print("\n; queries (a question: the chainer is asked, nothing is stated)")
+        print("\n".join(v["queries"]))
+    elif args.atoms and not args.statements_only and v and v.get("statements"):
         print("\n; statements")
         print("\n".join(v["statements"]))
         print("; declarations")

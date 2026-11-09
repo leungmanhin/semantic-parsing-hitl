@@ -16,11 +16,11 @@ import os
 import sys
 import textwrap
 
-from . import catalog as CAT, emit as E
+from . import catalog as CAT, emit as E, lower as L, query as Q
 
 OUT = os.path.join(os.path.dirname(CAT.CATALOG_DIR), "generated", "PROMPT_CATALOG.txt")
 
-FAMILY_ORDER = ["referent", "predication", "scope", "attachment", "rule", "link"]
+FAMILY_ORDER = ["referent", "predication", "scope", "attachment", "rule", "link", "question"]
 FAMILY_TITLES = {
     "referent": "Referents — the things the text talks about",
     "predication": "Predications — what the text states about them",
@@ -28,6 +28,7 @@ FAMILY_TITLES = {
     "attachment": "Attachments — time, place, measure, particles",
     "rule": "Rules — generic and quantified statements",
     "link": "Links — connectives between clauses",
+    "question": "Questions — a TEXT that asks",
 }
 
 
@@ -145,11 +146,18 @@ def render_template(tid: str, t: dict, catalog: dict, add) -> None:
         add("")
         add(textwrap.indent(_instances_json(ex["instances"]), "    "))
         add("")
-        out = E.emit({"id": "example", "instances": ex["instances"]}, catalog)
-        add("The program renders these instances as:")
-        add("")
-        for d in out["detail"]:
-            add(f"    {d['term']}")
+        if Q.question_of(ex["instances"], catalog) is not None:     # a question: the program asks, it states nothing
+            asked = Q.ask(ex["instances"], catalog)
+            add("The program asks the reasoner" + (" (one query per reading):" if len(asked["readings"]) > 1 else ":"))
+            add("")
+            for rd in asked["readings"]:
+                add(f"    {L.render(rd['pattern'])}")
+        else:
+            out = E.emit({"id": "example", "instances": ex["instances"]}, catalog)
+            add("The program renders these instances as:")
+            add("")
+            for d in out["detail"]:
+                add(f"    {d['term']}")
         if ex.get("unmapped"):
             add("")
             add("and reports as unmapped:")

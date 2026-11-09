@@ -1,0 +1,91 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "12f5880a35c90ec1e11d06b3c54acc2d3465a1272ecfe4b95004d8d5f1288d2f",
+  "item": {
+    "id": "s97c97d4c4c",
+    "text": "Is Ottoline a locksmith?"
+  },
+  "usage": {
+    "input": 120585,
+    "output": 136,
+    "thinking": null,
+    "total": 120721,
+    "cached": 118535,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 120585,
+    "candidatesTokenCount": 136,
+    "totalTokenCount": 120721,
+    "cachedContentTokenCount": 118535,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 120585
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 118535
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 136
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s97c97d4c4c\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@n1\", \"predicate\": \"locksmith\", \"form\": \"noun\", \"tense\": \"present\", \"span\": \"Is Ottoline a locksmith\"}, {\"t\": \"question\", \"id\": \"a1\", \"span\": \"Is Ottoline a locksmith?\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s97c97d4c4c",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Ottoline",
+        "span": "Ottoline"
+      },
+      {
+        "t": "copular",
+        "id": "c1",
+        "subject": "@n1",
+        "predicate": "locksmith",
+        "form": "noun",
+        "tense": "present",
+        "span": "Is Ottoline a locksmith"
+      },
+      {
+        "t": "question",
+        "id": "a1",
+        "span": "Is Ottoline a locksmith?"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "868e642e529b83a79c84d8d33a44dd6b836490bab06db8cfa8f54d1b23b1eb05",
+  "manifest_id": "1ce9518366dc",
+  "run": 1,
+  "case": {
+    "template": "question",
+    "section": "held_out",
+    "index": 3,
+    "category": "positive",
+    "text": "Is Ottoline a locksmith?",
+    "key": "97c97d4c4c"
+  }
+}

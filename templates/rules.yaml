@@ -731,6 +731,152 @@ rules:
     semantics: deductive
     reads: [oblique]
 
+  # Kinship. A kinship relation is stated as a state (stative-relation: (Member s daughter) (Bearer s x)
+  # (Theme s y) — x is y's daughter). The rules of the closure `kin` lift each stated kinship state to
+  # (KinWord word x y), give a gendered word's bearer its gender, state every relation in its NEUTRAL word —
+  # (Kin neutral x y), x is y's neutral — read it the other way round, and compose: x is y's A and y is z's B,
+  # so x is z's C. The closure is recursive as the source states it; how a target runs it is the lowering's
+  # (tmpl.rules `unroll` for our engine line). Gender comes only from the text's own words (a gendered kinship
+  # word here, a gendered pronoun through the mention); with none, a derived relation keeps its neutral word.
+  # Siblings are drawn only between two named people with different names. The default compositions hold
+  # usually, not always, at a lower strength a later fact can overturn. The query rules write every derived
+  # relation back in the state form a question asks for, in its neutral word, and in its gendered word when the
+  # bearer's gender is known. The tables are the lexicon facts kin_*.
+  - id: kin_lift
+    meaning: a stated state whose class is a kinship word is that kinship relation between its bearer and its theme
+    premises: ["(KinGeneral $w $n)", "(Member $s $w)", "(Bearer $s $x)", "(Theme $s $y)"]
+    conclusion: "(KinWord $w $x $y)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    closure: {name: kin, role: input}
+    reads: [stative-relation]
+  - id: kin_lift_two
+    meaning: a kinship state with two bearers (siblings, spouses, cousins) relates each bearer to the other
+    premises: ["(KinSymmetric $w)", "(Member $s $w)", "(Bearer $s $x)", "(Bearer $s $y)"]
+    computations: [{result: true, op: "!=", args: ["$x", "$y"]}]
+    conclusion: "(KinWord $w $x $y)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    closure: {name: kin, role: input}
+    reads: [stative-relation]
+  - id: kin_gender
+    meaning: a gendered kinship word gives its bearer that gender (his daughter Valerie - Valerie is female)
+    premises: ["(KinGender $w $g)", "(KinWord $w $x $y)"]
+    conclusion: "(Member $x $g)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    closure: {name: kin, role: input}
+    reads: [stative-relation]
+  - id: kin_stated
+    meaning: a stated kinship relation in its neutral word
+    premises: ["(KinGeneral $w $n)", "(KinWord $w $x $y)"]
+    conclusion: "(Kin $n $x $y)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    closure: {name: kin, role: base}
+    reads: [stative-relation]
+  - id: kin_converse
+    meaning: a kinship relation read from the other side (x is y's child - y is x's parent)
+    premises: ["(KinConverse $n $c)", "(Kin $n $x $y)"]
+    conclusion: "(Kin $c $y $x)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    closure: {name: kin, role: converse}
+    reads: [stative-relation]
+  - id: kin_compose
+    meaning: x is y's A and y is z's B, so x is z's C (a sibling of a parent is an aunt or an uncle)
+    premises: ["(KinCompose $a $b $c)", "(Kin $a $x $y)", "(Kin $b $y $z)"]
+    conclusion: "(Kin $c $x $z)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    closure: {name: kin, role: compose}
+    reads: [stative-relation]
+  - id: kin_compose_distinct
+    meaning: a composition that could return to its start (two children of one parent are siblings), drawn only between two named people with different names
+    premises: ["(KinComposeDistinct $a $b $c)", "(Kin $a $x $y)", "(Kin $b $y $z)", "(Name $x $nx)", "(Name $z $nz)"]
+    computations: [{result: true, op: "!=", args: ["$nx", "$nz"]}]
+    conclusion: "(Kin $c $x $z)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    closure: {name: kin, role: compose}
+    reads: [stative-relation, named-entity]
+    notes: >-
+      One person is several symbols (each mention its own, linked by coref), so two symbols are no proof
+      of two people: a child of Stanley's and another mention of the same child would be siblings. Two
+      different names are taken as two people (an alias is the exception the text would have to state).
+  - id: kin_compose_default
+    meaning: a composition that usually holds, at a lower strength a later fact can overturn (a sibling's parent is one's own; a spouse's child is one's own)
+    premises: ["(KinComposeDefault $a $b $c)", "(Kin $a $x $y)", "(Kin $b $y $z)"]
+    conclusion: "(Kin $c $x $z)"
+    truth: {strength: 0.9, confidence: 0.9}
+    semantics: deductive
+    closure: {name: kin, role: compose}
+    reads: [stative-relation]
+    notes: >-
+      Background knowledge the text does not state: siblings share their parents, a spouse's child is one's
+      own; half- and step-relations are the exceptions a later statement overturns.
+  - id: kin_compose_default_distinct
+    meaning: a default composition between two named people with different names (the two parents of one child are spouses)
+    premises: ["(KinComposeDefaultDistinct $a $b $c)", "(Kin $a $x $y)", "(Kin $b $y $z)", "(Name $x $nx)", "(Name $z $nz)"]
+    computations: [{result: true, op: "!=", args: ["$nx", "$nz"]}]
+    conclusion: "(Kin $c $x $z)"
+    truth: {strength: 0.9, confidence: 0.9}
+    semantics: deductive
+    closure: {name: kin, role: compose}
+    reads: [stative-relation, named-entity]
+  - id: kin_state_member
+    meaning: a derived kinship relation is a state of its neutral word (what a question asks for)
+    premises: ["(Kin $n $x $y)"]
+    conclusion: "(Member (sk_kin $n $x $y) $n)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [stative-relation]
+  - id: kin_state_bearer
+    meaning: the derived state's bearer
+    premises: ["(Kin $n $x $y)"]
+    conclusion: "(Bearer (sk_kin $n $x $y) $x)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [stative-relation]
+  - id: kin_state_theme
+    meaning: the derived state's theme
+    premises: ["(Kin $n $x $y)"]
+    conclusion: "(Theme (sk_kin $n $x $y) $y)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [stative-relation]
+  - id: kin_gendered_member
+    meaning: a derived kinship relation is a state of its gendered word when the bearer's gender is known (an aunt or uncle who is male - an uncle)
+    premises: ["(KinGender $w $g)", "(KinGeneral $w $n)", "(Kin $n $x $y)", "(Member $x $g)"]
+    conclusion: "(Member (sk_kin $w $x $y) $w)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [stative-relation, mention]
+  - id: kin_gendered_bearer
+    meaning: the gendered state's bearer
+    premises: ["(KinGender $w $g)", "(KinGeneral $w $n)", "(Kin $n $x $y)", "(Member $x $g)"]
+    conclusion: "(Bearer (sk_kin $w $x $y) $x)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [stative-relation, mention]
+  - id: kin_gendered_theme
+    meaning: the gendered state's theme
+    premises: ["(KinGender $w $g)", "(KinGeneral $w $n)", "(Kin $n $x $y)", "(Member $x $g)"]
+    conclusion: "(Theme (sk_kin $w $x $y) $y)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [stative-relation, mention]
+
+# Closures: families of recursive rules named by the relation they build. The rules state the closure as it is
+# meant (recursive, unbounded); a target's lowering decides how to run it — for our engine line tmpl.rules
+# `unroll` gives the head a depth slot (0 stated, one more per composition, below `depth`) and folds each
+# converse rule into the rules it reads from, so that no rule's conclusion feeds its own premises.
+closures:
+  - id: kin
+    meaning: the kinship relations a text's stated relations imply between its people
+    head: Kin
+    depth: 4
+
 # Lexicon facts: background atoms with no variables, loaded beside the rules. A group names its
 # head and its entries (one argument list per atom); each entry becomes a statement named by the
 # group id and the entry's symbols — (: pole_short_tall (ScaleOpposite short tall) (STV 1.0 0.99)).
@@ -914,3 +1060,146 @@ facts:
       - [sorry]
       - [sure]
       - [aware]
+
+  # Kinship tables (the kin_* rules read them): a word's neutral relation and its gender, each neutral
+  # relation's converse, and the compositions — x is y's A and y is z's B, so x is z's C.
+  - id: kin_general
+    meaning: a kinship word's neutral relation (son child); a neutral word is its own
+    head: KinGeneral
+    truth: {strength: 1.0, confidence: 0.99}
+    reads: [stative-relation]
+    entries:
+      - [son, child]
+      - [daughter, child]
+      - [father, parent]
+      - [mother, parent]
+      - [brother, sibling]
+      - [sister, sibling]
+      - [husband, spouse]
+      - [wife, spouse]
+      - [grandfather, grandparent]
+      - [grandmother, grandparent]
+      - [grandson, grandchild]
+      - [granddaughter, grandchild]
+      - [uncle, aunt_or_uncle]
+      - [aunt, aunt_or_uncle]
+      - [nephew, niece_or_nephew]
+      - [niece, niece_or_nephew]
+      - [father_in_law, parent_in_law]
+      - [mother_in_law, parent_in_law]
+      - [son_in_law, child_in_law]
+      - [daughter_in_law, child_in_law]
+      - [brother_in_law, sibling_in_law]
+      - [sister_in_law, sibling_in_law]
+      - [child, child]
+      - [parent, parent]
+      - [sibling, sibling]
+      - [spouse, spouse]
+      - [grandparent, grandparent]
+      - [grandchild, grandchild]
+      - [aunt_or_uncle, aunt_or_uncle]
+      - [niece_or_nephew, niece_or_nephew]
+      - [cousin, cousin]
+      - [parent_in_law, parent_in_law]
+      - [child_in_law, child_in_law]
+      - [sibling_in_law, sibling_in_law]
+      - [twin, sibling]
+      - [married, spouse]
+  - id: kin_gender
+    meaning: the gender a gendered kinship word gives its bearer
+    head: KinGender
+    truth: {strength: 1.0, confidence: 0.99}
+    reads: [stative-relation]
+    entries:
+      - [son, male]
+      - [daughter, female]
+      - [father, male]
+      - [mother, female]
+      - [brother, male]
+      - [sister, female]
+      - [husband, male]
+      - [wife, female]
+      - [grandfather, male]
+      - [grandmother, female]
+      - [grandson, male]
+      - [granddaughter, female]
+      - [uncle, male]
+      - [aunt, female]
+      - [nephew, male]
+      - [niece, female]
+      - [father_in_law, male]
+      - [mother_in_law, female]
+      - [son_in_law, male]
+      - [daughter_in_law, female]
+      - [brother_in_law, male]
+      - [sister_in_law, female]
+  - id: kin_converse
+    meaning: a neutral kinship relation read from the other side; a symmetric one is its own
+    head: KinConverse
+    truth: {strength: 1.0, confidence: 0.99}
+    reads: [stative-relation]
+    entries:
+      - [child, parent]
+      - [parent, child]
+      - [grandchild, grandparent]
+      - [grandparent, grandchild]
+      - [niece_or_nephew, aunt_or_uncle]
+      - [aunt_or_uncle, niece_or_nephew]
+      - [child_in_law, parent_in_law]
+      - [parent_in_law, child_in_law]
+      - [sibling, sibling]
+      - [spouse, spouse]
+      - [cousin, cousin]
+      - [sibling_in_law, sibling_in_law]
+  - id: kin_compose
+    meaning: x is y's A and y is z's B, so x is z's C
+    head: KinCompose
+    truth: {strength: 1.0, confidence: 0.99}
+    reads: [stative-relation]
+    entries:
+      - [parent, parent, grandparent]
+      - [child, child, grandchild]
+      - [sibling, parent, aunt_or_uncle]
+      - [child, sibling, niece_or_nephew]
+      - [child, aunt_or_uncle, cousin]
+      - [parent, spouse, parent_in_law]
+      - [spouse, child, child_in_law]
+      - [sibling, spouse, sibling_in_law]
+      - [spouse, sibling, sibling_in_law]
+  - id: kin_compose_distinct
+    meaning: a composition drawn only between two named people with different names (it could return to its start)
+    head: KinComposeDistinct
+    truth: {strength: 1.0, confidence: 0.99}
+    reads: [stative-relation]
+    entries:
+      - [child, parent, sibling]
+      - [sibling, sibling, sibling]
+  - id: kin_compose_default
+    meaning: a composition that usually holds (kin_compose_default applies it at a lower strength)
+    head: KinComposeDefault
+    truth: {strength: 1.0, confidence: 0.99}
+    reads: [stative-relation]
+    notes: >-
+      Siblings share their parents (a sibling's parent is one's own); a spouse's child is one's own; a half- or a
+      step-relation is the exception.
+    entries:
+      - [parent, sibling, parent]
+      - [child, spouse, child]
+  - id: kin_compose_default_distinct
+    meaning: a default composition between two named people with different names (two parents of one child are spouses)
+    head: KinComposeDefaultDistinct
+    truth: {strength: 1.0, confidence: 0.99}
+    reads: [stative-relation]
+    entries:
+      - [parent, child, spouse]
+  - id: kin_symmetric
+    meaning: a kinship word the catalog states with two bearers (stative-relation's symmetric list)
+    head: KinSymmetric
+    truth: {strength: 1.0, confidence: 0.99}
+    reads: [stative-relation]
+    entries:
+      - [sibling]
+      - [spouse]
+      - [cousin]
+      - [twin]
+      - [married]

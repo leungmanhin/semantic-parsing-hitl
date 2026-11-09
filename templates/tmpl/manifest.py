@@ -45,7 +45,7 @@ PARTS = [                                  # name, the files it covers: globs un
     ("substrate", ["atom-type-substrates.json"]),
     ("atom_types", ["generated/atom-types.metta"]),
     ("rules", ["rules.yaml"]),
-    ("seeded_rules", ["generated/seeded_rules.metta"]),
+    ("seeded_rules", ["generated/seeded_rules.metta", "generated/closure_rules.metta"]),
     ("emitter", ["imports:tmpl/validate.py"]),
 ]
 

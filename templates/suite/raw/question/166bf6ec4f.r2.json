@@ -1,0 +1,98 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "12f5880a35c90ec1e11d06b3c54acc2d3465a1272ecfe4b95004d8d5f1288d2f",
+  "item": {
+    "id": "s166bf6ec4f",
+    "text": "Who mended the barn?"
+  },
+  "usage": {
+    "input": 120583,
+    "output": 160,
+    "thinking": null,
+    "total": 120743,
+    "cached": 118534,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 120583,
+    "candidatesTokenCount": 160,
+    "totalTokenCount": 120743,
+    "cachedContentTokenCount": 118534,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 120583
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 118534
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 160
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s166bf6ec4f\", \"instances\": [{\"t\": \"wh\", \"id\": \"w1\", \"word\": \"who\", \"span\": \"Who\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"barn\", \"definite\": true, \"span\": \"the barn\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"mend\", \"actor\": \"@w1\", \"patient\": \"@x1\", \"tense\": \"past\", \"span\": \"Who mended the barn\"}, {\"t\": \"question\", \"id\": \"a1\", \"span\": \"Who mended the barn?\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s166bf6ec4f",
+    "instances": [
+      {
+        "t": "wh",
+        "id": "w1",
+        "word": "who",
+        "span": "Who"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "barn",
+        "definite": true,
+        "span": "the barn"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "mend",
+        "actor": "@w1",
+        "patient": "@x1",
+        "tense": "past",
+        "span": "Who mended the barn"
+      },
+      {
+        "t": "question",
+        "id": "a1",
+        "span": "Who mended the barn?"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "868e642e529b83a79c84d8d33a44dd6b836490bab06db8cfa8f54d1b23b1eb05",
+  "manifest_id": "1ce9518366dc",
+  "run": 2,
+  "case": {
+    "template": "question",
+    "section": "held_out",
+    "index": 0,
+    "category": "positive",
+    "text": "Who mended the barn?",
+    "key": "166bf6ec4f"
+  }
+}

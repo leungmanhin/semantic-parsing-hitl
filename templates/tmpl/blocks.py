@@ -20,6 +20,11 @@ negates or scopes over an earlier claim), the earlier record keeps what it said 
 ``revision-needed`` finding: the bookkeeping that would withdraw the earlier statement is not built yet — the need is
 counted first.
 
+QUESTIONS. A sentence that asks (an instance of the ``question`` family: ``catalog/question.yaml``) states nothing:
+its record carries no statement and no declaration but the QUERY (``tmpl.query``) — its pattern read against the
+prefix before it, the context's referents named by their symbols through the question's corefs — and its
+instances never join the prefix, so no later sentence's record holds anything the question only asked.
+
 CONTEXT. ``context_section`` writes the earlier sentences and their qualified instances for the request, the
 earliest first, each instance as the parser wrote it WITHOUT its span (the sentence line above it holds those
 words; decided with the owner 2026-11-09: "full without spans", 71 % of the full size); the context of sentence
@@ -133,6 +138,7 @@ def block_records(sentences: list[dict], catalog: dict | None = None, reference_
     statements and declarations prefix 1..k adds to prefix 1..k−1, with the emitter's records of those statements.
     A sentence that breaks prefix causality or that the emitter refuses is ``malformed`` and left out of the later
     prefixes."""
+    from . import lower as L, query as Q                 # noqa: PLC0415 (query imports nothing of this module)
     catalog = catalog or CAT.load()
     out = []
     accepted: list = []                                  # the instances of the sentences emitted so far
@@ -147,6 +153,20 @@ def block_records(sentences: list[dict], catalog: dict | None = None, reference_
         if problems:
             rec["status"] = "malformed"
             rec["findings"] = [{"kind": "prefix", "detail": p} for p in problems]
+            out.append(rec)
+            continue
+        if Q.question_of(s["instances"], catalog) is not None:   # it asks: a query, and nothing joins the prefix
+            try:
+                asked = Q.ask(s["instances"], catalog, accepted, reference_time)
+            except E.EmitError as exc:
+                rec["status"] = "malformed"
+                details = exc.args[0] if exc.args and isinstance(exc.args[0], list) else [str(exc)]
+                rec["findings"] = [{"kind": "instance", "detail": d} for d in details]
+                out.append(rec)
+                continue
+            rec["kind"] = "question"
+            rec["question"] = {**asked, **L.question(asked)}
+            rec["findings"] = list(asked["findings"])
             out.append(rec)
             continue
         prefix = accepted + list(s["instances"])
@@ -363,6 +383,8 @@ def records(args, catalog: dict) -> int:
             print(f"== {block[0].get('doc')} s{rec['k']} (available from s{rec['available_from']}) {rec['status']} · {rec['text']}")
             for line in rec["statements"]:
                 print("   ", line)
+            for line in (rec.get("question") or {}).get("queries") or []:
+                print("    ASKS", line)
             for f in rec["findings"]:
                 print("    FINDING", f["kind"], f["detail"][:200])
     return 0

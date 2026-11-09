@@ -1,0 +1,107 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "12f5880a35c90ec1e11d06b3c54acc2d3465a1272ecfe4b95004d8d5f1288d2f",
+  "item": {
+    "id": "s95a2f748cf",
+    "text": "Who fed the ferret?",
+    "context_sha256": "4851bd77174d59c951ac8bdfbb133dd7d2577fcff33da0b97f70e5dba1f6d55f"
+  },
+  "usage": {
+    "input": 120712,
+    "output": 206,
+    "thinking": null,
+    "total": 120918,
+    "cached": 118536,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 120712,
+    "candidatesTokenCount": 206,
+    "totalTokenCount": 120918,
+    "cachedContentTokenCount": 118536,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 120712
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 118536
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 206
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s95a2f748cf\", \"instances\": [{\"t\": \"wh\", \"id\": \"w1\", \"word\": \"who\", \"span\": \"Who\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"ferret\", \"definite\": true, \"span\": \"the ferret\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"feed\", \"actor\": \"@w1\", \"patient\": \"@x1\", \"tense\": \"past\", \"span\": \"Who fed the ferret\"}, {\"t\": \"coref\", \"id\": \"c1\", \"mention\": \"@x1\", \"antecedent\": \"@s1.x1\", \"certainty\": \"certain\", \"span\": \"the ferret\"}, {\"t\": \"question\", \"id\": \"a1\", \"span\": \"Who fed the ferret?\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s95a2f748cf",
+    "instances": [
+      {
+        "t": "wh",
+        "id": "w1",
+        "word": "who",
+        "span": "Who"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "ferret",
+        "definite": true,
+        "span": "the ferret"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "feed",
+        "actor": "@w1",
+        "patient": "@x1",
+        "tense": "past",
+        "span": "Who fed the ferret"
+      },
+      {
+        "t": "coref",
+        "id": "c1",
+        "mention": "@x1",
+        "antecedent": "@s1.x1",
+        "certainty": "certain",
+        "span": "the ferret"
+      },
+      {
+        "t": "question",
+        "id": "a1",
+        "span": "Who fed the ferret?"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "868e642e529b83a79c84d8d33a44dd6b836490bab06db8cfa8f54d1b23b1eb05",
+  "manifest_id": "1ce9518366dc",
+  "run": 2,
+  "case": {
+    "template": "question",
+    "section": "held_out",
+    "index": 6,
+    "category": "positive",
+    "text": "Who fed the ferret?",
+    "key": "95a2f748cf"
+  }
+}
