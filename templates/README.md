@@ -13,7 +13,9 @@ The legacy parser line (`prompt.txt`, `seeded_rules.metta`, the regression harne
 | `tmpl/manifest.py` | computes, writes and checks the manifest (`python -m tmpl.manifest [--check]`) |
 | `tmpl/coverage.py` | the §7.4 coverage instrument: `sample` draws a stratified sample of natural text from `datasets/prepared/` into `datasets/sample/`, `parse` sends it one sentence per call (resumable, the manifest id stamped), `report` validates every reply and writes `datasets/sample/COVERAGE.md` — the parse rate per source, the gap-code and unmapped-span histograms, the fired templates; the sample is watched by the suite's leak check, never a regression sentence |
 | `tmpl/catalog.py` | loader and structural checks |
-| `tmpl/emit.py` | generic emitter: instances → statements + declarations |
+| `tmpl/emit.py` | generic emitter: instances → statement RECORDS (label, term tree, truth as numbers, template, instance) + the symbols' types as data, with their lowering for our engine line under `statements` / `declarations` / `detail` |
+| `tmpl/lower.py` | the LOWERING: records → one consumer's syntax (target `pettachainer`: `(: label term (STV s c))`, `(: symbol Type)`, `(: stem (-> Atom … Type))`); a new consumer (e.g. upstream PeTTaChainer master) is a new target here, never a branch in the emitter |
+| `tmpl/blocks.py` | the SENTENCE-BY-SENTENCE MODE (prefix causality): a text's sentences parsed in order, each call given the earlier sentences and their instances (qualified ids `s<k>.<id>`) as CONTEXT; one symbol table per block (each prefix emitted as one item), each sentence's record = what its prefix adds, `available_from` its index, a `revision-needed` finding when a sentence changes an earlier statement; `python -m tmpl.blocks parse --sample … --out …` walks the blocks (resumable; blocks in parallel, never the sentences of one), `records` prints the per-sentence records |
 | `tmpl/render_prompt.py` | catalog → instruction set |
 | `tmpl/typecheck.py` | C9: statements type-checked against the substrate with PeTTa |
 | `tmpl/validate.py` | post-parse validator: contract, emitter checks, graph lints, C9 |
@@ -58,7 +60,7 @@ The legacy parser line (`prompt.txt`, `seeded_rules.metta`, the regression harne
   `examples.shown` / `examples.held_out`. A sentence another template abstains on is claimed in the SAME
   section (shown or held-out), or `check` reports a leak.
   `python -c "from tmpl import catalog; catalog.load()"` checks the structural invariants.
-- `tmpl/emit.py` renders instances through the shapes (nothing template-specific in code);
+- `tmpl/emit.py` renders instances through the shapes (nothing template-specific in code) into records, and `tmpl/lower.py` writes them in a consumer's syntax;
   `from tmpl import emit; emit.emit(item)` → statements + declarations. Tests: `python tests/test_emit.py`.
 - `python -m tmpl.render_prompt` renders the parser's instruction set from the catalog (shared text in
   `catalog/_general.yaml`, only `shown` examples, each with its emitted rendering) → `generated/PROMPT_CATALOG.txt`.
