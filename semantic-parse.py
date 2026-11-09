@@ -556,8 +556,12 @@ PROVIDERS = {p.name: p for p in (Google, OpenAI, DeepSeek, ChatCompletions, Anth
 # --------------------------------------------------------------------------
 
 
-def item_message(item_id: str, text: str) -> str:
-    return f'Item id: {item_id}\nTEXT: {text}\n\nWrite the JSON object for this item.'
+def item_message(item_id: str, text: str, context: str | None = None) -> str:
+    """The item as the user turn; with ``context`` (the sentence-by-sentence mode: the earlier sentences of the
+    text and their qualified instances, ``tmpl.blocks.context_section``) the context comes first, so it grows as a
+    cacheable prefix from one sentence of a text to the next. Without it the item is exactly as before."""
+    item = f'Item id: {item_id}\nTEXT: {text}\n\nWrite the JSON object for this item.'
+    return f"{context}\n\n{item}" if context else item
 
 
 def extract_json(text: str):
@@ -589,17 +593,20 @@ def cache_lost(usage: dict | None) -> bool:
     return (u.get("input") or 0) >= CACHE_MIN_TOKENS and not u.get("cached")
 
 
-def parse_sentence(text: str, args, item_id: str = "item") -> dict:
-    """One sentence -> the run record (the parsed JSON object under ``response``)."""
+def parse_sentence(text: str, args, item_id: str = "item", context: str | None = None) -> dict:
+    """One sentence -> the run record (the parsed JSON object under ``response``). ``context``: the earlier
+    sentences of its text with their instances (the sentence-by-sentence mode); its hash is kept in the record."""
     with open(args.prompt, encoding="utf-8") as fh:
         system = fh.read()
     provider = PROVIDERS[args.provider](args)
     model = args.model or provider.default_model
-    user = item_message(item_id, text)
+    user = item_message(item_id, text, context)
     record = {"provider": args.provider, "model": model, "effort": args.effort,
               "temperature": args.temperature, "prompt_path": os.path.relpath(args.prompt, ROOT),
               "prompt_sha256": hashlib.sha256(system.encode("utf-8")).hexdigest(),
               "item": {"id": item_id, "text": text}}
+    if context:
+        record["item"]["context_sha256"] = hashlib.sha256(context.encode("utf-8")).hexdigest()
     if args.dry_run:
         url, headers, body = provider.request(system, user, model)
         shown = json.loads(json.dumps(body))
