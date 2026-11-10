@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 bf0f705791aab7c4 · 64 templates
+catalog sha256 e26855d89ecc03f7 · 64 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -20,8 +20,10 @@ put it there; if you cannot, leave it out. No unstated class, property, possesso
 part-whole or causal link, however obvious.
 
 A stated restriction, hedge or qualifier is never silently dropped, because omitting it widens
-the claim. Carry it with a template, or leave the WHOLE claim out and report the whole clause as
-unmapped. An unencodable qualifier never becomes an unqualified statement.
+the claim. Carry it with a template, or leave the WHOLE claim it restricts out and report that
+clause as unmapped. An unencodable qualifier never becomes an unqualified statement. Inside a
+sealed clause (a reported or believed clause, a complement) the claim it restricts is the sealed
+clause's own: the clause around it can still stand (see *Unmapped spans*).
 
 ## Output
 
@@ -294,6 +296,21 @@ part, leave the whole claim out and report the whole clause: a negated condition
 rains, Odile sings"), an unencodable quantity ("too much salt"). An evaluative adverb
 ("unfortunately, Marisol left") leaves the clause entailed: keep the clause and report the
 adverb (G02).
+
+The same rule holds INSIDE a sealed clause (a reported or believed clause, a complement): keep
+in it what the WHOLE SENTENCE still says without the unmapped part, and report that part
+("Henrike said that, sadly, Pieter sold the hatch" still says that Henrike said Pieter sold the
+hatch: report sadly, G02). Judge it on the whole sentence, not on the sealed clause alone: after
+a denial, a doubt or a failure (denied that, doubts that, failed to) a smaller clause no longer
+follows ("Odile denied that Pieter sold the hatch for a song" does not say that she denied he
+sold it), so keep none of it. When none of the sealed clause can be kept, keep the clause around
+it whenever the sentence still says it (its holder, speaker or agent, the verb, the tense, the
+addressee, its own time and place) with its content or complement EMPTY, and report the sealed
+clause as one unmapped span with the code of what blocks it: "Marisol said that the plan made
+sense" still says that Marisol said something (the attitude alone; "the plan made sense" G00). A
+negated one says nothing ("Marisol did not say that the plan made sense"): report the whole
+clause. A clause with no participant of its own around the sealed one (began to, seems to, was
+allowed to) has nothing left to say: report the whole clause.
 
 Referents inside an unmapped span: a NAME still gets its instance (a name is rigid, the same
 individual wherever it appears in the text), but a common-noun phrase or a pronoun does not. A
@@ -1578,6 +1595,8 @@ Forms:
 - According to <holder>, <clause>
 - <clause>, according to <holder>
 - <event noun> was <place> <time>, <holder> V-ed
+- <holder> wonders / knows whether <clause>
+- <holder> V that <clause no template covers>
 
 Not this template:
 - an entity object instead of a clause — fears the dog, distrusts Odile, knows Marisol: a psych
@@ -1587,8 +1606,8 @@ Not this template:
   failed to arrive: a control verb, whose implication about the action is recorded there
 - a liking or a dislike of an action — likes to send blankets, enjoys sending blankets: a psych
   state whose stimulus is the clause
-- an interrogative complement — wonders whether, knows whether, asks if: the complement is a
-  question, not a proposition
+- asking — asks whether, asked who left: one asks someone, a communication (its content empty
+  when the question has no template); wondering or knowing whether stays here
 - an addressee — told Henrike that P, informed Marisol that P: a communication with a recipient
   of the message, not an attitude of the subject alone
 - a parenthetical or discourse use — I think, you know, as far as I know: no attitude is
@@ -1615,7 +1634,7 @@ Slots:
 - `holder` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
   who holds the attitude: the subject; for an attribution, the source named after according to
   (a person, a body, a document).
-- `content` (required; a list of "@id" of the instances that state the clause): the complement
+- `content` (optional; a list of "@id" of the instances that state the clause): the complement
   clause: the ids of the instances that state it, that is its predication or the scope operator
   (negation, modal) over that predication; for an infinitival complement, its predication with
   the holder (or the object) as its actor; the referents it mentions are not listed — except an
@@ -1623,7 +1642,9 @@ Slots:
   Marisol said), which has no predication: list the eventive witness itself, and its place and
   time follow it into the seal; an EXISTENTIAL complement (Marisol suspects that there is a
   stork) is the indefinite witness itself, sealed whole — its existence is the claim; never an
-  attachment (a time, an oblique, a purpose): it follows its head.
+  attachment (a time, an oblique, a purpose): it follows its head. Left out when none of the
+  complement can be kept (a question, a clause no template covers): the attitude alone, the
+  complement reported as unmapped.
 - `factive` (required; true / false): true when the verb or adjective presupposes the complement
   (know, realize, discover, learn, notice, remember, regret; aware, glad, sorry, surprised,
   upset, proud, happy / angry that), false otherwise (believe, think, suppose, assume, suspect,
@@ -1761,6 +1782,49 @@ The program renders these instances as:
     (Theme sk_sell_1 sk_bobbin_1)
     (Past sk_sell_1)
 
+Example (a question as the complement — the attitude alone, its content empty; the question reported as unmapped). TEXT: Henrike wonders whether Marisol locked the hut.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Henrike", "span": "Henrike"},
+      {"t": "named-entity", "id": "n2", "name": "Marisol", "span": "Marisol"},
+      {"t": "attitude", "id": "a1", "verb": "wonder", "holder": "@n1", "factive": false, "tense": "present", "span": "Henrike wonders"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_henrike_1 "Henrike")
+    (Name sk_marisol_1 "Marisol")
+    (Member sk_wonder_1 wonder)
+    (Experiencer sk_wonder_1 sk_henrike_1)
+
+and reports as unmapped:
+
+    {"span": "whether Marisol locked the hut", "code": "G00"}
+
+Example (a reported clause no template covers — the report stays with its content empty; the clause reported with the code of what blocks it). TEXT: Odile said that Pieter kept the hatch open.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Odile", "span": "Odile"},
+      {"t": "named-entity", "id": "n2", "name": "Pieter", "span": "Pieter"},
+      {"t": "attitude", "id": "a1", "verb": "say", "holder": "@n1", "factive": false, "tense": "past", "span": "Odile said"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_odile_1 "Odile")
+    (Name sk_pieter_1 "Pieter")
+    (Member sk_say_1 say)
+    (Experiencer sk_say_1 sk_odile_1)
+    (Past sk_say_1)
+
+and reports as unmapped:
+
+    {"span": "Pieter kept the hatch open", "code": "G09"}
+
 Not this template. TEXT: Pieter told Henrike that Odile sold the bobbin. — use `communication`.
 
 Not this template. TEXT: Marisol distrusts Odile. — use `psych`.
@@ -1853,10 +1917,11 @@ Slots:
 - `causer` (optional; "@id" of a referent instance, or a bare lemma for a non-specific filler):
   who or what brings the action about: the subject; absent in an agentless passive, and in an
   imperative, whose addressee is not a referent of the text.
-- `complement` (required; a list of "@id" of the instances that state the clause): the caused
+- `complement` (optional; a list of "@id" of the instances that state the clause): the caused
   clause: the ids of the instances that state it (its predication, with the causative verb's
   object as its actor, or as its patient for a past participle); the referents it mentions are
-  not listed.
+  not listed. Left out when none of the caused clause can be kept (a clause no template covers):
+  the verb and its causer alone, the clause reported as unmapped.
 - `implication` (required; one of: none, positive, negative): what the verb implies about the
   caused action: positive — it happened (make, let, have, get, force, cause, help, persuade,
   convince); none — nothing follows (allow, permit, enable, leave); negative — it did not
@@ -2238,12 +2303,12 @@ The program renders these instances as:
 When: A verbal clause in which a speaker conveys a message to an addressee. The addressee is the
 indirect object or a to-phrase; the message is a noun phrase (the news, a secret, the result) or
 a finite clause introduced by "that" or bare. Verbs that take an addressee by nature (tell,
-inform, notify, remind, warn, text, phone) belong here even when the text leaves the addressee
-out; a reporting verb (say, claim, report, announce, explain, mention) belongs here only when an
-addressee is stated or the message is a noun phrase (announced the verdict, said the reverse:
-the message filled, no addressee). A request or an instruction (asked Henrike to send the
-blanket, told Odile to lock the hut) is a message too: its content is an imperative instance
-over the requested clause, whose actor is the addressee.
+inform, notify, remind, warn, ask, text, phone) belong here even when the text leaves the
+addressee out; a reporting verb (say, claim, report, announce, explain, mention) belongs here
+only when an addressee is stated or the message is a noun phrase (announced the verdict, said
+the reverse: the message filled, no addressee). A request or an instruction (asked Henrike to
+send the blanket, told Odile to lock the hut) is a message too: its content is an imperative
+instance over the requested clause, whose actor is the addressee.
 
 Verbs that anchor the class: tell, inform, notify, remind, warn, announce, report, explain,
 mention, say, write, text, email, phone, ask, order, urge, instruct.
@@ -2259,6 +2324,7 @@ Forms:
 - <addressee> was V-ed that <clause>
 - <speaker> asked / told <addressee> to <V2> …
 - <addressee> was asked about <topic>
+- <speaker> asked <addressee> whether / who …
 
 Not this template:
 - a reporting verb with no addressee and a CLAUSE — said that P, claimed that P, announced that
@@ -2268,8 +2334,6 @@ Not this template:
   speaker; the hedge template over the clause
 - an object that changes hands rather than a message — handed Henrike the postcard, sent Marisol
   a parcel: a transfer
-- a question as the content — asked Henrike whether P, asked Marisol who left: the content is a
-  question, not a proposition conveyed; report it as unmapped
 - light-verb constructions — gave Henrike a call, had a word with Marisol: the noun carries the
   event
 - a thing written, drawn or composed with no addressee — wrote a postcard, wrote a song, drew a
@@ -2292,7 +2356,9 @@ Slots:
 - `content` (optional; a list of "@id" of the instances that state the clause): the message as a
   clause: the ids of the instances that state it, that is its predication or the scope operator
   (negation, modal) over that predication, or the imperative instance for a request; the
-  referents it mentions are not listed.
+  referents it mentions are not listed. Left out when none of the clause can be kept (a
+  question, a clause no template covers): the communication alone, the clause reported as
+  unmapped.
 - `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
   not inferred.
 - `aspect` (optional; one of: simple, progressive, perfect, perfect_progressive, about_to,
@@ -2355,8 +2421,30 @@ The program renders these instances as:
 
 Not this template. TEXT: Pieter said that Odile sold the bobbin. — use `attitude`.
 
-Not this template. TEXT: Pieter asked Henrike whether Odile sold the bobbin. — report it as
-unmapped: {"span": "asked Henrike whether Odile sold the bobbin", "code": "G00"}.
+Example (a question as the content — the asking stays with its content empty; the question reported as unmapped). TEXT: Pieter asked Henrike whether Odile sold the bobbin.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Pieter", "span": "Pieter"},
+      {"t": "named-entity", "id": "n2", "name": "Henrike", "span": "Henrike"},
+      {"t": "named-entity", "id": "n3", "name": "Odile", "span": "Odile"},
+      {"t": "communication", "id": "c1", "verb": "ask", "speaker": "@n1", "addressee": "@n2", "tense": "past", "span": "Pieter asked Henrike"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_pieter_1 "Pieter")
+    (Name sk_henrike_1 "Henrike")
+    (Name sk_odile_1 "Odile")
+    (Member sk_ask_1 ask)
+    (Agent sk_ask_1 sk_pieter_1)
+    (Recipient sk_ask_1 sk_henrike_1)
+    (Past sk_ask_1)
+
+and reports as unmapped:
+
+    {"span": "whether Odile sold the bobbin", "code": "G00"}
 
 ### comparative — A comparison of two things on a scale
 
@@ -2553,9 +2641,11 @@ Slots:
 - `subject` (optional; "@id" of a referent instance, or a bare lemma for a non-specific filler):
   the subject, who also acts in the complement: a referent id; absent in an agentless passive,
   and in an imperative, whose addressee is not a referent of the text.
-- `complement` (required; a list of "@id" of the instances that state the clause): the
+- `complement` (optional; a list of "@id" of the instances that state the clause): the
   complement clause: the ids of the instances that state it (its predication, with the subject
   as its actor, or a negation over that predication); the referents it mentions are not listed.
+  Left out when none of the complement can be kept (a clause no template covers): the verb and
+  its subject alone, the complement reported as unmapped.
 - `implication` (required; one of: none, positive, negative): what the verb implies about the
   complement: none — nothing follows (try, attempt, refuse, choose, struggle, hesitate);
   positive — it happened (manage, dare, bother, remember to, learn to, happen to); negative — it
@@ -7603,7 +7693,8 @@ Forms:
 Not this template:
 - an embedded or indirect question — Pieter asked who fed the stork; Odile wonders whether it
   rained: a statement about asking or wondering, not a question; no question instance (the
-  asking clause is reported as unmapped, G00, as the communication template says)
+  asking is a communication, the wondering an attitude, each with its content empty and the
+  embedded question reported as unmapped, G00)
 - a question tag after a statement — the badger is asleep, isn't it?: the statement as stated,
   the tag reported as unmapped (G02)
 - a request worded as a question — Could you open the hatch?: report the TEXT as unmapped (G12)
@@ -7665,8 +7756,8 @@ The program asks the reasoner (one query per reading):
     (And (Member $badger_1 badger) (Member $badger_1 asleep))
     (And (Member $badger_1 badger) (Member $badger_1 awake))
 
-Not this template. TEXT: Pieter asked who fed the stork. — report it as unmapped: {"span":
-"asked who fed the stork", "code": "G00"}.
+Not this template. TEXT: Pieter asked Henrike whether Odile sold the bobbin. — use
+`communication`.
 
 Not this template. TEXT: Why did Odile leave? — report it as unmapped: {"span": "Why did Odile
 leave?", "code": "G12"}.

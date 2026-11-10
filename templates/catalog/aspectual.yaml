@@ -111,6 +111,11 @@ notes:
     sk_mill_1 closed)) — and the background rule derives it as sealed; the program picks the mark
     from the complement's template, the parser only names the state. "did not remain closed"
     denies the bundle and derives nothing.
+  - >-
+    The phase event has no participant of its own, so it needs its complement: when none of the
+    complement can be kept (a clause no template covers), nothing is left to say — report the
+    whole clause as unmapped (Unmapped spans), unlike an attitude or a control verb, whose holder
+    or subject still stands.
 
 depends_on: [named-entity, witness, activity, change-of-state, psych, negation, copular, locative]
 composes_with: [negation, modal, time]
@@ -225,6 +230,10 @@ examples:
     - category: abstain
       text: "Yusra no longer works."
       expected: {abstain: true, gap: G00, span: "no longer works"}    # a cessation construction
+    - category: abstain
+      note: a complement no template covers — the phase verb has nothing of its own, so the whole clause is reported
+      text: "Teodor began to keep the barn warm."
+      expected: {abstain: true, gap: G09, span: "began to keep the barn warm"}
     - category: positive
       note: a continuation of a property — the copular in the clause's tense, sealed; Continues
       text: "The mill remained closed."

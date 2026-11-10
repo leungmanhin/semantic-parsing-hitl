@@ -1,11 +1,11 @@
 {
   "prompt": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_body_sha256": "7423b953801b8633ab6e438d6fcef235bb0473d3842b65613554c9f6b5322ffe",
+  "prompt_body_sha256": "0129bee729f0d2f81e29b6accfef9b0214884ca2d65381fd88cea9bdc596d7b8",
   "manifest": {
-    "id": "a00bfbea4ce5",
+    "id": "9b468a2f6140",
     "parts": {
-      "catalog": "bf0f705791aab7c43d9dc1f0455a735135de539b85db8401beb64bdb20555046",
-      "prompt": "5b46a12124bf6bc4b1ad16b38c43058e7b940c74a6ed296b2da89ecf4cc79245",
+      "catalog": "e26855d89ecc03f71b5d1fe3ffb258167d18836d79918d3c0916275342235c12",
+      "prompt": "3d208ce978cd120f7db866665861a8f34562677df6f3c7eb65172c416544c046",
       "substrate": "8aed1522d851ca4052e77db2a684cf20212c76d17e437eb0c1ce71e178e61a7a",
       "atom_types": "b00b77430fd888c21161697c21dd9300026c593cacbafc172d960bacbac69220",
       "rules": "67facb6a97552f05691d659ea7bc591df8d5e6e864b764dec58a3255074c3e65",
@@ -15,7 +15,7 @@
   },
   "typecheck": "ran",
   "checks": {
-    "examples": 1389,
+    "examples": 1404,
     "findings": [],
     "pending": {},
     "shared": [
@@ -550,8 +550,8 @@
         "unstamped": 54,
         "by_category": {
           "positive": {
-            "cases": 20,
-            "runs": 60,
+            "cases": 21,
+            "runs": 63,
             "pass": 60,
             "fired": 60,
             "exact": 60
@@ -578,21 +578,20 @@
             "exact": 3
           },
           "abstain": {
-            "cases": 3,
-            "runs": 9,
-            "pass": 9,
+            "cases": 2,
+            "runs": 6,
+            "pass": 6,
             "false_fires": 0,
             "outcomes": {
-              "target_fired": 6,
-              "gap_reported": 3
+              "target_fired": 6
             }
           }
         },
-        "pass": 90,
+        "pass": 87,
         "selection": {
-          "fire_runs": 81,
+          "fire_runs": 84,
           "fired": 81,
-          "abstain_runs": 9,
+          "abstain_runs": 6,
           "false_fires": 0
         },
         "fill": {
@@ -1506,8 +1505,8 @@
         "status": {
           "ok": 63
         },
-        "stale_prompt": 60,
-        "stale_manifest": 18,
+        "stale_prompt": 63,
+        "stale_manifest": 21,
         "unstamped": 42,
         "by_category": {
           "positive": {
@@ -2789,8 +2788,8 @@
         "status": {
           "ok": 18
         },
-        "stale_prompt": 0,
-        "stale_manifest": 0,
+        "stale_prompt": 18,
+        "stale_manifest": 18,
         "unstamped": 0,
         "by_category": {
           "positive": {
@@ -4605,14 +4604,15 @@
           "abstain": {
             "cases": 2,
             "runs": 6,
-            "pass": 6,
+            "pass": 3,
             "false_fires": 0,
             "outcomes": {
-              "gap_reported": 6
+              "target_missed": 3,
+              "gap_reported": 3
             }
           }
         },
-        "pass": 30,
+        "pass": 27,
         "selection": {
           "fire_runs": 24,
           "fired": 24,

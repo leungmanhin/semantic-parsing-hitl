@@ -1,10 +1,10 @@
 # Suite report
 
-prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 7423b953801b8633) · manifest a00bfbea4ce5 · type check: ran
+prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 0129bee729f0d2f8) · manifest 9b468a2f6140 · type check: ran
 
 ## Catalog checks
 
-1389 examples checked; findings: 0
+1404 examples checked; findings: 0
 
 Sentences two templates claim with the same expected atoms (composition, fine):
 - "Ottoline bought the quilt for forty euros." — acquisition, measure
@@ -171,13 +171,13 @@ Mismatches: none
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
-| positive | 20 | 60 | 60 | 60 | 60 |
+| positive | 21 | 63 | 60 | 60 | 60 |
 | contrast | 2 | 6 | 6 | 6 | 6 |
 | scoped | 4 | 12 | 12 | 12 | 12 |
 | optional | 1 | 3 | 3 | 3 | 3 |
-| abstain | 3 | 9 | 0 (false fires) | – | 9 |
+| abstain | 2 | 6 | 0 (false fires) | – | 6 |
 
-- selection: fire cases fired 81/81 · abstain cases false fires 0/9
+- selection: fire cases fired 81/84 · abstain cases false fires 0/6
 - fill: exact 81/81 among fires
 - stability: pairwise agreement 1.0 (30 cases, 90 pairs), unanimous 30/30
 - type check: 90/90 emitted parses type
@@ -188,10 +188,12 @@ Mismatches: none
 
 Abstain cases (what the parser did, per run):
 - "Yusra knows Lamine." (target `stative-relation`): r1 target_fired [named-entity×2, stative-relation×1] · r2 target_fired [named-entity×2, stative-relation×1] · r3 target_fired [named-entity×2, stative-relation×1]
-- "Teodor wonders whether Lamine sold the spindle." (gap G00): r1 gap_reported [named-entity×2; unmapped G00] · r2 gap_reported [named-entity×2; unmapped G00] · r3 gap_reported [named-entity×2; unmapped G00]
 - "Yusra told Teodor that Ottoline sent the quilt." (target `communication`): r1 target_fired [communication×1, named-entity×3, transfer×1, witness×1] · r2 target_fired [communication×1, named-entity×3, transfer×1, witness×1] · r3 target_fired [communication×1, named-entity×3, transfer×1, witness×1]
 
-Mismatches: none
+Mismatches:
+- positive · "Teodor wonders whether Lamine sold the spindle." · r1: attitude did not fire; atoms differ · only expected: `(Experiencer sk_wonder_* sk_teodor_*)`, `(Member sk_wonder_* wonder)` · kinds: core-link, role
+- positive · "Teodor wonders whether Lamine sold the spindle." · r2: attitude did not fire; atoms differ · only expected: `(Experiencer sk_wonder_* sk_teodor_*)`, `(Member sk_wonder_* wonder)` · kinds: core-link, role
+- positive · "Teodor wonders whether Lamine sold the spindle." · r3: attitude did not fire; atoms differ · only expected: `(Experiencer sk_wonder_* sk_teodor_*)`, `(Member sk_wonder_* wonder)` · kinds: core-link, role
 
 ## causative — held_out
 
@@ -457,7 +459,7 @@ Mismatches: none
 
 ## copular — held_out
 
-21 cases, 63 records (ok 63; stale prompt 60; stale manifest 18, unstamped 42) · gemini-4-argon effort=low
+21 cases, 63 records (ok 63; stale prompt 63; stale manifest 21, unstamped 42) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -872,7 +874,7 @@ Mismatches: none
 
 ## identity — held_out
 
-6 cases, 18 records (ok 18; stale prompt 0; stale manifest 0, unstamped 0) · gemini-4-argon effort=low
+6 cases, 18 records (ok 18; stale prompt 18; stale manifest 18, unstamped 0) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -1436,7 +1438,7 @@ Mismatches: none
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
 | positive | 8 | 24 | 24 | 24 | 24 |
-| abstain | 2 | 6 | 0 (false fires) | – | 6 |
+| abstain | 2 | 6 | 0 (false fires) | – | 3 |
 
 - selection: fire cases fired 24/24 · abstain cases false fires 0/6
 - fill: exact 24/24 among fires
@@ -1448,10 +1450,13 @@ Mismatches: none
 - issues reported by the parser: none
 
 Abstain cases (what the parser did, per run):
-- "Yusra asked who mended the barn." (gap G00): r1 gap_reported [named-entity×1; unmapped G00] · r2 gap_reported [named-entity×1; unmapped G00] · r3 gap_reported [named-entity×1; unmapped G00]
+- "Yusra asked who mended the barn." (target `communication`): r1 target_missed [named-entity×1; unmapped G00] · r2 target_missed [named-entity×1; unmapped G00] · r3 target_missed [named-entity×1; unmapped G00]
 - "How many quilts did Lamine sell?" (gap G12): r1 gap_reported [named-entity×1; unmapped G12] · r2 gap_reported [named-entity×1; unmapped G12] · r3 gap_reported [named-entity×1; unmapped G12]
 
-Mismatches: none
+Mismatches:
+- abstain · "Yusra asked who mended the barn." · r1: target_missed · fired: named-entity×1
+- abstain · "Yusra asked who mended the barn." · r2: target_missed · fired: named-entity×1
+- abstain · "Yusra asked who mended the barn." · r3: target_missed · fired: named-entity×1
 
 ## reciprocal — held_out
 

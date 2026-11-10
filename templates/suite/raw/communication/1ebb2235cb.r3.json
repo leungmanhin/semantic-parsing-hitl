@@ -1,0 +1,91 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "b97641834ac85a974ffc64530f6dddebca20f68cc2629df7b23c58b5cc54f45b",
+  "item": {
+    "id": "s1ebb2235cb",
+    "text": "Yusra asked who mended the barn."
+  },
+  "usage": {
+    "input": 123365,
+    "output": 133,
+    "thinking": null,
+    "total": 123498,
+    "cached": 121316,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 123365,
+    "candidatesTokenCount": 133,
+    "totalTokenCount": 123498,
+    "cachedContentTokenCount": 121316,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 123365
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 121316
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 133
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s1ebb2235cb\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"communication\", \"id\": \"e1\", \"verb\": \"ask\", \"speaker\": \"@n1\", \"tense\": \"past\", \"span\": \"Yusra asked\"}], \"unmapped\": [{\"span\": \"who mended the barn\", \"code\": \"G00\", \"construction\": \"Embedded wh-question complement of 'asked'.\"}], \"issues\": []}",
+  "response": {
+    "id": "s1ebb2235cb",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "communication",
+        "id": "e1",
+        "verb": "ask",
+        "speaker": "@n1",
+        "tense": "past",
+        "span": "Yusra asked"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "who mended the barn",
+        "code": "G00",
+        "construction": "Embedded wh-question complement of 'asked'."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "0129bee729f0d2f81e29b6accfef9b0214884ca2d65381fd88cea9bdc596d7b8",
+  "manifest_id": "9b468a2f6140",
+  "run": 3,
+  "case": {
+    "template": "communication",
+    "section": "held_out",
+    "index": 16,
+    "category": "positive",
+    "text": "Yusra asked who mended the barn.",
+    "key": "1ebb2235cb"
+  }
+}

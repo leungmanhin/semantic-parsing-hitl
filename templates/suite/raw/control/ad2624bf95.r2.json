@@ -1,0 +1,92 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "b97641834ac85a974ffc64530f6dddebca20f68cc2629df7b23c58b5cc54f45b",
+  "item": {
+    "id": "sad2624bf95",
+    "text": "Yusra tried to keep the gate open."
+  },
+  "usage": {
+    "input": 123365,
+    "output": 148,
+    "thinking": null,
+    "total": 123513,
+    "cached": 121316,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 123365,
+    "candidatesTokenCount": 148,
+    "totalTokenCount": 123513,
+    "cachedContentTokenCount": 121316,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 123365
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 121316
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 148
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sad2624bf95\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"control\", \"id\": \"e1\", \"verb\": \"try\", \"subject\": \"@n1\", \"implication\": \"none\", \"tense\": \"past\", \"span\": \"Yusra tried\"}], \"unmapped\": [{\"span\": \"to keep the gate open\", \"code\": \"G09\", \"construction\": \"An infinitival complement with 'keep', an object, and a predicative adjective.\"}], \"issues\": []}",
+  "response": {
+    "id": "sad2624bf95",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "control",
+        "id": "e1",
+        "verb": "try",
+        "subject": "@n1",
+        "implication": "none",
+        "tense": "past",
+        "span": "Yusra tried"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "to keep the gate open",
+        "code": "G09",
+        "construction": "An infinitival complement with 'keep', an object, and a predicative adjective."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "0129bee729f0d2f81e29b6accfef9b0214884ca2d65381fd88cea9bdc596d7b8",
+  "manifest_id": "9b468a2f6140",
+  "run": 2,
+  "case": {
+    "template": "control",
+    "section": "held_out",
+    "index": 14,
+    "category": "positive",
+    "text": "Yusra tried to keep the gate open.",
+    "key": "ad2624bf95"
+  }
+}

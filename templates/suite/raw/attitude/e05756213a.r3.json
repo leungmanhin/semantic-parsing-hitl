@@ -1,0 +1,99 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "b97641834ac85a974ffc64530f6dddebca20f68cc2629df7b23c58b5cc54f45b",
+  "item": {
+    "id": "se05756213a",
+    "text": "On Friday, Teodor said that the mill opens unless it rains."
+  },
+  "usage": {
+    "input": 123372,
+    "output": 258,
+    "thinking": null,
+    "total": 123630,
+    "cached": 121323,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 123372,
+    "candidatesTokenCount": 258,
+    "totalTokenCount": 123630,
+    "cachedContentTokenCount": 121323,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 123372
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 121323
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 258
+      }
+    ]
+  },
+  "raw_text": "{\n  \"id\": \"se05756213a\",\n  \"instances\": [\n    {\n      \"t\": \"named-entity\",\n      \"id\": \"n1\",\n      \"name\": \"Teodor\",\n      \"span\": \"Teodor\"\n    },\n    {\n      \"t\": \"attitude\",\n      \"id\": \"a1\",\n      \"verb\": \"say\",\n      \"holder\": \"@n1\",\n      \"factive\": false,\n      \"tense\": \"past\",\n      \"span\": \"Teodor said\"\n    },\n    {\n      \"t\": \"time\",\n      \"id\": \"t1\",\n      \"event\": \"@a1\",\n      \"weekday\": \"friday\",\n      \"span\": \"On Friday\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"span\": \"the mill opens unless it rains\",\n      \"code\": \"G08\",\n      \"construction\": \"An 'unless' conditional clause serving as the complement of a reporting verb.\"\n    }\n  ],\n  \"issues\": []\n}",
+  "response": {
+    "id": "se05756213a",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "attitude",
+        "id": "a1",
+        "verb": "say",
+        "holder": "@n1",
+        "factive": false,
+        "tense": "past",
+        "span": "Teodor said"
+      },
+      {
+        "t": "time",
+        "id": "t1",
+        "event": "@a1",
+        "weekday": "friday",
+        "span": "On Friday"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "the mill opens unless it rains",
+        "code": "G08",
+        "construction": "An 'unless' conditional clause serving as the complement of a reporting verb."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "0129bee729f0d2f81e29b6accfef9b0214884ca2d65381fd88cea9bdc596d7b8",
+  "manifest_id": "9b468a2f6140",
+  "run": 3,
+  "case": {
+    "template": "attitude",
+    "section": "held_out",
+    "index": 32,
+    "category": "positive",
+    "text": "On Friday, Teodor said that the mill opens unless it rains.",
+    "key": "e05756213a"
+  }
+}

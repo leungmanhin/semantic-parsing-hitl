@@ -1,0 +1,98 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "b97641834ac85a974ffc64530f6dddebca20f68cc2629df7b23c58b5cc54f45b",
+  "item": {
+    "id": "sf552798c81",
+    "text": "Yusra said that Teodor no longer mends nets."
+  },
+  "usage": {
+    "input": 123370,
+    "output": 179,
+    "thinking": null,
+    "total": 123549,
+    "cached": 121316,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 123370,
+    "candidatesTokenCount": 179,
+    "totalTokenCount": 123549,
+    "cachedContentTokenCount": 121316,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 123370
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 121316
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 179
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sf552798c81\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"attitude\", \"id\": \"a1\", \"verb\": \"say\", \"holder\": \"@n1\", \"factive\": false, \"tense\": \"past\", \"span\": \"Yusra said\"}], \"unmapped\": [{\"span\": \"Teodor no longer mends nets\", \"code\": \"G00\", \"construction\": \"A clause with 'no longer' stating the cessation of a habit or state.\"}], \"issues\": []}",
+  "response": {
+    "id": "sf552798c81",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "attitude",
+        "id": "a1",
+        "verb": "say",
+        "holder": "@n1",
+        "factive": false,
+        "tense": "past",
+        "span": "Yusra said"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "Teodor no longer mends nets",
+        "code": "G00",
+        "construction": "A clause with 'no longer' stating the cessation of a habit or state."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "0129bee729f0d2f81e29b6accfef9b0214884ca2d65381fd88cea9bdc596d7b8",
+  "manifest_id": "9b468a2f6140",
+  "run": 1,
+  "case": {
+    "template": "attitude",
+    "section": "held_out",
+    "index": 30,
+    "category": "positive",
+    "text": "Yusra said that Teodor no longer mends nets.",
+    "key": "f552798c81"
+  }
+}

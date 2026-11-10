@@ -1,0 +1,98 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "b97641834ac85a974ffc64530f6dddebca20f68cc2629df7b23c58b5cc54f45b",
+  "item": {
+    "id": "sfff9e2fd09",
+    "text": "Lamine made Teodor keep the shed warm."
+  },
+  "usage": {
+    "input": 123366,
+    "output": 185,
+    "thinking": null,
+    "total": 123551,
+    "cached": 121316,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 123366,
+    "candidatesTokenCount": 185,
+    "totalTokenCount": 123551,
+    "cachedContentTokenCount": 121316,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 123366
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 121316
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 185
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sfff9e2fd09\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"causative\", \"id\": \"e1\", \"verb\": \"make\", \"causer\": \"@n1\", \"implication\": \"positive\", \"tense\": \"past\", \"span\": \"Lamine made Teodor\"}], \"unmapped\": [{\"span\": \"Teodor keep the shed warm\", \"code\": \"G09\", \"construction\": \"keep with an object and a property ('keep the shed warm'): a causer keeping another thing in a state.\"}], \"issues\": []}",
+  "response": {
+    "id": "sfff9e2fd09",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "causative",
+        "id": "e1",
+        "verb": "make",
+        "causer": "@n1",
+        "implication": "positive",
+        "tense": "past",
+        "span": "Lamine made Teodor"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "Teodor keep the shed warm",
+        "code": "G09",
+        "construction": "keep with an object and a property ('keep the shed warm'): a causer keeping another thing in a state."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "0129bee729f0d2f81e29b6accfef9b0214884ca2d65381fd88cea9bdc596d7b8",
+  "manifest_id": "9b468a2f6140",
+  "run": 3,
+  "case": {
+    "template": "causative",
+    "section": "held_out",
+    "index": 15,
+    "category": "positive",
+    "text": "Lamine made Teodor keep the shed warm.",
+    "key": "fff9e2fd09"
+  }
+}

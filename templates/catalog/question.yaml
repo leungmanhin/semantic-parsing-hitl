@@ -39,8 +39,8 @@ trigger:
   boundary:                   # looks like a question but is not one
     - >-
       an embedded or indirect question — Pieter asked who fed the stork; Odile wonders whether it rained: a
-      statement about asking or wondering, not a question; no question instance (the asking clause is reported as
-      unmapped, G00, as the communication template says)
+      statement about asking or wondering, not a question; no question instance (the asking is a communication,
+      the wondering an attitude, each with its content empty and the embedded question reported as unmapped, G00)
     - >-
       a question tag after a statement — the badger is asleep, isn't it?: the statement as stated, the tag
       reported as unmapped (G02)
@@ -99,8 +99,8 @@ examples:
         - {t: copular, id: c2, subject: "@x1", predicate: awake, form: adjective, tense: present, span: ["Is the badger", "awake"]}
         - {t: question, id: a1, options: ["@c1", "@c2"], span: "Is the badger asleep or awake?"}
     - category: abstain
-      text: "Pieter asked who fed the stork."
-      expected: {abstain: true, gap: G00, span: "asked who fed the stork"}
+      text: "Pieter asked Henrike whether Odile sold the bobbin."
+      expected: {abstain: true, template: communication}              # an embedded question: a statement about asking
     - category: abstain
       text: "Why did Odile leave?"
       expected: {abstain: true, gap: G12, span: "Why did Odile leave?"}
@@ -196,4 +196,4 @@ examples:
     - category: abstain
       note: an embedded question is a statement about asking; the embedded question is reported
       text: "Yusra asked who mended the barn."
-      expected: {abstain: true, gap: G00, span: "asked who mended the barn"}
+      expected: {abstain: true, template: communication}

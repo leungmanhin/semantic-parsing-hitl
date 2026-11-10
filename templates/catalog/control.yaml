@@ -69,8 +69,8 @@ slots:
   verb:        {type: lemma, class: Class, required: true, doc: "the matrix verb lemma (try, manage, fail …)"}
   subject:     {type: filler, class: Entity, role: Agent, required: false,
                 doc: "the subject, who also acts in the complement: a referent id; absent in an agentless passive, and in an imperative, whose addressee is not a referent of the text"}
-  complement:  {type: refs, class: Proposition, required: true,
-                doc: "the complement clause: the ids of the instances that state it (its predication, with the subject as its actor, or a negation over that predication); the referents it mentions are not listed"}
+  complement:  {type: refs, class: Proposition, required: false,
+                doc: "the complement clause: the ids of the instances that state it (its predication, with the subject as its actor, or a negation over that predication); the referents it mentions are not listed. Left out when none of the complement can be kept (a clause no template covers): the verb and its subject alone, the complement reported as unmapped"}
   implication: {type: enum, values: [none, positive, negative], required: true,
                 doc: "what the verb implies about the complement: none — nothing follows (try, attempt, refuse, choose, struggle, hesitate); positive — it happened (manage, dare, bother, remember to, learn to, happen to); negative — it did not (fail, forget to, neglect)"}
   tense:       {type: enum, values: [past, present, future], required: true,
@@ -85,10 +85,13 @@ emits:
   - atom: "(Agent @id {subject})"
     if_filled: subject
   - atom: "(Theme @id {complement})"        # the complement, sealed as one term
+    if_filled: complement                   # none when nothing of it could be kept
   - atom: "(Entails @id)"                   # an implicative verb: a background rule derives the complement at this event's tense
     when: "implication == positive"
+    if_filled: complement
   - atom: "(Precludes @id)"                 # a negative implicative verb: the rule derives the complement's negation
     when: "implication == negative"
+    if_filled: complement
   - atom: "(Past @id)"
     when: "tense == past or aspect == perfect or aspect == perfect_progressive"
   - atom: "(Future @id)"
@@ -245,3 +248,11 @@ examples:
     - category: abstain
       text: "Teodor seems to be tired."
       expected: {abstain: true, template: evidential}                 # an appearance verb over the claim
+    - category: positive
+      note: a complement no template covers — the trying stays with its subject, the complement empty and reported
+      text: "Yusra tried to keep the gate open."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: control, id: e1, verb: try, subject: "@n1", implication: none, tense: past}
+      unmapped:
+        - {span: "keep the gate open", code: G09}

@@ -16,7 +16,7 @@ trigger:
     A verbal clause in which a speaker conveys a message to an addressee. The addressee is the
     indirect object or a to-phrase; the message is a noun phrase (the news, a secret, the
     result) or a finite clause introduced by "that" or bare. Verbs that take an addressee by
-    nature (tell, inform, notify, remind, warn, text, phone) belong here even when the text
+    nature (tell, inform, notify, remind, warn, ask, text, phone) belong here even when the text
     leaves the addressee out; a reporting verb (say, claim, report, announce, explain,
     mention) belongs here only when an addressee is stated or the message is a noun phrase
     (announced the verdict, said the reverse: the message filled, no addressee). A request or an instruction (asked
@@ -36,6 +36,7 @@ trigger:
     - "<addressee> was V-ed that <clause>"           # passive: the speaker is unstated
     - "<speaker> asked / told <addressee> to <V2> …"  # a request: the content is an imperative
     - "<addressee> was asked about <topic>"      # a topic alone: neither message nor content; the topic an oblique About on the event
+    - "<speaker> asked <addressee> whether / who …"  # a question as the content: no template, so the content EMPTY and the question reported as unmapped
   boundary:                   # looks like a communication but is not one
     - >-
       a reporting verb with no addressee and a CLAUSE — said that P, claimed that P, announced
@@ -47,9 +48,6 @@ trigger:
     - >-
       an object that changes hands rather than a message — handed Henrike the postcard, sent
       Marisol a parcel: a transfer
-    - >-
-      a question as the content — asked Henrike whether P, asked Marisol who left: the content is
-      a question, not a proposition conveyed; report it as unmapped
     - >-
       light-verb constructions — gave Henrike a call, had a word with Marisol: the noun carries
       the event
@@ -68,7 +66,7 @@ slots:
   message:   {type: filler, class: Entity, role: Theme, required: false,
               doc: "the message as a thing: the news, a secret, the result"}
   content:   {type: refs, class: Proposition, required: false,
-              doc: "the message as a clause: the ids of the instances that state it, that is its predication or the scope operator (negation, modal) over that predication, or the imperative instance for a request; the referents it mentions are not listed"}
+              doc: "the message as a clause: the ids of the instances that state it, that is its predication or the scope operator (negation, modal) over that predication, or the imperative instance for a request; the referents it mentions are not listed. Left out when none of the clause can be kept (a question, a clause no template covers): the communication alone, the clause reported as unmapped"}
   tense:     {type: enum, values: [past, present, future], required: true,
               doc: "the clause's tense; present is recorded, not inferred"}
   aspect:    {type: enum, values: [simple, progressive, perfect, perfect_progressive, about_to, due_to, would, going_to], required: false, default: simple,
@@ -105,6 +103,11 @@ notes:
   - >-
     The addressee carries the Recipient role, the goal of a transfer, because the message is
     conveyed to the addressee; the message itself is the Theme, a thing or a sealed clause.
+  - >-
+    A conveyed clause keeps what the whole sentence still says without its unmapped part
+    (Unmapped spans). When none of it can be kept — a question asked, a clause no template
+    covers — the communication stands alone with its content empty: someone told or asked
+    someone something; a negated one with nothing left to seal says nothing.
 
 depends_on: [named-entity, witness, transfer, negation, modal]     # what fills the slots
 composes_with: [negation, modal, time, location]
@@ -150,9 +153,16 @@ examples:
     - category: abstain
       text: "Pieter said that Odile sold the bobbin."
       expected: {abstain: true, template: attitude}                  # no addressee
-    - category: abstain
+    - category: positive
+      note: a question as the content — the asking stays with its content empty; the question reported as unmapped
       text: "Pieter asked Henrike whether Odile sold the bobbin."
-      expected: {abstain: true, gap: G00, span: "asked Henrike whether Odile sold the bobbin"}   # a question as content
+      instances:
+        - {t: named-entity, id: n1, name: "Pieter", span: "Pieter"}
+        - {t: named-entity, id: n2, name: "Henrike", span: "Henrike"}
+        - {t: named-entity, id: n3, name: "Odile", span: "Odile"}
+        - {t: communication, id: c1, verb: ask, speaker: "@n1", addressee: "@n2", tense: past, span: "Pieter asked Henrike"}
+      unmapped:
+        - {span: "whether Odile sold the bobbin", code: G00}
 
   held_out:                  # tests; never rendered into the prompt
     - category: positive
@@ -289,3 +299,20 @@ examples:
         - {t: named-entity, id: n1, name: "Ottoline"}
         - {t: witness, id: x1, class: winner, definite: true}
         - {t: communication, id: e1, verb: announce, speaker: "@n1", message: "@x1", tense: past}
+    - category: positive
+      note: a question as the content — the asking stays with its content empty; the question reported
+      text: "Ottoline asked Lamine whether the mill was open."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: communication, id: c1, verb: ask, speaker: "@n1", addressee: "@n2", tense: past}
+      unmapped:
+        - {span: "whether the mill was open", code: G00}
+    - category: positive
+      note: asking with no addressee stated — still a communication (one asks someone); the embedded question reported
+      text: "Yusra asked who mended the barn."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: communication, id: c1, verb: ask, speaker: "@n1", tense: past}
+      unmapped:
+        - {span: "who mended the barn", code: G00}

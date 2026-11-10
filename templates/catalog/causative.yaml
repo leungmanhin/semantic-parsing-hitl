@@ -69,8 +69,8 @@ slots:
   verb:        {type: lemma, class: Class, required: true, doc: "the causative verb lemma (make, let, get, prevent …)"}
   causer:      {type: filler, class: Entity, role: Agent, required: false,
                 doc: "who or what brings the action about: the subject; absent in an agentless passive, and in an imperative, whose addressee is not a referent of the text"}
-  complement:  {type: refs, class: Proposition, required: true,
-                doc: "the caused clause: the ids of the instances that state it (its predication, with the causative verb's object as its actor, or as its patient for a past participle); the referents it mentions are not listed"}
+  complement:  {type: refs, class: Proposition, required: false,
+                doc: "the caused clause: the ids of the instances that state it (its predication, with the causative verb's object as its actor, or as its patient for a past participle); the referents it mentions are not listed. Left out when none of the caused clause can be kept (a clause no template covers): the verb and its causer alone, the clause reported as unmapped"}
   implication: {type: enum, values: [none, positive, negative], required: true,
                 doc: "what the verb implies about the caused action: positive — it happened (make, let, have, get, force, cause, help, persuade, convince); none — nothing follows (allow, permit, enable, leave); negative — it did not (prevent, stop … from, keep … from)"}
   tense:       {type: enum, values: [past, present, future], required: true,
@@ -85,10 +85,13 @@ emits:
   - atom: "(Agent @id {causer})"
     if_filled: causer
   - atom: "(Theme @id {complement})"        # the caused clause, sealed as one term
+    if_filled: complement                   # none when nothing of it could be kept
   - atom: "(Entails @id)"                   # the action happened: a background rule derives it at this event's tense
     when: "implication == positive"
+    if_filled: complement
   - atom: "(Precludes @id)"                 # the action was prevented: the rule derives its negation
     when: "implication == negative"
+    if_filled: complement
   - atom: "(Past @id)"
     when: "tense == past or aspect == perfect or aspect == perfect_progressive"
   - atom: "(Future @id)"
@@ -255,3 +258,12 @@ examples:
     - category: abstain
       text: "Let's go to the market."
       expected: {abstain: true, gap: G00, span: "Let's go to the market"}   # a hortative
+    - category: positive
+      note: a caused clause no template covers — the making stays with its causer, the clause empty and reported
+      text: "Lamine made Teodor keep the shed warm."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: named-entity, id: n2, name: "Teodor"}
+        - {t: causative, id: e1, verb: make, causer: "@n1", implication: positive, tense: past}
+      unmapped:
+        - {span: "keep the shed warm", code: G09}

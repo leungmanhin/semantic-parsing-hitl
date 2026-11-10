@@ -1,0 +1,83 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "b97641834ac85a974ffc64530f6dddebca20f68cc2629df7b23c58b5cc54f45b",
+  "item": {
+    "id": "sd242b89951",
+    "text": "Teodor began to keep the barn warm."
+  },
+  "usage": {
+    "input": 123367,
+    "output": 102,
+    "thinking": null,
+    "total": 123469,
+    "cached": 121318,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 123367,
+    "candidatesTokenCount": 102,
+    "totalTokenCount": 123469,
+    "cachedContentTokenCount": 121318,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 123367
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 121318
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 102
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sd242b89951\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}], \"unmapped\": [{\"span\": \"Teodor began to keep the barn warm\", \"code\": \"G09\", \"construction\": \"An aspectual clause whose complement is 'keep' with an object and a property.\"}], \"issues\": []}",
+  "response": {
+    "id": "sd242b89951",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "Teodor began to keep the barn warm",
+        "code": "G09",
+        "construction": "An aspectual clause whose complement is 'keep' with an object and a property."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "0129bee729f0d2f81e29b6accfef9b0214884ca2d65381fd88cea9bdc596d7b8",
+  "manifest_id": "9b468a2f6140",
+  "run": 2,
+  "case": {
+    "template": "aspectual",
+    "section": "held_out",
+    "index": 11,
+    "category": "abstain",
+    "text": "Teodor began to keep the barn warm.",
+    "key": "d242b89951"
+  }
+}

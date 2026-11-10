@@ -1,0 +1,92 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "b97641834ac85a974ffc64530f6dddebca20f68cc2629df7b23c58b5cc54f45b",
+  "item": {
+    "id": "s409eb9629c",
+    "text": "Ottoline promised to keep the shed open."
+  },
+  "usage": {
+    "input": 123367,
+    "output": 146,
+    "thinking": null,
+    "total": 123513,
+    "cached": 121318,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 123367,
+    "candidatesTokenCount": 146,
+    "totalTokenCount": 123513,
+    "cachedContentTokenCount": 121318,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 123367
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 121318
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 146
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s409eb9629c\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"attitude\", \"id\": \"a1\", \"verb\": \"promise\", \"holder\": \"@n1\", \"factive\": false, \"tense\": \"past\", \"span\": \"Ottoline promised\"}], \"unmapped\": [{\"span\": \"to keep the shed open\", \"code\": \"G09\", \"construction\": \"A to-infinitive complement with keep taking an object and a predicative adjective.\"}], \"issues\": []}",
+  "response": {
+    "id": "s409eb9629c",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Ottoline",
+        "span": "Ottoline"
+      },
+      {
+        "t": "attitude",
+        "id": "a1",
+        "verb": "promise",
+        "holder": "@n1",
+        "factive": false,
+        "tense": "past",
+        "span": "Ottoline promised"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "to keep the shed open",
+        "code": "G09",
+        "construction": "A to-infinitive complement with keep taking an object and a predicative adjective."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "0129bee729f0d2f81e29b6accfef9b0214884ca2d65381fd88cea9bdc596d7b8",
+  "manifest_id": "9b468a2f6140",
+  "run": 3,
+  "case": {
+    "template": "attitude",
+    "section": "held_out",
+    "index": 36,
+    "category": "positive",
+    "text": "Ottoline promised to keep the shed open.",
+    "key": "409eb9629c"
+  }
+}

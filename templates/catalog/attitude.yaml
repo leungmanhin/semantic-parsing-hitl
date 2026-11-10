@@ -6,7 +6,10 @@
 # not on their own, so a non-factive attitude asserts nothing about the complement. A factive
 # attitude (know, realize …) presupposes the complement: it is also emitted flat, at the top
 # level, whatever scope the attitude itself sits in — a presupposition projects through
-# negation ("Yusra does not know that P" still says P).
+# negation ("Yusra does not know that P" still says P). When none of the complement can be kept
+# (a clause no template covers, a question), the attitude stands alone with its content EMPTY —
+# the holder said, believes or wonders something — and the complement is reported as unmapped;
+# a negated attitude with nothing to seal says nothing and is reported whole.
 
 id: attitude
 family: predication
@@ -61,6 +64,8 @@ trigger:
     - "According to <holder>, <clause>"          # an attribution: verb according_to, not factive, present
     - "<clause>, according to <holder>"          # the same, after the clause
     - "<event noun> was <place> <time>, <holder> V-ed"   # the closure was in the granary on Friday, Marisol said: the content names the eventive witness; its place and time follow it
+    - "<holder> wonders / knows whether <clause>"  # a question as the complement: the content EMPTY, the question reported as unmapped
+    - "<holder> V that <clause no template covers>"  # the content EMPTY, the clause reported as unmapped (not under a negation)
   boundary:                   # looks like an attitude but is not one
     - >-
       an entity object instead of a clause — fears the dog, distrusts Odile, knows Marisol: a
@@ -73,8 +78,8 @@ trigger:
       a liking or a dislike of an action — likes to send blankets, enjoys sending blankets: a psych
       state whose stimulus is the clause
     - >-
-      an interrogative complement — wonders whether, knows whether, asks if: the complement is
-      a question, not a proposition
+      asking — asks whether, asked who left: one asks someone, a communication (its content empty
+      when the question has no template); wondering or knowing whether stays here
     - >-
       an addressee — told Henrike that P, informed Marisol that P: a communication with a
       recipient of the message, not an attitude of the subject alone
@@ -101,8 +106,8 @@ slots:
   verb:    {type: lemma, class: Class, required: true, doc: "the attitude verb lemma, or the adjective of an adjectival attitude (is sure / aware / glad that P, is eager / ready to V), lemmatized; according_to for an attribution (according to X, P)"}
   holder:  {type: filler, class: Entity, role: Experiencer, required: true,
             doc: "who holds the attitude: the subject; for an attribution, the source named after according to (a person, a body, a document)"}
-  content: {type: refs, class: Proposition, required: true,
-            doc: "the complement clause: the ids of the instances that state it, that is its predication or the scope operator (negation, modal) over that predication; for an infinitival complement, its predication with the holder (or the object) as its actor; the referents it mentions are not listed — except an EVENT NOUN predicated of a place or a time by be (the closure was in the granary on Friday, Marisol said), which has no predication: list the eventive witness itself, and its place and time follow it into the seal; an EXISTENTIAL complement (Marisol suspects that there is a stork) is the indefinite witness itself, sealed whole — its existence is the claim; never an attachment (a time, an oblique, a purpose): it follows its head"}
+  content: {type: refs, class: Proposition, required: false,
+            doc: "the complement clause: the ids of the instances that state it, that is its predication or the scope operator (negation, modal) over that predication; for an infinitival complement, its predication with the holder (or the object) as its actor; the referents it mentions are not listed — except an EVENT NOUN predicated of a place or a time by be (the closure was in the granary on Friday, Marisol said), which has no predication: list the eventive witness itself, and its place and time follow it into the seal; an EXISTENTIAL complement (Marisol suspects that there is a stork) is the indefinite witness itself, sealed whole — its existence is the claim; never an attachment (a time, an oblique, a purpose): it follows its head. Left out when none of the complement can be kept (a question, a clause no template covers): the attitude alone, the complement reported as unmapped"}
   factive: {type: bool, required: true,
             doc: "true when the verb or adjective presupposes the complement (know, realize, discover, learn, notice, remember, regret; aware, glad, sorry, surprised, upset, proud, happy / angry that), false otherwise (believe, think, suppose, assume, suspect, doubt, hope, fear, expect, claim, say, want, wish, intend, plan, decide, promise, agree; sure, certain, confident, convinced, afraid, worried, and every adjective with a to-infinitive; an attribution, according_to)"}
   tense:   {type: enum, values: [past, present, future], required: true,
@@ -118,6 +123,7 @@ emits:
   - atom: "(Member @id {verb})"
   - atom: "(Experiencer @id {holder})"
   - atom: "(Theme @id {content})"           # the complement, sealed as one term
+    if_filled: content                      # none when nothing of it could be kept
   - atom: "{content}"                       # a factive's complement is presupposed: also stated flat,
     each: content                           # one statement per conjunct,
     when: "factive == true"
@@ -143,6 +149,12 @@ notes:
   - >-
     "say" and "claim" with a that-clause report a proposition on the subject's authority and
     belong here; with an addressee the clause is a communication.
+  - >-
+    A complement keeps what the whole sentence still says without its unmapped part (Unmapped
+    spans): the rest stays sealed and the part is reported. When none of it can be kept the
+    attitude stands alone with its content empty — still the claim that the holder said,
+    believes or wonders something, with its own time and place; a negated attitude with nothing
+    left to seal says nothing, so the whole clause is reported.
 
 depends_on: [named-entity, witness, transfer, negation, modal]     # what states the complement
 composes_with: [negation, modal, time]
@@ -217,6 +229,34 @@ examples:
         - {t: transfer, id: e1, verb: sell, giver: "@n2", object: "@x1", tense: past, span: "Odile sold the bobbin"}
         - {t: attitude, id: a1, verb: see, holder: "@n1", content: ["@e1"], factive: true,
            tense: past, span: "Pieter saw that Odile sold the bobbin"}
+    - category: positive
+      note: a question as the complement — the attitude alone, its content empty; the question reported as unmapped
+      text: "Henrike wonders whether Marisol locked the hut."
+      instances:
+        - {t: named-entity, id: n1, name: "Henrike", span: "Henrike"}
+        - {t: named-entity, id: n2, name: "Marisol", span: "Marisol"}
+        - {t: attitude, id: a1, verb: wonder, holder: "@n1", factive: false, tense: present, span: "Henrike wonders"}
+      unmapped:
+        - {span: "whether Marisol locked the hut", code: G00}
+      emitted:               # what the emitter produces (illustration; the emitter is the authority)
+        - "(Name sk_henrike_1 \"Henrike\")"
+        - "(Name sk_marisol_1 \"Marisol\")"
+        - "(Member sk_wonder_1 wonder)"
+        - "(Experiencer sk_wonder_1 sk_henrike_1)"
+      declarations:
+        - "(: sk_henrike_1 Entity)"
+        - "(: sk_marisol_1 Entity)"
+        - "(: sk_wonder_1 Event)"
+        - "(: wonder Class)"
+    - category: positive
+      note: a reported clause no template covers — the report stays with its content empty; the clause reported with the code of what blocks it
+      text: "Odile said that Pieter kept the hatch open."
+      instances:
+        - {t: named-entity, id: n1, name: "Odile", span: "Odile"}
+        - {t: named-entity, id: n2, name: "Pieter", span: "Pieter"}
+        - {t: attitude, id: a1, verb: say, holder: "@n1", factive: false, tense: past, span: "Odile said"}
+      unmapped:
+        - {span: "Pieter kept the hatch open", code: G09}
     - category: abstain
       text: "Pieter told Henrike that Odile sold the bobbin."
       expected: {abstain: true, template: communication}             # an addressee
@@ -381,9 +421,15 @@ examples:
     - category: abstain
       text: "Yusra knows Lamine."
       expected: {abstain: true, template: stative-relation}           # an entity object: acquaintance
-    - category: abstain
+    - category: positive
+      note: a question as the complement — the attitude alone, its content empty; the question reported
       text: "Teodor wonders whether Lamine sold the spindle."
-      expected: {abstain: true, gap: G00, span: "wonders whether Lamine sold the spindle"}   # interrogative complement
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: attitude, id: a1, verb: wonder, holder: "@n1", factive: false, tense: present}
+      unmapped:
+        - {span: "whether Lamine sold the spindle", code: G00}
     - category: positive
       note: the object acts in the complement
       text: "Teodor expects Lamine to come."
@@ -491,3 +537,71 @@ examples:
         - {t: witness, id: x2, class: ledger, definite: true}
         - {t: motion, id: m1, verb: escape, mover: "@x1", tense: past}
         - {t: attitude, id: a1, verb: according_to, holder: "@x2", content: ["@m1"], factive: false, tense: present}
+    - category: positive
+      note: a reported clause whose claim changes without the unmapped words — none of it kept, the report stays
+      text: "Yusra said that Teodor no longer mends nets."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: named-entity, id: n2, name: "Teodor"}
+        - {t: attitude, id: a1, verb: say, holder: "@n1", factive: false, tense: past}
+      unmapped:
+        - {span: "Teodor no longer mends nets", code: G00}
+    - category: abstain
+      note: a negated report with nothing left to seal says nothing — the whole clause reported
+      text: "Lamine never said that Ottoline no longer bakes loaves."
+      expected: {abstain: true, gap: G00, span: "never said that Ottoline no longer bakes loaves"}
+    - category: positive
+      note: an unless-condition in the reported clause — none of it kept; the report stays with its own time
+      text: "On Friday, Teodor said that the mill opens unless it rains."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: attitude, id: a1, verb: say, holder: "@n1", factive: false, tense: past}
+        - {t: time, id: t1, event: "@a1", weekday: friday}
+      unmapped:
+        - {span: "the mill opens unless it rains", code: G08}
+    - category: positive
+      note: an evaluative adverb inside the reported clause — the rest stays sealed, the adverb reported
+      text: "Lamine said that, luckily, Yusra sold the quilt."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: named-entity, id: n2, name: "Yusra"}
+        - {t: witness, id: x1, class: quilt, definite: true}
+        - {t: transfer, id: e1, verb: sell, giver: "@n2", object: "@x1", tense: past}
+        - {t: attitude, id: a1, verb: say, holder: "@n1", content: ["@e1"], factive: false, tense: past}
+      unmapped:
+        - {span: "luckily", code: G02}
+    - category: positive
+      note: an idiom added to the reported clause — the arriving stays sealed, the idiom reported
+      text: "Ottoline said that Teodor arrived in the nick of time."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: named-entity, id: n2, name: "Teodor"}
+        - {t: motion, id: m1, verb: arrive, mover: "@n2", tense: past}
+        - {t: attitude, id: a1, verb: say, holder: "@n1", content: ["@m1"], factive: false, tense: past}
+      unmapped:
+        - {span: "in the nick of time", code: G00}
+    - category: positive
+      note: the same kind of clause denied — denying it does not deny the arriving, so none of it is kept; the denial stays
+      text: "Yusra denied that Lamine arrived in the nick of time."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: attitude, id: a1, verb: deny, holder: "@n1", factive: false, tense: past}
+      unmapped:
+        - {span: "Lamine arrived in the nick of time", code: G00}
+    - category: positive
+      note: an infinitival complement no template covers — the promising stays, its content empty
+      text: "Ottoline promised to keep the shed open."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: attitude, id: a1, verb: promise, holder: "@n1", factive: false, tense: past}
+      unmapped:
+        - {span: "keep the shed open", code: G09}
+    - category: positive
+      note: an attribution whose clause no template covers — the source stays, its content empty
+      text: "According to Teodor, the old mill is safer."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: attitude, id: a1, verb: according_to, holder: "@n1", factive: false, tense: present}
+      unmapped:
+        - {span: "the old mill is safer", code: G01}

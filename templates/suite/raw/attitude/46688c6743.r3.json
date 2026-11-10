@@ -1,0 +1,117 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "b97641834ac85a974ffc64530f6dddebca20f68cc2629df7b23c58b5cc54f45b",
+  "item": {
+    "id": "s46688c6743",
+    "text": "Lamine said that, luckily, Yusra sold the quilt."
+  },
+  "usage": {
+    "input": 123372,
+    "output": 265,
+    "thinking": null,
+    "total": 123637,
+    "cached": 121321,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 123372,
+    "candidatesTokenCount": 265,
+    "totalTokenCount": 123637,
+    "cachedContentTokenCount": 121321,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 123372
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 121321
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 265
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s46688c6743\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"quilt\", \"definite\": true, \"span\": \"the quilt\"}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"sell\", \"giver\": \"@n2\", \"object\": \"@x1\", \"tense\": \"past\", \"span\": \"Yusra sold the quilt\"}, {\"t\": \"attitude\", \"id\": \"a1\", \"verb\": \"say\", \"holder\": \"@n1\", \"content\": [\"@e1\"], \"factive\": false, \"tense\": \"past\", \"span\": \"Lamine said that, luckily, Yusra sold the quilt\"}], \"unmapped\": [{\"span\": \"luckily\", \"code\": \"G02\", \"construction\": \"Evaluative adverb inside a reported clause.\"}], \"issues\": []}",
+  "response": {
+    "id": "s46688c6743",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "quilt",
+        "definite": true,
+        "span": "the quilt"
+      },
+      {
+        "t": "transfer",
+        "id": "e1",
+        "verb": "sell",
+        "giver": "@n2",
+        "object": "@x1",
+        "tense": "past",
+        "span": "Yusra sold the quilt"
+      },
+      {
+        "t": "attitude",
+        "id": "a1",
+        "verb": "say",
+        "holder": "@n1",
+        "content": [
+          "@e1"
+        ],
+        "factive": false,
+        "tense": "past",
+        "span": "Lamine said that, luckily, Yusra sold the quilt"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "luckily",
+        "code": "G02",
+        "construction": "Evaluative adverb inside a reported clause."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "0129bee729f0d2f81e29b6accfef9b0214884ca2d65381fd88cea9bdc596d7b8",
+  "manifest_id": "9b468a2f6140",
+  "run": 3,
+  "case": {
+    "template": "attitude",
+    "section": "held_out",
+    "index": 33,
+    "category": "positive",
+    "text": "Lamine said that, luckily, Yusra sold the quilt.",
+    "key": "46688c6743"
+  }
+}

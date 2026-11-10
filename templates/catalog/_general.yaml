@@ -21,8 +21,10 @@ intro:
   however obvious.
 - >-
   A stated restriction, hedge or qualifier is never silently dropped, because omitting it widens the claim.
-  Carry it with a template, or leave the WHOLE claim out and report the whole clause as unmapped. An unencodable
-  qualifier never becomes an unqualified statement.
+  Carry it with a template, or leave the WHOLE claim it restricts out and report that clause as unmapped. An
+  unencodable qualifier never becomes an unqualified statement. Inside a sealed clause (a reported or believed
+  clause, a complement) the claim it restricts is the sealed clause's own: the clause around it can still
+  stand (see *Unmapped spans*).
 output_contract:
 - 'For each item write ONE JSON object and nothing else:'
 - >
@@ -279,6 +281,20 @@ unmapped:
   and report the whole clause: a negated condition ("unless it rains, Odile sings"), an unencodable quantity
   ("too much salt"). An evaluative adverb ("unfortunately, Marisol left") leaves the clause entailed: keep the
   clause and report the adverb (G02).
+- >-
+  The same rule holds INSIDE a sealed clause (a reported or believed clause, a complement): keep in it what the
+  WHOLE SENTENCE still says without the unmapped part, and report that part ("Henrike said that, sadly, Pieter
+  sold the hatch" still says that Henrike said Pieter sold the hatch: report sadly, G02). Judge it on the whole
+  sentence, not on the sealed clause alone: after a denial, a doubt or a failure (denied that, doubts that,
+  failed to) a smaller clause no longer follows ("Odile denied that Pieter sold the hatch for a song" does not
+  say that she denied he sold it), so keep none of it. When none of the sealed clause can be kept, keep the
+  clause around it whenever the sentence still says it (its holder, speaker or agent, the verb, the tense, the
+  addressee, its own time and place) with its content or complement EMPTY, and report the sealed clause as one
+  unmapped span with the code of what blocks it: "Marisol said that the plan made sense" still says that
+  Marisol said something (the attitude alone; "the plan made sense" G00). A negated one says nothing
+  ("Marisol did not say that the plan made sense"): report the whole clause. A clause with no participant of
+  its own around the sealed one (began to, seems to, was allowed to) has nothing left to say: report the
+  whole clause.
 - >-
   Referents inside an unmapped span: a NAME still gets its instance (a name is rigid, the same individual
   wherever it appears in the text), but a common-noun phrase or a pronoun does not. A witness is introduced only by a clause a

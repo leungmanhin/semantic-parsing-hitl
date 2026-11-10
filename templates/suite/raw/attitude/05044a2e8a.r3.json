@@ -1,0 +1,98 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "b97641834ac85a974ffc64530f6dddebca20f68cc2629df7b23c58b5cc54f45b",
+  "item": {
+    "id": "s05044a2e8a",
+    "text": "Yusra denied that Lamine arrived in the nick of time."
+  },
+  "usage": {
+    "input": 123372,
+    "output": 196,
+    "thinking": null,
+    "total": 123568,
+    "cached": 121323,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 123372,
+    "candidatesTokenCount": 196,
+    "totalTokenCount": 123568,
+    "cachedContentTokenCount": 121323,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 123372
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 121323
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 196
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s05044a2e8a\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"attitude\", \"id\": \"a1\", \"verb\": \"deny\", \"holder\": \"@n1\", \"factive\": false, \"tense\": \"past\", \"span\": \"Yusra denied\"}], \"unmapped\": [{\"span\": \"Lamine arrived in the nick of time\", \"code\": \"G00\", \"construction\": \"A that-clause under 'deny' containing the temporal idiom 'in the nick of time', which cannot be dropped under a downward-entailing verb.\"}], \"issues\": []}",
+  "response": {
+    "id": "s05044a2e8a",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "attitude",
+        "id": "a1",
+        "verb": "deny",
+        "holder": "@n1",
+        "factive": false,
+        "tense": "past",
+        "span": "Yusra denied"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "Lamine arrived in the nick of time",
+        "code": "G00",
+        "construction": "A that-clause under 'deny' containing the temporal idiom 'in the nick of time', which cannot be dropped under a downward-entailing verb."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "0129bee729f0d2f81e29b6accfef9b0214884ca2d65381fd88cea9bdc596d7b8",
+  "manifest_id": "9b468a2f6140",
+  "run": 3,
+  "case": {
+    "template": "attitude",
+    "section": "held_out",
+    "index": 35,
+    "category": "positive",
+    "text": "Yusra denied that Lamine arrived in the nick of time.",
+    "key": "05044a2e8a"
+  }
+}

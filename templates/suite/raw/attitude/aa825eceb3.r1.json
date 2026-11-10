@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "282ecb7055f19a6ab9bcdeea5210dce3b02264a4dec67f4e321fa68d84ad557c",
+  "prompt_sha256": "b97641834ac85a974ffc64530f6dddebca20f68cc2629df7b23c58b5cc54f45b",
   "item": {
     "id": "saa825eceb3",
     "text": "Teodor wonders whether Lamine sold the spindle."
   },
   "usage": {
-    "input": 56507,
-    "output": 121,
+    "input": 123365,
+    "output": 166,
     "thinking": null,
-    "total": 56628,
-    "cached": 54457,
+    "total": 123531,
+    "cached": 121316,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -22,33 +22,34 @@
     "responseMimeType": "application/json",
     "thinkingConfig": {
       "thinkingLevel": "LOW"
-    }
+    },
+    "service_tier": "flex"
   },
   "raw_usage": {
-    "promptTokenCount": 56507,
-    "candidatesTokenCount": 121,
-    "totalTokenCount": 56628,
-    "cachedContentTokenCount": 54457,
+    "promptTokenCount": 123365,
+    "candidatesTokenCount": 166,
+    "totalTokenCount": 123531,
+    "cachedContentTokenCount": 121316,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 56507
+        "tokenCount": 123365
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 54457
+        "tokenCount": 121316
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 121
+        "tokenCount": 166
       }
     ]
   },
-  "raw_text": "{\"id\": \"saa825eceb3\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Lamine\", \"span\": \"Lamine\"}], \"unmapped\": [{\"span\": \"wonders whether Lamine sold the spindle\", \"code\": \"G00\", \"construction\": \"An attitude verb with an interrogative complement.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"saa825eceb3\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"attitude\", \"id\": \"a1\", \"verb\": \"wonder\", \"holder\": \"@n1\", \"factive\": false, \"tense\": \"present\", \"span\": \"Teodor wonders\"}], \"unmapped\": [{\"span\": \"whether Lamine sold the spindle\", \"code\": \"G00\", \"construction\": \"An embedded polar question introduced by 'whether'.\"}], \"issues\": []}",
   "response": {
     "id": "saa825eceb3",
     "instances": [
@@ -63,24 +64,34 @@
         "id": "n2",
         "name": "Lamine",
         "span": "Lamine"
+      },
+      {
+        "t": "attitude",
+        "id": "a1",
+        "verb": "wonder",
+        "holder": "@n1",
+        "factive": false,
+        "tense": "present",
+        "span": "Teodor wonders"
       }
     ],
     "unmapped": [
       {
-        "span": "wonders whether Lamine sold the spindle",
+        "span": "whether Lamine sold the spindle",
         "code": "G00",
-        "construction": "An attitude verb with an interrogative complement."
+        "construction": "An embedded polar question introduced by 'whether'."
       }
     ],
     "issues": []
   },
-  "prompt_body_sha256": "79893629ea5a1b2bda824f8f3750fda661e2a6b859302cbecd5389a48d33a9ea",
+  "prompt_body_sha256": "0129bee729f0d2f81e29b6accfef9b0214884ca2d65381fd88cea9bdc596d7b8",
+  "manifest_id": "9b468a2f6140",
   "run": 1,
   "case": {
     "template": "attitude",
     "section": "held_out",
-    "index": 11,
-    "category": "abstain",
+    "index": 15,
+    "category": "positive",
     "text": "Teodor wonders whether Lamine sold the spindle.",
     "key": "aa825eceb3"
   }

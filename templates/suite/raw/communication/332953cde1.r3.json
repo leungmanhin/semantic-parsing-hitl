@@ -1,0 +1,98 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "b97641834ac85a974ffc64530f6dddebca20f68cc2629df7b23c58b5cc54f45b",
+  "item": {
+    "id": "s332953cde1",
+    "text": "Ottoline asked Lamine whether the mill was open."
+  },
+  "usage": {
+    "input": 123368,
+    "output": 173,
+    "thinking": null,
+    "total": 123541,
+    "cached": 121319,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 123368,
+    "candidatesTokenCount": 173,
+    "totalTokenCount": 123541,
+    "cachedContentTokenCount": 121319,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 123368
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 121319
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 173
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s332953cde1\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"communication\", \"id\": \"e1\", \"verb\": \"ask\", \"speaker\": \"@n1\", \"addressee\": \"@n2\", \"tense\": \"past\", \"span\": \"Ottoline asked Lamine\"}], \"unmapped\": [{\"span\": \"whether the mill was open\", \"code\": \"G00\", \"construction\": \"An embedded yes/no question introduced by 'whether'.\"}], \"issues\": []}",
+  "response": {
+    "id": "s332953cde1",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Ottoline",
+        "span": "Ottoline"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "communication",
+        "id": "e1",
+        "verb": "ask",
+        "speaker": "@n1",
+        "addressee": "@n2",
+        "tense": "past",
+        "span": "Ottoline asked Lamine"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "whether the mill was open",
+        "code": "G00",
+        "construction": "An embedded yes/no question introduced by 'whether'."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "0129bee729f0d2f81e29b6accfef9b0214884ca2d65381fd88cea9bdc596d7b8",
+  "manifest_id": "9b468a2f6140",
+  "run": 3,
+  "case": {
+    "template": "communication",
+    "section": "held_out",
+    "index": 15,
+    "category": "positive",
+    "text": "Ottoline asked Lamine whether the mill was open.",
+    "key": "332953cde1"
+  }
+}

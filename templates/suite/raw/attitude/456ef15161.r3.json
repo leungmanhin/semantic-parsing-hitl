@@ -1,0 +1,89 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "b97641834ac85a974ffc64530f6dddebca20f68cc2629df7b23c58b5cc54f45b",
+  "item": {
+    "id": "s456ef15161",
+    "text": "Lamine never said that Ottoline no longer bakes loaves."
+  },
+  "usage": {
+    "input": 123371,
+    "output": 135,
+    "thinking": null,
+    "total": 123506,
+    "cached": 121322,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 123371,
+    "candidatesTokenCount": 135,
+    "totalTokenCount": 123506,
+    "cachedContentTokenCount": 121322,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 123371
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 121322
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 135
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s456ef15161\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}], \"unmapped\": [{\"span\": \"Lamine never said that Ottoline no longer bakes loaves\", \"code\": \"G00\", \"construction\": \"A negated reporting clause whose complement is an unmapped 'no longer' cessation construction.\"}], \"issues\": []}",
+  "response": {
+    "id": "s456ef15161",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Ottoline",
+        "span": "Ottoline"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "Lamine never said that Ottoline no longer bakes loaves",
+        "code": "G00",
+        "construction": "A negated reporting clause whose complement is an unmapped 'no longer' cessation construction."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "0129bee729f0d2f81e29b6accfef9b0214884ca2d65381fd88cea9bdc596d7b8",
+  "manifest_id": "9b468a2f6140",
+  "run": 3,
+  "case": {
+    "template": "attitude",
+    "section": "held_out",
+    "index": 31,
+    "category": "abstain",
+    "text": "Lamine never said that Ottoline no longer bakes loaves.",
+    "key": "456ef15161"
+  }
+}

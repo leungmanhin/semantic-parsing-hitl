@@ -1,0 +1,109 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "b97641834ac85a974ffc64530f6dddebca20f68cc2629df7b23c58b5cc54f45b",
+  "item": {
+    "id": "s21f08b2b77",
+    "text": "Ottoline said that Teodor arrived in the nick of time."
+  },
+  "usage": {
+    "input": 123372,
+    "output": 219,
+    "thinking": null,
+    "total": 123591,
+    "cached": 121323,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 123372,
+    "candidatesTokenCount": 219,
+    "totalTokenCount": 123591,
+    "cachedContentTokenCount": 121323,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 123372
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 121323
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 219
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s21f08b2b77\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"motion\", \"id\": \"e1\", \"verb\": \"arrive\", \"mover\": \"@n2\", \"tense\": \"past\", \"span\": \"Teodor arrived\"}, {\"t\": \"attitude\", \"id\": \"a1\", \"verb\": \"say\", \"holder\": \"@n1\", \"content\": [\"@e1\"], \"factive\": false, \"tense\": \"past\", \"span\": \"Ottoline said that Teodor arrived\"}], \"unmapped\": [{\"span\": \"in the nick of time\", \"code\": \"G00\", \"construction\": \"An idiomatic prepositional phrase of timing\"}], \"issues\": []}",
+  "response": {
+    "id": "s21f08b2b77",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Ottoline",
+        "span": "Ottoline"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "motion",
+        "id": "e1",
+        "verb": "arrive",
+        "mover": "@n2",
+        "tense": "past",
+        "span": "Teodor arrived"
+      },
+      {
+        "t": "attitude",
+        "id": "a1",
+        "verb": "say",
+        "holder": "@n1",
+        "content": [
+          "@e1"
+        ],
+        "factive": false,
+        "tense": "past",
+        "span": "Ottoline said that Teodor arrived"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "in the nick of time",
+        "code": "G00",
+        "construction": "An idiomatic prepositional phrase of timing"
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "0129bee729f0d2f81e29b6accfef9b0214884ca2d65381fd88cea9bdc596d7b8",
+  "manifest_id": "9b468a2f6140",
+  "run": 3,
+  "case": {
+    "template": "attitude",
+    "section": "held_out",
+    "index": 34,
+    "category": "positive",
+    "text": "Ottoline said that Teodor arrived in the nick of time.",
+    "key": "21f08b2b77"
+  }
+}
