@@ -1,0 +1,2090 @@
+{
+ "params": {
+  "datasets": [
+   "sick",
+   "mrpc"
+  ],
+  "beam": 64,
+  "steps": 400,
+  "min_confidence": 0.1,
+  "polarity_cut": 0.5,
+  "coref_threshold": 0.99,
+  "min_sole_families": 2,
+  "background": "facts + query-stage rules"
+ },
+ "align": {
+  "pairs": 8389,
+  "missing_parse": {
+   "sick/mine": 2123,
+   "mrpc/mine": 3245,
+   "mrpc/evaluate": 1759
+  },
+  "no_graph": {
+   "sick/evaluate": 49,
+   "sick/mine": 35,
+   "mrpc/mine": 25,
+   "mrpc/evaluate": 16
+  },
+  "sentences": 6354,
+  "jobs": 6354,
+  "queries": 127226,
+  "renaming_same": 8348,
+  "background": 302,
+  "closure_left_out": 13,
+  "seconds": 69.5,
+  "slow_pairs": [],
+  "params": {
+   "datasets": [
+    "sick",
+    "mrpc"
+   ],
+   "beam": 64,
+   "steps": 400,
+   "min_confidence": 0.1,
+   "polarity_cut": 0.5,
+   "coref_threshold": 0.99,
+   "min_sole_families": 2,
+   "background": "facts + query-stage rules"
+  }
+ },
+ "shares": {
+  "sick/mine": {
+   "pairs": 3594,
+   "pair_verdicts": {
+    "relatedness": 2687,
+    "unrelated": 294,
+    "contradiction": 310,
+    "one-way x>y": 142,
+    "one-way y>x": 23,
+    "equivalence": 138
+   },
+   "before": {
+    "directions": {
+     "contradicts / contradicts": 170,
+     "contradicts / fails": 1034,
+     "contradicts / holds": 2,
+     "entails / fails": 1041,
+     "entails / holds": 436,
+     "neutral / contradicts": 2,
+     "neutral / fails": 4500,
+     "neutral / holds": 3
+    },
+    "pairs": {
+     "contradiction / contradiction": 300,
+     "contradiction / equivalence": 1,
+     "contradiction / relatedness": 108,
+     "contradiction / unrelated": 76,
+     "entailment / equivalence": 137,
+     "entailment / one-way x>y": 142,
+     "entailment / one-way y>x": 23,
+     "entailment / relatedness": 708,
+     "entailment / unrelated": 8,
+     "neutral / contradiction": 10,
+     "neutral / relatedness": 1871,
+     "neutral / unrelated": 210
+    },
+    "scores": {
+     "holds_precision": 0.989,
+     "holds_recall": 0.295,
+     "holds": 441,
+     "entails": 1477,
+     "contradiction_precision": 0.968,
+     "contradiction_recall": 0.619,
+     "neutral_or_contradicts_holding": 5
+    }
+   }
+  },
+  "mrpc/mine": {
+   "pairs": 494,
+   "pair_verdicts": {
+    "relatedness": 396,
+    "unrelated": 47,
+    "one-way y>x": 22,
+    "one-way x>y": 21,
+    "contradiction": 1,
+    "equivalence": 7
+   },
+   "before": {
+    "directions": {
+     "non-paraphrase / fails": 326,
+     "non-paraphrase / holds": 18,
+     "paraphrase / contradicts": 1,
+     "paraphrase / fails": 604,
+     "paraphrase / holds": 39
+    },
+    "pairs": {
+     "non-paraphrase / equivalence": 2,
+     "non-paraphrase / one-way x>y": 5,
+     "non-paraphrase / one-way y>x": 9,
+     "non-paraphrase / relatedness": 140,
+     "non-paraphrase / unrelated": 16,
+     "paraphrase / contradiction": 1,
+     "paraphrase / equivalence": 5,
+     "paraphrase / one-way x>y": 16,
+     "paraphrase / one-way y>x": 13,
+     "paraphrase / relatedness": 256,
+     "paraphrase / unrelated": 31
+    },
+    "scores": {
+     "equivalence_precision": 0.714,
+     "equivalence_recall": 0.016,
+     "equivalent": 7,
+     "paraphrases": 322,
+     "non_paraphrase_equivalent": 2
+    }
+   }
+  },
+  "sick/evaluate": {
+   "pairs": 4039,
+   "pair_verdicts": {
+    "one-way x>y": 168,
+    "relatedness": 2969,
+    "unrelated": 348,
+    "contradiction": 373,
+    "equivalence": 154,
+    "one-way y>x": 27
+   },
+   "before": {
+    "directions": {
+     "contradicts / contradicts": 181,
+     "contradicts / fails": 1254,
+     "contradicts / holds": 5,
+     "entails / fails": 1232,
+     "entails / holds": 493,
+     "neutral / contradicts": 2,
+     "neutral / fails": 4906,
+     "neutral / holds": 5
+    },
+    "pairs": {
+     "contradiction / contradiction": 352,
+     "contradiction / one-way x>y": 2,
+     "contradiction / one-way y>x": 1,
+     "contradiction / relatedness": 128,
+     "contradiction / unrelated": 106,
+     "entailment / equivalence": 154,
+     "entailment / one-way x>y": 165,
+     "entailment / one-way y>x": 23,
+     "entailment / relatedness": 833,
+     "entailment / unrelated": 4,
+     "neutral / contradiction": 21,
+     "neutral / one-way x>y": 1,
+     "neutral / one-way y>x": 3,
+     "neutral / relatedness": 2008,
+     "neutral / unrelated": 238
+    },
+    "scores": {
+     "holds_precision": 0.98,
+     "holds_recall": 0.286,
+     "holds": 503,
+     "entails": 1725,
+     "contradiction_precision": 0.944,
+     "contradiction_recall": 0.598,
+     "neutral_or_contradicts_holding": 10
+    }
+   },
+   "after": {
+    "directions": {
+     "contradicts / contradicts": 181,
+     "contradicts / fails": 1254,
+     "contradicts / holds": 5,
+     "entails / fails": 1118,
+     "entails / holds": 607,
+     "neutral / contradicts": 2,
+     "neutral / fails": 4906,
+     "neutral / holds": 5
+    },
+    "pairs": {
+     "contradiction / contradiction": 352,
+     "contradiction / one-way x>y": 2,
+     "contradiction / one-way y>x": 1,
+     "contradiction / relatedness": 128,
+     "contradiction / unrelated": 106,
+     "entailment / equivalence": 178,
+     "entailment / one-way x>y": 226,
+     "entailment / one-way y>x": 28,
+     "entailment / relatedness": 743,
+     "entailment / unrelated": 4,
+     "neutral / contradiction": 21,
+     "neutral / one-way x>y": 1,
+     "neutral / one-way y>x": 3,
+     "neutral / relatedness": 2008,
+     "neutral / unrelated": 238
+    },
+    "scores": {
+     "holds_precision": 0.984,
+     "holds_recall": 0.352,
+     "holds": 617,
+     "entails": 1725,
+     "contradiction_precision": 0.944,
+     "contradiction_recall": 0.598,
+     "neutral_or_contradicts_holding": 10
+    }
+   }
+  },
+  "mrpc/evaluate": {
+   "pairs": 262,
+   "pair_verdicts": {
+    "relatedness": 202,
+    "one-way y>x": 18,
+    "unrelated": 33,
+    "equivalence": 6,
+    "one-way x>y": 3
+   },
+   "before": {
+    "directions": {
+     "non-paraphrase / fails": 176,
+     "non-paraphrase / holds": 8,
+     "paraphrase / fails": 315,
+     "paraphrase / holds": 25
+    },
+    "pairs": {
+     "non-paraphrase / equivalence": 1,
+     "non-paraphrase / one-way x>y": 1,
+     "non-paraphrase / one-way y>x": 5,
+     "non-paraphrase / relatedness": 67,
+     "non-paraphrase / unrelated": 18,
+     "paraphrase / equivalence": 5,
+     "paraphrase / one-way x>y": 2,
+     "paraphrase / one-way y>x": 13,
+     "paraphrase / relatedness": 135,
+     "paraphrase / unrelated": 15
+    },
+    "scores": {
+     "equivalence_precision": 0.833,
+     "equivalence_recall": 0.029,
+     "equivalent": 6,
+     "paraphrases": 170,
+     "non_paraphrase_equivalent": 1
+    }
+   },
+   "after": {
+    "directions": {
+     "non-paraphrase / fails": 176,
+     "non-paraphrase / holds": 8,
+     "paraphrase / fails": 314,
+     "paraphrase / holds": 26
+    },
+    "pairs": {
+     "non-paraphrase / equivalence": 1,
+     "non-paraphrase / one-way x>y": 1,
+     "non-paraphrase / one-way y>x": 5,
+     "non-paraphrase / relatedness": 67,
+     "non-paraphrase / unrelated": 18,
+     "paraphrase / equivalence": 5,
+     "paraphrase / one-way x>y": 3,
+     "paraphrase / one-way y>x": 13,
+     "paraphrase / relatedness": 134,
+     "paraphrase / unrelated": 15
+    },
+    "scores": {
+     "equivalence_precision": 0.833,
+     "equivalence_recall": 0.029,
+     "equivalent": 6,
+     "paraphrases": 170,
+     "non_paraphrase_equivalent": 1
+    }
+   }
+  }
+ },
+ "candidates": {
+  "by_status": {
+   "class/note": 2471,
+   "class/candidate": 207,
+   "class/rejected": 373,
+   "class/admitted": 21,
+   "substitution/note": 4136,
+   "substitution/rejected": 262,
+   "substitution/candidate": 108,
+   "substitution/admitted": 6
+  },
+  "admitted": [
+   "paraphrase-C000091",
+   "paraphrase-C000303",
+   "paraphrase-C000398",
+   "paraphrase-C000409",
+   "paraphrase-C000473",
+   "paraphrase-C000588",
+   "paraphrase-C000655",
+   "paraphrase-C000780",
+   "paraphrase-C001146",
+   "paraphrase-C001336",
+   "paraphrase-C001368",
+   "paraphrase-C001442",
+   "paraphrase-C001445",
+   "paraphrase-C001561",
+   "paraphrase-C001766",
+   "paraphrase-C002299",
+   "paraphrase-C002442",
+   "paraphrase-C002470",
+   "paraphrase-C003008",
+   "paraphrase-C003015",
+   "paraphrase-C003060",
+   "paraphrase-S003293",
+   "paraphrase-S003646",
+   "paraphrase-S004371",
+   "paraphrase-S004403",
+   "paraphrase-S004437",
+   "paraphrase-S004456"
+  ]
+ },
+ "changes": {
+  "directions": 115,
+  "by_label": {
+   "entails / holds": 114,
+   "paraphrase / holds": 1
+  },
+  "list": [
+   {
+    "pair": "sick-19",
+    "dataset": "sick",
+    "dir": "y>x",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A person in a black jacket is doing tricks on a motorbike",
+     "A man in a black jacket is doing tricks on a motorbike"
+    ],
+    "rules": [
+     "paraphrase-C001561"
+    ]
+   },
+   {
+    "pair": "sick-52",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "Kids in red shirts are playing in the leaves",
+     "Children in red shirts are playing in the leaves"
+    ],
+    "rules": [
+     "paraphrase-C001336"
+    ]
+   },
+   {
+    "pair": "sick-52",
+    "dataset": "sick",
+    "dir": "y>x",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "Kids in red shirts are playing in the leaves",
+     "Children in red shirts are playing in the leaves"
+    ],
+    "rules": [
+     "paraphrase-C000473"
+    ]
+   },
+   {
+    "pair": "sick-55",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "Three boys are jumping in the leaves",
+     "Three kids are jumping in the leaves"
+    ],
+    "rules": [
+     "paraphrase-C000303"
+    ]
+   },
+   {
+    "pair": "sick-98",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "Four kids are doing backbends in the park",
+     "Four children are doing backbends in the park"
+    ],
+    "rules": [
+     "paraphrase-C001336"
+    ]
+   },
+   {
+    "pair": "sick-98",
+    "dataset": "sick",
+    "dir": "y>x",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "Four kids are doing backbends in the park",
+     "Four children are doing backbends in the park"
+    ],
+    "rules": [
+     "paraphrase-C000473"
+    ]
+   },
+   {
+    "pair": "sick-167",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A boy is hitting a baseball",
+     "A child is hitting a baseball"
+    ],
+    "rules": [
+     "paraphrase-C000303",
+     "paraphrase-C001336"
+    ]
+   },
+   {
+    "pair": "sick-172",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A family is watching a boy who is hitting a baseball",
+     "A child is hitting a baseball"
+    ],
+    "rules": [
+     "paraphrase-C000303",
+     "paraphrase-C001336"
+    ]
+   },
+   {
+    "pair": "sick-177",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A family is watching a little boy who is hitting a baseball",
+     "A child is hitting a baseball"
+    ],
+    "rules": [
+     "paraphrase-C000303",
+     "paraphrase-C001336"
+    ]
+   },
+   {
+    "pair": "sick-473",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A boy is holding a squirt gun",
+     "A child is holding a squirt gun"
+    ],
+    "rules": [
+     "paraphrase-C000303",
+     "paraphrase-C001336"
+    ]
+   },
+   {
+    "pair": "sick-570",
+    "dataset": "sick",
+    "dir": "y>x",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A white and brown dog is walking through the water with difficulty",
+     "A white and brown dog is pacing through the water with difficulty"
+    ],
+    "rules": [
+     "paraphrase-C001766"
+    ]
+   },
+   {
+    "pair": "sick-587",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A bunch of boys are playing with a ball in front of a large door made of wood",
+     "The children are playing in front of a large door"
+    ],
+    "rules": [
+     "paraphrase-C000303",
+     "paraphrase-C001336"
+    ]
+   },
+   {
+    "pair": "sick-590",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A group of boys are playing with a ball in front of a large door made of wood",
+     "The children are playing in front of a large door"
+    ],
+    "rules": [
+     "paraphrase-C000303",
+     "paraphrase-C001336"
+    ]
+   },
+   {
+    "pair": "sick-794",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "Two men are walking two dogs with golden coats in the snow",
+     "Two people are walking two dogs with golden coats in the snow"
+    ],
+    "rules": [
+     "paraphrase-C001561"
+    ]
+   },
+   {
+    "pair": "sick-912",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A woman is being kissed by a man",
+     "A lady is being kissed by a man"
+    ],
+    "rules": [
+     "paraphrase-C003008"
+    ]
+   },
+   {
+    "pair": "sick-912",
+    "dataset": "sick",
+    "dir": "y>x",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A woman is being kissed by a man",
+     "A lady is being kissed by a man"
+    ],
+    "rules": [
+     "paraphrase-C001368"
+    ]
+   },
+   {
+    "pair": "sick-1121",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A dog is riding a skateboard",
+     "An animal is riding a skateboard"
+    ],
+    "rules": [
+     "paraphrase-C000780"
+    ]
+   },
+   {
+    "pair": "sick-1677",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "The man is pouring oil on a few tomatoes",
+     "One person pours oil on a few tomatoes"
+    ],
+    "rules": [
+     "paraphrase-C001561"
+    ]
+   },
+   {
+    "pair": "sick-1723",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A man is recklessly riding a horse",
+     "A person is recklessly riding a horse"
+    ],
+    "rules": [
+     "paraphrase-C001561"
+    ]
+   },
+   {
+    "pair": "sick-2188",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A few men are cheerfully playing cricket",
+     "People are playing cricket"
+    ],
+    "rules": [
+     "paraphrase-C001561"
+    ]
+   },
+   {
+    "pair": "sick-2190",
+    "dataset": "sick",
+    "dir": "y>x",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "People are playing cricket",
+     "A few men are playing cricket"
+    ],
+    "rules": [
+     "paraphrase-C001561"
+    ]
+   },
+   {
+    "pair": "sick-2349",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "The woman is adding cheese to the sauce",
+     "The lady is adding cheese to the sauce"
+    ],
+    "rules": [
+     "paraphrase-C003008"
+    ]
+   },
+   {
+    "pair": "sick-2349",
+    "dataset": "sick",
+    "dir": "y>x",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "The woman is adding cheese to the sauce",
+     "The lady is adding cheese to the sauce"
+    ],
+    "rules": [
+     "paraphrase-C001368"
+    ]
+   },
+   {
+    "pair": "sick-2389",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "The man is slicing the potato",
+     "The person is slicing the potato"
+    ],
+    "rules": [
+     "paraphrase-C001561"
+    ]
+   },
+   {
+    "pair": "sick-2391",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "The man is slicing a potato",
+     "The person is slicing the potato"
+    ],
+    "rules": [
+     "paraphrase-C001561"
+    ]
+   },
+   {
+    "pair": "sick-2584",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A person is slicing some mushrooms",
+     "A person is cutting some mushrooms"
+    ],
+    "rules": [
+     "paraphrase-C002442"
+    ]
+   },
+   {
+    "pair": "sick-2584",
+    "dataset": "sick",
+    "dir": "y>x",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A person is slicing some mushrooms",
+     "A person is cutting some mushrooms"
+    ],
+    "rules": [
+     "paraphrase-C000655"
+    ]
+   },
+   {
+    "pair": "sick-2829",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "The lady is penciling on eyeshadow",
+     "The woman is penciling on eyeshadow"
+    ],
+    "rules": [
+     "paraphrase-C001368"
+    ]
+   },
+   {
+    "pair": "sick-2829",
+    "dataset": "sick",
+    "dir": "y>x",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "The lady is penciling on eyeshadow",
+     "The woman is penciling on eyeshadow"
+    ],
+    "rules": [
+     "paraphrase-C003008"
+    ]
+   },
+   {
+    "pair": "sick-3111",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "The man is eating",
+     "The person is eating"
+    ],
+    "rules": [
+     "paraphrase-C001561"
+    ]
+   },
+   {
+    "pair": "sick-3113",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A man is eating some food",
+     "The person is eating"
+    ],
+    "rules": [
+     "paraphrase-C001561"
+    ]
+   },
+   {
+    "pair": "sick-3406",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A man is folding a tortilla",
+     "A tortilla is being folded by a person"
+    ],
+    "rules": [
+     "paraphrase-C001561"
+    ]
+   },
+   {
+    "pair": "sick-3408",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A man is slowly folding a tortilla",
+     "A person is folding a tortilla"
+    ],
+    "rules": [
+     "paraphrase-C001561"
+    ]
+   },
+   {
+    "pair": "sick-3410",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A man is folding a tortilla",
+     "A person is folding a tortilla"
+    ],
+    "rules": [
+     "paraphrase-C001561"
+    ]
+   },
+   {
+    "pair": "sick-4094",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A picture is being drawn by a man",
+     "The person is drawing"
+    ],
+    "rules": [
+     "paraphrase-C001561"
+    ]
+   },
+   {
+    "pair": "sick-4097",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A man is drawing a picture",
+     "The person is drawing"
+    ],
+    "rules": [
+     "paraphrase-C001561"
+    ]
+   },
+   {
+    "pair": "sick-4172",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A woman is cutting a vegetable",
+     "A woman is slicing a vegetable"
+    ],
+    "rules": [
+     "paraphrase-C000655"
+    ]
+   },
+   {
+    "pair": "sick-4172",
+    "dataset": "sick",
+    "dir": "y>x",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A woman is cutting a vegetable",
+     "A woman is slicing a vegetable"
+    ],
+    "rules": [
+     "paraphrase-C002442"
+    ]
+   },
+   {
+    "pair": "sick-4591",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "Some onions are being cut by a person",
+     "A person is slicing some onions"
+    ],
+    "rules": [
+     "paraphrase-C000655"
+    ]
+   },
+   {
+    "pair": "sick-4591",
+    "dataset": "sick",
+    "dir": "y>x",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "Some onions are being cut by a person",
+     "A person is slicing some onions"
+    ],
+    "rules": [
+     "paraphrase-C002442"
+    ]
+   },
+   {
+    "pair": "sick-4616",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A boy is cutting grass with scissors",
+     "A kid is cutting grass with scissors"
+    ],
+    "rules": [
+     "paraphrase-C000303"
+    ]
+   },
+   {
+    "pair": "sick-4777",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A little boy is playing a guitar",
+     "A young boy is playing a guitar"
+    ],
+    "rules": [
+     "paraphrase-C001445"
+    ]
+   },
+   {
+    "pair": "sick-4777",
+    "dataset": "sick",
+    "dir": "y>x",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A little boy is playing a guitar",
+     "A young boy is playing a guitar"
+    ],
+    "rules": [
+     "paraphrase-C003060"
+    ]
+   },
+   {
+    "pair": "sick-4869",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A woman is cutting potatoes",
+     "A woman is slicing potatoes"
+    ],
+    "rules": [
+     "paraphrase-C000655"
+    ]
+   },
+   {
+    "pair": "sick-4869",
+    "dataset": "sick",
+    "dir": "y>x",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A woman is cutting potatoes",
+     "A woman is slicing potatoes"
+    ],
+    "rules": [
+     "paraphrase-C002442"
+    ]
+   },
+   {
+    "pair": "sick-4923",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A person is cutting garlic into pieces with a knife",
+     "A person is slicing garlic into pieces with a knife"
+    ],
+    "rules": [
+     "paraphrase-C000655"
+    ]
+   },
+   {
+    "pair": "sick-4923",
+    "dataset": "sick",
+    "dir": "y>x",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A person is cutting garlic into pieces with a knife",
+     "A person is slicing garlic into pieces with a knife"
+    ],
+    "rules": [
+     "paraphrase-C002442"
+    ]
+   },
+   {
+    "pair": "sick-5293",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A woman is slicing a cucumber",
+     "A person is slicing a cucumber"
+    ],
+    "rules": [
+     "paraphrase-C003015"
+    ]
+   },
+   {
+    "pair": "sick-5482",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "The man is cracking eggs into a bowl",
+     "The person is cracking eggs into a bowl"
+    ],
+    "rules": [
+     "paraphrase-C001561"
+    ]
+   },
+   {
+    "pair": "sick-5527",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A woman is slicing tofu",
+     "A woman is cutting tofu"
+    ],
+    "rules": [
+     "paraphrase-C002442"
+    ]
+   },
+   {
+    "pair": "sick-5527",
+    "dataset": "sick",
+    "dir": "y>x",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A woman is slicing tofu",
+     "A woman is cutting tofu"
+    ],
+    "rules": [
+     "paraphrase-C000655"
+    ]
+   },
+   {
+    "pair": "sick-5671",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A small dog is lying on the bed",
+     "A small animal is lying on the bed"
+    ],
+    "rules": [
+     "paraphrase-C000780"
+    ]
+   },
+   {
+    "pair": "sick-5673",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A small dog is lying on a bed",
+     "A small animal is lying on the bed"
+    ],
+    "rules": [
+     "paraphrase-C000780"
+    ]
+   },
+   {
+    "pair": "sick-5678",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A woman is cutting butter",
+     "A woman is slicing butter"
+    ],
+    "rules": [
+     "paraphrase-C000655"
+    ]
+   },
+   {
+    "pair": "sick-5678",
+    "dataset": "sick",
+    "dir": "y>x",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A woman is cutting butter",
+     "A woman is slicing butter"
+    ],
+    "rules": [
+     "paraphrase-C002442"
+    ]
+   },
+   {
+    "pair": "sick-5772",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A man is riding an electric bicycle",
+     "A person is riding an electric bicycle"
+    ],
+    "rules": [
+     "paraphrase-C001561"
+    ]
+   },
+   {
+    "pair": "sick-5914",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A horse is being ridden by a person",
+     "A person is riding a horse"
+    ],
+    "rules": [
+     "paraphrase-S004403"
+    ]
+   },
+   {
+    "pair": "sick-5914",
+    "dataset": "sick",
+    "dir": "y>x",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A horse is being ridden by a person",
+     "A person is riding a horse"
+    ],
+    "rules": [
+     "paraphrase-S004456"
+    ]
+   },
+   {
+    "pair": "sick-6054",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "The little dog is grabbing the bedroom slipper with its mouth funnily",
+     "The little dog is grabbing the bedroom slipper with its mouth"
+    ],
+    "rules": [
+     "paraphrase-S004371"
+    ]
+   },
+   {
+    "pair": "sick-6375",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "The man is wearing a wetsuit and is riding a surfboard",
+     "The person is wearing a wetsuit and is riding a surfboard"
+    ],
+    "rules": [
+     "paraphrase-C001561"
+    ]
+   },
+   {
+    "pair": "sick-6415",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A bike is being ridden by a person",
+     "A person is riding a bike"
+    ],
+    "rules": [
+     "paraphrase-S004403"
+    ]
+   },
+   {
+    "pair": "sick-6415",
+    "dataset": "sick",
+    "dir": "y>x",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A bike is being ridden by a person",
+     "A person is riding a bike"
+    ],
+    "rules": [
+     "paraphrase-S004456"
+    ]
+   },
+   {
+    "pair": "sick-6497",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A man is holding up an electronic device",
+     "A person is holding up an electronic device"
+    ],
+    "rules": [
+     "paraphrase-C001561"
+    ]
+   },
+   {
+    "pair": "sick-6832",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "The kids are chasing each other in the sand",
+     "The children are chasing each other in the sand"
+    ],
+    "rules": [
+     "paraphrase-C001336"
+    ]
+   },
+   {
+    "pair": "sick-6832",
+    "dataset": "sick",
+    "dir": "y>x",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "The kids are chasing each other in the sand",
+     "The children are chasing each other in the sand"
+    ],
+    "rules": [
+     "paraphrase-C000473"
+    ]
+   },
+   {
+    "pair": "sick-6970",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A man in a red uniform is swiftly making a jump in a dirt bike race",
+     "A man in a red uniform is making a jump in a dirt bike race"
+    ],
+    "rules": [
+     "paraphrase-S003646"
+    ]
+   },
+   {
+    "pair": "sick-7028",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "Some children are playing on a playground",
+     "Some kids are playing on a playground"
+    ],
+    "rules": [
+     "paraphrase-C000473"
+    ]
+   },
+   {
+    "pair": "sick-7028",
+    "dataset": "sick",
+    "dir": "y>x",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "Some children are playing on a playground",
+     "Some kids are playing on a playground"
+    ],
+    "rules": [
+     "paraphrase-C001336"
+    ]
+   },
+   {
+    "pair": "sick-7182",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "Two little boys are wearing tuxedos",
+     "Two little kids are wearing tuxedos"
+    ],
+    "rules": [
+     "paraphrase-C000303"
+    ]
+   },
+   {
+    "pair": "sick-7284",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A woman in a fur hat and fur coat is standing outside a building",
+     "A lady in a fur hat and fur coat is standing outside a building"
+    ],
+    "rules": [
+     "paraphrase-C003008"
+    ]
+   },
+   {
+    "pair": "sick-7284",
+    "dataset": "sick",
+    "dir": "y>x",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A woman in a fur hat and fur coat is standing outside a building",
+     "A lady in a fur hat and fur coat is standing outside a building"
+    ],
+    "rules": [
+     "paraphrase-C001368"
+    ]
+   },
+   {
+    "pair": "sick-7433",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A man is sitting on a train and resting his hand against his face",
+     "The man is sitting on the train and resting his hand against his face"
+    ],
+    "rules": [
+     "paraphrase-S004437"
+    ]
+   },
+   {
+    "pair": "sick-7433",
+    "dataset": "sick",
+    "dir": "y>x",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A man is sitting on a train and resting his hand against his face",
+     "The man is sitting on the train and resting his hand against his face"
+    ],
+    "rules": [
+     "paraphrase-S004371"
+    ]
+   },
+   {
+    "pair": "sick-7692",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "One little boy with brown hair is jumping off of the brown chair onto the floor",
+     "A young boy is jumping off a chair"
+    ],
+    "rules": [
+     "paraphrase-C001445"
+    ]
+   },
+   {
+    "pair": "sick-7694",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A little boy with brown hair is jumping off of a brown chair onto the floor",
+     "A young boy is jumping off a chair"
+    ],
+    "rules": [
+     "paraphrase-C001445"
+    ]
+   },
+   {
+    "pair": "sick-7831",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "The brown dog is jumping in the air",
+     "The brown animal is jumping in the air"
+    ],
+    "rules": [
+     "paraphrase-C000780"
+    ]
+   },
+   {
+    "pair": "sick-7837",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A brown dog is jumping in the air",
+     "The brown animal is jumping in the air"
+    ],
+    "rules": [
+     "paraphrase-C000780"
+    ]
+   },
+   {
+    "pair": "sick-7858",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A man is riding a dirt bike down a dirt hill",
+     "A person is riding a dirt bike down a dirt hill"
+    ],
+    "rules": [
+     "paraphrase-C001561"
+    ]
+   },
+   {
+    "pair": "sick-7905",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A dog is jumping at a shiny blue soccer ball in a field of dry leaves",
+     "An animal is jumping at a shiny blue soccer ball in a field of dry leaves"
+    ],
+    "rules": [
+     "paraphrase-C000780"
+    ]
+   },
+   {
+    "pair": "sick-8030",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A little boy with a bib is watching the camera",
+     "A young boy with a bib is watching the camera"
+    ],
+    "rules": [
+     "paraphrase-C001445"
+    ]
+   },
+   {
+    "pair": "sick-8030",
+    "dataset": "sick",
+    "dir": "y>x",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A little boy with a bib is watching the camera",
+     "A young boy with a bib is watching the camera"
+    ],
+    "rules": [
+     "paraphrase-C003060"
+    ]
+   },
+   {
+    "pair": "sick-8046",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "Two men are carrying colorful baskets and blankets and walking near a building",
+     "Two people are carrying colorful baskets and blankets and walking near a building"
+    ],
+    "rules": [
+     "paraphrase-C001561"
+    ]
+   },
+   {
+    "pair": "sick-8073",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "Two boys in white outfits and red protective gear are sparring on a mat",
+     "Two children in white outfits and red protective gear are sparring on a mat"
+    ],
+    "rules": [
+     "paraphrase-C000303",
+     "paraphrase-C001336"
+    ]
+   },
+   {
+    "pair": "sick-8075",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "Two boys are doing martial arts on a blue mat",
+     "Two kids are doing martial arts on a blue mat"
+    ],
+    "rules": [
+     "paraphrase-C000303"
+    ]
+   },
+   {
+    "pair": "sick-8109",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "Two boys and a man are playing games at an arcade",
+     "Two kids and a man are playing games at an arcade"
+    ],
+    "rules": [
+     "paraphrase-C000303"
+    ]
+   },
+   {
+    "pair": "sick-8307",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "Children are being dressed in costumes and playing a game",
+     "Kids are being dressed in costumes and playing a game"
+    ],
+    "rules": [
+     "paraphrase-C000473"
+    ]
+   },
+   {
+    "pair": "sick-8307",
+    "dataset": "sick",
+    "dir": "y>x",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "Children are being dressed in costumes and playing a game",
+     "Kids are being dressed in costumes and playing a game"
+    ],
+    "rules": [
+     "paraphrase-C001336"
+    ]
+   },
+   {
+    "pair": "sick-8408",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A black dog is jumping from a dock into the water",
+     "A black animal is jumping from a dock into the water"
+    ],
+    "rules": [
+     "paraphrase-C000780"
+    ]
+   },
+   {
+    "pair": "sick-8433",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A boy is playing slip and slide in the grass",
+     "A child is playing slip and slide in the grass"
+    ],
+    "rules": [
+     "paraphrase-C000303",
+     "paraphrase-C001336"
+    ]
+   },
+   {
+    "pair": "sick-8435",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A child is splashing in a pool for children and other kids are playing in the background",
+     "A child is splashing in a pool for children and other children are playing in the background"
+    ],
+    "rules": [
+     "paraphrase-C001336"
+    ]
+   },
+   {
+    "pair": "sick-8435",
+    "dataset": "sick",
+    "dir": "y>x",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A child is splashing in a pool for children and other kids are playing in the background",
+     "A child is splashing in a pool for children and other children are playing in the background"
+    ],
+    "rules": [
+     "paraphrase-C000473"
+    ]
+   },
+   {
+    "pair": "sick-8460",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A man with a backwards hat is sitting on the ground",
+     "A person with a backwards hat is sitting on the ground"
+    ],
+    "rules": [
+     "paraphrase-C001561"
+    ]
+   },
+   {
+    "pair": "sick-8462",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A young man in a white shirt and gold and black hat is sitting with crossed legs",
+     "A young person in a white shirt and gold and black hat is sitting with crossed legs"
+    ],
+    "rules": [
+     "paraphrase-C001561"
+    ]
+   },
+   {
+    "pair": "sick-8504",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "The man is going into the water",
+     "The person is going into the water"
+    ],
+    "rules": [
+     "paraphrase-C001561"
+    ]
+   },
+   {
+    "pair": "sick-8595",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "Little boys are playing in a water fountain in front of lots of people",
+     "Little kids are playing in a water fountain in front of lots of people"
+    ],
+    "rules": [
+     "paraphrase-C000303"
+    ]
+   },
+   {
+    "pair": "sick-8705",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A shirtless man is posing with a girl who is hiking in a park",
+     "A shirtless person is posing with a girl who is hiking in a park"
+    ],
+    "rules": [
+     "paraphrase-C001561"
+    ]
+   },
+   {
+    "pair": "sick-8761",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A boy is wearing a yellow jacket and is jumping down from a rock",
+     "A child is wearing a yellow jacket and is jumping down from a rock"
+    ],
+    "rules": [
+     "paraphrase-C000303",
+     "paraphrase-C001336"
+    ]
+   },
+   {
+    "pair": "sick-8806",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A dog is swimming in a body of water",
+     "An animal is swimming in a body of water"
+    ],
+    "rules": [
+     "paraphrase-C000780"
+    ]
+   },
+   {
+    "pair": "sick-8813",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "Two dogs are running through the park",
+     "Two animals are running through the park"
+    ],
+    "rules": [
+     "paraphrase-C000780"
+    ]
+   },
+   {
+    "pair": "sick-8819",
+    "dataset": "sick",
+    "dir": "y>x",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "Two animals are running through the park",
+     "Two dogs are running quickly through a park"
+    ],
+    "rules": [
+     "paraphrase-C000780"
+    ]
+   },
+   {
+    "pair": "sick-8822",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A boy is speeding down a steep slide",
+     "A kid is speeding down a steep slide"
+    ],
+    "rules": [
+     "paraphrase-C000303"
+    ]
+   },
+   {
+    "pair": "sick-8894",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "Two people are riding motorbikes",
+     "Motorbikes are being ridden by two people"
+    ],
+    "rules": [
+     "paraphrase-S004403"
+    ]
+   },
+   {
+    "pair": "sick-8894",
+    "dataset": "sick",
+    "dir": "y>x",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "Two people are riding motorbikes",
+     "Motorbikes are being ridden by two people"
+    ],
+    "rules": [
+     "paraphrase-S004456"
+    ]
+   },
+   {
+    "pair": "sick-9006",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A man in a black hat is reaching for a box",
+     "A person in a black hat is reaching for a box"
+    ],
+    "rules": [
+     "paraphrase-C001561"
+    ]
+   },
+   {
+    "pair": "sick-9114",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "Two little boys are playing outside with a soccer ball on the green grass",
+     "Children are playing outside with a soccer ball on the green grass"
+    ],
+    "rules": [
+     "paraphrase-C000303",
+     "paraphrase-C001336"
+    ]
+   },
+   {
+    "pair": "sick-9166",
+    "dataset": "sick",
+    "dir": "y>x",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A brown and white animal is jumping on the sidewalk",
+     "A brown and white dog is jumping on the sidewalk"
+    ],
+    "rules": [
+     "paraphrase-C000780"
+    ]
+   },
+   {
+    "pair": "sick-9265",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "Two dogs are in a kennel on their hind legs and are facing one another",
+     "Two animals are in a kennel on their hind legs and are facing one another"
+    ],
+    "rules": [
+     "paraphrase-C000780"
+    ]
+   },
+   {
+    "pair": "sick-9283",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A man is snowboarding down a railing in the snow",
+     "A person is snowboarding down a railing in the snow"
+    ],
+    "rules": [
+     "paraphrase-C001561"
+    ]
+   },
+   {
+    "pair": "sick-9339",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A man is standing in the snow at the edge of a mountain",
+     "A person is standing in the snow at the edge of a mountain"
+    ],
+    "rules": [
+     "paraphrase-C001561"
+    ]
+   },
+   {
+    "pair": "sick-9413",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "Men in costumes are walking around in the street",
+     "People in costumes are walking around in the street"
+    ],
+    "rules": [
+     "paraphrase-C001561"
+    ]
+   },
+   {
+    "pair": "sick-9584",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "The woman is holding the paintbrush next to the artist's easel",
+     "The lady is holding the paintbrush next to the artist's easel"
+    ],
+    "rules": [
+     "paraphrase-C003008"
+    ]
+   },
+   {
+    "pair": "sick-9584",
+    "dataset": "sick",
+    "dir": "y>x",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "The woman is holding the paintbrush next to the artist's easel",
+     "The lady is holding the paintbrush next to the artist's easel"
+    ],
+    "rules": [
+     "paraphrase-C001368"
+    ]
+   },
+   {
+    "pair": "sick-9613",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "Two men are seated on a camel and another camel is in the foreground",
+     "Two people are seated on a camel and another camel is in the foreground"
+    ],
+    "rules": [
+     "paraphrase-C001561"
+    ]
+   },
+   {
+    "pair": "sick-9622",
+    "dataset": "sick",
+    "dir": "x>y",
+    "label": "entails",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "A man is wearing a blue shirt and walking barefoot on a tennis court",
+     "A person is wearing a blue shirt and walking barefoot on a tennis court"
+    ],
+    "rules": [
+     "paraphrase-C001561"
+    ]
+   },
+   {
+    "pair": "mrpc-test-0744",
+    "dataset": "mrpc",
+    "dir": "x>y",
+    "label": "paraphrase",
+    "before": "fails",
+    "after": "holds",
+    "texts": [
+     "Mr. Bremer said Iran continued to interfere in fledgling political reconstruction, including Tehran s intelligence service.",
+     "Mr. Bremer said that Iran, including its intelligence service, continued to interfere in fledgling political reconstruction."
+    ],
+    "rules": [
+     "paraphrase-S004371"
+    ]
+   }
+  ]
+ },
+ "contradiction_by": {
+  "sick/mine": {
+   "chainer": 168,
+   "alignment": 140,
+   "chainer+alignment": 2
+  },
+  "mrpc/mine": {
+   "chainer": 1
+  },
+  "sick/evaluate": {
+   "chainer": 181,
+   "alignment": 191,
+   "chainer+alignment": 1
+  },
+  "mrpc/evaluate": {}
+ }
+}

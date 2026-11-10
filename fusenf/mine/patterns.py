@@ -29,6 +29,7 @@ from __future__ import annotations
 
 import collections
 import itertools
+import math
 import re
 
 from . import lift as L
@@ -114,6 +115,8 @@ def _canon(ks: tuple) -> tuple[str, tuple[int, ...]]:
         colour = [repr((sk[i], [sig[v] for v in vs[i]])) for i in range(n)]
     idx = sorted(range(n), key=colour.__getitem__)
     groups = [list(g) for _, g in itertools.groupby(idx, key=colour.__getitem__)]
+    if math.prod(math.factorial(len(g)) for g in groups) > CANON_BUDGET:
+        return _canon_greedy(ks, groups)
     best, best_order = None, None
     for combo in itertools.product(*[itertools.permutations(g) for g in groups]):
         order = tuple(i for g in combo for i in g)
@@ -121,6 +124,25 @@ def _canon(ks: tuple) -> tuple[str, tuple[int, ...]]:
         if best is None or s < best:
             best, best_order = s, order
     return best, best_order
+
+
+CANON_BUDGET = 20000     # orders tried exhaustively; past it (only a large set of alike atoms — never a §5.1 pattern,
+#                          at most 5! orders) the order is built greedily
+
+
+def _canon_greedy(ks: tuple, groups: list[list[int]]) -> tuple[str, tuple[int, ...]]:
+    """The canonical form of a LARGE set of alike atoms (a sentence with four parallel distribution rules has 4!^4
+    exhaustive orders): colour group by colour group, the next atom is the one that gives the smallest renamed
+    prefix. It reads only the structure, so it does not depend on the names; it is not guaranteed to give two
+    renamings of one set the same string when a choice ties — such keys are rare, large and never executable."""
+    order: list[int] = []
+    for g in groups:
+        left = list(g)
+        while left:
+            nxt = min(left, key=lambda i: (L.canonical(SEP.join(ks[j] for j in order + [i])), i))
+            order.append(nxt)
+            left.remove(nxt)
+    return L.canonical(SEP.join(ks[i] for i in order)), tuple(order)
 
 
 def atoms_of(pattern: str) -> list[str]:

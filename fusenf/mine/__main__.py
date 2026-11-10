@@ -9,6 +9,14 @@
              → fusenf/runs/NAME/patterns.lexicalized.jsonl, patterns.shape.jsonl, patterns.report.json, patterns.md
              (§5.1: connected patterns with shared typed variables, their generalization and the two tests;
              the key dials are those of the run's lift)
+
+    paraphrase --run NAME [--step align|engine1|classify|engine2|admit|engine3|evaluate|all] [--parsed FILE …]
+             [--engine-python PY] [--workers 4] [--beam 64] [--steps 400] [--min-sole-families 2] [--limit N]
+             → fusenf/runs/NAME/paraphrase/ (pairs, sentences, each engine round's jobs and results, candidates),
+               fusenf/runs/NAME/paraphrase.md, paraphrase.report.json
+             (§5.4: the labelled pairs aligned, classified by the chainer, their residuals as invariance candidates
+             with the boundary check, and the evaluation share's verdicts before and after; the engine steps run with
+             the chainer environment's python, ``--engine-python`` or the variable PETTACHAINER_PYTHON)
 """
 from __future__ import annotations
 
@@ -100,6 +108,11 @@ def cmd_patterns(args) -> int:
     return 0
 
 
+def cmd_paraphrase(args) -> int:
+    from . import paraphrase as PA
+    return PA.main(args)
+
+
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(prog="python -m fusenf.mine", description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -123,8 +136,18 @@ def main(argv=None) -> int:
     q.add_argument("--keep", type=int, default=12, help="sample matches kept on a candidate")
     q.add_argument("--tests", default="full", choices=("full", "sample", "none"))
     q.add_argument("--summary-only", action="store_true", help="write patterns.md again from the run's files, without mining")
+    r = sub.add_parser("paraphrase", help="§5.4: the labelled pairs aligned and classified by the chainer, invariance candidates")
+    r.add_argument("--run", required=True, help="the run's folder name under fusenf/runs/")
+    r.add_argument("--step", default="all", choices=("align", "engine1", "classify", "engine2", "admit", "engine3", "evaluate", "all"))
+    r.add_argument("--parsed", nargs="+", default=None, help="parsed files (default: the inputs of the run's lift)")
+    r.add_argument("--engine-python", default=os.environ.get("PETTACHAINER_PYTHON"), help="the chainer environment's python")
+    r.add_argument("--workers", type=int, default=4)
+    r.add_argument("--beam", type=int, default=None, help="the alignment search's width (default 64)")
+    r.add_argument("--steps", type=int, default=None, help="the engine's steps per query (default 400)")
+    r.add_argument("--min-sole-families", type=int, default=None, help="admission: sole support in this many families (default 2)")
+    r.add_argument("--limit", type=int, default=None, help="the first N pairs only (a trial)")
     args = ap.parse_args(argv)
-    return {"lift": cmd_lift, "patterns": cmd_patterns}[args.cmd](args)
+    return {"lift": cmd_lift, "patterns": cmd_patterns, "paraphrase": cmd_paraphrase}[args.cmd](args)
 
 
 if __name__ == "__main__":
