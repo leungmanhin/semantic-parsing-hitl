@@ -143,6 +143,25 @@ class Asking(unittest.TestCase):
         self.assertFalse(any(isinstance(c, list) and c[:1] == ["Implication"] for c in rd["conjuncts"]))
         self.assertTrue(L.question(asked)["definitions"][0].startswith("(: "))
 
+    def test_an_asked_amount_answers_its_unit_apart(self):
+        """How much: the asked word fills the measure's magnitude and its unit (``asked_apart: unit``), two answer
+        variables; a unit the question names stays a word; a count is the group's Cardinality."""
+        def ask(word, measure):
+            return Q.ask([{"t": "wh", "id": "w1", "word": word}, {"t": "witness", "id": "x1", "class": "sack", "definite": True},
+                          {"t": "measure", "id": "m1", "bearer": "@x1", "head": "Measure", "dimension": "weight",
+                           "tense": "present", **measure}, {"t": "question", "id": "a1"}], CATALOG)
+        amount = ask("how much", {"magnitude": "@w1", "unit": "@w1"})
+        self.assertEqual([a["var"] for a in amount["asked"]], ["$how_much", "$how_much_unit"])
+        self.assertEqual(amount["asked"][1]["part"], "unit")
+        self.assertIn("(Measure $sack_1 weight $how_much $how_much_unit)", L.question(amount)["queries"][0])
+        named = ask("how many", {"magnitude": "@w1", "unit": "kilogram"})
+        self.assertEqual([a["var"] for a in named["asked"]], ["$how_many"])
+        self.assertIn("(Measure $sack_1 weight $how_many kilogram)", L.question(named)["queries"][0])
+        count = Q.ask([{"t": "wh", "id": "w1", "word": "how many"}, {"t": "group", "id": "g1", "class": "sack", "count": "@w1"},
+                       {"t": "copular", "id": "c1", "subject": "@g1", "predicate": "heavy", "form": "adjective", "tense": "present"},
+                       {"t": "question", "id": "a1"}], CATALOG)
+        self.assertIn("(Cardinality $group_1 $how_many)", L.question(count)["queries"][0])
+
 
 class QuestionsInABlock(unittest.TestCase):
     def test_a_question_sentence_asks_and_joins_nothing(self):

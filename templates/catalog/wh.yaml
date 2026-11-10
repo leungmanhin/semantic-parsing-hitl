@@ -6,7 +6,9 @@
 # for a class, a property, a relation or a verb (What is Yusra? How is Yusra related to Lamine?), the
 # wh fills that LEMMA slot as a reference: the answer is a word, not an individual (the one place a
 # lemma slot takes a reference). WHEN asks for the time of an event: the wh names the event, and the
-# program writes the time link (Time e w) as a time instance would.
+# program writes the time link (Time e w) as a time instance would. HOW MANY / HOW MUCH / HOW LONG …
+# ask for a number the text states: the wh fills a group's count or a measure's magnitude — and the
+# measure's unit too, which the program answers apart, so the answer is an amount (12 euro).
 
 id: wh
 family: referent
@@ -33,7 +35,14 @@ trigger:
     bearer of that relation: the stative relation with the noun as its relation, the wh the subject and X
     the object, no witness for the noun. WHEN asks for the time of an event: the wh's `event` names the
     predication, with no time instance. HOW asking for a manner (How did Pieter feed the stork?) fills the
-    manner template's word.
+    manner template's word. HOW MANY, or HOW with an adjective of measure (how much, how long, how old, how
+    tall, how high, how wide, how deep, how far), asks for a NUMBER, with the words in `word` (how many, how
+    much …): the wh fills the number slot as its reference. How many N: the group of the noun, its count the
+    wh (How many bobbins did Odile sell: the group of bobbins, "count": "@w1"). An amount: the measure, its
+    magnitude AND its unit the wh (How much did the lantern cost: "magnitude": "@w1", "unit": "@w1"), unless
+    the question names the unit (How many hours did Pieter wait: "unit": hour); its dimension the word a
+    statement would write (how long: duration for an event, long for a thing; how old: old; how much with
+    cost or weigh: cost or weight).
   surface_forms:
     - "Who / What <V> …?"                          # the wh fills the subject's slot
     - "Who / What did <X> <V>?"                    # the wh fills the object's slot
@@ -42,6 +51,8 @@ trigger:
     - "Where did <X> <V>? / Where is <X>?"         # the place of a location or of a locative
     - "When did <X> <V>?"                          # the wh's event: the predication
     - "What is <X>? / What is <X> to <Y>? / How is <X> related to <Y>?"   # the wh fills a lemma slot
+    - "How many <N> …?"                            # the wh fills the group's count
+    - "How much / How long / How old … …?"         # the wh fills a measure's magnitude and unit
   boundary:                   # looks like an asked word but is not one
     - >-
       a wh-word opening a relative clause — the badger which escaped, the hut where Femke slept: a relative
@@ -49,11 +60,11 @@ trigger:
     - >-
       a wh-word in an embedded question — Pieter asked who fed the stork: no wh instance (the question template)
     - >-
-      why, how many, how much, how long, how often: no wh instance yet; report the question as unmapped (G12)
+      why, how often: no wh instance yet; report the question as unmapped (G12)
 
 slots:
   id:    {type: id, required: true, doc: "your label for the asked word (w1, w2 …)"}
-  word:  {type: string, required: true, doc: "the wh-word as written, lowercase (who, whom, whose, what, which, where, when, how)"}
+  word:  {type: string, required: true, doc: "the wh-word as written, lowercase (who, whom, whose, what, which, where, when, how; how many, how much, how long, how old … with their second word)"}
   class: {type: lemma, class: Class, required: false, doc: "after which or what, the noun's lemma (which badger: badger)"}
   event: {type: filler, class: Event, attaches: true, required: false, only_when: "word == when",
           doc: "with when only: the predication whose time the question asks for"}
@@ -102,6 +113,23 @@ examples:
         - {t: motion, id: e1, verb: leave, mover: "@n1", tense: past, span: "did Femke leave"}
         - {t: wh, id: w1, word: when, event: "@e1", span: "When"}
         - {t: question, id: a1, span: "When did Femke leave?"}
+    - category: positive
+      note: how many — the wh is the group's count
+      text: "How many bobbins did Odile sell?"
+      instances:
+        - {t: wh, id: w1, word: "how many", span: "How many"}
+        - {t: group, id: g1, class: bobbin, count: "@w1", span: "How many bobbins"}
+        - {t: named-entity, id: n1, name: "Odile", span: "Odile"}
+        - {t: transfer, id: e1, verb: sell, giver: "@n1", object: "@g1", tense: past, span: "How many bobbins did Odile sell"}
+        - {t: question, id: a1, span: "How many bobbins did Odile sell?"}
+    - category: positive
+      note: how much — the wh is the measure's magnitude and its unit, the answer an amount
+      text: "How much did the lantern cost?"
+      instances:
+        - {t: wh, id: w1, word: "how much", span: "How much"}
+        - {t: witness, id: x1, class: lantern, definite: true, span: "the lantern"}
+        - {t: measure, id: m1, bearer: "@x1", head: Measure, dimension: cost, magnitude: "@w1", unit: "@w1", tense: past, span: "How much did the lantern cost"}
+        - {t: question, id: a1, span: "How much did the lantern cost?"}
 
   held_out:                  # tests; never rendered into the prompt
     - category: positive
@@ -169,4 +197,46 @@ examples:
         - {t: named-entity, id: n1, name: "Teodor"}
         - {t: wh, id: w1, word: what}
         - {t: activity, id: e1, verb: "@w1", actor: "@n1", tense: past}
+        - {t: question, id: a1}
+    - category: positive
+      note: how much with weigh — the dimension a statement would write, the wh the magnitude and the unit
+      text: "How much does the sack weigh?"
+      instances:
+        - {t: wh, id: w1, word: "how much"}
+        - {t: witness, id: x1, class: sack, definite: true}
+        - {t: measure, id: m1, bearer: "@x1", head: Measure, dimension: weight, magnitude: "@w1", unit: "@w1", tense: present}
+        - {t: question, id: a1}
+    - category: positive
+      note: how long with an event — a duration on the sleeping
+      text: "How long did Yusra sleep?"
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: wh, id: w1, word: "how long"}
+        - {t: activity, id: v1, verb: sleep, actor: "@n1", tense: past}
+        - {t: measure, id: m1, event: "@v1", head: Measure, dimension: duration, magnitude: "@w1", unit: "@w1"}
+        - {t: question, id: a1}
+    - category: positive
+      note: how long with a thing — its length, the adjective as written
+      text: "How long is the ladder?"
+      instances:
+        - {t: wh, id: w1, word: "how long"}
+        - {t: witness, id: x1, class: ladder, definite: true}
+        - {t: measure, id: m1, bearer: "@x1", head: Measure, dimension: long, magnitude: "@w1", unit: "@w1", tense: present}
+        - {t: question, id: a1}
+    - category: positive
+      note: how old — the age as a measure
+      text: "How old is Ottoline?"
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: wh, id: w1, word: "how old"}
+        - {t: measure, id: m1, bearer: "@n1", head: Measure, dimension: old, magnitude: "@w1", unit: "@w1", tense: present}
+        - {t: question, id: a1}
+    - category: positive
+      note: how many with a unit noun — the unit is named, so only the number is asked
+      text: "How many days did Teodor work?"
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: wh, id: w1, word: "how many"}
+        - {t: activity, id: v1, verb: work, actor: "@n1", tense: past}
+        - {t: measure, id: m1, event: "@v1", head: Measure, dimension: duration, magnitude: "@w1", unit: day}
         - {t: question, id: a1}

@@ -51,7 +51,7 @@ slots:
   class:      {type: lemma, class: Class, required: true, narrowed_by: [props, mods], doc: "the head noun's lemma, singular (badger)"}
   definite:  {type: bool, required: false, doc: "true for the / these / those / both; absent for a possessed group (the possessor presupposes it) and otherwise"}
   eventive:  {type: bool, required: false, doc: "true when the plural noun names events or periods and the clause puts them in time or place (the two inspections were on Friday; 28 deaths this year), as for a witness; absent otherwise"}
-  count:     {type: number, required: false, doc: "the exact size when a numeral or both states it (three → 3; both → 2); a bound or a range is count_min / count_max instead"}
+  count:     {type: number, required: false, doc: "the exact size when a numeral or both states it (three → 3; both → 2); a bound or a range is count_min / count_max instead; in a how-many question the asked word (\"@w1\")"}
   count_min: {type: number, required: false, doc: "a lower bound on the size: more than / over / at least 200 → 200; the low end of a range (300–400 → 300)"}
   count_max: {type: number, required: false, doc: "an upper bound on the size: up to / at most / as many as / fewer than / under 60 → 60; the high end of a range (300–400 → 400)"}
   quantity:  {type: string, required: false, doc: "the vague size phrase as written (several, a few, some, many, dozens, a lot, lots, plenty), a collective phrase included with its adjective (a group of, a large group of, a crowd of, a bunch of, a couple of, a herd of): a group of children is a group of class child, quantity a group of; absent when a numeral or both states the size"}

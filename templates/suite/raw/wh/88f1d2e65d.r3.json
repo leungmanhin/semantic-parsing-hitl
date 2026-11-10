@@ -1,0 +1,100 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "a4d88c938ebd69672685744df5fadc357c98773511f28af9e269e0064a6bfd64",
+  "item": {
+    "id": "s88f1d2e65d",
+    "text": "How long is the ladder?"
+  },
+  "usage": {
+    "input": 124371,
+    "output": 177,
+    "thinking": null,
+    "total": 124548,
+    "cached": 122322,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 124371,
+    "candidatesTokenCount": 177,
+    "totalTokenCount": 124548,
+    "cachedContentTokenCount": 122322,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 124371
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 122322
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 177
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s88f1d2e65d\", \"instances\": [{\"t\": \"wh\", \"id\": \"w1\", \"word\": \"how long\", \"span\": \"How long\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"ladder\", \"definite\": true, \"span\": \"the ladder\"}, {\"t\": \"measure\", \"id\": \"m1\", \"bearer\": \"@x1\", \"head\": \"Measure\", \"dimension\": \"long\", \"magnitude\": \"@w1\", \"unit\": \"@w1\", \"tense\": \"present\", \"span\": \"How long is the ladder\"}, {\"t\": \"question\", \"id\": \"a1\", \"span\": \"How long is the ladder?\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s88f1d2e65d",
+    "instances": [
+      {
+        "t": "wh",
+        "id": "w1",
+        "word": "how long",
+        "span": "How long"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "ladder",
+        "definite": true,
+        "span": "the ladder"
+      },
+      {
+        "t": "measure",
+        "id": "m1",
+        "bearer": "@x1",
+        "head": "Measure",
+        "dimension": "long",
+        "magnitude": "@w1",
+        "unit": "@w1",
+        "tense": "present",
+        "span": "How long is the ladder"
+      },
+      {
+        "t": "question",
+        "id": "a1",
+        "span": "How long is the ladder?"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "9aca7ced61a084b9f50ca71c26c5ffd1c489e921e5a60c55b978813e31fcbc45",
+  "manifest_id": "d6e644a29ea8",
+  "run": 3,
+  "case": {
+    "template": "wh",
+    "section": "held_out",
+    "index": 10,
+    "category": "positive",
+    "text": "How long is the ladder?",
+    "key": "88f1d2e65d"
+  }
+}

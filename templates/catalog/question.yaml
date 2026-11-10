@@ -45,10 +45,11 @@ trigger:
       a question tag after a statement — the badger is asleep, isn't it?: the statement as stated, the tag
       reported as unmapped (G02)
     - >-
-      a request worded as a question — Could you open the hatch?: report the TEXT as unmapped (G12)
+      a request worded as a question — Could you open the hatch?: the speaker asks the hearer to act, the
+      imperative template; no question instance (a question about the hearer — Can you whistle? — stays a question)
     - >-
-      a why, how many, how much, how long or how often question — Why did Pieter leave? How many storks did
-      Odile see?: no template states its answer yet; report the whole question as unmapped (G12)
+      a why or how often question — Why did Pieter leave? How often does Odile swim?: no template states its
+      answer yet; report the whole question as unmapped (G12)
 
 slots:
   id:      {type: id, required: true, doc: "your label for the question (a1)"}
@@ -189,10 +190,23 @@ examples:
         - {t: wh, id: w1, word: how}
         - {t: stative-relation, id: p1, relation: "@w1", subject: "@n1", object: "@n2", tense: present}
         - {t: question, id: a1}
-    - category: abstain
-      note: a how-many question — no template states a count of answers yet
+    - category: positive
+      note: a how-many question — the asked word fills the group's count
       text: "How many quilts did Lamine sell?"
-      expected: {abstain: true, gap: G12, span: "How many quilts did Lamine sell?"}
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: wh, id: w1, word: "how many"}
+        - {t: group, id: g1, class: quilt, count: "@w1"}
+        - {t: transfer, id: e1, verb: sell, giver: "@n1", object: "@g1", tense: past}
+        - {t: question, id: a1}
+    - category: positive
+      note: a question about the hearer's ability, not a request — the modal over the clause
+      text: "Can you swim?"
+      instances:
+        - {t: mention, id: m1, word: you}
+        - {t: activity, id: e1, verb: swim, actor: "@m1", tense: present}
+        - {t: modal, id: d1, head: Can, over: ["@e1"]}
+        - {t: question, id: a1}
     - category: abstain
       note: an embedded question is a statement about asking; the embedded question is reported
       text: "Yusra asked who mended the barn."

@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "12f5880a35c90ec1e11d06b3c54acc2d3465a1272ecfe4b95004d8d5f1288d2f",
+  "prompt_sha256": "a4d88c938ebd69672685744df5fadc357c98773511f28af9e269e0064a6bfd64",
   "item": {
     "id": "scbd95d0bff",
     "text": "How many quilts did Lamine sell?"
   },
   "usage": {
-    "input": 120583,
-    "output": 91,
+    "input": 124369,
+    "output": 197,
     "thinking": null,
-    "total": 120674,
-    "cached": 118534,
+    "total": 124566,
+    "cached": 122320,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -26,57 +26,78 @@
     "service_tier": "flex"
   },
   "raw_usage": {
-    "promptTokenCount": 120583,
-    "candidatesTokenCount": 91,
-    "totalTokenCount": 120674,
-    "cachedContentTokenCount": 118534,
+    "promptTokenCount": 124369,
+    "candidatesTokenCount": 197,
+    "totalTokenCount": 124566,
+    "cachedContentTokenCount": 122320,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 120583
+        "tokenCount": 124369
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 118534
+        "tokenCount": 122320
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 91
+        "tokenCount": 197
       }
     ]
   },
-  "raw_text": "{\"id\": \"scbd95d0bff\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}], \"unmapped\": [{\"span\": \"How many quilts did Lamine sell?\", \"code\": \"G12\", \"construction\": \"A how-many question asking for a count.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"scbd95d0bff\", \"instances\": [{\"t\": \"wh\", \"id\": \"w1\", \"word\": \"how many\", \"span\": \"How many\"}, {\"t\": \"group\", \"id\": \"g1\", \"class\": \"quilt\", \"count\": \"@w1\", \"span\": \"How many quilts\"}, {\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"sell\", \"giver\": \"@n1\", \"object\": \"@g1\", \"tense\": \"past\", \"span\": \"How many quilts did Lamine sell\"}, {\"t\": \"question\", \"id\": \"a1\", \"span\": \"How many quilts did Lamine sell?\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "scbd95d0bff",
     "instances": [
+      {
+        "t": "wh",
+        "id": "w1",
+        "word": "how many",
+        "span": "How many"
+      },
+      {
+        "t": "group",
+        "id": "g1",
+        "class": "quilt",
+        "count": "@w1",
+        "span": "How many quilts"
+      },
       {
         "t": "named-entity",
         "id": "n1",
         "name": "Lamine",
         "span": "Lamine"
-      }
-    ],
-    "unmapped": [
+      },
       {
-        "span": "How many quilts did Lamine sell?",
-        "code": "G12",
-        "construction": "A how-many question asking for a count."
+        "t": "transfer",
+        "id": "e1",
+        "verb": "sell",
+        "giver": "@n1",
+        "object": "@g1",
+        "tense": "past",
+        "span": "How many quilts did Lamine sell"
+      },
+      {
+        "t": "question",
+        "id": "a1",
+        "span": "How many quilts did Lamine sell?"
       }
     ],
+    "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "868e642e529b83a79c84d8d33a44dd6b836490bab06db8cfa8f54d1b23b1eb05",
-  "manifest_id": "1ce9518366dc",
+  "prompt_body_sha256": "9aca7ced61a084b9f50ca71c26c5ffd1c489e921e5a60c55b978813e31fcbc45",
+  "manifest_id": "d6e644a29ea8",
   "run": 3,
   "case": {
     "template": "question",
     "section": "held_out",
     "index": 8,
-    "category": "abstain",
+    "category": "positive",
     "text": "How many quilts did Lamine sell?",
     "key": "cbd95d0bff"
   }

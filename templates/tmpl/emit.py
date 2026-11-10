@@ -115,7 +115,10 @@ whose ``mints`` says ``asked: true`` is an ASKED referent (a wh-word: the thing 
 referents appear only in a question.  An asked referent may also fill a LEMMA slot, as a reference (``"relation":
 "@w1"``: the question asks for the class, the relation, the verb); every other lemma slot holds a word.  The emitter
 renders a question's instances like a statement's — the question's literal content, which ``tmpl.query`` turns into a
-query — and declares an asked referent in a lemma slot with that slot's class.  A ``lexicon`` test on a slot holding
+query — and declares an asked referent in a lemma slot with that slot's class.  An asked referent may fill a NUMBER
+slot the same way (``"count": "@w1"``: how many); in a slot marked ``asked_apart: <part>`` (a measure's unit beside
+its magnitude: how much, how long) it is rendered as ``<symbol>_<part>``, a variable of its own in the query, so the
+amount and its unit are two answers.  A ``lexicon`` test on a slot holding
 an asked word has no word to look up: it fails, unless the emitter is built with ``unknown_lexicon=True`` (every list
 then holds it); ``tmpl.query`` reads both outcomes.
 
@@ -271,8 +274,19 @@ class _Emitter:
         self.head_of: dict[str, str] = {}               # attachment instance -> the instance it attaches to
         self.attachments_of: dict[str, list[str]] = {}  # head instance -> its attachments, in order
         self.narrow: dict[str, dict] = {}               # instance -> its comparison class: {"term": …, "body": …}
+        self.asked_parts: dict[str, tuple] = {}         # a part of an asked word answered apart (a measure's unit) -> (wh, part)
 
     # ---------------------------------------------------------------- questions
+    def asked_part(self, ref, spec: dict) -> str | None:
+        """The symbol of an asked word in a slot answered APART (``asked_apart: <part>``: a measure's unit beside its
+        magnitude, one asked amount): the word's own symbol with the part's name, a variable of its own in the query."""
+        part = spec.get("asked_apart")
+        if not (part and is_ref(ref) and self.is_asked(ref[1:]) and ref[1:] in self.sym):
+            return None
+        s = f"{self.sym[ref[1:]]}_{part}"
+        self.asked_parts[s] = (ref[1:], part)
+        return s
+
     def is_asked(self, iid: str) -> bool:
         """An asked referent: the thing a question asks for (its template mints ``asked: true``)."""
         r = self.by_id.get(iid)
@@ -936,6 +950,9 @@ class _Emitter:
                 first = next((x for x in ([element] if element is not None else (v or [])) if is_ref(x)), None)
                 return self.content_symbol(first[1:]) if first else None
             return element if element is not None else self.bundle(v, inst["id"], spec, slot, part)
+        apart = self.asked_part(v, spec)
+        if apart is not None:                            # the asked amount's unit: a symbol (a variable) of its own
+            return apart
         if is_ref(v):
             if v[1:] not in self.sym:
                 raise EmitError([f"{inst['t']} {inst['id']}: slot {slot} names {v}, which mints no symbol of its own "
@@ -1357,6 +1374,9 @@ class _Emitter:
                         self.declare(self.sym[r["id"]], cls)
             for sname, spec in (t.get("slots") or {}).items():
                 v = r.get(sname)
+                if spec["type"] == "number" and is_ref(v) and self.is_asked(v[1:]) and v[1:] in self.sym:
+                    self.declare(self.sym[v[1:]], "Number")         # the asked word stands for a number (how many, how much)
+                    continue
                 if v is None or (spec["type"] not in ("filler", "lemma", "list")
                                  and not (spec["type"] == "enum" and spec.get("class"))):   # an enum of words that are symbols (a compass word)
                     continue
@@ -1365,7 +1385,8 @@ class _Emitter:
                     continue
                 for x in (v if isinstance(v, list) else [v]):
                     if is_ref(x) and spec["type"] == "lemma" and cls and self.is_asked(x[1:]) and x[1:] in self.sym:
-                        self.declare(self.sym[x[1:]], cls)          # the asked word stands for a word of the slot's class
+                        apart = self.asked_part(x, spec)            # a part answered apart (a unit) has a symbol of its own
+                        self.declare(apart or self.sym[x[1:]], cls)  # the asked word stands for a word of the slot's class
                         continue
                     if is_ref(x) or isinstance(x, (int, float)) or not cls:
                         continue

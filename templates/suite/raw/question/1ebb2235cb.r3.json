@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "12f5880a35c90ec1e11d06b3c54acc2d3465a1272ecfe4b95004d8d5f1288d2f",
+  "prompt_sha256": "b97641834ac85a974ffc64530f6dddebca20f68cc2629df7b23c58b5cc54f45b",
   "item": {
     "id": "s1ebb2235cb",
     "text": "Yusra asked who mended the barn."
   },
   "usage": {
-    "input": 120585,
-    "output": 97,
+    "input": 123365,
+    "output": 135,
     "thinking": null,
-    "total": 120682,
-    "cached": 118536,
+    "total": 123500,
+    "cached": 121316,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -26,30 +26,30 @@
     "service_tier": "flex"
   },
   "raw_usage": {
-    "promptTokenCount": 120585,
-    "candidatesTokenCount": 97,
-    "totalTokenCount": 120682,
-    "cachedContentTokenCount": 118536,
+    "promptTokenCount": 123365,
+    "candidatesTokenCount": 135,
+    "totalTokenCount": 123500,
+    "cachedContentTokenCount": 121316,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 120585
+        "tokenCount": 123365
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 118536
+        "tokenCount": 121316
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 97
+        "tokenCount": 135
       }
     ]
   },
-  "raw_text": "{\"id\": \"s1ebb2235cb\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}], \"unmapped\": [{\"span\": \"asked who mended the barn\", \"code\": \"G00\", \"construction\": \"A verb of asking with an embedded wh-question as its complement.\"}], \"issues\": []}",
+  "raw_text": "{\"id\": \"s1ebb2235cb\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"communication\", \"id\": \"c1\", \"verb\": \"ask\", \"speaker\": \"@n1\", \"tense\": \"past\", \"span\": \"Yusra asked\"}], \"unmapped\": [{\"span\": \"who mended the barn\", \"code\": \"G00\", \"construction\": \"An embedded wh-question as the complement of ask.\"}], \"issues\": []}",
   "response": {
     "id": "s1ebb2235cb",
     "instances": [
@@ -58,19 +58,27 @@
         "id": "n1",
         "name": "Yusra",
         "span": "Yusra"
+      },
+      {
+        "t": "communication",
+        "id": "c1",
+        "verb": "ask",
+        "speaker": "@n1",
+        "tense": "past",
+        "span": "Yusra asked"
       }
     ],
     "unmapped": [
       {
-        "span": "asked who mended the barn",
+        "span": "who mended the barn",
         "code": "G00",
-        "construction": "A verb of asking with an embedded wh-question as its complement."
+        "construction": "An embedded wh-question as the complement of ask."
       }
     ],
     "issues": []
   },
-  "prompt_body_sha256": "868e642e529b83a79c84d8d33a44dd6b836490bab06db8cfa8f54d1b23b1eb05",
-  "manifest_id": "1ce9518366dc",
+  "prompt_body_sha256": "0129bee729f0d2f81e29b6accfef9b0214884ca2d65381fd88cea9bdc596d7b8",
+  "manifest_id": "9b468a2f6140",
   "run": 3,
   "case": {
     "template": "question",

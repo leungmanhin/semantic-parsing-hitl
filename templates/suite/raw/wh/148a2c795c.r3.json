@@ -1,0 +1,99 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "a4d88c938ebd69672685744df5fadc357c98773511f28af9e269e0064a6bfd64",
+  "item": {
+    "id": "s148a2c795c",
+    "text": "How old is Ottoline?"
+  },
+  "usage": {
+    "input": 124371,
+    "output": 175,
+    "thinking": null,
+    "total": 124546,
+    "cached": 122322,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 124371,
+    "candidatesTokenCount": 175,
+    "totalTokenCount": 124546,
+    "cachedContentTokenCount": 122322,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 124371
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 122322
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 175
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s148a2c795c\", \"instances\": [{\"t\": \"wh\", \"id\": \"w1\", \"word\": \"how old\", \"span\": \"How old\"}, {\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"measure\", \"id\": \"m1\", \"bearer\": \"@n1\", \"head\": \"Measure\", \"dimension\": \"old\", \"magnitude\": \"@w1\", \"unit\": \"@w1\", \"tense\": \"present\", \"span\": \"How old is Ottoline\"}, {\"t\": \"question\", \"id\": \"a1\", \"span\": \"How old is Ottoline?\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s148a2c795c",
+    "instances": [
+      {
+        "t": "wh",
+        "id": "w1",
+        "word": "how old",
+        "span": "How old"
+      },
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Ottoline",
+        "span": "Ottoline"
+      },
+      {
+        "t": "measure",
+        "id": "m1",
+        "bearer": "@n1",
+        "head": "Measure",
+        "dimension": "old",
+        "magnitude": "@w1",
+        "unit": "@w1",
+        "tense": "present",
+        "span": "How old is Ottoline"
+      },
+      {
+        "t": "question",
+        "id": "a1",
+        "span": "How old is Ottoline?"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "9aca7ced61a084b9f50ca71c26c5ffd1c489e921e5a60c55b978813e31fcbc45",
+  "manifest_id": "d6e644a29ea8",
+  "run": 3,
+  "case": {
+    "template": "wh",
+    "section": "held_out",
+    "index": 11,
+    "category": "positive",
+    "text": "How old is Ottoline?",
+    "key": "148a2c795c"
+  }
+}

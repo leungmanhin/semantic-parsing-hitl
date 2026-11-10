@@ -15,7 +15,8 @@ their symbols. Then:
   mention's own atoms (its Name, its class) and the coref atom are dropped: the link did the identifying. A mention
   with two candidate antecedents gives one reading per candidate, the coref's strength its certainty.
 * VARIABLES — every symbol the question mints that resolution left becomes a variable: an asked word is an ANSWER
-  variable named by its word ($who, $which, $how …); an event, an indefinite, a name or a definite with no
+  variable named by its word ($who, $which, $how, $how_many …), and a part of it answered apart has its own (the
+  unit of an asked amount: $how_much_unit, from a slot marked ``asked_apart``); an event, an indefinite, a name or a definite with no
   antecedent is bound by its own atoms ((Name $lamine_1 "Lamine"), (Member $quilt_1 quilt)). A constant (a named
   time: yesterday) stays.
 * READINGS — a choice question has one reading per option: the option's atoms and the other atoms connected to them
@@ -133,6 +134,10 @@ def ask(own: list, catalog: dict | None = None, earlier: list | None = None, ref
                 var = f"{base}_{n}"
             taken.add(var)
             asked.append({"inst": r["id"], "word": r.get("word"), "class": r.get("class"), "var": var})
+    for _s, (iid, part) in sorted(em.asked_parts.items()):   # a part answered apart (an amount's unit): an answer variable of its own
+        whole = next((a for a in asked if a["inst"] == iid and not a.get("part")), None)
+        if whole and not any(a["inst"] == iid and a.get("part") == part for a in asked):
+            asked.append({"inst": iid, "word": whole["word"], "class": None, "var": f"{whole['var']}_{part}", "part": part})
     form = "choice" if options else "wh" if asked else "yes-no"
 
     coref_slots = _coref_slots(catalog)
@@ -190,9 +195,13 @@ def _reading(em, records: list, own: list, own_ids: set, asked: list, coref_inst
     dropped = set(coref_insts) | set(resolved)
     kept = [rec for rec in records if rec["inst"] not in dropped]
 
-    names = {a["inst"]: a["var"] for a in asked}
-    taken = set(names.values())
+    names = {a["inst"]: a["var"] for a in asked if not a.get("part")}
+    taken = {a["var"] for a in asked}
     variables: dict = {}
+    for s, (iid, part) in em.asked_parts.items():         # an asked amount's unit: its own variable
+        var = next((a["var"] for a in asked if a["inst"] == iid and a.get("part") == part), None)
+        if var:
+            variables[s] = var
     for r in own:
         iid = r["id"]
         s = sym.get(iid)

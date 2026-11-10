@@ -7,7 +7,8 @@
 # one, and with tense present (the bare verb). A negative imperative (don't, do not, never) is
 # the directive over the negation: (Directive (Not …)). A definite object named in the command is
 # a real referent at the top level; an indefinite one exists only inside the directive.
-# Politeness (please) is not recorded.
+# Politeness (please) is not recorded, and neither are the question words of a request worded as a
+# question (could you close the gate?): it is the same command.
 
 id: imperative
 family: scope
@@ -27,12 +28,16 @@ trigger:
     and wait) is one imperative instance over both predications. A command or request reported
     by a communication verb (asked Henrike to send the blanket, told Odile to lock the hut) is
     an imperative instance too — over the requested clause, whose actor is the addressee —
-    filling the communication's content.
+    filling the communication's content. A REQUEST worded as a question — could / would / can /
+    will you V …? asking the hearer to act (could you close the hatch, would you send Marisol the
+    blanket) — is this template as well: the question words, like please, are the request's form
+    and are not recorded; no question instance.
   surface_forms:
     - "<V> <object>."                                # Close the hatch.
     - "Don't / Do not / Never <V> …"                 # Don't touch the bobbin.
     - "<Name>, <V> …"                                # Pieter, wash the blanket: the vocative fills the actor
     - "Please <V> … / <V> …, please"                 # politeness, not recorded
+    - "Could / Would / Can / Will you <V> …?"        # a request worded as a question: the question words not recorded
   boundary:                   # looks like a command but is not one
     - >-
       a declarative with the same verb — Marisol closed the hatch, the blanket was washed: an
@@ -44,8 +49,8 @@ trigger:
       a reported command or request stands inside a communication — told Odile to lock the
       hut: the imperative instance is the communication's content, not a top-level directive
     - >-
-      a question that asks for an action — could you lock the hut?: a question; report it as
-      unmapped
+      a question ABOUT the hearer, not a request — can you whistle?, would you regret it?: the
+      hearer's ability or attitude is asked; a question (the question template)
     - >-
       a hortative — let's go to the bazaar, let us wait: the speaker is included; report it as
       unmapped
@@ -236,6 +241,21 @@ examples:
     - category: abstain
       text: "Let's go to the market."
       expected: {abstain: true, gap: G00, span: "Let's go to the market"}   # a hortative
-    - category: abstain
+    - category: positive
+      note: a request worded as a question — the command, the question words not recorded
       text: "Could you lock the shed?"
-      expected: {abstain: true, gap: G00, span: "Could you lock the shed"}  # a question asking for an action
+      instances:
+        - {t: witness, id: x1, class: shed, definite: true}
+        - {t: activity, id: v1, verb: lock, patient: "@x1", tense: present}
+        - {t: imperative, id: s1, over: ["@v1"]}
+    - category: positive
+      note: a request with would and a transfer — the hearer gives, so no giver
+      text: "Would you pass Lamine the thermos?"
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: x1, class: thermos, definite: true}
+        - {t: transfer, id: e1, verb: pass, recipient: "@n1", object: "@x1", tense: present}
+        - {t: imperative, id: s1, over: ["@e1"]}
+    - category: abstain
+      text: "Can you swim?"
+      expected: {abstain: true, template: question}                   # the hearer's ability asked, not a request

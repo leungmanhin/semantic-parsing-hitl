@@ -105,10 +105,10 @@ slots:
   head:      {type: enum, values: [Measure, MeasureAtLeast, MeasureAtMost, MeasureBy, MeasureFrom, MeasureTo], required: true,
               doc: "Measure for a stated value; MeasureAtLeast for at least / more than / over / above; MeasureAtMost for at most / no more than / less than / under / below / up to; MeasureBy for the amount of a change, MeasureFrom / MeasureTo for its start / end value (with event only)"}
   dimension: {type: lemma, class: Class, required: true,
-              doc: "the dimension word the text supplies: the adjective as written (long, tall, high, wide, deep, old) or the noun the clause gives (weight, cost, duration, population, price, temperature); unspecified when no word names it"}
-  magnitude: {type: number, required: true, doc: "the number as stated (40, 3000, 0.5, 7.5), number words converted; never a range"}
-  unit:      {type: lemma, class: Class, required: true,
-              doc: "the unit, singular and lowercase (metre, foot, kilogram, year, hour, florin, dollar, degree, percent); a rate as unit_per_unit (kilometre_per_hour); unspecified when no unit is stated"}
+              doc: "the dimension word the text supplies: the adjective as written (long, tall, high, wide, deep, old) or the noun the clause gives (weight, cost, duration, population, price, temperature); unspecified when no word names it. In a question, the word a statement would write: how long → duration for an event, long for a thing; how old → old; how much with cost or weigh → cost or weight"}
+  magnitude: {type: number, required: true, doc: "the number as stated (40, 3000, 0.5, 7.5), number words converted; never a range. In a question asking for an amount (how much, how long, how old, how many hours) the asked word (\"@w1\")"}
+  unit:      {type: lemma, class: Class, required: true, asked_apart: unit,
+              doc: "the unit, singular and lowercase (metre, foot, kilogram, year, hour, florin, dollar, degree, percent); a rate as unit_per_unit (kilometre_per_hour); unspecified when no unit is stated. In a question asking for an amount, the asked word too (\"@w1\": the answer is a number and its unit), unless the question names the unit (how many hours: hour)"}
   hedge:     {type: string, required: false,
               doc: "the approximation word as written (about, around, roughly, approximately, nearly, almost, some, or so); recorded, not rendered"}
   word:      {type: string, required: false,

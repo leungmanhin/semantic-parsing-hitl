@@ -38,7 +38,7 @@ CATALOG_DIR = os.path.abspath(os.path.join(HERE, os.pardir, "catalog"))
 SLOT_TYPES = {"id", "lemma", "filler", "refs", "enum", "bool", "string", "number", "int", "list"}
 CLASSED = {"lemma", "filler", "refs"}
 CATEGORIES = {"positive", "contrast", "scoped", "optional", "abstain"}
-SLOT_KEYS = {"type", "class", "role", "required", "default", "values", "doc", "consumes", "bind", "skolemize", "attaches", "bare_content", "participant", "as_variable", "state_variable", "narrowed_by", "stands_alone", "ids", "restriction", "only_when", "emit_as"}
+SLOT_KEYS = {"type", "class", "role", "required", "default", "values", "doc", "consumes", "bind", "skolemize", "attaches", "bare_content", "participant", "as_variable", "state_variable", "narrowed_by", "stands_alone", "ids", "restriction", "only_when", "emit_as", "asked_apart"}
 #: The trigger fields render_prompt renders: text under any other key would never reach the parser.
 TRIGGER_KEYS = {"construction", "verbs", "verbs_note", "surface_forms", "boundary"}
 #: A template's sections. The prompt renders title, trigger, slots, one_of, any_of and the shown

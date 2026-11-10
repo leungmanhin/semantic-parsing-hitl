@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 e26855d89ecc03f7 · 64 templates
+catalog sha256 e662cde58d3b6217 · 64 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -347,8 +347,8 @@ Codes:
   kept)
 - G11: a sentence that denies or corrects what an earlier sentence of the text stated (that is
   not so; in fact it was on Friday): the earlier sentence stays as it was parsed
-- G12: a question the question template does not ask yet — why, how many, how much, how long,
-  how often — or a request worded as a question (Could you open the hatch?): the whole question
+- G12: a question the question template does not ask yet — why, how often (Why did Pieter leave?
+  How often does Odile swim?): the whole question
 
 ## Reporting a problem with the instructions
 
@@ -410,7 +410,8 @@ Slots:
   clause puts them in time or place (the two inspections were on Friday; 28 deaths this year),
   as for a witness; absent otherwise.
 - `count` (optional; a number): the exact size when a numeral or both states it (three → 3; both
-  → 2); a bound or a range is count_min / count_max instead.
+  → 2); a bound or a range is count_min / count_max instead; in a how-many question the asked
+  word ("@w1").
 - `count_min` (optional; a number): a lower bound on the size: more than / over / at least 200 →
   200; the low end of a range (300–400 → 300).
 - `count_max` (optional; a number): an upper bound on the size: up to / at most / as many as /
@@ -803,7 +804,15 @@ relation, X the subject and Y the object. Who is X's <relative>? (Who is Anouk's
 the bearer of that relation: the stative relation with the noun as its relation, the wh the
 subject and X the object, no witness for the noun. WHEN asks for the time of an event: the wh's
 `event` names the predication, with no time instance. HOW asking for a manner (How did Pieter
-feed the stork?) fills the manner template's word.
+feed the stork?) fills the manner template's word. HOW MANY, or HOW with an adjective of measure
+(how much, how long, how old, how tall, how high, how wide, how deep, how far), asks for a
+NUMBER, with the words in `word` (how many, how much …): the wh fills the number slot as its
+reference. How many N: the group of the noun, its count the wh (How many bobbins did Odile sell:
+the group of bobbins, "count": "@w1"). An amount: the measure, its magnitude AND its unit the wh
+(How much did the lantern cost: "magnitude": "@w1", "unit": "@w1"), unless the question names
+the unit (How many hours did Pieter wait: "unit": hour); its dimension the word a statement
+would write (how long: duration for an event, long for a thing; how old: old; how much with cost
+or weigh: cost or weight).
 
 Forms:
 - Who / What <V> …?
@@ -813,21 +822,22 @@ Forms:
 - Where did <X> <V>? / Where is <X>?
 - When did <X> <V>?
 - What is <X>? / What is <X> to <Y>? / How is <X> related to <Y>?
+- How many <N> …?
+- How much / How long / How old … …?
 
 Not this template:
 - a wh-word opening a relative clause — the badger which escaped, the hut where Femke slept: a
   relative clause, no wh instance
 - a wh-word in an embedded question — Pieter asked who fed the stork: no wh instance (the
   question template)
-- why, how many, how much, how long, how often: no wh instance yet; report the question as
-  unmapped (G12)
+- why, how often: no wh instance yet; report the question as unmapped (G12)
 
 Slots:
 
 - `t` (required): "wh"
 - `id` (required; your label for this instance): your label for the asked word (w1, w2 …).
 - `word` (required; a string): the wh-word as written, lowercase (who, whom, whose, what, which,
-  where, when, how).
+  where, when, how; how many, how much, how long, how old … with their second word).
 - `class` (optional; a lemma): after which or what, the noun's lemma (which badger: badger).
 - `event` (optional; "@id" of the predication instance this attaches to): with when only: the
   predication whose time the question asks for.
@@ -877,6 +887,37 @@ Instances:
 The program asks the reasoner:
 
     (And (Name $femke_1 "Femke") (Member $leave_1 leave) (Agent $leave_1 $femke_1) (Past $leave_1) (Time $leave_1 $when))
+
+Example (how many — the wh is the group's count). TEXT: How many bobbins did Odile sell?
+
+Instances:
+
+    [
+      {"t": "wh", "id": "w1", "word": "how many", "span": "How many"},
+      {"t": "group", "id": "g1", "class": "bobbin", "count": "@w1", "span": "How many bobbins"},
+      {"t": "named-entity", "id": "n1", "name": "Odile", "span": "Odile"},
+      {"t": "transfer", "id": "e1", "verb": "sell", "giver": "@n1", "object": "@g1", "tense": "past", "span": "How many bobbins did Odile sell"},
+      {"t": "question", "id": "a1", "span": "How many bobbins did Odile sell?"}
+    ]
+
+The program asks the reasoner:
+
+    (And (GroupOf $group_1 bobbin) (Cardinality $group_1 $how_many) (Name $odile_1 "Odile") (Member $sell_1 sell) (Agent $sell_1 $odile_1) (Theme $sell_1 $group_1) (Past $sell_1))
+
+Example (how much — the wh is the measure's magnitude and its unit, the answer an amount). TEXT: How much did the lantern cost?
+
+Instances:
+
+    [
+      {"t": "wh", "id": "w1", "word": "how much", "span": "How much"},
+      {"t": "witness", "id": "x1", "class": "lantern", "definite": true, "span": "the lantern"},
+      {"t": "measure", "id": "m1", "bearer": "@x1", "head": "Measure", "dimension": "cost", "magnitude": "@w1", "unit": "@w1", "tense": "past", "span": "How much did the lantern cost"},
+      {"t": "question", "id": "a1", "span": "How much did the lantern cost?"}
+    ]
+
+The program asks the reasoner:
+
+    (And (Member $lantern_1 lantern) (Past (Measure $lantern_1 cost $how_much $how_much_unit)))
 
 ### witness — A common-noun phrase introducing an individual
 
@@ -3374,12 +3415,17 @@ Slots:
   only).
 - `dimension` (required; a lemma): the dimension word the text supplies: the adjective as
   written (long, tall, high, wide, deep, old) or the noun the clause gives (weight, cost,
-  duration, population, price, temperature); unspecified when no word names it.
+  duration, population, price, temperature); unspecified when no word names it. In a question,
+  the word a statement would write: how long → duration for an event, long for a thing; how old
+  → old; how much with cost or weigh → cost or weight.
 - `magnitude` (required; a number): the number as stated (40, 3000, 0.5, 7.5), number words
-  converted; never a range.
+  converted; never a range. In a question asking for an amount (how much, how long, how old, how
+  many hours) the asked word ("@w1").
 - `unit` (required; a lemma): the unit, singular and lowercase (metre, foot, kilogram, year,
   hour, florin, dollar, degree, percent); a rate as unit_per_unit (kilometre_per_hour);
-  unspecified when no unit is stated.
+  unspecified when no unit is stated. In a question asking for an amount, the asked word too
+  ("@w1": the answer is a number and its unit), unless the question names the unit (how many
+  hours: hour).
 - `hedge` (optional; a string): the approximation word as written (about, around, roughly,
   approximately, nearly, almost, some, or so); recorded, not rendered.
 - `word` (optional; a string): the wording that sets a bound or a change head, as written (at
@@ -4932,13 +4978,17 @@ clause and the imperative instance over the negation. A coordinated command (was
 and wait) is one imperative instance over both predications. A command or request reported by a
 communication verb (asked Henrike to send the blanket, told Odile to lock the hut) is an
 imperative instance too — over the requested clause, whose actor is the addressee — filling the
-communication's content.
+communication's content. A REQUEST worded as a question — could / would / can / will you V …?
+asking the hearer to act (could you close the hatch, would you send Marisol the blanket) — is
+this template as well: the question words, like please, are the request's form and are not
+recorded; no question instance.
 
 Forms:
 - <V> <object>.
 - Don't / Do not / Never <V> …
 - <Name>, <V> …
 - Please <V> … / <V> …, please
+- Could / Would / Can / Will you <V> …?
 
 Not this template:
 - a declarative with the same verb — Marisol closed the hatch, the blanket was washed: an
@@ -4947,8 +4997,8 @@ Not this template:
   leave: a norm over the clause, not a command
 - a reported command or request stands inside a communication — told Odile to lock the hut: the
   imperative instance is the communication's content, not a top-level directive
-- a question that asks for an action — could you lock the hut?: a question; report it as
-  unmapped
+- a question ABOUT the hearer, not a request — can you whistle?, would you regret it?: the
+  hearer's ability or attitude is asked; a question (the question template)
 - a hortative — let's go to the bazaar, let us wait: the speaker is included; report it as
   unmapped
 - a conditional command — if it rains, close the hatch: the command holds only under the
@@ -7697,10 +7747,11 @@ Not this template:
   embedded question reported as unmapped, G00)
 - a question tag after a statement — the badger is asleep, isn't it?: the statement as stated,
   the tag reported as unmapped (G02)
-- a request worded as a question — Could you open the hatch?: report the TEXT as unmapped (G12)
-- a why, how many, how much, how long or how often question — Why did Pieter leave? How many
-  storks did Odile see?: no template states its answer yet; report the whole question as
-  unmapped (G12)
+- a request worded as a question — Could you open the hatch?: the speaker asks the hearer to
+  act, the imperative template; no question instance (a question about the hearer — Can you
+  whistle? — stays a question)
+- a why or how often question — Why did Pieter leave? How often does Odile swim?: no template
+  states its answer yet; report the whole question as unmapped (G12)
 
 Slots:
 

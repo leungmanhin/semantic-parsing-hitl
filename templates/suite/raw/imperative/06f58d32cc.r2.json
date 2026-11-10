@@ -1,0 +1,100 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "a4d88c938ebd69672685744df5fadc357c98773511f28af9e269e0064a6bfd64",
+  "item": {
+    "id": "s06f58d32cc",
+    "text": "Can you swim?"
+  },
+  "usage": {
+    "input": 124368,
+    "output": 157,
+    "thinking": null,
+    "total": 124525,
+    "cached": 122319,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 124368,
+    "candidatesTokenCount": 157,
+    "totalTokenCount": 124525,
+    "cachedContentTokenCount": 122319,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 124368
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 122319
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 157
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s06f58d32cc\", \"instances\": [{\"t\": \"mention\", \"id\": \"m1\", \"word\": \"you\", \"span\": \"you\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"swim\", \"actor\": \"@m1\", \"tense\": \"present\", \"span\": \"Can you swim\"}, {\"t\": \"modal\", \"id\": \"s1\", \"over\": [\"@e1\"], \"head\": \"Can\", \"surface\": \"can\", \"span\": \"Can\"}, {\"t\": \"question\", \"id\": \"a1\", \"span\": \"Can you swim?\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s06f58d32cc",
+    "instances": [
+      {
+        "t": "mention",
+        "id": "m1",
+        "word": "you",
+        "span": "you"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "swim",
+        "actor": "@m1",
+        "tense": "present",
+        "span": "Can you swim"
+      },
+      {
+        "t": "modal",
+        "id": "s1",
+        "over": [
+          "@e1"
+        ],
+        "head": "Can",
+        "surface": "can",
+        "span": "Can"
+      },
+      {
+        "t": "question",
+        "id": "a1",
+        "span": "Can you swim?"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "9aca7ced61a084b9f50ca71c26c5ffd1c489e921e5a60c55b978813e31fcbc45",
+  "manifest_id": "d6e644a29ea8",
+  "run": 2,
+  "case": {
+    "template": "imperative",
+    "section": "held_out",
+    "index": 19,
+    "category": "abstain",
+    "text": "Can you swim?",
+    "key": "06f58d32cc"
+  }
+}

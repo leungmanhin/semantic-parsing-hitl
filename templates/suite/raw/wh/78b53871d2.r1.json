@@ -1,0 +1,100 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "a4d88c938ebd69672685744df5fadc357c98773511f28af9e269e0064a6bfd64",
+  "item": {
+    "id": "s78b53871d2",
+    "text": "How much does the sack weigh?"
+  },
+  "usage": {
+    "input": 124372,
+    "output": 179,
+    "thinking": null,
+    "total": 124551,
+    "cached": 122320,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 124372,
+    "candidatesTokenCount": 179,
+    "totalTokenCount": 124551,
+    "cachedContentTokenCount": 122320,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 124372
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 122320
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 179
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s78b53871d2\", \"instances\": [{\"t\": \"wh\", \"id\": \"w1\", \"word\": \"how much\", \"span\": \"How much\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"sack\", \"definite\": true, \"span\": \"the sack\"}, {\"t\": \"measure\", \"id\": \"m1\", \"bearer\": \"@x1\", \"head\": \"Measure\", \"dimension\": \"weight\", \"magnitude\": \"@w1\", \"unit\": \"@w1\", \"tense\": \"present\", \"span\": \"How much does the sack weigh\"}, {\"t\": \"question\", \"id\": \"a1\", \"span\": \"How much does the sack weigh?\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s78b53871d2",
+    "instances": [
+      {
+        "t": "wh",
+        "id": "w1",
+        "word": "how much",
+        "span": "How much"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "sack",
+        "definite": true,
+        "span": "the sack"
+      },
+      {
+        "t": "measure",
+        "id": "m1",
+        "bearer": "@x1",
+        "head": "Measure",
+        "dimension": "weight",
+        "magnitude": "@w1",
+        "unit": "@w1",
+        "tense": "present",
+        "span": "How much does the sack weigh"
+      },
+      {
+        "t": "question",
+        "id": "a1",
+        "span": "How much does the sack weigh?"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "9aca7ced61a084b9f50ca71c26c5ffd1c489e921e5a60c55b978813e31fcbc45",
+  "manifest_id": "d6e644a29ea8",
+  "run": 1,
+  "case": {
+    "template": "wh",
+    "section": "held_out",
+    "index": 8,
+    "category": "positive",
+    "text": "How much does the sack weigh?",
+    "key": "78b53871d2"
+  }
+}
