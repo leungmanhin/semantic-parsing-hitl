@@ -1,16 +1,26 @@
-"""§5.4 END TO END — paraphrase alignment: learn invariance and its boundaries together (the decisions of 2026-11-04).
+"""§5.4 END TO END — paraphrase alignment: learn invariance and its boundaries together (the decisions of 2026-11-04;
+the two-way unit on a yes / no label, 2026-11-12).
 
 THE INPUT is the labelled pairs of the paraphrase sets (``datasets/prepared/<dataset>.pairs.jsonl``: SICK, MRPC) whose
 two sentences both have a parse. The pairs of the MINING share propose; the pairs of the EVALUATION share (whole
 families held out) only measure. THE LABELS ARE FIELDS: they never enter the alignment, the classification or the
-proposal of a candidate; they mark the near-neighbours of the boundary check and score the evaluation.
+proposal of a candidate; they tell support from violation in the boundary check and score the evaluation.
+
+WHAT A LABEL CAN SAY (``LABELS``). Every paraphrase set gives the YES / NO of a pair — is it a paraphrase: does each
+sentence say what the other says (``yes_no``)? That is THE BASELINE: the method runs on it alone, and what it admits
+is the TWO-WAY REWRITE (kid ↔ child), an invariance. A set may say more. SICK labels each DIRECTION (entails / neutral
+/ contradicts; its yes = both directions entail), and what a direction adds is a BONUS: a sharper boundary for the
+same rewrites, the ONE-WAY FINDINGS (dog → animal: what follows, not what is the same — another kind of knowledge,
+kept apart and never admitted here), the per-direction and the contradiction scores. A set whose yes was given by a
+looser standard than equivalence (MRPC: "at a high level, mean the same thing") is named in the parameter
+``loose_yes``: its no still counts as a violation, its yes is not counted as support (a side view counts it).
 
     python -m fusenf.mine paraphrase --run NAME --step align      (our side: alignments, round-1 jobs)
     (engine) python -m fusenf.mine.chainer run …                 (round 1)
     python -m fusenf.mine paraphrase --run NAME --step classify   (verdicts, candidates, round-2 jobs)
     (engine) round 2
-    python -m fusenf.mine paraphrase --run NAME --step admit      (support, boundary, admission, round-3 jobs)
-    (engine) round 3
+    python -m fusenf.mine paraphrase --run NAME --step admit      (support, boundary, admission, the evaluation's jobs)
+    (engine) round 3, and the measurement rounds 4 and 5 where they apply
     python -m fusenf.mine paraphrase --run NAME --step evaluate   (the evaluation, the summary)
     python -m fusenf.mine paraphrase --run NAME --step all --engine-python <the chainer env's python>
 
@@ -26,21 +36,30 @@ THE STEPS
   3. CLASSIFY by the answers, per direction: HOLDS (every statement derived at its own polarity), CONTRADICTS (one
      derived at the opposite polarity, or an instance of a denial found), FAILS; per pair: EQUIVALENCE (both hold),
      ONE-WAY, CONTRADICTION, RELATEDNESS (neither holds, the core shares an atom), UNRELATED. Then the CANDIDATES the
-     mining pairs' residuals propose, per direction: a CLASS correspondence (kid → child) with one rule per position it
-     was seen at, a SUBSTITUTION with its rule; drops, flips and band differences propose nothing.
-  4. ROUND 2 — every mining direction that FAILS is asked again with its own residual's candidates as rules: does the
-     pair hold UNDER its residual?
-  5. ADMIT — a candidate is SUPPORTED by a direction that holds under it alone (SOLE) or with others (JOINT); it is
-     VIOLATED by a near-neighbour that holds under it alone in a direction the label denies (SICK: neutral or
-     contradiction in that direction; MRPC: a non-paraphrase that becomes equivalent); several candidates together
-     make a CONTACT, recorded. Admitted: sole support in ``min_sole_families`` families and no violation.
-  6. ROUND 3 — every evaluation direction that failed is asked again with the admitted candidates' rules.
-  7. EVALUATE — the chainer's verdicts against the human labels before and after: precision and recall of a holding
-     direction against entailment (SICK, per direction) and of equivalence against paraphrase (MRPC), the
-     contradictions found, and the do-no-harm count of directions labelled neutral or contradiction that come to hold.
+     mining pairs' residuals propose. Per direction, a ONE-WAY rewrite: a CLASS correspondence (kid → child) with one
+     rule per position it was seen at, a SUBSTITUTION with its rule; drops, flips and band differences propose
+     nothing. A rewrite and its reverse are one TWO-WAY UNIT (kid ↔ child): the candidate proper.
+  4. ROUND 2 — every mining direction that FAILS is asked again with its own residual's rewrites as rules: does it
+     hold UNDER its residual?
+  5. ADMIT (``admission``). THE BASELINE, on the yes / no label alone: a mining pair BECOMES EQUIVALENT under a unit
+     when both its directions hold (in round 1, or under the residual) and the rewrites used are that unit's alone.
+     Such a pair labelled yes SUPPORTS the unit (a loose yes is recorded apart and not counted); labelled no it is a
+     VIOLATION. Several units together make joint support or a CONTACT, recorded and never counted. THE BONUS, where
+     the labels have a direction: a direction the label denies that holds under ONE rewrite alone is a violation of
+     that rewrite's unit too. Admitted: a unit with rules both ways, counted support in ``min_sole_families`` families,
+     no violation. And a rewrite that alone carries directions labelled entailing in that many families, no direction
+     the label denies, whose unit is not admitted, is a ONE-WAY FINDING: written to a file of its own, not loaded.
+  6. ROUND 3 — every evaluation direction that failed is asked again with the admitted units' rules. Two MEASUREMENTS
+     ask the same questions under other rules, each only when it differs: ROUND 4 with the one-way findings' rules
+     added (what that kind would add), ROUND 5 with the units admitted when a loose yes counts (the side view).
+  7. EVALUATE against the human labels, before and after. For every set: the pair verdict EQUIVALENCE against the yes /
+     no label (precision, recall, the no pairs that become equivalent). Where the labels have a direction, also: a
+     holding direction against entailment, the contradictions found, and the do-no-harm count of directions labelled
+     neutral or contradiction that come to hold.
 
 Outputs: ``fusenf/runs/NAME/paraphrase/`` (pairs, sentences, the background, each round's jobs and results,
-candidates, support — regenerable) and ``fusenf/runs/NAME/paraphrase.md`` + ``paraphrase.report.json``.
+``candidates.jsonl`` = the two-way units, ``one_way.jsonl`` = the one-way findings — regenerable) and
+``fusenf/runs/NAME/paraphrase.md`` + ``paraphrase.report.json``.
 """
 from __future__ import annotations
 
@@ -52,7 +71,7 @@ import subprocess
 import sys
 import time
 
-from . import REPO, RUNS, align as AL, atoms as A, candidates as CD, generalize as G, lift as L
+from . import REPO, RUNS, align as AL, atoms as A, candidates as CD, chainer as CH, generalize as G, lift as L
 from tmpl import answers as ANS
 
 PAIR_FILES = {"sick": os.path.join(REPO, "datasets", "prepared", "sick.pairs.jsonl"),
@@ -64,11 +83,14 @@ DEFAULT = {
     "min_confidence": 0.1,             # an answer below this confidence is no evidence
     "polarity_cut": 0.5,               # a strength at or above it is positive
     "coref_threshold": 0.99,           # the resolved view's certain links (tmpl.reason)
-    "min_sole_families": 2,            # admission: sole support in this many mining families …
+    "min_sole_families": 2,            # admission: a unit alone makes yes pairs of this many mining families equivalent …
     #                                    … and no violation on a near-neighbour of the mining share
+    "loose_yes": ["mrpc"],             # sets whose yes was given by a looser standard than equivalence: not counted as support
     "background": "facts + query-stage rules",   # the kinship closure (forward-chained in tmpl.reason) is left out
 }
 DIRS = ("x>y", "y>x")
+LABELS = {"sick": {"directional": True},      # what a set's labels say BEYOND the pair's yes / no (module doc): SICK labels
+          "mrpc": {"directional": False}}     # each direction; MRPC gives the yes / no only
 
 
 def params_of(**overrides) -> dict:
@@ -79,6 +101,11 @@ def params_of(**overrides) -> dict:
 
 def _out(run: str) -> str:
     return os.path.join(RUNS, run, "paraphrase")
+
+
+def _json(path: str):
+    with open(path, encoding="utf-8") as fh:
+        return json.load(fh)
 
 
 def _jsonl(path: str) -> list[dict]:
@@ -452,6 +479,7 @@ def step_classify(run: str, params: dict) -> dict:
     # the candidates the mining pairs' residuals propose, per direction
     occ: dict = collections.defaultdict(list)
     rules: dict = collections.defaultdict(dict)
+    reverse: dict = {}                                    # a one-way candidate's key → the key of its reverse
     for pr in pairs:
         if pr["role"] != "mine":
             continue
@@ -459,12 +487,16 @@ def step_classify(run: str, params: dict) -> dict:
             fwd = dr == "x>y"
             for c in pr["edits"]["classes"]:
                 key = ("class", c["a"], c["b"]) if fwd else ("class", c["b"], c["a"])
+                reverse[key] = ("class", key[2], key[1])
                 occ[key].append({"pair": pr["pair"], "dir": dr, "family": pr["family"], "position": c["position"], "scope": c["scope"],
                                  "implied": c["implied"], "executable": c["executable"]})
                 if c["executable"]:
                     rules[key].setdefault(c["position"], c["rule"] if fwd else c["reverse_rule"])
             for s in pr["edits"]["substitutions"]:
                 key = ("substitution", s["key"] if fwd else s["reverse_key"])
+                back = ("substitution", s["reverse_key"] if fwd else s["key"])
+                if reverse.setdefault(key, back) != back:
+                    raise ValueError(f"a substitution with two reverses: {key[1][:120]}")
                 occ[key].append({"pair": pr["pair"], "dir": dr, "family": pr["family"], "executable": s["executable"]})
                 if s["executable"]:
                     rules[key].setdefault("rule", s["rule"] if fwd else s["reverse_rule"])
@@ -476,7 +508,7 @@ def step_classify(run: str, params: dict) -> dict:
     for key, oc in occ.items():
         texts = list(dict.fromkeys(rules[key].values()))      # one rule per text: the same rule twice would be revised twice
         named = [r.replace("(: RULE ", f"(: {_rule_name(r)} ", 1) for r in texts]
-        cands.append({"id": ids[key], "kind": key[0], "key": list(key[1:]), "rules": named,
+        cands.append({"id": ids[key], "kind": key[0], "key": list(key[1:]), "reverse": ids.get(reverse[key]), "rules": named,
                       "positions": dict(collections.Counter(o.get("position") for o in oc if o.get("position"))),
                       "occurrences": oc})
     cands.sort(key=lambda c: c["id"])
@@ -510,6 +542,11 @@ def step_classify(run: str, params: dict) -> dict:
 
 # ---------------------------------------------------------------------------------------------- step 5: admit
 
+def directional(pr: dict) -> bool:
+    """Do the pair's labels speak of each direction (entails / neutral / contradicts), beyond the pair's yes / no?"""
+    return bool((LABELS.get(pr["dataset"]) or {}).get("directional"))
+
+
 def label_of(pr: dict, dr: str) -> str:
     """The human label of one direction, as a word: entails / neutral / contradicts (SICK), or paraphrase /
     non-paraphrase for the pair (MRPC). A field: read by the boundary check and the evaluation only."""
@@ -520,182 +557,337 @@ def label_of(pr: dict, dr: str) -> str:
     return "paraphrase" if L.get("label") == 1 else "non-paraphrase"
 
 
-def step_admit(run: str, params: dict) -> dict:
-    out = _out(run)
-    pairs = {pr["pair"]: pr for pr in _jsonl(os.path.join(out, "pairs.jsonl"))}
-    verdicts = json.load(open(os.path.join(out, "verdicts1.json"), encoding="utf-8"))
-    cands = {c["id"]: c for c in _jsonl(os.path.join(out, "proposed.jsonl"))}
-    jobs = {j["id"]: j for j in _jsonl(os.path.join(out, "round2.jobs.jsonl"))}
-    answers = _results(os.path.join(out, "round2.results.jsonl"))
-    under: dict = {}                                    # (pair, dir) → (holds under its residual, the candidates used)
+def yes_no(pr: dict) -> bool:
+    """THE BASELINE LABEL, the one every paraphrase set gives: is the pair a paraphrase — does each sentence say what the
+    other says? Where the labels have a direction: both directions entail. Elsewhere: the set's own pair label."""
+    if directional(pr):
+        return label_of(pr, "x>y") == "entails" and label_of(pr, "y>x") == "entails"
+    return pr["labels"].get("label") == 1
+
+
+def units_of(cands: dict) -> dict:
+    """The TWO-WAY UNITS of the one-way candidates: a candidate with its reverse (``"reverse"``, set when they are
+    proposed), numbered in the order of the candidates' ids. ``{unit id: {"id", "kind", "members": [candidate ids]}}`` —
+    a member keeps its own one-way id."""
+    seen, units = set(), {}
+    for cid in sorted(cands):
+        if cid in seen:
+            continue
+        rev = cands[cid].get("reverse")
+        members = [cid] + ([rev] if rev and rev != cid and rev in cands else [])
+        seen.update(members)
+        uid = f"paraphrase-E{len(units) + 1:06d}"
+        units[uid] = {"id": uid, "kind": cands[cid]["kind"], "members": members}
+    return units
+
+
+def round2_verdicts(pairs: dict, jobs: dict, answers: dict, params: dict) -> dict:
+    """``(pair, direction)`` → (the direction holds under its residual, the one-way candidates of that residual)."""
+    under = {}
     for jid, j in jobs.items():
         pid, dr = jid[3:].rsplit("|", 1)
-        qs = [{"id": q["id"], "kind": "fact", "sign": next(x["sign"] for x in pairs[pid]["queries"][dr] if "r2:" + x["id"] == q["id"])}
-              for q in j["queries"]]
-        res = judge(qs, answers, params)
-        under[(pid, dr)] = (res["verdict"] == "holds", j["candidates"], res["verdict"])
-    support = {cid: {"sole": [], "joint": [], "violations": [], "contacts": []} for cid in cands}
+        sign = {"r2:" + x["id"]: x["sign"] for x in pairs[pid]["queries"][dr]}
+        qs = [{"id": q["id"], "kind": "fact", "sign": sign[q["id"]]} for q in j["queries"]]
+        under[(pid, dr)] = (judge(qs, answers, params)["verdict"] == "holds", list(j["candidates"]))
+    return under
+
+
+def _families(entries: list) -> list:
+    return sorted({e["family"] for e in entries})
+
+
+def admission(pairs: dict, verdicts: dict, cands: dict, under: dict, params: dict) -> dict:
+    """Step 5 on in-memory inputs (module doc): the events of the mining share, the status of every unit, the one-way
+    findings. ``pairs`` by pair id, ``verdicts`` = round 1, ``cands`` = the one-way candidates by id (each with its
+    ``reverse``), ``under`` = ``round2_verdicts``.
+
+    Returns ``{"units", "unit_of", "pair": {unit: {"sole", "loose", "joint", "violations", "contacts"}},
+    "direction": {candidate: {"sole", "joint", "violations", "contacts", "unlabelled"}}, "status": {unit: …},
+    "side_status": {unit: the status when a loose yes counts as support}, "one_way": [candidate ids]}``."""
+    units = units_of(cands)
+    unit_of = {m: uid for uid, u in units.items() for m in u["members"]}
+    loose = set(params.get("loose_yes") or [])
+    need = params["min_sole_families"]
+    U = {uid: {"sole": [], "loose": [], "joint": [], "violations": [], "contacts": []} for uid in units}
+    D = {cid: {"sole": [], "joint": [], "violations": [], "contacts": [], "unlabelled": []} for cid in cands}
 
     def holds(pid, dr):
         if verdicts[pid]["directions"][dr]["verdict"] == "holds":
             return True, []
-        h, used, _ = under.get((pid, dr), (False, [], None))
-        return h, used if h else []
-    for (pid, dr), (ok, used, _) in under.items():
-        if not ok:
-            continue
-        pr = pairs[pid]
-        entry = {"pair": pid, "dir": dr, "family": pr["family"], "label": label_of(pr, dr)}
-        for cid in used:
-            support[cid]["sole" if len(used) == 1 else "joint"].append(entry)
-        if pr["dataset"] == "sick" and label_of(pr, dr) != "entails":
-            for cid in used:
-                support[cid]["violations" if len(used) == 1 else "contacts"].append(entry)
-    for pid, pr in pairs.items():                        # MRPC: a non-paraphrase that becomes equivalent under a residual
-        if pr["dataset"] != "mrpc" or pr["role"] != "mine" or label_of(pr, "x>y") != "non-paraphrase":
+        h, used = under.get((pid, dr), (False, []))
+        return h, (used if h else [])
+    for pid, pr in pairs.items():
+        if pr["role"] != "mine":
             continue
         (h1, u1), (h2, u2) = holds(pid, "x>y"), holds(pid, "y>x")
-        if h1 and h2 and (u1 or u2):
-            used = sorted(set(u1) | set(u2))
-            entry = {"pair": pid, "dir": "both", "family": pr["family"], "label": "non-paraphrase"}
+        us = sorted({unit_of[c] for c in set(u1) | set(u2)})
+        if h1 and h2 and us:                                 # THE BASELINE: the pair becomes equivalent under these units
+            yes = yes_no(pr)
+            entry = {"pair": pid, "family": pr["family"], "dataset": pr["dataset"], "label": "yes" if yes else "no"}
+            if len(us) == 1:
+                U[us[0]]["violations" if not yes else "loose" if pr["dataset"] in loose else "sole"].append(entry)
+            else:
+                for uid in us:
+                    U[uid]["joint" if yes else "contacts"].append(entry)
+        for dr, h, used in (("x>y", h1, u1), ("y>x", h2, u2)):   # THE BONUS: one direction, under one-way candidates
+            if not (h and used):
+                continue
+            entry = {"pair": pid, "dir": dr, "family": pr["family"], "dataset": pr["dataset"], "label": label_of(pr, dr)}
+            alone = len(used) == 1
             for cid in used:
-                support[cid]["violations" if len(used) == 1 else "contacts"].append(entry)
-    admitted, status_count = [], collections.Counter()
-    records = []
-    for cid, c in sorted(cands.items()):
-        s = support[cid]
-        sole_f = sorted({e["family"] for e in s["sole"]})
-        if not c["rules"]:
-            status = "note"
-        elif s["violations"]:
-            status = "rejected"
-        elif len(sole_f) >= params["min_sole_families"]:
-            status = "admitted"
-        elif sole_f:
-            status = "candidate"
-        else:
-            status = "note"
-        status_count[(c["kind"], status)] += 1
-        if status == "admitted":
-            admitted.append(cid)
-        records.append(_record(run, c, s, status, pairs, params))
-    CD.write(records, os.path.join(out, "candidates.jsonl"))
-    rules = [r for cid in admitted for r in cands[cid]["rules"]]
+                if not directional(pr):
+                    if alone:
+                        D[cid]["unlabelled"].append(entry)    # no label speaks of this direction: recorded, never counted
+                elif entry["label"] == "entails":
+                    D[cid]["sole" if alone else "joint"].append(entry)
+                else:
+                    D[cid]["violations" if alone else "contacts"].append(entry)
+
+    def status(uid: str, count_loose: bool) -> str:
+        members = units[uid]["members"]
+        if not all(cands[m]["rules"] for m in members):
+            return "note"                                     # no rule in both directions: nothing to admit (a rewrite
+        #                                                       that is its own reverse, a swap, is a unit of one member)
+        if U[uid]["violations"] or any(D[m]["violations"] for m in members):
+            return "rejected"
+        fams = set(_families(U[uid]["sole"])) | (set(_families(U[uid]["loose"])) if count_loose else set())
+        return "admitted" if len(fams) >= need else "candidate" if fams else "note"
+    main = {uid: status(uid, False) for uid in units}
+    side = {uid: status(uid, True) for uid in units}
+    one_way = [cid for cid in sorted(cands)
+               if cands[cid]["rules"] and not D[cid]["violations"] and len(_families(D[cid]["sole"])) >= need
+               and main[unit_of[cid]] != "admitted"]
+    return {"units": units, "unit_of": unit_of, "pair": U, "direction": D, "status": main, "side_status": side, "one_way": one_way}
+
+
+def _name(c: dict, arrow: str = "→") -> str:
+    """A one-way candidate as words: ``dog → animal``; a substitution has no short name."""
+    return f" {arrow} ".join(c["key"]) if c["kind"] == "class" else ""
+
+
+def unit_name(unit: dict, cands: dict) -> str:
+    return _name(cands[unit["members"][0]], "↔") or unit["id"]
+
+
+KEY = {"alignment": "fusenf.mine.align", "polarity": "three", "tense": "key"}
+
+
+def _member(c: dict) -> dict:
+    out = {"id": c["id"], "rules": c["rules"], "positions": c["positions"]}
+    out.update({"from": c["key"][0], "to": c["key"][1]} if c["kind"] == "class" else {"atoms": c["key"][0].split(" & ")})
+    return out
+
+
+def _unit_record(run: str, unit: dict, adm: dict, cands: dict, pairs: dict, params: dict) -> dict:
+    """The shared candidate record (``fusenf.mine.candidates``) of one two-way unit."""
+    uid, members = unit["id"], [cands[m] for m in unit["members"]]
+    U, D = adm["pair"][uid], adm["direction"]
+    first = members[0]
+    atoms = [unit_name(unit, cands)] if unit["kind"] == "class" else first["key"][0].split(" & ")
+    rec = CD.new("paraphrase", int(uid[-6:]), atoms, "lexicalized", KEY, run, params, tag="E")
+    rec["pattern"].update({"kind": unit["kind"], "two_way": True, "members": [_member(c) for c in members]})
+    occ = [o for c in members for o in c["occurrences"]]
+    proposed = {o["pair"]: o for o in occ}
+    counted = _families(U["sole"])
+    rec["support"] = {"families": len(counted), "sole": {"families": len(counted), "pairs": len(U["sole"])},
+                      "loose": {"families": len(_families(U["loose"])), "pairs": len(U["loose"])},
+                      "joint": {"families": len(_families(U["joint"])), "pairs": len(U["joint"])},
+                      "proposed": {"families": len({o["family"] for o in occ}), "pairs": len(proposed),
+                                   "executable": len({o["pair"] for o in occ if o.get("executable")})},
+                      "datasets": dict(collections.Counter(pairs[p]["dataset"] for p in proposed))}
+    violating = [(e["pair"], e["label"], None) for e in U["violations"]] \
+        + [(e["pair"], e["label"], e["dir"]) for c in members for e in D[c["id"]]["violations"]]
+    supporting = [(e["pair"], e["label"], None) for e in U["sole"] + U["loose"] + U["joint"]]
+    proposing = [(p, "yes" if yes_no(pairs[p]) else "no", None) for p in proposed]
+    seen: set = set()                                     # the pairs that decided the status first, then the others
+    for pid, lab, dr in (violating + supporting if adm["status"][uid] == "rejected" else supporting + violating) + proposing:
+        if pid in seen or len(rec["matches"]) == 12:
+            continue
+        seen.add(pid)
+        pr = pairs[pid]
+        rec["matches"].append({"id": pid, "family": pr["family"], "dataset": pr["dataset"], "role": pr["role"], "texts": pr["texts"],
+                               "label": lab, **({"dir": dr} if dr else {})})
+    rec["evidence"] = {"directions": {c["id"]: {"entailing": {"families": len(_families(D[c["id"]]["sole"])), "directions": len(D[c["id"]]["sole"])},
+                                                "with_others": len(D[c["id"]]["joint"]), "unlabelled": len(D[c["id"]]["unlabelled"]),
+                                                "violations": len(D[c["id"]]["violations"])} for c in members},
+                       "scopes": dict(collections.Counter(o.get("scope") or "" for o in occ if "scope" in o)),
+                       "implied": sum(1 for o in occ if o.get("implied")), "families": sorted({o["family"] for o in occ})}
+    directional_v = {c["id"]: D[c["id"]]["violations"][:20] for c in members if D[c["id"]]["violations"]}
+    by = (["pair"] if U["violations"] else []) + (["direction"] if directional_v else [])
+    rec["tests"] = {"boundary": {"pass": not by, "by": by, "violations": U["violations"][:20], "n_violations": len(U["violations"]),
+                                 "directional": directional_v, "n_directional": sum(len(D[c["id"]]["violations"]) for c in members),
+                                 "contacts": U["contacts"][:20], "n_contacts": len(U["contacts"])}}
+    rec["status"] = adm["status"][uid]
+    rec["side"] = {"loose_yes_counted": adm["side_status"][uid]}
+    return rec
+
+
+def _one_way_record(run: str, c: dict, adm: dict, cands: dict, pairs: dict, params: dict) -> dict:
+    """The record of one ONE-WAY FINDING: its id is the one-way candidate's own; never admitted here."""
+    D, uid = adm["direction"], adm["unit_of"][c["id"]]
+    d = D[c["id"]]
+    atoms = [_name(c)] if c["kind"] == "class" else c["key"][0].split(" & ")
+    rec = CD.new("paraphrase", int(c["id"][-6:]), atoms, "lexicalized", KEY, run, params, tag="C" if c["kind"] == "class" else "S")
+    rec["pattern"].update({"one_way": True, "unit": uid, **{k: v for k, v in _member(c).items() if k != "id"}, "kind": c["kind"]})
+    fams = _families(d["sole"])
+    rec["support"] = {"families": len(fams), "sole": {"families": len(fams), "directions": len(d["sole"])},
+                      "joint": {"families": len(_families(d["joint"])), "directions": len(d["joint"])},
+                      "proposed": {"families": len({o["family"] for o in c["occurrences"]}), "directions": len(c["occurrences"])},
+                      "datasets": dict(collections.Counter(pairs[o["pair"]]["dataset"] for o in c["occurrences"]))}
+    for e in d["sole"][:12]:
+        pr = pairs[e["pair"]]
+        rec["matches"].append({"id": e["pair"], "family": pr["family"], "dataset": pr["dataset"], "role": pr["role"], "dir": e["dir"],
+                               "texts": pr["texts"], "label": e["label"]})
+    rev = c.get("reverse")
+    rec["evidence"] = {"families": fams,
+                       "reverse": {"id": rev, "violations": len(D[rev]["violations"]) if rev in D else 0,
+                                   "entailing_families": len(_families(D[rev]["sole"])) if rev in D else 0},
+                       "unit": {"id": uid, "status": adm["status"][uid], "violations": len(adm["pair"][uid]["violations"])}}
+    rec["tests"] = {"boundary": {"pass": True, "n_violations": 0, "contacts": d["contacts"][:20], "n_contacts": len(d["contacts"])}}
+    rec["status"] = "candidate"
+    return rec
+
+
+ROUNDS = {"after": 3, "with_one_way": 4, "loose_yes": 5}      # the views of the evaluation share and their engine rounds
+
+
+def step_admit(run: str, params: dict) -> dict:
+    out = _out(run)
+    pairs = {pr["pair"]: pr for pr in _jsonl(os.path.join(out, "pairs.jsonl"))}
+    verdicts = _json(os.path.join(out, "verdicts1.json"))
+    cands = {c["id"]: c for c in _jsonl(os.path.join(out, "proposed.jsonl"))}
+    jobs = {j["id"]: j for j in _jsonl(os.path.join(out, "round2.jobs.jsonl"))}
+    r2 = os.path.join(out, "round2.results.jsonl")
+    under = round2_verdicts(pairs, jobs, _results(r2), params)
+    adm = admission(pairs, verdicts, cands, under, params)
+    units = adm["units"]
+    CD.write([_unit_record(run, units[uid], adm, cands, pairs, params) for uid in units], os.path.join(out, "candidates.jsonl"))
+    CD.write([_one_way_record(run, cands[cid], adm, cands, pairs, params) for cid in adm["one_way"]], os.path.join(out, "one_way.jsonl"))
+    refused = {x["statement"] for r in _jsonl(r2) for x in r.get("refused") or []} if os.path.exists(r2) else set()
+
+    def rules_of(cids) -> list:
+        return [r for cid in cids for r in cands[cid]["rules"] if r not in refused]     # (each was loaded with the
+    #                                                              engine's check in round 2: a refused one stays out)
+    admitted = [uid for uid in units if adm["status"][uid] == "admitted"]
+    side = [uid for uid in units if adm["side_status"][uid] == "admitted"]
+    sets = {"after": rules_of(m for uid in admitted for m in units[uid]["members"]),
+            "with_one_way": rules_of([m for uid in admitted for m in units[uid]["members"]] + adm["one_way"]) if adm["one_way"] else [],
+            "loose_yes": rules_of(m for uid in side for m in units[uid]["members"]) if side != admitted else []}
     sents = {s["id"]: s for s in _jsonl(os.path.join(out, "sentences.jsonl"))}
     per_space: dict = collections.defaultdict(list)
-    for pid, pr in pairs.items():
-        if pr["role"] != "evaluate":
-            continue
-        for dr in DIRS:
-            v = verdicts[pid]["directions"][dr]
-            if v["verdict"] != "fails" or not rules:
+    if any(sets.values()):
+        for pid, pr in pairs.items():
+            if pr["role"] != "evaluate":
                 continue
-            premise = pr["x"] if dr == "x>y" else pr["y"]
-            per_space[premise] += [{"id": "r3:" + q["id"], "q": q["q"]} for q in pr["queries"][dr] if q["id"] in set(v["missing"])]
+            for dr in DIRS:
+                v = verdicts[pid]["directions"][dr]
+                if v["verdict"] == "fails":
+                    premise = pr["x"] if dr == "x>y" else pr["y"]
+                    per_space[premise] += [{"id": "r3:" + q["id"], "q": q["q"]} for q in pr["queries"][dr] if q["id"] in set(v["missing"])]
     n = _write_jsonl(os.path.join(out, "round3.jobs.jsonl"),
                      ({"id": f"r3:{s}", "statements": sents[s]["statements"], "queries": qs} for s, qs in sorted(per_space.items())))
-    refused = {x["statement"] for r in _jsonl(os.path.join(out, "round2.results.jsonl")) for x in r.get("refused") or []} \
-        if os.path.exists(os.path.join(out, "round2.results.jsonl")) else set()
-    background = json.load(open(os.path.join(out, "background.json"), encoding="utf-8"))
-    with open(os.path.join(out, "round3.background.json"), "w", encoding="utf-8") as fh:   # the admitted rules beside the
-        json.dump(background + [r for r in rules if r not in refused], fh, ensure_ascii=False, indent=0)   # background: each
-    #                                               was already loaded with the engine's check in round 2, none refused
+    background = _json(os.path.join(out, "background.json"))
+    for view, rnd in ROUNDS.items():                           # a round is asked only when its rules exist: its
+        bg = os.path.join(out, f"round{rnd}.background.json")  # background file is the sign
+        if sets[view]:
+            with open(bg, "w", encoding="utf-8") as fh:
+                json.dump(background + sets[view], fh, ensure_ascii=False, indent=0)
+        else:
+            for stale in (bg, os.path.join(out, f"round{rnd}.results.jsonl")):
+                if os.path.exists(stale):
+                    os.unlink(stale)
     with open(os.path.join(out, "admitted.json"), "w", encoding="utf-8") as fh:
-        json.dump({"admitted": admitted, "rules": rules}, fh, ensure_ascii=False, indent=1)
-    return {"status": {f"{k}/{s}": n_ for (k, s), n_ in sorted(status_count.items())}, "admitted": len(admitted), "rules": len(rules),
-            "round3_jobs": n, "round2_directions": len(under), "round2_hold": sum(1 for v in under.values() if v[0])}
-
-
-def _record(run: str, c: dict, s: dict, status: str, pairs: dict, params: dict) -> dict:
-    """The shared candidate record (``fusenf.mine.candidates``) of one §5.4 candidate."""
-    n = int(c["id"][-6:])
-    if c["kind"] == "class":
-        atoms = [f"{c['key'][0]} → {c['key'][1]}"]
-    else:
-        atoms = c["key"][0].split(" & ")
-    rec = CD.new("paraphrase", n, atoms, "lexicalized", {"alignment": "fusenf.mine.align", "polarity": "three", "tense": "key"},
-                 run, params, tag="C" if c["kind"] == "class" else "S")
-    rec["pattern"].update({"kind": c["kind"], "rules": c["rules"]})
-    if c["kind"] == "class":
-        rec["pattern"].update({"from": c["key"][0], "to": c["key"][1], "positions": c["positions"]})
-    proposed_f = sorted({o["family"] for o in c["occurrences"]})
-    sole_f = sorted({e["family"] for e in s["sole"]})
-    rec["support"] = {"families": len(sole_f), "sole": {"families": len(sole_f), "directions": len(s["sole"])},
-                      "joint": {"families": len({e["family"] for e in s["joint"]}), "directions": len(s["joint"])},
-                      "proposed": {"families": len(proposed_f), "directions": len(c["occurrences"]),
-                                   "executable": sum(1 for o in c["occurrences"] if o.get("executable"))},
-                      "datasets": dict(collections.Counter(pairs[o["pair"]]["dataset"] for o in c["occurrences"]))}
-    for o in (s["sole"] + s["joint"])[:12] or c["occurrences"][:12]:
-        pr = pairs[o["pair"]]
-        rec["matches"].append({"id": o["pair"], "family": pr["family"], "dataset": pr["dataset"], "role": pr["role"], "dir": o["dir"],
-                               "texts": pr["texts"], "label": o.get("label") or label_of(pr, o["dir"])})
-    rec["evidence"] = {"labels_of_support": dict(collections.Counter(e["label"] for e in s["sole"] + s["joint"])),
-                       "scopes": dict(collections.Counter(o.get("scope") or "" for o in c["occurrences"] if "scope" in o)),
-                       "implied": sum(1 for o in c["occurrences"] if o.get("implied")), "families": proposed_f}
-    rec["tests"] = {"boundary": {"pass": not s["violations"], "violations": s["violations"][:20], "n_violations": len(s["violations"]),
-                                 "contacts": s["contacts"][:20], "n_contacts": len(s["contacts"])}}
-    rec["status"] = status
-    return rec
+        json.dump({"admitted": admitted, "rules": sets["after"], "one_way": adm["one_way"], "one_way_rules": rules_of(adm["one_way"]),
+                   "side": {"loose_yes_counted": {"admitted": side, "rules": rules_of(m for uid in side for m in units[uid]["members"])}},
+                   "rounds": {view: bool(sets[view]) for view in ROUNDS}}, fh, ensure_ascii=False, indent=1)
+    tally = collections.Counter((units[uid]["kind"], adm["status"][uid]) for uid in units)
+    return {"units": len(units), "status": {f"{k}/{s}": n_ for (k, s), n_ in sorted(tally.items())}, "admitted": len(admitted),
+            "rules": len(sets["after"]), "one_way": len(adm["one_way"]), "side_admitted": len(side), "round3_jobs": n,
+            "rounds_to_ask": [rnd for view, rnd in ROUNDS.items() if sets[view]],
+            "round2_directions": len(under), "round2_hold": sum(1 for v in under.values() if v[0])}
 
 
 # ---------------------------------------------------------------------------------------------- step 7: evaluate
 
+def _round_answers(out: str, rnd: int, params: dict) -> dict:
+    """A round's answers, read only if every job has the result computed from the job and the background as they stand
+    now (the runner's fingerprints): numbers are never made from a round that was not asked, or asked before a change."""
+    jobs, res = os.path.join(out, "round3.jobs.jsonl"), os.path.join(out, f"round{rnd}.results.jsonl")
+    ids, _fp, valid, _stale = CH.settle(jobs, res, os.path.join(out, f"round{rnd}.background.json"), params["steps"], dry=True)
+    if len(valid) < len(ids):
+        raise RuntimeError(f"round {rnd} has a current result for {len(valid)} of {len(ids)} jobs: run --step engine{rnd} first")
+    return _results(res)
+
+
 def step_evaluate(run: str, params: dict) -> dict:
     out = _out(run)
     pairs = _jsonl(os.path.join(out, "pairs.jsonl"))
-    verdicts = json.load(open(os.path.join(out, "verdicts1.json"), encoding="utf-8"))
-    answers3 = _results(os.path.join(out, "round3.results.jsonl"))
-    adm = json.load(open(os.path.join(out, "admitted.json"), encoding="utf-8"))
+    verdicts = _json(os.path.join(out, "verdicts1.json"))
+    adm = _json(os.path.join(out, "admitted.json"))
+    answers = {view: _round_answers(out, rnd, params) for view, rnd in ROUNDS.items() if adm["rounds"][view]}
 
-    def after(pr, dr):
+    def verdict(pr, dr, view):
         v = verdicts[pr["pair"]]["directions"][dr]
-        if v["verdict"] != "fails" or not adm["rules"]:
+        if view not in answers or v["verdict"] != "fails":
             return v["verdict"]
         qs = [{"id": "r3:" + q["id"], "kind": "fact", "sign": q["sign"]} for q in pr["queries"][dr] if q["id"] in set(v["missing"])]
-        return judge(qs, answers3, params)["verdict"]
-    report = {"params": params, "align": json.load(open(os.path.join(out, "align.json"), encoding="utf-8")), "shares": {}}
+        return judge(qs, answers[view], params)["verdict"]
+    report = {"params": params, "align": _json(os.path.join(out, "align.json")), "shares": {},
+              "labels": {ds: {"directional": bool((LABELS.get(ds) or {}).get("directional")), "loose_yes": ds in (params.get("loose_yes") or [])}
+                         for ds in params["datasets"]}}
     for role in ("mine", "evaluate"):
         for ds in params["datasets"]:
             prs = [p for p in pairs if p["role"] == role and p["dataset"] == ds]
             if not prs:
                 continue
-            block = {"pairs": len(prs), "pair_verdicts": dict(collections.Counter(verdicts[p["pair"]]["verdict"] for p in prs))}
-            for when in ("before", "after"):
-                if when == "after" and role != "evaluate":
+            block = {"pairs": len(prs), "yes": sum(1 for p in prs if yes_no(p)),
+                     "pair_verdicts": dict(collections.Counter(verdicts[p["pair"]]["verdict"] for p in prs))}
+            for view in ["before", "after"] + [v for v in ("with_one_way", "loose_yes") if v in answers]:
+                if view != "before" and role != "evaluate":
                     continue
-                table = collections.Counter()
-                pv = collections.Counter()
+                table, pv, pe = collections.Counter(), collections.Counter(), collections.Counter()
                 for p in prs:
-                    vv = {dr: (verdicts[p["pair"]]["directions"][dr]["verdict"] if when == "before" else after(p, dr)) for dr in DIRS}
+                    vv = {dr: verdict(p, dr, view) for dr in DIRS}
                     for dr in DIRS:
                         table[(label_of(p, dr), vv[dr])] += 1
                     pverd = pair_verdict({dr: {"verdict": vv[dr]} for dr in DIRS}, 0, p["alignment"]["kinds"].get("exact", 0), p.get("core_flip", False))
-                    pv[(label_of(p, "x>y") if ds == "mrpc" else p["labels"].get("label"), pverd)] += 1
-                block[when] = {"directions": {f"{a} / {b}": n for (a, b), n in sorted(table.items())},
-                               "pairs": {f"{a} / {b}": n for (a, b), n in sorted(pv.items())}, "scores": _scores(ds, table, pv)}
+                    pv[(label_of(p, "x>y") if not directional(p) else p["labels"].get("label"), pverd)] += 1
+                    pe[(yes_no(p), pverd == "equivalence")] += 1
+                block[view] = {"directions": {f"{a} / {b}": n for (a, b), n in sorted(table.items())},
+                               "pairs": {f"{a} / {b}": n for (a, b), n in sorted(pv.items())},
+                               "scores": _scores(bool((LABELS.get(ds) or {}).get("directional")), table, pv, pe)}
             report["shares"][f"{ds}/{role}"] = block
     cands = CD.read(os.path.join(out, "candidates.jsonl"))
+    one_way = CD.read(os.path.join(out, "one_way.jsonl"))
     report["candidates"] = {"by_status": dict(collections.Counter(f"{c['pattern']['kind']}/{c['status']}" for c in cands)),
-                            "admitted": [c["id"] for c in cands if c["status"] == "admitted"]}
-    # what the admitted rules changed on the evaluation share: each direction that came to hold, with the rules its
-    # proofs used and its label (a direction labelled neutral or contradiction that comes to hold breaks do-no-harm)
-    rule_of = {r.split(" ", 2)[1]: cid for cid in adm["admitted"] for r in next((c["pattern"]["rules"] for c in cands if c["id"] == cid), [])}
-    changes = []
-    for p in pairs:
-        if p["role"] != "evaluate":
-            continue
-        for dr in DIRS:
-            before, now = verdicts[p["pair"]]["directions"][dr]["verdict"], after(p, dr)
-            if before == now:
+                            "admitted": [c["id"] for c in cands if c["status"] == "admitted"],
+                            "one_way": [c["id"] for c in one_way],
+                            "side": {"loose_yes_counted": [c["id"] for c in cands if c["side"]["loose_yes_counted"] == "admitted"]}}
+    # what each view changed on the evaluation share: every direction whose verdict moved, with the rules its proofs
+    # used and its label (a direction labelled neutral or contradiction that comes to hold breaks do-no-harm)
+    names = {}
+    for c in cands:
+        for m in c["pattern"]["members"]:
+            for r in m["rules"]:
+                names[r.split(" ", 2)[1]] = (f"{m['from']} → {m['to']}" if "from" in m else c["id"])     # (a substitution: its unit)
+    report["changes"] = {}
+    for view in [v for v in ROUNDS if v in answers]:
+        changes = []
+        for p in pairs:
+            if p["role"] != "evaluate":
                 continue
-            used = set()
-            for q in p["queries"][dr]:
-                for line in answers3.get("r3:" + q["id"]) or []:
-                    used |= {rule_of[t] for t in ANS._TOKEN.findall(line) if t in rule_of}
-            changes.append({"pair": p["pair"], "dataset": p["dataset"], "dir": dr, "label": label_of(p, dr), "before": before, "after": now,
-                            "texts": p["texts"], "rules": sorted(used)})
-    report["changes"] = {"directions": len(changes), "by_label": dict(collections.Counter(f"{c['label']} / {c['after']}" for c in changes)),
-                         "list": changes}
+            for dr in DIRS:
+                before, now = verdicts[p["pair"]]["directions"][dr]["verdict"], verdict(p, dr, view)
+                if before == now:
+                    continue
+                used = set()
+                for q in p["queries"][dr]:
+                    for line in answers[view].get("r3:" + q["id"]) or []:
+                        used |= {names[t] for t in ANS._TOKEN.findall(line) if t in names}
+                changes.append({"pair": p["pair"], "dataset": p["dataset"], "dir": dr, "label": label_of(p, dr), "before": before, "after": now,
+                                "texts": p["texts"], "rules": sorted(used)})
+        report["changes"][view] = {"directions": len(changes), "by_label": dict(collections.Counter(f"{c['label']} / {c['after']}" for c in changes)),
+                                   "by_rule": dict(collections.Counter(r for c in changes for r in c["rules"]).most_common()), "list": changes}
     report["contradiction_by"] = {name: dict(collections.Counter("+".join(verdicts[p["pair"]].get("contradiction_by") or []) or "-"
                                                                  for p in pairs if f"{p['dataset']}/{p['role']}" == name
                                                                  and verdicts[p["pair"]]["verdict"] == "contradiction"))
@@ -703,62 +895,88 @@ def step_evaluate(run: str, params: dict) -> dict:
     with open(os.path.join(RUNS, run, "paraphrase.report.json"), "w", encoding="utf-8") as fh:
         json.dump(report, fh, ensure_ascii=False, indent=1)
     with open(os.path.join(RUNS, run, "paraphrase.md"), "w", encoding="utf-8") as fh:
-        fh.write(summary_md(run, report, pairs, verdicts, cands))
-    return {k: v for k, v in report["shares"].items()}
+        fh.write(summary_md(run, report, pairs, verdicts, cands, one_way))
+    return {k: {view: v[view]["scores"] for view in v if isinstance(v[view], dict) and "scores" in v[view]} for k, v in report["shares"].items()}
 
 
-def _scores(ds: str, table: collections.Counter, pv: collections.Counter) -> dict:
-    if ds == "sick":
+def _ratio(a: int, b: int):
+    return round(a / b, 3) if b else None
+
+
+def _scores(has_direction: bool, table: collections.Counter, pv: collections.Counter, pe: collections.Counter) -> dict:
+    """THE BASELINE SCORES, for every set: the pair verdict EQUIVALENCE against the yes / no label. WHERE THE LABELS HAVE
+    A DIRECTION, also: a holding direction against entailment, the contradictions found, and the do-no-harm count."""
+    tp, fp, fn = pe[(True, True)], pe[(False, True)], pe[(True, False)]
+    out = {"equivalence_precision": _ratio(tp, tp + fp), "equivalence_recall": _ratio(tp, tp + fn), "equivalent": tp + fp,
+           "paraphrases": tp + fn, "non_paraphrase_equivalent": fp}
+    if has_direction:
         tp = table[("entails", "holds")]
         fp = sum(n for (lab, v), n in table.items() if v == "holds" and lab != "entails")
         fn = sum(n for (lab, v), n in table.items() if lab == "entails" and v != "holds")
         contra_true = sum(n for (lab, v), n in pv.items() if v == "contradiction" and lab == "contradiction")
         contra_found = sum(n for (lab, v), n in pv.items() if v == "contradiction")
         contra_all = sum(n for (lab, v), n in pv.items() if lab == "contradiction")
-        return {"holds_precision": round(tp / (tp + fp), 3) if tp + fp else None, "holds_recall": round(tp / (tp + fn), 3) if tp + fn else None,
-                "holds": tp + fp, "entails": tp + fn, "contradiction_precision": round(contra_true / contra_found, 3) if contra_found else None,
-                "contradiction_recall": round(contra_true / contra_all, 3) if contra_all else None,
-                "neutral_or_contradicts_holding": fp}
-    tp = pv[("paraphrase", "equivalence")]
-    fp = sum(n for (lab, v), n in pv.items() if v == "equivalence" and lab != "paraphrase")
-    fn = sum(n for (lab, v), n in pv.items() if lab == "paraphrase" and v != "equivalence")
-    return {"equivalence_precision": round(tp / (tp + fp), 3) if tp + fp else None, "equivalence_recall": round(tp / (tp + fn), 3) if tp + fn else None,
-            "equivalent": tp + fp, "paraphrases": tp + fn, "non_paraphrase_equivalent": fp}
+        out.update({"holds_precision": _ratio(tp, tp + fp), "holds_recall": _ratio(tp, tp + fn), "holds": tp + fp, "entails": tp + fn,
+                    "contradiction_precision": _ratio(contra_true, contra_found), "contradiction_recall": _ratio(contra_true, contra_all),
+                    "neutral_or_contradicts_holding": fp})
+    return out
 
 
-def summary_md(run: str, report: dict, pairs: list[dict], verdicts: dict, cands: list[dict]) -> str:
-    al = report["align"]
+VIEW_TITLE = {"before": "before", "after": "after (the admitted two-way rewrites as rules)",
+              "with_one_way": "a measurement: with the one-way findings' rules added (they are not admitted)",
+              "loose_yes": "a measurement: the two-way rewrites admitted when a loose yes counts as support"}
+
+
+def _cell(s: str, n: int = 220) -> str:
+    return s.replace("|", "¦").replace("\n", " ")[:n]
+
+
+def summary_md(run: str, report: dict, pairs: list[dict], verdicts: dict, cands: list[dict], one_way: list[dict]) -> str:
+    al, labels, need = report["align"], report["labels"], report["params"]["min_sole_families"]
+    two_way = [ds for ds, v in labels.items() if v["directional"]]
+    loose = [ds for ds, v in labels.items() if v["loose_yes"]]
     L = [f"# §5.4 paraphrase alignment — run `{run}` — {time.strftime('%Y-%m-%d %H:%M')}", "",
-         "The pairs of SICK and MRPC, aligned on our side and classified by the chainer (our engine line); the residual of a",
-         "pair that holds under it proposes invariance candidates, admitted only if no near-neighbour holds under them. The",
-         "human labels are fields: read by the boundary check and the evaluation, never by the alignment or the verdicts.", "",
-         "## The pairs", "",
+         "The pairs of SICK and MRPC, aligned on our side and classified by the chainer (our engine line). WHAT IS MINED is the",
+         "TWO-WAY REWRITE: a difference between the two sentences of a pair that, used in both directions, makes a paraphrase",
+         "pair equivalent on its own. It is rejected when it makes a non-paraphrase pair equivalent on its own or — where the",
+         "labels have a direction — when one of its directions alone makes a direction hold that the label denies. The human",
+         "labels are fields: read by the boundary check and the evaluation, never by the alignment or the verdicts.", "",
+         "## The pairs and their labels", "",
          f"- aligned pairs: {al['pairs']} ({al['sentences']} sentences); without a parse of both sentences: {al['missing_parse']};"
          f" a reply the emitter refused: {al['no_graph']}",
          f"- the renaming check (both sentences renamed and shuffled, aligned again): {al['renaming_same']} of {al['pairs']} identical",
          f"- engine round 1: {al['jobs']} spaces, {al['queries']} queries; background {al['background']} statements"
-         f" (lexicon facts + query-stage rules; the {al['closure_left_out']} kinship-closure rules left out)", ""]
+         f" (lexicon facts + query-stage rules; the {al['closure_left_out']} kinship-closure rules left out)",
+         "- THE YES / NO LABEL every set gives (is the pair a paraphrase: does each sentence say what the other says?): "
+         + "; ".join(f"{ds} = " + ("both directions labelled entailing" if v["directional"] else "its own pair label") for ds, v in labels.items())
+         + ". Pairs labelled yes: " + ", ".join(f"{name} {b['yes']} of {b['pairs']}" for name, b in report["shares"].items()),
+         f"- labels with a direction (each direction entails / is neutral / contradicts — the bonus checks): {', '.join(two_way) or 'none'}",
+         f"- a loose yes (given by a looser standard than equivalence: not counted as support, its no still counts): {', '.join(loose) or 'none'}", ""]
     L += ["## The chainer's verdicts against the labels", ""]
     for name, block in report["shares"].items():
         L += [f"### {name} — {block['pairs']} pairs", "", "pair verdicts: " + ", ".join(f"{k} {v}" for k, v in sorted(block["pair_verdicts"].items())), ""]
-        for when in ("before", "after"):
-            if when not in block:
+        for view in VIEW_TITLE:
+            if view not in block:
                 continue
-            sc = block[when]["scores"]
-            L += [f"**{when}** — " + ", ".join(f"{k} {v}" for k, v in sc.items()), "",
-                  "| label / verdict (per direction) | n |", "|---|---|"]
-            L += [f"| {k} | {v} |" for k, v in block[when]["directions"].items()]
-            L += [""]
+            sc = block[view]["scores"]
+            L += [f"**{VIEW_TITLE[view]}** — " + ", ".join(f"{k} {v}" for k, v in sc.items()), ""]
+            if view in ("before", "after"):
+                L += ["| label / verdict (per direction) | n |", "|---|---|"] + [f"| {k} | {v} |" for k, v in block[view]["directions"].items()] + [""]
     L += ["Contradictions by source (the chainer: an opposite answer or an instance of a denial; the alignment: a negated",
           "statement flipped word for word): " + "; ".join(f"{k} {v}" for k, v in report.get("contradiction_by", {}).items()), ""]
-    ch = report.get("changes") or {}
-    if ch.get("list"):
-        L += ["## What the admitted candidates changed on the evaluation share", "",
+    for view, ch in (report.get("changes") or {}).items():
+        if not ch["list"]:
+            L += [f"## What changed on the evaluation share — {VIEW_TITLE[view]}", "", "no direction changed verdict", ""]
+            continue
+        L += [f"## What changed on the evaluation share — {VIEW_TITLE[view]}", "",
               f"{ch['directions']} directions changed verdict: " + ", ".join(f"{k} {v}" for k, v in sorted(ch["by_label"].items())), "",
-              "| pair | dir | label | before → after | rules used | sentences |", "|---|---|---|---|---|---|"]
+              "directions per rewrite used in their proofs: " + ", ".join(f"`{_cell(k, 60)}` {v}" for k, v in ch["by_rule"].items()), ""]
+        if view != "after":
+            continue
+        L += ["| pair | dir | label | before → after | rewrites used | sentences |", "|---|---|---|---|---|---|"]
         for c in sorted(ch["list"], key=lambda c: (c["label"] == "entails", c["pair"]))[:60]:
-            L.append(f"| {c['pair']} | {c['dir']} | {c['label']} | {c['before']} → {c['after']} | {', '.join(c['rules'])} | "
-                     f"{c['texts'][0]} ‖ {c['texts'][1]} |".replace("\n", " "))
+            L.append(f"| {c['pair']} | {c['dir']} | {c['label']} | {c['before']} → {c['after']} | {_cell(', '.join(c['rules']), 90)} | "
+                     f"{_cell(c['texts'][0] + ' ‖ ' + c['texts'][1], 400)} |")
         L += [""]
     L += ["## Examples of the verdicts (evaluation share)", ""]
     for verdict in ("equivalence", "one-way x>y", "contradiction", "relatedness", "unrelated"):
@@ -766,22 +984,58 @@ def summary_md(run: str, report: dict, pairs: list[dict], verdicts: dict, cands:
         if ex:
             L += [f"**{verdict}**", ""] + [f"- {p['pair']} ({p['dataset']}, label {p['labels'].get('label')}): {p['texts'][0]} ‖ {p['texts'][1]}"
                                           for p in ex] + [""]
-    by = collections.Counter(f"{c['pattern']['kind']}/{c['status']}" for c in cands)
-    L += ["## The candidates", "", "| kind / status | n |", "|---|---|"] + [f"| {k} | {v} |" for k, v in sorted(by.items())] + [""]
+
+    def what(c):
+        return _cell(" & ".join(c["pattern"]["atoms"]), 160)
+
+    def example(c):
+        ex = c["matches"][0] if c["matches"] else None
+        return _cell(f"{ex['texts'][0]} ‖ {ex['texts'][1]} ({(ex.get('dir') + ', ') if ex.get('dir') else ''}{ex['label']})") if ex else ""
+    by = collections.Counter(f"{c['pattern']['kind']} / {c['status']}" for c in cands)
+    L += ["## The candidates: two-way rewrites", "",
+          f"A candidate is a rewrite with its reverse. SUPPORT: a mining pair labelled yes that the rewrite alone makes equivalent"
+          f" (admitted from {need} families on). VIOLATION, by the pair: a pair labelled no that it alone makes equivalent; by a"
+          " direction (labels with a direction only): a direction the label denies that holds under one of its two directions"
+          " alone. A CONTACT is the same with several rewrites together: recorded, never counted.", "",
+          "| kind / status | n |", "|---|---|"] + [f"| {k} | {v} |" for k, v in sorted(by.items())] + [""]
+    order = {"admitted": lambda c: (-c["support"]["sole"]["families"], c["id"]),
+             "rejected": lambda c: (-(c["tests"]["boundary"]["n_violations"] + c["tests"]["boundary"]["n_directional"]), c["id"]),
+             "candidate": lambda c: (-c["support"]["sole"]["families"], c["id"])}
     for status in ("admitted", "rejected", "candidate"):
-        rows = sorted((c for c in cands if c["status"] == status), key=lambda c: (-c["support"]["sole"]["families"], c["id"]))[:40]
+        rows = sorted((c for c in cands if c["status"] == status), key=order[status])[:40]
         if not rows:
             continue
-        L += [f"### {status} (the first {len(rows)} by sole-support families)", "",
-              "| id | candidate | sole fam. | joint fam. | proposed fam. | violations | contacts | an example |", "|---|---|---|---|---|---|---|---|"]
+        L += [f"### {status} (the first {len(rows)} by " + ("violations" if status == "rejected" else "supporting families") + ")", "",
+              "| id | rewrite | supporting fam. | loose-yes fam. | violations by a pair | by a direction | contacts | an example |", "|---|---|---|---|---|---|---|---|"]
         for c in rows:
-            ex = c["matches"][0] if c["matches"] else None
-            exs = f"{ex['texts'][0]} ‖ {ex['texts'][1]} ({ex['dir']}, {ex['label']})" if ex else ""
-            what = " & ".join(c["pattern"]["atoms"])[:160].replace("|", "¦")
-            L.append(f"| {c['id']} | `{what}` | {c['support']['sole']['families']} | {c['support']['joint']['families']} | "
-                     f"{c['support']['proposed']['families']} | {c['tests']['boundary']['n_violations']} | {c['tests']['boundary']['n_contacts']} | "
-                     f"{exs.replace('|', '¦')[:220]} |")
+            b = c["tests"]["boundary"]
+            L.append(f"| {c['id']} | `{what(c)}` | {c['support']['sole']['families']} | {c['support']['loose']['families']} | "
+                     f"{b['n_violations']} | {b['n_directional']} | {b['n_contacts']} | {example(c)} |")
         L += [""]
+    L += ["## One-way findings (labels with a direction only; not admitted, not loaded as rules)", "",
+          f"A rewrite in ONE direction that alone carries directions labelled entailing in {need} families or more, with no direction"
+          " the label denies, and whose two-way rewrite is no admitted equivalence. It says what follows, not what is the same:"
+          " another kind of knowledge than an invariance, kept in a file of its own (`paraphrase/one_way.jsonl`).", ""]
+    if one_way:
+        L += ["| id | finding | entailing fam. | its reverse: denied directions | an example |", "|---|---|---|---|---|"]
+        for c in sorted(one_way, key=lambda c: (-c["support"]["families"], c["id"])):
+            L.append(f"| {c['id']} | `{what(c)}` | {c['support']['families']} | {c['evidence']['reverse']['violations']} | {example(c)} |")
+        L += [""]
+    else:
+        L += ["none", ""]
+    side = [c for c in cands if c["support"]["loose"]["pairs"] or c["side"]["loose_yes_counted"] != c["status"]]
+    L += ["## Side view: a loose yes counted as support", "",
+          f"The same admission with the yes of {', '.join(loose) or 'no set'} counted. Every two-way rewrite that such a pair supports,"
+          " and its status in both views:", ""]
+    if side:
+        L += ["| id | rewrite | supporting fam. | loose-yes fam. | violations | status → with the loose yes | an example |", "|---|---|---|---|---|---|---|"]
+        for c in sorted(side, key=lambda c: (c["side"]["loose_yes_counted"] == c["status"], -c["support"]["loose"]["families"], c["id"])):
+            b = c["tests"]["boundary"]
+            L.append(f"| {c['id']} | `{what(c)}` | {c['support']['sole']['families']} | {c['support']['loose']['families']} | "
+                     f"{b['n_violations'] + b['n_directional']} | {c['status']} → {c['side']['loose_yes_counted']} | {example(c)} |")
+        L += [""]
+    else:
+        L += ["none", ""]
     kinds = collections.Counter()
     for p in pairs:
         e = p["edits"]
@@ -797,23 +1051,29 @@ def summary_md(run: str, report: dict, pairs: list[dict], verdicts: dict, cands:
 # ------------------------------------------------------------------------------------------------- driver
 
 def engine(run: str, rnd: int, python: str, workers: int, steps: int) -> int:
+    """One engine round. Rounds 1 and 2 ask their own jobs over the background; rounds 3, 4 and 5 ask the evaluation's
+    jobs (round 3's file), each over its own background — written by the admit step only when the round applies."""
     out = _out(run)
-    jobs = os.path.join(out, f"round{rnd}.jobs.jsonl")
+    jobs = os.path.join(out, f"round{min(rnd, 3)}.jobs.jsonl")
+    bg = os.path.join(out, f"round{rnd}.background.json" if rnd >= 3 else "background.json")
+    if rnd >= 3 and not os.path.exists(bg):
+        print(f"round {rnd}: no rules to ask under, nothing to run", flush=True)
+        return 0
     if not os.path.exists(jobs) or os.path.getsize(jobs) == 0:
         open(os.path.join(out, f"round{rnd}.results.jsonl"), "a").close()
         return 0
     env = dict(os.environ)
     env["PYTHONPATH"] = REPO + (os.pathsep + env["PYTHONPATH"] if env.get("PYTHONPATH") else "")
-    bg = os.path.join(out, f"round{rnd}.background.json")
     cmd = [python, "-m", "fusenf.mine.chainer", "run", jobs, os.path.join(out, f"round{rnd}.results.jsonl"),
-           "--background", bg if os.path.exists(bg) else os.path.join(out, "background.json"), "--workers", str(workers), "--steps", str(steps)]
+           "--background", bg, "--workers", str(workers), "--steps", str(steps)]
     print("engine:", " ".join(os.path.relpath(c, os.getcwd()) if os.path.isabs(c) and c.startswith(REPO) else c for c in cmd), flush=True)
     return subprocess.call(cmd, env=env)
 
 
 def main(args) -> int:
     params = params_of(beam=args.beam, min_sole_families=args.min_sole_families, steps=args.steps)
-    steps = ["align", "engine1", "classify", "engine2", "admit", "engine3", "evaluate"] if args.step == "all" else [args.step]
+    steps = ["align", "engine1", "classify", "engine2", "admit", "engine3", "engine4", "engine5", "evaluate"] if args.step == "all" \
+        else [args.step]
     for st in steps:
         t0 = time.time()
         if st == "align":

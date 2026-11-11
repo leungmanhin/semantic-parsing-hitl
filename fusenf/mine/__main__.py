@@ -10,12 +10,16 @@
              (§5.1: connected patterns with shared typed variables, their generalization and the two tests;
              the key dials are those of the run's lift)
 
-    paraphrase --run NAME [--step align|engine1|classify|engine2|admit|engine3|evaluate|all] [--parsed FILE …]
-             [--engine-python PY] [--workers 4] [--beam 64] [--steps 400] [--min-sole-families 2] [--limit N]
-             → fusenf/runs/NAME/paraphrase/ (pairs, sentences, each engine round's jobs and results, candidates),
-               fusenf/runs/NAME/paraphrase.md, paraphrase.report.json
-             (§5.4: the labelled pairs aligned, classified by the chainer, their residuals as invariance candidates
-             with the boundary check, and the evaluation share's verdicts before and after; the engine steps run with
+    paraphrase --run NAME [--step align|engine1|classify|engine2|admit|engine3|engine4|engine5|evaluate|all]
+             [--parsed FILE …] [--engine-python PY] [--workers 4] [--beam 64] [--steps 400] [--min-sole-families 2]
+             [--limit N]
+             → fusenf/runs/NAME/paraphrase/ (pairs, sentences, each engine round's jobs and results, candidates.jsonl
+               = the two-way rewrites, one_way.jsonl = the one-way findings), fusenf/runs/NAME/paraphrase.md,
+               paraphrase.report.json
+             (§5.4: the labelled pairs aligned, classified by the chainer, their residuals as two-way rewrites admitted
+             on the pairs' yes / no label with the boundary check — labels with a direction add checks and the one-way
+             findings — and the evaluation share's verdicts before and after; engine4 and engine5 are measurements
+             (the one-way findings added; a loose yes counted) and run only when they apply; the engine steps run with
              the chainer environment's python, ``--engine-python`` or the variable PETTACHAINER_PYTHON)
 """
 from __future__ import annotations
@@ -136,15 +140,17 @@ def main(argv=None) -> int:
     q.add_argument("--keep", type=int, default=12, help="sample matches kept on a candidate")
     q.add_argument("--tests", default="full", choices=("full", "sample", "none"))
     q.add_argument("--summary-only", action="store_true", help="write patterns.md again from the run's files, without mining")
-    r = sub.add_parser("paraphrase", help="§5.4: the labelled pairs aligned and classified by the chainer, invariance candidates")
+    r = sub.add_parser("paraphrase", help="§5.4: the labelled pairs aligned and classified by the chainer, two-way rewrites as candidates")
     r.add_argument("--run", required=True, help="the run's folder name under fusenf/runs/")
-    r.add_argument("--step", default="all", choices=("align", "engine1", "classify", "engine2", "admit", "engine3", "evaluate", "all"))
+    r.add_argument("--step", default="all",
+                   choices=("align", "engine1", "classify", "engine2", "admit", "engine3", "engine4", "engine5", "evaluate", "all"))
     r.add_argument("--parsed", nargs="+", default=None, help="parsed files (default: the inputs of the run's lift)")
     r.add_argument("--engine-python", default=os.environ.get("PETTACHAINER_PYTHON"), help="the chainer environment's python")
     r.add_argument("--workers", type=int, default=4)
     r.add_argument("--beam", type=int, default=None, help="the alignment search's width (default 64)")
     r.add_argument("--steps", type=int, default=None, help="the engine's steps per query (default 400)")
-    r.add_argument("--min-sole-families", type=int, default=None, help="admission: sole support in this many families (default 2)")
+    r.add_argument("--min-sole-families", type=int, default=None,
+                   help="admission: a rewrite alone makes yes pairs of this many families equivalent (default 2)")
     r.add_argument("--limit", type=int, default=None, help="the first N pairs only (a trial)")
     args = ap.parse_args(argv)
     return {"lift": cmd_lift, "patterns": cmd_patterns, "paraphrase": cmd_paraphrase}[args.cmd](args)
