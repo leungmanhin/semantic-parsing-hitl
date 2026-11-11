@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 4dc203430f9a2dfc · 64 templates
+catalog sha256 308be40321f513ff · 64 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -265,10 +265,37 @@ fences.
   no maker, tense past, the year a time instance on that event (the bracket stands for was
   created in …).
 - NAMES in the bracket — a birth name (born Saskia Moreau), a maiden name (née Moreau), the name
-  in another language or script (Russian: Рен Эшби) — are more names of the same individual: the
-  named entity's `aliases`, as written, without the language. A pronunciation (a phonetic
-  spelling between slashes, a respelling) is a tag on the name: report it as unmapped (G03);
-  stray punctuation left in the bracket is nothing and is not reported.
+  in another language or script (Russian: Рен Эшби), an abbreviation or an acronym of the name
+  (the Brackenford Glaziers Guild (BGG)) — are more names of the same individual: the named
+  entity's `aliases`, as written, without the language. A pronunciation (a phonetic spelling
+  between slashes, a respelling) says how the name sounds and nothing of the individual: report
+  it as unmapped (G03); stray punctuation left in the bracket is nothing and is not reported.
+
+## Tags after a name
+
+- A TAG is a label or a code written right after a name or a noun phrase — in brackets, between
+  commas or bare — that is no word of the sentence: a stock ticker or an exchange, airport or
+  registry code (Brackenford Looms BKL.L; Fenn Airfield (IATA: FNH)), a commit hash or an item's
+  id (the ledger fix (9c41f7a)), a party or district tag (Sen. Henrike Vos, R-Ore.), the letters
+  of an honour, an order or a degree (Odile Hale CBE). Keep each as written in `tags` on the
+  instance it follows — a named entity, a witness or a group —, without the brackets or commas
+  around it. A label written with its code stays with it (IATA: FNH), and several tags are one
+  entry each (IATA: FNH, ICAO: KFNH is two). Never decode a tag: write no party, no state, no
+  exchange and no class for what its letters stand for.
+- A NAME is not a tag. Letters that shorten the name, or another name of the same individual —
+  an abbreviation, an acronym, a nickname, the name in another script — are `aliases` (Life
+  dates and names in brackets), also when the same letters serve as a ticker or a code. A suffix
+  that belongs to the name (Ludo Hale Jr.) stays in `name`. After a COMMON noun phrase there is
+  no name to add to: an abbreviation of the phrase in brackets (a signal relay box (SRB)) is a
+  tag on its witness.
+- NOT A TAG. The link text a web page leaves behind after a name (news - filings; charts,
+  profile) is structure: report it as unmapped (G13), also when it shares a bracket with a code
+  — in (nasdaq: BKLM - news - filings) the tag is nasdaq: BKLM and news - filings is reported. A
+  date, a life range or a year in brackets is read as Life dates and names in brackets says, and
+  a pronunciation is reported (G03). The state or the country after a town (Fennhollow, Ore.) is
+  a place name of its own, not a tag. Words in brackets that say something (the second, shorter
+  draft) are parsed or reported like any phrase. A tag with nothing to carry it — on an amount
+  (40 crowns <CRW=>), on a bare lemma — is reported as unmapped (G03).
 
 ## Notes, headlines and lists
 
@@ -291,16 +318,18 @@ fences.
   progressive. A bare verb form (wash the blanket) is a command, as always.
 - STRUCTURE states nothing: a heading or a label that frames what follows (Next:, Findings:,
   Lesson:), a list number or a bullet, a dateline at the head of a news item (ANTWERP —), a time
-  stamp that opens an entry (3 March, 14:20), a markup comment or tag. Report each as unmapped
-  with the code G13 and parse what it frames as usual: after a label, a clause is still a clause
-  (Next: wash the blanket is the command).
+  stamp that opens an entry (3 March, 14:20), a markup comment or an HTML tag, the link text a
+  web page leaves behind (Tags after a name). Report each as unmapped with the code G13 and
+  parse what it frames as usual: after a label, a clause is still a clause (Next: wash the
+  blanket is the command).
 - NOTATION is kept as written and never read: an equation over numbers (40 + 12 = 52), an arrow
   (draft -> final), a command line (cp ledger.txt /backup/), a setting (retries=3), a path or a
   code standing alone. Report it as unmapped with the code G14, the span verbatim, and write no
-  instance for anything inside it. Two things are not notation. A NAME that happens to be a
+  instance for anything inside it. Three things are not notation. A NAME that happens to be a
   path, a file name or a code and fills a role in a clause (Odile renamed ledger.txt) is a named
-  entity, as always. And = between two names or noun phrases (the warden = Henrike) is the verb
-  be: the identity template.
+  entity, as always. A code written right after a name or a noun phrase (the ledger fix
+  (9c41f7a)) is its tag (Tags after a name). And = between two names or noun phrases (the warden
+  = Henrike) is the verb be: the identity template.
 
 ## Choosing a template
 
@@ -364,8 +393,8 @@ Codes:
 - G02: an adverb with no slot: scope or domain (nationally, locally), an evaluation
   (unfortunately, luckily, sadly), a degree word on a manner adverb or on a class-level
   statement (laughed very loudly; badgers are very curious)
-- G03: a post-nominal tag on a name (a party or district tag, a ticker, a bracketed code, a
-  pronunciation)
+- G03: a pronunciation after a name; a tag with nothing to carry it — on an amount, on a bare
+  lemma (Tags after a name)
 - G04: an irrealis relative clause ('the bridge that would have collapsed'); a lone would-have
   main clause is the modal's Would
 - G05: a connective at the start of the text with no first clause to relate ('But the vote
@@ -382,8 +411,8 @@ Codes:
 - G12: a question the question template does not ask yet — why, how often (Why did Pieter leave?
   How often does Odile swim?): the whole question
 - G13: the structure of a note or a news item, which states nothing — a heading or label, a list
-  number or bullet, a dateline, a time stamp that opens an entry, a markup comment (Notes,
-  headlines and lists)
+  number or bullet, a dateline, a time stamp that opens an entry, a markup comment, the link
+  text of a web page (Notes, headlines and lists)
 - G14: notation kept as written — an equation over numbers, an arrow, a command line, a setting,
   a path or a code standing alone (Notes, headlines and lists)
 
@@ -469,6 +498,9 @@ Slots:
   century (a 1904 almanac); never an adjective.
 - `possessor` (optional; "@id" of a referent instance, or a bare lemma for a non-specific
   filler): the possessor of a possessive phrase (Marisol's badgers).
+- `tags` (optional; a list of strings): a label or a code written right after the noun phrase —
+  an id, a model or registry code, an abbreviation of the phrase in brackets — each as written,
+  without the brackets around it (Tags after a name); never decoded.
 
 Example (a vague size; the sleeping distributes to each badger). TEXT: Several badgers slept.
 
@@ -554,7 +586,10 @@ Slots:
 When: A proper name (a person, a place, an organisation, a product) used to refer to one
 individual. A name is rigid: it is never introduced inside a scope. Its symbol is the name with
 a number for this text (sk_pieter_1); whether two texts' Pieters are one person is a separate,
-revisable link, not a matter of spelling.
+revisable link, not a matter of spelling. A COMMON NOUN WITH ITS NUMBER — page 34, room 12,
+version 3, chapter two — names one item of a series: its name is the phrase as written (page 34)
+and its class the noun (page). A date and a numbered week are times, and a count before the noun
+(34 pages) is a group.
 
 Forms:
 - <Name>
@@ -562,6 +597,9 @@ Forms:
 - the <class> of <Name>
 - <N1> <N2> <Name>
 - <Possessor>'s <Name>
+- <N> <number>
+- <Name> (<abbreviation>)
+- <Name> <tag>
 
 Not this template:
 - a common noun with an article — the clerk, a flask: a witness, not a name
@@ -572,17 +610,24 @@ Slots:
 - `t` (required): "named-entity"
 - `id` (required; your label for this instance).
 - `name` (required; a string): the surface name, capitalised as written, without a leading
-  article: the Kestrel and The Kestrel are both Kestrel.
+  article: the Kestrel and The Kestrel are both Kestrel; a common noun with its number is the
+  whole phrase as written (page 34).
 - `title` (optional; a string): a leading title, if any.
 - `class` (optional; a lemma): the class an appositive, a title phrase or an of-phrase naming
   the place itself states for the name (Odile, a glazier; the village of Fennhollow: village; a
-  retired weaver: weaver, with `former`); a predicative is a N is a copular instance, not this
-  slot; a relational noun with a possessor (her son Joost, Anouk's husband Ludo) is a relation,
-  not a class: the stative-relation template.
-- `aliases` (optional; a list of lemmas): other names of the same individual, each as written:
+  retired weaver: weaver, with `former`); the noun of a numbered item (page 34: page); a
+  predicative is a N is a copular instance, not this slot; a relational noun with a possessor
+  (her son Joost, Anouk's husband Ludo) is a relation, not a class: the stative-relation
+  template.
+- `aliases` (optional; a list of strings): other names of the same individual, each as written:
   known as, also known as, better known as, called, nicknamed (Femke, known as Nell: Nell); a
   birth or a maiden name (born X, née X) and the name in another language or script, without the
-  language.
+  language; an abbreviation or an acronym of the name in brackets (the Brackenford Glaziers
+  Guild (BGG): BGG).
+- `tags` (optional; a list of strings): labels and codes written right after the name that are
+  not names of it — a ticker or a registry code, a commit hash or an id, a party or district
+  tag, the letters of an honour — each as written, without the brackets or commas around it
+  (Tags after a name); never decoded, never a second name.
 - `props` (optional; a list of lemmas): adjectives inside the appositive or title phrase, each a
   lemma (a careful harbour pilot: careful; the northern ferry company: northern); with no class
   noun the adjective is the name's own property (the venerable Kestrel: venerable, no class); a
@@ -613,6 +658,32 @@ Instances:
 The program renders these instances as:
 
     (Name sk_pieter_1 "Pieter")
+
+Example (an abbreviation of the name in brackets — a second name of the same individual). TEXT: the Brackenford Glaziers Guild (BGG)
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Brackenford Glaziers Guild", "aliases": ["BGG"], "span": "the Brackenford Glaziers Guild (BGG)"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_brackenford_glaziers_guild_1 "Brackenford Glaziers Guild")
+    (Name sk_brackenford_glaziers_guild_1 "BGG")
+
+Example (a ticker right after the name — a tag, kept as written, not a name). TEXT: Brackenford Looms BKL.L
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Brackenford Looms", "tags": ["BKL.L"], "span": "Brackenford Looms BKL.L"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_brackenford_looms_1 "Brackenford Looms")
+    (Tag sk_brackenford_looms_1 "BKL.L")
 
 ### portion — A quantified portion of a definite whole
 
@@ -1029,6 +1100,9 @@ Slots:
   (her son, Joost's grandmother, the fellowship's treasurer: no possessor, a stative-relation
   instance with the witness as its bearer); a referent id (for a possessive pronoun, the id of
   its mention instance), or a bare lemma for a class-level possessor.
+- `tags` (optional; a list of strings): a label or a code written right after the noun phrase —
+  a commit hash, an id, a model or registry code, an abbreviation of the phrase in brackets —
+  each as written, without the brackets around it (Tags after a name); never decoded.
 - `quantity` (optional; a string): a vague amount phrase on a mass noun, as written (a lot,
   lots, plenty, a little, a bit, much); absent otherwise.
 - `eventive` (optional; true / false): true when the noun names an event or a period and the

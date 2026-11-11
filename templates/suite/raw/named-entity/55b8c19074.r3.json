@@ -1,0 +1,95 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "257425b2c1593569789317f0f007f57f21f856df868b382adc0880c1c3414809",
+  "item": {
+    "id": "s55b8c19074",
+    "text": "Harrow Mills HRW.N sold the barn."
+  },
+  "usage": {
+    "input": 127869,
+    "output": 162,
+    "thinking": null,
+    "total": 128031,
+    "cached": 125820,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 127869,
+    "candidatesTokenCount": 162,
+    "totalTokenCount": 128031,
+    "cachedContentTokenCount": 125820,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 127869
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 125820
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 162
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s55b8c19074\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Harrow Mills\", \"tags\": [\"HRW.N\"], \"span\": \"Harrow Mills HRW.N\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"barn\", \"definite\": true, \"span\": \"the barn\"}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"sell\", \"giver\": \"@n1\", \"object\": \"@x1\", \"tense\": \"past\", \"span\": \"Harrow Mills HRW.N sold the barn\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s55b8c19074",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Harrow Mills",
+        "tags": [
+          "HRW.N"
+        ],
+        "span": "Harrow Mills HRW.N"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "barn",
+        "definite": true,
+        "span": "the barn"
+      },
+      {
+        "t": "transfer",
+        "id": "e1",
+        "verb": "sell",
+        "giver": "@n1",
+        "object": "@x1",
+        "tense": "past",
+        "span": "Harrow Mills HRW.N sold the barn"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "cea279156666d898548190aa5a2b6438c59da3ccf9996860a4313dcf49eddaaa",
+  "manifest_id": "b1f6f66fc3d5",
+  "run": 3,
+  "case": {
+    "template": "named-entity",
+    "section": "held_out",
+    "index": 14,
+    "category": "positive",
+    "text": "Harrow Mills HRW.N sold the barn.",
+    "key": "55b8c19074"
+  }
+}

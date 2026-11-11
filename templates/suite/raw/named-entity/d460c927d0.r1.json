@@ -1,0 +1,87 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "257425b2c1593569789317f0f007f57f21f856df868b382adc0880c1c3414809",
+  "item": {
+    "id": "sd460c927d0",
+    "text": "Teodor Varga OBE sang."
+  },
+  "usage": {
+    "input": 127865,
+    "output": 170,
+    "thinking": null,
+    "total": 128035,
+    "cached": 125762,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 127865,
+    "candidatesTokenCount": 170,
+    "totalTokenCount": 128035,
+    "cachedContentTokenCount": 125762,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 127865
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 125762
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 170
+      }
+    ]
+  },
+  "raw_text": "{\n  \"id\": \"sd460c927d0\",\n  \"instances\": [\n    {\n      \"t\": \"named-entity\",\n      \"id\": \"n1\",\n      \"name\": \"Teodor Varga\",\n      \"tags\": [\n        \"OBE\"\n      ],\n      \"span\": \"Teodor Varga OBE\"\n    },\n    {\n      \"t\": \"activity\",\n      \"id\": \"e1\",\n      \"verb\": \"sing\",\n      \"actor\": \"@n1\",\n      \"tense\": \"past\",\n      \"span\": \"Teodor Varga OBE sang\"\n    }\n  ],\n  \"unmapped\": [],\n  \"issues\": []\n}",
+  "response": {
+    "id": "sd460c927d0",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor Varga",
+        "tags": [
+          "OBE"
+        ],
+        "span": "Teodor Varga OBE"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "sing",
+        "actor": "@n1",
+        "tense": "past",
+        "span": "Teodor Varga OBE sang"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "cea279156666d898548190aa5a2b6438c59da3ccf9996860a4313dcf49eddaaa",
+  "manifest_id": "b1f6f66fc3d5",
+  "run": 1,
+  "case": {
+    "template": "named-entity",
+    "section": "held_out",
+    "index": 17,
+    "category": "positive",
+    "text": "Teodor Varga OBE sang.",
+    "key": "d460c927d0"
+  }
+}

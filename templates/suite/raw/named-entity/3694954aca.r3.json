@@ -1,0 +1,92 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "257425b2c1593569789317f0f007f57f21f856df868b382adc0880c1c3414809",
+  "item": {
+    "id": "s3694954aca",
+    "text": "Lamine read section 9."
+  },
+  "usage": {
+    "input": 127864,
+    "output": 147,
+    "thinking": null,
+    "total": 128011,
+    "cached": 125815,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 127864,
+    "candidatesTokenCount": 147,
+    "totalTokenCount": 128011,
+    "cachedContentTokenCount": 125815,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 127864
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 125815
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 147
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s3694954aca\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"section 9\", \"class\": \"section\", \"span\": \"section 9\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"read\", \"actor\": \"@n1\", \"patient\": \"@n2\", \"tense\": \"past\", \"span\": \"Lamine read section 9\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s3694954aca",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "section 9",
+        "class": "section",
+        "span": "section 9"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "read",
+        "actor": "@n1",
+        "patient": "@n2",
+        "tense": "past",
+        "span": "Lamine read section 9"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "cea279156666d898548190aa5a2b6438c59da3ccf9996860a4313dcf49eddaaa",
+  "manifest_id": "b1f6f66fc3d5",
+  "run": 3,
+  "case": {
+    "template": "named-entity",
+    "section": "held_out",
+    "index": 21,
+    "category": "positive",
+    "text": "Lamine read section 9.",
+    "key": "3694954aca"
+  }
+}

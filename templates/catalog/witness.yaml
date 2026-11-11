@@ -69,6 +69,8 @@ slots:
              doc: "the nouns, names and years before the head noun that narrow its class (Nouns before nouns): a lemma for a noun (a harbour pilot: harbour; a sea salt grinder: sea_salt), the id of a named-entity instance for a name (a Brackenford blanket), of a time instance for a year, a decade or a century (a 1904 almanac); never an adjective — a compass word before a common noun (a northern cottage) is a prop (northern), never a witness or a mod"}
   possessor: {type: filler, class: Entity, required: false,
               doc: "the possessor of a possessive phrase: Marisol's blanket, the blanket of Marisol, her blanket — an owner or an associate, NOT a whole the noun is a part of (the lid of the chest, the chest's lid, the car engine, the top of the barrow: no possessor, the witness definite, and a part-whole instance links the two), NOT the other party of a singular relational noun (her son, Joost's grandmother, the fellowship's treasurer: no possessor, a stative-relation instance with the witness as its bearer); a referent id (for a possessive pronoun, the id of its mention instance), or a bare lemma for a class-level possessor"}
+  tags:     {type: list, class: String, required: false, verbatim: true,
+             doc: "a label or a code written right after the noun phrase — a commit hash, an id, a model or registry code, an abbreviation of the phrase in brackets — each as written, without the brackets around it (Tags after a name); never decoded"}
   quantity: {type: string, required: false,
              doc: "a vague amount phrase on a mass noun, as written (a lot, lots, plenty, a little, a bit, much); absent otherwise"}
   eventive: {type: bool, required: false,
@@ -95,6 +97,8 @@ emits:
     if_filled: possessor
   - atom: "(QuantityPhrase @id \"{quantity}\")"
     if_filled: quantity
+  - atom: "(Tag @id \"{tags}\")"             # a label or a code after the noun phrase, as written: a surface record
+    each: tags
 
 examples:
   shown:
@@ -235,3 +239,18 @@ examples:
       note: an epistemic adjective before the noun — not a property; the noun phrase, and the clause that needs it, unmapped
       text: "Lamine chased a suspected thief."
       expected: {abstain: true, gap: G00, span: "a suspected thief"}
+    - category: positive
+      note: a commit hash in brackets after a common noun phrase — a tag on the witness, as written
+      text: "Yusra sent the patch (a3d90be) to Lamine."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, class: patch, definite: true, tags: ["a3d90be"]}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: transfer, id: e1, verb: send, giver: "@n1", recipient: "@n2", object: "@x1", tense: past}
+    - category: positive
+      note: an abbreviation of a common noun phrase in brackets — no name to add to, a tag on the witness
+      text: "Lamine washed the field kitchen (FK)."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: x1, class: kitchen, mods: [field], definite: true, tags: ["FK"]}
+        - {t: activity, id: v1, verb: wash, actor: "@n1", patient: "@x1", tense: past}

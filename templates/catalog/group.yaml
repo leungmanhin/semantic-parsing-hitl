@@ -60,6 +60,8 @@ slots:
   mods:      {type: list, class: Class, ids: [named-entity, time], required: false,
               doc: "the nouns, names and years before the head noun that narrow its class (Nouns before nouns): a lemma for a noun (a harbour pilot: harbour; a sea salt grinder: sea_salt), the id of a named-entity instance for a name (a Brackenford blanket), of a time instance for a year, a decade or a century (a 1904 almanac); never an adjective"}
   possessor: {type: filler, class: Entity, required: false, doc: "the possessor of a possessive phrase (Marisol's badgers)"}
+  tags:      {type: list, class: String, required: false, verbatim: true,
+              doc: "a label or a code written right after the noun phrase — an id, a model or registry code, an abbreviation of the phrase in brackets — each as written, without the brackets around it (Tags after a name); never decoded"}
 
 mints: {id: Entity, literal: group, also: {Event: eventive}}      # an eventive group is an Event too
 
@@ -78,6 +80,8 @@ emits:
     if_filled: count_max
   - atom: "(Possession @id {possessor})"
     if_filled: possessor
+  - atom: "(Tag @id \"{tags}\")"             # a label or a code after the noun phrase, as written: a surface record
+    each: tags
 
 notes:
   - >-
@@ -243,3 +247,10 @@ examples:
         - {t: group, id: g1, class: audit, definite: true, count: 3, eventive: true}
         - {t: time, id: t1, event: "@g1", weekday: monday, tense: past}
         - {t: distribution, id: d1, group: "@g1", over: ["@g1"]}
+    - category: positive
+      note: a code in brackets after a plural noun phrase — a tag on the group, as written
+      text: "The grain carts (GC-4) broke."
+      instances:
+        - {t: group, id: g1, class: cart, mods: [grain], definite: true, tags: ["GC-4"]}
+        - {t: change-of-state, id: e1, verb: break, undergoer: "@g1", tense: past}
+        - {t: distribution, id: d1, group: "@g1", over: ["@e1"]}

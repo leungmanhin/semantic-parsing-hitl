@@ -1,0 +1,87 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "257425b2c1593569789317f0f007f57f21f856df868b382adc0880c1c3414809",
+  "item": {
+    "id": "s43554a3fc7",
+    "text": "The Calder Weavers Guild (CWG) grew."
+  },
+  "usage": {
+    "input": 127869,
+    "output": 131,
+    "thinking": null,
+    "total": 128000,
+    "cached": 125762,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 127869,
+    "candidatesTokenCount": 131,
+    "totalTokenCount": 128000,
+    "cachedContentTokenCount": 125762,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 127869
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 125762
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 131
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s43554a3fc7\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Calder Weavers Guild\", \"aliases\": [\"CWG\"], \"span\": \"The Calder Weavers Guild (CWG)\"}, {\"t\": \"change-of-state\", \"id\": \"c1\", \"verb\": \"grow\", \"undergoer\": \"@n1\", \"tense\": \"past\", \"span\": \"The Calder Weavers Guild (CWG) grew\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s43554a3fc7",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Calder Weavers Guild",
+        "aliases": [
+          "CWG"
+        ],
+        "span": "The Calder Weavers Guild (CWG)"
+      },
+      {
+        "t": "change-of-state",
+        "id": "c1",
+        "verb": "grow",
+        "undergoer": "@n1",
+        "tense": "past",
+        "span": "The Calder Weavers Guild (CWG) grew"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "cea279156666d898548190aa5a2b6438c59da3ccf9996860a4313dcf49eddaaa",
+  "manifest_id": "b1f6f66fc3d5",
+  "run": 2,
+  "case": {
+    "template": "named-entity",
+    "section": "held_out",
+    "index": 13,
+    "category": "positive",
+    "text": "The Calder Weavers Guild (CWG) grew.",
+    "key": "43554a3fc7"
+  }
+}

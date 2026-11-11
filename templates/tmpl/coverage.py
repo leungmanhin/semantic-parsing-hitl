@@ -323,7 +323,7 @@ def _pattern(span: str) -> str:
     return " ".join(out)[:60]
 
 
-#: Gap codes the catalog asks the parser to REPORT rather than map — a post-nominal tag on a name (G03), a
+#: Gap codes the catalog asks the parser to REPORT rather than map — a pronunciation after a name (G03), a
 #: connective opening the text with no first clause (G05), the wording of a quotation whose content is parsed
 #: (G10): a convention each, never a gap in the catalog, so a sentence whose only unmapped spans carry one
 #: counts as covered. The named gaps (G01, G02, G04, G06 … G09) and the catch-all G00 stay gaps.
@@ -409,7 +409,7 @@ def render_report(a: dict, manifest_id: str | None, model: str | None) -> str:
         f"covered {o['covered']} ({(o['covered_rate'] or 0):.0%}, {o['reported']} of them with spans reported by convention), "
         f"partial {o['partial']}, none {o['none']}, malformed {o['malformed']}, errors {o['error']}")
     add("")
-    add("covered = every span mapped or reported by convention (a tag on a name G03, a connective opening the text G05, "
+    add("covered = every span mapped or reported by convention (a pronunciation after a name G03, a connective opening the text G05, "
         "a quotation's wording G10) and at least one predication fired; partial = predications beside spans with a gap code; "
         "none = nothing but referents or everything unmapped; malformed = the reply broke the contract or the emitter refused it.")
     add("")

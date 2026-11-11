@@ -257,9 +257,35 @@ biography:
   maker, tense past, the year a time instance on that event (the bracket stands for was created in …).
 - >-
   NAMES in the bracket — a birth name (born Saskia Moreau), a maiden name (née Moreau), the name in another
-  language or script (Russian: Рен Эшби) — are more names of the same individual: the named entity's `aliases`,
-  as written, without the language. A pronunciation (a phonetic spelling between slashes, a respelling) is a tag
-  on the name: report it as unmapped (G03); stray punctuation left in the bracket is nothing and is not reported.
+  language or script (Russian: Рен Эшби), an abbreviation or an acronym of the name (the Brackenford Glaziers
+  Guild (BGG)) — are more names of the same individual: the named entity's `aliases`, as written, without the
+  language. A pronunciation (a phonetic spelling between slashes, a respelling) says how the name sounds and
+  nothing of the individual: report it as unmapped (G03); stray punctuation left in the bracket is nothing and
+  is not reported.
+tags:
+- >-
+  A TAG is a label or a code written right after a name or a noun phrase — in brackets, between commas or bare —
+  that is no word of the sentence: a stock ticker or an exchange, airport or registry code (Brackenford Looms
+  BKL.L; Fenn Airfield (IATA: FNH)), a commit hash or an item's id (the ledger fix (9c41f7a)), a party or
+  district tag (Sen. Henrike Vos, R-Ore.), the letters of an honour, an order or a degree (Odile Hale CBE). Keep
+  each as written in `tags` on the instance it follows — a named entity, a witness or a group —, without the
+  brackets or commas around it. A label written with its code stays with it (IATA: FNH), and several tags are
+  one entry each (IATA: FNH, ICAO: KFNH is two). Never decode a tag: write no party, no state, no exchange and
+  no class for what its letters stand for.
+- >-
+  A NAME is not a tag. Letters that shorten the name, or another name of the same individual — an abbreviation,
+  an acronym, a nickname, the name in another script — are `aliases` (Life dates and names in brackets), also
+  when the same letters serve as a ticker or a code. A suffix that belongs to the name (Ludo Hale Jr.) stays in
+  `name`. After a COMMON noun phrase there is no name to add to: an abbreviation of the phrase in brackets (a
+  signal relay box (SRB)) is a tag on its witness.
+- >-
+  NOT A TAG. The link text a web page leaves behind after a name (news - filings; charts, profile) is
+  structure: report it as unmapped (G13), also when it shares a bracket with a code — in (nasdaq: BKLM - news -
+  filings) the tag is nasdaq: BKLM and news - filings is reported. A date, a life range or a year in brackets is
+  read as Life dates and names in brackets says, and a pronunciation is reported (G03). The state or the country
+  after a town (Fennhollow, Ore.) is a place name of its own, not a tag. Words in brackets that say something
+  (the second, shorter draft) are parsed or reported like any phrase. A tag with nothing to carry it — on an
+  amount (40 crowns <CRW=>), on a bare lemma — is reported as unmapped (G03).
 notes:
 - >-
   NOTE STYLE. A log entry, a headline or a list of jobs leaves out words that a full sentence has (hatch open;
@@ -281,14 +307,16 @@ notes:
 - >-
   STRUCTURE states nothing: a heading or a label that frames what follows (Next:, Findings:, Lesson:), a list
   number or a bullet, a dateline at the head of a news item (ANTWERP —), a time stamp that opens an entry
-  (3 March, 14:20), a markup comment or tag. Report each as unmapped with the code G13 and parse what it frames as
-  usual: after a label, a clause is still a clause (Next: wash the blanket is the command).
+  (3 March, 14:20), a markup comment or an HTML tag, the link text a web page leaves behind (Tags after a name).
+  Report each as unmapped with the code G13 and parse what it frames as usual: after a label, a clause is still a
+  clause (Next: wash the blanket is the command).
 - >-
   NOTATION is kept as written and never read: an equation over numbers (40 + 12 = 52), an arrow (draft -> final),
   a command line (cp ledger.txt /backup/), a setting (retries=3), a path or a code standing alone. Report it as
-  unmapped with the code G14, the span verbatim, and write no instance for anything inside it. Two things are not
-  notation. A NAME that happens to be a path, a file name or a code and fills a role in a clause (Odile renamed
-  ledger.txt) is a named entity, as always. And = between two names or noun phrases (the warden = Henrike) is the
+  unmapped with the code G14, the span verbatim, and write no instance for anything inside it. Three things are
+  not notation. A NAME that happens to be a path, a file name or a code and fills a role in a clause (Odile renamed
+  ledger.txt) is a named entity, as always. A code written right after a name or a noun phrase (the ledger fix
+  (9c41f7a)) is its tag (Tags after a name). And = between two names or noun phrases (the warden = Henrike) is the
   verb be: the identity template.
 abstain:
 - >-
@@ -345,7 +373,8 @@ gap_codes:
     sadly), a degree word on a manner adverb or on a class-level statement (laughed very loudly; badgers are
     very curious)
   G03: >-
-    a post-nominal tag on a name (a party or district tag, a ticker, a bracketed code, a pronunciation)
+    a pronunciation after a name; a tag with nothing to carry it — on an amount, on a bare lemma (Tags after a
+    name)
   G04: >-
     an irrealis relative clause ('the bridge that would have collapsed'); a lone would-have main clause is the modal's Would
   G05: >-
@@ -365,7 +394,8 @@ gap_codes:
     swim?): the whole question
   G13: >-
     the structure of a note or a news item, which states nothing — a heading or label, a list number or bullet, a
-    dateline, a time stamp that opens an entry, a markup comment (Notes, headlines and lists)
+    dateline, a time stamp that opens an entry, a markup comment, the link text of a web page (Notes, headlines
+    and lists)
   G14: >-
     notation kept as written — an equation over numbers, an arrow, a command line, a setting, a path or a code
     standing alone (Notes, headlines and lists)

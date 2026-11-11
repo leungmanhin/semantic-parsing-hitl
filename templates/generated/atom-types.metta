@@ -302,6 +302,7 @@
 (: Stimulus (-> Event Proposition Proposition))
 (: SubsetOf (-> Entity Entity Proposition))
 (: Symmetric (-> Atom Proposition))
+(: Tag (-> Entity String Proposition))
 (: Taste (-> Proposition Proposition))
 (: ThanksTo (-> Event Instance Proposition))
 (: Theme (-> Event Entity Proposition))

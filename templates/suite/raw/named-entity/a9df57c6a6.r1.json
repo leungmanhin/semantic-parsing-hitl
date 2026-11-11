@@ -1,0 +1,93 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "257425b2c1593569789317f0f007f57f21f856df868b382adc0880c1c3414809",
+  "item": {
+    "id": "sa9df57c6a6",
+    "text": "Pellam Dairy (quotes - web links) grew."
+  },
+  "usage": {
+    "input": 127868,
+    "output": 150,
+    "thinking": null,
+    "total": 128018,
+    "cached": 125816,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 127868,
+    "candidatesTokenCount": 150,
+    "totalTokenCount": 128018,
+    "cachedContentTokenCount": 125816,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 127868
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 125816
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 150
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sa9df57c6a6\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Pellam Dairy\", \"span\": \"Pellam Dairy\"}, {\"t\": \"change-of-state\", \"id\": \"e1\", \"verb\": \"grow\", \"undergoer\": \"@n1\", \"tense\": \"past\", \"span\": [\"Pellam Dairy\", \"grew\"]}], \"unmapped\": [{\"span\": \"quotes - web links\", \"code\": \"G13\", \"construction\": \"Web page link text left inside brackets after a proper name.\"}], \"issues\": []}",
+  "response": {
+    "id": "sa9df57c6a6",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Pellam Dairy",
+        "span": "Pellam Dairy"
+      },
+      {
+        "t": "change-of-state",
+        "id": "e1",
+        "verb": "grow",
+        "undergoer": "@n1",
+        "tense": "past",
+        "span": [
+          "Pellam Dairy",
+          "grew"
+        ]
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "quotes - web links",
+        "code": "G13",
+        "construction": "Web page link text left inside brackets after a proper name."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "cea279156666d898548190aa5a2b6438c59da3ccf9996860a4313dcf49eddaaa",
+  "manifest_id": "b1f6f66fc3d5",
+  "run": 1,
+  "case": {
+    "template": "named-entity",
+    "section": "held_out",
+    "index": 18,
+    "category": "positive",
+    "text": "Pellam Dairy (quotes - web links) grew.",
+    "key": "a9df57c6a6"
+  }
+}

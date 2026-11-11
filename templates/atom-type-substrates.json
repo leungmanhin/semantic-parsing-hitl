@@ -1056,6 +1056,17 @@
       "opaque": false,
       "gloss": "Records a named individual's surface name string. Surface record: a literal string; excluded from the faithful mining view."
     },
+    "Tag": {
+      "kind": "surface-record",
+      "arity": 2,
+      "arg_types": [
+        "Entity",
+        "String"
+      ],
+      "out": "Proposition",
+      "opaque": false,
+      "gloss": "Records a label or a code the text writes right after a referent's name or noun phrase (a ticker, a registry code, a commit hash, a party tag, the letters of an honour), as written. What it stands for is not decoded, and it is not a name of the referent (a name is a Name). Surface record: a literal string; excluded from the faithful mining view."
+    },
     "Narrow": {
       "kind": "core-link",
       "arity": 2,

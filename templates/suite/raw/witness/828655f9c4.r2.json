@@ -1,0 +1,98 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "257425b2c1593569789317f0f007f57f21f856df868b382adc0880c1c3414809",
+  "item": {
+    "id": "s828655f9c4",
+    "text": "Lamine washed the field kitchen (FK)."
+  },
+  "usage": {
+    "input": 127868,
+    "output": 161,
+    "thinking": null,
+    "total": 128029,
+    "cached": 125819,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 127868,
+    "candidatesTokenCount": 161,
+    "totalTokenCount": 128029,
+    "cachedContentTokenCount": 125819,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 127868
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 125819
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 161
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s828655f9c4\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"kitchen\", \"definite\": true, \"mods\": [\"field\"], \"tags\": [\"FK\"], \"span\": \"the field kitchen (FK)\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"wash\", \"actor\": \"@n1\", \"patient\": \"@x1\", \"tense\": \"past\", \"span\": \"Lamine washed the field kitchen (FK)\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s828655f9c4",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "kitchen",
+        "definite": true,
+        "mods": [
+          "field"
+        ],
+        "tags": [
+          "FK"
+        ],
+        "span": "the field kitchen (FK)"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "wash",
+        "actor": "@n1",
+        "patient": "@x1",
+        "tense": "past",
+        "span": "Lamine washed the field kitchen (FK)"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "cea279156666d898548190aa5a2b6438c59da3ccf9996860a4313dcf49eddaaa",
+  "manifest_id": "b1f6f66fc3d5",
+  "run": 2,
+  "case": {
+    "template": "witness",
+    "section": "held_out",
+    "index": 17,
+    "category": "positive",
+    "text": "Lamine washed the field kitchen (FK).",
+    "key": "828655f9c4"
+  }
+}

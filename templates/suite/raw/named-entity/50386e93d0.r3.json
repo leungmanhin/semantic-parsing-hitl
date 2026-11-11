@@ -1,0 +1,93 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "257425b2c1593569789317f0f007f57f21f856df868b382adc0880c1c3414809",
+  "item": {
+    "id": "s50386e93d0",
+    "text": "Ottoline (/ˈɒtəliːn/) sang."
+  },
+  "usage": {
+    "input": 127872,
+    "output": 139,
+    "thinking": null,
+    "total": 128011,
+    "cached": 125823,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 127872,
+    "candidatesTokenCount": 139,
+    "totalTokenCount": 128011,
+    "cachedContentTokenCount": 125823,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 127872
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 125823
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 139
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s50386e93d0\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"sing\", \"actor\": \"@n1\", \"tense\": \"past\", \"span\": [\"Ottoline\", \"sang\"]}], \"unmapped\": [{\"span\": \"/ˈɒtəliːn/\", \"code\": \"G03\", \"construction\": \"A phonetic pronunciation in brackets after a proper name.\"}], \"issues\": []}",
+  "response": {
+    "id": "s50386e93d0",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Ottoline",
+        "span": "Ottoline"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "sing",
+        "actor": "@n1",
+        "tense": "past",
+        "span": [
+          "Ottoline",
+          "sang"
+        ]
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "/ˈɒtəliːn/",
+        "code": "G03",
+        "construction": "A phonetic pronunciation in brackets after a proper name."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "cea279156666d898548190aa5a2b6438c59da3ccf9996860a4313dcf49eddaaa",
+  "manifest_id": "b1f6f66fc3d5",
+  "run": 3,
+  "case": {
+    "template": "named-entity",
+    "section": "held_out",
+    "index": 20,
+    "category": "positive",
+    "text": "Ottoline (/ˈɒtəliːn/) sang.",
+    "key": "50386e93d0"
+  }
+}

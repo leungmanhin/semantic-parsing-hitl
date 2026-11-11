@@ -38,7 +38,7 @@ CATALOG_DIR = os.path.abspath(os.path.join(HERE, os.pardir, "catalog"))
 SLOT_TYPES = {"id", "lemma", "filler", "refs", "enum", "bool", "string", "number", "int", "list"}
 CLASSED = {"lemma", "filler", "refs"}
 CATEGORIES = {"positive", "contrast", "scoped", "optional", "abstain"}
-SLOT_KEYS = {"type", "class", "role", "required", "default", "values", "doc", "consumes", "bind", "skolemize", "attaches", "bare_content", "participant", "as_variable", "state_variable", "narrowed_by", "stands_alone", "ids", "restriction", "only_when", "emit_as", "asked_apart"}
+SLOT_KEYS = {"type", "class", "role", "required", "default", "values", "doc", "consumes", "bind", "skolemize", "attaches", "bare_content", "participant", "as_variable", "state_variable", "narrowed_by", "stands_alone", "ids", "restriction", "only_when", "emit_as", "asked_apart", "verbatim"}
 #: The trigger fields render_prompt renders: text under any other key would never reach the parser.
 TRIGGER_KEYS = {"construction", "verbs", "verbs_note", "surface_forms", "boundary"}
 #: A template's sections. The prompt renders title, trigger, slots, one_of, any_of and the shown
@@ -192,6 +192,9 @@ def check_template(t: dict, path: str) -> list[str]:
         if "ids" in spec and (spec["type"] != "list" or not isinstance(spec["ids"], list) or not spec["ids"]
                               or not all(isinstance(x, str) for x in spec["ids"])):
             problems.append(f"slot {sname}: ids applies to list slots and lists the templates whose instances an element may name")
+        if "verbatim" in spec and not (spec["verbatim"] is True and (spec["type"] == "string"
+                                                                     or (spec["type"] == "list" and spec.get("class") == "String"))):
+            problems.append(f"slot {sname}: verbatim: true applies to a string slot or a list of strings (each value is checked against the text)")
         if "participant" in spec and not ((spec["type"] == "filler" and spec["participant"] is False)
                                           or (spec["type"] == "refs" and spec["participant"] is True)):
             problems.append(f"slot {sname}: participant: false applies to filler slots, participant: true to refs slots (a clause standing as the participant)")

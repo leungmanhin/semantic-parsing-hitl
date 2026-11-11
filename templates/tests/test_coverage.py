@@ -82,7 +82,7 @@ class CoverageTests(unittest.TestCase):
         self.assertIn("G02: 1", text)
 
     def test_spans_reported_by_convention_are_not_gaps(self):
-        """A quotation's wording (G10), a ticker tag (G03) or a connective opening the text (G05) is reported by
+        """A quotation's wording (G10), a pronunciation after a name (G03) or a connective opening the text (G05) is reported by
         the catalog's own convention: a sentence whose only unmapped spans carry such a code is covered, and
         one with a gap code beside them is partial. Both stay in the gap-code tally."""
         insts = [{"t": "named-entity", "id": "n1", "name": "Yusra", "span": "Yusra"},

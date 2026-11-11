@@ -1,0 +1,88 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "257425b2c1593569789317f0f007f57f21f856df868b382adc0880c1c3414809",
+  "item": {
+    "id": "s81da1a204b",
+    "text": "Sen. Ottoline Reyes, D-Vt., left."
+  },
+  "usage": {
+    "input": 127870,
+    "output": 132,
+    "thinking": null,
+    "total": 128002,
+    "cached": 125821,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 127870,
+    "candidatesTokenCount": 132,
+    "totalTokenCount": 128002,
+    "cachedContentTokenCount": 125821,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 127870
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 125821
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 132
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s81da1a204b\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline Reyes\", \"title\": \"Sen.\", \"tags\": [\"D-Vt.\"], \"span\": \"Sen. Ottoline Reyes, D-Vt.\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n1\", \"tense\": \"past\", \"span\": \"Sen. Ottoline Reyes, D-Vt., left\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s81da1a204b",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Ottoline Reyes",
+        "title": "Sen.",
+        "tags": [
+          "D-Vt."
+        ],
+        "span": "Sen. Ottoline Reyes, D-Vt."
+      },
+      {
+        "t": "motion",
+        "id": "m1",
+        "verb": "leave",
+        "mover": "@n1",
+        "tense": "past",
+        "span": "Sen. Ottoline Reyes, D-Vt., left"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "cea279156666d898548190aa5a2b6438c59da3ccf9996860a4313dcf49eddaaa",
+  "manifest_id": "b1f6f66fc3d5",
+  "run": 2,
+  "case": {
+    "template": "named-entity",
+    "section": "held_out",
+    "index": 16,
+    "category": "positive",
+    "text": "Sen. Ottoline Reyes, D-Vt., left.",
+    "key": "81da1a204b"
+  }
+}

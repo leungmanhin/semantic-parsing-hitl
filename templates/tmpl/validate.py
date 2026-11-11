@@ -30,6 +30,8 @@ Checks, in order:
 * span lints, when the caller supplies the TEXT: an instance without ``span`` (``span-missing``), a
   span that is not a string or a list of strings (``span-malformed``), a span that is not a verbatim
   substring of the text (``span-not-verbatim``); spans are provenance and never affect emission;
+* verbatim lints, when the caller supplies the TEXT: a value of a slot the catalog marks ``verbatim`` (a tag after
+  a name, kept as written) that is not a verbatim substring of the text (``value-not-verbatim``); report only;
 * C9 — every emitted statement types against the substrate with the emitter's declarations
   (needs the ``petta`` package, otherwise ``typecheck`` is ``skipped``).
 
@@ -110,6 +112,7 @@ def inspect(reply, catalog: dict | None = None, reference_time=None, text: str |
     res["findings"].extend(statement_lints(res["statements"], res["detail"]))
     if text is not None:
         res["findings"].extend(span_lints(cleaned, text))
+        res["findings"].extend(verbatim_lints(cleaned, catalog, text))
     return res
 
 
@@ -277,6 +280,22 @@ def span_lints(insts: list, text: str) -> list:
         if bad:
             out.append({"kind": "span-not-verbatim", "instance": r.get("id"),
                         "detail": f"{r.get('t')} {r.get('id')}: span {bad[0]!r} is not verbatim in the text"})
+    return out
+
+
+def verbatim_lints(insts: list, catalog: dict, text: str) -> list:
+    """A slot the catalog marks ``verbatim`` holds words of the text as written (a tag after a name): each value is a
+    verbatim substring of the text (needs the text; report only)."""
+    out = []
+    for r in insts:
+        for sname, spec in ((catalog.get(r.get("t")) or {}).get("slots") or {}).items():
+            if not spec.get("verbatim") or r.get(sname) is None:
+                continue
+            v = r[sname]
+            for item in v if isinstance(v, list) else [v]:
+                if not (isinstance(item, str) and CAT.span_in_text(item, text)):
+                    out.append({"kind": "value-not-verbatim", "instance": r.get("id"),
+                                "detail": f"{r.get('t')} {r.get('id')}: {sname} {item!r} is not written in the text"})
     return out
 
 

@@ -11,13 +11,19 @@ trigger:
     A proper name (a person, a place, an organisation, a product) used to refer to one
     individual. A name is rigid: it is never introduced inside a scope. Its symbol is the name
     with a number for this text (sk_pieter_1); whether two texts' Pieters are one person is a
-    separate, revisable link, not a matter of spelling.
+    separate, revisable link, not a matter of spelling. A COMMON NOUN WITH ITS NUMBER — page 34,
+    room 12, version 3, chapter two — names one item of a series: its name is the phrase as
+    written (page 34) and its class the noun (page). A date and a numbered week are times, and a
+    count before the noun (34 pages) is a group.
   surface_forms:
     - "<Name>"                      # Pieter
     - "<Title> <Name>"              # Dr Varga — the title is recorded, not part of the symbol
     - "the <class> of <Name>"       # the village of Fennhollow: the name with class village, not a second referent
     - "<N1> <N2> <Name>"            # harbour pilot Joost: class pilot, mods [harbour]
     - "<Possessor>'s <Name>"        # Brackenford's Harbour Museum: the possessor, an owner or an associate
+    - "<N> <number>"                # page 34: the name page 34, class page
+    - "<Name> (<abbreviation>)"     # the Brackenford Glaziers Guild (BGG): aliases [BGG]
+    - "<Name> <tag>"                # Brackenford Looms BKL.L: tags [BKL.L], as written
   boundary:
     - >-
       a common noun with an article — the clerk, a flask: a witness, not a name
@@ -26,12 +32,14 @@ trigger:
 
 slots:
   id:    {type: id, required: true}
-  name:  {type: string, required: true, doc: "the surface name, capitalised as written, without a leading article: the Kestrel and The Kestrel are both Kestrel"}
+  name:  {type: string, required: true, doc: "the surface name, capitalised as written, without a leading article: the Kestrel and The Kestrel are both Kestrel; a common noun with its number is the whole phrase as written (page 34)"}
   title: {type: string, required: false, doc: "a leading title, if any"}
   class:  {type: lemma, class: Class, required: false, narrowed_by: [props, mods], stands_alone: [props],
-          doc: "the class an appositive, a title phrase or an of-phrase naming the place itself states for the name (Odile, a glazier; the village of Fennhollow: village; a retired weaver: weaver, with `former`); a predicative is a N is a copular instance, not this slot; a relational noun with a possessor (her son Joost, Anouk's husband Ludo) is a relation, not a class: the stative-relation template"}
+          doc: "the class an appositive, a title phrase or an of-phrase naming the place itself states for the name (Odile, a glazier; the village of Fennhollow: village; a retired weaver: weaver, with `former`); the noun of a numbered item (page 34: page); a predicative is a N is a copular instance, not this slot; a relational noun with a possessor (her son Joost, Anouk's husband Ludo) is a relation, not a class: the stative-relation template"}
   aliases: {type: list, class: String, required: false,
-           doc: "other names of the same individual, each as written: known as, also known as, better known as, called, nicknamed (Femke, known as Nell: Nell); a birth or a maiden name (born X, née X) and the name in another language or script, without the language"}
+           doc: "other names of the same individual, each as written: known as, also known as, better known as, called, nicknamed (Femke, known as Nell: Nell); a birth or a maiden name (born X, née X) and the name in another language or script, without the language; an abbreviation or an acronym of the name in brackets (the Brackenford Glaziers Guild (BGG): BGG)"}
+  tags:    {type: list, class: String, required: false, verbatim: true,
+           doc: "labels and codes written right after the name that are not names of it — a ticker or a registry code, a commit hash or an id, a party or district tag, the letters of an honour — each as written, without the brackets or commas around it (Tags after a name); never decoded, never a second name"}
   props:  {type: list, class: Class, restriction: Member, required: false,
           doc: "adjectives inside the appositive or title phrase, each a lemma (a careful harbour pilot: careful; the northern ferry company: northern); with no class noun the adjective is the name's own property (the venerable Kestrel: venerable, no class); a noun before the class is a mod, never a property; a direction adjective before a place's own name (southern Brackenford) is a part of the place (part-whole), never a property"}
   former: {type: bool, required: false, doc: "with a class, true when former, ex-, one-time or retired makes the noun something the referent was and no longer is (Femke, a retired weaver)"}
@@ -48,6 +56,8 @@ emits:
   - atom: "(Name @id \"{name}\")"
   - atom: "(Name @id \"{aliases}\")"
     each: aliases
+  - atom: "(Tag @id \"{tags}\")"             # a label or a code after the name, as written: a surface record
+    each: tags
   - atom: "(Member @id {class|mod})"
     if_filled: class
     with_head: class
@@ -76,6 +86,16 @@ examples:
       text: "Pieter"
       instances:
         - {t: named-entity, id: n1, name: "Pieter", span: "Pieter"}
+    - category: positive
+      note: an abbreviation of the name in brackets — a second name of the same individual
+      text: "the Brackenford Glaziers Guild (BGG)"
+      instances:
+        - {t: named-entity, id: n1, name: "Brackenford Glaziers Guild", aliases: ["BGG"], span: "the Brackenford Glaziers Guild (BGG)"}
+    - category: positive
+      note: a ticker right after the name — a tag, kept as written, not a name
+      text: "Brackenford Looms BKL.L"
+      instances:
+        - {t: named-entity, id: n1, name: "Brackenford Looms", tags: ["BKL.L"], span: "Brackenford Looms BKL.L"}
   held_out:
     - category: positive
       note: an appositive states the class
@@ -160,3 +180,73 @@ examples:
         - {t: named-entity, id: n1, name: "Lamine"}
         - {t: named-entity, id: n2, name: "Pip", class: ferret, possessor: "@n1"}
         - {t: motion, id: m1, verb: escape, mover: "@n2", tense: past}
+    - category: positive
+      note: an abbreviation of the name in brackets — a second name of the same individual, no tag
+      text: "The Calder Weavers Guild (CWG) grew."
+      instances:
+        - {t: named-entity, id: n1, name: "Calder Weavers Guild", aliases: ["CWG"]}
+        - {t: change-of-state, id: e1, verb: grow, undergoer: "@n1", tense: past}
+    - category: positive
+      note: a ticker right after the name — a tag, as written, not a name
+      text: "Harrow Mills HRW.N sold the barn."
+      instances:
+        - {t: named-entity, id: n1, name: "Harrow Mills", tags: ["HRW.N"]}
+        - {t: witness, id: x1, class: barn, definite: true}
+        - {t: transfer, id: e1, verb: sell, giver: "@n1", object: "@x1", tense: past}
+    - category: positive
+      note: two registry codes in one bracket — one tag each, the label kept with its code
+      text: "Calder Field (IATA: CDF, ICAO: KCDF) closed."
+      instances:
+        - {t: named-entity, id: n1, name: "Calder Field", tags: ["IATA: CDF", "ICAO: KCDF"]}
+        - {t: change-of-state, id: e1, verb: close, undergoer: "@n1", tense: past}
+    - category: positive
+      note: a party and district tag between commas — a tag, never decoded; the leading title as always
+      text: "Sen. Ottoline Reyes, D-Vt., left."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline Reyes", title: "Sen.", tags: ["D-Vt."]}
+        - {t: motion, id: m1, verb: leave, mover: "@n1", tense: past}
+    - category: positive
+      note: the letters of an honour after the name — a tag
+      text: "Teodor Varga OBE sang."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor Varga", tags: ["OBE"]}
+        - {t: activity, id: v1, verb: sing, actor: "@n1", tense: past}
+    - category: positive
+      note: link text a web page left after the name — structure (G13), no tag
+      text: "Pellam Dairy (quotes - web links) grew."
+      instances:
+        - {t: named-entity, id: n1, name: "Pellam Dairy"}
+        - {t: change-of-state, id: e1, verb: grow, undergoer: "@n1", tense: past}
+      unmapped:
+        - {span: "(quotes - web links)", code: G13}
+    - category: positive
+      note: a code and link text in one bracket — the code is the tag, the link text structure (G13)
+      text: "Tolland Freight (nasdaq: TLFR - quotes - people) grew."
+      instances:
+        - {t: named-entity, id: n1, name: "Tolland Freight", tags: ["nasdaq: TLFR"]}
+        - {t: change-of-state, id: e1, verb: grow, undergoer: "@n1", tense: past}
+      unmapped:
+        - {span: "quotes - people", code: G13}
+    - category: positive
+      note: a pronunciation after the name — still reported (G03), never a tag
+      text: "Ottoline (/ˈɒtəliːn/) sang."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: activity, id: v1, verb: sing, actor: "@n1", tense: past}
+      unmapped:
+        - {span: "(/ˈɒtəliːn/)", code: G03}
+    - category: positive
+      note: a common noun with its number — a name of one item of a series, the noun its class
+      text: "Lamine read section 9."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: named-entity, id: n2, name: "section 9", class: section}
+        - {t: activity, id: v1, verb: read, actor: "@n1", patient: "@n2", tense: past}
+    - category: positive
+      note: a commit hash in brackets after a numbered item — the item a name with its class, the hash its tag
+      text: "Yusra sent revision 2 (4f9c2e1) to Teodor."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: named-entity, id: n2, name: "revision 2", class: revision, tags: ["4f9c2e1"]}
+        - {t: named-entity, id: n3, name: "Teodor"}
+        - {t: transfer, id: e1, verb: send, giver: "@n1", recipient: "@n3", object: "@n2", tense: past}

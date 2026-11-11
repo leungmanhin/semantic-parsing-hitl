@@ -1,0 +1,102 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "257425b2c1593569789317f0f007f57f21f856df868b382adc0880c1c3414809",
+  "item": {
+    "id": "s87776d3b88",
+    "text": "Yusra sent revision 2 (4f9c2e1) to Teodor."
+  },
+  "usage": {
+    "input": 127878,
+    "output": 220,
+    "thinking": null,
+    "total": 128098,
+    "cached": 125823,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 127878,
+    "candidatesTokenCount": 220,
+    "totalTokenCount": 128098,
+    "cachedContentTokenCount": 125823,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 127878
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 125823
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 220
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s87776d3b88\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"revision 2\", \"class\": \"revision\", \"tags\": [\"4f9c2e1\"], \"span\": \"revision 2 (4f9c2e1)\"}, {\"t\": \"named-entity\", \"id\": \"n3\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"transfer\", \"id\": \"e1\", \"verb\": \"send\", \"giver\": \"@n1\", \"object\": \"@n2\", \"recipient\": \"@n3\", \"tense\": \"past\", \"span\": \"Yusra sent revision 2 (4f9c2e1) to Teodor\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s87776d3b88",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "revision 2",
+        "class": "revision",
+        "tags": [
+          "4f9c2e1"
+        ],
+        "span": "revision 2 (4f9c2e1)"
+      },
+      {
+        "t": "named-entity",
+        "id": "n3",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "transfer",
+        "id": "e1",
+        "verb": "send",
+        "giver": "@n1",
+        "object": "@n2",
+        "recipient": "@n3",
+        "tense": "past",
+        "span": "Yusra sent revision 2 (4f9c2e1) to Teodor"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "cea279156666d898548190aa5a2b6438c59da3ccf9996860a4313dcf49eddaaa",
+  "manifest_id": "b1f6f66fc3d5",
+  "run": 1,
+  "case": {
+    "template": "named-entity",
+    "section": "held_out",
+    "index": 22,
+    "category": "positive",
+    "text": "Yusra sent revision 2 (4f9c2e1) to Teodor.",
+    "key": "87776d3b88"
+  }
+}

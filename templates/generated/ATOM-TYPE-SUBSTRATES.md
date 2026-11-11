@@ -2,7 +2,7 @@
 
 Generated from `templates/atom-type-substrates.json` (schema `atom-type-substrates/1`) by `templates/tmpl/gen_substrate.py`, together with `templates/generated/atom-types.metta`. Do not edit by hand; regenerate with `cd templates && python -m tmpl.gen_substrate`.
 
-181 heads in 15 kinds (7 proposed; 181 with a reviewed type declaration so far). `type-def` is the PeTTa declaration emitted for the head; `?` as the output type means the head is not yet reviewed and is absent from the `.metta` file; `%Undefined%` marks a position the head takes but the JSON does not type.
+182 heads in 15 kinds (7 proposed; 182 with a reviewed type declaration so far). `type-def` is the PeTTa declaration emitted for the head; `?` as the output type means the head is not yet reviewed and is absent from the `.metta` file; `%Undefined%` marks a position the head takes but the JSON does not type.
 
 Every atom is carried as a statement (: <proof-name> <atom> <tv>), tv = (STV strength confidence) or another engine truth value. The carrier is not an atom kind: ':' is never type-declared (it is also PeTTa's type-declaration head) and the truth value is declared by the engine, not by this substrate.
 
@@ -1224,7 +1224,7 @@ type-def: (: permitted (-> Class Class))
 gloss: Builds the reified permission property term from an action; a class-valued term kept nested: (Inheritance visitor (permitted enter)); a class-level prohibition is the same term at strength 0.0.
 
 
-## surface-record (5)
+## surface-record (6)
 
 head: CardinalityPhrase
 kind: surface-record
@@ -1261,6 +1261,13 @@ kind: surface-record
 arity: 2
 type-def: (: QuantityPhrase (-> Entity String Proposition))
 gloss: Records a vague amount phrase on a mass witness ('a lot', 'plenty', 'a little'). Surface record: a literal string; excluded from the faithful mining view.
+
+
+head: Tag
+kind: surface-record
+arity: 2
+type-def: (: Tag (-> Entity String Proposition))
+gloss: Records a label or a code the text writes right after a referent's name or noun phrase (a ticker, a registry code, a commit hash, a party tag, the letters of an honour), as written. What it stands for is not decoded, and it is not a name of the referent (a name is a Name). Surface record: a literal string; excluded from the faithful mining view.
 
 
 ## meta (1)

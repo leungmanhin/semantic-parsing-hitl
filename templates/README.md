@@ -93,7 +93,9 @@ The legacy parser line (`prompt.txt`, `seeded_rules.metta`, the regression harne
   is unmapped — unless the text is known and the instances' spans cover all of it: a bare-phrase
   text is its referent alone —, bare predication, empty optional scope), span lints when the text
   is known (an instance
-  without `span`, a malformed span, a span that is not a verbatim substring of the text) and C9 on the
+  without `span`, a malformed span, a span that is not a verbatim substring of the text), verbatim lints when
+  the text is known (a value of a slot the catalog marks `verbatim` — a tag after a name — that is not written
+  in the text) and C9 on the
   emitted statements (skipped without `petta`). Report only; it
   never changes a reply. `from tmpl import validate; validate.validate(reply)`. Tests:
   `python tests/test_validate.py`.

@@ -1,0 +1,100 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "257425b2c1593569789317f0f007f57f21f856df868b382adc0880c1c3414809",
+  "item": {
+    "id": "sf9bc7266af",
+    "text": "The grain carts (GC-4) broke."
+  },
+  "usage": {
+    "input": 127866,
+    "output": 174,
+    "thinking": null,
+    "total": 128040,
+    "cached": 125817,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 127866,
+    "candidatesTokenCount": 174,
+    "totalTokenCount": 128040,
+    "cachedContentTokenCount": 125817,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 127866
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 125817
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 174
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sf9bc7266af\", \"instances\": [{\"t\": \"group\", \"id\": \"g1\", \"class\": \"cart\", \"definite\": true, \"mods\": [\"grain\"], \"tags\": [\"GC-4\"], \"span\": \"The grain carts (GC-4)\"}, {\"t\": \"change-of-state\", \"id\": \"e1\", \"verb\": \"break\", \"undergoer\": \"@g1\", \"tense\": \"past\", \"span\": \"The grain carts (GC-4) broke\"}, {\"t\": \"distribution\", \"id\": \"d1\", \"group\": \"@g1\", \"over\": [\"@e1\"], \"span\": \"The grain carts (GC-4) broke\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sf9bc7266af",
+    "instances": [
+      {
+        "t": "group",
+        "id": "g1",
+        "class": "cart",
+        "definite": true,
+        "mods": [
+          "grain"
+        ],
+        "tags": [
+          "GC-4"
+        ],
+        "span": "The grain carts (GC-4)"
+      },
+      {
+        "t": "change-of-state",
+        "id": "e1",
+        "verb": "break",
+        "undergoer": "@g1",
+        "tense": "past",
+        "span": "The grain carts (GC-4) broke"
+      },
+      {
+        "t": "distribution",
+        "id": "d1",
+        "group": "@g1",
+        "over": [
+          "@e1"
+        ],
+        "span": "The grain carts (GC-4) broke"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "cea279156666d898548190aa5a2b6438c59da3ccf9996860a4313dcf49eddaaa",
+  "manifest_id": "b1f6f66fc3d5",
+  "run": 2,
+  "case": {
+    "template": "group",
+    "section": "held_out",
+    "index": 18,
+    "category": "positive",
+    "text": "The grain carts (GC-4) broke.",
+    "key": "f9bc7266af"
+  }
+}

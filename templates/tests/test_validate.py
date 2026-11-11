@@ -240,6 +240,28 @@ class LintTests(unittest.TestCase):
         self.assertIn("bare-predication", kinds(V.inspect(reply(forgotten), CATALOG, text="Yusra sang.")))
         self.assertEqual(kinds(V.inspect(reply([{k: v for k, v in waiting.items() if k != "span"}]), CATALOG)), ["bare-predication"])
 
+    def test_a_tag_is_written_in_the_text(self):
+        """A slot marked verbatim keeps words of the text as written: a tag the parser decoded or respelled is reported
+        (report only), a tag copied from the text is not, and with no text there is nothing to check against."""
+        name = {"t": "named-entity", "id": "n1", "name": "Harrow Mills", "tags": ["HRW.N"], "span": "Harrow Mills HRW.N"}
+        sing = {"t": "activity", "id": "v1", "verb": "sing", "actor": "@n1", "tense": "past", "span": "sang"}
+        text = "Harrow Mills HRW.N sang."
+        self.assertEqual(kinds(V.inspect(reply([name, sing]), CATALOG, text=text)), [])
+        decoded = dict(name, tags=["HRW.N", "New York Stock Exchange"])
+        res = V.inspect(reply([decoded, sing]), CATALOG, text=text)
+        self.assertEqual(res["status"], "ok")                       # the record stands; the finding is a report
+        self.assertEqual(kinds(res), ["value-not-verbatim"])
+        self.assertIn("'New York Stock Exchange' is not written in the text", res["findings"][0]["detail"])
+        self.assertEqual(kinds(V.inspect(reply([decoded, sing]), CATALOG)), [])
+        self.assertIn('(Tag sk_harrow_mills_1 "HRW.N")', " ".join(res["statements"]))
+
+    def test_verbatim_is_a_key_of_string_slots_only(self):
+        t = copy.deepcopy(CATALOG["named-entity"])
+        self.assertEqual(CAT.check_template(t, "catalog/named-entity.yaml"), [])
+        t["slots"]["class"]["verbatim"] = True
+        problems = CAT.check_template(t, "catalog/named-entity.yaml")
+        self.assertTrue(any(p.startswith("slot class: verbatim: true applies to a string slot") for p in problems), problems)
+
     def test_bare_predication_and_empty_optional_scope(self):
         cat = copy.deepcopy(CATALOG)
         t = copy.deepcopy(cat["transfer"])
