@@ -134,8 +134,11 @@ def prefix_problems(qualified: list, k: int, earlier_ids: set) -> list[str]:
 
 def block_records(sentences: list[dict], catalog: dict | None = None, reference_time=None) -> list[dict]:
     """Per sentence of a block (``[{"k", "text", "instances" (qualified), "unmapped"}]`` in order) its record:
-    ``{"k", "available_from", "text", "status", "statements", "declarations", "records", "findings"}`` — the
-    statements and declarations prefix 1..k adds to prefix 1..k−1, with the emitter's records of those statements.
+    ``{"k", "available_from", "text", "status", "statements", "declarations", "records", "types", "functions",
+    "findings"}`` — the statements and declarations prefix 1..k adds to prefix 1..k−1, with the emitter's records of
+    those statements, the types of the symbols the sentence adds and its skolem functions: what ``tmpl.lower.lower``
+    takes, so a sentence's record lowers on its own for another consumer (``lower({"records": rec["records"],
+    "types": rec["types"], "functions": rec["functions"]}, target)``).
     A sentence that breaks prefix causality or that the emitter refuses is ``malformed`` and left out of the later
     prefixes."""
     from . import lower as L, query as Q                 # noqa: PLC0415 (query imports nothing of this module)
@@ -145,10 +148,12 @@ def block_records(sentences: list[dict], catalog: dict | None = None, reference_
     earlier_ids: set = set()
     prev_statements: list[str] = []
     prev_declarations: list[str] = []
+    prev_types: dict = {}
+    prev_functions: list = []
     for s in sentences:
         k = s["k"]
         rec = {"k": k, "available_from": k, "text": s.get("text"), "status": "ok", "statements": [],
-               "declarations": [], "records": [], "findings": []}
+               "declarations": [], "records": [], "types": {}, "functions": [], "findings": []}
         problems = prefix_problems(s["instances"], k, earlier_ids)
         if problems:
             rec["status"] = "malformed"
@@ -194,10 +199,13 @@ def block_records(sentences: list[dict], catalog: dict | None = None, reference_
         rec["records"] = [em["records"][i] for i in new]
         had = set(prev_declarations)
         rec["declarations"] = [d for d in em["declarations"] if d not in had]
+        rec["types"] = {sym: kinds for sym, kinds in em["types"].items() if prev_types.get(sym) != kinds}
+        rec["functions"] = [f for f in em["functions"] if f not in prev_functions]
         out.append(rec)
         accepted = prefix
         earlier_ids |= {i.get("id") for i in s["instances"] if isinstance(i, dict)}
         prev_statements, prev_declarations = now, em["declarations"]
+        prev_types, prev_functions = em["types"], em["functions"]
     return out
 
 

@@ -17,7 +17,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 TEMPLATES = os.path.abspath(os.path.join(HERE, os.pardir))
 sys.path.insert(0, TEMPLATES)
 
-from tmpl import blocks as B, catalog as CAT  # noqa: E402
+from tmpl import blocks as B, catalog as CAT, lower as L  # noqa: E402
 
 CATALOG = CAT.load()
 
@@ -78,6 +78,29 @@ class BlockRecords(unittest.TestCase):
         self.assertEqual(len(recs[2]["records"]), len(recs[2]["statements"]))
         self.assertIn("(: sk_quilt_2 Entity)", recs[2]["declarations"])
         self.assertNotIn("(: sk_quilt_1 Entity)", recs[2]["declarations"])                                # declared once, at s1
+
+    def test_a_sentences_record_lowers_on_its_own_for_another_consumer(self):
+        """A record carries what the lowering takes — the emitter's records, the types of the symbols its sentence adds
+        and its skolem functions — so it can be written for another consumer sentence by sentence; for upstream master
+        the sentence's class symbols come back as the predicates to declare before its statements are loaded."""
+        one, two = B.block_records(block(("Lamine sold a quilt.", SOLD), ("It was blue.", BLUE)), CATALOG)
+        self.assertEqual(one["types"]["quilt"], ["Class"])
+        self.assertIn("sk_quilt_1", one["types"])
+        self.assertNotIn("quilt", two["types"])                                 # typed by the first sentence, once
+        self.assertEqual(two["types"]["blue"], ["Class"])
+        self.assertEqual(one["functions"], [])
+        self.assertEqual(sorted(sym for sym, kinds in two["types"].items() for k in kinds),
+                         sorted(d[3:-1].split(" ")[0] for d in two["declarations"]))     # the same symbols as the declarations
+        for rec in (one, two):
+            low = L.lower({"records": rec["records"], "types": rec["types"], "functions": rec["functions"]}, "pettachainer-master")
+            self.assertEqual(len(low["statements"]), len(rec["statements"]))
+            ours = L.lower({"records": rec["records"], "types": rec["types"], "functions": rec["functions"]})
+            self.assertEqual(ours["statements"], rec["statements"])            # our engine line: the record's own text
+            self.assertEqual(ours["declarations"], rec["declarations"])
+        self.assertEqual(L.lower({"records": one["records"], "types": one["types"], "functions": one["functions"]},
+                                 "pettachainer-master")["predicates"], ["quilt", "sell"])
+        self.assertEqual(L.lower({"records": two["records"], "types": two["types"], "functions": two["functions"]},
+                                 "pettachainer-master")["predicates"], ["blue"])
 
     def test_a_sentence_that_scopes_over_an_earlier_claim_needs_a_revision(self):
         recs = B.block_records(block(("Lamine sold a quilt.", SOLD),

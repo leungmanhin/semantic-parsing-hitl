@@ -82,6 +82,10 @@ The legacy parser line (`prompt.txt`, `seeded_rules.metta`, the regression harne
       for st in low["statements"] + low["definitions"]:
           h.add_atom(st)
 
+  In the sentence-by-sentence mode the same holds per sentence: each record of `blocks.block_records` carries its
+  `records`, `types` and `functions`, so it is lowered, its `predicates` declared and its statements loaded as the
+  sentence becomes available. A definition that two texts share (`kind__report__mod_progress`) keeps its name: loaded
+  again under the same name it is a restatement, under another name that engine counts it as new evidence.
   Not lowered for that engine yet: the 12 rules over a sealed clause and the kinship closure (the rules file's header
   lists them) and a truth-value band in a question. Tests on that engine: `tests/test_lower_engine.py`,
   `tests/test_rules_engine_master.py` (run with its own python; skipped elsewhere).
