@@ -57,8 +57,9 @@ trigger:
     - >-
       a purpose — went to the bazaar to buy a flask, in order to sleep: a purpose link
     - >-
-      so that with a clause — left so that Marisol could sleep: a purpose with a finite clause; no
-      head here; report it as unmapped
+      an aim with a finite clause — waited so that Marisol could rest, hold the lamp so Pieter
+      can read: what the action is for, and nothing says it came about; a purpose link (SoThat),
+      not this template's So
     - >-
       a bare sequence of clauses or sentences with no connective — Odile sang. Marisol left.: no
       relation is stated; no link
@@ -170,6 +171,15 @@ examples:
         - {t: activity, id: v1, verb: wait, actor: "@n1", tense: past}
         - {t: motion, id: m1, verb: leave, mover: "@n2", tense: past}
         - {t: link, id: k1, head: But, main: "@v1", sub: "@m1"}
+    - category: positive
+      note: a result with so — what happened next, both clauses asserted
+      text: "Ottoline sang, so the ferret left."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: witness, id: x1, class: ferret, definite: true}
+        - {t: activity, id: v1, verb: sing, actor: "@n1", tense: past}
+        - {t: motion, id: m1, verb: leave, mover: "@x1", tense: past}
+        - {t: link, id: k1, head: So, main: "@v1", sub: "@m1"}
     - category: positive
       text: "Lamine sang, yet Yusra left."
       instances:

@@ -8,6 +8,11 @@
 # its own. The head is the connective as written: To, InOrderTo, SoAsTo. The purpose is an
 # attachment of its action: it is rendered wherever the action is, inside a negation or a modal
 # over the action's clause.
+#
+# A purpose with a FINITE clause (so that S could V, a bare so that names an aim, in order that S
+# might V) is the same link with the head SoThat or InOrderThat. The aim has its own subject and
+# keeps what its own words say (a Can or a Might over it, its tense, a negation), sealed as one
+# term: (SoThat sk_wait_1 (Can (And (Member sk_read_1 read) (Agent sk_read_1 x)))).
 
 id: purpose
 family: link
@@ -23,11 +28,25 @@ trigger:
     present; then write the purpose instance naming the action, the aim and the connective. A
     fronted purpose (In order to sleep, the badger left the granary) is the same. The purpose
     follows its action into a negation or a modal over the clause: never list it in their
-    `over`.
+    `over`. A purpose with a FINITE CLAUSE is the same link — so that Henrike could rest and in
+    order that the badger might eat take the heads SoThat and InOrderThat, and so does a bare
+    so when it names an aim (hold the door so Marisol can pass is SoThat). The aim has its own
+    subject and is parsed as its own words say — can or could is a Can modal over it, may or
+    might a Might, will its tense future, would after a past action the clause in the past with
+    aspect would, a simple present its tense present with no habitual mark (one occurrence
+    aimed at), and a not is its negation as anywhere. `aim` names the outermost instance of
+    that clause, the modal or the negation when there is one and otherwise the predication. A
+    bare so names an AIM when its clause says what the action is for — so that fits in its
+    place and nothing says the clause came about (it usually follows a command, or holds can,
+    could, will or would). It names a RESULT when its clause says what then happened or holds
+    (Odile slipped, so Pieter laughed), and that is a link.
   surface_forms:
     - "<action> to <V2> …"                           # went to the bazaar to buy a flask
     - "<action> in order to / so as to <V2> …"       # danced in order to please Pieter
     - "In order to <V2> …, <action>"                 # fronted
+    - "<action> so that <S> can / could / would <V2> …"   # waited so that Henrike could rest: SoThat, the aim a clause of its own
+    - "<action> so <S> <V2> …"                       # hold the door so Marisol can pass: an aim, SoThat
+    - "<action> in order that <S> may / might <V2> …"     # InOrderThat
   boundary:                   # looks like a purpose but is not one
     - >-
       the complement of a control, attitude or causative verb — tried to sleep, wants to leave,
@@ -37,12 +56,12 @@ trigger:
       a result or outcome infinitive — woke to find the hatch open, rebounded to close at par:
       no aim is stated; report the infinitive as unmapped (G06)
     - >-
-      the consequence of too or enough — too tired to sing, tall enough to reach the shelf: a
-      degree with a consequence, not an aim; the degree is recorded, the infinitive reported as
-      unmapped
+      the consequence of too, enough or so — too tired to sing, tall enough to reach the shelf,
+      so tired that she slept: a degree with a consequence, not an aim; the degree is recorded,
+      the infinitive or the that-clause reported as unmapped
     - >-
-      so that with a finite clause — left so that Marisol could sleep: a purpose with its own
-      subject and modal; no head here; report it as unmapped
+      a result, not an aim — Odile slipped, so Pieter laughed; the hatch was open, so the badger
+      left: the so-clause says what happened next and both clauses are asserted; a link (So)
     - >-
       a for-phrase naming a purpose — a machine for polishing, money for a bobbin: no clause;
       report the phrase as unmapped
@@ -51,12 +70,12 @@ trigger:
 
 slots:
   id:     {type: id, required: true, doc: "your label for the purpose link (k1, k2 …)"}
-  head:   {type: enum, values: [To, InOrderTo, SoAsTo], required: true,
-           doc: "the connective as written: to → To, in order to → InOrderTo, so as to → SoAsTo"}
+  head:   {type: enum, values: [To, InOrderTo, SoAsTo, SoThat, InOrderThat], required: true,
+           doc: "the connective as written: to → To, in order to → InOrderTo, so as to → SoAsTo; before a finite clause, so that or a bare so → SoThat, in order that → InOrderThat"}
   action: {type: filler, class: Event, attaches: true, required: true,
            doc: "the action's event: the id of the clause's predication instance — never the id of a negation or modal instance over it"}
   aim:    {type: refs, class: Proposition, required: true,
-           doc: "the aim as a clause: the ids of the instances that state it (its predication, with the action's subject as its actor); the referents it mentions are not listed"}
+           doc: "the aim as a clause: the ids of the instances that state it — an infinitive's predication (with the action's subject as its actor), or a finite clause's outermost instance (its modal or negation, otherwise its predication); the referents it mentions are not listed"}
 
 emits:
   - atom: "({head} {action} {aim})"        # the aim, sealed as one term
@@ -70,6 +89,11 @@ notes:
     The actor of the aim is written into the aim's clause (subject control), as for a control
     verb; the purpose link itself carries no role. Like a manner or a location, the purpose is
     an attachment of its action and is denied or modalised with it.
+  - >-
+    A finite aim is sealed like an infinitive one — waiting so that Henrike could rest asserts
+    the waiting and says nothing about a rest. Its subject is its own, so nothing is carried
+    over from the action, and its auxiliary is read as it is anywhere else (a Can, a Might, a
+    tense).
 
 depends_on: [activity, motion, acquisition, psych]
 composes_with: [negation, modal, time, location]
@@ -108,12 +132,50 @@ examples:
         - {t: motion, id: m1, verb: leave, mover: "@x1", source: "@x2", tense: past, span: "The badger left the granary"}
         - {t: activity, id: v1, verb: sleep, actor: "@x1", tense: present, span: "to sleep"}
         - {t: purpose, id: k1, head: InOrderTo, action: "@m1", aim: ["@v1"], span: "in order to"}
+    - category: positive
+      note: a finite aim with its own subject — the modal over the aim's clause is what the aim names; nothing of the aim is asserted
+      text: "Odile waited so that Pieter could read."
+      instances:
+        - {t: named-entity, id: n1, name: "Odile", span: "Odile"}
+        - {t: named-entity, id: n2, name: "Pieter", span: "Pieter"}
+        - {t: activity, id: v1, verb: wait, actor: "@n1", tense: past, span: "Odile waited"}
+        - {t: activity, id: v2, verb: read, actor: "@n2", tense: present, span: "Pieter could read"}
+        - {t: modal, id: s1, over: ["@v2"], head: Can, surface: could, span: "could"}
+        - {t: purpose, id: k1, head: SoThat, action: "@v1", aim: ["@s1"], span: "so that"}
+      emitted:               # what the emitter produces (illustration; the emitter is the authority)
+        - "(Name sk_odile_1 \"Odile\")"
+        - "(Name sk_pieter_1 \"Pieter\")"
+        - "(Member sk_wait_1 wait)"
+        - "(Agent sk_wait_1 sk_odile_1)"
+        - "(Past sk_wait_1)"
+        - "(SoThat sk_wait_1 (Can (And (Member sk_read_1 read) (Agent sk_read_1 sk_pieter_1))))"
+      declarations:
+        - "(: read Class)"
+        - "(: sk_odile_1 Entity)"
+        - "(: sk_pieter_1 Entity)"
+        - "(: sk_read_1 Event)"
+        - "(: sk_wait_1 Event)"
+        - "(: wait Class)"
+    - category: positive
+      note: a bare so after a command names an aim — the purpose stays with the commanded action
+      text: "Close the hatch so the badger can sleep."
+      instances:
+        - {t: witness, id: x1, class: hatch, definite: true, span: "the hatch"}
+        - {t: witness, id: x2, class: badger, definite: true, span: "the badger"}
+        - {t: change-of-state, id: c1, verb: close, undergoer: "@x1", tense: present, span: "Close the hatch"}
+        - {t: imperative, id: s1, over: ["@c1"], span: "Close the hatch"}
+        - {t: activity, id: v1, verb: sleep, actor: "@x2", tense: present, span: "the badger can sleep"}
+        - {t: modal, id: s2, over: ["@v1"], head: Can, surface: can, span: "can"}
+        - {t: purpose, id: k1, head: SoThat, action: "@c1", aim: ["@s2"], span: "so"}
     - category: abstain
       text: "Marisol tried to sleep."
       expected: {abstain: true, template: control}                    # the verb's complement, not an aim
     - category: abstain
       text: "The badger slept because Marisol sang."
       expected: {abstain: true, template: link}                       # a reason, not an aim
+    - category: abstain
+      text: "Odile laughed, so Pieter left."
+      expected: {abstain: true, template: link}                       # a result, not an aim
 
   held_out:                  # tests; never rendered into the prompt
     - category: positive
@@ -182,6 +244,77 @@ examples:
     - category: abstain
       text: "Teodor woke to find the gate open."
       expected: {abstain: true, gap: G06, span: "to find the gate open"}   # a result infinitive
-    - category: abstain
+    - category: positive
+      note: so that with a finite clause — the aim has its own subject and a Can over it
       text: "Lamine left so that Yusra could sleep."
-      expected: {abstain: true, gap: G00, span: "so that Yusra could sleep"}   # so that with a clause
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: named-entity, id: n2, name: "Yusra"}
+        - {t: motion, id: m1, verb: leave, mover: "@n1", tense: past}
+        - {t: activity, id: v1, verb: sleep, actor: "@n2", tense: present}
+        - {t: modal, id: s1, over: ["@v1"], head: Can, surface: could}
+        - {t: purpose, id: k1, head: SoThat, action: "@m1", aim: ["@s1"]}
+    - category: positive
+      note: a bare so with would after a past action — the aim's clause in the past with aspect would, no modal
+      text: "Teodor sang so Ottoline would sleep."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: named-entity, id: n2, name: "Ottoline"}
+        - {t: activity, id: v1, verb: sing, actor: "@n1", tense: past}
+        - {t: activity, id: v2, verb: sleep, actor: "@n2", tense: past, aspect: would}
+        - {t: purpose, id: k1, head: SoThat, action: "@v1", aim: ["@v2"]}
+    - category: scoped
+      note: a bare so after a command — the purpose inside the directive, with the commanded action
+      text: "Wash the quilt so Ottoline can read."
+      instances:
+        - {t: witness, id: x1, class: quilt, definite: true}
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: activity, id: v1, verb: wash, patient: "@x1", tense: present}
+        - {t: imperative, id: s1, over: ["@v1"]}
+        - {t: activity, id: v2, verb: read, actor: "@n1", tense: present}
+        - {t: modal, id: s2, over: ["@v2"], head: Can, surface: can}
+        - {t: purpose, id: k1, head: SoThat, action: "@v1", aim: ["@s2"]}
+    - category: scoped
+      note: a copular aim in the simple present after a command
+      text: "Close the gate so the ferret is safe."
+      instances:
+        - {t: witness, id: x1, class: gate, definite: true}
+        - {t: witness, id: x2, class: ferret, definite: true}
+        - {t: change-of-state, id: c1, verb: close, undergoer: "@x1", tense: present}
+        - {t: imperative, id: s1, over: ["@c1"]}
+        - {t: copular, id: c2, subject: "@x2", predicate: safe, form: adjective, tense: present}
+        - {t: purpose, id: k1, head: SoThat, action: "@c1", aim: ["@c2"]}
+    - category: scoped
+      note: a simple present in the aim — one occurrence aimed at, no habitual mark
+      text: "Open the gate so the ferret leaves."
+      instances:
+        - {t: witness, id: x1, class: gate, definite: true}
+        - {t: witness, id: x2, class: ferret, definite: true}
+        - {t: change-of-state, id: c1, verb: open, undergoer: "@x1", tense: present}
+        - {t: imperative, id: s1, over: ["@c1"]}
+        - {t: motion, id: m1, verb: leave, mover: "@x2", tense: present}
+        - {t: purpose, id: k1, head: SoThat, action: "@c1", aim: ["@m1"]}
+    - category: positive
+      note: in order that with might
+      text: "Lamine waited in order that Yusra might leave."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: named-entity, id: n2, name: "Yusra"}
+        - {t: activity, id: v1, verb: wait, actor: "@n1", tense: past}
+        - {t: motion, id: m1, verb: leave, mover: "@n2", tense: present}
+        - {t: modal, id: s1, over: ["@m1"], head: Might, surface: might}
+        - {t: purpose, id: k1, head: InOrderThat, action: "@v1", aim: ["@s1"]}
+    - category: scoped
+      note: a negated aim — could not is a negation over the Can, and the aim names the negation
+      text: "Yusra sang so that Teodor could not sleep."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: named-entity, id: n2, name: "Teodor"}
+        - {t: activity, id: v1, verb: sing, actor: "@n1", tense: past}
+        - {t: activity, id: v2, verb: sleep, actor: "@n2", tense: present}
+        - {t: modal, id: s1, over: ["@v2"], head: Can, surface: could}
+        - {t: negation, id: s2, over: ["@s1"]}
+        - {t: purpose, id: k1, head: SoThat, action: "@v1", aim: ["@s2"]}
+    - category: abstain
+      text: "Ottoline sang, so the ferret left."
+      expected: {abstain: true, template: link}                       # a result, not an aim

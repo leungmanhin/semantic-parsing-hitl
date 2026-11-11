@@ -1,0 +1,119 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "3c63279514b2ae09ad018dcbbfbb244073432fed25d586e52dee44b3c2107ec0",
+  "item": {
+    "id": "sa64a9a9942",
+    "text": "Open the gate so the ferret leaves."
+  },
+  "usage": {
+    "input": 125639,
+    "output": 252,
+    "thinking": null,
+    "total": 125891,
+    "cached": 123590,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 125639,
+    "candidatesTokenCount": 252,
+    "totalTokenCount": 125891,
+    "cachedContentTokenCount": 123590,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 125639
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 123590
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 252
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sa64a9a9942\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"gate\", \"definite\": true, \"span\": \"the gate\"}, {\"t\": \"witness\", \"id\": \"x2\", \"class\": \"ferret\", \"definite\": true, \"span\": \"the ferret\"}, {\"t\": \"change-of-state\", \"id\": \"c1\", \"verb\": \"open\", \"undergoer\": \"@x1\", \"tense\": \"present\", \"span\": \"Open the gate\"}, {\"t\": \"imperative\", \"id\": \"s1\", \"over\": [\"@c1\"], \"span\": \"Open the gate\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@x2\", \"tense\": \"present\", \"span\": \"the ferret leaves\"}, {\"t\": \"purpose\", \"id\": \"k1\", \"head\": \"SoThat\", \"action\": \"@c1\", \"aim\": [\"@m1\"], \"span\": \"so\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sa64a9a9942",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "gate",
+        "definite": true,
+        "span": "the gate"
+      },
+      {
+        "t": "witness",
+        "id": "x2",
+        "class": "ferret",
+        "definite": true,
+        "span": "the ferret"
+      },
+      {
+        "t": "change-of-state",
+        "id": "c1",
+        "verb": "open",
+        "undergoer": "@x1",
+        "tense": "present",
+        "span": "Open the gate"
+      },
+      {
+        "t": "imperative",
+        "id": "s1",
+        "over": [
+          "@c1"
+        ],
+        "span": "Open the gate"
+      },
+      {
+        "t": "motion",
+        "id": "m1",
+        "verb": "leave",
+        "mover": "@x2",
+        "tense": "present",
+        "span": "the ferret leaves"
+      },
+      {
+        "t": "purpose",
+        "id": "k1",
+        "head": "SoThat",
+        "action": "@c1",
+        "aim": [
+          "@m1"
+        ],
+        "span": "so"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "c87dbc1960e7233534a7909b83a991eee72595b7c1be14e8f1f087d9a74b5535",
+  "manifest_id": "98334d788ece",
+  "run": 3,
+  "case": {
+    "template": "purpose",
+    "section": "held_out",
+    "index": 14,
+    "category": "scoped",
+    "text": "Open the gate so the ferret leaves.",
+    "key": "a64a9a9942"
+  }
+}

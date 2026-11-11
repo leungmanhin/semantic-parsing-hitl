@@ -1,0 +1,119 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "3c63279514b2ae09ad018dcbbfbb244073432fed25d586e52dee44b3c2107ec0",
+  "item": {
+    "id": "s405e3146e0",
+    "text": "Lamine waited in order that Yusra might leave."
+  },
+  "usage": {
+    "input": 125643,
+    "output": 257,
+    "thinking": null,
+    "total": 125900,
+    "cached": 123594,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 125643,
+    "candidatesTokenCount": 257,
+    "totalTokenCount": 125900,
+    "cachedContentTokenCount": 123594,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 125643
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 123594
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 257
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s405e3146e0\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"wait\", \"actor\": \"@n1\", \"tense\": \"past\", \"span\": \"Lamine waited\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n2\", \"tense\": \"present\", \"span\": \"Yusra might leave\"}, {\"t\": \"modal\", \"id\": \"s1\", \"over\": [\"@m1\"], \"head\": \"Might\", \"surface\": \"might\", \"span\": \"might\"}, {\"t\": \"purpose\", \"id\": \"k1\", \"head\": \"InOrderThat\", \"action\": \"@v1\", \"aim\": [\"@s1\"], \"span\": \"in order that\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s405e3146e0",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "wait",
+        "actor": "@n1",
+        "tense": "past",
+        "span": "Lamine waited"
+      },
+      {
+        "t": "motion",
+        "id": "m1",
+        "verb": "leave",
+        "mover": "@n2",
+        "tense": "present",
+        "span": "Yusra might leave"
+      },
+      {
+        "t": "modal",
+        "id": "s1",
+        "over": [
+          "@m1"
+        ],
+        "head": "Might",
+        "surface": "might",
+        "span": "might"
+      },
+      {
+        "t": "purpose",
+        "id": "k1",
+        "head": "InOrderThat",
+        "action": "@v1",
+        "aim": [
+          "@s1"
+        ],
+        "span": "in order that"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "c87dbc1960e7233534a7909b83a991eee72595b7c1be14e8f1f087d9a74b5535",
+  "manifest_id": "98334d788ece",
+  "run": 3,
+  "case": {
+    "template": "purpose",
+    "section": "held_out",
+    "index": 15,
+    "category": "positive",
+    "text": "Lamine waited in order that Yusra might leave.",
+    "key": "405e3146e0"
+  }
+}

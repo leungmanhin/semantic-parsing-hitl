@@ -2,7 +2,7 @@
 
 Generated from `templates/atom-type-substrates.json` (schema `atom-type-substrates/1`) by `templates/tmpl/gen_substrate.py`, together with `templates/generated/atom-types.metta`. Do not edit by hand; regenerate with `cd templates && python -m tmpl.gen_substrate`.
 
-179 heads in 15 kinds (7 proposed; 179 with a reviewed type declaration so far). `type-def` is the PeTTa declaration emitted for the head; `?` as the output type means the head is not yet reviewed and is absent from the `.metta` file; `%Undefined%` marks a position the head takes but the JSON does not type.
+181 heads in 15 kinds (7 proposed; 181 with a reviewed type declaration so far). `type-def` is the PeTTa declaration emitted for the head; `?` as the output type means the head is not yet reviewed and is absent from the `.metta` file; `%Undefined%` marks a position the head takes but the JSON does not type.
 
 Every atom is carried as a statement (: <proof-name> <atom> <tv>), tv = (STV strength confidence) or another engine truth value. The carrier is not an atom kind: ':' is never type-declared (it is also PeTTa's type-declaration head) and the truth value is declared by the engine, not by this substrate.
 
@@ -1037,7 +1037,7 @@ type-def: (: WeekdayNumber (-> Class Number Proposition))
 gloss: Seeded lexicon fact giving a weekday name its number (monday=1). Background fact (seeded), never parser output.
 
 
-## discourse (21)
+## discourse (23)
 
 head: Although
 kind: discourse
@@ -1102,6 +1102,13 @@ type-def: (: EvenThough (-> Event Event Proposition))
 gloss: Concessive connective 'even though'. Order: (Connective main-clause-eventuality subordinate-eventuality); a copular endpoint is reified as a state witness. The head is the surface connective itself, never normalized.
 
 
+head: InOrderThat
+kind: discourse
+arity: 2
+type-def: (: InOrderThat (-> Event Proposition Proposition))
+gloss: Purpose connective 'in order that'. Order: (InOrderThat action-event aim); the aim is the purpose clause SEALED as one term (an aim is not an occurrence: nothing of it is asserted on its own), a finite clause with its own subject.
+
+
 head: InOrderTo
 kind: discourse
 arity: 2
@@ -1149,6 +1156,13 @@ kind: discourse
 arity: 2
 type-def: (: SoAsTo (-> Event Proposition Proposition))
 gloss: Purpose connective 'so as to'. Order: (SoAsTo action-event aim); the aim is the purpose clause SEALED as one term (an aim is not an occurrence: nothing of it is asserted on its own), its actor the action's subject.
+
+
+head: SoThat
+kind: discourse
+arity: 2
+type-def: (: SoThat (-> Event Proposition Proposition))
+gloss: Purpose connective 'so that', also a bare 'so' that names an aim. Order: (SoThat action-event aim); the aim is the purpose clause SEALED as one term (an aim is not an occurrence: nothing of it is asserted on its own), a finite clause with its own subject.
 
 
 head: ThanksTo

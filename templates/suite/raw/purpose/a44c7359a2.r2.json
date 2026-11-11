@@ -1,0 +1,128 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "3c63279514b2ae09ad018dcbbfbb244073432fed25d586e52dee44b3c2107ec0",
+  "item": {
+    "id": "sa44c7359a2",
+    "text": "Wash the quilt so Ottoline can read."
+  },
+  "usage": {
+    "input": 125640,
+    "output": 282,
+    "thinking": null,
+    "total": 125922,
+    "cached": 123591,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 125640,
+    "candidatesTokenCount": 282,
+    "totalTokenCount": 125922,
+    "cachedContentTokenCount": 123591,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 125640
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 123591
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 282
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sa44c7359a2\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"quilt\", \"definite\": true, \"span\": \"the quilt\"}, {\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"wash\", \"patient\": \"@x1\", \"tense\": \"present\", \"span\": \"Wash the quilt\"}, {\"t\": \"activity\", \"id\": \"v2\", \"verb\": \"read\", \"actor\": \"@n1\", \"tense\": \"present\", \"span\": \"Ottoline can read\"}, {\"t\": \"imperative\", \"id\": \"s1\", \"over\": [\"@v1\"], \"span\": \"Wash the quilt\"}, {\"t\": \"modal\", \"id\": \"s2\", \"over\": [\"@v2\"], \"head\": \"Can\", \"surface\": \"can\", \"span\": \"can\"}, {\"t\": \"purpose\", \"id\": \"k1\", \"head\": \"SoThat\", \"action\": \"@v1\", \"aim\": [\"@s2\"], \"span\": \"so\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sa44c7359a2",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "quilt",
+        "definite": true,
+        "span": "the quilt"
+      },
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Ottoline",
+        "span": "Ottoline"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "wash",
+        "patient": "@x1",
+        "tense": "present",
+        "span": "Wash the quilt"
+      },
+      {
+        "t": "activity",
+        "id": "v2",
+        "verb": "read",
+        "actor": "@n1",
+        "tense": "present",
+        "span": "Ottoline can read"
+      },
+      {
+        "t": "imperative",
+        "id": "s1",
+        "over": [
+          "@v1"
+        ],
+        "span": "Wash the quilt"
+      },
+      {
+        "t": "modal",
+        "id": "s2",
+        "over": [
+          "@v2"
+        ],
+        "head": "Can",
+        "surface": "can",
+        "span": "can"
+      },
+      {
+        "t": "purpose",
+        "id": "k1",
+        "head": "SoThat",
+        "action": "@v1",
+        "aim": [
+          "@s2"
+        ],
+        "span": "so"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "c87dbc1960e7233534a7909b83a991eee72595b7c1be14e8f1f087d9a74b5535",
+  "manifest_id": "98334d788ece",
+  "run": 2,
+  "case": {
+    "template": "purpose",
+    "section": "held_out",
+    "index": 12,
+    "category": "scoped",
+    "text": "Wash the quilt so Ottoline can read.",
+    "key": "a44c7359a2"
+  }
+}

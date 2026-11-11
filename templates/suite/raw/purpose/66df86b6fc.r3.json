@@ -1,0 +1,110 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "3c63279514b2ae09ad018dcbbfbb244073432fed25d586e52dee44b3c2107ec0",
+  "item": {
+    "id": "s66df86b6fc",
+    "text": "Teodor sang so Ottoline would sleep."
+  },
+  "usage": {
+    "input": 125639,
+    "output": 217,
+    "thinking": null,
+    "total": 125856,
+    "cached": 123590,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 125639,
+    "candidatesTokenCount": 217,
+    "totalTokenCount": 125856,
+    "cachedContentTokenCount": 123590,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 125639
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 123590
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 217
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s66df86b6fc\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"sing\", \"actor\": \"@n1\", \"tense\": \"past\", \"span\": \"Teodor sang\"}, {\"t\": \"activity\", \"id\": \"e2\", \"verb\": \"sleep\", \"actor\": \"@n2\", \"tense\": \"past\", \"aspect\": \"would\", \"span\": \"Ottoline would sleep\"}, {\"t\": \"purpose\", \"id\": \"k1\", \"head\": \"SoThat\", \"action\": \"@e1\", \"aim\": [\"@e2\"], \"span\": \"so\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s66df86b6fc",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Ottoline",
+        "span": "Ottoline"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "sing",
+        "actor": "@n1",
+        "tense": "past",
+        "span": "Teodor sang"
+      },
+      {
+        "t": "activity",
+        "id": "e2",
+        "verb": "sleep",
+        "actor": "@n2",
+        "tense": "past",
+        "aspect": "would",
+        "span": "Ottoline would sleep"
+      },
+      {
+        "t": "purpose",
+        "id": "k1",
+        "head": "SoThat",
+        "action": "@e1",
+        "aim": [
+          "@e2"
+        ],
+        "span": "so"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "c87dbc1960e7233534a7909b83a991eee72595b7c1be14e8f1f087d9a74b5535",
+  "manifest_id": "98334d788ece",
+  "run": 3,
+  "case": {
+    "template": "purpose",
+    "section": "held_out",
+    "index": 11,
+    "category": "positive",
+    "text": "Teodor sang so Ottoline would sleep.",
+    "key": "66df86b6fc"
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "3c63279514b2ae09ad018dcbbfbb244073432fed25d586e52dee44b3c2107ec0",
+  "item": {
+    "id": "s0abc9372bc",
+    "text": "Ottoline sang, so the ferret left."
+  },
+  "usage": {
+    "input": 125638,
+    "output": 211,
+    "thinking": null,
+    "total": 125849,
+    "cached": 123589,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 125638,
+    "candidatesTokenCount": 211,
+    "totalTokenCount": 125849,
+    "cachedContentTokenCount": 123589,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 125638
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 123589
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 211
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s0abc9372bc\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"ferret\", \"definite\": true, \"span\": \"the ferret\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"sing\", \"actor\": \"@n1\", \"tense\": \"past\", \"span\": \"Ottoline sang\"}, {\"t\": \"motion\", \"id\": \"e2\", \"verb\": \"leave\", \"mover\": \"@x1\", \"tense\": \"past\", \"span\": \"the ferret left\"}, {\"t\": \"link\", \"id\": \"k1\", \"head\": \"So\", \"main\": \"@e1\", \"sub\": \"@e2\", \"span\": \"so\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s0abc9372bc",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Ottoline",
+        "span": "Ottoline"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "ferret",
+        "definite": true,
+        "span": "the ferret"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "sing",
+        "actor": "@n1",
+        "tense": "past",
+        "span": "Ottoline sang"
+      },
+      {
+        "t": "motion",
+        "id": "e2",
+        "verb": "leave",
+        "mover": "@x1",
+        "tense": "past",
+        "span": "the ferret left"
+      },
+      {
+        "t": "link",
+        "id": "k1",
+        "head": "So",
+        "main": "@e1",
+        "sub": "@e2",
+        "span": "so"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "c87dbc1960e7233534a7909b83a991eee72595b7c1be14e8f1f087d9a74b5535",
+  "manifest_id": "98334d788ece",
+  "run": 2,
+  "case": {
+    "template": "link",
+    "section": "held_out",
+    "index": 3,
+    "category": "positive",
+    "text": "Ottoline sang, so the ferret left.",
+    "key": "0abc9372bc"
+  }
+}

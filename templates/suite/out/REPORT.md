@@ -1,10 +1,10 @@
 # Suite report
 
-prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 9aca7ced61a084b9) · manifest 484794194d7f · type check: ran
+prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 c87dbc1960e72335) · manifest 98334d788ece · type check: ran
 
 ## Catalog checks
 
-1414 examples checked; findings: 0
+1425 examples checked; findings: 0
 
 Sentences two templates claim with the same expected atoms (composition, fine):
 - "Ottoline bought the quilt for forty euros." — acquisition, measure
@@ -892,7 +892,7 @@ Mismatches: none
 
 ## imperative — held_out
 
-20 cases, 60 records (ok 60; stale prompt 51; stale manifest 9, unstamped 51) · gemini-4-argon effort=low
+20 cases, 60 records (ok 60; stale prompt 60; stale manifest 9, unstamped 51) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -920,22 +920,22 @@ Mismatches: none
 
 ## link — held_out
 
-18 cases, 54 records (ok 54; stale prompt 54; stale manifest 3, unstamped 51) · gemini-4-argon effort=low
+19 cases, 57 records (ok 57; stale prompt 54; stale manifest 3, unstamped 51) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
-| positive | 12 | 36 | 36 | 36 | 36 |
+| positive | 13 | 39 | 39 | 39 | 39 |
 | scoped | 1 | 3 | 3 | 3 | 3 |
 | optional | 1 | 3 | 3 | 3 | 3 |
 | abstain | 4 | 12 | 0 (false fires) | – | 12 |
 
-- selection: fire cases fired 42/42 · abstain cases false fires 0/12
-- fill: exact 42/42 among fires
-- stability: pairwise agreement 1.0 (18 cases, 54 pairs), unanimous 18/18
-- type check: 54/54 emitted parses type
+- selection: fire cases fired 45/45 · abstain cases false fires 0/12
+- fill: exact 45/45 among fires
+- stability: pairwise agreement 1.0 (19 cases, 57 pairs), unanimous 19/19
+- type check: 57/57 emitted parses type
 - graph lints: none
-- spans: 291/291 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
-- usage: 54 calls · in 3,669,357 · cached 3,500,989 (95% of the input) · out 12,483 · thinking 0 (calls with thought tokens: 0)
+- spans: 306/306 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
+- usage: 57 calls · in 4,046,271 · cached 3,871,756 (96% of the input) · out 13,116 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
 Abstain cases (what the parser did, per run):
@@ -1404,26 +1404,26 @@ Mismatches: none
 
 ## purpose — held_out
 
-11 cases, 33 records (ok 33; stale prompt 33; stale manifest 0, unstamped 33) · gemini-4-argon effort=low
+18 cases, 54 records (ok 54; stale prompt 30; stale manifest 0, unstamped 30) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
-| positive | 5 | 15 | 15 | 15 | 15 |
-| scoped | 1 | 3 | 3 | 3 | 3 |
+| positive | 8 | 24 | 24 | 24 | 24 |
+| scoped | 5 | 15 | 15 | 15 | 15 |
 | abstain | 5 | 15 | 0 (false fires) | – | 15 |
 
-- selection: fire cases fired 18/18 · abstain cases false fires 0/15
-- fill: exact 18/18 among fires
-- stability: pairwise agreement 1.0 (11 cases, 33 pairs), unanimous 11/11
-- type check: 33/33 emitted parses type
+- selection: fire cases fired 39/39 · abstain cases false fires 0/15
+- fill: exact 39/39 among fires
+- stability: pairwise agreement 1.0 (18 cases, 54 pairs), unanimous 18/18
+- type check: 54/54 emitted parses type
 - graph lints: none
-- spans: 132/132 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
-- usage: 33 calls · in 1,864,776 · cached 1,797,146 (96% of the input) · out 6,614 · thinking 0 (calls with thought tokens: 0)
+- spans: 267/267 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
+- usage: 54 calls · in 4,710,600 · cached 4,599,828 (98% of the input) · out 12,152 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
 
 Abstain cases (what the parser did, per run):
 - "Lamine decided to leave." (target `attitude`): r1 target_fired [attitude×1, motion×1, named-entity×1] · r2 target_fired [attitude×1, motion×1, named-entity×1] · r3 target_fired [attitude×1, motion×1, named-entity×1]
-- "Lamine left so that Yusra could sleep." (gap G00): r1 gap_reported [motion×1, named-entity×2; unmapped G00] · r2 gap_reported [motion×1, named-entity×2; unmapped G00] · r3 gap_reported [motion×1, named-entity×2; unmapped G00]
+- "Ottoline sang, so the ferret left." (target `link`): r1 target_fired [activity×1, link×1, motion×1, named-entity×1, witness×1] · r2 target_fired [activity×1, link×1, motion×1, named-entity×1, witness×1] · r3 target_fired [activity×1, link×1, motion×1, named-entity×1, witness×1]
 - "Teodor woke to find the gate open." (gap G06): r1 gap_reported [change-of-state×1, named-entity×1; unmapped G06] · r2 gap_reported [change-of-state×1, named-entity×1; unmapped G06] · r3 gap_reported [change-of-state×1, named-entity×1; unmapped G06]
 - "Ottoline refused to sing." (target `control`): r1 target_fired [activity×1, control×1, named-entity×1] · r2 target_fired [activity×1, control×1, named-entity×1] · r3 target_fired [activity×1, control×1, named-entity×1]
 - "Yusra is too tired to sing." (gap G00): r1 gap_reported [degree×1, named-entity×1; unmapped G00] · r2 gap_reported [degree×1, named-entity×1; unmapped G00] · r3 gap_reported [degree×1, named-entity×1; unmapped G00]
@@ -1432,7 +1432,7 @@ Mismatches: none
 
 ## question — held_out
 
-11 cases, 33 records (ok 33; stale prompt 27; stale manifest 33, unstamped 0) · gemini-4-argon effort=low
+11 cases, 33 records (ok 33; stale prompt 33; stale manifest 33, unstamped 0) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|
@@ -1644,7 +1644,7 @@ Mismatches: none
 
 ## wh — held_out
 
-13 cases, 39 records (ok 39; stale prompt 24; stale manifest 39, unstamped 0) · gemini-4-argon effort=low
+13 cases, 39 records (ok 39; stale prompt 39; stale manifest 39, unstamped 0) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|

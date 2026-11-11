@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 e662cde58d3b6217 · 64 templates
+catalog sha256 f589f094b5265e90 · 64 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -5676,6 +5676,8 @@ Not this template:
 - a generic subject — badgers swim, storks eat frogs: a generalization over the class, the
   generic template; the rule already generalizes, no mark
 - an ability — Marisol can swim: a modal, not a habit
+- the simple present of an aim — wait so the badger eats, Odile sings so that Pieter leaves:
+  what the action is for, one occurrence aimed at; no mark
 - be used to with a noun or a gerund — Marisol is used to the cold, used to waking early: a
   copular predication of accustomedness, not the habitual past
 - a clause the text presents as a fact about one occasion through a time or a place — Marisol
@@ -7527,8 +7529,9 @@ Not this template:
 - an exception to a generalization — badgers sleep, but this one works: the but introduces a
   defeasible exception, a different construction; report the clause as unmapped
 - a purpose — went to the bazaar to buy a flask, in order to sleep: a purpose link
-- so that with a clause — left so that Marisol could sleep: a purpose with a finite clause; no
-  head here; report it as unmapped
+- an aim with a finite clause — waited so that Marisol could rest, hold the lamp so Pieter can
+  read: what the action is for, and nothing says it came about; a purpose link (SoThat), not
+  this template's So
 - a bare sequence of clauses or sentences with no connective — Odile sang. Marisol left.: no
   relation is stated; no link
 
@@ -7635,12 +7638,26 @@ to please Pieter, left so as to read. Parse the action with its own template; pa
 the template its verb takes, its actor the action's subject and its tense present; then write
 the purpose instance naming the action, the aim and the connective. A fronted purpose (In order
 to sleep, the badger left the granary) is the same. The purpose follows its action into a
-negation or a modal over the clause: never list it in their `over`.
+negation or a modal over the clause: never list it in their `over`. A purpose with a FINITE
+CLAUSE is the same link — so that Henrike could rest and in order that the badger might eat take
+the heads SoThat and InOrderThat, and so does a bare so when it names an aim (hold the door so
+Marisol can pass is SoThat). The aim has its own subject and is parsed as its own words say —
+can or could is a Can modal over it, may or might a Might, will its tense future, would after a
+past action the clause in the past with aspect would, a simple present its tense present with no
+habitual mark (one occurrence aimed at), and a not is its negation as anywhere. `aim` names the
+outermost instance of that clause, the modal or the negation when there is one and otherwise the
+predication. A bare so names an AIM when its clause says what the action is for — so that fits
+in its place and nothing says the clause came about (it usually follows a command, or holds can,
+could, will or would). It names a RESULT when its clause says what then happened or holds (Odile
+slipped, so Pieter laughed), and that is a link.
 
 Forms:
 - <action> to <V2> …
 - <action> in order to / so as to <V2> …
 - In order to <V2> …, <action>
+- <action> so that <S> can / could / would <V2> …
+- <action> so <S> <V2> …
+- <action> in order that <S> may / might <V2> …
 
 Not this template:
 - the complement of a control, attitude or causative verb — tried to sleep, wants to leave, got
@@ -7648,10 +7665,11 @@ Not this template:
   templates
 - a result or outcome infinitive — woke to find the hatch open, rebounded to close at par: no
   aim is stated; report the infinitive as unmapped (G06)
-- the consequence of too or enough — too tired to sing, tall enough to reach the shelf: a degree
-  with a consequence, not an aim; the degree is recorded, the infinitive reported as unmapped
-- so that with a finite clause — left so that Marisol could sleep: a purpose with its own
-  subject and modal; no head here; report it as unmapped
+- the consequence of too, enough or so — too tired to sing, tall enough to reach the shelf, so
+  tired that she slept: a degree with a consequence, not an aim; the degree is recorded, the
+  infinitive or the that-clause reported as unmapped
+- a result, not an aim — Odile slipped, so Pieter laughed; the hatch was open, so the badger
+  left: the so-clause says what happened next and both clauses are asserted; a link (So)
 - a for-phrase naming a purpose — a machine for polishing, money for a bobbin: no clause; report
   the phrase as unmapped
 - a reason, not an aim — left because Marisol laughed: a link
@@ -7660,14 +7678,16 @@ Slots:
 
 - `t` (required): "purpose"
 - `id` (required; your label for this instance): your label for the purpose link (k1, k2 …).
-- `head` (required; one of: To, InOrderTo, SoAsTo): the connective as written: to → To, in order
-  to → InOrderTo, so as to → SoAsTo.
+- `head` (required; one of: To, InOrderTo, SoAsTo, SoThat, InOrderThat): the connective as
+  written: to → To, in order to → InOrderTo, so as to → SoAsTo; before a finite clause, so that
+  or a bare so → SoThat, in order that → InOrderThat.
 - `action` (required; "@id" of the predication instance this attaches to): the action's event:
   the id of the clause's predication instance — never the id of a negation or modal instance
   over it.
 - `aim` (required; a list of "@id" of the instances that state the clause): the aim as a clause:
-  the ids of the instances that state it (its predication, with the action's subject as its
-  actor); the referents it mentions are not listed.
+  the ids of the instances that state it — an infinitive's predication (with the action's
+  subject as its actor), or a finite clause's outermost instance (its modal or negation,
+  otherwise its predication); the referents it mentions are not listed.
 
 Example (the action asserted, the aim sealed — the bobbin exists only inside the aim). TEXT: Odile worked to buy a bobbin.
 
@@ -7711,9 +7731,53 @@ The program renders these instances as:
     (Past sk_leave_1)
     (InOrderTo sk_leave_1 (And (Member sk_sleep_1 sleep) (Agent sk_sleep_1 sk_badger_1)))
 
+Example (a finite aim with its own subject — the modal over the aim's clause is what the aim names; nothing of the aim is asserted). TEXT: Odile waited so that Pieter could read.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Odile", "span": "Odile"},
+      {"t": "named-entity", "id": "n2", "name": "Pieter", "span": "Pieter"},
+      {"t": "activity", "id": "v1", "verb": "wait", "actor": "@n1", "tense": "past", "span": "Odile waited"},
+      {"t": "activity", "id": "v2", "verb": "read", "actor": "@n2", "tense": "present", "span": "Pieter could read"},
+      {"t": "modal", "id": "s1", "over": ["@v2"], "head": "Can", "surface": "could", "span": "could"},
+      {"t": "purpose", "id": "k1", "head": "SoThat", "action": "@v1", "aim": ["@s1"], "span": "so that"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_odile_1 "Odile")
+    (Name sk_pieter_1 "Pieter")
+    (Member sk_wait_1 wait)
+    (Agent sk_wait_1 sk_odile_1)
+    (Past sk_wait_1)
+    (SoThat sk_wait_1 (Can (And (Member sk_read_1 read) (Agent sk_read_1 sk_pieter_1))))
+
+Example (a bare so after a command names an aim — the purpose stays with the commanded action). TEXT: Close the hatch so the badger can sleep.
+
+Instances:
+
+    [
+      {"t": "witness", "id": "x1", "class": "hatch", "definite": true, "span": "the hatch"},
+      {"t": "witness", "id": "x2", "class": "badger", "definite": true, "span": "the badger"},
+      {"t": "change-of-state", "id": "c1", "verb": "close", "undergoer": "@x1", "tense": "present", "span": "Close the hatch"},
+      {"t": "imperative", "id": "s1", "over": ["@c1"], "span": "Close the hatch"},
+      {"t": "activity", "id": "v1", "verb": "sleep", "actor": "@x2", "tense": "present", "span": "the badger can sleep"},
+      {"t": "modal", "id": "s2", "over": ["@v1"], "head": "Can", "surface": "can", "span": "can"},
+      {"t": "purpose", "id": "k1", "head": "SoThat", "action": "@c1", "aim": ["@s2"], "span": "so"}
+    ]
+
+The program renders these instances as:
+
+    (Member sk_hatch_1 hatch)
+    (Member sk_badger_1 badger)
+    (Directive (And (Member sk_close_1 close) (Patient sk_close_1 sk_hatch_1) (SoThat sk_close_1 (Can (And (Member sk_sleep_1 sleep) (Agent sk_sleep_1 sk_badger_1))))))
+
 Not this template. TEXT: Marisol tried to sleep. — use `control`.
 
 Not this template. TEXT: The badger slept because Marisol sang. — use `link`.
+
+Not this template. TEXT: Odile laughed, so Pieter left. — use `link`.
 
 ## Questions — a TEXT that asks
 
