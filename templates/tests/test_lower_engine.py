@@ -102,6 +102,41 @@ class UpstreamMasterEngineTests(unittest.TestCase):
         yellow = _values(self.kb, "(: $prf (Member sk_bike_1 yellow) $tv)")
         self.assertEqual([(s, round(c, 3)) for _p, s, c in yellow], [(0.9, 0.7)])
 
+    def test_a_class_named_after_the_consumers_symbol_loads_and_keeps_its_noun(self):
+        low = L.lower(EMITTED, "pettachainer-master", symbols={"sk_brackenford_1": "brackenford"})
+        kb = low["statements"] + low["definitions"]
+        self.assertEqual(_refusals(kb), [])
+        self.assertIn("(: x3_member_2 (Member sk_memo_1 memo__mod_brackenford) (STV 1.0 0.99))", low["statements"])
+        memo = [v for v in _values(kb, "(: $prf (Member sk_memo_1 memo) $tv)") if "kind__memo__mod_brackenford" in v[0]]
+        self.assertEqual(len(memo), 1)
+        self.assertGreater(memo[0][2], 0.95)
+
+    def test_a_texts_class_symbols_are_declared_before_its_statements(self):
+        """On that engine a kind-of definition is also read backwards, as weak evidence: is the plain cat a farm cat?
+        gets a prior of almost no confidence — unless the text's class symbols (the ``predicates`` of its lowering)
+        were declared positive-only BEFORE its statements were loaded. Declared afterwards they change nothing."""
+        records = [{"name": "b1", "term": ["Member", "sk_cat_1", "cat"], "truth": TV},
+                   {"name": "b2", "term": ["Member", "sk_cat_1", ["Narrow", "cat", ["Mod", "farm"]]], "truth": TV},
+                   {"name": "b3", "term": ["Member", "sk_cat_2", "cat"], "truth": TV}]
+        low = L.lower({"records": records, "types": {"cat": ["Class"]}, "functions": []}, "pettachainer-master")
+        self.assertEqual(low["predicates"], ["cat", "cat__mod_farm"])
+        kb = low["statements"] + low["definitions"]
+
+        def ask(when: str) -> list:
+            h = PeTTaChainer()
+            for name in L.predicates("pettachainer-master") + (low["predicates"] if when == "before" else []):
+                h.set_positive_only_predicate(name)
+            for st in kb:
+                h.add_atom(st)
+            for name in low["predicates"] if when == "after" else []:
+                h.set_positive_only_predicate(name)
+            return [str(a) for a in h.query("(: $prf (Member sk_cat_2 cat__mod_farm) $tv)", steps=800, timeout_sec=0)]
+
+        self.assertEqual(ask("before"), [])
+        for when in ("never", "after"):
+            got = ask(when)
+            self.assertTrue(got and float(re.search(r"\(STV [0-9.e-]+ ([0-9.e-]+)\)\)$", got[0]).group(1)) < 0.05, (when, got))
+
     def test_a_class_can_be_asked_for_by_its_parts(self):
         query = L.query(["Member", "$x", ["Narrow", "report", ["Mod", "$m"]]], "pettachainer-master")
         sure = {re.search(r"\(NarrowBy (\S+) \(Mod ([^\s()]+)\)\)", p).groups() for p, s, c in _values(self.kb, query) if s == 1.0 and c > 0.9}

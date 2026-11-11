@@ -6,6 +6,7 @@ Run from ``templates/``: ``python tests/test_rules.py``
 """
 from __future__ import annotations
 
+import collections
 import copy
 import json
 import os
@@ -17,7 +18,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 TEMPLATES = os.path.abspath(os.path.join(HERE, os.pardir))
 sys.path.insert(0, TEMPLATES)
 
-from tmpl import rules as R, typecheck as T  # noqa: E402
+from tmpl import lower as L, rules as R, typecheck as T  # noqa: E402
 
 RULES = R.load()
 
@@ -114,6 +115,66 @@ class SourceTests(unittest.TestCase):
         self.assertTrue(any("duplicate id" in p for p in R.check(dup, heads, ids)))
         badtruth = copy.deepcopy(base); badtruth["truth"] = {"strength": 1.5, "confidence": 0.9}
         self.assertTrue(any("truth" in p for p in R.check([badtruth], heads, ids)))
+
+
+class UpstreamMasterTests(unittest.TestCase):
+    """The second target: the same rules in upstream PeTTaChainer master's spelling, in a file of their own."""
+
+    def test_an_implication_keeps_its_form_with_that_engines_negative_branch(self):
+        rule = next(r for r in RULES if r["id"] == "coref_agent")
+        self.assertEqual(R.lower(rule, R.MASTER),
+                         "(: coref_agent (Implication (And (Coref $m $a) (Agent $e $m)) (Agent $e $a)) (CTV (STV 1.0 0.99) (STV 0.0 0.001)))")
+        self.assertTrue(R.lower(rule).endswith("(CTV (STV 1.0 0.99) (STV 0.0 0.0)))"))       # our engine line: as before
+        days = next(r for r in RULES if r["id"] == "days_before_day")
+        self.assertIn("(Compute - ($d $n) -> $e)", R.lower(days, R.MASTER))                  # a computation is spelled the same
+        with self.assertRaises(R.RulesError):
+            R.lower(rule, "some-other-engine")
+
+    def test_an_equivalence_is_a_two_way_conditional_there(self):
+        sym = next(r for r in RULES if r["id"] == "samedegree_sym")
+        self.assertEqual(R.lower(sym, R.MASTER),
+                         "(: samedegree_sym (BiImplication (SameDegree $s $x $y) (SameDegree $s $y $x)) (CTV (STV 1.0 0.99) (STV 0.0 1.0)))")
+        weaker = copy.deepcopy(sym); weaker["truth"] = {"strength": 0.5, "confidence": 0.9}
+        self.assertIn("(CTV (STV 0.6666666666666666 0.9) (STV 0.0 1.0))", R.lower(weaker, R.MASTER))   # 2s / (1 + s), as our line reads the link
+
+    def test_what_that_engine_cannot_run_is_listed_and_not_written(self):
+        closures = R.load_closures(rules=RULES)
+        left = R.unwritten(RULES, closures, R.MASTER)
+        self.assertEqual(collections.Counter(why for _r, why in left),
+                         {"requires sealed-term-projection": 12, "the closure kin": 15})
+        ids = {r["id"] for r, _why in left}
+        for rid in ("look_holds", "theme_entailed", "kin_compose", "kin_lift", "kin_state_theme"):   # the last one only READS the closure's head
+            self.assertIn(rid, ids)
+        self.assertEqual(R.unwritten(RULES, closures), [])                                    # our line runs every rule
+        low = R.lowered(RULES, closures, R.MASTER)
+        self.assertEqual(len(low), len(RULES) - len(left))
+        self.assertTrue(all(r["stage"] == "query" for r in low))                              # no closure stage, no unrolling
+        text = R.render(RULES, R.MASTER)
+        self.assertIn(";;   look_holds — what looks so is taken to be so (requires sealed-term-projection)", text)
+        self.assertIn(" (the closure kin)", text)
+        statements = [ln for ln in text.splitlines() if ln.startswith("(: ")]
+        rules = [ln for ln in statements if "(Implication " in ln or "(BiImplication " in ln]
+        self.assertEqual(len(rules), len(low))
+        self.assertFalse([ln for ln in rules if "(Kin " in ln or "clause-event" in ln])
+        self.assertFalse([ln for ln in statements if "(Equivalence " in ln or "(STV 0.0 0.0)))" in ln])
+        self.assertEqual(sum("(BiImplication " in ln for ln in rules), sum(1 for r in RULES if r.get("semantics") == "equivalence"))
+        facts = R.load_facts(rules=RULES)
+        self.assertEqual(R.statements_of(facts, R.MASTER), R.statements_of(facts))            # the lexicon: the same statements
+        self.assertEqual([ln for ln in statements if ln not in rules], R.statements_of(facts))
+
+    def test_the_generated_file_for_that_engine_is_fresh(self):
+        self.assertEqual(open(R.GENERATED_MASTER, encoding="utf-8").read(), R.render(RULES, R.MASTER))
+
+    def test_every_head_the_rules_use_is_a_predicate_the_consumer_declares(self):
+        names = set(L.predicates(R.MASTER))
+        heads = R.substrate_heads()
+        self.assertEqual(sorted(names - heads), ["Is", "NarrowBy"])                           # the lowering's two definition heads
+        used = {h for r in RULES for a in r["premises"] + [r["conclusion"]] for h in R._heads(T.parse(a), set())}
+        logical = {"And", "Or", "Not", "Member", "Inheritance", "Implication"}
+        self.assertEqual(sorted((used & heads) - logical - names), [])
+        facts = {g["head"] for g in R.load_facts(rules=RULES)}
+        self.assertEqual(sorted(facts - names), [])
+        self.assertIn('tmpl.lower.predicates("pettachainer-master")', R.render(RULES, R.MASTER))
 
 
 class FactsTests(unittest.TestCase):

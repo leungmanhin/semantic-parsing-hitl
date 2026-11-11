@@ -17,7 +17,7 @@ the variants. A rule may name a consumer capability it ``requires`` (``sealed-te
 concluding the conjuncts of a bound term, and the clause-event computation); lowering for a
 target that lacks the capability lists the rule as pending instead of writing it.
 
-Lowering for the chainer (the only target so far): ``(: id (Implication <premises> <conclusion>)
+Lowering for our engine line (target ``pettachainer``): ``(: id (Implication <premises> <conclusion>)
 (CTV (STV s c) (STV 0.0 0.0)))``. The explicit conditional is the chainer's documented form for a
 conditional relationship; its negative branch, with no confidence, states the deductive semantics (nothing follows from
 a failed premise). A bare ``(STV s c)`` would make the chainer estimate that branch from base rates
@@ -48,6 +48,26 @@ reads it at any depth. The unrolled closure is the CLOSURE STAGE: written to its
 (``tmpl.reason``), never beside the query-stage rules of ``seeded_rules.metta`` (a closure rule beside its own
 conclusions would count them twice). Both are workarounds for our engine line, to re-test after the switch to upstream
 PeTTaChainer (whose own gaps with recursive rules are measured in the engine checkout's repros of 2026-11-09).
+
+UPSTREAM MASTER (target ``pettachainer-master``; measured on its commit b6aacc68). The same rules in that engine's
+spelling, in a file of their own (``generated/seeded_rules.pettachainer-master.metta``), to be loaded beside statements
+lowered for the same target (``tmpl.lower``). Three things differ. (1) The NEGATIVE BRANCH of a deductive rule is
+written ``(STV 0.0 0.001)``: on that engine a branch at confidence 0 costs a conclusion drawn over an uncertain
+premise most of its confidence (a role carried over a coreference link of (0.99 0.9) comes out at confidence 0.56;
+with 0.001 it is 0.9, our line's value, and chains keep our line's numbers), while a branch at (STV 0.0 1.0) would
+state that the conclusion is false without the premise. (2) An EQUIVALENCE is ``(BiImplication P Q)`` with ``(CTV
+(STV s' c) (STV 0.0 1.0))``, s' = 2s/(1+s) as on our line: that engine has no Equivalence link (it refuses one as a
+fact with free variables), and a two-way conditional whose denied side denies the other is what the link means. (3)
+Some rules are NOT WRITTEN and listed in the file's header instead: a rule that ``requires`` a capability the engine
+lacks (the rules over a sealed clause: loaded there, they stop every derivation of the knowledge base), and a
+CLOSURE — its recursive rules and the rules that read its head — which that engine does not yet run reliably (the
+repros of 2026-11-09); unrolling is our line's workaround, not that engine's. The lexicon facts are the same.
+BEFORE LOADING, a consumer on that engine declares the PREDICATES positive-only (the engine's
+``set_positive_only_predicate``): ``tmpl.lower.predicates`` once for the knowledge base, and each text's class symbols
+(the ``predicates`` of its lowering) before that text's statements. Otherwise a question that nothing derives is
+answered with a prior of low confidence — (0.92 0.001) for a role nobody has — instead of with nothing, and a rule
+is read backwards as weak evidence. With them declared, the probes of ``tests/test_rules_engine_master.py`` give our
+line's values.
 
 FACTS. ``rules.yaml`` may also hold a ``facts`` list: background LEXICON atoms with no variables —
 the poles of a gradable dimension (``ScaleOpposite short tall``), unit factors to a canonical unit
@@ -80,6 +100,7 @@ SUBSTRATE = os.path.join(TEMPLATES, "atom-type-substrates.json")
 CATALOG_DIR = os.path.join(TEMPLATES, "catalog")
 GENERATED = os.path.join(TEMPLATES, "generated", "seeded_rules.metta")
 GENERATED_CLOSURE = os.path.join(TEMPLATES, "generated", "closure_rules.metta")
+GENERATED_MASTER = os.path.join(TEMPLATES, "generated", "seeded_rules.pettachainer-master.metta")
 
 SEMANTICS = ("deductive", "equivalence")
 CLOSURE_ROLES = ("input", "base", "converse", "compose")
@@ -87,7 +108,10 @@ CLOSURE_KEYS = ("id", "meaning", "head", "depth", "notes")
 OPS = ("+", "-", "*", "/", "clause-event", "!=", ">", "<")   # arithmetic, the event of a sealed clause, and boolean guards (result: true)
 TENSES = {"none": None, "past": "Past", "future": "Future"}
 CAPABILITIES = ("sealed-term-projection",)
-TARGET_CAPABILITIES = {"pettachainer": {"sealed-term-projection"}}  # what each consumer can run; grows with the consumer
+MASTER = "pettachainer-master"                   # upstream PeTTaChainer master (the module doc)
+TARGETS = ("pettachainer", MASTER)
+TARGET_CAPABILITIES = {"pettachainer": {"sealed-term-projection"}, MASTER: set()}  # what each consumer can run; grows with the consumer
+NEGATIVE_BRANCH = {"pettachainer": "(STV 0.0 0.0)", MASTER: "(STV 0.0 0.001)"}     # a deductive rule's failed-premise branch
 _VAR = re.compile(r"\$[A-Za-z_][A-Za-z0-9_]*")
 
 
@@ -350,8 +374,8 @@ def load_facts(path: str = RULES, strict: bool = True, rules: list[dict] | None 
 
 
 def lower_fact(group: dict, entry: list, target: str = "pettachainer") -> str:
-    """One lexicon entry in the consumer's form: a plain statement."""
-    if target != "pettachainer":
+    """One lexicon entry in the consumer's form: a plain statement (the same for both targets)."""
+    if target not in TARGETS:
         raise RulesError(f"no lowering for target {target!r}")
     args = " ".join(a if isinstance(a, str) else _num(a) for a in entry)
     s, c = group["truth"]["strength"], group["truth"]["confidence"]
@@ -380,17 +404,20 @@ def _num(x) -> str:
 
 def lower(rule: dict, target: str = "pettachainer") -> str:
     """One rule in the consumer's form."""
-    if target != "pettachainer":
+    if target not in TARGETS:
         raise RulesError(f"no lowering for target {target!r}")
     s, c = rule["truth"]["strength"], rule["truth"]["confidence"]
     if rule.get("semantics") == "equivalence":
+        if target == MASTER:            # no Equivalence link there: the two-way conditional, a denied side denying the other
+            return (f"(: {rule['id']} (BiImplication {rule['premises'][0]} {rule['conclusion']}) "
+                    f"(CTV (STV {_num(2 * s / (1 + s))} {_num(c)}) (STV 0.0 1.0)))")
         return f"(: {rule['id']} (Equivalence {rule['premises'][0]} {rule['conclusion']}) (STV {_num(s)} {_num(c)}))"
     premises = list(rule["premises"])
     for comp in rule.get("computations") or []:
         result = "true" if comp["result"] is True else comp["result"]
         premises.append(f"(Compute {comp['op']} ({' '.join(str(a) for a in comp['args'])}) -> {result})")
     premise = premises[0] if len(premises) == 1 else "(And " + " ".join(premises) + ")"
-    tv = f"(CTV (STV {_num(s)} {_num(c)}) (STV 0.0 0.0))"      # deductive: nothing follows from a failed premise — a branch with no confidence
+    tv = f"(CTV (STV {_num(s)} {_num(c)}) {NEGATIVE_BRANCH[target]})"   # deductive: nothing follows from a failed premise (the module doc)
     return f"(: {rule['id']} (Implication {premise} {rule['conclusion']}) {tv})"
 
 
@@ -558,12 +585,41 @@ def stage_of(rule: dict) -> str:
     return rule.get("stage") or "query"
 
 
+def closure_of(rule: dict, closures: list[dict]) -> str | None:
+    """The closure a rule belongs to, or reads the head of; None for any other rule."""
+    if rule.get("closure"):
+        return rule["closure"]["name"]
+    return next((c["id"] for c in closures if _head_atoms(rule["premises"], c["head"])), None)
+
+
+def unwritten(rules: list[dict], closures: list[dict] | None = None, target: str = "pettachainer") -> list[tuple[dict, str]]:
+    """The source rules a target's file leaves out, each with the reason: a capability the consumer lacks, or — for
+    upstream master — a closure, whose recursive rules and readers that engine does not run yet."""
+    out = []
+    for r in rules:
+        if not runnable(r, target):
+            out.append((r, f"requires {r['requires']}"))
+        elif target == MASTER and closure_of(r, closures or []):
+            out.append((r, f"the closure {closure_of(r, closures or [])}"))
+    return out
+
+
+def _for_target(rules: list[dict], closures: list[dict], target: str) -> list[dict]:
+    """The source rules a target runs, staged: for our engine line the closures unrolled (``unroll``); for upstream
+    master the rules as the source states them, the unwritten ones left out."""
+    if target == MASTER:
+        skip = {r["id"] for r, _why in unwritten(rules, closures, target)}
+        return [{**r, "stage": "query"} for r in rules if r["id"] not in skip]
+    return unroll([r for r in rules if runnable(r, target)], closures)
+
+
 def lowered(rules: list[dict], closures: list[dict] | None = None, target: str = "pettachainer") -> list[dict]:
     """The rules as the target runs them, each ``{"id", "meaning", "reads", "stage", "text"}`` in source order: for our
-    engine line the closures unrolled (``unroll``), a rule pending a capability left out."""
+    engine line the closures unrolled (``unroll``), a rule pending a capability left out; for upstream master see
+    ``unwritten``."""
     closures = closures if closures is not None else []
     out = []
-    for r in unroll([r for r in rules if runnable(r, target)], closures):
+    for r in _for_target(rules, closures, target):
         for v in expand(r):
             out.append({"id": v["id"], "meaning": v.get("meaning"), "reads": v.get("reads") or [], "stage": stage_of(r),
                         "text": lower(v, target)})
@@ -603,6 +659,8 @@ def render(rules: list[dict], target: str = "pettachainer", facts: list[dict] | 
         facts = load_facts(rules=rules)
     if closures is None:
         closures = load_closures(rules=rules)
+    if target == MASTER:
+        return _render_master(rules, facts, closures)
     lines = [
         ";; The catalog's background rules, lowered for the chainer from rules.yaml — generated by",
         ";; `python -m tmpl.rules`; never edited by hand. Loaded beside the emitted statements by a",
@@ -642,6 +700,51 @@ def render(rules: list[dict], target: str = "pettachainer", facts: list[dict] | 
     return "\n".join(lines) + "\n"
 
 
+MASTER_HEADER = [
+    ";; The catalog's background rules, lowered for UPSTREAM PeTTaChainer master from rules.yaml — generated by",
+    ";; `python -m tmpl.rules`; never edited by hand. Loaded beside a text's statements lowered for the same engine",
+    ";; (tmpl.lower, target pettachainer-master), never by the parser. Each rule is a deductive implication with an",
+    ";; explicit conditional truth value: the positive branch is the rule's reliability; the negative branch is",
+    ";; (STV 0.0 0.001) — on this engine a branch at confidence 0 costs a conclusion drawn over an uncertain premise",
+    ";; most of its confidence, and a branch at (STV 0.0 1.0) would state the conclusion false without the premise.",
+    ";; An equivalence is a BiImplication whose denied side denies the other (this engine has no Equivalence link).",
+    ";;",
+    ";; BEFORE LOADING ANYTHING, declare the predicates positive-only: set_positive_only_predicate(name) for each name",
+    ";; of tmpl.lower.predicates(\"pettachainer-master\") — every head that states something of its arguments; not",
+    ";; Member, not the logical links — and, before each text's statements, for that text's class symbols (the",
+    ";; `predicates` of its lowering): declared after the statements they change nothing. Without them this engine",
+    ";; answers a question that nothing derives with a prior of low confidence instead of with nothing, and reads a",
+    ";; rule backwards as weak evidence.",
+]
+
+
+def _render_master(rules: list[dict], facts: list[dict], closures: list[dict]) -> str:
+    """Upstream master's file: the header, what is not written and why, the lexicon facts, the rules."""
+    lines = list(MASTER_HEADER)
+    left = unwritten(rules, closures, MASTER)
+    if left:
+        lines.append(";;")
+        lines.append(";; NOT WRITTEN for this engine (the source states them; they are lowered for it when it can run them):")
+        for r, why in left:
+            lines.append(f";;   {r['id']} — {r['meaning']} ({why})")
+    lines.append("")
+    if facts:
+        lines.append(";; ===== Lexicon facts: background atoms with no variables, loaded with the rules (never parser output) =====")
+        for g in facts:
+            reads = f" (reads: {', '.join(g['reads'])})" if g.get("reads") else ""
+            lines.append(f";; {g['id']}: {g['meaning']}{reads}")
+            for e in g["entries"]:
+                lines.append(lower_fact(g, e, MASTER))
+        lines.append("")
+        lines.append(";; ===== Rules =====")
+    for src in _for_target(rules, closures, MASTER):
+        reads = f" (reads: {', '.join(src['reads'])})" if src.get("reads") else ""
+        lines.append(f";; {src['id']}: {src['meaning']}{reads}")
+        for r in expand(src):
+            lines.append(lower(r, MASTER))
+    return "\n".join(lines) + "\n"
+
+
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description="validate rules.yaml and write the chainer's rules file")
     ap.add_argument("--rules", default=RULES)
@@ -654,6 +757,10 @@ def main(argv=None) -> int:
     text = render(rules, facts=facts, closures=closures)
     closure = render_closure(rules, closures=closures)
     closure_out = os.path.join(os.path.dirname(args.out), os.path.basename(GENERATED_CLOSURE))
+    master = render(rules, MASTER, facts=facts, closures=closures)
+    master_out = os.path.join(os.path.dirname(args.out), os.path.basename(GENERATED_MASTER))
+    n_master = len(lowered(rules, closures, MASTER))
+    master_note = f"upstream master: {n_master} lowered, {len(unwritten(rules, closures, MASTER))} not written"
     low = lowered(rules, closures)
     n = sum(1 for r in low if r["stage"] == "query")
     nc = sum(1 for r in low if r["stage"] == "closure")
@@ -663,17 +770,21 @@ def main(argv=None) -> int:
     if args.check:
         current = open(args.out, encoding="utf-8").read() if os.path.exists(args.out) else ""
         current_c = open(closure_out, encoding="utf-8").read() if os.path.exists(closure_out) else ""
-        fresh = current == text and current_c == closure
-        print(f"{len(rules)} rules ({n} lowered{note}; {nc} in the closure stage) + {nf} lexicon facts valid · generated files "
-              f"{'fresh' if fresh else 'STALE'}")
+        current_m = open(master_out, encoding="utf-8").read() if os.path.exists(master_out) else ""
+        fresh = current == text and current_c == closure and current_m == master
+        print(f"{len(rules)} rules ({n} lowered{note}; {nc} in the closure stage; {master_note}) + {nf} lexicon facts valid · "
+              f"generated files {'fresh' if fresh else 'STALE'}")
         return 0 if fresh else 1
     os.makedirs(os.path.dirname(args.out), exist_ok=True)
     with open(args.out, "w", encoding="utf-8") as fh:
         fh.write(text)
     with open(closure_out, "w", encoding="utf-8") as fh:
         fh.write(closure)
-    print(f"wrote {os.path.relpath(args.out, TEMPLATES)} ({len(rules)} rules, {n} lowered{note}; {nf} lexicon facts) and "
-          f"{os.path.relpath(closure_out, TEMPLATES)} ({nc} closure rules)")
+    with open(master_out, "w", encoding="utf-8") as fh:
+        fh.write(master)
+    print(f"wrote {os.path.relpath(args.out, TEMPLATES)} ({len(rules)} rules, {n} lowered{note}; {nf} lexicon facts), "
+          f"{os.path.relpath(closure_out, TEMPLATES)} ({nc} closure rules) and "
+          f"{os.path.relpath(master_out, TEMPLATES)} ({master_note})")
     if args.out == GENERATED:
         from . import manifest as MF
         print(f"manifest {MF.write()['id']}")

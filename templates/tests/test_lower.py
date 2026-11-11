@@ -121,6 +121,97 @@ class UpstreamMasterTests(unittest.TestCase):
                       low["definitions"])
         self.assertFalse(any(d.split(" ", 2)[1].startswith("sk_") for d in low["definitions"]))   # a statement's name is no symbol
 
+    def test_a_consumers_names_are_applied_before_the_class_is_named(self):
+        """A consumer that keeps one symbol for a name across its texts passes it in: the class narrowed by that
+        individual is named after the consumer's symbol and is no longer one text's own. Renaming the lowered text
+        instead could not reach inside the class symbol."""
+        out = _emit([{"t": "named-entity", "id": "n1", "name": "Brackenford"},
+                     {"t": "witness", "id": "x1", "class": "report", "mods": ["@n1"]},
+                     {"t": "activity", "id": "v1", "verb": "arrive", "actor": "@x1", "tense": "past"}])
+        names = {"sk_brackenford_1": "brackenford", "sk_report_1": "sk_report_1__n7", "sk_absent_9": "absent"}
+        low = L.lower(out, "pettachainer-master", symbols=names)
+        self.assertIn('(: n1_name (Name brackenford "Brackenford") (STV 1.0 0.99))', low["statements"])
+        self.assertIn("(: x1_member_2 (Member sk_report_1__n7 report__mod_brackenford) (STV 1.0 0.99))", low["statements"])
+        self.assertEqual(low["definitions"], [
+            "(: kind__report__mod_brackenford (Inheritance report__mod_brackenford report) (STV 1.0 0.99))",
+            "(: by_1__report__mod_brackenford (NarrowBy report__mod_brackenford (Mod brackenford)) (STV 1.0 0.99))"])
+        self.assertEqual(low["classes"], {"report__mod_brackenford": "(Narrow report (Mod brackenford))"})
+        everything = low["statements"] + low["definitions"] + low["declarations"]
+        self.assertFalse([x for x in everything if "sk_brackenford_1" in x or "sk_report_1 " in x])
+        self.assertTrue([x for x in low["declarations"] if x.startswith("(: brackenford ")])
+        # our engine line takes the names too, the class still a term
+        ours = L.lower(out, "pettachainer", symbols=names)
+        self.assertIn("(: x1_member_2 (Member sk_report_1__n7 (Narrow report (Mod brackenford))) (STV 1.0 0.99))", ours["statements"])
+        self.assertEqual(L.lower(out, "pettachainer-master", symbols={})["statements"], L.lower(out, "pettachainer-master")["statements"])
+        # a string literal is no symbol; a skolem function's stem is one; a query takes the names as well
+        recs = {"records": [{"name": "a", "term": ["Name", "sk_mill_1", L.Str("sk_mill_1")], "truth": [1.0, 0.99]},
+                            {"name": "b", "term": ["Member", ["sk_loom", "sk_mill_1"], "loom"], "truth": [1.0, 0.9]}],
+                "types": {"sk_mill_1": ["Entity"], "sk_mill_2": ["Instance"]},
+                "functions": [{"stem": "sk_loom", "arity": 1, "classes": ["Entity"]}]}
+        low = L.lower(recs, "pettachainer-master", symbols={"sk_mill_1": "mill", "sk_mill_2": "mill", "sk_loom": "sk_loom__n7"})
+        self.assertEqual(low["statements"], ['(: a (Name mill "sk_mill_1") (STV 1.0 0.99))',
+                                             "(: b (Member (sk_loom__n7 mill) loom) (STV 1.0 0.9))"])
+        self.assertEqual(low["declarations"], ["(: mill Entity)", "(: mill Instance)", "(: sk_loom__n7 (-> Atom Entity))"])
+        self.assertEqual(L.query(["Member", "$x", ["Narrow", "report", ["Mod", "sk_brackenford_1"]]], "pettachainer-master", names),
+                         "(: $prf (Member $x report__mod_brackenford) $tv)")
+        self.assertEqual(L.statement({"name": "c", "term": ["Agent", "sk_wash_1", "sk_brackenford_1"], "truth": [1.0, 0.99]},
+                                     "pettachainer", names), "(: c (Agent sk_wash_1 brackenford) (STV 1.0 0.99))")
+        for bad in ("two words", "$x", "(a)", '"quoted"', ""):
+            with self.assertRaises(ValueError):
+                L.lower(out, "pettachainer-master", symbols={"sk_brackenford_1": bad})
+
+    def test_the_restrictions_of_a_class_come_in_one_order_whatever_the_sentence_had(self):
+        """The emitter sorts a class's restrictions by their text — an adjective before a noun, each alphabetical — so
+        "a yellow hive progress report" and the same words in another order are one class with one symbol."""
+        def low(mods):
+            return L.lower(_emit([{"t": "witness", "id": "x1", "class": "report", "mods": mods, "props": ["yellow"]},
+                                  {"t": "activity", "id": "v1", "verb": "arrive", "actor": "@x1", "tense": "past"}]), "pettachainer-master")
+        a, b = low(["hive", "progress"]), low(["progress", "hive"])
+        self.assertIn("report__member_yellow__mod_hive__mod_progress", a["classes"])
+        self.assertEqual(a["classes"]["report__member_yellow__mod_hive__mod_progress"],
+                         "(Narrow report (And (Member yellow) (Mod hive) (Mod progress)))")
+        self.assertEqual(sorted(a["classes"]), sorted(b["classes"]))
+        self.assertEqual(sorted(a["definitions"]), sorted(b["definitions"]))
+        # under a consumer's own names the order is taken again: two texts whose symbols sort differently, one class
+        def named(first, second, names):
+            rec = {"name": "a", "term": ["Member", "sk_report_1", ["Narrow", "report", ["And", ["Mod", first], ["Mod", second]]]], "truth": [1.0, 0.99]}
+            return L.lower({"records": [rec], "types": {}, "functions": []}, "pettachainer-master", symbols=names)
+        one = named("sk_ibm_1", "sk_india_1", {"sk_ibm_1": "ibm", "sk_india_1": "india"})
+        two = named("sk_india_1", "sk_international_business_machines_1", {"sk_india_1": "india", "sk_international_business_machines_1": "ibm"})
+        self.assertEqual(list(one["classes"]), ["report__mod_ibm__mod_india"])
+        self.assertEqual(list(two["classes"]), ["report__mod_ibm__mod_india"])
+        self.assertEqual(one["definitions"], two["definitions"])
+        self.assertEqual([d.split(" ")[1] for d in one["definitions"]],
+                         ["kind__report__mod_ibm__mod_india", "by_1__report__mod_ibm__mod_india", "by_2__report__mod_ibm__mod_india"])
+        self.assertIn("(NarrowBy report__mod_ibm__mod_india (Mod ibm))", one["definitions"][1])
+        # each restriction alone and all of them together, never every subset
+        self.assertEqual(sorted(a["classes"]), ["report__member_yellow", "report__member_yellow__mod_hive__mod_progress",
+                                                "report__mod_hive", "report__mod_progress"])
+
+    def test_the_predicates_to_declare_are_the_heads_that_state_something(self):
+        """Upstream master is told which predicates are positive-only before it loads anything: every head that states
+        something of its arguments, never the logical links; our engine line declares nothing."""
+        names = L.predicates("pettachainer-master")
+        self.assertEqual(names, sorted(set(names)))
+        for head in ("Agent", "Coref", "LocatedIn", "Past", "Name", "Tag", "Measure", "Because", "Permitted", "Holds", "UnitFactor",
+                     "NarrowBy", "Is"):
+            self.assertIn(head, names)
+        for head in ("Member", "Inheritance", "Not", "And", "Or", "Implication", "Equivalence", "Narrow", "Compute", "Interpretation"):
+            self.assertNotIn(head, names)
+        self.assertGreater(len(names), 150)
+        self.assertEqual(L.predicates(), [])
+        self.assertEqual(L.predicates("pettachainer"), [])
+        with self.assertRaises(ValueError):
+            L.predicates("some-other-engine")
+        # a text's own predicates on that engine are its class symbols: its words' classes and the narrowed ones
+        low = L.lower(_emit(REPORT), "pettachainer-master", symbols={"sk_report_1": "sk_report_1__n7"})
+        self.assertEqual(low["predicates"], sorted(set(low["predicates"])))
+        for name in ("report", "arrive", "report__mod_hive", "report__mod_progress", "report__mod_hive__mod_progress"):
+            self.assertIn(name, low["predicates"])
+        self.assertFalse([n for n in low["predicates"] if n.startswith("sk_report_1")])     # an individual is no predicate
+        self.assertEqual(low["predicates"], sorted(d[3:-1].split(" ")[0] for d in low["declarations"] if d.endswith(" Class)")))
+        self.assertNotIn("predicates", L.lower(_emit(REPORT)))                              # our engine line declares nothing
+
     def test_a_narrowed_class_is_interned_wherever_it_stands_and_one_with_a_variable_is_kept(self):
         records = [{"name": "a", "term": ["GroupOf", "sk_group_1", ["Narrow", "man", ["Member", "young"]]], "truth": [1.0, 0.99]},
                    {"name": "b", "term": ["Directive", ["And", ["Member", "sk_post_1", "post"], ["As", "sk_post_1", ["Narrow", "report", ["Mod", "progress"]]]]],
