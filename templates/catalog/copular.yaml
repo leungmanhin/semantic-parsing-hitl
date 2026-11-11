@@ -313,3 +313,17 @@ examples:
         - {t: witness, id: x1, class: mill, definite: true}
         - {t: copular, id: c1, subject: "@x1", predicate: closed, form: adjective, tense: past}
         - {t: aspectual, id: e1, verb: remain, complement: ["@c1"], tense: past}
+    - category: positive
+      note: note style, no verb — the clause with be left out, tense present; the noun a witness with no definite mark
+      text: "Barn empty."
+      instances:
+        - {t: witness, id: x1, class: barn}
+        - {t: copular, id: c1, subject: "@x1", predicate: empty, form: adjective, tense: present}
+    - category: positive
+      note: a time stamp that opens an entry is structure (G13); the clause after it is parsed as usual
+      text: "12 May 09:40. Gate open."
+      instances:
+        - {t: witness, id: x1, class: gate}
+        - {t: copular, id: c1, subject: "@x1", predicate: open, form: adjective, tense: present}
+      unmapped:
+        - {span: "12 May 09:40", code: G13}

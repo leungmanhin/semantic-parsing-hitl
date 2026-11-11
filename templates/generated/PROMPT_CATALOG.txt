@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 f589f094b5265e90 · 64 templates
+catalog sha256 4dc203430f9a2dfc · 64 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -270,6 +270,38 @@ fences.
   spelling between slashes, a respelling) is a tag on the name: report it as unmapped (G03);
   stray punctuation left in the bracket is nothing and is not reported.
 
+## Notes, headlines and lists
+
+- NOTE STYLE. A log entry, a headline or a list of jobs leaves out words that a full sentence
+  has (hatch open; blanket washed; sold three flasks). Read such a clause as the full clause it
+  stands for, by the rules of this section and only by them; whatever still needs a guess is
+  reported as unmapped, as always. A noun with its article left out is still the particular
+  thing it names: a witness, with no definite mark (no the is written).
+- NO VERB — a subject, then an adjective, a noun phrase or a place phrase (hatch open; kettle on
+  the stove) — is the clause with be left out: the copular, identity or locative template as if
+  is stood there, tense present.
+- A NOUN AND A PAST PARTICIPLE of an action (blanket washed; three flasks sold; bun baked by
+  Pieter) is the passive with be left out: the verb's own template, the noun in the role the
+  passive gives it (the thing washed, sold, baked), a by-phrase the doer and otherwise no doer,
+  tense past — a note reports what was done.
+- A VERB WITH NO SUBJECT (washed the blanket; sold three flasks; replaces the March list) is the
+  verb's clause with its doer left out: fill the other slots and leave the doer's slot empty, as
+  in an agentless passive. Never supply a doer — not the writer, not the note itself. The tense
+  is the verb's own; an -ing form with no subject (waiting for Odile) is the present
+  progressive. A bare verb form (wash the blanket) is a command, as always.
+- STRUCTURE states nothing: a heading or a label that frames what follows (Next:, Findings:,
+  Lesson:), a list number or a bullet, a dateline at the head of a news item (ANTWERP —), a time
+  stamp that opens an entry (3 March, 14:20), a markup comment or tag. Report each as unmapped
+  with the code G13 and parse what it frames as usual: after a label, a clause is still a clause
+  (Next: wash the blanket is the command).
+- NOTATION is kept as written and never read: an equation over numbers (40 + 12 = 52), an arrow
+  (draft -> final), a command line (cp ledger.txt /backup/), a setting (retries=3), a path or a
+  code standing alone. Report it as unmapped with the code G14, the span verbatim, and write no
+  instance for anything inside it. Two things are not notation. A NAME that happens to be a
+  path, a file name or a code and fills a role in a clause (Odile renamed ledger.txt) is a named
+  entity, as always. And = between two names or noun phrases (the warden = Henrike) is the verb
+  be: the identity template.
+
 ## Choosing a template
 
 A template fires only where its construction is present. If a clause looks like a template's
@@ -349,6 +381,11 @@ Codes:
   not so; in fact it was on Friday): the earlier sentence stays as it was parsed
 - G12: a question the question template does not ask yet — why, how often (Why did Pieter leave?
   How often does Odile swim?): the whole question
+- G13: the structure of a note or a news item, which states nothing — a heading or label, a list
+  number or bullet, a dateline, a time stamp that opens an entry, a markup comment (Notes,
+  headlines and lists)
+- G14: notation kept as written — an equation over numbers, an arrow, a command line, a setting,
+  a path or a code standing alone (Notes, headlines and lists)
 
 ## Reporting a problem with the instructions
 
@@ -1102,8 +1139,8 @@ Slots:
 - `verb` (required; a lemma): the verb lemma.
 - `acquirer` (optional; "@id" of a referent instance, or a bare lemma for a non-specific
   filler): the party who comes to have the object: the subject, or the by-phrase of a passive;
-  absent in an agentless passive, and in an imperative, whose addressee is not a referent of the
-  text.
+  absent in an agentless passive, in an imperative, whose addressee is not a referent of the
+  text, and in a note-style clause that leaves its subject out.
 - `object` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
   what is acquired, unchanged by the acquisition.
 - `source` (optional; "@id" of a referent instance, or a bare lemma for a non-specific filler):
@@ -1207,8 +1244,9 @@ Slots:
 - `id` (required; your label for this instance): your label for the action.
 - `verb` (required; a lemma): the verb lemma.
 - `actor` (optional; "@id" of a referent instance, or a bare lemma for a non-specific filler):
-  who acts: the subject, or the by-phrase of a passive; absent in an agentless passive, and in
-  an imperative, whose addressee is not a referent of the text.
+  who acts: the subject, or the by-phrase of a passive; absent in an agentless passive, in an
+  imperative, whose addressee is not a referent of the text, and in a note-style clause that
+  leaves its subject out.
 - `patient` (optional; "@id" of a referent instance, or a bare lemma for a non-specific filler):
   what the action is done to or with: the object; a bare lemma for a non-specific one (cooked
   dinner).
@@ -1956,8 +1994,9 @@ Slots:
 - `id` (required; your label for this instance): your label for the matrix event.
 - `verb` (required; a lemma): the causative verb lemma (make, let, get, prevent …).
 - `causer` (optional; "@id" of a referent instance, or a bare lemma for a non-specific filler):
-  who or what brings the action about: the subject; absent in an agentless passive, and in an
-  imperative, whose addressee is not a referent of the text.
+  who or what brings the action about: the subject; absent in an agentless passive, in an
+  imperative, whose addressee is not a referent of the text, and in a note-style clause that
+  leaves its subject out.
 - `complement` (optional; a list of "@id" of the instances that state the clause): the caused
   clause: the ids of the instances that state it (its predication, with the causative verb's
   object as its actor, or as its patient for a past participle); the referents it mentions are
@@ -2388,7 +2427,8 @@ Slots:
 - `verb` (required; a lemma): the verb lemma.
 - `speaker` (optional; "@id" of a referent instance, or a bare lemma for a non-specific filler):
   who conveys the message: the subject, or the by-phrase of a passive; absent in an agentless
-  passive, and in an imperative, whose addressee is not a referent of the text.
+  passive, in an imperative, whose addressee is not a referent of the text, and in a note-style
+  clause that leaves its subject out.
 - `addressee` (optional; "@id" of a referent instance, or a bare lemma for a non-specific
   filler): who the message is conveyed to: the indirect object or the to-phrase; absent when the
   text leaves it out.
@@ -2681,7 +2721,8 @@ Slots:
 - `verb` (required; a lemma): the matrix verb lemma (try, manage, fail …).
 - `subject` (optional; "@id" of a referent instance, or a bare lemma for a non-specific filler):
   the subject, who also acts in the complement: a referent id; absent in an agentless passive,
-  and in an imperative, whose addressee is not a referent of the text.
+  in an imperative, whose addressee is not a referent of the text, and in a note-style clause
+  that leaves its subject out.
 - `complement` (optional; a list of "@id" of the instances that state the clause): the
   complement clause: the ids of the instances that state it (its predication, with the subject
   as its actor, or a negation over that predication); the referents it mentions are not listed.
@@ -2927,7 +2968,8 @@ Slots:
 - `verb` (required; a lemma): the verb lemma.
 - `creator` (optional; "@id" of a referent instance, or a bare lemma for a non-specific filler):
   who or what makes the thing: the subject, or the by-phrase of a passive; absent in an
-  agentless passive, and in an imperative, whose addressee is not a referent of the text.
+  agentless passive, in an imperative, whose addressee is not a referent of the text, and in a
+  note-style clause that leaves its subject out.
 - `product` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
   the thing that comes into being: the object; an instance for a specific thing (a hut, the
   hut), a bare lemma for a non-specific one (baked bread).
@@ -3549,7 +3591,8 @@ Slots:
 - `verb` (required; a lemma): the verb lemma.
 - `mover` (optional; "@id" of a referent instance, or a bare lemma for a non-specific filler):
   who or what moves under its own power, or who moves the moved thing: the subject; absent when
-  the subject is moved or moves without acting, and in an agentless passive.
+  the subject is moved or moves without acting, in an agentless passive, and in a note-style
+  clause that leaves its subject out.
 - `moved` (optional; "@id" of a referent instance, or a bare lemma for a non-specific filler):
   what is moved by someone (the object of carry, push), or what moves without acting (the trunk
   arrived, the barrow fell), a pulled or pushed vehicle included (the wagon travelled, the
@@ -3824,7 +3867,8 @@ Slots:
 - `verb` (required; a lemma): the verb lemma.
 - `perceiver` (optional; "@id" of a referent instance, or a bare lemma for a non-specific
   filler): who perceives: the subject, or the by-phrase of a passive; absent in an agentless
-  passive, and in an imperative, whose addressee is not a referent of the text.
+  passive, in an imperative, whose addressee is not a referent of the text, and in a note-style
+  clause that leaves its subject out.
 - `stimulus` (optional; "@id" of a referent instance, or a bare lemma for a non-specific
   filler): the thing perceived: the object, or the subject of a passive.
 - `event` (optional; "@id" of a predication instance (the clause's event)): the event perceived:
@@ -4577,8 +4621,9 @@ Slots:
 - `id` (required; your label for this instance): your label for the transfer event.
 - `verb` (required; a lemma): the verb lemma.
 - `giver` (optional; "@id" of a referent instance, or a bare lemma for a non-specific filler):
-  the party who gives; in a passive, the by-phrase; absent in an agentless passive, and in an
-  imperative, whose addressee is not a referent of the text.
+  the party who gives; in a passive, the by-phrase; absent in an agentless passive, in an
+  imperative, whose addressee is not a referent of the text, and in a note-style clause that
+  leaves its subject out.
 - `recipient` (optional; "@id" of a referent instance, or a bare lemma for a non-specific
   filler): the party who comes to have the object; the indirect object or the to-phrase.
 - `object` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):

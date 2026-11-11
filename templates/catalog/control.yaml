@@ -68,7 +68,7 @@ slots:
   id:          {type: id, required: true, doc: "your label for the matrix event"}
   verb:        {type: lemma, class: Class, required: true, doc: "the matrix verb lemma (try, manage, fail …)"}
   subject:     {type: filler, class: Entity, role: Agent, required: false,
-                doc: "the subject, who also acts in the complement: a referent id; absent in an agentless passive, and in an imperative, whose addressee is not a referent of the text"}
+                doc: "the subject, who also acts in the complement: a referent id; absent in an agentless passive, in an imperative, whose addressee is not a referent of the text, and in a note-style clause that leaves its subject out"}
   complement:  {type: refs, class: Proposition, required: false,
                 doc: "the complement clause: the ids of the instances that state it (its predication, with the subject as its actor, or a negation over that predication); the referents it mentions are not listed. Left out when none of the complement can be kept (a clause no template covers): the verb and its subject alone, the complement reported as unmapped"}
   implication: {type: enum, values: [none, positive, negative], required: true,

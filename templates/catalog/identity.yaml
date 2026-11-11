@@ -154,3 +154,13 @@ examples:
         - {t: witness, id: x1, class: ferret, definite: true}
         - {t: named-entity, id: n1, name: "Pip"}
         - {t: identity, id: i1, subject: "@x1", object: "@n1"}
+    - category: positive
+      note: = between a noun phrase and a name is the verb be
+      text: "The owner = Ottoline."
+      instances:
+        - {t: witness, id: x1, class: owner, definite: true}
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: identity, id: i1, subject: "@x1", object: "@n1"}
+    - category: abstain
+      text: "30 + 15 = 45."
+      expected: {abstain: true, gap: G14, span: "30 + 15 = 45"}       # an equation over numbers is notation, not an identity

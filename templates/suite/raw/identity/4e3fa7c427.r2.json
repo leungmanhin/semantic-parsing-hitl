@@ -1,0 +1,76 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "acb36d03adabed0f161a74f3d42ca146d0fe50b5bb7edf9ac75ab70c89d53f64",
+  "item": {
+    "id": "s4e3fa7c427",
+    "text": "30 + 15 = 45."
+  },
+  "usage": {
+    "input": 126536,
+    "output": 64,
+    "thinking": null,
+    "total": 126600,
+    "cached": 124487,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 126536,
+    "candidatesTokenCount": 64,
+    "totalTokenCount": 126600,
+    "cachedContentTokenCount": 124487,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 126536
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 124487
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 64
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s4e3fa7c427\", \"instances\": [], \"unmapped\": [{\"span\": \"30 + 15 = 45\", \"code\": \"G14\", \"construction\": \"An equation over numbers.\"}], \"issues\": []}",
+  "response": {
+    "id": "s4e3fa7c427",
+    "instances": [],
+    "unmapped": [
+      {
+        "span": "30 + 15 = 45",
+        "code": "G14",
+        "construction": "An equation over numbers."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "989163d1ebce705192ca8243c034315c0042fa3da4c871b0ff09f334c14bc131",
+  "manifest_id": "3edb704e3fea",
+  "run": 2,
+  "case": {
+    "template": "identity",
+    "section": "held_out",
+    "index": 7,
+    "category": "abstain",
+    "text": "30 + 15 = 45.",
+    "key": "4e3fa7c427"
+  }
+}

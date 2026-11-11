@@ -225,6 +225,21 @@ class LintTests(unittest.TestCase):
         nested = [wait, {"t": "negation", "id": "s1", "over": ["@v1"]}, {"t": "imperative", "id": "s2", "over": ["@s1"]}]
         self.assertEqual(kinds(V.inspect(reply(nested), CATALOG)), [])
 
+    def test_a_verb_that_stands_alone_in_a_note_is_no_bare_predication(self):
+        """Note style leaves the subject out ("Waiting.", "Logging off."): a clause whose span is its verb alone and
+        opens a clause of the text has no participant to fill. With a subject before it in the text the lint still
+        fires (the actor was forgotten), and so it does with no span."""
+        waiting = {"t": "activity", "id": "v1", "verb": "wait", "tense": "present", "aspect": "progressive", "span": "Waiting"}
+        self.assertEqual(kinds(V.inspect(reply([waiting]), CATALOG, text="Waiting.")), [])
+        later = dict(waiting, span="waiting")
+        self.assertEqual(kinds(V.inspect(reply([later]), CATALOG, text="Done; waiting.")), [])
+        particle = {"t": "activity", "id": "v1", "verb": "log_off", "tense": "present", "aspect": "progressive", "span": "Logging off"}
+        self.assertEqual(kinds(V.inspect(reply([particle]), CATALOG, text="Logging off.")), [])
+        forgotten = [{"t": "named-entity", "id": "n1", "name": "Yusra", "span": "Yusra"},
+                     {"t": "activity", "id": "v1", "verb": "sing", "tense": "past", "span": "sang"}]
+        self.assertIn("bare-predication", kinds(V.inspect(reply(forgotten), CATALOG, text="Yusra sang.")))
+        self.assertEqual(kinds(V.inspect(reply([{k: v for k, v in waiting.items() if k != "span"}]), CATALOG)), ["bare-predication"])
+
     def test_bare_predication_and_empty_optional_scope(self):
         cat = copy.deepcopy(CATALOG)
         t = copy.deepcopy(cat["transfer"])

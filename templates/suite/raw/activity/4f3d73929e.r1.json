@@ -1,0 +1,93 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "acb36d03adabed0f161a74f3d42ca146d0fe50b5bb7edf9ac75ab70c89d53f64",
+  "item": {
+    "id": "s4f3d73929e",
+    "text": "Waiting for Lamine."
+  },
+  "usage": {
+    "input": 126530,
+    "output": 141,
+    "thinking": null,
+    "total": 126671,
+    "cached": 124478,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 126530,
+    "candidatesTokenCount": 141,
+    "totalTokenCount": 126671,
+    "cachedContentTokenCount": 124478,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 126530
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 124478
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 141
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s4f3d73929e\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"wait\", \"tense\": \"present\", \"aspect\": \"progressive\", \"span\": \"Waiting\"}, {\"t\": \"oblique\", \"id\": \"a1\", \"event\": \"@e1\", \"head\": \"For\", \"object\": \"@n1\", \"span\": \"for Lamine\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s4f3d73929e",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "wait",
+        "tense": "present",
+        "aspect": "progressive",
+        "span": "Waiting"
+      },
+      {
+        "t": "oblique",
+        "id": "a1",
+        "event": "@e1",
+        "head": "For",
+        "object": "@n1",
+        "span": "for Lamine"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "989163d1ebce705192ca8243c034315c0042fa3da4c871b0ff09f334c14bc131",
+  "manifest_id": "3edb704e3fea",
+  "run": 1,
+  "case": {
+    "template": "activity",
+    "section": "held_out",
+    "index": 30,
+    "category": "positive",
+    "text": "Waiting for Lamine.",
+    "key": "4f3d73929e"
+  }
+}

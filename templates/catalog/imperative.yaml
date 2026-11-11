@@ -259,3 +259,15 @@ examples:
     - category: abstain
       text: "Can you swim?"
       expected: {abstain: true, template: question}                   # the hearer's ability asked, not a request
+    - category: positive
+      note: a label that frames a command is structure (G13); the command is parsed as usual
+      text: "Next: feed the ferret."
+      instances:
+        - {t: witness, id: x1, class: ferret, definite: true}
+        - {t: activity, id: v1, verb: feed, patient: "@x1", tense: present}
+        - {t: imperative, id: s1, over: ["@v1"]}
+      unmapped:
+        - {span: "Next", code: G13}
+    - category: abstain
+      text: "rm -rf /tmp/quilt"
+      expected: {abstain: true, gap: G14, span: "rm -rf /tmp/quilt"}   # a command line is notation, not a command to parse

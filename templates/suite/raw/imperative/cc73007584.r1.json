@@ -1,0 +1,100 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "acb36d03adabed0f161a74f3d42ca146d0fe50b5bb7edf9ac75ab70c89d53f64",
+  "item": {
+    "id": "scc73007584",
+    "text": "Next: feed the ferret."
+  },
+  "usage": {
+    "input": 126530,
+    "output": 158,
+    "thinking": null,
+    "total": 126688,
+    "cached": 124481,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 126530,
+    "candidatesTokenCount": 158,
+    "totalTokenCount": 126688,
+    "cachedContentTokenCount": 124481,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 126530
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 124481
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 158
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"scc73007584\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"ferret\", \"definite\": true, \"span\": \"the ferret\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"feed\", \"patient\": \"@x1\", \"tense\": \"present\", \"span\": \"feed the ferret\"}, {\"t\": \"imperative\", \"id\": \"s1\", \"over\": [\"@e1\"], \"span\": \"feed the ferret\"}], \"unmapped\": [{\"span\": \"Next:\", \"code\": \"G13\", \"construction\": \"A structural label that frames what follows.\"}], \"issues\": []}",
+  "response": {
+    "id": "scc73007584",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "ferret",
+        "definite": true,
+        "span": "the ferret"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "feed",
+        "patient": "@x1",
+        "tense": "present",
+        "span": "feed the ferret"
+      },
+      {
+        "t": "imperative",
+        "id": "s1",
+        "over": [
+          "@e1"
+        ],
+        "span": "feed the ferret"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "Next:",
+        "code": "G13",
+        "construction": "A structural label that frames what follows."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "989163d1ebce705192ca8243c034315c0042fa3da4c871b0ff09f334c14bc131",
+  "manifest_id": "3edb704e3fea",
+  "run": 1,
+  "case": {
+    "template": "imperative",
+    "section": "held_out",
+    "index": 20,
+    "category": "positive",
+    "text": "Next: feed the ferret.",
+    "key": "cc73007584"
+  }
+}

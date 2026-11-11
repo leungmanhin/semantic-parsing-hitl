@@ -260,6 +260,36 @@ biography:
   language or script (Russian: Рен Эшби) — are more names of the same individual: the named entity's `aliases`,
   as written, without the language. A pronunciation (a phonetic spelling between slashes, a respelling) is a tag
   on the name: report it as unmapped (G03); stray punctuation left in the bracket is nothing and is not reported.
+notes:
+- >-
+  NOTE STYLE. A log entry, a headline or a list of jobs leaves out words that a full sentence has (hatch open;
+  blanket washed; sold three flasks). Read such a clause as the full clause it stands for, by the rules of this
+  section and only by them; whatever still needs a guess is reported as unmapped, as always. A noun with its
+  article left out is still the particular thing it names: a witness, with no definite mark (no the is written).
+- >-
+  NO VERB — a subject, then an adjective, a noun phrase or a place phrase (hatch open; kettle on the stove) — is
+  the clause with be left out: the copular, identity or locative template as if is stood there, tense present.
+- >-
+  A NOUN AND A PAST PARTICIPLE of an action (blanket washed; three flasks sold; bun baked by Pieter) is the passive
+  with be left out: the verb's own template, the noun in the role the passive gives it (the thing washed, sold,
+  baked), a by-phrase the doer and otherwise no doer, tense past — a note reports what was done.
+- >-
+  A VERB WITH NO SUBJECT (washed the blanket; sold three flasks; replaces the March list) is the verb's clause with
+  its doer left out: fill the other slots and leave the doer's slot empty, as in an agentless passive. Never
+  supply a doer — not the writer, not the note itself. The tense is the verb's own; an -ing form with no subject
+  (waiting for Odile) is the present progressive. A bare verb form (wash the blanket) is a command, as always.
+- >-
+  STRUCTURE states nothing: a heading or a label that frames what follows (Next:, Findings:, Lesson:), a list
+  number or a bullet, a dateline at the head of a news item (ANTWERP —), a time stamp that opens an entry
+  (3 March, 14:20), a markup comment or tag. Report each as unmapped with the code G13 and parse what it frames as
+  usual: after a label, a clause is still a clause (Next: wash the blanket is the command).
+- >-
+  NOTATION is kept as written and never read: an equation over numbers (40 + 12 = 52), an arrow (draft -> final),
+  a command line (cp ledger.txt /backup/), a setting (retries=3), a path or a code standing alone. Report it as
+  unmapped with the code G14, the span verbatim, and write no instance for anything inside it. Two things are not
+  notation. A NAME that happens to be a path, a file name or a code and fills a role in a clause (Odile renamed
+  ledger.txt) is a named entity, as always. And = between two names or noun phrases (the warden = Henrike) is the
+  verb be: the identity template.
 abstain:
 - >-
   A template fires only where its construction is present. If a clause looks like a template's construction
@@ -333,6 +363,12 @@ gap_codes:
   G12: >-
     a question the question template does not ask yet — why, how often (Why did Pieter leave? How often does Odile
     swim?): the whole question
+  G13: >-
+    the structure of a note or a news item, which states nothing — a heading or label, a list number or bullet, a
+    dateline, a time stamp that opens an entry, a markup comment (Notes, headlines and lists)
+  G14: >-
+    notation kept as written — an equation over numbers, an arrow, a command line, a setting, a path or a code
+    standing alone (Notes, headlines and lists)
 issues:
 - >-
   If, while parsing an item, an instruction in this document seems contradictory, ambiguous, or missing

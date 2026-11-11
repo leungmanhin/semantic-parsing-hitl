@@ -1,0 +1,76 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "acb36d03adabed0f161a74f3d42ca146d0fe50b5bb7edf9ac75ab70c89d53f64",
+  "item": {
+    "id": "s20fff1b699",
+    "text": "rm -rf /tmp/quilt"
+  },
+  "usage": {
+    "input": 126531,
+    "output": 66,
+    "thinking": null,
+    "total": 126597,
+    "cached": 124482,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 126531,
+    "candidatesTokenCount": 66,
+    "totalTokenCount": 126597,
+    "cachedContentTokenCount": 124482,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 126531
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 124482
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 66
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s20fff1b699\", \"instances\": [], \"unmapped\": [{\"span\": \"rm -rf /tmp/quilt\", \"code\": \"G14\", \"construction\": \"A command line is notation and is not read.\"}], \"issues\": []}",
+  "response": {
+    "id": "s20fff1b699",
+    "instances": [],
+    "unmapped": [
+      {
+        "span": "rm -rf /tmp/quilt",
+        "code": "G14",
+        "construction": "A command line is notation and is not read."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "989163d1ebce705192ca8243c034315c0042fa3da4c871b0ff09f334c14bc131",
+  "manifest_id": "3edb704e3fea",
+  "run": 3,
+  "case": {
+    "template": "imperative",
+    "section": "held_out",
+    "index": 21,
+    "category": "abstain",
+    "text": "rm -rf /tmp/quilt",
+    "key": "20fff1b699"
+  }
+}

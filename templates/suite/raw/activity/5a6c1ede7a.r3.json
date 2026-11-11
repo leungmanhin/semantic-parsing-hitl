@@ -1,0 +1,86 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "acb36d03adabed0f161a74f3d42ca146d0fe50b5bb7edf9ac75ab70c89d53f64",
+  "item": {
+    "id": "s5a6c1ede7a",
+    "text": "Fed the ferret."
+  },
+  "usage": {
+    "input": 126527,
+    "output": 103,
+    "thinking": null,
+    "total": 126630,
+    "cached": 124478,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 126527,
+    "candidatesTokenCount": 103,
+    "totalTokenCount": 126630,
+    "cachedContentTokenCount": 124478,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 126527
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 124478
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 103
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s5a6c1ede7a\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"ferret\", \"definite\": true, \"span\": \"the ferret\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"feed\", \"patient\": \"@x1\", \"tense\": \"past\", \"span\": \"Fed the ferret\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s5a6c1ede7a",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "ferret",
+        "definite": true,
+        "span": "the ferret"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "feed",
+        "patient": "@x1",
+        "tense": "past",
+        "span": "Fed the ferret"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "989163d1ebce705192ca8243c034315c0042fa3da4c871b0ff09f334c14bc131",
+  "manifest_id": "3edb704e3fea",
+  "run": 3,
+  "case": {
+    "template": "activity",
+    "section": "held_out",
+    "index": 29,
+    "category": "positive",
+    "text": "Fed the ferret.",
+    "key": "5a6c1ede7a"
+  }
+}

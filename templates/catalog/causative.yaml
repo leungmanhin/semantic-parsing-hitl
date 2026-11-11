@@ -68,7 +68,7 @@ slots:
   id:          {type: id, required: true, doc: "your label for the matrix event"}
   verb:        {type: lemma, class: Class, required: true, doc: "the causative verb lemma (make, let, get, prevent …)"}
   causer:      {type: filler, class: Entity, role: Agent, required: false,
-                doc: "who or what brings the action about: the subject; absent in an agentless passive, and in an imperative, whose addressee is not a referent of the text"}
+                doc: "who or what brings the action about: the subject; absent in an agentless passive, in an imperative, whose addressee is not a referent of the text, and in a note-style clause that leaves its subject out"}
   complement:  {type: refs, class: Proposition, required: false,
                 doc: "the caused clause: the ids of the instances that state it (its predication, with the causative verb's object as its actor, or as its patient for a past participle); the referents it mentions are not listed. Left out when none of the caused clause can be kept (a clause no template covers): the verb and its causer alone, the clause reported as unmapped"}
   implication: {type: enum, values: [none, positive, negative], required: true,

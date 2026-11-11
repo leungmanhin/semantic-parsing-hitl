@@ -158,6 +158,27 @@ def _covers_text(insts: list, text: str) -> bool:
     return bool(words) and all(w in have for w in words)
 
 
+def _subject_left_out(r: dict, text: str | None) -> bool:
+    """A verb clause that stands with no subject and no object (note style: "Waiting.", "Logging off."): its span
+    is its verb's words alone and, when the text is at hand, opens a clause there. Such a clause has no participant
+    to fill, so it is no bare predication."""
+    sp = r.get("span")
+    span = sp[0] if isinstance(sp, list) and sp else sp
+    if not isinstance(span, str) or not span.strip() or not isinstance(r.get("verb"), str):
+        return False
+    words = re.findall(r"[A-Za-z']+", span)
+    parts = [p for p in r["verb"].split("_") if p]
+    if not words or not (len(words) == 1 or all(any(w.lower()[:3] == p[:3] for p in parts) for w in words)):
+        return False
+    if text is None:
+        return True
+    at = text.find(span)
+    if at < 0:
+        return False
+    before = text[:at].rstrip()
+    return before == "" or before[-1] in ".;:,!?—–-)"
+
+
 def lints(insts: list, catalog: dict, unmapped: list, text: str | None = None) -> list:
     """Structural lints on well-formed instances (the emitter has accepted them)."""
     mentioned: set[str] = set()
@@ -224,7 +245,7 @@ def lints(insts: list, catalog: dict, unmapped: list, text: str | None = None) -
             elif not unmapped:
                 out.append({"kind": "dangling-referent", "instance": r["id"],
                             "detail": f"{r['t']} {r['id']} is mentioned by no other instance and nothing is reported unmapped"})
-        if t.get("family") == "predication" and r["id"] not in bare_ok:
+        if t.get("family") == "predication" and r["id"] not in bare_ok and not _subject_left_out(r, text):
             fillers = [s for s, spec in slots.items()
                        if (spec["type"] == "filler" and spec.get("participant", True))
                        or (spec["type"] == "refs" and spec.get("participant"))]     # a clause that stands as the participant (a quality of an action)

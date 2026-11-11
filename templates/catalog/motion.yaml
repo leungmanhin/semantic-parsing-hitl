@@ -71,7 +71,7 @@ slots:
   id:     {type: id, required: true, doc: "your label for the motion event"}
   verb:   {type: lemma, class: Class, required: true, doc: "the verb lemma"}
   mover:  {type: filler, class: Entity, role: Agent, required: false,
-           doc: "who or what moves under its own power, or who moves the moved thing: the subject; absent when the subject is moved or moves without acting, and in an agentless passive"}
+           doc: "who or what moves under its own power, or who moves the moved thing: the subject; absent when the subject is moved or moves without acting, in an agentless passive, and in a note-style clause that leaves its subject out"}
   moved:  {type: filler, class: Entity, role: Theme, required: false,
            doc: "what is moved by someone (the object of carry, push), or what moves without acting (the trunk arrived, the barrow fell), a pulled or pushed vehicle included (the wagon travelled, the barrow rolled downhill); the animal or vehicle ridden or driven (rode a horse, riding a bicycle, drove the cart)"}
   goal:   {type: filler, class: Entity, role: Goal, required: false,
@@ -296,3 +296,11 @@ examples:
         - {t: named-entity, id: n1, name: "Lamine"}
         - {t: witness, id: x1, class: river, definite: true}
         - {t: motion, id: m1, verb: cross, mover: "@n1", path: "@x1", tense: past}
+    - category: positive
+      note: a markup comment is structure (G13); the clause beside it is parsed as usual
+      text: "Teodor left. <!-- draft -->"
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: motion, id: m1, verb: leave, mover: "@n1", tense: past}
+      unmapped:
+        - {span: "<!-- draft -->", code: G13}

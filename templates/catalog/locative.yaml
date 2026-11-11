@@ -306,3 +306,10 @@ examples:
         - {t: witness, id: x2, class: mill, definite: true}
         - {t: locative, id: l1, thing: "@x1", place: "@x2", head: DirectionFrom, direction: north, preposition: north of, tense: present}
         - {t: measure, id: m1, event: "@l1", head: Measure, dimension: distance, magnitude: 2, unit: mile}
+    - category: positive
+      note: note style, no verb — a name and a place phrase, the clause with be left out
+      text: "Yusra in the barn."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, class: barn, definite: true}
+        - {t: locative, id: l1, thing: "@n1", place: "@x1", head: LocatedIn, preposition: in, tense: present}

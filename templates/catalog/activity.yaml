@@ -57,7 +57,7 @@ slots:
   id:      {type: id, required: true, doc: "your label for the action"}
   verb:    {type: lemma, class: Class, required: true, doc: "the verb lemma"}
   actor:   {type: filler, class: Entity, role: Agent, required: false,
-            doc: "who acts: the subject, or the by-phrase of a passive; absent in an agentless passive, and in an imperative, whose addressee is not a referent of the text"}
+            doc: "who acts: the subject, or the by-phrase of a passive; absent in an agentless passive, in an imperative, whose addressee is not a referent of the text, and in a note-style clause that leaves its subject out"}
   patient: {type: filler, class: Entity, role: Patient, required: false,
             doc: "what the action is done to or with: the object; a bare lemma for a non-specific one (cooked dinner)"}
   tense:   {type: enum, values: [past, present, future], required: true,
@@ -310,3 +310,22 @@ examples:
         - {t: witness, id: x1, class: clerk, definite: true}
         - {t: activity, id: v1, verb: laugh, actor: "@x1", tense: past}
         - {t: motion, id: m1, verb: leave, mover: "@x1", tense: past}
+    - category: positive
+      note: note style, a noun and a past participle — the passive with be left out, the event in the past, no actor
+      text: "Quilt washed."
+      instances:
+        - {t: witness, id: x1, class: quilt}
+        - {t: activity, id: v1, verb: wash, patient: "@x1", tense: past}
+    - category: positive
+      note: note style, a verb with no subject — the doer's slot left empty, the tense the verb's own
+      text: "Fed the ferret."
+      instances:
+        - {t: witness, id: x1, class: ferret, definite: true}
+        - {t: activity, id: v1, verb: feed, patient: "@x1", tense: past}
+    - category: positive
+      note: note style, an -ing form with no subject — the present progressive, no actor
+      text: "Waiting for Lamine."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: activity, id: v1, verb: wait, tense: present, aspect: progressive}
+        - {t: oblique, id: a1, event: "@v1", head: For, object: "@n1"}

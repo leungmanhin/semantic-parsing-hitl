@@ -1,0 +1,91 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "acb36d03adabed0f161a74f3d42ca146d0fe50b5bb7edf9ac75ab70c89d53f64",
+  "item": {
+    "id": "sdbfc91ec15",
+    "text": "Teodor left. <!-- draft -->"
+  },
+  "usage": {
+    "input": 126528,
+    "output": 121,
+    "thinking": null,
+    "total": 126649,
+    "cached": 124479,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 126528,
+    "candidatesTokenCount": 121,
+    "totalTokenCount": 126649,
+    "cachedContentTokenCount": 124479,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 126528
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 124479
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 121
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sdbfc91ec15\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@n1\", \"tense\": \"past\", \"span\": \"Teodor left\"}], \"unmapped\": [{\"span\": \"<!-- draft -->\", \"code\": \"G13\", \"construction\": \"A markup comment\"}], \"issues\": []}",
+  "response": {
+    "id": "sdbfc91ec15",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "motion",
+        "id": "m1",
+        "verb": "leave",
+        "mover": "@n1",
+        "tense": "past",
+        "span": "Teodor left"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "<!-- draft -->",
+        "code": "G13",
+        "construction": "A markup comment"
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "989163d1ebce705192ca8243c034315c0042fa3da4c871b0ff09f334c14bc131",
+  "manifest_id": "3edb704e3fea",
+  "run": 3,
+  "case": {
+    "template": "motion",
+    "section": "held_out",
+    "index": 21,
+    "category": "positive",
+    "text": "Teodor left. <!-- draft -->",
+    "key": "dbfc91ec15"
+  }
+}

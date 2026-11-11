@@ -1,0 +1,91 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "acb36d03adabed0f161a74f3d42ca146d0fe50b5bb7edf9ac75ab70c89d53f64",
+  "item": {
+    "id": "s0aac432024",
+    "text": "The owner = Ottoline."
+  },
+  "usage": {
+    "input": 126529,
+    "output": 127,
+    "thinking": null,
+    "total": 126656,
+    "cached": 124480,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 126529,
+    "candidatesTokenCount": 127,
+    "totalTokenCount": 126656,
+    "cachedContentTokenCount": 124480,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 126529
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 124480
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 127
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s0aac432024\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"owner\", \"definite\": true, \"span\": \"The owner\"}, {\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"identity\", \"id\": \"i1\", \"subject\": \"@x1\", \"object\": \"@n1\", \"span\": \"The owner = Ottoline\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s0aac432024",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "owner",
+        "definite": true,
+        "span": "The owner"
+      },
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Ottoline",
+        "span": "Ottoline"
+      },
+      {
+        "t": "identity",
+        "id": "i1",
+        "subject": "@x1",
+        "object": "@n1",
+        "span": "The owner = Ottoline"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "989163d1ebce705192ca8243c034315c0042fa3da4c871b0ff09f334c14bc131",
+  "manifest_id": "3edb704e3fea",
+  "run": 2,
+  "case": {
+    "template": "identity",
+    "section": "held_out",
+    "index": 6,
+    "category": "positive",
+    "text": "The owner = Ottoline.",
+    "key": "0aac432024"
+  }
+}

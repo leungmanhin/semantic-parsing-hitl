@@ -72,7 +72,7 @@ slots:
   id:      {type: id, required: true, doc: "your label for the creation event"}
   verb:    {type: lemma, class: Class, required: true, doc: "the verb lemma"}
   creator: {type: filler, class: Entity, role: Agent, required: false,
-            doc: "who or what makes the thing: the subject, or the by-phrase of a passive; absent in an agentless passive, and in an imperative, whose addressee is not a referent of the text"}
+            doc: "who or what makes the thing: the subject, or the by-phrase of a passive; absent in an agentless passive, in an imperative, whose addressee is not a referent of the text, and in a note-style clause that leaves its subject out"}
   product: {type: filler, class: Entity, role: Patient, required: true,
             doc: "the thing that comes into being: the object; an instance for a specific thing (a hut, the hut), a bare lemma for a non-specific one (baked bread)"}
   tense:   {type: enum, values: [past, present, future], required: true,
@@ -297,3 +297,10 @@ examples:
         - {t: named-entity, id: n1, name: "Ottoline"}
         - {t: witness, id: x1, class: girl}
         - {t: creation, id: e1, verb: give_birth, creator: "@n1", product: "@x1", tense: past}
+    - category: positive
+      note: note style, a noun and a past participle with a by-phrase — the passive with be left out, the by-phrase the creator
+      text: "Loaf baked by Teodor."
+      instances:
+        - {t: witness, id: x1, class: loaf}
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: creation, id: e1, verb: bake, creator: "@n1", product: "@x1", tense: past}

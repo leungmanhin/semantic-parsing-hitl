@@ -1,0 +1,94 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "acb36d03adabed0f161a74f3d42ca146d0fe50b5bb7edf9ac75ab70c89d53f64",
+  "item": {
+    "id": "s73ec9b56d5",
+    "text": "Yusra in the barn."
+  },
+  "usage": {
+    "input": 126530,
+    "output": 153,
+    "thinking": null,
+    "total": 126683,
+    "cached": 124481,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 126530,
+    "candidatesTokenCount": 153,
+    "totalTokenCount": 126683,
+    "cachedContentTokenCount": 124481,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 126530
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 124481
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 153
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s73ec9b56d5\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"barn\", \"definite\": true, \"span\": \"the barn\"}, {\"t\": \"locative\", \"id\": \"l1\", \"thing\": \"@n1\", \"place\": \"@x1\", \"head\": \"LocatedIn\", \"preposition\": \"in\", \"tense\": \"present\", \"span\": \"Yusra in the barn\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s73ec9b56d5",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "barn",
+        "definite": true,
+        "span": "the barn"
+      },
+      {
+        "t": "locative",
+        "id": "l1",
+        "thing": "@n1",
+        "place": "@x1",
+        "head": "LocatedIn",
+        "preposition": "in",
+        "tense": "present",
+        "span": "Yusra in the barn"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "989163d1ebce705192ca8243c034315c0042fa3da4c871b0ff09f334c14bc131",
+  "manifest_id": "3edb704e3fea",
+  "run": 2,
+  "case": {
+    "template": "locative",
+    "section": "held_out",
+    "index": 22,
+    "category": "positive",
+    "text": "Yusra in the barn.",
+    "key": "73ec9b56d5"
+  }
+}

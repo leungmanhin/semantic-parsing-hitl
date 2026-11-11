@@ -327,7 +327,7 @@ def _pattern(span: str) -> str:
 #: connective opening the text with no first clause (G05), the wording of a quotation whose content is parsed
 #: (G10): a convention each, never a gap in the catalog, so a sentence whose only unmapped spans carry one
 #: counts as covered. The named gaps (G01, G02, G04, G06 … G09) and the catch-all G00 stay gaps.
-REPORTED = {"G03", "G05", "G10"}
+REPORTED = {"G03", "G05", "G10", "G13", "G14"}
 
 
 def assess(parsed: list[dict], catalog: dict, typecheck: bool = False) -> dict:

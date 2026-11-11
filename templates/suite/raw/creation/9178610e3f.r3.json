@@ -1,0 +1,92 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "acb36d03adabed0f161a74f3d42ca146d0fe50b5bb7edf9ac75ab70c89d53f64",
+  "item": {
+    "id": "s9178610e3f",
+    "text": "Loaf baked by Teodor."
+  },
+  "usage": {
+    "input": 126531,
+    "output": 138,
+    "thinking": null,
+    "total": 126669,
+    "cached": 124482,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 126531,
+    "candidatesTokenCount": 138,
+    "totalTokenCount": 126669,
+    "cachedContentTokenCount": 124482,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 126531
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 124482
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 138
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"s9178610e3f\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"loaf\", \"span\": \"Loaf\"}, {\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"creation\", \"id\": \"e1\", \"verb\": \"bake\", \"creator\": \"@n1\", \"product\": \"@x1\", \"tense\": \"past\", \"span\": \"Loaf baked by Teodor\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s9178610e3f",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "loaf",
+        "span": "Loaf"
+      },
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "creation",
+        "id": "e1",
+        "verb": "bake",
+        "creator": "@n1",
+        "product": "@x1",
+        "tense": "past",
+        "span": "Loaf baked by Teodor"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "989163d1ebce705192ca8243c034315c0042fa3da4c871b0ff09f334c14bc131",
+  "manifest_id": "3edb704e3fea",
+  "run": 3,
+  "case": {
+    "template": "creation",
+    "section": "held_out",
+    "index": 22,
+    "category": "positive",
+    "text": "Loaf baked by Teodor.",
+    "key": "9178610e3f"
+  }
+}

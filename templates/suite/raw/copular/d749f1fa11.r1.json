@@ -1,0 +1,86 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "acb36d03adabed0f161a74f3d42ca146d0fe50b5bb7edf9ac75ab70c89d53f64",
+  "item": {
+    "id": "sd749f1fa11",
+    "text": "Barn empty."
+  },
+  "usage": {
+    "input": 126526,
+    "output": 102,
+    "thinking": null,
+    "total": 126628,
+    "cached": 124428,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 126526,
+    "candidatesTokenCount": 102,
+    "totalTokenCount": 126628,
+    "cachedContentTokenCount": 124428,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 126526
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 124428
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 102
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sd749f1fa11\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"barn\", \"span\": \"Barn\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@x1\", \"predicate\": \"empty\", \"form\": \"adjective\", \"tense\": \"present\", \"span\": \"Barn empty\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sd749f1fa11",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "barn",
+        "span": "Barn"
+      },
+      {
+        "t": "copular",
+        "id": "c1",
+        "subject": "@x1",
+        "predicate": "empty",
+        "form": "adjective",
+        "tense": "present",
+        "span": "Barn empty"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "989163d1ebce705192ca8243c034315c0042fa3da4c871b0ff09f334c14bc131",
+  "manifest_id": "3edb704e3fea",
+  "run": 1,
+  "case": {
+    "template": "copular",
+    "section": "held_out",
+    "index": 21,
+    "category": "positive",
+    "text": "Barn empty.",
+    "key": "d749f1fa11"
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "acb36d03adabed0f161a74f3d42ca146d0fe50b5bb7edf9ac75ab70c89d53f64",
+  "item": {
+    "id": "sbc52e7aaed",
+    "text": "12 May 09:40. Gate open."
+  },
+  "usage": {
+    "input": 126536,
+    "output": 134,
+    "thinking": null,
+    "total": 126670,
+    "cached": 124477,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 126536,
+    "candidatesTokenCount": 134,
+    "totalTokenCount": 126670,
+    "cachedContentTokenCount": 124477,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 126536
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 124477
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 134
+      }
+    ]
+  },
+  "raw_text": "{\"id\": \"sbc52e7aaed\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"gate\", \"span\": \"Gate\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@x1\", \"predicate\": \"open\", \"form\": \"adjective\", \"tense\": \"present\", \"span\": \"Gate open\"}], \"unmapped\": [{\"span\": \"12 May 09:40.\", \"code\": \"G13\", \"construction\": \"A time stamp opening a log entry.\"}], \"issues\": []}",
+  "response": {
+    "id": "sbc52e7aaed",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "gate",
+        "span": "Gate"
+      },
+      {
+        "t": "copular",
+        "id": "c1",
+        "subject": "@x1",
+        "predicate": "open",
+        "form": "adjective",
+        "tense": "present",
+        "span": "Gate open"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "12 May 09:40.",
+        "code": "G13",
+        "construction": "A time stamp opening a log entry."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "989163d1ebce705192ca8243c034315c0042fa3da4c871b0ff09f334c14bc131",
+  "manifest_id": "3edb704e3fea",
+  "run": 1,
+  "case": {
+    "template": "copular",
+    "section": "held_out",
+    "index": 22,
+    "category": "positive",
+    "text": "12 May 09:40. Gate open.",
+    "key": "bc52e7aaed"
+  }
+}
