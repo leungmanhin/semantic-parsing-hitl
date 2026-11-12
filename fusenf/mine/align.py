@@ -181,7 +181,13 @@ class Side:
          "sign": 1 | -1, "band": "asserted" | "graded" | "denied", "leaves": [(prefix, symbol), ...],
          "inds": [leaf positions of individuals], "classes": [leaf positions of words: class symbols, and the words
          that stand where an individual stands (``is_word``)], "scope": <shape scope>,
-         "implied": <the implied rule's kind when the atom sits in one>}
+         "implied": <the implied rule's kind when the atom sits in one>,
+         "at": (offset, place) — where the atom's instance stands in the text (``atoms.graph_of``)}
+
+    ``pos``: an individual → where it is mentioned, THE ORDER OF MENTION: the place of its own atoms (those that say
+    something of it alone: its class, its name, its tense), else of the first atom that mentions it, then the places
+    of the individuals it shares an atom with. It settles a choice between equally good alignments, and it comes from
+    the text, so renaming or shuffling cannot change it.
     """
 
     def __init__(self, graph: dict, statements: list[str] | None = None, canon: dict | None = None, rid: str | None = None):
@@ -232,8 +238,23 @@ class Side:
                                "sign": SIGN.get(band, 1) * (-1) ** nots, "leaves": leaves, "inds": inds,
                                "classes": [k for k, (p, _) in enumerate(leaves) if p == "c" or k in standing],
                                "scope": key.split("|", 1)[0], "name": ga.get("name"), "nots": nots,
+                               "at": tuple(ga.get("at") or NOWHERE),
                                "implied": self.implied.get(ga.get("name"))
                                if any(m.startswith("Implication") for m, _ in ga["scope"]) else None})
+
+        own: dict[str, tuple] = {}                               # an individual's own atoms (it is their only individual)
+        some: dict[str, tuple] = {}                              # … and every atom that mentions it
+        near: dict[str, set] = collections.defaultdict(set)
+        for a in self.atoms:
+            who = {a["leaves"][k][1] for k in a["inds"]}
+            for s in who:
+                some[s] = min(some.get(s, NOWHERE), a["at"])
+                near[s] |= who - {s}
+            alone = [a["leaves"][k][1] for k in a["inds"] if a["leaves"][k][0] != "r"]
+            if len(alone) == 1:
+                own[alone[0]] = min(own.get(alone[0], NOWHERE), a["at"])
+        place = {s: own.get(s, some[s]) for s in some}
+        self.pos: dict[str, tuple] = {s: (place[s], tuple(sorted(place[n] for n in near[s]))) for s in place}
 
     @classmethod
     def of_record(cls, row: dict, catalog: dict, threshold: float = R.CERTAIN) -> "Side | None":
@@ -267,6 +288,10 @@ def zone(sym: str) -> int:
 
 # ------------------------------------------------------------------------------------------------ the alignment
 
+NOWHERE = (10 ** 9, 10 ** 9)      # the place of an atom whose graph carries none (a graph built without its record)
+UNMENTIONED = (NOWHERE, ())       # … and of an individual with no place (``Side.pos``)
+
+
 def _kind(a: dict, b: dict) -> tuple[str, list]:
     diffs = [(k, a["leaves"][k][1], b["leaves"][k][1]) for k in a["classes"] if a["leaves"][k][1] != b["leaves"][k][1]]
     if a["skeleton"] == b["skeleton"]:
@@ -290,6 +315,15 @@ def align(X: Side, Y: Side, beam: int = 64) -> dict:
 
         {"phi": {x symbol: y symbol}, "pairs": [[x atom n, y atom n, kind, diffs]], "unaligned": [[x atom ns], [y atom ns]],
          "score": s, "ties": <alignments as good that align other words>, "search": {"steps", "beam"}}
+
+    A CORRESPONDENCE NEEDS A BACKING: two individuals correspond only when an aligned atom pair holds both that is
+    more than a one-individual atom whose words differ — a role or relation they share with another pair of
+    individuals, or an atom that says the same of both. Two leftover things with different classes (a dog here, a lawn
+    there) are no correspondence: their atoms stay unaligned, each side's own remainder.
+
+    EQUALLY GOOD CHOICES are settled by the words they pair, then by THE ORDER OF MENTION (``Side.pos``, an atom's
+    ``at``): the individual mentioned first takes the counterpart mentioned first. Nothing reads a symbol's name or the
+    atoms' order, so renaming the individuals or shuffling the statements cannot change the result.
     """
     xa, ya = X.atoms, Y.atoms
     yindex: dict[tuple, list[int]] = collections.defaultdict(list)
@@ -315,7 +349,7 @@ def align(X: Side, Y: Side, beam: int = 64) -> dict:
     isig = {k: repr(sorted(v)) for k, v in isig.items()}
     rsig = {k: repr(sorted(set(v))) for k, v in rsig.items()}
     order = sorted(xind, key=lambda s: (zone(s), rsig.get(rule_of(s), "") if zone(s) else "", 0 if (zone(s) and "@" not in s) else 1,
-                                        -deg[s], TYPE_ORDER.get(xind[s], 9), isig[s]))
+                                        -deg[s], TYPE_ORDER.get(xind[s], 9), isig[s], X.pos.get(s, UNMENTIONED)))
     pos = {s: k for k, s in enumerate(order)}
     completes: list[list[int]] = [[] for _ in order]
     for a in xa:
@@ -328,8 +362,16 @@ def align(X: Side, Y: Side, beam: int = 64) -> dict:
                 sig[a["leaves"][k][1]].add((a["frame"], k))
         return sig
     xsig, ysig = signature(xa), signature(ya)
-    options_of = {s: [t for t in sorted(yind) if yind[t] == xind[s] and zone(t) == zone(s) and xsig[s] & ysig[t]] + [None]
+    ymention = sorted(yind, key=lambda t: (Y.pos.get(t, UNMENTIONED), repr(sorted(ysig[t]))))   # Y's individuals as mentioned
+    options_of = {s: [t for t in ymention if yind[t] == xind[s] and zone(t) == zone(s) and xsig[s] & ysig[t]] + [None]
                   for s in order}
+
+    by_mention = sorted(order, key=lambda s: (X.pos.get(s, UNMENTIONED), pos[s]))               # X's individuals as mentioned
+
+    def mention(phi) -> tuple:
+        """Where the counterparts chosen so far stand, read in X's order of mention: the last word between equally
+        good alignments — the individual mentioned first takes the counterpart mentioned first."""
+        return tuple(Y.pos.get(phi[s], UNMENTIONED) if phi.get(s) is not None else UNMENTIONED for s in by_mention if s in phi)
 
     def words(atom) -> tuple:
         return tuple(atom["leaves"][k][1] for k in atom["classes"])
@@ -356,7 +398,7 @@ def align(X: Side, Y: Side, beam: int = 64) -> dict:
                         options.append((-w, a["skeleton"], words(a), words(ya[bn]), an, bn, kind, tuple(diffs)))
         if not options:
             return state
-        options.sort(key=lambda o: o[:4])
+        options.sort(key=lambda o: o[:4] + (xa[o[4]]["at"], ya[o[5]]["at"]))
         new_used, new_pairs, taken = set(used_atoms), list(pairs), set()
         for negw, _, _, _, an, bn, kind, diffs in options:
             if an in taken or bn in new_used:
@@ -383,11 +425,32 @@ def align(X: Side, Y: Side, beam: int = 64) -> dict:
                 phi = dict(st[1])
                 phi[s] = t
                 children.append(complete((st[0], phi, st[2] | {t} if t else st[2], st[3], st[4]), step))
-        children.sort(key=lambda c: (-c[0], lexsig(c[4])))
+        children.sort(key=lambda c: (-c[0], lexsig(c[4]), mention(c[1])))
         states = children[:beam]
     if not states:
         states = [(0.0, {}, frozenset(), frozenset(), ())]
-    states.sort(key=lambda c: (-c[0], lexsig(c[4])))
+
+    def backed(state):
+        """The state without the correspondences nothing backs: an individual is backed by an aligned pair that is not
+        WEAK (weak = the words differ and the atom holds one individual only, a rule's own anchor not counted); a pair
+        with an unbacked individual is taken back, with its weight. Judged on complete states only: the atom that
+        backs a correspondence may be decided at a later step than the one that proposed it."""
+        score, phi, used_y, used_atoms, pairs = state
+        strong = set()
+        for an, _bn, _kind, diffs in pairs:
+            a = xa[an]
+            if not (diffs and sum(1 for k in a["inds"] if a["leaves"][k][0] != "r") <= 1):
+                strong.update(a["leaves"][k][1] for k in a["inds"])
+        kept = []
+        for an, bn, kind, diffs in pairs:
+            a = xa[an]
+            if all(a["leaves"][k][1] in strong for k in a["inds"] if a["leaves"][k][0] != "r"):
+                kept.append((an, bn, kind, diffs))
+            else:
+                score -= _weight(kind, diffs, len(a["classes"]))
+        return (score, phi, used_y, used_atoms, tuple(kept))
+    states = [backed(c) for c in states]
+    states.sort(key=lambda c: (-c[0], lexsig(c[4]), mention(c[1])))
     best = states[0]
     top = [c for c in states if c[0] == best[0]]
     sigs = {frozenset((xa[an]["lex"], ya[bn]["lex"], kind) for an, bn, kind, _ in c[4]) for c in top}

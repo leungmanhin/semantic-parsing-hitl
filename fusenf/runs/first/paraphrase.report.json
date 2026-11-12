@@ -30,11 +30,11 @@
   },
   "sentences": 6354,
   "jobs": 6354,
-  "queries": 127226,
-  "renaming_same": 8348,
+  "queries": 121181,
+  "renaming_same": 8384,
   "background": 302,
   "closure_left_out": 13,
-  "seconds": 69.5,
+  "seconds": 64.1,
   "slow_pairs": [],
   "params": {
    "datasets": [
@@ -47,6 +47,9 @@
    "polarity_cut": 0.5,
    "coref_threshold": 0.99,
    "min_sole_families": 2,
+   "loose_yes": [
+    "mrpc"
+   ],
    "background": "facts + query-stage rules"
   }
  },
@@ -55,37 +58,37 @@
    "pairs": 3594,
    "yes": 459,
    "pair_verdicts": {
-    "relatedness": 2687,
-    "unrelated": 294,
-    "contradiction": 310,
+    "relatedness": 2689,
+    "unrelated": 287,
+    "contradiction": 315,
     "one-way x>y": 142,
     "one-way y>x": 23,
     "equivalence": 138
    },
    "before": {
     "directions": {
-     "contradicts / contradicts": 170,
-     "contradicts / fails": 1034,
+     "contradicts / contradicts": 173,
+     "contradicts / fails": 1031,
      "contradicts / holds": 2,
      "entails / fails": 1041,
      "entails / holds": 436,
-     "neutral / contradicts": 2,
-     "neutral / fails": 4500,
+     "neutral / contradicts": 3,
+     "neutral / fails": 4499,
      "neutral / holds": 3
     },
     "pairs": {
-     "contradiction / contradiction": 300,
+     "contradiction / contradiction": 302,
      "contradiction / equivalence": 1,
      "contradiction / relatedness": 108,
-     "contradiction / unrelated": 76,
+     "contradiction / unrelated": 74,
      "entailment / equivalence": 137,
      "entailment / one-way x>y": 142,
      "entailment / one-way y>x": 23,
      "entailment / relatedness": 708,
      "entailment / unrelated": 8,
-     "neutral / contradiction": 10,
-     "neutral / relatedness": 1871,
-     "neutral / unrelated": 210
+     "neutral / contradiction": 13,
+     "neutral / relatedness": 1873,
+     "neutral / unrelated": 205
     },
     "scores": {
      "equivalence_precision": 0.978,
@@ -97,8 +100,8 @@
      "holds_recall": 0.295,
      "holds": 441,
      "entails": 1477,
-     "contradiction_precision": 0.968,
-     "contradiction_recall": 0.619,
+     "contradiction_precision": 0.959,
+     "contradiction_recall": 0.623,
      "neutral_or_contradicts_holding": 5
     }
    }
@@ -107,8 +110,8 @@
    "pairs": 494,
    "yes": 322,
    "pair_verdicts": {
-    "relatedness": 396,
-    "unrelated": 47,
+    "relatedness": 395,
+    "unrelated": 48,
     "one-way y>x": 22,
     "one-way x>y": 21,
     "contradiction": 1,
@@ -132,8 +135,8 @@
      "paraphrase / equivalence": 5,
      "paraphrase / one-way x>y": 16,
      "paraphrase / one-way y>x": 13,
-     "paraphrase / relatedness": 256,
-     "paraphrase / unrelated": 31
+     "paraphrase / relatedness": 255,
+     "paraphrase / unrelated": 32
     },
     "scores": {
      "equivalence_precision": 0.714,
@@ -149,8 +152,8 @@
    "yes": 546,
    "pair_verdicts": {
     "one-way x>y": 168,
-    "relatedness": 2969,
-    "unrelated": 348,
+    "relatedness": 2970,
+    "unrelated": 347,
     "contradiction": 373,
     "equivalence": 154,
     "one-way y>x": 27
@@ -180,8 +183,8 @@
      "neutral / contradiction": 21,
      "neutral / one-way x>y": 1,
      "neutral / one-way y>x": 3,
-     "neutral / relatedness": 2008,
-     "neutral / unrelated": 238
+     "neutral / relatedness": 2009,
+     "neutral / unrelated": 237
     },
     "scores": {
      "equivalence_precision": 0.981,
@@ -223,8 +226,8 @@
      "neutral / contradiction": 21,
      "neutral / one-way x>y": 1,
      "neutral / one-way y>x": 3,
-     "neutral / relatedness": 2008,
-     "neutral / unrelated": 238
+     "neutral / relatedness": 2009,
+     "neutral / unrelated": 237
     },
     "scores": {
      "equivalence_precision": 0.983,
@@ -266,8 +269,8 @@
      "neutral / contradiction": 21,
      "neutral / one-way x>y": 1,
      "neutral / one-way y>x": 3,
-     "neutral / relatedness": 2008,
-     "neutral / unrelated": 238
+     "neutral / relatedness": 2009,
+     "neutral / unrelated": 237
     },
     "scores": {
      "equivalence_precision": 0.983,
@@ -309,8 +312,8 @@
      "neutral / contradiction": 21,
      "neutral / one-way x>y": 1,
      "neutral / one-way y>x": 3,
-     "neutral / relatedness": 2008,
-     "neutral / unrelated": 238
+     "neutral / relatedness": 2009,
+     "neutral / unrelated": 237
     },
     "scores": {
      "equivalence_precision": 0.983,
@@ -460,47 +463,47 @@
  },
  "candidates": {
   "by_status": {
-   "class/note": 1242,
-   "class/rejected": 239,
+   "class/note": 770,
+   "class/rejected": 240,
    "class/candidate": 49,
    "class/admitted": 6,
-   "substitution/note": 2068,
-   "substitution/rejected": 155,
-   "substitution/candidate": 34,
+   "substitution/note": 1945,
+   "substitution/rejected": 193,
+   "substitution/candidate": 35,
    "substitution/admitted": 2
   },
   "admitted": [
-   "paraphrase-E000087",
-   "paraphrase-E000426",
-   "paraphrase-E000570",
-   "paraphrase-E001034",
-   "paraphrase-E001073",
-   "paraphrase-E001076",
-   "paraphrase-E003785",
-   "paraphrase-E003789"
+   "paraphrase-E000054",
+   "paraphrase-E000261",
+   "paraphrase-E000359",
+   "paraphrase-E000692",
+   "paraphrase-E000721",
+   "paraphrase-E000724",
+   "paraphrase-E003233",
+   "paraphrase-E003237"
   ],
   "one_way": [
-   "paraphrase-C000303",
-   "paraphrase-C000409",
-   "paraphrase-C000588",
-   "paraphrase-C000780",
-   "paraphrase-C001146",
-   "paraphrase-C001561",
-   "paraphrase-C001766",
-   "paraphrase-C002299",
-   "paraphrase-C003015"
+   "paraphrase-C000177",
+   "paraphrase-C000239",
+   "paraphrase-C000367",
+   "paraphrase-C000506",
+   "paraphrase-C000755",
+   "paraphrase-C001055",
+   "paraphrase-C001186",
+   "paraphrase-C001574",
+   "paraphrase-C002094"
   ],
   "side": {
    "loose_yes_counted": [
-    "paraphrase-E000087",
-    "paraphrase-E000426",
-    "paraphrase-E000570",
-    "paraphrase-E001034",
-    "paraphrase-E001073",
-    "paraphrase-E001076",
-    "paraphrase-E003536",
-    "paraphrase-E003785",
-    "paraphrase-E003789"
+    "paraphrase-E000054",
+    "paraphrase-E000261",
+    "paraphrase-E000359",
+    "paraphrase-E000692",
+    "paraphrase-E000721",
+    "paraphrase-E000724",
+    "paraphrase-E002962",
+    "paraphrase-E003233",
+    "paraphrase-E003237"
    ]
   }
  },
@@ -516,11 +519,11 @@
     "cut → slice": 7,
     "kid → child": 6,
     "child → kid": 6,
-    "paraphrase-E003789": 6,
+    "paraphrase-E003237": 6,
     "woman → lady": 5,
     "lady → woman": 5,
     "little → young": 4,
-    "paraphrase-E003785": 4,
+    "paraphrase-E003233": 4,
     "young → little": 2
    },
    "list": [
@@ -926,7 +929,7 @@
       "A person is riding a horse"
      ],
      "rules": [
-      "paraphrase-E003789"
+      "paraphrase-E003237"
      ]
     },
     {
@@ -941,7 +944,7 @@
       "A person is riding a horse"
      ],
      "rules": [
-      "paraphrase-E003789"
+      "paraphrase-E003237"
      ]
     },
     {
@@ -956,7 +959,7 @@
       "The little dog is grabbing the bedroom slipper with its mouth"
      ],
      "rules": [
-      "paraphrase-E003785"
+      "paraphrase-E003233"
      ]
     },
     {
@@ -971,7 +974,7 @@
       "A person is riding a bike"
      ],
      "rules": [
-      "paraphrase-E003789"
+      "paraphrase-E003237"
      ]
     },
     {
@@ -986,7 +989,7 @@
       "A person is riding a bike"
      ],
      "rules": [
-      "paraphrase-E003789"
+      "paraphrase-E003237"
      ]
     },
     {
@@ -1091,7 +1094,7 @@
       "The man is sitting on the train and resting his hand against his face"
      ],
      "rules": [
-      "paraphrase-E003785"
+      "paraphrase-E003233"
      ]
     },
     {
@@ -1106,7 +1109,7 @@
       "The man is sitting on the train and resting his hand against his face"
      ],
      "rules": [
-      "paraphrase-E003785"
+      "paraphrase-E003233"
      ]
     },
     {
@@ -1241,7 +1244,7 @@
       "Motorbikes are being ridden by two people"
      ],
      "rules": [
-      "paraphrase-E003789"
+      "paraphrase-E003237"
      ]
     },
     {
@@ -1256,7 +1259,7 @@
       "Motorbikes are being ridden by two people"
      ],
      "rules": [
-      "paraphrase-E003789"
+      "paraphrase-E003237"
      ]
     },
     {
@@ -1301,7 +1304,7 @@
       "Mr. Bremer said that Iran, including its intelligence service, continued to interfere in fledgling political reconstruction."
      ],
      "rules": [
-      "paraphrase-E003785"
+      "paraphrase-E003233"
      ]
     }
    ]
@@ -1320,11 +1323,11 @@
     "slice → cut": 7,
     "cut → slice": 7,
     "child → kid": 6,
-    "paraphrase-E003789": 6,
+    "paraphrase-E003237": 6,
     "woman → lady": 5,
     "lady → woman": 5,
     "little → young": 4,
-    "paraphrase-E003785": 4,
+    "paraphrase-E003233": 4,
     "young → little": 2,
     "pace → walk": 1,
     "woman → person": 1
@@ -2188,7 +2191,7 @@
       "A person is riding a horse"
      ],
      "rules": [
-      "paraphrase-E003789"
+      "paraphrase-E003237"
      ]
     },
     {
@@ -2203,7 +2206,7 @@
       "A person is riding a horse"
      ],
      "rules": [
-      "paraphrase-E003789"
+      "paraphrase-E003237"
      ]
     },
     {
@@ -2218,7 +2221,7 @@
       "The little dog is grabbing the bedroom slipper with its mouth"
      ],
      "rules": [
-      "paraphrase-E003785"
+      "paraphrase-E003233"
      ]
     },
     {
@@ -2248,7 +2251,7 @@
       "A person is riding a bike"
      ],
      "rules": [
-      "paraphrase-E003789"
+      "paraphrase-E003237"
      ]
     },
     {
@@ -2263,7 +2266,7 @@
       "A person is riding a bike"
      ],
      "rules": [
-      "paraphrase-E003789"
+      "paraphrase-E003237"
      ]
     },
     {
@@ -2398,7 +2401,7 @@
       "The man is sitting on the train and resting his hand against his face"
      ],
      "rules": [
-      "paraphrase-E003785"
+      "paraphrase-E003233"
      ]
     },
     {
@@ -2413,7 +2416,7 @@
       "The man is sitting on the train and resting his hand against his face"
      ],
      "rules": [
-      "paraphrase-E003785"
+      "paraphrase-E003233"
      ]
     },
     {
@@ -2851,7 +2854,7 @@
       "Motorbikes are being ridden by two people"
      ],
      "rules": [
-      "paraphrase-E003789"
+      "paraphrase-E003237"
      ]
     },
     {
@@ -2866,7 +2869,7 @@
       "Motorbikes are being ridden by two people"
      ],
      "rules": [
-      "paraphrase-E003789"
+      "paraphrase-E003237"
      ]
     },
     {
@@ -3047,7 +3050,7 @@
       "Mr. Bremer said that Iran, including its intelligence service, continued to interfere in fledgling political reconstruction."
      ],
      "rules": [
-      "paraphrase-E003785"
+      "paraphrase-E003233"
      ]
     }
    ]
@@ -3063,13 +3066,13 @@
     "cut → slice": 7,
     "kid → child": 6,
     "child → kid": 6,
-    "paraphrase-E003789": 6,
+    "paraphrase-E003237": 6,
     "woman → lady": 5,
     "lady → woman": 5,
     "little → young": 4,
-    "paraphrase-E003785": 4,
+    "paraphrase-E003233": 4,
     "young → little": 2,
-    "paraphrase-E003536": 1
+    "paraphrase-E002962": 1
    },
    "list": [
     {
@@ -3474,7 +3477,7 @@
       "A person is riding a horse"
      ],
      "rules": [
-      "paraphrase-E003789"
+      "paraphrase-E003237"
      ]
     },
     {
@@ -3489,7 +3492,7 @@
       "A person is riding a horse"
      ],
      "rules": [
-      "paraphrase-E003789"
+      "paraphrase-E003237"
      ]
     },
     {
@@ -3504,7 +3507,7 @@
       "The little dog is grabbing the bedroom slipper with its mouth"
      ],
      "rules": [
-      "paraphrase-E003785"
+      "paraphrase-E003233"
      ]
     },
     {
@@ -3519,7 +3522,7 @@
       "A person is riding a bike"
      ],
      "rules": [
-      "paraphrase-E003789"
+      "paraphrase-E003237"
      ]
     },
     {
@@ -3534,7 +3537,7 @@
       "A person is riding a bike"
      ],
      "rules": [
-      "paraphrase-E003789"
+      "paraphrase-E003237"
      ]
     },
     {
@@ -3579,7 +3582,7 @@
       "A man in a red uniform is making a jump in a dirt bike race"
      ],
      "rules": [
-      "paraphrase-E003536"
+      "paraphrase-E002962"
      ]
     },
     {
@@ -3654,7 +3657,7 @@
       "The man is sitting on the train and resting his hand against his face"
      ],
      "rules": [
-      "paraphrase-E003785"
+      "paraphrase-E003233"
      ]
     },
     {
@@ -3669,7 +3672,7 @@
       "The man is sitting on the train and resting his hand against his face"
      ],
      "rules": [
-      "paraphrase-E003785"
+      "paraphrase-E003233"
      ]
     },
     {
@@ -3804,7 +3807,7 @@
       "Motorbikes are being ridden by two people"
      ],
      "rules": [
-      "paraphrase-E003789"
+      "paraphrase-E003237"
      ]
     },
     {
@@ -3819,7 +3822,7 @@
       "Motorbikes are being ridden by two people"
      ],
      "rules": [
-      "paraphrase-E003789"
+      "paraphrase-E003237"
      ]
     },
     {
@@ -3864,7 +3867,7 @@
       "Mr. Bremer said that Iran, including its intelligence service, continued to interfere in fledgling political reconstruction."
      ],
      "rules": [
-      "paraphrase-E003785"
+      "paraphrase-E003233"
      ]
     }
    ]
@@ -3872,9 +3875,9 @@
  },
  "contradiction_by": {
   "sick/mine": {
-   "chainer": 168,
-   "alignment": 140,
-   "chainer+alignment": 2
+   "chainer": 171,
+   "alignment": 141,
+   "chainer+alignment": 3
   },
   "mrpc/mine": {
    "chainer": 1

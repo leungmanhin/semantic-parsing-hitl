@@ -86,12 +86,21 @@ def graph_of(record: dict, catalog: dict | None = None, inspected: dict | None =
         return None
     types: dict[str, set] = {}
     atoms: list[dict] = []
+    text = CAT.norm_span(record.get("text", ""))
+    place: dict[str, list] = {}                               # an instance → where it stands: the offset of its span in
+    for k, inst in enumerate(resp.get("instances") or []):    # the text (the text's length when it has none), then its
+        if isinstance(inst, dict) and inst.get("id") is not None:      # place in the reply
+            span = inst.get("span")
+            first = span[0] if isinstance(span, list) and span else span
+            at = text.find(CAT.norm_span(first)) if isinstance(first, str) and first.strip() else -1
+            place.setdefault(str(inst["id"]), [at if at >= 0 else len(text), k])
+    nowhere = [len(text), len(place)]
     if res.get("records") is not None:                       # the emitter's records: terms and truth values as data
         for sym, classes in (res.get("types") or {}).items():
             types.setdefault(sym, set()).update(classes)     # skolem functions are declared apart and not read here
         for rec in res["records"]:
             meta = {"name": rec["name"], "inst": rec.get("inst"), "template": rec.get("owner"),
-                    "s": float(rec["truth"][0]), "c": float(rec["truth"][1])}
+                    "s": float(rec["truth"][0]), "c": float(rec["truth"][1]), "at": place.get(str(rec.get("inst")), nowhere)}
             _walk(L.leaves(rec["term"]), [], None, atoms, meta)   # leaves as the statement's text writes them
     else:                                                    # an inspection without records: read the lowered text
         for d in res.get("declarations") or []:
@@ -101,7 +110,8 @@ def graph_of(record: dict, catalog: dict | None = None, inspected: dict | None =
         for stmt, det in zip(res["statements"], res["detail"]):
             name, term = T.split_statement(stmt)
             s, c = _truth(stmt)
-            meta = {"name": name, "inst": det.get("inst"), "template": det.get("owner"), "s": s, "c": c}
+            meta = {"name": name, "inst": det.get("inst"), "template": det.get("owner"), "s": s, "c": c,
+                    "at": place.get(str(det.get("inst")), nowhere)}
             _walk(term, [], None, atoms, meta)
     for i, a in enumerate(atoms):
         a["i"] = i

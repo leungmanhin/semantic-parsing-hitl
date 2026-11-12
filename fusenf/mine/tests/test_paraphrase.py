@@ -51,6 +51,8 @@ WITH_HAT = side("A man with a hat laughed.", [W("x1", "man"), W("x2", "hat"), V(
                                               {"t": "postmodifier", "id": "a1", "noun": "@x1", "head": "With", "object": "@x2"}], "e")
 WEARS_HAT = side("A man wore a hat and laughed.", [W("x1", "man"), W("x2", "hat"), V("v1", "laugh", "@x1"),
                                                    V("v2", "wear", "@x1", patient="@x2")], "f")
+MAN_PARK = side("A man laughed in a park.", [W("x1", "man"), W("x2", "park"), V("v1", "laugh", "@x1"),
+                                              {"t": "location", "id": "l1", "event": "@v1", "place": "@x2", "head": "Location", "preposition": "in"}], "g")
 ONIONS = side("A woman cut onions.", [W("x1", "woman"), V("v1", "cut", "@x1", patient="onion")], "k")
 TOFU = side("A woman cut tofu.", [W("x1", "woman"), V("v1", "cut", "@x1", patient="tofu")], "l")
 NOT_TOFU = side("A woman did not cut tofu.", [W("x1", "woman"), V("v1", "cut", "@x1", patient="tofu"),
@@ -130,6 +132,38 @@ class AlignTests(unittest.TestCase):
             xr, yr = AL.Side(G.rename_graph(x.graph, seed=3)[0]), AL.Side(G.rename_graph(y.graph, seed=4)[0])
             alr, cor, edr = aligned(xr, yr)
             self.assertEqual(PA._signature(co, ed, al), PA._signature(cor, edr, alr))
+
+    def test_equally_good_choices_follow_the_order_of_mention(self):
+        # two dogs, each playing; the other sentence has one: which dog's playing is "the" playing is a tie in every
+        # word. The instances are listed against the order of the text, so a choice by symbol name would differ.
+        two = side("A dog and another dog played.",
+                   [W("x1", "dog", span="another dog"), W("x2", "dog", span="A dog"),
+                    V("v1", "play", "@x1", span="another dog played"), V("v2", "play", "@x2", span=["A dog", "played"])], "p")
+        one = side("A dog played.", [W("x1", "dog", span="A dog"), V("v1", "play", "@x1", span="A dog played")], "q")
+        al, co, ed = aligned(two, one)
+        self.assertEqual(al["ties"], 1)                                        # one other alignment is as good
+        self.assertEqual(al["phi"], {"sk_dog_2": "sk_dog_1", "sk_play_2": "sk_play_1"})      # the dog mentioned first
+        self.assertEqual(two.pos["sk_dog_2"][0], (0, 1))                      # where its instance stands: offset, then place
+        self.assertLess(two.pos["sk_dog_2"], two.pos["sk_dog_1"])
+        left = sorted(two.atoms[n]["at"] for n in al["unaligned"][0])
+        for seed in (1, 2, 3):                                                 # renamed and shuffled: the same dog is left over
+            tr, onr = AL.Side(G.rename_graph(two.graph, seed=seed)[0]), AL.Side(G.rename_graph(one.graph, seed=seed + 7)[0])
+            alr, cor, edr = aligned(tr, onr)
+            self.assertEqual(sorted(tr.atoms[n]["at"] for n in alr["unaligned"][0]), left)
+            self.assertEqual(PA._signature(cor, edr, alr), PA._signature(co, ed, al))
+
+    def test_two_leftover_things_are_no_correspondence(self):
+        # a hat on one side, a park on the other: nothing links them but being things with a class
+        al, co, ed = aligned(WITH_HAT, MAN_PARK)
+        self.assertEqual(al["phi"], {"sk_man_1": "sk_man_1", "sk_laugh_1": "sk_laugh_1"})
+        self.assertEqual(ed["classes"], [])
+        left = [[side_.atoms[n]["lex"] for n in ns] for side_, ns in zip((WITH_HAT, MAN_PARK), al["unaligned"])]
+        self.assertIn("|Member($x2,hat)|asserted", left[0])
+        self.assertIn("|Member($x2,park)|asserted", left[1])
+        al2, _, ed2 = aligned(KID, CHILD)                                      # a role they share backs the kid and the child
+        self.assertEqual([(c["a"], c["b"]) for c in ed2["classes"]], [("kid", "child")])
+        al3, _, ed3 = aligned(PARK, MAN_PARK)                                  # … and the same word backs the two parks
+        self.assertEqual(al3["phi"].get("sk_park_1"), "sk_park_1")
 
     def test_implied_rules_are_recognized(self):
         self.assertEqual(AL.implied_rule(["Implication", ["Member", "sk_g", ["Narrow", "girl", ["Member", "little"]]], ["Member", "sk_g", "little"]]),
