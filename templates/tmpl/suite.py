@@ -33,7 +33,8 @@ it exists in the catalog, reported the gap code, or reported the span as unmappe
 target is pending).  Per template and section: selection (fire-cases fired, abstain-cases
 false fires), fill (exact matches among fires), stability (pairwise agreement across runs),
 C9 type check of every emitted parse when the ``petta`` package is importable, graph lints (any
-lint fails the record), token usage per call, and the ``issues`` the parser reported.  Writes ``suite/out/<template>.scores.jsonl``,
+lint fails the record but an advisory one, ``validate.ADVISORY_LINTS``, which is listed apart), token usage per call, and
+the ``issues`` the parser reported.  Writes ``suite/out/<template>.scores.jsonl``,
 ``suite/out/summary.json`` and ``suite/out/REPORT.md``.
 
 No LLM judges anything here: the expected instances are the authority, the comparison is code.
@@ -718,7 +719,9 @@ def score_record(case: dict, rec: dict, catalog: dict, heads: dict, body_sha: st
     else:
         ins, ctx_units = V.inspect(resp, catalog, case.get("reference_time"), text=case["text"]), None
     row["unmapped"], row["issues"], row["fired"], row["null_slots"] = ins["unmapped"], ins["issues"], ins["fired"], ins["null_slots"]
-    row["lints"] = [f for f in ins["findings"] if f["kind"] not in ("instance", "contract") and not f["kind"].startswith("span-")]
+    lints = [f for f in ins["findings"] if f["kind"] not in ("instance", "contract") and not f["kind"].startswith("span-")]
+    row["lints"] = [f for f in lints if f["kind"] not in V.ADVISORY_LINTS]
+    row["advisory"] = [f for f in lints if f["kind"] in V.ADVISORY_LINTS]   # reported with the record, never a reason to fail it
     row["span_lints"] = [f for f in ins["findings"] if f["kind"].startswith("span-")]
     row["spans"] = span_counts(ins["instances"], row["span_lints"])
     fired_t = tid in row["fired"]
@@ -869,6 +872,7 @@ def summarize(rows: list[dict]) -> dict:
         "issues": issues,
         "null_slots": sum(r.get("null_slots") or 0 for r in rows),
         "lints": dict(collections.Counter(f["kind"] for r in rows for f in (r.get("lints") or []))),
+        "advisory": dict(collections.Counter(f["kind"] for r in rows for f in (r.get("advisory") or []))),
         "spans": {k: sum((r.get("spans") or {}).get(k, 0) for r in rows)
                   for k in ("instances", "with_span", "missing", "not_verbatim", "malformed")},
         "models": sorted({f"{r.get('model')} effort={r.get('effort')}" for r in rows if r.get("model")}),
@@ -938,6 +942,7 @@ def score(args, catalog: dict) -> int:
     n_fail = sum(1 for r in rows if not r["pass"])
     hard = [f for f in checks["findings"]]
     print(f"scored {len(rows)} records over {len(templates)} template(s): {len(rows) - n_fail} pass, {n_fail} fail"
+          f" · advisory lints {sum(len(r.get('advisory') or []) for r in rows)}"
           f" · catalog checks: {len(hard)} finding(s), {len(checks['pending'])} pending target(s)"
           f" · typecheck {summary['typecheck']} · report {_show(os.path.join(args.out_dir, 'REPORT.md'))}")
     return 1 if (n_fail or hard) else 0
@@ -1005,6 +1010,11 @@ def render_report(summary: dict, rows: list[dict]) -> str:
                 f"unanimous {stab['unanimous']}/{stab['cases']}")
             add(f"- type check: {tc['passed']}/{tc['checked']} emitted parses type")
             add("- graph lints: " + (", ".join(f"{k} {v}" for k, v in sorted(s["lints"].items())) or "none"))
+            add("- advisory lints (reported, never a failure): "
+                + (", ".join(f"{k} {v}" for k, v in sorted(s.get("advisory", {}).items())) or "none"))
+            for r in sorted((r for r in rows if r["template"] == tid and r["section"] == section and r.get("advisory")),
+                            key=lambda r: (r["key"], r["run"] or 0)):
+                add(f"  - r{r['run']} \"{r['text']}\": " + "; ".join(f"{f['kind']}: {f['detail']}" for f in r["advisory"]))
             sp = s.get("spans") or {}
             if sp.get("instances"):
                 add(f"- spans: {sp['with_span']}/{sp['instances']} instances carry one · missing {sp['missing']} · "

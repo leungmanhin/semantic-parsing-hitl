@@ -11,7 +11,7 @@ The legacy parser line (`prompt.txt`, `seeded_rules.metta`, the regression harne
 | `generated/PROMPT_CATALOG.txt` | the parser's instruction set, rendered from the catalog; never edited by hand |
 | `generated/MANIFEST.json` | the catalog's VERSION MANIFEST: the hashes of the templates, the prompt (and its body), the substrate and its declarations, the rules and their lowered form, and the emitter code (`tmpl/validate.py` and the package modules it imports — the runners and tools are outside it), under one twelve-digit id; rewritten by `render_prompt`, `gen_substrate` and `rules`; its id is stamped into each record a `collect` stores (`manifest_id`) and into each `score` summary, which counts the records whose version differs (stale) or predates the stamp (unstamped) |
 | `tmpl/manifest.py` | computes, writes and checks the manifest (`python -m tmpl.manifest [--check]`) |
-| `tmpl/coverage.py` | the §7.4 coverage instrument: `sample` draws a stratified sample of natural text from `datasets/prepared/` into `datasets/sample/`, `parse` sends it one sentence per call (resumable, the manifest id stamped), `report` validates every reply and writes `datasets/sample/COVERAGE.md` — the parse rate per source, the gap-code and unmapped-span histograms, the fired templates; the sample is watched by the suite's leak check, never a regression sentence |
+| `tmpl/coverage.py` | the §7.4 coverage instrument: `sample` draws a stratified sample of natural text from `datasets/prepared/` into `datasets/sample/`, `parse` sends it one sentence per call (resumable, the manifest id stamped), `report` validates every reply and writes `datasets/sample/COVERAGE.md` — the parse rate per source, the gap-code and unmapped-span histograms, the fired templates, the validator's lints (a silent drop: a sentence otherwise covered whose quotation's content is missing, `quotation-content-missing`, is partial; a covered sentence with `content-unaccounted`, advisory, stays covered; both counted apart); the sample is watched by the suite's leak check, never a regression sentence |
 | `tmpl/catalog.py` | loader and structural checks |
 | `tmpl/emit.py` | generic emitter: instances → statement RECORDS (label, term tree, truth as numbers, template, instance) + the symbols' types as data, with their lowering for our engine line under `statements` / `declarations` / `detail` |
 | `tmpl/lower.py` | the LOWERING: records → one consumer's syntax. Target `pettachainer` (our engine line): `(: label term (STV s c))`, `(: symbol Type)`, `(: stem (-> Atom … Type))`, a query `(: $prf pattern $tv)`. Target `pettachainer-master` (upstream PeTTaChainer master, a parse's statements): that engine takes a class as one symbol, so each narrowed class `(Narrow report (Mod progress))` is written as one class symbol (`report__mod_progress`) and what its term said comes beside the statements as `definitions` — `(Inheritance report__mod_progress report)` (a kind of its noun) and `(NarrowBy report__mod_progress (Mod progress))` (one per restriction) — to be loaded with them: `lower(emitted, "pettachainer-master")`, where `emitted` holds the `records`, `types` and `functions` that `tmpl.validate.inspect` returns. A consumer's own names for a parse's symbols (one symbol for a name across its texts, a per-text suffix) go in as `symbols={"sk_brackenford_1": "brackenford"}` and are applied before the classes are named, so a class narrowed by that individual is `report__mod_brackenford` in every text; a class's restrictions come in one canonical order (an adjective before a noun, each alphabetical). The background rules for that target are `generated/seeded_rules.pettachainer-master.metta` (`tmpl/rules.py`), and `predicates("pettachainer-master")` lists what the consumer declares positive-only before loading. A new consumer is a new target here, never a branch in the emitter |
@@ -119,7 +119,10 @@ The legacy parser line (`prompt.txt`, `seeded_rules.metta`, the regression harne
   is known (an instance
   without `span`, a malformed span, a span that is not a verbatim substring of the text), verbatim lints when
   the text is known (a value of a slot the catalog marks `verbatim` — a tag after a name — that is not written
-  in the text) and C9 on the
+  in the text), content lints when the text is known — silent drops: a content word (any word but a closed list
+  of function words, a number included) that no instance span and no unmapped span reaches and no instance holds as
+  a slot value (`content-unaccounted`, advisory: listed, never a failure), a quotation reported by its wording (G10)
+  whose content no instance but a name and no other unmapped span reaches (`quotation-content-missing`) — and C9 on the
   emitted statements (skipped without `petta`). Report only; it
   never changes a reply. `from tmpl import validate; validate.validate(reply)`. Tests:
   `python tests/test_validate.py`.
@@ -140,7 +143,8 @@ The legacy parser line (`prompt.txt`, `seeded_rules.metta`, the regression harne
   atoms label-independently (witness symbols up to a bijection, bundles unordered), classifies each
   (case, run) by category, type-checks every emitted parse (C9, when `petta` is importable), and writes
   `suite/out/<template>.scores.jsonl`, `summary.json`, `REPORT.md` (selection, fill, stability, usage,
-  the parser's `issues`, graph lints — any lint fails the record — the per-run view of every abstain
+  the parser's `issues`, graph lints — any lint fails the record but an advisory one (`content-unaccounted`), listed
+  on its own line — the per-run view of every abstain
   case, mismatches with leaf-level diffs). Records collected under another instruction set are counted
   as stale. Tests: `python tests/test_suite.py`.
 

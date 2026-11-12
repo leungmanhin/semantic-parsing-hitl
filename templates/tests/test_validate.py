@@ -5,7 +5,8 @@
 * instances: the emitter's checks surface as findings and stop the record (missing required
   slot, a filler pointing at a scope instance, a scope cycle, an empty required refs list);
 * lints: dangling referent (suppressed when something is unmapped), bare predication, empty
-  optional scope;
+  optional scope; with the text, the content lints (a content word outside every span, a quotation
+  whose wording alone was reported);
 * C9 through ``validate``: the live transfer example validates clean; a well-formed but
   ill-typed emission is reported (skipped without ``petta``);
 * the parse script: ``semantic-parse.py`` run with a fake provider validates its reply,
@@ -168,7 +169,8 @@ class LintTests(unittest.TestCase):
         self.assertEqual(kinds(V.inspect(reply(alone), CATALOG, text="Yusra, a locksmith")), [])
         self.assertEqual(kinds(V.inspect(reply(alone), CATALOG)), ["dangling-referent"])
         dropped = [{"t": "named-entity", "id": "n1", "name": "Yusra", "span": "Yusra"}]
-        self.assertEqual(kinds(V.inspect(reply(dropped), CATALOG, text="Yusra laughed.")), ["dangling-referent"])
+        self.assertEqual(kinds(V.inspect(reply(dropped), CATALOG, text="Yusra laughed.")),
+                         ["content-unaccounted", "dangling-referent"])          # laughed: neither parsed nor reported
 
     def test_dangling_name_only_when_nothing_is_unmapped_but_a_witness_always(self):
         names = [{"t": "named-entity", "id": "n1", "name": "Yusra"}]
@@ -232,7 +234,8 @@ class LintTests(unittest.TestCase):
         waiting = {"t": "activity", "id": "v1", "verb": "wait", "tense": "present", "aspect": "progressive", "span": "Waiting"}
         self.assertEqual(kinds(V.inspect(reply([waiting]), CATALOG, text="Waiting.")), [])
         later = dict(waiting, span="waiting")
-        self.assertEqual(kinds(V.inspect(reply([later]), CATALOG, text="Done; waiting.")), [])
+        self.assertEqual(kinds(V.inspect(reply([later]), CATALOG, text="Done; waiting.")),
+                         ["content-unaccounted"])                               # no bare predication; Done is not parsed here
         particle = {"t": "activity", "id": "v1", "verb": "log_off", "tense": "present", "aspect": "progressive", "span": "Logging off"}
         self.assertEqual(kinds(V.inspect(reply([particle]), CATALOG, text="Logging off.")), [])
         forgotten = [{"t": "named-entity", "id": "n1", "name": "Yusra", "span": "Yusra"},
@@ -277,6 +280,132 @@ class LintTests(unittest.TestCase):
         res = V.inspect(reply(insts), cat)
         self.assertEqual(res["status"], "ok")
         self.assertEqual(kinds(res), ["bare-predication", "empty-scope"])
+
+
+class ContentLintTests(unittest.TestCase):
+    """Silent drops, with the text (report only): a content word that no span reaches, a quotation whose wording
+    alone was reported (G10)."""
+    YUSRA = {"t": "named-entity", "id": "n1", "name": "Yusra", "span": "Yusra"}
+    TEODOR = {"t": "named-entity", "id": "n2", "name": "Teodor", "span": "Teodor"}
+
+    def test_a_content_word_outside_every_span_is_reported(self):
+        """A word that no instance span and no unmapped span reaches is unaccounted; an unmapped span of any code
+        accounts for it, and so does an instance's span. The record stands, and with no text nothing is checked."""
+        kite = {"t": "witness", "id": "x1", "class": "kite", "definite": True, "span": "the kite"}
+        mend = {"t": "activity", "id": "e1", "verb": "mend", "actor": "@n1", "patient": "@x1", "tense": "past",
+                "span": "Yusra mended the kite"}
+        text = "Yusra mended the kite hastily."
+        res = V.inspect(reply([self.YUSRA, kite, mend]), CATALOG, text=text)
+        self.assertEqual(res["status"], "ok")
+        self.assertEqual(kinds(res), ["content-unaccounted"])
+        self.assertTrue(res["findings"][0]["detail"].startswith("'hastily': outside every span"), res["findings"])
+        self.assertIsNotNone(res["statements"])
+        gap = reply([self.YUSRA, kite, mend], unmapped=[{"span": "hastily", "code": "G02"}])
+        self.assertEqual(kinds(V.inspect(gap, CATALOG, text=text)), [])
+        manner = {"t": "manner", "id": "a1", "event": "@e1", "manner": "hastily", "span": "hastily"}
+        self.assertEqual(kinds(V.inspect(reply([self.YUSRA, kite, mend, manner]), CATALOG, text=text)), [])
+        self.assertEqual(kinds(V.inspect(reply([self.YUSRA, kite, mend]), CATALOG)), [])
+        no_span = [self.YUSRA, {k: v for k, v in kite.items() if k != "span"}, mend]
+        self.assertEqual(kinds(V.inspect(reply(no_span), CATALOG, text=text)), ["span-missing"])   # what it covers is unknown
+
+    def test_function_words_and_marks_are_no_content_a_number_is(self):
+        """An article, a preposition, a pronoun or a mark beside a word is no content (a span may end before the comma
+        after a number); a clitic is read off its word (Yusra's is reached by the name's span); a number and a negation
+        are content."""
+        self.assertFalse(V.is_content_word("the") or V.is_content_word("It’s") or V.is_content_word("there's"))
+        self.assertTrue(V.is_content_word("Yusra's") and V.is_content_word("1,250") and V.is_content_word("wasn't"))
+        text = "Teodor counted 1,250, and Yusra's kite fell."
+        insts = [self.TEODOR, self.YUSRA,
+                 {"t": "witness", "id": "x1", "class": "kite", "possessor": "@n1", "span": "kite"},
+                 {"t": "motion", "id": "e1", "verb": "fall", "mover": "@x1", "tense": "past", "span": "kite fell"}]
+        counted = {"span": "Teodor counted 1,250", "code": "G00"}
+        self.assertEqual(kinds(V.inspect(reply(insts, unmapped=[counted]), CATALOG, text=text)), [])
+        short = V.inspect(reply(insts, unmapped=[dict(counted, span="Teodor counted")]), CATALOG, text=text)
+        self.assertEqual([f["detail"] for f in short["findings"]], ["'1,250': outside every span, neither parsed nor reported"])
+
+    def test_a_word_held_as_a_slot_value_is_carried(self):
+        """A content word that no span reaches but an instance holds as a slot value is carried, not flagged: a bare-lemma
+        filler, each word of an underscored value. The match is exact (no stemming), and a span is no slot value: a word
+        another span holds elsewhere in the text is still flagged."""
+        kiln = {"t": "witness", "id": "x1", "class": "kiln", "definite": True, "span": "the kiln"}
+        scratch = {"t": "activity", "id": "e1", "verb": "scratch", "actor": "gravel", "patient": "@x1", "tense": "past",
+                   "span": "scratched the kiln"}
+        self.assertEqual(kinds(V.inspect(reply([kiln, scratch]), CATALOG, text="Gravel scratched the kiln.")), [])
+        unheld = {k: v for k, v in scratch.items() if k != "actor"}
+        res = V.inspect(reply([kiln, unheld]), CATALOG, text="Gravel scratched the kiln.")
+        self.assertEqual([f["detail"] for f in res["findings"]], ["'Gravel': outside every span, neither parsed nor reported"])
+        sold = {"t": "activity", "id": "e1", "verb": "sell", "actor": "@n2", "patient": "rock_salt", "tense": "past",
+                "span": "Teodor sold"}
+        self.assertEqual(kinds(V.inspect(reply([self.TEODOR, sold]), CATALOG, text="Teodor sold rock salt.")), [])
+        res = V.inspect(reply([self.TEODOR, dict(sold, patient="salt")]), CATALOG, text="Teodor sold salts.")
+        self.assertEqual([f["detail"] for f in res["findings"]], ["'salts': outside every span, neither parsed nor reported"])
+        whistled = [self.TEODOR, self.YUSRA, {"t": "activity", "id": "e1", "verb": "whistle", "actor": "@n2", "tense": "past",
+                                              "span": "Teodor whistled"}]
+        res = V.inspect(reply(whistled), CATALOG, text="Teodor whistled, and Yusra whistled too.")
+        self.assertEqual([f["detail"] for f in res["findings"] if f["kind"] == "content-unaccounted"],
+                         ["'whistled', 'too': outside every span, neither parsed nor reported"])
+
+    def test_a_list_span_reported_spans_and_a_loose_unmapped_span(self):
+        """Each part of a discontinuous span accounts for its words, at every place they are written; a span reported by
+        convention (an opening connective, G05) accounts for its words; an unmapped span that is not verbatim accounts
+        for the words it holds."""
+        sang = [self.YUSRA, self.TEODOR,
+                {"t": "activity", "id": "e1", "verb": "sing", "actor": "@n1", "tense": "past", "span": ["Yusra", "sang"]},
+                {"t": "activity", "id": "e2", "verb": "sing", "actor": "@n2", "tense": "past", "span": ["Teodor", "sang"]}]
+        text = "But Yusra sang alone, and Teodor sang."
+        alone = {"span": "alone", "code": "G00"}
+        self.assertEqual(kinds(V.inspect(reply(sang, unmapped=[alone, {"span": "But", "code": "G05"}]), CATALOG, text=text)), [])
+        res = V.inspect(reply(sang, unmapped=[alone]), CATALOG, text=text)
+        self.assertEqual([f["detail"] for f in res["findings"]], ["'But': outside every span, neither parsed nor reported"])
+        frame = [self.TEODOR, {"t": "attitude", "id": "a1", "verb": "say", "holder": "@n2", "factive": False, "tense": "past",
+                               "span": "Teodor said"}]
+        loose = {"span": "Yusra sang all evening", "code": "G00"}                  # the speech tag left out of the middle
+        self.assertEqual(kinds(V.inspect(reply(frame, unmapped=[loose]), CATALOG, text="Yusra sang, Teodor said, all evening.")), [])
+
+    def test_a_speech_verb_dropped_beside_its_reported_quotation(self):
+        """The shape of a real drop: the quotation reported (its wording G10, its content G00), the speaker's name kept
+        and the speech verb in no span."""
+        text = '"The kiln was never lit," Teodor said.'
+        quote = [{"span": '"The kiln was never lit,"', "code": "G10"}, {"span": "The kiln was never lit", "code": "G00"}]
+        res = V.inspect(reply([self.TEODOR], unmapped=quote), CATALOG, text=text)
+        self.assertEqual(kinds(res), ["content-unaccounted"])
+        self.assertIn("'said'", res["findings"][0]["detail"])
+        say = {"t": "attitude", "id": "a1", "verb": "say", "holder": "@n2", "factive": False, "tense": "past", "span": "Teodor said"}
+        self.assertEqual(kinds(V.inspect(reply([self.TEODOR, say], unmapped=quote), CATALOG, text=text)), [])
+
+    def test_a_quotation_whose_wording_alone_is_reported(self):
+        """The shape of a real drop that counts as covered: the speech frame parsed, the quotation reported as its wording
+        (G10) and its content neither parsed nor reported. Parsed content clears it, and so does a gap span over it; a
+        quotation mark alone is no quotation."""
+        text = '"The kiln is cold," Teodor warned Yusra.'
+        warn = {"t": "communication", "id": "e1", "verb": "warn", "speaker": "@n2", "addressee": "@n1", "tense": "past",
+                "span": "Teodor warned Yusra"}
+        g10 = {"span": '"The kiln is cold,"', "code": "G10"}
+        res = V.inspect(reply([self.YUSRA, self.TEODOR, warn], unmapped=[g10]), CATALOG, text=text)
+        self.assertEqual(res["status"], "ok")
+        self.assertEqual(kinds(res), ["quotation-content-missing"])               # the G10 span covers the words themselves
+        self.assertIn("'\"The kiln is cold,\"'", res["findings"][0]["detail"])
+        content = [{"t": "witness", "id": "x1", "class": "kiln", "definite": True, "span": "The kiln"},
+                   {"t": "copular", "id": "c1", "subject": "@x1", "predicate": "cold", "form": "adjective", "tense": "present",
+                    "span": "The kiln is cold"}, dict(warn, content=["@c1"])]
+        self.assertEqual(kinds(V.inspect(reply([self.YUSRA, self.TEODOR] + content, unmapped=[g10]), CATALOG, text=text)), [])
+        gap = [g10, {"span": "The kiln is cold", "code": "G00"}]
+        self.assertEqual(kinds(V.inspect(reply([self.YUSRA, self.TEODOR, warn], unmapped=gap), CATALOG, text=text)), [])
+        mark = [{"span": '"', "code": "G10"}]
+        self.assertEqual(kinds(V.inspect(reply([self.YUSRA, self.TEODOR] + content, unmapped=mark), CATALOG, text=text)), [])
+
+    def test_a_name_in_a_quotation_is_no_parsed_content(self):
+        """The catalog gives a name its instance even inside an unmapped span: a name in the quotation says nothing of its
+        content. A quotation that is only a name is that name's instance."""
+        say = {"t": "attitude", "id": "a1", "verb": "say", "holder": "@n1", "factive": False, "tense": "past", "span": "Yusra said"}
+        text = '"Teodor fixed the kiln," Yusra said.'
+        res = V.inspect(reply([self.YUSRA, self.TEODOR, say], unmapped=[{"span": '"Teodor fixed the kiln,"', "code": "G10"}]),
+                        CATALOG, text=text)
+        self.assertEqual(kinds(res), ["quotation-content-missing"])
+        shout = {"t": "communication", "id": "e1", "verb": "shout", "speaker": "@n1", "message": "@n2", "tense": "past",
+                 "span": 'Yusra shouted "Teodor"'}
+        named = reply([self.YUSRA, self.TEODOR, shout], unmapped=[{"span": '"Teodor"', "code": "G10"}])
+        self.assertEqual(kinds(V.inspect(named, CATALOG, text='Yusra shouted "Teodor".')), [])
 
 
 @unittest.skipUnless(HAVE_PETTA, "petta package not importable")
@@ -345,7 +474,7 @@ def load_script():
 
 
 class ScriptTests(unittest.TestCase):
-    def run_script(self, reply_obj, *argv):
+    def run_script(self, reply_obj, *argv, text=None):
         mod = load_script()
 
         class Fake:
@@ -362,7 +491,7 @@ class ScriptTests(unittest.TestCase):
         mod.PROVIDERS["google"] = Fake
         out, err = io.StringIO(), io.StringIO()
         with contextlib.redirect_stdout(out), contextlib.redirect_stderr(err):
-            rc = mod.main([EXAMPLE["text"], *argv])
+            rc = mod.main([text or EXAMPLE["text"], *argv])
         return rc, out.getvalue(), err.getvalue()
 
     def test_valid_reply_is_validated_and_recorded(self):
@@ -378,6 +507,22 @@ class ScriptTests(unittest.TestCase):
             self.assertEqual(rec["validation"]["status"], "ok")
             self.assertEqual(len(rec["validation"]["statements"]), 8)
             self.assertEqual(rec["validation"]["findings"], [])
+
+    def test_a_finding_that_only_advises_is_printed_and_the_command_succeeds(self):
+        """An advisory finding (``validate.ADVISORY_LINTS``) goes to stderr and leaves the exit status 0; any other
+        finding makes it 3."""
+        yusra = {"t": "named-entity", "id": "n1", "name": "Yusra", "span": "Yusra"}
+        kite = {"t": "witness", "id": "x1", "class": "kite", "definite": True, "span": "the kite"}
+        mend = {"t": "activity", "id": "e1", "verb": "mend", "actor": "@n1", "patient": "@x1", "tense": "past",
+                "span": "Yusra mended the kite"}
+        text = "Yusra mended the kite hastily."
+        rc, _out, err = self.run_script(reply([yusra, kite, mend]), text=text)
+        self.assertEqual(rc, 0, err)
+        self.assertIn("- content-unaccounted: 'hastily'", err)
+        stray = {"t": "witness", "id": "x2", "class": "ladder", "span": "the kite"}        # a witness nothing mentions
+        rc, _out, err = self.run_script(reply([yusra, kite, mend, stray]), text=text)
+        self.assertEqual(rc, 3, err)
+        self.assertIn("- content-unaccounted: 'hastily'", err)
 
     def test_statements_only_prints_the_chainer_input_alone(self):
         rc, out, err = self.run_script(FAKE_REPLY, "--statements-only")

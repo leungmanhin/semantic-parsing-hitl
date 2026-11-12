@@ -25,8 +25,9 @@ declarations; ``--statements-only`` prints nothing but the statements, one per l
 chainer's input, ready to feed to add_atom beside templates/generated/seeded_rules.metta;
 ``--no-validate`` skips the step.
 
-Exit status: 0 the reply is a JSON object that validates; 3 it has validation findings; 2 it is
-not valid JSON (the raw text is printed); 1 a request failed.
+Exit status: 0 the reply is a JSON object that validates; 3 it has validation findings (a finding
+that only advises — a content word no span reaches — is printed and does not count); 2 it is not
+valid JSON (the raw text is printed); 1 a request failed.
 """
 from __future__ import annotations
 
@@ -703,6 +704,7 @@ def validate_reply(reply: dict, reference_time=None, text: str | None = None) ->
     res = V.validate(reply, reference_time=reference_time, text=text)
     keep = {k: res.get(k) for k in ("status", "findings", "typecheck", "statements", "declarations", "fired", "null_slots", "question")}
     keep["summary"] = V.summary(res)
+    keep["advisory"] = sorted(getattr(V, "ADVISORY_LINTS", ()))   # the kinds that are printed and never fail the command
     if res.get("question") and res.get("status") == "ok":   # a question states nothing: what the chainer gets is its query
         from tmpl import lower as L, query as Q
         asked = Q.ask(res["instances"], None, None, reference_time)
@@ -779,7 +781,7 @@ def main(argv=None) -> int:
     if record.get("error"):
         print(f"error: {record['error']}", file=sys.stderr)
         return 2
-    if v and (v["status"] not in ("ok", "skipped") or v["findings"]):
+    if v and (v["status"] not in ("ok", "skipped") or [f for f in v["findings"] if f["kind"] not in (v.get("advisory") or ())]):
         return 3
     return 0
 

@@ -299,6 +299,34 @@ class ScoreTests(unittest.TestCase):
         row = self.score(c, reply(c["instances"], unmapped=[{"span": "very", "code": "G02"}, {"span": "Herons", "code": "G00"}]))
         self.assertFalse(row["pass"])                                          # an extra report fails too
 
+    def test_an_advisory_lint_is_listed_and_never_fails_a_record(self):
+        """content-unaccounted is advisory: a record whose spans leave a content word out passes, the finding kept with the
+        record and listed in the report on its own line, never among the reasons; quotation-content-missing still fails."""
+        insts = [{"t": "named-entity", "id": "n1", "name": "Yusra", "span": "Yusra"},
+                 {"t": "named-entity", "id": "n2", "name": "Teodor", "span": "Teodor"},
+                 {"t": "witness", "id": "x1", "class": "ladle", "span": "a ladle"},
+                 {"t": "transfer", "id": "e1", "verb": "toss", "giver": "@n1", "recipient": "@n2", "object": "@x1",
+                  "tense": "past", "span": ["Yusra", "Teodor a ladle"]}]
+        plain = dict(self.pos, text="Yusra tossed Teodor a ladle.", key="k1",
+                     instances=[{k: v for k, v in r.items() if k != "span"} for r in insts])
+        row = self.score(plain, reply(insts), fill_spans=False)
+        self.assertTrue(row["pass"], row["reasons"])
+        self.assertEqual((row["lints"], [f["kind"] for f in row["advisory"]]), ([], ["content-unaccounted"]))
+        self.assertIn("'tossed'", row["advisory"][0]["detail"])
+        g10 = [{"span": '"tossed"', "code": "G10"}]                          # the verb in quotation marks, its content dropped
+        quoted = dict(plain, text='Yusra "tossed" Teodor a ladle.', key="k2", unmapped=g10)
+        strict = self.score(quoted, reply(insts, unmapped=g10), fill_spans=False)
+        self.assertFalse(strict["pass"])
+        self.assertEqual((strict["reasons"], strict["advisory"]), (["graph lints: quotation-content-missing"], []))
+        summary = S.summarize([row, strict])
+        self.assertEqual((summary["advisory"], summary["lints"]), ({"content-unaccounted": 1}, {"quotation-content-missing": 1}))
+        report = S.render_report({"prompt": "p", "manifest": {"id": "m"}, "typecheck": "skipped",
+                                  "checks": {"examples": 0, "findings": [], "pending": {}, "shared": []},
+                                  "templates": {"transfer": {"held_out": summary}}}, [row, strict])
+        self.assertIn("- graph lints: quotation-content-missing 1", report)
+        self.assertIn("- advisory lints (reported, never a failure): content-unaccounted 1", report)
+        self.assertIn("  - r1 \"Yusra tossed Teodor a ladle.\": content-unaccounted: 'tossed'", report)
+
     def test_null_slots_are_stripped_and_counted(self):
         insts = copy.deepcopy(self.pos["instances"])
         insts[3]["aspect"] = None

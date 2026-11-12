@@ -111,6 +111,36 @@ class CoverageTests(unittest.TestCase):
         self.assertIn("- G02: 2", text)
         self.assertNotIn("- G10: 1", text)
 
+    def test_a_quotation_whose_content_is_missing_makes_a_sentence_partial(self):
+        """A silent drop of a quotation's content (its wording reported, G10, the content neither parsed nor reported) makes
+        a sentence that would be covered partial; a content word outside every span (content-unaccounted) is advisory: the
+        sentence stays covered. Both are counted apart and listed."""
+        frame = [{"t": "named-entity", "id": "n1", "name": "Yusra", "span": "Yusra"},
+                 {"t": "named-entity", "id": "n2", "name": "Teodor", "span": "Teodor"},
+                 {"t": "communication", "id": "e1", "verb": "warn", "speaker": "@n2", "addressee": "@n1", "tense": "past",
+                  "span": "Teodor warned Yusra"}]
+        parsed = [
+            {**rec("mrpc", 1, 0, '"The kiln is cold," Teodor warned Yusra.'), "sample": {"group": "mrpc.train/mine"},
+             "reply": {"model": "fake", "manifest_id": "abc", "usage": {},
+                       "response": {"id": "a", "instances": frame, "unmapped": [{"span": '"The kiln is cold,"', "code": "G10"}]}}},
+            {**rec("mrpc", 2, 0, "Teodor warned Yusra."), "sample": {"group": "mrpc.train/mine"},
+             "reply": {"model": "fake", "manifest_id": "abc", "usage": {}, "response": {"id": "b", "instances": frame}}},
+            {**rec("mrpc", 3, 0, "Teodor warned Yusra twice."), "sample": {"group": "mrpc.train/mine"},
+             "reply": {"model": "fake", "manifest_id": "abc", "usage": {}, "response": {"id": "c", "instances": frame}}},
+        ]
+        a = C.assess(parsed, CATALOG, typecheck=False)
+        self.assertEqual([x["outcome"] for x in a["rows"]], ["partial", "covered", "covered"])
+        o = a["overall"]
+        self.assertEqual((o["covered"], o["partial"], o["reported"], o["unaccounted"], o["quotation_missing"]), (2, 1, 0, 1, 1))
+        self.assertEqual(a["lints"], {"quotation-content-missing": 1, "content-unaccounted": 1})
+        self.assertEqual(a["gap_codes"], {"G10": 1})                              # the G10 span stays a report by convention
+        text = C.render_report(a, "abc", "fake")
+        self.assertIn("covered 2 (67%, 0 of them with spans reported by convention, 1 with content unaccounted), "
+                      "partial 1 (1 of them for a quotation's content missing)", text)
+        self.assertIn("| mrpc.train/mine | 3 | 2 | 1 | 0 | 0 | 0 | 67% | 3 | 2 | 0 | 0 | 1 | 1 |", text)
+        self.assertIn("- mrpc-t-1-000 [partial]: quotation-content-missing: its content neither parsed nor reported", text)
+        self.assertIn("- mrpc-t-3-000 [covered]: content-unaccounted: 'twice': outside every span", text)
+
     def test_families_are_drawn_whole_and_a_small_draw_starts_a_large_one(self):
         rows = []
         for f in range(30):                                   # families of 1-3 sentences, roles alternating

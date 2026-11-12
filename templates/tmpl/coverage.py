@@ -326,7 +326,8 @@ def _pattern(span: str) -> str:
 #: Gap codes the catalog asks the parser to REPORT rather than map — a pronunciation after a name (G03), a
 #: connective opening the text with no first clause (G05), the wording of a quotation whose content is parsed
 #: (G10): a convention each, never a gap in the catalog, so a sentence whose only unmapped spans carry one
-#: counts as covered. The named gaps (G01, G02, G04, G06 … G09) and the catch-all G00 stay gaps.
+#: counts as covered — unless the quotation's content was neither parsed nor reported (quotation-content-missing):
+#: then it is partial. The named gaps (G01, G02, G04, G06 … G09) and the catch-all G00 stay gaps.
 REPORTED = {"G03", "G05", "G10", "G13", "G14"}
 
 
@@ -362,6 +363,9 @@ def assess(parsed: list[dict], catalog: dict, typecheck: bool = False) -> dict:
                 row["outcome"] = "partial" if predications else "none"
             else:
                 row["outcome"] = "covered" if predications else "none"
+            if row["outcome"] == "covered" and any(f["kind"] in V.CONTENT_LINTS and f["kind"] not in V.ADVISORY_LINTS
+                                                   for f in row["findings"]):
+                row["outcome"], row["moved"] = "partial", True    # a quotation's content missing is a gap nobody reported
         else:
             row["outcome"] = "error"
         rows.append(row)
@@ -377,6 +381,9 @@ def assess(parsed: list[dict], catalog: dict, typecheck: bool = False) -> dict:
         return {"sentences": n, **{k: c.get(k, 0) for k in ("covered", "partial", "none", "malformed", "error")},
                 "covered_rate": round(c.get("covered", 0) / n, 3) if n else None,
                 "reported": sum(1 for x in rs if x["outcome"] == "covered" and x["reported"]),
+                "unaccounted": sum(1 for x in rs if x["outcome"] == "covered"                   # advisory: counted, never a class
+                                   and any(f["kind"] in V.ADVISORY_LINTS for f in x["findings"])),
+                "quotation_missing": sum(1 for x in rs if x.get("moved")),                     # covered but for a quotation's content
                 "median_instances": statistics.median(inst) if inst else None,
                 "lints": sum(1 for x in rs for f in x["findings"] if f["kind"] not in ("contract", "instance")),
                 "issues": sum(len(x["issues"]) for x in rs)}
@@ -406,20 +413,27 @@ def render_report(a: dict, manifest_id: str | None, model: str | None) -> str:
     add("# Coverage report")
     add("")
     add(f"{o['sentences']} sentences · manifest {manifest_id or '—'} · parser {model or '—'} · "
-        f"covered {o['covered']} ({(o['covered_rate'] or 0):.0%}, {o['reported']} of them with spans reported by convention), "
-        f"partial {o['partial']}, none {o['none']}, malformed {o['malformed']}, errors {o['error']}")
+        f"covered {o['covered']} ({(o['covered_rate'] or 0):.0%}, {o['reported']} of them with spans reported by convention, "
+        f"{o['unaccounted']} with content unaccounted), "
+        f"partial {o['partial']} ({o['quotation_missing']} of them for a quotation's content missing), "
+        f"none {o['none']}, malformed {o['malformed']}, errors {o['error']}")
     add("")
     add("covered = every span mapped or reported by convention (a pronunciation after a name G03, a connective opening the text G05, "
-        "a quotation's wording G10) and at least one predication fired; partial = predications beside spans with a gap code; "
-        "none = nothing but referents or everything unmapped; malformed = the reply broke the contract or the emitter refused it.")
+        "a quotation's wording G10), at least one predication fired and no quotation's content missing; partial = predications "
+        "beside spans with a gap code, or beside a quotation reported by its wording (G10) whose content was neither parsed nor "
+        "reported (quotation-content-missing, a silent drop); none = nothing but referents or everything unmapped; malformed = the "
+        "reply broke the contract or the emitter refused it. content-unaccounted (a content word that no span reaches and no slot "
+        "value holds) is advisory: counted apart, never a class.")
     add("")
     add("## By source")
     add("")
-    add("| source | sentences | covered | partial | none | malformed | errors | covered rate | median instances | lints | issue reports | reported |")
-    add("|---|---|---|---|---|---|---|---|---|---|---|---|")
+    add("| source | sentences | covered | partial | none | malformed | errors | covered rate | median instances | lints | issue reports | reported "
+        "| content unaccounted | quotation missing |")
+    add("|---|---|---|---|---|---|---|---|---|---|---|---|---|---|")
     for g, t in a["by_group"].items():
         add(f"| {g} | {t['sentences']} | {t['covered']} | {t['partial']} | {t['none']} | {t['malformed']} | {t['error']} | "
-            f"{(t['covered_rate'] or 0):.0%} | {t['median_instances'] if t['median_instances'] is not None else '—'} | {t['lints']} | {t['issues']} | {t['reported']} |")
+            f"{(t['covered_rate'] or 0):.0%} | {t['median_instances'] if t['median_instances'] is not None else '—'} | {t['lints']} | {t['issues']} | {t['reported']} "
+            f"| {t['unaccounted']} | {t['quotation_missing']} |")
     add("")
     add("## Gap codes on the unmapped spans")
     add("")
@@ -447,6 +461,14 @@ def render_report(a: dict, manifest_id: str | None, model: str | None) -> str:
         for k, n in a["lints"].items():
             add(f"- {k}: {n}")
         add("")
+        dropped = [(x, f) for x in a["rows"] if x["outcome"] == "covered" or x.get("moved")
+                   for f in x["findings"] if f["kind"] in V.CONTENT_LINTS]
+        if dropped:
+            add("Content lints on sentences otherwise covered (a quotation's content missing makes one partial):")
+            add("")
+            for x, f in dropped[:40]:
+                add(f"- {x['id']} [{x['outcome']}]: {f['kind']}: {f['detail'][:160]} · {x['text'][:120]}")
+            add("")
     if a["issues"]:
         add("## Parser issue reports")
         add("")

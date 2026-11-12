@@ -1,6 +1,6 @@
 # Suite report
 
-prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 cea279156666d898) · manifest 31571b39fd6b · type check: ran
+prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 cea279156666d898) · manifest cd54b35082d4 · type check: ran
 
 ## Catalog checks
 
@@ -31,6 +31,7 @@ Sentences two templates claim with the same expected atoms (composition, fine):
 - stability: pairwise agreement 1.0 (13 cases, 39 pairs), unanimous 13/13
 - type check: 39/39 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 129/129 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 39 calls · in 2,570,520 · cached 2,490,387 (97% of the input) · out 6,431 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
@@ -60,6 +61,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (31 cases, 93 pairs), unanimous 31/31
 - type check: 93/93 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 258/258 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 93 calls · in 7,425,078 · cached 7,179,830 (97% of the input) · out 12,879 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: 3
@@ -90,6 +92,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (36 cases, 108 pairs), unanimous 36/36
 - type check: 108/108 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 312/312 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 108 calls · in 9,471,855 · cached 9,075,057 (96% of the input) · out 15,961 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
@@ -127,6 +130,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (12 cases, 36 pairs), unanimous 12/12
 - type check: 36/36 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 153/153 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 36 calls · in 2,234,328 · cached 1,925,193 (86% of the input) · out 7,191 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
@@ -154,6 +158,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (16 cases, 48 pairs), unanimous 16/16
 - type check: 48/48 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 153/153 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 48 calls · in 3,636,789 · cached 3,527,631 (97% of the input) · out 7,819 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
@@ -183,6 +188,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (38 cases, 114 pairs), unanimous 38/38
 - type check: 114/114 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 480/480 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 114 calls · in 10,458,798 · cached 9,921,216 (95% of the input) · out 24,581 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
@@ -210,6 +216,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (16 cases, 48 pairs), unanimous 16/16
 - type check: 45/45 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 177/177 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 48 calls · in 2,963,847 · cached 2,622,839 (88% of the input) · out 8,983 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
@@ -239,6 +246,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (21 cases, 63 pairs), unanimous 21/21
 - type check: 63/63 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 168/168 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 63 calls · in 4,210,455 · cached 3,915,838 (93% of the input) · out 8,806 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
@@ -268,6 +276,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (16 cases, 48 pairs), unanimous 16/16
 - type check: 45/45 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 66/66 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 48 calls · in 2,712,255 · cached 2,504,983 (92% of the input) · out 4,546 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
@@ -295,6 +304,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (19 cases, 57 pairs), unanimous 19/19
 - type check: 57/57 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 81/81 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 57 calls · in 4,099,776 · cached 3,659,335 (89% of the input) · out 5,877 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
@@ -324,6 +334,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (17 cases, 51 pairs), unanimous 17/17
 - type check: 51/51 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 237/237 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 51 calls · in 3,626,178 · cached 3,341,450 (92% of the input) · out 10,772 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
@@ -349,6 +360,7 @@ Mismatches: none
 - stability: pairwise agreement 0.968 (21 cases, 63 pairs), unanimous 20/21
 - type check: 60/60 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 178/178 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 63 calls · in 4,417,026 · cached 4,160,466 (94% of the input) · out 9,762 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: 6
@@ -384,6 +396,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (13 cases, 39 pairs), unanimous 13/13
 - type check: 39/39 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 183/183 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 39 calls · in 2,765,991 · cached 2,617,092 (95% of the input) · out 8,635 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: 1
@@ -412,6 +425,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (14 cases, 42 pairs), unanimous 14/14
 - type check: 39/39 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 153/153 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 42 calls · in 2,597,568 · cached 2,333,662 (90% of the input) · out 8,344 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: 1
@@ -443,6 +457,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (15 cases, 45 pairs), unanimous 15/15
 - type check: 45/45 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 165/165 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 45 calls · in 2,824,956 · cached 2,732,723 (97% of the input) · out 8,324 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: 1
@@ -473,6 +488,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (23 cases, 69 pairs), unanimous 23/23
 - type check: 69/69 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 159/159 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 69 calls · in 5,757,144 · cached 5,561,052 (97% of the input) · out 8,631 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
@@ -501,6 +517,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (13 cases, 39 pairs), unanimous 13/13
 - type check: 39/39 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 174/174 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 39 calls · in 3,256,599 · cached 3,176,449 (98% of the input) · out 8,043 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
@@ -527,6 +544,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (6 cases, 18 pairs), unanimous 6/6
 - type check: 18/18 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 90/90 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 18 calls · in 1,366,818 · cached 1,261,058 (92% of the input) · out 3,948 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
@@ -554,6 +572,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (23 cases, 69 pairs), unanimous 23/23
 - type check: 69/69 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 237/237 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 69 calls · in 4,992,783 · cached 4,851,140 (97% of the input) · out 11,240 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
@@ -583,6 +602,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (18 cases, 54 pairs), unanimous 18/18
 - type check: 54/54 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 123/123 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 54 calls · in 3,114,924 · cached 2,949,799 (95% of the input) · out 6,712 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
@@ -611,6 +631,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (7 cases, 21 pairs), unanimous 7/7
 - type check: 21/21 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 72/72 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 21 calls · in 2,362,275 · cached 2,319,138 (98% of the input) · out 3,274 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
@@ -636,6 +657,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (8 cases, 24 pairs), unanimous 8/8
 - type check: 24/24 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 78/78 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 24 calls · in 1,670,565 · cached 1,461,647 (87% of the input) · out 3,705 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
@@ -662,6 +684,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (14 cases, 42 pairs), unanimous 14/14
 - type check: 42/42 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 123/123 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 42 calls · in 3,515,064 · cached 3,428,687 (98% of the input) · out 6,111 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
@@ -689,6 +712,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (18 cases, 54 pairs), unanimous 18/18
 - type check: 51/51 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 186/186 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 54 calls · in 3,596,760 · cached 3,256,534 (91% of the input) · out 9,067 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
@@ -717,6 +741,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (24 cases, 72 pairs), unanimous 24/24
 - type check: 72/72 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 243/243 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 72 calls · in 4,539,204 · cached 4,282,705 (94% of the input) · out 11,701 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
@@ -744,6 +769,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (30 cases, 90 pairs), unanimous 30/30
 - type check: 90/90 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 375/375 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 90 calls · in 6,052,812 · cached 5,748,277 (95% of the input) · out 16,709 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
@@ -772,6 +798,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (28 cases, 84 pairs), unanimous 28/28
 - type check: 84/84 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 309/309 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 84 calls · in 6,519,762 · cached 6,126,968 (94% of the input) · out 14,789 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
@@ -799,6 +826,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (19 cases, 57 pairs), unanimous 19/19
 - type check: 57/57 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 183/183 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 57 calls · in 4,429,476 · cached 4,104,524 (93% of the input) · out 9,148 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
@@ -825,6 +853,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (13 cases, 39 pairs), unanimous 13/13
 - type check: 39/39 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 138/138 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 39 calls · in 2,592,162 · cached 2,389,058 (92% of the input) · out 6,309 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
@@ -853,6 +882,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (31 cases, 93 pairs), unanimous 31/31
 - type check: 93/93 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 300/300 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 93 calls · in 8,756,424 · cached 8,378,713 (96% of the input) · out 14,629 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
@@ -885,6 +915,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (8 cases, 24 pairs), unanimous 8/8
 - type check: 21/21 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 75/75 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 24 calls · in 2,957,280 · cached 2,902,395 (98% of the input) · out 3,285 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
@@ -910,6 +941,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (22 cases, 66 pairs), unanimous 22/22
 - type check: 60/60 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 222/222 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 66 calls · in 4,811,223 · cached 4,458,159 (93% of the input) · out 10,296 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
@@ -939,6 +971,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (19 cases, 57 pairs), unanimous 19/19
 - type check: 57/57 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 306/306 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 57 calls · in 4,046,271 · cached 3,871,756 (96% of the input) · out 13,116 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
@@ -967,6 +1000,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (25 cases, 75 pairs), unanimous 25/25
 - type check: 75/75 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 327/327 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 75 calls · in 5,911,476 · cached 5,650,809 (96% of the input) · out 14,939 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
@@ -994,6 +1028,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (23 cases, 69 pairs), unanimous 23/23
 - type check: 69/69 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 216/216 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 69 calls · in 5,098,920 · cached 4,851,756 (95% of the input) · out 11,062 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
@@ -1021,6 +1056,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (13 cases, 39 pairs), unanimous 13/13
 - type check: 39/39 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 135/135 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 39 calls · in 2,327,028 · cached 2,192,647 (94% of the input) · out 6,098 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
@@ -1048,6 +1084,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (25 cases, 75 pairs), unanimous 25/25
 - type check: 75/75 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 210/210 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 75 calls · in 6,555,465 · cached 5,921,744 (90% of the input) · out 12,057 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: 4
@@ -1076,6 +1113,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (11 cases, 33 pairs), unanimous 11/11
 - type check: 30/30 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 99/99 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 33 calls · in 2,865,408 · cached 2,698,854 (94% of the input) · out 4,863 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
@@ -1103,6 +1141,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (22 cases, 66 pairs), unanimous 22/22
 - type check: 66/66 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 195/195 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 66 calls · in 4,760,295 · cached 4,282,697 (90% of the input) · out 9,493 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
@@ -1128,6 +1167,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (23 cases, 69 pairs), unanimous 23/23
 - type check: 69/69 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 165/165 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 69 calls · in 7,875,993 · cached 7,374,274 (94% of the input) · out 9,891 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
@@ -1147,6 +1187,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (3 cases, 9 pairs), unanimous 3/3
 - type check: 9/9 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 33/33 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 9 calls · in 795,147 · cached 776,702 (98% of the input) · out 1,546 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
@@ -1169,6 +1210,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (32 cases, 96 pairs), unanimous 32/32
 - type check: 96/96 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 366/366 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 96 calls · in 7,303,863 · cached 7,033,734 (96% of the input) · out 17,285 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: 1
@@ -1199,6 +1241,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (37 cases, 111 pairs), unanimous 37/37
 - type check: 111/111 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 438/438 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 111 calls · in 9,220,197 · cached 8,988,314 (97% of the input) · out 19,997 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
@@ -1229,6 +1272,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (24 cases, 72 pairs), unanimous 24/24
 - type check: 72/72 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 318/318 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 72 calls · in 6,205,185 · cached 5,904,184 (95% of the input) · out 15,180 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
@@ -1253,6 +1297,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (3 cases, 9 pairs), unanimous 3/3
 - type check: 9/9 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 27/27 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 9 calls · in 965,538 · cached 841,860 (87% of the input) · out 1,251 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
@@ -1276,6 +1321,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (12 cases, 36 pairs), unanimous 12/12
 - type check: 36/36 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 114/114 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 36 calls · in 2,270,190 · cached 2,087,505 (92% of the input) · out 5,605 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
@@ -1302,6 +1348,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (28 cases, 84 pairs), unanimous 28/28
 - type check: 84/84 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 333/333 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 84 calls · in 7,519,611 · cached 7,255,630 (96% of the input) · out 15,883 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
@@ -1338,6 +1385,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (12 cases, 36 pairs), unanimous 12/12
 - type check: 36/36 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 120/120 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 36 calls · in 2,231,397 · cached 2,157,570 (97% of the input) · out 5,751 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
@@ -1365,6 +1413,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (23 cases, 69 pairs), unanimous 23/23
 - type check: 69/69 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 303/303 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 69 calls · in 6,097,470 · cached 5,891,833 (97% of the input) · out 13,945 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
@@ -1394,6 +1443,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (16 cases, 48 pairs), unanimous 16/16
 - type check: 48/48 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 153/153 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 48 calls · in 3,222,435 · cached 3,122,803 (97% of the input) · out 7,691 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: 2
@@ -1422,6 +1472,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (18 cases, 54 pairs), unanimous 18/18
 - type check: 54/54 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 267/267 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 54 calls · in 4,710,600 · cached 4,599,828 (98% of the input) · out 12,152 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
@@ -1449,6 +1500,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (11 cases, 33 pairs), unanimous 11/11
 - type check: 33/33 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 141/141 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 33 calls · in 4,011,498 · cached 3,936,239 (98% of the input) · out 5,925 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
@@ -1472,6 +1524,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (4 cases, 12 pairs), unanimous 4/4
 - type check: 12/12 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 45/45 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 12 calls · in 1,316,547 · cached 1,291,850 (98% of the input) · out 2,177 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
@@ -1496,6 +1549,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (8 cases, 24 pairs), unanimous 8/8
 - type check: 24/24 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 54/54 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 24 calls · in 2,008,578 · cached 1,877,759 (93% of the input) · out 2,729 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
@@ -1521,6 +1575,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (34 cases, 102 pairs), unanimous 34/34
 - type check: 102/102 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 354/354 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 102 calls · in 8,616,531 · cached 8,150,584 (95% of the input) · out 16,938 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: 3
@@ -1552,6 +1607,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (34 cases, 102 pairs), unanimous 34/34
 - type check: 102/102 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 351/351 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 102 calls · in 8,903,172 · cached 8,621,487 (97% of the input) · out 19,072 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
@@ -1581,6 +1637,9 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (42 cases, 126 pairs), unanimous 42/42
 - type check: 126/126 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): content-unaccounted 2
+  - r1 "The audit took place on Monday.": content-unaccounted: 'took', 'place': outside every span, neither parsed nor reported
+  - r3 "The audit took place on Monday.": content-unaccounted: 'took', 'place': outside every span, neither parsed nor reported
 - spans: 447/447 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 126 calls · in 9,573,312 · cached 8,856,196 (93% of the input) · out 21,284 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
@@ -1608,6 +1667,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (37 cases, 111 pairs), unanimous 37/37
 - type check: 111/111 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 525/525 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 111 calls · in 8,021,451 · cached 7,587,159 (95% of the input) · out 24,699 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
@@ -1636,6 +1696,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (12 cases, 36 pairs), unanimous 12/12
 - type check: 36/36 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 132/132 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 36 calls · in 2,167,686 · cached 2,039,450 (94% of the input) · out 5,984 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
@@ -1660,6 +1721,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (13 cases, 39 pairs), unanimous 13/13
 - type check: 39/39 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 168/168 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 39 calls · in 4,759,575 · cached 4,542,510 (95% of the input) · out 6,980 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
@@ -1680,6 +1742,7 @@ Mismatches: none
 - stability: pairwise agreement 1.0 (18 cases, 54 pairs), unanimous 18/18
 - type check: 54/54 emitted parses type
 - graph lints: none
+- advisory lints (reported, never a failure): none
 - spans: 174/174 instances carry one · missing 0 · not verbatim 0 · malformed 0 (a missing or non-verbatim span fails the record)
 - usage: 54 calls · in 5,622,894 · cached 5,275,813 (94% of the input) · out 8,595 · thinking 0 (calls with thought tokens: 0)
 - issues reported by the parser: none
