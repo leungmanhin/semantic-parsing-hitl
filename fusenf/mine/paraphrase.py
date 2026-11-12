@@ -942,8 +942,10 @@ def summary_md(run: str, report: dict, pairs: list[dict], verdicts: dict, cands:
          "labels have a direction — when one of its directions alone makes a direction hold that the label denies. The human",
          "labels are fields: read by the boundary check and the evaluation, never by the alignment or the verdicts.", "",
          "## The pairs and their labels", "",
-         f"- aligned pairs: {al['pairs']} ({al['sentences']} sentences); without a parse of both sentences: {al['missing_parse']};"
-         f" a reply the emitter refused: {al['no_graph']}",
+         f"- aligned pairs: {al['pairs']} ({al['sentences']} sentences)",
+         f"- left out, a sentence of the pair was never parsed (it is not in the parsed sample): {al['missing_parse']}",
+         f"- left out, a parsed sentence gives no statements (nothing mapped, a reply the validator refuses, or a failed"
+         f" call): {al['no_graph']}",
          f"- the renaming check (both sentences renamed and shuffled, aligned again): {al['renaming_same']} of {al['pairs']} identical",
          f"- engine round 1: {al['jobs']} spaces, {al['queries']} queries; background {al['background']} statements"
          f" (lexicon facts + query-stage rules; the {al['closure_left_out']} kinship-closure rules left out)",

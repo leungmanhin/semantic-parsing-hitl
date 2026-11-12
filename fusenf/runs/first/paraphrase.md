@@ -1,4 +1,4 @@
-# §5.4 paraphrase alignment — run `first` — 2026-11-12 01:44
+# §5.4 paraphrase alignment — run `first` — 2026-11-12 13:57
 
 The pairs of SICK and MRPC, aligned on our side and classified by the chainer (our engine line). WHAT IS MINED is the
 TWO-WAY REWRITE: a difference between the two sentences of a pair that, used in both directions, makes a paraphrase
@@ -8,7 +8,9 @@ labels are fields: read by the boundary check and the evaluation, never by the a
 
 ## The pairs and their labels
 
-- aligned pairs: 8389 (6354 sentences); without a parse of both sentences: {'sick/mine': 2123, 'mrpc/mine': 3245, 'mrpc/evaluate': 1759}; a reply the emitter refused: {'sick/evaluate': 49, 'sick/mine': 35, 'mrpc/mine': 25, 'mrpc/evaluate': 16}
+- aligned pairs: 8389 (6354 sentences)
+- left out, a sentence of the pair was never parsed (it is not in the parsed sample): {'sick/mine': 2123, 'mrpc/mine': 3245, 'mrpc/evaluate': 1759}
+- left out, a parsed sentence gives no statements (nothing mapped, a reply the validator refuses, or a failed call): {'sick/evaluate': 49, 'sick/mine': 35, 'mrpc/mine': 25, 'mrpc/evaluate': 16}
 - the renaming check (both sentences renamed and shuffled, aligned again): 8348 of 8389 identical
 - engine round 1: 6354 spaces, 127226 queries; background 302 statements (lexicon facts + query-stage rules; the 13 kinship-closure rules left out)
 - THE YES / NO LABEL every set gives (is the pair a paraphrase: does each sentence say what the other says?): sick = both directions labelled entailing; mrpc = its own pair label. Pairs labelled yes: sick/mine 459 of 3594, mrpc/mine 322 of 494, sick/evaluate 546 of 4039, mrpc/evaluate 170 of 262
