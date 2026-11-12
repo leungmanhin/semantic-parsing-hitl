@@ -475,6 +475,51 @@ def sick() -> list[tuple[str, list[dict]]]:
     return files + [("pairs", pairs)]
 
 
+GLUEDIAG_REGISTER = {"Artificial": "constructed", "News": "news", "Wikipedia": "encyclopedic", "ACL": "academic", "Reddit": "web"}
+GLUEDIAG_TAGS = ("Lexical Semantics", "Predicate-Argument Structure", "Logic", "Knowledge")
+
+
+def gluediag() -> list[tuple[str, list[dict]]]:
+    """The GLUE diagnostic set (``diagnostic-full.tsv``: one row per pair AND direction, labelled entailment / neutral /
+    contradiction by its authors, with the phenomena the pair was built to show and its domain). One record per distinct
+    sentence (block = a hash of its text); family = the sentences joined by a pair (the authors' minimal sets share a
+    source sentence); every family → later (the set's use is not decided). pairs file: one record per pair with both
+    directions in SICK's vocabulary, the domain and the phenomenon tags; a pair the file holds twice is kept once, and a
+    second, different labelling of it is kept under ``other_labels``."""
+    with open(os.path.join(HERE, "gluediag", "diagnostic-full.tsv"), encoding="utf-8") as fh:
+        rows = list(csv.DictReader(fh, delimiter="\t", quoting=csv.QUOTE_NONE))
+    sid = lambda t: digest(clean(t), 10)
+    word = {"entailment": "entails", "neutral": "neutral", "contradiction": "contradicts"}
+    texts, domain, labels, order = {}, {}, collections.defaultdict(list), []
+    for r in rows:
+        a, b = sid(r["Premise"]), sid(r["Hypothesis"])
+        texts.setdefault(a, clean(r["Premise"]))
+        texts.setdefault(b, clean(r["Hypothesis"]))
+        domain.setdefault(a, r["Domain"])
+        domain.setdefault(b, r["Domain"])
+        if (a, b) not in labels and (b, a) not in labels:
+            order.append((a, b, r))
+        labels[(a, b)].append(r["Label"])
+    comp = components((a, b) for a, b, _ in order)
+    fam = {s: f"gluediag:{digest(comp[s], 8)}" for s in texts}
+    sents = [rec("gluediag", "all", s, 0, t, GLUEDIAG_REGISTER.get(domain[s], "web"), fam[s], "later", domain=domain[s])
+             for s, t in sorted(texts.items())]
+    files = [("all", sents)]
+    spent = spend("gluediag", files)
+    pairs = []
+    for n, (a, b, r) in enumerate(order, 1):
+        ab, back = labels[(a, b)], labels.get((b, a)) or [None]
+        p = {"pair": f"gluediag-{n}", "split": "all", "a": a, "b": b, "label": ab[0], "ab": f"A_{word[ab[0]]}_B",
+             "ba": f"B_{word[back[0]]}_A" if back[0] else None, "domain": r["Domain"],
+             "tags": {c: r[c] for c in GLUEDIAG_TAGS if (r.get(c) or "").strip()},
+             "family": fam[a], "role": "spent" if fam[a] in spent else "later"}
+        other = sorted({(x, y) for x, y in zip(ab[1:], back[1:]) if (x, y) != (ab[0], back[0])})
+        if other:
+            p["other_labels"] = [{"ab": x, "ba": y} for x, y in other]
+        pairs.append(p)
+    return files + [("pairs", pairs)]
+
+
 EXPLICIT_TERMS = ("nipple", "ni**le", "cock", "pussy", "fuck", "orgasm", "thrust", "moan", "erection", "breasts", "naked", "sex ")
 
 
@@ -494,7 +539,7 @@ def lambada() -> list[tuple[str, list[dict]]]:
     return files
 
 
-ADAPTERS = {"hotpotqa": hotpotqa, "drop": drop, "clutrr": clutrr, "babi": babi, "mrpc": mrpc, "sick": sick,
+ADAPTERS = {"hotpotqa": hotpotqa, "drop": drop, "clutrr": clutrr, "babi": babi, "mrpc": mrpc, "sick": sick, "gluediag": gluediag,
             "wikitext-103": wikitext, "openwebtext": openwebtext, "pg19": pg19, "lambada": lambada}
 
 
