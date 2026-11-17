@@ -1,0 +1,96 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "b3cc4e56f855d514792cb37fc780bf7251143a21f7268fec012a7c7d592988e3",
+  "item": {
+    "id": "s7ebfeb0275",
+    "text": "Three ex-miners waited."
+  },
+  "usage": {
+    "input": 128633,
+    "output": 151,
+    "thinking": null,
+    "total": 128784,
+    "cached": 126584,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 128633,
+    "candidatesTokenCount": 151,
+    "totalTokenCount": 128784,
+    "cachedContentTokenCount": 126584,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 128633
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 126584
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 151
+      }
+    ],
+    "serviceTier": "standard"
+  },
+  "raw_text": "{\"id\": \"s7ebfeb0275\", \"instances\": [{\"t\": \"group\", \"id\": \"g1\", \"class\": \"miner\", \"count\": 3, \"former\": true, \"span\": \"Three ex-miners\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"wait\", \"actor\": \"@g1\", \"tense\": \"past\", \"span\": \"Three ex-miners waited\"}, {\"t\": \"distribution\", \"id\": \"r1\", \"group\": \"@g1\", \"over\": [\"@e1\"], \"span\": \"Three ex-miners waited\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s7ebfeb0275",
+    "instances": [
+      {
+        "t": "group",
+        "id": "g1",
+        "class": "miner",
+        "count": 3,
+        "former": true,
+        "span": "Three ex-miners"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "wait",
+        "actor": "@g1",
+        "tense": "past",
+        "span": "Three ex-miners waited"
+      },
+      {
+        "t": "distribution",
+        "id": "r1",
+        "group": "@g1",
+        "over": [
+          "@e1"
+        ],
+        "span": "Three ex-miners waited"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "4ef8b30e39329f7a6d4830605e1edb60cbdc791e14994316b8dff068bcc90334",
+  "manifest_id": "909cdf3594b1",
+  "run": 1,
+  "case": {
+    "template": "group",
+    "section": "held_out",
+    "index": 20,
+    "category": "positive",
+    "text": "Three ex-miners waited.",
+    "key": "7ebfeb0275"
+  }
+}

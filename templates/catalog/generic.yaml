@@ -352,3 +352,7 @@ examples:
         - {t: activity, id: v1, verb: play, actor: "@q1", tense: present}
         - {t: adjunct, id: a1, event: "@v1", participant: "@x1", head: CoAgent, preposition: with}
         - {t: generic, id: r1, ranges: ["@q1"], over: ["@v1"]}
+    - category: abstain
+      note: a phrase no template takes narrows a no-generalization — the whole clause reported
+      text: "No potter works in return for bread."
+      expected: {abstain: true, gap: G00, span: "No potter works in return for bread"}

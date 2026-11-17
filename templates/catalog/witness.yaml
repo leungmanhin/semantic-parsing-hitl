@@ -254,3 +254,11 @@ examples:
         - {t: named-entity, id: n1, name: "Lamine"}
         - {t: witness, id: x1, class: kitchen, mods: [field], definite: true, tags: ["FK"]}
         - {t: activity, id: v1, verb: wash, actor: "@n1", patient: "@x1", tense: past}
+    - category: positive
+      note: another standing alone for a noun just named — a witness of that noun's class, no coreference
+      text: "A cobbler sang, and another whistled."
+      instances:
+        - {t: witness, id: x1, class: cobbler}
+        - {t: activity, id: v1, verb: sing, actor: "@x1", tense: past}
+        - {t: witness, id: x2, class: cobbler}
+        - {t: activity, id: v2, verb: whistle, actor: "@x2", tense: past}

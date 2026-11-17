@@ -1,0 +1,108 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "b3cc4e56f855d514792cb37fc780bf7251143a21f7268fec012a7c7d592988e3",
+  "item": {
+    "id": "se515d2ad00",
+    "text": "Yusra did not study the March bulletin."
+  },
+  "usage": {
+    "input": 128636,
+    "output": 202,
+    "thinking": null,
+    "total": 128838,
+    "cached": 126532,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 128636,
+    "candidatesTokenCount": 202,
+    "totalTokenCount": 128838,
+    "cachedContentTokenCount": 126532,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 128636
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 126532
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 202
+      }
+    ],
+    "serviceTier": "flex"
+  },
+  "raw_text": "{\"id\": \"se515d2ad00\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"bulletin\", \"definite\": true, \"span\": \"the March bulletin\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"study\", \"actor\": \"@n1\", \"patient\": \"@x1\", \"tense\": \"past\", \"span\": \"Yusra did not study the March bulletin\"}, {\"t\": \"negation\", \"id\": \"s1\", \"over\": [\"@e1\"], \"span\": \"did not\"}], \"unmapped\": [{\"span\": \"March\", \"code\": \"G00\", \"construction\": \"A month name modifying a noun before it.\"}], \"issues\": []}",
+  "response": {
+    "id": "se515d2ad00",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "bulletin",
+        "definite": true,
+        "span": "the March bulletin"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "study",
+        "actor": "@n1",
+        "patient": "@x1",
+        "tense": "past",
+        "span": "Yusra did not study the March bulletin"
+      },
+      {
+        "t": "negation",
+        "id": "s1",
+        "over": [
+          "@e1"
+        ],
+        "span": "did not"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "March",
+        "code": "G00",
+        "construction": "A month name modifying a noun before it."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "4ef8b30e39329f7a6d4830605e1edb60cbdc791e14994316b8dff068bcc90334",
+  "manifest_id": "909cdf3594b1",
+  "run": 3,
+  "case": {
+    "template": "negation",
+    "section": "held_out",
+    "index": 4,
+    "category": "positive",
+    "text": "Yusra did not study the March bulletin.",
+    "key": "e515d2ad00"
+  }
+}

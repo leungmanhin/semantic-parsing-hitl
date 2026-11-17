@@ -304,3 +304,7 @@ examples:
         - {t: motion, id: m1, verb: leave, mover: "@n1", tense: past}
       unmapped:
         - {span: "<!-- draft -->", code: G13}
+    - category: abstain
+      note: an exception no template takes — the rest does not follow without it; the whole clause reported
+      text: "Aside from Yusra, the millers left."
+      expected: {abstain: true, gap: G00, span: "Aside from Yusra, the millers left"}

@@ -1,0 +1,84 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "b3cc4e56f855d514792cb37fc780bf7251143a21f7268fec012a7c7d592988e3",
+  "item": {
+    "id": "s6724c90e3d",
+    "text": "Aside from Yusra, the millers left."
+  },
+  "usage": {
+    "input": 128639,
+    "output": 101,
+    "thinking": null,
+    "total": 128740,
+    "cached": 126590,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 128639,
+    "candidatesTokenCount": 101,
+    "totalTokenCount": 128740,
+    "cachedContentTokenCount": 126590,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 128639
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 126590
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 101
+      }
+    ],
+    "serviceTier": "flex"
+  },
+  "raw_text": "{\"id\": \"s6724c90e3d\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}], \"unmapped\": [{\"span\": \"Aside from Yusra, the millers left\", \"code\": \"G00\", \"construction\": \"A clause with an exception phrase that restricts the plural subject.\"}], \"issues\": []}",
+  "response": {
+    "id": "s6724c90e3d",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "Aside from Yusra, the millers left",
+        "code": "G00",
+        "construction": "A clause with an exception phrase that restricts the plural subject."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "4ef8b30e39329f7a6d4830605e1edb60cbdc791e14994316b8dff068bcc90334",
+  "manifest_id": "909cdf3594b1",
+  "run": 1,
+  "case": {
+    "template": "motion",
+    "section": "held_out",
+    "index": 22,
+    "category": "abstain",
+    "text": "Aside from Yusra, the millers left.",
+    "key": "6724c90e3d"
+  }
+}

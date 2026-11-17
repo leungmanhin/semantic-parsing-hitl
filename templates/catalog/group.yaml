@@ -21,7 +21,8 @@ trigger:
     recorded as an exact count when a numeral or "both" states it (three → 3, both → 2) and as
     the vague phrase as written otherwise (several, a few, dozens). A definite group ("the",
     "these", "those", "both") is marked definite; a possessed group (Marisol's badgers) records
-    its possessor and needs no definite mark — the possessor presupposes it.
+    its possessor and needs no definite mark — the possessor presupposes it. Former, ex- or retired
+    before the noun (three former guards) sets `former`: they were ones and are not now.
   surface_forms:
     - "the <N>s"                        # the badgers
     - "<numeral> <N>s"                  # three barrows
@@ -44,6 +45,9 @@ trigger:
       rest of the badgers: a portion, with this group as its whole; all of / each of / both of
       the badgers: this group itself, with a distribution; none of the badgers: a range
     - >-
+      a quantity word with no noun — some left, several others: no class is stated and none is
+      supplied; report the phrase, and the clause when the word is its subject
+    - >-
       a singular noun phrase — the badger, a barrow: a witness
 
 slots:
@@ -57,6 +61,7 @@ slots:
   quantity:  {type: string, required: false, doc: "the vague size phrase as written (several, a few, some, many, dozens, a lot, lots, plenty), a collective phrase included with its adjective (a group of, a large group of, a crowd of, a bunch of, a couple of, a herd of): a group of children is a group of class child, quantity a group of; absent when a numeral or both states the size"}
   hedge:     {type: string, required: false, doc: "an approximation word on the count as written (about, approximately, roughly, nearly, almost, around, some); recorded, not rendered — the count stays the number stated"}
   props:     {type: list, class: Class, restriction: Member, required: false, doc: "adjectival properties stated in the phrase; a noun before the head is a mod"}
+  former:    {type: bool, required: false, doc: "true when former, ex-, one-time or retired makes the noun something the members were and no longer are (three former guards)"}
   mods:      {type: list, class: Class, ids: [named-entity, time], required: false,
               doc: "the nouns, names and years before the head noun that narrow its class (Nouns before nouns): a lemma for a noun (a harbour pilot: harbour; a sea salt grinder: sea_salt), the id of a named-entity instance for a name (a Brackenford blanket), of a time instance for a year, a decade or a century (a 1904 almanac); never an adjective"}
   possessor: {type: filler, class: Entity, required: false, doc: "the possessor of a possessive phrase (Marisol's badgers)"}
@@ -70,6 +75,12 @@ presupposed: [definite, possessor]      # a definite or possessed group exists w
 emits:
   - atom: "(GroupOf @id {class|mod})"
     with_head: class
+    when: "not former"
+  - atom: "(Past (GroupOf @id {class|mod}))"
+    with_head: class                # former: they were ones
+    when: "former"
+  - atom: "(Not (GroupOf @id {class|mod}))"
+    when: "former"                  # and are not ones now
   - atom: "(Cardinality @id {count})"
     if_filled: count
   - atom: "(CardinalityPhrase @id \"{quantity}\")"
@@ -254,3 +265,21 @@ examples:
         - {t: group, id: g1, class: cart, mods: [grain], definite: true, tags: ["GC-4"]}
         - {t: change-of-state, id: e1, verb: break, undergoer: "@g1", tense: past}
         - {t: distribution, id: d1, group: "@g1", over: ["@e1"]}
+    - category: positive
+      note: former on a plural noun — they were ones and are not now
+      text: "Two former potters slept."
+      instances:
+        - {t: group, id: g1, class: potter, count: 2, former: true}
+        - {t: activity, id: v1, verb: sleep, actor: "@g1", tense: past}
+        - {t: distribution, id: d1, group: "@g1", over: ["@v1"]}
+    - category: positive
+      note: ex- before a plural noun is former too
+      text: "Three ex-miners waited."
+      instances:
+        - {t: group, id: g1, class: miner, count: 3, former: true}
+        - {t: activity, id: v1, verb: wait, actor: "@g1", tense: past}
+        - {t: distribution, id: d1, group: "@g1", over: ["@v1"]}
+    - category: abstain
+      note: a quantity word with no noun names no class — no group, the clause reported
+      text: "Few returned to the mill."
+      expected: {abstain: true, gap: G00, span: "Few returned to the mill"}

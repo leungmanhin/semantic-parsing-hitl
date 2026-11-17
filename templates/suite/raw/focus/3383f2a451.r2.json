@@ -1,0 +1,90 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "b3cc4e56f855d514792cb37fc780bf7251143a21f7268fec012a7c7d592988e3",
+  "item": {
+    "id": "s3383f2a451",
+    "text": "Only Ottoline sang in honour of Teodor."
+  },
+  "usage": {
+    "input": 128639,
+    "output": 142,
+    "thinking": null,
+    "total": 128781,
+    "cached": 126590,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 128639,
+    "candidatesTokenCount": 142,
+    "totalTokenCount": 128781,
+    "cachedContentTokenCount": 126590,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 128639
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 126590
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 142
+      }
+    ],
+    "serviceTier": "flex"
+  },
+  "raw_text": "{\"id\": \"s3383f2a451\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\", \"span\": \"Teodor\"}], \"unmapped\": [{\"span\": \"Only Ottoline sang in honour of Teodor\", \"code\": \"G00\", \"construction\": \"A clause with 'only' and a complex prepositional phrase ('in honour of') that narrows the claim and has no template.\"}], \"issues\": []}",
+  "response": {
+    "id": "s3383f2a451",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Ottoline",
+        "span": "Ottoline"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Teodor",
+        "span": "Teodor"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "Only Ottoline sang in honour of Teodor",
+        "code": "G00",
+        "construction": "A clause with 'only' and a complex prepositional phrase ('in honour of') that narrows the claim and has no template."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "4ef8b30e39329f7a6d4830605e1edb60cbdc791e14994316b8dff068bcc90334",
+  "manifest_id": "909cdf3594b1",
+  "run": 2,
+  "case": {
+    "template": "focus",
+    "section": "held_out",
+    "index": 24,
+    "category": "abstain",
+    "text": "Only Ottoline sang in honour of Teodor.",
+    "key": "3383f2a451"
+  }
+}

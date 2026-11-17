@@ -1,0 +1,70 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "b3cc4e56f855d514792cb37fc780bf7251143a21f7268fec012a7c7d592988e3",
+  "item": {
+    "id": "s58b09f1418",
+    "text": "No potter works in return for bread."
+  },
+  "usage": {
+    "input": 128637,
+    "output": 79,
+    "thinking": null,
+    "total": 128716,
+    "cached": null,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 128637,
+    "candidatesTokenCount": 79,
+    "totalTokenCount": 128716,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 128637
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 79
+      }
+    ],
+    "serviceTier": "flex"
+  },
+  "raw_text": "{\"id\": \"s58b09f1418\", \"instances\": [], \"unmapped\": [{\"span\": \"No potter works in return for bread\", \"code\": \"G00\", \"construction\": \"A negative generalization narrowed by a multi-word prepositional phrase ('in return for') that no template covers.\"}], \"issues\": []}",
+  "response": {
+    "id": "s58b09f1418",
+    "instances": [],
+    "unmapped": [
+      {
+        "span": "No potter works in return for bread",
+        "code": "G00",
+        "construction": "A negative generalization narrowed by a multi-word prepositional phrase ('in return for') that no template covers."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "4ef8b30e39329f7a6d4830605e1edb60cbdc791e14994316b8dff068bcc90334",
+  "manifest_id": "909cdf3594b1",
+  "run": 2,
+  "case": {
+    "template": "generic",
+    "section": "held_out",
+    "index": 28,
+    "category": "abstain",
+    "text": "No potter works in return for bread.",
+    "key": "58b09f1418"
+  }
+}

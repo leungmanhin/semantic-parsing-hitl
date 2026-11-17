@@ -1061,6 +1061,18 @@ class EmitTests(unittest.TestCase):
         self.assertIn("(BeforeBy sk_time_1 sk_now_1 1 week)", w)
         self.assertIn("(Weekday sk_time_1 friday)", w)
 
+    def test_former_on_a_group(self):
+        """Former on a plural noun: the group's class in the past (its head beside) and not now (the noun's own
+        class only), as for a witness; a group without it emits what it did."""
+        def atoms(insts):
+            return atoms_of(E.emit({"id": "f", "instances": insts}, CATALOG)["statements"])
+        hp = "(Narrow pilot (Mod harbour))"
+        f = atoms([{"t": "group", "id": "g1", "class": "pilot", "mods": ["harbour"], "count": 3, "former": True}])
+        self.assertEqual(sorted(f), sorted([f"(Past (GroupOf sk_group_1 {hp}))", "(Past (GroupOf sk_group_1 pilot))",
+                                            f"(Not (GroupOf sk_group_1 {hp}))", "(Cardinality sk_group_1 3)"]))
+        g = atoms([{"t": "group", "id": "g1", "class": "pilot", "mods": ["harbour"], "count": 3}])
+        self.assertEqual(sorted(g), sorted([f"(GroupOf sk_group_1 {hp})", "(GroupOf sk_group_1 pilot)", "(Cardinality sk_group_1 3)"]))
+
     def test_a_direction_from_a_landmark(self):
         """DirectionFrom takes the compass word as its third argument; the word is refused on any
         other head."""

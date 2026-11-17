@@ -295,3 +295,7 @@ examples:
         - {t: named-entity, id: n1, name: "Bram"}
         - {t: copular, id: c1, subject: "@n1", predicate: survivor, form: noun, tense: present}
         - {t: focus, id: f1, head: Only, filler: "@n1", event: "@c1", surface: sole}
+    - category: abstain
+      note: a phrase no template takes narrows an only-claim — the whole clause reported, never "only Ottoline sang"
+      text: "Only Ottoline sang in honour of Teodor."
+      expected: {abstain: true, gap: G00, span: "Only Ottoline sang in honour of Teodor"}

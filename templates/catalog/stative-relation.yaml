@@ -56,8 +56,9 @@ trigger:
     early) is parsed with its own template and listed in `complement`, sealed. Whether the
     relation holds the other way round (married, similar, cousin) is not yours to judge: write
     the subject and the object as the sentence gives them, and never a second instance for the
-    reverse. An indefinite relatum (needs a barrow) is a witness; a bare plural or mass one
-    (needs water, covered with snow) a bare lemma.
+    reverse. An indefinite relatum (borders a marsh, is married to a weaver) is a witness; a bare plural
+    or mass one (needs water, covered with snow) is a bare lemma, and so is a thing needed, required or
+    deserved that is not a particular one (needs a barrow: barrow).
   verbs: [need, require, deserve, merit, depend, rely, resemble, look_like, differ, match, equal,
           mean, represent, stand_for, suit, fit, concern, involve, apply, relate, face, border,
           adjoin, surround, overlook, cover, support, connect, know]
@@ -130,7 +131,7 @@ slots:
   subject:     {type: filler, class: Entity, role: Bearer, required: false,
                 doc: "the bearer of the state: the subject; the by- or with-phrase of a passive or participial form (is surrounded by a hedge: the hedge); the first conjunct of a coordinated subject (Marisol and Odile are cousins: Marisol); a referent id, or a bare lemma for a class-level one (covered with snow); absent in an agentless passive"}
   object:      {type: filler, class: Entity, role: Theme, required: false,
-                doc: "the other relatum: the object, the prepositional object (depends on the pump, married to Odile, a cousin of Odile), the possessor of a relational noun (Odile's cousin: Odile), the surface subject of a passive or participial form, or the second conjunct of a coordinated subject; a referent id, or a bare lemma for a class-level one (needs water); absent when the relatum is a clause"}
+                doc: "the other relatum: the object, the prepositional object (depends on the pump, married to Odile, a cousin of Odile), the possessor of a relational noun (Odile's cousin: Odile), the surface subject of a passive or participial form, or the second conjunct of a coordinated subject; a referent id, or a bare lemma for a class-level one (needs water) and for a thing needed, required or deserved that is not a particular one (needs a barrow); absent when the relatum is a clause"}
   complement:  {type: refs, class: Proposition, required: false,
                 doc: "the other relatum as an action or a clause: the ids of the instances that state it (deserves to rest: the activity rest with the subject as its actor; involves selling the granary: the transfer); never together with object; the referents it mentions are not listed"}
   preposition: {type: string, required: false,
@@ -187,8 +188,10 @@ notes:
     "Lamine is a cousin of Yusra" and "Lamine is Yusra's cousin" are one state with relation
     cousin — the class of the kinship state here, of a person in "a cousin arrived".
   - >-
-    An indefinite relatum is a witness, asserted at the top level: "Teodor needs a ladder"
-    says there is a ladder he needs, as the catalog reads every indefinite.
+    An indefinite relatum is a witness, asserted at the top level, as the catalog reads an indefinite
+    (the meadow borders a marsh: there is a marsh). A thing needed, required or deserved is the
+    exception: the sentence does not say there is one, so it is a bare lemma, like a thing wanted
+    (Identifiers and fillers).
 
 depends_on: [named-entity, witness]
 composes_with: [negation, modal, norm, generic, time, coref]
@@ -243,18 +246,17 @@ examples:
         - {t: named-entity, id: n2, name: "Lamine"}
         - {t: stative-relation, id: p1, relation: know, subject: "@n1", object: "@n2", tense: present}
     - category: positive
-      note: an indefinite relatum — a witness at the top level
+      note: a thing needed is no particular one — a bare lemma, no witness
       text: "Teodor needs a ladder."
       instances:
         - {t: named-entity, id: n1, name: "Teodor"}
-        - {t: witness, id: x1, class: ladder}
-        - {t: stative-relation, id: p1, relation: need, subject: "@n1", object: "@x1", tense: present}
+        - {t: stative-relation, id: p1, relation: need, subject: "@n1", object: ladder, tense: present}
     - category: positive
+      note: a thing deserved is no particular one either
       text: "Lamine deserves a prize."
       instances:
         - {t: named-entity, id: n1, name: "Lamine"}
-        - {t: witness, id: x1, class: prize}
-        - {t: stative-relation, id: p1, relation: deserve, subject: "@n1", object: "@x1", tense: present}
+        - {t: stative-relation, id: p1, relation: deserve, subject: "@n1", object: prize, tense: present}
     - category: positive
       note: a clause as the relatum — sealed as the state's Theme
       text: "Ottoline deserves to rest."
@@ -363,8 +365,7 @@ examples:
       text: "Yusra needed a ladder yesterday."
       instances:
         - {t: named-entity, id: n1, name: "Yusra"}
-        - {t: witness, id: x1, class: ladder}
-        - {t: stative-relation, id: p1, relation: need, subject: "@n1", object: "@x1", tense: past}
+        - {t: stative-relation, id: p1, relation: need, subject: "@n1", object: ladder, tense: past}
         - {t: time, id: t1, event: "@p1", deictic: yesterday, anchor: "@now"}
     - category: positive
       note: a class subject — the generic builds the rule, the object a bare lemma

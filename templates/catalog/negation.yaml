@@ -72,3 +72,17 @@ examples:
         - {t: activity, id: v1, verb: meet, actor: "@n1", patient: "@x1", tense: past}
         - {t: activity, id: v2, verb: sing, actor: "@x1", tense: past}
         - {t: negation, id: s1, over: ["@v1", "@v2"]}
+    - category: abstain
+      note: a phrase no template takes narrows the negated claim — the whole clause reported, never "did not mend the ladder"
+      text: "Teodor did not mend the ladder in exchange for a loaf."
+      expected: {abstain: true, gap: G00, span: "did not mend the ladder in exchange for a loaf"}
+    - category: positive
+      note: a word inside a definite thing's phrase does not narrow the negated claim — the clause kept, the word reported
+      text: "Yusra did not study the March bulletin."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, class: bulletin, definite: true}
+        - {t: activity, id: v1, verb: study, actor: "@n1", patient: "@x1", tense: past}
+        - {t: negation, id: s1, over: ["@v1"]}
+      unmapped:
+        - {span: "March", code: G00}

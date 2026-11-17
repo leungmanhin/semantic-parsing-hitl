@@ -4,17 +4,17 @@
   "effort": "low",
   "temperature": null,
   "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
-  "prompt_sha256": "00c1d3a38815e1ae95a32f96fad88a4afabbeb50f662bbb7d4a0cb6e9bbd0c60",
+  "prompt_sha256": "b3cc4e56f855d514792cb37fc780bf7251143a21f7268fec012a7c7d592988e3",
   "item": {
     "id": "sc8888b0337",
     "text": "Yusra needed a ladder yesterday."
   },
   "usage": {
-    "input": 76412,
-    "output": 182,
+    "input": 128635,
+    "output": 155,
     "thinking": null,
-    "total": 76594,
-    "cached": 74363,
+    "total": 128790,
+    "cached": 126586,
     "finish": "STOP",
     "thought_parts": 0
   },
@@ -25,30 +25,31 @@
     }
   },
   "raw_usage": {
-    "promptTokenCount": 76412,
-    "candidatesTokenCount": 182,
-    "totalTokenCount": 76594,
-    "cachedContentTokenCount": 74363,
+    "promptTokenCount": 128635,
+    "candidatesTokenCount": 155,
+    "totalTokenCount": 128790,
+    "cachedContentTokenCount": 126586,
     "promptTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 76412
+        "tokenCount": 128635
       }
     ],
     "cacheTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 74363
+        "tokenCount": 126586
       }
     ],
     "candidatesTokensDetails": [
       {
         "modality": "TEXT",
-        "tokenCount": 182
+        "tokenCount": 155
       }
-    ]
+    ],
+    "serviceTier": "standard"
   },
-  "raw_text": "{\"id\": \"sc8888b0337\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"ladder\", \"span\": \"a ladder\"}, {\"t\": \"stative-relation\", \"id\": \"p1\", \"relation\": \"need\", \"subject\": \"@n1\", \"object\": \"@x1\", \"tense\": \"past\", \"span\": \"Yusra needed a ladder\"}, {\"t\": \"time\", \"id\": \"t1\", \"event\": \"@p1\", \"deictic\": \"yesterday\", \"anchor\": \"@now\", \"span\": \"yesterday\"}], \"unmapped\": [], \"issues\": []}",
+  "raw_text": "{\"id\": \"sc8888b0337\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"stative-relation\", \"id\": \"p1\", \"relation\": \"need\", \"subject\": \"@n1\", \"object\": \"ladder\", \"tense\": \"past\", \"span\": \"Yusra needed a ladder\"}, {\"t\": \"time\", \"id\": \"t1\", \"event\": \"@p1\", \"deictic\": \"yesterday\", \"anchor\": \"@now\", \"span\": \"yesterday\"}], \"unmapped\": [], \"issues\": []}",
   "response": {
     "id": "sc8888b0337",
     "instances": [
@@ -59,17 +60,11 @@
         "span": "Yusra"
       },
       {
-        "t": "witness",
-        "id": "x1",
-        "class": "ladder",
-        "span": "a ladder"
-      },
-      {
         "t": "stative-relation",
         "id": "p1",
         "relation": "need",
         "subject": "@n1",
-        "object": "@x1",
+        "object": "ladder",
         "tense": "past",
         "span": "Yusra needed a ladder"
       },
@@ -85,12 +80,13 @@
     "unmapped": [],
     "issues": []
   },
-  "prompt_body_sha256": "8f768497029588efd8f71073a54c11b506fc67161e0952eb46812d3415cd0956",
+  "prompt_body_sha256": "4ef8b30e39329f7a6d4830605e1edb60cbdc791e14994316b8dff068bcc90334",
+  "manifest_id": "909cdf3594b1",
   "run": 2,
   "case": {
     "template": "stative-relation",
     "section": "held_out",
-    "index": 16,
+    "index": 18,
     "category": "positive",
     "text": "Yusra needed a ladder yesterday.",
     "key": "c8888b0337"

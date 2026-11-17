@@ -329,3 +329,28 @@ examples:
         - {t: named-entity, id: n1, name: "Lamine"}
         - {t: activity, id: v1, verb: wait, tense: present, aspect: progressive}
         - {t: oblique, id: a1, event: "@v1", head: For, object: "@n1"}
+    - category: positive
+      note: a thing considered is not said to exist — a bare lemma, no witness
+      text: "Lamine considered a strike."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: activity, id: v1, verb: consider, actor: "@n1", patient: strike, tense: past}
+    - category: positive
+      note: a thing sought is not said to exist
+      text: "Ottoline sought a loan."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: activity, id: v1, verb: seek, actor: "@n1", patient: loan, tense: past}
+    - category: positive
+      note: a thing avoided is not said to exist
+      text: "Teodor avoided a fine."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: activity, id: v1, verb: avoid, actor: "@n1", patient: fine, tense: past}
+    - category: positive
+      note: a particular thing considered stays an instance
+      text: "Yusra considered the offer."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, class: offer, definite: true}
+        - {t: activity, id: v1, verb: consider, actor: "@n1", patient: "@x1", tense: past}

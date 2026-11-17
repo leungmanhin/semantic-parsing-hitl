@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 308be40321f513ff · 64 templates
+catalog sha256 e53f4d08b9dff8d7 · 64 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -79,6 +79,19 @@ fences.
   non-specific or class-level filler ("pays tax", "cooked dinner" gives `"Patient": "dinner"`).
   Reserve the bare lemma for a non-specific filler; a specific definite or indefinite thing is
   always an instance.
+- A THING NOT SAID TO EXIST is not a particular one, even after a or an. What somebody wants,
+  needs or deserves, seeks or asks for, plans, proposes or considers, expects or predicts,
+  prevents or avoids — wants a barrow, needs a permit, is seeking a pilot, asked for a receipt,
+  considered a truce, expects a flood, prevented a fire — is a bare lemma (barrow, permit,
+  pilot, truce, flood): never a witness or a group, for the sentence does not say that there is
+  one. A particular one stays an instance (wants the barrow, considered Marisol's plan, is
+  seeking her brother).
+- A QUANTITY WORD WITH NO NOUN — some left, many stayed, several others, most agreed, each was
+  mended, both slept — names no class of its own. Never supply one (person, thing, other): no
+  group, portion or range is introduced for it. Report the phrase as unmapped (G00), and the
+  whole clause when the word is its subject. Another or the other standing alone for a noun the
+  text has just named (a kiln cracked, and another held) is a witness of that noun's class, as
+  before a noun; one another and each other are the reciprocal template.
 - ONE instance per MENTION, and the identity stated. The first mention of a person, thing, group
   or event gets its instance as usual. Every LATER mention of the same referent — a pronoun or a
   demonstrative (a `mention` instance), a repeated name (a second `named-entity` instance), an
@@ -235,7 +248,8 @@ fences.
   report those time words as unmapped (G00). A BARE-LEMMA FILLER (a non-specific noun in a role
   slot: sold harbour skiffs → skiff) has no place for the words before it unless its template
   names one (an oblique's or a postmodifier's `object_mods` / `object_props`): write the bare
-  lemma and report the words before it as unmapped (G00).
+  lemma and report the words before it as unmapped (G00) — under a negation, a no or few
+  generalization or an only, the whole clause instead (Unmapped spans).
 - A NAME before a noun (a Brackenford blanket) is its named-entity instance's id in `mods`; a
   YEAR, a DECADE or a CENTURY before a noun (a 1904 almanac, a 1920s radio, an 18th-century
   clock) is a time instance with no event, its id in `mods`. A year or a numbered week before a
@@ -354,9 +368,23 @@ part, keep the instances the templates license and report just that part: an add
 bound, duration, place, manner, amount or tag leaves the event itself true ("was demolished
 before 1960" still says it was demolished). When the rest would NOT follow without the unmapped
 part, leave the whole claim out and report the whole clause: a negated condition ("unless it
-rains, Odile sings"), an unencodable quantity ("too much salt"). An evaluative adverb
-("unfortunately, Marisol left") leaves the clause entailed: keep the clause and report the
-adverb (G02).
+rains, Odile sings"), an unencodable quantity ("too much salt"), an exception no template takes
+("apart from Joost, the weavers left"). An evaluative adverb ("unfortunately, Marisol left")
+leaves the clause entailed: keep the clause and report the adverb (G02).
+
+UNDER A NEGATION, A NO OR FEW GENERALIZATION OR AN ONLY the test turns round: leaving out a part
+that narrows the claim makes the claim STRONGER, and the sentence does not say the stronger
+thing. "Pieter did not vote on behalf of Marisol" does not say that he did not vote; "no weaver
+sells woollen blankets" does not say that no weaver sells blankets; "only Henrike used too much
+salt" does not say that only Henrike used salt. So does a part that narrows the class an every,
+all or most generalization ranges over ("every mill other than Joost's is closed" does not say
+that every mill is closed). When such a narrowing part cannot be mapped — a phrase on the event
+(a place, a time, a manner, an amount, a phrase with a preposition no template takes) or a word
+or a clause on a noun that is not a particular thing (woollen blankets → blanket) — report the
+WHOLE clause, never the part alone. What does not narrow the claim is still reported by itself:
+an evaluative adverb (sadly), an added example (such as …), a word inside the phrase of a
+particular thing, a definite, possessed or named one ("did not read the June edition" keeps the
+clause and reports June).
 
 The same rule holds INSIDE a sealed clause (a reported or believed clause, a complement): keep
 in it what the WHOLE SENTENCE still says without the unmapped part, and report that part
@@ -443,7 +471,8 @@ introducing a group of individuals of that class. The group gets one witness sym
 recorded as an exact count when a numeral or "both" states it (three → 3, both → 2) and as the
 vague phrase as written otherwise (several, a few, dozens). A definite group ("the", "these",
 "those", "both") is marked definite; a possessed group (Marisol's badgers) records its possessor
-and needs no definite mark — the possessor presupposes it.
+and needs no definite mark — the possessor presupposes it. Former, ex- or retired before the
+noun (three former guards) sets `former`: they were ones and are not now.
 
 Forms:
 - the <N>s
@@ -463,6 +492,8 @@ Not this template:
 - a quantified portion of a definite group — two of the badgers, most of the badgers, the rest
   of the badgers: a portion, with this group as its whole; all of / each of / both of the
   badgers: this group itself, with a distribution; none of the badgers: a range
+- a quantity word with no noun — some left, several others: no class is stated and none is
+  supplied; report the phrase, and the clause when the word is its subject
 - a singular noun phrase — the badger, a barrow: a witness
 
 Slots:
@@ -491,6 +522,8 @@ Slots:
   stays the number stated.
 - `props` (optional; a list of lemmas): adjectival properties stated in the phrase; a noun
   before the head is a mod.
+- `former` (optional; true / false): true when former, ex-, one-time or retired makes the noun
+  something the members were and no longer are (three former guards).
 - `mods` (optional; a list of lemmas, or "@id" of a named-entity or a time instance): the nouns,
   names and years before the head noun that narrow its class (Nouns before nouns): a lemma for a
   noun (a harbour pilot: harbour; a sea salt grinder: sea_salt), the id of a named-entity
@@ -4352,8 +4385,9 @@ is an action or a clause (deserves to rest, involves selling the granary, means 
 is parsed with its own template and listed in `complement`, sealed. Whether the relation holds
 the other way round (married, similar, cousin) is not yours to judge: write the subject and the
 object as the sentence gives them, and never a second instance for the reverse. An indefinite
-relatum (needs a barrow) is a witness; a bare plural or mass one (needs water, covered with
-snow) a bare lemma.
+relatum (borders a marsh, is married to a weaver) is a witness; a bare plural or mass one (needs
+water, covered with snow) is a bare lemma, and so is a thing needed, required or deserved that
+is not a particular one (needs a barrow: barrow).
 
 Verbs that anchor the class: need, require, deserve, merit, depend, rely, resemble, look_like,
 differ, match, equal, mean, represent, stand_for, suit, fit, concern, involve, apply, relate,
@@ -4423,7 +4457,8 @@ Slots:
   the other relatum: the object, the prepositional object (depends on the pump, married to
   Odile, a cousin of Odile), the possessor of a relational noun (Odile's cousin: Odile), the
   surface subject of a passive or participial form, or the second conjunct of a coordinated
-  subject; a referent id, or a bare lemma for a class-level one (needs water); absent when the
+  subject; a referent id, or a bare lemma for a class-level one (needs water) and for a thing
+  needed, required or deserved that is not a particular one (needs a barrow); absent when the
   relatum is a clause.
 - `complement` (optional; a list of "@id" of the instances that state the clause): the other
   relatum as an action or a clause: the ids of the instances that state it (deserves to rest:
