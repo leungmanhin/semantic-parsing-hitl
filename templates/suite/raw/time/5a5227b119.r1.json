@@ -1,0 +1,92 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "07e9833e38ad510a63353d5cab50465d751c1e03906132a5b0d88d4c6938bb86",
+  "item": {
+    "id": "s5a5227b119",
+    "text": "Ottoline taught in the past."
+  },
+  "usage": {
+    "input": 129446,
+    "output": 140,
+    "thinking": null,
+    "total": 129586,
+    "cached": 127397,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 129446,
+    "candidatesTokenCount": 140,
+    "totalTokenCount": 129586,
+    "cachedContentTokenCount": 127397,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 129446
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 127397
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 140
+      }
+    ],
+    "serviceTier": "standard"
+  },
+  "raw_text": "{\"id\": \"s5a5227b119\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"teach\", \"actor\": \"@n1\", \"tense\": \"past\", \"span\": \"Ottoline taught\"}, {\"t\": \"time\", \"id\": \"t1\", \"event\": \"@e1\", \"name\": \"in_the_past\", \"span\": \"in the past\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s5a5227b119",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Ottoline",
+        "span": "Ottoline"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "teach",
+        "actor": "@n1",
+        "tense": "past",
+        "span": "Ottoline taught"
+      },
+      {
+        "t": "time",
+        "id": "t1",
+        "event": "@e1",
+        "name": "in_the_past",
+        "span": "in the past"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "100c14a6d5d3bf3453234e5a4209ce64d75932dfc49e897a36bd288f41c9d7a8",
+  "manifest_id": "38fbd19e1dce",
+  "run": 1,
+  "case": {
+    "template": "time",
+    "section": "held_out",
+    "index": 44,
+    "category": "positive",
+    "text": "Ottoline taught in the past.",
+    "key": "5a5227b119"
+  }
+}

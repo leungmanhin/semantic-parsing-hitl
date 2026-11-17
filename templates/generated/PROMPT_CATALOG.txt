@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 e53f4d08b9dff8d7 · 64 templates
+catalog sha256 ee82f4d78db00543 · 64 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -187,12 +187,17 @@ fences.
   and with none the actor is absent.
 - A fixed multi-word idiom is one surface symbol keeping every word (`spill_the_beans`), used
   only when the literal reading is incoherent for these participants; take the literal reading
-  whenever it is available.
+  whenever it is available. The symbol is the verb of the activity template, the subject its
+  actor — or of the template whose slot takes what the phrase holds (made it to the hut: the
+  motion template, make_it with its goal) — and a prepositional phrase after the idiom is an
+  oblique on that event (cast doubt on the plan: cast_doubt, On the plan).
 - A LIGHT VERB with an event noun — took a nap, take a look, had a swim, made a face — is such a
   fixed phrase: one surface symbol keeping its words (`take_a_nap`, `make_a_face`), the activity
   template with the subject as its actor; never the noun's own verb in its place (took a nap is
   not napped: whether the two are one event is for the normalization downstream). An adjective
-  on the noun (took a short nap) is reported as unmapped (G02).
+  on the noun (took a short nap) is reported as unmapped (G02). With a STATE noun and its own
+  prepositional object — bears responsibility for the flood, has access to the vault — the
+  phrase is one relation of the stative-relation template.
 - Names: you give the surface string; the program derives the symbol.
 
 ## Relative clauses and participles
@@ -245,16 +250,18 @@ fences.
   salt grinder: mods [sea_salt]); coordinated ones are one each (a wool and silk merchant: mods
   [wool, silk]). A month, a date, a weekday or a relative time before a noun (the June edition,
   last weekend's takings) is NOT a mod — only a year, a decade or a century narrows a class:
-  report those time words as unmapped (G00). A BARE-LEMMA FILLER (a non-specific noun in a role
-  slot: sold harbour skiffs → skiff) has no place for the words before it unless its template
-  names one (an oblique's or a postmodifier's `object_mods` / `object_props`): write the bare
-  lemma and report the words before it as unmapped (G00) — under a negation, a no or few
-  generalization or an only, the whole clause instead (Unmapped spans).
+  report those time words as unmapped (G00), unless the noun names an event (below). A
+  BARE-LEMMA FILLER (a non-specific noun in a role slot: sold harbour skiffs → skiff) has no
+  place for the words before it unless its template names one (an oblique's or a postmodifier's
+  `object_mods` / `object_props`): write the bare lemma and report the words before it as
+  unmapped (G00) — under a negation, a no or few generalization or an only, the whole clause
+  instead (Unmapped spans).
 - A NAME before a noun (a Brackenford blanket) is its named-entity instance's id in `mods`; a
   YEAR, a DECADE or a CENTURY before a noun (a 1904 almanac, a 1920s radio, an 18th-century
-  clock) is a time instance with no event, its id in `mods`. A year or a numbered week before a
-  noun that names an event or a period (the 1904 flood, a week 5 match) is that event's time
-  instead: the noun eventive, the time instance on it.
+  clock) is a time instance with no event, its id in `mods`. A year, a date, a month, a weekday
+  or a numbered week before a noun that names an event or a period (the 1904 flood, the 9 May
+  hearing, the Friday rehearsal, a week 5 match) is that event's time instead: the noun
+  eventive, the time instance on it.
 - Not a mod: an adjective, also a hyphenated or a participle one (a sky-blue blanket, a
   self-taught weaver, a carved bowl): `props`; a noun naming the whole the head is a part of
   (the granary roof): a part-whole; a possessive (Marisol's blanket): the possessor; an
@@ -514,9 +521,10 @@ Slots:
 - `count_max` (optional; a number): an upper bound on the size: up to / at most / as many as /
   fewer than / under 60 → 60; the high end of a range (300–400 → 400).
 - `quantity` (optional; a string): the vague size phrase as written (several, a few, some, many,
-  dozens, a lot, lots, plenty), a collective phrase included with its adjective (a group of, a
-  large group of, a crowd of, a bunch of, a couple of, a herd of): a group of children is a
-  group of class child, quantity a group of; absent when a numeral or both states the size.
+  dozens, a lot, lots, plenty, a number, a large number: the adjective on number kept), a
+  collective phrase included with its adjective (a group of, a large group of, a crowd of, a
+  bunch of, a couple of, a herd of): a group of children is a group of class child, quantity a
+  group of; absent when a numeral or both states the size.
 - `hedge` (optional; a string): an approximation word on the count as written (about,
   approximately, roughly, nearly, almost, around, some); recorded, not rendered — the count
   stays the number stated.
@@ -649,9 +657,9 @@ Slots:
 - `class` (optional; a lemma): the class an appositive, a title phrase or an of-phrase naming
   the place itself states for the name (Odile, a glazier; the village of Fennhollow: village; a
   retired weaver: weaver, with `former`); the noun of a numbered item (page 34: page); a
-  predicative is a N is a copular instance, not this slot; a relational noun with a possessor
-  (her son Joost, Anouk's husband Ludo) is a relation, not a class: the stative-relation
-  template.
+  predicative is a N is a copular instance, not this slot; a relational noun with a possessor or
+  an of-phrase (her son Joost, Anouk's husband Ludo; Joost, a cousin of Odile) is a relation,
+  not a class: the stative-relation template.
 - `aliases` (optional; a list of strings): other names of the same individual, each as written:
   known as, also known as, better known as, called, nicknamed (Femke, known as Nell: Nell); a
   birth or a maiden name (born X, née X) and the name in another language or script, without the
@@ -1073,22 +1081,23 @@ a period (session, inspection, war, trip, storm) is a witness like any other; wh
 puts the noun itself in time (the session is at noon, the inspection was on Monday) or places
 another event relative to it (left after the inspection, slept during the session), mark it
 eventive so that the time or the relation can attach to it. A MASS noun with a quantity phrase —
-a lot of water, plenty of hail, lots of sugar, a little salt — or with a container or measure
-word — a cup of tea, a bag of flour — is a witness of the stuff (the quantity of it the text
-introduces): the vague phrase is recorded in `quantity`; a container or measure word is a
-measure instance on the witness. A noun, a name or a year before the head noun (a harbour pilot,
-a Brackenford blanket, a 1904 almanac) narrows the class: the head is the class and the words
-before it are its `mods`. Former, ex- or retired before the noun (a former guard) sets `former`:
-it was one and is not now. Another or the other before the noun (another badger) is a witness of
-its own, never coreferent with the earlier one; the word itself is not reported. An INDEFINITE
-PRONOUN introduces a witness like an indefinite noun phrase: someone, somebody, anyone, anybody
-are a witness of class person; something, anything a witness of class thing (somebody is
-knitting: a witness person, indefinite). Nearby before a noun (a nearby farm) is an ordinary
-adjective of the noun, recorded with the others. An EPISTEMIC or a distancing adjective before
-the noun — alleged, suspected, probable, presumed, so-called, would-be (an alleged smuggler,
-three probable cases) — is not a property: the noun does not hold of the referent on its own,
-and there is no slot yet; report the noun phrase as unmapped (G00), and the whole clause when
-its claim depends on the noun.
+a lot of water, plenty of hail, lots of sugar, a little salt, a great deal of grain, a large
+amount of salt (the adjective on amount or deal kept) — or with a container or measure word — a
+cup of tea, a bag of flour — is a witness of the stuff (the quantity of it the text introduces):
+the vague phrase is recorded in `quantity`; a container or measure word is a measure instance on
+the witness. A noun, a name or a year before the head noun (a harbour pilot, a Brackenford
+blanket, a 1904 almanac) narrows the class: the head is the class and the words before it are
+its `mods`. Former, ex- or retired before the noun (a former guard) sets `former`: it was one
+and is not now. Another or the other before the noun (another badger) is a witness of its own,
+never coreferent with the earlier one; the word itself is not reported. An INDEFINITE PRONOUN
+introduces a witness like an indefinite noun phrase: someone, somebody, anyone, anybody are a
+witness of class person; something, anything a witness of class thing (somebody is knitting: a
+witness person, indefinite). Nearby before a noun (a nearby farm) is an ordinary adjective of
+the noun, recorded with the others. An EPISTEMIC or a distancing adjective before the noun —
+alleged, suspected, probable, presumed, so-called, would-be (an alleged smuggler, three probable
+cases) — is not a property: the noun does not hold of the referent on its own, and there is no
+slot yet; report the noun phrase as unmapped (G00), and the whole clause when its claim depends
+on the noun.
 
 Forms:
 - a <N>
@@ -1136,8 +1145,9 @@ Slots:
 - `tags` (optional; a list of strings): a label or a code written right after the noun phrase —
   a commit hash, an id, a model or registry code, an abbreviation of the phrase in brackets —
   each as written, without the brackets around it (Tags after a name); never decoded.
-- `quantity` (optional; a string): a vague amount phrase on a mass noun, as written (a lot,
-  lots, plenty, a little, a bit, much); absent otherwise.
+- `quantity` (optional; a string): a vague amount phrase on a mass noun, as written, without of
+  (a lot, lots, plenty, a little, a bit, much, a great deal, a large amount: the adjective on
+  amount or deal kept); absent otherwise.
 - `eventive` (optional; true / false): true when the noun names an event or a period and the
   clause puts the noun itself in time (the session is at noon), a year before it names its time
   (the 1904 flood), or the clause places another event relative to it (after the inspection,
@@ -2379,18 +2389,21 @@ Not this template. TEXT: Badgers are curious. — use `class-statement`.
 
 When: A clause with "be" as its main verb whose subject names a class rather than an individual
 — a bare plural (badgers, storks), a mass noun (slate) or a generic indefinite singular (a
-bobbin is a tool) — and whose predicate is an indefinite noun phrase or an adjective. The
-statement is definitional when it states what the class is by definition or taxonomy (badgers
-are mustelids, a bobbin is a tool) and empirical when it generalizes over the class's members
-(badgers are curious). A quantifier word on the subject (all, every, most, many, few, no)
-belongs to the statement: record it as written; the program sets the strength from it and keeps
-the word beside the statement. A time relation, a date or a deictic time, a link or a focus
-particle on the statement as such (bobbins were cheap until 1900) names this instance as its
-event, and the program mints the state of the statement holding. A KIND-OF PHRASE — the kestrel
-is a species of falcon, a ristretto is a kind of espresso — is a definitional statement whose
-predicate is the of-phrase's noun (form noun) and whose `kind` is the kind word: the class as a
-whole is of that kind (the kestrel is a species — no single kestrel is), its members are of the
-of-phrase's class; with no of-phrase (the kestrel is a species) `kind` stands alone, with no
+bobbin is a tool) — and whose predicate is an indefinite noun phrase or an adjective. An
+adjective on the predicate noun (badgers are nocturnal animals) goes in `predicate_props`, a
+noun before it in `predicate_mods`. A CLASS NOUN WITH AN APPOSITION — kestrels, small falcons,
+hunt voles — is such a statement beside the clause, definitional, the apposition its predicate.
+The statement is definitional when it states what the class is by definition or taxonomy
+(badgers are mustelids, a bobbin is a tool) and empirical when it generalizes over the class's
+members (badgers are curious). A quantifier word on the subject (all, every, most, many, few,
+no) belongs to the statement: record it as written; the program sets the strength from it and
+keeps the word beside the statement. A time relation, a date or a deictic time, a link or a
+focus particle on the statement as such (bobbins were cheap until 1900) names this instance as
+its event, and the program mints the state of the statement holding. A KIND-OF PHRASE — the
+kestrel is a species of falcon, a ristretto is a kind of espresso — is a definitional statement
+whose predicate is the of-phrase's noun (form noun) and whose `kind` is the kind word: the class
+as a whole is of that kind (the kestrel is a species — no single kestrel is), its members are of
+the of-phrase's class; with no of-phrase (the kestrel is a species) `kind` stands alone, with no
 predicate.
 
 Forms:
@@ -2433,6 +2446,9 @@ Slots:
 - `subject_mods` (optional; a list of lemmas, or "@id" of a named-entity or a time instance):
   the nouns before the subject's noun (harbour seals are shy: harbour), as the mods of Nouns
   before nouns.
+- `predicate_props` (optional; a list of lemmas): with form noun, the adjectives on the
+  predicate noun (badgers are nocturnal animals: nocturnal); the class they narrow is the
+  predicate.
 - `predicate_mods` (optional; a list of lemmas, or "@id" of a named-entity or a time instance):
   with form noun, the nouns before the predicate noun (badgers are farm animals: farm), as the
   mods of Nouns before nouns.
@@ -4071,6 +4087,9 @@ Not this template:
 - "have to" — has to send the blanket: an obligation; a modal over the clause
 - "have" with an event noun or in a light-verb use — had lunch, had a word, had a look: the noun
   carries the event
+- "have" or "bear" with a state noun that has its own prepositional object — has access to the
+  vault, has an effect on the tide, bears responsibility for the flood: one stative relation
+  (have_access, have_an_effect, bear_responsibility), not the holding of a thing
 - parts, features and members — has a lid, has four legs, has blue eyes: a part-whole relation,
   not the holding of a thing; kinship — is Odile's cousin, Marisol and Odile are cousins, has a
   brother, has three sons — is a stative relation, the relative its subject
@@ -4366,28 +4385,38 @@ cousin) is the object, with no witness for the relational noun. A relational nou
 to a name, with a possessor — her son Joost, Anouk's husband Ludo, their aunt, Saskia — states
 the same relation: the name's instance and this template's instance with the noun as the
 relation, the name as the subject and the possessor as the object (a pronoun: its mention), as
-if the text said Joost is her son; the name then takes its role in the clause. A SINGULAR
-relational noun with a possessor and NO name — her son, Joost's grandmother, the fellowship's
-treasurer — states the same relation with a witness as the bearer: the witness for the noun (its
-class the noun, no possessor) is the subject and the possessor the object; a noun the possessor
-owns or is merely associated with (her blanket, Joost's lantern) keeps the witness's possessor,
-and a plural one (her sons) stays the group's possessor for now. KINSHIP WITH HAVE — Saskia has
-a nephew, Anouk has three sons — is the same relation: the relative the subject (a witness for
+if the text said Joost is her son; the name then takes its role in the clause. So does one with
+an of-phrase after the name — Joost, a cousin of Odile; Saskia, a neighbour of the glaziers —
+the of-phrase the object (preposition of); a second apposition after a name is parsed like the
+first. An ADJECTIVE on a relational noun (a close friend of Odile, a bitter rival of the
+glaziers) has no slot: report it as unmapped (G02) and keep the relation. A SINGULAR relational
+noun with a possessor and NO name — her son, Joost's grandmother, the fellowship's treasurer —
+states the same relation with a witness as the bearer: the witness for the noun (its class the
+noun, no possessor) is the subject and the possessor the object; a noun the possessor owns or is
+merely associated with (her blanket, Joost's lantern) keeps the witness's possessor, and a
+plural one (her sons) stays the group's possessor for now. KINSHIP WITH HAVE — Saskia has a
+nephew, Anouk has three sons — is the same relation: the relative the subject (a witness for
 one, the name for one named — has a nephew called Ludo: Ludo —, a group for several, with a
 distribution over this instance) and the one who has them the object; names listed after the
 group (three sons, Joost, Pieter and Odile) are its members, one part-whole each. A DEFINITE
 ROLE TITLE with an of-phrase — the warden of the mill, the president of the fellowship, the
 author of the postcard — is a relational noun too: this template, the holder the subject, the
-of-phrase the object (preposition of), never an identity copular. A passive or participial form
-(is surrounded by a hedge, is covered with snow, is connected to the mill) keeps the active
-roles: the by- or with-phrase is the subject and the surface subject the object. A relatum that
-is an action or a clause (deserves to rest, involves selling the granary, means leaving early)
-is parsed with its own template and listed in `complement`, sealed. Whether the relation holds
-the other way round (married, similar, cousin) is not yours to judge: write the subject and the
-object as the sentence gives them, and never a second instance for the reverse. An indefinite
-relatum (borders a marsh, is married to a weaver) is a witness; a bare plural or mass one (needs
-water, covered with snow) is a bare lemma, and so is a thing needed, required or deserved that
-is not a particular one (needs a barrow: barrow).
+of-phrase the object (preposition of), never an identity copular. A SUPPORT VERB WITH A STATE
+NOUN that has its own prepositional object — bears responsibility for the flood, has access to
+the vault, has an effect on the tide — is one relation keeping its words (bear_responsibility,
+have_access, have_an_effect), the subject its subject and the phrase's object its object with
+the preposition, as a light verb with an event noun is one activity; an adjective on the noun
+(bears full responsibility) is reported as unmapped (G02). With no such phrase (has a problem)
+it is a possession as before. A passive or participial form (is surrounded by a hedge, is
+covered with snow, is connected to the mill) keeps the active roles: the by- or with-phrase is
+the subject and the surface subject the object. A relatum that is an action or a clause
+(deserves to rest, involves selling the granary, means leaving early) is parsed with its own
+template and listed in `complement`, sealed. Whether the relation holds the other way round
+(married, similar, cousin) is not yours to judge: write the subject and the object as the
+sentence gives them, and never a second instance for the reverse. An indefinite relatum (borders
+a marsh, is married to a weaver) is a witness; a bare plural or mass one (needs water, covered
+with snow) is a bare lemma, and so is a thing needed, required or deserved that is not a
+particular one (needs a barrow: barrow).
 
 Verbs that anchor the class: need, require, deserve, merit, depend, rely, resemble, look_like,
 differ, match, equal, mean, represent, stand_for, suit, fit, concern, involve, apply, relate,
@@ -4446,8 +4475,9 @@ Slots:
 - `t` (required): "stative-relation"
 - `id` (required; your label for this instance): your label for the state (p1, p2 …).
 - `relation` (required; a lemma): the verb lemma (need, resemble, depend, face), joined with its
-  preposition only when the verb means nothing alone (look_like, stand_for); for the copular
-  form the adjective or noun, lemmatized to the singular (married, similar, cousin, friend).
+  preposition only when the verb means nothing alone (look_like, stand_for); a support verb with
+  its state noun as one symbol (bear_responsibility, have_access); for the copular form the
+  adjective or noun, lemmatized to the singular (married, similar, cousin, friend).
 - `subject` (optional; "@id" of a referent instance, or a bare lemma for a non-specific filler):
   the bearer of the state: the subject; the by- or with-phrase of a passive or participial form
   (is surrounded by a hedge: the hedge); the first conjunct of a coordinated subject (Marisol
@@ -4547,30 +4577,32 @@ most expensive blanket). The subject is a referent — a name, or the witness wh
 the superlative — and the instance names it, the scale (tallest → tall, most careful → careful,
 best → good, worst → bad; the verb for the first to V: arrive; the class for a plain ordinal:
 badger), the class (weaver, glazier, blanket — the noun of the phrase, or the of-phrase: the
-tallest of the weavers), the kind (most, among, ordinal) and, for an ordinal, the rank or last.
-Predicated of the subject by "be" (Marisol is the tallest weaver, Pieter was the first to
-arrive), the instance stands in place of the copular predication: set `predicative: true` and
-the clause's tense, and the membership in the class is asserted too. Inside a noun phrase, the
-witness is parsed as usual (the tallest weaver: a definite witness of class weaver) and the
-instance adds the superlative with no tense and no `predicative`. The span is the whole clause
-for the predicative form and the superlative phrase for the attributive one. A CLASS THE PHRASE
-NARROWS is compared within as narrowed: the witness's own props, mods and possessor narrow it by
-themselves (the largest walled town, the oldest bazaar town, her second novel); a place, an
-author or a whole is parsed as its own instance on the subject — the locative (the oldest mill
-in the valley), the postmodifier (the first poem by Joost), the part-whole (the fourth stanza of
-the hymn), the relation a relational class noun states (the first warden of the mill, Joost's
-second husband: the stative-relation, the witness its bearer), the time of a dated period (of
-the 18th century: a time instance with no event), a relative clause on the noun (the oldest bell
-that still rings, the first ship that reached the bay: the clause's own instance) — and listed
-in `within`; in the predicative form the locative is written on the subject (Joost's town in the
-valley: the town located in the valley, the clause's tense), the adjectives on the class noun go
-to `props` and the nouns, names and years before it to `mods`. The program builds the comparison
-class from all of them.
+tallest of the weavers; with no noun after the superlative, the subject's own noun — the
+northern kiln is the hottest: kiln), the kind (most, among, ordinal) and, for an ordinal, the
+rank or last. Predicated of the subject by "be" (Marisol is the tallest weaver, Pieter was the
+first to arrive), the instance stands in place of the copular predication: set `predicative:
+true` and the clause's tense, and the membership in the class is asserted too. Inside a noun
+phrase, the witness is parsed as usual (the tallest weaver: a definite witness of class weaver)
+and the instance adds the superlative with no tense and no `predicative`. The span is the whole
+clause for the predicative form and the superlative phrase for the attributive one. A CLASS THE
+PHRASE NARROWS is compared within as narrowed: the witness's own props, mods and possessor
+narrow it by themselves (the largest walled town, the oldest bazaar town, her second novel); a
+place, an author or a whole is parsed as its own instance on the subject — the locative (the
+oldest mill in the valley), the postmodifier (the first poem by Joost), the part-whole (the
+fourth stanza of the hymn), the relation a relational class noun states (the first warden of the
+mill, Joost's second husband: the stative-relation, the witness its bearer), the time of a dated
+period (of the 18th century: a time instance with no event), a relative clause on the noun (the
+oldest bell that still rings, the first ship that reached the bay: the clause's own instance) —
+and listed in `within`; in the predicative form the locative is written on the subject (Joost's
+town in the valley: the town located in the valley, the clause's tense), the adjectives on the
+class noun go to `props` and the nouns, names and years before it to `mods`. The program builds
+the comparison class from all of them.
 
 Forms:
 - <X> is the ADJ-est / the most ADJ <N>
 - <X> is one of the ADJ-est <N>s
 - <X> is the <n-th> ADJ-est <N>
+- the <N> is the ADJ-est
 - <X> was the first / last to V
 - the ADJ-est <N> V-ed … / V-ed the ADJ-est <N>
 - the <n-th> <N> …
@@ -4582,8 +4614,8 @@ Not this template:
   template
 - most as a quantifier — most students, most of the badgers: a range of a generalization, or a
   portion of a group; not a superlative
-- a bare superlative with no class stated anywhere — Pieter is the tallest, this one is the
-  best: no class to fill; report the superlative as unmapped
+- a bare superlative with no class stated anywhere, its subject a name or a pronoun — Pieter is
+  the tallest, this one is the best: no class to fill; report the superlative as unmapped
 - an adverbial superlative — Marisol runs fastest, Odile ate the most: a comparison of events,
   with no template yet; report the phrase as unmapped
 - least — the least patient glazier: the opposite pole, with no head yet; report the phrase as
@@ -6560,31 +6592,32 @@ of one (in 2019, in May, on 3 May 2019, on Monday), a clock time (at 3 pm, at 2:
 at midnight), a deictic relative to the moment the text speaks from (now, today, tonight,
 yesterday, tomorrow, last / this / next week, month or year), a time named by a word (at dawn,
 at night, in autumn, later, this morning), a VAGUE OR SEQUENCE TIME ADVERB named by its word
-(recently, lately, previously, formerly, earlier, originally, initially, at first, eventually,
-finally, ultimately, soon, shortly: the word the time's name, at_first joined; currently and at
-present are the deictic now), a measured distance from an anchor (three days ago, a year ago, in
-two weeks, two days after the inspection, a week later), or an anaphoric phrase naming a time by
-one the text stated before it (that evening, the same day, the next day, the following morning,
-the week after). The event is parsed with its own template; the time instance names that event
-and describes the time: a date or a clock time by its fields (year, decade, century, month,
-week, day, weekday, hour, minute), a deictic by the `deictic` word with the reference time as
-its anchor, a measured distance by its `offset`, `unit` and `direction` from its anchor (the
-reference time for ago / from now / in n units; a stated event or time for before / after it and
-for later / earlier), an anaphoric phrase likewise from the antecedent event or time (offset 0
-for that / the same, 1 for next / following / after, a day part as a second instance), a named
-time by its name. One instance per time expression; a day part beside a date or an offset
-(Monday morning, the following morning) is a second instance. A time no clause places an event
-at — the reference of a time relation (before noon), the edge of a window (within three days), a
-year before a noun that names no event (a 1904 almanac: named in the noun's mods) — is an
-instance with no event. When the time is predicated of an event noun by "be" or by take place /
-occur / happen (the session is at noon, the inspection was on Monday, the fair took place in
-May: these verbs have no event of their own), the noun is a witness marked eventive, the time
-attaches to it, and this instance records the clause's tense. Coordinated dates (in 1810 and
-1811) are one instance each on the event. A NUMBERED WEEK of a season or a schedule (in week 5)
-is `week`, with a year when one is stated. AN UNDATED TIME DESCRIBED BY A NOUN — on a foggy day,
-on a cold morning — is a time instance with that noun in `noun` and its adjectives in `props`
-and no calendar field; it attaches to the event like any time (never a witness marked eventive:
-a day is a time, not an event).
+(recently, lately, previously, formerly, once meaning formerly, earlier, originally, initially,
+first, at first, eventually, finally, ultimately, soon, shortly, so far, in the past, and before
+with nothing after it — had rowed before: the word the time's name, a phrase joined — at_first,
+so_far, in_the_past; currently and at present are the deictic now), a measured distance from an
+anchor (three days ago, a year ago, in two weeks, two days after the inspection, a week later),
+or an anaphoric phrase naming a time by one the text stated before it (that evening, the same
+day, the next day, the following morning, the week after). The event is parsed with its own
+template; the time instance names that event and describes the time: a date or a clock time by
+its fields (year, decade, century, month, week, day, weekday, hour, minute), a deictic by the
+`deictic` word with the reference time as its anchor, a measured distance by its `offset`,
+`unit` and `direction` from its anchor (the reference time for ago / from now / in n units; a
+stated event or time for before / after it and for later / earlier), an anaphoric phrase
+likewise from the antecedent event or time (offset 0 for that / the same, 1 for next / following
+/ after, a day part as a second instance), a named time by its name. One instance per time
+expression; a day part beside a date or an offset (Monday morning, the following morning) is a
+second instance. A time no clause places an event at — the reference of a time relation (before
+noon), the edge of a window (within three days), a year before a noun that names no event (a
+1904 almanac: named in the noun's mods) — is an instance with no event. When the time is
+predicated of an event noun by "be" or by take place / occur / happen (the session is at noon,
+the inspection was on Monday, the fair took place in May: these verbs have no event of their
+own), the noun is a witness marked eventive, the time attaches to it, and this instance records
+the clause's tense. Coordinated dates (in 1810 and 1811) are one instance each on the event. A
+NUMBERED WEEK of a season or a schedule (in week 5) is `week`, with a year when one is stated.
+AN UNDATED TIME DESCRIBED BY A NOUN — on a foggy day, on a cold morning — is a time instance
+with that noun in `noun` and its adjectives in `props` and no calendar field; it attaches to the
+event like any time (never a witness marked eventive: a day is a time, not an event).
 
 Forms:
 - <clause> in <year / month>
@@ -6597,7 +6630,7 @@ Forms:
 - <subject> recently / eventually / initially <V> …
 - <time>, <clause>
 - <event noun> is / was at / on <time>
-- the <year> <event noun>
+- the <year / date / weekday> <event noun>
 - <clause> <n> <units> ago / later / earlier
 - <clause> in <n> <units>
 - <clause> <n> <units> before / after <event or time>
@@ -6616,6 +6649,9 @@ Not this template:
 - an approximate time — around noon, about 3 pm: record the time, report the approximator as
   unmapped
 - a place — in the granary, at the bazaar: a location
+- a time adverb that is not in the list — immediately, since with nothing after it, just meaning
+  recently: reported as unmapped (G02), never written as a listed word (first is not at_first);
+  again, still, already are aspectual particles
 - tense alone — arrived, will arrive: the event's own template records it; a time instance needs
   a time expression
 
@@ -6652,9 +6688,9 @@ Slots:
 - `name` (optional; a lemma): a time named by a word or a fixed phrase that no deictic word
   covers, lowercase, joined with underscores: dawn, dusk, morning, afternoon, evening, night,
   spring, summer, autumn, winter, later, this_morning; a vague or sequence time adverb as
-  written: recently, lately, previously, formerly, earlier, originally, initially, at_first,
-  eventually, finally, ultimately, soon, shortly, once (meaning formerly); fill no field beside
-  it.
+  written: recently, lately, previously, formerly, once (meaning formerly), earlier, originally,
+  initially, first, at_first, eventually, finally, ultimately, soon, shortly, so_far,
+  in_the_past, before (alone, meaning previously); fill no field beside it.
 - `offset` (optional; a number): a measured distance from the anchor: the number of units (three
   days ago → 3, a week later → 1, that evening → 0 day); fill unit and direction with it, no
   calendar field.
@@ -6750,7 +6786,8 @@ Not this template. TEXT: Marisol laughed in the granary. — use `location`.
 When: A temporal preposition or connective that places the clause's event relative to a
 reference: before, after, during, while, when, until, since, by, from … to. The reference is
 another event — a clause of its own (after Odile sang, while Marisol waited), parsed with its
-own template, or an event noun (after the inspection, during the session), a witness marked
+own template, a modal on it its own instance over it (before the kiln could cool: the cooling
+the reference), or an event noun (after the inspection, during the session), a witness marked
 eventive — or a time: a date, a clock time or a named time (before noon, since 2019, until
 dawn), a time instance with no event of its own. The clause's event is parsed with its own
 template; the relation instance names that event, the reference and the relation as read, and

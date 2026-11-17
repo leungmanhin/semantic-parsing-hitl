@@ -48,7 +48,9 @@ Narrowing.  A template may declare ``narrowing: {class, scale, subject, props, w
 names): the class an instance compares its subject within is narrowed by the description its
 noun phrase gives — the subject witness's own ``props`` and ``possessor``, the instance's
 ``props``, and each instance its ``within`` list names (a locative, a postmodifier, a part-whole
-whose atom describes the subject).  The program builds the COMPARISON CLASS as a term from that
+whose atom describes the subject).  ``predicated`` names a slot that is true when the instance is
+predicated of its subject (the town is the largest walled town): the subject's own phrase then
+says which thing is compared and narrows nothing.  The program builds the COMPARISON CLASS as a term from that
 description, the restrictions in a fixed order — ``(Narrow city (LocatedIn sk_scotland_1))``,
 ``(Narrow album (And (Member studio) (Possession sk_ottoline_1)))`` — so every text that says
 the same gets the same term, a pronoun replaced by its certain antecedent.  ``{class|narrowed}``
@@ -725,7 +727,11 @@ class _Emitter:
                     own.add(render(rterm))
                     covered = True
             phrase = self.by_id.get(subj[1:]) or {}
-            if phrase.get("t") == "witness":              # the subject's own phrase: its modifiers and its possessor narrow
+            # Predicated of its subject (Joost's town is the largest walled town), the subject's own phrase says
+            # which thing is compared, not what it is compared within: only the phrase that HOLDS the superlative
+            # (the largest walled town left) narrows the class by its own modifiers and possessor.
+            predicated = bool(spec.get("predicated")) and holds(spec["predicated"], r)
+            if phrase.get("t") == "witness" and not predicated:
                 own_modifiers(phrase, "class")
                 if phrase.get("possessor") not in (None, ""):
                     owner = canon(phrase["possessor"])

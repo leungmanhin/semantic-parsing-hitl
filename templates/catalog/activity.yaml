@@ -354,3 +354,15 @@ examples:
         - {t: named-entity, id: n1, name: "Yusra"}
         - {t: witness, id: x1, class: offer, definite: true}
         - {t: activity, id: v1, verb: consider, actor: "@n1", patient: "@x1", tense: past}
+    - category: positive
+      note: a verb idiom — one symbol keeping every word, the activity template
+      text: "The strike gained momentum."
+      instances:
+        - {t: witness, id: x1, class: strike, definite: true}
+        - {t: activity, id: v1, verb: gain_momentum, actor: "@x1", tense: past}
+    - category: positive
+      note: a verb idiom — one symbol, the subject the actor
+      text: "Lamine lost heart."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: activity, id: v1, verb: lose_heart, actor: "@n1", tense: past}

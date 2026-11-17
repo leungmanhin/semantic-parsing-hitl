@@ -58,7 +58,7 @@ slots:
   count:     {type: number, required: false, doc: "the exact size when a numeral or both states it (three → 3; both → 2); a bound or a range is count_min / count_max instead; in a how-many question the asked word (\"@w1\")"}
   count_min: {type: number, required: false, doc: "a lower bound on the size: more than / over / at least 200 → 200; the low end of a range (300–400 → 300)"}
   count_max: {type: number, required: false, doc: "an upper bound on the size: up to / at most / as many as / fewer than / under 60 → 60; the high end of a range (300–400 → 400)"}
-  quantity:  {type: string, required: false, doc: "the vague size phrase as written (several, a few, some, many, dozens, a lot, lots, plenty), a collective phrase included with its adjective (a group of, a large group of, a crowd of, a bunch of, a couple of, a herd of): a group of children is a group of class child, quantity a group of; absent when a numeral or both states the size"}
+  quantity:  {type: string, required: false, doc: "the vague size phrase as written (several, a few, some, many, dozens, a lot, lots, plenty, a number, a large number: the adjective on number kept), a collective phrase included with its adjective (a group of, a large group of, a crowd of, a bunch of, a couple of, a herd of): a group of children is a group of class child, quantity a group of; absent when a numeral or both states the size"}
   hedge:     {type: string, required: false, doc: "an approximation word on the count as written (about, approximately, roughly, nearly, almost, around, some); recorded, not rendered — the count stays the number stated"}
   props:     {type: list, class: Class, restriction: Member, required: false, doc: "adjectival properties stated in the phrase; a noun before the head is a mod"}
   former:    {type: bool, required: false, doc: "true when former, ex-, one-time or retired makes the noun something the members were and no longer are (three former guards)"}
@@ -283,3 +283,10 @@ examples:
       note: a quantity word with no noun names no class — no group, the clause reported
       text: "Few returned to the mill."
       expected: {abstain: true, gap: G00, span: "Few returned to the mill"}
+    - category: positive
+      note: a number phrase with an adjective — the vague size phrase as written
+      text: "A small number of herons slept."
+      instances:
+        - {t: group, id: g1, class: heron, quantity: a small number}
+        - {t: activity, id: v1, verb: sleep, actor: "@g1", tense: past}
+        - {t: distribution, id: d1, group: "@g1", over: ["@v1"]}

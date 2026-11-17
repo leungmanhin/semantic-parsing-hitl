@@ -1,0 +1,110 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "679f1580da8112e35f5248da66b983d20b5c94ddfa74aab868b3d4d953e5fa9d",
+  "item": {
+    "id": "s039e7cc28e",
+    "text": "Yusra, a staunch ally of Teodor, sang."
+  },
+  "usage": {
+    "input": 129494,
+    "output": 226,
+    "thinking": null,
+    "total": 129720,
+    "cached": 127445,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 129494,
+    "candidatesTokenCount": 226,
+    "totalTokenCount": 129720,
+    "cachedContentTokenCount": 127445,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 129494
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 127445
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 226
+      }
+    ],
+    "serviceTier": "standard"
+  },
+  "raw_text": "{\"id\": \"s039e7cc28e\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"stative-relation\", \"id\": \"p1\", \"relation\": \"ally\", \"subject\": \"@n1\", \"object\": \"@n2\", \"preposition\": \"of\", \"tense\": \"present\", \"span\": \"Yusra, a staunch ally of Teodor\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"sing\", \"actor\": \"@n1\", \"tense\": \"past\", \"span\": [\"Yusra\", \"sang\"]}], \"unmapped\": [{\"span\": \"staunch\", \"code\": \"G02\", \"construction\": \"An adjective modifying a relational noun\"}], \"issues\": []}",
+  "response": {
+    "id": "s039e7cc28e",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "stative-relation",
+        "id": "p1",
+        "relation": "ally",
+        "subject": "@n1",
+        "object": "@n2",
+        "preposition": "of",
+        "tense": "present",
+        "span": "Yusra, a staunch ally of Teodor"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "sing",
+        "actor": "@n1",
+        "tense": "past",
+        "span": [
+          "Yusra",
+          "sang"
+        ]
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "staunch",
+        "code": "G02",
+        "construction": "An adjective modifying a relational noun"
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "938fdf71b4b9bd7369acb815ac4f629b53f9c4a8a3cd4cc1200b915b51f37664",
+  "manifest_id": "945b6fdb8fca",
+  "run": 2,
+  "case": {
+    "template": "stative-relation",
+    "section": "held_out",
+    "index": 37,
+    "category": "positive",
+    "text": "Yusra, a staunch ally of Teodor, sang.",
+    "key": "039e7cc28e"
+  }
+}

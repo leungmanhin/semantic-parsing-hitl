@@ -36,7 +36,11 @@ trigger:
     with a possessor — her son Joost, Anouk's husband Ludo, their aunt, Saskia — states the
     same relation: the name's instance and this template's instance with the noun as the
     relation, the name as the subject and the possessor as the object (a pronoun: its mention),
-    as if the text said Joost is her son; the name then takes its role in the clause. A
+    as if the text said Joost is her son; the name then takes its role in the clause. So does
+    one with an of-phrase after the name — Joost, a cousin of Odile; Saskia, a neighbour of the
+    glaziers — the of-phrase the object (preposition of); a second apposition after a name is
+    parsed like the first. An ADJECTIVE on a relational noun (a close friend of Odile, a bitter
+    rival of the glaziers) has no slot: report it as unmapped (G02) and keep the relation. A
     SINGULAR relational noun with a possessor and NO name — her son, Joost's grandmother, the
     fellowship's treasurer — states the same relation with a witness as the bearer: the witness for
     the noun (its class the noun, no possessor) is the subject and the possessor the object; a
@@ -49,7 +53,13 @@ trigger:
     Odile) are its members, one part-whole each. A
     DEFINITE ROLE TITLE with an of-phrase — the warden of the mill, the president of the fellowship,
     the author of the postcard — is a relational noun too: this template, the holder the subject,
-    the of-phrase the object (preposition of), never an identity copular. A passive or participial form (is
+    the of-phrase the object (preposition of), never an identity copular. A SUPPORT VERB WITH A
+    STATE NOUN that has its own prepositional object — bears responsibility for the flood, has
+    access to the vault, has an effect on the tide — is one relation keeping its words
+    (bear_responsibility, have_access, have_an_effect), the subject its subject and the phrase's
+    object its object with the preposition, as a light verb with an event noun is one activity;
+    an adjective on the noun (bears full responsibility) is reported as unmapped (G02). With no
+    such phrase (has a problem) it is a possession as before. A passive or participial form (is
     surrounded by a hedge, is covered with snow, is connected to the mill) keeps the active
     roles: the by- or with-phrase is the subject and the surface subject the object. A relatum
     that is an action or a clause (deserves to rest, involves selling the granary, means leaving
@@ -127,7 +137,7 @@ trigger:
 slots:
   id:          {type: id, required: true, doc: "your label for the state (p1, p2 …)"}
   relation:    {type: lemma, class: Class, required: true,
-                doc: "the verb lemma (need, resemble, depend, face), joined with its preposition only when the verb means nothing alone (look_like, stand_for); for the copular form the adjective or noun, lemmatized to the singular (married, similar, cousin, friend)"}
+                doc: "the verb lemma (need, resemble, depend, face), joined with its preposition only when the verb means nothing alone (look_like, stand_for); a support verb with its state noun as one symbol (bear_responsibility, have_access); for the copular form the adjective or noun, lemmatized to the singular (married, similar, cousin, friend)"}
   subject:     {type: filler, class: Entity, role: Bearer, required: false,
                 doc: "the bearer of the state: the subject; the by- or with-phrase of a passive or participial form (is surrounded by a hedge: the hedge); the first conjunct of a coordinated subject (Marisol and Odile are cousins: Marisol); a referent id, or a bare lemma for a class-level one (covered with snow); absent in an agentless passive"}
   object:      {type: filler, class: Entity, role: Theme, required: false,
@@ -469,3 +479,35 @@ examples:
         - {t: named-entity, id: n1, name: "Ottoline"}
         - {t: witness, id: x1, class: brother}
         - {t: stative-relation, id: p1, relation: brother, subject: "@x1", object: "@n1", tense: present}
+    - category: positive
+      note: a support verb with a state noun and its prepositional object — one relation keeping its words
+      text: "Yusra has control over the mill."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, class: mill, definite: true}
+        - {t: stative-relation, id: p1, relation: have_control, subject: "@n1", object: "@x1", preposition: over, tense: present}
+    - category: positive
+      note: a support verb with a state noun — the article kept in the symbol, the clause's tense
+      text: "Lamine had an interest in the quarry."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: x1, class: quarry, definite: true}
+        - {t: stative-relation, id: p1, relation: have_an_interest, subject: "@n1", object: "@x1", preposition: in, tense: past}
+    - category: positive
+      note: a relational noun in apposition with an of-phrase — the relation stated, the name the subject
+      text: "Teodor, a mentor of Lamine, left."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: stative-relation, id: p1, relation: mentor, subject: "@n1", object: "@n2", preposition: of, tense: present}
+        - {t: motion, id: m1, verb: leave, mover: "@n1", tense: past}
+    - category: positive
+      note: an adjective on a relational noun in apposition — the relation kept, the adjective reported
+      text: "Yusra, a staunch ally of Teodor, sang."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: named-entity, id: n2, name: "Teodor"}
+        - {t: stative-relation, id: p1, relation: ally, subject: "@n1", object: "@n2", preposition: of, tense: present}
+        - {t: activity, id: v1, verb: sing, actor: "@n1", tense: past}
+      unmapped:
+        - {span: "staunch", code: G02}

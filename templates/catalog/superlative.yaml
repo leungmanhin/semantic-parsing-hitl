@@ -29,7 +29,8 @@ trigger:
     holds the superlative — and the instance names it, the scale (tallest → tall, most careful →
     careful, best → good, worst → bad; the verb for the first to V: arrive; the class for a plain
     ordinal: badger), the class (weaver, glazier, blanket — the noun of the phrase, or the of-phrase:
-    the tallest of the weavers), the kind (most, among, ordinal) and, for an ordinal, the rank or
+    the tallest of the weavers; with no noun after the superlative, the subject's own noun — the
+    northern kiln is the hottest: kiln), the kind (most, among, ordinal) and, for an ordinal, the rank or
     last. Predicated of the subject by "be" (Marisol is the tallest weaver, Pieter was the first to
     arrive), the instance stands in place of the copular predication: set `predicative: true` and
     the clause's tense, and the membership in the class is asserted too. Inside a noun phrase, the
@@ -52,6 +53,7 @@ trigger:
     - "<X> is the ADJ-est / the most ADJ <N>"             # Odile is the oldest glazier: kind most, predicative
     - "<X> is one of the ADJ-est <N>s"                    # Henrike is one of the oldest coopers: kind among
     - "<X> is the <n-th> ADJ-est <N>"                     # Pieter is the second tallest locksmith: kind ordinal, rank 2, scale tall
+    - "the <N> is the ADJ-est"                            # the northern kiln is the hottest: the subject's own noun the class, predicative
     - "<X> was the first / last to V"                     # Pieter was the first to arrive: kind ordinal, rank 1, scale arrive
     - "the ADJ-est <N> V-ed … / V-ed the ADJ-est <N>"     # the tallest weaver left; bought the most expensive blanket: attributive
     - "the <n-th> <N> …"                                  # the third badger slept: kind ordinal, rank 3, scale badger
@@ -65,8 +67,8 @@ trigger:
       most as a quantifier — most students, most of the badgers: a range of a generalization, or
       a portion of a group; not a superlative
     - >-
-      a bare superlative with no class stated anywhere — Pieter is the tallest, this one is the
-      best: no class to fill; report the superlative as unmapped
+      a bare superlative with no class stated anywhere, its subject a name or a pronoun — Pieter is
+      the tallest, this one is the best: no class to fill; report the superlative as unmapped
     - >-
       an adverbial superlative — Marisol runs fastest, Odile ate the most: a comparison of events,
       with no template yet; report the phrase as unmapped
@@ -118,6 +120,7 @@ narrowing:                     # the comparison class: the class as the noun phr
   subject: subject
   props: props
   within: within
+  predicated: predicative        # predicated of its subject, the subject's own phrase narrows nothing
 
 emits:
   # the superlative: the unique top of the class on the scale
@@ -505,3 +508,9 @@ examples:
       instances:
         - {t: named-entity, id: n1, name: "Gull"}
         - {t: superlative, id: s1, subject: "@n1", scale: old, class: boat, mods: [fishing], kind: most, predicative: true, tense: present}
+    - category: positive
+      note: no noun after the superlative — the subject's own noun is the class, its adjective says which one
+      text: "The eastern loom is the oldest."
+      instances:
+        - {t: witness, id: x1, class: loom, props: [eastern], definite: true}
+        - {t: superlative, id: s1, subject: "@x1", scale: old, class: loom, kind: most, predicative: true, tense: present}

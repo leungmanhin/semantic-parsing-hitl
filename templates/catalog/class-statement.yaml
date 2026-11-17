@@ -22,7 +22,10 @@ trigger:
     A clause with "be" as its main verb whose subject names a class rather than an individual —
     a bare plural (badgers, storks), a mass noun (slate) or a generic indefinite singular
     (a bobbin is a tool) — and whose predicate is an indefinite noun phrase or an adjective.
-    The statement is definitional when it states what the class is by definition or taxonomy
+    An adjective on the predicate noun (badgers are nocturnal animals) goes in `predicate_props`,
+    a noun before it in `predicate_mods`. A CLASS NOUN WITH AN APPOSITION — kestrels, small
+    falcons, hunt voles — is such a statement beside the clause, definitional, the apposition
+    its predicate. The statement is definitional when it states what the class is by definition or taxonomy
     (badgers are mustelids, a bobbin is a tool) and empirical when it generalizes over the
     class's members (badgers are curious). A quantifier word on the subject (all, every, most,
     many, few, no) belongs to the statement: record it as written; the program sets the
@@ -67,13 +70,15 @@ trigger:
 slots:
   id:           {type: id, required: true, doc: "your label for the statement"}
   subject:      {type: lemma, class: Class, required: true, narrowed_by: [subject_props, subject_mods], doc: "the class, lemmatized to the singular (badger, slate, bobbin)"}
-  predicate:    {type: lemma, class: Class, required: false, narrowed_by: predicate_mods, doc: "the class (mustelid) or the property (curious), lemmatized; absent only for a kind word alone (the kestrel is a species)"}
+  predicate:    {type: lemma, class: Class, required: false, narrowed_by: [predicate_props, predicate_mods], doc: "the class (mustelid) or the property (curious), lemmatized; absent only for a kind word alone (the kestrel is a species)"}
   kind:         {type: lemma, class: Class, required: false,
                  doc: "the kind word of a kind-of phrase, lemmatized (a species of falcon: species; a breed, a genus, a style, a variety of N); kind, type and sort are recorded and state nothing more"}
   subject_props: {type: list, class: Class, restriction: Member, required: false,
                  doc: "the adjectives on the subject's noun (old badgers are slow: old); a statement about the class they narrow"}
   subject_mods: {type: list, class: Class, ids: [named-entity, time], required: false,
                  doc: "the nouns before the subject's noun (harbour seals are shy: harbour), as the mods of Nouns before nouns"}
+  predicate_props: {type: list, class: Class, restriction: Member, required: false,
+                 doc: "with form noun, the adjectives on the predicate noun (badgers are nocturnal animals: nocturnal); the class they narrow is the predicate"}
   predicate_mods: {type: list, class: Class, ids: [named-entity, time], required: false,
                  doc: "with form noun, the nouns before the predicate noun (badgers are farm animals: farm), as the mods of Nouns before nouns"}
   form:         {type: enum, values: [noun, adjective], required: true,
@@ -301,3 +306,21 @@ examples:
       text: "Skilled pilots are careful."
       instances:
         - {t: class-statement, id: c1, subject: pilot, subject_props: [skilled], predicate: careful, form: adjective, definitional: false, tense: present}
+    - category: positive
+      note: an adjective on the predicate noun — predicate_props, the narrowed class the predicate
+      text: "Herons are wading birds."
+      instances:
+        - {t: class-statement, id: c1, subject: heron, predicate: bird, predicate_props: [wading], form: noun, definitional: true, tense: present}
+    - category: positive
+      note: an adjective on the predicate noun under a quantifier word
+      text: "All ferrets are carnivorous mammals."
+      instances:
+        - {t: class-statement, id: c1, subject: ferret, predicate: mammal, predicate_props: [carnivorous], form: noun, definitional: true, quantifier: all, tense: present}
+    - category: positive
+      note: a class noun with an apposition — a definitional class statement beside the generalization
+      text: "Stoats, small mustelids, eat eggs."
+      instances:
+        - {t: class-statement, id: c1, subject: stoat, predicate: mustelid, predicate_props: [small], form: noun, definitional: true, tense: present}
+        - {t: range, id: q1, class: stoat}
+        - {t: activity, id: v1, verb: eat, actor: "@q1", patient: egg, tense: present}
+        - {t: generic, id: r1, ranges: ["@q1"], over: ["@v1"]}

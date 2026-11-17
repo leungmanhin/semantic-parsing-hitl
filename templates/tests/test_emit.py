@@ -997,6 +997,27 @@ class EmitTests(unittest.TestCase):
         self.assertEqual(sorted(alone), sorted(['(Name sk_the_gull_1 "The Gull")', "(Most old sk_the_gull_1 (Narrow boat (Mod fishing)))",
                                                 "(Member sk_the_gull_1 boat)", "(Member sk_the_gull_1 (Narrow boat (Mod fishing)))"]))
 
+    def test_a_predicated_superlative_is_not_narrowed_by_its_subjects_own_phrase(self):
+        """Predicated of its subject, a superlative compares within the class its own phrase states: the
+        subject's adjectives and possessor say which thing is compared (Bram's town is the largest walled
+        town: among walled towns, not among Bram's); the phrase that holds the superlative still narrows
+        by its own (the tallest eastern loom)."""
+        def atoms(insts):
+            return atoms_of(E.emit({"id": "s", "instances": insts}, CATALOG)["statements"])
+        town = atoms([{"t": "named-entity", "id": "n1", "name": "Bram"},
+                      {"t": "witness", "id": "x1", "class": "town", "possessor": "@n1"},
+                      {"t": "superlative", "id": "s1", "subject": "@x1", "scale": "large", "class": "town", "props": ["walled"],
+                       "kind": "most", "predicative": True, "tense": "present"}])
+        self.assertIn("(Most large sk_town_1 (Narrow town (Member walled)))", town)
+        self.assertFalse(any("Most" in a and "Possession" in a for a in town))
+        self.assertIn("(Possession sk_town_1 sk_bram_1)", town)               # the subject keeps what its phrase says of it
+        loom = [{"t": "witness", "id": "x1", "class": "loom", "props": ["eastern"], "definite": True}]
+        said = atoms(loom + [{"t": "superlative", "id": "s1", "subject": "@x1", "scale": "old", "class": "loom", "kind": "most",
+                              "predicative": True, "tense": "present"}])
+        self.assertIn("(Most old sk_loom_1 loom)", said)                       # the eastern loom is the oldest: of the looms
+        held = atoms(loom + [{"t": "superlative", "id": "s1", "subject": "@x1", "scale": "tall", "class": "loom", "kind": "most"}])
+        self.assertIn("(Most tall sk_loom_1 (Narrow loom (Member eastern)))", held)   # the tallest eastern loom: of the eastern ones
+
     def test_a_kind_word_is_the_class_s_membership_and_between_takes_two(self):
         """A kind-of phrase states the kind a property of the class as a whole and the class a
         subclass of the of-phrase's class (kind, type and sort state no kind); a bare-lemma object's adjectives and nouns

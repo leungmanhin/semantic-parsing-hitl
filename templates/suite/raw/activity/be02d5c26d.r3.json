@@ -1,0 +1,85 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "07e9833e38ad510a63353d5cab50465d751c1e03906132a5b0d88d4c6938bb86",
+  "item": {
+    "id": "sbe02d5c26d",
+    "text": "Lamine lost heart."
+  },
+  "usage": {
+    "input": 129443,
+    "output": 104,
+    "thinking": null,
+    "total": 129547,
+    "cached": 127394,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 129443,
+    "candidatesTokenCount": 104,
+    "totalTokenCount": 129547,
+    "cachedContentTokenCount": 127394,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 129443
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 127394
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 104
+      }
+    ],
+    "serviceTier": "standard"
+  },
+  "raw_text": "{\"id\": \"sbe02d5c26d\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"lose_heart\", \"actor\": \"@n1\", \"tense\": \"past\", \"span\": \"Lamine lost heart\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sbe02d5c26d",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "lose_heart",
+        "actor": "@n1",
+        "tense": "past",
+        "span": "Lamine lost heart"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "100c14a6d5d3bf3453234e5a4209ce64d75932dfc49e897a36bd288f41c9d7a8",
+  "manifest_id": "38fbd19e1dce",
+  "run": 3,
+  "case": {
+    "template": "activity",
+    "section": "held_out",
+    "index": 36,
+    "category": "positive",
+    "text": "Lamine lost heart.",
+    "key": "be02d5c26d"
+  }
+}

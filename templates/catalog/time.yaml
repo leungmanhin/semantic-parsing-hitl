@@ -23,9 +23,10 @@ trigger:
     at midnight), a deictic relative to the moment the text speaks from (now, today, tonight,
     yesterday, tomorrow, last / this / next week, month or year), a time named by a word (at
     dawn, at night, in autumn, later, this morning), a VAGUE OR SEQUENCE TIME ADVERB named by its
-    word (recently, lately, previously, formerly, earlier, originally, initially, at first,
-    eventually, finally, ultimately, soon, shortly: the word the time's name, at_first joined;
-    currently and at present are the deictic now), a measured distance from an anchor (three
+    word (recently, lately, previously, formerly, once meaning formerly, earlier, originally,
+    initially, first, at first, eventually, finally, ultimately, soon, shortly, so far, in the past,
+    and before with nothing after it — had rowed before: the word the time's name, a phrase
+    joined — at_first, so_far, in_the_past; currently and at present are the deictic now), a measured distance from an anchor (three
     days ago, a year ago, in two weeks, two days after the inspection, a week later), or an anaphoric
     phrase naming a time by one the text stated before it (that evening, the same day, the next
     day, the following morning, the week after). The event is parsed with its own template; the
@@ -59,7 +60,7 @@ trigger:
     - "<subject> recently / eventually / initially <V> …"   # Odile eventually left: the named time eventually
     - "<time>, <clause>"                             # In 2019, Pieter arrived
     - "<event noun> is / was at / on <time>"         # the session is at noon; the inspection was on Monday
-    - "the <year> <event noun>"                      # the 1904 flood: the flood eventive, this instance on it
+    - "the <year / date / weekday> <event noun>"     # the 1904 flood, the Friday rehearsal: the noun eventive, this instance on it
     - "<clause> <n> <units> ago / later / earlier"   # left three days ago; a week later, Pieter left
     - "<clause> in <n> <units>"                      # will leave in two weeks
     - "<clause> <n> <units> before / after <event or time>"   # arrived two days after the inspection
@@ -84,6 +85,10 @@ trigger:
     - >-
       a place — in the granary, at the bazaar: a location
     - >-
+      a time adverb that is not in the list — immediately, since with nothing after it, just
+      meaning recently: reported as unmapped (G02), never written as a listed word (first is not
+      at_first); again, still, already are aspectual particles
+    - >-
       tense alone — arrived, will arrive: the event's own template records it; a time instance
       needs a time expression
 
@@ -102,7 +107,7 @@ slots:
   props:   {type: list, class: Class, required: false,
             doc: "the adjectives on an undated time's noun, each a lemma (a foggy day: foggy)"}
   name:    {type: lemma, class: TimeTerm, required: false,
-            doc: "a time named by a word or a fixed phrase that no deictic word covers, lowercase, joined with underscores: dawn, dusk, morning, afternoon, evening, night, spring, summer, autumn, winter, later, this_morning; a vague or sequence time adverb as written: recently, lately, previously, formerly, earlier, originally, initially, at_first, eventually, finally, ultimately, soon, shortly, once (meaning formerly); fill no field beside it"}
+            doc: "a time named by a word or a fixed phrase that no deictic word covers, lowercase, joined with underscores: dawn, dusk, morning, afternoon, evening, night, spring, summer, autumn, winter, later, this_morning; a vague or sequence time adverb as written: recently, lately, previously, formerly, once (meaning formerly), earlier, originally, initially, first, at_first, eventually, finally, ultimately, soon, shortly, so_far, in_the_past, before (alone, meaning previously); fill no field beside it"}
   offset:  {type: number, required: false,
             doc: "a measured distance from the anchor: the number of units (three days ago → 3, a week later → 1, that evening → 0 day); fill unit and direction with it, no calendar field"}
   unit:    {type: lemma, class: Class, required: false,
@@ -615,3 +620,43 @@ examples:
         - {t: named-entity, id: n1, name: "Yusra"}
         - {t: motion, id: m1, verb: leave, mover: "@n1", tense: future}
         - {t: time, id: t1, event: "@m1", weekday: thursday, relative: this, anchor: "@now"}
+    - category: positive
+      note: first on a verb — a sequence adverb named by its word, never at_first
+      text: "Teodor first swept the yard."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, class: yard, definite: true}
+        - {t: activity, id: v1, verb: sweep, actor: "@n1", patient: "@x1", tense: past}
+        - {t: time, id: t1, event: "@v1", name: first}
+    - category: positive
+      note: before with nothing after it — a vague earlier time named by the word
+      text: "Lamine has sung before."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: activity, id: v1, verb: sing, actor: "@n1", tense: present, aspect: perfect}
+        - {t: time, id: t1, event: "@v1", name: before}
+    - category: positive
+      note: in the past — a fixed phrase, joined
+      text: "Ottoline taught in the past."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: activity, id: v1, verb: teach, actor: "@n1", tense: past}
+        - {t: time, id: t1, event: "@v1", name: in_the_past}
+    - category: abstain
+      text: "Ottoline immediately left."
+      expected: {abstain: true, gap: G02, span: "immediately"}        # a time adverb outside the list: reported, the clause kept
+    - category: positive
+      note: a weekday before an event noun — the event's time, not a mod
+      text: "Yusra attended the Monday session."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, class: session, definite: true, eventive: true}
+        - {t: activity, id: v1, verb: attend, actor: "@n1", patient: "@x1", tense: past}
+        - {t: time, id: t1, event: "@x1", weekday: monday}
+    - category: positive
+      note: a date before an event noun — the event's time
+      text: "The 12 June audit lasted three hours."
+      instances:
+        - {t: witness, id: x1, class: audit, definite: true, eventive: true}
+        - {t: time, id: t1, event: "@x1", month: june, day: 12}
+        - {t: measure, id: m1, bearer: "@x1", head: Measure, dimension: duration, magnitude: 3, unit: hour, tense: past}

@@ -283,8 +283,8 @@ def check_template(t: dict, path: str) -> list[str]:
         problems.append("period: a map of the template's slots to the heads that name the period they hold")
     narrowing = t.get("narrowing")
     if narrowing is not None:
-        if not isinstance(narrowing, dict) or set(narrowing) - {"class", "scale", "subject", "props", "within"}:
-            problems.append("narrowing: a map of class, scale, subject, props and within to slot names")
+        if not isinstance(narrowing, dict) or set(narrowing) - {"class", "scale", "subject", "props", "within", "predicated"}:
+            problems.append("narrowing: a map of class, scale, subject, props, within and predicated to slot names")
         else:
             for key, sname in narrowing.items():
                 if sname not in slots:

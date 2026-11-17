@@ -19,7 +19,8 @@ trigger:
     other; when the clause puts the noun itself in time (the session is at noon, the inspection was on
     Monday) or places another event relative to it (left after the inspection, slept during the
     session), mark it eventive so that the time or the relation can attach to it. A MASS noun
-    with a quantity phrase — a lot of water, plenty of hail, lots of sugar, a little salt — or
+    with a quantity phrase — a lot of water, plenty of hail, lots of sugar, a little salt, a great
+    deal of grain, a large amount of salt (the adjective on amount or deal kept) — or
     with a container or measure word — a cup of tea, a bag of flour — is a witness of the stuff
     (the quantity of it the text introduces): the vague phrase is recorded in `quantity`; a
     container or measure word is a measure instance on the witness. A noun, a name or a year
@@ -72,7 +73,7 @@ slots:
   tags:     {type: list, class: String, required: false, verbatim: true,
              doc: "a label or a code written right after the noun phrase — a commit hash, an id, a model or registry code, an abbreviation of the phrase in brackets — each as written, without the brackets around it (Tags after a name); never decoded"}
   quantity: {type: string, required: false,
-             doc: "a vague amount phrase on a mass noun, as written (a lot, lots, plenty, a little, a bit, much); absent otherwise"}
+             doc: "a vague amount phrase on a mass noun, as written, without of (a lot, lots, plenty, a little, a bit, much, a great deal, a large amount: the adjective on amount or deal kept); absent otherwise"}
   eventive: {type: bool, required: false,
              doc: "true when the noun names an event or a period and the clause puts the noun itself in time (the session is at noon), a year before it names its time (the 1904 flood), or the clause places another event relative to it (after the inspection, during the session); absent otherwise"}
 
@@ -262,3 +263,10 @@ examples:
         - {t: activity, id: v1, verb: sing, actor: "@x1", tense: past}
         - {t: witness, id: x2, class: cobbler}
         - {t: activity, id: v2, verb: whistle, actor: "@x2", tense: past}
+    - category: positive
+      note: an amount phrase with an adjective — the phrase as written, without of
+      text: "Teodor ate an enormous amount of porridge."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, class: porridge, quantity: an enormous amount}
+        - {t: activity, id: v1, verb: eat, actor: "@n1", patient: "@x1", tense: past}

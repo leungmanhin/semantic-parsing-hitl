@@ -20,7 +20,8 @@ trigger:
     A temporal preposition or connective that places the clause's event relative to a reference:
     before, after, during, while, when, until, since, by, from … to. The reference is another
     event — a clause of its own (after Odile sang, while Marisol waited), parsed with its own
-    template, or an event noun (after the inspection, during the session), a witness marked eventive —
+    template, a modal on it its own instance over it (before the kiln could cool: the cooling
+    the reference), or an event noun (after the inspection, during the session), a witness marked eventive —
     or a time: a date, a clock time or a named time (before noon, since 2019, until dawn), a time
     instance with no event of its own. The clause's event is parsed with its own template; the
     relation instance names that event, the reference and the relation as read, and keeps the
@@ -502,3 +503,13 @@ examples:
         - {t: time, id: t2, month: june, day: 8}
         - {t: time-relation, id: r1, event: "@v1", reference: "@t1", head: Start, word: "on"}
         - {t: time-relation, id: r2, event: "@v1", reference: "@t2", head: End, word: "–"}
+    - category: positive
+      note: the reference clause under a modal — its event the reference, the modal its own instance
+      text: "Teodor waited before Yusra could return."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: named-entity, id: n2, name: "Yusra"}
+        - {t: activity, id: v1, verb: wait, actor: "@n1", tense: past}
+        - {t: motion, id: m1, verb: return, mover: "@n2", tense: present}
+        - {t: modal, id: s1, over: ["@m1"], head: Can, surface: could}
+        - {t: time-relation, id: r1, event: "@v1", reference: "@m1", head: Before, word: before}
