@@ -136,9 +136,10 @@ def question_job(statements: list[str], queries: list[str], sets: dict | None = 
 
 
 def jobs_of(sample: str, parsed: str, steps: int = 2000) -> list[dict]:
-    """One job per block of the selection whose last parsed sentence is a question: the earlier sentences' statements,
-    the question's queries (as the sentence mode read them), the row's task target when the dataset gives one."""
-    from . import blocks as B, catalog as CAT                # noqa: PLC0415
+    """One job per block of the selection whose last parsed sentence is a question: what the earlier sentences state
+    together (``blocks.standing``: a statement a later sentence superseded is withdrawn), the question's queries (as
+    the sentence mode read them), the row's task target when the dataset gives one."""
+    from . import blocks as B, catalog as CAT, lower as L    # noqa: PLC0415
     catalog = CAT.load()
     with open(sample, encoding="utf-8") as fh:
         rows = [json.loads(l) for l in fh if l.strip()]
@@ -153,7 +154,7 @@ def jobs_of(sample: str, parsed: str, steps: int = 2000) -> list[dict]:
         last = recs[-1]
         if last.get("kind") != "question" or last["status"] != "ok":
             continue
-        statements = [s for r in recs[:-1] for s in r["statements"]]
+        statements = [L.statement(r) for r in B.standing(recs[:-1])]
         asked = last["question"]
         job = question_job(statements, asked["queries"], sets, steps)
         job.update({"doc": block[0].get("doc"), "question": last["text"], "form": asked["form"],

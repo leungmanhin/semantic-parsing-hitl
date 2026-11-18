@@ -5,7 +5,8 @@
 * instances: the emitter's checks surface as findings and stop the record (missing required
   slot, a filler pointing at a scope instance, a scope cycle, an empty required refs list);
 * lints: dangling referent (suppressed when something is unmapped), bare predication, empty
-  optional scope; with the text, the content lints (a content word outside every span, a quotation
+  optional scope, a per-member rule outside the scope of what it restates, a later mention with certain links
+  to several antecedents; with the text, the content lints (a content word outside every span, a quotation
   whose wording alone was reported);
 * C9 through ``validate``: the live transfer example validates clean; a well-formed but
   ill-typed emission is reported (skipped without ``petta``);
@@ -280,6 +281,63 @@ class LintTests(unittest.TestCase):
         res = V.inspect(reply(insts), cat)
         self.assertEqual(res["status"], "ok")
         self.assertEqual(kinds(res), ["bare-predication", "empty-scope"])
+
+
+class ScopeAndLinkLintTests(unittest.TestCase):
+    """Two parses that say more than their text once they are loaded: a per-member rule outside the command it
+    belongs to, and a plural pronoun linked as identical to two things."""
+    HINGES = [{"t": "group", "id": "g1", "class": "hinge", "definite": True},
+              {"t": "activity", "id": "e1", "verb": "oil", "patient": "@g1", "tense": "present"},
+              {"t": "imperative", "id": "s1", "over": ["@e1"]}]
+
+    def test_a_rule_over_the_command_is_clean_and_one_over_its_content_is_reported(self):
+        over_the_command = self.HINGES + [{"t": "distribution", "id": "d1", "group": "@g1", "over": ["@s1"]}]
+        res = V.inspect(reply(over_the_command), CATALOG)
+        self.assertEqual((res["status"], kinds(res)), ("ok", []))
+        self.assertTrue(any("(Implication (PartOf $x sk_group_1) (Directive " in s for s in res["statements"]), res["statements"])
+        over_the_content = self.HINGES + [{"t": "distribution", "id": "d1", "group": "@g1", "over": ["@e1"]}]
+        res = V.inspect(reply(over_the_content), CATALOG)
+        self.assertEqual((res["status"], kinds(res)), ("ok", ["rule-outside-scope"]))
+        self.assertIn("imperative s1", res["findings"][0]["detail"])
+        # what the finding is about: the rule as emitted states, outside the command, that each hinge is oiled
+        self.assertTrue(any("(Implication (PartOf $x sk_group_1) (And (Member (sk_oil $x) oil)" in s for s in res["statements"]),
+                        res["statements"])
+
+    def test_a_rule_over_an_asserted_predication_is_clean(self):
+        insts = [{"t": "group", "id": "g1", "class": "hinge", "definite": True},
+                 {"t": "activity", "id": "e1", "verb": "creak", "actor": "@g1", "tense": "past"},
+                 {"t": "distribution", "id": "d1", "group": "@g1", "over": ["@e1"]}]
+        self.assertEqual(kinds(V.inspect(reply(insts), CATALOG)), [])
+
+    def test_a_question_option_inside_a_scope_is_no_rule(self):
+        """A question's options do not consume either, but they make no rule: nothing is stated outside the belief."""
+        insts = [{"t": "named-entity", "id": "n1", "name": "Yusra"},
+                 {"t": "group", "id": "g1", "class": "hinge", "definite": True},
+                 {"t": "activity", "id": "e1", "verb": "creak", "actor": "@g1", "tense": "present"},
+                 {"t": "activity", "id": "e2", "verb": "squeak", "actor": "@g1", "tense": "present"},
+                 {"t": "attitude", "id": "a1", "verb": "think", "holder": "@n1", "content": ["@e1"], "factive": False,
+                  "tense": "present"},
+                 {"t": "question", "id": "q1", "options": ["@e1", "@e2"]}]
+        self.assertEqual(kinds(V.inspect(reply(insts), CATALOG)), [])
+
+    def test_one_mention_with_certain_links_to_two_antecedents(self):
+        base = [{"t": "witness", "id": "x1", "class": "ladle"}, {"t": "witness", "id": "x2", "class": "sieve"},
+                {"t": "named-entity", "id": "n1", "name": "Yusra"},
+                {"t": "activity", "id": "e1", "verb": "scrub", "actor": "@n1", "patient": "@x1", "tense": "past"},
+                {"t": "activity", "id": "e2", "verb": "scrub", "actor": "@n1", "patient": "@x2", "tense": "past"},
+                {"t": "mention", "id": "m1", "word": "them"},
+                {"t": "copular", "id": "c1", "subject": "@m1", "predicate": "rusty", "form": "adjective", "tense": "past"}]
+        two = base + [{"t": "coref", "id": "k1", "mention": "@m1", "antecedent": "@x1", "certainty": "certain"},
+                      {"t": "coref", "id": "k2", "mention": "@m1", "antecedent": "@x2", "certainty": "certain"}]
+        res = V.inspect(reply(two), CATALOG)
+        self.assertEqual((res["status"], kinds(res)), ("ok", ["mention-several-antecedents"]))
+        self.assertIn("@x1, @x2", res["findings"][0]["detail"])
+        # an open choice between two candidates is the template's own form: graded links, no finding
+        graded = base + [{"t": "coref", "id": "k1", "mention": "@m1", "antecedent": "@x1", "certainty": "likely"},
+                         {"t": "coref", "id": "k2", "mention": "@m1", "antecedent": "@x2", "certainty": "unlikely"}]
+        self.assertEqual(kinds(V.inspect(reply(graded), CATALOG)), [])
+        one = base + [{"t": "coref", "id": "k1", "mention": "@m1", "antecedent": "@x1", "certainty": "certain"}]
+        self.assertEqual(kinds(V.inspect(reply(one), CATALOG)), [])
 
 
 class ContentLintTests(unittest.TestCase):

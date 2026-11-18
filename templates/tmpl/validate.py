@@ -24,7 +24,13 @@ Checks, in order:
   attaches to it (a prepositional passive with no by-phrase: the leak was dealt with), an optional
   scope with an empty ``refs`` list (``empty-scope``), a reference in a lemma slot that names no asked word of a
   question (``lemma-reference``: a lemma slot holds a word; the emitter renders the referent's symbol there, as it
-  always has);
+  always has), a rule stated OUTSIDE the scope of what it restates (``rule-outside-scope``: a refs slot that makes
+  a rule without consuming its content — ``bind`` with ``consumes: false``, a distribution's ``over`` — names an
+  instance that a consuming scope also names, so the per-member rule stands at the top level about content the
+  text states only under that scope: a command over a group whose rule says each member IS handled; a question's
+  ``options`` make no rule and are not checked), a later mention with ``certain`` links to several different antecedents
+  (``mention-several-antecedents``: "them" for a cable and a stand — a link is an identity, and the link rules
+  would give each antecedent the other's facts);
 * statement lints on what was emitted: a variable in a statement that is no rule (``free-variable``: a
   referent tied to a rule's range from outside the rule; the statement is not a fact);
 * span lints, when the caller supplies the TEXT: an instance without ``span`` (``span-missing``), a
@@ -189,8 +195,10 @@ def _subject_left_out(r: dict, text: str | None) -> bool:
     return before == "" or before[-1] in ".;:,!?—–-)"
 
 
-def lints(insts: list, catalog: dict, unmapped: list, text: str | None = None) -> list:
-    """Structural lints on well-formed instances (the emitter has accepted them)."""
+def lints(insts: list, catalog: dict, unmapped: list, text: str | None = None, context: list | None = None) -> list:
+    """Structural lints on well-formed instances (the emitter has accepted them). ``context``: the instances of the
+    earlier sentences of the text (the sentence-by-sentence mode) — what a reference of ``insts`` may name; they are
+    looked up, never linted here."""
     mentioned: set[str] = set()
     for r in insts:
         for sname, spec in (catalog[r["t"]].get("slots") or {}).items():
@@ -199,7 +207,7 @@ def lints(insts: list, catalog: dict, unmapped: list, text: str | None = None) -
                 mentioned.add(v[1:])
             elif spec["type"] in ("refs", "list") and isinstance(v, list):   # a list may name instances (a name before a noun)
                 mentioned.update(x[1:] for x in v if E.is_ref(x))
-    by_id = {r["id"]: r for r in insts if "id" in r}
+    by_id = {r["id"]: r for r in list(context or []) + list(insts) if isinstance(r, dict) and "id" in r}
 
     def asked(iid: str) -> bool:
         t = catalog.get((by_id.get(iid) or {}).get("t")) or {}
@@ -266,6 +274,33 @@ def lints(insts: list, catalog: dict, unmapped: list, text: str | None = None) -
             if spec["type"] == "refs" and r.get(sname) == []:
                 out.append({"kind": "empty-scope", "instance": r["id"],
                             "detail": f"{r['t']} {r['id']}: {sname} is an empty list (a scope over nothing)"})
+    consumed_by: dict[str, dict] = {}           # content -> the scope whose consuming refs slot names it
+    for r in by_id.values():
+        for sname, spec in ((catalog.get(r.get("t")) or {}).get("slots") or {}).items():
+            if spec["type"] == "refs" and spec.get("consumes", True):
+                for x in r.get(sname) or []:
+                    if E.is_ref(x):
+                        consumed_by.setdefault(x[1:], r)
+    for r in insts:
+        for sname, spec in (catalog[r["t"]].get("slots") or {}).items():
+            if spec["type"] == "refs" and spec.get("consumes", True) is False and spec.get("bind"):   # the slot that makes a rule
+                for x in r.get(sname) or []:
+                    s = consumed_by.get(x[1:]) if E.is_ref(x) else None
+                    if s is not None and s is not r:
+                        out.append({"kind": "rule-outside-scope", "instance": r["id"],
+                                    "detail": f"{r['t']} {r['id']}: {sname} names {x}, which the {s['t']} {s['id']} holds in its "
+                                              f"scope — the rule is stated outside that scope; name the scope instead"})
+    links: dict[str, list] = {}                 # a later mention -> its antecedents under a certain link
+    for r in insts:
+        if r.get("t") == "coref" and r.get("certainty") == "certain" and E.is_ref(r.get("mention")) and E.is_ref(r.get("antecedent")):
+            ants = links.setdefault(r["mention"][1:], [])
+            if r["antecedent"] not in ants:
+                ants.append(r["antecedent"])
+    for m, ants in links.items():
+        if len(ants) > 1:
+            out.append({"kind": "mention-several-antecedents", "instance": m,
+                        "detail": f"{(by_id.get(m) or {}).get('t', 'instance')} {m} has certain links to {len(ants)} different "
+                                  f"antecedents ({', '.join(ants)}): a link is an identity, so each would receive the other's facts"})
     return out
 
 

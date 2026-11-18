@@ -27,9 +27,27 @@ rules:
 
   # Coreference: a stated link (Coref mention antecedent) carries the mention's facts to the
   # antecedent at the link's strength (its probability of identity), and back.
+  #
+  # TENSED FACTS. A state is stated flat in the present and under its tense otherwise: "It was
+  # blue" is (Past (Member sk_it_1 blue)), "the rope was 3 metres long" (Past (Measure sk_rope_1
+  # long 3 metre)). A rule that reads ONE such fact beside premises that hold whenever it does (a
+  # coreference link, a lexicon fact, a computation) declares it as `tensed`, and stands for its
+  # past and future variants as well: the fact and the conclusion both under (Past …), both under
+  # (Future …), as reliable as the rule itself. A rule that reads TWO such facts (two measures, a
+  # chain of places, a part and its whole's place) lists both and states `tensed_truth`: its
+  # variants read both facts under the one tense and conclude under it — "the mixer was in the
+  # booth" and "the booth was in the main hall" give (Past (LocatedIn sk_mixer_1 sk_hall_1)) — but
+  # only as a DEFAULT, at the catalog's weakest claim kind (0.9 at 0.7): two things said in the
+  # past need not have held together, so a direct statement overrides the conclusion on revision
+  # and a band query tells it from a stated fact. Nothing mixes a fact under a tense with a flat
+  # one (was in the booth; the booth is in the main hall): what holds now is not said of then.
+  # A `tensed` rule that reads its fact beside a coreference link or a lexicon fact states the fact
+  # FIRST (coref_member, coref_locatedin, the three pole rules): the order changes no answer, and
+  # the other order was measured several times slower on the chainer (tmpl/rules.py).
   - id: between_sym
     meaning: between a and b is between b and a
     premises: ["(Between $x $a $b)"]
+    tensed: "(Between $x $a $b)"
     conclusion: "(Between $x $b $a)"
     truth: {strength: 1.0, confidence: 0.99}
     semantics: equivalence
@@ -137,7 +155,8 @@ rules:
     reads: [coref]
   - id: coref_member
     meaning: a mention's class or property holds of its antecedent
-    premises: ["(Coref $m $a)", "(Member $m $k)"]
+    premises: ["(Member $m $k)", "(Coref $m $a)"]
+    tensed: "(Member $m $k)"
     conclusion: "(Member $a $k)"
     truth: {strength: 1.0, confidence: 0.99}
     semantics: deductive
@@ -151,11 +170,25 @@ rules:
     reads: [coref]
   - id: coref_locatedin
     meaning: where a mention is, its antecedent is
-    premises: ["(Coref $m $a)", "(LocatedIn $m $p)"]
+    premises: ["(LocatedIn $m $p)", "(Coref $m $a)"]
+    tensed: "(LocatedIn $m $p)"
     conclusion: "(LocatedIn $a $p)"
     truth: {strength: 1.0, confidence: 0.99}
     semantics: deductive
     reads: [coref]
+  - id: coref_time
+    meaning: when a mention happens, its antecedent happens
+    premises: ["(Time $m $t)", "(Coref $m $a)"]
+    conclusion: "(Time $a $t)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [coref, time]
+    notes: >-
+      Across sentences a repeated mention is a witness of its own, linked to the first: "The sound
+      check is two days before the concert. The concert is on day 10." gives (BeforeBy sk_time_1
+      sk_concert_1 2 day), (Time sk_concert_2 sk_time_2), (Day sk_time_2 10), (Coref sk_concert_2
+      sk_concert_1). This rule gives (Time sk_concert_1 sk_time_2), where the offset's rules
+      (days_before_event_day …) read the day.
 
   # Dates: a deictic time is an offset from the text's reference time (the anchor), and the anchor
   # carries calendar fields when the caller states the date. Within one month the day number
@@ -206,6 +239,57 @@ rules:
     truth: {strength: 1.0, confidence: 0.9}
     semantics: deductive
     reads: [time, reference-time]
+  # The anchor of an offset may be an EVENT (two days before the concert): the event has no calendar
+  # field of its own, its TIME has — (Time sk_concert_1 sk_time_2) (Day sk_time_2 10) — so each rule
+  # above has a twin that reads the field there.
+  - id: days_before_event_day
+    meaning: a time n days before an event has the day number of the event's time minus n
+    premises: ["(BeforeBy $t $a $n day)", "(Time $a $ta)", "(Day $ta $d)"]
+    computations: [{result: "$e", op: "-", args: ["$d", "$n"]}]
+    conclusion: "(Day $t $e)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [time]
+    notes: >-
+      "The sound check is two days before the concert" with "the concert is on the 10th": (BeforeBy
+      sk_time_1 sk_concert_1 2 day), (Time sk_concert_1 sk_time_2), (Day sk_time_2 10) give (Day
+      sk_time_1 8) for the sound check's time.
+  - id: days_after_event_day
+    meaning: a time n days after an event has the day number of the event's time plus n
+    premises: ["(BeforeBy $a $t $n day)", "(Time $a $ta)", "(Day $ta $d)"]
+    computations: [{result: "$e", op: "+", args: ["$d", "$n"]}]
+    conclusion: "(Day $t $e)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [time]
+  - id: days_before_event_month
+    meaning: a time some days before an event is in the month of the event's time
+    premises: ["(BeforeBy $t $a $n day)", "(Time $a $ta)", "(Month $ta $m)"]
+    conclusion: "(Month $t $m)"
+    truth: {strength: 1.0, confidence: 0.9}
+    semantics: deductive
+    reads: [time]
+  - id: days_before_event_year
+    meaning: a time some days before an event is in the year of the event's time
+    premises: ["(BeforeBy $t $a $n day)", "(Time $a $ta)", "(Year $ta $y)"]
+    conclusion: "(Year $t $y)"
+    truth: {strength: 1.0, confidence: 0.9}
+    semantics: deductive
+    reads: [time]
+  - id: days_after_event_month
+    meaning: a time some days after an event is in the month of the event's time
+    premises: ["(BeforeBy $a $t $n day)", "(Time $a $ta)", "(Month $ta $m)"]
+    conclusion: "(Month $t $m)"
+    truth: {strength: 1.0, confidence: 0.9}
+    semantics: deductive
+    reads: [time]
+  - id: days_after_event_year
+    meaning: a time some days after an event is in the year of the event's time
+    premises: ["(BeforeBy $a $t $n day)", "(Time $a $ta)", "(Year $ta $y)"]
+    conclusion: "(Year $t $y)"
+    truth: {strength: 1.0, confidence: 0.9}
+    semantics: deductive
+    reads: [time]
 
   # Occasions: a frequency rule quantifies over a class of times — (Member $t day), (Member $t
   # sunday). A time instance states its granularity itself ((Member t day) from the time
@@ -234,6 +318,8 @@ rules:
   - id: more_trans
     meaning: exceeding is transitive on a scale
     premises: ["(More $s $x $y)", "(More $s $y $z)"]
+    tensed: ["(More $s $x $y)", "(More $s $y $z)"]
+    tensed_truth: {strength: 0.9, confidence: 0.7}
     conclusion: "(More $s $x $z)"
     truth: {strength: 1.0, confidence: 0.99}
     semantics: deductive
@@ -241,6 +327,7 @@ rules:
   - id: samedegree_sym
     meaning: an equative holds in both directions
     premises: ["(SameDegree $s $x $y)"]
+    tensed: "(SameDegree $s $x $y)"
     conclusion: "(SameDegree $s $y $x)"
     truth: {strength: 1.0, confidence: 0.99}
     semantics: equivalence
@@ -252,6 +339,7 @@ rules:
   - id: morebydiff
     meaning: a measured gap entails the plain ordering
     premises: ["(MoreBy $s $x $y $n $u)"]
+    tensed: "(MoreBy $s $x $y $n $u)"
     conclusion: "(More $s $x $y)"
     truth: {strength: 1.0, confidence: 0.99}
     semantics: deductive
@@ -259,6 +347,8 @@ rules:
   - id: morebydiff_trans
     meaning: measured gaps add along a chain in one unit
     premises: ["(MoreBy $s $x $y $a $u)", "(MoreBy $s $y $z $b $u)"]
+    tensed: ["(MoreBy $s $x $y $a $u)", "(MoreBy $s $y $z $b $u)"]
+    tensed_truth: {strength: 0.9, confidence: 0.7}
     computations: [{result: "$c", op: "+", args: ["$a", "$b"]}]
     conclusion: "(MoreBy $s $x $z $c $u)"
     truth: {strength: 1.0, confidence: 0.99}
@@ -268,6 +358,7 @@ rules:
   - id: ratio_more_gt
     meaning: a factor above one entails the plain ordering
     premises: ["(TimesAs $s $x $y $f)"]
+    tensed: "(TimesAs $s $x $y $f)"
     computations: [{result: true, op: ">", args: ["$f", 1]}]
     conclusion: "(More $s $x $y)"
     truth: {strength: 1.0, confidence: 0.99}
@@ -276,6 +367,7 @@ rules:
   - id: ratio_more_lt
     meaning: a factor below one entails the reverse ordering
     premises: ["(TimesAs $s $x $y $f)"]
+    tensed: "(TimesAs $s $x $y $f)"
     computations: [{result: true, op: "<", args: ["$f", 1]}]
     conclusion: "(More $s $y $x)"
     truth: {strength: 1.0, confidence: 0.99}
@@ -296,7 +388,8 @@ rules:
     reads: [comparative]
   - id: pole_more
     meaning: exceeding on one pole is being exceeded on the opposite pole
-    premises: ["(ScaleOpposite $a $b)", "(More $a $x $y)"]
+    premises: ["(More $a $x $y)", "(ScaleOpposite $a $b)"]
+    tensed: "(More $a $x $y)"
     conclusion: "(More $b $y $x)"
     truth: {strength: 1.0, confidence: 0.99}
     semantics: deductive
@@ -306,14 +399,16 @@ rules:
       question worded on the other pole is answered; the stated pole stays the stated atom.
   - id: pole_moreby
     meaning: a measured gap on one pole is the same gap the other way on the opposite pole
-    premises: ["(ScaleOpposite $a $b)", "(MoreBy $a $x $y $n $u)"]
+    premises: ["(MoreBy $a $x $y $n $u)", "(ScaleOpposite $a $b)"]
+    tensed: "(MoreBy $a $x $y $n $u)"
     conclusion: "(MoreBy $b $y $x $n $u)"
     truth: {strength: 1.0, confidence: 0.99}
     semantics: deductive
     reads: [comparative]
   - id: pole_samedegree
     meaning: an equative on one pole is an equative on the opposite pole
-    premises: ["(ScaleOpposite $a $b)", "(SameDegree $a $x $y)"]
+    premises: ["(SameDegree $a $x $y)", "(ScaleOpposite $a $b)"]
+    tensed: "(SameDegree $a $x $y)"
     conclusion: "(SameDegree $b $x $y)"
     truth: {strength: 1.0, confidence: 0.99}
     semantics: deductive
@@ -328,6 +423,7 @@ rules:
   - id: unit_measure
     meaning: a measure in a unit with a factor holds in the canonical unit
     premises: ["(Measure $x $d $n $u)", "(UnitFactor $u $c $f)"]
+    tensed: "(Measure $x $d $n $u)"
     computations: [{result: "$m", op: "*", args: ["$n", "$f"]}]
     conclusion: "(Measure $x $d $m $c)"
     truth: {strength: 1.0, confidence: 0.99}
@@ -336,6 +432,7 @@ rules:
   - id: unit_atleast
     meaning: a lower bound converts like a measure
     premises: ["(MeasureAtLeast $x $d $n $u)", "(UnitFactor $u $c $f)"]
+    tensed: "(MeasureAtLeast $x $d $n $u)"
     computations: [{result: "$m", op: "*", args: ["$n", "$f"]}]
     conclusion: "(MeasureAtLeast $x $d $m $c)"
     truth: {strength: 1.0, confidence: 0.99}
@@ -344,6 +441,7 @@ rules:
   - id: unit_atmost
     meaning: an upper bound converts like a measure
     premises: ["(MeasureAtMost $x $d $n $u)", "(UnitFactor $u $c $f)"]
+    tensed: "(MeasureAtMost $x $d $n $u)"
     computations: [{result: "$m", op: "*", args: ["$n", "$f"]}]
     conclusion: "(MeasureAtMost $x $d $m $c)"
     truth: {strength: 1.0, confidence: 0.99}
@@ -352,6 +450,7 @@ rules:
   - id: unit_moreby
     meaning: a measured gap converts to the canonical unit
     premises: ["(MoreBy $s $x $y $n $u)", "(UnitFactor $u $c $f)"]
+    tensed: "(MoreBy $s $x $y $n $u)"
     computations: [{result: "$m", op: "*", args: ["$n", "$f"]}]
     conclusion: "(MoreBy $s $x $y $m $c)"
     truth: {strength: 1.0, confidence: 0.99}
@@ -365,6 +464,8 @@ rules:
   - id: measure_moreby
     meaning: two measures on one dimension in one unit give the gap between the things
     premises: ["(Measure $x $d $a $u)", "(Measure $y $d $b $u)"]
+    tensed: ["(Measure $x $d $a $u)", "(Measure $y $d $b $u)"]
+    tensed_truth: {strength: 0.9, confidence: 0.7}
     computations: [{result: "$g", op: "-", args: ["$a", "$b"]}, {result: true, op: ">", args: ["$g", 0]}]
     conclusion: "(MoreBy $d $x $y $g $u)"
     truth: {strength: 1.0, confidence: 0.99}
@@ -379,6 +480,8 @@ rules:
   - id: measure_same
     meaning: equal measures on one dimension in one unit give the equative
     premises: ["(Measure $x $d $a $u)", "(Measure $y $d $a $u)"]
+    tensed: ["(Measure $x $d $a $u)", "(Measure $y $d $a $u)"]
+    tensed_truth: {strength: 0.9, confidence: 0.7}
     computations: [{result: true, op: "!=", args: ["$x", "$y"]}]
     conclusion: "(SameDegree $d $x $y)"
     truth: {strength: 1.0, confidence: 0.99}
@@ -387,6 +490,7 @@ rules:
   - id: dimension_more
     meaning: an ordering on a dimension noun is the ordering on its adjective scale
     premises: ["(More $d $x $y)", "(DimensionScale $d $s)"]
+    tensed: "(More $d $x $y)"
     conclusion: "(More $s $x $y)"
     truth: {strength: 1.0, confidence: 0.99}
     semantics: deductive
@@ -394,6 +498,7 @@ rules:
   - id: dimension_moreby
     meaning: a gap on a dimension noun is the gap on its adjective scale
     premises: ["(MoreBy $d $x $y $n $u)", "(DimensionScale $d $s)"]
+    tensed: "(MoreBy $d $x $y $n $u)"
     conclusion: "(MoreBy $s $x $y $n $u)"
     truth: {strength: 1.0, confidence: 0.99}
     semantics: deductive
@@ -401,6 +506,7 @@ rules:
   - id: dimension_samedegree
     meaning: an equative on a dimension noun is the equative on its adjective scale
     premises: ["(SameDegree $d $x $y)", "(DimensionScale $d $s)"]
+    tensed: "(SameDegree $d $x $y)"
     conclusion: "(SameDegree $s $x $y)"
     truth: {strength: 1.0, confidence: 0.99}
     semantics: deductive
@@ -412,6 +518,8 @@ rules:
   - id: most_exceeds
     meaning: the most ADJ member of a class exceeds every other member on the scale
     premises: ["(Most $s $x $c)", "(Member $y $c)"]
+    tensed: ["(Most $s $x $c)", "(Member $y $c)"]
+    tensed_truth: {strength: 0.9, confidence: 0.7}
     computations: [{result: true, op: "!=", args: ["$x", "$y"]}]
     conclusion: "(More $s $x $y)"
     truth: {strength: 1.0, confidence: 0.99}
@@ -448,6 +556,8 @@ rules:
   - id: rank_orders
     meaning: of two ranks on one scale in one class, the lower is the greater (the second largest exceeds the third)
     premises: ["(Ordinal $a $m $s $c)", "(Ordinal $b $n $s $c)"]
+    tensed: ["(Ordinal $a $m $s $c)", "(Ordinal $b $n $s $c)"]
+    tensed_truth: {strength: 0.9, confidence: 0.7}
     computations: [{result: true, op: "<", args: ["$m", "$n"]}, {result: true, op: "!=", args: ["$s", "$c"]}]
     conclusion: "(More $s $a $b)"
     truth: {strength: 1.0, confidence: 0.99}
@@ -461,6 +571,7 @@ rules:
   - id: most_rank_one
     meaning: the most ADJ member of a class is first on that scale in that class
     premises: ["(Most $s $x $c)"]
+    tensed: "(Most $s $x $c)"
     conclusion: "(Ordinal $x 1 $s $c)"
     truth: {strength: 1.0, confidence: 0.99}
     semantics: deductive
@@ -468,6 +579,8 @@ rules:
   - id: most_bounds
     meaning: no member of a class exceeds its most ADJ member on the scale
     premises: ["(Most $s $x $c)", "(Member $y $c)"]
+    tensed: ["(Most $s $x $c)", "(Member $y $c)"]
+    tensed_truth: {strength: 0.9, confidence: 0.7}
     conclusion: "(Not (More $s $y $x))"
     truth: {strength: 1.0, confidence: 0.99}
     semantics: deductive
@@ -475,7 +588,9 @@ rules:
     notes: >-
       "Lamine is the oldest glazier" with "Bob is a glazier": (Not (More old sk_bob_1 sk_lamine_1))
       — the chainer answers the positive query at strength 0, which a band query reads as no. The
-      instance y = x is harmless: nothing exceeds itself.
+      instance y = x is harmless: nothing exceeds itself. Under a tense the denial stays outside,
+      as the catalog writes a denied state: "Lamine was the oldest glazier" with "Bob was a
+      glazier" give (Not (Past (More old sk_bob_1 sk_lamine_1))), as a default.
 
   # Counterfactuals: the antecedent of a subjunctive conditional is presupposed false; the rule
   # derives it from the sealed term (the chainer projects the term's conjuncts, denied).
@@ -522,6 +637,8 @@ rules:
   - id: partof_trans
     meaning: a part of a part is a part of the whole
     premises: ["(PartOf $x $y)", "(PartOf $y $z)"]
+    tensed: ["(PartOf $x $y)", "(PartOf $y $z)"]
+    tensed_truth: {strength: 0.9, confidence: 0.7}
     conclusion: "(PartOf $x $z)"
     truth: {strength: 1.0, confidence: 0.9}
     semantics: deductive
@@ -533,6 +650,8 @@ rules:
   - id: located_in_part
     meaning: what is in a part of a place is in the place (in southern Calderwick, so in Calderwick)
     premises: ["(LocatedIn $x $p)", "(PartOf $p $w)"]
+    tensed: ["(LocatedIn $x $p)", "(PartOf $p $w)"]
+    tensed_truth: {strength: 0.9, confidence: 0.7}
     conclusion: "(LocatedIn $x $w)"
     truth: {strength: 1.0, confidence: 0.9}
     semantics: deductive
@@ -540,6 +659,8 @@ rules:
   - id: located_trans
     meaning: being located carries up a chain of places (in Calderwick, Calderwick in Norland, so in Norland)
     premises: ["(LocatedIn $x $y)", "(LocatedIn $y $z)"]
+    tensed: ["(LocatedIn $x $y)", "(LocatedIn $y $z)"]
+    tensed_truth: {strength: 0.9, confidence: 0.7}
     conclusion: "(LocatedIn $x $z)"
     truth: {strength: 1.0, confidence: 0.9}
     semantics: deductive
@@ -550,6 +671,7 @@ rules:
   - id: direction_converse
     meaning: a direction from a landmark read from the landmark is the opposite direction (east of the bridge, so the bridge is west of it)
     premises: ["(DirectionFrom $x $y $d)", "(OppositeDirection $d $e)"]
+    tensed: "(DirectionFrom $x $y $d)"
     conclusion: "(DirectionFrom $y $x $e)"
     truth: {strength: 1.0, confidence: 0.99}
     semantics: deductive
@@ -557,6 +679,8 @@ rules:
   - id: part_located
     meaning: a part is where its whole is
     premises: ["(PartOf $p $w)", "(LocatedIn $w $l)"]
+    tensed: ["(PartOf $p $w)", "(LocatedIn $w $l)"]
+    tensed_truth: {strength: 0.9, confidence: 0.7}
     conclusion: "(LocatedIn $p $l)"
     truth: {strength: 1.0, confidence: 0.9}
     semantics: deductive
@@ -973,9 +1097,28 @@ facts:
       Linear factors only: a temperature scale is affine and has none, a currency has no fixed
       one. Calendar units take their average length (a month 2629800 seconds, a year 31557600).
       The factors are the legacy lexicon's; the spelling variants (meter, liter) convert at 1 so
-      that both spellings of a unit meet in the canonical one.
+      that both spellings of a unit meet in the canonical one. An ABBREVIATION kept as the text
+      writes it (12 kg, 30 cm) converts like the unit it stands for; only abbreviations that name
+      one unit are listed (no t, no mi).
     entries:
       - [meter, metre, 1]
+      - [m, metre, 1]
+      - [cm, metre, 0.01]
+      - [mm, metre, 0.001]
+      - [km, metre, 1000]
+      - [ft, metre, 0.3048]
+      - [in, metre, 0.0254]
+      - [yd, metre, 0.9144]
+      - [kg, kilogram, 1]
+      - [g, kilogram, 0.001]
+      - [mg, kilogram, 0.000001]
+      - [lb, kilogram, 0.453592]
+      - [oz, kilogram, 0.0283495]
+      - [sec, second, 1]
+      - [min, second, 60]
+      - [hr, second, 3600]
+      - [l, litre, 1]
+      - [ml, litre, 0.001]
       - [centimetre, metre, 0.01]
       - [centimeter, metre, 0.01]
       - [millimetre, metre, 0.001]

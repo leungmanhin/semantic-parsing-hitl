@@ -176,6 +176,86 @@ class SeededRulesOnTheEngine(unittest.TestCase):
         self.assertTrue(any("(Day sk_time_1 19)" in r for r in self.query(after, "(Day sk_time_1 $d)")))
         self.assertFalse(self.query(self.space(facts[:2]), "(Day sk_time_1 $d)"))      # no anchor fields
 
+    def test_an_offset_from_an_event_reads_the_events_time(self):
+        """The sound check is two days before the concert. The concert is on the 10th of March."""
+        facts = ['(: t1 (BeforeBy sk_time_1 sk_concert_1 2 day) (STV 1.0 0.99))', '(: t2 (Time sk_concert_1 sk_time_2) (STV 1.0 0.99))',
+                 '(: t3 (Day sk_time_2 10) (STV 1.0 0.99))', '(: t4 (Month sk_time_2 march) (STV 1.0 0.99))']
+        h = self.space(facts)
+        res = self.query(h, "(Day sk_time_1 $d)")
+        self.assertTrue(res and "(Day sk_time_1 8)" in res[0], res)
+        self.assertTrue(any("(Month sk_time_1 march)" in r for r in self.query(h, "(Month sk_time_1 $m)")))
+        after = self.space([facts[0].replace("(BeforeBy sk_time_1 sk_concert_1 2 day)", "(BeforeBy sk_concert_1 sk_time_1 2 day)")] + facts[1:])
+        self.assertTrue(any("(Day sk_time_1 12)" in r for r in self.query(after, "(Day sk_time_1 $d)")))
+        self.assertFalse(self.query(self.space(facts[:2]), "(Day sk_time_1 $d)"))        # the event's time has no day
+        # across two sentences the second mention of the concert is a witness of its own, linked to the first
+        linked = self.space([facts[0], '(: t2 (Time sk_concert_2 sk_time_2) (STV 1.0 0.99))',
+                             '(: c1 (Coref sk_concert_2 sk_concert_1) (STV 0.99 0.9))'] + facts[2:])
+        self.assertTrue(any("(Day sk_time_1 8)" in r for r in self.query(linked, "(Day sk_time_1 $d)")))
+
+    def test_a_fact_stated_in_the_past_is_read_in_the_past(self):
+        """A state is stated flat in the present and under its tense otherwise. A rule over ONE such fact reads it
+        in the past too — a unit converts, a property and a place cross a coreference link, a pole flips, the top of
+        a class ranks first, between reads both ways — and concludes in the past, never about now, at the rule's own
+        reliability."""
+        tv99 = "(STV 1.0 0.99)"
+        h = self.space([f"(: m1 (Past (Measure sk_rope_1 long 300 centimetre)) {tv99})",
+                        "(: c1 (Coref sk_it_1 sk_quilt_1) (STV 0.99 0.9))", f"(: c2 (Past (Member sk_it_1 blue)) {tv99})",
+                        f"(: c3 (Past (LocatedIn sk_it_1 sk_shed_1)) {tv99})",
+                        f"(: s1 (Past (More short sk_bob_1 sk_ann_1)) {tv99})",
+                        f"(: s2 (Past (Most tall sk_mira_1 player)) {tv99})",
+                        f"(: b1 (Past (Between sk_inn_1 sk_mill_1 sk_ford_1)) {tv99})"])
+        metres = self.query(h, "(Past (Measure sk_rope_1 long $m metre))", steps=1500)
+        self.assertTrue(metres and " 3.0 " in metres[0] and "unit_measure_past" in metres[0], metres)
+        self.assertFalse(self.query(h, "(Measure sk_rope_1 long $m metre)", steps=1500))               # nothing about now
+        blue = self.query(h, "(Past (Member sk_quilt_1 blue))")
+        self.assertTrue(blue and "coref_member_past" in blue[0], blue)
+        self.assertAlmostEqual(tv(blue)[0], 0.99, places=2)                                            # the link's value
+        self.assertAlmostEqual(tv(blue)[1], 0.9, places=2)
+        self.assertFalse(self.query(h, "(Member sk_quilt_1 blue)"))
+        self.assertTrue(self.query(h, "(Past (LocatedIn sk_quilt_1 sk_shed_1))"))
+        self.assertTrue(self.query(h, "(Past (More tall sk_ann_1 sk_bob_1))"))                         # the pole, in the past
+        self.assertFalse(self.query(h, "(More tall sk_ann_1 sk_bob_1)"))
+        self.assertTrue(self.query(h, "(Past (Ordinal sk_mira_1 1 tall player))"))
+        self.assertTrue(self.query(h, "(Past (Between sk_inn_1 sk_ford_1 sk_mill_1))"))
+
+    def test_two_facts_stated_in_the_past_are_read_together_only_as_a_default(self):
+        """Two things said in the past need not have held together, so a rule over TWO stated facts reads them under
+        one tense as a default at the catalog's weakest claim kind (0.9 at 0.7): a chain of past places, two past
+        measures, the top of a past class against a past member. A stated fact keeps its own value, a stated denial
+        overrides the default, and a past fact never meets a flat one."""
+        tv99 = "(STV 1.0 0.99)"
+        places = [f"(: p1 (Past (LocatedIn sk_mixer_1 sk_booth_1)) {tv99})", f"(: p2 (Past (LocatedIn sk_booth_1 sk_hall_1)) {tv99})"]
+        h = self.space(places + [f"(: p3 (LocatedIn sk_hall_1 sk_town_1) {tv99})",
+                                 f"(: m1 (Past (Measure sk_cable_1 long 300 centimetre)) {tv99})",
+                                 f"(: m2 (Past (Measure sk_rope_1 long 2 metre)) {tv99})",
+                                 f"(: s1 (Past (Most old sk_lamine_1 glazier)) {tv99})", f"(: s2 (Past (Member sk_bob_1 glazier)) {tv99})"])
+        hall = self.query(h, "(Past (LocatedIn sk_mixer_1 sk_hall_1))", steps=1500)
+        self.assertTrue(hall and "located_trans_past" in hall[0], hall)
+        self.assertAlmostEqual(tv(hall)[0], 0.9, places=2)
+        self.assertAlmostEqual(tv(hall)[1], 0.7, places=2)
+        self.assertAlmostEqual(tv(self.query(h, "(Past (LocatedIn sk_mixer_1 sk_booth_1))"))[1], 0.99, places=2)   # as stated
+        self.assertFalse(self.query(h, "(LocatedIn sk_mixer_1 sk_hall_1)", steps=1500))                # nothing about now
+        self.assertFalse(self.query(h, "(Past (LocatedIn sk_mixer_1 sk_town_1))", steps=1500))         # the hall IS in the town:
+        self.assertFalse(self.query(h, "(LocatedIn sk_mixer_1 sk_town_1)", steps=1500))                # not said of then
+        longer = self.query(h, "(Past (More long sk_cable_1 sk_rope_1))", steps=4000)                  # 300 cm against 2 m
+        self.assertTrue(longer and "measure_moreby_past" in longer[0], longer)
+        self.assertAlmostEqual(tv(longer)[0], 0.9, places=2)
+        self.assertFalse(self.query(h, "(More long sk_cable_1 sk_rope_1)", steps=4000))
+        older = self.query(h, "(Past (More old sk_lamine_1 sk_bob_1))", steps=1500)
+        self.assertTrue(older and "most_exceeds_past" in older[0], older)
+        denied = self.space(places + [f"(: p9 (Not (Past (LocatedIn sk_mixer_1 sk_hall_1))) {tv99})"])
+        no = self.query(denied, "(Past (LocatedIn sk_mixer_1 sk_hall_1))", steps=1500)
+        self.assertTrue(no and tv(no)[0] < 0.1, no)                                                    # what is stated wins
+
+    def test_an_abbreviated_unit_converts_like_the_unit_it_stands_for(self):
+        h = self.space(['(: m1 (Measure sk_amp_1 weight 12 kg) (STV 1.0 0.99))', '(: m2 (Measure sk_plank_1 long 30 cm) (STV 1.0 0.99))',
+                        '(: m3 (Measure sk_beam_1 long 2 m) (STV 1.0 0.99))'])
+        kilos = self.query(h, "(Measure sk_amp_1 weight $n kilogram)", steps=1500)
+        self.assertTrue(kilos and " 12.0 " in kilos[0], kilos)
+        metres = self.query(h, "(Measure sk_plank_1 long $n metre)", steps=1500)
+        self.assertTrue(metres and " 0.3 " in metres[0], metres)
+        self.assertTrue(self.query(h, "(More long sk_beam_1 sk_plank_1)", steps=4000))                 # 2 m against 30 cm
+
     def test_frequency_rule_instantiates_on_a_stated_time(self):
         """A frequency rule quantifies over a class of times; a stated time joins it through the
         weekday_class bridge (a weekday field puts the time in the weekday's class) or its stated

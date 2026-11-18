@@ -17,6 +17,27 @@ the variants. A rule may name a consumer capability it ``requires`` (``sealed-te
 concluding the conjuncts of a bound term, and the clause-event computation); lowering for a
 target that lacks the capability lists the rule as pending instead of writing it.
 
+A rule over a STATED FACT that a clause may put in the past or the future declares ``tensed``: the premise that is
+such a fact. A state is stated flat in the present and under its tense otherwise — the rope was 3 metres long:
+``(Past (Measure sk_rope_1 long 3 metre))`` — so the rule as written never meets it. With ``tensed`` it also stands
+for two variants, ``id_past`` and ``id_future``: that premise and the conclusion under ``(Past …)`` / under
+``(Future …)``, every other premise as written; a conclusion that denies keeps its denial outside, as the catalog
+writes a denied state — ``(Not (Past (More …)))``. With ONE such fact the variants are as reliable as the rule: its
+other premises hold whenever the fact does (a lexicon fact, an identity link, a computation). A rule over TWO OR
+MORE such facts lists them (``tensed: [fact, fact]``) and states ``tensed_truth``: its variants read all of them
+under the one tense, and they are a DEFAULT, not a consequence — two things said in the past need not have held
+together (the mixer was in the booth; the booth was in the main hall) — so they carry the reliability the source
+gives them there, the catalog's weakest claim kind, which a band query tells from a stated fact and a direct
+statement overrides. No variant mixes a fact under a tense with a flat one. A variant states its facts under the
+tense FIRST, its other premises after them in their order, whatever the order of the rule as written. The reason is
+measured, not derived: on upstream master b6aacc68, over one knowledge base with past measures, comparisons and a
+superlative, six questions about past comparisons took 209 s with the lexicon premise or the identity link first
+(``(ScaleOpposite $a $b)`` before ``(Past (More $a $x $y))``, ``(Coref $m $a)`` before ``(Past (Member $m $k))``) and
+under 5 s with the stated fact first — the same answers, the same values. The rules as written showed a milder form
+of the same cost (seventeen questions over present facts: 13.3 s there with that premise or link first in five
+rules, 0.7 s with the stated fact first; 7.8 s and 4.8 s on our line), so ``rules.yaml`` states the fact first in
+those five as well (``pole_more``, ``pole_moreby``, ``pole_samedegree``, ``coref_member``, ``coref_locatedin``).
+
 Lowering for our engine line (target ``pettachainer``): ``(: id (Implication <premises> <conclusion>)
 (CTV (STV s c) (STV 0.0 0.0)))``. The explicit conditional is the chainer's documented form for a
 conditional relationship; its negative branch, with no confidence, states the deductive semantics (nothing follows from
@@ -113,6 +134,9 @@ TARGETS = ("pettachainer", MASTER)
 TARGET_CAPABILITIES = {"pettachainer": {"sealed-term-projection"}, MASTER: set()}  # what each consumer can run; grows with the consumer
 NEGATIVE_BRANCH = {"pettachainer": "(STV 0.0 0.0)", MASTER: "(STV 0.0 0.001)"}     # a deductive rule's failed-premise branch
 _VAR = re.compile(r"\$[A-Za-z_][A-Za-z0-9_]*")
+TENSED_NOTE = " — 3 variants: as stated, and with the fact and the conclusion in the past, in the future"
+TENSED_DEFAULT_NOTE = (" — 3 variants: as stated, and — as a default at ({s} {c}) — with its facts and the conclusion "
+                       "all in the past, all in the future")
 
 
 class RulesError(Exception):
@@ -131,9 +155,43 @@ def _heads(expr, out: set) -> set:
     return out
 
 
+def tensed_facts(rule: dict) -> list[str]:
+    """The premises a rule declares as facts a clause may put under a tense: none, the one, or the several."""
+    fact = rule.get("tensed")
+    return [] if fact is None else [fact] if isinstance(fact, str) else list(fact)
+
+
+def _under(head: str, atom: str) -> str:
+    """``atom`` under a tense. A denial stays outside, as the catalog writes a denied state: (Not (Past (More …)))."""
+    inner = re.fullmatch(r"\(Not (\(.+\))\)", atom.strip())
+    return f"(Not ({head} {inner.group(1)}))" if inner else f"({head} {atom})"
+
+
+def tensed_note(rule: dict) -> str:
+    """What the generated files say of a rule's tensed variants."""
+    if not rule.get("tensed"):
+        return ""
+    truth = rule.get("tensed_truth")
+    return TENSED_NOTE if truth is None else TENSED_DEFAULT_NOTE.format(s=truth["strength"], c=truth["confidence"])
+
+
 def expand(rule: dict) -> list[dict]:
-    """The concrete rules a source rule stands for: itself, or one per matrix tense when it
-    declares ``expand`` over a sealed clause."""
+    """The concrete rules a source rule stands for: itself; one per matrix tense when it declares ``expand`` over a
+    sealed clause; itself and its past and future variants when it declares ``tensed`` premises (the module doc)."""
+    facts = tensed_facts(rule)
+    if facts:
+        base = {k: v for k, v in rule.items() if k not in ("tensed", "tensed_truth")}
+        out = [base]
+        for tense in ("past", "future"):
+            head = TENSES[tense]
+            variant = {**base, "id": f"{rule['id']}_{tense}",      # the facts under the tense first (the module doc)
+                       "premises": [f"({head} {p})" for p in rule["premises"] if p in facts]
+                                   + [p for p in rule["premises"] if p not in facts],
+                       "conclusion": _under(head, rule["conclusion"])}
+            if rule.get("tensed_truth") is not None:      # several facts under one tense: a default (the module doc)
+                variant["truth"] = rule["tensed_truth"]
+            out.append(variant)
+        return out
     spec = rule.get("expand")
     if not spec:
         return [rule]
@@ -175,6 +233,30 @@ def check(rules: list[dict], heads: set | None = None, templates: set | None = N
             variants = expand(src)
         else:
             variants = [src]
+        fact = src.get("tensed")
+        if fact is not None or "tensed_truth" in src:
+            where = f"rules[{i}] ({src.get('id', '?')})"
+            if spec is not None or src.get("closure"):
+                problems.append(f"{where}: a rule with a tensed premise neither expands over a sealed clause nor belongs to a closure")
+                continue
+            several = isinstance(fact, list)
+            facts = fact if several else [fact]
+            prem = src.get("premises")
+            if not (all(isinstance(f, str) for f in facts) and len(set(facts)) == len(facts) and isinstance(prem, list)
+                    and all(prem.count(f) == 1 for f in facts) and isinstance(src.get("conclusion"), str)
+                    and (not several or len(facts) >= 2)):
+                problems.append(f"{where}: tensed must be one of the rule's premises as written there, or a list of two or more of them")
+                continue
+            truth = src.get("tensed_truth")
+            if several and not (isinstance(truth, dict) and set(truth) == {"strength", "confidence"}
+                                and all(isinstance(truth[k], (int, float)) and 0 <= truth[k] <= 1 for k in truth)):
+                problems.append(f"{where}: a rule over several tensed facts states tensed_truth {{strength, confidence}} in [0, 1] — "
+                                f"its variants are a default, not a consequence")
+                continue
+            if not several and "tensed_truth" in src:
+                problems.append(f"{where}: tensed_truth belongs to a rule over several tensed facts; the variants of a rule over one keep its truth")
+                continue
+            variants = expand(src)                       # the rule as written, and its past and future variants
         for r in variants:
             problems += _check_one(r, i, heads, templates, seen, expanded=spec is not None)
     return problems
@@ -261,7 +343,7 @@ def _check_one(r: dict, i: int, heads, templates, seen: set, expanded: bool = Fa
                 if t not in templates:
                     problems.append(f"{where}: reads unknown template {t!r}")
         for key in r:
-            if key not in ("id", "meaning", "premises", "computations", "conclusion", "truth", "semantics", "reads", "notes", "expand", "requires", "closure"):
+            if key not in ("id", "meaning", "premises", "computations", "conclusion", "truth", "semantics", "reads", "notes", "expand", "requires", "closure", "tensed", "tensed_truth"):
                 problems.append(f"{where}: unknown key {key!r}")
         cl = r.get("closure")
         if cl is not None:
@@ -693,7 +775,7 @@ def render(rules: list[dict], target: str = "pettachainer", facts: list[dict] | 
             continue
         reads = f" (reads: {', '.join(src['reads'])})" if src.get("reads") else ""
         variants = expand(src)
-        suffix = f" — {len(variants)} variants, by the matrix event's tense" if src.get("expand") else ""
+        suffix = f" — {len(variants)} variants, by the matrix event's tense" if src.get("expand") else tensed_note(src)
         lines.append(f";; {src['id']}: {src['meaning']}{reads}{suffix}")
         for r in variants:
             lines.append(lower(r, target))
@@ -739,7 +821,7 @@ def _render_master(rules: list[dict], facts: list[dict], closures: list[dict]) -
         lines.append(";; ===== Rules =====")
     for src in _for_target(rules, closures, MASTER):
         reads = f" (reads: {', '.join(src['reads'])})" if src.get("reads") else ""
-        lines.append(f";; {src['id']}: {src['meaning']}{reads}")
+        lines.append(f";; {src['id']}: {src['meaning']}{reads}{tensed_note(src)}")
         for r in expand(src):
             lines.append(lower(r, MASTER))
     return "\n".join(lines) + "\n"

@@ -123,6 +123,54 @@ class BackgroundRulesOnUpstreamMaster(unittest.TestCase):
         got = [str(a) for a in metres.query("(: $prf (Measure sk_plank_1 long $n metre) $tv)", steps=1500, timeout_sec=0)]
         self.assertTrue(got and re.search(r"\(Measure sk_plank_1 long 0\.3\d* metre\)", got[0]), got)
 
+    def test_an_offset_from_an_event_reads_the_events_time(self):
+        """The sound check is two days before the concert. The concert is on the 10th of March."""
+        facts = [f"(: t1 (BeforeBy sk_time_1 sk_concert_1 2 day) {TV})", f"(: t2 (Time sk_concert_1 sk_time_2) {TV})",
+                 f"(: t3 (Day sk_time_2 10) {TV})", f"(: t4 (Month sk_time_2 march) {TV})"]
+        got = [str(a) for a in kb(facts).query("(: $prf (Day sk_time_1 $d) $tv)", steps=400, timeout_sec=0)]
+        self.assertTrue(got and "(Day sk_time_1 8" in got[0], got)
+        got = [str(a) for a in kb(facts).query("(: $prf (Month sk_time_1 $m) $tv)", steps=400, timeout_sec=0)]
+        self.assertTrue(got and "(Month sk_time_1 march)" in got[0], got)
+        after = [facts[0].replace("(BeforeBy sk_time_1 sk_concert_1 2 day)", "(BeforeBy sk_concert_1 sk_time_1 2 day)")] + facts[1:]
+        got = [str(a) for a in kb(after).query("(: $prf (Day sk_time_1 $d) $tv)", steps=400, timeout_sec=0)]
+        self.assertTrue(got and "(Day sk_time_1 12" in got[0], got)
+        # across two sentences the second mention of the concert is a witness of its own, linked to the first
+        linked = [facts[0], f"(: t2 (Time sk_concert_2 sk_time_2) {TV})", "(: c1 (Coref sk_concert_2 sk_concert_1) (STV 0.99 0.9))"] + facts[2:]
+        got = [str(a) for a in kb(linked).query("(: $prf (Day sk_time_1 $d) $tv)", steps=400, timeout_sec=0)]
+        self.assertTrue(got and "(Day sk_time_1 8" in got[0], got)
+
+    def test_a_fact_stated_in_the_past_is_read_in_the_past(self):
+        """The rope was 300 centimetres long. / It was blue, of a quilt."""
+        rope = [f"(: m1 (Past (Measure sk_rope_1 long 300 centimetre)) {TV})"]
+        got = [str(a) for a in kb(rope).query("(: $prf (Past (Measure sk_rope_1 long $n metre)) $tv)", steps=1500, timeout_sec=0)]
+        self.assertTrue(got and re.search(r"\(Past \(Measure sk_rope_1 long 3\.0\d* metre\)\)", got[0]), got)
+        self.assertEqual(values(kb(rope), "(Measure sk_rope_1 long $n metre)", steps=1500), [])        # nothing about now
+        quilt = ["(: c1 (Coref sk_it_1 sk_quilt_1) (STV 0.99 0.9))", f"(: c2 (Past (Member sk_it_1 blue)) {TV})"]
+        self.near(values(kb(quilt), "(Past (Member sk_quilt_1 blue))"), 0.99, 0.9)                     # the link's value
+        self.assertEqual(values(kb(quilt), "(Member sk_quilt_1 blue)"), [])
+
+    def test_two_facts_stated_in_the_past_are_read_together_only_as_a_default(self):
+        """The mixer was in the booth. The booth was in the main hall. / The cable was 300 centimetres long. The rope
+        was 2 metres long. — two past statements need not have held together: a default at (0.9 0.7), never about now,
+        never mixed with a flat fact, and a stated denial wins."""
+        places = [f"(: p1 (Past (LocatedIn sk_mixer_1 sk_booth_1)) {TV})", f"(: p2 (Past (LocatedIn sk_booth_1 sk_hall_1)) {TV})"]
+        self.near(values(kb(places), "(Past (LocatedIn sk_mixer_1 sk_hall_1))", steps=1500), 0.9, 0.7)
+        self.assertEqual(values(kb(places), "(LocatedIn sk_mixer_1 sk_hall_1)", steps=1500), [])
+        mixed = [places[0], f"(: p3 (LocatedIn sk_booth_1 sk_hall_1) {TV})"]                            # the booth IS in the hall
+        self.assertEqual(values(kb(mixed), "(Past (LocatedIn sk_mixer_1 sk_hall_1))", steps=1500), [])
+        ropes = [f"(: m1 (Past (Measure sk_cable_1 long 300 centimetre)) {TV})", f"(: m2 (Past (Measure sk_rope_1 long 2 metre)) {TV})"]
+        self.near(values(kb(ropes), "(Past (More long sk_cable_1 sk_rope_1))", steps=4000), 0.9, 0.7)
+        denied = places + [f"(: p9 (Not (Past (LocatedIn sk_mixer_1 sk_hall_1))) {TV})"]
+        no = values(kb(denied), "(Past (LocatedIn sk_mixer_1 sk_hall_1))", steps=1500)
+        self.assertTrue(no and no[0][0] < 0.1, no)
+
+    def test_an_abbreviated_unit_converts_like_the_unit_it_stands_for(self):
+        facts = [f"(: m1 (Measure sk_amp_1 weight 12 kg) {TV})", f"(: m2 (Measure sk_plank_1 long 30 cm) {TV})"]
+        got = [str(a) for a in kb(facts).query("(: $prf (Measure sk_amp_1 weight $n kilogram) $tv)", steps=1500, timeout_sec=0)]
+        self.assertTrue(got and re.search(r"\(Measure sk_amp_1 weight 12\.0\d* kilogram\)", got[0]), got)
+        got = [str(a) for a in kb(facts).query("(: $prf (Measure sk_plank_1 long $n metre) $tv)", steps=1500, timeout_sec=0)]
+        self.assertTrue(got and re.search(r"\(Measure sk_plank_1 long 0\.3\d* metre\)", got[0]), got)
+
     def test_a_question_nothing_derives_gets_no_answer_once_the_predicates_are_declared(self):
         for goal in ("(Agent sk_wash_1 sk_pieter_1)", "(Member sk_marisol_1 glazier)", "(Member sk_marisol_1 potter)"):
             self.assertEqual(values(kb(WASH), goal), [], goal)

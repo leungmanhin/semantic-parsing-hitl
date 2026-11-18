@@ -10,6 +10,7 @@ import collections
 import copy
 import json
 import os
+import re
 import sys
 import tempfile
 import unittest
@@ -102,6 +103,116 @@ class SourceTests(unittest.TestCase):
         bad = copy.deepcopy(sym); bad["conclusion"] = "(SameDegree $s (sk_sym $x) $y)"
         self.assertTrue(any("skolem" in p for p in R.check([bad], heads, ids)))
 
+    def test_a_rule_over_one_stated_fact_also_stands_for_that_fact_in_the_past_and_the_future(self):
+        """A state is stated flat in the present and under its tense otherwise; a rule that declares its one such
+        premise as ``tensed`` stands for three: as written, and with that premise and the conclusion under the tense."""
+        unit = next(r for r in RULES if r["id"] == "unit_measure")
+        self.assertEqual(unit["tensed"], "(Measure $x $d $n $u)")
+        plain, past, future = R.expand(unit)
+        self.assertEqual([v["id"] for v in (plain, past, future)], ["unit_measure", "unit_measure_past", "unit_measure_future"])
+        self.assertEqual((plain["premises"], plain["conclusion"]), (unit["premises"], unit["conclusion"]))
+        self.assertNotIn("tensed", plain)
+        self.assertEqual(past["premises"], ["(Past (Measure $x $d $n $u))", "(UnitFactor $u $c $f)"])   # the lexicon fact as written
+        self.assertEqual(past["conclusion"], "(Past (Measure $x $d $m $c))")
+        self.assertEqual(R.lower(past, R.MASTER),
+                         "(: unit_measure_past (Implication (And (Past (Measure $x $d $n $u)) (UnitFactor $u $c $f) "
+                         "(Compute * ($n $f) -> $m)) (Past (Measure $x $d $m $c))) (CTV (STV 1.0 0.99) (STV 0.0 0.001)))")
+        self.assertEqual(future["conclusion"], "(Future (Measure $x $d $m $c))")
+        link = next(r for r in RULES if r["id"] == "coref_member")                # an identity link holds at any time
+        self.assertEqual(link["premises"], ["(Member $m $k)", "(Coref $m $a)"])
+        self.assertEqual(R.expand(link)[1]["premises"], ["(Past (Member $m $k))", "(Coref $m $a)"])   # the stated fact first
+        turned = {**link, "premises": link["premises"][::-1]}                     # … however the rule is written
+        self.assertEqual(R.expand(turned)[1]["premises"], ["(Past (Member $m $k))", "(Coref $m $a)"])
+        for rid in ("pole_more", "pole_moreby", "pole_samedegree", "coref_member", "coref_locatedin"):
+            written = next(r for r in RULES if r["id"] == rid)                    # as written too: before the link or the
+            self.assertEqual(written["premises"][0], written["tensed"], rid)      # lexicon fact (a measured cost)
+        for src in RULES:                                                         # in every variant, whatever the rule's order
+            for variant in R.expand(src)[1:] if src.get("tensed") else []:
+                under = [p.startswith(("(Past ", "(Future ")) for p in variant["premises"]]
+                self.assertEqual(under, sorted(under, reverse=True), variant["id"])
+                self.assertEqual(sorted(re.sub(r"^\((?:Past|Future) (.*)\)$", r"\1", p) for p in variant["premises"]),
+                                 sorted(src["premises"]), variant["id"])
+        sym = R.expand(next(r for r in RULES if r["id"] == "samedegree_sym"))[1]  # an equivalence: both sides
+        self.assertEqual(R.lower(sym), "(: samedegree_sym_past (Equivalence (Past (SameDegree $s $x $y)) "
+                                       "(Past (SameDegree $s $y $x))) (STV 1.0 0.99))")
+        text = R.render(RULES)
+        for rid in ("unit_measure_past", "unit_measure_future", "coref_member_past", "most_rank_one_past"):
+            self.assertIn(f"(: {rid} ", text)
+        for src in RULES:                                                         # one fact: as reliable as the rule
+            if isinstance(src.get("tensed"), str):
+                self.assertTrue(all(v["truth"] == src["truth"] for v in R.expand(src)), src["id"])
+        heads, ids = R.substrate_heads(), R.catalog_ids()
+        self.assertEqual(R.check([copy.deepcopy(unit)], heads, ids), [])
+        bad = copy.deepcopy(unit); bad["tensed"] = "(Measure $x $d $n $v)"        # not a premise of the rule
+        self.assertTrue(any("one of the rule's premises as written there" in p for p in R.check([bad], heads, ids)))
+        bad = copy.deepcopy(unit); bad["tensed_truth"] = {"strength": 0.9, "confidence": 0.7}  # one fact: no default
+        self.assertTrue(any("keep its truth" in p for p in R.check([bad], heads, ids)))
+        bad = copy.deepcopy(next(r for r in RULES if r["id"] == "theme_entailed")); bad["tensed"] = bad["premises"][0]
+        self.assertTrue(any("neither expands" in p for p in R.check([bad], heads, ids)))
+        taken = {k: v for k, v in copy.deepcopy(unit).items() if k != "tensed"}
+        taken["id"] = "unit_measure_past"                                                      # a variant's id is an id
+        self.assertTrue(any("duplicate id" in p for p in R.check([copy.deepcopy(unit), taken], heads, ids)))
+
+    def test_a_rule_over_two_stated_facts_reads_them_under_one_tense_as_a_default(self):
+        """Two things said in the past need not have held together: a rule over two stated facts lists both as
+        ``tensed`` and states the truth of its variants — a default at the catalog's weakest claim kind, never the
+        rule's own reliability. No variant mixes a fact under a tense with a flat one."""
+        chain = next(r for r in RULES if r["id"] == "located_trans")
+        self.assertEqual(chain["tensed"], ["(LocatedIn $x $y)", "(LocatedIn $y $z)"])
+        self.assertEqual(chain["tensed_truth"], {"strength": 0.9, "confidence": 0.7})
+        plain, past, future = R.expand(chain)
+        self.assertEqual((plain["premises"], plain["conclusion"], plain["truth"]),
+                         (chain["premises"], chain["conclusion"], chain["truth"]))
+        self.assertNotIn("tensed_truth", plain)
+        self.assertEqual(past["premises"], ["(Past (LocatedIn $x $y))", "(Past (LocatedIn $y $z))"])
+        self.assertEqual(R.lower(past, R.MASTER),
+                         "(: located_trans_past (Implication (And (Past (LocatedIn $x $y)) (Past (LocatedIn $y $z))) "
+                         "(Past (LocatedIn $x $z))) (CTV (STV 0.9 0.7) (STV 0.0 0.001)))")
+        self.assertEqual(R.lower(future),
+                         "(: located_trans_future (Implication (And (Future (LocatedIn $x $y)) (Future (LocatedIn $y $z))) "
+                         "(Future (LocatedIn $x $z))) (CTV (STV 0.9 0.7) (STV 0.0 0.0)))")
+        gap = R.expand(next(r for r in RULES if r["id"] == "measure_moreby"))[1]      # a computation and a guard as written
+        self.assertEqual(R.lower(gap),
+                         "(: measure_moreby_past (Implication (And (Past (Measure $x $d $a $u)) (Past (Measure $y $d $b $u)) "
+                         "(Compute - ($a $b) -> $g) (Compute > ($g 0) -> true)) (Past (MoreBy $d $x $y $g $u))) "
+                         "(CTV (STV 0.9 0.7) (STV 0.0 0.0)))")
+        bound = R.expand(next(r for r in RULES if r["id"] == "most_bounds"))[1]       # a denial stays outside the tense,
+        self.assertEqual(bound["premises"], ["(Past (Most $s $x $c))", "(Past (Member $y $c))"])
+        self.assertEqual(bound["conclusion"], "(Not (Past (More $s $y $x)))")         # as the catalog writes a denied state
+        two = ("measure_same", "measure_moreby", "located_trans", "located_in_part", "part_located", "partof_trans",
+               "more_trans", "morebydiff_trans", "rank_orders", "most_exceeds", "most_bounds")
+        self.assertEqual({r["id"] for r in RULES if isinstance(r.get("tensed"), list)}, set(two))
+        text = R.render(RULES)
+        for rid in two:
+            src = next(r for r in RULES if r["id"] == rid)
+            self.assertEqual(len(src["tensed"]), 2, rid)
+            for head, v in zip(("Past", "Future"), R.expand(src)[1:]):
+                self.assertEqual(v["truth"], {"strength": 0.9, "confidence": 0.7}, v["id"])
+                self.assertEqual(sum(p.startswith(f"({head} ") for p in v["premises"]), 2, v["id"])   # both, under one tense
+                self.assertIn(f"(: {v['id']} ", text)
+        heads, ids = R.substrate_heads(), R.catalog_ids()
+        self.assertEqual(R.check([copy.deepcopy(chain)], heads, ids), [])
+        bad = copy.deepcopy(chain); del bad["tensed_truth"]                           # a default states its truth
+        self.assertTrue(any("states tensed_truth" in p for p in R.check([bad], heads, ids)))
+        bad = copy.deepcopy(chain); bad["tensed"] = ["(LocatedIn $x $y)"]             # a list names two or more
+        self.assertTrue(any("two or more" in p for p in R.check([bad], heads, ids)))
+        bad = copy.deepcopy(chain); bad["tensed"] = ["(LocatedIn $x $y)", "(LocatedIn $x $y)"]
+        self.assertTrue(any("two or more" in p for p in R.check([bad], heads, ids)))
+        bad = copy.deepcopy(next(r for r in RULES if r["id"] == "coref_agent"))       # a truth for variants it has not
+        bad["tensed_truth"] = {"strength": 0.9, "confidence": 0.7}
+        self.assertTrue(any("tensed must be" in p for p in R.check([bad], heads, ids)))
+
+    def test_an_offset_from_an_event_reads_the_events_time(self):
+        rule = next(r for r in RULES if r["id"] == "days_before_event_day")
+        self.assertEqual(R.lower(rule, R.MASTER),
+                         "(: days_before_event_day (Implication (And (BeforeBy $t $a $n day) (Time $a $ta) (Day $ta $d) "
+                         "(Compute - ($d $n) -> $e)) (Day $t $e)) (CTV (STV 1.0 0.99) (STV 0.0 0.001)))")
+        ids = {r["id"] for r in RULES}
+        for unit in ("day", "month", "year"):                                     # a twin for each rule on a time anchor
+            for side in ("before", "after"):
+                self.assertIn(f"days_{side}_{unit}", ids)
+                self.assertIn(f"days_{side}_event_{unit}", ids)
+
     def test_validator_catches_unsound_rules(self):
         base = copy.deepcopy(next(r for r in RULES if r["id"] == "coref_agent"))
         heads, ids = R.substrate_heads(), R.catalog_ids()
@@ -147,7 +258,7 @@ class UpstreamMasterTests(unittest.TestCase):
             self.assertIn(rid, ids)
         self.assertEqual(R.unwritten(RULES, closures), [])                                    # our line runs every rule
         low = R.lowered(RULES, closures, R.MASTER)
-        self.assertEqual(len(low), len(RULES) - len(left))
+        self.assertEqual(len(low), len(R.concrete([r for r in RULES if r["id"] not in ids])))   # a tensed rule: three
         self.assertTrue(all(r["stage"] == "query" for r in low))                              # no closure stage, no unrolling
         text = R.render(RULES, R.MASTER)
         self.assertIn(";;   look_holds — what looks so is taken to be so (requires sealed-term-projection)", text)
@@ -157,7 +268,8 @@ class UpstreamMasterTests(unittest.TestCase):
         self.assertEqual(len(rules), len(low))
         self.assertFalse([ln for ln in rules if "(Kin " in ln or "clause-event" in ln])
         self.assertFalse([ln for ln in statements if "(Equivalence " in ln or "(STV 0.0 0.0)))" in ln])
-        self.assertEqual(sum("(BiImplication " in ln for ln in rules), sum(1 for r in RULES if r.get("semantics") == "equivalence"))
+        self.assertEqual(sum("(BiImplication " in ln for ln in rules),
+                         sum(1 for r in R.concrete(RULES) if r.get("semantics") == "equivalence"))
         facts = R.load_facts(rules=RULES)
         self.assertEqual(R.statements_of(facts, R.MASTER), R.statements_of(facts))            # the lexicon: the same statements
         self.assertEqual([ln for ln in statements if ln not in rules], R.statements_of(facts))

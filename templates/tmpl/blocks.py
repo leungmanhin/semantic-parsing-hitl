@@ -10,15 +10,33 @@ IDS. The parser writes a sentence's own instances with LOCAL ids (n1, x1, e1 …
 sentence's instance by its QUALIFIED id, ``s<k>.<id>``, as the context shows it (``"antecedent": "@s1.x1"``).
 ``qualify`` renames sentence k's local ids to ``s<k>.<id>`` and rewrites its local references (the reserved
 ``@now`` stays); ``prefix_problems`` refuses an instance id of another sentence, a reference to a later sentence
-and a reference to an earlier id the context does not hold.
+and a reference to an earlier id the context does not hold. A slot that holds words as written (the catalog's type
+``string``: a name, a tag) holds no reference, whatever its first character: the name ``@Stake`` stays a name.
 
 RECORDS. ``block_records`` emits each PREFIX (sentences 1..k) as one item — one symbol table per block, so the quilt
 of sentence 1 is ``sk_quilt_1`` in every later record and a second quilt in sentence 3 is ``sk_quilt_2`` — and gives
-sentence k the statements and declarations of prefix 1..k that prefix 1..k−1 did not already have, with
-``available_from`` = k. When reading sentence k CHANGES OR DROPS a statement an earlier record holds (a sentence that
-negates or scopes over an earlier claim), the earlier record keeps what it said and sentence k gets a
-``revision-needed`` finding: the bookkeeping that would withdraw the earlier statement is not built yet — the need is
-counted first.
+sentence k the statements of prefix 1..k that the earlier records do not hold, and its new declarations, with
+``available_from`` = k. A statement is WHAT IT STATES: its term — the variables of a rule under any names — at its
+truth value. The emitter names the variables and the labels of a text as a whole, so reading a later sentence may
+rename an earlier rule's variables or move a label while the statement stays what it was: nothing is issued again
+for that, and no record is told of it.
+
+REVISIONS. When reading sentence k CHANGES OR DROPS a statement an earlier record holds — the sentence refers to a
+thing that an earlier command, negation, report or rule introduced, so that the thing is now stated outside it; the
+sentence negates or scopes over an earlier claim — the earlier record keeps what it said, and sentence k's record
+tells: ``supersedes`` lists each such statement, ``{"label", "k", "by"}`` — its label, the sentence whose record
+holds it, and the label in THIS record of the statement the same instance now makes in its place (``None`` when it
+makes none: the claim now stands inside another statement) —, and a ``revision-needed`` finding counts them. A LABEL
+NAMES ONE STATEMENT of its block: a statement that takes the place of an earlier one comes under a label of its own,
+``<label>__r<k>`` (the emitter spells no label with a double underscore). A consumer that adds each record's
+statements and withdraws what the record supersedes holds exactly what the text so far states, statement for
+statement (``standing``); a consumer that only adds holds the earlier forms beside the later ones.
+
+WHAT WAS NOT READ. Each record carries its sentence's ``unmapped`` spans and ``issues`` as the parser reported them,
+and — unless ``lint`` is turned off — its findings hold what the validator's lints say of the sentence alone
+(``tmpl.validate``): of its instances (a witness nothing in its sentence mentions …), of its statements (a variable
+outside every rule) and, against its text, of its spans, its verbatim values and its content — the content words that
+no span reaches, neither parsed nor reported (``content-unaccounted``, advisory: ``validate.ADVISORY_LINTS``).
 
 QUESTIONS. A sentence that asks (an instance of the ``question`` family: ``catalog/question.yaml``) states nothing:
 its record carries no statement and no declaration but the QUERY (``tmpl.query``) — its pattern read against the
@@ -48,13 +66,16 @@ from concurrent.futures import ThreadPoolExecutor
 
 from . import catalog as CAT
 from . import emit as E
+from . import lower as L
 from . import manifest as MF
 from . import suite as S
+from . import validate as V
 
 RESERVED = {"now"}                                   # ids the program supplies (the text's reference time)
 QUALIFIED = re.compile(r"^s(\d+)\.(.+)$")
 
 CONTEXT_HEADER = "CONTEXT — the earlier sentences of this text, already parsed (Earlier sentences as context):"
+REISSUED = "__r"                                     # <label>__r<k>: the statement that takes the label's place at sentence k
 
 
 # --------------------------------------------------------------------------
@@ -62,9 +83,31 @@ CONTEXT_HEADER = "CONTEXT — the earlier sentences of this text, already parsed
 # --------------------------------------------------------------------------
 
 
-def qualify(instances: list, k: int) -> list:
+_CATALOG: dict | None = None
+
+
+def _catalog(catalog: dict | None = None) -> dict:
+    """The catalog given, else the one on disk (loaded once for the process)."""
+    global _CATALOG
+    if catalog is not None:
+        return catalog
+    if _CATALOG is None:
+        _CATALOG = CAT.load()
+    return _CATALOG
+
+
+def _as_written(inst: dict, key: str, catalog: dict) -> bool:
+    """A slot that holds words as written (type ``string``) and so never a reference: a name may start with ``@``."""
+    spec = ((catalog.get(inst.get("t")) or {}).get("slots") or {}).get(key) or {}
+    return spec.get("type") == "string"
+
+
+def qualify(instances: list, k: int, catalog: dict | None = None) -> list:
     """Sentence k's instances with their local ids made ``s<k>.<id>`` and their local references rewritten; a
-    reference that is already qualified (to an earlier sentence) and the reserved ``@now`` are kept."""
+    reference that is already qualified (to an earlier sentence) and the reserved ``@now`` are kept, and so are the
+    words of a slot that holds words as written."""
+    catalog = _catalog(catalog)
+
     def ref(v):
         if E.is_ref(v):
             body = v[1:]
@@ -81,7 +124,7 @@ def qualify(instances: list, k: int) -> list:
         for key, val in inst.items():
             if key == "id" and isinstance(val, str) and not QUALIFIED.match(val):
                 new[key] = f"s{k}.{val}"
-            elif key in ("t", "span"):
+            elif key in ("t", "span") or _as_written(inst, key, catalog):
                 new[key] = val
             else:
                 new[key] = ref(val)
@@ -97,9 +140,10 @@ def _refs(v):
             yield from _refs(x)
 
 
-def prefix_problems(qualified: list, k: int, earlier_ids: set) -> list[str]:
+def prefix_problems(qualified: list, k: int, earlier_ids: set, catalog: dict | None = None) -> list[str]:
     """What breaks prefix causality in sentence k's qualified instances: an instance id of another sentence, a
     reference to a later sentence, a reference to an earlier instance the context does not hold."""
+    catalog = _catalog(catalog)
     problems = []
     own = {i.get("id") for i in qualified if isinstance(i, dict)}
     for inst in qualified:
@@ -109,7 +153,7 @@ def prefix_problems(qualified: list, k: int, earlier_ids: set) -> list[str]:
         if not m or int(m.group(1)) != k:
             problems.append(f"instance {inst.get('id')}: a sentence writes only its own instances (local ids)")
         for key, val in inst.items():
-            if key in ("t", "id", "span"):
+            if key in ("t", "id", "span") or _as_written(inst, key, catalog):
                 continue
             for body in _refs(val):
                 if body in RESERVED:
@@ -132,29 +176,78 @@ def prefix_problems(qualified: list, k: int, earlier_ids: set) -> list[str]:
 # --------------------------------------------------------------------------
 
 
-def block_records(sentences: list[dict], catalog: dict | None = None, reference_time=None) -> list[dict]:
-    """Per sentence of a block (``[{"k", "text", "instances" (qualified), "unmapped"}]`` in order) its record:
-    ``{"k", "available_from", "text", "status", "statements", "declarations", "records", "types", "functions",
-    "findings"}`` — the statements and declarations prefix 1..k adds to prefix 1..k−1, with the emitter's records of
-    those statements, the types of the symbols the sentence adds and its skolem functions: what ``tmpl.lower.lower``
-    takes, so a sentence's record lowers on its own for another consumer (``lower({"records": rec["records"],
-    "types": rec["types"], "functions": rec["functions"]}, target)``).
+def _content(record: dict) -> tuple:
+    """What a statement states, whatever it is called: its term with the variables of its rules named in their order
+    of first use — a rule states the same under any names for its variables —, and its truth value. A variable that
+    also stands outside every rule (the validator's ``free-variable``) is bound by nothing here and keeps its name."""
+    names: dict = {}
+    free: set = set()
+
+    def variable(x) -> bool:
+        return isinstance(x, str) and not isinstance(x, L.Str) and x.startswith("$")
+
+    def scan(term, bound: bool):
+        if isinstance(term, list):
+            inside = bound or (bool(term) and term[0] in ("Implication", "Equivalence"))
+            for x in term:
+                scan(x, inside)
+        elif variable(term) and not bound:
+            free.add(term)
+
+    def canon(term):
+        if isinstance(term, list):
+            return [canon(x) for x in term]
+        if variable(term) and term not in free:
+            return names.setdefault(term, f"${len(names) + 1}")
+        return term
+
+    scan(record["term"], False)
+    strength, confidence = record["truth"]
+    return (L.render(canon(record["term"])), float(strength), float(confidence))
+
+
+def _lints(sentence: dict, rec: dict, catalog: dict, earlier: list) -> list:
+    """The validator's lints for ONE sentence of a block: its own instances (a reference may name an ``earlier``
+    one), its own statements and, when its text is at hand, its spans, verbatim values and content."""
+    own = [i for i in sentence["instances"] if isinstance(i, dict)]
+    text = sentence.get("text")
+    out = V.lints(own, catalog, rec["unmapped"], text, context=earlier)
+    out += V.statement_lints(rec["statements"], rec["records"])
+    if text is not None:
+        out += V.span_lints(own, text) + V.verbatim_lints(own, catalog, text)
+        out += V.content_lints(own, catalog, rec["unmapped"], text)
+    return out
+
+
+def block_records(sentences: list[dict], catalog: dict | None = None, reference_time=None, lint: bool = True) -> list[dict]:
+    """Per sentence of a block (``[{"k", "text", "instances" (qualified), "unmapped", "issues"}]`` in order) its
+    record: ``{"k", "available_from", "text", "status", "statements", "declarations", "records", "types",
+    "functions", "supersedes", "unmapped", "issues", "findings"}`` — the statements prefix 1..k states that no earlier
+    record holds (the module doc: RECORDS), with the emitter's records of those statements, the declarations and the
+    types of the symbols the sentence adds and its skolem functions: what ``tmpl.lower.lower`` takes, so a sentence's
+    record lowers on its own for another consumer (``lower({"records": rec["records"], "types": rec["types"],
+    "functions": rec["functions"]}, target)``); ``supersedes``, the earlier statements that no longer stand as written
+    (REVISIONS); the sentence's ``unmapped`` spans and ``issues`` as reported, and with ``lint`` the validator's lints
+    of the sentence among the findings (WHAT WAS NOT READ).
     A sentence that breaks prefix causality or that the emitter refuses is ``malformed`` and left out of the later
     prefixes."""
-    from . import lower as L, query as Q                 # noqa: PLC0415 (query imports nothing of this module)
+    from . import query as Q                             # noqa: PLC0415 (query imports nothing of this module)
     catalog = catalog or CAT.load()
     out = []
     accepted: list = []                                  # the instances of the sentences emitted so far
     earlier_ids: set = set()
-    prev_statements: list[str] = []
+    issued: dict = {}                                    # label -> {"content", "name": the emitter's, "k"}: every statement a record holds
+    stands: dict = {}                                    # content -> its label, for what the text so far still states
     prev_declarations: list[str] = []
     prev_types: dict = {}
     prev_functions: list = []
     for s in sentences:
         k = s["k"]
         rec = {"k": k, "available_from": k, "text": s.get("text"), "status": "ok", "statements": [],
-               "declarations": [], "records": [], "types": {}, "functions": [], "findings": []}
-        problems = prefix_problems(s["instances"], k, earlier_ids)
+               "declarations": [], "records": [], "types": {}, "functions": [], "supersedes": [],
+               "unmapped": [u for u in (s.get("unmapped") or []) if isinstance(u, dict)],
+               "issues": list(s.get("issues") or []), "findings": []}
+        problems = prefix_problems(s["instances"], k, earlier_ids, catalog)
         if problems:
             rec["status"] = "malformed"
             rec["findings"] = [{"kind": "prefix", "detail": p} for p in problems]
@@ -172,11 +265,13 @@ def block_records(sentences: list[dict], catalog: dict | None = None, reference_
             rec["kind"] = "question"
             rec["question"] = {**asked, **L.question(asked)}
             rec["findings"] = list(asked["findings"])
+            if lint:
+                rec["findings"] += _lints(s, rec, catalog, accepted)
             out.append(rec)
             continue
         prefix = accepted + list(s["instances"])
         try:
-            item = {"id": "block", "instances": prefix, "unmapped": s.get("unmapped") or []}
+            item = {"id": "block", "instances": prefix, "unmapped": rec["unmapped"]}
             if reference_time is not None:
                 item["reference_time"] = reference_time
             em = E.emit(item, catalog)
@@ -186,27 +281,58 @@ def block_records(sentences: list[dict], catalog: dict | None = None, reference_
             rec["findings"] = [{"kind": "instance", "detail": d} for d in details]
             out.append(rec)
             continue
-        now = em["statements"]
-        now_set, prev_set = set(now), set(prev_statements)
-        changed = [x for x in prev_statements if x not in now_set]
-        if changed:
+        stated = {_content(r) for r in em["records"]}
+        gone = [(label, content) for content, label in stands.items() if content not in stated]
+        here: dict = {}                                  # the emitter's name -> the label of its new statement in this record
+        for r in em["records"]:
+            content = _content(r)
+            if content in stands:                        # an earlier record holds it, under whatever label
+                continue
+            label = r["name"]
+            if label in issued and issued[label]["content"] != content:
+                label = f"{label}{REISSUED}{k}"          # the label names another statement of this block
+            here[r["name"]] = label
+            issued[label] = {"content": content, "name": r["name"], "k": k}
+            rec["records"].append({**r, "name": label})
+        for label, content in gone:
+            del stands[content]
+            rec["supersedes"].append({"label": label, "k": issued[label]["k"], "by": here.get(issued[label]["name"])})
+        for r in rec["records"]:
+            stands[issued[r["name"]]["content"]] = r["name"]
+        rec["statements"] = [L.statement(r) for r in rec["records"]]
+        if gone:
             rec["findings"].append({"kind": "revision-needed",
-                                    "detail": f"{len(changed)} statement(s) of earlier sentences change or vanish once "
-                                              f"sentence {k} is read (first: {changed[0][:160]}); their records keep "
-                                              f"what they said"})
-        new = [i for i, x in enumerate(now) if x not in prev_set]
-        rec["statements"] = [now[i] for i in new]
-        rec["records"] = [em["records"][i] for i in new]
+                                    "detail": f"{len(gone)} statement(s) of earlier sentences no longer stand as "
+                                              f"written once sentence {k} is read ({', '.join(l for l, _ in gone[:6])}"
+                                              f"{', …' if len(gone) > 6 else ''}): listed under `supersedes`; their "
+                                              f"records keep what they said"})
         had = set(prev_declarations)
         rec["declarations"] = [d for d in em["declarations"] if d not in had]
         rec["types"] = {sym: kinds for sym, kinds in em["types"].items() if prev_types.get(sym) != kinds}
         rec["functions"] = [f for f in em["functions"] if f not in prev_functions]
+        if lint:
+            rec["findings"] += _lints(s, rec, catalog, accepted)
         out.append(rec)
         accepted = prefix
         earlier_ids |= {i.get("id") for i in s["instances"] if isinstance(i, dict)}
-        prev_statements, prev_declarations = now, em["declarations"]
+        prev_declarations = em["declarations"]
         prev_types, prev_functions = em["types"], em["functions"]
     return out
+
+
+def standing(records: list[dict], upto: int | None = None) -> list[dict]:
+    """What a consumer holds once it has applied the block's records up to sentence ``upto`` (all of them when
+    ``None``) — each record's statements added, each statement it supersedes withdrawn: the emitter's records of
+    exactly what the text so far states, in the order they became available (``tmpl.lower`` writes them)."""
+    held: dict = {}
+    for rec in records:
+        if upto is not None and rec["k"] > upto:
+            break
+        for gone in rec.get("supersedes") or []:
+            held.pop(gone["label"], None)
+        for r in rec["records"]:
+            held[r["name"]] = r
+    return list(held.values())
 
 
 def context_section(prior: list[dict]) -> str:
@@ -232,10 +358,11 @@ def context_of(example_context: list) -> list[dict]:
 def sentence_record(context: list, text: str, instances: list, catalog: dict | None = None, unmapped=None,
                     reference_time=None) -> dict:
     """The record of a sentence read after a context (``context_of``): its share of the prefix's emission. The
-    context's own records must come out clean; a problem there is the case's, reported as a malformed record."""
+    context's own records must come out clean; a problem there is the case's, reported as a malformed record. No
+    lints: a context is written by hand without spans, and the suite lints a reply through the validator itself."""
     k = len(context) + 1
     recs = block_records(list(context) + [{"k": k, "text": text, "instances": qualify(instances, k),
-                                           "unmapped": unmapped or []}], catalog, reference_time)
+                                           "unmapped": unmapped or []}], catalog, reference_time, lint=False)
     bad = [r for r in recs[:-1] if r["status"] != "ok"]
     if bad:
         return {**recs[-1], "status": "malformed",
@@ -271,7 +398,8 @@ def _good(rec: dict | None) -> bool:
 
 def walk(block: list[dict], replies: dict) -> tuple[list[dict], dict | None]:
     """The block's sentences that have a stored successful reply made under the right context, in order, up to the
-    first that has none: ``([{"k", "text", "instances", "unmapped", "row"}], the next row to parse or None)``."""
+    first that has none: ``([{"k", "text", "instances", "unmapped", "issues", "row"}], the next row to parse or
+    None)``."""
     prior: list[dict] = []
     for k, row in enumerate(block, start=1):
         context = context_section(prior)
@@ -280,7 +408,7 @@ def walk(block: list[dict], replies: dict) -> tuple[list[dict], dict | None]:
             return prior, row
         resp = rec["response"]
         prior.append({"k": k, "text": row["text"], "instances": qualify(resp.get("instances") or [], k),
-                      "unmapped": resp.get("unmapped") or [], "row": row})
+                      "unmapped": resp.get("unmapped") or [], "issues": resp.get("issues") or [], "row": row})
     return prior, None
 
 
@@ -393,6 +521,10 @@ def records(args, catalog: dict) -> int:
                 print("   ", line)
             for line in (rec.get("question") or {}).get("queries") or []:
                 print("    ASKS", line)
+            for gone in rec["supersedes"]:
+                print(f"    SUPERSEDES {gone['label']} (s{gone['k']})" + (f" by {gone['by']}" if gone["by"] else ""))
+            for u in rec["unmapped"]:
+                print("    UNMAPPED", u.get("code"), json.dumps(u.get("span"), ensure_ascii=False))
             for f in rec["findings"]:
                 print("    FINDING", f["kind"], f["detail"][:200])
     return 0
