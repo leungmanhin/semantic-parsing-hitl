@@ -30,7 +30,10 @@ trigger:
     is nobody in particular: a passive raising verb of saying, believing, expecting or knowing
     (X is said / believed / thought / reported / rumoured / alleged / claimed / presumed /
     assumed / understood / supposed / expected / estimated / reputed / known to be … or to V; X
-    is considered / regarded as / deemed a N or ADJ), the impersonal extraposition (it is said /
+    is considered / regarded as / deemed / described as / seen as / viewed as / portrayed as /
+    classified as / identified as / called / labelled / dubbed a N or ADJ — never with a NAME:
+    is called Pip is a naming, the identity template, and were identified as Ludo and Femke keeps
+    the verb's own clause with an oblique As on it), the impersonal extraposition (it is said /
     believed / thought / reported / known that P: "it" is no referent), or an impersonal active
     (they say that P, people think / believe that P). The clause is parsed with its own
     templates — a copular for "to be a weaver" or "considered a glazier", a locative for "to be
@@ -46,7 +49,7 @@ trigger:
     - "Probably / Presumably, <clause>"                    # the same, fronted
     - "<S> is likely / unlikely / bound / certain / sure to <V> …"   # a raising adjective: the subject acts in the clause
     - "<S> is said / believed / thought / reported / expected / known to be … / to <V>"   # an impersonal report: the clause at the hearsay dial, the participle the word
-    - "<S> is considered / regarded as / deemed <N or ADJ>"   # the same, over a copular clause (considered a glazier)
+    - "<S> is considered / regarded as / deemed / described as / seen as / called <N or ADJ>"   # the same, over a copular clause (considered a glazier)
     - "It is said / believed / thought / known that <clause>"  # the impersonal extraposition: no referent for it
     - "They say / people think that <clause>"                 # an impersonal active: the verb lemmatized (say, think)
   boundary:                   # looks like a hedge but is not one
@@ -89,17 +92,17 @@ slots:
   over: {type: refs, class: Proposition, required: true,
          doc: "the clause the hedge qualifies: the id of its predication, or of the negation, modal, norm or rule over it (probably did not leave: the negation instance); for a raising adjective, the infinitive's predication with the subject as its actor"}
   word: {type: enum, values: [probably, likely, presumably, apparently, seemingly, supposedly, reportedly, allegedly, evidently, unlikely, certainly, surely, definitely, undoubtedly, clearly, obviously, bound, certain, sure,
-                              said, believed, thought, reported, rumoured, rumored, alleged, claimed, presumed, assumed, understood, supposed, expected, estimated, reputed, considered, regarded, deemed, known, say, think, believe], required: true,
+                              said, believed, thought, reported, rumoured, rumored, alleged, claimed, presumed, assumed, understood, supposed, expected, estimated, reputed, considered, regarded, deemed, described, seen, viewed, portrayed, characterized, classified, identified, called, labelled, labeled, dubbed, known, say, think, believe], required: true,
          doc: "the hedge word as written, lowercase (is likely to → likely, is bound to → bound); for an impersonal report the participle (is said to → said, is regarded as → regarded, it is believed that → believed) or the verb lemmatized (they say → say, people think → think); the program sets the dial from it"}
 
 truth:                            # the clause's own commitment, set by the word on the one dial
   strength:
     - {slot: word, values: {probably: 0.9, likely: 0.9, presumably: 0.9, apparently: 0.9, seemingly: 0.9, supposedly: 0.9, reportedly: 0.9, allegedly: 0.9, evidently: 0.9, unlikely: 0.1, certainly: 1.0, surely: 1.0, definitely: 1.0, undoubtedly: 1.0, clearly: 1.0, obviously: 1.0, bound: 1.0, certain: 1.0, sure: 1.0,
-                            said: 0.9, believed: 0.9, thought: 0.9, reported: 0.9, rumoured: 0.9, rumored: 0.9, alleged: 0.9, claimed: 0.9, presumed: 0.9, assumed: 0.9, understood: 0.9, supposed: 0.9, expected: 0.9, estimated: 0.9, reputed: 0.9, considered: 0.9, regarded: 0.9, deemed: 0.9, known: 1.0, say: 0.9, think: 0.9, believe: 0.9}}
+                            said: 0.9, believed: 0.9, thought: 0.9, reported: 0.9, rumoured: 0.9, rumored: 0.9, alleged: 0.9, claimed: 0.9, presumed: 0.9, assumed: 0.9, understood: 0.9, supposed: 0.9, expected: 0.9, estimated: 0.9, reputed: 0.9, considered: 0.9, regarded: 0.9, deemed: 0.9, described: 0.9, seen: 0.9, viewed: 0.9, portrayed: 0.9, characterized: 0.9, classified: 0.9, identified: 0.9, called: 0.9, labelled: 0.9, labeled: 0.9, dubbed: 0.9, known: 1.0, say: 0.9, think: 0.9, believe: 0.9}}
     - 1.0
   confidence:
     - {slot: word, values: {probably: 0.7, likely: 0.7, presumably: 0.7, apparently: 0.7, seemingly: 0.7, supposedly: 0.7, reportedly: 0.7, allegedly: 0.7, evidently: 0.7, unlikely: 0.7, certainly: 0.9, surely: 0.9, definitely: 0.9, undoubtedly: 0.9, clearly: 0.9, obviously: 0.9, bound: 0.9, certain: 0.9, sure: 0.9,
-                            said: 0.7, believed: 0.7, thought: 0.7, reported: 0.7, rumoured: 0.7, rumored: 0.7, alleged: 0.7, claimed: 0.7, presumed: 0.7, assumed: 0.7, understood: 0.7, supposed: 0.7, expected: 0.7, estimated: 0.7, reputed: 0.7, considered: 0.7, regarded: 0.7, deemed: 0.7, known: 0.9, say: 0.7, think: 0.7, believe: 0.7}}
+                            said: 0.7, believed: 0.7, thought: 0.7, reported: 0.7, rumoured: 0.7, rumored: 0.7, alleged: 0.7, claimed: 0.7, presumed: 0.7, assumed: 0.7, understood: 0.7, supposed: 0.7, expected: 0.7, estimated: 0.7, reputed: 0.7, considered: 0.7, regarded: 0.7, deemed: 0.7, described: 0.7, seen: 0.7, viewed: 0.7, portrayed: 0.7, characterized: 0.7, classified: 0.7, identified: 0.7, called: 0.7, labelled: 0.7, labeled: 0.7, dubbed: 0.7, known: 0.9, say: 0.7, think: 0.7, believe: 0.7}}
     - 0.99
 
 emits:
@@ -365,3 +368,17 @@ examples:
     - category: abstain
       text: "According to Lamine, the gate is open."
       expected: {abstain: true, template: attitude}                   # an attribution: the source's attitude, the claim sealed
+    - category: positive
+      note: described as — the agentless passive of a describing verb is an impersonal report over the copular clause
+      text: "The bridge is described as fragile."
+      instances:
+        - {t: witness, id: x1, class: bridge, definite: true}
+        - {t: copular, id: c1, subject: "@x1", predicate: fragile, form: adjective, tense: present}
+        - {t: hedge, id: s1, over: ["@c1"], word: described}
+    - category: positive
+      note: seen as with a noun
+      text: "Lamine is seen as a genius."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: copular, id: c1, subject: "@n1", predicate: genius, form: noun, tense: present}
+        - {t: hedge, id: s1, over: ["@c1"], word: seen}

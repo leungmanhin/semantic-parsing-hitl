@@ -1,0 +1,101 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "b435e17cc7d5ebf0c650f05c17bf9c7d4b9f33515c45d7e059988e477d64c136",
+  "item": {
+    "id": "s6e83f466a6",
+    "text": "Yusra used the barrel as a stool."
+  },
+  "usage": {
+    "input": 129869,
+    "output": 186,
+    "thinking": null,
+    "total": 130055,
+    "cached": 127820,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 129869,
+    "candidatesTokenCount": 186,
+    "totalTokenCount": 130055,
+    "cachedContentTokenCount": 127820,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 129869
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 127820
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 186
+      }
+    ],
+    "serviceTier": "standard"
+  },
+  "raw_text": "{\"id\": \"s6e83f466a6\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"barrel\", \"definite\": true, \"span\": \"the barrel\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"use\", \"actor\": \"@n1\", \"patient\": \"@x1\", \"tense\": \"past\", \"span\": \"Yusra used the barrel\"}, {\"t\": \"oblique\", \"id\": \"a1\", \"event\": \"@e1\", \"head\": \"As\", \"object\": \"stool\", \"span\": \"as a stool\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s6e83f466a6",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "barrel",
+        "definite": true,
+        "span": "the barrel"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "use",
+        "actor": "@n1",
+        "patient": "@x1",
+        "tense": "past",
+        "span": "Yusra used the barrel"
+      },
+      {
+        "t": "oblique",
+        "id": "a1",
+        "event": "@e1",
+        "head": "As",
+        "object": "stool",
+        "span": "as a stool"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "43ba913352529904a90008e99418e688cb751ea0a8ca6419401fd5d05783f7a0",
+  "manifest_id": "785561171e89",
+  "run": 2,
+  "case": {
+    "template": "oblique",
+    "section": "held_out",
+    "index": 37,
+    "category": "positive",
+    "text": "Yusra used the barrel as a stool.",
+    "key": "6e83f466a6"
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "b435e17cc7d5ebf0c650f05c17bf9c7d4b9f33515c45d7e059988e477d64c136",
+  "item": {
+    "id": "s273161145c",
+    "text": "Teodor considers Lamine a nuisance."
+  },
+  "usage": {
+    "input": 129868,
+    "output": 198,
+    "thinking": null,
+    "total": 130066,
+    "cached": 127819,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 129868,
+    "candidatesTokenCount": 198,
+    "totalTokenCount": 130066,
+    "cachedContentTokenCount": 127819,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 129868
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 127819
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 198
+      }
+    ],
+    "serviceTier": "standard"
+  },
+  "raw_text": "{\"id\": \"s273161145c\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@n2\", \"predicate\": \"nuisance\", \"form\": \"noun\", \"tense\": \"present\", \"span\": \"Lamine a nuisance\"}, {\"t\": \"attitude\", \"id\": \"a1\", \"verb\": \"consider\", \"holder\": \"@n1\", \"content\": [\"@c1\"], \"factive\": false, \"tense\": \"present\", \"span\": \"Teodor considers Lamine a nuisance\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s273161145c",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "copular",
+        "id": "c1",
+        "subject": "@n2",
+        "predicate": "nuisance",
+        "form": "noun",
+        "tense": "present",
+        "span": "Lamine a nuisance"
+      },
+      {
+        "t": "attitude",
+        "id": "a1",
+        "verb": "consider",
+        "holder": "@n1",
+        "content": [
+          "@c1"
+        ],
+        "factive": false,
+        "tense": "present",
+        "span": "Teodor considers Lamine a nuisance"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "43ba913352529904a90008e99418e688cb751ea0a8ca6419401fd5d05783f7a0",
+  "manifest_id": "785561171e89",
+  "run": 3,
+  "case": {
+    "template": "attitude",
+    "section": "held_out",
+    "index": 38,
+    "category": "positive",
+    "text": "Teodor considers Lamine a nuisance.",
+    "key": "273161145c"
+  }
+}

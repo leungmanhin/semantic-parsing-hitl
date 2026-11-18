@@ -39,6 +39,17 @@ trigger:
     factive adjectives — aware, glad, sorry, surprised, upset, proud, and happy or angry with a
     that-clause — presuppose the complement; sure, certain, confident, convinced, afraid,
     worried and every infinitival stance do not.
+    A verb of JUDGING or DESCRIBING with an object and a predicate on it — considers Pieter a
+    rogue, finds the plan sound, called the verdict a farce, described the barn as derelict,
+    regards Odile as an expert, classified the letters as urgent — is the same construction with
+    its clause cut short: the subject is the holder, and the content is the copular predication
+    the predicate makes of the object (Pieter is a rogue; the barn is derelict), tense present,
+    `factive` false; as is not kept. Nothing is said of the object itself. A clause that belongs
+    to the predicate (described the barn as a ruin leaning over the lane: the leaning) is part of
+    the claim: list it in `content` beside the copular predication, never on its own. A NAME as
+    the predicate is no claim of this kind: the stork is called Pip is a naming, the identity
+    template, and identified the visitor as Ludo keeps the verb's own clause with an oblique As
+    on it.
     An ATTRIBUTION — according to X, P; P, according to X — is the same construction with no
     verb: X (a person, a body or a document) is the holder, P the content, `verb` according_to,
     `factive` false and tense present (the attribution has no tense of its own; the clause keeps
@@ -88,7 +99,7 @@ trigger:
       predicated of anyone
     - >-
       an impersonal report — it is believed that P, Marisol is said / thought / expected to V,
-      Odile is considered a glazier, they say that P: no holder is stated; the hedge template
+      Odile is considered a glazier, the barn is described as derelict, they say that P: no holder is stated; the hedge template
       over the clause, nothing sealed; a quantified holder — some people think that P: this
       template, the group as its holder
     - >-
@@ -605,3 +616,46 @@ examples:
         - {t: attitude, id: a1, verb: according_to, holder: "@n1", factive: false, tense: present}
       unmapped:
         - {span: "the old mill is safer", code: G01}
+    - category: positive
+      note: a judging verb with an object and a noun predicate — the holder's claim, the copular clause sealed
+      text: "Teodor considers Lamine a nuisance."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: copular, id: c1, subject: "@n2", predicate: nuisance, form: noun, tense: present}
+        - {t: attitude, id: a1, verb: consider, holder: "@n1", content: ["@c1"], factive: false, tense: present}
+    - category: positive
+      note: a describing verb with an as-phrase — as is not kept, the predicate an adjective, the small clause in the present
+      text: "Yusra described the mill as unsafe."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, class: mill, definite: true}
+        - {t: copular, id: c1, subject: "@x1", predicate: unsafe, form: adjective, tense: present}
+        - {t: attitude, id: a1, verb: describe, holder: "@n1", content: ["@c1"], factive: false, tense: past}
+    - category: positive
+      note: call with a common noun — a claim about the thing, not a naming
+      text: "Ottoline called the ruling a mistake."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: witness, id: x1, class: ruling, definite: true}
+        - {t: copular, id: c1, subject: "@x1", predicate: mistake, form: noun, tense: present}
+        - {t: attitude, id: a1, verb: call, holder: "@n1", content: ["@c1"], factive: false, tense: past}
+    - category: positive
+      note: regard with an as-phrase and a noun
+      text: "Lamine regards Yusra as a genius."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: named-entity, id: n2, name: "Yusra"}
+        - {t: copular, id: c1, subject: "@n2", predicate: genius, form: noun, tense: present}
+        - {t: attitude, id: a1, verb: regard, holder: "@n1", content: ["@c1"], factive: false, tense: present}
+    - category: positive
+      note: a clause that belongs to the predicate — inside the claim, beside the copular predication
+      text: "Teodor described Lamine as a poacher hiding in the mill."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: named-entity, id: n2, name: "Lamine"}
+        - {t: witness, id: x1, class: mill, definite: true}
+        - {t: copular, id: c1, subject: "@n2", predicate: poacher, form: noun, tense: present}
+        - {t: activity, id: v1, verb: hide, actor: "@n2", tense: present}
+        - {t: location, id: l1, event: "@v1", place: "@x1", head: Location, preposition: in}
+        - {t: attitude, id: a1, verb: describe, holder: "@n1", content: ["@c1", "@v1"], factive: false, tense: past}

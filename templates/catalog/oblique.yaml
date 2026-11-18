@@ -74,6 +74,13 @@ trigger:
     - "<subject> was V-ed <preposition> (by <actor>)"   # the rules were complied with: a prepositional passive, the subject the object
   boundary:                   # looks like an oblique but is not one
     - >-
+      an as-phrase after a verb of judging or describing — described the barn as derelict,
+      regards Odile as an expert: what the subject takes the thing to be, the attitude template
+      (the agentless passive, is described as derelict: an impersonal report, the hedge
+      template); a capacity or a use stays here — worked as a weaver, used the plank as a shelf,
+      treated Pieter as a guest — and so does a NAME after identify (identified the visitor as
+      Ludo: the verb's clause, the name the object of As)
+    - >-
       where the event takes place — in the granary, at the bazaar, on the roof, near the hut: a
       location; where a thing is — the key is under the blanket: a locative
     - >-
@@ -490,3 +497,19 @@ examples:
       note: a phrase on a predicative ordinal noun — nothing to attach to; the phrase is reported
       text: "The ruling is a first step toward recovery."
       expected: {abstain: true, gap: G00, span: "toward recovery"}
+    - category: positive
+      note: an as-phrase of use — a capacity of the thing in the event, an oblique As, no claim about it
+      text: "Yusra used the barrel as a stool."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, class: barrel, definite: true}
+        - {t: activity, id: v1, verb: use, actor: "@n1", patient: "@x1", tense: past}
+        - {t: oblique, id: a1, event: "@v1", head: As, object: stool}
+    - category: positive
+      note: a name after identified as — the verb's own clause and an oblique As; no report over a copular clause
+      text: "The stranger was identified as Lamine."
+      instances:
+        - {t: witness, id: x1, class: stranger, definite: true}
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: activity, id: v1, verb: identify, patient: "@x1", tense: past}
+        - {t: oblique, id: a1, event: "@v1", head: As, object: "@n1"}

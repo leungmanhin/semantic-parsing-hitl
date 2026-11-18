@@ -24,7 +24,12 @@ trigger:
     turned red, got wet, went bad) name the state the subject comes to be in: record it as the
     result. Make with a predicate on its object (made the wax soft, made Marisol uncomfortable)
     names the state the object comes to be in: the maker is the agent, the object the
-    undergoer, the predicate the result.
+    undergoer, the predicate the result. Appoint, elect, name and crown with a ROLE on their
+    object, with or without as — elected Odile mayor, appointed Pieter as bursar, was named
+    foreman — are the same: the one who appoints is the agent (none in an agentless passive),
+    the person the undergoer, the role the result — its noun as a bare lemma, the words before
+    it reported as unmapped (was named head gardener: gardener, head reported; a title that the
+    noun alone would not name stays one lemma: vice_president).
   verbs: [break, melt, crack, dry, freeze, burn, collapse, grow, shrink, expand, fade, wither,
           improve, recover, die, open, close, begin, end, start, stop, continue, resume, cease, fall, rise, become, turn,
           get, go, make]
@@ -268,3 +273,24 @@ examples:
         - {t: change-of-state, id: e2, verb: die, undergoer: "@n1", tense: past}
         - {t: time, id: t2, event: "@e2", year: 1901, month: july, day: 3}
         - {t: copular, id: c1, subject: "@n1", predicate: glazier, form: noun, tense: past}
+    - category: positive
+      note: an appointing verb with a role on its object — the role the result
+      text: "The guild elected Yusra captain."
+      instances:
+        - {t: witness, id: x1, class: guild, definite: true}
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: change-of-state, id: e1, verb: elect, agent: "@x1", undergoer: "@n1", result: captain, tense: past}
+    - category: positive
+      note: the agentless passive of an appointing verb — no agent, the role the result
+      text: "Teodor was named steward."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: change-of-state, id: e1, verb: name, undergoer: "@n1", result: steward, tense: past}
+    - category: positive
+      note: a role with a word before it — the role's noun the result, the word reported
+      text: "Yusra was appointed chief archivist."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: change-of-state, id: e1, verb: appoint, undergoer: "@n1", result: archivist, tense: past}
+      unmapped:
+        - {span: "chief", code: G00}

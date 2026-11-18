@@ -1,0 +1,100 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "2826a9c35b29942f0f0d99323aa4e43aca3873973831ca287de19a3829e14098",
+  "item": {
+    "id": "s2419418e19",
+    "text": "The stranger was identified as Lamine."
+  },
+  "usage": {
+    "input": 130054,
+    "output": 177,
+    "thinking": null,
+    "total": 130231,
+    "cached": 128004,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 130054,
+    "candidatesTokenCount": 177,
+    "totalTokenCount": 130231,
+    "cachedContentTokenCount": 128004,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 130054
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 128004
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 177
+      }
+    ],
+    "serviceTier": "standard"
+  },
+  "raw_text": "{\"id\": \"s2419418e19\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"stranger\", \"definite\": true, \"span\": \"The stranger\"}, {\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Lamine\", \"span\": \"Lamine\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"identify\", \"patient\": \"@x1\", \"tense\": \"past\", \"span\": \"The stranger was identified\"}, {\"t\": \"oblique\", \"id\": \"a1\", \"event\": \"@e1\", \"head\": \"As\", \"object\": \"@n1\", \"span\": \"as Lamine\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s2419418e19",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "stranger",
+        "definite": true,
+        "span": "The stranger"
+      },
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Lamine",
+        "span": "Lamine"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "identify",
+        "patient": "@x1",
+        "tense": "past",
+        "span": "The stranger was identified"
+      },
+      {
+        "t": "oblique",
+        "id": "a1",
+        "event": "@e1",
+        "head": "As",
+        "object": "@n1",
+        "span": "as Lamine"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "60cfb95232db76086abbc217ce517dd6d69595764553db7d6ba1c47dfeb0529e",
+  "manifest_id": "6d245a8ed8e4",
+  "run": 1,
+  "case": {
+    "template": "oblique",
+    "section": "held_out",
+    "index": 38,
+    "category": "positive",
+    "text": "The stranger was identified as Lamine.",
+    "key": "2419418e19"
+  }
+}

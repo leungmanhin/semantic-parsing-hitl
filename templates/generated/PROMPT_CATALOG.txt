@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 ee82f4d78db00543 · 64 templates
+catalog sha256 b4eb201295b94713 · 64 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -1765,11 +1765,21 @@ afraid, ready or prepared to do (Henrike is ready to leave). Write the adjective
 lemma; the copula is the construction's marker and the clause's tense is the copula's. The
 factive adjectives — aware, glad, sorry, surprised, upset, proud, and happy or angry with a
 that-clause — presuppose the complement; sure, certain, confident, convinced, afraid, worried
-and every infinitival stance do not. An ATTRIBUTION — according to X, P; P, according to X — is
-the same construction with no verb: X (a person, a body or a document) is the holder, P the
-content, `verb` according_to, `factive` false and tense present (the attribution has no tense of
-its own; the clause keeps its own). The clause is X's claim, sealed, and the sentence commits to
-nothing more, as with X says that P.
+and every infinitival stance do not. A verb of JUDGING or DESCRIBING with an object and a
+predicate on it — considers Pieter a rogue, finds the plan sound, called the verdict a farce,
+described the barn as derelict, regards Odile as an expert, classified the letters as urgent —
+is the same construction with its clause cut short: the subject is the holder, and the content
+is the copular predication the predicate makes of the object (Pieter is a rogue; the barn is
+derelict), tense present, `factive` false; as is not kept. Nothing is said of the object itself.
+A clause that belongs to the predicate (described the barn as a ruin leaning over the lane: the
+leaning) is part of the claim: list it in `content` beside the copular predication, never on its
+own. A NAME as the predicate is no claim of this kind: the stork is called Pip is a naming, the
+identity template, and identified the visitor as Ludo keeps the verb's own clause with an
+oblique As on it. An ATTRIBUTION — according to X, P; P, according to X — is the same
+construction with no verb: X (a person, a body or a document) is the holder, P the content,
+`verb` according_to, `factive` false and tense present (the attribution has no tense of its own;
+the clause keeps its own). The clause is X's claim, sealed, and the sentence commits to nothing
+more, as with X says that P.
 
 Verbs that anchor the class: believe, think, suppose, assume, suspect, doubt, hope, fear,
 expect, claim, say, want, wish, prefer, intend, plan, decide, promise, agree, offer, vow, know,
@@ -1809,9 +1819,9 @@ Not this template:
 - a parenthetical or discourse use — I think, you know, as far as I know: no attitude is
   predicated of anyone
 - an impersonal report — it is believed that P, Marisol is said / thought / expected to V, Odile
-  is considered a glazier, they say that P: no holder is stated; the hedge template over the
-  clause, nothing sealed; a quantified holder — some people think that P: this template, the
-  group as its holder
+  is considered a glazier, the barn is described as derelict, they say that P: no holder is
+  stated; the hedge template over the clause, nothing sealed; a quantified holder — some people
+  think that P: this template, the group as its holder
 - an adjective with a noun-phrase complement — afraid of the badger, sure of the result, fond of
   Odile: the adjective-complement template; able to V — is able to swim: a capability, the modal
   template; likely, bound, certain or sure TO V — Marisol is likely to win: the speaker's hedge
@@ -2191,7 +2201,12 @@ Odile melted the wax. Become, turn, get and go with a predicate (became a locksm
 got wet, went bad) name the state the subject comes to be in: record it as the result. Make with
 a predicate on its object (made the wax soft, made Marisol uncomfortable) names the state the
 object comes to be in: the maker is the agent, the object the undergoer, the predicate the
-result.
+result. Appoint, elect, name and crown with a ROLE on their object, with or without as — elected
+Odile mayor, appointed Pieter as bursar, was named foreman — are the same: the one who appoints
+is the agent (none in an agentless passive), the person the undergoer, the role the result — its
+noun as a bare lemma, the words before it reported as unmapped (was named head gardener:
+gardener, head reported; a title that the noun alone would not name stays one lemma:
+vice_president).
 
 Verbs that anchor the class: break, melt, crack, dry, freeze, burn, collapse, grow, shrink,
 expand, fade, wither, improve, recover, die, open, close, begin, end, start, stop, continue,
@@ -5017,24 +5032,26 @@ the infinitive's clause (tense present) — or an IMPERSONAL REPORT, a claim who
 nobody in particular: a passive raising verb of saying, believing, expecting or knowing (X is
 said / believed / thought / reported / rumoured / alleged / claimed / presumed / assumed /
 understood / supposed / expected / estimated / reputed / known to be … or to V; X is considered
-/ regarded as / deemed a N or ADJ), the impersonal extraposition (it is said / believed /
-thought / reported / known that P: "it" is no referent), or an impersonal active (they say that
-P, people think / believe that P). The clause is parsed with its own templates — a copular for
-"to be a weaver" or "considered a glazier", a locative for "to be in Brackenford", a verb's
-template for "to win" — with the matrix verb's tense (is said to be → present, was believed to
-be → past; a perfect infinitive, is said to have left, is past; is expected to win stays
-present, as likely to does); the hedge instance names its predication (or the negation, modal,
-norm or rule over it) in `over` and the word in `word` (the participle or verb lemmatized: said,
-believed, considered, say). The program sets the clause's truth value from the word; nothing
-else changes, no atom is added and no holder or attitude event is minted. One instance per hedge
-word.
+/ regarded as / deemed / described as / seen as / viewed as / portrayed as / classified as /
+identified as / called / labelled / dubbed a N or ADJ — never with a NAME: is called Pip is a
+naming, the identity template, and were identified as Ludo and Femke keeps the verb's own clause
+with an oblique As on it), the impersonal extraposition (it is said / believed / thought /
+reported / known that P: "it" is no referent), or an impersonal active (they say that P, people
+think / believe that P). The clause is parsed with its own templates — a copular for "to be a
+weaver" or "considered a glazier", a locative for "to be in Brackenford", a verb's template for
+"to win" — with the matrix verb's tense (is said to be → present, was believed to be → past; a
+perfect infinitive, is said to have left, is past; is expected to win stays present, as likely
+to does); the hedge instance names its predication (or the negation, modal, norm or rule over
+it) in `over` and the word in `word` (the participle or verb lemmatized: said, believed,
+considered, say). The program sets the clause's truth value from the word; nothing else changes,
+no atom is added and no holder or attitude event is minted. One instance per hedge word.
 
 Forms:
 - <S> probably / apparently / certainly <V> …
 - Probably / Presumably, <clause>
 - <S> is likely / unlikely / bound / certain / sure to <V> …
 - <S> is said / believed / thought / reported / expected / known to be … / to <V>
-- <S> is considered / regarded as / deemed <N or ADJ>
+- <S> is considered / regarded as / deemed / described as / seen as / called <N or ADJ>
 - It is said / believed / thought / known that <clause>
 - They say / people think that <clause>
 
@@ -5076,10 +5093,12 @@ Slots:
   reportedly, allegedly, evidently, unlikely, certainly, surely, definitely, undoubtedly,
   clearly, obviously, bound, certain, sure, said, believed, thought, reported, rumoured,
   rumored, alleged, claimed, presumed, assumed, understood, supposed, expected, estimated,
-  reputed, considered, regarded, deemed, known, say, think, believe): the hedge word as written,
-  lowercase (is likely to → likely, is bound to → bound); for an impersonal report the
-  participle (is said to → said, is regarded as → regarded, it is believed that → believed) or
-  the verb lemmatized (they say → say, people think → think); the program sets the dial from it.
+  reputed, considered, regarded, deemed, described, seen, viewed, portrayed, characterized,
+  classified, identified, called, labelled, labeled, dubbed, known, say, think, believe): the
+  hedge word as written, lowercase (is likely to → likely, is bound to → bound); for an
+  impersonal report the participle (is said to → said, is regarded as → regarded, it is believed
+  that → believed) or the verb lemmatized (they say → say, people think → think); the program
+  sets the dial from it.
 
 Example (a sentence adverb — the clause's own atoms at the hedge's truth value, no operator). TEXT: Pieter probably locked the hut.
 
@@ -6174,6 +6193,12 @@ Forms:
 - <subject> was V-ed <preposition> (by <actor>)
 
 Not this template:
+- an as-phrase after a verb of judging or describing — described the barn as derelict, regards
+  Odile as an expert: what the subject takes the thing to be, the attitude template (the
+  agentless passive, is described as derelict: an impersonal report, the hedge template); a
+  capacity or a use stays here — worked as a weaver, used the plank as a shelf, treated Pieter
+  as a guest — and so does a NAME after identify (identified the visitor as Ludo: the verb's
+  clause, the name the object of As)
 - where the event takes place — in the granary, at the bazaar, on the roof, near the hut: a
   location; where a thing is — the key is under the blanket: a locative
 - a destination or an origin — went to the bazaar, came from the granary, into the hut, out of

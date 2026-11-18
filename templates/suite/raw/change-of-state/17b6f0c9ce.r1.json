@@ -1,0 +1,92 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "2826a9c35b29942f0f0d99323aa4e43aca3873973831ca287de19a3829e14098",
+  "item": {
+    "id": "s17b6f0c9ce",
+    "text": "Yusra was appointed chief archivist."
+  },
+  "usage": {
+    "input": 130053,
+    "output": 155,
+    "thinking": null,
+    "total": 130208,
+    "cached": 127949,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    }
+  },
+  "raw_usage": {
+    "promptTokenCount": 130053,
+    "candidatesTokenCount": 155,
+    "totalTokenCount": 130208,
+    "cachedContentTokenCount": 127949,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 130053
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 127949
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 155
+      }
+    ],
+    "serviceTier": "standard"
+  },
+  "raw_text": "{\"id\": \"s17b6f0c9ce\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"change-of-state\", \"id\": \"e1\", \"verb\": \"appoint\", \"undergoer\": \"@n1\", \"result\": \"archivist\", \"tense\": \"past\", \"span\": \"Yusra was appointed chief archivist\"}], \"unmapped\": [{\"span\": \"chief\", \"code\": \"G00\", \"construction\": \"A noun modifier on a bare-lemma role result of an appointment verb.\"}], \"issues\": []}",
+  "response": {
+    "id": "s17b6f0c9ce",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "change-of-state",
+        "id": "e1",
+        "verb": "appoint",
+        "undergoer": "@n1",
+        "result": "archivist",
+        "tense": "past",
+        "span": "Yusra was appointed chief archivist"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "chief",
+        "code": "G00",
+        "construction": "A noun modifier on a bare-lemma role result of an appointment verb."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "60cfb95232db76086abbc217ce517dd6d69595764553db7d6ba1c47dfeb0529e",
+  "manifest_id": "6d245a8ed8e4",
+  "run": 1,
+  "case": {
+    "template": "change-of-state",
+    "section": "held_out",
+    "index": 23,
+    "category": "positive",
+    "text": "Yusra was appointed chief archivist.",
+    "key": "17b6f0c9ce"
+  }
+}
