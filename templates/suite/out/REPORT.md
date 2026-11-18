@@ -1,6 +1,6 @@
 # Suite report
 
-prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 938fdf71b4b9bd73) · manifest 945b6fdb8fca · type check: ran
+prompt `templates/generated/PROMPT_CATALOG.txt` (body sha256 938fdf71b4b9bd73) · manifest 620dbd3cef33 · type check: ran
 
 ## Catalog checks
 
@@ -1570,7 +1570,7 @@ Mismatches: none
 
 ## stative-relation — held_out
 
-38 cases, 114 records (ok 114; stale prompt 111; stale manifest 48, unstamped 63) · gemini-4-argon effort=low
+38 cases, 114 records (ok 114; stale prompt 111; stale manifest 51, unstamped 63) · gemini-4-argon effort=low
 
 | category | cases | runs | fired | exact | pass |
 |---|---|---|---|---|---|

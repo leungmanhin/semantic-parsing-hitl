@@ -3,7 +3,8 @@
 Nothing template-specific lives here.  A template file declares what its instances mint
 (``mints``), the shapes it emits (``emits``), and the substrate class of each slot; this module
 interprets those declarations.  Same instances in, byte-identical statements out: no clock,
-no randomness, no set iteration reaching the output.
+no randomness, no set iteration reaching the output.  A statement is written once per item: a
+shape that would state again, at the same truth value, what an earlier shape stated adds nothing.
 
 Instances.  An item is ``{"id": …, "instances": [...], "unmapped": [...]}``; an instance is
 ``{"t": <template id>, "id": <label>, <slot>: <value>, …}`` — every instance has an id and may carry a ``span`` (the words of the text it is built from: provenance the emitter ignores).  A
@@ -273,6 +274,7 @@ class _Emitter:
         self.types: dict[str, set] = {}
         self.sk_functions: dict[tuple, str] = {}        # (stem, arity) -> the class of the skolemized symbol
         self._names: dict[str, int] = {}
+        self._written: set[tuple] = set()               # (statement, strength, confidence) already in the output
         self.head_of: dict[str, str] = {}               # attachment instance -> the instance it attaches to
         self.attachments_of: dict[str, list[str]] = {}  # head instance -> its attachments, in order
         self.narrow: dict[str, dict] = {}               # instance -> its comparison class: {"term": …, "body": …}
@@ -1350,12 +1352,20 @@ class _Emitter:
         return (pick(rule.get("strength", []), DEFAULT_STV[0]), pick(rule.get("confidence", []), DEFAULT_STV[1]))
 
     def add(self, term, owner: str, inst: str, stv=None):
+        """One statement of the output, named after the instance that states it. A statement the text has already
+        stated at the same truth value is written ONCE: two names for one statement would reach a reasoner as two
+        pieces of evidence (Joost's town is the largest walled town says once that the thing is a town, although
+        the noun phrase and the predicate both hold the word). At another truth value it is another claim: kept."""
         head = term[0] if isinstance(term, list) else str(term)
+        stv = (float(stv[0]), float(stv[1])) if stv else self.truth_of(inst)
+        key = (render(term), stv[0], stv[1])
+        if key in self._written:
+            return
+        self._written.add(key)
         base = slug(f"{inst}_{head}")
         n = self._names.get(base, 0) + 1
         self._names[base] = n
         name = base if n == 1 else f"{base}_{n}"
-        stv = (float(stv[0]), float(stv[1])) if stv else self.truth_of(inst)
         self.out.append({"name": name, "term": term, "truth": [stv[0], stv[1]], "owner": owner, "inst": inst})
 
     # ---------------------------------------------------------------- declarations

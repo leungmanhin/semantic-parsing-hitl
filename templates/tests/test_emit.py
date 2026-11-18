@@ -1018,6 +1018,28 @@ class EmitTests(unittest.TestCase):
         held = atoms(loom + [{"t": "superlative", "id": "s1", "subject": "@x1", "scale": "tall", "class": "loom", "kind": "most"}])
         self.assertIn("(Most tall sk_loom_1 (Narrow loom (Member eastern)))", held)   # the tallest eastern loom: of the eastern ones
 
+    def test_a_statement_already_written_is_not_written_under_a_second_name(self):
+        """What a noun phrase and a predicate both state of one thing is one statement (Bram's town is the
+        largest walled town: a town once, named after the noun phrase); stated again at another truth value
+        it is another claim and stays; the names of the statements that follow do not skip a number."""
+        def named(insts):
+            return {d["name"]: d["term"] for d in E.emit({"id": "s", "instances": insts}, CATALOG)["detail"]}
+        town = [{"t": "named-entity", "id": "n1", "name": "Bram"}, {"t": "witness", "id": "x1", "class": "town", "possessor": "@n1"}]
+        most = named(town + [{"t": "superlative", "id": "s1", "subject": "@x1", "scale": "large", "class": "town", "props": ["walled"],
+                              "kind": "most", "predicative": True, "tense": "present"}])
+        self.assertEqual([n for n, t in most.items() if t == "(Member sk_town_1 town)"], ["x1_member"])
+        self.assertEqual(most["s1_member"], "(Member sk_town_1 (Narrow town (Member walled)))")   # the next one takes the free name
+        loom = named([{"t": "witness", "id": "x1", "class": "loom", "props": ["eastern"], "definite": True},
+                      {"t": "superlative", "id": "s1", "subject": "@x1", "scale": "old", "class": "loom", "kind": "most",
+                       "predicative": True, "tense": "present"}])
+        self.assertEqual(sum(t == "(Member sk_loom_1 loom)" for t in loom.values()), 1)       # the subject's own noun as the class
+        out = E.emit({"id": "h", "instances": town + [
+            {"t": "copular", "id": "c1", "subject": "@x1", "predicate": "town", "form": "noun", "tense": "present"},
+            {"t": "hedge", "id": "s1", "over": ["@c1"], "word": "probably"}]}, CATALOG)["statements"]
+        said = [s for s in out if "(Member sk_town_1 town)" in s]
+        self.assertEqual(len(said), 2, out)                                                   # stated, and hedged: two claims
+        self.assertEqual(len({s.split(") (STV")[1] for s in said}), 2, said)
+
     def test_a_kind_word_is_the_class_s_membership_and_between_takes_two(self):
         """A kind-of phrase states the kind a property of the class as a whole and the class a
         subclass of the of-phrase's class (kind, type and sort state no kind); a bare-lemma object's adjectives and nouns
