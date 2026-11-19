@@ -1,0 +1,102 @@
+{
+  "provider": "google",
+  "model": "gemini-4-neon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "9c55a422b9b5cfe2bac1f914e37cedcc21db53c5e14f1a0f5b08bcd3c4024b89",
+  "item": {
+    "id": "s9e83e08a06",
+    "text": "Each crate can hold 20 kilograms."
+  },
+  "usage": {
+    "input": 133135,
+    "output": 171,
+    "thinking": 494,
+    "total": 133800,
+    "cached": 131082,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 133135,
+    "candidatesTokenCount": 171,
+    "totalTokenCount": 133800,
+    "cachedContentTokenCount": 131082,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 133135
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 131082
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 171
+      }
+    ],
+    "thoughtsTokenCount": 494,
+    "serviceTier": "flex"
+  },
+  "raw_text": "{\"id\": \"s9e83e08a06\", \"instances\": [{\"t\": \"range\", \"id\": \"q1\", \"class\": \"crate\", \"quantifier\": \"each\", \"span\": \"Each crate\"}, {\"t\": \"measure\", \"id\": \"m1\", \"bearer\": \"@q1\", \"head\": \"Measure\", \"dimension\": \"capacity\", \"magnitude\": 20, \"unit\": \"kilogram\", \"tense\": \"present\", \"span\": \"Each crate can hold 20 kilograms\"}, {\"t\": \"generic\", \"id\": \"r1\", \"ranges\": [\"@q1\"], \"over\": [\"@m1\"], \"span\": \"Each crate can hold 20 kilograms\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s9e83e08a06",
+    "instances": [
+      {
+        "t": "range",
+        "id": "q1",
+        "class": "crate",
+        "quantifier": "each",
+        "span": "Each crate"
+      },
+      {
+        "t": "measure",
+        "id": "m1",
+        "bearer": "@q1",
+        "head": "Measure",
+        "dimension": "capacity",
+        "magnitude": 20,
+        "unit": "kilogram",
+        "tense": "present",
+        "span": "Each crate can hold 20 kilograms"
+      },
+      {
+        "t": "generic",
+        "id": "r1",
+        "ranges": [
+          "@q1"
+        ],
+        "over": [
+          "@m1"
+        ],
+        "span": "Each crate can hold 20 kilograms"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "4ec3a11b820922780ba78ec4c419ad60d7cad6baa378389139fb60b7cc8c7f78",
+  "manifest_id": "1efb90db0958",
+  "run": 1,
+  "case": {
+    "template": "measure",
+    "section": "held_out",
+    "index": 28,
+    "category": "positive",
+    "text": "Each crate can hold 20 kilograms.",
+    "key": "9e83e08a06"
+  }
+}

@@ -1,6 +1,6 @@
 # Template parser — instruction set (generated from the catalog; never edited by hand)
 
-catalog sha256 b4eb201295b94713 · 64 templates
+catalog sha256 7ec093b98a4c79f1 · 64 templates
 
 You are a semantic parser. You read an English TEXT and describe what it states as TEMPLATE
 INSTANCES: small JSON records, one per thing the text states, each an instance of one of the
@@ -436,7 +436,7 @@ Codes:
   stood.')
 - G06: a result or outcome infinitive ('woke to find the door open')
 - G07: 'only one N' — a focus particle on a bare count
-- G08: an 'unless' or 'if not' conditional
+- G08: an 'unless' or 'if not' conditional, or an 'only if' on a command, a permission or a duty
 - G09: keep with an object and a property ('kept the hatch open'): a causer keeping another
   thing in a state
 - G10: the verbatim wording of a quotation (its content is parsed; the wording itself is not
@@ -1842,15 +1842,16 @@ Slots:
   (a person, a body, a document).
 - `content` (optional; a list of "@id" of the instances that state the clause): the complement
   clause: the ids of the instances that state it, that is its predication or the scope operator
-  (negation, modal) over that predication; for an infinitival complement, its predication with
-  the holder (or the object) as its actor; the referents it mentions are not listed — except an
-  EVENT NOUN predicated of a place or a time by be (the closure was in the granary on Friday,
-  Marisol said), which has no predication: list the eventive witness itself, and its place and
-  time follow it into the seal; an EXISTENTIAL complement (Marisol suspects that there is a
-  stork) is the indefinite witness itself, sealed whole — its existence is the claim; never an
-  attachment (a time, an oblique, a purpose): it follows its head. Left out when none of the
-  complement can be kept (a question, a clause no template covers): the attitude alone, the
-  complement reported as unmapped.
+  (negation, modal) over that predication, and the distribution instance when the clause says
+  something of each member of a group (the potters each left); for an infinitival complement,
+  its predication with the holder (or the object) as its actor; the referents it mentions are
+  not listed — except an EVENT NOUN predicated of a place or a time by be (the closure was in
+  the granary on Friday, Marisol said), which has no predication: list the eventive witness
+  itself, and its place and time follow it into the seal; an EXISTENTIAL complement (Marisol
+  suspects that there is a stork) is the indefinite witness itself, sealed whole — its existence
+  is the claim; never an attachment (a time, an oblique, a purpose): it follows its head. Left
+  out when none of the complement can be kept (a question, a clause no template covers): the
+  attitude alone, the complement reported as unmapped.
 - `factive` (required; true / false): true when the verb or adjective presupposes the complement
   (know, realize, discover, learn, notice, remember, regret; aware, glad, sorry, surprised,
   upset, proud, happy / angry that), false otherwise (believe, think, suppose, assume, suspect,
@@ -2574,10 +2575,10 @@ Slots:
   the message as a thing: the news, a secret, the result.
 - `content` (optional; a list of "@id" of the instances that state the clause): the message as a
   clause: the ids of the instances that state it, that is its predication or the scope operator
-  (negation, modal) over that predication, or the imperative instance for a request; the
-  referents it mentions are not listed. Left out when none of the clause can be kept (a
-  question, a clause no template covers): the communication alone, the clause reported as
-  unmapped.
+  (negation, modal) over that predication, and the distribution instance when the clause says
+  something of each member of a group, or the imperative instance for a request; the referents
+  it mentions are not listed. Left out when none of the clause can be kept (a question, a clause
+  no template covers): the communication alone, the clause reported as unmapped.
 - `tense` (required; one of: past, present, future): the clause's tense; present is recorded,
   not inferred.
 - `aspect` (optional; one of: simple, progressive, perfect, perfect_progressive, about_to,
@@ -3505,44 +3506,61 @@ Not this template. TEXT: Pieter is a locksmith. — use `copular`.
 
 When: A clause or a phrase stating a NUMBER WITH A UNIT on a dimension: of a THING — the rope is
 3 metres long, Odile is 30 years old, the crate weighs 12 kilograms, the flask costs 12 florins,
-the inspection took three hours, the session lasted an hour, the hamlet has a population of
-2400, the sacks weighed 140 kilograms, a 20 kilogram sack — or of the clause's EVENT — slept for
-eight hours (a duration), ran five kilometres (a distance), bought the blanket for forty florins
-(the price paid), travels at 40 kilometres per hour (a rate), fell by 8 percent and rose from 4
-to 7 degrees (a scalar change). With a thing, fill `bearer` with its referent: a witness, a
-name, a group (a plural bearer measures the whole, with no distribution) or an eventive witness
-(the inspection took three hours); with the clause's event, fill `event` with its predication
-instance instead. `dimension` is the word the text supplies — the adjective as written (long,
-tall, high, wide, deep, old), else the noun the clause gives (weighs → weight, costs → cost,
-took / lasted / for → duration, a population of → population, the fare fell → price, the
-temperature rose → temperature, bought for → price) — and `unspecified` when no word names it
-(ran five kilometres, a 20 kilogram sack); `unit` is the unit lemmatized to the singular (metre,
-kilogram, year, hour, florin, percent; a rate as kilometre_per_hour) and `unspecified` when none
-is stated (a population of 2400). `head` is Measure for a stated value; MeasureAtLeast for at
-least / more than / over / above / up from; MeasureAtMost for at most / no more than / less than
-/ under / below / up to (a strict bound uses the same head); on a change event, MeasureBy for
-the amount of the change (fell by 8 percent), MeasureFrom and MeasureTo for a start and an end
-value (rose from 4 to 7 degrees: two instances). A hedge (about, roughly, nearly) is recorded in
-`hedge`; the magnitude stays the number stated. A measure phrase inside a noun phrase (a 20
-kilogram sack) is a measure of that witness, in the present. Number words are converted (forty →
-40, three thousand → 3000, an hour → 1). A QUANTITY OF A SUBSTANCE stated by a container or a
-measure word — a cup of tea, two bags of flour, a litre of milk, three metres of cloth — is a
-witness of the stuff (the indefinite quantity the text introduces) with this template's instance
-on it: `bearer` the witness, `unit` the container or measure word (cup, bag, litre, metre),
-`dimension` unspecified, `magnitude` the number (a cup → 1). A time, a time relation, a link or
-a focus on a measure clause of a thing (the hamlet had a population of 2400 in 1985) names this
-instance as its event, as it would a copular predication, and the program mints the state of the
-measure holding; a measure on an event is itself the attachment and has no state. A BARE NUMBER
-ON A PERSON — predicated (Odile is 30) or in apposition between commas after the name (Pieter,
-41, mended the barrow) — is the person's age in years, as English writes it: `dimension` old,
-`unit` year, the number the magnitude, tense present for the apposition (the clause's own tense
-for be).
+the inspection took three hours, the session lasted an hour, the chapel seats 90 people, the
+hamlet has a population of 2400, the sacks weighed 140 kilograms, a 20 kilogram sack — or of the
+clause's EVENT — slept for eight hours (a duration), ran five kilometres (a distance), bought
+the blanket for forty florins (the price paid), travels at 40 kilometres per hour (a rate), fell
+by 8 percent and rose from 4 to 7 degrees (a scalar change). With a thing, fill `bearer` with
+its referent: a witness, a name, a group or an eventive witness (the inspection took three
+hours). A plural bearer measures the WHOLE (the sacks weighed 140 kilograms: their total, no
+distribution) unless both, each or apiece says the figure is each member's (both sacks weigh 20
+kilograms, the sacks weigh 20 kilograms each): then the bearer is still the group, and a
+distribution instance names this measure. With the clause's event, fill `event` with its
+predication instance instead. `dimension` is the word the text supplies — the adjective as
+written (long, tall, high, wide, deep, old), else the noun the clause gives (weighs → weight,
+costs → cost, took / lasted / for → duration, a population of → population, seats / sleeps / can
+hold → capacity, the fare fell → price, the temperature rose → temperature, bought for → price)
+— and `unspecified` when no word names it (ran five kilometres, a 20 kilogram sack); `unit` is
+the unit lemmatized to the singular (metre, kilogram, year, hour, florin, percent; a rate as
+kilometre_per_hour) and `unspecified` when none is stated (a population of 2400). `head` is
+Measure for a stated value; MeasureAtLeast for at least / more than / over / above / up from;
+MeasureAtMost for at most / no more than / less than / under / below / up to (a strict bound
+uses the same head); on a change event, MeasureBy for the amount of the change (fell by 8
+percent), MeasureFrom and MeasureTo for a start and an end value (rose from 4 to 7 degrees: two
+instances). A hedge (about, roughly, nearly) is recorded in `hedge`; the magnitude stays the
+number stated. A measure phrase inside a noun phrase (a 20 kilogram sack) is a measure of that
+witness, in the present. Number words are converted (forty → 40, three thousand → 3000, an hour
+→ 1). A QUANTITY OF A SUBSTANCE stated by a container or a measure word — a cup of tea, two bags
+of flour, a litre of milk, three metres of cloth — is a witness of the stuff (the indefinite
+quantity the text introduces) with this template's instance on it: `bearer` the witness, `unit`
+the container or measure word (cup, bag, litre, metre), `dimension` unspecified, `magnitude` the
+number (a cup → 1). A CAPACITY — the chapel seats 90 people, the hut sleeps six, the vat can
+hold 40 litres, holds up to 40 litres, accommodates twelve barrows, has room for twelve barrows
+— is a measure of the container on the dimension capacity: `unit` is the measure unit (litre,
+kilogram) or the counted noun in the singular (person, barrow), unspecified when none is stated
+(sleeps six); can belongs to the capacity and is no modal instance, the things it would hold are
+no referents, and up to or at most gives MeasureAtMost. A phrase saying what the amount is of
+(40 kilograms of grain) has no slot: report it as unmapped (G00). A UNIT THE TEXT LEAVES OUT is
+never filled in: in the chapel seats 90 people and the annex seats 40, the 40 keeps `unit`
+unspecified. When another measure in the text states the unit this figure plainly shares, say so
+BESIDE the figure, as a coreference link says what a pronoun stands for: `unit_understood` is
+that unit as the other measure writes it (person) and `unit_certainty` how sure the text makes
+it. A bare number with no such measure in the text has neither (a population of 2400). A time, a
+time relation, a link or a focus on a measure clause of a thing (the hamlet had a population of
+2400 in 1985) names this instance as its event, as it would a copular predication, and the
+program mints the state of the measure holding; a measure on an event is itself the attachment
+and has no state. A BARE NUMBER ON A PERSON — predicated (Odile is 30) or in apposition between
+commas after the name (Pieter, 41, mended the barrow) — is the person's age in years, as English
+writes it: `dimension` old, `unit` year, the number the magnitude, tense present for the
+apposition (the clause's own tense for be).
 
 Forms:
 - <X> is <n> <unit> <ADJ>
 - <Name>, <n>, …
 - <X> weighs / costs / measures <n> <unit>
 - <X> took / lasted <n> <unit>
+- <X> seats / sleeps / can hold <n> <unit>
+- <X> … <n> <unit> and <Y> … <n>
 - <X> has a <dimension> of <n> (<unit>)
 - <clause> for <n> <unit>
 - <X> is at least / more than / no more than <n> <unit> <ADJ>
@@ -3579,8 +3597,9 @@ Slots:
 - `id` (required; your label for this instance): your label for the measure (m1, m2 …).
 - `bearer` (optional; "@id" of an instance, of the kinds the slot names): the thing measured: a
   referent id — a witness, a name, a group (the sacks weighed 140 kilograms: the whole, no
-  distribution) or an eventive witness (the inspection took three hours); absent when the
-  measure sits on the clause's event.
+  distribution; with both, each or apiece the figure is each member's — add a distribution
+  instance over this measure) or an eventive witness (the inspection took three hours); absent
+  when the measure sits on the clause's event.
 - `event` (optional; "@id" of the predication instance this attaches to): the clause's
   predication instance when the measure phrase is on the event — a verb's, or a copular,
   locative, degree, comparative, class-statement or part-whole one (was ill for nine days, was a
@@ -3595,9 +3614,9 @@ Slots:
   only).
 - `dimension` (required; a lemma): the dimension word the text supplies: the adjective as
   written (long, tall, high, wide, deep, old) or the noun the clause gives (weight, cost,
-  duration, population, price, temperature); unspecified when no word names it. In a question,
-  the word a statement would write: how long → duration for an event, long for a thing; how old
-  → old; how much with cost or weigh → cost or weight.
+  duration, population, capacity, price, temperature); unspecified when no word names it. In a
+  question, the word a statement would write: how long → duration for an event, long for a
+  thing; how old → old; how much with cost or weigh → cost or weight.
 - `magnitude` (required; a number): the number as stated (40, 3000, 0.5, 7.5), number words
   converted; never a range. In a question asking for an amount (how much, how long, how old, how
   many hours) the asked word ("@w1").
@@ -3606,6 +3625,15 @@ Slots:
   unspecified when no unit is stated. In a question asking for an amount, the asked word too
   ("@w1": the answer is a number and its unit), unless the question names the unit (how many
   hours: hour).
+- `unit_understood` (optional; a lemma): only beside unit unspecified: the unit the reader
+  understands for this figure, when ANOTHER measure in the text states that unit and this figure
+  plainly shares it (the chapel seats 90 people and the annex seats 40: person) — written as
+  that measure writes it; never a unit no measure in the text states; absent for a bare number
+  (a population of 2400).
+- `unit_certainty` (optional; one of: certain, likely, unsure, unlikely): with unit_understood:
+  how sure the text makes it, as for a coreference link — certain when no other unit fits,
+  likely when one fits clearly better than another, unsure when the text leaves it open; the
+  program sets the strength from it.
 - `hedge` (optional; a string): the approximation word as written (about, around, roughly,
   approximately, nearly, almost, some, or so); recorded, not rendered.
 - `word` (optional; a string): the wording that sets a bound or a change head, as written (at
@@ -3674,6 +3702,25 @@ The program renders these instances as:
     (Agent sk_wait_1 sk_odile_1)
     (Past sk_wait_1)
     (Measure sk_wait_1 duration 6 hour)
+
+Example (a capacity, and a second figure whose unit the text leaves out — unspecified, with the unit understood beside it). TEXT: The chapel seats 90 people and the annex seats 40.
+
+Instances:
+
+    [
+      {"t": "witness", "id": "x1", "class": "chapel", "definite": true, "span": "The chapel"},
+      {"t": "measure", "id": "m1", "bearer": "@x1", "head": "Measure", "dimension": "capacity", "magnitude": 90, "unit": "person", "tense": "present", "span": "The chapel seats 90 people"},
+      {"t": "witness", "id": "x2", "class": "annex", "definite": true, "span": "the annex"},
+      {"t": "measure", "id": "m2", "bearer": "@x2", "head": "Measure", "dimension": "capacity", "magnitude": 40, "unit": "unspecified", "unit_understood": "person", "unit_certainty": "certain", "tense": "present", "span": "the annex seats 40"}
+    ]
+
+The program renders these instances as:
+
+    (Member sk_chapel_1 chapel)
+    (Measure sk_chapel_1 capacity 90 person)
+    (Member sk_annex_1 annex)
+    (Measure sk_annex_1 capacity 40 unspecified)
+    (ImpliedUnit sk_annex_1 capacity person)
 
 Not this template. TEXT: Three days ago, Marisol left. — use `time`.
 
@@ -6984,22 +7031,29 @@ and name them in `condition` and `over`. With an eventive condition the rule ran
 condition's events, and the consequence's event is a function of each; with a stative condition
 the rule holds between the states as stated. When the subject is a class — storks are drowsy if
 the weather is windy — it is a range instance listed in `ranges`, the consequence a copular
-instance over it, and `generic: true` marks a bare plural (no quantifier word). The mood is
-indicative: the clauses are real possibilities; a subjunctive (if Odile had sung, Marisol would
-have left; if Marisol sang, Pieter would leave) is a counterfactual. The span is the whole
-sentence.
+instance over it, and `generic: true` marks a bare plural (no quantifier word). "Q ONLY IF P"
+turns the roles round: it says that whenever Q holds, P does, so the MAIN clause is the
+`condition` and the only-if clause the `over` (Odile sings only if Marisol waits: `condition`
+the singing, `over` the waiting, `word` only if); it does not say that Q follows from P. The
+mood is indicative: the clauses are real possibilities; a subjunctive (if Odile had sung,
+Marisol would have left; if Marisol sang, Pieter would leave) is a counterfactual. The span is
+the whole sentence.
 
 Forms:
 - If <P>, <Q> / <Q> if <P>
 - <X> is ADJ when / if ADJ
 - <class>s are ADJ if <P>
 - Provided that / as long as / in case <P>, <Q>
+- <Q> only if <P>
 
 Not this template:
 - a counterfactual or a hypothetical with would — if Odile had sung, Marisol would have left; if
   Marisol sang, Pieter would leave: the counterfactual template
 - unless, or if not — unless it rains, Odile sings; if Marisol does not sing, Odile leaves: a
   negated condition, with no form yet; report the clause as unmapped (G08)
+- only if on a command, a permission or a duty — wait only if the bell rings, Odile may sing
+  only if Marisol waits, Pieter must leave only if it rains: it limits what is asked or allowed,
+  a negated condition again; report the whole clause as unmapped (G08)
 - an eventive when-clause — when Odile sings, Marisol leaves; whenever the bell rang: a
   generalization over the when-clause's events, the frequency template
 - a class's property under a state of its members — clay is soft when wet, all resins are
@@ -7014,20 +7068,20 @@ Slots:
 
 - `t` (required): "conditional"
 - `id` (required; your label for this instance): your label for the rule (r1, r2 …).
-- `condition` (required; a list of "@id" of the instances that state the clause): the if-clause:
-  the id of its predication (its event becomes the rule's variable) or of its copular / locative
-  instance for a state (the copular for cold, its subject the thing it is said of); several
-  conditions are several ids.
-- `over` (required; a list of "@id" of the instances that state the clause): the consequence:
-  the id of its predication, or of the negation, modal or norm over it, or of its copular
-  instance for a state; nothing else.
+- `condition` (required; a list of "@id" of the instances that state the clause): the if-clause
+  — for only if, the MAIN clause: the id of its predication (its event becomes the rule's
+  variable) or of its copular / locative instance for a state (the copular for cold, its subject
+  the thing it is said of); several conditions are several ids.
+- `over` (required; a list of "@id" of the instances that state the clause): the consequence —
+  for only if, the only-if clause: the id of its predication, or of the negation, modal or norm
+  over it, or of its copular instance for a state; nothing else.
 - `ranges` (optional; a list of "@id" of the instances that state the clause): the range
   instance of a class subject (storks are drowsy if the weather is windy): its id; absent
   otherwise.
 - `generic` (optional; true / false): true when the subject is a bare plural or mass noun read
   generically, with no quantifier word (storks are …): a bare generalization; absent otherwise.
 - `word` (optional; a string): the conditional word as written when it is not if (provided that,
-  as long as, in case, even if, when); recorded, not rendered.
+  as long as, in case, even if, when, only if); recorded, not rendered.
 
 Example (an eventive condition — the rule ranges over Pieter's arrivals, Henrike's leaving a function of each). TEXT: If Pieter arrives, Henrike leaves.
 
@@ -7065,6 +7119,24 @@ The program renders these instances as:
     (Member sk_door_1 door)
     (Implication (Member sk_door_1 open) (Member sk_granary_1 cold))
     (Implication (Holds $s (Member sk_door_1 open)) (And (Holds (sk_cold $s) (Member sk_granary_1 cold)) (During (sk_cold $s) $s)))
+
+Example (only if — the roles turned round, the main clause is the condition and the only-if clause what follows). TEXT: Henrike stays only if Pieter sings.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Henrike", "span": "Henrike"},
+      {"t": "named-entity", "id": "n2", "name": "Pieter", "span": "Pieter"},
+      {"t": "activity", "id": "v1", "verb": "stay", "actor": "@n1", "tense": "present", "span": "Henrike stays"},
+      {"t": "activity", "id": "v2", "verb": "sing", "actor": "@n2", "tense": "present", "span": "Pieter sings"},
+      {"t": "conditional", "id": "r1", "condition": ["@v1"], "over": ["@v2"], "word": "only if", "span": "Henrike stays only if Pieter sings"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_henrike_1 "Henrike")
+    (Name sk_pieter_1 "Pieter")
+    (Implication (And (Member $e stay) (Agent $e sk_henrike_1)) (And (Member (sk_sing $e) sing) (Agent (sk_sing $e) sk_pieter_1)))
 
 Not this template. TEXT: All resins are brittle when cold. — use `conditional-property`.
 
@@ -7166,18 +7238,27 @@ Not this template. TEXT: Badgers are curious. — use `class-statement`.
 When: A clause whose subject or object is a group (a plural noun phrase, or a portion of one —
 most of the badgers, two of the blankets) and whose predicate holds of each member on its own:
 the badgers are curious (each is), several students laughed (each did), the pupils did not laugh
-(none did). The instance names the group and the predication over it — or the scope operator
-over that predication, when there is one — and nothing else. Do not add it for a collective
-predicate: surrounded the granary, carried the barrow together, met, gathered, outnumbered. A
-floating both, each or all on a group or a plural pronoun (the potters each left, they both
-sang) is this instance; both or each on coordinated names (both Femke and Ludo left) adds
-nothing, and the word is not reported.
+(none did). The instance names the group and the predication over it, and nothing else. When
+that predication stands INSIDE A SCOPE, the rule goes where the scope puts it. Under a negation,
+a modal or a command (did not laugh, might be crooked, wash both barrows) name the SCOPE
+instance instead of the predication: each member did not, might, is to be. Inside what someone
+believes or reports (Femke thinks the potters each left, Ludo said that both storks left) the
+instance names the predication as usual and is itself part of that clause: list it in the
+belief's or the report's `content` beside the predication. Never leave it outside a scope that
+holds its predication: it would state of each member, as a fact, what the text only denies, asks
+for, believes or reports. Do not add it for a collective predicate: surrounded the granary,
+carried the barrow together, met, gathered, outnumbered. A floating both, each or all on a group
+or a plural pronoun (the potters each left, they both sang) is this instance; both or each on
+coordinated names (both Femke and Ludo left) adds nothing, and the word is not reported. Both,
+each or apiece on a MEASURED group (both barrows weigh 9 kilograms, the barrows weigh 9
+kilograms each) is this instance too, over the measure: the figure is each member's.
 
 Not this template:
 - a collective predicate — surrounded, gathered, met, outnumbered, carried it together: holds of
   the group as a whole, not of each member
-- a size or a measure of the group — are three in number, weigh ten kilos together: a property
-  of the whole
+- a size or a total of the group — are three in number, weigh ten kilos together, the sacks
+  weighed 140 kilograms: a property of the whole (a figure with both, each or apiece is each
+  member's: this instance, over the measure)
 - a class as the subject — badgers are curious: a statement about the class, there is no group
 - a reciprocal — the badgers groomed each other, two storks waded side by side: the group fills
   both roles and the reciprocal template marks the event; distributing would make each member
@@ -7190,11 +7271,13 @@ Slots:
 - `group` (required; "@id" of a referent instance, or a bare lemma for a non-specific filler):
   the group instance's id, or a portion's.
 - `over` (required; a list of "@id" of the instances that state the clause): the predication
-  over the group, or the negation / modal over that predication: its id, nothing else — never an
-  attachment (a location, a time, an oblique), which follows its head; a phrase whose OBJECT the
-  group is (a search for three badgers, those with weak eyes) is no predication over the group:
-  no distribution instance at all; when a time or a place is predicated of a plural EVENT noun
-  (the two inspections were on Friday) there is no predication either — name the eventive group
+  over the group — or, under a negation, a modal or a command, the id of that SCOPE instance
+  instead (a predication inside a belief or a report is named as usual, and that belief or
+  report lists this distribution in its content): its id, nothing else — never an attachment (a
+  location, a time, an oblique), which follows its head; a phrase whose OBJECT the group is (a
+  search for three badgers, those with weak eyes) is no predication over the group: no
+  distribution instance at all; when a time or a place is predicated of a plural EVENT noun (the
+  two inspections were on Friday) there is no predication either — name the eventive group
   itself, and its time and place distribute over the members.
 
 Example. TEXT: Several students laughed.
@@ -7215,6 +7298,26 @@ The program renders these instances as:
     (Agent sk_laugh_1 sk_group_1)
     (Past sk_laugh_1)
     (Implication (PartOf $x sk_group_1) (And (Member (sk_laugh $x) laugh) (Agent (sk_laugh $x) $x) (Past (sk_laugh $x))))
+
+Example (inside a belief the instance is part of the believed clause — listed in content beside the predication, so nothing is stated of a potter). TEXT: Femke thinks the potters each left.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Femke", "span": "Femke"},
+      {"t": "group", "id": "g1", "class": "potter", "definite": true, "span": "the potters"},
+      {"t": "motion", "id": "m1", "verb": "leave", "mover": "@g1", "tense": "past", "span": "the potters each left"},
+      {"t": "distribution", "id": "d1", "group": "@g1", "over": ["@m1"], "span": "the potters each left"},
+      {"t": "attitude", "id": "a1", "verb": "think", "holder": "@n1", "content": ["@m1", "@d1"], "factive": false, "tense": "present", "span": "Femke thinks the potters each left"}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_femke_1 "Femke")
+    (GroupOf sk_group_1 potter)
+    (Member sk_think_1 think)
+    (Experiencer sk_think_1 sk_femke_1)
+    (Theme sk_think_1 (And (Member sk_leave_1 leave) (Agent sk_leave_1 sk_group_1) (Past sk_leave_1) (Implication (PartOf $x sk_group_1) (And (Member (sk_leave $x) leave) (Agent (sk_leave $x) $x) (Past (sk_leave $x))))))
 
 Not this template. TEXT: Three badgers surrounded the granary. — use `group`.
 
@@ -7500,13 +7603,19 @@ the sluice), a demonstrative for an event (that surprised Marisol). State it as 
 naming the later mention, the referent's FIRST instance in the text, and the certainty: certain
 when only one antecedent fits, likely when one fits clearly better than another, unsure when the
 text leaves it open, unlikely for the other candidate when you state both. One instance per
-later mention; for an open choice between two candidates, one instance per candidate.
+later mention; for an open choice between two candidates, one instance per candidate. A PLURAL
+PRONOUN THAT TAKES UP SEVERAL SEPARATE THINGS (Odile washed a kettle and a lamp and dried them:
+them is the kettle and the lamp together) is none of those things: write one instance per thing,
+each with `part: true` — the thing is ONE OF those the pronoun covers — and never a plain link
+to each, which would say that the pronoun is that thing and so make the two things one. A plural
+pronoun for ONE group (the potters … they) is a plain link to the group, as usual.
 
 Forms:
 - <N> … <pronoun>
 - <Name> … <Name>
 - a <N> … the <N>
 - <clause>. That <V> …
+- <N> and <N> … they / them
 
 Not this template:
 - a first mention — Marisol laughed: nothing to link; the referent's own instance suffices
@@ -7530,6 +7639,9 @@ Slots:
   entity or an event).
 - `certainty` (required; one of: certain, likely, unsure, unlikely): how sure the text makes the
   identity; the program sets the strength from it.
+- `part` (optional; true / false): true when the mention is a plural pronoun covering SEVERAL
+  separate referents and this one is one of them (a kettle and a lamp … them: one instance per
+  thing, each part: true); absent for an ordinary link.
 
 Example (two pronouns, each its own mention, each linked to the first instance of its referent). TEXT: Odile baked a bun and she ate it.
 
@@ -7585,6 +7697,42 @@ The program renders these instances as:
     (Agent sk_leave_1 sk_marisol_2)
     (Past sk_leave_1)
     (Coref sk_marisol_2 sk_marisol_1)
+
+Example (a plural pronoun for two separate things — one instance per thing with part true, so neither thing is said to be the other). TEXT: Pieter washed a kettle and a lamp and dried them.
+
+Instances:
+
+    [
+      {"t": "named-entity", "id": "n1", "name": "Pieter", "span": "Pieter"},
+      {"t": "witness", "id": "x1", "class": "kettle", "span": "a kettle"},
+      {"t": "witness", "id": "x2", "class": "lamp", "span": "a lamp"},
+      {"t": "activity", "id": "v1", "verb": "wash", "actor": "@n1", "patient": "@x1", "tense": "past", "span": "Pieter washed a kettle"},
+      {"t": "activity", "id": "v2", "verb": "wash", "actor": "@n1", "patient": "@x2", "tense": "past", "span": "Pieter washed a kettle and a lamp"},
+      {"t": "mention", "id": "m1", "word": "them", "span": "them"},
+      {"t": "activity", "id": "v3", "verb": "dry", "actor": "@n1", "patient": "@m1", "tense": "past", "span": "dried them"},
+      {"t": "coref", "id": "c1", "mention": "@m1", "antecedent": "@x1", "certainty": "certain", "part": true, "span": ["a kettle", "them"]},
+      {"t": "coref", "id": "c2", "mention": "@m1", "antecedent": "@x2", "certainty": "certain", "part": true, "span": ["a lamp", "them"]}
+    ]
+
+The program renders these instances as:
+
+    (Name sk_pieter_1 "Pieter")
+    (Member sk_kettle_1 kettle)
+    (Member sk_lamp_1 lamp)
+    (Member sk_wash_1 wash)
+    (Agent sk_wash_1 sk_pieter_1)
+    (Patient sk_wash_1 sk_kettle_1)
+    (Past sk_wash_1)
+    (Member sk_wash_2 wash)
+    (Agent sk_wash_2 sk_pieter_1)
+    (Patient sk_wash_2 sk_lamp_1)
+    (Past sk_wash_2)
+    (Member sk_dry_1 dry)
+    (Agent sk_dry_1 sk_pieter_1)
+    (Patient sk_dry_1 sk_them_1)
+    (Past sk_dry_1)
+    (PartOf sk_kettle_1 sk_them_1)
+    (PartOf sk_lamp_1 sk_them_1)
 
 Not this template. TEXT: Marisol laughed. — use `activity`.
 

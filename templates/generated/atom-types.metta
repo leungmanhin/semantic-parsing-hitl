@@ -146,6 +146,7 @@
 (: Hour (-> Number TimeTerm))
 (: Hour (-> Distribution TimeTerm))
 (: Implication (-> Proposition Proposition Proposition))
+(: ImpliedUnit (-> Instance Class Class Proposition))
 (: InContext (-> Statement Context Proposition))
 (: InOrderThat (-> Event Proposition Proposition))
 (: InOrderTo (-> Event Proposition Proposition))

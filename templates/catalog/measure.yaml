@@ -22,17 +22,20 @@ trigger:
   construction: >
     A clause or a phrase stating a NUMBER WITH A UNIT on a dimension: of a THING — the rope is
     3 metres long, Odile is 30 years old, the crate weighs 12 kilograms, the flask costs 12
-    florins, the inspection took three hours, the session lasted an hour, the hamlet has a population of 2400, the sacks weighed 140 kilograms, a 20 kilogram sack — or of the clause's EVENT —
+    florins, the inspection took three hours, the session lasted an hour, the chapel seats 90 people, the hamlet has a population of 2400, the sacks weighed 140 kilograms, a 20 kilogram sack — or of the clause's EVENT —
     slept for eight hours (a duration), ran five kilometres (a distance), bought the blanket for
     forty florins (the price paid), travels at 40 kilometres per hour (a rate), fell by 8 percent
     and rose from 4 to 7 degrees (a scalar change). With a thing, fill `bearer` with its
-    referent: a witness, a name, a group (a plural bearer measures the whole, with no
-    distribution) or an eventive witness (the inspection took three hours); with the clause's event,
+    referent: a witness, a name, a group or an eventive witness (the inspection took three
+    hours). A plural bearer measures the WHOLE (the sacks weighed 140 kilograms: their total,
+    no distribution) unless both, each or apiece says the figure is each member's (both sacks
+    weigh 20 kilograms, the sacks weigh 20 kilograms each): then the bearer is still the group,
+    and a distribution instance names this measure. With the clause's event,
     fill `event` with its predication instance instead. `dimension` is the word the text
     supplies — the adjective as written (long, tall, high, wide, deep, old), else the noun the
     clause gives (weighs → weight, costs → cost, took / lasted / for → duration, a population of
-    → population, the fare fell → price, the temperature rose → temperature, bought for →
-    price) — and `unspecified` when no word names it (ran five kilometres, a 20 kilogram sack);
+    → population, seats / sleeps / can hold → capacity, the fare fell → price, the temperature
+    rose → temperature, bought for → price) — and `unspecified` when no word names it (ran five kilometres, a 20 kilogram sack);
     `unit` is the unit lemmatized to the singular (metre, kilogram, year, hour, florin, percent;
     a rate as kilometre_per_hour) and `unspecified` when none is stated (a population of 2400).
     `head` is Measure for a stated value; MeasureAtLeast for at least / more than / over / above
@@ -46,7 +49,20 @@ trigger:
     a measure word — a cup of tea, two bags of flour, a litre of milk, three metres of cloth — is
     a witness of the stuff (the indefinite quantity the text introduces) with this template's
     instance on it: `bearer` the witness, `unit` the container or measure word (cup, bag, litre,
-    metre), `dimension` unspecified, `magnitude` the number (a cup → 1). A time, a time relation,
+    metre), `dimension` unspecified, `magnitude` the number (a cup → 1). A CAPACITY — the
+    chapel seats 90 people, the hut sleeps six, the vat can hold 40 litres, holds up to 40
+    litres, accommodates twelve barrows, has room for twelve barrows — is a measure of the
+    container on the dimension capacity: `unit` is the measure unit (litre, kilogram) or the
+    counted noun in the singular (person, barrow), unspecified when none is stated (sleeps
+    six); can belongs to the capacity and is no modal instance, the things it would hold are no
+    referents, and up to or at most gives MeasureAtMost. A phrase saying what the amount is of
+    (40 kilograms of grain) has no slot: report it as unmapped (G00). A UNIT THE TEXT LEAVES
+    OUT is never filled in: in the chapel seats 90 people and the annex seats 40, the 40 keeps
+    `unit` unspecified. When another measure in the text states the unit this figure plainly
+    shares, say so BESIDE the figure, as a coreference link says what a pronoun stands for:
+    `unit_understood` is that unit as the other measure writes it (person) and `unit_certainty`
+    how sure the text makes it. A bare number with no such measure in the text has neither (a
+    population of 2400). A time, a time relation,
     a link or a focus on a measure clause of a thing (the hamlet had a population of 2400 in 1985) names this instance as its event, as it would a copular predication, and the program
     mints the state of the measure holding; a measure on an event is itself the attachment and
     has no state. A BARE NUMBER ON A PERSON — predicated (Odile is 30) or in apposition between
@@ -58,6 +74,8 @@ trigger:
     - "<Name>, <n>, …"                                    # Pieter, 41, mended the barrow: the age, dimension old, unit year
     - "<X> weighs / costs / measures <n> <unit>"           # the crate weighs 12 kilograms: dimension weight
     - "<X> took / lasted <n> <unit>"                       # the inspection took three hours: dimension duration
+    - "<X> seats / sleeps / can hold <n> <unit>"           # the chapel seats 90 people: dimension capacity, the unit the counted noun or the measure unit
+    - "<X> … <n> <unit> and <Y> … <n>"                    # the second unit left out: unit unspecified, unit_understood the first measure's unit
     - "<X> has a <dimension> of <n> (<unit>)"             # a population of 2400: unit unspecified
     - "<clause> for <n> <unit>"                            # slept for eight hours: a duration on the event
     - "<X> is at least / more than / no more than <n> <unit> <ADJ>"   # a bound: MeasureAtLeast / MeasureAtMost
@@ -99,16 +117,20 @@ trigger:
 slots:
   id:        {type: id, required: true, doc: "your label for the measure (m1, m2 …)"}
   bearer:    {type: filler, class: Instance, required: false,
-              doc: "the thing measured: a referent id — a witness, a name, a group (the sacks weighed 140 kilograms: the whole, no distribution) or an eventive witness (the inspection took three hours); absent when the measure sits on the clause's event"}
+              doc: "the thing measured: a referent id — a witness, a name, a group (the sacks weighed 140 kilograms: the whole, no distribution; with both, each or apiece the figure is each member's — add a distribution instance over this measure) or an eventive witness (the inspection took three hours); absent when the measure sits on the clause's event"}
   event:     {type: filler, class: Event, attaches: true, required: false,
               doc: "the clause's predication instance when the measure phrase is on the event — a verb's, or a copular, locative, degree, comparative, class-statement or part-whole one (was ill for nine days, was a member of the fellowship for ten years: the state's duration; the program mints the state) —: a duration (slept for eight hours), a distance (ran five kilometres), a price paid (bought the blanket for forty florins), a rate (travels at 40 kilometres per hour), a change's amount or its start / end value (fell by 8 percent); absent with bearer"}
   head:      {type: enum, values: [Measure, MeasureAtLeast, MeasureAtMost, MeasureBy, MeasureFrom, MeasureTo], required: true,
               doc: "Measure for a stated value; MeasureAtLeast for at least / more than / over / above; MeasureAtMost for at most / no more than / less than / under / below / up to; MeasureBy for the amount of a change, MeasureFrom / MeasureTo for its start / end value (with event only)"}
   dimension: {type: lemma, class: Class, required: true,
-              doc: "the dimension word the text supplies: the adjective as written (long, tall, high, wide, deep, old) or the noun the clause gives (weight, cost, duration, population, price, temperature); unspecified when no word names it. In a question, the word a statement would write: how long → duration for an event, long for a thing; how old → old; how much with cost or weigh → cost or weight"}
+              doc: "the dimension word the text supplies: the adjective as written (long, tall, high, wide, deep, old) or the noun the clause gives (weight, cost, duration, population, capacity, price, temperature); unspecified when no word names it. In a question, the word a statement would write: how long → duration for an event, long for a thing; how old → old; how much with cost or weigh → cost or weight"}
   magnitude: {type: number, required: true, doc: "the number as stated (40, 3000, 0.5, 7.5), number words converted; never a range. In a question asking for an amount (how much, how long, how old, how many hours) the asked word (\"@w1\")"}
   unit:      {type: lemma, class: Class, required: true, asked_apart: unit,
               doc: "the unit, singular and lowercase (metre, foot, kilogram, year, hour, florin, dollar, degree, percent); a rate as unit_per_unit (kilometre_per_hour); unspecified when no unit is stated. In a question asking for an amount, the asked word too (\"@w1\": the answer is a number and its unit), unless the question names the unit (how many hours: hour)"}
+  unit_understood: {type: lemma, class: Class, required: false, only_when: "unit == unspecified and unit_certainty",
+              doc: "only beside unit unspecified: the unit the reader understands for this figure, when ANOTHER measure in the text states that unit and this figure plainly shares it (the chapel seats 90 people and the annex seats 40: person) — written as that measure writes it; never a unit no measure in the text states; absent for a bare number (a population of 2400)"}
+  unit_certainty: {type: enum, values: [certain, likely, unsure, unlikely], required: false, only_when: "unit_understood",
+              doc: "with unit_understood: how sure the text makes it, as for a coreference link — certain when no other unit fits, likely when one fits clearly better than another, unsure when the text leaves it open; the program sets the strength from it"}
   hedge:     {type: string, required: false,
               doc: "the approximation word as written (about, around, roughly, approximately, nearly, almost, some, or so); recorded, not rendered"}
   word:      {type: string, required: false,
@@ -119,6 +141,8 @@ slots:
 one_of: [[bearer, event]]
 
 mints: {id: Event, stem: dimension, on_demand: true}      # the state of the measure holding, only when something attaches to a measure of a thing
+
+distributed: members_only     # named by a distribution, the measure is stated of each member, in the rule alone
 
 emits:
   - atom: "({head} {bearer} {dimension} {magnitude} {unit})"
@@ -132,6 +156,16 @@ emits:
     when: "tense == future"
   - atom: "({head} {event} {dimension} {magnitude} {unit})"
     if_filled: event
+  # a unit the text leaves out, as the reader understands it: a link beside the measure, at the
+  # strength of its certainty (as a coreference link); the measure itself keeps `unspecified`
+  - atom: "(ImpliedUnit {bearer} {dimension} {unit_understood})"
+    if_filled: unit_understood
+    when: "bearer"
+    truth: {strength: [{slot: unit_certainty, values: {certain: 0.99, likely: 0.8, unsure: 0.5, unlikely: 0.2}}], confidence: [0.9]}
+  - atom: "(ImpliedUnit {event} {dimension} {unit_understood})"
+    if_filled: unit_understood
+    when: "event"
+    truth: {strength: [{slot: unit_certainty, values: {certain: 0.99, likely: 0.8, unsure: 0.5, unlikely: 0.2}}], confidence: [0.9]}
   # an anchored measure of a thing: the state of the measure holding, minted only when something
   # attaches to this instance (a time, a relation, a link, a focus); its tense beside it
   - atom: "(Holds @id ({head} {bearer} {dimension} {magnitude} {unit}))"
@@ -159,11 +193,24 @@ notes:
     so "at least 2 metres high" never answers "is it 2 metres high?" as a value.
   - >-
     A plural bearer measures the whole (the crates weighed 180 kilograms: the group's total);
-    only "each" distributes. A measure on an event is an attachment: it sits inside whatever
+    both, each and apiece distribute, through a distribution instance that names the measure.
+    The program then states the figure in the per-member rule ALONE (`distributed:
+    members_only`): a group's total and a member's figure are different claims, so the
+    group-level atom a distribution otherwise keeps would say something the text does not. A
+    measure on an event is an attachment: it sits inside whatever
     scope the event is in, as a time or a place does.
   - >-
     A scalar change keeps its figures on the change event, never as the bearer's standing
     measure: "the price fell by 8 percent" says how much it fell, not what the price is.
+  - >-
+    A unit the text leaves out is not the parser's to fill in, any more than a pronoun's
+    referent is: the measure keeps `unspecified`, and what the reader understands is stated
+    beside it — (ImpliedUnit sk_annex_1 capacity person) at the strength of `unit_certainty`
+    (0.99 / 0.8 / 0.5 / 0.2 at confidence 0.9, the coreference dial). The background rule
+    unit_implied then states the figure in that unit at the link's strength, so the two
+    capacities compare; a consumer that drops the link keeps exactly what the text said. The
+    understood unit must be one another measure of the text states: the validator reports any
+    other (`unit-not-in-text`).
   - >-
     The unit stays as stated. The background lexicon gives each unit's factor to a canonical unit
     (metre, kilogram, second, litre) and the rules derive the measure in it, so measures stated in
@@ -213,6 +260,14 @@ examples:
         - {t: named-entity, id: n1, name: "Odile", span: "Odile"}
         - {t: activity, id: v1, verb: wait, actor: "@n1", tense: past, span: "Odile waited"}
         - {t: measure, id: m1, event: "@v1", head: Measure, dimension: duration, magnitude: 6, unit: hour, span: "for six hours"}
+    - category: positive
+      note: a capacity, and a second figure whose unit the text leaves out — unspecified, with the unit understood beside it
+      text: "The chapel seats 90 people and the annex seats 40."
+      instances:
+        - {t: witness, id: x1, class: chapel, definite: true, span: "The chapel"}
+        - {t: measure, id: m1, bearer: "@x1", head: Measure, dimension: capacity, magnitude: 90, unit: person, tense: present, span: "The chapel seats 90 people"}
+        - {t: witness, id: x2, class: annex, definite: true, span: "the annex"}
+        - {t: measure, id: m2, bearer: "@x2", head: Measure, dimension: capacity, magnitude: 40, unit: unspecified, unit_understood: person, unit_certainty: certain, tense: present, span: "the annex seats 40"}
     - category: abstain
       text: "Three days ago, Marisol left."
       expected: {abstain: true, template: time}                       # a measured distance in time: a time point
@@ -384,3 +439,59 @@ examples:
       instances:
         - {t: named-entity, id: n1, name: "Yusra"}
         - {t: measure, id: m1, bearer: "@n1", head: Measure, dimension: old, magnitude: 40, unit: year, tense: present}
+    - category: positive
+      note: a capacity with a counted noun as the unit
+      text: "The ferry seats 80 people."
+      instances:
+        - {t: witness, id: x1, class: ferry, definite: true}
+        - {t: measure, id: m1, bearer: "@x1", head: Measure, dimension: capacity, magnitude: 80, unit: person, tense: present}
+    - category: positive
+      note: a capacity under at most — the bound head; can is no modal
+      text: "The tank can hold at most 300 litres."
+      instances:
+        - {t: witness, id: x1, class: tank, definite: true}
+        - {t: measure, id: m1, bearer: "@x1", head: MeasureAtMost, dimension: capacity, magnitude: 300, unit: litre, word: "at most", tense: present}
+    - category: positive
+      note: a capacity with no unit stated
+      text: "The cabin sleeps six."
+      instances:
+        - {t: witness, id: x1, class: cabin, definite: true}
+        - {t: measure, id: m1, bearer: "@x1", head: Measure, dimension: capacity, magnitude: 6, unit: unspecified, tense: present}
+    - category: positive
+      note: a capacity of every member of a class — the range, and the generic over the measure
+      text: "Each crate can hold 20 kilograms."
+      instances:
+        - {t: range, id: q1, class: crate, quantifier: each}
+        - {t: measure, id: m1, bearer: "@q1", head: Measure, dimension: capacity, magnitude: 20, unit: kilogram, tense: present}
+        - {t: generic, id: r1, ranges: ["@q1"], over: ["@m1"]}
+    - category: positive
+      note: what the capacity is of has no slot — the measure kept, the phrase reported
+      text: "The bin can hold 40 kilograms of grain."
+      instances:
+        - {t: witness, id: x1, class: bin, definite: true}
+        - {t: measure, id: m1, bearer: "@x1", head: Measure, dimension: capacity, magnitude: 40, unit: kilogram, tense: present}
+      unmapped:
+        - {span: "of grain", code: G00}
+    - category: positive
+      note: both — the figure is each member's, so a distribution over the measure and no total of the pair
+      text: "Both quilts weigh 3 kilograms."
+      instances:
+        - {t: group, id: g1, class: quilt, definite: true, count: 2}
+        - {t: measure, id: m1, bearer: "@g1", head: Measure, dimension: weight, magnitude: 3, unit: kilogram, tense: present}
+        - {t: distribution, id: d1, group: "@g1", over: ["@m1"]}
+    - category: positive
+      note: a weight whose unit the text leaves out after another weight — unspecified, the unit understood beside it
+      text: "The trunk weighs 14 kilograms and the satchel weighs 6."
+      instances:
+        - {t: witness, id: x1, class: trunk, definite: true}
+        - {t: measure, id: m1, bearer: "@x1", head: Measure, dimension: weight, magnitude: 14, unit: kilogram, tense: present}
+        - {t: witness, id: x2, class: satchel, definite: true}
+        - {t: measure, id: m2, bearer: "@x2", head: Measure, dimension: weight, magnitude: 6, unit: unspecified, unit_understood: kilogram, unit_certainty: certain, tense: present}
+    - category: positive
+      note: the same across two sentences, under a bound
+      text: "The barn holds up to 40 crates. The shed holds up to 15."
+      instances:
+        - {t: witness, id: x1, class: barn, definite: true}
+        - {t: measure, id: m1, bearer: "@x1", head: MeasureAtMost, dimension: capacity, magnitude: 40, unit: crate, word: "up to", tense: present}
+        - {t: witness, id: x2, class: shed, definite: true}
+        - {t: measure, id: m2, bearer: "@x2", head: MeasureAtMost, dimension: capacity, magnitude: 15, unit: unspecified, unit_understood: crate, unit_certainty: certain, word: "up to", tense: present}

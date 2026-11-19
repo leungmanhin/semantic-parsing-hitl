@@ -189,6 +189,211 @@ rules:
       sk_concert_1 2 day), (Time sk_concert_2 sk_time_2), (Day sk_time_2 10), (Coref sk_concert_2
       sk_concert_1). This rule gives (Time sk_concert_1 sk_time_2), where the offset's rules
       (days_before_event_day …) read the day.
+  # A link carries what is SAID OF a mention to its antecedent for three more kinds of fact: a
+  # measure, a part and an order in time — ONE argument place each (the thing measured, the
+  # part, the earlier term), as the rules above carry one place of a role, a class and a place.
+  # A fact a clause may put under its tense is `tensed`. PREMISE ORDER, measured (tmpl/rules.py):
+  # the measure rules state the LINK first, in their tensed variants too (`tensed_order:
+  # as_written`) — a measure of a free mention is a goal the chainer searches at length, while a
+  # link fails at once in a text that has none; the part and order rules state the fact first,
+  # like coref_member.
+  # A link also carries a COMPARISON and a RANK said of a mention (More, MoreBy, SameDegree in
+  # either place, Ordinal), the link first, and the OTHER argument place of a part, a place and
+  # an order (the whole of a part, the place a thing is in, the later term). Three of these —
+  # coref_whole, coref_place, coref_moreby_second — name the capability `evidence-tracking`: a
+  # link is read in both directions (coref_sym), so with the rules for both places of one
+  # relation a chain's middle term is resolved from either of its two facts — two proofs of one
+  # conclusion from the same statements, which a consumer has to count once (tmpl/rules.py says
+  # what was measured and which consumer's file leaves the three unwritten).
+  - id: coref_measure
+    meaning: a mention's measure is its antecedent's
+    premises: ["(Coref $m $a)", "(Measure $m $d $n $u)"]
+    tensed: "(Measure $m $d $n $u)"
+    tensed_order: as_written
+    conclusion: "(Measure $a $d $n $u)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [coref, measure]
+    notes: >-
+      "The rope is new. It is 3 metres long." gives (Measure sk_it_1 long 3 metre) and (Coref sk_it_1
+      sk_rope_1); this rule gives the rope its length, and measure_moreby then compares it with
+      another thing's.
+  - id: coref_measure_atleast
+    meaning: a mention's lower bound is its antecedent's
+    premises: ["(Coref $m $a)", "(MeasureAtLeast $m $d $n $u)"]
+    tensed: "(MeasureAtLeast $m $d $n $u)"
+    tensed_order: as_written
+    conclusion: "(MeasureAtLeast $a $d $n $u)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [coref, measure]
+  - id: coref_measure_atmost
+    meaning: a mention's upper bound is its antecedent's
+    premises: ["(Coref $m $a)", "(MeasureAtMost $m $d $n $u)"]
+    tensed: "(MeasureAtMost $m $d $n $u)"
+    tensed_order: as_written
+    conclusion: "(MeasureAtMost $a $d $n $u)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [coref, measure]
+  - id: coref_part
+    meaning: what a mention is part of, its antecedent is part of
+    premises: ["(PartOf $m $w)", "(Coref $m $a)"]
+    tensed: "(PartOf $m $w)"
+    conclusion: "(PartOf $a $w)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [coref, part-whole]
+  - id: coref_before_first
+    meaning: what a mention comes before, its antecedent comes before
+    premises: ["(Before $m $y)", "(Coref $m $a)"]
+    conclusion: "(Before $a $y)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [coref, time]
+  - id: coref_beforeby_first
+    meaning: a mention's measured lead is its antecedent's
+    premises: ["(BeforeBy $m $y $n $u)", "(Coref $m $a)"]
+    conclusion: "(BeforeBy $a $y $n $u)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [coref, time]
+  - id: coref_more_first
+    meaning: a comparison said of a mention holds of its antecedent
+    premises: ["(Coref $m $a)", "(More $s $m $y)"]
+    tensed: "(More $s $m $y)"
+    tensed_order: as_written
+    conclusion: "(More $s $a $y)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [coref, comparative]
+  - id: coref_more_second
+    meaning: a comparison with a mention holds with its antecedent
+    premises: ["(Coref $m $a)", "(More $s $x $m)"]
+    tensed: "(More $s $x $m)"
+    tensed_order: as_written
+    conclusion: "(More $s $x $a)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [coref, comparative]
+  - id: coref_moreby_first
+    meaning: a measured gap said of a mention holds of its antecedent
+    premises: ["(Coref $m $a)", "(MoreBy $s $m $y $n $u)"]
+    tensed: "(MoreBy $s $m $y $n $u)"
+    tensed_order: as_written
+    conclusion: "(MoreBy $s $a $y $n $u)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [coref, comparative]
+  - id: coref_moreby_second
+    meaning: a measured gap to a mention holds to its antecedent
+    requires: evidence-tracking
+    premises: ["(Coref $m $a)", "(MoreBy $s $x $m $n $u)"]
+    tensed: "(MoreBy $s $x $m $n $u)"
+    tensed_order: as_written
+    conclusion: "(MoreBy $s $x $a $n $u)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [coref, comparative]
+  - id: coref_samedegree_first
+    meaning: an equative said of a mention holds of its antecedent
+    premises: ["(Coref $m $a)", "(SameDegree $s $m $y)"]
+    tensed: "(SameDegree $s $m $y)"
+    tensed_order: as_written
+    conclusion: "(SameDegree $s $a $y)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [coref, comparative]
+  - id: coref_samedegree_second
+    meaning: an equative with a mention holds with its antecedent
+    premises: ["(Coref $m $a)", "(SameDegree $s $x $m)"]
+    tensed: "(SameDegree $s $x $m)"
+    tensed_order: as_written
+    conclusion: "(SameDegree $s $x $a)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [coref, comparative]
+  - id: coref_ordinal
+    meaning: a mention's rank is its antecedent's
+    premises: ["(Coref $m $a)", "(Ordinal $m $r $s $c)"]
+    tensed: "(Ordinal $m $r $s $c)"
+    tensed_order: as_written
+    conclusion: "(Ordinal $a $r $s $c)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [coref, superlative]
+  - id: coref_whole
+    meaning: a part of a mention is a part of its antecedent
+    requires: evidence-tracking
+    premises: ["(PartOf $p $m)", "(Coref $m $a)"]
+    tensed: "(PartOf $p $m)"
+    conclusion: "(PartOf $p $a)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [coref, part-whole]
+  - id: coref_before_second
+    meaning: what comes before a mention comes before its antecedent
+    premises: ["(Before $x $m)", "(Coref $m $a)"]
+    conclusion: "(Before $x $a)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [coref, time]
+  - id: coref_beforeby_second
+    meaning: a measured lead on a mention is one on its antecedent
+    premises: ["(BeforeBy $x $m $n $u)", "(Coref $m $a)"]
+    conclusion: "(BeforeBy $x $a $n $u)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [coref, time]
+  - id: coref_place
+    meaning: what is in a mention is in its antecedent
+    requires: evidence-tracking
+    premises: ["(LocatedIn $x $m)", "(Coref $m $a)"]
+    tensed: "(LocatedIn $x $m)"
+    conclusion: "(LocatedIn $x $a)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [coref, locative]
+    notes: >-
+      "The mixer is in it" after a sentence about the booth: the mixer is in the booth. coref_locatedin
+      carries the THING across a link, this rule the place.
+
+  # A unit the text leaves out: the measure keeps `unspecified`, and the parse states beside it
+  # which unit — one another measure of the text states — the reader understands: (ImpliedUnit
+  # sk_annex_1 capacity person) at the strength of its certainty, as a coreference link. These
+  # rules state the figure in that unit at the link's strength; the stated measure stays as it is.
+  # The link is stated first here too: a text without one fails these rules at once.
+  - id: unit_implied
+    meaning: a figure with no unit is in the unit the text is understood to mean
+    premises: ["(ImpliedUnit $x $d $u)", "(Measure $x $d $n unspecified)"]
+    tensed: "(Measure $x $d $n unspecified)"
+    tensed_order: as_written
+    conclusion: "(Measure $x $d $n $u)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [measure]
+    notes: >-
+      "The chapel seats 90 people and the annex seats 40." gives (Measure sk_annex_1 capacity 40
+      unspecified) and (ImpliedUnit sk_annex_1 capacity person) at (0.99, 0.9): the annex's capacity in
+      persons follows at 0.99, and measure_moreby gives the chapel 50 more.
+  - id: unit_implied_atleast
+    meaning: a lower bound with no unit is in the unit the text is understood to mean
+    premises: ["(ImpliedUnit $x $d $u)", "(MeasureAtLeast $x $d $n unspecified)"]
+    tensed: "(MeasureAtLeast $x $d $n unspecified)"
+    tensed_order: as_written
+    conclusion: "(MeasureAtLeast $x $d $n $u)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [measure]
+  - id: unit_implied_atmost
+    meaning: an upper bound with no unit is in the unit the text is understood to mean
+    premises: ["(ImpliedUnit $x $d $u)", "(MeasureAtMost $x $d $n unspecified)"]
+    tensed: "(MeasureAtMost $x $d $n unspecified)"
+    tensed_order: as_written
+    conclusion: "(MeasureAtMost $x $d $n $u)"
+    truth: {strength: 1.0, confidence: 0.99}
+    semantics: deductive
+    reads: [measure]
 
   # Dates: a deictic time is an offset from the text's reference time (the anchor), and the anchor
   # carries calendar fields when the caller states the date. Within one month the day number

@@ -161,6 +161,70 @@ class EmitTests(unittest.TestCase):
         self.assertTrue(any(a.startswith("(Not (And (Member sk_sleep_1 sleep)") for a in natoms))
         self.assertTrue(any(a.startswith("(Implication (PartOf $x sk_group_1) (Not (And (Member (sk_sleep $x) sleep)") for a in natoms))
 
+    def test_a_distributed_measure_is_stated_in_the_rule_alone(self):
+        """Both sacks weigh 20 kilograms: each does. The pair's own measure would be a total the text does not
+        state; a group's total with no distribution stays, and so does any other distributed predication."""
+        group = {"t": "group", "id": "g1", "class": "sack", "definite": True, "count": 2}
+        measure = {"t": "measure", "id": "m1", "bearer": "@g1", "head": "Measure", "dimension": "weight", "magnitude": 20,
+                   "unit": "kilogram", "tense": "present"}
+        each = E.emit({"id": "m", "instances": [group, measure, {"t": "distribution", "id": "d1", "group": "@g1", "over": ["@m1"]}]},
+                      CATALOG)["statements"]
+        self.assertIn("(: d1_implication (Implication (PartOf $x sk_group_1) (Measure $x weight 20 kilogram)) (STV 1.0 0.9))", each)
+        self.assertFalse(any("(Measure sk_group_1" in s for s in each), each)
+        total = E.emit({"id": "t", "instances": [group, measure]}, CATALOG)["statements"]
+        self.assertIn("(: m1_measure (Measure sk_group_1 weight 20 kilogram) (STV 1.0 0.99))", total)
+        past = dict(measure, tense="past")
+        dated = E.emit({"id": "p", "instances": [group, past, {"t": "time", "id": "t1", "event": "@m1", "year": 1990},
+                                                 {"t": "distribution", "id": "d1", "group": "@g1", "over": ["@m1"]}]}, CATALOG)["statements"]
+        self.assertEqual([s for s in dated if "sk_group_1" in s and "Implication" not in s],
+                         ["(: g1_groupof (GroupOf sk_group_1 sack) (STV 1.0 0.99))", "(: g1_cardinality (Cardinality sk_group_1 2) (STV 1.0 0.99))"])
+        self.assertFalse(any("sk_weight_1" in s or "sk_time_1" in s for s in dated), dated)   # no state and no time of the pair
+        self.assertTrue(any("(Year (sk_time $x) 1990)" in s for s in dated), dated)
+
+    def test_a_unit_the_text_leaves_out_is_a_link_beside_the_measure(self):
+        """The chapel seats 90 people and the annex seats 40: the 40 keeps its unit unspecified, and what the reader
+        understands is one more statement, at the strength of its certainty."""
+        def stmts(**link):
+            insts = [{"t": "witness", "id": "x1", "class": "chapel", "definite": True},
+                     {"t": "measure", "id": "m1", "bearer": "@x1", "head": "Measure", "dimension": "capacity", "magnitude": 90,
+                      "unit": "person", "tense": "present"},
+                     {"t": "witness", "id": "x2", "class": "annex", "definite": True},
+                     dict({"t": "measure", "id": "m2", "bearer": "@x2", "head": "Measure", "dimension": "capacity", "magnitude": 40,
+                           "unit": "unspecified", "tense": "past"}, **link)]
+            return E.emit({"id": "u", "instances": insts}, CATALOG)["statements"]
+
+        sure = stmts(unit_understood="person", unit_certainty="certain")
+        self.assertIn("(: m2_past (Past (Measure sk_annex_1 capacity 40 unspecified)) (STV 1.0 0.99))", sure)
+        self.assertIn("(: m2_impliedunit (ImpliedUnit sk_annex_1 capacity person) (STV 0.99 0.9))", sure)   # the link is not under the tense
+        self.assertIn("(: m2_impliedunit (ImpliedUnit sk_annex_1 capacity person) (STV 0.8 0.9))",
+                      stmts(unit_understood="person", unit_certainty="likely"))
+        self.assertFalse(any("ImpliedUnit" in s for s in stmts()))
+        for bad in ({"unit_understood": "person"}, {"unit_certainty": "certain"},                  # one without the other
+                    {"unit": "seat", "unit_understood": "person", "unit_certainty": "certain"}):   # a stated unit has nothing to understand
+            with self.assertRaises(E.EmitError, msg=bad):
+                stmts(**bad)
+
+    def test_a_plural_pronoun_for_several_things_has_them_as_parts(self):
+        """A kettle and a lamp … them: with ``part`` each thing is a part of what the pronoun names, at the link's
+        strength; a plain link stays an identity."""
+        def stmts(**mark):
+            insts = [{"t": "witness", "id": "x1", "class": "kettle"}, {"t": "witness", "id": "x2", "class": "lamp"},
+                     {"t": "activity", "id": "v1", "verb": "wash", "patient": "@x1", "tense": "past"},
+                     {"t": "activity", "id": "v2", "verb": "wash", "patient": "@x2", "tense": "past"},
+                     {"t": "mention", "id": "m1", "word": "them"},
+                     {"t": "activity", "id": "v3", "verb": "dry", "patient": "@m1", "tense": "past"},
+                     dict({"t": "coref", "id": "c1", "mention": "@m1", "antecedent": "@x1", "certainty": "certain"}, **mark),
+                     dict({"t": "coref", "id": "c2", "mention": "@m1", "antecedent": "@x2", "certainty": "likely"}, **mark)]
+            return E.emit({"id": "p", "instances": insts}, CATALOG)["statements"]
+
+        parts = stmts(part=True)
+        self.assertIn("(: c1_partof (PartOf sk_kettle_1 sk_them_1) (STV 0.99 0.9))", parts)
+        self.assertIn("(: c2_partof (PartOf sk_lamp_1 sk_them_1) (STV 0.8 0.9))", parts)
+        self.assertFalse(any("(Coref " in s for s in parts), parts)
+        plain = stmts()
+        self.assertIn("(: c1_coref (Coref sk_them_1 sk_kettle_1) (STV 0.99 0.9))", plain)
+        self.assertFalse(any("(PartOf " in s for s in plain), plain)
+
     def test_generic_rules_over_a_variable(self):
         def stmts(text):
             ex = next(e for _, _, e in all_examples() if e["text"] == text)
@@ -768,6 +832,98 @@ class EmitTests(unittest.TestCase):
         dist = next(s for s in out["statements"] if "d1_implication" in s)
         self.assertIn("(Member (sk_say $x) say)", dist)                                  # the saying depends on the member only
         self.assertIn("(Theme (sk_say $x) (Implication (Member $y beetle)", dist)        # the generic's variable is bound inside
+
+    def test_what_the_text_attaches_to_a_rules_clause_stands_among_its_premises(self):
+        """A conditional's condition and a whenever-clause are rendered WHOLE: the place, the time, the manner or
+        the instrument the text attaches to the clause's event is a premise of the rule — it says which events
+        the rule is about. What the attachment brings in is bound like an indefinite participant: an indefinite
+        place and a time with no name are variables, a definite, a named time and the text's reference time
+        constants. The consequent's own attachments stay functions of the event, an adverb's rule over the
+        clause's own events still ASSERTS the attachment, and no instance is left without a statement."""
+        def rules_of(instances):
+            r = E.emit({"id": "a", "instances": instances}, CATALOG)
+            self.assertEqual(r["unstated"], [])
+            return [st for st in r["statements"] if "Implication" in st], r
+        people = [{"t": "named-entity", "id": "n1", "name": "Teodor"}, {"t": "named-entity", "id": "n2", "name": "Ottoline"}]
+        sing = [{"t": "activity", "id": "v1", "verb": "sing", "actor": "@n1", "tense": "present"}]
+        leave = [{"t": "motion", "id": "m2", "verb": "leave", "mover": "@n2", "tense": "present"}]
+        rule = [{"t": "conditional", "id": "r1", "condition": ["@v1"], "over": ["@m2"]}]
+        left = "(And (Member (sk_leave $e) leave) (Agent (sk_leave $e) sk_ottoline_1))"
+
+        def premises(extra, rule=rule):
+            rules, r = rules_of(people + sing + leave + extra + rule)
+            self.assertEqual(len(rules), 1, rules)
+            return rules[0], r
+        st, _ = premises([{"t": "location", "id": "l1", "event": "@v1", "place": "upstairs", "head": "Location", "preposition": "upstairs"}])
+        self.assertIn(f"(Implication (And (Member $e sing) (Agent $e sk_teodor_1) (Location $e upstairs)) {left})", st)
+        in_a_barn = [{"t": "witness", "id": "x1", "class": "barn"},
+                     {"t": "location", "id": "l1", "event": "@v1", "place": "@x1", "head": "Location", "preposition": "in"}]
+        st, r = premises(in_a_barn)                                                               # any barn: a variable
+        self.assertIn(f"(Implication (And (Member $e sing) (Agent $e sk_teodor_1) (Location $e $x) (Member $x barn)) {left})", st)
+        self.assertFalse(any("sk_barn" in s for s in r["statements"]))
+        st, r = premises([dict(in_a_barn[0], definite=True), in_a_barn[1]])                       # the barn: a constant, stated outside
+        self.assertIn(f"(Implication (And (Member $e sing) (Agent $e sk_teodor_1) (Location $e sk_barn_1)) {left})", st)
+        self.assertIn("(Member sk_barn_1 barn)", " ".join(r["statements"]))
+        st, _ = premises([{"t": "time", "id": "t1", "event": "@v1", "weekday": "sunday"}])        # any Sunday
+        self.assertIn("(Agent $e sk_teodor_1) (Time $e $x) (Weekday $x sunday) (Member $x day))", st)
+        st, _ = premises([{"t": "time", "id": "t1", "event": "@v1", "deictic": "today", "anchor": "@now"}])   # tied to the ONE reference time
+        self.assertIn("(Agent $e sk_teodor_1) (Time $e $x) (BeforeBy $x sk_now_1 0 day) (Member $x day))", st)
+        st, _ = premises([{"t": "time", "id": "t1", "event": "@v1", "name": "noon"}])             # a named time: a constant
+        self.assertIn("(Agent $e sk_teodor_1) (Time $e noon))", st)
+        st, _ = premises([{"t": "manner", "id": "a1", "event": "@v1", "manner": "loudly"}])
+        self.assertIn("(Agent $e sk_teodor_1) (Manner $e loudly))", st)
+        with_a_drum = [{"t": "witness", "id": "x1", "class": "drum"},
+                       {"t": "adjunct", "id": "a1", "event": "@v1", "participant": "@x1", "head": "Instrument", "preposition": "with"}]
+        st, _ = premises(with_a_drum)
+        self.assertIn(f"(Implication (And (Member $e sing) (Agent $e sk_teodor_1) (Instrument $e $x) (Member $x drum)) {left})", st)
+        # the same drum in the consequent is the same variable, as an indefinite participant's is
+        rules, _ = rules_of(people + sing + with_a_drum + [{"t": "activity", "id": "v2", "verb": "break", "actor": "@n2", "patient": "@x1", "tense": "present"},
+                                                           {"t": "conditional", "id": "r1", "condition": ["@v1"], "over": ["@v2"]}])
+        self.assertIn("(Instrument $e $x) (Member $x drum)) (And (Member (sk_break $e) break) (Agent (sk_break $e) sk_ottoline_1) (Patient (sk_break $e) $x)", rules[0])
+        # only if: the main clause is the condition, with its place
+        st, _ = premises([{"t": "location", "id": "l1", "event": "@v1", "place": "upstairs", "head": "Location", "preposition": "upstairs"}],
+                         [dict(rule[0], word="only if")])
+        self.assertIn("(Agent $e sk_teodor_1) (Location $e upstairs))", st)
+        # the consequent's own time: a function of the event, as before
+        st, _ = premises([{"t": "time", "id": "t1", "event": "@m2", "hour": 12}])
+        self.assertIn("(Implication (And (Member $e sing) (Agent $e sk_teodor_1)) (And (Member (sk_leave $e) leave) (Agent (sk_leave $e) sk_ottoline_1) "
+                      "(Time (sk_leave $e) (sk_time $e)) (Hour (sk_time $e) 12)))", st)
+        # a whenever-clause is a rule's antecedent too
+        tower = [{"t": "witness", "id": "x1", "class": "tower", "definite": True},
+                 {"t": "location", "id": "l1", "event": "@v1", "place": "@x1", "head": "Location", "preposition": "in"}]
+        st, _ = premises(tower, [{"t": "frequency", "id": "f1", "restrictor": ["@v1"], "over": ["@m2"], "every": 1, "word": "whenever"}])
+        self.assertIn("(Implication (And (Member $e sing) (Agent $e sk_teodor_1) (Location $e sk_tower_1)) (And (Member (sk_leave $e) leave) "
+                      "(Agent (sk_leave $e) sk_ottoline_1) (During (sk_leave $e) $e)))", st)
+        # an adverb on a clause with an attachment: the attachment is what is ASSERTED of each event — unchanged
+        rules, _ = rules_of(people[:1] + [{"t": "witness", "id": "x1", "class": "barn"},
+                                          {"t": "motion", "id": "m1", "verb": "arrive", "mover": "@n1", "tense": "present"},
+                                          {"t": "location", "id": "l1", "event": "@m1", "place": "@x1", "head": "Location", "preposition": "at"},
+                                          {"t": "frequency", "id": "f1", "restrictor": ["@m1"], "level": "always", "word": "always"}])
+        self.assertIn("(Implication (And (Member $e arrive) (Agent $e sk_teodor_1)) (And (Location $e (sk_barn $e)) (Member (sk_barn $e) barn)))", rules[0])
+        # a relative clause on a class: the place it brings in is a variable as well
+        rules, _ = rules_of([{"t": "range", "id": "q1", "class": "heron"}, {"t": "witness", "id": "x1", "class": "pond"},
+                             {"t": "activity", "id": "v1", "verb": "fish", "actor": "@q1", "tense": "present"},
+                             {"t": "location", "id": "l1", "event": "@v1", "place": "@x1", "head": "Location", "preposition": "in"},
+                             {"t": "copular", "id": "c1", "subject": "@q1", "predicate": "patient", "form": "adjective", "tense": "present"},
+                             {"t": "conditional-property", "id": "r1", "ranges": ["@q1"], "condition": ["@v1"], "over": ["@c1"]}])
+        self.assertIn("(Implication (And (Member $x heron) (Member $e fish) (Agent $e $x) (Location $e $y) (Member $y pond)) (Member $x patient))", rules[0])
+        # a stative condition with a time: its state is minted, and both rules carry the time
+        rules, _ = rules_of(people[1:] + leave + [{"t": "witness", "id": "x1", "class": "hatch", "definite": True},
+                                                  {"t": "copular", "id": "c1", "subject": "@x1", "predicate": "open", "form": "adjective", "tense": "present"},
+                                                  {"t": "time", "id": "t1", "event": "@c1", "noun": "night"},
+                                                  {"t": "conditional", "id": "r1", "condition": ["@c1"], "over": ["@m2"]}])
+        self.assertEqual(len(rules), 2, rules)
+        for st in rules:
+            self.assertIn("(Holds $e (Member sk_hatch_1 open)) (Time $e $x) (Member $x night))", st)
+
+    def test_no_instance_of_an_example_is_left_without_a_statement(self):
+        """Every instance of every catalog example is rendered in some statement: ``unstated`` is empty."""
+        for tid, section, ex in all_examples():
+            try:
+                r = E.emit({"id": "e", "instances": ex["instances"], "reference_time": ex.get("reference_time")}, CATALOG)
+            except E.EmitError:
+                continue                                    # a negative example the emitter refuses: tested elsewhere
+            self.assertEqual(r["unstated"], [], f"{tid}: {ex['text']}")
 
     def test_a_stative_condition_yields_a_state_rule_beside_the_flat_one(self):
         """A rule whose condition is a stative predication (a copular, a locative …) is emitted

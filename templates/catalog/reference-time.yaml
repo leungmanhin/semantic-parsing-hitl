@@ -35,6 +35,7 @@ slots:
   minute:  {type: int, required: false, doc: "the clock minute"}
 
 mints: {id: TimeTerm, literal: now}        # sk_now_1
+presupposed: [id]                          # one moment for the whole text: never scoped, skolemized or bound by a rule
 
 emits:
   - atom: "(Year @id {year})"

@@ -1,0 +1,113 @@
+{
+  "provider": "google",
+  "model": "gemini-4-neon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "9c55a422b9b5cfe2bac1f914e37cedcc21db53c5e14f1a0f5b08bcd3c4024b89",
+  "item": {
+    "id": "s97dac5fc13",
+    "text": "The barn holds up to 40 crates. The shed holds up to 15."
+  },
+  "usage": {
+    "input": 133142,
+    "output": 280,
+    "thinking": 769,
+    "total": 134191,
+    "cached": 131093,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 133142,
+    "candidatesTokenCount": 280,
+    "totalTokenCount": 134191,
+    "cachedContentTokenCount": 131093,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 133142
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 131093
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 280
+      }
+    ],
+    "thoughtsTokenCount": 769,
+    "serviceTier": "flex"
+  },
+  "raw_text": "{\n  \"id\": \"s97dac5fc13\",\n  \"instances\": [\n    {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"barn\", \"definite\": true, \"span\": \"The barn\"},\n    {\"t\": \"witness\", \"id\": \"x2\", \"class\": \"shed\", \"definite\": true, \"span\": \"The shed\"},\n    {\"t\": \"measure\", \"id\": \"m1\", \"bearer\": \"@x1\", \"head\": \"MeasureAtMost\", \"dimension\": \"capacity\", \"magnitude\": 40, \"unit\": \"crate\", \"word\": \"up to\", \"tense\": \"present\", \"span\": \"The barn holds up to 40 crates\"},\n    {\"t\": \"measure\", \"id\": \"m2\", \"bearer\": \"@x2\", \"head\": \"MeasureAtMost\", \"dimension\": \"capacity\", \"magnitude\": 15, \"unit\": \"unspecified\", \"unit_understood\": \"crate\", \"unit_certainty\": \"certain\", \"word\": \"up to\", \"tense\": \"present\", \"span\": \"The shed holds up to 15\"}\n  ],\n  \"unmapped\": [],\n  \"issues\": []\n}",
+  "response": {
+    "id": "s97dac5fc13",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "barn",
+        "definite": true,
+        "span": "The barn"
+      },
+      {
+        "t": "witness",
+        "id": "x2",
+        "class": "shed",
+        "definite": true,
+        "span": "The shed"
+      },
+      {
+        "t": "measure",
+        "id": "m1",
+        "bearer": "@x1",
+        "head": "MeasureAtMost",
+        "dimension": "capacity",
+        "magnitude": 40,
+        "unit": "crate",
+        "word": "up to",
+        "tense": "present",
+        "span": "The barn holds up to 40 crates"
+      },
+      {
+        "t": "measure",
+        "id": "m2",
+        "bearer": "@x2",
+        "head": "MeasureAtMost",
+        "dimension": "capacity",
+        "magnitude": 15,
+        "unit": "unspecified",
+        "unit_understood": "crate",
+        "unit_certainty": "certain",
+        "word": "up to",
+        "tense": "present",
+        "span": "The shed holds up to 15"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "4ec3a11b820922780ba78ec4c419ad60d7cad6baa378389139fb60b7cc8c7f78",
+  "manifest_id": "1efb90db0958",
+  "run": 2,
+  "case": {
+    "template": "measure",
+    "section": "held_out",
+    "index": 32,
+    "category": "positive",
+    "text": "The barn holds up to 40 crates. The shed holds up to 15.",
+    "key": "97dac5fc13"
+  }
+}

@@ -30,7 +30,11 @@ Checks, in order:
   text states only under that scope: a command over a group whose rule says each member IS handled; a question's
   ``options`` make no rule and are not checked), a later mention with ``certain`` links to several different antecedents
   (``mention-several-antecedents``: "them" for a cable and a stand — a link is an identity, and the link rules
-  would give each antecedent the other's facts);
+  would give each antecedent the other's facts; links marked ``part`` are no identities and are not counted), a
+  unit understood for a figure that no measure of the text states (``unit-not-in-text``: the link beside a measure
+  whose unit the text leaves out may only point at a unit the text gives), an instance the emitter rendered in no
+  statement (``instance-not-stated``: the scope, the rule or the head that holds it does not render it — the place
+  of a clause whose rule shape leaves the clause's attachments out; the parser wrote it and the program dropped it);
 * statement lints on what was emitted: a variable in a statement that is no rule (``free-variable``: a
   referent tied to a rule's range from outside the rule; the statement is not a fact);
 * span lints, when the caller supplies the TEXT: an instance without ``span`` (``span-missing``), a
@@ -121,12 +125,24 @@ def inspect(reply, catalog: dict | None = None, reference_time=None, text: str |
     res["statements"], res["declarations"], res["detail"] = out["statements"], out["declarations"], out["detail"]
     res["records"], res["types"], res["functions"] = out["records"], out["types"], out["functions"]   # the same, as data
     res["findings"].extend(lints(cleaned, catalog, res["unmapped"], text))
+    res["findings"].extend(unstated_lints(out.get("unstated"), cleaned))
     res["findings"].extend(statement_lints(res["statements"], res["detail"]))
     if text is not None:
         res["findings"].extend(span_lints(cleaned, text))
         res["findings"].extend(verbatim_lints(cleaned, catalog, text))
         res["findings"].extend(content_lints(cleaned, catalog, res["unmapped"], text))
     return res
+
+
+def unstated_lints(unstated: list | None, insts: list) -> list:
+    """``instance-not-stated``: an instance of ``insts`` that the emitter rendered in no statement (its result's
+    ``unstated``). What holds it — a scope, a rule, the head it attaches to — has a shape that leaves it out, so
+    what the parser read there is nowhere in the output and nothing else reports it. A fault of the catalog's
+    shapes, not of the reply; reported with the reply so that it cannot pass unseen."""
+    by_id = {r.get("id"): r for r in insts if isinstance(r, dict)}
+    return [{"kind": "instance-not-stated", "instance": iid,
+             "detail": f"{by_id[iid].get('t')} {iid} is in no statement: what holds it (a scope, a rule, its head) does not render it"}
+            for iid in unstated or [] if iid in by_id]
 
 
 def free_variables(term, bound: bool = False) -> set:
@@ -286,13 +302,14 @@ def lints(insts: list, catalog: dict, unmapped: list, text: str | None = None, c
             if spec["type"] == "refs" and spec.get("consumes", True) is False and spec.get("bind"):   # the slot that makes a rule
                 for x in r.get(sname) or []:
                     s = consumed_by.get(x[1:]) if E.is_ref(x) else None
-                    if s is not None and s is not r:
+                    if s is not None and s is not r and consumed_by.get(r["id"]) is not s:   # not when that scope holds the rule too
                         out.append({"kind": "rule-outside-scope", "instance": r["id"],
                                     "detail": f"{r['t']} {r['id']}: {sname} names {x}, which the {s['t']} {s['id']} holds in its "
                                               f"scope — the rule is stated outside that scope; name the scope instead"})
     links: dict[str, list] = {}                 # a later mention -> its antecedents under a certain link
     for r in insts:
-        if r.get("t") == "coref" and r.get("certainty") == "certain" and E.is_ref(r.get("mention")) and E.is_ref(r.get("antecedent")):
+        if r.get("t") == "coref" and r.get("certainty") == "certain" and not r.get("part") \
+                and E.is_ref(r.get("mention")) and E.is_ref(r.get("antecedent")):       # a part link is no identity
             ants = links.setdefault(r["mention"][1:], [])
             if r["antecedent"] not in ants:
                 ants.append(r["antecedent"])
@@ -301,6 +318,12 @@ def lints(insts: list, catalog: dict, unmapped: list, text: str | None = None, c
             out.append({"kind": "mention-several-antecedents", "instance": m,
                         "detail": f"{(by_id.get(m) or {}).get('t', 'instance')} {m} has certain links to {len(ants)} different "
                                   f"antecedents ({', '.join(ants)}): a link is an identity, so each would receive the other's facts"})
+    stated = {str(x.get("unit")) for x in by_id.values() if x.get("t") == "measure" and x.get("unit") not in (None, "", "unspecified")}
+    for r in insts:                             # a unit understood for a figure: one a measure of the text states
+        if r.get("t") == "measure" and r.get("unit_understood") not in (None, "") and str(r["unit_understood"]) not in stated:
+            out.append({"kind": "unit-not-in-text", "instance": r["id"],
+                        "detail": f"measure {r['id']}: unit_understood is {r['unit_understood']}, a unit no measure of the text states "
+                                  f"({', '.join(sorted(stated)) or 'none stated'}) — the link may only point at a unit the text gives"})
     return out
 
 

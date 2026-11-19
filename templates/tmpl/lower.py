@@ -126,7 +126,8 @@ def predicates(target: str = "pettachainer", path: str = SUBSTRATE) -> list[str]
     """The predicates a consumer declares positive-only for a knowledge base before it loads anything: for upstream
     master (``h.set_positive_only_predicate(name)`` for each) every head of the substrate that states something of
     its arguments — the roles, the relations, the time and measure heads, the discourse and scope heads, the lexicon,
-    the surface records —, the coreference link and the two heads of a class's definitions (``NarrowBy``, ``Is``).
+    the surface records —, the coreference link, the unit link (``ImpliedUnit``) and the two heads of a class's
+    definitions (``NarrowBy``, ``Is``).
     Left out: negation and the other logical links (``Member`` and
     ``Inheritance`` are no predicates on that engine at all: there the class symbol is the predicate — each text's
     class symbols are the ``predicates`` of its lowering), the computations and the term constructors. Our engine
@@ -136,7 +137,7 @@ def predicates(target: str = "pettachainer", path: str = SUBSTRATE) -> list[str]
         return []
     with open(path, encoding="utf-8") as fh:
         heads = json.load(fh)["heads"]
-    names = {h for h, e in heads.items() if (e.get("kind") in PREDICATE_KINDS and h != "Not") or h == "Coref"}
+    names = {h for h, e in heads.items() if (e.get("kind") in PREDICATE_KINDS and h != "Not") or h in ("Coref", "ImpliedUnit")}
     return sorted(names | {"NarrowBy", "Is"})            # and the two heads the definitions of a class are written with
 
 

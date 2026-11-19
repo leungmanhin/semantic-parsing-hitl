@@ -1,0 +1,111 @@
+{
+  "provider": "google",
+  "model": "gemini-4-neon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "9c55a422b9b5cfe2bac1f914e37cedcc21db53c5e14f1a0f5b08bcd3c4024b89",
+  "item": {
+    "id": "s90503530e0",
+    "text": "The trunk weighs 14 kilograms and the satchel weighs 6."
+  },
+  "usage": {
+    "input": 133140,
+    "output": 239,
+    "thinking": 986,
+    "total": 134365,
+    "cached": 131091,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 133140,
+    "candidatesTokenCount": 239,
+    "totalTokenCount": 134365,
+    "cachedContentTokenCount": 131091,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 133140
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 131091
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 239
+      }
+    ],
+    "thoughtsTokenCount": 986,
+    "serviceTier": "flex"
+  },
+  "raw_text": "{\"id\": \"s90503530e0\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"trunk\", \"definite\": true, \"span\": \"The trunk\"}, {\"t\": \"witness\", \"id\": \"x2\", \"class\": \"satchel\", \"definite\": true, \"span\": \"the satchel\"}, {\"t\": \"measure\", \"id\": \"m1\", \"bearer\": \"@x1\", \"head\": \"Measure\", \"dimension\": \"weight\", \"magnitude\": 14, \"unit\": \"kilogram\", \"tense\": \"present\", \"span\": \"The trunk weighs 14 kilograms\"}, {\"t\": \"measure\", \"id\": \"m2\", \"bearer\": \"@x2\", \"head\": \"Measure\", \"dimension\": \"weight\", \"magnitude\": 6, \"unit\": \"unspecified\", \"unit_understood\": \"kilogram\", \"unit_certainty\": \"certain\", \"tense\": \"present\", \"span\": \"the satchel weighs 6\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s90503530e0",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "trunk",
+        "definite": true,
+        "span": "The trunk"
+      },
+      {
+        "t": "witness",
+        "id": "x2",
+        "class": "satchel",
+        "definite": true,
+        "span": "the satchel"
+      },
+      {
+        "t": "measure",
+        "id": "m1",
+        "bearer": "@x1",
+        "head": "Measure",
+        "dimension": "weight",
+        "magnitude": 14,
+        "unit": "kilogram",
+        "tense": "present",
+        "span": "The trunk weighs 14 kilograms"
+      },
+      {
+        "t": "measure",
+        "id": "m2",
+        "bearer": "@x2",
+        "head": "Measure",
+        "dimension": "weight",
+        "magnitude": 6,
+        "unit": "unspecified",
+        "unit_understood": "kilogram",
+        "unit_certainty": "certain",
+        "tense": "present",
+        "span": "the satchel weighs 6"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "4ec3a11b820922780ba78ec4c419ad60d7cad6baa378389139fb60b7cc8c7f78",
+  "manifest_id": "1efb90db0958",
+  "run": 3,
+  "case": {
+    "template": "measure",
+    "section": "held_out",
+    "index": 31,
+    "category": "positive",
+    "text": "The trunk weighs 14 kilograms and the satchel weighs 6.",
+    "key": "90503530e0"
+  }
+}

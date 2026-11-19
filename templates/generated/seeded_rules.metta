@@ -301,6 +301,78 @@
 (: coref_locatedin_future (Implication (And (Future (LocatedIn $m $p)) (Coref $m $a)) (Future (LocatedIn $a $p))) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
 ;; coref_time: when a mention happens, its antecedent happens (reads: coref, time)
 (: coref_time (Implication (And (Time $m $t) (Coref $m $a)) (Time $a $t)) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
+;; coref_measure: a mention's measure is its antecedent's (reads: coref, measure) — 3 variants: as stated, and with the fact and the conclusion in the past, in the future
+(: coref_measure (Implication (And (Coref $m $a) (Measure $m $d $n $u)) (Measure $a $d $n $u)) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
+(: coref_measure_past (Implication (And (Coref $m $a) (Past (Measure $m $d $n $u))) (Past (Measure $a $d $n $u))) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
+(: coref_measure_future (Implication (And (Coref $m $a) (Future (Measure $m $d $n $u))) (Future (Measure $a $d $n $u))) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
+;; coref_measure_atleast: a mention's lower bound is its antecedent's (reads: coref, measure) — 3 variants: as stated, and with the fact and the conclusion in the past, in the future
+(: coref_measure_atleast (Implication (And (Coref $m $a) (MeasureAtLeast $m $d $n $u)) (MeasureAtLeast $a $d $n $u)) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
+(: coref_measure_atleast_past (Implication (And (Coref $m $a) (Past (MeasureAtLeast $m $d $n $u))) (Past (MeasureAtLeast $a $d $n $u))) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
+(: coref_measure_atleast_future (Implication (And (Coref $m $a) (Future (MeasureAtLeast $m $d $n $u))) (Future (MeasureAtLeast $a $d $n $u))) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
+;; coref_measure_atmost: a mention's upper bound is its antecedent's (reads: coref, measure) — 3 variants: as stated, and with the fact and the conclusion in the past, in the future
+(: coref_measure_atmost (Implication (And (Coref $m $a) (MeasureAtMost $m $d $n $u)) (MeasureAtMost $a $d $n $u)) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
+(: coref_measure_atmost_past (Implication (And (Coref $m $a) (Past (MeasureAtMost $m $d $n $u))) (Past (MeasureAtMost $a $d $n $u))) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
+(: coref_measure_atmost_future (Implication (And (Coref $m $a) (Future (MeasureAtMost $m $d $n $u))) (Future (MeasureAtMost $a $d $n $u))) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
+;; coref_part: what a mention is part of, its antecedent is part of (reads: coref, part-whole) — 3 variants: as stated, and with the fact and the conclusion in the past, in the future
+(: coref_part (Implication (And (PartOf $m $w) (Coref $m $a)) (PartOf $a $w)) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
+(: coref_part_past (Implication (And (Past (PartOf $m $w)) (Coref $m $a)) (Past (PartOf $a $w))) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
+(: coref_part_future (Implication (And (Future (PartOf $m $w)) (Coref $m $a)) (Future (PartOf $a $w))) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
+;; coref_before_first: what a mention comes before, its antecedent comes before (reads: coref, time)
+(: coref_before_first (Implication (And (Before $m $y) (Coref $m $a)) (Before $a $y)) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
+;; coref_beforeby_first: a mention's measured lead is its antecedent's (reads: coref, time)
+(: coref_beforeby_first (Implication (And (BeforeBy $m $y $n $u) (Coref $m $a)) (BeforeBy $a $y $n $u)) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
+;; coref_more_first: a comparison said of a mention holds of its antecedent (reads: coref, comparative) — 3 variants: as stated, and with the fact and the conclusion in the past, in the future
+(: coref_more_first (Implication (And (Coref $m $a) (More $s $m $y)) (More $s $a $y)) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
+(: coref_more_first_past (Implication (And (Coref $m $a) (Past (More $s $m $y))) (Past (More $s $a $y))) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
+(: coref_more_first_future (Implication (And (Coref $m $a) (Future (More $s $m $y))) (Future (More $s $a $y))) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
+;; coref_more_second: a comparison with a mention holds with its antecedent (reads: coref, comparative) — 3 variants: as stated, and with the fact and the conclusion in the past, in the future
+(: coref_more_second (Implication (And (Coref $m $a) (More $s $x $m)) (More $s $x $a)) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
+(: coref_more_second_past (Implication (And (Coref $m $a) (Past (More $s $x $m))) (Past (More $s $x $a))) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
+(: coref_more_second_future (Implication (And (Coref $m $a) (Future (More $s $x $m))) (Future (More $s $x $a))) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
+;; coref_moreby_first: a measured gap said of a mention holds of its antecedent (reads: coref, comparative) — 3 variants: as stated, and with the fact and the conclusion in the past, in the future
+(: coref_moreby_first (Implication (And (Coref $m $a) (MoreBy $s $m $y $n $u)) (MoreBy $s $a $y $n $u)) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
+(: coref_moreby_first_past (Implication (And (Coref $m $a) (Past (MoreBy $s $m $y $n $u))) (Past (MoreBy $s $a $y $n $u))) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
+(: coref_moreby_first_future (Implication (And (Coref $m $a) (Future (MoreBy $s $m $y $n $u))) (Future (MoreBy $s $a $y $n $u))) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
+;; coref_moreby_second: a measured gap to a mention holds to its antecedent (reads: coref, comparative) — 3 variants: as stated, and with the fact and the conclusion in the past, in the future
+(: coref_moreby_second (Implication (And (Coref $m $a) (MoreBy $s $x $m $n $u)) (MoreBy $s $x $a $n $u)) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
+(: coref_moreby_second_past (Implication (And (Coref $m $a) (Past (MoreBy $s $x $m $n $u))) (Past (MoreBy $s $x $a $n $u))) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
+(: coref_moreby_second_future (Implication (And (Coref $m $a) (Future (MoreBy $s $x $m $n $u))) (Future (MoreBy $s $x $a $n $u))) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
+;; coref_samedegree_first: an equative said of a mention holds of its antecedent (reads: coref, comparative) — 3 variants: as stated, and with the fact and the conclusion in the past, in the future
+(: coref_samedegree_first (Implication (And (Coref $m $a) (SameDegree $s $m $y)) (SameDegree $s $a $y)) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
+(: coref_samedegree_first_past (Implication (And (Coref $m $a) (Past (SameDegree $s $m $y))) (Past (SameDegree $s $a $y))) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
+(: coref_samedegree_first_future (Implication (And (Coref $m $a) (Future (SameDegree $s $m $y))) (Future (SameDegree $s $a $y))) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
+;; coref_samedegree_second: an equative with a mention holds with its antecedent (reads: coref, comparative) — 3 variants: as stated, and with the fact and the conclusion in the past, in the future
+(: coref_samedegree_second (Implication (And (Coref $m $a) (SameDegree $s $x $m)) (SameDegree $s $x $a)) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
+(: coref_samedegree_second_past (Implication (And (Coref $m $a) (Past (SameDegree $s $x $m))) (Past (SameDegree $s $x $a))) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
+(: coref_samedegree_second_future (Implication (And (Coref $m $a) (Future (SameDegree $s $x $m))) (Future (SameDegree $s $x $a))) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
+;; coref_ordinal: a mention's rank is its antecedent's (reads: coref, superlative) — 3 variants: as stated, and with the fact and the conclusion in the past, in the future
+(: coref_ordinal (Implication (And (Coref $m $a) (Ordinal $m $r $s $c)) (Ordinal $a $r $s $c)) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
+(: coref_ordinal_past (Implication (And (Coref $m $a) (Past (Ordinal $m $r $s $c))) (Past (Ordinal $a $r $s $c))) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
+(: coref_ordinal_future (Implication (And (Coref $m $a) (Future (Ordinal $m $r $s $c))) (Future (Ordinal $a $r $s $c))) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
+;; coref_whole: a part of a mention is a part of its antecedent (reads: coref, part-whole) — 3 variants: as stated, and with the fact and the conclusion in the past, in the future
+(: coref_whole (Implication (And (PartOf $p $m) (Coref $m $a)) (PartOf $p $a)) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
+(: coref_whole_past (Implication (And (Past (PartOf $p $m)) (Coref $m $a)) (Past (PartOf $p $a))) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
+(: coref_whole_future (Implication (And (Future (PartOf $p $m)) (Coref $m $a)) (Future (PartOf $p $a))) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
+;; coref_before_second: what comes before a mention comes before its antecedent (reads: coref, time)
+(: coref_before_second (Implication (And (Before $x $m) (Coref $m $a)) (Before $x $a)) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
+;; coref_beforeby_second: a measured lead on a mention is one on its antecedent (reads: coref, time)
+(: coref_beforeby_second (Implication (And (BeforeBy $x $m $n $u) (Coref $m $a)) (BeforeBy $x $a $n $u)) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
+;; coref_place: what is in a mention is in its antecedent (reads: coref, locative) — 3 variants: as stated, and with the fact and the conclusion in the past, in the future
+(: coref_place (Implication (And (LocatedIn $x $m) (Coref $m $a)) (LocatedIn $x $a)) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
+(: coref_place_past (Implication (And (Past (LocatedIn $x $m)) (Coref $m $a)) (Past (LocatedIn $x $a))) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
+(: coref_place_future (Implication (And (Future (LocatedIn $x $m)) (Coref $m $a)) (Future (LocatedIn $x $a))) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
+;; unit_implied: a figure with no unit is in the unit the text is understood to mean (reads: measure) — 3 variants: as stated, and with the fact and the conclusion in the past, in the future
+(: unit_implied (Implication (And (ImpliedUnit $x $d $u) (Measure $x $d $n unspecified)) (Measure $x $d $n $u)) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
+(: unit_implied_past (Implication (And (ImpliedUnit $x $d $u) (Past (Measure $x $d $n unspecified))) (Past (Measure $x $d $n $u))) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
+(: unit_implied_future (Implication (And (ImpliedUnit $x $d $u) (Future (Measure $x $d $n unspecified))) (Future (Measure $x $d $n $u))) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
+;; unit_implied_atleast: a lower bound with no unit is in the unit the text is understood to mean (reads: measure) — 3 variants: as stated, and with the fact and the conclusion in the past, in the future
+(: unit_implied_atleast (Implication (And (ImpliedUnit $x $d $u) (MeasureAtLeast $x $d $n unspecified)) (MeasureAtLeast $x $d $n $u)) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
+(: unit_implied_atleast_past (Implication (And (ImpliedUnit $x $d $u) (Past (MeasureAtLeast $x $d $n unspecified))) (Past (MeasureAtLeast $x $d $n $u))) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
+(: unit_implied_atleast_future (Implication (And (ImpliedUnit $x $d $u) (Future (MeasureAtLeast $x $d $n unspecified))) (Future (MeasureAtLeast $x $d $n $u))) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
+;; unit_implied_atmost: an upper bound with no unit is in the unit the text is understood to mean (reads: measure) — 3 variants: as stated, and with the fact and the conclusion in the past, in the future
+(: unit_implied_atmost (Implication (And (ImpliedUnit $x $d $u) (MeasureAtMost $x $d $n unspecified)) (MeasureAtMost $x $d $n $u)) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
+(: unit_implied_atmost_past (Implication (And (ImpliedUnit $x $d $u) (Past (MeasureAtMost $x $d $n unspecified))) (Past (MeasureAtMost $x $d $n $u))) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
+(: unit_implied_atmost_future (Implication (And (ImpliedUnit $x $d $u) (Future (MeasureAtMost $x $d $n unspecified))) (Future (MeasureAtMost $x $d $n $u))) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
 ;; days_before_day: a time n days before an anchor has the anchor's day number minus n (reads: time, reference-time)
 (: days_before_day (Implication (And (BeforeBy $t $a $n day) (Day $a $d) (Compute - ($d $n) -> $e)) (Day $t $e)) (CTV (STV 1.0 0.99) (STV 0.0 0.0)))
 ;; days_after_day: a time n days after an anchor has the anchor's day number plus n (reads: time, reference-time)

@@ -1,0 +1,92 @@
+{
+  "provider": "google",
+  "model": "gemini-4-neon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "9c55a422b9b5cfe2bac1f914e37cedcc21db53c5e14f1a0f5b08bcd3c4024b89",
+  "item": {
+    "id": "s8226233a3d",
+    "text": "The tank can hold at most 300 litres."
+  },
+  "usage": {
+    "input": 133138,
+    "output": 141,
+    "thinking": 446,
+    "total": 133725,
+    "cached": 131089,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 133138,
+    "candidatesTokenCount": 141,
+    "totalTokenCount": 133725,
+    "cachedContentTokenCount": 131089,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 133138
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 131089
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 141
+      }
+    ],
+    "thoughtsTokenCount": 446,
+    "serviceTier": "flex"
+  },
+  "raw_text": "{\"id\": \"s8226233a3d\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"tank\", \"definite\": true, \"span\": \"The tank\"}, {\"t\": \"measure\", \"id\": \"m1\", \"bearer\": \"@x1\", \"head\": \"MeasureAtMost\", \"dimension\": \"capacity\", \"magnitude\": 300, \"unit\": \"litre\", \"word\": \"at most\", \"tense\": \"present\", \"span\": \"The tank can hold at most 300 litres\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s8226233a3d",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "tank",
+        "definite": true,
+        "span": "The tank"
+      },
+      {
+        "t": "measure",
+        "id": "m1",
+        "bearer": "@x1",
+        "head": "MeasureAtMost",
+        "dimension": "capacity",
+        "magnitude": 300,
+        "unit": "litre",
+        "word": "at most",
+        "tense": "present",
+        "span": "The tank can hold at most 300 litres"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "4ec3a11b820922780ba78ec4c419ad60d7cad6baa378389139fb60b7cc8c7f78",
+  "manifest_id": "1efb90db0958",
+  "run": 3,
+  "case": {
+    "template": "measure",
+    "section": "held_out",
+    "index": 26,
+    "category": "positive",
+    "text": "The tank can hold at most 300 litres.",
+    "key": "8226233a3d"
+  }
+}

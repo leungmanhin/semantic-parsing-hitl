@@ -163,11 +163,12 @@ emits:
   - atom: "(Implication (And {ranges} {restrictor|own}) {restrictor|attachments})"
     if_filled: restrictor
     when: "not over and ranges"
-  # the rule over a when-clause's events: its predication is the restrictor, the main clause the scope
-  - atom: "(Implication {restrictor|own} {over})"
+  # the rule over a when-clause's events: its predication is the restrictor — whole, with the place,
+  # time or manner the text attaches to it, which says which events are meant — the main clause the scope
+  - atom: "(Implication {restrictor|whole} {over})"
     if_filled: restrictor
     when: "over and not ranges"
-  - atom: "(Implication (And {ranges} {restrictor|own}) {over})"
+  - atom: "(Implication (And {ranges} {restrictor|whole}) {over})"
     if_filled: restrictor
     when: "over and ranges"
   - atom: "(During {over} {restrictor})"                 # inside the consequent: the main clause's event falls within the when-clause's
@@ -517,3 +518,14 @@ examples:
         - {t: range, id: q1, class: occasion}
         - {t: locative, id: l1, thing: "@n1", place: "@x1", head: LocatedIn, preposition: in, tense: past}
         - {t: frequency, id: f1, occasion: ["@q1"], over: ["@l1"], level: often, word: often}
+    - category: positive
+      note: a place on the whenever-clause — it stands among the premises of the rule
+      text: "Whenever Lamine sings in the barn, the ferret hides."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: witness, id: x1, class: barn, definite: true}
+        - {t: witness, id: x2, class: ferret, definite: true}
+        - {t: activity, id: v1, verb: sing, actor: "@n1", tense: present}
+        - {t: location, id: l1, event: "@v1", place: "@x1", head: Location, preposition: in}
+        - {t: activity, id: v2, verb: hide, actor: "@x2", tense: present}
+        - {t: frequency, id: f1, restrictor: ["@v1"], over: ["@v2"], every: 1, word: Whenever}

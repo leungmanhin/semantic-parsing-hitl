@@ -1,0 +1,97 @@
+{
+  "provider": "google",
+  "model": "gemini-4-neon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "9c55a422b9b5cfe2bac1f914e37cedcc21db53c5e14f1a0f5b08bcd3c4024b89",
+  "item": {
+    "id": "s8b185e8348",
+    "text": "The bin can hold 40 kilograms of grain."
+  },
+  "usage": {
+    "input": 133137,
+    "output": 160,
+    "thinking": 470,
+    "total": 133767,
+    "cached": 131086,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 133137,
+    "candidatesTokenCount": 160,
+    "totalTokenCount": 133767,
+    "cachedContentTokenCount": 131086,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 133137
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 131086
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 160
+      }
+    ],
+    "thoughtsTokenCount": 470,
+    "serviceTier": "flex"
+  },
+  "raw_text": "{\"id\": \"s8b185e8348\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"bin\", \"definite\": true, \"span\": \"The bin\"}, {\"t\": \"measure\", \"id\": \"m1\", \"bearer\": \"@x1\", \"head\": \"Measure\", \"dimension\": \"capacity\", \"magnitude\": 40, \"unit\": \"kilogram\", \"tense\": \"present\", \"span\": \"The bin can hold 40 kilograms\"}], \"unmapped\": [{\"span\": \"of grain\", \"code\": \"G00\", \"construction\": \"A prepositional phrase specifying what a measured capacity is of.\"}], \"issues\": []}",
+  "response": {
+    "id": "s8b185e8348",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "bin",
+        "definite": true,
+        "span": "The bin"
+      },
+      {
+        "t": "measure",
+        "id": "m1",
+        "bearer": "@x1",
+        "head": "Measure",
+        "dimension": "capacity",
+        "magnitude": 40,
+        "unit": "kilogram",
+        "tense": "present",
+        "span": "The bin can hold 40 kilograms"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "of grain",
+        "code": "G00",
+        "construction": "A prepositional phrase specifying what a measured capacity is of."
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "4ec3a11b820922780ba78ec4c419ad60d7cad6baa378389139fb60b7cc8c7f78",
+  "manifest_id": "1efb90db0958",
+  "run": 1,
+  "case": {
+    "template": "measure",
+    "section": "held_out",
+    "index": 29,
+    "category": "positive",
+    "text": "The bin can hold 40 kilograms of grain.",
+    "key": "8b185e8348"
+  }
+}

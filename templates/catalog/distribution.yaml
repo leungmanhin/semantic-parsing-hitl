@@ -3,10 +3,13 @@
 # A predication over a group can be read distributively (several students laughed: each did)
 # or collectively (three students carried the ladder together: no one did alone). The text
 # decides. A distributive reading is recorded as a distribution instance pointing at the group
-# and at the predication (or at the negation or modal over it); the program emits the
-# per-member rule beside the group-level statement, which stays:
+# and at the predication — or at the negation, modal or command over it; inside a belief or a
+# report the instance is listed in the content beside the predication, and the rule is sealed
+# with it. The program emits the per-member rule beside the group-level statement, which stays:
 #   (Implication (PartOf $x <group>) <the predication with the group as $x and its own event per member>)
-# at confidence 0.9. A collective reading has no distribution instance.
+# at confidence 0.9. A collective reading has no distribution instance. A MEASURE is the one
+# predication stated in the rule alone: "both crates weigh 12 kilograms" does not give the pair
+# a total of 12 (the measure template's `distributed: members_only`).
 
 id: distribution
 family: rule
@@ -20,18 +23,29 @@ trigger:
     of the badgers, two of the blankets) and whose predicate holds
     of each member on its own: the badgers are curious (each is), several students laughed
     (each did), the pupils did not laugh (none did). The instance names the group and the
-    predication over it — or the scope operator over that predication, when there is one — and
-    nothing else. Do not add it for a collective predicate: surrounded the granary, carried the
+    predication over it, and nothing else. When that predication stands INSIDE A SCOPE, the
+    rule goes where the scope puts it. Under a negation, a modal or a command (did not laugh,
+    might be crooked, wash both barrows) name the SCOPE instance instead of the predication:
+    each member did not, might, is to be. Inside what someone believes or reports (Femke thinks
+    the potters each left, Ludo said that both storks left) the instance names the predication
+    as usual and is itself part of that clause: list it in the belief's or the report's
+    `content` beside the predication. Never leave it outside a scope that holds its
+    predication: it would state of each member, as a fact, what the text only denies, asks
+    for, believes or reports. Do not add it for a collective predicate: surrounded the granary, carried the
     barrow together, met, gathered, outnumbered. A floating both, each or all on a group or a
     plural pronoun (the potters each left, they both sang) is this instance; both or each on
     coordinated names (both Femke and Ludo left) adds nothing, and the word is not reported.
+    Both, each or apiece on a MEASURED group (both barrows weigh 9 kilograms, the barrows
+    weigh 9 kilograms each) is this instance too, over the measure: the figure is each
+    member's.
   boundary:                   # looks distributive but is not
     - >-
       a collective predicate — surrounded, gathered, met, outnumbered, carried it together:
       holds of the group as a whole, not of each member
     - >-
-      a size or a measure of the group — are three in number, weigh ten kilos together: a
-      property of the whole
+      a size or a total of the group — are three in number, weigh ten kilos together, the
+      sacks weighed 140 kilograms: a property of the whole (a figure with both, each or apiece
+      is each member's: this instance, over the measure)
     - >-
       a class as the subject — badgers are curious: a statement about the class, there is no group
     - >-
@@ -43,7 +57,7 @@ slots:
   id:    {type: id, required: true, doc: "your label for the rule"}
   group: {type: filler, class: Entity, required: true, doc: "the group instance's id, or a portion's"}
   over:  {type: refs, class: Proposition, required: true, consumes: false, bind: group, skolemize: true,
-          doc: "the predication over the group, or the negation / modal over that predication: its id, nothing else — never an attachment (a location, a time, an oblique), which follows its head; a phrase whose OBJECT the group is (a search for three badgers, those with weak eyes) is no predication over the group: no distribution instance at all; when a time or a place is predicated of a plural EVENT noun (the two inspections were on Friday) there is no predication either — name the eventive group itself, and its time and place distribute over the members"}
+          doc: "the predication over the group — or, under a negation, a modal or a command, the id of that SCOPE instance instead (a predication inside a belief or a report is named as usual, and that belief or report lists this distribution in its content): its id, nothing else — never an attachment (a location, a time, an oblique), which follows its head; a phrase whose OBJECT the group is (a search for three badgers, those with weak eyes) is no predication over the group: no distribution instance at all; when a time or a place is predicated of a plural EVENT noun (the two inspections were on Friday) there is no predication either — name the eventive group itself, and its time and place distribute over the members"}
 
 truth: {strength: [1.0], confidence: [0.9]}
 
@@ -53,14 +67,25 @@ emits:
 notes:
   - >-
     The group-level statement is never replaced: a group that slept is a fact about the group,
-    and the rule adds the members. Each member gets its own event, a function of the member,
+    and the rule adds the members. The one exception is a measure (both crates weigh 12
+    kilograms): the figure is each member's and not the group's total, so the program states it
+    in the rule alone. Each member gets its own event, a function of the member,
     so that two members' sleepings are two events.
+  - >-
+    A predication inside a scope takes its rule with it. Under a negation, a modal or a command
+    the instance names the operator and the rule is over it: each member is not asleep, might
+    be crooked, is to be washed. Inside a belief or a report the instance is listed in the
+    `content` beside the predication, and the program seals the rule in the clause: what is
+    believed or said is that each member did (a group the clause itself introduces is sealed
+    there too, so a rule outside would have nothing to range over). A rule that names a
+    predication a scope holds, and stands outside that scope, states it as a fact per member;
+    the validator reports that parse (`rule-outside-scope`).
   - >-
     The rule's confidence is 0.9: the distributive reading is the sentence's, but the program
     marks it as a generalization over members rather than an observed fact per member.
 
 depends_on: [group]
-composes_with: [negation, modal]
+composes_with: [negation, modal, imperative, attitude, communication, measure]
 
 examples:
   shown:                     # rendered into the prompt
@@ -83,6 +108,15 @@ examples:
         - "(: sk_laugh_1 Event)"
         - "(: student Class)"
         - "(: sk_laugh (-> Atom Event))"
+    - category: scoped
+      note: inside a belief the instance is part of the believed clause — listed in content beside the predication, so nothing is stated of a potter
+      text: "Femke thinks the potters each left."
+      instances:
+        - {t: named-entity, id: n1, name: "Femke", span: "Femke"}
+        - {t: group, id: g1, class: potter, definite: true, span: "the potters"}
+        - {t: motion, id: m1, verb: leave, mover: "@g1", tense: past, span: "the potters each left"}
+        - {t: distribution, id: d1, group: "@g1", over: ["@m1"], span: "the potters each left"}
+        - {t: attitude, id: a1, verb: think, holder: "@n1", content: ["@m1", "@d1"], factive: false, tense: present, span: "Femke thinks the potters each left"}
     - category: abstain
       text: "Three badgers surrounded the granary."
       expected: {abstain: true, template: group}                      # collective: no distribution
@@ -134,3 +168,36 @@ examples:
       note: the group is only the object of a phrase on a noun — nothing is predicated of its members
       text: "Yusra led a search for three ferrets."
       expected: {abstain: true, template: postmodifier}
+    - category: scoped
+      note: a command over a group — the rule is over the command, so each ladder is to be washed and none is said to be
+      text: "Wash both ladders."
+      instances:
+        - {t: group, id: g1, class: ladder, definite: true, count: 2}
+        - {t: activity, id: v1, verb: wash, patient: "@g1", tense: present}
+        - {t: imperative, id: s1, over: ["@v1"]}
+        - {t: distribution, id: d1, group: "@g1", over: ["@s1"]}
+    - category: scoped
+      note: a belief about a group — the rule is part of the believed clause
+      text: "Teodor thinks the guests each sang."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: group, id: g1, class: guest, definite: true}
+        - {t: activity, id: v1, verb: sing, actor: "@g1", tense: past}
+        - {t: distribution, id: d1, group: "@g1", over: ["@v1"]}
+        - {t: attitude, id: a1, verb: think, holder: "@n1", content: ["@v1", "@d1"], factive: false, tense: present}
+    - category: scoped
+      note: a report about a group — the rule is part of the reported clause
+      text: "Yusra said that both ferrets left."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: group, id: g1, class: ferret, definite: true, count: 2}
+        - {t: motion, id: m1, verb: leave, mover: "@g1", tense: past}
+        - {t: distribution, id: d1, group: "@g1", over: ["@m1"]}
+        - {t: attitude, id: a1, verb: say, holder: "@n1", content: ["@m1", "@d1"], factive: false, tense: past}
+    - category: positive
+      note: each after a measure — the figure is each member's, stated in the rule alone
+      text: "The crates weigh 60 kilograms each."
+      instances:
+        - {t: group, id: g1, class: crate, definite: true}
+        - {t: measure, id: m1, bearer: "@g1", head: Measure, dimension: weight, magnitude: 60, unit: kilogram, tense: present}
+        - {t: distribution, id: d1, group: "@g1", over: ["@m1"]}

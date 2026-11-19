@@ -1,0 +1,127 @@
+{
+  "provider": "google",
+  "model": "gemini-4-neon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "54f4729f3c5793b6a51f5f073422e5cf6e56c3648c6d322b012432dd55156eed",
+  "item": {
+    "id": "s9b769d4c4c",
+    "text": "If Teodor sleeps in a shed, Ottoline laughs."
+  },
+  "usage": {
+    "input": 133137,
+    "output": 289,
+    "thinking": 494,
+    "total": 133920,
+    "cached": 131088,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 133137,
+    "candidatesTokenCount": 289,
+    "totalTokenCount": 133920,
+    "cachedContentTokenCount": 131088,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 133137
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 131088
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 289
+      }
+    ],
+    "thoughtsTokenCount": 494,
+    "serviceTier": "flex"
+  },
+  "raw_text": "{\"id\": \"s9b769d4c4c\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"shed\", \"span\": \"a shed\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"sleep\", \"actor\": \"@n1\", \"tense\": \"present\", \"span\": \"Teodor sleeps\"}, {\"t\": \"activity\", \"id\": \"e2\", \"verb\": \"laugh\", \"actor\": \"@n2\", \"tense\": \"present\", \"span\": \"Ottoline laughs\"}, {\"t\": \"location\", \"id\": \"l1\", \"event\": \"@e1\", \"place\": \"@x1\", \"head\": \"Location\", \"preposition\": \"in\", \"span\": \"in a shed\"}, {\"t\": \"conditional\", \"id\": \"r1\", \"condition\": [\"@e1\"], \"over\": [\"@e2\"], \"span\": \"If Teodor sleeps in a shed, Ottoline laughs\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s9b769d4c4c",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "shed",
+        "span": "a shed"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Ottoline",
+        "span": "Ottoline"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "sleep",
+        "actor": "@n1",
+        "tense": "present",
+        "span": "Teodor sleeps"
+      },
+      {
+        "t": "activity",
+        "id": "e2",
+        "verb": "laugh",
+        "actor": "@n2",
+        "tense": "present",
+        "span": "Ottoline laughs"
+      },
+      {
+        "t": "location",
+        "id": "l1",
+        "event": "@e1",
+        "place": "@x1",
+        "head": "Location",
+        "preposition": "in",
+        "span": "in a shed"
+      },
+      {
+        "t": "conditional",
+        "id": "r1",
+        "condition": [
+          "@e1"
+        ],
+        "over": [
+          "@e2"
+        ],
+        "span": "If Teodor sleeps in a shed, Ottoline laughs"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "4ec3a11b820922780ba78ec4c419ad60d7cad6baa378389139fb60b7cc8c7f78",
+  "manifest_id": "f06b7feb7498",
+  "run": 3,
+  "case": {
+    "template": "conditional",
+    "section": "held_out",
+    "index": 18,
+    "category": "positive",
+    "text": "If Teodor sleeps in a shed, Ottoline laughs.",
+    "key": "9b769d4c4c"
+  }
+}

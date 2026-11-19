@@ -324,6 +324,19 @@
       "gloss": "Hypothesis that two mentions denote one entity; STV = probability of identity. Base of the resolved-entity view. A mention type is pending.",
       "status": "proposed"
     },
+    "ImpliedUnit": {
+      "kind": "core-link",
+      "arity": 3,
+      "arg_types": [
+        "Instance",
+        "Class",
+        "Class"
+      ],
+      "out": "Proposition",
+      "opaque": true,
+      "gloss": "Hypothesis about a unit the text leaves out: the bearer's (or the event's) figure on that dimension, stated with the unit unspecified, is understood in this unit, which another measure of the text states; STV = how sure the text makes it (the coreference dial). The background rule unit_implied states the figure in the unit at the link's strength. Order: (ImpliedUnit bearer-or-event dimension unit).",
+      "status": "proposed"
+    },
     "Counterfactual": {
       "kind": "scope",
       "arity": 2,

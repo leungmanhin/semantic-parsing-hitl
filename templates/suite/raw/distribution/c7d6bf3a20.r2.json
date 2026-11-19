@@ -1,0 +1,116 @@
+{
+  "provider": "google",
+  "model": "gemini-4-neon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "9c55a422b9b5cfe2bac1f914e37cedcc21db53c5e14f1a0f5b08bcd3c4024b89",
+  "item": {
+    "id": "sc7d6bf3a20",
+    "text": "Teodor thinks the guests each sang."
+  },
+  "usage": {
+    "input": 133132,
+    "output": 230,
+    "thinking": 577,
+    "total": 133939,
+    "cached": 131083,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 133132,
+    "candidatesTokenCount": 230,
+    "totalTokenCount": 133939,
+    "cachedContentTokenCount": 131083,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 133132
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 131083
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 230
+      }
+    ],
+    "thoughtsTokenCount": 577,
+    "serviceTier": "flex"
+  },
+  "raw_text": "{\"id\": \"sc7d6bf3a20\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"group\", \"id\": \"g1\", \"class\": \"guest\", \"definite\": true, \"span\": \"the guests\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"sing\", \"actor\": \"@g1\", \"tense\": \"past\", \"span\": \"the guests each sang\"}, {\"t\": \"distribution\", \"id\": \"d1\", \"group\": \"@g1\", \"over\": [\"@v1\"], \"span\": \"the guests each sang\"}, {\"t\": \"attitude\", \"id\": \"a1\", \"verb\": \"think\", \"holder\": \"@n1\", \"content\": [\"@v1\", \"@d1\"], \"factive\": false, \"tense\": \"present\", \"span\": \"Teodor thinks the guests each sang\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sc7d6bf3a20",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "group",
+        "id": "g1",
+        "class": "guest",
+        "definite": true,
+        "span": "the guests"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "sing",
+        "actor": "@g1",
+        "tense": "past",
+        "span": "the guests each sang"
+      },
+      {
+        "t": "distribution",
+        "id": "d1",
+        "group": "@g1",
+        "over": [
+          "@v1"
+        ],
+        "span": "the guests each sang"
+      },
+      {
+        "t": "attitude",
+        "id": "a1",
+        "verb": "think",
+        "holder": "@n1",
+        "content": [
+          "@v1",
+          "@d1"
+        ],
+        "factive": false,
+        "tense": "present",
+        "span": "Teodor thinks the guests each sang"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "4ec3a11b820922780ba78ec4c419ad60d7cad6baa378389139fb60b7cc8c7f78",
+  "manifest_id": "1efb90db0958",
+  "run": 2,
+  "case": {
+    "template": "distribution",
+    "section": "held_out",
+    "index": 9,
+    "category": "scoped",
+    "text": "Teodor thinks the guests each sang.",
+    "key": "c7d6bf3a20"
+  }
+}

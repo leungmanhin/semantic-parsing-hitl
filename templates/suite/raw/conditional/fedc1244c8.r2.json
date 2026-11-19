@@ -1,0 +1,116 @@
+{
+  "provider": "google",
+  "model": "gemini-4-neon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "9c55a422b9b5cfe2bac1f914e37cedcc21db53c5e14f1a0f5b08bcd3c4024b89",
+  "item": {
+    "id": "sfedc1244c8",
+    "text": "The ferret leaves only if the gate is open."
+  },
+  "usage": {
+    "input": 133133,
+    "output": 230,
+    "thinking": 403,
+    "total": 133766,
+    "cached": 131084,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 133133,
+    "candidatesTokenCount": 230,
+    "totalTokenCount": 133766,
+    "cachedContentTokenCount": 131084,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 133133
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 131084
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 230
+      }
+    ],
+    "thoughtsTokenCount": 403,
+    "serviceTier": "flex"
+  },
+  "raw_text": "{\"id\": \"sfedc1244c8\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"ferret\", \"definite\": true, \"span\": \"The ferret\"}, {\"t\": \"witness\", \"id\": \"x2\", \"class\": \"gate\", \"definite\": true, \"span\": \"the gate\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"leave\", \"mover\": \"@x1\", \"tense\": \"present\", \"span\": \"The ferret leaves\"}, {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@x2\", \"predicate\": \"open\", \"form\": \"adjective\", \"tense\": \"present\", \"span\": \"the gate is open\"}, {\"t\": \"conditional\", \"id\": \"r1\", \"condition\": [\"@m1\"], \"over\": [\"@c1\"], \"word\": \"only if\", \"span\": \"The ferret leaves only if the gate is open\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "sfedc1244c8",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "ferret",
+        "definite": true,
+        "span": "The ferret"
+      },
+      {
+        "t": "witness",
+        "id": "x2",
+        "class": "gate",
+        "definite": true,
+        "span": "the gate"
+      },
+      {
+        "t": "motion",
+        "id": "m1",
+        "verb": "leave",
+        "mover": "@x1",
+        "tense": "present",
+        "span": "The ferret leaves"
+      },
+      {
+        "t": "copular",
+        "id": "c1",
+        "subject": "@x2",
+        "predicate": "open",
+        "form": "adjective",
+        "tense": "present",
+        "span": "the gate is open"
+      },
+      {
+        "t": "conditional",
+        "id": "r1",
+        "condition": [
+          "@m1"
+        ],
+        "over": [
+          "@c1"
+        ],
+        "word": "only if",
+        "span": "The ferret leaves only if the gate is open"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "4ec3a11b820922780ba78ec4c419ad60d7cad6baa378389139fb60b7cc8c7f78",
+  "manifest_id": "1efb90db0958",
+  "run": 2,
+  "case": {
+    "template": "conditional",
+    "section": "held_out",
+    "index": 15,
+    "category": "positive",
+    "text": "The ferret leaves only if the gate is open.",
+    "key": "fedc1244c8"
+  }
+}

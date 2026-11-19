@@ -1,0 +1,117 @@
+{
+  "provider": "google",
+  "model": "gemini-4-neon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "9c55a422b9b5cfe2bac1f914e37cedcc21db53c5e14f1a0f5b08bcd3c4024b89",
+  "item": {
+    "id": "s13bbd5d9ca",
+    "text": "Yusra said that both ferrets left."
+  },
+  "usage": {
+    "input": 133132,
+    "output": 241,
+    "thinking": 493,
+    "total": 133866,
+    "cached": 131083,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 133132,
+    "candidatesTokenCount": 241,
+    "totalTokenCount": 133866,
+    "cachedContentTokenCount": 131083,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 133132
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 131083
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 241
+      }
+    ],
+    "thoughtsTokenCount": 493,
+    "serviceTier": "flex"
+  },
+  "raw_text": "{\"id\": \"s13bbd5d9ca\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"group\", \"id\": \"g1\", \"class\": \"ferret\", \"definite\": true, \"count\": 2, \"span\": \"both ferrets\"}, {\"t\": \"motion\", \"id\": \"e1\", \"verb\": \"leave\", \"mover\": \"@g1\", \"tense\": \"past\", \"span\": \"both ferrets left\"}, {\"t\": \"distribution\", \"id\": \"d1\", \"group\": \"@g1\", \"over\": [\"@e1\"], \"span\": \"both ferrets left\"}, {\"t\": \"attitude\", \"id\": \"a1\", \"verb\": \"say\", \"holder\": \"@n1\", \"content\": [\"@e1\", \"@d1\"], \"factive\": false, \"tense\": \"past\", \"span\": \"Yusra said that both ferrets left\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s13bbd5d9ca",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "group",
+        "id": "g1",
+        "class": "ferret",
+        "definite": true,
+        "count": 2,
+        "span": "both ferrets"
+      },
+      {
+        "t": "motion",
+        "id": "e1",
+        "verb": "leave",
+        "mover": "@g1",
+        "tense": "past",
+        "span": "both ferrets left"
+      },
+      {
+        "t": "distribution",
+        "id": "d1",
+        "group": "@g1",
+        "over": [
+          "@e1"
+        ],
+        "span": "both ferrets left"
+      },
+      {
+        "t": "attitude",
+        "id": "a1",
+        "verb": "say",
+        "holder": "@n1",
+        "content": [
+          "@e1",
+          "@d1"
+        ],
+        "factive": false,
+        "tense": "past",
+        "span": "Yusra said that both ferrets left"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "4ec3a11b820922780ba78ec4c419ad60d7cad6baa378389139fb60b7cc8c7f78",
+  "manifest_id": "1efb90db0958",
+  "run": 3,
+  "case": {
+    "template": "distribution",
+    "section": "held_out",
+    "index": 10,
+    "category": "scoped",
+    "text": "Yusra said that both ferrets left.",
+    "key": "13bbd5d9ca"
+  }
+}

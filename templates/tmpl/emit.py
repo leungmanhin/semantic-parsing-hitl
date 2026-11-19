@@ -17,7 +17,10 @@ A ``refs`` slot may carry ``consumes: false`` (the referenced instances' atoms a
 on their own: a rule that restates a predication per member), ``bind: <filler slot>`` (inside
 this slot's bundle the symbol of the instance that filler names becomes the variable ``$x``)
 and ``skolemize: true`` (inside the bundle every event symbol minted by a rendered instance
-becomes the skolem function ``(sk_<stem> $x)``: each member has its own event).
+becomes the skolem function ``(sk_<stem> $x)``: each member has its own event). A template with
+``distributed: members_only`` (a measure) is the exception to ``consumes: false``: named by such a
+rule slot, its instance is rendered in the rule alone — a figure said of each member is not the
+group's total.
 
 Shapes.  ``@id`` is the symbol minted for the instance; ``{slot}`` substitutes the filler (the
 minted symbol of a referenced instance, the lemma, the number, the quoted string, or the bundle
@@ -43,7 +46,13 @@ variable ``$e`` wherever the scope instance renders it, and whose non-rigid part
 indefinite object) become variables too; ``{slot|own}`` renders that predication's own atoms
 and its participants' (the restrictor of a rule over the clause's events: ``(And (Member $e
 arrive) (Agent $e sk_teodor_1))``), ``{slot|attachments}`` renders its attachments, skolemized
-over ``$e`` (the nuclear scope: ``(And (Time $e (sk_time $e)) (Hour (sk_time $e) 12))``).
+over ``$e`` (the nuclear scope: ``(And (Time $e (sk_time $e)) (Hour (sk_time $e) 12))``), and
+``{slot|whole}`` renders both in one bundle: the antecedent of a rule whose consequent is another
+clause, where the clause's place, time or manner says WHICH events the rule is about (``(And
+(Member $e sing) (Agent $e sk_choir_1) (Location $e $x) (Member $x barn))``). There — and in
+every bundle but ``|own`` and ``|attachments`` — what the attachments bring in (a time of their
+own, an indefinite place or instrument) is a variable like an indefinite participant: a singing
+in a barn is a singing in any barn; a name, a definite and a named time stay constants.
 
 Narrowing.  A template may declare ``narrowing: {class, scale, subject, props, within}`` (slot
 names): the class an instance compares its subject within is narrowed by the description its
@@ -100,7 +109,9 @@ Truth values.  Every statement carries ``(STV 1.0 0.99)`` unless the template de
 and a clause is either a number (the default) or ``{slot: <name>, values: {<value>: <number>}}``
 (the instance's own slot) or ``{from: <refs slot>, slot: <name>, values: …}`` (the first
 referenced instance whose slot has a listed value).  A shape may carry its own ``stv: [s, c]``,
-which overrides the instance's truth value for that statement (a surface record beside a rule).
+which overrides the instance's truth value for that statement (a surface record beside a rule),
+or its own ``truth:`` in the same grammar when its strength follows a slot (a link stated beside
+a fact: the unit a measure is understood in).
 
 Variables.  ``mints: {variable: true}`` mints ``$x``, ``$y``, ``$z`` … in instance order: the
 range of a quantified rule.  ``skolemize: true`` on a ``refs`` slot replaces, inside that slot's
@@ -130,7 +141,8 @@ it.  ``emit`` returns the RECORDS — per statement ``{"name", "term", "truth": 
 the term a tree of heads, symbols, ``$`` variables, numbers and ``Str`` literals — and the symbols' types
 as DATA (``types``: symbol → classes; ``functions``: a skolem function's stem, arity and classes), and,
 for the callers that read text, their lowering for our engine line under the keys ``statements``,
-``declarations`` and ``detail``.  Another consumer's syntax is a target in ``tmpl.lower``, never a
+``declarations`` and ``detail``; ``unstated`` lists the instances that reached no statement (held by a
+scope, a rule or a head whose shape does not render them): empty unless a shape leaves something out.  Another consumer's syntax is a target in ``tmpl.lower``, never a
 branch here.
 """
 from __future__ import annotations
@@ -279,6 +291,7 @@ class _Emitter:
         self.attachments_of: dict[str, list[str]] = {}  # head instance -> its attachments, in order
         self.narrow: dict[str, dict] = {}               # instance -> its comparison class: {"term": …, "body": …}
         self.asked_parts: dict[str, tuple] = {}         # a part of an asked word answered apart (a measure's unit) -> (wh, part)
+        self.stated: set = set()                        # the instances some shape was rendered for (run() starts it afresh)
 
     # ---------------------------------------------------------------- questions
     def asked_part(self, ref, spec: dict) -> str | None:
@@ -559,6 +572,7 @@ class _Emitter:
         # Pieter said) is consumed whole, as a predication is.
         self.scope_of: dict[str, str] = {}
         self.referent_content: dict[str, str] = {}
+        self.members_only: set[str] = set()              # named by a rule slot, and its template says the rule alone states it
         self.referent_over: dict[str, str] = {}          # the same under a NON-consuming slot (a distribution's over): the
         for r in self.insts:                              # group-level atoms stay at the top, the sealed attachments distribute
             for sname, spec in (self.cat[r["t"]].get("slots") or {}).items():
@@ -575,6 +589,9 @@ class _Emitter:
                             self.scope_of[rid] = r["id"]
                     elif eventive:
                         self.referent_over[rid] = r["id"]
+                    if spec.get("consumes", True) is False and spec.get("bind") and target \
+                            and self.cat[target["t"]].get("distributed") == "members_only":
+                        self.members_only.add(rid)
 
         # attachment instance -> its head (a slot with ``attaches: true``); rendered wherever the head is
         self.head_of = {}
@@ -683,8 +700,8 @@ class _Emitter:
         """A mention's symbol -> its certain antecedent's: a term built from the text's words (a
         comparison class, a class narrowed by a name) names the individual, not the pronoun."""
         for r in self.insts:
-            if r.get("t") == "coref" and str(r.get("certainty")) == "certain" \
-                    and is_ref(r.get("mention")) and is_ref(r.get("antecedent")):
+            if r.get("t") == "coref" and str(r.get("certainty")) == "certain" and not r.get("part") \
+                    and is_ref(r.get("mention")) and is_ref(r.get("antecedent")):       # a part link is no identity
                 m, a = self.sym.get(r["mention"][1:]), self.sym.get(r["antecedent"][1:])
                 if m and a:
                     self.antecedent[m] = a
@@ -1039,6 +1056,8 @@ class _Emitter:
         r = self.by_id[iid]
         t = self.cat[r["t"]]
         terms = []
+        if not projecting:
+            self.stated.add(iid)
         if iid in getattr(self, "description_only", ()):   # a time that is only a modifier's description
             return terms
         on_demand = self.state_mode and self.is_on_demand(iid)
@@ -1184,7 +1203,8 @@ class _Emitter:
         """The scope instance's ``as_variable`` predications mapped to the event variables ``$e``,
         ``$e2`` …, and their non-rigid participants (an indefinite object, a group) mapped to free
         variables: the universally bound terms of a rule restricted to the clause's events. The
-        predication's attachments are not participants; they are skolemized over the event."""
+        predication's attachments are not participants: under ``|attachments`` they are skolemized over
+        the event, elsewhere their symbols are the variables of ``attachment_variables``."""
         inst = self.by_id[scope_iid]
         mapping: dict[str, str] = {}
         evars: list[str] = []
@@ -1217,14 +1237,78 @@ class _Emitter:
                             mapping[pid] = free.pop(0) if free else f"$p{len(mapping)}"
         return mapping, evars + svars
 
+    def attachment_variables(self, scope_iid: str, mapping: dict) -> dict:
+        """The symbols that the ATTACHMENTS of the scope instance's event-variable predications bring into the
+        rule — an attachment's own (a time with no name) and the indefinite referents homed in this rule that
+        only the attachments mention (a place, an instrument) — mapped to free variables. Where the clause is a
+        rule's antecedent they are universally bound, like an indefinite participant: a singing in a barn is a
+        singing in ANY barn, one on a Sunday a singing on any Sunday. A name, a definite and a named time are
+        rigid and stay constants, and so does whatever the text also mentions outside the rule (a referent not
+        homed here, a time another clause is anchored to): one symbol must not be a variable here and a constant
+        there."""
+        inst = self.by_id[scope_iid]
+        out: dict[str, str] = {}
+        used = {str(s) for s in self.sym.values() if isinstance(s, str) and s.startswith("$")} | {str(v) for v in mapping.values()}
+        free = [v for v in VARIABLES if v not in used]
+        homed = self.homed_in.get(scope_iid, [])
+
+        def take(iid):
+            sym = self.sym.get(iid)
+            if isinstance(sym, str) and not sym.startswith("$") and iid not in mapping and iid not in out and not self.is_rigid(iid):
+                out[iid] = free.pop(0) if free else f"$a{len(out) + 1}"
+
+        chain: list[str] = []                             # the attachments, and theirs, in instance order
+        for sname, sp in (self.cat[inst["t"]].get("slots") or {}).items():
+            if sp["type"] != "refs" or not sp.get("as_variable"):
+                continue
+            todo = [a for ref in inst.get(sname) or [] if is_ref(ref) and ref[1:] in mapping
+                    for a in self.attachments_of.get(ref[1:], [])]
+            while todo:
+                a = todo.pop(0)
+                if a in chain or a not in self.by_id or a in self.ties:
+                    continue
+                chain.append(a)
+                todo.extend(self.attachments_of.get(a, []))
+        for a in list(chain):                             # each attachment: its own symbol, then the referents it brings in
+            if all(m in chain for m in self.mentions.get(a, [])):
+                take(a)
+            r = self.by_id[a]
+            for sname, sp in (self.cat[r["t"]].get("slots") or {}).items():
+                if sp["type"] == "filler" and not sp.get("attaches") and is_ref(r.get(sname)) and r[sname][1:] in homed:
+                    take(r[sname][1:])
+        changed = bool(out)
+        while changed:                                    # and what those referents bring in themselves (a possessor)
+            changed = False
+            for iid in homed:
+                if iid in out or iid in mapping:
+                    continue
+                if any(m in out for m in self.mentions.get(iid, [])):
+                    before = len(out)
+                    take(iid)
+                    changed = changed or len(out) > before
+        return out
+
+    def under(self, iid: str) -> list:
+        """An instance and its attachments, and theirs."""
+        out, todo = [], [iid]
+        while todo:
+            x = todo.pop(0)
+            if x not in out:
+                out.append(x)
+                todo.extend(self.attachments_of.get(x, []))
+        return out
+
     def bundle(self, refs: list, scope_iid: str, spec: dict | None = None, slot: str | None = None, part: str | None = None):
         """The content of a scope: its referenced instances' atoms plus the referents homed here,
         plus the scope instance's own ``within: <slot>`` shapes. With ``bind`` / ``skolemize`` on
         the slot, symbols are overlaid while rendering; with ``as_variable`` predications in the
-        scope, their events are variables, and ``part`` selects a predication's own atoms or its
-        attachments (skolemized over the event)."""
+        scope, their events are variables, and ``part`` selects a predication's own atoms, its
+        attachments (skolemized over the event) or both (``whole``: the attachments' symbols variables)."""
         overlay = None
         mapping, evars = self.event_variables(scope_iid)
+        participants = list(mapping)                     # the events and their participants, before the attachments' symbols
+        if mapping and part not in ("own", "attachments"):   # there the attachments are the nuclear scope: skolemized, not bound
+            mapping = {**mapping, **self.attachment_variables(scope_iid, mapping)}
         skolemize = bool(spec and spec.get("skolemize")) or part == "attachments"
         if mapping or (spec and (spec.get("bind") or skolemize)):
             overlay = dict(self.sym)
@@ -1280,20 +1364,25 @@ class _Emitter:
                 # inside the operator's own bundle, beside the act they describe, not beside the operator
                 self.pending_within.append(self.within_terms(scope_iid, slot))
                 pushed = True
-            if part == "own":                            # the predication's own atoms and its participants'
+            if part in ("own", "whole"):                 # the predication's own atoms and its participants'
                 for rid in ref_ids:
                     terms.extend(term for term, _e in self.shapes_of(rid))
-                for pid in mapping:
+                for pid in participants:
                     if pid not in ref_ids and pid in self.homed_in.get(scope_iid, []):
                         terms.extend(self.atoms_of(pid))
-            elif part == "attachments":                  # the predication's attachments, and what only they mention
+            if part in ("attachments", "whole"):         # the predication's attachments, and what only they mention
+                rest = [iid for iid in self.attached(refs, scope_iid) if iid not in participants]
                 for rid in ref_ids:
                     for a in self.attachments_of.get(rid, []):
                         terms.extend(self.atoms_of(a))
-                for iid in self.attached(refs, scope_iid):
-                    if iid not in mapping:
-                        terms.extend(self.atoms_of(iid))
-            else:
+                        if part == "whole":              # what an attachment brings in is read right after it
+                            under = self.under(a)
+                            for iid in [i for i in rest if any(m in under for m in self.mentions.get(i, []))]:
+                                terms.extend(self.atoms_of(iid))
+                                rest.remove(iid)
+                for iid in rest:
+                    terms.extend(self.atoms_of(iid))
+            if part not in ("own", "attachments", "whole"):
                 for ref in refs:
                     rid = ref[1:]
                     if rid in self.referent_content or rid in self.referent_over:   # a presupposed referent: its sealed attachments state the clause
@@ -1314,10 +1403,11 @@ class _Emitter:
                 self.pending_within.pop()                            # never consumed (no content bundle under the operator)
         return terms[0] if len(terms) == 1 else ["And"] + terms
 
-    def truth_of(self, inst: str) -> tuple:
-        """The instance's truth value from its template's layered ``truth`` rules, else the default."""
+    def truth_of(self, inst: str, rule: dict | None = None) -> tuple:
+        """The instance's truth value from its template's layered ``truth`` rules — or from ``rule``, a shape's
+        own — else the default."""
         r = self.by_id[inst]
-        rule = self.cat[r["t"]].get("truth")
+        rule = rule or self.cat[r["t"]].get("truth")
         if not rule:
             return DEFAULT_STV
         if rule.get("inherit"):                     # a scope operator asserts nothing of its own
@@ -1489,12 +1579,15 @@ class _Emitter:
         self.compute_description_only()
         self.compute_antecedents()
         self.compute_narrowing()
+        self.stated = set()                                 # from here on: what the statements are rendered from
         for r in self.insts:
             iid = r["id"]
             if iid in self.scope_of or self.home.get(iid) is not None or iid in self.head_of:
                 continue                                    # rendered inside a scope, or with its head
+            if iid in self.members_only:
+                continue                                    # a measure under a distribution: each member's, in the rule alone
             for term, e, owner in self.rendered(iid):
-                self.add(term, self.by_id[owner]["t"], owner, e.get("stv"))
+                self.add(term, self.by_id[owner]["t"], owner, e.get("stv") or (self.truth_of(owner, e["truth"]) if e.get("truth") else None))
         defined = set()
         for r in self.insts:                                    # presuppositions: top level, any scope
             for term, e in self.shapes_of(r["id"], projecting=True):
@@ -1511,7 +1604,10 @@ class _Emitter:
                                 "inst": s["inst"]} for s in self.out],
                    "types": types, "functions": functions}
         text = L.lower(emitted)                                 # our engine line's syntax, for the callers that read text
-        return {"id": self.item.get("id"), **emitted,
+        # an instance no shape was rendered for: the scope, the rule or the head that holds it left it out. Nothing
+        # of a parse may vanish unseen, so the result names it (``validate``: instance-not-stated).
+        unstated = [r["id"] for r in self.insts if r["id"] not in self.stated and r["id"] not in self.description_only]
+        return {"id": self.item.get("id"), **emitted, "unstated": unstated,
                 "statements": text["statements"],
                 "detail": [{"name": s["name"], "term": render(s["term"]), "owner": s["owner"], "inst": s["inst"]}
                            for s in self.out],

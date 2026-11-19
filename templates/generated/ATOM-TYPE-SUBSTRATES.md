@@ -2,7 +2,7 @@
 
 Generated from `templates/atom-type-substrates.json` (schema `atom-type-substrates/1`) by `templates/tmpl/gen_substrate.py`, together with `templates/generated/atom-types.metta`. Do not edit by hand; regenerate with `cd templates && python -m tmpl.gen_substrate`.
 
-182 heads in 15 kinds (7 proposed; 182 with a reviewed type declaration so far). `type-def` is the PeTTa declaration emitted for the head; `?` as the output type means the head is not yet reviewed and is absent from the `.metta` file; `%Undefined%` marks a position the head takes but the JSON does not type.
+183 heads in 15 kinds (8 proposed; 183 with a reviewed type declaration so far). `type-def` is the PeTTa declaration emitted for the head; `?` as the output type means the head is not yet reviewed and is absent from the `.metta` file; `%Undefined%` marks a position the head takes but the JSON does not type.
 
 Every atom is carried as a statement (: <proof-name> <atom> <tv>), tv = (STV strength confidence) or another engine truth value. The carrier is not an atom kind: ':' is never type-declared (it is also PeTTa's type-declaration head) and the truth value is declared by the engine, not by this substrate.
 
@@ -10,7 +10,7 @@ Types: Atom, Class, Context, Distribution, Entity, Event, Instance, Level, Numbe
 
 Declared type list (PeTTa convention, capitalized): Atom = unchecked position; Proposition = a statement-forming expression; Instance with sub-types Entity and Event (a symbol carries both its sub-type and Instance); Class; Number; String. Migration mapping from the ad-hoc names: term, assertion -> Proposition; property, verb-lemma, unit -> Class; symbol, reading-tag -> String; var, uncertain -> Atom. A union such as Event|Proposition expands to one declaration per alternative. `out` = the output type of the head's type declaration, set as each kind is reviewed. Proposed types Statement (a statement id = the proof name, reified) and Context (a scope reified), both sub-types of Instance by dual declaration; they belong to the flat context VIEW of scope unless that form becomes canonical. TimeTerm = a reified time instant or period (not named Time: that is the role head) (sub-type of Instance by dual declaration; time predicates Day / Hour / Month / … describe it). Distribution = an engine value (ParticleFromNormal …) allowed where an approximate number is. Level = a degree / proportion level: a symbol from a closed label set (very, excessive, most, half — declared Level by the emitter) or a term standing in for one ((forKind class), (Fraction n d)).
 
-## core-link (11)
+## core-link (12)
 
 head: And
 kind: core-link
@@ -40,6 +40,14 @@ kind: core-link
 arity: 2
 type-def: (: Implication (-> Proposition Proposition Proposition))
 gloss: Inference rule: a Premises term implies a Conclusions term.
+
+
+head: ImpliedUnit
+kind: core-link
+arity: 3
+type-def: (: ImpliedUnit (-> Instance Class Class Proposition))
+gloss: Hypothesis about a unit the text leaves out: the bearer's (or the event's) figure on that dimension, stated with the unit unspecified, is understood in this unit, which another measure of the text states; STV = how sure the text makes it (the coreference dial). The background rule unit_implied states the figure in the unit at the link's strength. Order: (ImpliedUnit bearer-or-event dimension unit).
+status: proposed
 
 
 head: InContext
@@ -1350,5 +1358,5 @@ Oblique prepositions (72), all declared `(-> Instance|Class Instance|Class|Propo
 
 ## notes
 
-- Proposed, not yet emitted by any template: Coref, Equivalence, InContext, LikelihoodPhrase, Not, Pending, Similarity.
+- Proposed, not yet emitted by any template: Coref, Equivalence, ImpliedUnit, InContext, LikelihoodPhrase, Not, Pending, Similarity.
 - To retire at the re-parse (declaration kept until then so today's parses still type-check): Forbid, KindProperty, QuantifierPhrase, TimesPer, WithinLast.

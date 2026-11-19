@@ -1,0 +1,117 @@
+{
+  "provider": "google",
+  "model": "gemini-4-neon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "9c55a422b9b5cfe2bac1f914e37cedcc21db53c5e14f1a0f5b08bcd3c4024b89",
+  "item": {
+    "id": "sd68c716c70",
+    "text": "The barn is warm only if the hatch is shut."
+  },
+  "usage": {
+    "input": 133136,
+    "output": 265,
+    "thinking": 403,
+    "total": 133804,
+    "cached": 131087,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 133136,
+    "candidatesTokenCount": 265,
+    "totalTokenCount": 133804,
+    "cachedContentTokenCount": 131087,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 133136
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 131087
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 265
+      }
+    ],
+    "thoughtsTokenCount": 403,
+    "serviceTier": "flex"
+  },
+  "raw_text": "{\n  \"id\": \"sd68c716c70\",\n  \"instances\": [\n    {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"barn\", \"definite\": true, \"span\": \"The barn\"},\n    {\"t\": \"witness\", \"id\": \"x2\", \"class\": \"hatch\", \"definite\": true, \"span\": \"the hatch\"},\n    {\"t\": \"copular\", \"id\": \"c1\", \"subject\": \"@x1\", \"predicate\": \"warm\", \"form\": \"adjective\", \"tense\": \"present\", \"span\": \"The barn is warm\"},\n    {\"t\": \"copular\", \"id\": \"c2\", \"subject\": \"@x2\", \"predicate\": \"shut\", \"form\": \"adjective\", \"tense\": \"present\", \"span\": \"the hatch is shut\"},\n    {\"t\": \"conditional\", \"id\": \"r1\", \"condition\": [\"@c1\"], \"over\": [\"@c2\"], \"word\": \"only if\", \"span\": \"The barn is warm only if the hatch is shut\"}\n  ],\n  \"unmapped\": [],\n  \"issues\": []\n}",
+  "response": {
+    "id": "sd68c716c70",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "barn",
+        "definite": true,
+        "span": "The barn"
+      },
+      {
+        "t": "witness",
+        "id": "x2",
+        "class": "hatch",
+        "definite": true,
+        "span": "the hatch"
+      },
+      {
+        "t": "copular",
+        "id": "c1",
+        "subject": "@x1",
+        "predicate": "warm",
+        "form": "adjective",
+        "tense": "present",
+        "span": "The barn is warm"
+      },
+      {
+        "t": "copular",
+        "id": "c2",
+        "subject": "@x2",
+        "predicate": "shut",
+        "form": "adjective",
+        "tense": "present",
+        "span": "the hatch is shut"
+      },
+      {
+        "t": "conditional",
+        "id": "r1",
+        "condition": [
+          "@c1"
+        ],
+        "over": [
+          "@c2"
+        ],
+        "word": "only if",
+        "span": "The barn is warm only if the hatch is shut"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "4ec3a11b820922780ba78ec4c419ad60d7cad6baa378389139fb60b7cc8c7f78",
+  "manifest_id": "1efb90db0958",
+  "run": 3,
+  "case": {
+    "template": "conditional",
+    "section": "held_out",
+    "index": 13,
+    "category": "positive",
+    "text": "The barn is warm only if the hatch is shut.",
+    "key": "d68c716c70"
+  }
+}

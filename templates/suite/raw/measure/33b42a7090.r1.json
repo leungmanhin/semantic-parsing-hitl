@@ -1,0 +1,91 @@
+{
+  "provider": "google",
+  "model": "gemini-4-neon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "9c55a422b9b5cfe2bac1f914e37cedcc21db53c5e14f1a0f5b08bcd3c4024b89",
+  "item": {
+    "id": "s33b42a7090",
+    "text": "The ferry seats 80 people."
+  },
+  "usage": {
+    "input": 133134,
+    "output": 128,
+    "thinking": 429,
+    "total": 133691,
+    "cached": 131083,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 133134,
+    "candidatesTokenCount": 128,
+    "totalTokenCount": 133691,
+    "cachedContentTokenCount": 131083,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 133134
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 131083
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 128
+      }
+    ],
+    "thoughtsTokenCount": 429,
+    "serviceTier": "flex"
+  },
+  "raw_text": "{\"id\": \"s33b42a7090\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"ferry\", \"definite\": true, \"span\": \"The ferry\"}, {\"t\": \"measure\", \"id\": \"m1\", \"bearer\": \"@x1\", \"head\": \"Measure\", \"dimension\": \"capacity\", \"magnitude\": 80, \"unit\": \"person\", \"tense\": \"present\", \"span\": \"The ferry seats 80 people\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s33b42a7090",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "ferry",
+        "definite": true,
+        "span": "The ferry"
+      },
+      {
+        "t": "measure",
+        "id": "m1",
+        "bearer": "@x1",
+        "head": "Measure",
+        "dimension": "capacity",
+        "magnitude": 80,
+        "unit": "person",
+        "tense": "present",
+        "span": "The ferry seats 80 people"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "4ec3a11b820922780ba78ec4c419ad60d7cad6baa378389139fb60b7cc8c7f78",
+  "manifest_id": "1efb90db0958",
+  "run": 1,
+  "case": {
+    "template": "measure",
+    "section": "held_out",
+    "index": 25,
+    "category": "positive",
+    "text": "The ferry seats 80 people.",
+    "key": "33b42a7090"
+  }
+}

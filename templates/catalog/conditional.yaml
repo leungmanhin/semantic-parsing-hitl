@@ -8,7 +8,11 @@
 # (Member sk_ladder_1 cold) (Member sk_ladder_1 brittle)). A class subject is a range, and the
 # rule has its member among the premises. Neither clause is asserted. A counterfactual (if
 # Lamine had sung, Yusra would have left) is another template; "unless" and "if not" have no
-# form yet, since a rule premise cannot say that something is not the case.
+# form yet, since a rule premise cannot say that something is not the case. "Q only if P" is
+# the rule from Q to P: whenever the main clause holds, the only-if clause does. A place, a time
+# or a manner on the condition says which events the rule is about and stands among its premises:
+#   "If Lamine sings in a barn, Yusra leaves" = (Implication (And (Member $e sing) (Agent $e
+#   sk_lamine_1) (Location $e $x) (Member $x barn)) …) — any singing in any barn.
 
 id: conditional
 family: rule
@@ -27,7 +31,10 @@ trigger:
     stative condition the rule holds between the states as stated. When the subject is a class —
     storks are drowsy if the weather is windy — it is a range instance listed in `ranges`, the
     consequence a copular instance over it, and `generic: true` marks a bare plural (no
-    quantifier word). The mood is indicative: the clauses are real possibilities; a subjunctive
+    quantifier word). "Q ONLY IF P" turns the roles round: it says that whenever Q holds, P
+    does, so the MAIN clause is the `condition` and the only-if clause the `over` (Odile sings
+    only if Marisol waits: `condition` the singing, `over` the waiting, `word` only if); it does
+    not say that Q follows from P. The mood is indicative: the clauses are real possibilities; a subjunctive
     (if Odile had sung, Marisol would have left; if Marisol sang, Pieter would leave) is a
     counterfactual. The span is the whole sentence.
   surface_forms:
@@ -35,6 +42,7 @@ trigger:
     - "<X> is ADJ when / if ADJ"                           # the barrow is brittle when cold: a stative condition, the copular for cold
     - "<class>s are ADJ if <P>"                            # storks are drowsy if the weather is windy: ranges + condition + over
     - "Provided that / as long as / in case <P>, <Q>"      # the same rule, the words recorded
+    - "<Q> only if <P>"                                    # the roles turned round: condition Q (the main clause), over P
   boundary:                   # looks like a conditional but is not one
     - >-
       a counterfactual or a hypothetical with would — if Odile had sung, Marisol would have left;
@@ -42,6 +50,10 @@ trigger:
     - >-
       unless, or if not — unless it rains, Odile sings; if Marisol does not sing, Odile leaves:
       a negated condition, with no form yet; report the clause as unmapped (G08)
+    - >-
+      only if on a command, a permission or a duty — wait only if the bell rings, Odile may sing
+      only if Marisol waits, Pieter must leave only if it rains: it limits what is asked or
+      allowed, a negated condition again; report the whole clause as unmapped (G08)
     - >-
       an eventive when-clause — when Odile sings, Marisol leaves; whenever the bell rang: a
       generalization over the when-clause's events, the frequency template
@@ -62,14 +74,14 @@ trigger:
 slots:
   id:        {type: id, required: true, doc: "your label for the rule (r1, r2 …)"}
   condition: {type: refs, class: Proposition, required: true, as_variable: true,
-              doc: "the if-clause: the id of its predication (its event becomes the rule's variable) or of its copular / locative instance for a state (the copular for cold, its subject the thing it is said of); several conditions are several ids"}
+              doc: "the if-clause — for only if, the MAIN clause: the id of its predication (its event becomes the rule's variable) or of its copular / locative instance for a state (the copular for cold, its subject the thing it is said of); several conditions are several ids"}
   over:      {type: refs, class: Proposition, required: true, skolemize: true,
-              doc: "the consequence: the id of its predication, or of the negation, modal or norm over it, or of its copular instance for a state; nothing else"}
+              doc: "the consequence — for only if, the only-if clause: the id of its predication, or of the negation, modal or norm over it, or of its copular instance for a state; nothing else"}
   ranges:    {type: refs, class: Proposition, required: false,
               doc: "the range instance of a class subject (storks are drowsy if the weather is windy): its id; absent otherwise"}
   generic:   {type: bool, required: false,
               doc: "true when the subject is a bare plural or mass noun read generically, with no quantifier word (storks are …): a bare generalization; absent otherwise"}
-  word:      {type: string, required: false, doc: "the conditional word as written when it is not if (provided that, as long as, in case, even if, when); recorded, not rendered"}
+  word:      {type: string, required: false, doc: "the conditional word as written when it is not if (provided that, as long as, in case, even if, when, only if); recorded, not rendered"}
 
 truth:
   strength:                    # a class subject takes its quantifier's value; a bare generic 0.9; a conditional about individuals 1.0
@@ -81,16 +93,18 @@ truth:
     - 0.9
 
 emits:
-  - atom: "(Implication {condition|own} {over})"
+  # the condition WHOLE: its own atoms, its participants' and what the text attaches to its event
+  # (a place, a time, a manner) — the attachment restricts the events the rule is about
+  - atom: "(Implication {condition|whole} {over})"
     when: "not ranges"
-  - atom: "(Implication (And {ranges} {condition|own}) {over})"
+  - atom: "(Implication (And {ranges} {condition|whole}) {over})"
     if_filled: ranges
   # the state rule beside it, for a stative condition: the condition's state is the variable, the
   # consequence's state or event a function of it that falls during it; an eventive condition has none
-  - atom: "(Implication {condition|own} {over})"
+  - atom: "(Implication {condition|whole} {over})"
     when: "not ranges"
     states: true
-  - atom: "(Implication (And {ranges} {condition|own}) {over})"
+  - atom: "(Implication (And {ranges} {condition|whole}) {over})"
     if_filled: ranges
     states: true
   - atom: "(During {over} {condition})"
@@ -103,12 +117,21 @@ notes:
     A rule, not a fact: nothing is asserted of Lamine's singing or Yusra's leaving. With an
     eventive condition the variable is the condition's event — any singing by Lamine — so a
     stated singing instantiates the rule; an indefinite inside the condition is a variable too.
+    What the text attaches to the condition's event — a place, a time, a manner, an instrument —
+    is a premise of the rule, for it says which events the rule is about: "if Lamine sings
+    outdoors" does not fire on a singing indoors. An indefinite place or a time with no name is
+    a variable there (in a barn: any barn; on a Sunday: any Sunday), a name or a definite a
+    constant.
     With a stative condition the rule holds between the states as stated, so "the ladder is
     brittle when cold" fires when the ladder is stated to be cold.
   - >-
     An individual's conditional carries 1.0 at 0.9 (an explicit rule, revisable); a class's
     takes its quantifier's strength, 0.9 at 0.7 for a bare generic, as the generic and
     conditional-property templates do.
+  - >-
+    "Q only if P" is the rule from Q to P, recorded with `word: only if`: every case of the main
+    clause is a case of the only-if clause. The converse is not stated, and the reading "without
+    P, no Q" would need a negated premise, which a rule cannot carry yet (as for unless).
   - >-
     "If" is a condition, "when" a time: an eventive when-clause is the frequency template's
     generalization over occasions, and a stative when-clause (when cold) is a condition here.
@@ -156,6 +179,15 @@ examples:
         - {t: copular, id: c1, subject: "@x1", predicate: cold, form: adjective, tense: present, span: "The granary is cold"}
         - {t: copular, id: c2, subject: "@x2", predicate: open, form: adjective, tense: present, span: "the door is open"}
         - {t: conditional, id: r1, condition: ["@c2"], over: ["@c1"], word: when, span: "The granary is cold when the door is open"}
+    - category: positive
+      note: only if — the roles turned round, the main clause is the condition and the only-if clause what follows
+      text: "Henrike stays only if Pieter sings."
+      instances:
+        - {t: named-entity, id: n1, name: "Henrike", span: "Henrike"}
+        - {t: named-entity, id: n2, name: "Pieter", span: "Pieter"}
+        - {t: activity, id: v1, verb: stay, actor: "@n1", tense: present, span: "Henrike stays"}
+        - {t: activity, id: v2, verb: sing, actor: "@n2", tense: present, span: "Pieter sings"}
+        - {t: conditional, id: r1, condition: ["@v1"], over: ["@v2"], word: "only if", span: "Henrike stays only if Pieter sings"}
     - category: abstain
       text: "All resins are brittle when cold."
       expected: {abstain: true, template: conditional-property}        # a class's property under a state of its members
@@ -257,3 +289,76 @@ examples:
     - category: abstain
       text: "Unless Yusra sings, Lamine leaves."
       expected: {abstain: true, gap: G08, span: "Unless Yusra sings"}   # a negated condition
+    - category: positive
+      note: only if between two states — the main clause is the condition
+      text: "The barn is warm only if the hatch is shut."
+      instances:
+        - {t: witness, id: x1, class: barn, definite: true}
+        - {t: witness, id: x2, class: hatch, definite: true}
+        - {t: copular, id: c1, subject: "@x1", predicate: warm, form: adjective, tense: present}
+        - {t: copular, id: c2, subject: "@x2", predicate: shut, form: adjective, tense: present}
+        - {t: conditional, id: r1, condition: ["@c1"], over: ["@c2"], word: "only if"}
+    - category: positive
+      note: only if between two events
+      text: "Ottoline laughs only if Teodor sings."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: named-entity, id: n2, name: "Teodor"}
+        - {t: activity, id: v1, verb: laugh, actor: "@n1", tense: present}
+        - {t: activity, id: v2, verb: sing, actor: "@n2", tense: present}
+        - {t: conditional, id: r1, condition: ["@v1"], over: ["@v2"], word: "only if"}
+    - category: positive
+      note: only if with an event in the main clause and a state after it
+      text: "The ferret leaves only if the gate is open."
+      instances:
+        - {t: witness, id: x1, class: ferret, definite: true}
+        - {t: witness, id: x2, class: gate, definite: true}
+        - {t: motion, id: m1, verb: leave, mover: "@x1", tense: present}
+        - {t: copular, id: c1, subject: "@x2", predicate: open, form: adjective, tense: present}
+        - {t: conditional, id: r1, condition: ["@m1"], over: ["@c1"], word: "only if"}
+    - category: abstain
+      note: only if on a permission — a negated condition, nothing is stated
+      text: "Teodor may leave only if Yusra arrives."
+      expected: {abstain: true, gap: G08, span: "Teodor may leave only if Yusra arrives"}
+    - category: positive
+      note: a place on the condition — it stands among the premises of the rule
+      text: "If Lamine sings in the barn, Yusra leaves."
+      instances:
+        - {t: named-entity, id: n1, name: "Lamine"}
+        - {t: named-entity, id: n2, name: "Yusra"}
+        - {t: witness, id: x1, class: barn, definite: true}
+        - {t: activity, id: v1, verb: sing, actor: "@n1", tense: present}
+        - {t: location, id: l1, event: "@v1", place: "@x1", head: Location, preposition: in}
+        - {t: motion, id: m1, verb: leave, mover: "@n2", tense: present}
+        - {t: conditional, id: r1, condition: ["@v1"], over: ["@m1"]}
+    - category: positive
+      note: an indefinite place on the condition — any shed, a variable of the rule
+      text: "If Teodor sleeps in a shed, Ottoline laughs."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: named-entity, id: n2, name: "Ottoline"}
+        - {t: witness, id: x1, class: shed}
+        - {t: activity, id: v1, verb: sleep, actor: "@n1", tense: present}
+        - {t: location, id: l1, event: "@v1", place: "@x1", head: Location, preposition: in}
+        - {t: activity, id: v2, verb: laugh, actor: "@n2", tense: present}
+        - {t: conditional, id: r1, condition: ["@v1"], over: ["@v2"]}
+    - category: positive
+      note: a named time on the condition
+      text: "If Yusra arrives at night, the ferret hides."
+      instances:
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: witness, id: x1, class: ferret, definite: true}
+        - {t: motion, id: m1, verb: arrive, mover: "@n1", tense: present}
+        - {t: time, id: t1, event: "@m1", name: night}
+        - {t: activity, id: v1, verb: hide, actor: "@x1", tense: present}
+        - {t: conditional, id: r1, condition: ["@m1"], over: ["@v1"]}
+    - category: positive
+      note: only if with a manner on the main clause — the manner belongs to the condition
+      text: "Ottoline sings loudly only if Teodor waits."
+      instances:
+        - {t: named-entity, id: n1, name: "Ottoline"}
+        - {t: named-entity, id: n2, name: "Teodor"}
+        - {t: activity, id: v1, verb: sing, actor: "@n1", tense: present}
+        - {t: manner, id: a1, event: "@v1", manner: loudly}
+        - {t: activity, id: v2, verb: wait, actor: "@n2", tense: present}
+        - {t: conditional, id: r1, condition: ["@v1"], over: ["@v2"], word: "only if"}

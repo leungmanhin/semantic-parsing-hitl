@@ -1,0 +1,91 @@
+{
+  "provider": "google",
+  "model": "gemini-4-neon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "9c55a422b9b5cfe2bac1f914e37cedcc21db53c5e14f1a0f5b08bcd3c4024b89",
+  "item": {
+    "id": "sdbe6b79eae",
+    "text": "Teodor may leave only if Yusra arrives."
+  },
+  "usage": {
+    "input": 133132,
+    "output": 123,
+    "thinking": 427,
+    "total": 133682,
+    "cached": 122880,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 133132,
+    "candidatesTokenCount": 123,
+    "totalTokenCount": 133682,
+    "cachedContentTokenCount": 122880,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 133132
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 122880
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 123
+      }
+    ],
+    "thoughtsTokenCount": 427,
+    "serviceTier": "flex"
+  },
+  "raw_text": "{\"id\": \"sdbe6b79eae\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Yusra\", \"span\": \"Yusra\"}], \"unmapped\": [{\"span\": \"Teodor may leave only if Yusra arrives.\", \"code\": \"G08\", \"construction\": \"an 'only if' conditional on a permission\"}], \"issues\": []}",
+  "response": {
+    "id": "sdbe6b79eae",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Yusra",
+        "span": "Yusra"
+      }
+    ],
+    "unmapped": [
+      {
+        "span": "Teodor may leave only if Yusra arrives.",
+        "code": "G08",
+        "construction": "an 'only if' conditional on a permission"
+      }
+    ],
+    "issues": []
+  },
+  "prompt_body_sha256": "4ec3a11b820922780ba78ec4c419ad60d7cad6baa378389139fb60b7cc8c7f78",
+  "manifest_id": "1efb90db0958",
+  "run": 1,
+  "case": {
+    "template": "conditional",
+    "section": "held_out",
+    "index": 16,
+    "category": "abstain",
+    "text": "Teodor may leave only if Yusra arrives.",
+    "key": "dbe6b79eae"
+  }
+}

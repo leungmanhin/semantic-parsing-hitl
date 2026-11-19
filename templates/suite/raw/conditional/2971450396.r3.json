@@ -1,0 +1,120 @@
+{
+  "provider": "google",
+  "model": "gemini-4-neon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "54f4729f3c5793b6a51f5f073422e5cf6e56c3648c6d322b012432dd55156eed",
+  "item": {
+    "id": "s2971450396",
+    "text": "If Yusra arrives at night, the ferret hides."
+  },
+  "usage": {
+    "input": 133136,
+    "output": 253,
+    "thinking": 523,
+    "total": 133912,
+    "cached": 131087,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 133136,
+    "candidatesTokenCount": 253,
+    "totalTokenCount": 133912,
+    "cachedContentTokenCount": 131087,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 133136
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 131087
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 253
+      }
+    ],
+    "thoughtsTokenCount": 523,
+    "serviceTier": "flex"
+  },
+  "raw_text": "{\"id\": \"s2971450396\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"ferret\", \"definite\": true, \"span\": \"the ferret\"}, {\"t\": \"motion\", \"id\": \"m1\", \"verb\": \"arrive\", \"mover\": \"@n1\", \"tense\": \"present\", \"span\": \"Yusra arrives\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"hide\", \"actor\": \"@x1\", \"tense\": \"present\", \"span\": \"the ferret hides\"}, {\"t\": \"time\", \"id\": \"t1\", \"event\": \"@m1\", \"name\": \"night\", \"span\": \"at night\"}, {\"t\": \"conditional\", \"id\": \"r1\", \"condition\": [\"@m1\"], \"over\": [\"@v1\"], \"span\": \"If Yusra arrives at night, the ferret hides\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s2971450396",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "ferret",
+        "definite": true,
+        "span": "the ferret"
+      },
+      {
+        "t": "motion",
+        "id": "m1",
+        "verb": "arrive",
+        "mover": "@n1",
+        "tense": "present",
+        "span": "Yusra arrives"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "hide",
+        "actor": "@x1",
+        "tense": "present",
+        "span": "the ferret hides"
+      },
+      {
+        "t": "time",
+        "id": "t1",
+        "event": "@m1",
+        "name": "night",
+        "span": "at night"
+      },
+      {
+        "t": "conditional",
+        "id": "r1",
+        "condition": [
+          "@m1"
+        ],
+        "over": [
+          "@v1"
+        ],
+        "span": "If Yusra arrives at night, the ferret hides"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "4ec3a11b820922780ba78ec4c419ad60d7cad6baa378389139fb60b7cc8c7f78",
+  "manifest_id": "f06b7feb7498",
+  "run": 3,
+  "case": {
+    "template": "conditional",
+    "section": "held_out",
+    "index": 19,
+    "category": "positive",
+    "text": "If Yusra arrives at night, the ferret hides.",
+    "key": "2971450396"
+  }
+}

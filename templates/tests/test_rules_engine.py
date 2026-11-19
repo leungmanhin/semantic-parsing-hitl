@@ -247,6 +247,59 @@ class SeededRulesOnTheEngine(unittest.TestCase):
         no = self.query(denied, "(Past (LocatedIn sk_mixer_1 sk_hall_1))", steps=1500)
         self.assertTrue(no and tv(no)[0] < 0.1, no)                                                    # what is stated wins
 
+    def test_a_link_carries_a_measure_a_part_and_an_order(self):
+        """The rope is new. It is 3 metres long. The beam is 2 metres long. — and the other facts said of a mention."""
+        link = "(: k1 (Coref sk_it_1 sk_rope_1) (STV 0.99 0.9))"
+        ropes = [link, "(: m1 (Measure sk_it_1 long 3 metre) (STV 1.0 0.99))", "(: m2 (Measure sk_beam_1 long 2 metre) (STV 1.0 0.99))"]
+        h = self.space(ropes)
+        s, c = tv(self.query(h, "(Measure sk_rope_1 long 3 metre)"))
+        self.assertAlmostEqual(s, 0.99, places=2)
+        self.assertGreater(c, 0.85)
+        gap = self.query(self.space(ropes), "(MoreBy long sk_rope_1 sk_beam_1 $g $u)", steps=1500)
+        self.assertTrue(any("(MoreBy long sk_rope_1 sk_beam_1 1" in a for a in gap), gap)
+        said = {"(More tall sk_it_1 sk_bob_1)": "(More tall sk_rope_1 sk_bob_1)", "(More tall sk_cal_1 sk_it_1)": "(More tall sk_cal_1 sk_rope_1)",
+                "(Ordinal sk_it_1 2 long cord)": "(Ordinal sk_rope_1 2 long cord)", "(PartOf sk_knot_1 sk_it_1)": "(PartOf sk_knot_1 sk_rope_1)",
+                "(BeforeBy sk_talk_1 sk_it_1 2 day)": "(BeforeBy sk_talk_1 sk_rope_1 2 day)",
+                "(LocatedIn sk_hook_1 sk_it_1)": "(LocatedIn sk_hook_1 sk_rope_1)",
+                "(PartOf sk_it_1 sk_kit_1)": "(PartOf sk_rope_1 sk_kit_1)",
+                "(Before sk_it_1 sk_show_1)": "(Before sk_rope_1 sk_show_1)", "(BeforeBy sk_it_1 sk_show_1 2 day)": "(BeforeBy sk_rope_1 sk_show_1 2 day)",
+                "(Past (MeasureAtMost sk_it_1 weight 4 kilogram))": "(Past (MeasureAtMost sk_rope_1 weight 4 kilogram))"}
+        h = self.space([link] + [f"(: f{i} {fact} (STV 1.0 0.99))" for i, fact in enumerate(said)])
+        for fact, question in said.items():
+            got = self.query(h, question, steps=1500)
+            self.assertTrue(got, question)
+            self.assertAlmostEqual(tv(got)[0], 0.99, places=2, msg=question)
+        self.assertFalse(self.query(self.space(ropes[1:]), "(Measure sk_rope_1 long 3 metre)"))          # no link, no measure
+
+    def test_a_chain_through_a_linked_mention_is_counted_once(self):
+        """The mixer was in the booth. The booth was in the main hall. / The lid was part of the box. It was in the shed.
+        — the second booth and the pronoun are mentions of their own, linked to the first. With the link rules for
+        both places of a relation the middle term is resolved from either fact: two proofs of one conclusion from the
+        same statements, read as one piece of evidence — the default it is, the link's strength taken off."""
+        chain = ["(: p1 (Past (LocatedIn sk_mixer_1 sk_booth_1)) (STV 1.0 0.99))", "(: p2 (Past (LocatedIn sk_booth_2 sk_hall_1)) (STV 1.0 0.99))",
+                 "(: k1 (Coref sk_booth_2 sk_booth_1) (STV 0.99 0.9))",
+                 "(: q1 (Past (PartOf sk_lid_1 sk_box_1)) (STV 1.0 0.99))", "(: q2 (Past (LocatedIn sk_it_1 sk_shed_1)) (STV 1.0 0.99))",
+                 "(: k2 (Coref sk_it_1 sk_box_1) (STV 0.99 0.9))"]
+        h = self.space(chain)
+        for question in ("(Past (LocatedIn sk_mixer_1 sk_hall_1))", "(Past (LocatedIn sk_lid_1 sk_shed_1))"):
+            got = self.query(h, question, steps=1500)
+            self.assertTrue(got, question)
+            self.assertAlmostEqual(tv(got)[0], 0.891, delta=0.01, msg=question)
+            self.assertAlmostEqual(tv(got)[1], 0.715, delta=0.01, msg=question)
+
+    def test_a_unit_the_text_leaves_out_is_read_at_the_links_strength(self):
+        """The main hall seats 300 people and the side room seats 120."""
+        halls = ["(: m1 (Measure sk_hall_1 capacity 300 person) (STV 1.0 0.99))", "(: m2 (Measure sk_room_1 capacity 120 unspecified) (STV 1.0 0.99))"]
+        linked = halls + ["(: m2_impliedunit (ImpliedUnit sk_room_1 capacity person) (STV 0.99 0.9))"]
+        s, c = tv(self.query(self.space(linked), "(Measure sk_room_1 capacity 120 person)"))
+        self.assertAlmostEqual(s, 0.99, places=2)
+        self.assertGreater(c, 0.85)
+        gap = self.query(self.space(linked), "(MoreBy capacity sk_hall_1 sk_room_1 $g $u)", steps=1500)
+        self.assertTrue(any("(MoreBy capacity sk_hall_1 sk_room_1 180 person)" in a.replace("180.0", "180") for a in gap), gap)
+        likely = halls + ["(: m2_impliedunit (ImpliedUnit sk_room_1 capacity person) (STV 0.8 0.9))"]
+        self.assertAlmostEqual(tv(self.query(self.space(likely), "(Measure sk_room_1 capacity 120 person)"))[0], 0.8, places=2)
+        self.assertFalse(self.query(self.space(halls), "(MoreBy capacity sk_hall_1 sk_room_1 $g $u)", steps=1500))   # no link, no comparison
+
     def test_an_abbreviated_unit_converts_like_the_unit_it_stands_for(self):
         h = self.space(['(: m1 (Measure sk_amp_1 weight 12 kg) (STV 1.0 0.99))', '(: m2 (Measure sk_plank_1 long 30 cm) (STV 1.0 0.99))',
                         '(: m3 (Measure sk_beam_1 long 2 m) (STV 1.0 0.99))'])

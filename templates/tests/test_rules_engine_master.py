@@ -171,6 +171,56 @@ class BackgroundRulesOnUpstreamMaster(unittest.TestCase):
         got = [str(a) for a in kb(facts).query("(: $prf (Measure sk_plank_1 long $n metre) $tv)", steps=1500, timeout_sec=0)]
         self.assertTrue(got and re.search(r"\(Measure sk_plank_1 long 0\.3\d* metre\)", got[0]), got)
 
+    def test_a_link_carries_a_measure_a_part_and_an_order(self):
+        """The rope is new. It is 3 metres long. The beam is 2 metres long. — and the other facts said of a mention."""
+        link = "(: k1 (Coref sk_it_1 sk_rope_1) (STV 0.99 0.9))"
+        ropes = [link, f"(: m1 (Measure sk_it_1 long 3 metre) {TV})", f"(: m2 (Measure sk_beam_1 long 2 metre) {TV})"]
+        h = kb(ropes)
+        self.near(values(h, "(Measure sk_rope_1 long 3 metre)"), 0.99, 0.9)
+        got = [str(a) for a in h.query("(: $prf (MoreBy long sk_rope_1 sk_beam_1 $g $u) $tv)", steps=1500, timeout_sec=0)]
+        self.assertTrue(got and "(MoreBy long sk_rope_1 sk_beam_1 1" in got[0], got)
+        said = {"(More tall sk_it_1 sk_bob_1)": "(More tall sk_rope_1 sk_bob_1)", "(More tall sk_cal_1 sk_it_1)": "(More tall sk_cal_1 sk_rope_1)",
+                "(Ordinal sk_it_1 2 long cord)": "(Ordinal sk_rope_1 2 long cord)",
+                "(BeforeBy sk_talk_1 sk_it_1 2 day)": "(BeforeBy sk_talk_1 sk_rope_1 2 day)",
+                "(PartOf sk_it_1 sk_kit_1)": "(PartOf sk_rope_1 sk_kit_1)",
+                "(Before sk_it_1 sk_show_1)": "(Before sk_rope_1 sk_show_1)", "(BeforeBy sk_it_1 sk_show_1 2 day)": "(BeforeBy sk_rope_1 sk_show_1 2 day)",
+                "(Past (MeasureAtMost sk_it_1 weight 4 kilogram))": "(Past (MeasureAtMost sk_rope_1 weight 4 kilogram))"}
+        waiting = {"(PartOf sk_knot_1 sk_it_1)": "(PartOf sk_knot_1 sk_rope_1)",          # the whole of a part, the place a thing is in:
+                   "(LocatedIn sk_hook_1 sk_it_1)": "(LocatedIn sk_hook_1 sk_rope_1)"}    # not written for this engine (tmpl/rules.py)
+        h = kb([link] + [f"(: f{i} {fact} {TV})" for i, fact in enumerate(list(said) + list(waiting))])
+        for fact, question in said.items():
+            self.near(values(h, question, steps=1500), 0.99, 0.9)
+        for question in waiting.values():
+            self.assertEqual(values(h, question, steps=1500), [], question)
+        self.assertEqual(values(kb(ropes[1:]), "(Measure sk_rope_1 long 3 metre)"), [])            # no link, no measure
+
+    def test_a_chain_through_a_linked_mention_is_counted_once(self):
+        """The mixer was in the booth. The booth was in the main hall. / The lid was part of the box. It was in the shed.
+        — the second booth and the pronoun are mentions of their own, linked to the first. The chain reads as the
+        default it is, the link's strength taken off. This engine would count it twice — (0.891 0.831) — with the
+        link rules for BOTH places of a relation written, the middle term then being resolved from either fact; its
+        file leaves the second place out (tmpl/rules.py)."""
+        chain = [f"(: p1 (Past (LocatedIn sk_mixer_1 sk_booth_1)) {TV})", f"(: p2 (Past (LocatedIn sk_booth_2 sk_hall_1)) {TV})",
+                 "(: k1 (Coref sk_booth_2 sk_booth_1) (STV 0.99 0.9))",
+                 f"(: q1 (Past (PartOf sk_lid_1 sk_box_1)) {TV})", f"(: q2 (Past (LocatedIn sk_it_1 sk_shed_1)) {TV})",
+                 "(: k2 (Coref sk_it_1 sk_box_1) (STV 0.99 0.9))"]
+        h = kb(chain)
+        self.near(values(h, "(Past (LocatedIn sk_mixer_1 sk_hall_1))", steps=1500), 0.891, 0.715)
+        self.near(values(h, "(Past (LocatedIn sk_lid_1 sk_shed_1))", steps=1500), 0.891, 0.715)
+
+    def test_a_unit_the_text_leaves_out_is_read_at_the_links_strength(self):
+        """The main hall seats 300 people and the side room seats 120."""
+        halls = [f"(: m1 (Measure sk_hall_1 capacity 300 person) {TV})", f"(: m2 (Measure sk_room_1 capacity 120 unspecified) {TV})"]
+        linked = halls + ["(: m2_impliedunit (ImpliedUnit sk_room_1 capacity person) (STV 0.99 0.9))"]
+        h = kb(linked)
+        self.near(values(h, "(Measure sk_room_1 capacity 120 unspecified)"), 1.0, 0.99)            # what was stated reads back
+        self.near(values(h, "(Measure sk_room_1 capacity 120 person)"), 0.99, 0.9)
+        got = [str(a) for a in h.query("(: $prf (MoreBy capacity sk_hall_1 sk_room_1 $g $u) $tv)", steps=1500, timeout_sec=0)]
+        self.assertTrue(got and "(MoreBy capacity sk_hall_1 sk_room_1 180 person)" in got[0].replace("180.0", "180"), got)
+        likely = halls + ["(: m2_impliedunit (ImpliedUnit sk_room_1 capacity person) (STV 0.8 0.9))"]
+        self.near(values(kb(likely), "(Measure sk_room_1 capacity 120 person)"), 0.8, 0.9)
+        self.assertEqual(values(kb(halls), "(MoreBy capacity sk_hall_1 sk_room_1 $g $u)", steps=1500), [])   # no link, no comparison
+
     def test_a_question_nothing_derives_gets_no_answer_once_the_predicates_are_declared(self):
         for goal in ("(Agent sk_wash_1 sk_pieter_1)", "(Member sk_marisol_1 glazier)", "(Member sk_marisol_1 potter)"):
             self.assertEqual(values(kb(WASH), goal), [], goal)

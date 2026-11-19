@@ -1,0 +1,113 @@
+{
+  "provider": "google",
+  "model": "gemini-4-neon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "9c55a422b9b5cfe2bac1f914e37cedcc21db53c5e14f1a0f5b08bcd3c4024b89",
+  "item": {
+    "id": "sb2217f32d6",
+    "text": "Ottoline laughs only if Teodor sings."
+  },
+  "usage": {
+    "input": 133134,
+    "output": 243,
+    "thinking": 384,
+    "total": 133761,
+    "cached": 131029,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 133134,
+    "candidatesTokenCount": 243,
+    "totalTokenCount": 133761,
+    "cachedContentTokenCount": 131029,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 133134
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 131029
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 243
+      }
+    ],
+    "thoughtsTokenCount": 384,
+    "serviceTier": "flex"
+  },
+  "raw_text": "{\n  \"id\": \"sb2217f32d6\",\n  \"instances\": [\n    {\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"},\n    {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\", \"span\": \"Teodor\"},\n    {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"laugh\", \"actor\": \"@n1\", \"tense\": \"present\", \"span\": \"Ottoline laughs\"},\n    {\"t\": \"activity\", \"id\": \"v2\", \"verb\": \"sing\", \"actor\": \"@n2\", \"tense\": \"present\", \"span\": \"Teodor sings\"},\n    {\"t\": \"conditional\", \"id\": \"r1\", \"condition\": [\"@v1\"], \"over\": [\"@v2\"], \"word\": \"only if\", \"span\": \"Ottoline laughs only if Teodor sings\"}\n  ],\n  \"unmapped\": [],\n  \"issues\": []\n}",
+  "response": {
+    "id": "sb2217f32d6",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Ottoline",
+        "span": "Ottoline"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "laugh",
+        "actor": "@n1",
+        "tense": "present",
+        "span": "Ottoline laughs"
+      },
+      {
+        "t": "activity",
+        "id": "v2",
+        "verb": "sing",
+        "actor": "@n2",
+        "tense": "present",
+        "span": "Teodor sings"
+      },
+      {
+        "t": "conditional",
+        "id": "r1",
+        "condition": [
+          "@v1"
+        ],
+        "over": [
+          "@v2"
+        ],
+        "word": "only if",
+        "span": "Ottoline laughs only if Teodor sings"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "4ec3a11b820922780ba78ec4c419ad60d7cad6baa378389139fb60b7cc8c7f78",
+  "manifest_id": "1efb90db0958",
+  "run": 1,
+  "case": {
+    "template": "conditional",
+    "section": "held_out",
+    "index": 14,
+    "category": "positive",
+    "text": "Ottoline laughs only if Teodor sings.",
+    "key": "b2217f32d6"
+  }
+}

@@ -5,7 +5,10 @@
 # for and how sure the text makes it — (Coref sk_he_1 sk_bob_1) with the probability of identity
 # as its strength. Roles stay on the mention; a downstream reasoner carries them across the link
 # (the seeded congruence rules) and can revise the link. Two readings the text leaves open are two
-# links, one per candidate.
+# links, one per candidate. A plural pronoun that takes up SEVERAL separate things (a kettle and a
+# lamp … them) is none of them: each is a part of what it names — `part: true`, emitted as
+# (PartOf sk_kettle_1 sk_them_1) at the link's strength — and never linked as identical, which
+# would give each thing the other's facts.
 
 id: coref
 family: link
@@ -22,11 +25,18 @@ trigger:
     only one antecedent fits, likely when one fits clearly better than another, unsure when the
     text leaves it open, unlikely for the other candidate when you state both. One instance per
     later mention; for an open choice between two candidates, one instance per candidate.
+    A PLURAL PRONOUN THAT TAKES UP SEVERAL SEPARATE THINGS (Odile washed a kettle and a lamp
+    and dried them: them is the kettle and the lamp together) is none of those things: write one
+    instance per thing, each with `part: true` — the thing is ONE OF those the pronoun covers —
+    and never a plain link to each, which would say that the pronoun is that thing and so make
+    the two things one. A plural pronoun for ONE group (the potters … they) is a plain link to
+    the group, as usual.
   surface_forms:
     - "<N> … <pronoun>"                 # Pieter ate the bun and he liked it
     - "<Name> … <Name>"                 # Marisol laughed. Marisol left.
     - "a <N> … the <N>"                 # a badger arrived; the badger slept
     - "<clause>. That <V> …"            # Pieter arrived. That frightened Marisol.
+    - "<N> and <N> … they / them"       # several separate things: one instance per thing, each part: true
   boundary:                   # looks like coreference but is not one
     - >-
       a first mention — Marisol laughed: nothing to link; the referent's own instance suffices
@@ -49,6 +59,8 @@ slots:
                doc: "the referent it stands for: the id of that referent's FIRST instance in the text (an entity or an event)"}
   certainty:  {type: enum, values: [certain, likely, unsure, unlikely], required: true,
                doc: "how sure the text makes the identity; the program sets the strength from it"}
+  part:       {type: bool, required: false,
+               doc: "true when the mention is a plural pronoun covering SEVERAL separate referents and this one is one of them (a kettle and a lamp … them: one instance per thing, each part: true); absent for an ordinary link"}
 
 truth:
   strength:
@@ -57,6 +69,10 @@ truth:
 
 emits:
   - atom: "(Coref {mention} {antecedent})"
+    when: "not part"
+  # one of several things a plural pronoun covers: a part of what the pronoun names, not the same thing
+  - atom: "(PartOf {antecedent} {mention})"
+    when: "part"
 
 notes:
   - >-
@@ -65,6 +81,13 @@ notes:
     moved from the mention to the antecedent in the parse: the seeded congruence rules derive them
     downstream, at the link's strength and with provenance, so a wrong resolution is one atom to
     retract.
+  - >-
+    A plural pronoun for several separate things (a kettle and a lamp … them) names them
+    together. A plain link is an identity, and one to each thing would make the kettle a lamp
+    once the congruence rules run; with `part: true` the instance states (PartOf sk_kettle_1
+    sk_them_1) at the link's strength instead — still the parser's judgment, with its certainty —
+    and what is said of them reaches a member only where a rule says so (a place, through the
+    part rules; a property, through a distribution over the pronoun).
   - >-
     Link every later mention to the referent's first instance, not to the previous mention, so
     that the reasoner reaches any fact in one step.
@@ -120,6 +143,19 @@ examples:
         - {t: named-entity, id: n2, name: "Marisol", span: "Marisol"}
         - {t: motion, id: m1, verb: leave, mover: "@n2", tense: past, span: "Marisol left"}
         - {t: coref, id: c1, mention: "@n2", antecedent: "@n1", certainty: certain, span: ["Marisol", "Marisol"]}
+    - category: positive
+      note: a plural pronoun for two separate things — one instance per thing with part true, so neither thing is said to be the other
+      text: "Pieter washed a kettle and a lamp and dried them."
+      instances:
+        - {t: named-entity, id: n1, name: "Pieter", span: "Pieter"}
+        - {t: witness, id: x1, class: kettle, span: "a kettle"}
+        - {t: witness, id: x2, class: lamp, span: "a lamp"}
+        - {t: activity, id: v1, verb: wash, actor: "@n1", patient: "@x1", tense: past, span: "Pieter washed a kettle"}
+        - {t: activity, id: v2, verb: wash, actor: "@n1", patient: "@x2", tense: past, span: "Pieter washed a kettle and a lamp"}
+        - {t: mention, id: m1, word: them, span: "them"}
+        - {t: activity, id: v3, verb: dry, actor: "@n1", patient: "@m1", tense: past, span: "dried them"}
+        - {t: coref, id: c1, mention: "@m1", antecedent: "@x1", certainty: certain, part: true, span: ["a kettle", "them"]}
+        - {t: coref, id: c2, mention: "@m1", antecedent: "@x2", certainty: certain, part: true, span: ["a lamp", "them"]}
     - category: abstain
       text: "Marisol laughed."
       expected: {abstain: true, template: activity}                   # a first mention: nothing to link
@@ -262,3 +298,41 @@ examples:
             - {t: transfer, id: e1, verb: sell, giver: "@n1", object: "@x1", tense: past}
       text: "That is false."
       expected: {abstain: true, gap: G11, span: "That is false"}
+    - category: positive
+      note: a plural pronoun for two separate things — each a part of what it names
+      text: "Teodor ate a loaf and a pear and liked them."
+      instances:
+        - {t: named-entity, id: n1, name: "Teodor"}
+        - {t: witness, id: x1, class: loaf}
+        - {t: witness, id: x2, class: pear}
+        - {t: activity, id: v1, verb: eat, actor: "@n1", patient: "@x1", tense: past}
+        - {t: activity, id: v2, verb: eat, actor: "@n1", patient: "@x2", tense: past}
+        - {t: mention, id: m1, word: them}
+        - {t: psych, id: p1, verb: like, experiencer: "@n1", stimulus: "@m1", tense: past}
+        - {t: coref, id: c1, mention: "@m1", antecedent: "@x1", certainty: certain, part: true}
+        - {t: coref, id: c2, mention: "@m1", antecedent: "@x2", certainty: certain, part: true}
+    - category: positive
+      note: the same across two commands
+      text: "Bring a ladder and a rope. Wash them."
+      instances:
+        - {t: witness, id: x1, class: ladder}
+        - {t: witness, id: x2, class: rope}
+        - {t: motion, id: m1, verb: bring, moved: "@x1", tense: present}
+        - {t: motion, id: m2, verb: bring, moved: "@x2", tense: present}
+        - {t: imperative, id: s1, over: ["@m1", "@m2"]}
+        - {t: mention, id: p1, word: them}
+        - {t: activity, id: v1, verb: wash, patient: "@p1", tense: present}
+        - {t: imperative, id: s2, over: ["@v1"]}
+        - {t: coref, id: c1, mention: "@p1", antecedent: "@x1", certainty: certain, part: true}
+        - {t: coref, id: c2, mention: "@p1", antecedent: "@x2", certainty: certain, part: true}
+    - category: positive
+      note: a plural pronoun for ONE group is an ordinary link
+      text: "The ferrets surrounded the barn. Yusra counted them."
+      instances:
+        - {t: group, id: g1, class: ferret, definite: true}
+        - {t: witness, id: x1, class: barn, definite: true}
+        - {t: activity, id: v1, verb: surround, actor: "@g1", patient: "@x1", tense: past}
+        - {t: named-entity, id: n1, name: "Yusra"}
+        - {t: mention, id: m1, word: them}
+        - {t: activity, id: v2, verb: count, actor: "@n1", patient: "@m1", tense: past}
+        - {t: coref, id: c1, mention: "@m1", antecedent: "@g1", certainty: certain}

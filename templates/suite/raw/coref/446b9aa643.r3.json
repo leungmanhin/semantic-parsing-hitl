@@ -1,0 +1,148 @@
+{
+  "provider": "google",
+  "model": "gemini-4-neon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "9c55a422b9b5cfe2bac1f914e37cedcc21db53c5e14f1a0f5b08bcd3c4024b89",
+  "item": {
+    "id": "s446b9aa643",
+    "text": "Teodor ate a loaf and a pear and liked them."
+  },
+  "usage": {
+    "input": 133137,
+    "output": 392,
+    "thinking": 713,
+    "total": 134242,
+    "cached": 131088,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 133137,
+    "candidatesTokenCount": 392,
+    "totalTokenCount": 134242,
+    "cachedContentTokenCount": 131088,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 133137
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 131088
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 392
+      }
+    ],
+    "thoughtsTokenCount": 713,
+    "serviceTier": "flex"
+  },
+  "raw_text": "{\"id\": \"s446b9aa643\", \"instances\": [{\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Teodor\", \"span\": \"Teodor\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"loaf\", \"span\": \"a loaf\"}, {\"t\": \"witness\", \"id\": \"x2\", \"class\": \"pear\", \"span\": \"a pear\"}, {\"t\": \"mention\", \"id\": \"m1\", \"word\": \"them\", \"span\": \"them\"}, {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"eat\", \"actor\": \"@n1\", \"patient\": \"@x1\", \"tense\": \"past\", \"span\": \"Teodor ate a loaf\"}, {\"t\": \"activity\", \"id\": \"e2\", \"verb\": \"eat\", \"actor\": \"@n1\", \"patient\": \"@x2\", \"tense\": \"past\", \"span\": \"Teodor ate a loaf and a pear\"}, {\"t\": \"psych\", \"id\": \"p1\", \"verb\": \"like\", \"experiencer\": \"@n1\", \"stimulus\": \"@m1\", \"tense\": \"past\", \"span\": \"liked them\"}, {\"t\": \"coref\", \"id\": \"c1\", \"mention\": \"@m1\", \"antecedent\": \"@x1\", \"certainty\": \"certain\", \"part\": true, \"span\": [\"a loaf\", \"them\"]}, {\"t\": \"coref\", \"id\": \"c2\", \"mention\": \"@m1\", \"antecedent\": \"@x2\", \"certainty\": \"certain\", \"part\": true, \"span\": [\"a pear\", \"them\"]}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s446b9aa643",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "loaf",
+        "span": "a loaf"
+      },
+      {
+        "t": "witness",
+        "id": "x2",
+        "class": "pear",
+        "span": "a pear"
+      },
+      {
+        "t": "mention",
+        "id": "m1",
+        "word": "them",
+        "span": "them"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "eat",
+        "actor": "@n1",
+        "patient": "@x1",
+        "tense": "past",
+        "span": "Teodor ate a loaf"
+      },
+      {
+        "t": "activity",
+        "id": "e2",
+        "verb": "eat",
+        "actor": "@n1",
+        "patient": "@x2",
+        "tense": "past",
+        "span": "Teodor ate a loaf and a pear"
+      },
+      {
+        "t": "psych",
+        "id": "p1",
+        "verb": "like",
+        "experiencer": "@n1",
+        "stimulus": "@m1",
+        "tense": "past",
+        "span": "liked them"
+      },
+      {
+        "t": "coref",
+        "id": "c1",
+        "mention": "@m1",
+        "antecedent": "@x1",
+        "certainty": "certain",
+        "part": true,
+        "span": [
+          "a loaf",
+          "them"
+        ]
+      },
+      {
+        "t": "coref",
+        "id": "c2",
+        "mention": "@m1",
+        "antecedent": "@x2",
+        "certainty": "certain",
+        "part": true,
+        "span": [
+          "a pear",
+          "them"
+        ]
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "4ec3a11b820922780ba78ec4c419ad60d7cad6baa378389139fb60b7cc8c7f78",
+  "manifest_id": "1efb90db0958",
+  "run": 3,
+  "case": {
+    "template": "coref",
+    "section": "held_out",
+    "index": 13,
+    "category": "positive",
+    "text": "Teodor ate a loaf and a pear and liked them.",
+    "key": "446b9aa643"
+  }
+}

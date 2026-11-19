@@ -1,0 +1,156 @@
+{
+  "provider": "google",
+  "model": "gemini-4-neon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "9c55a422b9b5cfe2bac1f914e37cedcc21db53c5e14f1a0f5b08bcd3c4024b89",
+  "item": {
+    "id": "s100a28cbc8",
+    "text": "Bring a ladder and a rope. Wash them."
+  },
+  "usage": {
+    "input": 133134,
+    "output": 399,
+    "thinking": 960,
+    "total": 134493,
+    "cached": 131085,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 133134,
+    "candidatesTokenCount": 399,
+    "totalTokenCount": 134493,
+    "cachedContentTokenCount": 131085,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 133134
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 131085
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 399
+      }
+    ],
+    "thoughtsTokenCount": 960,
+    "serviceTier": "flex"
+  },
+  "raw_text": "{\"id\": \"s100a28cbc8\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"ladder\", \"span\": \"a ladder\"}, {\"t\": \"witness\", \"id\": \"x2\", \"class\": \"rope\", \"span\": \"a rope\"}, {\"t\": \"mention\", \"id\": \"m1\", \"word\": \"them\", \"span\": \"them\"}, {\"t\": \"motion\", \"id\": \"e1\", \"verb\": \"bring\", \"moved\": \"@x1\", \"tense\": \"present\", \"span\": \"Bring a ladder\"}, {\"t\": \"motion\", \"id\": \"e2\", \"verb\": \"bring\", \"moved\": \"@x2\", \"tense\": \"present\", \"span\": \"Bring a ladder and a rope\"}, {\"t\": \"activity\", \"id\": \"e3\", \"verb\": \"wash\", \"patient\": \"@m1\", \"tense\": \"present\", \"span\": \"Wash them\"}, {\"t\": \"imperative\", \"id\": \"s1\", \"over\": [\"@e1\", \"@e2\"], \"span\": \"Bring a ladder and a rope\"}, {\"t\": \"imperative\", \"id\": \"s2\", \"over\": [\"@e3\"], \"span\": \"Wash them\"}, {\"t\": \"coref\", \"id\": \"c1\", \"mention\": \"@m1\", \"antecedent\": \"@x1\", \"certainty\": \"certain\", \"part\": true, \"span\": [\"a ladder\", \"them\"]}, {\"t\": \"coref\", \"id\": \"c2\", \"mention\": \"@m1\", \"antecedent\": \"@x2\", \"certainty\": \"certain\", \"part\": true, \"span\": [\"a rope\", \"them\"]}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s100a28cbc8",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "ladder",
+        "span": "a ladder"
+      },
+      {
+        "t": "witness",
+        "id": "x2",
+        "class": "rope",
+        "span": "a rope"
+      },
+      {
+        "t": "mention",
+        "id": "m1",
+        "word": "them",
+        "span": "them"
+      },
+      {
+        "t": "motion",
+        "id": "e1",
+        "verb": "bring",
+        "moved": "@x1",
+        "tense": "present",
+        "span": "Bring a ladder"
+      },
+      {
+        "t": "motion",
+        "id": "e2",
+        "verb": "bring",
+        "moved": "@x2",
+        "tense": "present",
+        "span": "Bring a ladder and a rope"
+      },
+      {
+        "t": "activity",
+        "id": "e3",
+        "verb": "wash",
+        "patient": "@m1",
+        "tense": "present",
+        "span": "Wash them"
+      },
+      {
+        "t": "imperative",
+        "id": "s1",
+        "over": [
+          "@e1",
+          "@e2"
+        ],
+        "span": "Bring a ladder and a rope"
+      },
+      {
+        "t": "imperative",
+        "id": "s2",
+        "over": [
+          "@e3"
+        ],
+        "span": "Wash them"
+      },
+      {
+        "t": "coref",
+        "id": "c1",
+        "mention": "@m1",
+        "antecedent": "@x1",
+        "certainty": "certain",
+        "part": true,
+        "span": [
+          "a ladder",
+          "them"
+        ]
+      },
+      {
+        "t": "coref",
+        "id": "c2",
+        "mention": "@m1",
+        "antecedent": "@x2",
+        "certainty": "certain",
+        "part": true,
+        "span": [
+          "a rope",
+          "them"
+        ]
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "4ec3a11b820922780ba78ec4c419ad60d7cad6baa378389139fb60b7cc8c7f78",
+  "manifest_id": "1efb90db0958",
+  "run": 2,
+  "case": {
+    "template": "coref",
+    "section": "held_out",
+    "index": 14,
+    "category": "positive",
+    "text": "Bring a ladder and a rope. Wash them.",
+    "key": "100a28cbc8"
+  }
+}

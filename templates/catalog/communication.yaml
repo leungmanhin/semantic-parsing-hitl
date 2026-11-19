@@ -66,7 +66,7 @@ slots:
   message:   {type: filler, class: Entity, role: Theme, required: false,
               doc: "the message as a thing: the news, a secret, the result"}
   content:   {type: refs, class: Proposition, required: false,
-              doc: "the message as a clause: the ids of the instances that state it, that is its predication or the scope operator (negation, modal) over that predication, or the imperative instance for a request; the referents it mentions are not listed. Left out when none of the clause can be kept (a question, a clause no template covers): the communication alone, the clause reported as unmapped"}
+              doc: "the message as a clause: the ids of the instances that state it, that is its predication or the scope operator (negation, modal) over that predication, and the distribution instance when the clause says something of each member of a group, or the imperative instance for a request; the referents it mentions are not listed. Left out when none of the clause can be kept (a question, a clause no template covers): the communication alone, the clause reported as unmapped"}
   tense:     {type: enum, values: [past, present, future], required: true,
               doc: "the clause's tense; present is recorded, not inferred"}
   aspect:    {type: enum, values: [simple, progressive, perfect, perfect_progressive, about_to, due_to, would, going_to], required: false, default: simple,

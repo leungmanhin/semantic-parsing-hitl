@@ -1,0 +1,106 @@
+{
+  "provider": "google",
+  "model": "gemini-4-neon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "9c55a422b9b5cfe2bac1f914e37cedcc21db53c5e14f1a0f5b08bcd3c4024b89",
+  "item": {
+    "id": "s1e0d1ac073",
+    "text": "Wash both ladders."
+  },
+  "usage": {
+    "input": 133129,
+    "output": 196,
+    "thinking": 461,
+    "total": 133786,
+    "cached": 131080,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 133129,
+    "candidatesTokenCount": 196,
+    "totalTokenCount": 133786,
+    "cachedContentTokenCount": 131080,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 133129
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 131080
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 196
+      }
+    ],
+    "thoughtsTokenCount": 461,
+    "serviceTier": "flex"
+  },
+  "raw_text": "{\n  \"id\": \"s1e0d1ac073\",\n  \"instances\": [\n    {\"t\": \"group\", \"id\": \"g1\", \"class\": \"ladder\", \"definite\": true, \"count\": 2, \"span\": \"both ladders\"},\n    {\"t\": \"activity\", \"id\": \"e1\", \"verb\": \"wash\", \"patient\": \"@g1\", \"tense\": \"present\", \"span\": \"Wash both ladders\"},\n    {\"t\": \"imperative\", \"id\": \"s1\", \"over\": [\"@e1\"], \"span\": \"Wash both ladders\"},\n    {\"t\": \"distribution\", \"id\": \"r1\", \"group\": \"@g1\", \"over\": [\"@s1\"], \"span\": \"Wash both ladders\"}\n  ],\n  \"unmapped\": [],\n  \"issues\": []\n}",
+  "response": {
+    "id": "s1e0d1ac073",
+    "instances": [
+      {
+        "t": "group",
+        "id": "g1",
+        "class": "ladder",
+        "definite": true,
+        "count": 2,
+        "span": "both ladders"
+      },
+      {
+        "t": "activity",
+        "id": "e1",
+        "verb": "wash",
+        "patient": "@g1",
+        "tense": "present",
+        "span": "Wash both ladders"
+      },
+      {
+        "t": "imperative",
+        "id": "s1",
+        "over": [
+          "@e1"
+        ],
+        "span": "Wash both ladders"
+      },
+      {
+        "t": "distribution",
+        "id": "r1",
+        "group": "@g1",
+        "over": [
+          "@s1"
+        ],
+        "span": "Wash both ladders"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "4ec3a11b820922780ba78ec4c419ad60d7cad6baa378389139fb60b7cc8c7f78",
+  "manifest_id": "1efb90db0958",
+  "run": 3,
+  "case": {
+    "template": "distribution",
+    "section": "held_out",
+    "index": 8,
+    "category": "scoped",
+    "text": "Wash both ladders.",
+    "key": "1e0d1ac073"
+  }
+}

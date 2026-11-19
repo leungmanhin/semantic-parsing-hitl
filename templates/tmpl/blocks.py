@@ -241,6 +241,7 @@ def block_records(sentences: list[dict], catalog: dict | None = None, reference_
     prev_declarations: list[str] = []
     prev_types: dict = {}
     prev_functions: list = []
+    unstated_before: set = set()                         # instances already reported as in no statement
     for s in sentences:
         k = s["k"]
         rec = {"k": k, "available_from": k, "text": s.get("text"), "status": "ok", "statements": [],
@@ -312,6 +313,8 @@ def block_records(sentences: list[dict], catalog: dict | None = None, reference_
         rec["functions"] = [f for f in em["functions"] if f not in prev_functions]
         if lint:
             rec["findings"] += _lints(s, rec, catalog, accepted)
+            rec["findings"] += V.unstated_lints([i for i in em.get("unstated") or [] if i not in unstated_before], prefix)
+            unstated_before |= set(em.get("unstated") or [])
         out.append(rec)
         accepted = prefix
         earlier_ids |= {i.get("id") for i in s["instances"] if isinstance(i, dict)}

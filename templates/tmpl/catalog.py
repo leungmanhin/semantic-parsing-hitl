@@ -15,7 +15,8 @@ Structural invariants checked here (content is reviewed by people, not checked h
   the template's ``lexicon`` (``relation in symmetric``); ``project`` is a boolean;
   ``within`` names a refs slot (the shape is rendered inside that slot's bundle); a refs
   placeholder may carry ``|own`` or ``|attachments`` (the referenced predication's own atoms,
-  or its attachments' — the two halves of a rule restricted to the clause's events);
+  or its attachments' — the two halves of a rule restricted to the clause's events) or ``|whole``
+  (both, as the antecedent of a rule whose consequent is another clause);
 * ``one_of`` (exactly one filled), ``any_of`` (at least one filled) and ``at_most_one`` groups list two or more
   slots each; ``truth`` gives ``strength`` / ``confidence``
   clause lists (numbers, or ``{slot, values}`` / ``{from, slot, values}``); a shape's ``stv`` is a
@@ -45,9 +46,9 @@ TRIGGER_KEYS = {"construction", "verbs", "verbs_note", "surface_forms", "boundar
 #: examples; the emitter and the checks read the rest; notes are the maintainers'.
 TEMPLATE_KEYS = {"id", "title", "family", "shape", "status", "trigger", "slots", "one_of", "any_of", "at_most_one", "mints", "emits",
                  "examples", "depends_on", "composes_with", "notes", "truth", "presupposed", "lexicon",
-                 "narrowing", "period"}           # the last two: emitter configuration (superlative, time)
+                 "narrowing", "period", "distributed"}   # the last three: emitter configuration (superlative, time, measure)
 
-_PLACEHOLDER = re.compile(r"\{([a-z_0-9]+)(?:\|(own|attachments|narrowed|narrowing|mod|opt))?\}")   # {slot}, or {slot|own} / {slot|attachments} for a refs slot, {slot|narrowed} / {slot|narrowing} under a narrowing, {slot|mod} for a class its nouns narrow
+_PLACEHOLDER = re.compile(r"\{([a-z_0-9]+)(?:\|(own|attachments|whole|narrowed|narrowing|mod|opt))?\}")   # {slot}, or {slot|own} / {slot|attachments} / {slot|whole} for a refs slot, {slot|narrowed} / {slot|narrowing} under a narrowing, {slot|mod} for a class its nouns narrow
 
 
 class CatalogError(Exception):

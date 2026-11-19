@@ -126,9 +126,13 @@ class SourceTests(unittest.TestCase):
         for rid in ("pole_more", "pole_moreby", "pole_samedegree", "coref_member", "coref_locatedin"):
             written = next(r for r in RULES if r["id"] == rid)                    # as written too: before the link or the
             self.assertEqual(written["premises"][0], written["tensed"], rid)      # lexicon fact (a measured cost)
-        for src in RULES:                                                         # in every variant, whatever the rule's order
-            for variant in R.expand(src)[1:] if src.get("tensed") else []:
+        for src in RULES:                                                         # in every variant, whatever the rule's order —
+            for variant in R.expand(src)[1:] if src.get("tensed") else []:        # unless the rule keeps its own (the link first)
                 under = [p.startswith(("(Past ", "(Future ")) for p in variant["premises"]]
+                if src.get("tensed_order") == "as_written":
+                    self.assertEqual([p.startswith(("(Past ", "(Future ")) for p in variant["premises"]],
+                                     [p in R.tensed_facts(src) for p in src["premises"]], variant["id"])
+                    continue
                 self.assertEqual(under, sorted(under, reverse=True), variant["id"])
                 self.assertEqual(sorted(re.sub(r"^\((?:Past|Future) (.*)\)$", r"\1", p) for p in variant["premises"]),
                                  sorted(src["premises"]), variant["id"])
@@ -176,6 +180,11 @@ class SourceTests(unittest.TestCase):
                          "(: measure_moreby_past (Implication (And (Past (Measure $x $d $a $u)) (Past (Measure $y $d $b $u)) "
                          "(Compute - ($a $b) -> $g) (Compute > ($g 0) -> true)) (Past (MoreBy $d $x $y $g $u))) "
                          "(CTV (STV 0.9 0.7) (STV 0.0 0.0)))")
+        kept = R.expand(next(r for r in RULES if r["id"] == "coref_measure"))        # a rule that keeps its order: the link first
+        self.assertEqual([v["premises"] for v in kept], [["(Coref $m $a)", "(Measure $m $d $n $u)"], ["(Coref $m $a)", "(Past (Measure $m $d $n $u))"],
+                                                         ["(Coref $m $a)", "(Future (Measure $m $d $n $u))"]])
+        self.assertTrue(all("tensed_order" not in v for v in kept))
+        self.assertEqual(R.expand(next(r for r in RULES if r["id"] == "coref_member"))[1]["premises"], ["(Past (Member $m $k))", "(Coref $m $a)"])
         bound = R.expand(next(r for r in RULES if r["id"] == "most_bounds"))[1]       # a denial stays outside the tense,
         self.assertEqual(bound["premises"], ["(Past (Most $s $x $c))", "(Past (Member $y $c))"])
         self.assertEqual(bound["conclusion"], "(Not (Past (More $s $y $x)))")         # as the catalog writes a denied state
@@ -252,13 +261,16 @@ class UpstreamMasterTests(unittest.TestCase):
         closures = R.load_closures(rules=RULES)
         left = R.unwritten(RULES, closures, R.MASTER)
         self.assertEqual(collections.Counter(why for _r, why in left),
-                         {"requires sealed-term-projection": 12, "the closure kin": 15})
+                         {"requires sealed-term-projection": 12, "requires evidence-tracking": 3, "the closure kin": 15})
         ids = {r["id"] for r, _why in left}
+        self.assertEqual({r["id"] for r, why in left if why == "requires evidence-tracking"},    # the SECOND place of a relation
+                         {"coref_whole", "coref_place", "coref_moreby_second"})
         for rid in ("look_holds", "theme_entailed", "kin_compose", "kin_lift", "kin_state_theme"):   # the last one only READS the closure's head
             self.assertIn(rid, ids)
         self.assertEqual(R.unwritten(RULES, closures), [])                                    # our line runs every rule
         low = R.lowered(RULES, closures, R.MASTER)
         self.assertEqual(len(low), len(R.concrete([r for r in RULES if r["id"] not in ids])))   # a tensed rule: three
+        self.assertTrue({"coref_part", "coref_locatedin", "coref_moreby_first", "coref_part_past"} <= {r["id"] for r in low})   # the first place stays
         self.assertTrue(all(r["stage"] == "query" for r in low))                              # no closure stage, no unrolling
         text = R.render(RULES, R.MASTER)
         self.assertIn(";;   look_holds — what looks so is taken to be so (requires sealed-term-projection)", text)

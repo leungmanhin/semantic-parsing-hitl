@@ -14,8 +14,10 @@ clause with that tense carried onto the clause's event (``$c``, or ``(And $c (Pa
 clause's event comes from the computation ``clause-event`` over the term. One source rule
 stands for one lowered rule per tense (``id``, ``id_past``, ``id_future``); ``check`` validates
 the variants. A rule may name a consumer capability it ``requires`` (``sealed-term-projection``:
-concluding the conjuncts of a bound term, and the clause-event computation); lowering for a
-target that lacks the capability lists the rule as pending instead of writing it.
+concluding the conjuncts of a bound term, and the clause-event computation; ``evidence-tracking``:
+knowing which statements a proof rests on, so that a conclusion two proofs reach from the same
+statements is counted once); lowering for a target that lacks the capability lists the rule as
+pending instead of writing it.
 
 A rule over a STATED FACT that a clause may put in the past or the future declares ``tensed``: the premise that is
 such a fact. A state is stated flat in the present and under its tense otherwise — the rope was 3 metres long:
@@ -37,6 +39,10 @@ under 5 s with the stated fact first — the same answers, the same values. The 
 of the same cost (seventeen questions over present facts: 13.3 s there with that premise or link first in five
 rules, 0.7 s with the stated fact first; 7.8 s and 4.8 s on our line), so ``rules.yaml`` states the fact first in
 those five as well (``pole_more``, ``pole_moreby``, ``pole_samedegree``, ``coref_member``, ``coref_locatedin``).
+A rule may say ``tensed_order: as_written`` to keep its own order in its variants: the link rules for a measure and
+the rules for a unit the text leaves out state the LINK first. There the fact is a goal with a free mention, which
+the chainer searches at length, while the link fails at once in a text that has none — measured on both engines on
+2026-11-18, interleaved and three times over (the fourth rule round's notes).
 
 Lowering for our engine line (target ``pettachainer``): ``(: id (Implication <premises> <conclusion>)
 (CTV (STV s c) (STV 0.0 0.0)))``. The explicit conditional is the chainer's documented form for a
@@ -83,6 +89,19 @@ Some rules are NOT WRITTEN and listed in the file's header instead: a rule that 
 lacks (the rules over a sealed clause: loaded there, they stop every derivation of the knowledge base), and a
 CLOSURE — its recursive rules and the rules that read its head — which that engine does not yet run reliably (the
 repros of 2026-11-09); unrolling is our line's workaround, not that engine's. The lexicon facts are the same.
+THREE LINK RULES are among the unwritten ones, for want of ``evidence-tracking``: the SECOND argument place of a part,
+of a place and of a measured gap (``coref_whole``, ``coref_place``, ``coref_moreby_second``). A link is read in both
+directions (``coref_sym``), so once the rules for both places of one relation are written, the middle term of a chain
+is resolved from either of its two facts: two proofs of one conclusion from the same statements. That engine
+conditions on the stored statements but revises the two derivations as independent, so the chain rule's own
+reliability is counted twice — "The mixer was in the booth. The booth was in the main hall." (the second booth a
+mention linked to the first) read (0.891 0.831) with both rules and reads (0.891 0.715) with one, our line's value
+with both; a chain of parts and a part with its whole's place the same; a chain of measured gaps read one of its unit
+forms at (0.891 0.671), in the present at (0.99 0.45) instead of (0.99 0.9). The rules for the FIRST place stay
+written there (``coref_part``, ``coref_locatedin``, ``coref_moreby_first``), so on that engine what is said of a
+mention as a whole or as a place ("his hand", "the mixer is in it") does not reach the antecedent yet; a measured gap
+TO a mention reaches it through the scale's opposite pole, where the lexicon lists one. The comparison, equative, rank
+and order rules were measured in both places and keep their values there (2026-11-19, the fourth rule round's notes).
 BEFORE LOADING, a consumer on that engine declares the PREDICATES positive-only (the engine's
 ``set_positive_only_predicate``): ``tmpl.lower.predicates`` once for the knowledge base, and each text's class symbols
 (the ``predicates`` of its lowering) before that text's statements. Otherwise a question that nothing derives is
@@ -128,10 +147,10 @@ CLOSURE_ROLES = ("input", "base", "converse", "compose")
 CLOSURE_KEYS = ("id", "meaning", "head", "depth", "notes")
 OPS = ("+", "-", "*", "/", "clause-event", "!=", ">", "<")   # arithmetic, the event of a sealed clause, and boolean guards (result: true)
 TENSES = {"none": None, "past": "Past", "future": "Future"}
-CAPABILITIES = ("sealed-term-projection",)
+CAPABILITIES = ("sealed-term-projection", "evidence-tracking")
 MASTER = "pettachainer-master"                   # upstream PeTTaChainer master (the module doc)
 TARGETS = ("pettachainer", MASTER)
-TARGET_CAPABILITIES = {"pettachainer": {"sealed-term-projection"}, MASTER: set()}  # what each consumer can run; grows with the consumer
+TARGET_CAPABILITIES = {"pettachainer": {"sealed-term-projection", "evidence-tracking"}, MASTER: set()}  # what each consumer can run; grows with the consumer
 NEGATIVE_BRANCH = {"pettachainer": "(STV 0.0 0.0)", MASTER: "(STV 0.0 0.001)"}     # a deductive rule's failed-premise branch
 _VAR = re.compile(r"\$[A-Za-z_][A-Za-z0-9_]*")
 TENSED_NOTE = " — 3 variants: as stated, and with the fact and the conclusion in the past, in the future"
@@ -180,13 +199,15 @@ def expand(rule: dict) -> list[dict]:
     sealed clause; itself and its past and future variants when it declares ``tensed`` premises (the module doc)."""
     facts = tensed_facts(rule)
     if facts:
-        base = {k: v for k, v in rule.items() if k not in ("tensed", "tensed_truth")}
+        base = {k: v for k, v in rule.items() if k not in ("tensed", "tensed_truth", "tensed_order")}
         out = [base]
         for tense in ("past", "future"):
             head = TENSES[tense]
-            variant = {**base, "id": f"{rule['id']}_{tense}",      # the facts under the tense first (the module doc)
-                       "premises": [f"({head} {p})" for p in rule["premises"] if p in facts]
-                                   + [p for p in rule["premises"] if p not in facts],
+            kept = rule.get("tensed_order") == "as_written"         # else the facts under the tense first (the module doc)
+            variant = {**base, "id": f"{rule['id']}_{tense}",
+                       "premises": [f"({head} {p})" if p in facts else p for p in rule["premises"]] if kept
+                                   else [f"({head} {p})" for p in rule["premises"] if p in facts]
+                                        + [p for p in rule["premises"] if p not in facts],
                        "conclusion": _under(head, rule["conclusion"])}
             if rule.get("tensed_truth") is not None:      # several facts under one tense: a default (the module doc)
                 variant["truth"] = rule["tensed_truth"]
@@ -255,6 +276,9 @@ def check(rules: list[dict], heads: set | None = None, templates: set | None = N
                 continue
             if not several and "tensed_truth" in src:
                 problems.append(f"{where}: tensed_truth belongs to a rule over several tensed facts; the variants of a rule over one keep its truth")
+                continue
+            if src.get("tensed_order", "as_written") != "as_written":
+                problems.append(f"{where}: tensed_order is as_written (the variants keep the rule's premise order) or absent (the tensed facts first)")
                 continue
             variants = expand(src)                       # the rule as written, and its past and future variants
         for r in variants:
@@ -343,7 +367,7 @@ def _check_one(r: dict, i: int, heads, templates, seen: set, expanded: bool = Fa
                 if t not in templates:
                     problems.append(f"{where}: reads unknown template {t!r}")
         for key in r:
-            if key not in ("id", "meaning", "premises", "computations", "conclusion", "truth", "semantics", "reads", "notes", "expand", "requires", "closure", "tensed", "tensed_truth"):
+            if key not in ("id", "meaning", "premises", "computations", "conclusion", "truth", "semantics", "reads", "notes", "expand", "requires", "closure", "tensed", "tensed_truth", "tensed_order"):
                 problems.append(f"{where}: unknown key {key!r}")
         cl = r.get("closure")
         if cl is not None:

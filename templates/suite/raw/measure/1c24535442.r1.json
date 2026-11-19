@@ -1,0 +1,84 @@
+{
+  "provider": "google",
+  "model": "gemini-4-neon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "9c55a422b9b5cfe2bac1f914e37cedcc21db53c5e14f1a0f5b08bcd3c4024b89",
+  "item": {
+    "id": "s1c24535442",
+    "text": "The cabin sleeps six."
+  },
+  "usage": {
+    "input": 133131,
+    "output": 123,
+    "thinking": 208,
+    "total": 133462,
+    "cached": null,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 133131,
+    "candidatesTokenCount": 123,
+    "totalTokenCount": 133462,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 133131
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 123
+      }
+    ],
+    "thoughtsTokenCount": 208,
+    "serviceTier": "flex"
+  },
+  "raw_text": "{\"id\": \"s1c24535442\", \"instances\": [{\"t\": \"witness\", \"id\": \"x1\", \"class\": \"cabin\", \"definite\": true, \"span\": \"The cabin\"}, {\"t\": \"measure\", \"id\": \"m1\", \"bearer\": \"@x1\", \"head\": \"Measure\", \"dimension\": \"capacity\", \"magnitude\": 6, \"unit\": \"unspecified\", \"tense\": \"present\", \"span\": \"The cabin sleeps six\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s1c24535442",
+    "instances": [
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "cabin",
+        "definite": true,
+        "span": "The cabin"
+      },
+      {
+        "t": "measure",
+        "id": "m1",
+        "bearer": "@x1",
+        "head": "Measure",
+        "dimension": "capacity",
+        "magnitude": 6,
+        "unit": "unspecified",
+        "tense": "present",
+        "span": "The cabin sleeps six"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "4ec3a11b820922780ba78ec4c419ad60d7cad6baa378389139fb60b7cc8c7f78",
+  "manifest_id": "1efb90db0958",
+  "run": 1,
+  "case": {
+    "template": "measure",
+    "section": "held_out",
+    "index": 27,
+    "category": "positive",
+    "text": "The cabin sleeps six.",
+    "key": "1c24535442"
+  }
+}

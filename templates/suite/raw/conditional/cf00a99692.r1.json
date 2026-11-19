@@ -1,0 +1,113 @@
+{
+  "provider": "google",
+  "model": "gemini-4-neon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "54f4729f3c5793b6a51f5f073422e5cf6e56c3648c6d322b012432dd55156eed",
+  "item": {
+    "id": "scf00a99692",
+    "text": "Ottoline sings loudly only if Teodor waits."
+  },
+  "usage": {
+    "input": 133134,
+    "output": 279,
+    "thinking": 616,
+    "total": 134029,
+    "cached": null,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 133134,
+    "candidatesTokenCount": 279,
+    "totalTokenCount": 134029,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 133134
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 279
+      }
+    ],
+    "thoughtsTokenCount": 616,
+    "serviceTier": "flex"
+  },
+  "raw_text": "{\n  \"id\": \"scf00a99692\",\n  \"instances\": [\n    {\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Ottoline\", \"span\": \"Ottoline\"},\n    {\"t\": \"named-entity\", \"id\": \"n2\", \"name\": \"Teodor\", \"span\": \"Teodor\"},\n    {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"sing\", \"actor\": \"@n1\", \"tense\": \"present\", \"span\": \"Ottoline sings\"},\n    {\"t\": \"activity\", \"id\": \"v2\", \"verb\": \"wait\", \"actor\": \"@n2\", \"tense\": \"present\", \"span\": \"Teodor waits\"},\n    {\"t\": \"manner\", \"id\": \"a1\", \"event\": \"@v1\", \"manner\": \"loudly\", \"span\": \"loudly\"},\n    {\"t\": \"conditional\", \"id\": \"r1\", \"condition\": [\"@v1\"], \"over\": [\"@v2\"], \"word\": \"only if\", \"span\": \"Ottoline sings loudly only if Teodor waits\"}\n  ],\n  \"unmapped\": [],\n  \"issues\": []\n}",
+  "response": {
+    "id": "scf00a99692",
+    "instances": [
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Ottoline",
+        "span": "Ottoline"
+      },
+      {
+        "t": "named-entity",
+        "id": "n2",
+        "name": "Teodor",
+        "span": "Teodor"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "sing",
+        "actor": "@n1",
+        "tense": "present",
+        "span": "Ottoline sings"
+      },
+      {
+        "t": "activity",
+        "id": "v2",
+        "verb": "wait",
+        "actor": "@n2",
+        "tense": "present",
+        "span": "Teodor waits"
+      },
+      {
+        "t": "manner",
+        "id": "a1",
+        "event": "@v1",
+        "manner": "loudly",
+        "span": "loudly"
+      },
+      {
+        "t": "conditional",
+        "id": "r1",
+        "condition": [
+          "@v1"
+        ],
+        "over": [
+          "@v2"
+        ],
+        "word": "only if",
+        "span": "Ottoline sings loudly only if Teodor waits"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "4ec3a11b820922780ba78ec4c419ad60d7cad6baa378389139fb60b7cc8c7f78",
+  "manifest_id": "f06b7feb7498",
+  "run": 1,
+  "case": {
+    "template": "conditional",
+    "section": "held_out",
+    "index": 20,
+    "category": "positive",
+    "text": "Ottoline sings loudly only if Teodor waits.",
+    "key": "cf00a99692"
+  }
+}

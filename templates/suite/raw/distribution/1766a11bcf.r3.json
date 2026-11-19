@@ -1,0 +1,100 @@
+{
+  "provider": "google",
+  "model": "gemini-4-neon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "9c55a422b9b5cfe2bac1f914e37cedcc21db53c5e14f1a0f5b08bcd3c4024b89",
+  "item": {
+    "id": "s1766a11bcf",
+    "text": "The crates weigh 60 kilograms each."
+  },
+  "usage": {
+    "input": 133133,
+    "output": 167,
+    "thinking": 368,
+    "total": 133668,
+    "cached": 131084,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 133133,
+    "candidatesTokenCount": 167,
+    "totalTokenCount": 133668,
+    "cachedContentTokenCount": 131084,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 133133
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 131084
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 167
+      }
+    ],
+    "thoughtsTokenCount": 368,
+    "serviceTier": "flex"
+  },
+  "raw_text": "{\"id\": \"s1766a11bcf\", \"instances\": [{\"t\": \"group\", \"id\": \"g1\", \"class\": \"crate\", \"definite\": true, \"span\": \"The crates\"}, {\"t\": \"measure\", \"id\": \"m1\", \"bearer\": \"@g1\", \"head\": \"Measure\", \"dimension\": \"weight\", \"magnitude\": 60, \"unit\": \"kilogram\", \"tense\": \"present\", \"span\": \"The crates weigh 60 kilograms each\"}, {\"t\": \"distribution\", \"id\": \"d1\", \"group\": \"@g1\", \"over\": [\"@m1\"], \"span\": \"The crates weigh 60 kilograms each\"}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s1766a11bcf",
+    "instances": [
+      {
+        "t": "group",
+        "id": "g1",
+        "class": "crate",
+        "definite": true,
+        "span": "The crates"
+      },
+      {
+        "t": "measure",
+        "id": "m1",
+        "bearer": "@g1",
+        "head": "Measure",
+        "dimension": "weight",
+        "magnitude": 60,
+        "unit": "kilogram",
+        "tense": "present",
+        "span": "The crates weigh 60 kilograms each"
+      },
+      {
+        "t": "distribution",
+        "id": "d1",
+        "group": "@g1",
+        "over": [
+          "@m1"
+        ],
+        "span": "The crates weigh 60 kilograms each"
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "4ec3a11b820922780ba78ec4c419ad60d7cad6baa378389139fb60b7cc8c7f78",
+  "manifest_id": "1efb90db0958",
+  "run": 3,
+  "case": {
+    "template": "distribution",
+    "section": "held_out",
+    "index": 11,
+    "category": "positive",
+    "text": "The crates weigh 60 kilograms each.",
+    "key": "1766a11bcf"
+  }
+}

@@ -6,7 +6,7 @@
   slot, a filler pointing at a scope instance, a scope cycle, an empty required refs list);
 * lints: dangling referent (suppressed when something is unmapped), bare predication, empty
   optional scope, a per-member rule outside the scope of what it restates, a later mention with certain links
-  to several antecedents; with the text, the content lints (a content word outside every span, a quotation
+  to several antecedents, an instance that reaches no statement; with the text, the content lints (a content word outside every span, a quotation
   whose wording alone was reported);
 * C9 through ``validate``: the live transfer example validates clean; a well-formed but
   ill-typed emission is reported (skipped without ``petta``);
@@ -308,6 +308,65 @@ class ScopeAndLinkLintTests(unittest.TestCase):
                  {"t": "activity", "id": "e1", "verb": "creak", "actor": "@g1", "tense": "past"},
                  {"t": "distribution", "id": "d1", "group": "@g1", "over": ["@e1"]}]
         self.assertEqual(kinds(V.inspect(reply(insts), CATALOG)), [])
+
+    def test_a_rule_sealed_inside_the_same_scope_is_not_outside_it(self):
+        """A belief whose content lists the per-member rule beside the predication: the rule is believed, not stated."""
+        insts = [{"t": "named-entity", "id": "n1", "name": "Yusra"},
+                 {"t": "group", "id": "g1", "class": "hinge", "definite": True},
+                 {"t": "activity", "id": "e1", "verb": "creak", "actor": "@g1", "tense": "present"},
+                 {"t": "distribution", "id": "d1", "group": "@g1", "over": ["@e1"]},
+                 {"t": "attitude", "id": "a1", "verb": "think", "holder": "@n1", "content": ["@e1", "@d1"], "factive": False,
+                  "tense": "present"}]
+        res = V.inspect(reply(insts), CATALOG)
+        self.assertEqual((res["status"], kinds(res)), ("ok", []))
+        self.assertFalse(any(s.startswith("(: d1_implication") for s in res["statements"]), res["statements"])
+        over_the_belief = insts[:3] + [{"t": "attitude", "id": "a1", "verb": "think", "holder": "@n1", "content": ["@e1"],
+                                        "factive": False, "tense": "present"},
+                                       {"t": "distribution", "id": "d1", "group": "@g1", "over": ["@a1"]}]
+        self.assertEqual(kinds(V.inspect(reply(over_the_belief), CATALOG)), [])
+
+    def test_part_links_are_no_identities_and_an_understood_unit_is_one_the_text_states(self):
+        things = [{"t": "witness", "id": "x1", "class": "hinge"}, {"t": "witness", "id": "x2", "class": "latch"},
+                  {"t": "activity", "id": "e1", "verb": "oil", "patient": "@x1", "tense": "past"},
+                  {"t": "activity", "id": "e2", "verb": "oil", "patient": "@x2", "tense": "past"},
+                  {"t": "mention", "id": "m1", "word": "them"},
+                  {"t": "activity", "id": "e3", "verb": "test", "patient": "@m1", "tense": "past"}]
+        links = [{"t": "coref", "id": "c1", "mention": "@m1", "antecedent": "@x1", "certainty": "certain"},
+                 {"t": "coref", "id": "c2", "mention": "@m1", "antecedent": "@x2", "certainty": "certain"}]
+        self.assertEqual(kinds(V.inspect(reply(things + links), CATALOG)), ["mention-several-antecedents"])
+        self.assertEqual(kinds(V.inspect(reply(things + [dict(k, part=True) for k in links]), CATALOG)), [])
+        hall = [{"t": "witness", "id": "x1", "class": "hall", "definite": True},
+                {"t": "measure", "id": "m1", "bearer": "@x1", "head": "Measure", "dimension": "capacity", "magnitude": 300, "unit": "person",
+                 "tense": "present"}]
+        room = [{"t": "witness", "id": "x2", "class": "room", "definite": True},
+                {"t": "measure", "id": "m2", "bearer": "@x2", "head": "Measure", "dimension": "capacity", "magnitude": 120, "unit": "unspecified",
+                 "unit_understood": "person", "unit_certainty": "certain", "tense": "present"}]
+        self.assertEqual(kinds(V.inspect(reply(hall + room), CATALOG)), [])
+        self.assertEqual(kinds(V.inspect(reply(room), CATALOG)), ["unit-not-in-text"])            # no measure states the unit
+        seats = [dict(hall[0]), dict(hall[1], unit="seat")]
+        self.assertEqual(kinds(V.inspect(reply(seats + room), CATALOG)), ["unit-not-in-text"])    # another unit is stated
+        self.assertEqual([f["kind"] for f in V.lints(room, CATALOG, [], context=hall)], [])       # stated in an earlier sentence
+
+    def test_an_instance_no_statement_carries_is_reported(self):
+        """``instance-not-stated``: what the parser wrote and the emitter rendered nowhere. With the catalog's
+        shapes nothing is left out; a rule shape that renders a clause without its attachments (the conditional's,
+        before its condition was rendered whole) leaves the place and its barn in no statement — reported."""
+        said = [{"t": "named-entity", "id": "n1", "name": "Teodor"}, {"t": "named-entity", "id": "n2", "name": "Ottoline"},
+                {"t": "witness", "id": "x1", "class": "barn"},
+                {"t": "activity", "id": "v1", "verb": "sing", "actor": "@n1", "tense": "present"},
+                {"t": "location", "id": "l1", "event": "@v1", "place": "@x1", "head": "Location", "preposition": "in"},
+                {"t": "motion", "id": "m2", "verb": "leave", "mover": "@n2", "tense": "present"},
+                {"t": "conditional", "id": "r1", "condition": ["@v1"], "over": ["@m2"]}]
+        res = V.inspect(reply(said), CATALOG)
+        self.assertEqual((res["status"], kinds(res)), ("ok", []))
+        self.assertIn("(Location $e $x) (Member $x barn)", " ".join(res["statements"]))
+        leaky = copy.deepcopy(CATALOG)
+        for e in leaky["conditional"]["emits"]:
+            e["atom"] = e["atom"].replace("{condition|whole}", "{condition|own}")
+        res = V.inspect(reply(said), leaky)
+        self.assertEqual((res["status"], kinds(res)), ("ok", ["instance-not-stated", "instance-not-stated"]))
+        self.assertEqual(sorted(f["instance"] for f in res["findings"]), ["l1", "x1"])
+        self.assertNotIn("barn", " ".join(res["statements"]))
 
     def test_a_question_option_inside_a_scope_is_no_rule(self):
         """A question's options do not consume either, but they make no rule: nothing is stated outside the belief."""

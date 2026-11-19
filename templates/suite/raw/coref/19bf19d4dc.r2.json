@@ -1,0 +1,128 @@
+{
+  "provider": "google",
+  "model": "gemini-4-neon",
+  "effort": "low",
+  "temperature": null,
+  "prompt_path": "templates/generated/PROMPT_CATALOG.txt",
+  "prompt_sha256": "9c55a422b9b5cfe2bac1f914e37cedcc21db53c5e14f1a0f5b08bcd3c4024b89",
+  "item": {
+    "id": "s19bf19d4dc",
+    "text": "The ferrets surrounded the barn. Yusra counted them."
+  },
+  "usage": {
+    "input": 133136,
+    "output": 299,
+    "thinking": 657,
+    "total": 134092,
+    "cached": 131087,
+    "finish": "STOP",
+    "thought_parts": 0
+  },
+  "request_config": {
+    "responseMimeType": "application/json",
+    "thinkingConfig": {
+      "thinkingLevel": "LOW"
+    },
+    "service_tier": "flex"
+  },
+  "raw_usage": {
+    "promptTokenCount": 133136,
+    "candidatesTokenCount": 299,
+    "totalTokenCount": 134092,
+    "cachedContentTokenCount": 131087,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 133136
+      }
+    ],
+    "cacheTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 131087
+      }
+    ],
+    "candidatesTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 299
+      }
+    ],
+    "thoughtsTokenCount": 657,
+    "serviceTier": "flex"
+  },
+  "raw_text": "{\"id\": \"s19bf19d4dc\", \"instances\": [{\"t\": \"group\", \"id\": \"g1\", \"class\": \"ferret\", \"definite\": true, \"span\": \"The ferrets\"}, {\"t\": \"witness\", \"id\": \"x1\", \"class\": \"barn\", \"definite\": true, \"span\": \"the barn\"}, {\"t\": \"named-entity\", \"id\": \"n1\", \"name\": \"Yusra\", \"span\": \"Yusra\"}, {\"t\": \"mention\", \"id\": \"m1\", \"word\": \"them\", \"span\": \"them\"}, {\"t\": \"activity\", \"id\": \"v1\", \"verb\": \"surround\", \"actor\": \"@g1\", \"patient\": \"@x1\", \"tense\": \"past\", \"span\": \"The ferrets surrounded the barn\"}, {\"t\": \"activity\", \"id\": \"v2\", \"verb\": \"count\", \"actor\": \"@n1\", \"patient\": \"@m1\", \"tense\": \"past\", \"span\": \"Yusra counted them\"}, {\"t\": \"coref\", \"id\": \"c1\", \"mention\": \"@m1\", \"antecedent\": \"@g1\", \"certainty\": \"certain\", \"span\": [\"The ferrets\", \"them\"]}], \"unmapped\": [], \"issues\": []}",
+  "response": {
+    "id": "s19bf19d4dc",
+    "instances": [
+      {
+        "t": "group",
+        "id": "g1",
+        "class": "ferret",
+        "definite": true,
+        "span": "The ferrets"
+      },
+      {
+        "t": "witness",
+        "id": "x1",
+        "class": "barn",
+        "definite": true,
+        "span": "the barn"
+      },
+      {
+        "t": "named-entity",
+        "id": "n1",
+        "name": "Yusra",
+        "span": "Yusra"
+      },
+      {
+        "t": "mention",
+        "id": "m1",
+        "word": "them",
+        "span": "them"
+      },
+      {
+        "t": "activity",
+        "id": "v1",
+        "verb": "surround",
+        "actor": "@g1",
+        "patient": "@x1",
+        "tense": "past",
+        "span": "The ferrets surrounded the barn"
+      },
+      {
+        "t": "activity",
+        "id": "v2",
+        "verb": "count",
+        "actor": "@n1",
+        "patient": "@m1",
+        "tense": "past",
+        "span": "Yusra counted them"
+      },
+      {
+        "t": "coref",
+        "id": "c1",
+        "mention": "@m1",
+        "antecedent": "@g1",
+        "certainty": "certain",
+        "span": [
+          "The ferrets",
+          "them"
+        ]
+      }
+    ],
+    "unmapped": [],
+    "issues": []
+  },
+  "prompt_body_sha256": "4ec3a11b820922780ba78ec4c419ad60d7cad6baa378389139fb60b7cc8c7f78",
+  "manifest_id": "1efb90db0958",
+  "run": 2,
+  "case": {
+    "template": "coref",
+    "section": "held_out",
+    "index": 15,
+    "category": "positive",
+    "text": "The ferrets surrounded the barn. Yusra counted them.",
+    "key": "19bf19d4dc"
+  }
+}
